@@ -1,0 +1,139 @@
+{
+  "schema_version": 2,
+  "claim_id": "CT09_FAST_COHERENT_POLE_KERNEL",
+  "repository": {
+    "commit": "2e8b3f8064cb6a0917ec8f637d8bb42fc0caef7b",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/coupled_trapping_2026_11_04/gravity_resonance/pole_api.py",
+    "reviews/coupled_trapping_2026_11_04/gravity_resonance/run_api001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Rank-one coherentpole shortcut matchesfull4x4 inversions at24finitepoints; splitangularphysicalpairMoller matricespositive/symmetricwith12/32node repeat.",
+    "coefficient_domain": "complexdouble4x4,fixedtreepolepacket",
+    "conventions": "mu units, e.003, exactCMflux factor4/sqrt(s), NRfixedwidth/couplings retained",
+    "inputs": [
+      "Fixedvacuumandbosonic-widthpolepackets",
+      "Fournear-polebackgrounds,sixvelocities",
+      "Two10binpairmatrix angularcomparisons"
+    ],
+    "bounds": {
+      "full_matrix_points": 24,
+      "pair_matrix_radial_bins": 10,
+      "angular_nodes": [
+        12,
+        32
+      ]
+    },
+    "non_claims": [
+      "NotallfiniteTselfenergy",
+      "Notradialcontinuumconvergence",
+      "Nocoupledtransportcertification",
+      "DonotdoublecountNWAconstant-singletterm"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-04T11:45:56.770102+00:00",
+    "runtime_seconds": 0.45352,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 115,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/coupled_trapping_2026_11_04/gravity_resonance/pole_api.py",
+    "reviews/coupled_trapping_2026_11_04/microphysics/run_pole002/result.json",
+    "reviews/coupled_trapping_2026_11_04/microphysics/run_medium001/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/gravity_resonance/pole_api.py",
+      "sha256": "280bedf76a1e5e3e9f609d471e67012e941803aa58877eea380d966e9c57c4a7",
+      "sha256_after": "280bedf76a1e5e3e9f609d471e67012e941803aa58877eea380d966e9c57c4a7"
+    },
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/microphysics/run_pole002/result.json",
+      "sha256": "cbae7eccf9892496f3c7f28d42ef40f34e7a7764ff06279f6c3279a531555bee",
+      "sha256_after": "cbae7eccf9892496f3c7f28d42ef40f34e7a7764ff06279f6c3279a531555bee"
+    },
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/microphysics/run_medium001/result.json",
+      "sha256": "93b156602f8cdc629e81048fae55ceba7f5f5d02ccfb07cb44495e4bf498d500",
+      "sha256_after": "93b156602f8cdc629e81048fae55ceba7f5f5d02ccfb07cb44495e4bf498d500"
+    }
+  ],
+  "output_directory": "reviews/coupled_trapping_2026_11_04/gravity_resonance/run_api001",
+  "declared_results": [
+    "reviews/coupled_trapping_2026_11_04/gravity_resonance/run_api001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/gravity_resonance/run_api001/stdout.txt",
+      "sha256": "1b121b5bbf679cd67115548ebb6eace9253ff71794f3f99b6247379898b89ca8",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/gravity_resonance/run_api001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/gravity_resonance/run_api001/result.json",
+      "sha256": "aeb0796684651baf2b9ec61ccf28164fda0a639e20e9ddb466d922d46f50aa0c",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

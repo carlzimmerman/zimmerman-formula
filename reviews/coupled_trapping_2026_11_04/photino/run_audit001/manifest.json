@@ -1,0 +1,134 @@
+{
+  "schema_version": 2,
+  "claim_id": "CT09_PHOTINO_ORTHOGONAL_CONTROLS",
+  "repository": {
+    "commit": "ab1ec3ab46eb944ff69c42b581c1e9209d33a194",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/coupled_trapping_2026_11_04/photino/audit.py",
+    "reviews/coupled_trapping_2026_11_04/photino/run_audit001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Independently recompute filled-sphere travel using present density and swapped integration order; verify exact residual-group Casimir branching and inverse one-pass/event-count relation.",
+    "coefficient_domain": "Float64 adaptive quadrature and analytic group Casimirs.",
+    "conventions": "Same explicit diagnostic LCDM constants as phase001; constant final photino mass after early birth.",
+    "inputs": [
+      "Completed source004 and phase001 results"
+    ],
+    "bounds": {
+      "embeddings": [
+        "canonical",
+        "protected"
+      ],
+      "birth_Tc_over_mu": 0.003
+    },
+    "non_claims": [
+      "Not an independent spectrum implementation",
+      "No physical history or generic late-source Pauli floor"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-04T11:18:08.536104+00:00",
+    "runtime_seconds": 1.557027,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 235,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/coupled_trapping_2026_11_04/photino/audit.py",
+    "reviews/coupled_trapping_2026_11_04/photino/run_source004/result.json",
+    "reviews/coupled_trapping_2026_11_04/photino/run_phase001/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/photino/audit.py",
+      "sha256": "c34d242649406ab4775b1f5943472fb97914a373c6c50310c2be1d12bfdd7551",
+      "sha256_after": "c34d242649406ab4775b1f5943472fb97914a373c6c50310c2be1d12bfdd7551"
+    },
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/photino/run_source004/result.json",
+      "sha256": "32f26d11e325a6e1a870189c24c2b7d3f3e955b71b8b44faebfb16dd0163881a",
+      "sha256_after": "32f26d11e325a6e1a870189c24c2b7d3f3e955b71b8b44faebfb16dd0163881a"
+    },
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/photino/run_phase001/result.json",
+      "sha256": "d9cf3d7a27fe81bf1d7acec09e17bf7bc3c390801c5969c1e90f717ec63ed40f",
+      "sha256_after": "d9cf3d7a27fe81bf1d7acec09e17bf7bc3c390801c5969c1e90f717ec63ed40f"
+    }
+  ],
+  "output_directory": "reviews/coupled_trapping_2026_11_04/photino/run_audit001",
+  "declared_results": [
+    "reviews/coupled_trapping_2026_11_04/photino/run_audit001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/photino/run_audit001/stdout.txt",
+      "sha256": "560b83b4c5e93372aed7e4162a430a8d3f13dcab5d34de28d78955906f5aa237",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/photino/run_audit001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/photino/run_audit001/result.json",
+      "sha256": "560b83b4c5e93372aed7e4162a430a8d3f13dcab5d34de28d78955906f5aa237",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "schema_version": 2,
+  "claim_id": "GC03_INDEPENDENT_PRODUCTION_CONTROL_AUDIT",
+  "repository": {
+    "commit": "56749af4221bdba5a92f76535fdb1f3bf9eaa291",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/gravity_completion_2026_11_03/review/production_control_independent.py",
+    "reviews/gravity_completion_2026_11_03/review/run_production_independent/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Independently reconstruct one saved lifetime/energy boundary and a conservative all-birth-quantile lower bound with early SM Cmin; diagnose dilute-source occupation and photon-source normalization",
+    "coefficient_domain": "double precision deterministic quadrature and roots",
+    "conventions": "a(today)=1; instantaneous relativistic neutrino decoupling; positive isolated hidden stress with 0<=w<=1/3; vacuum-width cold mother law; existing nearfold scaling fixed at e=.003",
+    "inputs": [
+      "last canonical nearfold threshold point",
+      "saved v2 boundary e,r",
+      "Omega_chi=.265, Omega_b=.05, Omega_L=.685",
+      "analytic high/low-temperature SM entropy endpoints"
+    ],
+    "bounds": {
+      "boundary_points": 2,
+      "maximum_birth_sqrt_u": 10,
+      "relative_quad_tolerance": 2e-11,
+      "root_absolute_tolerance": 2e-14,
+      "wall_seconds": 60,
+      "CPU_seconds": 55
+    },
+    "non_claims": [
+      "No continuous parameter optimum theorem",
+      "No actual nonabelian or blocked-source solution",
+      "No uncertainty-certified physical exclusion",
+      "Occupation uses an unbackreacted RD diagnostic"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-04T00:30:42.178242+00:00",
+    "runtime_seconds": 0.427156,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 200000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 55,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "reviews/gravity_completion_2026_11_03/review/run_production_independent/result.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/gravity_completion_2026_11_03/review/production_control_independent.py",
+    "reviews/gravity_completion_2026_11_03/canonical/run_nearfold/result.json",
+    "reviews/gravity_completion_2026_11_03/production/run_controls_v2/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/gravity_completion_2026_11_03/review/production_control_independent.py",
+      "sha256": "25932fe2e27202ea824cef3c106f62a51f6090117b6bf1702ae770f1fd3b20bd",
+      "sha256_after": "25932fe2e27202ea824cef3c106f62a51f6090117b6bf1702ae770f1fd3b20bd"
+    },
+    {
+      "path": "reviews/gravity_completion_2026_11_03/canonical/run_nearfold/result.json",
+      "sha256": "e914b8b98243180f5345c3afc6f59d58c5a2485dfc65fc766cb45ce2b3ffb106",
+      "sha256_after": "e914b8b98243180f5345c3afc6f59d58c5a2485dfc65fc766cb45ce2b3ffb106"
+    },
+    {
+      "path": "reviews/gravity_completion_2026_11_03/production/run_controls_v2/result.json",
+      "sha256": "ab0a0689a18c65610dc865d4f4d49c647c40b3b3bd38bb5220140166d6793e79",
+      "sha256_after": "ab0a0689a18c65610dc865d4f4d49c647c40b3b3bd38bb5220140166d6793e79"
+    }
+  ],
+  "output_directory": "reviews/gravity_completion_2026_11_03/review/run_production_independent",
+  "declared_results": [
+    "reviews/gravity_completion_2026_11_03/review/run_production_independent/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/gravity_completion_2026_11_03/review/run_production_independent/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/gravity_completion_2026_11_03/review/run_production_independent/stderr.txt",
+      "sha256": "0db9a6ca4c2cdc67dc536f8cd71889c102567ca609b437bd892222edcacf4f9a",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget.",
+    "Declared results were not produced: reviews/gravity_completion_2026_11_03/review/run_production_independent/result.json"
+  ]
+}

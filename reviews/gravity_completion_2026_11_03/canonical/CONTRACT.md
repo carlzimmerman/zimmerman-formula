@@ -1,0 +1,13 @@
+# Canonical small-field finite completion contract
+
+Base checkpoint: a5617b4742892d38b77382fd67540fba365b2993. Owner writes only this canonical directory. TP01--TP05 are immutable inputs.
+
+Target: actually solve the aligned small-field stationary point of canonical microscopic tree supergravity W_micro+W0, together with the rigid finite CW and all ten two-loop graph classes, heavy CW relaxation counted once. At e=.003, t=1.160043920237347 relative to the old one-loop R0, determine mu,W0, the two CP-even normal shifts, radial/phase reduced masses and metric, finite gaugino masses/slopes and gravitino mass. Compare 21/29-node interpolation and .005/.0025 field derivatives. Extend only for named discriminants.
+
+Finite action: V=V_SUGRA_exact(s,u,v,theta)+CW_valley(s)+j_a(s)u+j_b(s)v+V2_diagrams(s). Here a=a0+u,b=b0(s)+v. Solving microscopic tree normals with the linear CW sources includes -j H^-1 j/2 exactly once at two-loop order. V2_reduced must NOT also be added. Keeping the exact tree in this action does not calculate gravity loops or higher normal derivatives of CW. These omissions are explicitly outside its perturbative order. Q²=e[1/31+z0²/31] is fixed under derivatives. CW's valley supertrace M4 is zero at the chosen critical g/e, so its Q=1 implementation gives the same valley value.
+
+Ranges: s=ln(t) in [-.02,.3], equal weak couplings e=.003; coefficient construction at e=.03 with exact known scaling and direct .003 offnode check. Canonical reduced Mp=2.435e18GeV, rhoDE=2.52e-47GeV4. High precision (100 decimal digits) solves the tiny net residual rather than subtracting physical float64 energies. Vacuum energy is tuned with W0 and is not predicted.
+
+Three routes/dependencies: (1) finite reduced-action stationary solve and metrics, first uncertain implication surviving displaced minimum; (2) microscopic transverse tree-SUGRA spectrum and super-Higgs projection, first uncertainty loop-consistent Goldstino identity; (3) gravitational threshold matching, first uncertainty the finite nonsupersymmetric heavy threshold beyond the rigid leading photino mass. First route supplies a conditional production row. Full SUGRA certification requires all three; no positive row silently closes the others.
+
+Execution: installed mathbox v2 bounded runner, fresh output directories, one numerical thread, wall<=240s, CPU<=220s, measured macOS RSS; no unsupported RLIMIT_AS or affinity requests. No Git mutations, installs, queues or unrelated writes. Inputs/hashes and actual software are preserved in v2 records. Completed execution is finite evidence only, not an all-orders or cosmological theorem.

@@ -1,0 +1,167 @@
+# Independent release-energy review
+
+The proposed isolated hidden release is **not excluded by the TP06 energy
+gate** at xi=.02. The supplied equilibrium origin trap disappears near
+T_D/mu~.0048; the generous recombination energy deadline is much later,
+T_D/mu~2.77e-5. An actual capture and population calculation remains required.
+
+## Precisely what the inequality states
+
+For separately conserved hidden stress,
+
+    d(rho_h a^4)/d ln a = (rho_h-3P_h)a^4.
+
+After release, a mixture of particles and bounded harmonic oscillations with
+averaged 0<=w<=1/3 therefore has nondecreasing K=rho_h a^4. Including every
+hidden daughter, annihilation does not erase K. For a massive particle,
+
+    E-m = p^2/(E+m) <= p^2/E.
+
+Consequently, a comoving rest-mass allowance at recombination of
+rho_rest,rec a_rec^3 <= 1.1rho_chi0, together with
+3P_rec <= .3rho_one_nu,rec, implies
+
+    K_rec <= Kmax = 1.1rho_chi0 a_rec + .3rho_one_nu,0
+                 = 9.871064373080498e-51 GeV^4.
+
+The extra 10% here is .0265rho_c, not 10% of all cosmic critical density.
+This is the deliberately generous TP06 comparison gate, not a likelihood.
+The tuned true vacuum is subtracted from the released energy; its observed
+residual is negligible at these transition epochs. A false excess DeltaV
+fully released at a_release obeys the necessary condition
+
+    DeltaV a_release^4 <= Kmax.
+
+An extended transition instead contributes an integral of a^4 times the
+local net energy transfer into ordinary hidden excitations. Conversion
+fractions, delayed release and remaining vacuum must all be accounted for;
+replacing that history by its spinodal temperature is not generally exact.
+
+## Finite independent calculation
+
+The v2 record is `run_release_001/manifest.json` (`run.status=completed`).
+The script `release_gate.py` uses the supplied global exact-neutral-tree
+gravity plus full rigid one-loop CW function and independently reconstructs
+the cosmology, entropy conversion and physical-spectrum CW trace. The trace
+agrees with the mpmath implementation to 1.6e-10 relative or better. It does
+not extrapolate the local finite two-loop table. The false point is X=0,
+a proxy for the displaced near-origin thermal root; the quoted DeltaV is
+conditional on this global valley action.
+
+| Quantity | Canonical preferred point | Protected preferred point |
+|---|---:|---:|
+| DeltaV(0 to preferred), GeV^4 |8.676989719e13|1.073153767e20|
+| DeltaV^(1/4), GeV |3052.0544|101780.7129|
+| Latest release a |1.032758375e-16|3.096888059e-18|
+| Minimum pre-release T_D, GeV |15.10380|503.68559|
+| Corresponding T_SM, GeV |755.1901|25184.2795|
+| Minimum T_D/mu |2.7731806e-5|2.7719716e-5|
+| T_D at false-vacuum domination, GeV |25.07470|836.19755|
+| H at energy deadline / preferred radial mass |3.64e-10|5.90e-9|
+
+The supplied refined thermal calculation finds origin spinodals at
+T_D=2538.0557 /84625.4652 GeV, or T_D/mu=.00466008 /.00465726, with
+false X/mu=.268950 /.184443. These temperatures are more than two orders
+of magnitude above either energy deadline. Using the actual zero-T excess
+at these roots gives release K/Kmax=1.2447e-9 /1.2505e-9 with the
+collisionless temperature label. `run_entropy_001/manifest.json` pins this
+arithmetic to `thermal/run_static_001/result.json`; it completed and validates.
+Thus the late-trapping premise that would require an early-bubble no-go
+is absent for these points. No bounce result is needed to establish this
+narrow failure of the proposed energy obstruction. This does not establish
+a good transition: its destination and capture in the intended small
+vacuum have to be solved.
+
+## Entropy, H and the interpretation of temperature
+
+The run takes xi=.02 when SM g_s=106.75. Conserved visible entropy gives
+
+    a T_SM = T_gamma0 [g_s(today)/g_s(T_SM)]^(1/3),
+    g_s(today)=43/11.
+
+For a decoupled relativistic distribution its temperature label has
+theta_D=a T_D=.02 T_gamma0[(43/11)/106.75]^(1/3)
+=1.559857887e-15 GeV. One must not keep xi=.02 relative to the photon
+temperature across SM entropy release. All deadline visible temperatures
+are above 100 GeV, so g_s=106.75 is consistent at the precision used here.
+
+For an internally equilibrated bath before latent heat, instead
+g_s,D T_D^3 a^3 is constant. Relative to the collisionless label the actual
+T_D a is multiplied by [g_s,D(initial)/g_s,D(current)]^(1/3). The full
+ultrarelativistic supplied spectrum has g_s,D=273.75. The nearby
+just-above-spinodal false minima have g_s,D~98.9, giving a heating factor
+1.404; the entropy-corrected release K/Kmax is still only 4.84e-9 /4.86e-9.
+Entropy redistribution
+into even only two massless photon degrees would give a factor 5.15;
+the actual bath has more degrees at the origin trap. A factor of order
+168 would be needed to turn the .00466mu origin instability into the
+energy deadline. Standard equilibrium entropy redistribution therefore
+does not remove this large margin. Entropy generated by the latent heat
+is part of the released energy budget and is not a new entropy factor
+that can be applied to erase it.
+
+False-vacuum domination would precede the latest allowed release by a
+scale-factor ratio 1.66016. This follows from Kmax/K_SM,highT=7.59622 and
+is independent of DeltaV. H in a delayed history must therefore include
+the false vacuum. The actual high-temperature origin instability occurs
+well before that domination epoch. A common choice of xi alone is an
+initial-state input, not a derived consequence of the action.
+
+## Kination and a visible-energy sink
+
+The averaged-pressure assumption is load bearing. The exact release
+condition for an isolated effective fluid is
+
+    K_rec = K_release exp[integral_release^rec (1-3w_h)d ln a].
+
+A late overbudget release by a factor Q can be repaired by stress with
+w>1/3 only if integral(3w_h-1)d ln a >= ln Q before ordinary matter or
+radiation evolution. Pure kination w=1 is the most rapid canonical-scalar
+case for a nonnegative scalar potential, and needs expansion
+a_f/a_release >= sqrt(Q). For free canonical
+kinetic energy plus the SM bath, the field distance is exactly
+
+    Delta phi = sqrt(6) Mp [asinh(sqrt(r_i))
+                          -asinh(sqrt(r_i)/(a_f/a_i))],
+    r_i=rho_kin,i/rho_SM,i.
+
+A hypothetical release at .3 of the energy-deadline temperature has
+Q=123.4568 and needs a factor 11.111 in expansion and a free-kinetic
+distance 1.418e19 GeV. This is 1.67e11 times the canonical R or 5.65e9
+times the protected R. The supplied local well has no such free-kinetic
+region, and H times its crossing distance divided by sqrt(DeltaV) is
+only 3.0e-11 /8.9e-10 at the deadline. Local rolling cannot silently be
+credited with cosmological kination dilution. This argument does not
+exclude another large-field action or a history leaving the local basin.
+
+If energy goes to the visible sector, hidden continuity instead has a
+source, dK_h/d ln a=(rho_h-3P_h)a^4-Q_toSM a^4/H. That would alter both
+the hidden energy gate and visible entropy. The specified constant gauge
+kinetic/no-portal model supplies no such process. Residual U1 photons
+are hidden photons; relabelling them as SM radiation is not a sink.
+
+## Equilibrium is not a collisionless production solution
+
+The equilibrium free energy sums species with their instantaneous masses
+and Bose/Fermi occupations. A collisionless prepared bath instead retains
+its comoving occupation f_i(q), and its scalar force is obtained from
+rho_i=a^-3 integral d^3q f_i(q) E_i(q/a,X); particles becoming heavy are
+not automatically Boltzmann removed or transferred to another species.
+Thus an equilibrium thermal path is an admissible candidate only after
+the relevant reactions and entropy exchange satisfy their kinetic gates.
+It is not a rigorous upper or lower envelope for every collisionless
+trajectory, and its small origin trap is not proof of capture from the
+stipulated initial bath. Its ability to rearrange species and follow
+minima is an optimistic escape route that must be earned by a collision
+calculation. This review finds no energy exclusion; it leaves actual
+kinetic preparation, transition/capture and photino population open.
+
+A separate diagnostic in `run_entropy_001` assumes an initially FD,
+two-helicity photino decouples while relativistic and receives no hidden
+entropy thereafter. Its conserved n_chi,0=6.9338e-46 GeV^3 gives only
+0.001841 /0.06934 of the required DM rest mass at the canonical/protected
+masses. These are conditional early-decoupling yields, not computed relics.
+They show why a final FD distribution cannot simply be imposed: the actual
+kinetics must supply number enhancements of about 543 /14.4 if this is
+the chosen initial-state route. The initially equilibrated full hidden bath
+has K/Kmax=5.40e-8; it remains included in every total-energy history.

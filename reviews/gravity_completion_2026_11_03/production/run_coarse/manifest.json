@@ -1,0 +1,154 @@
+{
+  "schema_version": 2,
+  "claim_id": "GC03_RADIAL_CASCADE_COARSE",
+  "repository": {
+    "commit": "ccfe7d35f935352ed8ba549abc5f7bc0f9b82b4a",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/gravity_completion_2026_11_03/production/boltzmann.py",
+    "--out",
+    "reviews/gravity_completion_2026_11_03/production/run_coarse/result.json",
+    "--mode",
+    "coarse"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Momentum-resolved decay cascade on seven e=.003 conditional stationary points; fit initial mother abundance and compute species energy and neutral travel distance",
+    "coefficient_domain": "double precision positive deterministic bins",
+    "conventions": "absolute a(today)=1; exact electron integrals; instantaneous high-T neutrino decoupling; no SM entropy injection; all nonabelian collisionless or instant-conversion endpoints",
+    "inputs": [
+      "seven finite-F kernel rows",
+      "Omega_chi=.265, Omega_b=.05, Omega_L=.685, H0=67.4km/s/Mpc",
+      "cold radial initial state at SM20MeV; abundance fitted"
+    ],
+    "bounds": {
+      "rows": 7,
+      "resolution_q": [
+        480,
+        720
+      ],
+      "resolution_dloga": [
+        0.035,
+        0.0175
+      ],
+      "angular_nodes": [
+        12,
+        20
+      ],
+      "initial_SM_T_GeV": 0.02
+    },
+    "non_claims": [
+      "No actual radial initial-state producer",
+      "No solved nonabelian collision term",
+      "No linear transfer function or likelihood",
+      "Leading gravity currents conditional"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-04T00:13:30.765598+00:00",
+    "runtime_seconds": 2.391088,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 230,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/gravity_completion_2026_11_03/production/boltzmann.py",
+    "reviews/gravity_completion_2026_11_03/production/kernels.py",
+    "reviews/gravity_completion_2026_11_03/production/run_kernels/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/gravity_completion_2026_11_03/production/boltzmann.py",
+      "sha256": "4c3d4a046440f88d846db76eb88b7c6f8b58b373287a801cf57d00f8709c3cab",
+      "sha256_after": "4c3d4a046440f88d846db76eb88b7c6f8b58b373287a801cf57d00f8709c3cab"
+    },
+    {
+      "path": "reviews/gravity_completion_2026_11_03/production/kernels.py",
+      "sha256": "631255b1626fcd90a35fb5246a2896059458a73fb3379178ceb96bc061523373",
+      "sha256_after": "631255b1626fcd90a35fb5246a2896059458a73fb3379178ceb96bc061523373"
+    },
+    {
+      "path": "reviews/gravity_completion_2026_11_03/production/run_kernels/result.json",
+      "sha256": "24d8fed4ebdb01b1c46d0cc60bcd1777f482b72c42b950a028f63adf91f7a2f0",
+      "sha256_after": "24d8fed4ebdb01b1c46d0cc60bcd1777f482b72c42b950a028f63adf91f7a2f0"
+    }
+  ],
+  "output_directory": "reviews/gravity_completion_2026_11_03/production/run_coarse",
+  "declared_results": [
+    "reviews/gravity_completion_2026_11_03/production/run_coarse/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/gravity_completion_2026_11_03/production/run_coarse/stdout.txt",
+      "sha256": "fdbb0565f7dd1f2396fd692663de9fb174eefad4fd67984d29eae43ef87a70e4",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/gravity_completion_2026_11_03/production/run_coarse/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/gravity_completion_2026_11_03/production/run_coarse/result.json",
+      "sha256": "1db8d12c42ee29a6b36dccc2b79b7757a072ccd2063b90cb003fe88a1e63cf74",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

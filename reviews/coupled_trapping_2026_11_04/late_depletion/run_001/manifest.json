@@ -1,0 +1,144 @@
+{
+  "schema_version": 2,
+  "claim_id": "CT09_CONDITIONAL_LATE_GAUGE_DEPLETION",
+  "repository": {
+    "commit": "65dc482b0d293a5a9b43234daebe2b65044ea5c9",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/coupled_trapping_2026_11_04/late_depletion/late.py",
+    "reviews/coupled_trapping_2026_11_04/late_depletion/run_001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite conditional pure gauge charged-scalar annihilation plus attractive Coulomb envelope cannot deplete a prescribed redshifting FD relic to its 10% DM gate for the tabulated initial populations and postcapture temperatures; determine required enhancement.",
+    "coefficient_domain": "Double precision quadrature; physical GeV units",
+    "conventions": "n includes particle+antiparticle; dY/dt=-s<sigma v>Y^2/2; comparison H>=Hstar/a^2",
+    "inputs": [
+      "Two TP06 charged scalar mass packets",
+      "e=.003,g=sqrt(29/200)e,xi=.02",
+      "Conditional pure gauge pair sigma0=13g^4/(128pi m^2),alpha_max=2.5g^2/(4pi)",
+      "Tcstar/mu=.003,.001,.0005,.0001; initialY=3.74544e-7,1e-9,1e-11,1e-13"
+    ],
+    "bounds": {
+      "cases": 32,
+      "quadrature_nodes": [
+        128,
+        256,
+        512
+      ]
+    },
+    "non_claims": [
+      "Not an all-channel annihilation bound",
+      "Not a kinetic capture solution",
+      "No general unitarity exclusion from single s wave",
+      "FD momentum shape is prescribed"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-04T11:13:10.981919+00:00",
+    "runtime_seconds": 0.835998,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 115,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/coupled_trapping_2026_11_04/late_depletion/late.py",
+    "reviews/coupled_trapping_2026_11_04/late_depletion/DERIVATION.md",
+    "reviews/gravity_completion_2026_11_03/run_charged/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/late_depletion/late.py",
+      "sha256": "2e6f8890cc882087e7d0dbc0ec73552f2bdb07b7513d5e93ff61e7e69a8e5261",
+      "sha256_after": "2e6f8890cc882087e7d0dbc0ec73552f2bdb07b7513d5e93ff61e7e69a8e5261"
+    },
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/late_depletion/DERIVATION.md",
+      "sha256": "a74fe792a42722939a54c9376411ecf75a161606e0707b7143c914f380f19702",
+      "sha256_after": "a74fe792a42722939a54c9376411ecf75a161606e0707b7143c914f380f19702"
+    },
+    {
+      "path": "reviews/gravity_completion_2026_11_03/run_charged/result.json",
+      "sha256": "045d6187e2198f5639c96489b671440199c6b20ccb7a36616f7bd3d697970b3a",
+      "sha256_after": "045d6187e2198f5639c96489b671440199c6b20ccb7a36616f7bd3d697970b3a"
+    }
+  ],
+  "output_directory": "reviews/coupled_trapping_2026_11_04/late_depletion/run_001",
+  "declared_results": [
+    "reviews/coupled_trapping_2026_11_04/late_depletion/run_001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/late_depletion/run_001/stdout.txt",
+      "sha256": "bd15e53db361804f39dac560b797bec006ba786845597cbc5727a2f8e0c059b6",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/late_depletion/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/late_depletion/run_001/result.json",
+      "sha256": "06d30686fc0704ca596ef0de05bfdc7a27c18e33375a7e2e927643410f789b67",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

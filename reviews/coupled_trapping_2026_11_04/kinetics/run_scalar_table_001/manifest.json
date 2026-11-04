@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "claim_id": "CT09_LIGHT_SCALAR_WIDTH_TABLE",
+  "repository": {
+    "commit": "4c9e9bd2eaac9f23e918919bc9f92526ba10f3a6",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/coupled_trapping_2026_11_04/kinetics/scalar_table.py",
+    "reviews/coupled_trapping_2026_11_04/kinetics/run_scalar_table_001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Group actual lightchargedscalar pair partialwidths on dense x grid including singlet threshold25.4000254.",
+    "coefficient_domain": "float64 SU5 rigid spectrum",
+    "conventions": "e=h=lambda=.003, g=sqrt(29/200)e; mu=sqrt(f); partial widths in mu units",
+    "inputs": [
+      "actual projected Yukawa and gauge vertices"
+    ],
+    "bounds": {
+      "x": [
+        3.8,
+        40
+      ],
+      "singlet_threshold_mesh": 0.025
+    },
+    "non_claims": [
+      "No irreversible exit or neutraldegeneracy resummation"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-04T11:21:11.993438+00:00",
+    "runtime_seconds": 61.555146,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 235,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/finite_matching_2026_11_01/two_loop/model.py",
+    "reviews/three_priorities_2026_11_01/spectrum_pressure/spectrum.py",
+    "reviews/coupled_trapping_2026_11_04/kinetics/scalar_table.py",
+    "reviews/coupled_trapping_2026_11_04/microphysics/scalar_network.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/finite_matching_2026_11_01/two_loop/model.py",
+      "sha256": "d273fa59914fb4a3d7f07675100f8bfecff6b03cfae809c75e4e4b424dbc26dd",
+      "sha256_after": "d273fa59914fb4a3d7f07675100f8bfecff6b03cfae809c75e4e4b424dbc26dd"
+    },
+    {
+      "path": "reviews/three_priorities_2026_11_01/spectrum_pressure/spectrum.py",
+      "sha256": "3c35638eb2bf55dcf1b66142e6a5cf826deccfa2cbf4f29344b4d93e996f5ae6",
+      "sha256_after": "3c35638eb2bf55dcf1b66142e6a5cf826deccfa2cbf4f29344b4d93e996f5ae6"
+    },
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/kinetics/scalar_table.py",
+      "sha256": "e593077c87d4d3350fef00d1f7d2b0094fa79246a8dcc2c463641b3f36ccb34e",
+      "sha256_after": "e593077c87d4d3350fef00d1f7d2b0094fa79246a8dcc2c463641b3f36ccb34e"
+    },
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/microphysics/scalar_network.py",
+      "sha256": "cf5a17cbb510f46a7a1b5a59094af104dfb036aa6de0c3972d1562083d75455b",
+      "sha256_after": "cf5a17cbb510f46a7a1b5a59094af104dfb036aa6de0c3972d1562083d75455b"
+    }
+  ],
+  "output_directory": "reviews/coupled_trapping_2026_11_04/kinetics/run_scalar_table_001",
+  "declared_results": [
+    "reviews/coupled_trapping_2026_11_04/kinetics/run_scalar_table_001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/kinetics/run_scalar_table_001/stdout.txt",
+      "sha256": "fdc19d40e2be69037c308406eccd3bb1114d7322ade12cfd124627e6679f64e2",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/kinetics/run_scalar_table_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/kinetics/run_scalar_table_001/result.json",
+      "sha256": "9de126ce1733fb31722d53027605b30cb8a1a6202853fd49f54c1c626e8ffba6",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "schema_version": 2,
+  "claim_id": "TP06_STRUCTURAL_SCALE_CONSTRAINTS",
+  "repository": {
+    "commit": "ccfe7d35f935352ed8ba549abc5f7bc0f9b82b4a",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/gravity_completion_2026_11_03/scale_constraints.py",
+    "reviews/gravity_completion_2026_11_03/run_scales/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact compact-support Pauli volume, canonical W0 sensitivity and tuned-branch coupling scaling; two inherited density benchmarks imply a minimum raw-energy cancellation at the fixed leading-pole coefficient; scalar single-channel threshold optimum.",
+    "coefficient_domain": "Exact symbolic positive reals for reductions; float64 unit restoration using frozen TP04 constants and mass coefficient.",
+    "conventions": "g=2 Majorana spin states, occupancy<=1, |p|<=m v_max; equal couplings e<=.03 at inherited CW minimum for DE bound; fixed t and open-channel relativistic scaling for exponent relation; single scalar pair RD decay for threshold optimum.",
+    "inputs": [
+      "TP04 unit constants and finite leading photino mass coefficient",
+      "Written TP06 scale reductions"
+    ],
+    "bounds": {
+      "density_benchmarks": 2,
+      "e_max": 0.03,
+      "exact_controls": 10
+    },
+    "non_claims": [
+      "No general interacting-fermion halo bound",
+      "No global gravity-branch or cosmological exclusion",
+      "No production history or corrected super-Higgs calculation",
+      "CC tuning is not prediction/protection"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-04T00:15:05.436581+00:00",
+    "runtime_seconds": 0.780419,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 55,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/gravity_completion_2026_11_03/scale_constraints.py",
+    "reviews/gravity_completion_2026_11_03/SCALE_CONSTRAINTS.md",
+    "reviews/radial_ir_cold_2026_11_01/run_units/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/gravity_completion_2026_11_03/scale_constraints.py",
+      "sha256": "4e97e8a31faad99ffba5dde89fdb505a85cad36b48b7656e01d50102de018c63",
+      "sha256_after": "4e97e8a31faad99ffba5dde89fdb505a85cad36b48b7656e01d50102de018c63"
+    },
+    {
+      "path": "reviews/gravity_completion_2026_11_03/SCALE_CONSTRAINTS.md",
+      "sha256": "f02101da4ab42ce61c4a9b657a3c8ce9acb8fbd84032539d9f66d221e80336c1",
+      "sha256_after": "f02101da4ab42ce61c4a9b657a3c8ce9acb8fbd84032539d9f66d221e80336c1"
+    },
+    {
+      "path": "reviews/radial_ir_cold_2026_11_01/run_units/result.json",
+      "sha256": "65f3d7fa49a1b38c13434d86e330e07d09484c403c35a6baa6b3630adb89f599",
+      "sha256_after": "65f3d7fa49a1b38c13434d86e330e07d09484c403c35a6baa6b3630adb89f599"
+    }
+  ],
+  "output_directory": "reviews/gravity_completion_2026_11_03/run_scales",
+  "declared_results": [
+    "reviews/gravity_completion_2026_11_03/run_scales/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/gravity_completion_2026_11_03/run_scales/stdout.txt",
+      "sha256": "c76b6b0609f15a4aa15013235d31f8a7275fa7d59f603251f9a14ab79e5eca01",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/gravity_completion_2026_11_03/run_scales/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/gravity_completion_2026_11_03/run_scales/result.json",
+      "sha256": "c76b6b0609f15a4aa15013235d31f8a7275fa7d59f603251f9a14ab79e5eca01",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

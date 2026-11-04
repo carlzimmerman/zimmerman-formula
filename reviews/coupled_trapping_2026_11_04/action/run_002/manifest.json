@@ -1,0 +1,129 @@
+{
+  "schema_version": 2,
+  "claim_id": "CT09_ACTION_COVARIANCE_CONTROL",
+  "repository": {
+    "commit": "6508420279d9a251482bfb58a64d3adaffd44f05",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/coupled_trapping_2026_11_04/action/action_control.py",
+    "reviews/coupled_trapping_2026_11_04/action/run_002/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Direct harmonic scalar coupled to phase-dependent particle removal agrees with analytically derived action covariance; number and total energy agree with the averaged equations in the finite slow-collision range.",
+    "coefficient_domain": "double precision real ODE, k=1 alpha=.7 m0=2 n0=1 A0=.8",
+    "conventions": "Unnormalized I=integral p dx; physical static volume H=0; emitted energy tracked once",
+    "inputs": [
+      "beta=-.8,0,.8; gamma=.0001,.0002; rtol=2e-9,2e-11"
+    ],
+    "bounds": {
+      "duration_initial_periods": 80,
+      "cases": 12
+    },
+    "non_claims": [
+      "Not a SU5 collision calculation",
+      "Not a uniform averaging theorem or separatrix treatment"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-04T11:07:41.731432+00:00",
+    "runtime_seconds": 11.117018,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 100000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 115,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/coupled_trapping_2026_11_04/action/action_control.py",
+    "reviews/coupled_trapping_2026_11_04/ACTION_IDENTITY.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/action/action_control.py",
+      "sha256": "0f317a7989a8d5fbc4965b21b05657235c90ce7073256e70c682d5022ea1bfaa",
+      "sha256_after": "0f317a7989a8d5fbc4965b21b05657235c90ce7073256e70c682d5022ea1bfaa"
+    },
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/ACTION_IDENTITY.md",
+      "sha256": "53cdd2220017dc9c81822122becd6013cb6c3f8d05ed7fe078ddfcf45f05dc2c",
+      "sha256_after": "53cdd2220017dc9c81822122becd6013cb6c3f8d05ed7fe078ddfcf45f05dc2c"
+    }
+  ],
+  "output_directory": "reviews/coupled_trapping_2026_11_04/action/run_002",
+  "declared_results": [
+    "reviews/coupled_trapping_2026_11_04/action/run_002/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/action/run_002/stdout.txt",
+      "sha256": "f40ba43c931d44e25089df8a9af1feecd311a7c2256f7cb06c697b89ad7a29a5",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/action/run_002/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/action/run_002/result.json",
+      "sha256": "4d5d617bacd768bea53cf3e25adf596c0c34e5fb6db1a71b21e715c1cd650469",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "schema_version": 2,
+  "claim_id": "CT09_TREE_CHARGE_NETWORK",
+  "repository": {
+    "commit": "b8d3f9481856c7a813a5fab553309401354ac091",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/coupled_trapping_2026_11_04/microphysics/network.py",
+    "reviews/coupled_trapping_2026_11_04/microphysics/run_network001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Charge-adapted physical scalar and fermion 1->2 partial widths and finite empty-daughter mass-DAG terminal charged multiplicity, at thirteen x values.",
+    "coefficient_domain": "IEEE float64; leading rigid tree e=h=lambda=.003, g=sqrt(29/200)e",
+    "conventions": "mu=sqrt(f); 98 real scalars, 73 Weyls; 12 charged Goldstones excluded; ordered Weyl scalar width and Majorana averaged fermion width; tree neutral zero modes retained",
+    "inputs": [
+      "Rigid valley a=sqrt(2/(31e)),b=x",
+      "conditional charged light branch occupation only"
+    ],
+    "bounds": {
+      "x": [
+        0,
+        0.184443,
+        0.26895,
+        1,
+        2,
+        3,
+        5,
+        7.5,
+        10,
+        15,
+        20,
+        25,
+        30
+      ]
+    },
+    "non_claims": [
+      "No complete cosmological irreversible loss rate",
+      "No vector or loop widths",
+      "No SUGRA 1PI pole spectrum",
+      "Empty daughter cascade ignores inverse reactions"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-04T11:07:21.110931+00:00",
+    "runtime_seconds": 9.712969,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 1000000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 235,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/coupled_trapping_2026_11_04/microphysics/network.py",
+    "reviews/finite_matching_2026_11_01/two_loop/model.py",
+    "reviews/three_priorities_2026_11_01/spectrum_pressure/spectrum.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/microphysics/network.py",
+      "sha256": "77948e14dab4c44ba021af24ec0a905bf979c57e6617db269b65153e8a74ce15",
+      "sha256_after": "77948e14dab4c44ba021af24ec0a905bf979c57e6617db269b65153e8a74ce15"
+    },
+    {
+      "path": "reviews/finite_matching_2026_11_01/two_loop/model.py",
+      "sha256": "d273fa59914fb4a3d7f07675100f8bfecff6b03cfae809c75e4e4b424dbc26dd",
+      "sha256_after": "d273fa59914fb4a3d7f07675100f8bfecff6b03cfae809c75e4e4b424dbc26dd"
+    },
+    {
+      "path": "reviews/three_priorities_2026_11_01/spectrum_pressure/spectrum.py",
+      "sha256": "3c35638eb2bf55dcf1b66142e6a5cf826deccfa2cbf4f29344b4d93e996f5ae6",
+      "sha256_after": "3c35638eb2bf55dcf1b66142e6a5cf826deccfa2cbf4f29344b4d93e996f5ae6"
+    }
+  ],
+  "output_directory": "reviews/coupled_trapping_2026_11_04/microphysics/run_network001",
+  "declared_results": [
+    "reviews/coupled_trapping_2026_11_04/microphysics/run_network001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/microphysics/run_network001/stdout.txt",
+      "sha256": "a10b1c0f162c742d8b9ddb119825e7230ee2d0eaac28f0817be9394b67ced405",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/microphysics/run_network001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/coupled_trapping_2026_11_04/microphysics/run_network001/result.json",
+      "sha256": "ce76851ce53cf3b1c2fc1f9b9347cfaa2ce7aba37e37bf1214f4bb662906481d",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

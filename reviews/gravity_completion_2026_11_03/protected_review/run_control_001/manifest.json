@@ -1,0 +1,135 @@
+{
+  "schema_version": 2,
+  "claim_id": "PG06_INDEPENDENT_WARD_CURRENT_AUDIT",
+  "repository": {
+    "commit": "56749af4221bdba5a92f76535fdb1f3bf9eaa291",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/gravity_completion_2026_11_03/protected_review/independent_control.py",
+    "reviews/gravity_completion_2026_11_03/protected_review/run_control_001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Differentiate a leading two-field almost-no-scale Kahler jet, reconstruct the stationary light matrix, and exhibit its Ward-null one-parameter ambiguity. Evaluate preferred finite-packet direct-metric W0 sensitivity and fixed-current massless partial-width bound.",
+    "coefficient_domain": "SymPy exact symbolic arithmetic and 100-digit mpmath numerical arithmetic",
+    "conventions": "Reduced M=2.435e18 GeV; M=1 for symbolic jets. Auxiliary vector uses positive A=e^(K/2)g^-1 Dbar W; on the real CP slice no Takagi-phase ambiguity. The mass deformation is reconstruction ambiguity, not an allowed independent parameter of the fixed action.",
+    "inputs": [
+      "n=3-epsilon symbolic",
+      "leading stabilized H jet H=1,P=1,Q=Htt=0,Httbar=-epsilon/n",
+      "preferred normalized finite packet from protected/run_export_002/result.json"
+    ],
+    "bounds": {
+      "wall_seconds": 60,
+      "cpu_seconds": 55,
+      "mp_dps": 100,
+      "numerical_points": 1
+    },
+    "non_claims": [
+      "No full SUGRA 1PI mass/current matching",
+      "No physical 81eV pole established",
+      "No total photino loss bound",
+      "No all-field quantum Hessian result"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-04T00:34:40.987397+00:00",
+    "runtime_seconds": 1.036926,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 55,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/gravity_completion_2026_11_03/protected_review/independent_control.py",
+    "reviews/gravity_completion_2026_11_03/protected/run_export_002/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/gravity_completion_2026_11_03/protected_review/independent_control.py",
+      "sha256": "beab76cd96f3351dfb2035fdd328194c9451b6fe26280c84fce0e8f157b2e8c7",
+      "sha256_after": "beab76cd96f3351dfb2035fdd328194c9451b6fe26280c84fce0e8f157b2e8c7"
+    },
+    {
+      "path": "reviews/gravity_completion_2026_11_03/protected/run_export_002/result.json",
+      "sha256": "88dfd8e90035724e5f6a2ae11b1d8b98f84fd4de989b8adf08bab8b9bbd5ebfa",
+      "sha256_after": "88dfd8e90035724e5f6a2ae11b1d8b98f84fd4de989b8adf08bab8b9bbd5ebfa"
+    }
+  ],
+  "output_directory": "reviews/gravity_completion_2026_11_03/protected_review/run_control_001",
+  "declared_results": [
+    "reviews/gravity_completion_2026_11_03/protected_review/run_control_001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/gravity_completion_2026_11_03/protected_review/run_control_001/stdout.txt",
+      "sha256": "dbdfb822863d33335bcb7a77489e1c7fa877b344803c0946bc87753bf798ebb7",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/gravity_completion_2026_11_03/protected_review/run_control_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/gravity_completion_2026_11_03/protected_review/run_control_001/result.json",
+      "sha256": "dbdfb822863d33335bcb7a77489e1c7fa877b344803c0946bc87753bf798ebb7",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

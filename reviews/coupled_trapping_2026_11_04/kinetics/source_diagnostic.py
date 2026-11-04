@@ -1,0 +1,10 @@
+"""Directnamedconversionphotinoeventestimate; notfullcascadebound."""
+import sys
+sys.dont_write_bytecode=True
+from pathlib import Path
+import json,time,resource
+HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[2]
+def main(out):
+ start=time.monotonic();old=json.loads((HERE/'run_leading_two_001/result.json').read_text())['case'];late=json.loads((HERE/'run_hybrid_bw_001/result.json').read_text())['case'];parameter=json.loads((ROOT/'reviews/coupled_trapping_2026_11_04/photino/run_parameter001/result.json').read_text());ref=parameter['reference'];mu=late['mu_GeV'];mchi=ref['photino_keV']*1e-6*mu/ref['mu_GeV'];mS=.03872983346207376*mu;Y0=old['history'][0]['Y_charged'];events=late['history'][-1]['gauge_events_per_initial_carrier'];yield_chi=events*Y0/6;dm_fraction=yield_chi*mchi/.44e-9;gate=.1*.44e-9/mS;result=dict(claim_id='CT09_DIRECT_CONVERSION_SOURCE_DIAGNOSTIC',checks={'positive_yield':bool(yield_chi>0),'direct_source_below_DM':bool(dm_fraction<1),'charged_endpoint_above_gate':bool(late['history'][-1]['Y_charged']>gate)},mu_GeV=mu,photino_GeV=mchi,charged_scalar_GeV=mS,numerical_initial_charged_yield=Y0,gauge_emissions_per_initial_carrier=events,assumed_U1_fraction=1/6,direct_U1_yield_estimate=yield_chi,direct_U1_DM_fraction=dm_fraction,late_charged_yield=late['history'][-1]['Y_charged'],charged_10percent_gate=gate,late_charged_over_gate=late['history'][-1]['Y_charged']/gate,runtime_seconds=time.monotonic()-start,peak_rss_bytes=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,scope='NamedactualvacuumF↔S+gaugino sourcecountfromconditionalemptydaughterhistory only. U1fraction1/6 usesmasslessCasimirlimit andneglectstinyfinitegauginosplittings nearclosedthreshold. Notallcascadephotino upperbound; quantumblocking, inverses, neutralcurrentloops andotherchannels uncomputed. Masslessgauginoenergyledger isnotusedasphotinoabundance.')
+ Path(out).write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result));assert all(result['checks'].values())
+if __name__=='__main__':main(sys.argv[1])

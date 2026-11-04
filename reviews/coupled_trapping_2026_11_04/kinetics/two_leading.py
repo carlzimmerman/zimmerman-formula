@@ -1,0 +1,13 @@
+"""Matched leading potential with exact treepole coldstationarity."""
+import sys
+sys.dont_write_bytecode=True
+import json,time,math,resource
+from pathlib import Path
+import numpy as np
+from two_species import evolve_two,ROOT,HERE
+from accurate import Accurate,LocalPotential
+
+def main(out,Tend,bins):
+ start=time.monotonic();Tend=float(Tend);bins=int(bins);p=dict(json.loads((ROOT/'reviews/gravity_completion_2026_11_03/thermal_kinetic/run_stationary_002/result.json').read_text())['points'][1]);s=json.loads((ROOT/'reviews/gravity_completion_2026_11_03/thermal/run_static_001/result.json').read_text())['points'][1]['spins'][0];packet=json.loads((ROOT/'reviews/coupled_trapping_2026_11_04/gravity_resonance/run_leading001/result.json').read_text())['packet'];r=packet['global_profile'];p.update(grid=r['grid'],T0_potential_mu4=r['V0_origin_subtracted_mu4'],origin_force=r['origin_force'],origin_curvature=r['origin_curvature'],mu_GeV=packet['mu_GeV']);model=Accurate(p,s,bins=bins,orbitn=16,absorbing=True);model.v=LocalPotential(model.v,packet['local_profile']);model.grid=np.unique(np.r_[0,np.linspace(.001,10,100),np.linspace(10,40,180)]);run=evolve_two(model,math.log(s['TD_over_mu']/Tend),.001);run.update(kind='protected_matched_leading',mu_GeV=p['mu_GeV'],epsilon=packet['constants']['EPS'],bulk_bins=bins,end_Tc=Tend,max_phase_nodes=model.max_phase_nodes,max_period_relative_change=model.max_period_relative_change,cold_treepole=model.poles[1],cold_leading_stationarity=float(packet['actual_x']));result=dict(claim_id='CT09_MATCHED_LEADING_TWO_SPECIES',case=run,checks={'cooling_reached':run['reason']=='target cooling reached','energy_ledger':bool(max(abs(h['energy_ledger_error']) for h in run['history'])<.02),'local_averaging_hierarchy':bool(model.maxlocal<.1),'local_exact_pole_force':abs(float(model.v(model.poles[1],1)))<1e-24},runtime_seconds=time.monotonic()-start,peak_rss_bytes=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,scope='Matchedleadingtreegravity+rigidCW stationarityexactlyat treechargedscalarpole, mu2e6 andretunedphysicalepsilon. Localpotential shifted tozero andquarticTaylor inside.0018, coldharmonicminimum solvedbyforce. Sameconditionalemptygaugino/unblockedsink two-species network; noactualcoherentneutralexit, Pauli/inverseoperator orfinalphotinodistribution. Finitefullmassmatchingwouldmove bothpole andvacuum andisnotcomputed.')
+ Path(out).write_text(json.dumps(result,indent=2)+'\n');print(json.dumps({k:result[k] for k in ('checks','runtime_seconds','peak_rss_bytes')}));print(Tend,bins,run['reason'],run['history'][-1]);assert all(result['checks'].values())
+if __name__=='__main__':main(*sys.argv[1:])
