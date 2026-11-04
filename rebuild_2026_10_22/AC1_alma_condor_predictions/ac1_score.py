@@ -243,7 +243,7 @@ def main():
     old = hashlib.sha256(subprocess.run(["git", "show", f"{want}:rebuild_2026_10_22/AC1_alma_condor_predictions/FROZEN_CRITERIA.md"], cwd=ROOT, capture_output=True).stdout).hexdigest()
     if cur != old: raise SystemExit("FROZEN_CRITERIA.md differs from its freezing commit")
     P(f"MOCK V_c error fraction {MOCK_FRAC:.6f}: fixed archived RMS, not S/N-matched; no coverage guarantee")
-    P(f"2026-11-04 G2 correction: all three starts, both pressure branches; outputs {RESULT_DIR}")
+    P(f"2026-11-04 G2 correction: all three starts, both pressure branches; outputs {os.path.relpath(RESULT_DIR, ROOT)}")
     P(f"AC1 scoring harness; criteria {want} unchanged; kappa = 1/2 FITTED; one disc excludes no model; not theory closed")
     if "--selftest" in _ARGS: sys.exit(0 if selftest(opt("--selftest")) else 1)
     if "--power" in _ARGS: power(opt("--power"), int(opt("--n", "6"))); sys.exit(0)
