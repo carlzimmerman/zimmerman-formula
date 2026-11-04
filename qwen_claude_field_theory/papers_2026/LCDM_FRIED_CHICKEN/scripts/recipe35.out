@@ -1,0 +1,512 @@
+sample: 171 galaxies, 3373 points; Y_disk 0.5, Y_bul 0.7
+A34 recipe35; c sqrt(G rho_DE0) 1.8727e-10, A0 9.3625e-11; f_b 0.1565, Omega_B/Omega_CDM 0.1855; beta 5.0; Burkert g(r0) 3.147e-11 m s^-2
+control: B0 footing P sigma8 0.8110, c-grid vs lib max rel 0.0e+00; R200(1e12) 211.6 kpc
+control: des nu0 at lib r1 (no contraction) max |dlog| on CamB: 1.5e-05; des nu1 vs lib r1 f=1: 1.4e-05
+
+######## (a) SPARC, base cosmology
+
+KT eq(4) at M200 1e12: growth reading z_c 1.791, a0_eq = 2 a_DM 2.8374 A0 (paper reading a_DM 1.4187 A0); EdS reading z_c 1.238, a0_eq 1.8236 A0; f = 1/7: 3.6853 A0
+ KT beta needed for kappa_eff 0.5 (growth, a0_eq): 2.969; paper reading (a0_eq = a_DM): 4.198
+ KT over SPARC: z_c (growth) median 2.67, p5-p95 0.57-3.48; a0_eq median 2.509 A0, rms 0.043 dex
+ KT NFW check at 1e12 (cosmic f_b): a0_eq 0.4874 A0 (a_DM 2.282e-09 cm s^-2 vs paper ~1e-8); KT-AM per galaxy median 0.7801 A0, rms 0.181 dex
+
+== KT-G eq(4) growth: law with a = per-galaxy a0_eq (1 knobs; beta 5 or f_b fixed, shape inherited from the law)
+ rms to law 0.1550 dex [FAIL E1]; p95 per-galaxy 0.1830 [FAIL E2]; worst bin 0.1738 [FAIL E3]
+ bins -12.0:+0.173 -11.5:+0.174 -11.0:+0.173 -10.5:+0.151 -10.0:+0.115 -9.5:+0.071 -9.0:+0.034
+ a fit 2.368e-10; rms to observed 0.2484 dex, mean +0.1509
+ holdout unseen GS[1::2] rms to law 0.1585 [FAIL <= 0.025]; law-equivalent a 2.5291 A0, kappa_eff 1.2644; VERDICT NOT EXACT
+
+== KT-G eq(4) growth: plus one global factor (2 knobs; factor 0.398; holdout factor 0.399)
+ rms to law 0.0152 dex [PASS E1]; p95 per-galaxy 0.0307 [PASS E2]; worst bin 0.0146 [PASS E3]
+ bins -12.0:-0.015 -11.5:-0.006 -11.0:+0.006 -10.5:+0.009 -10.0:+0.007 -9.5:+0.005 -9.0:+0.002
+ a fit 9.349e-11; rms to observed 0.1936 dex, mean +0.0025
+ holdout unseen GS[1::2] rms to law 0.0156 [PASS <= 0.025]; law-equivalent a 0.9986 A0, kappa_eff 0.4992; VERDICT EXACT
+
+== KT-E eq(4) EdS: law with a = per-galaxy a0_eq (1 knobs; beta 5 or f_b fixed, shape inherited from the law)
+ rms to law 0.0815 dex [FAIL E1]; p95 per-galaxy 0.1002 [FAIL E2]; worst bin 0.0943 [FAIL E3]
+ bins -12.0:+0.078 -11.5:+0.084 -11.0:+0.094 -10.5:+0.084 -10.0:+0.067 -9.5:+0.040 -9.0:+0.018
+ a fit 1.528e-10; rms to observed 0.2090 dex, mean +0.0794
+ holdout unseen GS[1::2] rms to law 0.0828 [FAIL <= 0.025]; law-equivalent a 1.6316 A0, kappa_eff 0.8157; VERDICT NOT EXACT
+
+== KT-E eq(4) EdS: plus one global factor (2 knobs; factor 0.615; holdout factor 0.615)
+ rms to law 0.0179 dex [PASS E1]; p95 per-galaxy 0.0363 [PASS E2]; worst bin 0.0198 [PASS E3]
+ bins -12.0:-0.020 -11.5:-0.009 -11.0:+0.008 -10.5:+0.012 -10.0:+0.013 -9.5:+0.008 -9.0:+0.003
+ a fit 9.344e-11; rms to observed 0.1928 dex, mean +0.0032
+ holdout unseen GS[1::2] rms to law 0.0173 [PASS <= 0.025]; law-equivalent a 0.9980 A0, kappa_eff 0.4989; VERDICT EXACT
+
+== KT-AM NFW, own M_b: law with a = per-galaxy a0_eq (1 knobs; beta 5 or f_b fixed, shape inherited from the law)
+ rms to law 0.0719 dex [FAIL E1]; p95 per-galaxy 0.1297 [FAIL E2]; worst bin 0.0781 [FAIL E3]
+ bins -12.0:-0.078 -11.5:-0.049 -11.0:+0.006 -10.5:+0.025 -10.0:+0.049 -9.5:+0.033 -9.0:+0.015
+ a fit 8.489e-11; rms to observed 0.1983 dex, mean -0.0041
+ holdout unseen GS[1::2] rms to law 0.0682 [FAIL <= 0.025]; law-equivalent a 0.9067 A0, kappa_eff 0.4533; VERDICT NOT EXACT
+
+== KT-AM NFW, own M_b: plus one global factor (2 knobs; factor 1.065; holdout factor 1.027)
+ rms to law 0.0712 dex [FAIL E1]; p95 per-galaxy 0.1376 [FAIL E2]; worst bin 0.0657 [FAIL E3]
+ bins -12.0:-0.066 -11.5:-0.037 -11.0:+0.017 -10.5:+0.034 -10.0:+0.057 -9.5:+0.038 -9.0:+0.017
+ a fit 9.065e-11; rms to observed 0.1981 dex, mean +0.0056
+ holdout unseen GS[1::2] rms to law 0.0674 [FAIL <= 0.025]; law-equivalent a 0.9682 A0, kappa_eff 0.4840; VERDICT NOT EXACT
+
+== MMW engine m_d 0.05, NFW Diemer19, Blumenthal (0 knobs)
+ rms to law 0.1471 dex [FAIL E1]; p95 per-galaxy 0.2209 [FAIL E2]; worst bin 0.1738 [FAIL E3]
+ bins -12.0:+0.067 -11.5:+0.059 -11.0:+0.117 -10.5:+0.150 -10.0:+0.174 -9.5:+0.162 -9.0:+0.134
+ a fit 1.744e-10; rms to observed 0.2435 dex, mean +0.1154
+ holdout unseen GS[1::2] rms to law 0.1426 [FAIL <= 0.025]; law-equivalent a 1.8631 A0, kappa_eff 0.9314; VERDICT NOT EXACT
+
+== MMW engine, m_d one global knob (1 knobs; m_d 0.0940; holdout m_d 0.0975)
+ rms to law 0.1190 dex [FAIL E1]; p95 per-galaxy 0.2006 [FAIL E2]; worst bin 0.1365 [FAIL E3]
+ bins -12.0:-0.069 -11.5:-0.055 -11.0:+0.027 -10.5:+0.090 -10.0:+0.132 -9.5:+0.137 -9.0:+0.119
+ a fit 9.955e-11; rms to observed 0.2279 dex, mean +0.0336
+ holdout unseen GS[1::2] rms to law 0.1164 [FAIL <= 0.025]; law-equivalent a 1.0633 A0, kappa_eff 0.5316; VERDICT NOT EXACT
+ MMW implied lambda (j_d = m_d, f_R = 1): median 0.0333, p16-p84 0.0195-0.0526 (MMW median 0.05); log M200 = log M_b/m_d median 11.02 vs SHMR 11.14
+ MMW BTFR scale 10 H V200 / m_d at 1e12: 0.6655 A0; rms over log M200 11-12.5 0.167 dex
+
+== vdBD: SHMR halo (eps_gf f_bar = M_b/M200), NFW Diemer19, Blumenthal (0 knobs)
+ rms to law 0.2228 dex [FAIL E1]; p95 per-galaxy 0.3638 [FAIL E2]; worst bin 0.2269 [FAIL E3]
+ bins -12.0:+0.198 -11.5:+0.168 -11.0:+0.202 -10.5:+0.210 -10.0:+0.227 -9.5:+0.197 -9.0:+0.155
+ a fit 2.909e-10; rms to observed 0.2966 dex, mean +0.1969
+ holdout unseen GS[1::2] rms to law 0.2120 [FAIL <= 0.025]; law-equivalent a 3.1066 A0, kappa_eff 1.5531; VERDICT NOT EXACT
+
+== vdBD, one global M200 shift (1 knobs; dlog M200 -0.533; holdout -0.574)
+ rms to law 0.1543 dex [FAIL E1]; p95 per-galaxy 0.2654 [FAIL E2]; worst bin 0.1591 [FAIL E3]
+ bins -12.0:-0.049 -11.5:-0.042 -11.0:+0.038 -10.5:+0.102 -10.0:+0.159 -9.5:+0.157 -9.0:+0.131
+ a fit 1.096e-10; rms to observed 0.2507 dex, mean +0.0494
+ holdout unseen GS[1::2] rms to law 0.1505 [FAIL <= 0.025]; law-equivalent a 1.1708 A0, kappa_eff 0.5854; VERDICT NOT EXACT
+ vdBD eq(B3) scale V200^4/(G M_b): median 0.7570 A0, rms 0.470 dex (11-12.5: 0.190); V_last variant median 2.5526 A0, rms 0.291
+
+== vdBD eq(B3) scale swapped into the law, per galaxy (0 knobs)
+ rms to law 0.2030 dex [FAIL E1]; p95 per-galaxy 0.4014 [FAIL E2]; worst bin 0.1632 [FAIL E3]
+ bins -12.0:-0.106 -11.5:-0.063 -11.0:+0.035 -10.5:+0.078 -10.0:+0.163 -9.5:+0.124 -9.0:+0.068
+ a fit 9.629e-11; rms to observed 0.2708 dex, mean +0.0286
+ holdout unseen GS[1::2] rms to law 0.1910 [FAIL <= 0.025]; law-equivalent a 1.0284 A0, kappa_eff 0.5141; VERDICT NOT EXACT
+
+== DL16 DC14 + Dutton-Maccio c (memory), SHMR, x 0.842 (0 knobs)
+ rms to law 0.1406 dex [FAIL E1]; p95 per-galaxy 0.2935 [FAIL E2]; worst bin 0.0785 [FAIL E3]
+ bins -12.0:-0.079 -11.5:-0.042 -11.0:+0.035 -10.5:+0.044 -10.0:+0.039 -9.5:+0.011 -9.0:+0.004
+ a fit 9.081e-11; rms to observed 0.2141 dex, mean +0.0040
+ holdout unseen GS[1::2] rms to law 0.1344 [FAIL <= 0.025]; law-equivalent a 0.9700 A0, kappa_eff 0.4849; VERDICT NOT EXACT
+
+== DL16 DC14 + Diemer19 c (0 knobs)
+ rms to law 0.1349 dex [FAIL E1]; p95 per-galaxy 0.2923 [FAIL E2]; worst bin 0.0729 [FAIL E3]
+ bins -12.0:-0.073 -11.5:-0.037 -11.0:+0.034 -10.5:+0.041 -10.0:+0.032 -9.5:+0.008 -9.0:+0.003
+ a fit 9.120e-11; rms to observed 0.2114 dex, mean +0.0037
+ holdout unseen GS[1::2] rms to law 0.1288 [FAIL <= 0.025]; law-equivalent a 0.9741 A0, kappa_eff 0.4870; VERDICT NOT EXACT
+
+== DL16 DM14 + 2 global knobs (dlog M200, dlog c) (2 knobs; knobs [-0.102, 0.006]; holdout [-0.115, -0.009])
+ rms to law 0.1388 dex [FAIL E1]; p95 per-galaxy 0.3020 [FAIL E2]; worst bin 0.0831 [FAIL E3]
+ bins -12.0:-0.083 -11.5:-0.039 -11.0:+0.044 -10.5:+0.064 -10.0:+0.052 -9.5:+0.014 -9.0:+0.007
+ a fit 9.495e-11; rms to observed 0.2178 dex, mean +0.0121
+ holdout unseen GS[1::2] rms to law 0.1330 [FAIL <= 0.025]; law-equivalent a 1.0141 A0, kappa_eff 0.5070; VERDICT NOT EXACT
+
+== Desmond 2017 nu=0 mean relation (SHMR, NFW Diemer19) (0 knobs)
+ rms to law 0.1419 dex [FAIL E1]; p95 per-galaxy 0.2877 [FAIL E2]; worst bin 0.1612 [FAIL E3]
+ bins -12.0:+0.161 -11.5:+0.098 -11.0:+0.093 -10.5:+0.050 -10.0:+0.040 -9.5:+0.014 -9.0:+0.004
+ a fit 1.576e-10; rms to observed 0.2424 dex, mean +0.0790
+ holdout unseen GS[1::2] rms to law 0.1309 [FAIL <= 0.025]; law-equivalent a 1.6835 A0, kappa_eff 0.8416; VERDICT NOT EXACT
+
+== Desmond 2017 nu=1 mean relation (SHMR, NFW Diemer19, Blumenthal) (0 knobs)
+ rms to law 0.2228 dex [FAIL E1]; p95 per-galaxy 0.3638 [FAIL E2]; worst bin 0.2269 [FAIL E3]
+ bins -12.0:+0.198 -11.5:+0.168 -11.0:+0.202 -10.5:+0.210 -10.0:+0.227 -9.5:+0.197 -9.0:+0.155
+ a fit 2.909e-10; rms to observed 0.2966 dex, mean +0.1969
+ holdout unseen GS[1::2] rms to law 0.2120 [FAIL <= 0.025]; law-equivalent a 3.1066 A0, kappa_eff 1.5531; VERDICT NOT EXACT
+ Desmond nu=0 scatter mocks (0.16 dex M*, 0.11 dex c, 40 seeds): rms to law median 0.1651 (16-84 0.1601-0.1753); rms to observed 0.2585 [FAIL S <= 0.205]; D=3 scale spread 0.290 dex
+ Desmond nu=1 scatter mocks (0.16 dex M*, 0.11 dex c, 40 seeds): rms to law median 0.2355 (16-84 0.2293-0.2433); rms to observed 0.3076 [FAIL S <= 0.205]; D=3 scale spread 0.304 dex
+ D=3 scale a0_eq = 6 g_b,cross [law]: 72 galaxies cross; median 1.0013 A0, spread 0.005 dex; in log M200 11-12.5 spread 0.006
+ D=3 scale a0_eq = 6 g_b,cross [observed]: 98 galaxies cross; median 0.9428 A0, spread 0.296 dex; in log M200 11-12.5 spread 0.230
+ D=3 scale a0_eq = 6 g_b,cross [Desmond nu0]: 76 galaxies cross; median 1.3157 A0, spread 0.211 dex; in log M200 11-12.5 spread 0.095
+ D=3 scale a0_eq = 6 g_b,cross [Desmond nu1]: 61 galaxies cross; median 2.9732 A0, spread 0.232 dex; in log M200 11-12.5 spread 0.088
+
+== Salucci/Donato Burkert, rho0 r0 = 10^2.15, r0 = k R_d (1 knobs; k 3.020; holdout k 2.911)
+ rms to law 0.1218 dex [FAIL E1]; p95 per-galaxy 0.2117 [FAIL E2]; worst bin 0.1073 [FAIL E3]
+ bins -12.0:+0.068 -11.5:+0.035 -11.0:-0.080 -10.5:-0.107 -10.0:-0.089 -9.5:-0.050 -9.0:-0.021
+ a fit 7.993e-11; rms to observed 0.2320 dex, mean -0.0363
+ holdout unseen GS[1::2] rms to law 0.1214 [FAIL <= 0.025]; law-equivalent a 0.8537 A0, kappa_eff 0.4268; VERDICT NOT EXACT
+ Burkert g(r0) 0.3361 A0, kappa_eff raw 0.1680, x2 reading 0.3361; mass-free (G4 pass by construction, empirical); NFW analogue g(r_s) at 1e12 0.2840 A0
+
+KT coefficient C_KT = a0_eq(1e12)/(c H0) = 0.4057 (paper says O(1))
+
+G4 (rms of log a over hosts log M200 11-12.5; per-galaxy routes use SPARC galaxies there): KT-H1 0.000 [PASS]; KT-H2 0.000 [PASS]; KT-H2-2pi 0.000 [PASS]; Sal-Burkert 0.000 [PASS]; KT-G 0.024 [PASS]; KT-E 0.030 [PASS]; KT-NFW 0.109 [FAIL]; KT-AM 0.091 [PASS]; MMW-BTFR 0.167 [FAIL]; vdBD-B3 0.190 [FAIL]; Sal-NFWrs 0.088 [PASS]; MMW-curve 0.118 [FAIL]; vdBD-curve 0.129 [FAIL]; DL16-curve 0.177 [FAIL]; Des0-curve 0.130 [FAIL]; Des1-curve 0.129 [FAIL]; Des0-D3 0.095 [PASS]
+
+===== footing P (early amplitude fixed at z 30)
+
+ B0  : sigma8 0.8110; rho_DE(z)/rho_DE0 1.0000 1.0000 1.0000; z_x (rho_DE = rho_m) 0.296; G2z not measurable
+  KT-G        a(0) 2.8374 A0 kappa_eff 1.4185 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.4231 [FAIL G3]; GT dev +0.0000 +0.0000 +0.1532 [FAIL GT]
+  KT-E        a(0) 1.8236 A0 kappa_eff 0.9117 [FAIL G1]; a(z)/a(0) 1.0000 1.2480 2.2142 [FAIL G3]; GT dev +0.0000 +0.0962 +0.3452 [FAIL GT]
+  KT-NFW      a(0) 0.4874 A0 kappa_eff 0.2437 [FAIL G1]; a(z)/a(0) 1.3686 1.6949 2.4420 [FAIL G3]; GT dev +0.1363 +0.2291 +0.3877 [FAIL GT]
+  KT-AM       a(0) 0.7801 A0 kappa_eff 0.3900 [FAIL G1]; a(z)/a(0) 1.1391 1.3028 1.6727 [FAIL G3]; GT dev +0.0566 +0.1149 +0.2234 [FAIL GT]
+  KT-H1       a(0) 2.3486 A0 kappa_eff 1.1742 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev +0.0000 +0.0000 +0.0000 [PASS GT]
+  KT-H2       a(0) 3.3211 A0 kappa_eff 1.6603 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev +0.0000 +0.0000 +0.0000 [PASS GT]
+  KT-H2-2pi   a(0) 1.3029 A0 kappa_eff 0.6514 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev +0.0000 +0.0000 +0.0000 [PASS GT]
+  MMW-curve   a(0) 1.8631 A0 kappa_eff 0.9314 [FAIL G1]; a(z)/a(0) 1.2337 1.4622 2.0005 [FAIL G3]; GT dev +0.0912 +0.1650 +0.3011 [FAIL GT]
+  MMW-BTFR    a(0) 0.6655 A0 kappa_eff 0.3327 [FAIL G1]; a(z)/a(0) 2.1738 3.1561 5.3333 [FAIL G3]; GT dev +0.3372 +0.4991 +0.7270 [FAIL GT]
+  vdBD-curve  a(0) 3.1066 A0 kappa_eff 1.5531 [FAIL G1]; a(z)/a(0) 1.2675 1.5465 2.2453 [FAIL G3]; GT dev +0.1029 +0.1894 +0.3513 [FAIL GT]
+  vdBD-B3     a(0) 0.7570 A0 kappa_eff 0.3785 [FAIL G1]; a(z)/a(0) 2.1738 3.1561 5.3333 [FAIL G3]; GT dev +0.3372 +0.4991 +0.7270 [FAIL GT]
+  DL16-curve  a(0) 0.9741 A0 kappa_eff 0.4870 [PASS G1]; a(z)/a(0) 1.2916 1.6212 2.5043 [FAIL G3]; GT dev +0.1111 +0.2098 +0.3987 [FAIL GT]
+  Des0-curve  a(0) 1.6835 A0 kappa_eff 0.8416 [FAIL G1]; a(z)/a(0) 1.3119 1.6572 2.5699 [FAIL G3]; GT dev +0.1179 +0.2194 +0.4099 [FAIL GT]
+  Des1-curve  a(0) 3.1066 A0 kappa_eff 1.5531 [FAIL G1]; a(z)/a(0) 1.2675 1.5465 2.2453 [FAIL G3]; GT dev +0.1029 +0.1894 +0.3513 [FAIL GT]
+  Des0-D3     a(0) 1.3157 A0 kappa_eff 0.6578 [FAIL G1]; a(z)/a(0) 1.2040 1.4691 2.1924 [FAIL G3]; GT dev +0.0806 +0.1671 +0.3409 [FAIL GT]
+  Sal-NFWrs   a(0) 0.2840 A0 kappa_eff 0.1420 [FAIL G1]; a(z)/a(0) 1.1417 1.3224 1.7770 [FAIL G3]; GT dev +0.0575 +0.1214 +0.2497 [FAIL GT]
+  Sal-Burkert a(0) 0.3361 A0 kappa_eff 0.1680 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev +0.0000 +0.0000 +0.0000 [PASS GT]
+
+ B1 -0.752 -0.86: sigma8 0.8111; rho_DE(z)/rho_DE0 1.0175 0.8743 0.6680; z_x (rho_DE = rho_m) 0.347; G2z measurable
+  KT-G        a(0) 2.8812 A0 kappa_eff 1.4404 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.4014 [FAIL G3]; GT dev -0.0038 +0.0292 +0.2342 [FAIL GT]; G2z -0.813
+  KT-E        a(0) 1.8240 A0 kappa_eff 0.9119 [FAIL G1]; a(z)/a(0) 1.0000 1.2477 2.2136 [FAIL G3]; GT dev -0.0038 +0.1253 +0.4327 [FAIL GT]; G2z -1.924
+  KT-NFW      a(0) 0.4873 A0 kappa_eff 0.2436 [FAIL G1]; a(z)/a(0) 1.3844 1.6914 2.4230 [FAIL G3]; GT dev +0.1375 +0.2574 +0.4720 [FAIL GT]; G2z -1.730
+  KT-AM       a(0) 0.7798 A0 kappa_eff 0.3899 [FAIL G1]; a(z)/a(0) 1.1575 1.3045 1.6653 [FAIL G3]; GT dev +0.0598 +0.1446 +0.3091 [FAIL GT]; G2z -1.049
+  KT-H1       a(0) 2.3486 A0 kappa_eff 1.1742 [FAIL G1]; a(z)/a(0) 1.0087 0.9351 0.8173 [PASS G3]; GT dev +0.0000 +0.0000 -0.0000 [PASS GT]; G2z +0.500
+  KT-H2       a(0) 3.5225 A0 kappa_eff 1.7610 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0038 +0.0292 +0.0876 [FAIL GT]; G2z +0.000
+  KT-H2-2pi   a(0) 1.3820 A0 kappa_eff 0.6909 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0038 +0.0292 +0.0876 [FAIL GT]; G2z +0.000
+  MMW-curve   a(0) 1.8625 A0 kappa_eff 0.9311 [FAIL G1]; a(z)/a(0) 1.2506 1.4624 1.9873 [FAIL G3]; GT dev +0.0933 +0.1942 +0.3859 [FAIL GT]; G2z -1.379
+  MMW-BTFR    a(0) 0.6655 A0 kappa_eff 0.3327 [FAIL G1]; a(z)/a(0) 2.1792 3.1237 5.2675 [FAIL G3]; GT dev +0.3345 +0.5238 +0.8092 [FAIL GT]; G2z -3.034
+  vdBD-curve  a(0) 3.1056 A0 kappa_eff 1.5526 [FAIL G1]; a(z)/a(0) 1.2863 1.5461 2.2278 [FAIL G3]; GT dev +0.1056 +0.2184 +0.4355 [FAIL GT]; G2z -1.620
+  vdBD-B3     a(0) 0.7570 A0 kappa_eff 0.3785 [FAIL G1]; a(z)/a(0) 2.1792 3.1237 5.2675 [FAIL G3]; GT dev +0.3345 +0.5238 +0.8092 [FAIL GT]; G2z -3.034
+  DL16-curve  a(0) 0.9736 A0 kappa_eff 0.4867 [PASS G1]; a(z)/a(0) 1.3207 1.6246 2.4831 [FAIL G3]; GT dev +0.1170 +0.2399 +0.4826 [FAIL GT]; G2z -1.849
+  Des0-curve  a(0) 1.6827 A0 kappa_eff 0.8413 [FAIL G1]; a(z)/a(0) 1.3362 1.6574 2.5466 [FAIL G3]; GT dev +0.1221 +0.2486 +0.4936 [FAIL GT]; G2z -1.895
+  Des1-curve  a(0) 3.1056 A0 kappa_eff 1.5526 [FAIL G1]; a(z)/a(0) 1.2863 1.5461 2.2278 [FAIL G3]; GT dev +0.1056 +0.2184 +0.4355 [FAIL GT]; G2z -1.620
+  Des0-D3     a(0) 1.3151 A0 kappa_eff 0.6575 [FAIL G1]; a(z)/a(0) 1.2207 1.4679 2.1768 [FAIL G3]; GT dev +0.0828 +0.1959 +0.4254 [FAIL GT]; G2z -1.630
+  Sal-NFWrs   a(0) 0.2839 A0 kappa_eff 0.1419 [FAIL G1]; a(z)/a(0) 1.1591 1.3243 1.7668 [FAIL G3]; GT dev +0.0603 +0.1512 +0.3348 [FAIL GT]; G2z -1.190
+  Sal-Burkert a(0) 0.3361 A0 kappa_eff 0.1680 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0038 +0.0292 +0.0876 [FAIL GT]; G2z -0.000
+
+ B1p -0.838 -0.62: sigma8 0.8145; rho_DE(z)/rho_DE0 0.9779 0.8668 0.7037; z_x (rho_DE = rho_m) 0.326; G2z measurable
+  KT-G        a(0) 2.8764 A0 kappa_eff 1.4380 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.4038 [FAIL G3]; GT dev +0.0049 +0.0310 +0.2236 [FAIL GT]; G2z -0.970
+  KT-E        a(0) 1.8395 A0 kappa_eff 0.9196 [FAIL G1]; a(z)/a(0) 1.0000 1.2372 2.1950 [FAIL G3]; GT dev +0.0049 +0.1235 +0.4178 [FAIL GT]; G2z -2.287
+  KT-NFW      a(0) 0.4898 A0 kappa_eff 0.2449 [FAIL G1]; a(z)/a(0) 1.3699 1.6805 2.4123 [FAIL G3]; GT dev +0.1415 +0.2565 +0.4587 [FAIL GT]; G2z -2.179
+  KT-AM       a(0) 0.7851 A0 kappa_eff 0.3925 [FAIL G1]; a(z)/a(0) 1.1439 1.2939 1.6550 [FAIL G3]; GT dev +0.0632 +0.1430 +0.2951 [FAIL GT]; G2z -1.302
+  KT-H1       a(0) 2.3486 A0 kappa_eff 1.1742 [FAIL G1]; a(z)/a(0) 0.9889 0.9310 0.8389 [PASS G3]; GT dev +0.0000 -0.0000 -0.0000 [PASS GT]; G2z +0.500
+  KT-H2       a(0) 3.4387 A0 kappa_eff 1.7191 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev +0.0049 +0.0310 +0.0763 [FAIL GT]; G2z -0.000
+  KT-H2-2pi   a(0) 1.3491 A0 kappa_eff 0.6745 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev +0.0049 +0.0310 +0.0763 [FAIL GT]; G2z -0.000
+  MMW-curve   a(0) 1.8735 A0 kappa_eff 0.9367 [FAIL G1]; a(z)/a(0) 1.2367 1.4518 1.9770 [FAIL G3]; GT dev +0.0971 +0.1929 +0.3723 [FAIL GT]; G2z -1.724
+  MMW-BTFR    a(0) 0.6655 A0 kappa_eff 0.3327 [FAIL G1]; a(z)/a(0) 2.1669 3.1217 5.2745 [FAIL G3]; GT dev +0.3407 +0.5254 +0.7985 [FAIL GT]; G2z -3.896
+  vdBD-curve  a(0) 3.1264 A0 kappa_eff 1.5630 [FAIL G1]; a(z)/a(0) 1.2705 1.5335 2.2149 [FAIL G3]; GT dev +0.1088 +0.2167 +0.4217 [FAIL GT]; G2z -2.022
+  vdBD-B3     a(0) 0.7570 A0 kappa_eff 0.3785 [FAIL G1]; a(z)/a(0) 2.1669 3.1217 5.2745 [FAIL G3]; GT dev +0.3407 +0.5254 +0.7985 [FAIL GT]; G2z -3.896
+  DL16-curve  a(0) 0.9831 A0 kappa_eff 0.4915 [PASS G1]; a(z)/a(0) 1.2978 1.6053 2.4614 [FAIL G3]; GT dev +0.1181 +0.2366 +0.4675 [FAIL GT]; G2z -2.302
+  Des0-curve  a(0) 1.6969 A0 kappa_eff 0.8484 [FAIL G1]; a(z)/a(0) 1.3159 1.6405 2.5278 [FAIL G3]; GT dev +0.1241 +0.2460 +0.4791 [FAIL GT]; G2z -2.363
+  Des1-curve  a(0) 3.1264 A0 kappa_eff 1.5630 [FAIL G1]; a(z)/a(0) 1.2705 1.5335 2.2149 [FAIL G3]; GT dev +0.1088 +0.2167 +0.4217 [FAIL GT]; G2z -2.022
+  Des0-D3     a(0) 1.3408 A0 kappa_eff 0.6703 [FAIL G1]; a(z)/a(0) 1.1906 1.4376 2.1367 [FAIL G3]; GT dev +0.0806 +0.1887 +0.4061 [FAIL GT]; G2z -1.997
+  Sal-NFWrs   a(0) 0.2860 A0 kappa_eff 0.1430 [FAIL G1]; a(z)/a(0) 1.1449 1.3129 1.7552 [FAIL G3]; GT dev +0.0636 +0.1493 +0.3206 [FAIL GT]; G2z -1.472
+  Sal-Burkert a(0) 0.3361 A0 kappa_eff 0.1680 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev +0.0049 +0.0310 +0.0763 [FAIL GT]; G2z +0.000
+
+ B1u -0.667 -1.09: sigma8 0.8072; rho_DE(z)/rho_DE0 1.0628 0.8879 0.6415; z_x (rho_DE = rho_m) 0.370; G2z measurable
+  KT-G        a(0) 2.8848 A0 kappa_eff 1.4422 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.3997 [FAIL G3]; GT dev -0.0132 +0.0258 +0.2424 [FAIL GT]; G2z -0.705
+  KT-E        a(0) 1.8067 A0 kappa_eff 0.9032 [FAIL G1]; a(z)/a(0) 1.0000 1.2596 2.2349 [FAIL G3]; GT dev -0.0132 +0.1261 +0.4457 [FAIL GT]; G2z -1.676
+  KT-NFW      a(0) 0.4844 A0 kappa_eff 0.2422 [FAIL G1]; a(z)/a(0) 1.4004 1.7039 2.4359 [FAIL G3]; GT dev +0.1330 +0.2572 +0.4831 [FAIL GT]; G2z -1.430
+  KT-AM       a(0) 0.7740 A0 kappa_eff 0.3869 [FAIL G1]; a(z)/a(0) 1.1725 1.3165 1.6773 [FAIL G3]; GT dev +0.0559 +0.1452 +0.3210 [FAIL GT]; G2z -0.877
+  KT-H1       a(0) 2.3486 A0 kappa_eff 1.1742 [FAIL G1]; a(z)/a(0) 1.0309 0.9423 0.8009 [FAIL G3]; GT dev +0.0000 +0.0000 +0.0000 [PASS GT]; G2z +0.500
+  KT-H2       a(0) 3.6125 A0 kappa_eff 1.8060 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0132 +0.0258 +0.0964 [FAIL GT]; G2z +0.000
+  KT-H2-2pi   a(0) 1.4173 A0 kappa_eff 0.7086 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0132 +0.0258 +0.0964 [FAIL GT]; G2z +0.000
+  MMW-curve   a(0) 1.8501 A0 kappa_eff 0.9249 [FAIL G1]; a(z)/a(0) 1.2658 1.4745 1.9995 [FAIL G3]; GT dev +0.0891 +0.1945 +0.3973 [FAIL GT]; G2z -1.146
+  MMW-BTFR    a(0) 0.6655 A0 kappa_eff 0.3327 [FAIL G1]; a(z)/a(0) 2.1932 3.1272 5.2622 [FAIL G3]; GT dev +0.3279 +0.5210 +0.8176 [FAIL GT]; G2z -2.468
+  vdBD-curve  a(0) 3.0823 A0 kappa_eff 1.5409 [FAIL G1]; a(z)/a(0) 1.3038 1.5604 2.2433 [FAIL G3]; GT dev +0.1020 +0.2190 +0.4473 [FAIL GT]; G2z -1.349
+  vdBD-B3     a(0) 0.7570 A0 kappa_eff 0.3785 [FAIL G1]; a(z)/a(0) 2.1932 3.1272 5.2622 [FAIL G3]; GT dev +0.3279 +0.5210 +0.8176 [FAIL GT]; G2z -2.468
+  DL16-curve  a(0) 0.9630 A0 kappa_eff 0.4814 [PASS G1]; a(z)/a(0) 1.3460 1.6464 2.5088 [FAIL G3]; GT dev +0.1158 +0.2424 +0.4959 [FAIL GT]; G2z -1.542
+  Des0-curve  a(0) 1.6669 A0 kappa_eff 0.8333 [FAIL G1]; a(z)/a(0) 1.3587 1.6765 2.5690 [FAIL G3]; GT dev +0.1199 +0.2502 +0.5062 [FAIL GT]; G2z -1.579
+  Des1-curve  a(0) 3.0823 A0 kappa_eff 1.5409 [FAIL G1]; a(z)/a(0) 1.3038 1.5604 2.2433 [FAIL G3]; GT dev +0.1020 +0.2190 +0.4473 [FAIL GT]; G2z -1.349
+  Des0-D3     a(0) 1.2890 A0 kappa_eff 0.6444 [FAIL G1]; a(z)/a(0) 1.2528 1.5009 2.2196 [FAIL G3]; GT dev +0.0847 +0.2022 +0.4427 [FAIL GT]; G2z -1.377
+  Sal-NFWrs   a(0) 0.2816 A0 kappa_eff 0.1408 [FAIL G1]; a(z)/a(0) 1.1747 1.3372 1.7804 [FAIL G3]; GT dev +0.0567 +0.1520 +0.3469 [FAIL GT]; G2z -0.999
+  Sal-Burkert a(0) 0.3361 A0 kappa_eff 0.1680 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0132 +0.0258 +0.0964 [FAIL GT]; G2z +0.000
+
+ B2 -0.9 -0.1: sigma8 0.7964; rho_DE(z)/rho_DE0 1.1618 1.1972 1.2336; z_x (rho_DE = rho_m) 0.328; G2z measurable
+  KT-G        a(0) 2.8124 A0 kappa_eff 1.4060 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.4357 [FAIL G3]; GT dev -0.0326 -0.0391 +0.1115 [FAIL GT]; G2z +1.039
+  KT-E        a(0) 1.7585 A0 kappa_eff 0.8792 [FAIL G1]; a(z)/a(0) 1.0000 1.2941 2.2961 [FAIL G3]; GT dev -0.0326 +0.0729 +0.3154 [FAIL GT]; G2z +2.833
+  KT-NFW      a(0) 0.4767 A0 kappa_eff 0.2383 [FAIL G1]; a(z)/a(0) 1.4157 1.7498 2.5124 [FAIL G3]; GT dev +0.1184 +0.2039 +0.3545 [FAIL GT]; G2z +3.812
+  KT-AM       a(0) 0.7583 A0 kappa_eff 0.3791 [FAIL G1]; a(z)/a(0) 1.1792 1.3498 1.7285 [FAIL G3]; GT dev +0.0390 +0.0912 +0.1921 [FAIL GT]; G2z +2.185
+  KT-H1       a(0) 2.3486 A0 kappa_eff 1.1742 [FAIL G1]; a(z)/a(0) 1.0779 1.0942 1.1107 [FAIL G3]; GT dev +0.0000 +0.0000 +0.0000 [PASS GT]; G2z +0.500
+  KT-H2       a(0) 3.4464 A0 kappa_eff 1.7230 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0326 -0.0391 -0.0456 [PASS GT]; G2z +0.000
+  KT-H2-2pi   a(0) 1.3521 A0 kappa_eff 0.6760 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0326 -0.0391 -0.0456 [PASS GT]; G2z +0.000
+  MMW-curve   a(0) 1.8170 A0 kappa_eff 0.9084 [FAIL G1]; a(z)/a(0) 1.2764 1.5116 2.0630 [FAIL G3]; GT dev +0.0734 +0.1403 +0.2689 [FAIL GT]; G2z +2.934
+  MMW-BTFR    a(0) 0.6655 A0 kappa_eff 0.3327 [FAIL G1]; a(z)/a(0) 2.2236 3.2066 5.3794 [FAIL G3]; GT dev +0.3145 +0.4670 +0.6852 [FAIL GT]; G2z +7.304
+  vdBD-curve  a(0) 3.0202 A0 kappa_eff 1.5099 [FAIL G1]; a(z)/a(0) 1.3170 1.6057 2.3248 [FAIL G3]; GT dev +0.0870 +0.1666 +0.3208 [FAIL GT]; G2z +3.399
+  vdBD-B3     a(0) 0.7570 A0 kappa_eff 0.3785 [FAIL G1]; a(z)/a(0) 2.2236 3.2066 5.3794 [FAIL G3]; GT dev +0.3145 +0.4670 +0.6852 [FAIL GT]; G2z +7.304
+  DL16-curve  a(0) 0.9348 A0 kappa_eff 0.4673 [PASS G1]; a(z)/a(0) 1.3614 1.7077 2.6299 [FAIL G3]; GT dev +0.1014 +0.1933 +0.3744 [FAIL GT]; G2z +3.879
+  Des0-curve  a(0) 1.6248 A0 kappa_eff 0.8123 [FAIL G1]; a(z)/a(0) 1.3755 1.7361 2.6834 [FAIL G3]; GT dev +0.1059 +0.2005 +0.3831 [FAIL GT]; G2z +3.971
+  Des1-curve  a(0) 3.0202 A0 kappa_eff 1.5099 [FAIL G1]; a(z)/a(0) 1.3170 1.6057 2.3248 [FAIL G3]; GT dev +0.0870 +0.1666 +0.3208 [FAIL GT]; G2z +3.399
+  Des0-D3     a(0) 1.2560 A0 kappa_eff 0.6279 [FAIL G1]; a(z)/a(0) 1.2750 1.5545 2.3103 [FAIL G3]; GT dev +0.0730 +0.1525 +0.3181 [FAIL GT]; G2z +3.307
+  Sal-NFWrs   a(0) 0.2755 A0 kappa_eff 0.1377 [FAIL G1]; a(z)/a(0) 1.1853 1.3730 1.8416 [FAIL G3]; GT dev +0.0413 +0.0986 +0.2196 [FAIL GT]; G2z +2.399
+  Sal-Burkert a(0) 0.3361 A0 kappa_eff 0.1680 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0326 -0.0391 -0.0456 [PASS GT]; G2z +0.000
+
+ B3 -0.95 0.35: sigma8 0.7687; rho_DE(z)/rho_DE0 1.3590 1.5993 2.0317; z_x (rho_DE = rho_m) 0.332; G2z measurable
+  KT-G        a(0) 2.6770 A0 kappa_eff 1.3383 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.5083 [FAIL G3]; GT dev -0.0666 -0.1020 +0.0246 [FAIL GT]; G2z +0.522
+  KT-E        a(0) 1.6382 A0 kappa_eff 0.8190 [FAIL G1]; a(z)/a(0) 1.0000 1.3892 2.4648 [FAIL G3]; GT dev -0.0666 +0.0408 +0.2378 [FAIL GT]; G2z +1.268
+  KT-NFW      a(0) 0.4569 A0 kappa_eff 0.2284 [FAIL G1]; a(z)/a(0) 1.4700 1.8407 2.6648 [FAIL G3]; GT dev +0.1007 +0.1630 +0.2717 [FAIL GT]; G2z +1.378
+  KT-AM       a(0) 0.7184 A0 kappa_eff 0.3592 [FAIL G1]; a(z)/a(0) 1.2198 1.4184 1.8386 [FAIL G3]; GT dev +0.0197 +0.0498 +0.1105 [FAIL GT]; G2z +0.855
+  KT-H1       a(0) 2.3486 A0 kappa_eff 1.1742 [FAIL G1]; a(z)/a(0) 1.1658 1.2646 1.4254 [FAIL G3]; GT dev -0.0000 -0.0000 +0.0000 [PASS GT]; G2z +0.500
+  KT-H2       a(0) 3.4603 A0 kappa_eff 1.7300 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0666 -0.1020 -0.1539 [FAIL GT]; G2z +0.000
+  KT-H2-2pi   a(0) 1.3576 A0 kappa_eff 0.6787 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0666 -0.1020 -0.1539 [FAIL GT]; G2z +0.000
+  MMW-curve   a(0) 1.7320 A0 kappa_eff 0.8659 [FAIL G1]; a(z)/a(0) 1.3227 1.5887 2.1916 [FAIL G3]; GT dev +0.0548 +0.0991 +0.1868 [FAIL GT]; G2z +1.100
+  MMW-BTFR    a(0) 0.6655 A0 kappa_eff 0.3327 [FAIL G1]; a(z)/a(0) 2.2836 3.3083 5.5354 [FAIL G3]; GT dev +0.2920 +0.4176 +0.5892 [FAIL GT]; G2z +2.416
+  vdBD-curve  a(0) 2.8617 A0 kappa_eff 1.4307 [FAIL G1]; a(z)/a(0) 1.3724 1.7006 2.4924 [FAIL G3]; GT dev +0.0709 +0.1286 +0.2427 [FAIL GT]; G2z +1.280
+  vdBD-B3     a(0) 0.7570 A0 kappa_eff 0.3785 [FAIL G1]; a(z)/a(0) 2.2836 3.3083 5.5354 [FAIL G3]; GT dev +0.2920 +0.4176 +0.5892 [FAIL GT]; G2z +2.416
+  DL16-curve  a(0) 0.8635 A0 kappa_eff 0.4317 [FAIL G1]; a(z)/a(0) 1.4373 1.8439 2.8905 [FAIL G3]; GT dev +0.0909 +0.1638 +0.3070 [FAIL GT]; G2z +1.487
+  Des0-curve  a(0) 1.5179 A0 kappa_eff 0.7588 [FAIL G1]; a(z)/a(0) 1.4475 1.8641 2.9245 [FAIL G3]; GT dev +0.0940 +0.1685 +0.3121 [FAIL GT]; G2z +1.504
+  Des1-curve  a(0) 2.8617 A0 kappa_eff 1.4307 [FAIL G1]; a(z)/a(0) 1.3724 1.7006 2.4924 [FAIL G3]; GT dev +0.0709 +0.1286 +0.2427 [FAIL GT]; G2z +1.280
+  Des0-D3     a(0) 1.1848 A0 kappa_eff 0.5923 [FAIL G1]; a(z)/a(0) 1.3387 1.6569 2.4864 [FAIL G3]; GT dev +0.0601 +0.1173 +0.2416 [FAIL GT]; G2z +1.273
+  Sal-NFWrs   a(0) 0.2599 A0 kappa_eff 0.1299 [FAIL G1]; a(z)/a(0) 1.2345 1.4532 1.9740 [FAIL G3]; GT dev +0.0249 +0.0604 +0.1414 [FAIL GT]; G2z +0.951
+  Sal-Burkert a(0) 0.3361 A0 kappa_eff 0.1680 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0666 -0.1020 -0.1539 [FAIL GT]; G2z +0.000
+
+ B4 -1.1 0.3: sigma8 0.8122; rho_DE(z)/rho_DE0 0.9665 1.0098 1.0964; z_x (rho_DE = rho_m) 0.275; G2z measurable
+  KT-G        a(0) 2.8177 A0 kappa_eff 1.4087 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.4330 [FAIL G3]; GT dev +0.0074 -0.0021 +0.1363 [FAIL GT]; G2z +3.148
+  KT-E        a(0) 1.8289 A0 kappa_eff 0.9143 [FAIL G1]; a(z)/a(0) 1.0000 1.2444 2.2078 [FAIL G3]; GT dev +0.0074 +0.0928 +0.3240 [FAIL GT]; G2z +6.747
+  KT-NFW      a(0) 0.4883 A0 kappa_eff 0.2441 [FAIL G1]; a(z)/a(0) 1.3563 1.6884 2.4417 [FAIL G3]; GT dev +0.1398 +0.2254 +0.3677 [FAIL GT]; G2z +5.562
+  KT-AM       a(0) 0.7819 A0 kappa_eff 0.3909 [FAIL G1]; a(z)/a(0) 1.1268 1.2955 1.6692 [FAIL G3]; GT dev +0.0592 +0.1103 +0.2025 [FAIL GT]; G2z +3.557
+  KT-H1       a(0) 2.3486 A0 kappa_eff 1.1742 [FAIL G1]; a(z)/a(0) 0.9831 1.0049 1.0471 [PASS G3]; GT dev -0.0000 +0.0000 +0.0000 [PASS GT]; G2z +0.500
+  KT-H2       a(0) 3.2418 A0 kappa_eff 1.6207 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev +0.0074 -0.0021 -0.0200 [PASS GT]; G2z +0.000
+  KT-H2-2pi   a(0) 1.2718 A0 kappa_eff 0.6358 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev +0.0074 -0.0021 -0.0200 [PASS GT]; G2z +0.000
+  MMW-curve   a(0) 1.8670 A0 kappa_eff 0.9334 [FAIL G1]; a(z)/a(0) 1.2216 1.4550 1.9986 [FAIL G3]; GT dev +0.0943 +0.1607 +0.2807 [FAIL GT]; G2z +4.556
+  MMW-BTFR    a(0) 0.6655 A0 kappa_eff 0.3327 [FAIL G1]; a(z)/a(0) 2.1634 3.1586 5.3524 [FAIL G3]; GT dev +0.3425 +0.4974 +0.7086 [FAIL GT]; G2z +9.131
+  vdBD-curve  a(0) 3.1140 A0 kappa_eff 1.5568 [FAIL G1]; a(z)/a(0) 1.2538 1.5384 2.2434 [FAIL G3]; GT dev +0.1056 +0.1849 +0.3309 [FAIL GT]; G2z +5.366
+  vdBD-B3     a(0) 0.7570 A0 kappa_eff 0.3785 [FAIL G1]; a(z)/a(0) 2.1634 3.1586 5.3524 [FAIL G3]; GT dev +0.3425 +0.4974 +0.7086 [FAIL GT]; G2z +9.131
+  DL16-curve  a(0) 0.9775 A0 kappa_eff 0.4887 [PASS G1]; a(z)/a(0) 1.2715 1.6078 2.4986 [FAIL G3]; GT dev +0.1117 +0.2041 +0.3777 [FAIL GT]; G2z +6.189
+  Des0-curve  a(0) 1.6885 A0 kappa_eff 0.8441 [FAIL G1]; a(z)/a(0) 1.2943 1.6463 2.5666 [FAIL G3]; GT dev +0.1195 +0.2144 +0.3894 [FAIL GT]; G2z +6.298
+  Des1-curve  a(0) 3.1140 A0 kappa_eff 1.5568 [FAIL G1]; a(z)/a(0) 1.2538 1.5384 2.2434 [FAIL G3]; GT dev +0.1056 +0.1849 +0.3309 [FAIL GT]; G2z +5.366
+  Des0-D3     a(0) 1.3199 A0 kappa_eff 0.6599 [FAIL G1]; a(z)/a(0) 1.1904 1.4602 2.1888 [FAIL G3]; GT dev +0.0831 +0.1623 +0.3202 [FAIL GT]; G2z +5.502
+  Sal-NFWrs   a(0) 0.2848 A0 kappa_eff 0.1424 [FAIL G1]; a(z)/a(0) 1.1295 1.3149 1.7742 [FAIL G3]; GT dev +0.0603 +0.1168 +0.2290 [FAIL GT]; G2z +4.064
+  Sal-Burkert a(0) 0.3361 A0 kappa_eff 0.1680 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev +0.0074 -0.0021 -0.0200 [PASS GT]; G2z +0.000
+
+ B5  : sigma8 0.8109; rho_DE(z)/rho_DE0 1.0000 1.0001 1.0002; z_x (rho_DE = rho_m) 0.296; G2z not measurable
+  KT-G        a(0) 2.8362 A0 kappa_eff 1.4179 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.4236 [FAIL G3]; GT dev -0.0000 -0.0000 +0.1533 [FAIL GT]
+  KT-E        a(0) 1.8230 A0 kappa_eff 0.9114 [FAIL G1]; a(z)/a(0) 1.0000 1.2484 2.2149 [FAIL G3]; GT dev -0.0000 +0.0963 +0.3453 [FAIL GT]
+  KT-NFW      a(0) 0.4873 A0 kappa_eff 0.2436 [FAIL G1]; a(z)/a(0) 1.3688 1.6952 2.4425 [FAIL G3]; GT dev +0.1363 +0.2292 +0.3878 [FAIL GT]
+  KT-AM       a(0) 0.7798 A0 kappa_eff 0.3899 [FAIL G1]; a(z)/a(0) 1.1393 1.3030 1.6731 [FAIL G3]; GT dev +0.0566 +0.1149 +0.2235 [FAIL GT]
+  KT-H1       a(0) 2.3486 A0 kappa_eff 1.1742 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0001 [PASS G3]; GT dev -0.0000 +0.0000 +0.0000 [PASS GT]
+  KT-H2       a(0) 3.3211 A0 kappa_eff 1.6603 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0000 -0.0000 -0.0000 [PASS GT]
+  KT-H2-2pi   a(0) 1.3029 A0 kappa_eff 0.6514 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0000 -0.0000 -0.0000 [PASS GT]
+  MMW-curve   a(0) 1.8625 A0 kappa_eff 0.9311 [FAIL G1]; a(z)/a(0) 1.2339 1.4624 2.0009 [FAIL G3]; GT dev +0.0913 +0.1651 +0.3012 [FAIL GT]
+  MMW-BTFR    a(0) 0.6655 A0 kappa_eff 0.3327 [FAIL G1]; a(z)/a(0) 2.1738 3.1561 5.3333 [FAIL G3]; GT dev +0.3372 +0.4991 +0.7270 [FAIL GT]
+  vdBD-curve  a(0) 3.1056 A0 kappa_eff 1.5526 [FAIL G1]; a(z)/a(0) 1.2677 1.5468 2.2459 [FAIL G3]; GT dev +0.1030 +0.1894 +0.3513 [FAIL GT]
+  vdBD-B3     a(0) 0.7570 A0 kappa_eff 0.3785 [FAIL G1]; a(z)/a(0) 2.1738 3.1561 5.3333 [FAIL G3]; GT dev +0.3372 +0.4991 +0.7270 [FAIL GT]
+  DL16-curve  a(0) 0.9736 A0 kappa_eff 0.4868 [PASS G1]; a(z)/a(0) 1.2919 1.6216 2.5052 [FAIL G3]; GT dev +0.1112 +0.2099 +0.3988 [FAIL GT]
+  Des0-curve  a(0) 1.6828 A0 kappa_eff 0.8413 [FAIL G1]; a(z)/a(0) 1.3121 1.6576 2.5707 [FAIL G3]; GT dev +0.1180 +0.2195 +0.4100 [FAIL GT]
+  Des1-curve  a(0) 3.1056 A0 kappa_eff 1.5526 [FAIL G1]; a(z)/a(0) 1.2677 1.5468 2.2459 [FAIL G3]; GT dev +0.1030 +0.1894 +0.3513 [FAIL GT]
+  Des0-D3     a(0) 1.3151 A0 kappa_eff 0.6575 [FAIL G1]; a(z)/a(0) 1.2044 1.4695 2.1932 [FAIL G3]; GT dev +0.0807 +0.1672 +0.3410 [FAIL GT]
+  Sal-NFWrs   a(0) 0.2839 A0 kappa_eff 0.1419 [FAIL G1]; a(z)/a(0) 1.1419 1.3227 1.7775 [FAIL G3]; GT dev +0.0576 +0.1214 +0.2498 [FAIL GT]
+  Sal-Burkert a(0) 0.3361 A0 kappa_eff 0.1680 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0000 -0.0000 -0.0000 [PASS GT]
+
+===== footing S (sigma8 0.811 today)
+
+ B0  : sigma8 0.8110; rho_DE(z)/rho_DE0 1.0000 1.0000 1.0000; z_x (rho_DE = rho_m) 0.296; G2z not measurable
+  KT-G        a(0) 2.8374 A0 kappa_eff 1.4185 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.4231 [FAIL G3]; GT dev +0.0000 +0.0000 +0.1532 [FAIL GT]
+  KT-E        a(0) 1.8236 A0 kappa_eff 0.9117 [FAIL G1]; a(z)/a(0) 1.0000 1.2480 2.2142 [FAIL G3]; GT dev +0.0000 +0.0962 +0.3452 [FAIL GT]
+  KT-NFW      a(0) 0.4874 A0 kappa_eff 0.2437 [FAIL G1]; a(z)/a(0) 1.3686 1.6949 2.4420 [FAIL G3]; GT dev +0.1363 +0.2291 +0.3877 [FAIL GT]
+  KT-AM       a(0) 0.7801 A0 kappa_eff 0.3900 [FAIL G1]; a(z)/a(0) 1.1391 1.3028 1.6727 [FAIL G3]; GT dev +0.0566 +0.1149 +0.2234 [FAIL GT]
+  KT-H1       a(0) 2.3486 A0 kappa_eff 1.1742 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev +0.0000 +0.0000 +0.0000 [PASS GT]
+  KT-H2       a(0) 3.3211 A0 kappa_eff 1.6603 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev +0.0000 +0.0000 +0.0000 [PASS GT]
+  KT-H2-2pi   a(0) 1.3029 A0 kappa_eff 0.6514 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev +0.0000 +0.0000 +0.0000 [PASS GT]
+  MMW-curve   a(0) 1.8631 A0 kappa_eff 0.9314 [FAIL G1]; a(z)/a(0) 1.2337 1.4622 2.0005 [FAIL G3]; GT dev +0.0912 +0.1650 +0.3011 [FAIL GT]
+  MMW-BTFR    a(0) 0.6655 A0 kappa_eff 0.3327 [FAIL G1]; a(z)/a(0) 2.1738 3.1561 5.3333 [FAIL G3]; GT dev +0.3372 +0.4991 +0.7270 [FAIL GT]
+  vdBD-curve  a(0) 3.1066 A0 kappa_eff 1.5531 [FAIL G1]; a(z)/a(0) 1.2675 1.5465 2.2453 [FAIL G3]; GT dev +0.1029 +0.1894 +0.3513 [FAIL GT]
+  vdBD-B3     a(0) 0.7570 A0 kappa_eff 0.3785 [FAIL G1]; a(z)/a(0) 2.1738 3.1561 5.3333 [FAIL G3]; GT dev +0.3372 +0.4991 +0.7270 [FAIL GT]
+  DL16-curve  a(0) 0.9741 A0 kappa_eff 0.4870 [PASS G1]; a(z)/a(0) 1.2916 1.6212 2.5043 [FAIL G3]; GT dev +0.1111 +0.2098 +0.3987 [FAIL GT]
+  Des0-curve  a(0) 1.6835 A0 kappa_eff 0.8416 [FAIL G1]; a(z)/a(0) 1.3119 1.6572 2.5699 [FAIL G3]; GT dev +0.1179 +0.2194 +0.4099 [FAIL GT]
+  Des1-curve  a(0) 3.1066 A0 kappa_eff 1.5531 [FAIL G1]; a(z)/a(0) 1.2675 1.5465 2.2453 [FAIL G3]; GT dev +0.1029 +0.1894 +0.3513 [FAIL GT]
+  Des0-D3     a(0) 1.3157 A0 kappa_eff 0.6578 [FAIL G1]; a(z)/a(0) 1.2040 1.4691 2.1924 [FAIL G3]; GT dev +0.0806 +0.1671 +0.3409 [FAIL GT]
+  Sal-NFWrs   a(0) 0.2840 A0 kappa_eff 0.1420 [FAIL G1]; a(z)/a(0) 1.1417 1.3224 1.7770 [FAIL G3]; GT dev +0.0575 +0.1214 +0.2497 [FAIL GT]
+  Sal-Burkert a(0) 0.3361 A0 kappa_eff 0.1680 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev +0.0000 +0.0000 +0.0000 [PASS GT]
+
+ B1 -0.752 -0.86: sigma8 0.8110; rho_DE(z)/rho_DE0 1.0175 0.8743 0.6680; z_x (rho_DE = rho_m) 0.347; G2z measurable
+  KT-G        a(0) 2.8805 A0 kappa_eff 1.4401 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.4017 [FAIL G3]; GT dev -0.0038 +0.0292 +0.2343 [FAIL GT]; G2z -0.814
+  KT-E        a(0) 1.8236 A0 kappa_eff 0.9117 [FAIL G1]; a(z)/a(0) 1.0000 1.2480 2.2142 [FAIL G3]; GT dev -0.0038 +0.1254 +0.4328 [FAIL GT]; G2z -1.924
+  KT-NFW      a(0) 0.4872 A0 kappa_eff 0.2436 [FAIL G1]; a(z)/a(0) 1.3845 1.6915 2.4232 [FAIL G3]; GT dev +0.1375 +0.2574 +0.4720 [FAIL GT]; G2z -1.730
+  KT-AM       a(0) 0.7797 A0 kappa_eff 0.3898 [FAIL G1]; a(z)/a(0) 1.1576 1.3046 1.6654 [FAIL G3]; GT dev +0.0598 +0.1446 +0.3091 [FAIL GT]; G2z -1.049
+  KT-H1       a(0) 2.3486 A0 kappa_eff 1.1742 [FAIL G1]; a(z)/a(0) 1.0087 0.9351 0.8173 [PASS G3]; GT dev +0.0000 +0.0000 -0.0000 [PASS GT]; G2z +0.500
+  KT-H2       a(0) 3.5225 A0 kappa_eff 1.7610 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0038 +0.0292 +0.0876 [FAIL GT]; G2z +0.000
+  KT-H2-2pi   a(0) 1.3820 A0 kappa_eff 0.6909 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0038 +0.0292 +0.0876 [FAIL GT]; G2z +0.000
+  MMW-curve   a(0) 1.8622 A0 kappa_eff 0.9310 [FAIL G1]; a(z)/a(0) 1.2506 1.4625 1.9874 [FAIL G3]; GT dev +0.0934 +0.1942 +0.3859 [FAIL GT]; G2z -1.379
+  MMW-BTFR    a(0) 0.6655 A0 kappa_eff 0.3327 [FAIL G1]; a(z)/a(0) 2.1792 3.1237 5.2675 [FAIL G3]; GT dev +0.3345 +0.5238 +0.8092 [FAIL GT]; G2z -3.034
+  vdBD-curve  a(0) 3.1050 A0 kappa_eff 1.5523 [FAIL G1]; a(z)/a(0) 1.2864 1.5461 2.2280 [FAIL G3]; GT dev +0.1056 +0.2184 +0.4355 [FAIL GT]; G2z -1.620
+  vdBD-B3     a(0) 0.7570 A0 kappa_eff 0.3785 [FAIL G1]; a(z)/a(0) 2.1792 3.1237 5.2675 [FAIL G3]; GT dev +0.3345 +0.5238 +0.8092 [FAIL GT]; G2z -3.034
+  DL16-curve  a(0) 0.9734 A0 kappa_eff 0.4866 [PASS G1]; a(z)/a(0) 1.3208 1.6247 2.4834 [FAIL G3]; GT dev +0.1170 +0.2399 +0.4827 [FAIL GT]; G2z -1.849
+  Des0-curve  a(0) 1.6824 A0 kappa_eff 0.8411 [FAIL G1]; a(z)/a(0) 1.3363 1.6575 2.5470 [FAIL G3]; GT dev +0.1221 +0.2486 +0.4936 [FAIL GT]; G2z -1.895
+  Des1-curve  a(0) 3.1050 A0 kappa_eff 1.5523 [FAIL G1]; a(z)/a(0) 1.2864 1.5461 2.2280 [FAIL G3]; GT dev +0.1056 +0.2184 +0.4355 [FAIL GT]; G2z -1.620
+  Des0-D3     a(0) 1.3148 A0 kappa_eff 0.6573 [FAIL G1]; a(z)/a(0) 1.2209 1.4681 2.1772 [FAIL G3]; GT dev +0.0829 +0.1959 +0.4255 [FAIL GT]; G2z -1.630
+  Sal-NFWrs   a(0) 0.2839 A0 kappa_eff 0.1419 [FAIL G1]; a(z)/a(0) 1.1591 1.3244 1.7670 [FAIL G3]; GT dev +0.0604 +0.1512 +0.3348 [FAIL GT]; G2z -1.191
+  Sal-Burkert a(0) 0.3361 A0 kappa_eff 0.1680 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0038 +0.0292 +0.0876 [FAIL GT]; G2z -0.000
+
+ B1p -0.838 -0.62: sigma8 0.8110; rho_DE(z)/rho_DE0 0.9779 0.8668 0.7037; z_x (rho_DE = rho_m) 0.326; G2z measurable
+  KT-G        a(0) 2.8503 A0 kappa_eff 1.4250 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.4166 [FAIL G3]; GT dev +0.0049 +0.0310 +0.2276 [FAIL GT]; G2z -0.996
+  KT-E        a(0) 1.8236 A0 kappa_eff 0.9117 [FAIL G1]; a(z)/a(0) 1.0000 1.2480 2.2142 [FAIL G3]; GT dev +0.0049 +0.1272 +0.4215 [FAIL GT]; G2z -2.313
+  KT-NFW      a(0) 0.4873 A0 kappa_eff 0.2436 [FAIL G1]; a(z)/a(0) 1.3715 1.6838 2.4201 [FAIL G3]; GT dev +0.1421 +0.2573 +0.4601 [FAIL GT]; G2z -2.186
+  KT-AM       a(0) 0.7799 A0 kappa_eff 0.3899 [FAIL G1]; a(z)/a(0) 1.1445 1.2964 1.6592 [FAIL G3]; GT dev +0.0635 +0.1438 +0.2962 [FAIL GT]; G2z -1.309
+  KT-H1       a(0) 2.3486 A0 kappa_eff 1.1742 [FAIL G1]; a(z)/a(0) 0.9889 0.9310 0.8389 [PASS G3]; GT dev +0.0000 -0.0000 -0.0000 [PASS GT]; G2z +0.500
+  KT-H2       a(0) 3.4387 A0 kappa_eff 1.7191 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev +0.0049 +0.0310 +0.0763 [FAIL GT]; G2z -0.000
+  KT-H2-2pi   a(0) 1.3491 A0 kappa_eff 0.6745 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev +0.0049 +0.0310 +0.0763 [FAIL GT]; G2z -0.000
+  MMW-curve   a(0) 1.8626 A0 kappa_eff 0.9312 [FAIL G1]; a(z)/a(0) 1.2378 1.4540 1.9824 [FAIL G3]; GT dev +0.0975 +0.1936 +0.3735 [FAIL GT]; G2z -1.731
+  MMW-BTFR    a(0) 0.6655 A0 kappa_eff 0.3327 [FAIL G1]; a(z)/a(0) 2.1669 3.1217 5.2745 [FAIL G3]; GT dev +0.3407 +0.5254 +0.7985 [FAIL GT]; G2z -3.896
+  vdBD-curve  a(0) 3.1057 A0 kappa_eff 1.5527 [FAIL G1]; a(z)/a(0) 1.2720 1.5367 2.2229 [FAIL G3]; GT dev +0.1094 +0.2176 +0.4232 [FAIL GT]; G2z -2.031
+  vdBD-B3     a(0) 0.7570 A0 kappa_eff 0.3785 [FAIL G1]; a(z)/a(0) 2.1669 3.1217 5.2745 [FAIL G3]; GT dev +0.3407 +0.5254 +0.7985 [FAIL GT]; G2z -3.896
+  DL16-curve  a(0) 0.9737 A0 kappa_eff 0.4868 [PASS G1]; a(z)/a(0) 1.2995 1.6092 2.4726 [FAIL G3]; GT dev +0.1186 +0.2377 +0.4695 [FAIL GT]; G2z -2.314
+  Des0-curve  a(0) 1.6829 A0 kappa_eff 0.8413 [FAIL G1]; a(z)/a(0) 1.3179 1.6449 2.5395 [FAIL G3]; GT dev +0.1248 +0.2472 +0.4811 [FAIL GT]; G2z -2.375
+  Des1-curve  a(0) 3.1057 A0 kappa_eff 1.5527 [FAIL G1]; a(z)/a(0) 1.2720 1.5367 2.2229 [FAIL G3]; GT dev +0.1094 +0.2176 +0.4232 [FAIL GT]; G2z -2.031
+  Des0-D3     a(0) 1.3152 A0 kappa_eff 0.6575 [FAIL G1]; a(z)/a(0) 1.2078 1.4600 2.1736 [FAIL G3]; GT dev +0.0869 +0.1954 +0.4135 [FAIL GT]; G2z -2.029
+  Sal-NFWrs   a(0) 0.2839 A0 kappa_eff 0.1420 [FAIL G1]; a(z)/a(0) 1.1466 1.3162 1.7627 [FAIL G3]; GT dev +0.0643 +0.1504 +0.3225 [FAIL GT]; G2z -1.482
+  Sal-Burkert a(0) 0.3361 A0 kappa_eff 0.1680 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev +0.0049 +0.0310 +0.0763 [FAIL GT]; G2z +0.000
+
+ B1u -0.667 -1.09: sigma8 0.8110; rho_DE(z)/rho_DE0 1.0628 0.8879 0.6415; z_x (rho_DE = rho_m) 0.370; G2z measurable
+  KT-G        a(0) 2.9129 A0 kappa_eff 1.4563 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.3861 [FAIL G3]; GT dev -0.0132 +0.0258 +0.2382 [FAIL GT]; G2z -0.684
+  KT-E        a(0) 1.8236 A0 kappa_eff 0.9117 [FAIL G1]; a(z)/a(0) 1.0000 1.2480 2.2142 [FAIL G3]; GT dev -0.0132 +0.1220 +0.4416 [FAIL GT]; G2z -1.656
+  KT-NFW      a(0) 0.4871 A0 kappa_eff 0.2435 [FAIL G1]; a(z)/a(0) 1.3987 1.7003 2.4276 [FAIL G3]; GT dev +0.1325 +0.2564 +0.4816 [FAIL GT]; G2z -1.424
+  KT-AM       a(0) 0.7795 A0 kappa_eff 0.3897 [FAIL G1]; a(z)/a(0) 1.1718 1.3139 1.6728 [FAIL G3]; GT dev +0.0556 +0.1444 +0.3198 [FAIL GT]; G2z -0.872
+  KT-H1       a(0) 2.3486 A0 kappa_eff 1.1742 [FAIL G1]; a(z)/a(0) 1.0309 0.9423 0.8009 [FAIL G3]; GT dev +0.0000 +0.0000 +0.0000 [PASS GT]; G2z +0.500
+  KT-H2       a(0) 3.6125 A0 kappa_eff 1.8060 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0132 +0.0258 +0.0964 [FAIL GT]; G2z +0.000
+  KT-H2-2pi   a(0) 1.4173 A0 kappa_eff 0.7086 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0132 +0.0258 +0.0964 [FAIL GT]; G2z +0.000
+  MMW-curve   a(0) 1.8618 A0 kappa_eff 0.9308 [FAIL G1]; a(z)/a(0) 1.2646 1.4721 1.9938 [FAIL G3]; GT dev +0.0887 +0.1938 +0.3961 [FAIL GT]; G2z -1.142
+  MMW-BTFR    a(0) 0.6655 A0 kappa_eff 0.3327 [FAIL G1]; a(z)/a(0) 2.1932 3.1272 5.2622 [FAIL G3]; GT dev +0.3279 +0.5210 +0.8176 [FAIL GT]; G2z -2.468
+  vdBD-curve  a(0) 3.1043 A0 kappa_eff 1.5519 [FAIL G1]; a(z)/a(0) 1.3021 1.5569 2.2346 [FAIL G3]; GT dev +0.1014 +0.2181 +0.4456 [FAIL GT]; G2z -1.342
+  vdBD-B3     a(0) 0.7570 A0 kappa_eff 0.3785 [FAIL G1]; a(z)/a(0) 2.1932 3.1272 5.2622 [FAIL G3]; GT dev +0.3279 +0.5210 +0.8176 [FAIL GT]; G2z -2.468
+  DL16-curve  a(0) 0.9730 A0 kappa_eff 0.4864 [PASS G1]; a(z)/a(0) 1.3441 1.6422 2.4967 [FAIL G3]; GT dev +0.1152 +0.2412 +0.4938 [FAIL GT]; G2z -1.534
+  Des0-curve  a(0) 1.6819 A0 kappa_eff 0.8408 [FAIL G1]; a(z)/a(0) 1.3564 1.6718 2.5564 [FAIL G3]; GT dev +0.1192 +0.2490 +0.5040 [FAIL GT]; G2z -1.571
+  Des1-curve  a(0) 3.1043 A0 kappa_eff 1.5519 [FAIL G1]; a(z)/a(0) 1.3021 1.5569 2.2346 [FAIL G3]; GT dev +0.1014 +0.2181 +0.4456 [FAIL GT]; G2z -1.342
+  Des0-D3     a(0) 1.3144 A0 kappa_eff 0.6571 [FAIL G1]; a(z)/a(0) 1.2351 1.4785 2.1819 [FAIL G3]; GT dev +0.0785 +0.1956 +0.4352 [FAIL GT]; G2z -1.359
+  Sal-NFWrs   a(0) 0.2838 A0 kappa_eff 0.1419 [FAIL G1]; a(z)/a(0) 1.1729 1.3337 1.7724 [FAIL G3]; GT dev +0.0560 +0.1509 +0.3450 [FAIL GT]; G2z -0.992
+  Sal-Burkert a(0) 0.3361 A0 kappa_eff 0.1680 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0132 +0.0258 +0.0964 [FAIL GT]; G2z +0.000
+
+ B2 -0.9 -0.1: sigma8 0.8110; rho_DE(z)/rho_DE0 1.1618 1.1972 1.2336; z_x (rho_DE = rho_m) 0.328; G2z measurable
+  KT-G        a(0) 2.9232 A0 kappa_eff 1.4614 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.3813 [FAIL G3]; GT dev -0.0326 -0.0391 +0.0947 [FAIL GT]; G2z +0.928
+  KT-E        a(0) 1.8236 A0 kappa_eff 0.9117 [FAIL G1]; a(z)/a(0) 1.0000 1.2480 2.2142 [FAIL G3]; GT dev -0.0326 +0.0571 +0.2996 [FAIL GT]; G2z +2.666
+  KT-NFW      a(0) 0.4872 A0 kappa_eff 0.2436 [FAIL G1]; a(z)/a(0) 1.4085 1.7356 2.4792 [FAIL G3]; GT dev +0.1162 +0.2004 +0.3487 [FAIL GT]; G2z +3.757
+  KT-AM       a(0) 0.7797 A0 kappa_eff 0.3898 [FAIL G1]; a(z)/a(0) 1.1764 1.3392 1.7102 [FAIL G3]; GT dev +0.0380 +0.0878 +0.1875 [FAIL GT]; G2z +2.139
+  KT-H1       a(0) 2.3486 A0 kappa_eff 1.1742 [FAIL G1]; a(z)/a(0) 1.0779 1.0942 1.1107 [FAIL G3]; GT dev +0.0000 +0.0000 +0.0000 [PASS GT]; G2z +0.500
+  KT-H2       a(0) 3.4464 A0 kappa_eff 1.7230 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0326 -0.0391 -0.0456 [PASS GT]; G2z +0.000
+  KT-H2-2pi   a(0) 1.3521 A0 kappa_eff 0.6760 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0326 -0.0391 -0.0456 [PASS GT]; G2z +0.000
+  MMW-curve   a(0) 1.8622 A0 kappa_eff 0.9310 [FAIL G1]; a(z)/a(0) 1.2717 1.5019 2.0399 [FAIL G3]; GT dev +0.0718 +0.1376 +0.2640 [FAIL GT]; G2z +2.888
+  MMW-BTFR    a(0) 0.6655 A0 kappa_eff 0.3327 [FAIL G1]; a(z)/a(0) 2.2236 3.2066 5.3794 [FAIL G3]; GT dev +0.3145 +0.4670 +0.6852 [FAIL GT]; G2z +7.304
+  vdBD-curve  a(0) 3.1050 A0 kappa_eff 1.5523 [FAIL G1]; a(z)/a(0) 1.3102 1.5916 2.2900 [FAIL G3]; GT dev +0.0848 +0.1627 +0.3143 [FAIL GT]; G2z +3.338
+  vdBD-B3     a(0) 0.7570 A0 kappa_eff 0.3785 [FAIL G1]; a(z)/a(0) 2.2236 3.2066 5.3794 [FAIL G3]; GT dev +0.3145 +0.4670 +0.6852 [FAIL GT]; G2z +7.304
+  DL16-curve  a(0) 0.9733 A0 kappa_eff 0.4866 [PASS G1]; a(z)/a(0) 1.3537 1.6903 2.5803 [FAIL G3]; GT dev +0.0989 +0.1889 +0.3661 [FAIL GT]; G2z +3.803
+  Des0-curve  a(0) 1.6824 A0 kappa_eff 0.8411 [FAIL G1]; a(z)/a(0) 1.3663 1.7166 2.6322 [FAIL G3]; GT dev +0.1030 +0.1956 +0.3747 [FAIL GT]; G2z +3.892
+  Des1-curve  a(0) 3.1050 A0 kappa_eff 1.5523 [FAIL G1]; a(z)/a(0) 1.3102 1.5916 2.2900 [FAIL G3]; GT dev +0.0848 +0.1627 +0.3143 [FAIL GT]; G2z +3.338
+  Des0-D3     a(0) 1.3148 A0 kappa_eff 0.6573 [FAIL G1]; a(z)/a(0) 1.2431 1.5131 2.2273 [FAIL G3]; GT dev +0.0619 +0.1408 +0.3022 [FAIL GT]; G2z +3.140
+  Sal-NFWrs   a(0) 0.2839 A0 kappa_eff 0.1419 [FAIL G1]; a(z)/a(0) 1.1779 1.3587 1.8093 [FAIL G3]; GT dev +0.0385 +0.0940 +0.2119 [FAIL GT]; G2z +2.327
+  Sal-Burkert a(0) 0.3361 A0 kappa_eff 0.1680 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0326 -0.0391 -0.0456 [PASS GT]; G2z +0.000
+
+ B3 -0.95 0.35: sigma8 0.8110; rho_DE(z)/rho_DE0 1.3590 1.5993 2.0317; z_x (rho_DE = rho_m) 0.332; G2z measurable
+  KT-G        a(0) 3.0102 A0 kappa_eff 1.5049 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.3414 [FAIL G3]; GT dev -0.0666 -0.1020 -0.0264 [FAIL GT]; G2z +0.373
+  KT-E        a(0) 1.8236 A0 kappa_eff 0.9117 [FAIL G1]; a(z)/a(0) 1.0000 1.2480 2.2142 [FAIL G3]; GT dev -0.0666 -0.0058 +0.1913 [FAIL GT]; G2z +1.092
+  KT-NFW      a(0) 0.4871 A0 kappa_eff 0.2435 [FAIL G1]; a(z)/a(0) 1.4480 1.7969 2.5630 [FAIL G3]; GT dev +0.0941 +0.1526 +0.2548 [FAIL GT]; G2z +1.323
+  KT-AM       a(0) 0.7794 A0 kappa_eff 0.3897 [FAIL G1]; a(z)/a(0) 1.2106 1.3898 1.7795 [FAIL G3]; GT dev +0.0164 +0.0410 +0.0964 [FAIL GT]; G2z +0.808
+  KT-H1       a(0) 2.3486 A0 kappa_eff 1.1742 [FAIL G1]; a(z)/a(0) 1.1658 1.2646 1.4254 [FAIL G3]; GT dev -0.0000 -0.0000 +0.0000 [PASS GT]; G2z +0.500
+  KT-H2       a(0) 3.4603 A0 kappa_eff 1.7300 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0666 -0.1020 -0.1539 [FAIL GT]; G2z +0.000
+  KT-H2-2pi   a(0) 1.3576 A0 kappa_eff 0.6787 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0666 -0.1020 -0.1539 [FAIL GT]; G2z +0.000
+  MMW-curve   a(0) 1.8617 A0 kappa_eff 0.9307 [FAIL G1]; a(z)/a(0) 1.3078 1.5587 2.1201 [FAIL G3]; GT dev +0.0499 +0.0908 +0.1724 [FAIL GT]; G2z +1.054
+  MMW-BTFR    a(0) 0.6655 A0 kappa_eff 0.3327 [FAIL G1]; a(z)/a(0) 2.2836 3.3083 5.5354 [FAIL G3]; GT dev +0.2920 +0.4176 +0.5892 [FAIL GT]; G2z +2.416
+  vdBD-curve  a(0) 3.1041 A0 kappa_eff 1.5518 [FAIL G1]; a(z)/a(0) 1.3510 1.6568 2.3845 [FAIL G3]; GT dev +0.0640 +0.1173 +0.2235 [FAIL GT]; G2z +1.218
+  vdBD-B3     a(0) 0.7570 A0 kappa_eff 0.3785 [FAIL G1]; a(z)/a(0) 2.2836 3.3083 5.5354 [FAIL G3]; GT dev +0.2920 +0.4176 +0.5892 [FAIL GT]; G2z +2.416
+  DL16-curve  a(0) 0.9729 A0 kappa_eff 0.4864 [PASS G1]; a(z)/a(0) 1.4123 1.7874 2.7316 [FAIL G3]; GT dev +0.0833 +0.1503 +0.2825 [FAIL GT]; G2z +1.408
+  Des0-curve  a(0) 1.6817 A0 kappa_eff 0.8408 [FAIL G1]; a(z)/a(0) 1.4184 1.8023 2.7630 [FAIL G3]; GT dev +0.0852 +0.1539 +0.2874 [FAIL GT]; G2z +1.424
+  Des1-curve  a(0) 3.1041 A0 kappa_eff 1.5518 [FAIL G1]; a(z)/a(0) 1.3510 1.6568 2.3845 [FAIL G3]; GT dev +0.0640 +0.1173 +0.2235 [FAIL GT]; G2z +1.218
+  Des0-D3     a(0) 1.3143 A0 kappa_eff 0.6571 [FAIL G1]; a(z)/a(0) 1.2801 1.6144 2.3016 [FAIL G3]; GT dev +0.0406 +0.1060 +0.2081 [FAIL GT]; G2z +1.177
+  Sal-NFWrs   a(0) 0.2838 A0 kappa_eff 0.1419 [FAIL G1]; a(z)/a(0) 1.2113 1.4088 1.8743 [FAIL G3]; GT dev +0.0166 +0.0469 +0.1189 [FAIL GT]; G2z +0.879
+  Sal-Burkert a(0) 0.3361 A0 kappa_eff 0.1680 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0666 -0.1020 -0.1539 [FAIL GT]; G2z +0.000
+
+ B4 -1.1 0.3: sigma8 0.8110; rho_DE(z)/rho_DE0 0.9665 1.0098 1.0964; z_x (rho_DE = rho_m) 0.275; G2z measurable
+  KT-G        a(0) 2.8091 A0 kappa_eff 1.4044 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.4374 [FAIL G3]; GT dev +0.0074 -0.0021 +0.1376 [FAIL GT]; G2z +3.174
+  KT-E        a(0) 1.8236 A0 kappa_eff 0.9117 [FAIL G1]; a(z)/a(0) 1.0000 1.2480 2.2142 [FAIL G3]; GT dev +0.0074 +0.0941 +0.3252 [FAIL GT]; G2z +6.770
+  KT-NFW      a(0) 0.4875 A0 kappa_eff 0.2437 [FAIL G1]; a(z)/a(0) 1.3569 1.6896 2.4444 [FAIL G3]; GT dev +0.1399 +0.2257 +0.3682 [FAIL GT]; G2z +5.569
+  KT-AM       a(0) 0.7802 A0 kappa_eff 0.3901 [FAIL G1]; a(z)/a(0) 1.1270 1.2964 1.6706 [FAIL G3]; GT dev +0.0593 +0.1106 +0.2029 [FAIL GT]; G2z +3.563
+  KT-H1       a(0) 2.3486 A0 kappa_eff 1.1742 [FAIL G1]; a(z)/a(0) 0.9831 1.0049 1.0471 [PASS G3]; GT dev -0.0000 +0.0000 +0.0000 [PASS GT]; G2z +0.500
+  KT-H2       a(0) 3.2418 A0 kappa_eff 1.6207 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev +0.0074 -0.0021 -0.0200 [PASS GT]; G2z +0.000
+  KT-H2-2pi   a(0) 1.2718 A0 kappa_eff 0.6358 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev +0.0074 -0.0021 -0.0200 [PASS GT]; G2z +0.000
+  MMW-curve   a(0) 1.8633 A0 kappa_eff 0.9316 [FAIL G1]; a(z)/a(0) 1.2219 1.4558 2.0004 [FAIL G3]; GT dev +0.0945 +0.1610 +0.2811 [FAIL GT]; G2z +4.562
+  MMW-BTFR    a(0) 0.6655 A0 kappa_eff 0.3327 [FAIL G1]; a(z)/a(0) 2.1634 3.1586 5.3524 [FAIL G3]; GT dev +0.3425 +0.4974 +0.7086 [FAIL GT]; G2z +9.131
+  vdBD-curve  a(0) 3.1072 A0 kappa_eff 1.5534 [FAIL G1]; a(z)/a(0) 1.2543 1.5395 2.2461 [FAIL G3]; GT dev +0.1058 +0.1852 +0.3314 [FAIL GT]; G2z +5.373
+  vdBD-B3     a(0) 0.7570 A0 kappa_eff 0.3785 [FAIL G1]; a(z)/a(0) 2.1634 3.1586 5.3524 [FAIL G3]; GT dev +0.3425 +0.4974 +0.7086 [FAIL GT]; G2z +9.131
+  DL16-curve  a(0) 0.9743 A0 kappa_eff 0.4871 [PASS G1]; a(z)/a(0) 1.2720 1.6091 2.5025 [FAIL G3]; GT dev +0.1119 +0.2045 +0.3784 [FAIL GT]; G2z +6.199
+  Des0-curve  a(0) 1.6838 A0 kappa_eff 0.8418 [FAIL G1]; a(z)/a(0) 1.2950 1.6478 2.5706 [FAIL G3]; GT dev +0.1197 +0.2148 +0.3900 [FAIL GT]; G2z +6.307
+  Des1-curve  a(0) 3.1072 A0 kappa_eff 1.5534 [FAIL G1]; a(z)/a(0) 1.2543 1.5395 2.2461 [FAIL G3]; GT dev +0.1058 +0.1852 +0.3314 [FAIL GT]; G2z +5.373
+  Des0-D3     a(0) 1.3160 A0 kappa_eff 0.6579 [FAIL G1]; a(z)/a(0) 1.1920 1.4625 2.1938 [FAIL G3]; GT dev +0.0837 +0.1630 +0.3212 [FAIL GT]; G2z +5.513
+  Sal-NFWrs   a(0) 0.2841 A0 kappa_eff 0.1420 [FAIL G1]; a(z)/a(0) 1.1301 1.3160 1.7767 [FAIL G3]; GT dev +0.0605 +0.1171 +0.2296 [FAIL GT]; G2z +4.073
+  Sal-Burkert a(0) 0.3361 A0 kappa_eff 0.1680 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev +0.0074 -0.0021 -0.0200 [PASS GT]; G2z +0.000
+
+ B5  : sigma8 0.8110; rho_DE(z)/rho_DE0 1.0000 1.0001 1.0002; z_x (rho_DE = rho_m) 0.296; G2z not measurable
+  KT-G        a(0) 2.8373 A0 kappa_eff 1.4185 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.4231 [FAIL G3]; GT dev -0.0000 -0.0000 +0.1532 [FAIL GT]
+  KT-E        a(0) 1.8236 A0 kappa_eff 0.9117 [FAIL G1]; a(z)/a(0) 1.0000 1.2480 2.2142 [FAIL G3]; GT dev -0.0000 +0.0962 +0.3452 [FAIL GT]
+  KT-NFW      a(0) 0.4874 A0 kappa_eff 0.2437 [FAIL G1]; a(z)/a(0) 1.3688 1.6950 2.4422 [FAIL G3]; GT dev +0.1363 +0.2292 +0.3877 [FAIL GT]
+  KT-AM       a(0) 0.7800 A0 kappa_eff 0.3900 [FAIL G1]; a(z)/a(0) 1.1392 1.3029 1.6729 [FAIL G3]; GT dev +0.0566 +0.1149 +0.2234 [FAIL GT]
+  KT-H1       a(0) 2.3486 A0 kappa_eff 1.1742 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0001 [PASS G3]; GT dev -0.0000 +0.0000 +0.0000 [PASS GT]
+  KT-H2       a(0) 3.3211 A0 kappa_eff 1.6603 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0000 -0.0000 -0.0000 [PASS GT]
+  KT-H2-2pi   a(0) 1.3029 A0 kappa_eff 0.6514 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0000 -0.0000 -0.0000 [PASS GT]
+  MMW-curve   a(0) 1.8630 A0 kappa_eff 0.9314 [FAIL G1]; a(z)/a(0) 1.2338 1.4623 2.0007 [FAIL G3]; GT dev +0.0913 +0.1650 +0.3011 [FAIL GT]
+  MMW-BTFR    a(0) 0.6655 A0 kappa_eff 0.3327 [FAIL G1]; a(z)/a(0) 2.1738 3.1561 5.3333 [FAIL G3]; GT dev +0.3372 +0.4991 +0.7270 [FAIL GT]
+  vdBD-curve  a(0) 3.1065 A0 kappa_eff 1.5530 [FAIL G1]; a(z)/a(0) 1.2676 1.5466 2.2455 [FAIL G3]; GT dev +0.1030 +0.1894 +0.3513 [FAIL GT]
+  vdBD-B3     a(0) 0.7570 A0 kappa_eff 0.3785 [FAIL G1]; a(z)/a(0) 2.1738 3.1561 5.3333 [FAIL G3]; GT dev +0.3372 +0.4991 +0.7270 [FAIL GT]
+  DL16-curve  a(0) 0.9740 A0 kappa_eff 0.4869 [PASS G1]; a(z)/a(0) 1.2918 1.6214 2.5047 [FAIL G3]; GT dev +0.1112 +0.2099 +0.3987 [FAIL GT]
+  Des0-curve  a(0) 1.6834 A0 kappa_eff 0.8416 [FAIL G1]; a(z)/a(0) 1.3121 1.6574 2.5702 [FAIL G3]; GT dev +0.1179 +0.2194 +0.4099 [FAIL GT]
+  Des1-curve  a(0) 3.1065 A0 kappa_eff 1.5530 [FAIL G1]; a(z)/a(0) 1.2676 1.5466 2.2455 [FAIL G3]; GT dev +0.1030 +0.1894 +0.3513 [FAIL GT]
+  Des0-D3     a(0) 1.3156 A0 kappa_eff 0.6577 [FAIL G1]; a(z)/a(0) 1.2042 1.4693 2.1926 [FAIL G3]; GT dev +0.0807 +0.1671 +0.3409 [FAIL GT]
+  Sal-NFWrs   a(0) 0.2840 A0 kappa_eff 0.1420 [FAIL G1]; a(z)/a(0) 1.1418 1.3226 1.7772 [FAIL G3]; GT dev +0.0576 +0.1214 +0.2497 [FAIL GT]
+  Sal-Burkert a(0) 0.3361 A0 kappa_eff 0.1680 [FAIL G1]; a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev -0.0000 -0.0000 -0.0000 [PASS GT]
+
+G2x: pooled slope of ln[a(z)/a(0)] vs ln[rho_DE(z)/rho_DE0] over B1, B1p, B1u, B2, B3, B4 at z 1, 1.5, 2.33 (18 points)
+ P KT-G       : slope -0.0485 [FAIL G2x]
+ P KT-E       : slope -0.1021 [FAIL G2x]
+ P KT-NFW     : slope -0.0403 [FAIL G2x]
+ P KT-AM      : slope +0.0057 [FAIL G2x]
+ P KT-H1      : slope +0.5000 [PASS G2x]
+ P KT-H2      : slope +0.0000 [FAIL G2x]
+ P KT-H2-2pi  : slope +0.0000 [FAIL G2x]
+ P MMW-curve  : slope -0.0179 [FAIL G2x]
+ P MMW-BTFR   : slope -0.1498 [FAIL G2x]
+ P vdBD-curve : slope -0.0249 [FAIL G2x]
+ P vdBD-B3    : slope -0.1498 [FAIL G2x]
+ P DL16-curve : slope -0.0086 [FAIL G2x]
+ P Des0-curve : slope -0.0230 [FAIL G2x]
+ P Des1-curve : slope -0.0249 [FAIL G2x]
+ P Des0-D3    : slope -0.0038 [FAIL G2x]
+ P Sal-NFWrs  : slope +0.0030 [FAIL G2x]
+ P Sal-Burkert: slope +0.0000 [FAIL G2x]
+ S KT-G       : slope -0.1073 [FAIL G2x]
+ S KT-E       : slope -0.1923 [FAIL G2x]
+ S KT-NFW     : slope -0.0714 [FAIL G2x]
+ S KT-AM      : slope -0.0194 [FAIL G2x]
+ S KT-H1      : slope +0.5000 [PASS G2x]
+ S KT-H2      : slope +0.0000 [FAIL G2x]
+ S KT-H2-2pi  : slope +0.0000 [FAIL G2x]
+ S MMW-curve  : slope -0.0436 [FAIL G2x]
+ S MMW-BTFR   : slope -0.1498 [FAIL G2x]
+ S vdBD-curve : slope -0.0595 [FAIL G2x]
+ S vdBD-B3    : slope -0.1498 [FAIL G2x]
+ S DL16-curve : slope -0.0514 [FAIL G2x]
+ S Des0-curve : slope -0.0675 [FAIL G2x]
+ S Des1-curve : slope -0.0595 [FAIL G2x]
+ S Des0-D3    : slope -0.0658 [FAIL G2x]
+ S Sal-NFWrs  : slope -0.0378 [FAIL G2x]
+ S Sal-Burkert: slope +0.0000 [FAIL G2x]
+
+G2t in B0: rho_DE0 x f on the A26 C1 physical footing
+  f 0.5: h 0.5465, sigma8 0.7670, KT-G 2.8841 A0, z_x 0.028
+  f 0.71: h 0.6034, sigma8 0.7890, KT-G 2.8640 A0, z_x 0.156
+  f 1.0: h 0.6740, sigma8 0.8110, KT-G 2.8374 A0, z_x 0.296
+  f 1.41: h 0.7628, sigma8 0.8321, KT-G 2.7993 A0, z_x 0.453
+  f 2.0: h 0.8749, sigma8 0.8508, KT-G 2.7412 A0, z_x 0.632
+
+G2t in B1: rho_DE0 x f on the A26 C1 physical footing
+  f 0.5: h 0.5465, sigma8 0.7653, KT-G 2.9062 A0, z_x 0.037
+  f 0.71: h 0.6034, sigma8 0.7878, KT-G 2.8954 A0, z_x 0.192
+  f 1.0: h 0.6740, sigma8 0.8111, KT-G 2.8812 A0, z_x 0.347
+  f 1.41: h 0.7628, sigma8 0.8346, KT-G 2.8606 A0, z_x 0.509
+  f 2.0: h 0.8749, sigma8 0.8571, KT-G 2.8285 A0, z_x 0.683
+ G2t B0: KT-G -0.036 [FAIL]; KT-E -0.313 [FAIL]; KT-NFW +0.219 [FAIL]; KT-AM +0.140 [FAIL]; KT-H1 +0.500 [PASS]; KT-H2 +0.500 [PASS]; KT-H2-2pi +0.500 [PASS]; MMW-curve +0.168 [FAIL]; MMW-BTFR +0.453 [PASS]; vdBD-curve +0.181 [FAIL]; vdBD-B3 +0.453 [PASS]; DL16-curve +0.230 [FAIL]; Des0-curve +0.215 [FAIL]; Des1-curve +0.181 [FAIL]; Des0-D3 +0.144 [FAIL]; Sal-NFWrs +0.132 [FAIL]; Sal-Burkert +0.000 [FAIL]
+ G2t B1: KT-G -0.019 [FAIL]; KT-E -0.299 [FAIL]; KT-NFW +0.227 [FAIL]; KT-AM +0.151 [FAIL]; KT-H1 +0.500 [PASS]; KT-H2 +0.522 [PASS]; KT-H2-2pi +0.522 [PASS]; MMW-curve +0.178 [FAIL]; MMW-BTFR +0.453 [PASS]; vdBD-curve +0.192 [FAIL]; vdBD-B3 +0.453 [PASS]; DL16-curve +0.245 [FAIL]; Des0-curve +0.228 [FAIL]; Des1-curve +0.192 [FAIL]; Des0-D3 +0.154 [FAIL]; Sal-NFWrs +0.143 [FAIL]; Sal-Burkert +0.000 [FAIL]
+
+VERDICT TABLE (footing P; GT counted over B1, B1p, B1u, B2, B3, B4, B5)
+ KT-G        kappa_eff 1.419 G1 FAIL; G2 t(B0 -0.036, B1 -0.019) x -0.048 FAIL; G3 FAIL; G4 0.024 PASS; G5 PASS (halo gravity at galaxy radii); GT 0/7 FAIL; tie gates passed 2/6
+ KT-E        kappa_eff 0.912 G1 FAIL; G2 t(B0 -0.313, B1 -0.299) x -0.102 FAIL; G3 FAIL; G4 0.030 PASS; G5 PASS (halo gravity at galaxy radii); GT 0/7 FAIL; tie gates passed 2/6
+ KT-NFW      kappa_eff 0.244 G1 FAIL; G2 t(B0 +0.219, B1 +0.227) x -0.040 FAIL; G3 FAIL; G4 0.109 FAIL; G5 PASS (halo gravity at galaxy radii); GT 0/7 FAIL; tie gates passed 1/6
+ KT-AM       kappa_eff 0.390 G1 FAIL; G2 t(B0 +0.140, B1 +0.151) x +0.006 FAIL; G3 FAIL; G4 0.091 PASS; G5 PASS (halo gravity at galaxy radii); GT 0/7 FAIL; tie gates passed 2/6
+ KT-H1       kappa_eff 1.174 G1 FAIL; G2 t(B0 +0.500, B1 +0.500) x +0.500 PASS; G3 PASS; G4 0.000 PASS; G5 FAIL (hand rho_DE/H factor; no process carries it into the halo); GT 7/7 PASS; tie gates passed 4/6
+ KT-H2       kappa_eff 1.660 G1 FAIL; G2 t(B0 +0.500, B1 +0.522) x +0.000 FAIL; G3 PASS; G4 0.000 PASS; G5 FAIL (hand rho_DE/H factor; no process carries it into the halo); GT 3/7 FAIL; tie gates passed 2/6
+ KT-H2-2pi   kappa_eff 0.651 G1 FAIL; G2 t(B0 +0.500, B1 +0.522) x +0.000 FAIL; G3 PASS; G4 0.000 PASS; G5 FAIL (hand rho_DE/H factor; no process carries it into the halo); GT 3/7 FAIL; tie gates passed 2/6
+ MMW-curve   kappa_eff 0.931 G1 FAIL; G2 t(B0 +0.168, B1 +0.178) x -0.018 FAIL; G3 FAIL; G4 0.118 FAIL; G5 PASS (halo gravity at galaxy radii); GT 0/7 FAIL; tie gates passed 1/6
+ MMW-BTFR    kappa_eff 0.333 G1 FAIL; G2 t(B0 +0.453, B1 +0.453) x -0.150 FAIL; G3 FAIL; G4 0.167 FAIL; G5 PASS (halo gravity at galaxy radii); GT 0/7 FAIL; tie gates passed 1/6
+ vdBD-curve  kappa_eff 1.553 G1 FAIL; G2 t(B0 +0.181, B1 +0.192) x -0.025 FAIL; G3 FAIL; G4 0.129 FAIL; G5 PASS (halo gravity at galaxy radii); GT 0/7 FAIL; tie gates passed 1/6
+ vdBD-B3     kappa_eff 0.378 G1 FAIL; G2 t(B0 +0.453, B1 +0.453) x -0.150 FAIL; G3 FAIL; G4 0.190 FAIL; G5 PASS (halo gravity at galaxy radii); GT 0/7 FAIL; tie gates passed 1/6
+ DL16-curve  kappa_eff 0.487 G1 PASS; G2 t(B0 +0.230, B1 +0.245) x -0.009 FAIL; G3 FAIL; G4 0.177 FAIL; G5 PASS (halo gravity at galaxy radii); GT 0/7 FAIL; tie gates passed 2/6
+ Des0-curve  kappa_eff 0.842 G1 FAIL; G2 t(B0 +0.215, B1 +0.228) x -0.023 FAIL; G3 FAIL; G4 0.130 FAIL; G5 PASS (halo gravity at galaxy radii); GT 0/7 FAIL; tie gates passed 1/6
+ Des1-curve  kappa_eff 1.553 G1 FAIL; G2 t(B0 +0.181, B1 +0.192) x -0.025 FAIL; G3 FAIL; G4 0.129 FAIL; G5 PASS (halo gravity at galaxy radii); GT 0/7 FAIL; tie gates passed 1/6
+ Des0-D3     kappa_eff 0.658 G1 FAIL; G2 t(B0 +0.144, B1 +0.154) x -0.004 FAIL; G3 FAIL; G4 0.095 PASS; G5 PASS (halo gravity at galaxy radii); GT 0/7 FAIL; tie gates passed 2/6
+ Sal-NFWrs   kappa_eff 0.142 G1 FAIL; G2 t(B0 +0.132, B1 +0.143) x +0.003 FAIL; G3 FAIL; G4 0.088 PASS; G5 PASS (halo gravity at galaxy radii); GT 0/7 FAIL; tie gates passed 2/6
+ Sal-Burkert kappa_eff 0.168 G1 FAIL; G2 t(B0 +0.000, B1 +0.000) x +0.000 FAIL; G3 PASS; G4 0.000 PASS; G5 PASS (halo gravity; scale empirical, not derived); GT 3/7 FAIL; tie gates passed 3/6
+
+RANK by tie gates passed (6 max): KT-H1 4, Sal-Burkert 3, KT-G 2, KT-E 2, KT-AM 2, KT-H2 2, KT-H2-2pi 2, DL16-curve 2, Des0-D3 2, Sal-NFWrs 2, KT-NFW 1, MMW-curve 1, MMW-BTFR 1, vdBD-curve 1, vdBD-B3 1, Des0-curve 1, Des1-curve 1
+SPARC (a) summary: KT-G eq(4) growth E1 0.1550; KT-E eq(4) EdS E1 0.0815; KT-AM NFW, own M_b E1 0.0719; MMW E1 0.1190; vdBD E1 0.1543; DL16 E1 0.1406; Des0 E1 0.1419; Des1 E1 0.2228; Sal E1 0.1218
+
+runtime 14 s; peak RSS 78 MB
+Rival language; adopts nothing. Passing shows freedom, not evidence. kappa = 1/2 FITTED; not theory closed.
