@@ -1,0 +1,47 @@
+====================================================================================================
+V3X W2: C6's in-window ladder at L* = 24 pc, lower-memory Newton (block-tridiagonal out-of-core LU)
+kappa = 1/2 FITTED; footings never pooled; adopts nothing; not theory closed.
+Amendment A1: shift mu = 1e-12 on the w rows, 3 polish steps; C6's residual/scaling/line search/tolerance 1e-9 unchanged.
+====================================================================================================
+
+[canonical] a0 = 9.3603e-11, x_e = 2.199929, Lambda = 621.9479; Route F Q2 = 1.608751e-34 s^-2
+  A (30, 48)   N   40176: Q2 @ 1, 10, 100 r_Sat = 1.70699090e-34, 1.69699293e-34, 1.67362974e-34; residual 2.10e-14, Newton steps 4
+  A (40, 64)   N   71424: Q2 @ 1, 10, 100 r_Sat = 1.65644923e-34, 1.65727454e-34, 1.64433840e-34; residual 1.74e-14, Newton steps 4
+  A (50, 80)   N  111600: Q2 @ 1, 10, 100 r_Sat = 1.61725607e-34, 1.63884729e-34, 1.63085949e-34; residual 1.49e-14, Newton steps 4
+  A (60, 96)   N  160416: Q2 @ 1, 10, 100 r_Sat = 1.65651847e-34, 1.63030576e-34, 1.62412454e-34; residual 1.33e-14, Newton steps 4
+  A (70, 112)  N  218400: Q2 @ 1, 10, 100 r_Sat = 1.66928178e-34, 1.62497971e-34, 1.62001861e-34; residual 1.22e-14, Newton steps 4
+W2-K1 [canonical] FAIL Method A vs V3W's committed Q2 at (30,48), (40,64), worst rel by radius: 1 r_Sat 2.19e-03, 10 r_Sat 1.02e-06, 100 r_Sat 4.56e-08 (line <= 1e-6 at all three radii, as frozen)
+  B MMD_AT_PLUS_A (30, 48)  : not run to completion (killed at the RSS line)
+  B COLAMD        (30, 48)  : Q2 @ 100 r_Sat 1.67362973e-34; vs A 5.44e-09; residual 2.11e-14
+  B COLAMD        (40, 64)  : Q2 @ 100 r_Sat 1.64433836e-34; vs A 2.72e-08; residual 1.75e-14
+  B COLAMD        (50, 80)  : not run to completion (killed at the RSS line)
+W2-K2 [canonical] PASS A vs B at the graded radius where B completed (2 solves): max rel 2.72e-08 (<= 1e-6)
+  shift sensitivity (mu 1e-10 vs 1e-12) at 100 r_Sat: (50, 80) 1.2e-07, (60, 96) 1.9e-07, (70, 112) 6.9e-09
+  ladder @ 100 r_Sat (40..70): 1.64433840e-34, 1.63085949e-34, 1.62412454e-34, 1.62001861e-34
+  d12 (50->60) 6.7349e-37, d23 (60->70) 4.1059e-37, ratio 0.6096 (order 2 expects 0.6030); p_obs 1.935
+  Richardson (order 2, 60/70) 1.608648e-34: vs finest -7.019e-03 (line 2e-2); at p_obs 1.608205e-34 (-7.292e-03); N/F 0.99994 (line 5e-2); N/F at 1, 10, 100 r_Sat 1.0596, 1.0009, 0.9999
+  lines: (a) converged True; (b) ladder True; (c) Route F True; (d) memory True; guard p in [1.5, 2.5] True
+C6' [canonical] PASS in-window ladder (40,64)/(50,80)/(60,96)/(70,112): converged, shrinking steps, Richardson within 2e-2 of finest, N/F within 5e-2, RSS < 1 GB, p_obs in [1.5, 2.5]
+W2 [canonical]: UNDECIDED: ['W2-K1 [canonical]'] failed; C6' lines (a)-(d) and guard all hold
+
+[alt] a0 = 1.1312e-10, x_e = 1.820368, Lambda = 683.7208; Route F Q2 = 1.368976e-34 s^-2
+  A (30, 48)   N   40320: Q2 @ 1, 10, 100 r_Sat = 1.46527444e-34, 1.44533656e-34, 1.42548923e-34; residual 1.20e-14, Newton steps 4
+  A (40, 64)   N   71616: Q2 @ 1, 10, 100 r_Sat = 1.44414689e-34, 1.41113177e-34, 1.39995575e-34; residual 9.92e-15, Newton steps 4
+  A (50, 80)   N  112080: Q2 @ 1, 10, 100 r_Sat = 1.39192085e-34, 1.39530159e-34, 1.38833598e-34; residual 8.66e-15, Newton steps 4
+  A (60, 96)   N  161280: Q2 @ 1, 10, 100 r_Sat = 1.40578669e-34, 1.38773793e-34, 1.38254899e-34; residual 7.72e-15, Newton steps 4
+  A (70, 112)  N  219408: Q2 @ 1, 10, 100 r_Sat = 1.42700377e-34, 1.38309853e-34, 1.37884588e-34; residual 7.07e-15, Newton steps 4
+W2-K1 [alt] FAIL Method A vs V3W's committed Q2 at (30,48), (40,64), worst rel by radius: 1 r_Sat 7.52e-04, 10 r_Sat 1.00e-05, 100 r_Sat 1.04e-07 (line <= 1e-6 at all three radii, as frozen)
+  B MMD_AT_PLUS_A (30, 48)  : not run to completion (killed at the RSS line)
+  B COLAMD        (30, 48)  : Q2 @ 100 r_Sat 1.42548923e-34; vs A 3.22e-09; residual 1.21e-14
+  B COLAMD        (40, 64)  : Q2 @ 100 r_Sat 1.39995591e-34; vs A 1.12e-07; residual 9.93e-15
+  B COLAMD        (50, 80)  : not run to completion (killed at the RSS line)
+W2-K2 [alt] PASS A vs B at the graded radius where B completed (2 solves): max rel 1.12e-07 (<= 1e-6)
+  shift sensitivity (mu 1e-10 vs 1e-12) at 100 r_Sat: (50, 80) 6.0e-08, (60, 96) 6.9e-08, (70, 112) 2.5e-07
+  ladder @ 100 r_Sat (40..70): 1.39995575e-34, 1.38833598e-34, 1.38254899e-34, 1.37884588e-34
+  d12 (50->60) 5.7870e-37, d23 (60->70) 3.7031e-37, ratio 0.6399 (order 2 expects 0.6030); p_obs 1.650
+  Richardson (order 2, 60/70) 1.368591e-34: vs finest -7.437e-03 (line 2e-2); at p_obs 1.366056e-34 (-9.275e-03); N/F 0.99972 (line 5e-2); N/F at 1, 10, 100 r_Sat 1.0853, 1.0009, 0.9997
+  lines: (a) converged True; (b) ladder True; (c) Route F True; (d) memory True; guard p in [1.5, 2.5] True
+C6' [alt] PASS in-window ladder (40,64)/(50,80)/(60,96)/(70,112): converged, shrinking steps, Richardson within 2e-2 of finest, N/F within 5e-2, RSS < 1 GB, p_obs in [1.5, 2.5]
+W2 [alt]: UNDECIDED: ['W2-K1 [alt]'] failed; C6' lines (a)-(d) and guard all hold
+
+W2 COMPLETE: 4/6 checks PASS

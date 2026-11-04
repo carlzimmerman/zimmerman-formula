@@ -155,6 +155,9 @@ AX1's G4 rested on "C5 conditionally healthy". C5 itself is 7/10 with frozen FAI
   executions. That cell also fails the ladder line.
 
 ## Unfinished
+- **Follow-up (11-04):** `../V3X_v3s_close_undecided/` reran W2 and W4c.
+  - **W2 is UNDECIDED, reading PASS.** The in-window ladder up to (70,112) meets every V3W line: Richardson −0.70 % / −0.74 %. Its own known-answer check misses at r_Saturn.
+  - **W4c: (a) and (c) PASS; (b) is UNDECIDED.** All ω² > 0, but two lines miss.
 - **W2 needs one finer rung**, or a lower-memory solver, to clear 2e-2 inside the window. Given second-order
   convergence, the extrapolation already agrees with Route F to 1.3e-3.
 - **W4c needs a non-WKB spectrum** of the β = η = 0 khronon pair on the Sun's screened background, and 3D hyperbolicity.

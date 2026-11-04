@@ -24,6 +24,11 @@
   - **W2 UNDECIDED.** C6's checks reproduce, but the in-window ladder misses its 2e-2 line at 2.3e-2.
 
   This adopts nothing.
+- **v3s undecided items, 11-04:** `../V3X_v3s_close_undecided/`. Neither closes cleanly:
+  - **W2 is UNDECIDED, reading PASS.** The in-window ladder now meets V3W's lines: Richardson −0.70 % / −0.74 % against 2e-2, N/F 0.9999 / 0.9997. The miss is the lane's own known-answer check at the ungraded r_Saturn radius.
+  - **W4c: (a) and (c) PASS; (b) is UNDECIDED with no instability found.** Every ω² is > 0, but the l ≥ 1 ladder misses its 5 % line and the tensor roots miss the 1e-10 line.
+
+  This adopts nothing.
 
 G5 (a0 ∝ √(Gρ_DE) from the action): **by hand in every class.** KF1 finds nothing forced.
 
