@@ -1,0 +1,63 @@
+sample: 171 galaxies, 3373 points; Y_disk 0.5, Y_bul 0.7
+A39 recipe40; c sqrt(G rho_DE0) 1.8727e-10; 1 b/GeV = 0.05609 m^2/kg
+control B0: eps_M 0.00e+00, eps_y 0.00e+00 (must be 0); linear delta_c at z 0 1.7026 [FAIL 1.66-1.70]; Delta_v 301.3
+DIAGNOSTIC after the delta_c control failed (not frozen): same code started at a_i 1e-3
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/papers_2026/LCDM_FRIED_CHICKEN/scripts/recipe40.py", line 116, in <module>
+    q1 = eps_of(Tq, 1 / (1 + zq), 1 / (1 + zq)); q3 = eps_of(Tq, 1 / (1 + zq), 1 / (1 + zq), ai=1e-3)
+                                                      ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/papers_2026/LCDM_FRIED_CHICKEN/scripts/recipe40.py", line 56, in eps_of
+    r = collapse_at(T, ac, ai); fo = ip(T, 'f', np.log(aobs))
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/papers_2026/LCDM_FRIED_CHICKEN/scripts/recipe40.py", line 54, in collapse_at
+    di = brentq(g, 2e-4, .4, xtol=1e-12); r = collapse(T, di, ai=ai); r['di'] = di; r['ai'] = AI if ai is None else ai; return r
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/scipy/optimize/_zeros_py.py", line 806, in brentq
+    r = _zeros._brentq(f, a, b, xtol, rtol, maxiter, args, full_output, disp)
+ValueError: f(a) and f(b) must have different signs
+sample: 171 galaxies, 3373 points; Y_disk 0.5, Y_bul 0.7
+A39 recipe40; c sqrt(G rho_DE0) 1.8727e-10; 1 b/GeV = 0.05609 m^2/kg
+control B0: eps_M 0.00e+00, eps_y 0.00e+00 (must be 0); linear delta_c at z 0 1.7026 [FAIL 1.66-1.70]; Delta_v 301.3
+DIAGNOSTIC after the delta_c control failed (not frozen): same code started at a_i 1e-3
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/papers_2026/LCDM_FRIED_CHICKEN/scripts/recipe40.py", line 116, in <module>
+    q1 = eps_of(Tq, 1 / (1 + zq), 1 / (1 + zq)); q3 = eps_of(Tq, 1 / (1 + zq), 1 / (1 + zq), ai=1e-3)
+                                                      ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/papers_2026/LCDM_FRIED_CHICKEN/scripts/recipe40.py", line 59, in eps_of
+    Dv=r['rmv'] / (T['Om'] / ac**3), dlin=r['di'] * T['D'](1 / ac - 1) / T['D'](1 / r['ai'] - 1))
+                                                                         ~~~~~~^^^^^^^^^^^^^^^^^
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/papers_2026/LCDM_FRIED_CHICKEN/scripts/recipe40.py", line 29, in <lambda>
+    D = lambda zz: float(C.growthFactor(zz)); out = dict(la=la, E=E, f=f, w=w, Om=C.Om0, Ode=C.Ode0, zt=zt, age=age, rde=rde, wt=wt, D=D)
+                         ~~~~~~~~~~~~~~^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/colossus/cosmology/cosmology.py", line 2086, in growthFactor
+    D = self._zFunction('lnzp1_growthfactor', self._growthFactorExact, z, derivative = derivative,
+                inverse = inverse)
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/colossus/cosmology/cosmology.py", line 1109, in _zFunction
+    raise Exception('Redshift z = %.3f outside range of interpolation table (max. z is %.3f).' % (np.max(z), max_))
+Exception: Redshift z = 999.000 outside range of interpolation table (max. z is 500.000).
+sample: 171 galaxies, 3373 points; Y_disk 0.5, Y_bul 0.7
+A39 recipe40; c sqrt(G rho_DE0) 1.8727e-10; 1 b/GeV = 0.05609 m^2/kg
+control B0: eps_M 0.00e+00, eps_y 0.00e+00 (must be 0); linear delta_c at z 0 1.7026 [FAIL 1.66-1.70]; Delta_v 301.3
+DIAGNOSTIC after the delta_c control failed (not frozen): same code started at a_i 1e-3
+  B0 z 0.0: a_i 0.01: delta_c lin 1.7026, eps_M +0.0000e+00, eps_y +0.0000e+00, Delta_v 301.3 | a_i 0.001: delta_c lin 1.6794, eps_M +0.0000e+00, eps_y +0.0000e+00, Delta_v 301.3
+  B0 z 2.33: a_i 0.01: delta_c lin 1.7589, eps_M +0.0000e+00, eps_y +0.0000e+00, Delta_v 181.7 | a_i 0.001: delta_c lin 1.6933, eps_M +0.0000e+00, eps_y +0.0000e+00, Delta_v 181.7
+  B1 z 0.0: a_i 0.01: delta_c lin 1.7099, eps_M -1.0032e-02, eps_y -9.1184e-03, Delta_v 314.0 | a_i 0.001: delta_c lin 1.6864, eps_M -1.0032e-02, eps_y -9.1184e-03, Delta_v 314.0
+  B1 z 2.33: a_i 0.01: delta_c lin 1.7590, eps_M -1.2448e-03, eps_y -1.3054e-03, Delta_v 180.0 | a_i 0.001: delta_c lin 1.6938, eps_M -1.2448e-03, eps_y -1.3054e-03, Delta_v 180.0
+control w -0.9: delta_DE/delta_m at a 0.1 from delta_DE,i 0: 0.02693 vs (1+w)/(1-3w) 0.02703 [PASS 2 %]
+control drag tau 0 on CamB: max |log m_solver - log m_galx| 7.4e-05 dex [PASS 1e-3]
+control B0: tau per unit xi -0.00e+00 (must be 0)
+
+===== B0 w0 - wa -: sigma8 0.8110; rho_DE(z)/rho_DE0 1.0000 1.0000 1.0000; 1+w0 +0.0000
+  (a) z 0.0: delta_i 0.02161, delta_c lin 1.7026, Delta_v 301.3, eps_M +0.0000e+00, eps_y +0.0000e+00; (1+w) Ode/Om at collapse +0.0000e+00
+  (a) z 1.0: delta_i 0.03617, delta_c lin 1.7290, Delta_v 196.0, eps_M +0.0000e+00, eps_y +0.0000e+00; (1+w) Ode/Om at collapse +0.0000e+00
+  (a) z 1.5: delta_i 0.04457, delta_c lin 1.7403, Delta_v 187.2, eps_M +0.0000e+00, eps_y +0.0000e+00; (1+w) Ode/Om at collapse +0.0000e+00
+  (a) z 2.33: delta_i 0.05919, delta_c lin 1.7589, Delta_v 181.7, eps_M +0.0000e+00, eps_y +0.0000e+00; (1+w) Ode/Om at collapse +0.0000e+00
+  (a) sensitivity, collapse at z 1, seen at z 0: eps_M +0.0000e+00, eps_y +0.0000e+00, delta rho_DE +0.000e+00 rho_crit0
+  (a) R1 top hat: SPARC z0 E1 0.0275 [FAIL] E2 0.0624 [FAIL] E3 0.0195 [PASS]; S max 0.0842; a_DE median +0.000e+00 a0, max galaxy 0.000e+00 a0 [FAIL G5]; G4 rms nan [FAIL G4]
+   a_tot                  a(0) +9.940e-01 a0, kappa_eff 4.969e-01 [PASS G1]; a(z)/a(0) 1.9324 2.6660 4.5549 [FAIL G3]; GT dev +0.2861 +0.4259 +0.6585 [FAIL GT]; G2z not measurable
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/papers_2026/LCDM_FRIED_CHICKEN/scripts/recipe40.py", line 153, in <module>
+    ga = gates('a_tot', {z: at[z][0] for z in ZS}, r); gd = gates('a_DE', med, r)
+                                                            ~~~~~^^^^^^^^^^^^^^^^
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/qwen_claude_field_theory/papers_2026/LCDM_FRIED_CHICKEN/scripts/recipe40.py", line 102, in gates
+    rz = {z: aa[z] / aa[0.] for z in ZB}; g3 = all(ZB[z][0] <= rz[z] <= ZB[z][1] for z in ZB)
+             ~~~~~~^~~~~~~~
+ZeroDivisionError: float division by zero
