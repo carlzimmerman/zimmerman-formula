@@ -1,0 +1,51 @@
+{
+  "claim_id": "KT40_MW_GAS_COMPLETION_INDEPENDENT_AUDIT",
+  "mathematics": {
+    "assertion_tested": "Independent90-row tensor derivative and gas hydrostatic/multifluid matrix algebra; all-direction Nmax classification from stored actual MW probes.",
+    "coefficient_domain": "IEEE754 float64; analytic inequalities proved separately",
+    "conventions": "E=a0\u00b2xR(x+s**p); K=.5E_gg[n,n],N=.5E_HH[nn,nn]; delta_rho_ddot=[4piG rho K+(4piG rho N\u2212cs\u00b2)k\u00b2]delta_rho. Mixed derivative finite differences compare against its exact analytic contraction normalized by the full mixed-tensor envelope; legacy component-relative diagnostics retained. Mixed-block comparison uses Richardson-extrapolated centered differences over relative steps .03,.01,.003,.001,.0001 to resolve small curvature dependence of a much larger gradient response. Same tensor-normalized 2e-6 gate.",
+    "inputs": [
+      "Frozen KT39 full tensor API and KT37 scalar primitive",
+      "Deterministic local jets with full Frobenius contraction"
+    ],
+    "bounds": {
+      "rows": 90,
+      "refinements": [
+        3,
+        4,
+        5
+      ],
+      "points_per_footing": 15,
+      "wall_seconds": 120,
+      "cpu_seconds": 110,
+      "max_threads": 1
+    },
+    "non_claims": [
+      "No independent field solve or global equilibrium proof",
+      "No collisionless, nonbarotropic or MHD stability theorem",
+      "The outward-force sign itself requires the root field-level verification"
+    ]
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/KT40_mechanism/dynamics/audit_hydro.py",
+    "rebuild_2026_10_22/KT40_mechanism/dynamics/checks_v3.py",
+    "rebuild_2026_10_22/KT39_power_curvature/analytic/law.py",
+    "rebuild_2026_10_22/KT37_generalized_action/analytic/law.py",
+    "rebuild_2026_10_22/KT40_mechanism/mw/hydro_002/results.json"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

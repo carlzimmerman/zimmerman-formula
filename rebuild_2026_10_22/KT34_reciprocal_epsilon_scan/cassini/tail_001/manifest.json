@@ -1,0 +1,142 @@
+{
+  "schema_version": 2,
+  "claim_id": "KT34_CASSINI_UNIFORM_LARGE_WIDTH_BOUND",
+  "repository": {
+    "commit": "b874e5a604047e781c855d67fd6f0e7b30264404",
+    "dirty": true
+  },
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "rebuild_2026_10_22/KT34_reciprocal_epsilon_scan/cassini/tail_bounds.py",
+    "--output",
+    "rebuild_2026_10_22/KT34_reciprocal_epsilon_scan/cassini/tail_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "platform",
+        "version": "macOS-26.5.2-arm64-arm-64bit"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact rational slack checks support the analytically derived bound abs(Q2)/ceiling <45/epsilon^3 for epsilon>=1 and both frozen footings; hence all epsilon>=4 pass the Cassini quadrupole cut. The analytic inequalities are documented in README and independently reviewed.",
+    "coefficient_domain": "Rational exact arithmetic for safe constants, IEEE float64 for optional sharper displayed constants",
+    "conventions": "Dimensionless sigma_source=sigma_outer=epsilon in rM units, corrected KT33 operator and exact zero inner surface for reciprocal Gaussian, signed Q2=1.5 a0/rM q; grade absolute Q2 against 5.2e-27 s^-2",
+    "inputs": [
+      "KT33 GM,GEXT,A0,CEILING frozen",
+      "Elementary Gaussian envelopes and density-Hessian integral",
+      "eta>=2, physical prefactor/ceiling<31, pi>25/8 and exponential-series lower bound"
+    ],
+    "bounds": {
+      "footings": 2,
+      "epsilon_bound_domain": "epsilon>=1",
+      "uniform_pass_domain": "epsilon>=4",
+      "timeout_seconds": 30,
+      "max_cpu_seconds": 20,
+      "max_threads": 1,
+      "max_output_bytes": 1048576
+    },
+    "non_claims": [
+      "Does not prove monotonicity or exclude unsampled islands for 0<epsilon<4",
+      "Not a full ephemeris validation",
+      "The arithmetic run verifies constants; analytic reasoning is separately documented and reviewed"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-04T17:09:08.402000+00:00",
+    "runtime_seconds": 0.187644,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/KT34_reciprocal_epsilon_scan/cassini/tail_bounds.py",
+    "rebuild_2026_10_22/KT33_reciprocal_filter/cassini/cassini_v2.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "rebuild_2026_10_22/KT34_reciprocal_epsilon_scan/cassini/tail_bounds.py",
+      "sha256": "49342427ad6d9d60c1f432cb88792585931b8928a4282b02e9e0959ee3325391",
+      "sha256_after": "49342427ad6d9d60c1f432cb88792585931b8928a4282b02e9e0959ee3325391"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT33_reciprocal_filter/cassini/cassini_v2.py",
+      "sha256": "7d928d700ea4c371b4ac3551a19fa3fbda4f6bb8acac1d9842b4a689f13ac1bf",
+      "sha256_after": "7d928d700ea4c371b4ac3551a19fa3fbda4f6bb8acac1d9842b4a689f13ac1bf"
+    }
+  ],
+  "output_directory": "rebuild_2026_10_22/KT34_reciprocal_epsilon_scan/cassini/tail_001",
+  "declared_results": [
+    "rebuild_2026_10_22/KT34_reciprocal_epsilon_scan/cassini/tail_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "rebuild_2026_10_22/KT34_reciprocal_epsilon_scan/cassini/tail_001/stdout.txt",
+      "sha256": "b3172433d8634ed7c297a227adc4c4d57b0ddfe3beaff79a7098b635508d8c36",
+      "kind": "log"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT34_reciprocal_epsilon_scan/cassini/tail_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT34_reciprocal_epsilon_scan/cassini/tail_001/results.json",
+      "sha256": "b3172433d8634ed7c297a227adc4c4d57b0ddfe3beaff79a7098b635508d8c36",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "claim_id": "KT37_FULL_VARIATION_CASSINI_RESOLVED_CORE",
+  "mathematics": {
+    "assertion_tested": "Full generalized-action Solar trace-free quadrupole including div A and minus double-div B, Green and differential-density identities, smooth-origin contacts, plain QUMOND and Newton limits, and shrinking Gaussian-source controls for each frozen footing.",
+    "coefficient_domain": "IEEE float64 quadrature, analytic derivative and boundary formulas",
+    "conventions": "x=g\u00b2,z=x+ell\u00b2H:H,P=xQ(z)/z,Qprime=simple nu(sqrt z),Q(0)=0; A=.5P_g-g,B=.5P_H; q=STFzz Hessian in a0/rM units,Q2=1.5a0/rM q. Point-source formula interpreted as shrinking Gaussian-source limit. No Gaussian outer filter.",
+    "inputs": [
+      "KT37 stable law.py functions",
+      "KT33 frozen Solar GM,gext,a0 and ceiling",
+      "Analytic full Green contraction and smooth-core contact formulas in DERIVATION.md"
+    ],
+    "bounds": {
+      "physical_ell_kpc": [
+        0.03,
+        0.1,
+        0.3,
+        1,
+        3,
+        10
+      ],
+      "nr": [
+        8000,
+        12000,
+        16000
+      ],
+      "nm": [
+        160,
+        240,
+        320
+      ],
+      "radial_domain": [
+        1e-10,
+        10000000.0
+      ],
+      "gaussian_source_sigma_rM": [
+        0.5,
+        0.1,
+        0.01,
+        0.001,
+        5e-07
+      ],
+      "relative_refinement_and_density_gate": 0.0002,
+      "smooth_core_inner_radius": "max(1e-10,.001*sigma), justified by independent .001/.0005/.00025 radius check"
+    },
+    "non_claims": [
+      "No actual Galactic-gradient embedding or ephemeris fit",
+      "Finite numerical lengths, no uniform large-length theorem",
+      "Gaussian point-limit regularization; no regulator-independence theorem",
+      "Boundary derivation is not replaced by agreement of numerical forms"
+    ]
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/KT37_generalized_action/cassini/calculate_v2.py",
+    "rebuild_2026_10_22/KT37_generalized_action/cassini/core_debug.py",
+    "rebuild_2026_10_22/KT37_generalized_action/cassini/core_debug_001/results.json",
+    "rebuild_2026_10_22/KT37_generalized_action/cassini/calculate.py",
+    "rebuild_2026_10_22/KT37_generalized_action/cassini/DERIVATION.md",
+    "rebuild_2026_10_22/KT37_generalized_action/analytic/law.py",
+    "rebuild_2026_10_22/KT33_reciprocal_filter/cassini/cassini_v2.py"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

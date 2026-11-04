@@ -1,0 +1,57 @@
+{
+  "claim_id": "KT37_FINITE_CORE_CANCELLATION_DIAGNOSIS",
+  "mathematics": {
+    "assertion_tested": "For sigma=.5 and .1 on both footings at physicalell=.03kpc, the unchanged quadrupole implementation agrees with density and remains stable below1e-10 absolute q when inner radius is sigma*.001,.0005,.00025, retaining analytic origin contacts.",
+    "coefficient_domain": "IEEE float64 quadrature, analytic derivative and boundary formulas",
+    "conventions": "x=g\u00b2,z=x+ell\u00b2H:H,P=xQ(z)/z,Qprime=simple nu(sqrt z),Q(0)=0; A=.5P_g-g,B=.5P_H; q=STFzz Hessian in a0/rM units,Q2=1.5a0/rM q. Point-source formula interpreted as shrinking Gaussian-source limit. No Gaussian outer filter.",
+    "inputs": [
+      "KT37 stable law.py functions",
+      "KT33 frozen Solar GM,gext,a0 and ceiling",
+      "Analytic full Green contraction and smooth-core contact formulas in DERIVATION.md"
+    ],
+    "bounds": {
+      "sigma_rM": [
+        0.5,
+        0.1
+      ],
+      "inner_fraction_of_sigma": [
+        0.001,
+        0.0005,
+        0.00025
+      ],
+      "q_absolute_gate": 1e-10
+    },
+    "non_claims": [
+      "No actual Galactic-gradient embedding or ephemeris fit",
+      "Finite numerical lengths, no uniform large-length theorem",
+      "Gaussian point-limit regularization; no regulator-independence theorem",
+      "Boundary derivation is not replaced by agreement of numerical forms"
+    ]
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/KT37_generalized_action/cassini/core_debug.py",
+    "rebuild_2026_10_22/KT37_generalized_action/cassini/calculate.py",
+    "rebuild_2026_10_22/KT37_generalized_action/cassini/DERIVATION.md",
+    "rebuild_2026_10_22/KT37_generalized_action/analytic/law.py",
+    "rebuild_2026_10_22/KT33_reciprocal_filter/cassini/cassini_v2.py"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}
