@@ -2,7 +2,7 @@
 
 **RESEARCH EXPERIMENT, KEPT IN THIS FOLDER. NOT THE FRAMEWORK.** The owner does not believe any of this. It works out how a LCDM group might reverse-engineer the a0 law, so that the route is on record first and a swoop can be recognised. Nothing here is a framework result, and nothing here feeds the board, STANDING, PAPER67, the ledger or any lane. The particle, halo and condensate material is the rival's language only. The no-particle rule and the 11-01 retirement of the cold sector are unchanged.
 
-Working note, v1.7, DOI 10.5281/zenodo.23946231; v1.6 is 10.5281/zenodo.23921012, v1.5 is 10.5281/zenodo.23918073, v1.4 is 10.5281/zenodo.23903839, v1.3 is 10.5281/zenodo.23902787, v1.2 is 10.5281/zenodo.23902466, v1.1 is 10.5281/zenodo.23901396, v1.0 is 10.5281/zenodo.23897582. How exactly LCDM's knobs can reproduce the law on real SPARC baryons, and what each match costs. Rival-flavoured exercise; adopts nothing and reinstates nothing. kappa = 1/2 FITTED; not theory closed.
+Working note, v1.8, DOI 10.5281/zenodo.23950940; v1.7 is 10.5281/zenodo.23946231, v1.6 is 10.5281/zenodo.23921012, v1.5 is 10.5281/zenodo.23918073, v1.4 is 10.5281/zenodo.23903839, v1.3 is 10.5281/zenodo.23902787, v1.2 is 10.5281/zenodo.23902466, v1.1 is 10.5281/zenodo.23901396, v1.0 is 10.5281/zenodo.23897582. How exactly LCDM's knobs can reproduce the law on real SPARC baryons, and what each match costs. Rival-flavoured exercise; adopts nothing and reinstates nothing. kappa = 1/2 FITTED; not theory closed.
 
 - `lcdm_fried_chicken.tex` / `.pdf`: the paper. Rebuild: `tectonic lcdm_fried_chicken.tex`. Check: `python3 audit.py`.
 - `FROZEN_RECIPE.md`: targets, recipes, Amendments A1 to A3, and the cosmology bug note.
@@ -30,7 +30,7 @@ Bibliography entries are from memory and were not checked against the journals. 
 
 **In v1.7: Amendment A15, `scripts/recipe17.py`, `recipe17.out`.** Disclosed first: an unfrozen check showed A13's halo-acceleration G4 used too wide a mass range (0.089 dex over log M 11 to 12.5). U1, per SPARC galaxy through the SHMR (log M200 10.4 to 13.4): median 0.612 a0, rms 0.156 dex, kappa_eff 0.306, rises 1.49x by z 2.33; NO TIE. But with one global factor (1.404) the law with each galaxy's own halo scale sits 0.0586 dex from the law and 0.1941 dex from observed curves, against the law's 0.1951: one knob ties the law on data. U2: on observable gates alone the Lambda coincidence cannot be told from the tie; only a mechanism separates them. U3 one-recipe SIDM core, sigma/m 0.5, 1, 3: 0.121 to 0.126 dex from the law, 0.212 to 0.218 from observed, fails. An age bug (100 Gyr) was caught before any SIDM number and fixed. Not run: hydro simulations, fuzzy DM, interacting vacuum, systematics.
 
-**Not in any deposit: A16 to A20.** None is EXACT (E1 0.02, E2 0.04, E3 0.02, holdout 0.025), and none ties a to rho_DE.
+**In v1.8: A16 to A20, `FROZEN_A17.md` to `FROZEN_A20.md`.** None is EXACT (E1 0.02, E2 0.04, E3 0.02, holdout 0.025), and none ties a to rho_DE.
 - A16 (`recipe18`), knob-block search on R11b: best 15 knobs 0.0263, widened 0.0252, holdout 0.0267; E2 0.053 blocks it.
 - A17 (`recipe19`), wave DM soliton plus NFW: 0.149 with m22 alone, 0.092 with 6 knobs; fits switch the soliton off; soliton scale goes as M200.
 - A18 (`recipe20`), DC14, coreNFW, FIRE-2 Lazar as published: 0.116 to 0.177; with 3 knobs 0.073 to 0.084, wanting halos 0.2 to 0.4 dex lighter.
