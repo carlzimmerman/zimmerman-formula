@@ -1,0 +1,77 @@
+sample: 171 galaxies, 3373 points; Y_disk 0.5, Y_bul 0.7
+cosmology OL 0.685: c sqrt(G rho_DE) 1.8727e-10, lib A0 9.3625e-11 (kappa 0.4999)
+
+### (a) paper-truncated W = W0 + 2 pi G Pi^2 + (16 pi^2 G^2/3 a0) Pi^3 taken as exact: g = g_N + sqrt(a0 g_N)
+
+== (a) cubic W, a0 global (1 knobs; p = [-10.2008]; a0 = 6.2984e-11; at bound [])
+ rms to law 0.0392 dex [FAIL E1]; p95 per-galaxy 0.0546 [FAIL E2]; worst bin 0.0660 [FAIL E3]
+ bins -12.0:-0.044 -11.5:-0.024 -11.0:+0.004 -10.5:+0.038 -10.0:+0.061 -9.5:+0.066 -9.0:+0.054
+ a fit 9.378e-11; rms to observed 0.1976 dex, mean +0.0128
+ holdout: tuned on GS[::2] p = [-10.1988]; unseen rms to law 0.0378 [FAIL holdout]; ALL E1-E3 + holdout: FAIL
+ diagnostic: cubic W a0 fitted to observed 6.1797e-11 (-0.180 dex vs lib A0); rms to observed 0.1976; law with A0 rms to observed 0.1951
+
+### (b) W(P) freedom
+
+== (b) T_3 Taylor W' = y + y^2/a0 + sum_k=3..3 b_k y^k/a0^(k-1) (2 knobs; p = [-9.8897, 5.0]; a0 = 1.2891e-10; at bound [1])
+ rms to law 0.0098 dex [PASS E1]; p95 per-galaxy 0.0148 [PASS E2]; worst bin 0.0214 [FAIL E3]
+ bins -12.0:+0.009 -11.5:-0.002 -11.0:-0.007 -10.5:+0.000 -10.0:+0.014 -9.5:+0.021 -9.0:+0.019
+ a fit 9.368e-11; rms to observed 0.1959 dex, mean +0.0038
+ holdout: tuned on GS[::2] p = [-9.8904, 5.0]; unseen rms to law 0.0088 [PASS holdout]; ALL E1-E3 + holdout: FAIL
+
+== (b) T_4 Taylor W' = y + y^2/a0 + sum_k=3..4 b_k y^k/a0^(k-1) (3 knobs; p = [-10.1045, -0.5848, 3.1454]; a0 = 7.8608e-11; at bound [])
+ rms to law 0.0036 dex [PASS E1]; p95 per-galaxy 0.0057 [PASS E2]; worst bin 0.0091 [PASS E3]
+ bins -12.0:-0.002 -11.5:+0.002 -11.0:-0.001 -10.5:-0.003 -10.0:+0.002 -9.5:+0.008 -9.0:+0.009
+ a fit 9.363e-11; rms to observed 0.1954 dex, mean +0.0020
+ holdout: tuned on GS[::2] p = [-10.1153, -0.7299, 3.2019]; unseen rms to law 0.0033 [PASS holdout]; ALL E1-E3 + holdout: PASS
+
+== (b) T_5 Taylor W' = y + y^2/a0 + sum_k=3..5 b_k y^k/a0^(k-1) (4 knobs; p = [-10.0444, 0.9169, -0.7167, 5.0]; a0 = 9.0284e-11; at bound [3])
+ rms to law 0.0022 dex [PASS E1]; p95 per-galaxy 0.0035 [PASS E2]; worst bin 0.0063 [PASS E3]
+ bins -12.0:-0.002 -11.5:+0.000 -11.0:+0.000 -10.5:-0.002 -10.0:+0.001 -9.5:+0.005 -9.0:+0.006
+ a fit 9.363e-11; rms to observed 0.1952 dex, mean +0.0017
+ holdout: tuned on GS[::2] p = [-10.0509, 0.7994, -0.6593, 5.0]; unseen rms to law 0.0020 [PASS holdout]; ALL E1-E3 + holdout: PASS
+
+== (b) T_6 Taylor W' = y + y^2/a0 + sum_k=3..6 b_k y^k/a0^(k-1) (5 knobs; p = [-10.0059, 1.9775, -2.6465, 5.0, 5.0]; a0 = 9.8660e-11; at bound [3, 4])
+ rms to law 0.0015 dex [PASS E1]; p95 per-galaxy 0.0024 [PASS E2]; worst bin 0.0047 [PASS E3]
+ bins -12.0:-0.001 -11.5:-0.000 -11.0:+0.001 -10.5:-0.001 -10.0:-0.000 -9.5:+0.004 -9.0:+0.005
+ a fit 9.363e-11; rms to observed 0.1951 dex, mean +0.0016
+ holdout: tuned on GS[::2] p = [-10.01, 1.8841, -2.5872, 5.0, 5.0]; unseen rms to law 0.0013 [PASS holdout]; ALL E1-E3 + holdout: PASS
+
+== (b) T_7 Taylor W' = y + y^2/a0 + sum_k=3..7 b_k y^k/a0^(k-1) (6 knobs; p = [-10.0393, 0.5605, 3.312, -5.0, 4.224, 5.0]; a0 = 9.1339e-11; at bound [3, 5])
+ rms to law 0.0009 dex [PASS E1]; p95 per-galaxy 0.0015 [PASS E2]; worst bin 0.0033 [PASS E3]
+ bins -12.0:-0.000 -11.5:-0.000 -11.0:+0.000 -10.5:-0.000 -10.0:-0.000 -9.5:+0.002 -9.0:+0.003
+ a fit 9.363e-11; rms to observed 0.1951 dex, mean +0.0015
+ holdout: tuned on GS[::2] p = [-10.039, 0.5917, 3.1746, -5.0, 4.614, 5.0]; unseen rms to law 0.0008 [PASS holdout]; ALL E1-E3 + holdout: PASS
+
+== (b) T_8 Taylor W' = y + y^2/a0 + sum_k=3..8 b_k y^k/a0^(k-1) (7 knobs; p = [-10.0546, 0.1055, 4.0126, -2.388, -3.5194, 5.0, 5.0]; a0 = 8.8194e-11; at bound [5, 6])
+ rms to law 0.0006 dex [PASS E1]; p95 per-galaxy 0.0009 [PASS E2]; worst bin 0.0022 [PASS E3]
+ bins -12.0:+0.000 -11.5:+0.000 -11.0:-0.000 -10.5:+0.000 -10.0:-0.001 -9.5:+0.001 -9.0:+0.002
+ a fit 9.363e-11; rms to observed 0.1951 dex, mean +0.0014
+ holdout: tuned on GS[::2] p = [-10.0614, -0.088, 4.5399, -2.9907, -3.7135, 5.0, 5.0]; unseen rms to law 0.0005 [PASS holdout]; ALL E1-E3 + holdout: PASS
+
+T_n first passing order: 4 (3 knobs: a0 + 2 coefficients)
+
+== (b) P Pade one-parameter (q=0 cubic, q=1 law) (2 knobs; p = [-10.0286, 1.0]; a0 = 9.3625e-11; at bound [])
+ rms to law 0.0000 dex [PASS E1]; p95 per-galaxy 0.0000 [PASS E2]; worst bin 0.0000 [PASS E3]
+ bins -12.0:+0.000 -11.5:+0.000 -11.0:+0.000 -10.5:+0.000 -10.0:+0.000 -9.5:+0.000 -9.0:+0.000
+ a fit 9.363e-11; rms to observed 0.1951 dex, mean +0.0013
+ holdout: tuned on GS[::2] p = [-10.0286, 1.0]; unseen rms to law 0.0000 [PASS holdout]; ALL E1-E3 + holdout: PASS
+
+== (b) control: the law as a W, W' = y/(1 - y/a0), a0 = A0 (one function choice, 0 tuned) 
+ rms to law 0.0000 dex [PASS E1]; p95 per-galaxy 0.0000 [PASS E2]; worst bin 0.0000 [PASS E3]
+ bins -12.0:+0.000 -11.5:-0.000 -11.0:+0.000 -10.5:-0.000 -10.0:+0.000 -9.5:+0.000 -9.0:+0.000
+ a fit 9.363e-11; rms to observed 0.1951 dex, mean +0.0013
+
+diagnostic (not a gate) Saturn g_N 6.463e-05: y/g_N cubic 1.20e-03; law 1.45e-06; best T_4 nan
+
+### (c) Lambda-a0 at face value
+ G1 (i) paper alpha 0.8, a0 = a_Lambda/0.8: kappa_eff 0.5758, +0.0613 dex [FAIL G1]; a0 1.0784e-10
+ G1 (ii) alpha 1, a0 = a_Lambda: kappa_eff 0.4607, -0.0356 dex [PASS G1]; a0 8.6269e-11
+ G1 (iii) model as written, a0 = fitted W3 constant (a): kappa_eff 0.3363 (-0.1722 dex) -- a fit, not a tie; alpha = a_Lambda/a0 = 1.370
+ alpha implied by lib A0: a_Lambda/A0 = 0.921 (paper quotes ~0.8, provisional)
+ G2 slope: as written W0 = Lambda/8 pi G and W3 = 32 pi^2 G^2/a0 are independent constants -> 0 [FAIL G2]; naturalness imposed -> 0.5 [PASS G2 by hand, 1 hand term]
+ G3 a(z)/a(0) (Lambda and W3 constant, a0 does not follow H): 1.0: 1.00, 1.5: 1.00, 2.33: 1.00 [PASS G3]
+ G4 one constant across hosts: universal W coefficient [PASS G4 by construction]; G5 operative at galaxy radii via W3 [PASS G5]
+ (c) verdict: NO NATIVE TIE -- relation is an order-of-magnitude naturalness claim, not derived; G2 only by hand; G1 passes only at alpha = 1, not at the paper's 0.8
+
+Not run: relativistic cosmology of the dipolar medium, CMB, clusters, Solar System with external field, ghost analysis.
+Rival language. Passing shows freedom, not evidence. kappa = 1/2 FITTED; not theory closed.
