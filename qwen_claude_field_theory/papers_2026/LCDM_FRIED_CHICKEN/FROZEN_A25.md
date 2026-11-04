@@ -58,4 +58,15 @@ Rival language; adopts nothing. kappa = 1/2 FITTED; not theory closed.
 - Timing: full-stack evaluation 0.034 s in table mode and 1.09 s with the direct solver.
 - The run (`recipe27.py`, PID 63978) was still in S1 when this lane handed back. Results go here once it finishes; the checkpoint `recipe27_ckpt.json` lets a restart resume. `recipe27_sidm_table.npz` is a regenerable cache and should not be committed.
 
+## Results (collected from `scripts/recipe27.out` after the run finished, 3958 s)
+
+Verdict line: "NO global recipe in the stack is EXACT at any knob count"; no Pareto point passes the tie gates.
+
+- Pareto curve (backward elimination, direct SIDM grading), rms to law: 0 knobs 0.1820; 1 knob 0.1117; 4 knobs 0.0513; 6 knobs 0.0311; 9 knobs 0.0280; 14 knobs 0.0243; 17 knobs 0.0233; 23 knobs 0.0226; 28 knobs 0.0222 (E2 0.0546, E3 0.0182, holdout 0.0243); 29 knobs 0.0225. The curve flattens near 0.022: E1 never reaches 0.02 and E2 stays 0.050 to 0.055 above its 0.04 bound at every count.
+- Widened bounds (S4, 29 knobs): E1 0.0204, E2 0.0486, E3 0.0213, holdout 0.0370; NOT EXACT. Plausibility cost 1.290 range widths in total, max 0.500 (concentration slope sc), with dc 0.258 and lsm 0.252 outside their frozen ranges.
+- Equal-galaxy weight (S5): E1 0.0228, E2 0.0558, E3 0.0158, holdout 0.0249; NOT EXACT.
+- Tie gates: kappa_eff 0.497 at every tuned point is inherited from the target, not a native tie. G4 passes (0.039 to 0.048 dex for 10 or more knobs). G2 fails everywhere (slopes +1.27 to +1.63 and +2.96 to +4.41 on the two footings, target 0.5). G3 fails everywhere (a(z)/a(0) at z 2.33 of 2.83 to 3.49).
+- The best fits want halos 0.36 to 0.49 dex heavier than the SHMR median (dlogM200 column).
+- Exactness with all 28 LCDM ingredients stacked is not reached, and the closer the shape gets, the more the recipe's a0 runs with cosmology and redshift: shape and tie pull apart.
+
 Rival language; adopts nothing. kappa = 1/2 FITTED; not theory closed.
