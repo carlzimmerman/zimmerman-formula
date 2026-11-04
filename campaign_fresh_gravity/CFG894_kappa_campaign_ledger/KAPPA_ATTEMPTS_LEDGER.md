@@ -17,7 +17,7 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (845 rows)
+## Totals (846 rows)
 
 - **550 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
@@ -154,7 +154,7 @@ fact.
 | CC Cosmological consistency (horizons, epochs, H0, unimodular, sequestering) | 51 | 2 | 4 | 40 | 0 | 0 |
 | NU Numerology and grammar searches (flagged) | 30 | 1 | 2 | 9 | 0 | 0 |
 | OB Observational determinations of kappa (NOT derivations) | 58 | 0 | 0 | 0 | 0 | 48 |
-| AU Audits, controls, meta-analyses | 178 | 0 | 0 | 0 | 1 | 0 |
+| AU Audits, controls, meta-analyses | 179 | 0 | 0 | 0 | 1 | 0 |
 | LN Logic / Lean formalisations | 16 | 0 | 0 | 0 | 1 | 0 |
 | EX External pasted derivations | 16 | 2 | 1 | 12 | 0 | 0 |
 
@@ -1035,6 +1035,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K843 | KC2 | `campaign_fresh_gravity/CFG894_kappa_campaign_ledger/KAPPA_CLOSURE_2026-11-03.md` | premise screen for xi = 1 / premise A: 16 candidates (Bekenstein vs S_BH, per-steradian coupling, Poisson/Friedmann ratio, codim-2 line, codim-1 sheet, null portal, graviton normalisation, multiplier, trace coupling, boundary terms, KK/DGP/6D brane, heat-kernel/Sakharov, Gauss-source match, gravitational duality, horizon lattice, gravito-EM); read-only, no lane | - | audit | NO SURVIVOR: 14 duplicate existing rows or reach 1/2 by posit (X7) or fail S1-S7; new by name only Bekenstein vs S_BH (reduces to J = 3/(8 pi), kappa 1.447, adds no trial) and gravito-EM (rho_DE never enters); structural: a pi-free reading in every d needs a local algebraic portal whose coefficient is free (TRADE, S6) |  |
 | K844 | KT30 | `rebuild_2026_10_22/KT30_tracefree_tidal_rule/kt30.py` | trace-free tidal rule xi_TF = sqrt6 tau^3/(tau'^2 g*), tau = /T - trT/3 I/ of own field; MW full tensor at (R0, 0), Cassini, dwarfs, SPARC | - | audit | FAILS MW both footings as predicted: xi 33-47 kpc (0.88x full tensor; trace removal keeps ~2/3 of a thin disc density tide), v_c <= 205, 0 cells; alt passes Cassini 0.17x, dwarfs 15/24, SPARC +0.0005; canonical also fails dwarfs 13/24, SPARC; third post-hoc local rule | 0d75d07bc0 |
 | K845 | KT31 | `rebuild_2026_10_22/KT31_tidal_rule_rz_solve/kt31.py` | tidal rules F (KT28) and TF (KT30) with xi varying in (r, theta) per solver cell, gather smoothing via width ladder, MW 1375 cells | - | audit | frozen label NOT EVALUABLE (N1 premise wrong: exp disc cusp at z 0, xi 40 -> 1.4 kpc 8 pc up; Hessian itself 1.02); beside 0 cells pass either footing or rule: v_c reaches line (L1 222-590 cells) but K_z 77-80 vs 66.4 (L2b 0-18), as KT13; gather adds 12-44 % mass; R4 ladder 0.7 km/s over line | 517840aaa4 |
+| K846 | KT32 | `rebuild_2026_10_22/KT32_tidal_rule_rz_scatter/kt32.py` | tidal rules F and TF with xi varying in (r, theta), mass-conserving scatter smoothing (width at source), ladder 1.25, MW 1375 cells | - | audit | FAILS MW both footings both rules, all checks pass (mass 1e-4, smoother <= 0.26 km/s): K_z L2b 0 cells, lowest K with v_c in line 84.5-86 vs 66.4; scatter K above plain QUMOND by 3-4 (phantom stays a thin disc); no local tidal rule tested passes MW | c8248fa630 |
 
 ## LN: Logic / Lean formalisations
 
