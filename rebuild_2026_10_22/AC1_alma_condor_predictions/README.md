@@ -1,6 +1,6 @@
 # AC1: pre-data predictions for the ALMA release of 2026-11-06
 
-**Current local revision (2026-11-04):** PAPER66 v1.4 and `ADDENDUM_G2_2026-11-04.md` correct the all-three-start gate and explicitly document the fixed archived error floor. Historical results below remain historical, not rerun outputs. Fresh validation and the full preservation manifest are in `reviews/alma_readiness_2026_11_04/revision_v1_4/` and `PAPER66_preserved_inputs_v1_4.json`. The revision is not deposited.
+**Current revision (2026-11-04), PAPER66 v1.4 DEPOSITED: DOI 10.5281/zenodo.23958256.** PAPER66 v1.4 and `ADDENDUM_G2_2026-11-04.md` correct the all-three-start gate and explicitly document the fixed archived error floor. Historical results below remain historical, not rerun outputs. Fresh validation and the full preservation manifest are in `reviews/alma_readiness_2026_11_04/revision_v1_4/` and `PAPER66_preserved_inputs_v1_4.json`. The scorer now writes new results, including a release run, to `validation_2026_11_04/` unless `--output-dir` is given.
 
 Criteria `FROZEN_CRITERIA.md`, committed alone first (57d3ac6b64). `ac1_predict.py`: all checks PASS, under 1 GB, under a minute, one process. MUTATE (R31 x 10) fails K7 and exits 1.
 
