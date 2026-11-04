@@ -1,0 +1,300 @@
+sample: 171 galaxies, 3373 points; Y_disk 0.5, Y_bul 0.7
+c sqrt(G rho_DE) 1.8727e-10 m/s^2, a0 9.3625e-11
+
+######## (a) precompute: isothermal Jeans cores, base halo, both branches, sigma/m in {0.5, 1, 3, 10, 30} cm^2/g  (0 s, RSS 79 MB)
+  sigma/m 0.5: rms to law low 0.1228, high 0.1790; high root distinct (|d ln rho0| > 0.5) in 89 of 171; high roots at grid top 0; unmatched low 3, high 7; median ln(rho0/rho_N(r1)) low 1.96, high 13.17  (2 s)
+  sigma/m 1.0: rms to law low 0.1217, high 0.1969; high root distinct (|d ln rho0| > 0.5) in 98 of 171; high roots at grid top 0; unmatched low 6, high 22; median ln(rho0/rho_N(r1)) low 2.39, high 12.31  (3 s)
+  sigma/m 3.0: rms to law low 0.1250, high 0.3447; high root distinct (|d ln rho0| > 0.5) in 157 of 171; high roots at grid top 0; unmatched low 14, high 91; median ln(rho0/rho_N(r1)) low 3.31, high 12.11  (5 s)
+  sigma/m 10.0: rms to law low 0.1395, high 0.3538; high root distinct (|d ln rho0| > 0.5) in 141 of 171; high roots at grid top 0; unmatched low 40, high 55; median ln(rho0/rho_N(r1)) low 4.66, high 14.67  (7 s)
+  sigma/m 30.0: rms to law low 0.1469, high 0.3190; high root distinct (|d ln rho0| > 0.5) in 121 of 171; high roots at grid top 0; unmatched low 83, high 122; median ln(rho0/rho_N(r1)) low 6.73, high 15.15  (10 s)
+
+######## a0 control: low branch, sigma/m 1, base halo, against A19 C0 0.1200  (10 s, RSS 136 MB)
+
+== a0 control 
+ rms to law 0.1217 dex [FAIL E1]; p95 per-galaxy 0.2101 [FAIL E2]; worst bin 0.0847 [FAIL E3]
+ bins -12.0:+0.069 -11.5:+0.053 -11.0:+0.041 -10.5:+0.005 -10.0:+0.028 -9.5:+0.064 -9.0:+0.085
+ a fit 1.196e-10; rms to observed 0.2127 dex, mean +0.0424
+ a0 PASS: |0.1217 - 0.1200| = 0.0017 <= 0.005
+
+######## a1 collapsed (high-density) branch, one constant sigma/m from the grid  (10 s, RSS 136 MB)
+
+== a1 collapsed branch, sigma/m 0.5 (1 knob, from grid)
+ rms to law 0.1790 dex [FAIL E1]; p95 per-galaxy 0.2974 [FAIL E2]; worst bin 0.2566 [FAIL E3]
+ bins -12.0:+0.120 -11.5:+0.078 -11.0:+0.077 -10.5:+0.033 -10.0:+0.090 -9.5:+0.174 -9.0:+0.257
+ a fit 1.501e-10; rms to observed 0.2597 dex, mean +0.0893
+ a1 K1 sigma0^2/r1: median 0.265 a0, kappa_eff 0.1324 [FAIL G1]; rms over 79 hosts log M200 11-12.5 0.171 dex [FAIL G4]; over all 171 0.206 dex
+ a1 (sigma/m 0.5 on GS[::2]) holdout: unseen GS[1::2] rms to law 0.1546 dex [FAIL <= 0.025]
+ a1 per-sigma rms (high branch): 0.5: 0.1790, 1.0: 0.1969, 3.0: 0.3447, 10.0: 0.3538, 30.0: 0.3190
+
+######## a2 per-galaxy branch choice (171 binary + 1)  (10 s, RSS 136 MB)
+  sigma/m 0.5: per-galaxy branch rms 0.1222, collapsed chosen in 41 of 171
+  sigma/m 1.0: per-galaxy branch rms 0.1201, collapsed chosen in 48 of 171
+  sigma/m 3.0: per-galaxy branch rms 0.1204, collapsed chosen in 28 of 171
+  sigma/m 10.0: per-galaxy branch rms 0.1358, collapsed chosen in 20 of 171
+  sigma/m 30.0: per-galaxy branch rms 0.1426, collapsed chosen in 23 of 171
+
+== a2 per-galaxy branch, sigma/m 1.0 (172 parameters; collapsed in 48)
+ rms to law 0.1201 dex [FAIL E1]; p95 per-galaxy 0.2101 [FAIL E2]; worst bin 0.0853 [FAIL E3]
+ bins -12.0:+0.069 -11.5:+0.054 -11.0:+0.043 -10.5:+0.007 -10.0:+0.024 -9.5:+0.054 -9.0:+0.085
+ a fit 1.200e-10; rms to observed 0.2135 dex, mean +0.0423
+ a2 K1 sigma0^2/r1: median 0.192 a0, kappa_eff 0.09604 [FAIL G1]; rms over 79 hosts log M200 11-12.5 0.146 dex [FAIL G4]; over all 171 0.184 dex
+
+== a2 rule: collapsed if log Sigma_b > 10.063, sigma/m 1.0 (2 knobs)
+ rms to law 0.1207 dex [FAIL E1]; p95 per-galaxy 0.2101 [FAIL E2]; worst bin 0.0842 [FAIL E3]
+ bins -12.0:+0.069 -11.5:+0.053 -11.0:+0.041 -10.5:+0.005 -10.0:+0.025 -9.5:+0.055 -9.0:+0.084
+ a fit 1.193e-10; rms to observed 0.2128 dex, mean +0.0414
+ a2 rule (sigma/m 1.0, threshold 10.063 on GS[::2]) holdout: unseen GS[1::2] rms to law 0.1070 dex [FAIL <= 0.025]
+ a2 rule collapsed in 3 of 171
+
+######## a3 Ren-style per-galaxy M200, c, with per-galaxy branch; sigma/m in {0.5, 3, 10} (514 parameters)  (11 s, RSS 136 MB)
+  sigma/m 0.5: rms to law all 0.0472, GS[::2] 0.0500; collapsed chosen 80  (56 s)
+  sigma/m 3.0: rms to law all 0.0635, GS[::2] 0.0683; collapsed chosen 39  (97 s)
+  sigma/m 10.0: rms to law all 0.0747, GS[::2] 0.0769; collapsed chosen 29  (141 s)
+
+== a3 per-galaxy M200, c, branch; sigma/m 0.5 (514 parameters)
+ rms to law 0.0472 dex [FAIL E1]; p95 per-galaxy 0.0988 [FAIL E2]; worst bin 0.0240 [FAIL E3]
+ bins -12.0:+0.015 -11.5:-0.000 -11.0:+0.006 -10.5:-0.011 -10.0:-0.017 -9.5:+0.003 -9.0:+0.024
+ a fit 9.354e-11; rms to observed 0.1966 dex, mean +0.0007
+ a3 at bound 64 of 342 continuous; collapsed chosen 80; dlogM p16/50/84 [-0.479, -0.131, 0.161], dlogc [-0.22, -0.042, 0.135]
+ a3 K1 sigma0^2/r1: median 0.267 a0, kappa_eff 0.1333 [FAIL G1]; rms over 84 hosts log M200 11-12.5 0.200 dex [FAIL G4]; over all 171 0.243 dex
+ a3 gated (sigma/m 0.5 on GS[::2], GS[1::2] at prior centre, branch by the GS[::2] rule threshold 10.107) holdout: unseen GS[1::2] rms to law 0.1096 dex [FAIL <= 0.025]
+ a3 not gated: GS[1::2] refitted per galaxy at 0.5: 0.0444
+
+######## a4 parametric gravothermal SIDM (Yang et al. 2023), dark-only profile, t = 10 Gyr  (141 s, RSS 136 MB)
+ a4-1 scan log sigma/m: -1.00:0.1307 -0.75:0.1289 -0.50:0.1265 -0.25:0.1236 0.00:0.1208 0.25:0.1193 0.50:0.1203 0.75:0.1234 1.00:0.1266 1.25:0.1269 1.50:0.1260 1.75:0.1625 2.00:0.2936 2.25:0.2936 2.50:0.2936
+
+== a4-1 parametric, sigma/m 1.93 cm^2/g (1 knob; at bound [])
+ rms to law 0.1193 dex [FAIL E1]; p95 per-galaxy 0.2070 [FAIL E2]; worst bin 0.0821 [FAIL E3]
+ bins -12.0:+0.060 -11.5:+0.041 -11.0:+0.012 -10.5:-0.069 -10.0:-0.082 -9.5:-0.051 -9.0:-0.022
+ a fit 9.587e-11; rms to observed 0.2099 dex, mean -0.0076
+ a4-1 tau: median 0.024, > 0.5 in 0, at the cap 1 in 0 of 171
+ a4-1 K1p 2 pi G rho_s r_s: median 0.77 a0, kappa_eff 0.3849 [FAIL G1]; rms over 79 hosts log M200 11-12.5 0.078 dex [PASS G4]; over all 171 0.159 dex
+ a4-1 (log sigma/m 0.501 on GS[::2]) holdout: unseen GS[1::2] rms to law 0.1171 dex [FAIL <= 0.025]
+
+== a4-3 parametric + dn, dc (3 knobs [-0.938, 0.263, -0.059], sigma/m 0.115; at bound [])
+ rms to law 0.0863 dex [FAIL E1]; p95 per-galaxy 0.1731 [FAIL E2]; worst bin 0.0522 [FAIL E3]
+ bins -12.0:+0.042 -11.5:-0.009 -11.0:-0.033 -10.5:-0.052 -10.0:-0.039 -9.5:-0.031 -9.0:-0.018
+ a fit 8.339e-11; rms to observed 0.2091 dex, mean -0.0223
+ a4-3 tau: median 0.001, > 0.5 in 0, at cap 0
+ a4-3 K1p: median 0.491 a0, kappa_eff 0.2452 [FAIL G1]; rms over 78 hosts log M200 11-12.5 0.073 dex [PASS G4]; over all 171 0.128 dex
+ a4-3 holdout: unseen GS[1::2] rms to law 0.0896 dex [FAIL <= 0.025]
+  a4-pg sigma/m 1.0: rms all 0.0567, GS[::2] 0.0559  (144 s)
+  a4-pg sigma/m 10.0: rms all 0.0609, GS[::2] 0.0615  (145 s)
+  a4-pg sigma/m 30.0: rms all 0.0577, GS[::2] 0.0597  (146 s)
+  a4-pg sigma/m 100.0: rms all 0.0564, GS[::2] 0.0586  (146 s)
+
+== a4-pg per-galaxy M200, c; sigma/m 100.0 (343 parameters)
+ rms to law 0.0564 dex [FAIL E1]; p95 per-galaxy 0.1015 [FAIL E2]; worst bin 0.0399 [FAIL E3]
+ bins -12.0:-0.012 -11.5:+0.003 -11.0:+0.009 -10.5:-0.005 -10.0:-0.040 -9.5:-0.033 -9.0:-0.018
+ a fit 9.186e-11; rms to observed 0.1955 dex, mean -0.0060
+ a4-pg at bound 35 of 342; tau median 0.810, > 0.5 in 163, at cap 2
+ a4-pg gated (sigma/m 1.0 on GS[::2], prior centre) holdout: unseen GS[1::2] rms to law 0.1129 dex [FAIL <= 0.025]
+
+######## b0 control: Thomas-Fermi integrator without baryons against rho_c sin(kr)/(kr)  (146 s, RSS 136 MB)
+ b0 M(R/2), M(R) relative error 8.8e-05, 3.0e-04 [PASS <= 1e-3]; first zero of rho at 1.0177 R
+
+######## b1 BEC Thomas-Fermi core + NFW envelope, one global knob log10 R/kpc  (146 s, RSS 136 MB)
+ b1 scan log R/kpc: -2.00:0.1419 -1.75:0.1419 -1.50:0.1419 -1.25:0.1419 -1.00:0.1419 -0.75:0.1419 -0.50:0.1411 -0.25:0.1392 0.00:0.1359 0.25:0.1355 0.50:0.1302 0.75:0.1371 1.00:0.1705 1.25:0.2316 1.50:0.3173
+
+== b1 BEC, R = 3.53 kpc (1 knob; at bound []); no core solution (pure NFW) in 83 of 171
+ rms to law 0.1289 dex [FAIL E1]; p95 per-galaxy 0.2688 [FAIL E2]; worst bin 0.0848 [FAIL E3]
+ bins -12.0:+0.080 -11.5:+0.070 -11.0:+0.085 -10.5:+0.049 -10.0:+0.039 -9.5:+0.014 -9.0:+0.004
+ a fit 1.384e-10; rms to observed 0.2198 dex, mean +0.0607
+ b1 K1b G M_core(r_t)/r_t^2: median 0.435 a0, kappa_eff 0.2173 [FAIL G1]; rms over 39 hosts log M200 11-12.5 0.111 dex [FAIL G4]; over all 88 0.224 dex
+ b1 (log R 0.356 on GS[::2]) holdout: unseen GS[1::2] rms to law 0.1211 dex [FAIL <= 0.025]
+
+== b3 BEC + dn, dc (3 knobs [0.272, 0.202, -0.088], R 1.87 kpc; at bound []); no core in 99
+ rms to law 0.0885 dex [FAIL E1]; p95 per-galaxy 0.1796 [FAIL E2]; worst bin 0.0415 [FAIL E3]
+ bins -12.0:+0.032 -11.5:-0.019 -11.0:-0.031 -10.5:-0.042 -10.0:-0.022 -9.5:-0.014 -9.0:-0.006
+ a fit 8.315e-11; rms to observed 0.2123 dex, mean -0.0196
+ b3 K1b: median 0.355 a0, kappa_eff 0.1774 [FAIL G1]; rms over 27 hosts log M200 11-12.5 0.081 dex [PASS G4]; over all 72 0.164 dex
+ b3 holdout: unseen GS[1::2] rms to law 0.0921 dex [FAIL <= 0.025]
+  b-pg R 0.3 kpc: rms all 0.0465, GS[::2] 0.0503  (874 s)
+  b-pg R 1 kpc: rms all 0.0401, GS[::2] 0.0449  (980 s)
+  b-pg R 3 kpc: rms all 0.0486, GS[::2] 0.0552  (1095 s)
+  b-pg R 3.53 kpc: rms all 0.0513, GS[::2] 0.0565  (1210 s)
+
+== b-pg per-galaxy M200, c; R 1 kpc (343 parameters)
+ rms to law 0.0401 dex [FAIL E1]; p95 per-galaxy 0.0990 [FAIL E2]; worst bin 0.0259 [FAIL E3]
+ bins -12.0:+0.026 -11.5:-0.002 -11.0:+0.004 -10.5:-0.005 -10.0:-0.010 -9.5:-0.008 -9.0:-0.003
+ a fit 9.452e-11; rms to observed 0.1995 dex, mean +0.0011
+ b-pg at bound 91 of 342
+ b-pg gated (R 1 kpc on GS[::2], prior centre) holdout: unseen GS[1::2] rms to law 0.1244 dex [FAIL <= 0.025]
+
+######## (c) control: f = 0 must reproduce R1 base 0.1419  (1213 s, RSS 136 MB)
+ c control PASS: 0.1419
+
+######## c1 CDM + FDM (f, log m22)  (1213 s, RSS 136 MB)
+ c1 coarse grid best: f 0.3, log m22 -0.5, rms 0.1198
+
+== c1 CDM + FDM (2 knobs f 0.205, m22 0.1; at bound [1]); soliton present in 34 of 171
+ rms to law 0.1174 dex [FAIL E1]; p95 per-galaxy 0.2359 [FAIL E2]; worst bin 0.0468 [FAIL E3]
+ bins -12.0:+0.047 -11.5:+0.004 -11.0:+0.034 -10.5:+0.014 -10.0:+0.030 -9.5:+0.013 -9.0:+0.009
+ a fit 1.063e-10; rms to observed 0.2219 dex, mean +0.0217
+ c1 soliton g_c: median 0.64 a0, kappa_eff 0.3198 [FAIL G1]; rms over 7 hosts log M200 11-12.5 0.056 dex [PASS G4]; over all 34 0.502 dex
+ c1 holdout: unseen GS[1::2] rms to law 0.1087 dex [FAIL <= 0.025]
+
+== c1-4 CDM + FDM + dn, dc (4 knobs [0.202, 0.109, 0.236, -0.045]; at bound []); soliton present in 127
+ rms to law 0.0909 dex [FAIL E1]; p95 per-galaxy 0.1819 [FAIL E2]; worst bin 0.0355 [FAIL E3]
+ bins -12.0:+0.031 -11.5:-0.028 -11.0:-0.030 -10.5:-0.036 -10.0:-0.015 -9.5:-0.010 -9.0:-0.002
+ a fit 8.294e-11; rms to observed 0.2173 dex, mean -0.0188
+ c1-4 holdout: unseen GS[1::2] rms to law 0.0924 dex [FAIL <= 0.025]
+
+######## c2 CDM + WDM (f, log M_hm)  (1215 s, RSS 136 MB)
+
+== c2 CDM + WDM (2 knobs f 0.212, log M_hm 12.000, m_WDM 0.305 keV (thermal, from memory); at bound [1])
+ rms to law 0.1157 dex [FAIL E1]; p95 per-galaxy 0.2228 [FAIL E2]; worst bin 0.0388 [FAIL E3]
+ bins -12.0:+0.039 -11.5:-0.003 -11.0:+0.029 -10.5:+0.010 -10.0:+0.023 -9.5:+0.007 -9.0:+0.001
+ a fit 1.025e-10; rms to observed 0.2201 dex, mean +0.0158
+ c2 holdout: unseen GS[1::2] rms to law 0.1062 dex [FAIL <= 0.025]
+
+== c2-4 CDM + WDM + dn, dc (4 knobs [0.699, 9.607, 0.261, -0.023]; at bound [])
+ rms to law 0.0897 dex [FAIL E1]; p95 per-galaxy 0.1837 [FAIL E2]; worst bin 0.0316 [FAIL E3]
+ bins -12.0:+0.022 -11.5:-0.030 -11.0:-0.026 -10.5:-0.032 -10.0:-0.013 -9.5:-0.009 -9.0:-0.004
+ a fit 8.281e-11; rms to observed 0.2155 dex, mean -0.0185
+ c2-4 holdout: unseen GS[1::2] rms to law 0.0910 dex [FAIL <= 0.025]
+
+== c2s CDM + WDM + constant SIDM core (3 knobs f 0.147, log M_hm 12.000, sigma/m 0.511; at bound [1])
+ rms to law 0.1134 dex [FAIL E1]; p95 per-galaxy 0.1970 [FAIL E2]; worst bin 0.0369 [FAIL E3]
+ bins -12.0:+0.035 -11.5:+0.010 -11.0:+0.026 -10.5:-0.011 -10.0:+0.006 -9.5:+0.026 -9.0:+0.037
+ a fit 1.014e-10; rms to observed 0.2109 dex, mean +0.0147
+ c2s holdout: unseen GS[1::2] rms to law 0.1028 dex [FAIL <= 0.025]
+ (1262 s)
+
+== c1-pg per-galaxy M200, c at the c1 globals (343 parameters; at bound 89 of 342; gated holdout = the c1 row holdout)
+ rms to law 0.0406 dex [FAIL E1]; p95 per-galaxy 0.1033 [FAIL E2]; worst bin 0.0283 [FAIL E3]
+ bins -12.0:+0.028 -11.5:-0.006 -11.0:+0.001 -10.5:-0.006 -10.0:-0.008 -9.5:-0.006 -9.0:-0.001
+ a fit 9.360e-11; rms to observed 0.1995 dex, mean -0.0001
+
+== c2-pg per-galaxy M200, c at the c2 globals (343 parameters; at bound 92 of 342; gated holdout = the c2 row holdout)
+ rms to law 0.0402 dex [FAIL E1]; p95 per-galaxy 0.1023 [FAIL E2]; worst bin 0.0283 [FAIL E3]
+ bins -12.0:+0.028 -11.5:-0.006 -11.0:+0.001 -10.5:-0.007 -10.0:-0.010 -9.5:-0.008 -9.0:-0.003
+ a fit 9.352e-11; rms to observed 0.1992 dex, mean -0.0005
+
+######## tie gates in A29 backgrounds, footing P (dark-only halo at the median SPARC M200, base halo knobs)  (1262 s, RSS 136 MB)
+ median SPARC M200 11.139; per-galaxy G1/G4 lines printed in each row above
+
+ B0: rho_DE(z)/rho_DE0 1.0000 1.0000 1.0000; age(0) 13.797 Gyr; G2z NOT MEASURABLE
+  Jhigh     a1 Jeans collapsed-branch core sigma0^2/r1: a(0) 0.204 a0, kappa_eff(dark-only) 0.102; a(z)/a(0) 1.312 1.555 1.996 [FAIL G3]; GT dev +0.118 +0.192 +0.300 [FAIL GT]; G2z n/m
+  Jlow      a2-rule Jeans cored-branch core at its sigma/m: a(0) 0.149 a0, kappa_eff(dark-only) 0.0746; a(z)/a(0) 1.325 1.578 2.032 [FAIL G3]; GT dev +0.122 +0.198 +0.308 [FAIL GT]; G2z n/m
+  para      a4-1 parametric 2 pi G rho_s r_s: a(0) 0.795 a0, kappa_eff(dark-only) 0.398; a(z)/a(0) 1.048 1.153 1.429 [FAIL G3]; GT dev +0.020 +0.062 +0.155 [FAIL GT]; G2z n/m
+  bec       b1 BEC core G M_c/r_t^2: a(0) 0.455 a0, kappa_eff(dark-only) 0.227; a(z)/a(0) 1.113 1.242 1.540 [FAIL G3]; GT dev +0.046 +0.094 +0.188 [FAIL GT]; G2z n/m
+  sol       c1 mixed-FDM soliton g_c: a(0) 0.0112 a0, kappa_eff(dark-only) 0.00559; a(z)/a(0) 2.218 3.013 4.544 [FAIL G3]; GT dev +0.346 +0.479 +0.657 [FAIL GT]; G2z n/m
+  k4        c2 mixed-WDM g200(M_hm): a(0) 0.0333 a0, kappa_eff(dark-only) 0.0166; a(z)/a(0) 2.174 3.156 5.333 [FAIL G3]; GT dev +0.337 +0.499 +0.727 [FAIL GT]; G2z n/m
+  const_x1  K2 G/(sigma/m) at a1: a(0) 14.3 a0, kappa_eff(dark-only) 7.13; a(z)/a(0) 1.000 1.000 1.000 [PASS G3]; GT dev +0.000 +0.000 +0.000 [PASS GT]; G2z n/m
+  const_x4  K2 G/(sigma/m) at a4-1: a(0) 3.7 a0, kappa_eff(dark-only) 1.85; a(z)/a(0) 1.000 1.000 1.000 [PASS G3]; GT dev +0.000 +0.000 +0.000 [PASS GT]; G2z n/m
+
+ B1: rho_DE(z)/rho_DE0 1.0175 0.8743 0.6680; age(0) 13.678 Gyr; G2z measurable
+  Jhigh     a1 Jeans collapsed-branch core sigma0^2/r1: a(0) 0.204 a0, kappa_eff(dark-only) 0.102; a(z)/a(0) 1.315 1.552 1.988 [FAIL G3]; GT dev +0.115 +0.220 +0.386 [FAIL GT]; G2z -1.317 [FAIL]
+  Jlow      a2-rule Jeans cored-branch core at its sigma/m: a(0) 0.149 a0, kappa_eff(dark-only) 0.0746; a(z)/a(0) 1.327 1.575 2.025 [FAIL G3]; GT dev +0.119 +0.226 +0.394 [FAIL GT]; G2z -1.350 [FAIL]
+  para      a4-1 parametric 2 pi G rho_s r_s: a(0) 0.795 a0, kappa_eff(dark-only) 0.398; a(z)/a(0) 1.068 1.158 1.424 [FAIL G3]; GT dev +0.025 +0.093 +0.241 [FAIL GT]; G2z -0.771 [FAIL]
+  bec       b1 BEC core G M_c/r_t^2: a(0) 0.455 a0, kappa_eff(dark-only) 0.227; a(z)/a(0) 1.128 1.245 1.534 [FAIL G3]; GT dev +0.049 +0.124 +0.273 [FAIL GT]; G2z -0.883 [FAIL]
+  sol       c1 mixed-FDM soliton g_c: a(0) 0.0112 a0, kappa_eff(dark-only) 0.00559; a(z)/a(0) 2.220 3.001 4.522 [FAIL G3]; GT dev +0.343 +0.506 +0.743 [FAIL GT]; G2z -2.641 [FAIL]
+  k4        c2 mixed-WDM g200(M_hm): a(0) 0.0333 a0, kappa_eff(dark-only) 0.0166; a(z)/a(0) 2.179 3.124 5.267 [FAIL G3]; GT dev +0.335 +0.524 +0.809 [FAIL GT]; G2z -3.034 [FAIL]
+  const_x1  K2 G/(sigma/m) at a1: a(0) 14.3 a0, kappa_eff(dark-only) 7.13; a(z)/a(0) 1.000 1.000 1.000 [PASS G3]; GT dev -0.004 +0.029 +0.088 [FAIL GT]; G2z -0.000 [FAIL]
+  const_x4  K2 G/(sigma/m) at a4-1: a(0) 3.7 a0, kappa_eff(dark-only) 1.85; a(z)/a(0) 1.000 1.000 1.000 [PASS G3]; GT dev -0.004 +0.029 +0.088 [FAIL GT]; G2z +0.000 [FAIL]
+
+ B1p: rho_DE(z)/rho_DE0 0.9779 0.8668 0.7037; age(0) 13.746 Gyr; G2z measurable
+  Jhigh     a1 Jeans collapsed-branch core sigma0^2/r1: a(0) 0.204 a0, kappa_eff(dark-only) 0.102; a(z)/a(0) 1.311 1.549 1.986 [FAIL G3]; GT dev +0.122 +0.221 +0.374 [FAIL GT]; G2z -1.668 [FAIL]
+  Jlow      a2-rule Jeans cored-branch core at its sigma/m: a(0) 0.149 a0, kappa_eff(dark-only) 0.0747; a(z)/a(0) 1.323 1.572 2.023 [FAIL G3]; GT dev +0.126 +0.228 +0.382 [FAIL GT]; G2z -1.711 [FAIL]
+  para      a4-1 parametric 2 pi G rho_s r_s: a(0) 0.802 a0, kappa_eff(dark-only) 0.401; a(z)/a(0) 1.053 1.146 1.412 [FAIL G3]; GT dev +0.027 +0.090 +0.226 [FAIL GT]; G2z -0.941 [FAIL]
+  bec       b1 BEC core G M_c/r_t^2: a(0) 0.457 a0, kappa_eff(dark-only) 0.229; a(z)/a(0) 1.116 1.236 1.525 [FAIL G3]; GT dev +0.053 +0.123 +0.260 [FAIL GT]; G2z -1.095 [FAIL]
+  sol       c1 mixed-FDM soliton g_c: a(0) 0.0112 a0, kappa_eff(dark-only) 0.00559; a(z)/a(0) 2.215 3.000 4.524 [FAIL G3]; GT dev +0.350 +0.508 +0.732 [FAIL GT]; G2z -3.419 [FAIL]
+  k4        c2 mixed-WDM g200(M_hm): a(0) 0.0333 a0, kappa_eff(dark-only) 0.0166; a(z)/a(0) 2.167 3.122 5.275 [FAIL G3]; GT dev +0.341 +0.525 +0.798 [FAIL GT]; G2z -3.896 [FAIL]
+  const_x1  K2 G/(sigma/m) at a1: a(0) 14.3 a0, kappa_eff(dark-only) 7.13; a(z)/a(0) 1.000 1.000 1.000 [PASS G3]; GT dev +0.005 +0.031 +0.076 [FAIL GT]; G2z -0.000 [FAIL]
+  const_x4  K2 G/(sigma/m) at a4-1: a(0) 3.7 a0, kappa_eff(dark-only) 1.85; a(z)/a(0) 1.000 1.000 1.000 [PASS G3]; GT dev +0.005 +0.031 +0.076 [FAIL GT]; G2z +0.000 [FAIL]
+
+ B1u: rho_DE(z)/rho_DE0 1.0628 0.8879 0.6415; age(0) 13.607 Gyr; G2z measurable
+  Jhigh     a1 Jeans collapsed-branch core sigma0^2/r1: a(0) 0.203 a0, kappa_eff(dark-only) 0.102; a(z)/a(0) 1.321 1.556 1.992 [FAIL G3]; GT dev +0.108 +0.218 +0.396 [FAIL GT]; G2z -1.084 [FAIL]
+  Jlow      a2-rule Jeans cored-branch core at its sigma/m: a(0) 0.149 a0, kappa_eff(dark-only) 0.0745; a(z)/a(0) 1.331 1.578 2.027 [FAIL G3]; GT dev +0.111 +0.224 +0.403 [FAIL GT]; G2z -1.111 [FAIL]
+  para      a4-1 parametric 2 pi G rho_s r_s: a(0) 0.788 a0, kappa_eff(dark-only) 0.394; a(z)/a(0) 1.084 1.171 1.437 [FAIL G3]; GT dev +0.022 +0.094 +0.254 [FAIL GT]; G2z -0.653 [FAIL]
+  bec       b1 BEC core G M_c/r_t^2: a(0) 0.451 a0, kappa_eff(dark-only) 0.226; a(z)/a(0) 1.141 1.255 1.544 [FAIL G3]; GT dev +0.044 +0.125 +0.285 [FAIL GT]; G2z -0.739 [FAIL]
+  sol       c1 mixed-FDM soliton g_c: a(0) 0.0112 a0, kappa_eff(dark-only) 0.00559; a(z)/a(0) 2.225 3.002 4.520 [FAIL G3]; GT dev +0.334 +0.503 +0.752 [FAIL GT]; G2z -2.133 [FAIL]
+  k4        c2 mixed-WDM g200(M_hm): a(0) 0.0333 a0, kappa_eff(dark-only) 0.0166; a(z)/a(0) 2.193 3.127 5.262 [FAIL G3]; GT dev +0.328 +0.521 +0.818 [FAIL GT]; G2z -2.468 [FAIL]
+  const_x1  K2 G/(sigma/m) at a1: a(0) 14.3 a0, kappa_eff(dark-only) 7.13; a(z)/a(0) 1.000 1.000 1.000 [PASS G3]; GT dev -0.013 +0.026 +0.096 [FAIL GT]; G2z +0.000 [FAIL]
+  const_x4  K2 G/(sigma/m) at a4-1: a(0) 3.7 a0, kappa_eff(dark-only) 1.85; a(z)/a(0) 1.000 1.000 1.000 [PASS G3]; GT dev -0.013 +0.026 +0.096 [FAIL GT]; G2z +0.000 [FAIL]
+
+ B2: rho_DE(z)/rho_DE0 1.1618 1.1972 1.2336; age(0) 13.634 Gyr; G2z measurable
+  Jhigh     a1 Jeans collapsed-branch core sigma0^2/r1: a(0) 0.202 a0, kappa_eff(dark-only) 0.101; a(z)/a(0) 1.329 1.573 2.016 [FAIL G3]; GT dev +0.091 +0.158 +0.259 [FAIL GT]; G2z +2.959 [FAIL]
+  Jlow      a2-rule Jeans cored-branch core at its sigma/m: a(0) 0.148 a0, kappa_eff(dark-only) 0.0742; a(z)/a(0) 1.340 1.595 2.050 [FAIL G3]; GT dev +0.095 +0.164 +0.266 [FAIL GT]; G2z +3.036 [FAIL]
+  para      a4-1 parametric 2 pi G rho_s r_s: a(0) 0.768 a0, kappa_eff(dark-only) 0.384; a(z)/a(0) 1.091 1.201 1.488 [FAIL G3]; GT dev +0.005 +0.041 +0.127 [FAIL GT]; G2z +1.508 [FAIL]
+  bec       b1 BEC core G M_c/r_t^2: a(0) 0.443 a0, kappa_eff(dark-only) 0.222; a(z)/a(0) 1.148 1.282 1.587 [FAIL G3]; GT dev +0.027 +0.069 +0.155 [FAIL GT]; G2z +1.834 [FAIL]
+  sol       c1 mixed-FDM soliton g_c: a(0) 0.0112 a0, kappa_eff(dark-only) 0.00559; a(z)/a(0) 2.237 3.032 4.559 [FAIL G3]; GT dev +0.317 +0.443 +0.613 [FAIL GT]; G2z +6.736 [FAIL]
+  k4        c2 mixed-WDM g200(M_hm): a(0) 0.0333 a0, kappa_eff(dark-only) 0.0166; a(z)/a(0) 2.224 3.207 5.379 [FAIL G3]; GT dev +0.314 +0.467 +0.685 [FAIL GT]; G2z +7.304 [FAIL]
+  const_x1  K2 G/(sigma/m) at a1: a(0) 14.3 a0, kappa_eff(dark-only) 7.13; a(z)/a(0) 1.000 1.000 1.000 [PASS G3]; GT dev -0.033 -0.039 -0.046 [PASS GT]; G2z +0.000 [FAIL]
+  const_x4  K2 G/(sigma/m) at a4-1: a(0) 3.7 a0, kappa_eff(dark-only) 1.85; a(z)/a(0) 1.000 1.000 1.000 [PASS G3]; GT dev -0.033 -0.039 -0.046 [PASS GT]; G2z +0.000 [FAIL]
+
+ B3: rho_DE(z)/rho_DE0 1.3590 1.5993 2.0317; age(0) 13.495 Gyr; G2z measurable
+  Jhigh     a1 Jeans collapsed-branch core sigma0^2/r1: a(0) 0.2 a0, kappa_eff(dark-only) 0.0998; a(z)/a(0) 1.351 1.604 2.060 [FAIL G3]; GT dev +0.064 +0.103 +0.160 [FAIL GT]; G2z +1.020 [FAIL]
+  Jlow      a2-rule Jeans cored-branch core at its sigma/m: a(0) 0.147 a0, kappa_eff(dark-only) 0.0732; a(z)/a(0) 1.362 1.626 2.092 [FAIL G3]; GT dev +0.068 +0.109 +0.167 [FAIL GT]; G2z +1.042 [FAIL]
+  para      a4-1 parametric 2 pi G rho_s r_s: a(0) 0.717 a0, kappa_eff(dark-only) 0.359; a(z)/a(0) 1.136 1.273 1.600 [FAIL G3]; GT dev -0.011 +0.003 +0.050 [FAIL GT]; G2z +0.655 [FAIL]
+  bec       b1 BEC core G M_c/r_t^2: a(0) 0.422 a0, kappa_eff(dark-only) 0.211; a(z)/a(0) 1.186 1.341 1.678 [FAIL G3]; GT dev +0.007 +0.026 +0.071 [FAIL GT]; G2z +0.725 [FAIL]
+  sol       c1 mixed-FDM soliton g_c: a(0) 0.0112 a0, kappa_eff(dark-only) 0.00559; a(z)/a(0) 2.260 3.068 4.611 [FAIL G3]; GT dev +0.287 +0.385 +0.510 [FAIL GT]; G2z +2.159 [FAIL]
+  k4        c2 mixed-WDM g200(M_hm): a(0) 0.0333 a0, kappa_eff(dark-only) 0.0166; a(z)/a(0) 2.284 3.308 5.535 [FAIL G3]; GT dev +0.292 +0.418 +0.589 [FAIL GT]; G2z +2.416 [FAIL]
+  const_x1  K2 G/(sigma/m) at a1: a(0) 14.3 a0, kappa_eff(dark-only) 7.13; a(z)/a(0) 1.000 1.000 1.000 [PASS G3]; GT dev -0.067 -0.102 -0.154 [FAIL GT]; G2z +0.000 [FAIL]
+  const_x4  K2 G/(sigma/m) at a4-1: a(0) 3.7 a0, kappa_eff(dark-only) 1.85; a(z)/a(0) 1.000 1.000 1.000 [PASS G3]; GT dev -0.067 -0.102 -0.154 [FAIL GT]; G2z +0.000 [FAIL]
+
+ B4: rho_DE(z)/rho_DE0 0.9665 1.0098 1.0964; age(0) 13.861 Gyr; G2z measurable
+  Jhigh     a1 Jeans collapsed-branch core sigma0^2/r1: a(0) 0.204 a0, kappa_eff(dark-only) 0.102; a(z)/a(0) 1.309 1.553 1.996 [FAIL G3]; GT dev +0.124 +0.189 +0.280 [FAIL GT]; G2z +4.082 [FAIL]
+  Jlow      a2-rule Jeans cored-branch core at its sigma/m: a(0) 0.149 a0, kappa_eff(dark-only) 0.0747; a(z)/a(0) 1.322 1.578 2.033 [FAIL G3]; GT dev +0.129 +0.196 +0.288 [FAIL GT]; G2z +4.168 [FAIL]
+  para      a4-1 parametric 2 pi G rho_s r_s: a(0) 0.798 a0, kappa_eff(dark-only) 0.399; a(z)/a(0) 1.035 1.144 1.425 [FAIL G3]; GT dev +0.022 +0.056 +0.134 [FAIL GT]; G2z +2.783 [FAIL]
+  bec       b1 BEC core G M_c/r_t^2: a(0) 0.456 a0, kappa_eff(dark-only) 0.228; a(z)/a(0) 1.102 1.236 1.538 [FAIL G3]; GT dev +0.050 +0.090 +0.167 [FAIL GT]; G2z +3.010 [FAIL]
+  sol       c1 mixed-FDM soliton g_c: a(0) 0.0112 a0, kappa_eff(dark-only) 0.00559; a(z)/a(0) 2.214 3.014 4.550 [FAIL G3]; GT dev +0.353 +0.477 +0.638 [FAIL GT]; G2z +7.614 [FAIL]
+  k4        c2 mixed-WDM g200(M_hm): a(0) 0.0333 a0, kappa_eff(dark-only) 0.0166; a(z)/a(0) 2.163 3.159 5.352 [FAIL G3]; GT dev +0.343 +0.497 +0.709 [FAIL GT]; G2z +9.131 [FAIL]
+  const_x1  K2 G/(sigma/m) at a1: a(0) 14.3 a0, kappa_eff(dark-only) 7.13; a(z)/a(0) 1.000 1.000 1.000 [PASS G3]; GT dev +0.007 -0.002 -0.020 [PASS GT]; G2z +0.000 [FAIL]
+  const_x4  K2 G/(sigma/m) at a4-1: a(0) 3.7 a0, kappa_eff(dark-only) 1.85; a(z)/a(0) 1.000 1.000 1.000 [PASS G3]; GT dev +0.007 -0.002 -0.020 [PASS GT]; G2z +0.000 [FAIL]
+
+ B5: rho_DE(z)/rho_DE0 1.0000 1.0001 1.0002; age(0) 13.796 Gyr; G2z NOT MEASURABLE
+  Jhigh     a1 Jeans collapsed-branch core sigma0^2/r1: a(0) 0.204 a0, kappa_eff(dark-only) 0.102; a(z)/a(0) 1.312 1.555 1.996 [FAIL G3]; GT dev +0.118 +0.192 +0.300 [FAIL GT]; G2z n/m
+  Jlow      a2-rule Jeans cored-branch core at its sigma/m: a(0) 0.149 a0, kappa_eff(dark-only) 0.0746; a(z)/a(0) 1.325 1.579 2.032 [FAIL G3]; GT dev +0.122 +0.198 +0.308 [FAIL GT]; G2z n/m
+  para      a4-1 parametric 2 pi G rho_s r_s: a(0) 0.795 a0, kappa_eff(dark-only) 0.398; a(z)/a(0) 1.048 1.153 1.430 [FAIL G3]; GT dev +0.020 +0.062 +0.155 [FAIL GT]; G2z n/m
+  bec       b1 BEC core G M_c/r_t^2: a(0) 0.455 a0, kappa_eff(dark-only) 0.227; a(z)/a(0) 1.113 1.242 1.541 [FAIL G3]; GT dev +0.046 +0.094 +0.188 [FAIL GT]; G2z n/m
+  sol       c1 mixed-FDM soliton g_c: a(0) 0.0112 a0, kappa_eff(dark-only) 0.00559; a(z)/a(0) 2.218 3.013 4.544 [FAIL G3]; GT dev +0.346 +0.479 +0.657 [FAIL GT]; G2z n/m
+  k4        c2 mixed-WDM g200(M_hm): a(0) 0.0333 a0, kappa_eff(dark-only) 0.0166; a(z)/a(0) 2.174 3.156 5.333 [FAIL G3]; GT dev +0.337 +0.499 +0.727 [FAIL GT]; G2z n/m
+  const_x1  K2 G/(sigma/m) at a1: a(0) 14.3 a0, kappa_eff(dark-only) 7.13; a(z)/a(0) 1.000 1.000 1.000 [PASS G3]; GT dev -0.000 -0.000 -0.000 [PASS GT]; G2z n/m
+  const_x4  K2 G/(sigma/m) at a4-1: a(0) 3.7 a0, kappa_eff(dark-only) 1.85; a(z)/a(0) 1.000 1.000 1.000 [PASS G3]; GT dev -0.000 -0.000 -0.000 [PASS GT]; G2z n/m
+
+ G2x pooled over B1, B1p, B1u, B2, B3, B4 (18 points):
+  Jhigh     slope -0.0615 [FAIL G2x]
+  Jlow      slope -0.0655 [FAIL G2x]
+  para      slope +0.0383 [FAIL G2x]
+  bec       slope +0.0102 [FAIL G2x]
+  sol       slope -0.1441 [FAIL G2x]
+  k4        slope -0.1498 [FAIL G2x]
+  const_x1  slope +0.0000 [FAIL G2x]
+  const_x4  slope +0.0000 [FAIL G2x]
+
+ G2t across rho_DE0 x f in B1 w0, wa (A29 physical footing), z = 0:
+  Jhigh     slope +0.0374 [FAIL G2t]
+  Jlow      slope +0.0447 [FAIL G2t]
+  para      slope +0.1392 [FAIL G2t]
+  bec       slope +0.1271 [FAIL G2t]
+  sol       slope +0.2027 [FAIL G2t]
+  k4        slope +0.4532 [PASS G2t]
+  const_x1  slope -0.0000 [FAIL G2t]  (particle constant: identical values 1.3348e-09, 1.3348e-09 ...)
+  const_x4  slope -0.0000 [FAIL G2t]  (particle constant: identical values 3.4628e-10, 3.4628e-10 ...)
+
+ G5: halo-gravity scales (Jhigh, Jlow, para, bec, sol, k4) PASS by definition at measured radii; particle constants (const_*) exert no force: FAIL (not operative).
+ BEC: R is a length; (hbar/m)^2/R^3 = 0.5 c sqrt(G rho_DE) at the b1 R needs m22 = 0.0538 (a hand choice; no rho_DE in the particle).
+
+######## summary  (1270 s, RSS 136 MB)
+ a1 collapsed branch                knobs    1: E1 0.1790 E2 0.2974 E3 0.2566 obs 0.2597 holdout 0.1546 -> NOT EXACT
+ a2 per-galaxy branch               knobs  172: E1 0.1201 E2 0.2101 E3 0.0853 obs 0.2135 holdout   n/a  -> NOT EXACT
+ a2 branch rule                     knobs    2: E1 0.1207 E2 0.2101 E3 0.0842 obs 0.2128 holdout 0.1070 -> NOT EXACT
+ a3 per-galaxy M200, c, branch      knobs  514: E1 0.0472 E2 0.0988 E3 0.0240 obs 0.1966 holdout 0.1096 -> NOT EXACT
+ a4-1 parametric                    knobs    1: E1 0.1193 E2 0.2070 E3 0.0821 obs 0.2099 holdout 0.1171 -> NOT EXACT
+ a4-3 parametric + dn, dc           knobs    3: E1 0.0863 E2 0.1731 E3 0.0522 obs 0.2091 holdout 0.0896 -> NOT EXACT
+ a4-pg parametric per-galaxy        knobs  343: E1 0.0564 E2 0.1015 E3 0.0399 obs 0.1955 holdout 0.1129 -> NOT EXACT
+ b1 BEC R                           knobs    1: E1 0.1289 E2 0.2688 E3 0.0848 obs 0.2198 holdout 0.1211 -> NOT EXACT
+ b3 BEC R + dn, dc                  knobs    3: E1 0.0885 E2 0.1796 E3 0.0415 obs 0.2123 holdout 0.0921 -> NOT EXACT
+ b-pg BEC per-galaxy                knobs  343: E1 0.0401 E2 0.0990 E3 0.0259 obs 0.1995 holdout 0.1244 -> NOT EXACT
+ c1 CDM+FDM                         knobs    2: E1 0.1174 E2 0.2359 E3 0.0468 obs 0.2219 holdout 0.1087 -> NOT EXACT
+ c1-4 CDM+FDM + dn, dc              knobs    4: E1 0.0909 E2 0.1819 E3 0.0355 obs 0.2173 holdout 0.0924 -> NOT EXACT
+ c2 CDM+WDM                         knobs    2: E1 0.1157 E2 0.2228 E3 0.0388 obs 0.2201 holdout 0.1062 -> NOT EXACT
+ c2-4 CDM+WDM + dn, dc              knobs    4: E1 0.0897 E2 0.1837 E3 0.0316 obs 0.2155 holdout 0.0910 -> NOT EXACT
+ c2s CDM+WDM + SIDM                 knobs    3: E1 0.1134 E2 0.1970 E3 0.0369 obs 0.2109 holdout 0.1028 -> NOT EXACT
+ c1-pg per-galaxy                   knobs  343: E1 0.0406 E2 0.1033 E3 0.0283 obs 0.1995 holdout 0.1087 -> NOT EXACT
+ c2-pg per-galaxy                   knobs  343: E1 0.0402 E2 0.1023 E3 0.0283 obs 0.1992 holdout 0.1062 -> NOT EXACT
+
+runtime 1270 s; peak RSS 136 MB
+Rival language; adopts nothing. Passing shows freedom, not evidence. kappa = 1/2 FITTED; not theory closed.
