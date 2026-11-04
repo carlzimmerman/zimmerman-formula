@@ -1,0 +1,138 @@
+sample: 171 galaxies, 3373 points; Y_disk 0.5, Y_bul 0.7
+A37 recipe38; c sqrt(G rho_DE) 1.8727e-10 (A0/that 0.4999); a_L = c^2 sqrt(Lambda/3) = cH_inf 5.4205e-10 (5.790 A0); comoving horizon diameter of lib cosmology 8.885e+26 m
+
+(a) 0 knobs
+
+== M9: R1 Eq. 9, A = 2 c^2 sqrt(Lambda/3) (A 1.0841e-09 = 11.579 A0, kappa_eff 5.7888)
+ rms to law 0.4095 dex [FAIL E1]; p95 per-galaxy 0.4936 [FAIL E2]; worst bin 0.4983 [FAIL E3]
+ bins -12.0:+0.498 -11.5:+0.478 -11.0:+0.443 -10.5:+0.377 -10.0:+0.290 -9.5:+0.181 -9.0:+0.088
+ a fit 9.381e-10; rms to observed 0.4549 dex, mean +0.3961
+
+== M11: R1 Eq. 11 (standard mu), A = c^2 sqrt(Lambda/3) (A 5.4205e-10 = 5.790 A0, kappa_eff 2.8944)
+ rms to law 0.2674 dex [FAIL E1]; p95 per-galaxy 0.3431 [FAIL E2]; worst bin 0.3478 [FAIL E3]
+ bins -12.0:+0.348 -11.5:+0.328 -11.0:+0.292 -10.5:+0.227 -10.0:+0.142 -9.5:+0.048 -9.0:-0.001
+ a fit 4.341e-10; rms to observed 0.3323 dex, mean +0.2495
+
+== QI: R2 Eq. 8, Theta 8.8e26 m (published) (A 2.0427e-10 = 2.182 A0, kappa_eff 1.0908)
+ rms to law 0.0920 dex [FAIL E1]; p95 per-galaxy 0.1339 [FAIL E2]; worst bin 0.1379 [FAIL E3]
+ bins -12.0:+0.138 -11.5:+0.121 -11.0:+0.095 -10.5:+0.058 -10.0:+0.028 -9.5:+0.009 -9.0:+0.003
+ a fit 1.618e-10; rms to observed 0.2173 dex, mean +0.0825
+
+== QIe: R2 Eq. 8, Theta 2.6e26 m (earlier value) (A 6.9138e-10 = 7.385 A0, kappa_eff 3.6918)
+ rms to law 0.3203 dex [FAIL E1]; p95 per-galaxy 0.3963 [FAIL E2]; worst bin 0.4009 [FAIL E3]
+ bins -12.0:+0.401 -11.5:+0.381 -11.0:+0.347 -10.5:+0.286 -10.0:+0.208 -9.5:+0.121 -9.0:+0.054
+ a fit 5.857e-10; rms to observed 0.3764 dex, mean +0.3073
+
+== QIc: R2 Eq. 8, Theta 8.885e+26 m (lib cosmology horizon) (A 2.0232e-10 = 2.161 A0, kappa_eff 1.0804)
+ rms to law 0.0903 dex [FAIL E1]; p95 per-galaxy 0.1318 [FAIL E2]; worst bin 0.1358 [FAIL E3]
+ bins -12.0:+0.136 -11.5:+0.119 -11.0:+0.093 -10.5:+0.057 -10.0:+0.027 -9.5:+0.009 -9.0:+0.002
+ a fit 1.602e-10; rms to observed 0.2166 dex, mean +0.0809
+
+== F26: R3 Eq. 21, A = 2 a_bg = c^2 sqrt(Lambda/3)/2 (A 2.7102e-10 = 2.895 A0, kappa_eff 1.4472)
+ rms to law 0.1426 dex [FAIL E1]; p95 per-galaxy 0.1944 [FAIL E2]; worst bin 0.1987 [FAIL E3]
+ bins -12.0:+0.199 -11.5:+0.181 -11.0:+0.152 -10.5:+0.107 -10.0:+0.063 -9.5:+0.029 -9.0:+0.011
+ a fit 2.184e-10; rms to observed 0.2433 dex, mean +0.1321
+
+== QIlin: diagnostic, R2 Eq. 1 solved literally g = g_b + 2c^2/Theta (A 2.0427e-10 = 2.182 A0, kappa_eff 1.0908)
+ rms to law 0.6813 dex [FAIL E1]; p95 per-galaxy 1.0612 [FAIL E2]; worst bin 1.1183 [FAIL E3]
+ bins -12.0:+1.118 -11.5:+0.898 -11.0:+0.654 -10.5:+0.394 -10.0:+0.203 -9.5:+0.083 -9.0:+0.029
+ a fit 2.745e-09; rms to observed 0.7133 dex, mean +0.5957
+
+(a') 1 knob (A free, log bounds 1e-12 to 1e-8)
+
+== S9 sqrt(g_b^2 + A g_b) [M9, QI, F26 family], tuned on all (1 knob: A 1.2185e-10 = 1.3014 A0, kappa_eff 0.6506; at bound False)
+ rms to law 0.0189 dex [PASS E1]; p95 per-galaxy 0.0256 [PASS E2]; worst bin 0.0273 [FAIL E3]
+ bins -12.0:+0.027 -11.5:+0.013 -11.0:-0.006 -10.5:-0.024 -10.0:-0.027 -9.5:-0.017 -9.0:-0.007
+ a fit 9.342e-11; rms to observed 0.1973 dex, mean -0.0033
+ holdout: A tuned on GS[::2] 1.2107e-10; unseen rms to law on GS[1::2] 0.0195 [PASS]; A fitted to observed 1.2085e-10 (+0.111 dex vs A0)
+
+== S11 standard mu [M11], tuned on all (1 knob: A 1.3259e-10 = 1.4162 A0, kappa_eff 0.7080; at bound False)
+ rms to law 0.0384 dex [FAIL E1]; p95 per-galaxy 0.0541 [FAIL E2]; worst bin 0.0653 [FAIL E3]
+ bins -12.0:+0.043 -11.5:+0.026 -11.0:-0.003 -10.5:-0.042 -10.0:-0.065 -9.5:-0.049 -9.0:-0.022
+ a fit 9.356e-11; rms to observed 0.2005 dex, mean -0.0087
+ holdout: A tuned on GS[::2] 1.3090e-10; unseen rms to law on GS[1::2] 0.0390 [FAIL]; A fitted to observed 1.3226e-10 (+0.150 dex vs A0)
+
+== g_b + sqrt(A g_b) [A22-A24 family], tuned on all (1 knob: A 6.2984e-11 = 0.6727 A0, kappa_eff 0.3363; at bound False)
+ rms to law 0.0392 dex [FAIL E1]; p95 per-galaxy 0.0546 [FAIL E2]; worst bin 0.0660 [FAIL E3]
+ bins -12.0:-0.044 -11.5:-0.024 -11.0:+0.004 -10.5:+0.038 -10.0:+0.061 -9.5:+0.066 -9.0:+0.054
+ a fit 9.378e-11; rms to observed 0.1976 dex, mean +0.0128
+ holdout: A tuned on GS[::2] 6.3269e-11; unseen rms to law on GS[1::2] 0.0378 [FAIL]; A fitted to observed 6.1797e-11 (-0.180 dex vs A0)
+
+== law form (control), tuned on all (1 knob: A 9.3625e-11 = 1.0000 A0, kappa_eff 0.4999; at bound False)
+ rms to law 0.0000 dex [PASS E1]; p95 per-galaxy 0.0000 [PASS E2]; worst bin 0.0000 [PASS E3]
+ bins -12.0:-0.000 -11.5:-0.000 -11.0:-0.000 -10.5:-0.000 -10.0:-0.000 -9.5:-0.000 -9.0:-0.000
+ a fit 9.362e-11; rms to observed 0.1951 dex, mean +0.0013
+ holdout: A tuned on GS[::2] 9.3625e-11; unseen rms to law on GS[1::2] 0.0000 [PASS]; A fitted to observed 9.2620e-11 (-0.005 dex vs A0)
+
+DIAG (post hoc) S9 scan A 0.8-2 A0 (241 pts): min worst bin 0.0270 at A 1.2992 A0 (E1 0.0189, E2 0.0257); A values passing E1+E2+E3 together: 0
+DIAG S9 at fitted A 1.3014 A0: kappa_eff 0.6506 (+0.114 dex) [FAIL G1]; Saturn anomaly 0.65 a0 [FAIL A9 solar]; ratio to R1 Eq. 9 value 2 a_L: 0.1124; to R2 published 2c^2/Theta: 0.5965; to R3 a_L/2: 0.4496
+
+shape at equal deep-limit constant A (g/A against g_b/A): g_b/A 0.01 0.1 0.3 1 3 10 100
+  law       0.1051 0.3702 0.7179 1.6180 3.7913 10.9161 100.9902  log10 vs law +0.000 +0.000 +0.000 +0.000 +0.000 +0.000 +0.000
+  S9        0.1005 0.3317 0.6245 1.4142 3.4641 10.4881 100.4988  log10 vs law -0.020 -0.048 -0.061 -0.058 -0.039 -0.017 -0.002
+  S11       0.1003 0.3242 0.5902 1.2720 3.1477 10.0494 100.0050  log10 vs law -0.021 -0.058 -0.085 -0.104 -0.081 -0.036 -0.004
+  g_b+sqrt  0.1100 0.4162 0.8477 2.0000 4.7321 13.1623 110.0000  log10 vs law +0.020 +0.051 +0.072 +0.092 +0.096 +0.081 +0.037
+
+TIE GATES (A13 G1-G5, A24 rules); Saturn g_N 6.519e-05, A9 threshold 9.36e-14
+M9: A 11.579 A0, kappa_eff 5.7888 (+1.064 dex) [FAIL G1]; slopes +0.500 +0.500 [PASS G2]; a(z)/a(0) 1.0: 1.000, 1.5: 1.000, 2.33: 1.000 [PASS G3]; per-galaxy effective a over 79 hosts: median 10.037 A0, rms 0.029 dex [PASS G4]; boost at 10 kpc (1e10 Msun) 1.17 a0 [PASS G5 by posit]; Saturn anomaly 5.42e-10 m/s^2 = 5.8e+00 a0 [FAIL A9 solar] -> NO TIE
+M11: A 5.790 A0, kappa_eff 2.8944 (+0.763 dex) [FAIL G1]; slopes +0.500 +0.500 [PASS G2]; a(z)/a(0) 1.0: 1.000, 1.5: 1.000, 2.33: 1.000 [PASS G3]; per-galaxy effective a over 79 hosts: median 4.642 A0, rms 0.053 dex [PASS G4]; boost at 10 kpc (1e10 Msun) 0.79 a0 [PASS G5 by posit]; Saturn anomaly 2.25e-15 m/s^2 = 2.4e-05 a0 [PASS A9 solar] -> NO TIE
+QI: A 2.182 A0, kappa_eff 1.0908 (+0.339 dex) [FAIL G1]; slopes +0.000 +0.000 [FAIL G2]; a(z)/a(0) 1.0: 2.000, 1.5: 2.500, 2.33: 3.330 [FAIL G3]; per-galaxy effective a over 79 hosts: median 1.673 A0, rms 0.040 dex [PASS G4]; boost at 10 kpc (1e10 Msun) 0.44 a0 [PASS G5 by posit]; Saturn anomaly 1.02e-10 m/s^2 = 1.1e+00 a0 [FAIL A9 solar] -> NO TIE
+QIe: A 7.385 A0, kappa_eff 3.6918 (+0.868 dex) [FAIL G1]; slopes +0.000 +0.000 [FAIL G2]; a(z)/a(0) 1.0: 2.000, 1.5: 2.500, 2.33: 3.330 [FAIL G3]; per-galaxy effective a over 79 hosts: median 6.204 A0, rms 0.033 dex [PASS G4]; boost at 10 kpc (1e10 Msun) 0.91 a0 [PASS G5 by posit]; Saturn anomaly 3.46e-10 m/s^2 = 3.7e+00 a0 [FAIL A9 solar] -> NO TIE
+QIc: A 2.161 A0, kappa_eff 1.0804 (+0.335 dex) [FAIL G1]; slopes +0.722 +1.667 [FAIL G2]; a(z)/a(0) 1.0: 2.000, 1.5: 2.500, 2.33: 3.330 [FAIL G3]; per-galaxy effective a over 79 hosts: median 1.655 A0, rms 0.040 dex [PASS G4]; boost at 10 kpc (1e10 Msun) 0.44 a0 [PASS G5 by posit]; Saturn anomaly 1.01e-10 m/s^2 = 1.1e+00 a0 [FAIL A9 solar] -> NO TIE
+F26: A 2.895 A0, kappa_eff 1.4472 (+0.462 dex) [FAIL G1]; slopes +0.500 +0.500 [PASS G2]; a(z)/a(0) 1.0: 1.000, 1.5: 1.000, 2.33: 1.000 [PASS G3]; per-galaxy effective a over 79 hosts: median 2.269 A0, rms 0.039 dex [PASS G4]; boost at 10 kpc (1e10 Msun) 0.52 a0 [PASS G5 by posit]; Saturn anomaly 1.36e-10 m/s^2 = 1.4e+00 a0 [FAIL A9 solar] -> NO TIE
+QIc Theta in J cosmologies: 9.063e+26, 8.203e+26, 7.858e+26 m
+control, bare law at A0: Saturn anomaly 9.36e-11 m/s^2 = 1.00 a0 [FAIL A9 solar] (bare formula; not a verdict on the framework)
+reference: Milgrom coincidence 2 pi a0 = c^2 sqrt(Lambda/3) (A13 T2): kappa_eff 0.4607; not the value R1 Eq. 9 or 11 gives
+
+(c) GT in A29 backgrounds (L1 hand generalisation Lambda -> rho_DE(z); L2 FRW horizon H(z); QIz R2 Eq. 9 (1+z); QIp physical horizon; F26q sqrt(-q) H/4)
+ B0  : rho_DE(z)/rho_DE0 1.0000 1.0000 1.0000; q(z) -0.528 +0.179 +0.317 +0.417; Theta_now 8.885e+26 m; G2z NOT MEASURABLE
+  L1   a(z)/a(0) 1.0000 1.0000 1.0000 [PASS G3]; GT dev +0.0000 +0.0000 +0.0000 [PASS GT]; G2z not measurable
+  L2   a(z)/a(0) 1.7903 2.3679 3.5095 [FAIL G3]; GT dev +0.2529 +0.3744 +0.5452 [FAIL GT]; G2z not measurable
+  QIz  a(z)/a(0) 2.0000 2.5000 3.3300 [FAIL G3]; GT dev +0.3010 +0.3979 +0.5224 [FAIL GT]; G2z not measurable
+  QIp  a(z)/a(0) 2.6187 3.6302 5.5522 [FAIL G3]; GT dev +0.4181 +0.5599 +0.7445 [FAIL GT]; G2z not measurable
+  F26q a_bg(z) = sqrt(-q) H/4: z 0.0: 1.0000 of today z 1.0: undefined (q > 0) z 1.5: undefined (q > 0) z 2.33: undefined (q > 0); today 2 a_bg 2.540 A0
+ B1 -0.752 -0.86: rho_DE(z)/rho_DE0 1.0175 0.8743 0.6680; q(z) -0.273 +0.116 +0.294 +0.423; Theta_now 8.867e+26 m; G2z measurable
+  L1   a(z)/a(0) 1.0087 0.9351 0.8173 [PASS G3]; GT dev +0.0000 -0.0000 +0.0000 [PASS GT]; G2z +0.5000 [PASS]
+  L2   a(z)/a(0) 1.7936 2.3496 3.4770 [FAIL G3]; GT dev +0.2500 +0.4002 +0.6288 [FAIL GT]; G2z -2.2757 [FAIL]
+  QIz  a(z)/a(0) 2.0000 2.5000 3.3300 [FAIL G3]; GT dev +0.2973 +0.4271 +0.6100 [FAIL GT]; G2z -2.0323 [FAIL]
+  QIp  a(z)/a(0) 2.6055 3.6122 5.5299 [FAIL G3]; GT dev +0.4121 +0.5869 +0.8303 [FAIL GT]; G2z -2.9245 [FAIL]
+  F26q a_bg(z) = sqrt(-q) H/4: z 0.0: 1.0000 of today z 1.0: undefined (q > 0) z 1.5: undefined (q > 0) z 2.33: undefined (q > 0); today 2 a_bg 1.826 A0
+ B1p -0.838 -0.62: rho_DE(z)/rho_DE0 0.9779 0.8668 0.7037; q(z) -0.361 +0.138 +0.305 +0.424; Theta_now 8.885e+26 m; G2z measurable
+  L1   a(z)/a(0) 0.9889 0.9310 0.8389 [PASS G3]; GT dev +0.0000 +0.0000 -0.0000 [PASS GT]; G2z +0.5000 [PASS]
+  L2   a(z)/a(0) 1.7860 2.3485 3.4805 [FAIL G3]; GT dev +0.2567 +0.4018 +0.6180 [FAIL GT]; G2z -2.9219 [FAIL]
+  QIz  a(z)/a(0) 2.0000 2.5000 3.3300 [FAIL G3]; GT dev +0.3059 +0.4290 +0.5988 [FAIL GT]; G2z -2.6509 [FAIL]
+  QIp  a(z)/a(0) 2.6107 3.6203 5.5420 [FAIL G3]; GT dev +0.4216 +0.5898 +0.8200 [FAIL GT]; G2z -3.8075 [FAIL]
+  F26q a_bg(z) = sqrt(-q) H/4: z 0.0: 1.0000 of today z 1.0: undefined (q > 0) z 1.5: undefined (q > 0) z 2.33: undefined (q > 0); today 2 a_bg 2.101 A0
+ B1u -0.667 -1.09: rho_DE(z)/rho_DE0 1.0628 0.8879 0.6415; q(z) -0.185 +0.093 +0.282 +0.422; Theta_now 8.848e+26 m; G2z measurable
+  L1   a(z)/a(0) 1.0309 0.9423 0.8009 [FAIL G3]; GT dev +0.0000 +0.0000 -0.0000 [PASS GT]; G2z +0.5000 [PASS]
+  L2   a(z)/a(0) 1.8022 2.3516 3.4744 [FAIL G3]; GT dev +0.2426 +0.3972 +0.6373 [FAIL GT]; G2z -1.8508 [FAIL]
+  QIz  a(z)/a(0) 2.0000 2.5000 3.3300 [FAIL G3]; GT dev +0.2878 +0.4238 +0.6188 [FAIL GT]; G2z -1.6315 [FAIL]
+  QIp  a(z)/a(0) 2.6002 3.6039 5.5171 [FAIL G3]; GT dev +0.4018 +0.5826 +0.8381 [FAIL GT]; G2z -2.3519 [FAIL]
+  F26q a_bg(z) = sqrt(-q) H/4: z 0.0: 1.0000 of today z 1.0: undefined (q > 0) z 1.5: undefined (q > 0) z 2.33: undefined (q > 0); today 2 a_bg 1.506 A0
+ B2 -0.9 -0.1: rho_DE(z)/rho_DE0 1.1618 1.1972 1.2336; q(z) -0.425 +0.158 +0.294 +0.401; Theta_now 8.829e+26 m; G2z measurable
+  L1   a(z)/a(0) 1.0779 1.0942 1.1107 [FAIL G3]; GT dev -0.0000 -0.0000 -0.0000 [PASS GT]; G2z +0.5000 [PASS]
+  L2   a(z)/a(0) 1.8209 2.3962 3.5322 [FAIL G3]; GT dev +0.2277 +0.3404 +0.5025 [FAIL GT]; G2z +5.4783 [FAIL]
+  QIz  a(z)/a(0) 2.0000 2.5000 3.3300 [FAIL G3]; GT dev +0.2685 +0.3589 +0.4769 [FAIL GT]; G2z +5.4361 [FAIL]
+  QIp  a(z)/a(0) 2.6109 3.6150 5.5232 [FAIL G3]; GT dev +0.3842 +0.5190 +0.6966 [FAIL GT]; G2z +7.6795 [FAIL]
+  F26q a_bg(z) = sqrt(-q) H/4: z 0.0: 1.0000 of today z 1.0: undefined (q > 0) z 1.5: undefined (q > 0) z 2.33: undefined (q > 0); today 2 a_bg 2.279 A0
+ B3 -0.95 0.35: rho_DE(z)/rho_DE0 1.3590 1.5993 2.0317; q(z) -0.476 +0.186 +0.298 +0.387; Theta_now 8.751e+26 m; G2z measurable
+  L1   a(z)/a(0) 1.1658 1.2646 1.4254 [FAIL G3]; GT dev +0.0000 -0.0000 +0.0000 [PASS GT]; G2z +0.5000 [PASS]
+  L2   a(z)/a(0) 1.8577 2.4530 3.6088 [FAIL G3]; GT dev +0.2024 +0.2877 +0.4034 [FAIL GT]; G2z +1.8124 [FAIL]
+  QIz  a(z)/a(0) 2.0000 2.5000 3.3300 [FAIL G3]; GT dev +0.2344 +0.2960 +0.3685 [FAIL GT]; G2z +1.6993 [FAIL]
+  QIp  a(z)/a(0) 2.6129 3.6129 5.5084 [FAIL G3]; GT dev +0.3505 +0.4559 +0.5871 [FAIL GT]; G2z +2.4101 [FAIL]
+  F26q a_bg(z) = sqrt(-q) H/4: z 0.0: 1.0000 of today z 1.0: undefined (q > 0) z 1.5: undefined (q > 0) z 2.33: undefined (q > 0); today 2 a_bg 2.413 A0
+ B4 -1.1 0.3: rho_DE(z)/rho_DE0 0.9665 1.0098 1.0964; q(z) -0.630 +0.204 +0.330 +0.419; Theta_now 8.897e+26 m; G2z measurable
+  L1   a(z)/a(0) 0.9831 1.0049 1.0471 [PASS G3]; GT dev +0.0000 +0.0000 -0.0000 [PASS GT]; G2z +0.5000 [PASS]
+  L2   a(z)/a(0) 1.7838 2.3693 3.5189 [FAIL G3]; GT dev +0.2588 +0.3725 +0.5264 [FAIL GT]; G2z +6.8486 [FAIL]
+  QIz  a(z)/a(0) 2.0000 2.5000 3.3300 [FAIL G3]; GT dev +0.3084 +0.3958 +0.5025 [FAIL GT]; G2z +5.6411 [FAIL]
+  QIp  a(z)/a(0) 2.6246 3.6393 5.5655 [FAIL G3]; GT dev +0.4265 +0.5589 +0.7255 [FAIL GT]; G2z +8.2062 [FAIL]
+  F26q a_bg(z) = sqrt(-q) H/4: z 0.0: 1.0000 of today z 1.0: undefined (q > 0) z 1.5: undefined (q > 0) z 2.33: undefined (q > 0); today 2 a_bg 2.776 A0
+ B5  : rho_DE(z)/rho_DE0 1.0000 1.0001 1.0002; q(z) -0.527 +0.179 +0.317 +0.417; Theta_now 8.866e+26 m; G2z NOT MEASURABLE
+  L1   a(z)/a(0) 1.0000 1.0000 1.0001 [PASS G3]; GT dev -0.0000 -0.0000 -0.0000 [PASS GT]; G2z not measurable
+  L2   a(z)/a(0) 1.7903 2.3679 3.5095 [FAIL G3]; GT dev +0.2529 +0.3743 +0.5452 [FAIL GT]; G2z not measurable
+  QIz  a(z)/a(0) 2.0000 2.5000 3.3300 [FAIL G3]; GT dev +0.3010 +0.3979 +0.5224 [FAIL GT]; G2z not measurable
+  QIp  a(z)/a(0) 2.6204 3.6336 5.5600 [FAIL G3]; GT dev +0.4184 +0.5603 +0.7450 [FAIL GT]; G2z not measurable
+  F26q a_bg(z) = sqrt(-q) H/4: z 0.0: 1.0000 of today z 1.0: undefined (q > 0) z 1.5: undefined (q > 0) z 2.33: undefined (q > 0); today 2 a_bg 2.540 A0
+
+runtime 38 s; peak RSS 86 MB (macOS bytes)
+Rival modified-inertia route, not LCDM. Rival language; adopts nothing. kappa = 1/2 FITTED; not theory closed.
