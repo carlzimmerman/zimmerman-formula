@@ -1,0 +1,66 @@
+AT1 a0(z) tracking decision rule, MUTATE=False. Source cfg689.json BAO+SN.P1 (CFG689 primary).
+kappa = 1/2 FITTED; not theory closed. Grades no data.
+
+z     gap(dex)  sig_E    sig_X    e_3sig(AT1)  e_3sig(CFG689)  common-mode ceiling c < e_3sig
+1.0   0.2272   0.0068   0.0511   0.0546       0.0546          0.0546
+1.2   0.2721   0.0059   0.0542   0.0724       0.0724          0.0724
+1.5   0.3159   0.0082   0.0734   0.0744       0.0744          0.0744
+2.33  0.4534   0.0061   0.1246   0.0843       0.0843          0.0843
+
+N_min (z-sample galaxies, reference sample error taken as zero; e_3sigma floored to 1e-6 dex):
+  z 1.0: s0.14_c0.05: 41, s0.14_c0.075: blocked, s0.2_c0.05: 84, s0.2_c0.075: blocked, s0.3_c0.05: 188, s0.3_c0.075: blocked
+  z 1.2: s0.14_c0.05: 8, s0.14_c0.075: blocked, s0.2_c0.05: 15, s0.2_c0.075: blocked, s0.3_c0.05: 33, s0.3_c0.075: blocked
+  z 1.5: s0.14_c0.05: 7, s0.14_c0.075: blocked, s0.2_c0.05: 14, s0.2_c0.075: blocked, s0.3_c0.05: 30, s0.3_c0.075: blocked
+  z 2.33: s0.14_c0.05: 5, s0.14_c0.075: 14, s0.2_c0.05: 9, s0.2_c0.075: 27, s0.3_c0.05: 20, s0.3_c0.075: 61
+
+C3 (no double 2-sigma consistency at e_3sigma): FAILS at ['1.0', '1.2', '1.5', '2.33']; a sample at e_3sigma can land INCONCLUSIVE there (rule stays exclusive by C4)
+
+Lean (AT1_cert.lean):
+'c1a_z1_0' does not depend on any axioms
+'c1b_z1_0' does not depend on any axioms
+'c3_fails_z1_0' does not depend on any axioms
+'c2_nmin_z1_0_s0p14_c0p05' does not depend on any axioms
+'c2_blocked_z1_0_s0p14_c0p075' does not depend on any axioms
+'c2_nmin_z1_0_s0p2_c0p05' does not depend on any axioms
+'c2_blocked_z1_0_s0p2_c0p075' does not depend on any axioms
+'c2_nmin_z1_0_s0p3_c0p05' does not depend on any axioms
+'c2_blocked_z1_0_s0p3_c0p075' does not depend on any axioms
+'c1a_z1_2' does not depend on any axioms
+'c1b_z1_2' does not depend on any axioms
+'c3_fails_z1_2' does not depend on any axioms
+'c2_nmin_z1_2_s0p14_c0p05' does not depend on any axioms
+'c2_blocked_z1_2_s0p14_c0p075' does not depend on any axioms
+'c2_nmin_z1_2_s0p2_c0p05' does not depend on any axioms
+'c2_blocked_z1_2_s0p2_c0p075' does not depend on any axioms
+'c2_nmin_z1_2_s0p3_c0p05' does not depend on any axioms
+'c2_blocked_z1_2_s0p3_c0p075' does not depend on any axioms
+'c1a_z1_5' does not depend on any axioms
+'c1b_z1_5' does not depend on any axioms
+'c3_fails_z1_5' does not depend on any axioms
+'c2_nmin_z1_5_s0p14_c0p05' does not depend on any axioms
+'c2_blocked_z1_5_s0p14_c0p075' does not depend on any axioms
+'c2_nmin_z1_5_s0p2_c0p05' does not depend on any axioms
+'c2_blocked_z1_5_s0p2_c0p075' does not depend on any axioms
+'c2_nmin_z1_5_s0p3_c0p05' does not depend on any axioms
+'c2_blocked_z1_5_s0p3_c0p075' does not depend on any axioms
+'c1a_z2_33' does not depend on any axioms
+'c1b_z2_33' does not depend on any axioms
+'c3_fails_z2_33' does not depend on any axioms
+'c2_nmin_z2_33_s0p14_c0p05' does not depend on any axioms
+'c2_nmin_z2_33_s0p14_c0p075' does not depend on any axioms
+'c2_nmin_z2_33_s0p2_c0p05' does not depend on any axioms
+'c2_nmin_z2_33_s0p2_c0p075' does not depend on any axioms
+'c2_nmin_z2_33_s0p3_c0p05' does not depend on any axioms
+'c2_nmin_z2_33_s0p3_c0p075' does not depend on any axioms
+'c2_general' depends on axioms: [propext, Quot.sound]
+'c4_tr' depends on axioms: [propext, Quot.sound]
+'c4_tn' depends on axioms: [propext, Quot.sound]
+'c4_rn' depends on axioms: [propext, Quot.sound]
+
+[PASS] K1 e_3sigma z 1.0: AT1 0.05459459459459459 vs CFG689 0.0545945945945946
+[PASS] K1 e_3sigma z 1.2: AT1 0.07243243243243243 vs CFG689 0.07243243243243244
+[PASS] K1 e_3sigma z 1.5: AT1 0.0744144144144144 vs CFG689 0.07441441441441442
+[PASS] K1 e_3sigma z 2.33: AT1 0.08432432432432432 vs CFG689 0.08432432432432432
+[PASS] K3 no footing a0 / measured kappa: hits []
+[PASS] K2 Lean certificate compiles, no sorry, core axioms only: rc 0, 40/40 axiom lines
+RESULT: 6/6 checks pass

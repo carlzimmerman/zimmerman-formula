@@ -1,0 +1,29 @@
+AT1 a0(z) tracking decision rule, MUTATE=True. Source cfg689.json BAO+SN.P1 (CFG689 primary).
+kappa = 1/2 FITTED; not theory closed. Grades no data.
+
+z     gap(dex)  sig_E    sig_X    e_3sig(AT1)  e_3sig(CFG689)  common-mode ceiling c < e_3sig
+1.0   0.2272   0.0068   0.1022   none         0.0546          NOT DECIDABLE
+1.2   0.2721   0.0059   0.1085   none         0.0724          NOT DECIDABLE
+1.5   0.3159   0.0082   0.1468   none         0.0744          NOT DECIDABLE
+2.33  0.4534   0.0061   0.2493   none         0.0843          NOT DECIDABLE
+
+N_min (z-sample galaxies, reference sample error taken as zero; e_3sigma floored to 1e-6 dex):
+
+C3 (no double 2-sigma consistency at e_3sigma): FAILS at none
+
+Lean (AT1_cert_MUTATE.lean):
+'c1_none_z1_0' does not depend on any axioms
+'c1_none_z1_2' does not depend on any axioms
+'c1_none_z1_5' does not depend on any axioms
+'c1_none_z2_33' does not depend on any axioms
+'c2_general' depends on axioms: [propext, Quot.sound]
+'c4_tr' depends on axioms: [propext, Quot.sound]
+'c4_tn' depends on axioms: [propext, Quot.sound]
+'c4_rn' depends on axioms: [propext, Quot.sound]
+
+[PASS] K3 no footing a0 / measured kappa: hits []
+[PASS] K2 Lean certificate compiles, no sorry, core axioms only: rc 0, 8/8 axiom lines
+[PASS] M1 sigma_X doubled: e_3sigma falls at all four z: fell at ['1.0', '1.2', '1.5', '2.33']
+[PASS] M2 z 2.33 becomes NOT DECIDABLE: e3 None
+[PASS] M3 Lean C1a at z 2.33 fails to compile under the mutation: rc 1: AT1_cert_MUTATE_c1a_z2_33.lean:2:96: error: Tactic `decide` proved that the proposition
+RESULT: 5/5 checks pass
