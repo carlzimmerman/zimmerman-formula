@@ -1,0 +1,162 @@
+sample: 171 galaxies, 3373 points; Y_disk 0.5, Y_bul 0.7
+warm start: A25 Pareto 15 knobs, units ['dn', 'dm', 'dg', 'le', 'a2', 'a3', 'f0', 'f1', 'dc', 'sc', 'N2', 'HD', 'PG', 'SL'], free ['dn', 'dm', 'dg', 'le', 'a2', 'a3', 'f0', 'f1', 'dc', 'sc', 'N2', 's14', 'Df0g', 'Dle0g', 'sl'], recorded table-mode rms 0.0237
+control 1: recipe34 galm vs recipe27 gal at the warm point, max |dlog g| 0.00e+00 dex [PASS < 1e-6]
+control 2: own LCDM growth D(z)/D(0) vs colossus growthFactor at z 0.5, 1, 2.33, 5: max rel diff 3.7e-05 [PASS < 5e-3]
+ env f 0.5: h 0.5465, Om0 0.4791, sigma8 0.7670, rho_DE/rho_DE0 0.5000
+ env f 1.0: h 0.6740, Om0 0.3150, sigma8 0.8110, rho_DE/rho_DE0 1.0000
+ env f 2.0: h 0.8749, Om0 0.1869, sigma8 0.8508, rho_DE/rho_DE0 2.0000
+timing: one joint evaluation (6 rows x 171 galaxies) 0.36 s
+timing: with DE mapping (w0 -0.75, wa -0.86, xi0 -0.005) 0.16 s, guard ok True
+guard check: xi0 = xi1 = +0.005 (dark matter into dark energy) with w0 -0.75, wa -0.86 passes the guard: False
+control 3: Ludlow map at LCDM parameters returns Diemer19, max rel diff 5.7e-05 [PASS < 1e-3]
+
+######## S0 control: warm 15-knob point, LCDM, no exponents
+
+== A32 S0 control (LCDM) (15 knobs, 0 rho_DE hand terms)
+ rms to law 0.0237 dex [FAIL E1]; p95 per-galaxy 0.0532 [FAIL E2]; worst bin 0.0223 [FAIL E3]
+ bins -12.0:+0.022 -11.5:-0.004 -11.0:-0.008 -10.5:-0.005 -10.0:+0.002 -9.5:+0.011 -9.0:+0.015
+ a fit 9.301e-11; rms to observed 0.1938 dex, mean +0.0011
+ DE: w0 -1.000 wa +0.000 xi0 +0.0000 xi1 +0.0000; xi(z 0..2.33) [0.0, 0.0, 0.0, 0.0] [plausible]; DESI dchi2 DESI+CMB+PantheonPlus 9.2, DESI+CMB+Union3 14.6, DESI+CMB+DESY5 19.0, DESI+CMB 9.1 [OUTSIDE DESI-allowed]
+ exponents H: SHMR^+0.000 FB^+0.000 CORE^+0.000 CONTR^+0.000 CONC^+0.000
+ G1 a 9.3006e-11 kappa_eff 0.497 [PASS] (inherited); G2 a(f)/a(1) 0.8544 1.0000 1.2319, slope +0.2640 [FAIL G2]
+ z rows: a(z)/a(0) 2.196 3.163 5.758 [FAIL G3]; rho_DE(z)/rho_DE0 1.000 1.000 1.000; GT +0.342 +0.500 +0.760 [FAIL GT]; shape S 0.0494 0.0638 0.0850; H/H_LCDM 1.000 1.000 1.000
+ G4 144 hosts rms log a_i 0.042 [PASS]; G5 by definition; median dlogM200 vs base SHMR +0.44
+ VERDICT S0 control (LCDM): E1-E3 FAIL; G2 FAIL; GT FAIL; holdout n/a; JOINT FAIL [1 s]
+S1 start 0: cost 2.12, w0 -0.475 wa +0.050 xi0 -0.042 xi1 -0.034, evals 334, at bound [] [49 s]
+S1 start 1: cost 23.37, w0 -0.599 wa -0.067 xi0 -0.069 xi1 -0.065, evals 407, at bound [] [107 s]
+S1 start 2: cost 500.00, w0 -0.601 wa +0.519 xi0 +0.114 xi1 -0.098, evals 25, at bound ['dg', 'dc', 'sc'] [107 s]
+S1 start 3: cost 500.00, w0 -0.562 wa -1.490 xi0 -0.112 xi1 +0.133, evals 50, at bound ['dc', 'sc'] [111 s]
+S1 start 4: cost 500.00, w0 -0.795 wa -1.549 xi0 -0.037 xi1 +0.266, evals 50, at bound ['sc'] [115 s]
+ S1 start 5: LHS DE point violates the physical guard; xi set to 0
+S1 start 5: cost 2.19, w0 -1.006 wa +0.416 xi0 -0.066 xi1 -0.048, evals 633, at bound [] [212 s]
+S1 best cost 2.12; all sorted [2.12, 2.19, 23.37, 500.0, 500.0, 500.0]
+S2 lambda 0.1: E1 0.0283, slope +0.492, GT +0.014 -0.003 -0.004, max|GT| 0.014; w0 -0.475 wa +0.051 xi0 -0.042 xi1 -0.034; at bound [] [242 s]
+S2 lambda 0.3: E1 0.0283, slope +0.492, GT +0.014 -0.003 -0.004, max|GT| 0.014; w0 -0.475 wa +0.051 xi0 -0.042 xi1 -0.034; at bound [] [263 s]
+S2 lambda 0.0: E1 0.0284, slope +0.493, GT +0.015 -0.002 -0.002, max|GT| 0.015; w0 -0.475 wa +0.051 xi0 -0.042 xi1 -0.034; at bound [] [289 s]
+S2 lambda 3.0: E1 0.0286, slope +0.499, GT +0.015 -0.001 +0.001, max|GT| 0.015; w0 -0.475 wa +0.050 xi0 -0.042 xi1 -0.034; at bound [] [317 s]
+S2 lambda 10.0: E1 0.0286, slope +0.499, GT +0.015 -0.001 +0.001, max|GT| 0.015; w0 -0.475 wa +0.050 xi0 -0.042 xi1 -0.034; at bound [] [339 s]
+S3 start: cost 1.98 at bound ['w0', 'wa', 'xi0'] [490 s]
+S3 start: cost 1.39 at bound ['dc', 'sc', 'xi0', 'xi1', 'pH_CONTR'] [624 s]
+S4 cost 2.11 at bound [] [650 s]
+H1 holdout tune (pri) on GS[::2]: cost 3.26 [678 s]
+H4 holdout tune (sec) on GS[::2]: cost 1.32 [729 s]
+
+######## S1 primary joint best (24 knobs: 15 recipe + 4 DE + 5 H exponents); knobs at bound []
+
+== A32 S1 primary joint (24 knobs, 0 rho_DE hand terms)
+ rms to law 0.0284 dex [FAIL E1]; p95 per-galaxy 0.0656 [FAIL E2]; worst bin 0.0209 [FAIL E3]
+ bins -12.0:+0.020 -11.5:-0.006 -11.0:-0.008 -10.5:-0.002 -10.0:+0.009 -9.5:+0.019 -9.0:+0.021
+ a fit 9.315e-11; rms to observed 0.1946 dex, mean +0.0025
+ DE: w0 -0.475 wa +0.050 xi0 -0.0425 xi1 -0.0344; xi(z 0..2.33) [-0.0425, -0.0597, -0.0631, -0.0665] [outside |xi| <= 0.01]; DESI dchi2 DESI+CMB+PantheonPlus 483.0, DESI+CMB+Union3 179.8, DESI+CMB+DESY5 414.0, DESI+CMB 43.4 [OUTSIDE DESI-allowed]
+ exponents H: SHMR^+0.114 FB^+0.493 CORE^+0.526 CONTR^+4.177 CONC^-0.259
+ G1 a 9.3152e-11 kappa_eff 0.497 [PASS] (inherited); G2 a(f)/a(1) 0.6896 1.0000 1.3677, slope +0.4939 [PASS G2]
+ z rows: a(z)/a(0) 1.831 2.136 2.755 [FAIL G3]; rho_DE(z)/rho_DE0 3.142 4.619 7.674; GT +0.014 -0.003 -0.002 [PASS GT]; shape S 0.0784 0.0915 0.1128; H/H_LCDM 1.198 1.186 1.148
+ G4 130 hosts rms log a_i 0.050 [PASS]; G5 by definition; median dlogM200 vs base SHMR +0.33
+ holdout (clean, tuned on GS[::2] from warm): unseen GS[1::2] rms to law 0.0336 [FAIL <= 0.025]; on GS[1::2] slope +0.5066, GT +0.015 +0.001 -0.001
+ VERDICT S1 primary joint: E1-E3 FAIL; G2 PASS; GT PASS; holdout FAIL; JOINT FAIL [729 s]
+
+######## S2 lambda 0.0; knobs at bound []
+
+== A32 S2 lambda 0.0 (24 knobs, 0 rho_DE hand terms)
+ rms to law 0.0284 dex [FAIL E1]; p95 per-galaxy 0.0652 [FAIL E2]; worst bin 0.0203 [FAIL E3]
+ bins -12.0:+0.020 -11.5:-0.007 -11.0:-0.009 -10.5:-0.003 -10.0:+0.008 -9.5:+0.018 -9.0:+0.020
+ a fit 9.276e-11; rms to observed 0.1946 dex, mean +0.0018
+ DE: w0 -0.475 wa +0.051 xi0 -0.0425 xi1 -0.0344; xi(z 0..2.33) [-0.0425, -0.0597, -0.0631, -0.0665] [outside |xi| <= 0.01]; DESI dchi2 DESI+CMB+PantheonPlus 483.3, DESI+CMB+Union3 180.0, DESI+CMB+DESY5 414.3, DESI+CMB 43.4 [OUTSIDE DESI-allowed]
+ exponents H: SHMR^+0.114 FB^+0.493 CORE^+0.526 CONTR^+4.177 CONC^-0.259
+ G1 a 9.2758e-11 kappa_eff 0.495 [PASS] (inherited); G2 a(f)/a(1) 0.6904 1.0000 1.3677, slope +0.4931 [PASS G2]
+ z rows: a(z)/a(0) 1.834 2.139 2.757 [FAIL G3]; rho_DE(z)/rho_DE0 3.143 4.621 7.679; GT +0.015 -0.002 -0.002 [PASS GT]; shape S 0.0784 0.0917 0.1130; H/H_LCDM 1.198 1.186 1.148
+ G4 130 hosts rms log a_i 0.050 [PASS]; G5 by definition; median dlogM200 vs base SHMR +0.33
+ VERDICT S2 lambda 0.0: E1-E3 FAIL; G2 PASS; GT PASS; holdout n/a; JOINT FAIL [729 s]
+
+######## S2 lambda 0.1; knobs at bound []
+
+== A32 S2 lambda 0.1 (24 knobs, 0 rho_DE hand terms)
+ rms to law 0.0283 dex [FAIL E1]; p95 per-galaxy 0.0650 [FAIL E2]; worst bin 0.0200 [FAIL E3]
+ bins -12.0:+0.019 -11.5:-0.007 -11.0:-0.010 -10.5:-0.003 -10.0:+0.008 -9.5:+0.018 -9.0:+0.020
+ a fit 9.258e-11; rms to observed 0.1946 dex, mean +0.0014
+ DE: w0 -0.475 wa +0.051 xi0 -0.0425 xi1 -0.0344; xi(z 0..2.33) [-0.0425, -0.0597, -0.0631, -0.0665] [outside |xi| <= 0.01]; DESI dchi2 DESI+CMB+PantheonPlus 483.4, DESI+CMB+Union3 180.0, DESI+CMB+DESY5 414.4, DESI+CMB 43.4 [OUTSIDE DESI-allowed]
+ exponents H: SHMR^+0.115 FB^+0.494 CORE^+0.527 CONTR^+4.177 CONC^-0.261
+ G1 a 9.2578e-11 kappa_eff 0.494 [PASS] (inherited); G2 a(f)/a(1) 0.6912 1.0000 1.3667, slope +0.4918 [PASS G2]
+ z rows: a(z)/a(0) 1.831 2.134 2.746 [FAIL G3]; rho_DE(z)/rho_DE0 3.144 4.622 7.681; GT +0.014 -0.003 -0.004 [PASS GT]; shape S 0.0786 0.0918 0.1132; H/H_LCDM 1.198 1.186 1.148
+ G4 130 hosts rms log a_i 0.050 [PASS]; G5 by definition; median dlogM200 vs base SHMR +0.33
+ VERDICT S2 lambda 0.1: E1-E3 FAIL; G2 PASS; GT PASS; holdout n/a; JOINT FAIL [730 s]
+
+######## S2 lambda 0.3; knobs at bound []
+
+== A32 S2 lambda 0.3 (24 knobs, 0 rho_DE hand terms)
+ rms to law 0.0283 dex [FAIL E1]; p95 per-galaxy 0.0650 [FAIL E2]; worst bin 0.0200 [FAIL E3]
+ bins -12.0:+0.019 -11.5:-0.007 -11.0:-0.010 -10.5:-0.003 -10.0:+0.008 -9.5:+0.018 -9.0:+0.020
+ a fit 9.258e-11; rms to observed 0.1946 dex, mean +0.0014
+ DE: w0 -0.475 wa +0.051 xi0 -0.0425 xi1 -0.0344; xi(z 0..2.33) [-0.0425, -0.0597, -0.0631, -0.0665] [outside |xi| <= 0.01]; DESI dchi2 DESI+CMB+PantheonPlus 483.4, DESI+CMB+Union3 180.0, DESI+CMB+DESY5 414.4, DESI+CMB 43.4 [OUTSIDE DESI-allowed]
+ exponents H: SHMR^+0.115 FB^+0.494 CORE^+0.527 CONTR^+4.177 CONC^-0.261
+ G1 a 9.2577e-11 kappa_eff 0.494 [PASS] (inherited); G2 a(f)/a(1) 0.6912 1.0000 1.3667, slope +0.4918 [PASS G2]
+ z rows: a(z)/a(0) 1.831 2.134 2.746 [FAIL G3]; rho_DE(z)/rho_DE0 3.144 4.622 7.681; GT +0.014 -0.003 -0.004 [PASS GT]; shape S 0.0786 0.0918 0.1132; H/H_LCDM 1.198 1.186 1.148
+ G4 130 hosts rms log a_i 0.050 [PASS]; G5 by definition; median dlogM200 vs base SHMR +0.33
+ VERDICT S2 lambda 0.3: E1-E3 FAIL; G2 PASS; GT PASS; holdout n/a; JOINT FAIL [730 s]
+
+######## S2 lambda 3.0; knobs at bound []
+
+== A32 S2 lambda 3.0 (24 knobs, 0 rho_DE hand terms)
+ rms to law 0.0286 dex [FAIL E1]; p95 per-galaxy 0.0651 [FAIL E2]; worst bin 0.0219 [FAIL E3]
+ bins -12.0:+0.019 -11.5:-0.007 -11.0:-0.008 -10.5:-0.001 -10.0:+0.011 -9.5:+0.020 -9.0:+0.022
+ a fit 9.316e-11; rms to observed 0.1944 dex, mean +0.0028
+ DE: w0 -0.475 wa +0.050 xi0 -0.0425 xi1 -0.0344; xi(z 0..2.33) [-0.0425, -0.0597, -0.0631, -0.0665] [outside |xi| <= 0.01]; DESI dchi2 DESI+CMB+PantheonPlus 483.4, DESI+CMB+Union3 180.0, DESI+CMB+DESY5 414.4, DESI+CMB 43.4 [OUTSIDE DESI-allowed]
+ exponents H: SHMR^+0.110 FB^+0.489 CORE^+0.523 CONTR^+4.180 CONC^-0.256
+ G1 a 9.3161e-11 kappa_eff 0.497 [PASS] (inherited); G2 a(f)/a(1) 0.6873 1.0000 1.3719, slope +0.4986 [PASS G2]
+ z rows: a(z)/a(0) 1.834 2.145 2.778 [FAIL G3]; rho_DE(z)/rho_DE0 3.144 4.622 7.680; GT +0.015 -0.001 +0.001 [PASS GT]; shape S 0.0786 0.0917 0.1128; H/H_LCDM 1.198 1.186 1.148
+ G4 130 hosts rms log a_i 0.051 [PASS]; G5 by definition; median dlogM200 vs base SHMR +0.33
+ VERDICT S2 lambda 3.0: E1-E3 FAIL; G2 PASS; GT PASS; holdout n/a; JOINT FAIL [730 s]
+
+######## S2 lambda 10.0; knobs at bound []
+
+== A32 S2 lambda 10.0 (24 knobs, 0 rho_DE hand terms)
+ rms to law 0.0286 dex [FAIL E1]; p95 per-galaxy 0.0651 [FAIL E2]; worst bin 0.0219 [FAIL E3]
+ bins -12.0:+0.019 -11.5:-0.007 -11.0:-0.008 -10.5:-0.001 -10.0:+0.011 -9.5:+0.020 -9.0:+0.022
+ a fit 9.316e-11; rms to observed 0.1944 dex, mean +0.0028
+ DE: w0 -0.475 wa +0.050 xi0 -0.0425 xi1 -0.0344; xi(z 0..2.33) [-0.0425, -0.0597, -0.0631, -0.0665] [outside |xi| <= 0.01]; DESI dchi2 DESI+CMB+PantheonPlus 483.4, DESI+CMB+Union3 180.0, DESI+CMB+DESY5 414.4, DESI+CMB 43.4 [OUTSIDE DESI-allowed]
+ exponents H: SHMR^+0.110 FB^+0.489 CORE^+0.523 CONTR^+4.180 CONC^-0.256
+ G1 a 9.3161e-11 kappa_eff 0.497 [PASS] (inherited); G2 a(f)/a(1) 0.6873 1.0000 1.3719, slope +0.4986 [PASS G2]
+ z rows: a(z)/a(0) 1.834 2.145 2.778 [FAIL G3]; rho_DE(z)/rho_DE0 3.144 4.622 7.680; GT +0.015 -0.001 +0.001 [PASS GT]; shape S 0.0786 0.0917 0.1128; H/H_LCDM 1.198 1.186 1.148
+ G4 130 hosts rms log a_i 0.051 [PASS]; G5 by definition; median dlogM200 vs base SHMR +0.33
+ VERDICT S2 lambda 10.0: E1-E3 FAIL; G2 PASS; GT PASS; holdout n/a; JOINT FAIL [730 s]
+
+######## S3 DESI-constrained (24 knobs); knobs at bound ['dc', 'sc', 'xi0', 'xi1', 'pH_CONTR']
+
+== A32 S3 DESI-constrained (24 knobs, 0 rho_DE hand terms)
+ rms to law 0.0236 dex [FAIL E1]; p95 per-galaxy 0.0530 [FAIL E2]; worst bin 0.0226 [FAIL E3]
+ bins -12.0:+0.023 -11.5:-0.004 -11.0:-0.008 -10.5:-0.005 -10.0:+0.003 -9.5:+0.012 -9.0:+0.016
+ a fit 9.302e-11; rms to observed 0.1938 dex, mean +0.0012
+ DE: w0 -0.691 wa -0.595 xi0 -0.0100 xi1 -0.0100; xi(z 0..2.33) [-0.01, -0.015, -0.016, -0.017] [outside |xi| <= 0.01]; DESI dchi2 DESI+CMB+PantheonPlus 40.5, DESI+CMB+Union3 10.4, DESI+CMB+DESY5 26.4, DESI+CMB 5.3 [INSIDE DESI-allowed]
+ exponents H: SHMR^+3.017 FB^+4.245 CORE^+0.119 CONTR^+4.997 CONC^+1.213
+ G1 a 9.3019e-11 kappa_eff 0.497 [PASS] (inherited); G2 a(f)/a(1) 0.6110 1.0000 1.2221, slope +0.5000 [PASS G2]
+ z rows: a(z)/a(0) 1.165 1.164 1.144 [FAIL G3]; rho_DE(z)/rho_DE0 1.359 1.356 1.311; GT -0.000 -0.000 -0.001 [PASS GT]; shape S 0.1419 0.1406 0.1311; H/H_LCDM 1.035 1.017 1.002
+ G4 143 hosts rms log a_i 0.042 [PASS]; G5 by definition; median dlogM200 vs base SHMR +0.45
+ VERDICT S3 DESI-constrained: E1-E3 FAIL; G2 PASS; GT PASS; holdout n/a; JOINT FAIL [730 s]
+
+######## S4 secondary with rho_DE hand terms (29 knobs, 5 hand terms); knobs at bound []
+
+== A32 S4 secondary (29 knobs, 5 rho_DE hand terms)
+ rms to law 0.0284 dex [FAIL E1]; p95 per-galaxy 0.0653 [FAIL E2]; worst bin 0.0208 [FAIL E3]
+ bins -12.0:+0.020 -11.5:-0.006 -11.0:-0.009 -10.5:-0.002 -10.0:+0.009 -9.5:+0.019 -9.0:+0.021
+ a fit 9.308e-11; rms to observed 0.1945 dex, mean +0.0024
+ DE: w0 -0.474 wa +0.051 xi0 -0.0425 xi1 -0.0344; xi(z 0..2.33) [-0.0425, -0.0597, -0.0631, -0.0665] [outside |xi| <= 0.01]; DESI dchi2 DESI+CMB+PantheonPlus 483.6, DESI+CMB+Union3 180.1, DESI+CMB+DESY5 414.6, DESI+CMB 43.4 [OUTSIDE DESI-allowed]
+ exponents H: SHMR^+0.115 FB^+0.494 CORE^+0.527 CONTR^+4.179 CONC^-0.263; rho_DE: SHMR^-0.001 FB^-0.000 CORE^+0.000 CONTR^+0.010 CONC^+0.001
+ G1 a 9.3078e-11 kappa_eff 0.497 [PASS] (inherited); G2 a(f)/a(1) 0.6890 1.0000 1.3682, slope +0.4949 [PASS G2]
+ z rows: a(z)/a(0) 1.828 2.131 2.744 [FAIL G3]; rho_DE(z)/rho_DE0 3.144 4.623 7.683; GT +0.013 -0.004 -0.004 [PASS GT]; shape S 0.0786 0.0918 0.1132; H/H_LCDM 1.198 1.186 1.148
+ G4 130 hosts rms log a_i 0.050 [PASS]; G5 by definition; median dlogM200 vs base SHMR +0.33
+ holdout (clean, tuned on GS[::2] from warm): unseen GS[1::2] rms to law 0.0237 [PASS <= 0.025]; on GS[1::2] slope +0.5250, GT +0.002 +0.011 +0.035
+ VERDICT S4 secondary: E1-E3 FAIL; G2 PASS; GT PASS; holdout PASS; JOINT FAIL [731 s]
+
+==== A32 TRADE-OFF TABLE ====
+ tag | E1 | E2 | E3 | slope | max|GT| | a(z)/a(0) | DESI | JOINT
+ S1 | 0.0284 | 0.0656 | 0.0209 | +0.494 | 0.014 | 1.83 2.14 2.75 | out | FAIL
+ S2_0.0 | 0.0284 | 0.0652 | 0.0203 | +0.493 | 0.015 | 1.83 2.14 2.76 | out | FAIL
+ S2_0.1 | 0.0283 | 0.0650 | 0.0200 | +0.492 | 0.014 | 1.83 2.13 2.75 | out | FAIL
+ S2_0.3 | 0.0283 | 0.0650 | 0.0200 | +0.492 | 0.014 | 1.83 2.13 2.75 | out | FAIL
+ S2_3.0 | 0.0286 | 0.0651 | 0.0219 | +0.499 | 0.015 | 1.83 2.14 2.78 | out | FAIL
+ S2_10.0 | 0.0286 | 0.0651 | 0.0219 | +0.499 | 0.015 | 1.83 2.14 2.78 | out | FAIL
+ S3 | 0.0236 | 0.0530 | 0.0226 | +0.500 | 0.001 | 1.17 1.16 1.14 | in | FAIL
+ S4 | 0.0284 | 0.0653 | 0.0208 | +0.495 | 0.013 | 1.83 2.13 2.74 | out | FAIL
+
+A32 VERDICT: NO joint setting passes E1-E3, holdout, G2 and GT together; primary (no rho_DE hand term) G2+GT both pass at: ['S1', 'S2_0.0', 'S2_0.1', 'S2_0.3', 'S2_3.0', 'S2_10.0', 'S3'] [731 s]
+Rival language; adopts nothing. Passing shows freedom, not evidence. kappa = 1/2 FITTED; not theory closed.
