@@ -69,3 +69,5 @@ Resumed kappa work: AZ19 is a new dynamical selection test. Promoting b to a var
 AZ20 tests a second new dynamical normalization proposal. Reciprocal-sector symmetry gives a relative stationary point but leaves the common physical scale free and becomes source-unstable in its unrestricted high-field limit. FAIL selector with twelve passing controls; no derived kappa or full-row credit. Goal active, no push.
 
 AZ21 finds a finite vacuum-stabilization mechanism through nonminimal curvature feedback, with a derived scalar-mass relation. It still FAILS physical normalization selection because a curvature coupling and force matching remain free. Fourteen controls pass; no physical kappa or full-row credit is claimed. Goal active, no push.
+
+AZ22 performs the missing common-action matching for the curvature route. It changes the vacuum and exposes cancellation of b from a conditional tensor coefficient, while an unfixed vacuum constant and nonzero scalar charge remain. Selection FAIL with seventeen passing controls; full physical kappa NOT EVALUABLE. Goal active, no push.

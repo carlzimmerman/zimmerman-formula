@@ -1,0 +1,18 @@
+astra_goal_2026_11_03/P3/AZ22_common_action_matching/Mutate.lean:3:36: error: Tactic `decide` failed for proposition
+  1 - 2 * (1 / 6) * 2 = 0
+because its `Decidable` instance
+  instDecidableEqRat (1 - 2 * (1 / 6) * 2) 0
+did not reduce to `isTrue` or `isFalse`.
+
+Reduction got stuck at the `Decidable` instance
+  match (Rat.sub 1 (2 * (1 / 6) * 2)).num, ↑0 with
+  | Int.ofNat a, Int.ofNat b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+  | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+  | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+  | Int.negSucc a, Int.negSucc b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
