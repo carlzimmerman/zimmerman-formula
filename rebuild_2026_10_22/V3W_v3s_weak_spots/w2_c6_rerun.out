@@ -1,0 +1,22 @@
+====================================================================================================
+V3W W2: C6's carried checks rerun (C6's inputs, C6's pass lines) + C6' in-window ladder
+kappa = 1/2 FITTED; footings never pooled; adopts nothing; not theory closed.
+====================================================================================================
+C1 PASS (L), (P_L), kernel residuals 0, [0, 0, 0], 0 (all 0); C6 recorded PASS -> reproduced
+C3 PASS r_F=1 build vs D7d build: max|dA| 0.0e+00, max|drhs| 0.0e+00 (== 0); r_F=0 differs by 1.305692e+05 (C6 1.305692e+05) -> reproduced
+C4 PASS L*=0 AQUAL: BN11 3.8293e-26 (ratio 1.0077); E2 canonical max|ratio-1| 7.79e-03 (<3e-2); vs C6 max rel 0.0e+00 -> reproduced
+C5 PASS max|N/F-1| 1.73e-03 at Lam 30, 100 (E0, E3), sign agree True (<5e-2); vs C6 max rel 0.0e+00 -> reproduced
+C6 (as recorded, not graded) ratio Lam=0.01/0 - 1 = -1.13e-04 (<2e-2: True); residual at Lam=0.01 2.26e+00 (NOT converged); vs C6 max rel 0.0e+00 -> reproduced (still unconverged, weak)
+C7 PASS I2 refinement 3.76e-10 (<1e-6); tail 1.82e-05 (<1e-4); vs C6 max rel 0.0e+00 -> reproduced
+C8 PASS max (GM/L*^2)(1+x_e)^2/(a0 x_e) at 24 pc 1.2887e-05 (<1e-4); C6 printed 1.29e-05 -> reproduced
+  C6' canonical Lam100 Lam=  100.0: Q2@100 r_Sat by rung 4.11392e-32 3.97524e-32 3.92383e-32; residuals max 3.8e-10; Richardson 3.85772e-32 (vs finest -1.7e-02); Route F 3.87036e-32; N/F 0.99674; N/F at 1, 10, 100 r_Sat 0.9989, 0.9983, 0.9967 -> ok
+  C6' canonical L24pc  Lam=  621.9: Q2@100 r_Sat by rung 1.75927e-34 1.67363e-34 1.64434e-34; residuals max 2.4e-10; Richardson 1.60668e-34 (vs finest -2.3e-02); Route F 1.60875e-34; N/F 0.99871; N/F at 1, 10, 100 r_Sat 0.9866, 0.9984, 0.9987 -> FAIL
+  C6' alt       Lam100 Lam=  100.0: Q2@100 r_Sat by rung 4.66097e-32 4.49673e-32 4.43593e-32; residuals max 3.0e-10; Richardson 4.35776e-32 (vs finest -1.8e-02); Route F 4.37555e-32; N/F 0.99594; N/F at 1, 10, 100 r_Sat 0.9981, 0.9975, 0.9959 -> ok
+  C6' alt       L24pc  Lam=  683.7: Q2@100 r_Sat by rung 1.49867e-34 1.42549e-34 1.39996e-34; residuals max 5.9e-10; Richardson 1.36713e-34 (vs finest -2.3e-02); Route F 1.36898e-34; N/F 0.99865; N/F at 1, 10, 100 r_Sat 1.0363, 0.9987, 0.9986 -> FAIL
+C6' FAIL in-window Route N ladder (20,32)/(30,48)/(40,64): converged, shrinking steps, Richardson within 2e-2 of finest, N/F within 5e-2, RSS < 1 GB, every cell
+
+Reproduction status: C1 reproduced; C3 reproduced; C4 reproduced; C5 reproduced; C6 reproduced (still unconverged, weak); C7 reproduced; C8 reproduced
+W2 [canonical]: UNDECIDED: ["C6'"] failed
+W2 [alt]: UNDECIDED: ["C6'"] failed
+
+W2 COMPLETE: 6/7 checks PASS

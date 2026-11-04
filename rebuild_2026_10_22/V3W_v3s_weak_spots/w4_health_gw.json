@@ -1,0 +1,145 @@
+{
+ "W4a": {
+  "derivative_couplings_quadratic_zero": true,
+  "linear_derivative_coeffs": [
+   "0",
+   "gamma_L*(A_x*G_xx*G_zx*x**2 + A_x*G_xx*G_zz*x*z + A_x*G_xx*P0z*x + A_x*G_yy*G_zx*x**2 + A_x*G_yy*G_zz*x*z + A_x*G_yy*P0z*x + A_x*G_zx*G_zz*x**2 + A_x*G_zz**2*x*z + A_x*G_zz*P0z*x + A_z*G_xx*G_zx*x*z + A_z*G_xx*G_zz*z**2 + A_z*G_xx*P0z*z + A_z*G_yy*G_zx*x*z + A_z*G_yy*G_zz*z**2 + A_z*G_yy*P0z*z + A_z*G_zx*G_zz*x*z + A_z*G_zz**2*z**2 + A_z*G_zz*P0z*z + G_xx*G_zx*x + G_xx*G_zz*z + G_xx*P0z + G_yy*G_zx*x + G_yy*G_zz*z + G_yy*P0z + G_zx*G_zz*x + G_zz**2*z + G_zz*P0z)*hp(t, z)",
+   "0",
+   "gamma_L*(A_x*G_xx*G_zx*x**2 + A_x*G_xx*G_zz*x*z + A_x*G_xx*P0z*x + A_x*G_yy*G_zx*x**2 + A_x*G_yy*G_zz*x*z + A_x*G_yy*P0z*x + A_x*G_zx*G_zz*x**2 + A_x*G_zz**2*x*z + A_x*G_zz*P0z*x + A_z*G_xx*G_zx*x*z + A_z*G_xx*G_zz*z**2 + A_z*G_xx*P0z*z + A_z*G_yy*G_zx*x*z + A_z*G_yy*G_zz*z**2 + A_z*G_yy*P0z*z + A_z*G_zx*G_zz*x*z + A_z*G_zz**2*z**2 + A_z*G_zz*P0z*z + G_xx*G_zx*x + G_xx*G_zz*z + G_xx*P0z + G_yy*G_zx*x + G_yy*G_zz*z + G_yy*P0z + G_zx*G_zz*x + G_zz**2*z + G_zz*P0z)*hx(t, z)"
+  ],
+  "m2_cross": "8*pi*(-2*A_x*P0x + 2*A_z*G_xx*P0z*gamma_L + 2*A_z*G_yy*P0z*gamma_L + 2*A_z*G_zz*P0z*gamma_L + 2*A_z*P0z + 3*G_xx**2*gamma_L + 6*G_xx*G_yy*gamma_L + 4*G_xx*G_zz*gamma_L + 3*G_yy**2*gamma_L + 4*G_yy*G_zz*gamma_L + G_zz**2*gamma_L + 4*K**2*P0x**2*w1 - 2*w0)",
+  "m2_plus": "8*pi*(-2*A_x*P0x + 2*A_z*G_xx*P0z*gamma_L + 2*A_z*G_yy*P0z*gamma_L + 2*A_z*G_zz*P0z*gamma_L + 2*A_z*P0z + 5*G_xx**2*gamma_L + 2*G_xx*G_yy*gamma_L + 4*G_xx*G_zz*gamma_L + 5*G_yy**2*gamma_L + 4*G_yy*G_zz*gamma_L + G_zz**2*gamma_L + 2*K**4*P0x**4*w2 + 4*K**2*P0x**2*w1 - 2*w0)"
+ },
+ "W4a_numbers": {
+  "alt": {
+   "dv_over_c_100Hz": 6.195013309754814e-32,
+   "max_abs_m2": 5.442401407929362e-43,
+   "stiffness_part": 2.127351687187908e-46
+  },
+  "canonical": {
+   "dv_over_c_100Hz": 5.126579801698177e-32,
+   "max_abs_m2": 4.503768391698362e-43,
+   "stiffness_part": 2.1243633202176465e-46
+  }
+ },
+ "checks": {
+  "W4-K1": {
+   "detail": "P sector adds no (dh)^2 term and only total-derivative h*dh terms at O(h^2): principal part is GR's, c_T = c exactly",
+   "ok": true
+  },
+  "W4-K2": {
+   "detail": "known answer: P = 0 (law off) gives m_+^2 = 0 (0, GR)",
+   "ok": true
+  },
+  "W4-K3": {
+   "detail": "g = W - u^2/2K: g' = u**2/(a0 - u), g'' = a0**2/(a0 - u)**2 - 1 (>= 0 on [0, a0))",
+   "ok": true
+  },
+  "W4-K4": {
+   "detail": "principal-symbol Schur complement K(I - xx) + H_g + gamma_L xi xi >= min(K, gamma_L |xi|^2): min ratio 1.000000000000 over 101 x 31 x 5 x 3 points, mpmath 40 digits (C8 K1 line >= 1 - 1e-10; C8: 1)",
+   "ok": true
+  },
+  "W4-K5": {
+   "detail": "K''(Q) = 2*mu_K**2 > 0 (no khronon ghost at beta = 0, C5's kinetic entry K''a^3/(4H^2 K N^3))",
+   "ok": true
+  },
+  "W4-K6": {
+   "detail": "stiff side (rho_tau > 0): min over x, k of (M_theta - 1 + L*^2 k^2/2) = 1.000e-04 > 0 (LEAN switched_stable_where_positive; X3 c^2 = gamma_L(D.P + rho_d) >= 0)",
+   "ok": true
+  }
+ },
+ "criteria": "37c16dcbaa",
+ "items": {
+  "C4-literal DOF = 2 tensor + omega = 0 pair, no ghost/unstable (Minkowski, y = 1)": {
+   "source": "C5 H4 PASS (12 rows, two routes)",
+   "status": "SHOWN"
+  },
+  "Solar-System background, beta = eta = 0": {
+   "source": "never run: C5 H6's 24 Solar-System points are eta > 0 rows and fail WKB validity (g/k >= 40.7); X3 gives D.P > 0 near the Sun (margin >= 1.77e4), so the stiff-side formula holds for k >> 1/AU only; no non-WKB SS-background spectrum on record",
+   "status": "ASSERTED"
+  },
+  "W4a c_T = c (principal part)": {
+   "source": "W4-K1 here (sympy); C8 K9 PASS",
+   "status": "SHOWN"
+  },
+  "W4a tensor mass terms": {
+   "source": "W4a numbers here incl. stiffness; C8 K9 PASS",
+   "status": "SHOWN"
+  },
+  "galaxy backgrounds, frozen-coefficient WKB (any x)": {
+   "source": "W4-K6 over x in [1e-4, 1e4] with H4's dispersion; C5 H4 C4-literal rows (Minkowski, y = 1) PASS. C5 H6's 96 failing points are all eta > 0 rows (A33 family), not beta = eta = 0",
+   "status": "SHOWN"
+  },
+  "khronon dust kinetic sign": {
+   "source": "W4-K5 here; C5 kinetic matrix at beta = 0",
+   "status": "SHOWN"
+  },
+  "khronon fluid hyperbolic in 3D (c^2 >= 0 shown in 1D only)": {
+   "source": "X3 exact barotropic form is 1D; 2D/3D time evolution 'not shown' (V3_FULL_PICTURE 4.7)",
+   "status": "ASSERTED"
+  },
+  "leaf constraint convex / unique (any background)": {
+   "source": "W4-K3, W4-K4 here; C8 K1, K3 PASS; LEAN XC2/XC5",
+   "status": "SHOWN"
+  },
+  "no time derivative of N, P at beta = eta = 0": {
+   "source": "terms J(Y)/P.A - W, (D.P)^2, K(Q) and S_m contain A_i = d_i ln N, P, h_ij and their spatial derivatives only; no dN/dt, no dP/dt (beta = eta = 0); tensor kinetic term only from R; khronon kinetic term only via Q in K(Q)",
+   "status": "SHOWN"
+  },
+  "single-stream khronon caustics": {
+   "source": "X14 generic, not a ghost or gradient instability; a breakdown of the single-stream description",
+   "status": "REPORTED"
+  },
+  "soft side (D.P < 0) growth bounded, k-independent": {
+   "source": "LEAN switched_uniform_bound; H4 0.006-0.20 e-folds; H5 lobes N <= 0.048 / 0.013 / 0.46",
+   "status": "SHOWN"
+  },
+  "stiff side omega^2 >= 0 (WKB, pointwise)": {
+   "source": "W4-K6 here; LEAN switched_stable_where_positive; X3 13/13",
+   "status": "SHOWN"
+  }
+ },
+ "labels": {
+  "alt": {
+   "W4a": "PASS: c_T = c exactly in the principal part; |dv/c| <= 6.2e-32 at 100 Hz (GW170817 [-3e-15, 7e-16])",
+   "W4b": "PASS: galaxy backgrounds, linear WKB scope: no ghost, no gradient instability (soft-side growth bounded)",
+   "W4c": "UNDECIDED: v3s's beta = eta = 0 form was never run on the Solar-System background (C5 H6 tested eta > 0 rows, which fail WKB validity there); X3's D.P > 0 near the Sun makes it stiff-side at WKB level k >> 1/AU; long wavelengths and 3D hyperbolicity not shown"
+  },
+  "canonical": {
+   "W4a": "PASS: c_T = c exactly in the principal part; |dv/c| <= 5.1e-32 at 100 Hz (GW170817 [-3e-15, 7e-16])",
+   "W4b": "PASS: galaxy backgrounds, linear WKB scope: no ghost, no gradient instability (soft-side growth bounded)",
+   "W4c": "UNDECIDED: v3s's beta = eta = 0 form was never run on the Solar-System background (C5 H6 tested eta > 0 rows, which fail WKB validity there); X3's D.P > 0 near the Sun makes it stiff-side at WKB level k >> 1/AU; long wavelengths and 3D hyperbolicity not shown"
+  }
+ },
+ "lane": "V3W_v3s_weak_spots",
+ "mutate": false,
+ "part": "W4",
+ "record": {
+  "C5_checks": {
+   "H1": true,
+   "H10": true,
+   "H2": true,
+   "H3": true,
+   "H4": true,
+   "H5": false,
+   "H6": false,
+   "H7": true,
+   "H8": true,
+   "H9": false
+  },
+  "C8_checks": {
+   "K1": true,
+   "K2": true,
+   "K3": true,
+   "K4": true,
+   "K5": true,
+   "K7": true,
+   "K8": true,
+   "K9": true
+  },
+  "X3_pass": [
+   13,
+   13
+  ]
+ }
+}

@@ -17,6 +17,13 @@
 | v3s (regraded under the 11-04 lift) | **UNDECIDED, reading PASS** | **UNDECIDED, reading PASS** | none in G1–G4; inherits C6's failed check C2 (float). The 10-24 verdict stands | `v3s/` |
 
 - **v3s update, 11-04:** `../C6P_cassini_high_precision/` reruns C6's C2 at 30, 50 and 80 digits and under an analytic rewrite, and the check clears. The Solar-System gate (Cassini Q2, planets, γ − 1) is then a **clean PASS on both footings**: Q2 is ≥ 4.8e7 inside Hees, and the worst planet is Mars at 0.173 of its bound at 24 pc. This adopts nothing, and the 10-24 verdict stands.
+- **v3s weak spots, 11-04:** `../V3W_v3s_weak_spots/`. Results by test:
+  - **W1 PASS.** γ − 1 = 0 and β = 1 are derived from the action, with remainders ≤ 1.3e-13 and ≤ 1.1e-12.
+  - **W3 PASS.** On KiDS isolated lenses M_lens/M_dyn,law = 1.13 ± 0.21 (canonical) and 1.03 ± 0.19 (alt); the M★ systematic dominates.
+  - **W4 split.** c_T = c and health on galaxy backgrounds PASS; health on the Solar-System background is UNDECIDED, because it was never run at β = η = 0.
+  - **W2 UNDECIDED.** C6's checks reproduce, but the in-window ladder misses its 2e-2 line at 2.3e-2.
+
+  This adopts nothing.
 
 G5 (a0 ∝ √(Gρ_DE) from the action): **by hand in every class.** KF1 finds nothing forced.
 
