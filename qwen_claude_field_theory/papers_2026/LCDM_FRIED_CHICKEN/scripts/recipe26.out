@@ -1,0 +1,57 @@
+sample: 171 galaxies, 3373 points; Y_disk 0.5, Y_bul 0.7
+H0 67.4 km/s/Mpc, Ode0 0.685; c sqrt(G rho_DE) 1.8727e-10; lib A0 9.3625e-11 (A0/that 0.4999)
+a_M = cH0/6 1.0914e-10 (1.166 a0); a_M = cH_inf/6 9.0330e-11 (0.965 a0); Hossenfelder c^2 sqrt(Lambda) 9.3885e-10 (10.03 a0)
+1+s < 0 (M_D^2 < 0, g_D set 0): 7 of 3373 points, in 4 of 171 galaxies; median 1+s 1.973, max 7.09
+
+== V0 point mass, a_M = cH0/6, 0 knobs 
+ rms to law 0.0877 dex [FAIL E1]; p95 per-galaxy 0.1052 [FAIL E2]; worst bin 0.1103 [FAIL E3]
+ bins -12.0:+0.058 -11.5:+0.070 -11.0:+0.086 -10.5:+0.103 -10.0:+0.110 -9.5:+0.100 -9.0:+0.076
+ a fit 1.531e-10; rms to observed 0.2135 dex, mean +0.0872
+
+== V1 extended eq 7.40, a_M = cH0/6, 0 knobs 
+ rms to law 0.1997 dex [FAIL E1]; p95 per-galaxy 0.2918 [FAIL E2]; worst bin 0.2042 [FAIL E3]
+ bins -12.0:+0.184 -11.5:+0.204 -11.0:+0.163 -10.5:+0.184 -10.0:+0.177 -9.5:+0.152 -9.0:+0.115
+ a fit 2.734e-10; rms to observed 0.2867 dex, mean +0.1816
+
+== V2 point mass, a_M = cH_inf/6 (de Sitter), 0 knobs 
+ rms to law 0.0642 dex [FAIL E1]; p95 per-galaxy 0.0865 [FAIL E2]; worst bin 0.0924 [FAIL E3]
+ bins -12.0:+0.022 -11.5:+0.037 -11.0:+0.057 -10.5:+0.080 -10.0:+0.092 -9.5:+0.088 -9.0:+0.068
+ a fit 1.292e-10; rms to observed 0.2046 dex, mean +0.0609
+
+== V3 extended eq 7.40, a_M = cH_inf/6 (de Sitter), 0 knobs 
+ rms to law 0.1729 dex [FAIL E1]; p95 per-galaxy 0.2551 [FAIL E2]; worst bin 0.1692 [FAIL E3]
+ bins -12.0:+0.148 -11.5:+0.169 -11.0:+0.132 -10.5:+0.158 -10.0:+0.156 -9.5:+0.136 -9.0:+0.104
+ a fit 2.305e-10; rms to observed 0.2684 dex, mean +0.1530
+
+== V5 Hossenfelder order-of-magnitude a = c^2 sqrt(Lambda), point mass, 0 knobs 
+ rms to law 0.4384 dex [FAIL E1]; p95 per-galaxy 0.4856 [FAIL E2]; worst bin 0.4876 [FAIL E3]
+ bins -12.0:+0.488 -11.5:+0.479 -11.0:+0.463 -10.5:+0.431 -10.0:+0.380 -9.5:+0.306 -9.0:+0.221
+ a fit 1.111e-09; rms to observed 0.4809 dex, mean +0.4346
+
+== V4 extended, one global factor f on cH0/6 tuned on all (1 knob: f 0.286, a 0.333 a0, kappa_eff 0.167; at bound False)
+ rms to law 0.0786 dex [FAIL E1]; p95 per-galaxy 0.1187 [FAIL E2]; worst bin 0.0644 [FAIL E3]
+ bins -12.0:-0.049 -11.5:-0.017 -11.0:-0.026 -10.5:+0.027 -10.0:+0.056 -9.5:+0.064 -9.0:+0.056
+ a fit 9.002e-11; rms to observed 0.2173 dex, mean +0.0060
+V4 holdout: f tuned on GS[::2] 0.283; unseen rms to law on GS[1::2] 0.0771 [FAIL]
+
+== V4p point mass, one global factor f on cH0/6 tuned on all (1 knob: f 0.577, a 0.673 a0, kappa_eff 0.336; at bound False)
+ rms to law 0.0392 dex [FAIL E1]; p95 per-galaxy 0.0546 [FAIL E2]; worst bin 0.0660 [FAIL E3]
+ bins -12.0:-0.044 -11.5:-0.024 -11.0:+0.004 -10.5:+0.038 -10.0:+0.061 -9.5:+0.066 -9.0:+0.054
+ a fit 9.378e-11; rms to observed 0.1976 dex, mean +0.0128
+V4p holdout: f tuned on GS[::2] 0.580; unseen rms to law on GS[1::2] 0.0378 [FAIL]
+
+DIAG (not a gate) V1 on in-regime points (g_b < cH0/2 and 1+s >= 0), 3015 of 3373: rms to law 0.2030, mean +0.1872; rms to observed 0.2910; law to observed on same points 0.1978
+
+REGIME: Sigma_B >= a0/(8 pi G) (g_b >= cH0/2 = 3.274e-10) at 351 of 3373 points; galaxies with any such point 34, with more than half 3
+REGIME: galaxies with 1+s < 0 somewhere 4; with a bulge component 32; flattened discs (not spherical) 171 of 171; isolation and quasi-static state not assessable from SPARC
+REGIME: galaxies with every point in regime (g_b < cH0/2 and 1+s >= 0): 134 of 171
+
+TIE GATES (A13 G1-G5)
+H (H0 today, H(z) at epoch): a_M 1.166 a0, kappa_eff 0.583 (+0.067 dex) [FAIL G1]; slopes +0.579 +0.933 [FAIL G2]; a(z)/a(0) 1.0: 1.790, 1.5: 2.368, 2.33: 3.510 [FAIL G3]; per-galaxy effective a (extended) over 79 hosts log M200 11-12.5: median 3.012 a0, rms 0.115 dex [FAIL G4]; g_D(10 kpc, 1e10 Msun) 0.42 a0 [PASS G5 by posit] -> NO TIE
+   point-mass form per-galaxy effective a: median 1.697 a0, rms 0.068 dex (diagnostic)
+H_inf de Sitter c sqrt(Lambda/3): a_M 0.965 a0, kappa_eff 0.482 (-0.016 dex) [PASS G1]; slopes +0.500 +0.500 [PASS G2]; a(z)/a(0) 1.0: 1.000, 1.5: 1.000, 2.33: 1.000 [PASS G3]; per-galaxy effective a (extended) over 79 hosts log M200 11-12.5: median 2.532 a0, rms 0.115 dex [FAIL G4]; g_D(10 kpc, 1e10 Msun) 0.38 a0 [PASS G5 by posit] -> NO TIE
+   point-mass form per-galaxy effective a: median 1.441 a0, rms 0.071 dex (diagnostic)
+V5 Hossenfelder a = c^2 sqrt(Lambda): kappa_eff 5.013 = sqrt(8 pi) (+1.001 dex) [FAIL G1]; slope 0.5 by construction; flat in z; prefactor not fixed in the paper
+
+law itself to observed: 0.1951 dex
+Rival language. Passing shows freedom, not evidence. kappa = 1/2 FITTED; not theory closed.
