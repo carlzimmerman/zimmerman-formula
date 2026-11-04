@@ -1,0 +1,39 @@
+FN4c stage 1. kappa = 1/2 FITTED; not theory closed.
+K1 catalogue: sha256 {'KiDS_DR4_brightsample.fits': True, 'KiDS_DR4_brightsample_LePhare.fits': True}, rows 1239422, ID equal True -> PASS
+  WL rows read 200,000 / 21,262,011; bright (MAG_AUTO<21) 11,841 [1 s, max RSS 0.90 GB]
+  WL rows read 4,200,000 / 21,262,011; bright (MAG_AUTO<21) 254,592 [2 s, max RSS 0.90 GB]
+  WL rows read 8,200,000 / 21,262,011; bright (MAG_AUTO<21) 537,939 [3 s, max RSS 0.90 GB]
+  WL rows read 12,200,000 / 21,262,011; bright (MAG_AUTO<21) 807,329 [4 s, max RSS 0.90 GB]
+  WL rows read 16,200,000 / 21,262,011; bright (MAG_AUTO<21) 1,053,624 [5 s, max RSS 0.90 GB]
+  WL rows read 20,200,000 / 21,262,011; bright (MAG_AUTO<21) 1,345,075 [5 s, max RSS 0.90 GB]
+P3a match: 45,672 of 1,239,422 bright rows (3.7 %) within 1"; median sep 0.000"
+K4 match quality: median |MAG_AUTO_CALIB - (MAG_AUTO - EXTINCTION_r)| = 0.0327 mag (90th pct 0.105); line 0.10 -> PASS
+fluxscale fs = (MAG_GAAP_r - MAG_AUTO_CALIB)/2.5 on matched rows: median +0.1823 dex, 16-84 % [+0.122, +0.251]; stand-in bins with >= 50 matched: 5 of 42
+K2 distance: D_A(0.05, 0.1, 0.25, 0.5) = [201.779, 381.003, 809.594, 1268.25] Mpc; astropy vs trapezoid max rel dev 4.8e-14 -> PASS
+K3 planted isolation: 43 of 43 classified as planted -> PASS
+K5 NV2 reproduction: pool 1,000,207, candidates 773,192, isolated 486,584 against NV2's 1,000,207 / 773,192 / 486,584 -> PASS [24 s, max RSS 2.02 GB]
+
+Rebuild (P1-P7), counts:
+PRIMARY                            pool 1,225,356  candidates  732,819  isolated  255,052  ( 34.8 %)  vs 259,383:   -1.7 % [27 s, max RSS 2.02 GB]
+
+Variants (diagnostic, frozen list; never replace the primary):
+V1 fs = 0 (MASS_BEST only)         pool 1,225,356  candidates  847,080  isolated  317,096  ( 37.4 %)  vs 259,383:  +22.3 % [29 s, max RSS 2.06 GB]
+V2 fs = +0.15 (NV2 stand-in)       pool 1,225,356  candidates  773,192  isolated  276,916  ( 35.8 %)  vs 259,383:   +6.8 % [32 s, max RSS 2.09 GB]
+V3 pool masked == 0                pool   990,141  candidates  732,819  isolated  296,197  ( 40.4 %)  vs 259,383:  +14.2 % [34 s, max RSS 2.09 GB]
+V4 comoving D_C                    pool 1,225,356  candidates  732,819  isolated  422,147  ( 57.6 %)  vs 259,383:  +62.8 % [37 s, max RSS 2.09 GB]
+V5 mass cut without +0.056         pool 1,225,356  candidates  769,169  isolated  273,483  ( 35.6 %)  vs 259,383:   +5.4 % [39 s, max RSS 2.09 GB]
+V6 unbinned 0.1 ratio              pool 1,225,356  candidates  732,819  isolated  255,063  ( 34.8 %)  vs 259,383:   -1.7 % [41 s, max RSS 2.09 GB]
+V7 lenses need a P3a match         pool 1,225,356  candidates   38,285  isolated   17,624  ( 46.0 %)  vs 259,383:  -93.2 % [42 s, max RSS 2.09 GB]
+
+Secondary comparisons with B21 App. A (reported, no line):
+  isolated fraction, r < 17.5: 27.4 % of candidates, 18.9 % of unmasked 0.1<z<0.5 rows (B21 32.0 %)
+  isolated fraction, r > 17.5: 35.0 % of candidates, 28.6 % of unmasked 0.1<z<0.5 rows (B21 36.8 %)
+  isolated lenses with r < 17.5: 4,669 (B21 about 3,800)
+  log mean M*: candidates 10.551 (B21 10.77), r<17.5 candidates 10.728 (10.78), isolated 10.624 (10.61)
+  log mean M_gal, isolated: 10.698 (B21 10.69)
+  share of isolated lenses whose fs is measured (P3a match): 6.9 %
+
+Checks: K1 True, K2 True, K3 True, K4 True, K5 True
+LABEL: REBUILD MATCHES. Primary N = 255,052 against 259,383 (-1.7 %), line 5 %.
+Closest variant: V6 unbinned (-1.7 %).
+done [43 s, max RSS 2.09 GB]
