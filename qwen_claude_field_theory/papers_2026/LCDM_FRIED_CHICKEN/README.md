@@ -2,7 +2,7 @@
 
 **RESEARCH EXPERIMENT, KEPT IN THIS FOLDER. NOT THE FRAMEWORK.** The owner does not believe any of this. It works out how a LCDM group might reverse-engineer the a0 law, so that the route is on record first and a swoop can be recognised. Nothing here is a framework result, and nothing here feeds the board, STANDING, PAPER67, the ledger or any lane. The particle, halo and condensate material is the rival's language only. The no-particle rule and the 11-01 retirement of the cold sector are unchanged.
 
-Working note, v1.9, DOI 10.5281/zenodo.23955711; v1.8 is 10.5281/zenodo.23950940, v1.7 is 10.5281/zenodo.23946231, v1.6 is 10.5281/zenodo.23921012, v1.5 is 10.5281/zenodo.23918073, v1.4 is 10.5281/zenodo.23903839, v1.3 is 10.5281/zenodo.23902787, v1.2 is 10.5281/zenodo.23902466, v1.1 is 10.5281/zenodo.23901396, v1.0 is 10.5281/zenodo.23897582. How exactly LCDM's knobs can reproduce the law on real SPARC baryons, and what each match costs. Rival-flavoured exercise; adopts nothing and reinstates nothing. kappa = 1/2 FITTED; not theory closed.
+Working note, v2.0, DOI 10.5281/zenodo.23958263; v1.9 is 10.5281/zenodo.23955711, v1.8 is 10.5281/zenodo.23950940, v1.7 is 10.5281/zenodo.23946231, v1.6 is 10.5281/zenodo.23921012, v1.5 is 10.5281/zenodo.23918073, v1.4 is 10.5281/zenodo.23903839, v1.3 is 10.5281/zenodo.23902787, v1.2 is 10.5281/zenodo.23902466, v1.1 is 10.5281/zenodo.23901396, v1.0 is 10.5281/zenodo.23897582. How exactly LCDM's knobs can reproduce the law on real SPARC baryons, and what each match costs. Rival-flavoured exercise; adopts nothing and reinstates nothing. kappa = 1/2 FITTED; not theory closed.
 
 - `lcdm_fried_chicken.tex` / `.pdf`: the paper. Rebuild: `tectonic lcdm_fried_chicken.tex`. Check: `python3 audit.py`.
 - `FROZEN_RECIPE.md`: targets, recipes, Amendments A1 to A3, and the cosmology bug note.
@@ -43,7 +43,7 @@ Bibliography entries are from memory and were not checked against the journals. 
 - A23 (`recipe25`), dipolar DM (Blanchet): paper's cubic W fails 0.0392. The free function W reaches the law exactly (the law is one W; 4th-order expansion, 3 knobs, 0.0036, unseen 0.0033): a shape fit, since the model is a MOND reformulation, not LCDM. Lambda-a0 link is imposed ("of the order of"), slope 0 as written.
 - A24 (`recipe26`), Verlinde emergent gravity: fails E1 in every reading (best 0.0392, one knob). H0 reading kappa_eff 0.583 and 3.5x by z 2.33; de Sitter reading kappa 0.482, slope 0.5, flat in z, but G4 0.115 dex and H_inf is imposed: the Lambda coincidence with 1/6.
 
-**Not in any deposit: A25 to A28 (`FROZEN_A25.md` to `FROZEN_A28.md`).** Aimed at the law and the tie together. None reaches both; none ties a to rho_DE.
+**In v2.0: A25 to A28 (`FROZEN_A25.md` to `FROZEN_A28.md`).** Aimed at the law and the tie together. None reaches both; none ties a to rho_DE.
 - A25 (`recipe27`), 28 LCDM ingredients stacked into one global recipe: NOT EXACT at any knob count. Pareto curve flattens at 0.022 dex (E2 0.055 throughout); widened bounds 0.0204, holdout 0.0370. kappa 0.497 is inherited from the target; G2 slopes +1.3 to +4.4, a(z 2.33)/a(0) 2.8 to 3.5.
 - A26 (`recipe28`), the 14-knob recipe in other cosmologies and epochs: G2 slope +0.19 to +1.45 (target 0.5), a(z 2.33)/a(0) 3.0 to 4.6. Faking the tie needs a rho_DE hand term (H alone reaches +0.43) and costs the law's shape at high z.
 - A27 (`recipe29`), every acceleration built from LCDM's constants: 104 of 199,584 expressions pass G1 to G4, the number chance gives (63 distinct values against 62.1). All fail G5: none reaches galaxy radii.
