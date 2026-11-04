@@ -1,0 +1,30 @@
+[CW3] external field = newton; MUTATE nu == 1: True
+R1 Cassini [canonical] constant xi 0.5 r_M: 0 x ceiling (KT25 1.179): PASS
+R2 [canonical] point mass deep limit at 100 r_M: xi_tid / (kappa r_M) 0.00667: PASS
+T1 Cassini [canonical] tidal rule: q 0 = 0 x ceiling: PASS; xi_tid min 3.34e-06 r_M at r = 9.97e+04 r_M, at Saturn 277 r_M
+R1 Cassini [alt] constant xi 0.5 r_M: 0 x ceiling (KT25 2.97): PASS
+R2 [alt] point mass deep limit at 100 r_M: xi_tid / (kappa r_M) 0.00667: PASS
+T1 Cassini [alt] tidal rule: q 0 = 0 x ceiling: PASS; xi_tid min 3.34e-06 r_M at r = 9.97e+04 r_M, at Saturn 252 r_M
+
+dwarfs 24
+R1 dwarfs [canonical] constant 0.5 r_M: 3/24 (CZ1 E1 18/24): PASS
+T2 dwarfs [canonical] tidal rule: 3/24 (plain 3/24, xi 0.5 r_M 3/24): FAIL; beside, xi_tid(a) one value 3/24; Fornax pred 4.8 (obs 11.7), xi_tid(a) 0.175 vs r_M/2 0.121 kpc
+    xi_tid(a)/(r_M/2) per dwarf at Upsilon 2: Draco 0.56, Ursa Minor 0.68, Sculptor 1.3, Sextans (I) 0.22, Carina 0.57, Fornax 1.4, Canes Venatici (I) 0.2, Leo II 1.1, Leo I 2.1, Andromeda IX 0.16*, Andromeda I 0.7, Andromeda III 0.45*, Andromeda V 0.45, Andromeda XIV 0.28, Andromeda XV 0.73*, Andromeda II 0.55, Andromeda VII 0.91, LGS 3 (Local Group Suspect 3) 0.54, Andromeda VI 0.74, Cetus 0.53, Leo T 1.1, WLM (Wolf-Lundmark-Melotte) 0.99, Leo A 1.7, Tucana 0.6
+R1 dwarfs [alt] constant 0.5 r_M: 3/24 (CZ1 E1 18/24): PASS
+T2 dwarfs [alt] tidal rule: 3/24 (plain 3/24, xi 0.5 r_M 3/24): FAIL; beside, xi_tid(a) one value 3/24; Fornax pred 4.8 (obs 11.7), xi_tid(a) 0.145 vs r_M/2 0.11 kpc
+    xi_tid(a)/(r_M/2) per dwarf at Upsilon 2: Draco 0.51, Ursa Minor 0.62, Sculptor 1.2, Sextans (I) 0.2, Carina 0.52, Fornax 1.3, Canes Venatici (I) 0.18, Leo II 1, Leo I 1.9, Andromeda IX 0.15*, Andromeda I 0.63, Andromeda III 0.41*, Andromeda V 0.41, Andromeda XIV 0.26, Andromeda XV 0.67*, Andromeda II 0.5, Andromeda VII 0.83, LGS 3 (Local Group Suspect 3) 0.49, Andromeda VI 0.68, Cetus 0.48, Leo T 1, WLM (Wolf-Lundmark-Melotte) 0.9, Leo A 1.5, Tucana 0.54
+
+SPARC galaxies 155, points 2788
+R1 SPARC [canonical] constant 0.5 r_M: d rms +0.0000 (KT25 +0.0021): PASS
+    beside: data points with xi < 0.01 kpc (tau_TF near a zero) 0.035
+T3 SPARC [canonical] plain rms 0.5730 med +0.4351 inner +0.2079; local rms 0.5730 med +0.4351 inner +0.2079; d rms +0.0000: FAIL
+    xi_tid at data points 5/50/95 % 0.0181/1.81/23.7 kpc, clipped 0.006; total mass ratio min/med/max 0.462/0.890/1.439
+    largest per-galaxy rms rises: UGCA442 +0.000; UGCA281 +0.000; UGC12732 +0.000; UGC12632 +0.000; UGC12506 +0.000; UGC11914 +0.000
+R1 SPARC [alt] constant 0.5 r_M: d rms +0.0000 (KT25 -0.0006): PASS
+    beside: data points with xi < 0.01 kpc (tau_TF near a zero) 0.041
+T3 SPARC [alt] plain rms 0.5730 med +0.4351 inner +0.2079; local rms 0.5730 med +0.4351 inner +0.2079; d rms +0.0000: FAIL
+    xi_tid at data points 5/50/95 % 0.015/1.5/19.8 kpc, clipped 0.006; total mass ratio min/med/max 0.500/0.893/1.433
+    largest per-galaxy rms rises: UGCA442 +0.000; UGCA281 +0.000; UGC12732 +0.000; UGC12632 +0.000; UGC12506 +0.000; UGC11914 +0.000
+LABEL [canonical]: FAILS: dwarfs, SPARC (T0 Milky Way in kt30_mw)
+LABEL [alt]: FAILS: dwarfs, SPARC (T0 Milky Way in kt30_mw)
+failed checks: 0
