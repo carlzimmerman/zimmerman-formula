@@ -63,3 +63,5 @@ AZ17 completes six P4 lanes. Its full radial energy solve is NO VERDICT because 
 ## Subsequent active kappa goal
 
 The user subsequently requested an actual kappa=.5 derivation, Lean certification and a push once successful. The earlier completed research/reporting phase does not satisfy that new goal. AZ18 adds a PASS formal premise audit (five Lean theorems plus a rejected false control); it derives no physical kappa and earns no requirement/RQ3 row. See KAPPA_TARGET.md. The new objective remains active; nothing has been pushed.
+
+Resumed kappa work: AZ19 is a new dynamical selection test. Promoting b to a variable stabilized by the existing response fails: equilibrium b scales as1/g and the force becomes linear, while vacuum does not select b. Ten controls pass, including Lean witnesses and a rejected mutation. No physical coefficient or full requirement row is earned; the active kappa goal remains unmet.

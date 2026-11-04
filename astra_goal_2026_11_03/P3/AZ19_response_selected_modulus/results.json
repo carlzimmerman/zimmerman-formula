@@ -1,0 +1,65 @@
+{
+  "label": "FAIL",
+  "disclaimer": "\u03ba = \u00bd FITTED; not theory closed",
+  "scope": "Response-driven modulus fails universal-normalization/nonlinear-force selection; no physical kappa derived",
+  "footings": {
+    "canonical": {
+      "mechanism": "FAIL",
+      "physical_kappa": "NOT EVALUABLE"
+    },
+    "alt": {
+      "mechanism": "FAIL",
+      "physical_kappa": "NOT EVALUABLE"
+    }
+  },
+  "checks": {
+    "chi_equation_known_branch": true,
+    "reduced_derivative_chain_rule": true,
+    "b_stationarity_exact": true,
+    "potential_monotonicity_identity": true,
+    "reduced_curvature_identity": true,
+    "MUTATE_omitted_b_variation_detected": true,
+    "source_dependent_branch_identity": true,
+    "Lean_known_and_source_controls": true,
+    "Lean_MUTATE_rejected": true,
+    "no_sorry_axiom": true
+  },
+  "symbolic": {
+    "E_b": "-2*s**2*(C + chi**2 - 4*chi + 2*log(chi))/b**3",
+    "E_chi": "-2*chi*g**2 + s**2*(2*chi - 4 + 2/chi)/b**2",
+    "U_prime": "2*(chi - 1)**2/chi",
+    "on_branch_E_chichi": "4*s**2*(chi - 1)/(b**2*chi**2)",
+    "on_branch_reduced_b_curvature": "-4*s**2*(chi - 1)**3/b**4",
+    "b_stationary": "s*(1-chi_root)/(chi_root*g)",
+    "mu_stationary": "1-chi_root**2; independent of g",
+    "physical_root_condition": "C>3; C=3 has chi_root=1, incompatible with g>0 and finite b>0"
+  },
+  "runs": {
+    "Certificate": {
+      "exit": 0,
+      "log_sha256": "1a6ded28e74e63beede999408ec3276c35a0f7beef8d5f385ef65cde19333e0f"
+    },
+    "Mutate": {
+      "exit": 1,
+      "log_sha256": "930541dc38e7e1e252174c2052c7f912eb47ad071cec7d92b22d32083444b6e9"
+    }
+  },
+  "free_parameters": [
+    "C vacuum offset FITTED/unselected",
+    "Zb positive kinetic coefficient FITTED/unselected",
+    "s=c sqrt(G rho), symbolic; no numerical density"
+  ],
+  "limits": [
+    "Constant stationary local patches only",
+    "No no-go for spatial gradients, time-dependent fields or additional dynamics",
+    "Schur curvature is not full covariant stability",
+    "Lean certifies branch witnesses, not the Sympy variational derivation or physical normalization"
+  ],
+  "revision": "285353a57bc1c21662c5565830bbc97ac5b0f7f9",
+  "inputs": {
+    "astra_goal_2026_11_03/P3/AZ19_response_selected_modulus/CRITERIA.md": "bd0f56c1b4d48e15c5be7123a33947040d876e085788ae49017867253c1f5687",
+    "astra_goal_2026_11_03/P3/AZ19_response_selected_modulus/run.py": "8129c4f8d7875c483a4662391a44fbd3b3dc50b4cdd70c26ef09130d94f20748",
+    "astra_goal_2026_11_03/P3/AZ19_response_selected_modulus/Certificate.lean": "432fd651e50b107b44de57da01065fd27e8d319765f2c5660bef1b0d48ed8b97",
+    "astra_goal_2026_11_03/P3/AZ19_response_selected_modulus/Mutate.lean": "a88d229219451f2822857fd0bedf997208c5f1fde39fc15d6fb23a852284afef"
+  }
+}
