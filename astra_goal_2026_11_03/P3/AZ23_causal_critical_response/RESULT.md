@@ -51,3 +51,5 @@ The next concrete calculation is to derive the leading nonlinear term from the *
 Reproduce: `python3 astra_goal_2026_11_03/P3/AZ23_causal_critical_response/run.py`.
 
 H,B,k_com,Q and initial data remain symbolic, unselected/FITTED if assigned. F,c1,c2,m and cusp width are inherited unselected model choices. No data download, new particle, cold component, coefficient scan or remote push. The goal of deriving κ=½ remains unmet.
+
+Subsequent scope update (AZ24, 2026-11-04): the undivided nonlinear momentum constraint imposes a one-sided cusp domain that this source particular solution can violate. The formal linear identities above stand, but their unrestricted physical extrapolation does not. See AZ24_nonlinear_cusp_constraints/RESULT.md for the domain test, and AZ25_nonlinear_cosmic_attractor/RESULT.md for an explicitly unselected two-sided completion and its homogeneous attractor. This update changes the input hash of this document for downstream historical audits; it does not claim their historical hashes still match.
