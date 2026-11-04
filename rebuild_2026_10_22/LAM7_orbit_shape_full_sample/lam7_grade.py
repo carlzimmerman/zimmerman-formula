@@ -2,7 +2,8 @@
 Run: python3 -I lam7_grade.py [MUTATE]. Seconds, single thread. kappa = 1/2 FITTED; footings never pooled; not theory closed."""
 import os, sys, json
 import numpy as np
-HERE = os.path.dirname(os.path.abspath(__file__)); RB = os.path.dirname(HERE); MODE = sys.argv[1] if len(sys.argv) > 1 else "REAL"
+HERE = os.path.dirname(os.path.abspath(__file__)); RB = os.path.dirname(HERE); SIG100 = "--sig100" in sys.argv; sys.argv = [a for a in sys.argv if a != "--sig100"]; MODE = sys.argv[1] if len(sys.argv) > 1 else "REAL"
+ODIR = os.path.join(RB, "LAM8_orbit_shape_resolved_sigma") if SIG100 else HERE; PFX = "lam8_grade" if SIG100 else "lam7_grade"  # LAM8: Sigma_Re >= 100 km/s
 KU2 = os.path.join(RB, "KU2_kappa_universality_model_choice", "ku2.py"); L4 = os.path.join(RB, "LAM4_whole_galaxy_absorption")
 OUT = []; RES = {"lane": "LAM7", "mode": MODE}
 def P(s=""): print(s, flush=True); OUT.append(s)
@@ -23,7 +24,9 @@ def arrays(rows):
 new, nn = load(os.path.join(HERE, "lam7_sample.csv"), os.path.join(HERE, "lam7_fit.jsonl"))
 old, _ = load(os.path.join(L4, "lam4_sample.csv"), os.path.join(L4, "lam4_fit.jsonl"))
 ki, h4, sg, sn, drop, miss = arrays(new)
-P(f"LAM7 mode {MODE}. NEW sample {nn}; usable {len(ki)}; dropped (sigma <= 0 or |h4| >= 0.3) {drop}; missing/error fits {miss}")
+if SIG100:
+    c = K["sig"][ki] >= 100; ki, h4, sg, sn = ki[c], h4[c], sg[c], sn[c]
+P(f"{PFX[:4].upper()} mode {MODE}{' (Sigma_Re >= 100)' if SIG100 else ''}; usable after cut {len(ki)}. NEW sample {nn}; usable {len(ki)}; dropped (sigma <= 0 or |h4| >= 0.3) {drop}; missing/error fits {miss}")
 gas = {}
 for l in open(os.path.join(RB, "LAM2_gas_poor_lambda_estimator", "lam2_sample.csv")).readlines()[1:]:
     a = l.strip().split(","); gas[int(a[0])] = int(a[5])
@@ -51,20 +54,20 @@ def resid_for(mt, rh, a0):
     return np.where(ok, K["resid"](np.where(ok, go, 1), np.where(ok, gb, 1), a0), np.nan)
 ref = json.load(open(os.path.join(os.path.dirname(KU2), "ku2.json")))
 for foot, a0 in K["A0"].items():
-    rall = resid_for(K["mtm"], K["rhm"], a0); g = np.isfinite(rall); Dv, _ = K["Dstat"](rall[g], K["slow"][g], K["cell"][g]); c2 = abs(Dv - ref[foot]) <= 1e-6
+    rall = resid_for(K["mtm"], K["rhm"], a0); g = np.isfinite(rall); Dv, _ = K["Dstat"](rall[g], K["slow"][g], K["cell"][g]); c2 = abs(Dv - ref[foot]["D"]) <= 1e-6
     r = rall[ki]; grp = K["cell"][ki] * 2 + K["slow"][ki].astype(int); m = np.isfinite(r)
     r, h, gr, sl, snv, kk = r[m], h4[m].copy(), grp[m], K["slow"][ki][m], sn[m], ki[m]
     iqr = float(np.subtract(*np.percentile(h, [75, 25])))
     if MODE == "MUTATE":
         for gg in np.unique(gr): j = np.flatnonzero(gr == gg); h[j] = h[j][rng.permutation(len(j))]
     E, N = effect(r, h, gr, iqr); lo, hi = boot(r, h, gr, iqr); c1 = N >= 3000
-    P(f"\n[{foot}] C2 KU2 D {Dv:+.6f} vs {ref[foot]:+.6f}: {'PASS' if c2 else 'FAIL'}; C1 N in groups {N} (>= 3000): {'PASS' if c1 else 'FAIL'}; IQR(h4) {iqr:.4f}")
+    P(f"\n[{foot}] C2 KU2 D {Dv:+.6f} vs {ref[foot]["D"]:+.6f}: {'PASS' if c2 else 'FAIL'}; C1 N in groups {N} (>= 3000): {'PASS' if c1 else 'FAIL'}; IQR(h4) {iqr:.4f}")
     P(f"[{foot}] E = {E:+.4f} ln [95 % {lo:+.4f}, {hi:+.4f}]")
     R = dict(N=N, iqr=iqr, E=E, lo=lo, hi=hi, C1=bool(c1), C2=bool(c2), K1=bool(k1))
     if MODE == "MUTATE":
         R["M1_pass"] = bool(lo <= 0 <= hi); P(f"[{foot}] M1 interval includes 0: {'PASS' if R['M1_pass'] else 'FAIL'}")
     else:
-        mp = os.path.join(HERE, "lam7_grade_MUTATE.json"); M1 = json.load(open(mp))[foot]["M1_pass"] if os.path.exists(mp) else None
+        mp = os.path.join(ODIR, f"{PFX}_MUTATE.json"); M1 = json.load(open(mp))[foot]["M1_pass"] if os.path.exists(mp) else None
         if not (c1 and c2 and k1) or M1 is False: lab = "NO VERDICT"
         elif K2 is not None and not K2["pass_"]: lab = "h4 NOT MEASURABLE"
         elif abs(E) >= 0.05 and (lo > 0 or hi < 0): lab = "TRACKS ORBIT SHAPE"
@@ -84,5 +87,5 @@ for foot, a0 in K["A0"].items():
         P(f"[{foot}] rows (ungraded): " + "; ".join(f"{k} {v:+.4f}" for k, v in rows.items())); R["rows"] = rows
     RES[foot] = R
 sfx = "" if MODE == "REAL" else f"_{MODE}"
-open(os.path.join(HERE, f"lam7_grade{sfx}.out"), "w").write("\n".join(OUT) + "\n")
-json.dump(RES, open(os.path.join(HERE, f"lam7_grade{sfx}.json"), "w"), indent=1)
+open(os.path.join(ODIR, f"{PFX}{sfx}.out"), "w").write("\n".join(OUT) + "\n")
+json.dump(RES, open(os.path.join(ODIR, f"{PFX}{sfx}.json"), "w"), indent=1)
