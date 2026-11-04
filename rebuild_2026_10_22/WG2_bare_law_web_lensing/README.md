@@ -85,3 +85,7 @@ r is the model's lensing amplitude over the measured one (PR4, PACKAGE rule; PLA
 - `python3 wg2_pm.py checks`
 - `python3 wg2_run_all.py`: about 45 min, at most 5 single-thread runs under 1 GB at a time.
 - `python3 wg2_grade.py`, then `python3 wg2_grade.py --mutate` (after `WG2_MUTATE=1 python3 wg2_pm.py checks`).
+
+## Correction 2026-11-04 (after WG3, d4d81be402)
+"No rule on record lands in between" (Result section) was written when only R0 and R1 had been tried. WG3 then ran the record's one web rule, CFG354's bound-only switch T1. From a baryons-only start it never turns on and fails low with law-off. Read the line as: **no rule tried lands there: off, QUMOND on, or the record's bound-only switch (T1)**. No number here changes.
+
