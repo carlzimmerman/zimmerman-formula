@@ -16,3 +16,5 @@ New survivors or improved requirement/RQ3 coverage: none. Exact next calculation
 ## New user goal: derive kappa and certify in Lean
 
 AZ18 is a formal premise audit, not a KC1-eligible physical derivation attempt. Five Lean theorems and a rejected false mutation establish that the two-channel certificate requires an independent normalization/reciprocal-count premise. PASS of that audit; physical derivation NOT EVALUABLE on both footings. The goal remains unmet and active. See KAPPA_TARGET.md and AZ18_certificate_premises/RESULT.md. A successful physical derivation, not this audit, is the condition for the newly authorized push.
+
+Goal blocker checkpoint: physical derivation remains NOT EVALUABLE. AZ18's six audit checks were rerun successfully, but they certify only the premise distinction. No normalization selector emerged from the checked symmetry/vacuum routes or current repository state. The blocked audit is in KAPPA_BLOCKER_AUDIT.md. This is not scientific closure or a universal no-go; an additional independently justified physical mechanism is needed before a genuine derivation and its requested push.
