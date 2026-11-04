@@ -67,3 +67,9 @@ Bibliography entries are from memory and were not checked against the journals. 
 - A42 (`recipe43`), decaying DM, primordial black holes, ETHOS/SIMP, DM-only Yukawa: best 0.0717 (repulsive Yukawa at its bound); every fitted particle parameter sits beyond published limits.
 - A43 (`recipe44`), dark mass tracing the gas and DM-baryon scattering: 0.21 to 0.41 for scaled-HI, 0.13 for scattering at 104x the CMB limit.
 - A44 (`recipe45`), halo shape, truncation, substructure, environment: at most 0.001 dex gained on the best stack; the gap to 0.020 stays.
+
+**Not in any deposit: A45 to A48, modified gravity and rotation-curve systematics.** None reaches the law with a native rho_DE tie.
+- A45 (`recipe46`), DGP/Galileon, beyond-Horndeski/DHOST, Mashhoon non-local gravity: best 0.099 with halos; no acceleration scale tied to rho_DE; Cassini fails where fitted.
+- A46 (`recipe47`), TeVeS, Einstein-aether, AeST, BIMOND, MOG, conformal gravity: free interpolations can be chosen as the law (a choice, not a derivation); a0 is a Lagrangian constant everywhere; MOG 0.377 and conformal gravity 0.136 as published.
+- A47 (`recipe48`), non-circular motions, bars, pressure support, disc thickness: move LCDM mocks part way (a0 +0.24 to +0.10 dex) and loosen the relation. Applying the corrections to SPARC raises the law's own fitted a0 by up to +0.10 dex (upper bracket), recorded here only.
+- A48 (`recipe49`), beam smearing, selection, M/L and gas systematics: best 0.119 with 8 knobs; a weak-halo selection weight reaches the scale (kappa 0.518) but not the shape. The M/L and gas ranges move the law's own refit a0 by -0.17 to +0.16 dex, recorded here only.
