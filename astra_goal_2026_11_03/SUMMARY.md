@@ -59,3 +59,7 @@ AZ15 extends the same quartic-gradient candidate to a conditional general densit
 AZ16 finds a new limitation of the quartic-gradient lead: smooth centrally decreasing spherical equilibria FAIL; a C¹ weak core remains NO VERDICT globally. Seven controls pass. A proposed quadratic regularizer would introduce nonzero linear dispersion and a new FITTED q0; it is not adopted. Concentration bounds remain conditional and do not establish weak evolution or a galaxy contraction pass.
 
 AZ17 completes six P4 lanes. Its full radial energy solve is NO VERDICT because the coarse optimizer hits the frozen iteration cap; refined virial/gradient/mesh checks pass, and the failure is preserved. No empirical rows are earned. P4 is checkpointed and work moves to another problem under the six-lane convergence rule.
+
+## Subsequent active kappa goal
+
+The user subsequently requested an actual kappa=.5 derivation, Lean certification and a push once successful. The earlier completed research/reporting phase does not satisfy that new goal. AZ18 adds a PASS formal premise audit (five Lean theorems plus a rejected false control); it derives no physical kappa and earns no requirement/RQ3 row. See KAPPA_TARGET.md. The new objective remains active; nothing has been pushed.
