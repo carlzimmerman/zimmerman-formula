@@ -123,7 +123,8 @@ def check(rule, a0, c, Eb, cx, RT=None):
     ext = []
     for k in ("XT", "ST", "SH", "XH", "LT"):
         A = K.BLOCKS[k][0]; E = Eb[k][0]; m = np.isfinite(E); ext.append((k, K.featsE(A[m], E[m])))
-    Ecx = np.array([K.cx_E(q, c) for q in cx]); m = np.isfinite(Ecx); ext.append(("CX1", K.cx_F([q for q, ok in zip(cx, m) if ok], Ecx[m])))
+    Ecx = np.array([K.cx_E(q, c) for q in cx]); m = np.isfinite(Ecx)
+    if m.any(): ext.append(("CX1", K.cx_F([q for q, ok in zip(cx, m) if ok], Ecx[m])))   # NV2: no CX1 row has E1; an empty set crashes NP2's checker
     o = N.check(rule, a0, ext); R_ = rs_dict(rule); e2e = {}; tot = 0
     for L in C.CX_LINES + ("SPARC",):
         if L == "SPARC":
