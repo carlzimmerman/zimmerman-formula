@@ -1,0 +1,189 @@
+sample: 171 galaxies, 3373 points; Y_disk 0.5, Y_bul 0.7
+cosmology OL 0.685: c sqrt(G rho_DE) AC 1.8727e-10, A0 9.3625e-11 (kappa 0.4999)
+GT targets 0.5 log10 rho_DE(z)/rho_DE0 (CPL w0 -0.75, wa -0.86): z 1.0: +0.0047, z 1.5: -0.0280, z 2.33: -0.0860
+law boost g_law/g_b on SPARC: median 2.80, p95 6.46, max 21.69; a linear boost (1 + 2 beta^2) reaching the max needs beta >= 3.22
+
+######## (a) k-mouflage
+control kmy: unscreened y/(2b^2 gN) 1.000000 (->1); screened y 7.2473e-10 vs asymptote a_s (2b^2 gN/a_s)^(1/5) 7.2478e-10
+natural: m 3, K0 1, beta 0.1, M^4 = rho_DE: a_K = sqrt(16 pi) beta AC = 1.3277e-10, a_s = a_K 3^(-1/4) = 1.0089e-10; analytic kappa_* (lambda 1) = sqrt(4 pi)/beta = 35.449
+
+== KA0 natural no halo (0 knobs; beta 0.1, a_s 1.0089e-10 = 1.078 a0, n 2.000, 2beta^2 0.02)
+ rms to law 0.4905 dex [FAIL E1]; p95 per-galaxy 0.7844 [FAIL E2]; worst bin 0.8339 [FAIL E3]
+ bins -12.0:-0.834 -11.5:-0.648 -11.0:-0.456 -10.5:-0.269 -10.0:-0.139 -9.5:-0.056 -9.0:-0.015
+ a fit 1.000e-12; rms to observed 0.5230 dex, mean -0.4221
+ switch in g_N: g_* = a_s/(2 beta^2) = 5.0443e-09 = 53.88 a0, kappa_* = g_*/AC 26.94
+ fit_a of the law form to the model curve: 1.0000e-12
+ KA0 natural no halo kappa_eff 0.00534 (-1.971 dex) [FAIL G1]
+ KA0 natural no halo G4 per-galaxy fit_a over 79 hosts log M200 11-12.5: rms 0.067 dex (all 171: 0.090) [PASS G4]
+ KA0 natural no halo G5 median y/g_N 0.02 [FAIL G5]
+ KA0 natural no halo G2: 0.5 by construction (M^4 = rho_DE imposed) => PASS by construction, not derived
+ KA0 natural no halo G3: ratio 1 at all z, trivial PASS
+ KA0 natural no halo GT (a(z)/a(0) = 1): residuals 1.0: -0.0047, 1.5: +0.0280, 2.33: +0.0860 [FAIL GT]
+ KA0 natural no halo Cassini: y at Saturn 6.688e-10 m/s^2 = 7.14 a0 [FAIL <1e-3 a0]; |gamma-1| at 1.6 R_sun 2.190e-10 [PASS <2.3e-5]; y/g_N at Saturn 1.04e-05 => FAIL Cassini
+
+== KH0 natural LCDM + k-mouflage (0 knobs; beta 0.1, a_s 1.0089e-10 = 1.078 a0, n 2.000, 2beta^2 0.02)
+ rms to law 0.1468 dex [FAIL E1]; p95 per-galaxy 0.2949 [FAIL E2]; worst bin 0.1699 [FAIL E3]
+ bins -12.0:+0.170 -11.5:+0.107 -11.0:+0.102 -10.5:+0.059 -10.0:+0.049 -9.5:+0.022 -9.0:+0.012
+ a fit 1.655e-10; rms to observed 0.2453 dex, mean +0.0876
+ switch in g_N: g_* = a_s/(2 beta^2) = 5.0443e-09 = 53.88 a0, kappa_* = g_*/AC 26.94
+ fit_a of the law form to the model curve: 1.6552e-10
+ KH0 natural LCDM + k-mouflage kappa_eff 0.8839 (+0.247 dex) [FAIL G1]
+ KH0 natural LCDM + k-mouflage G4 per-galaxy fit_a over 79 hosts log M200 11-12.5: rms 0.128 dex (all 171: 0.208) [FAIL G4]
+ KH0 natural LCDM + k-mouflage G5 median y/g_N 0.02 [FAIL G5]
+ KH0 natural LCDM + k-mouflage G2: 0.5 by construction (M^4 = rho_DE imposed) => PASS by construction, not derived
+ KH0 natural LCDM + k-mouflage G3: ratio 1 at all z, trivial PASS
+ KH0 natural LCDM + k-mouflage GT (a(z)/a(0) = 1): residuals 1.0: -0.0047, 1.5: +0.0280, 2.33: +0.0860 [FAIL GT]
+ KH0 natural LCDM + k-mouflage Cassini: y at Saturn 6.688e-10 m/s^2 = 7.14 a0 [FAIL <1e-3 a0]; |gamma-1| at 1.6 R_sun 2.190e-10 [PASS <2.3e-5]; y/g_N at Saturn 1.04e-05 => FAIL Cassini
+
+KA1 knobs [0.4254, -0.8991, 0.9671] at bound []
+
+== KA1 shape fit no halo (3 knobs; beta 2.663, a_s 1.1812e-11 = 0.1262 a0, n 0.967, 2beta^2 14.18)
+ rms to law 0.0086 dex [PASS E1]; p95 per-galaxy 0.0121 [PASS E2]; worst bin 0.0169 [PASS E3]
+ bins -12.0:+0.006 -11.5:+0.002 -11.0:-0.007 -10.5:-0.004 -10.0:+0.008 -9.5:+0.017 -9.0:+0.016
+ a fit 9.359e-11; rms to observed 0.1961 dex, mean +0.0028
+ switch in g_N: g_* = a_s/(2 beta^2) = 8.3275e-13 = 0.008894 a0, kappa_* = g_*/AC 0.004447
+ fit_a of the law form to the model curve: 9.3594e-11
+ KA1 shape fit no halo kappa_eff 0.4998 (-0.000 dex) [PASS G1]
+ KA1 shape fit no halo G4 per-galaxy fit_a over 79 hosts log M200 11-12.5: rms 0.011 dex (all 171: 0.013) [PASS G4]
+ KA1 shape fit no halo G5 median y/g_N 1.749 [PASS G5]
+ KA1 shape fit no halo G2: 0 natively (M, beta Lagrangian constants) => FAIL
+ KA1 shape fit no halo G3: ratio 1 at all z, trivial PASS
+ KA1 shape fit no halo GT (a(z)/a(0) = 1): residuals 1.0: -0.0047, 1.5: +0.0280, 2.33: +0.0860 [FAIL GT]
+ KA1 shape fit no halo Cassini: y at Saturn 5.770e-09 m/s^2 = 61.6 a0 [FAIL <1e-3 a0]; |gamma-1| at 1.6 R_sun 1.419e-08 [PASS <2.3e-5]; y/g_N at Saturn 8.93e-05 => FAIL Cassini
+ KA1 holdout unseen rms 0.0091 [PASS]
+
+KH1 knobs [1.201, -2.0584, 10.0, 0.3831] at bound [2]
+
+== KH1 shape fit LCDM + k-mouflage (4 knobs; beta 15.89, a_s 8.1846e-13 = 0.008742 a0, n 10.000, 2beta^2 504.8)
+ rms to law 0.1028 dex [FAIL E1]; p95 per-galaxy 0.2524 [FAIL E2]; worst bin 0.1134 [FAIL E3]
+ bins -12.0:+0.113 -11.5:+0.025 -11.0:-0.016 -10.5:-0.031 -10.0:-0.018 -9.5:-0.011 -9.0:-0.004
+ a fit 1.007e-10; rms to observed 0.2309 dex, mean +0.0066
+ switch in g_N: g_* = a_s/(2 beta^2) = 1.6213e-15 = 1.732e-05 a0, kappa_* = g_*/AC 8.658e-06
+ fit_a of the law form to the model curve: 1.0074e-10
+ KH1 shape fit LCDM + k-mouflage kappa_eff 0.5379 (+0.032 dex) [PASS G1]
+ KH1 shape fit LCDM + k-mouflage G4 per-galaxy fit_a over 79 hosts log M200 11-12.5: rms 0.167 dex (all 171: 0.209) [FAIL G4]
+ KH1 shape fit LCDM + k-mouflage G5 median y/g_N 0.02646 [FAIL G5]
+ KH1 shape fit LCDM + k-mouflage G2: 0 natively (M, beta Lagrangian constants) => FAIL
+ KH1 shape fit LCDM + k-mouflage G3: ratio 1 at all z, trivial PASS
+ KH1 shape fit LCDM + k-mouflage GT (a(z)/a(0) = 1): residuals 1.0: -0.0047, 1.5: +0.0280, 2.33: +0.0860 [FAIL GT]
+ KH1 shape fit LCDM + k-mouflage Cassini: y at Saturn 2.617e-12 m/s^2 = 0.028 a0 [FAIL <1e-3 a0]; |gamma-1| at 1.6 R_sun 9.665e-14 [PASS <2.3e-5]; y/g_N at Saturn 4.05e-08 => FAIL Cassini
+ KH1 holdout unseen rms 0.1029 [FAIL]
+
+KT knobs [0.0285, 0.2734] at bound [] (M^4 = rho_DE, K0 = 1 imposed)
+
+== KT tie row no halo (2 knobs; beta 1.068, a_s 9.1135e-10 = 9.734 a0, n 0.273, 2beta^2 2.281)
+ rms to law 0.2031 dex [FAIL E1]; p95 per-galaxy 0.3012 [FAIL E2]; worst bin 0.3434 [FAIL E3]
+ bins -12.0:-0.343 -11.5:-0.168 -11.0:+0.006 -10.5:+0.163 -10.0:+0.254 -9.5:+0.287 -9.0:+0.270
+ a fit 6.950e-11; rms to observed 0.2747 dex, mean +0.0183
+ switch in g_N: g_* = a_s/(2 beta^2) = 3.9955e-10 = 4.268 a0, kappa_* = g_*/AC 2.134
+ fit_a of the law form to the model curve: 6.9498e-11
+ KT tie row no halo kappa_eff 0.3711 (-0.129 dex) [FAIL G1]
+ KT tie row no halo G4 per-galaxy fit_a over 79 hosts log M200 11-12.5: rms 0.376 dex (all 171: 0.443) [FAIL G4]
+ KT tie row no halo G5 median y/g_N 1.947 [PASS G5]
+ KT tie row no halo G2: 0.5 by construction (M^4 = rho_DE imposed) => PASS by construction, not derived
+ KT tie row no halo G3: ratio 1 at all z, trivial PASS
+ KT tie row no halo GT (a(z)/a(0) = 1): residuals 1.0: -0.0047, 1.5: +0.0280, 2.33: +0.0860 [FAIL GT]
+ KT tie row no halo Cassini: y at Saturn 2.105e-06 m/s^2 = 2.25e+04 a0 [FAIL <1e-3 a0]; |gamma-1| at 1.6 R_sun 4.164e-04 [FAIL <2.3e-5]; y/g_N at Saturn 3.26e-02 => FAIL Cassini
+ KT holdout unseen rms 0.1978 [FAIL]
+ KT beta needed 1.068 against the Solar-System/LLR scale beta ~ 0.1 (provisional); at kappa_* = 0.5 with lambda = 1, beta would be sqrt(4 pi)/0.5 = 7.09
+[62 s]
+
+######## (b1) chameleon f(R), Hu-Sawicki n = 1
+R0 = 8 pi G (rho_m + 4 rho_L)/c^2 = 4.8662e-52 m^-2; lambda_C at 1e-7, 1e-6, 1e-5: 1.14, 3.60, 11.38 Mpc (Yukawa ignored inside galaxies)
+median |Phi|/c^2 at the last point 2.951e-07, at the first point 4.620e-07
+
+== F0 control, plain NFW + baryons (= Q0, f_R0 -> 0) (0 knobs)
+ rms to law 0.1419 dex [FAIL E1]; p95 per-galaxy 0.2877 [FAIL E2]; worst bin 0.1613 [FAIL E3]
+ bins -12.0:+0.161 -11.5:+0.098 -11.0:+0.094 -10.5:+0.050 -10.0:+0.040 -9.5:+0.014 -9.0:+0.004
+ a fit 1.576e-10; rms to observed 0.2424 dex, mean +0.0790
+
+== F7 |f_R0| 1e-07 (0 knobs; screened core in 161/171, screened past the last point 146/171)
+ rms to law 0.1499 dex [FAIL E1]; p95 per-galaxy 0.3127 [FAIL E2]; worst bin 0.1891 [FAIL E3]
+ bins -12.0:+0.189 -11.5:+0.110 -11.0:+0.094 -10.5:+0.050 -10.0:+0.040 -9.5:+0.014 -9.0:+0.004
+ a fit 1.642e-10; rms to observed 0.2503 dex, mean +0.0848
+ median y/g_N 0.0000, max 0.3333 (bound 1/3)
+
+== F6 |f_R0| 1e-06 (0 knobs; screened core in 51/171, screened past the last point 34/171)
+ rms to law 0.1972 dex [FAIL E1]; p95 per-galaxy 0.3971 [FAIL E2]; worst bin 0.2850 [FAIL E3]
+ bins -12.0:+0.285 -11.5:+0.212 -11.0:+0.177 -10.5:+0.110 -10.0:+0.054 -9.5:+0.018 -9.0:+0.004
+ a fit 2.512e-10; rms to observed 0.2838 dex, mean +0.1527
+ median y/g_N 0.3333, max 0.3333 (bound 1/3)
+ F6 G4 per-galaxy fit_a over 79 hosts log M200 11-12.5: rms 0.152 dex (all 171: 0.191) [FAIL G4]
+
+== F5 |f_R0| 1e-05 (0 knobs; screened core in 6/171, screened past the last point 3/171)
+ rms to law 0.2300 dex [FAIL E1]; p95 per-galaxy 0.3983 [FAIL E2]; worst bin 0.2862 [FAIL E3]
+ bins -12.0:+0.286 -11.5:+0.222 -11.0:+0.215 -10.5:+0.170 -10.0:+0.152 -9.5:+0.134 -9.0:+0.128
+ a fit 3.109e-10; rms to observed 0.3032 dex, mean +0.2001
+ median y/g_N 0.3333, max 0.3333 (bound 1/3)
+
+== FK grid fit (2 knobs; log f_R0 -8.00, dn +0.324; at grid edge: True, False)
+ rms to law 0.1036 dex [FAIL E1]; p95 per-galaxy 0.2440 [FAIL E2]; worst bin 0.0943 [FAIL E3]
+ bins -12.0:+0.094 -11.5:+0.018 -11.0:-0.012 -10.5:-0.025 -10.0:-0.012 -9.5:-0.009 -9.0:-0.004
+ a fit 9.944e-11; rms to observed 0.2299 dex, mean +0.0058
+ FK G4 per-galaxy fit_a over 79 hosts log M200 11-12.5: rms 0.161 dex (all 171: 0.205) [FAIL G4]
+ FK holdout (tuned on even-index: log f_R0 -8.00, dn +0.324) unseen rms 0.1030 [FAIL]
+
+f(R) derived acceleration g_C = c^2 |f_R0|/lambda_C = c^2 sqrt(|f_R0| R0/6):
+ |f_R0| 1e-07: g_C 2.560e-13 = 0.0027 a0
+ f(R) g_C at 1e-07 kappa_eff 0.001367 (-2.563 dex) [FAIL G1]
+ |f_R0| 1e-06: g_C 8.094e-13 = 0.0086 a0
+ f(R) g_C at 1e-06 kappa_eff 0.004322 (-2.063 dex) [FAIL G1]
+ |f_R0| needed for kappa_eff 0.5: 1.338e-02 (allowed <~ 1e-6, provisional)
+ G2 slopes d ln g_C / d ln rho_DE over the J cosmologies at fixed f_R0: +0.526, +0.643 [FAIL G2]
+ f(R) g_C (CPL background, f_R(z) = f_R0 (R0/R)^2) a(z)/a(0) 1.0: 0.668, 1.5: 0.570, 2.33: 0.427 [FAIL G3]; GT residuals 1.0: -0.1800, 1.5: -0.2159, 2.33: -0.2839 [FAIL GT]
+ f(R) G5 median y/g_N at 1e-6 0.3333 [PASS G5]
+Cassini f(R): Phi_sun 2.122e-06, |Phi_MW(8 kpc)| 1.614e-06, rho_loc 6.770e-21 kg/m^3, rho_bar_R 2.608e-26
+ |f_R0| 1e-07: Sun alone |gamma-1| 1.320e-01 [FAIL]; MW screened True, ambient f_R 1.48e-18, |gamma-1| 2.097e-12 [PASS Cassini]
+ |f_R0| 1e-06: Sun alone |gamma-1| 5.000e-01 [FAIL]; MW screened True, ambient f_R 1.48e-17, |gamma-1| 2.097e-11 [PASS Cassini]
+ |f_R0| 1e-05: Sun alone |gamma-1| 5.000e-01 [FAIL]; MW screened False, ambient f_R 1.00e-05, |gamma-1| 5.000e-01 [FAIL Cassini]
+[64 s]
+
+######## (b2) symmetron, adiabatic stand-in
+S0: rho_SSB = rho_DE 5.847e-27 kg/m^3; min total density over all measured points 3.308e-24 (566 rho_DE)
+
+== S0 DE-scale symmetron, with halo (0 knobs; rho_SSB = rho_DE, Phi_s 1e-6)
+ rms to law 0.1419 dex [FAIL E1]; p95 per-galaxy 0.2877 [FAIL E2]; worst bin 0.1613 [FAIL E3]
+ bins -12.0:+0.161 -11.5:+0.098 -11.0:+0.094 -10.5:+0.050 -10.0:+0.040 -9.5:+0.014 -9.0:+0.004
+ a fit 1.576e-10; rms to observed 0.2424 dex, mean +0.0790
+ S0 G5 median a5/g_N 0 [FAIL G5]
+
+== SH with halo (2 knobs; log rho_SSB -23.00, log Phi_s -7.50; grid edge False, False)
+ rms to law 0.1417 dex [FAIL E1]; p95 per-galaxy 0.2877 [FAIL E2]; worst bin 0.1667 [FAIL E3]
+ bins -12.0:+0.167 -11.5:+0.098 -11.0:+0.094 -10.5:+0.050 -10.0:+0.040 -9.5:+0.014 -9.0:+0.004
+ a fit 1.581e-10; rms to observed 0.2424 dex, mean +0.0794
+ SH with halo (diagnostic of fitted level) kappa_eff 0.8443 (+0.228 dex) [FAIL G1]
+ SH with halo G4 per-galaxy fit_a over 79 hosts log M200 11-12.5: rms 0.128 dex (all 171: 0.209) [FAIL G4]
+ SH with halo Cassini: solar-wind rho at Saturn 1.31e-22; a5 0.000e+00 = 0 a0 [PASS]
+
+== SB baryons only (2 knobs; log rho_SSB -21.50, log Phi_s -8.75; grid edge False, False)
+ rms to law 0.4823 dex [FAIL E1]; p95 per-galaxy 0.7338 [FAIL E2]; worst bin 0.8145 [FAIL E3]
+ bins -12.0:-0.814 -11.5:-0.622 -11.0:-0.451 -10.5:-0.275 -10.0:-0.147 -9.5:-0.064 -9.0:-0.024
+ a fit 1.000e-12; rms to observed 0.5182 dex, mean -0.4145
+ SB baryons only (diagnostic of fitted level) kappa_eff 0.00534 (-1.971 dex) [FAIL G1]
+ SB baryons only G4 per-galaxy fit_a over 79 hosts log M200 11-12.5: rms 0.085 dex (all 171: 0.092) [PASS G4]
+ SB baryons only Cassini: solar-wind rho at Saturn 1.31e-22; a5 9.222e-05 = 9.85e+05 a0 [FAIL]
+ holdout for SH with halo (tuned even-index: -23.00, -7.50) unseen rms 0.1309 [FAIL]
+ symmetron G2: rho_SSB = rho_DE only if imposed; the force scale c^2 Phi_s |d ln rho/dr| is not an acceleration constant => no tie
+ symmetron GT (a(z)/a(0) = 1): residuals 1.0: -0.0047, 1.5: +0.0280, 2.33: +0.0860 [FAIL GT]
+ S0 Cassini: rho_SSB 5.85e-27 < solar-wind 1.31e-22: symmetry restored, a5 = 0 [PASS]
+[65 s]
+
+######## (c) coupled quintessence, DM-only coupling, beta 0.05
+
+== QK halo response as knobs (2 knobs; log c shift -0.10, dn +0.216; grid edge False, False)
+ rms to law 0.0925 dex [FAIL E1]; p95 per-galaxy 0.1849 [FAIL E2]; worst bin 0.0486 [FAIL E3]
+ bins -12.0:+0.041 -11.5:-0.025 -11.0:-0.039 -10.5:-0.049 -10.0:-0.027 -9.5:-0.017 -9.0:-0.007
+ a fit 8.113e-11; rms to observed 0.2199 dex, mean -0.0239
+ QK holdout (even-index: -0.10, +0.216) unseen rms 0.0930 [FAIL]
+halo scale felt by DM, 2 pi G (1 + 2 beta^2) rho_s r_s: median 0.615 a0; boost factor 1.0050
+ CQ halo scale (median) kappa_eff 0.3073 (-0.211 dex) [FAIL G1]
+ CQ G4 rms all 171 0.156, hosts 11-12.5 0.077 dex [PASS G4]
+ CQ Cassini: baryons uncoupled, no fifth force on baryons [PASS trivially]; field mass ~ H, no acceleration (A14 T8)
+[66 s] colossus cosmology switches follow (lib arrays already built)
+ CQ G2 slopes at M 1e12 over J cosmologies: +1.381, +3.561 [FAIL G2]
+ control: colossus CPL rho_DE(z)/rho_DE0 at z 2.33 0.6729 vs formula 0.6729
+ CQ halo scale at M 1e12, CPL background a(z)/a(0) 1.0: 1.160, 1.5: 1.325, 2.33: 1.768 [FAIL G3]; GT residuals 1.0: +0.0598, 1.5: +0.1503, 2.33: +0.3335 [FAIL GT]
+ (LCDM reference a(z)/a(0) at M 1e12: 1.0: 1.142, 1.5: 1.322, 2.33: 1.777)
+
+runtime 66 s
+Rival language; adopts nothing. kappa = 1/2 FITTED; not theory closed.
