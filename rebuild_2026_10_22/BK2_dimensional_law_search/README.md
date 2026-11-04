@@ -79,6 +79,13 @@ K1 law row, both footings: X-COP, SPARC, LT, groups, S all to print precision. K
 ## Expectation against result
 Passing G1 and G2 LINE: yes. G1-G3 ERR 60 %: no, by my own Z_shape. G1-G3 LINE 25 %: no. I didn't expect 15 of 15 keys on a no-fit near miss.
 
+## Level L2, real runs, 2026-11-04 (controls still running)
+Both real runs finished: 7.378e11 dimensioned expressions on canonical, 7.378e11 on alt (`bk2_train_L2_*_real.json`). **Train pass 0 on both footings, on the line and within errors** (`bk2_read_L2_*_real.out` FINAL: `train_line 0, train_err 0`; `bk2_stage2_L2_*_real.out`: 50 formulas, train pass 0). No SURVIVOR_FLAG. G3 LINE 475,470 / 412,406, G3 ERR 0 / 0; G2 LINE 1,368 / 1,205.
+
+Closest by line: canonical Zl 1.01 (I5(g_b,a0) + 126 g_gas (Phi/c^2)^(1/4), fitted, Cassini passes, X -0.012, SPARC 0.177 against the law's 0.166), alt Zl 1.01 (fit0, X +0.033). Smallest Z_max 7.07 canonical, 7.69 alt, down from L1's 9.3 and 8.2, still far over any line. Same "the cluster gets about 8x" family as L1.
+
+**The L2 label waits on the scrambled controls** (canonical at T1|I4, alt at T1|I5 when this was written). Until they land this is "no train pass on the real data", not the frozen NO HIT label with its control.
+
 ## Unfinished, running
 Canonical's mutate and control L1, then L2 (CAP_D 1e5, CAP_A 3e5, about 3e12 enumerated per run) real and control, both footings, nice 19, two processes, days. Watcher: `bk2_watch.sh`, writes `bk2_status.out` every 30 min, runs `bk2_stage2.py` as each harvest lands, sets `SURVIVOR_FLAG` on an all-LINE cheap pass; commits nothing. Restart: `./run_bk2.sh canonical`, `./run_bk2.sh alt`; they resume. A flag means: dear gates, then a separate recheck before any label. **This README covers L1 only until it's updated.**
 
