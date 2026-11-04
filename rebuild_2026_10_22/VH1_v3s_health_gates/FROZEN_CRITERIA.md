@@ -114,3 +114,9 @@ rerun of the planets and one MW model).
 ## Amendments
 
 Any change after this commit is filed below with its date and reason, before the number it touches is seen.
+
+**A1 (2026-11-04, after the first G1 run; changes no line, cut or model).** K5 failed in the first MW run because the
+script rebuilt X5's best canonical cell with R_d = 2.6 − 3(0.5/1.5) = 2.1 kpc instead of the cell's 1.933 kpc
+(X5's RD_GRID step k = −2). That is a typo in the check, not in the physics: the graded G1 row for the same cell
+(L★ = 21.7 pc) gives K_z 76.66, v_c 229.7. The fix reads (Σ_b, M_bb, R_d) from X5's own `x5_grid_canonical.json` best
+passing cell (min D). The first run's output is kept as `vh1_mw_FIRSTRUN_K5BUG.out`; G1 is regraded on the rerun.
