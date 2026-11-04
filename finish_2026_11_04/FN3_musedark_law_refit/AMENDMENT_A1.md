@@ -15,3 +15,10 @@ K1 failed on every listed convention (18 of 18). The best variant puts 1.4 % of 
 - **No change to Stage 1's grading.** It rests on K2 (planted recovery) and K3 (the DC14 model refit on real cutouts recovers the survey's v22 within 5 % and inclination within 3 deg). Both stay as frozen. K3 compares two fits to the same data, so the slit-extraction question doesn't arise there.
 - **Added diagnostic, no gate:** K1b builds the survey's DC14 model as a 3D cube without PSF and extracts a major-axis slit (flux-weighted first moment, deprojected by sin i), using sqrt(|v_c^2 - v_AD^2|). It is reported only. It cannot change the Stage 0 label.
 - **For the law refit (Stage 1), pressure support keeps the frozen readings R0-R2.** Where v_AD^2 > v_c^2 the law model sets v_perp = 0, as the frozen engine does. The survey's sqrt(|.|) handling is reported as a row, not adopted.
+
+## Fallback conventions, since K1 pinned none
+Chosen after K1's failure and stated here before any Stage 1 number. Readings and K3 carry the risk.
+- **Gas:** v^2 = pi G Sigma r, the enclosed-mass form of III's "v(r) proportional to sqrt(Sigma_HI r)"; CFG198's amendment A2 used the same.
+- **Pressure support:** D1, v_AD^2 = -2 sigma^2 dlnSigma/dlnR with sigma the total model dispersion, read as the survey's "full" form. The released numbers can't pin it (`fn3_k1c_drift.out`): from the released v_perp and sigma at 2.2 R_e/1.678, the full forms miss the released v22 by a median of +10 to +13 %, with a 16-84 % spread near 80 points; half strength is closest in median (-2.5 %); no form puts more than 13 % of galaxies within 3 %. R1 (half) and R2 (none) carry the choice.
+- **Disc thickness:** q = 0.15, the survey's stated aspect.
+- **Dispersion profile:** sigma^2 = sigma_0^2 + (h v_c / R)^2 with h = 0.15 r_half, the thick-disc form of the survey's `thick` profile as read here. K3 tests the whole engine on real cubes.
