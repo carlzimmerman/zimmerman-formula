@@ -1,0 +1,31 @@
+WG3: the record's bound-only switch (CFG354 T1) on WG2's baryons-only engine, graded on Planck PR4 8-400 (bb3410083d, A1 ba8477ae8e).
+  K1: PASS  {'ratio_over_expected': 0.9846208774313137, 'tol': 0.03}
+  K2: PASS  {'max_rel_err': 2.501765621087082e-07, 'tol': 0.0001, 'y_median': 0.00012425382738001645}
+  K8: PASS  {'on_vs_R1_all_modes_as_frozen': 0.002789212390780449, 'on_vs_R1': 1.7387598916229763e-07, 'off_vs_R0': 0.0, 'eig_vs_numpy': 1.2320008434388515e-15, 'tol': [1e-06, 1e-06, 1e-05]}
+  K3 Limber analytic: 7.90e-07 -> PASS
+  K4b ICs, ratio of summed power: 0.9702 -> PASS
+  all K checks: PASS; 11 runs on disk
+
+Runs: r (PACKAGE), PLAIN r, ON fraction f (volume / mass weighted) at z 2, 1, 0
+  T1T0_TIE_B1_As1e-09_N128_s200_zon50_canonical  r      123.9 (plain      127.3) -> FAILS HIGH f z2 3.70e-01/4.55e-01 z1 3.50e-01/4.94e-01 z0 3.68e-01/5.91e-01; delta_rms z0 3.098
+  T1T0_TIE_B1_As4e-09_N128_s200_zon50_canonical  r      161.5 (plain      166.1) -> FAILS HIGH f z2 3.56e-01/4.68e-01 z1 3.49e-01/5.28e-01 z0 3.75e-01/6.35e-01; delta_rms z0 3.923
+  T1T0_TIE_B2_As1e-09_N128_s200_zon50_canonical  r      1.338 (plain      1.358) -> WITHIN x2  f z2 5.00e-01/5.00e-01 z1 5.00e-01/5.01e-01 z0 4.97e-01/5.03e-01; delta_rms z0 0.05829
+  T1T0_TIE_B2_As4e-09_N128_s200_zon50_canonical  r       1.85 (plain      1.879) -> WITHIN x2  f z2 5.00e-01/5.01e-01 z1 5.00e-01/5.02e-01 z0 4.95e-01/5.04e-01; delta_rms z0 0.07051
+  T1V_TIE_B2_As2.1e-09_N128_s200_zon50_canonical r  0.0004692 (plain  0.0004797) -> FAILS LOW  f z2 0.00e+00/0.00e+00 z1 0.00e+00/0.00e+00 z0 0.00e+00/0.00e+00; delta_rms z0 0.002909
+  T1_TIE_B1_As1e-09_N128_s200_zon50_canonical    r    0.07699 (plain    0.07884) -> FAILS LOW  f z2 0.00e+00/0.00e+00 z1 0.00e+00/0.00e+00 z0 0.00e+00/0.00e+00; delta_rms z0 0.04887
+  T1_TIE_B1_As4e-09_N128_s200_zon50_canonical    r     0.3075 (plain     0.3149) -> FAILS LOW  f z2 0.00e+00/0.00e+00 z1 0.00e+00/0.00e+00 z0 0.00e+00/0.00e+00; delta_rms z0 0.09929
+  T1_TIE_B2_As1e-09_N128_s200_zon50_canonical    r  0.0002234 (plain  0.0002284) -> FAILS LOW  f z2 0.00e+00/0.00e+00 z1 0.00e+00/0.00e+00 z0 0.00e+00/0.00e+00; delta_rms z0 0.002008
+  T1_TIE_B2_As2.1e-09_N128_s200_zon50_canonical  r  0.0004692 (plain  0.0004797) -> FAILS LOW  f z2 0.00e+00/0.00e+00 z1 0.00e+00/0.00e+00 z0 0.00e+00/0.00e+00; delta_rms z0 0.002909
+  T1_TIE_B2_As2.1e-09_N192_s200_zon50_canonical  r  0.0007702 (plain  0.0007866) -> FAILS LOW  f z2 0.00e+00/0.00e+00 z1 0.00e+00/0.00e+00 z0 0.00e+00/0.00e+00; delta_rms z0 0.003146
+  T1_TIE_B2_As4e-09_N128_s200_zon50_canonical    r  0.0008937 (plain  0.0009136) -> FAILS LOW  f z2 0.00e+00/0.00e+00 z1 0.00e+00/0.00e+00 z0 0.00e+00/0.00e+00; delta_rms z0 0.004015
+
+Labels (bracket B1/B2 x A_s 1e-9/4e-9; 128^3, 200 steps, z_on 50, a0 flat, canonical):
+  T1   : FAILS LOW; r = B1/As1e-09 0.07699, B1/As4e-09 0.3075, B2/As1e-09 0.0002234, B2/As4e-09 0.0008937
+  T1T0 : STRADDLES (reported); r = B1/As1e-09 123.9, B1/As4e-09 161.5, B2/As1e-09 1.338, B2/As4e-09 1.85
+  K5 resolution: r 128^3 0.0004692 vs 192^3 0.0007702; labels FAILS LOW / FAILS LOW -> PASS
+  T1V (reported): r 0.0004692 -> FAILS LOW
+  context (WG2, under its A2): R0 FAILS LOW ['0.077', '0.307', '0.000223', '0.000894']; R1-TIE FAILS HIGH ['560', '657', '11.4', '14.1']
+
+Record line: T1 FAILS LOW: no rule tried lands there -- off, QUMOND on, or the record's bound-only switch (T1)
+
+kappa = 1/2 FITTED; not theory closed; nothing here says the data favour the framework.
