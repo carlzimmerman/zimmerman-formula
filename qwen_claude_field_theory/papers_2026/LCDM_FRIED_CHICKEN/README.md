@@ -2,7 +2,7 @@
 
 **RESEARCH EXPERIMENT, KEPT IN THIS FOLDER. NOT THE FRAMEWORK.** The owner does not believe any of this. It works out how a LCDM group might reverse-engineer the a0 law, so that the route is on record first and a swoop can be recognised. Nothing here is a framework result, and nothing here feeds the board, STANDING, PAPER67, the ledger or any lane. The particle, halo and condensate material is the rival's language only. The no-particle rule and the 11-01 retirement of the cold sector are unchanged.
 
-Working note, v2.1, DOI 10.5281/zenodo.23959446; v2.0 is 10.5281/zenodo.23958263, v1.9 is 10.5281/zenodo.23955711, v1.8 is 10.5281/zenodo.23950940, v1.7 is 10.5281/zenodo.23946231, v1.6 is 10.5281/zenodo.23921012, v1.5 is 10.5281/zenodo.23918073, v1.4 is 10.5281/zenodo.23903839, v1.3 is 10.5281/zenodo.23902787, v1.2 is 10.5281/zenodo.23902466, v1.1 is 10.5281/zenodo.23901396, v1.0 is 10.5281/zenodo.23897582. How exactly LCDM's knobs can reproduce the law on real SPARC baryons, and what each match costs. Rival-flavoured exercise; adopts nothing and reinstates nothing. kappa = 1/2 FITTED; not theory closed.
+Working note, v2.2, DOI 10.5281/zenodo.23961268; v2.1 is 10.5281/zenodo.23959446, v2.0 is 10.5281/zenodo.23958263, v1.9 is 10.5281/zenodo.23955711, v1.8 is 10.5281/zenodo.23950940, v1.7 is 10.5281/zenodo.23946231, v1.6 is 10.5281/zenodo.23921012, v1.5 is 10.5281/zenodo.23918073, v1.4 is 10.5281/zenodo.23903839, v1.3 is 10.5281/zenodo.23902787, v1.2 is 10.5281/zenodo.23902466, v1.1 is 10.5281/zenodo.23901396, v1.0 is 10.5281/zenodo.23897582. How exactly LCDM's knobs can reproduce the law on real SPARC baryons, and what each match costs. Rival-flavoured exercise; adopts nothing and reinstates nothing. kappa = 1/2 FITTED; not theory closed.
 
 - `lcdm_fried_chicken.tex` / `.pdf`: the paper. Rebuild: `tectonic lcdm_fried_chicken.tex`. Check: `python3 audit.py`.
 - `FROZEN_RECIPE.md`: targets, recipes, Amendments A1 to A3, and the cosmology bug note.
@@ -62,7 +62,7 @@ Bibliography entries are from memory and were not checked against the journals. 
 - A39 (`recipe40`), clustering DE and DE-DM drag: 1e-5 to 1e-1 a0 inside halos, no tracking.
 - A40 (`recipe41`), assembly-bias scatter and microphysical constants: scatter only marginally, a0 +0.21 to +0.26 dex high; constants flat in rho_DE, lattice hits within chance.
 
-**Not in any deposit: A41 to A44, the remaining dark matter families.** None is exact; none ties a to rho_DE.
+**In v2.2: A41 to A44, the remaining dark matter families.** None is exact; none ties a to rho_DE.
 - A41 (`recipe42`), SIDM core collapse, BEC Thomas-Fermi cores, mixed CDM+FDM and CDM+WDM: 0.116 to 0.179 globally, 0.047 with 514 parameters (holdout 0.110).
 - A42 (`recipe43`), decaying DM, primordial black holes, ETHOS/SIMP, DM-only Yukawa: best 0.0717 (repulsive Yukawa at its bound); every fitted particle parameter sits beyond published limits.
 - A43 (`recipe44`), dark mass tracing the gas and DM-baryon scattering: 0.21 to 0.41 for scaled-HI, 0.13 for scattering at 104x the CMB limit.
