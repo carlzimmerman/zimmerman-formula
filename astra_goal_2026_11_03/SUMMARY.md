@@ -67,3 +67,5 @@ The user subsequently requested an actual kappa=.5 derivation, Lean certificatio
 Resumed kappa work: AZ19 is a new dynamical selection test. Promoting b to a variable stabilized by the existing response fails: equilibrium b scales as1/g and the force becomes linear, while vacuum does not select b. Ten controls pass, including Lean witnesses and a rejected mutation. No physical coefficient or full requirement row is earned; the active kappa goal remains unmet.
 
 AZ20 tests a second new dynamical normalization proposal. Reciprocal-sector symmetry gives a relative stationary point but leaves the common physical scale free and becomes source-unstable in its unrestricted high-field limit. FAIL selector with twelve passing controls; no derived kappa or full-row credit. Goal active, no push.
+
+AZ21 finds a finite vacuum-stabilization mechanism through nonminimal curvature feedback, with a derived scalar-mass relation. It still FAILS physical normalization selection because a curvature coupling and force matching remain free. Fourteen controls pass; no physical kappa or full-row credit is claimed. Goal active, no push.

@@ -1,0 +1,18 @@
+astra_goal_2026_11_03/P3/AZ21_curvature_stabilization/Mutate.lean:3:42: error: Tactic `decide` failed for proposition
+  3 * (1 / 6) * 1 = 1
+because its `Decidable` instance
+  instDecidableEqRat (3 * (1 / 6) * 1) 1
+did not reduce to `isTrue` or `isFalse`.
+
+Reduction got stuck at the `Decidable` instance
+  match ((3 * (1 / 6)).mul 1).num, ↑1 with
+  | Int.ofNat a, Int.ofNat b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+  | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+  | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+  | Int.negSucc a, Int.negSucc b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
