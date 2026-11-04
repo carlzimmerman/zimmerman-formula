@@ -61,3 +61,9 @@ Bibliography entries are from memory and were not checked against the journals. 
 - A38 (`recipe39`), Foot dissipative DM and Famaey-Khoury-Penco: 0.0715 and 0.155 globally, no rho_DE.
 - A39 (`recipe40`), clustering DE and DE-DM drag: 1e-5 to 1e-1 a0 inside halos, no tracking.
 - A40 (`recipe41`), assembly-bias scatter and microphysical constants: scatter only marginally, a0 +0.21 to +0.26 dex high; constants flat in rho_DE, lattice hits within chance.
+
+**Not in any deposit: A41 to A44, the remaining dark matter families.** None is exact; none ties a to rho_DE.
+- A41 (`recipe42`), SIDM core collapse, BEC Thomas-Fermi cores, mixed CDM+FDM and CDM+WDM: 0.116 to 0.179 globally, 0.047 with 514 parameters (holdout 0.110).
+- A42 (`recipe43`), decaying DM, primordial black holes, ETHOS/SIMP, DM-only Yukawa: best 0.0717 (repulsive Yukawa at its bound); every fitted particle parameter sits beyond published limits.
+- A43 (`recipe44`), dark mass tracing the gas and DM-baryon scattering: 0.21 to 0.41 for scaled-HI, 0.13 for scattering at 104x the CMB limit.
+- A44 (`recipe45`), halo shape, truncation, substructure, environment: at most 0.001 dex gained on the best stack; the gap to 0.020 stays.
