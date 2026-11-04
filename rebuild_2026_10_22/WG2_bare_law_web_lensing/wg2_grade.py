@@ -4,7 +4,7 @@ total-potential spectra P_Psi(k, z), PR4 fit (PACKAGE and PLAIN), and the frozen
 Run: python3 wg2_grade.py            (writes wg2_results.json, wg2.out)
      python3 wg2_grade.py --mutate   (reads runs/checks_MUTATE.json, K1 must FAIL; writes wg2_MUTATE_results.json, wg2_MUTATE.out)
 kappa = 1/2 FITTED; the cold sector stays retired; nothing here says the data favour the framework; not theory closed."""
-import os, sys, json, math, glob
+import os, sys, json, math, glob   # nstep below is the requested step count from the run tag (the run file holds steps taken, snapshots merged in)
 for _v in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "VECLIB_MAXIMUM_THREADS", "MKL_NUM_THREADS"):
     os.environ[_v] = "1"
 import numpy as np
@@ -97,10 +97,16 @@ if REF in RUN:
     pin = np.interp(k, np.array(r0["k_in"]), np.array(r0["P_in"])); e4 = float(np.mean(np.array(s0["P_delta"])[m] / pin[m]))
     CHK["K4"] = dict(mean_ratio=e4, tol=0.10, pass_=abs(e4 - 1) < 0.10)
     P(f"  K4 ICs: measured / input P_delta at z_on, 0.01-0.1 h/Mpc: {e4:.4f} -> {'PASS' if CHK['K4']['pass_'] else 'FAIL'}")
+    # Amendment A2 (POST-RESULT): the mean of per-bin ratios is dominated by bins on the baryon-acoustic nodes of d_b, where the input
+    # at the bin centre is near zero; K4b uses the ratio of summed power over the same bins (the median is reported beside it).
+    e4b = float(np.array(s0["P_delta"])[m].sum() / pin[m].sum()); med = float(np.median(np.array(s0["P_delta"])[m] / pin[m]))
+    CHK["K4b_A2_post_result"] = dict(ratio_of_sums=e4b, median_ratio=med, tol=0.10, pass_=abs(e4b - 1) < 0.10)
+    P(f"  K4b (A2, POST-RESULT) ratio of summed power {e4b:.4f}, median per-bin ratio {med:.4f} -> {'PASS' if CHK['K4b_A2_post_result']['pass_'] else 'FAIL'}")
 else:
     CHK["K4"] = dict(pass_=False, note="reference run missing"); P("  K4: reference run missing -> FAIL")
-ALLK = all(CHK[k]["pass_"] for k in ("K1", "K2", "K3", "K4"))
-P(f"  all K checks: {'PASS' if ALLK else 'FAIL'}; {len(RUN)} runs on disk")
+ALLK_FROZEN = all(CHK[k]["pass_"] for k in ("K1", "K2", "K3", "K4"))
+ALLK_A2 = all(CHK[k]["pass_"] for k in ("K1", "K2", "K3")) and CHK.get("K4b_A2_post_result", {}).get("pass_", False)
+P(f"  all K checks as frozen: {'PASS' if ALLK_FROZEN else 'FAIL'}; with K4b (A2, post-result): {'PASS' if ALLK_A2 else 'FAIL'}; {len(RUN)} runs on disk")
 
 # ------------------------------------------------------------------ project and grade every run
 G = {}
@@ -111,7 +117,7 @@ for t in sorted(RUN):
     fin = LB.wsum(D["W"], Xin) / LB.wsum(D["W"], X)
     zsn = {round(s["z"], 3): s for s in run["snaps"]}
     s_end = zsn.get(0.0, {}); s_z2 = zsn.get(2.0, {})
-    G[t] = dict(rule=run["rule"], a0rule=run["a0rule"], bg=run["bg"], As=run["As"], N=run["N"], nstep=run["nstep"], z_on=run["z_on"], foot=run["foot"],
+    G[t] = dict(rule=run["rule"], a0rule=run["a0rule"], bg=run["bg"], As=run["As"], N=run["N"], nstep=int(t.split("_s")[1].split("_")[0]), nstep_taken=run["nstep"], z_on=run["z_on"], foot=run["foot"],
                 **g, r_zero_beyond=g0["r"], inbox_frac=fin.tolist(), label=run_label(g["r"]),
                 delta_rms_z0=s_end.get("delta_rms"), delta_rms_z2=s_z2.get("delta_rms"), y_med_z2=s_z2.get("y_med"), y_med_z0=s_end.get("y_med"),
                 runtime_s=run.get("runtime_s"))
@@ -131,13 +137,6 @@ def rule_label(ms):
         ok = all(abs(m["r"] - 1) <= 0.056 and m["p_unscaled"] >= 1e-3 for m in ms)
         return "WITHIN x2" + (" (AMPLITUDE PASS)" if ok else "")
     return "STRADDLES"
-LAB = {}
-P(""); P("Labels per web rule (bracket B1/B2 x A_s 1e-9/4e-9; 128^3, 200 steps, z_on 50, canonical):")
-for nm, rule, a0r in (("R0", "R0", None), ("R1-TIE", "R1", "TIE"), ("R1-RIVAL", "R1", "RIVAL")):
-    ms = members(rule, a0r); lab = rule_label(ms) if ALLK else "NOT EVALUABLE"
-    LAB[nm] = dict(label=lab, r=[m["r"] for m in ms], r_plain=[m["r_plain"] for m in ms], n=len(ms))
-    P(f"  {nm:<9}: {lab}; r = " + ", ".join(f"{m['bg']}/As{m['As']:g} {m['r']:.3g}" for m in ms))
-
 def find(**kw):
     for t in G:
         if all(G[t].get(k) == v for k, v in kw.items()): return G[t]
@@ -157,26 +156,37 @@ if ref and k6:
     P(f"  K6 time step: r 200 steps {ref['r']:.4g} vs 400 {k6['r']:.4g} (ratio {q:.3f}) -> {'PASS' if K6['pass_'] else 'FAIL: all labels carry NOT CONVERGED'}")
 if ref and k7: P(f"  K7 turn-on (reported): z_on 50 r {ref['r']:.4g}, z_on 200 r {k7['r']:.4g}")
 if ref and alt: P(f"  alt footing (reported): canonical r {ref['r']:.4g}, alt r {alt['r']:.4g}")
-NC_R1 = not (K5 and K5["pass_"]); NC_ALL = not (K6 and K6["pass_"])
-for nm in LAB:
-    tags = []
-    if NC_ALL: tags.append("NOT CONVERGED (K6)")
-    if NC_R1 and nm.startswith("R1"): tags.append("NOT CONVERGED (K5)")
-    LAB[nm]["qualifiers"] = tags
+def labels(ALLK, mode):
+    LAB = {}
+    P(""); P(f"Labels per web rule [{mode}] (bracket B1/B2 x A_s 1e-9/4e-9; 128^3, 200 steps, z_on 50, canonical):")
+    for nm, rule, a0r in (("R0", "R0", None), ("R1-TIE", "R1", "TIE"), ("R1-RIVAL", "R1", "RIVAL")):
+        ms = members(rule, a0r); lab = rule_label(ms) if ALLK else "NOT EVALUABLE"
+        LAB[nm] = dict(label=lab, r=[m["r"] for m in ms], r_plain=[m["r_plain"] for m in ms], n=len(ms))
+        P(f"  {nm:<9}: {lab}; r = " + ", ".join(f"{m['bg']}/As{m['As']:g} {m['r']:.3g}" for m in ms))
 
-labs = [LAB[n]["label"] for n in ("R0", "R1-TIE", "R1-RIVAL")]
-if not ALLK: D9 = "NOT EVALUABLE (a K check failed)"
-elif all(l.startswith("FAILS") for l in labs):
-    D9 = "FAILS for the law alone under every web rule tried: " + "; ".join(f"{n} {LAB[n]['label']}" for n in ("R0", "R1-TIE", "R1-RIVAL"))
-elif any(LAB[n]["label"].startswith("WITHIN") for n in ("R1-TIE", "R1-RIVAL")):
-    D9 = "IN RANGE under " + ", ".join(n for n in ("R1-TIE", "R1-RIVAL") if LAB[n]["label"].startswith("WITHIN")) + " (not a CMB pass: the primary CMB has no fit without dust)"
-else:
-    D9 = "UNDECIDED: brackets straddle (" + "; ".join(f"{n} {LAB[n]['label']}" for n in ("R0", "R1-TIE", "R1-RIVAL")) + ")"
-if (NC_ALL or NC_R1) and ALLK: D9 += " [qualifiers: " + ", ".join(sorted(set(sum((LAB[n]["qualifiers"] for n in LAB), [])))) + "]"
-P(""); P(f"D9 (law alone): {D9}")
+    NC_R1 = not (K5 and K5["pass_"]); NC_ALL = not (K6 and K6["pass_"])
+    for nm in LAB:
+        tags = []
+        if NC_ALL: tags.append("NOT CONVERGED (K6)")
+        if NC_R1 and nm.startswith("R1"): tags.append("NOT CONVERGED (K5)")
+        LAB[nm]["qualifiers"] = tags
+
+    labs = [LAB[n]["label"] for n in ("R0", "R1-TIE", "R1-RIVAL")]
+    if not ALLK: D9 = "NOT EVALUABLE (a K check failed)"
+    elif all(l.startswith("FAILS") for l in labs):
+        D9 = "FAILS for the law alone under every web rule tried: " + "; ".join(f"{n} {LAB[n]['label']}" for n in ("R0", "R1-TIE", "R1-RIVAL"))
+    elif any(LAB[n]["label"].startswith("WITHIN") for n in ("R1-TIE", "R1-RIVAL")):
+        D9 = "IN RANGE under " + ", ".join(n for n in ("R1-TIE", "R1-RIVAL") if LAB[n]["label"].startswith("WITHIN")) + " (not a CMB pass: the primary CMB has no fit without dust)"
+    else:
+        D9 = "UNDECIDED: brackets straddle (" + "; ".join(f"{n} {LAB[n]['label']}" for n in ("R0", "R1-TIE", "R1-RIVAL")) + ")"
+    if (NC_ALL or NC_R1) and ALLK: D9 += " [qualifiers: " + ", ".join(sorted(set(sum((LAB[n]["qualifiers"] for n in LAB), [])))) + "]"
+    P(f"  D9 (law alone) [{mode}]: {D9}")
+    return LAB, D9
+FRO_LAB, FRO_D9 = labels(ALLK_FROZEN, "as frozen")
+A2_LAB, A2_D9 = labels(ALLK_A2, "under A2, post-result K4b")
 P(""); P("kappa = 1/2 FITTED; not theory closed; nothing here says the data favour the framework.")
-RES = dict(lane="WG2_bare_law_web_lensing", criteria="8f484be581", amendment="dca7a564b3", mutate=MUT, checks=CHK, all_K_pass=ALLK, K5=K5, K6=K6,
+RES = dict(lane="WG2_bare_law_web_lensing", criteria="8f484be581", amendment="dca7a564b3", mutate=MUT, checks=CHK, all_K_pass_frozen=ALLK_FROZEN, all_K_pass_A2=ALLK_A2, K5=K5, K6=K6,
            K7=dict(r_zon50=ref["r"] if ref else None, r_zon200=k7["r"] if k7 else None), alt=dict(r_canonical=ref["r"] if ref else None, r_alt=alt["r"] if alt else None),
-           labels=LAB, D9=D9, runs=G)
+           labels_as_frozen=FRO_LAB, D9_as_frozen=FRO_D9, labels_A2_post_result=A2_LAB, D9_A2_post_result=A2_D9, runs=G)
 json.dump(RES, open(os.path.join(HERE, f"wg2{TAG}_results.json"), "w"), indent=1, default=float)
 open(os.path.join(HERE, f"wg2{TAG}.out"), "w").write("\n".join(OUT) + "\n")
