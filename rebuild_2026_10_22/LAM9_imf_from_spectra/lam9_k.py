@@ -5,6 +5,7 @@ fits of each third in lam9_k_donors.csv order. Same job contract as lam9_fit.py 
   python3 -I lam9_k.py --summarize                          lam9_k.jsonl, lam9_k.out, lam9_k.json in this folder
 κ = ½ FITTED; not theory closed."""
 import os, sys, json, signal, time, warnings
+for _v in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "VECLIB_MAXIMUM_THREADS"): os.environ[_v] = "1"  # before numpy
 warnings.filterwarnings("ignore", message=".*encountered in matmul", category=RuntimeWarning)
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
 import numpy as np
@@ -75,13 +76,12 @@ def summarize(iqr_h4=None):
     for fn in sorted(os.listdir(KD)):
         if fn.endswith(".jsonl"): rows += L.read_jsonl(os.path.join(KD, fn), repair=True)
     rows = sorted({r["i"]: r for r in rows}.values(), key=lambda r: r["i"]); ok = [r for r in rows if r["status"] == "ok"]
-    with open(os.path.join(HERE, "lam9_k.jsonl.tmp"), "w") as fo:
-        for r in rows: fo.write(json.dumps(r, default=float) + "\n")
-    os.replace(os.path.join(HERE, "lam9_k.jsonl.tmp"), os.path.join(HERE, "lam9_k.jsonl"))
+    json.dump(dict(note="κ = ½ FITTED; not theory closed. One row per K synthetic (lam9_k.py).", rows=rows), open(os.path.join(HERE, "lam9_k_rows.json.tmp"), "w", encoding="utf-8"),
+              indent=0, ensure_ascii=False, default=float); os.replace(os.path.join(HERE, "lam9_k_rows.json.tmp"), os.path.join(HERE, "lam9_k_rows.json"))
     if iqr_h4 is None:
         S = L.sample(); P = json.load(open(os.path.join(HERE, "lam9_prepare.json"))); h = [S["FIT"][r["plateifu"]]["h4"] for r in P["rows"] if r["step5"]]
         iqr_h4 = float(np.subtract(*np.percentile(h, [75, 25])))
-    O = [f"LAM9 K control: {len(ok)} of {len(rows)} synthetics ok (300 planned). κ = ½ FITTED; not theory closed."]; R = {"n": len(rows), "n_ok": len(ok)}
+    O = [f"LAM9 K control: {len(ok)} of {len(rows)} synthetics ok (300 planned). κ = ½ FITTED; not theory closed."]; R = {"note": "κ = ½ FITTED; not theory closed", "n": len(rows), "n_ok": len(ok)}
     for v in ("A", "B"):
         dg = np.array([r[f"gamma_{v}"] - r["gamma_in"] for r in ok]); da = np.array([np.log10(r[f"alpha_{v}"] / r["alpha_in"]) for r in ok])
         lines = dict(gamma_bias=float(np.median(dg)), gamma_rms=float(np.sqrt(np.mean(dg ** 2))), lalpha_bias=float(np.median(da)), lalpha_rms=float(np.sqrt(np.mean(da ** 2))))

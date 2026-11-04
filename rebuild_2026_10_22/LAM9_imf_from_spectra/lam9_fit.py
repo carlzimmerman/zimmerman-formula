@@ -6,6 +6,7 @@ boundary and exit 75; --resume skips finished sums and exits 0 when complete; ev
   python3 -I lam9_fit.py --merge                             merged lam9_fit_A.jsonl / lam9_fit_B.jsonl in this folder
 Shards split the job list by index mod N, so each sum is fitted by exactly one process. κ = ½ FITTED; not theory closed."""
 import os, sys, json, signal, time, warnings
+for _v in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "VECLIB_MAXIMUM_THREADS"): os.environ[_v] = "1"  # before numpy
 warnings.filterwarnings("ignore", message=".*encountered in matmul", category=RuntimeWarning)  # spurious on macOS Accelerate (LAM2 A3)
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
 import numpy as np
@@ -83,22 +84,29 @@ def run(phase, k, nk):
                 r["sec"] = round(time.time() - t0, 1); L.append_jsonl(fo, r)
     sys.exit(0)
 
-def merge():
+def merge(donors_only=False):
     S = L.sample(); P = json.load(open(os.path.join(HERE, "lam9_prepare.json"))); ok = sorted(r["plateifu"] for r in P["rows"] if r["step5"])
+    if donors_only: ok = sorted(set(l.split(",")[2].strip() for l in donor_lines() if int(l.split(",")[1]) < 110))
     rows = []
     for fn in sorted(os.listdir(os.path.join(L.WORK, "fits"))):
         if fn.endswith(".jsonl"): rows += L.read_jsonl(os.path.join(L.WORK, "fits", fn), repair=True)
+    OUTD = {}
     for v in ("A", "B"):
         R = {}
         for r in rows:
             if r["variant"] == v: assert r["plateifu"] not in R, f"duplicate fit {r['plateifu']} {v}"; R[r["plateifu"]] = r
         miss = [pf for pf in ok if pf not in R]; print(f"variant {v}: {len(R)} lines, missing {len(miss)}, errors {sum(1 for r in R.values() if r['status'] != 'ok')}", flush=True)
-        tmp = os.path.join(HERE, f"lam9_fit_{v}.jsonl.tmp")
+        if donors_only: OUTD[v] = [R[pf] for pf in sorted(R) if pf in ok]; continue
+        name = f"lam9_fit_{v}.jsonl"; tmp = os.path.join(HERE, name + ".tmp")
         with open(tmp, "w") as fo:
-            for pf in sorted(R): fo.write(json.dumps(R[pf], default=float) + "\n")
-        os.replace(tmp, os.path.join(HERE, f"lam9_fit_{v}.jsonl"))
+            for pf in sorted(R):
+                if pf in ok: fo.write(json.dumps(R[pf], default=float) + "\n")
+        os.replace(tmp, os.path.join(HERE, name))
+    if donors_only:
+        fn = os.path.join(HERE, "lam9_fit_donors.json"); json.dump(dict(note="κ = ½ FITTED; not theory closed. The K donors' real fits (330 sums, variants A and B).", **OUTD),
+                                                                  open(fn + ".tmp", "w", encoding="utf-8"), indent=0, ensure_ascii=False, default=float); os.replace(fn + ".tmp", fn)
 
 if __name__ == "__main__":
     if "--prepare" in arg: prepare()
-    elif "--merge" in arg: merge()
+    elif "--merge" in arg: merge(donors_only="donors" in arg)
     else: run(opt("--phase", "all"), int(opt("--shard", "0")), int(opt("--nshard", "1")))
