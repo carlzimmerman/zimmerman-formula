@@ -178,13 +178,21 @@ L += [
  ("PASS on both footings & 8c5703da06", CP + "README.md", "v3s's Solar-System gate is a clean PASS on both footings"), ("no derivation, no deciding measurement; NO SURVIVOR", KCL + "KAPPA_CLOSURE_2026-11-03.md", "# κ closure (2026-11-03): no derivation, no measurement that can decide"), ("no derivation, no deciding measurement; NO SURVIVOR", KCL + "kappa_attempts_register.csv", "NO SURVIVOR"),
  ("rule frozen; the common mode decides", AT + "README.md", "# AT1_a0z_tracking_decision: rule frozen and Lean-certified; deciding needs a common mode under 0.055-0.084 dex"), ("NO VERDICT & f9fc20c54d", N1 + "README_V3.md", "# AN1 v3: NO VERDICT, numbers only."), ("NO VERDICT; reads only", N2 + "README.md", "# AN2_aest_3d_fold: NO VERDICT, numbers only."),
  ("no requirement row moves; LAM9 running", Q + "LAM1_spin_lens_split/README.md", "# LAM1_spin_lens_split: STOPPED AT STAGE 0, NOT EVALUABLE."), ("DOI 10.5281/zenodo.23958263", FC + "lcdm_fried_chicken.zenodo.json", "\"doi\": \"10.5281/zenodo.23958263\""), ("kept apart; nothing in it feeds this paper", FC + "README.md", "nothing here feeds the board, STANDING, PAPER67, the ledger or any lane"),
+ # WG1, WG2: CMB lensing and the law alone on the web
+ ("0.003--0.22\\,$a_0$", Q + "WG1_cmb_lensing_web_gradient/README.md", "0.003-0.22 a0"), ("$z=0.5$--2.33", Q + "WG1_cmb_lensing_web_gradient/FROZEN_CRITERIA.md", "0.5, 1, 1.5, 2, 2.33"),
+ ("0.0002--0.0009 of the measured amplitude", Q + "WG2_bare_law_web_lensing/wg2.out", "B2/As1e-09 0.000223"), ("0.0002--0.0009 of the measured amplitude", Q + "WG2_bare_law_web_lensing/wg2.out", "B2/As4e-09 0.000894"),
+ ("0.08--0.31 with baryons alone in the expansion", Q + "WG2_bare_law_web_lensing/wg2.out", "B1/As1e-09 0.077"), ("0.08--0.31 with baryons alone in the expansion", Q + "WG2_bare_law_web_lensing/wg2.out", "B1/As4e-09 0.307"),
+ ("11--14 times too much", Q + "WG2_bare_law_web_lensing/wg2.out", "B2/As1e-09 11.4"), ("11--14 times too much", Q + "WG2_bare_law_web_lensing/wg2.out", "B2/As4e-09 14.1"),
+ ("560--660 with baryons alone in the expansion", Q + "WG2_bare_law_web_lensing/wg2.out", "B1/As1e-09 560"), ("560--660 with baryons alone in the expansion", Q + "WG2_bare_law_web_lensing/wg2.out", "B1/As4e-09 657"),
+ ("FAILS under every web rule tried; NOT EVALUABLE as frozen & 6856666719", Q + "WG2_bare_law_web_lensing/wg2.out", "FAILS for the law alone under every web rule tried"), ("FAILS under every web rule tried; NOT EVALUABLE as frozen & 6856666719", Q + "WG2_bare_law_web_lensing/README.md", "**As frozen: NOT EVALUABLE.**"),
+ ("one change, made after the results, to an initial-conditions check", Q + "WG2_bare_law_web_lensing/AMENDMENT_A2.md", "# WG2 Amendment A2: POST-RESULT"),
 ]
 # commits in Table tab:late: each must exist and touch the lane folder named beside it
 COMMITS = [("93ab39c78a", Q + "HF1_hybrid_fermion"), ("086516fd25", Q + "VW1_velocity_window"), ("2d73d459fb", Q + "DF2_dark_fluid_requirement"), ("1139b88abb", Q + "DF3_barotrope_settling"), ("9f549e8963", Q + "DF3_fluid_next_gates"), ("36742f590f", Q + "RS1_required_source"), ("d390fc1580", Q + "WF1_wave_pressure_field"),
  ("1cba79837d", Q + "CX1_leaf_collision"), ("811d215010", Q + "NP1_nonparametric_rule"), ("b1bb9b29d9", Q + "NP2_admissible_rule"), ("e5371291f9", Q + "NV1_nonlocal_variable"), ("472328c26c", Q + "NV2_external_field_xcop_lenses"), ("22f8e50070", "finish_2026_11_04/FN1_action_call/FN1b_fixed_length_static"), ("5c1880e6c6", "finish_2026_11_04/FN3_musedark_law_refit"), ("79658c0ec8", "finish_2026_11_04/FN4_galaxy_rows_data/FN4b_lg_external_field"), ("ae9bd592c8", "finish_2026_11_04/FN4_galaxy_rows_data/FN4c_brouwer_lens_rebuild"), ("3ae8ffb2d1", Q + "TX1_temperature_leaf"), ("8f23cc6c57", Q + "MB1_member_bound_law"), ("648ec0ebc6", Q + "BF3_all_gates_first"), ("40e2665f48", Q + "DB1_cluster_dark_baryons"), ("2654bb5551", Q + "BF1_exhaustive_law_search"), ("aeec6c0283", Q + "BK2_dimensional_law_search"),
  ("17574fce14", Q + "LE1_lensing_estimator_audit"), ("b01c37cdc7", CWL + "CW6_lensing_measured_gas"), ("a3441c7725", Q + "KT14_filtered_phantom_mw"), ("ffa3e14d39", Q + "KT32_tidal_rule_rz_scatter"), ("8e701cc3e6", CZL + "CZ1_newtonian_external_field"), ("351db5b6de", CZL + "CZ4_solar_neighbourhood_filter"), ("528285bafe", CZL + "CZ5_local_rule_3d_regrade"),
  ("e7672a30e1", CWL + "CW1_wide_binary_seal_dr4"), ("5540d45cb5", CWL + "CW3_cz1_defect_sweep"), ("9c11102bf3", Q + "AX1_action_for_law"), ("8c5703da06", Q + "C6P_cassini_high_precision"), ("4f88481487", C + "CFG894_kappa_campaign_ledger"), ("ca9116175a", C + "CFG894_kappa_campaign_ledger"), ("4c5c84576a", Q + "AT1_a0z_tracking_decision"),
- ("f9fc20c54d", Q + "AN1_aest_nonlinear_dust"), ("a9db4ae6b2", Q + "AN2_aest_3d_fold"), ("f04da07be4", Q + "AN2_aest_3d_fold"), ("53d1be5347", Q + "LAM1_spin_lens_split"), ("430c890385", Q + "LAM9_imf_from_spectra"), ("de023a7ba7", P + "LCDM_FRIED_CHICKEN")]
+ ("f9fc20c54d", Q + "AN1_aest_nonlinear_dust"), ("a9db4ae6b2", Q + "AN2_aest_3d_fold"), ("f04da07be4", Q + "AN2_aest_3d_fold"), ("53d1be5347", Q + "LAM1_spin_lens_split"), ("430c890385", Q + "LAM9_imf_from_spectra"), ("de023a7ba7", P + "LCDM_FRIED_CHICKEN"), ("93e5f4e99c", Q + "WG1_cmb_lensing_web_gradient"), ("6856666719", Q + "WG2_bare_law_web_lensing")]
 F = 0; n = 0; miss = 0; caught = 0
 def rd(f):
     return open(os.path.join(ROOT, f), encoding="utf-8", errors="replace").read()
@@ -220,7 +228,20 @@ def sg(want):  # SG: grid-corrected shape fold times against AN1's sphere, t_row
     ref = {k: float(v) for k, v in re.findall(r"(1e1[25]) mu 56\.6: [0-9.]+ vs ([0-9.]+)", rd(N2 + "README.md"))}
     sh = [row[(k, s)] * exact[k]["AB".index(s)] / g0[(k, s)] / ref[k] - 1 for (k, s) in row]
     return len(sh) == 4 and max(sh) < 0 and (round(-100 * max(sh)), round(-100 * min(sh))) == want and f"{want[0]}--{want[1]}\\,\\% before AN1's sphere" in TEX
-CALC = [("AN1 v3 counts", an1_counts, [61, 5, 2, 68], [62, 5, 2, 68]), ("P160 within 0.7 %", p160, "0.7", "0.8"), ("SG 5-16 %", sg, (5, 16), (6, 16))]
+def wg1_range(want):  # WG1: smallest g_lo/a0 (RIVAL) and largest R (TIE-LOW) over footings and rules, from wg1_results.json
+    v = json.loads(rd(Q + "WG1_cmb_lensing_web_gradient/wg1_results.json"))["V1"]
+    lo = min(v[f][r]["min_glo_over_a0_rival"] for f in ("canonical", "alt") for r in ("PACKAGE", "PLAIN")); hi = max(v[f][r]["R"] for f in ("canonical", "alt") for r in ("PACKAGE", "PLAIN"))
+    got = f"{lo:.3f}--{hi:.2f}"
+    return got == want and got + "\\,$a_0$" in TEX
+def wg2_ranges(want):  # WG2: r over A_s 1e-9 / 4e-9 per rule and background (128^3, 200 steps, z_on 50, canonical), from wg2_results.json
+    R = json.loads(rd(Q + "WG2_bare_law_web_lensing/wg2_results.json"))["runs"]
+    def rr(rule, a0, bg):
+        x = sorted(g["r"] for g in R.values() if g["rule"] == rule and (rule == "R0" or g["a0rule"] == a0) and g["bg"] == bg and g["N"] == 128 and g["nstep"] == 200 and g["z_on"] == 50 and g["foot"] == "canonical" and g["As"] in (1e-9, 4e-9))
+        return x if len(x) == 2 else [float("nan")] * 2
+    a, b, c, d = rr("R0", None, "B2"), rr("R0", None, "B1"), rr("R1", "TIE", "B2"), rr("R1", "TIE", "B1")
+    got = (f"{a[0]:.4f}--{a[1]:.4f}", f"{b[0]:.2f}--{b[1]:.2f}", f"{c[0]:.0f}--{c[1]:.0f}", f"{round(d[0], -1):.0f}--{round(d[1], -1):.0f}")
+    return got == want and all(g in TEX for g in got)
+CALC = [("AN1 v3 counts", an1_counts, [61, 5, 2, 68], [62, 5, 2, 68]), ("P160 within 0.7 %", p160, "0.7", "0.8"), ("SG 5-16 %", sg, (5, 16), (6, 16)), ("WG1 range", wg1_range, "0.003--0.22", "0.003--0.23"), ("WG2 ranges", wg2_ranges, ("0.0002--0.0009", "0.08--0.31", "11--14", "560--660"), ("0.0002--0.0009", "0.08--0.31", "12--14", "560--660"))]
 if MUT:
     cc = sum(not fn(bad) for _, fn, _, bad in CALC) + sum(not touches(c[:-1] + ("0" if c[-1] != "0" else "1"), d) for c, d in COMMITS)
     print(f"MUTATE: {caught} of {n} perturbed literals not found; {cc} of {len(CALC) + len(COMMITS)} perturbed recomputations and commits fail"); print("(a literal can survive when the bumped digit happens to appear elsewhere in its file; each survivor is listed)")
