@@ -2,7 +2,7 @@
 
 **RESEARCH EXPERIMENT, KEPT IN THIS FOLDER. NOT THE FRAMEWORK.** The owner does not believe any of this. It works out how a LCDM group might reverse-engineer the a0 law, so that the route is on record first and a swoop can be recognised. Nothing here is a framework result, and nothing here feeds the board, STANDING, PAPER67, the ledger or any lane. The particle, halo and condensate material is the rival's language only. The no-particle rule and the 11-01 retirement of the cold sector are unchanged.
 
-Working note, v2.2, DOI 10.5281/zenodo.23961268; v2.1 is 10.5281/zenodo.23959446, v2.0 is 10.5281/zenodo.23958263, v1.9 is 10.5281/zenodo.23955711, v1.8 is 10.5281/zenodo.23950940, v1.7 is 10.5281/zenodo.23946231, v1.6 is 10.5281/zenodo.23921012, v1.5 is 10.5281/zenodo.23918073, v1.4 is 10.5281/zenodo.23903839, v1.3 is 10.5281/zenodo.23902787, v1.2 is 10.5281/zenodo.23902466, v1.1 is 10.5281/zenodo.23901396, v1.0 is 10.5281/zenodo.23897582. How exactly LCDM's knobs can reproduce the law on real SPARC baryons, and what each match costs. Rival-flavoured exercise; adopts nothing and reinstates nothing. kappa = 1/2 FITTED; not theory closed.
+Working note, v2.3, DOI 10.5281/zenodo.23962973; v2.2 is 10.5281/zenodo.23961268, v2.1 is 10.5281/zenodo.23959446, v2.0 is 10.5281/zenodo.23958263, v1.9 is 10.5281/zenodo.23955711, v1.8 is 10.5281/zenodo.23950940, v1.7 is 10.5281/zenodo.23946231, v1.6 is 10.5281/zenodo.23921012, v1.5 is 10.5281/zenodo.23918073, v1.4 is 10.5281/zenodo.23903839, v1.3 is 10.5281/zenodo.23902787, v1.2 is 10.5281/zenodo.23902466, v1.1 is 10.5281/zenodo.23901396, v1.0 is 10.5281/zenodo.23897582. How exactly LCDM's knobs can reproduce the law on real SPARC baryons, and what each match costs. Rival-flavoured exercise; adopts nothing and reinstates nothing. kappa = 1/2 FITTED; not theory closed.
 
 - `lcdm_fried_chicken.tex` / `.pdf`: the paper. Rebuild: `tectonic lcdm_fried_chicken.tex`. Check: `python3 audit.py`.
 - `FROZEN_RECIPE.md`: targets, recipes, Amendments A1 to A3, and the cosmology bug note.
@@ -68,7 +68,7 @@ Bibliography entries are from memory and were not checked against the journals. 
 - A43 (`recipe44`), dark mass tracing the gas and DM-baryon scattering: 0.21 to 0.41 for scaled-HI, 0.13 for scattering at 104x the CMB limit.
 - A44 (`recipe45`), halo shape, truncation, substructure, environment: at most 0.001 dex gained on the best stack; the gap to 0.020 stays.
 
-**Not in any deposit: A45 to A48, modified gravity and rotation-curve systematics.** None reaches the law with a native rho_DE tie.
+**In v2.3: A45 to A48, modified gravity and rotation-curve systematics.** None reaches the law with a native rho_DE tie.
 - A45 (`recipe46`), DGP/Galileon, beyond-Horndeski/DHOST, Mashhoon non-local gravity: best 0.099 with halos; no acceleration scale tied to rho_DE; Cassini fails where fitted.
 - A46 (`recipe47`), TeVeS, Einstein-aether, AeST, BIMOND, MOG, conformal gravity: free interpolations can be chosen as the law (a choice, not a derivation); a0 is a Lagrangian constant everywhere; MOG 0.377 and conformal gravity 0.136 as published.
 - A47 (`recipe48`), non-circular motions, bars, pressure support, disc thickness: move LCDM mocks part way (a0 +0.24 to +0.10 dex) and loosen the relation. Applying the corrections to SPARC raises the law's own fitted a0 by up to +0.10 dex (upper bracket), recorded here only.
