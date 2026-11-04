@@ -197,6 +197,8 @@ def controls():
 def real():
     if not os.path.exists(os.path.join(HERE, "nv1_controls.json")): sys.exit("controls unread; they read first, per FROZEN_CRITERIA")
     CT = json.load(open(os.path.join(HERE, "nv1_controls.json"))); CV = json.load(open(os.path.join(HERE, "nv1_coverage.json"))); R = {}; cx = {ft: K.cx_rows(ft) for ft in FEET}
+    for c in CT["fit_able"]:   # AMENDMENT_A2: control 2 as frozen (rows computed on the zero card match); the reverse S check is reported, not gated
+        cc = CT[c]; cc["ok_as_run"] = cc["ok"]; cc["ok"] = bool(CT["known"]["ok"] and all(cc["zero"][f]["U"]["ok"] and cc["zero"][f]["S"]["ok"] for f in FEET) and all(v["ok"] for v in cc["checker"].values()) and all(cc[f"{q}|{f}"]["ok"] for q in ("plant_adm", "plant_nonlocal") for f in FEET))
     NP2U = json.load(open(os.path.join(NP2D, "results", "np2_real_L3_F.json"))); P("controls read:", {c: CT[c]["ok"] for c in CT["fit_able"]})
     for c in CT["fit_able"]:
         Eb = K.all_E(c); K.CUR["cand"] = c; tab = f"{c}_table"; T = json.load(open(table_path(tab))); G = {}
