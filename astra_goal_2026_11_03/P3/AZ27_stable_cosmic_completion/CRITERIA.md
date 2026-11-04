@@ -1,0 +1,11 @@
+# AZ27: stable cosmic-side completion without choosing the source width
+
+κ = ½ FITTED; not theory closed
+
+2026-11-04. ls/git log/rg checked AZ24–26 and W4_08 unified-function/critical-endpoint records; observed head 6ec2e1701b. Opposite-side deformations are old; this lane does not claim that idea as new. New calculation: a globally specified power-law cosmic-side family, its exact positive-density cosmology, all-density local principal stability, and inhomogeneous constraint invertibility. Inputs: AZ24, AZ26 RESULT.md and inherited SINGLE_FUNCTION.md.
+
+Keep I0=-J0<0 and F0 set by the de Sitter vacuum. For I<I0 set z=I/I0>1 and F'=2 z^(-p)/C1 with symbolic 0<p<1/2. Integrate F continuously. For I>=I0 retain the inherited source cusp with arbitrary xa=C1 A²/m². This is an explicit constitutive completion, not a microscopic derivation. No value of p or A is selected by matching a target. B,m,C1,C2,H0,A,p are free/unselected and FITTED if assigned; J0=9C2 H0²/m².
+
+Gates: verify continuous F,F' at I0, derive the exact homogeneous matter constraint, establish its monotonicity and future approach with conserved baryonic dust, and derive scalar C and c_s² after constraints. PASS only the stated cosmic principal-stability subgate if C>0 and c_s²>0 for every z>1,p in (0,1/2). Endpoint degeneracy and full inhomogeneous stability must be reported separately. Derive d(F'K)/dK at fixed acceleration from the nonlinear invariant; locate any fold within the left-branch domain. A fold is a failure of uniform algebraic invertibility, not automatically a proof that every galaxy encounters it. Test if any of these conditions isolates A or conditional b=1. Do not promote inequalities or a continuum of stable choices into coefficient selection.
+
+Known answers: vacuum at z=1, derivative matching, and alpha/lambda substitution in AZ26's constrained sound speed. MUTATE: use p>1/2 in a finite exact witness and require loss of the claimed positive-Q condition; reject a false Lean stability witness. Exact symbolic/rational tests, no observational numbers or scan. Both footings independently labeled, identical algebra; no full-row credit without actual predictions. Retain hashes/logs and update status. Single-process computation, no download, new species, cold sector, push or undeclared regulator.
