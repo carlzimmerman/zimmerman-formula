@@ -66,7 +66,7 @@ Append to `COMMITS`:
 ```python
 ("{L2 commit}", Q + "BK2_dimensional_law_search"),
 ```
-After the fold-in the PENDING check passes, so every check should pass: 652 of 652 if exactly the nine tuples and one commit above go in (643 checks today after the 2026-11-04 TX1, MB1, BF3, DB1 rows and the FN1b, FN3, FN4b, FN4c and owner-decision checks, minus 1 removed, plus 9 and 1). MUTATE should still show only the old TD1 survivor, with every recomputation and commit failing when perturbed.
+After the fold-in the PENDING check passes, so every check should pass: 673 of 673 if exactly the nine tuples and one commit above go in (664 checks on 2026-11-04 at 15:45 after the TX1, MB1, BF3, DB1, FN1b, FN3, FN4a, FN4b, FN4c, FN4f, owner-decision and WG1/WG2 additions, minus 1 removed, plus 9 and 1; recount if the paper moves again). MUTATE should still show only the old TD1 survivor, with every recomputation and commit failing when perturbed.
 
 ## `.zenodo.json` description
 Append to the last paragraph, before `</p>`:
