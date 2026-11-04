@@ -230,9 +230,9 @@ def label(c, G, ctl):
         for t in TARGETS:
             q = {k: (cd[k].get(t, {}).get("label"), cd[k].get(t, {}).get("Z")) for k in ("NP2_U", "NP2_S", "NV2_U", "NV2_S", "MUT_U", "MUT_S")}; rows[t] = q
             for card in ("U", "S"):
-                b, a, m = zabs(cd["NP2_" + card].get(t)), zabs(cd["NV1_" + card].get(t)), zabs(cd["MUT_" + card].get(t))
+                b, a, m = zabs(cd["NP2_" + card].get(t)), zabs(cd["NV2_" + card].get(t)), zabs(cd["MUT_" + card].get(t))
                 if b is None or a is None: continue
-                fall = b - a; turned = cd["NP2_" + card][t]["label"] == "FAIL" and cd["NV1_" + card][t]["label"] == "PASS"
+                fall = b - a; turned = cd["NP2_" + card][t]["label"] == "FAIL" and cd["NV2_" + card][t]["label"] == "PASS"
                 if fall >= 1.0 or turned:
                     mf = (b - m) if m is not None else None; real_ = mf is None or mf < 0.5 * fall
                     moved.append(dict(row=t, card=card, before=b, after=a, mutate=m, survives_mutate=bool(real_)))
