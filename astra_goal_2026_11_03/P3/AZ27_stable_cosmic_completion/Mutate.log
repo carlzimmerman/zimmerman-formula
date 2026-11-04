@@ -1,0 +1,12 @@
+./astra_goal_2026_11_03/P3/AZ27_stable_cosmic_completion/Mutate.lean:2:42: error: Tactic `decide` failed for proposition
+  (1 - 2 * (3 / 4)) * (1 / 4) > 0
+because its `Decidable` instance
+  Rat.instDecidableLt 0 ((1 - 2 * (3 / 4)) * (1 / 4))
+did not reduce to `isTrue` or `isFalse`.
+
+Reduction got stuck at the `Decidable` instance
+  match Rat.blt 0 ((1 - 2 * (3 / 4)) * (1 / 4)), true with
+  | false, false => isTrue ⋯
+  | false, true => isFalse ⋯
+  | true, false => isFalse ⋯
+  | true, true => isTrue ⋯

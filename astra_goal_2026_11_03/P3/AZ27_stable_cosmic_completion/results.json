@@ -1,0 +1,84 @@
+{
+  "label": "\u03ba = \u00bd FITTED; not theory closed",
+  "checks": {
+    "integrated_derivative": true,
+    "continuous_value": true,
+    "continuous_slope": true,
+    "trace_hessian": true,
+    "exact_density_constraint": true,
+    "vacuum_density": true,
+    "monotone_density_derivative": true,
+    "nonlinear_dust_conservation": true,
+    "width_absent_cosmology": true,
+    "stable_speed_factor": true,
+    "positive_kinetic_decomposition": true,
+    "stable_finite_control": true,
+    "endpoint_speed": true,
+    "endpoint_kinetic_jump": true,
+    "linear_cosmic_response": true,
+    "nonlinear_momentum_jacobian": true,
+    "fold_location": true,
+    "fold_invariant": true,
+    "fold_witness": true,
+    "fold_witness_inside_left_domain": true,
+    "mutate_exponent_range_rejected": true,
+    "lean_Certificate": true,
+    "lean_Mutate": true,
+    "inputs_unchanged": true
+  },
+  "checks_passed": 24,
+  "checks_total": 24,
+  "assertion_tested": "Exact power-law completion identities, cosmic principal stability factors, and nonlinear momentum fold; interval proofs in RESULT.md.",
+  "verdicts": {
+    "canonical": {
+      "cosmic_gradient_repair": "PASS",
+      "uniform_momentum_invertibility": "FAIL",
+      "full_nonlinear_stability": "NO VERDICT",
+      "width_selection": "FAIL",
+      "physical_kappa": "NOT EVALUABLE",
+      "whole_requirement_rows_held": 0,
+      "whole_RQ3_rows_held": 0
+    },
+    "alt": {
+      "cosmic_gradient_repair": "PASS",
+      "uniform_momentum_invertibility": "FAIL",
+      "full_nonlinear_stability": "NO VERDICT",
+      "width_selection": "FAIL",
+      "physical_kappa": "NOT EVALUABLE",
+      "whole_requirement_rows_held": 0,
+      "whole_RQ3_rows_held": 0
+    }
+  },
+  "expressions": {
+    "Q": "2*(1 - 2*p)/(C1*z**p)",
+    "density": "3*H0**2*(z - 1) + J0*m**2*(1 - 2*p)*(z**(1 - p) - 1)/(C1*(1 - p))",
+    "sound_speed_squared": "C2*(2*p - 1)*(z**p - 1)/(-C1*z**p + 6*C2*p - 3*C2)",
+    "nonlinear_Jacobian_over_Fprime": "-2*C2*K**2*p/(-C1*g**2 + C2*K**2) + 1",
+    "endpoint_kinetic_jump": "2*C1/(C2*(1 - 2*p))"
+  },
+  "inputs_before": {
+    "astra_goal_2026_11_03/P3/AZ27_stable_cosmic_completion/CRITERIA.md": "5eb8bec7d5e1ae9be5bc636e39db2be78386b4ac2dd96ff8358812669ec34a11",
+    "astra_goal_2026_11_03/P3/AZ27_stable_cosmic_completion/run.py": "9ffdb1ba44c51e0e9d4f77fe2d91db01f5ffb843ff16fe14a95066e27aa37255",
+    "astra_goal_2026_11_03/P3/AZ27_stable_cosmic_completion/Certificate.lean": "1268952656c5da527dc2c9f794a5dd51d7c871ebc29640d17fcf14a703900b56",
+    "astra_goal_2026_11_03/P3/AZ27_stable_cosmic_completion/Mutate.lean": "3b46a874e7ac66daf5eb4f911b7e0c44a6ec0ae365b172dbee5dc8f5d6e587dd",
+    "astra_goal_2026_11_03/P3/AZ24_nonlinear_cusp_constraints/RESULT.md": "d1a74ce9b5f9c6eb1bac224f9ab2bcf670cb69e2ad3c70e2f3af465ac9dabff4",
+    "astra_goal_2026_11_03/P3/AZ26_branch_crossing_stability/RESULT.md": "2622c97a7906ecc32e88b2647b90c4725a594cf8969e6aa86d42bc4944405256",
+    "why_4_puzzle/W4_08_positive_mond_amplitudes/formal/unified_invariant/SINGLE_FUNCTION.md": "a209e5d048c49ba5e9a7473fd09753784bfa9f98930dd4b0e08c8b5b481fbf2e"
+  },
+  "inputs_after": {
+    "astra_goal_2026_11_03/P3/AZ27_stable_cosmic_completion/CRITERIA.md": "5eb8bec7d5e1ae9be5bc636e39db2be78386b4ac2dd96ff8358812669ec34a11",
+    "astra_goal_2026_11_03/P3/AZ27_stable_cosmic_completion/run.py": "9ffdb1ba44c51e0e9d4f77fe2d91db01f5ffb843ff16fe14a95066e27aa37255",
+    "astra_goal_2026_11_03/P3/AZ27_stable_cosmic_completion/Certificate.lean": "1268952656c5da527dc2c9f794a5dd51d7c871ebc29640d17fcf14a703900b56",
+    "astra_goal_2026_11_03/P3/AZ27_stable_cosmic_completion/Mutate.lean": "3b46a874e7ac66daf5eb4f911b7e0c44a6ec0ae365b172dbee5dc8f5d6e587dd",
+    "astra_goal_2026_11_03/P3/AZ24_nonlinear_cusp_constraints/RESULT.md": "d1a74ce9b5f9c6eb1bac224f9ab2bcf670cb69e2ad3c70e2f3af465ac9dabff4",
+    "astra_goal_2026_11_03/P3/AZ26_branch_crossing_stability/RESULT.md": "2622c97a7906ecc32e88b2647b90c4725a594cf8969e6aa86d42bc4944405256",
+    "why_4_puzzle/W4_08_positive_mond_amplitudes/formal/unified_invariant/SINGLE_FUNCTION.md": "a209e5d048c49ba5e9a7473fd09753784bfa9f98930dd4b0e08c8b5b481fbf2e"
+  },
+  "versions": {
+    "python": "3.9.6",
+    "sympy": "1.14.0",
+    "lean": "Lean (version 4.34.0-rc2, arm64-apple-darwin24.6.0, commit 6a10ac8c22beadecabdbb0919c2b50214762f91d, Release)"
+  },
+  "command": "python3 astra_goal_2026_11_03/P3/AZ27_stable_cosmic_completion/run.py",
+  "run_status": "completed"
+}
