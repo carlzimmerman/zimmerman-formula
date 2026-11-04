@@ -1,5 +1,7 @@
 # AC1: pre-data predictions for the ALMA release of 2026-11-06
 
+**Current local revision (2026-11-04):** PAPER66 v1.4 and `ADDENDUM_G2_2026-11-04.md` correct the all-three-start gate and explicitly document the fixed archived error floor. Historical results below remain historical, not rerun outputs. Fresh validation and the full preservation manifest are in `reviews/alma_readiness_2026_11_04/revision_v1_4/` and `PAPER66_preserved_inputs_v1_4.json`. The revision is not deposited.
+
 Criteria `FROZEN_CRITERIA.md`, committed alone first (57d3ac6b64). `ac1_predict.py`: all checks PASS, under 1 GB, under a minute, one process. MUTATE (R31 x 10) fails K7 and exits 1.
 
 κ = ½ FITTED. Footings never pooled. One disc excludes no model. Not theory closed. Nothing here says the data favour the framework. These are predictions; no pixel of this MOUS has been read.

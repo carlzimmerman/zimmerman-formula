@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """PAPER66 audit: quoted numbers match AC1's committed results; seals match; PDF newer than TeX; naming rules; no local path.
 Run: python3 PAPER66_audit.py (exit 0 only if all pass).  --mutate perturbs every JSON-derived number; exit 0 only if every number check then FAILS."""
-import hashlib, json, os, re, sys
+import hashlib, json, os, re, sys, subprocess
 MUT = "--mutate" in sys.argv
 HERE = os.path.dirname(os.path.abspath(__file__)); ROOT = os.path.normpath(os.path.join(HERE, "..", "..")); STEM = "PAPER66_alma_release_predictions_2026"
 TEX = open(os.path.join(HERE, STEM + ".tex")).read() + "".join(open(os.path.join(HERE, f"PAPER66_tables_{x}.tex")).read() for x in "abc")
@@ -43,4 +43,7 @@ check("all AC1 checks pass", all(o for _, o in D["checks"]))
 pdf, tx = os.path.join(HERE, STEM + ".pdf"), os.path.join(HERE, STEM + ".tex"); check("PDF newer than TeX", os.path.getmtime(pdf) >= os.path.getmtime(tx))
 low = TEX.lower(); check("naming", "cold dark matter" not in low and not re.search(r"(?<!lambda)(?<!\$\\lambda\$)\bcdm\b", low)); check("kappa fitted, not closed", "fitted" in low and "not closed" in low or "not theory closed" in low)
 check("no local path", "/Users/" not in TEX and "carlzimmerman" not in TEX); check("no favour claim beyond the disclaimer", len(re.findall(r"\bfavour", low)) == 1)
+revision = subprocess.run([sys.executable, os.path.join(HERE, "PAPER66_verify_v1_4.py")], capture_output=True, text=True)
+check("v1.4 preservation, build and scorer verification", revision.returncode == 0)
+if revision.returncode: print(revision.stdout + revision.stderr)
 print(f"{N - F} of {N} checks pass"); sys.exit(1 if F else 0)

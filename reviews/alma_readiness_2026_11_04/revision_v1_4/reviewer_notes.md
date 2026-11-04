@@ -1,0 +1,1 @@
+Independent read-only code reviewer: no blocking defect in all-start repair, fixed floor or output isolation. Disclosed inherited 0.5-kpc minimum as requested. New summary uses generating speed at scored radius, separately by branch. Reviewer did not execute expensive tests or inspect final PDF.

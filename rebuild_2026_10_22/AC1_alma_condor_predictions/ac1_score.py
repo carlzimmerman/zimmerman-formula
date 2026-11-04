@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""AC1 scoring harness for U4_28473, CO(3-2) (FROZEN_CRITERIA.md section 4, 57d3ac6b64). Scoring only; no prediction changes.
+"""AC1 scoring harness for U4_28473, CO(3-2) (FROZEN_CRITERIA.md section 4, 57d3ac6b64). Scoring only; no prediction changes. New results default to validation_2026_11_04/; --output-dir DIR selects another directory.
     python3 -B ac1_score.py --selftest DIR    # MOCK cubes in DIR (never committed), required classes; exit 1 on any failure
     python3 -B ac1_score.py --cube FILE       # a real or MOCK cube; real runs write ac1_score_RELEASE.out/.json
     python3 -B ac1_score.py --power DIR --n 6     # MOCK seeds at archive noise: detection and fit recovery
@@ -9,6 +9,7 @@ kappa = 1/2 FITTED; footings never pooled; cold dark energy, never a particle; o
 import contextlib, hashlib, io, json, math, os, subprocess, sys
 for _v in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "VECLIB_MAXIMUM_THREADS", "MKL_NUM_THREADS"): os.environ[_v] = "1"
 sys.dont_write_bytecode = True
+from ac1_fit_checks import start_agreement, velocity_error
 import numpy as np
 from scipy import ndimage
 HERE = os.path.dirname(os.path.abspath(__file__)); REB = os.path.dirname(HERE); ROOT = os.path.dirname(REB)
@@ -19,6 +20,7 @@ _s = open(os.path.join(HERE, "ac1_predict.py")).read(); _h = _s[:_s.index("# ---
 with contextlib.redirect_stdout(io.StringIO()): exec(compile(_h, "ac1_head", "exec"), PR)
 assert all(o for _, o in PR["CHK"]), PR["CHK"]
 def opt(k, d=None): return _ARGS[_ARGS.index(k) + 1] if k in _ARGS else d
+RESULT_DIR = os.path.abspath(opt("--output-dir", os.path.join(HERE, "validation_2026_11_04")))
 OUT = []
 def P(s=""): print(s, flush=True); OUT.append(str(s))
 
@@ -138,18 +140,26 @@ def measure(path, vshift=0.0, use3d=False, inject=True):
     ys, xs = np.nonzero(mm); wt = np.clip(np.nan_to_num(m0s[ys, xs]), 0, None) + 1e-30; fits = {}; branches = {}
     for nm, inc, clamped in (("incl-mom0", ip, not (Q_MIN < gf["q"] < 1.0)), ("incl-Tadaki", it, False)):
         trials = [C.fit_disc(box, inc, KPA, m["sig_ch"], (0.0, 0.0), pa0, vs0, v0, h0, R_G2, RDG, rfit=RFIT) for v0 in (max(amp / max(math.sin(math.radians(inc)), 0.2), 50.0), 300.0, 500.0)]
-        fd0 = min(trials, key=lambda t: t["chi2"]); near = [t for t in trials if t["chi2"] - fd0["chi2"] <= 9.0]; p = fd0["params"]
-        vcs = [C.vc_from_params(np.array(t["params"]), np.array(t["cov"]), R_G2, RDG)["Vc_PB"] for t in near]; spread = (max(vcs) - min(vcs)) / max(np.median(vcs), 1.0)
+        fd0 = min(trials, key=lambda t: t["chi2"]); p = fd0["params"]
         c_, s_ = math.cos(p[2]), math.sin(p[2]); X, Y = (xs - box["xc"]) * pix - p[0], (ys - box["yc"]) * pix - p[1]
         xr, yr = X * c_ + Y * s_, -X * s_ + Y * c_; Rdp = np.hypot(xr, yr / max(math.cos(math.radians(inc)), 0.05)) * KPA; o = np.argsort(Rdp); cw = np.cumsum(wt[o]) / wt.sum(); Rdep = float(Rdp[o][np.searchsorted(cw, 0.9)]); reached = Rdep >= R_G2; Rs = R_G2 if reached else max(Rdep, 0.5)
+        # All three starts, both pressure branches, at the radius actually scored.
+        trial_v = [C.vc_from_params(np.array(t["params"]), np.array(t["cov"]), Rs, RDG) for t in trials]
+        agreement = {key: start_agreement([t[key] for t in trial_v]) for key in ("Vc_PB", "Vc_P0")}
+        starts_ok = all(x["pass"] for x in agreement.values())
+        spread = max((x["spread"] if x["spread"] is not None else float("inf")) for x in agreement.values())
         cov = np.array(fd0["cov"]); v = C.vc_from_params(np.array(p), cov * bp, Rs, RDG)
         atb = [n for n, i_, lo, hi in (("V_f", 4, 10.0, 800.0), ("R_t", 5, 0.05, 15.0), ("sigma0", 6, 3.0, 250.0), ("h", 8, 0.01, 3.0)) if p[i_] <= lo * 1.02 or p[i_] >= hi * 0.98]
-        valid = not clamped and not atb and spread <= 0.15 and np.isfinite(v["eVc_PB"]) and v["eVc_PB"] / max(v["Vc_PB"], 1.0) <= 0.25 and np.isfinite(v["eVc_P0"]) and v["eVc_P0"] / max(v["Vc_P0"], 1.0) <= 0.25
-        fits[nm] = dict(params=p, names=fd0["names"], chi2N=fd0["chi2"] / fd0["nvox"], inc=inc, G2_reached=reached, R90_dep_kpc=Rdep, R_score=Rs, V=v, valid=bool(valid), at_bound=atb, start_spread=spread, inc_clamped=bool(clamped))
-        if valid: branches[f"{nm}|P-B"] = (v["Vc_PB"], max(v["eVc_PB"], MOCK_FRAC * v["Vc_PB"]), Rs); branches[f"{nm}|P0"] = (v["Vc_P0"], max(v["eVc_P0"], MOCK_FRAC * v["Vc_P0"]), Rs)
+        valid = not clamped and not atb and starts_ok and np.isfinite(v["eVc_PB"]) and v["eVc_PB"] / max(v["Vc_PB"], 1.0) <= 0.25 and np.isfinite(v["eVc_P0"]) and v["eVc_P0"] / max(v["Vc_P0"], 1.0) <= 0.25
+        fits[nm] = dict(params=p, names=fd0["names"], chi2N=fd0["chi2"] / fd0["nvox"], inc=inc, G2_reached=reached, R90_dep_kpc=Rdep, R_score=Rs, V=v, valid=bool(valid), at_bound=atb, start_spread=spread, start_agreement=agreement, trial_chi2=[float(t["chi2"]) for t in trials], inc_clamped=bool(clamped))
+        if valid:
+            errors = {bn: velocity_error(v[vk], v[ek], MOCK_FRAC) for bn, vk, ek in (("P-B", "Vc_PB", "eVc_PB"), ("P0", "Vc_P0", "eVc_P0"))}
+            fits[nm]["error_calibration"] = errors
+            for bn, vk in (("P-B", "Vc_PB"), ("P0", "Vc_P0")):
+                branches[f"{nm}|{bn}"] = (v[vk], errors[bn]["error"], Rs)
         if p[6] > 100 or m["beam"][0] * KPA > 2 * RDG: P(f"WARNING [{nm}]: sigma0 {p[6]:.0f} or beam {m['beam'][0] * KPA:.1f} kpc against R_d {RDG:.2f} kpc: beam smearing can inflate sigma0, and so the P-B V_c; read P0 beside it")
         P(f"thin-disc fit [{nm}, i {inc:.1f}]: V_f {p[4]:.0f}, R_t {p[5]:.2f} kpc, sigma0 {p[6]:.0f}, h {p[8]:.3f}\"; G2 {'PASS' if reached else 'FAIL'} (90% flux radius {Rdep:.2f} kpc), at {Rs:.2f} kpc: V_c P-B {v['Vc_PB']:.0f} +- {v['eVc_PB']:.0f}, P0 {v['Vc_P0']:.0f} +- {v['eVc_P0']:.0f}; chi2/N {fits[nm]['chi2N']:.3f}; start spread {spread:.2f}; at bound {atb}; " + ("scored" if valid else "FIT NOT CONSTRAINED: not scored"))
-    m["fits"], m["branches"] = fits, branches; m["score"] = {}
+    m["error_calibration"] = dict(method="fixed archived compact-mock fractional RMS; not S/N-matched", fraction=MOCK_FRAC, source="ac1_score_power_results.json", source_sha256=hashlib.sha256(open(os.path.join(HERE, "ac1_score_power_results.json"), "rb").read()).hexdigest(), coverage="finite smooth-disc mocks; no confidence-interval coverage guarantee"); m["fits"], m["branches"] = fits, branches; m["score"] = {}
     for bn, (V, eV, Rs) in branches.items():
         if not (V > 0 and np.isfinite(eV)): continue
         sc = score(float(V), float(eV), float(Rs)); m["score"][bn] = sc; c0 = "canon 9.36e-11"
@@ -209,8 +219,8 @@ def selftest(d):
             need("MUTATE: frozen G1 and G1-3D both fail", not mm["G1_frozen"]["PASS"] and not mm["G1_3D"]["PASS"], f"S/N {mm['G1_frozen']['SN']:.2f}, {mm['G1_3D']['SN']:.2f}")
         os.remove(p)
     P("\nselftest: " + ", ".join(f"{'PASS' if o else 'FAIL'}" for _, o in ok))
-    json.dump(dict(checks=ok, results=RES), open(os.path.join(HERE, "ac1_score_selftest_results.json"), "w"), indent=0, default=str)
-    open(os.path.join(HERE, "ac1_score_selftest.out"), "w").write("\n".join(OUT) + "\n")
+    json.dump(dict(checks=ok, results=RES), open(os.path.join(RESULT_DIR, "ac1_score_selftest_results.json"), "w"), indent=0, default=str)
+    open(os.path.join(RESULT_DIR, "ac1_score_selftest.out"), "w").write("\n".join(OUT) + "\n")
     return all(o for _, o in ok)
 
 def power(d, N):
@@ -219,17 +229,21 @@ def power(d, N):
         for i in range(N):
             sp, Vc = spec(kind, seed=70000 + 97 * i + sum(map(ord, kind))); p = os.path.join(d, f"AC1_MOCK_power_{kind}.fits"); C.write_mock_cube(p, sp)
             n0 = len(OUT); m, _ = measure(p, use3d=True, inject=False); del OUT[n0:]; f = m.get("fits", {}).get("incl-Tadaki")
-            T[kind].append(dict(seed=i, m0=m["G1_frozen"]["SN"], g3=m["G1_3D"]["SN"], det=m["G1_3D"]["PASS"], valid=bool(f and f["valid"]), Vc=f["V"]["Vc_PB"] if f else None, eV=f["V"]["eVc_PB"] if f else None, R90=f["R90_dep_kpc"] if f else None, S=m["G1_3D"]["S"])); os.remove(p)
+            T[kind].append(dict(seed=i, m0=m["G1_frozen"]["SN"], g3=m["G1_3D"]["SN"], det=m["G1_3D"]["PASS"], valid=bool(f and f["valid"]), Vc=f["V"]["Vc_PB"] if f else None, eV=f["V"]["eVc_PB"] if f else None, R90=f["R90_dep_kpc"] if f else None, fit_diagnostics=m.get("fits", {}), S=m["G1_3D"]["S"])); os.remove(p)
             P(f"POWER {kind} {i}: " + json.dumps(T[kind][-1], default=str))
     summ = {k: dict(N=len(v), m0_pass=sum(x["m0"] >= 5 for x in v), g3_pass=sum(x["det"] for x in v), valid=sum(x["valid"] for x in v), Vc_valid=[round(x["Vc"]) for x in v if x["valid"]]) for k, v in T.items()}
-    P("POWER summary " + json.dumps(summ)); json.dump(dict(runs=T, summary=summ, note="MOCK smooth exponential discs at the archive sensitivity; V_c 430; never real data"), open(os.path.join(HERE, f"ac1_score_power{ptag}_results.json"), "w"), indent=0, default=str)
-    open(os.path.join(HERE, f"ac1_score_power{ptag}.out"), "w").write("\n".join(OUT) + "\n")
+    P("POWER summary " + json.dumps(summ)); json.dump(dict(runs=T, summary=summ, note="MOCK smooth exponential discs at the archive sensitivity; V_c 430; never real data"), open(os.path.join(RESULT_DIR, f"ac1_score_power{ptag}_results.json"), "w"), indent=0, default=str)
+    open(os.path.join(RESULT_DIR, f"ac1_score_power{ptag}.out"), "w").write("\n".join(OUT) + "\n")
 
 def main():
+    if os.path.realpath(RESULT_DIR) == os.path.realpath(HERE):
+        raise SystemExit("Refusing to overwrite historical AC1 outputs; choose a new --output-dir")
+    os.makedirs(RESULT_DIR, exist_ok=True)
     want = "57d3ac6b64"; cur = hashlib.sha256(open(os.path.join(HERE, "FROZEN_CRITERIA.md"), "rb").read()).hexdigest()
     old = hashlib.sha256(subprocess.run(["git", "show", f"{want}:rebuild_2026_10_22/AC1_alma_condor_predictions/FROZEN_CRITERIA.md"], cwd=ROOT, capture_output=True).stdout).hexdigest()
     if cur != old: raise SystemExit("FROZEN_CRITERIA.md differs from its freezing commit")
-    P(f"MOCK V_c error fraction {MOCK_FRAC:.3f}")
+    P(f"MOCK V_c error fraction {MOCK_FRAC:.6f}: fixed archived RMS, not S/N-matched; no coverage guarantee")
+    P(f"2026-11-04 G2 correction: all three starts, both pressure branches; outputs {RESULT_DIR}")
     P(f"AC1 scoring harness; criteria {want} unchanged; kappa = 1/2 FITTED; one disc excludes no model; not theory closed")
     if "--selftest" in _ARGS: sys.exit(0 if selftest(opt("--selftest")) else 1)
     if "--power" in _ARGS: power(opt("--power"), int(opt("--n", "6"))); sys.exit(0)
@@ -240,8 +254,9 @@ def main():
         m, _ = measure(path, use3d=use3); bite = False; tag = ""
     if "--validation" in _ARGS:   # a public cube of another programme: tests the code against a published flux, scores nothing
         m["validation_only"] = True; P("VALIDATION RUN: not the 2026-11-06 MOUS; scores no prediction")
-        json.dump(m, open(os.path.join(HERE, f"ac1_score_VALIDATION{tag}.json"), "w"), indent=0, default=str); open(os.path.join(HERE, f"ac1_score_VALIDATION{tag}.out"), "w").write("\n".join(OUT) + "\n")
+        json.dump(m, open(os.path.join(RESULT_DIR, f"ac1_score_VALIDATION{tag}.json"), "w"), indent=0, default=str); open(os.path.join(RESULT_DIR, f"ac1_score_VALIDATION{tag}.out"), "w").write("\n".join(OUT) + "\n")
     elif not mock:
-        json.dump(m, open(os.path.join(HERE, f"ac1_score_RELEASE{tag}.json"), "w"), indent=0, default=str); open(os.path.join(HERE, f"ac1_score_RELEASE{tag}.out"), "w").write("\n".join(OUT) + "\n")
+        json.dump(m, open(os.path.join(RESULT_DIR, f"ac1_score_RELEASE{tag}.json"), "w"), indent=0, default=str); open(os.path.join(RESULT_DIR, f"ac1_score_RELEASE{tag}.out"), "w").write("\n".join(OUT) + "\n")
     sys.exit(1 if bite else 0)
-main()
+if __name__ == "__main__":
+    main()
