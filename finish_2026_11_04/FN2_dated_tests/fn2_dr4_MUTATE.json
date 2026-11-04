@@ -1,0 +1,259 @@
+{
+ "criteria": "755f05c3cf",
+ "mutate": true,
+ "C1": {
+  "url": "https://www.cosmos.esa.int/web/gaia/release",
+  "utc": "2026-11-04T18:34:30Z",
+  "page_sha256": "6029e53ef101ed5d6b89cc5a10967de0286d915ed6660dbf580906c577258f36",
+  "page_bytes": 112538,
+  "extract": "Gaia DR4 (based on 66 months of data) 2 December 2026",
+  "date": "2 December 2026",
+  "label": "DATE CONFIRMED",
+  "status": "PROVISIONAL"
+ },
+ "known": [
+  [
+   "K-C3 prereg SHA-256 equals Amendment 22's after-hash",
+   false
+  ],
+  [
+   "K-C4 wide_binary_pipeline.py SHA-256 equals the hash CW1 recorded",
+   true
+  ],
+  [
+   "K-C2 CW1 seal SHA-256 equals its .sha256 file",
+   true
+  ],
+  [
+   "K-C1 CW1 PQ gamma_inf (cw1.json) = 1.149 +- 0.027 canonical, 1.208 +- 0.007 alt (printed 3 decimals)",
+   false
+  ],
+  [
+   "K-C5 D2 note unchanged since 3d82af0a7e",
+   true
+  ],
+  [
+   "K-C6 Arm A floors in the prereg text (Amendment 10 table) equal the pipeline's GAMMA_TARGET / GAMMA_TARGET_ALT",
+   true
+  ],
+  [
+   "K-C7 D2 \u00a73 ceilings (floor - 1)/3 = 0.054 / 0.064",
+   true
+  ]
+ ],
+ "C2": {
+  "lines": [
+   {
+    "source": "PREREGISTRATION_DR4.md \u00a71.5 (2026-07-16)",
+    "hypothesis": "H in {1.00, 1.09 [band 1.05\u20131.10], 1.137, 1.33}",
+    "kernel": "n = 2 framework MI/MG of 2026-07 (sqrt(1+1/y)); amended to alpha = 2, then Route A",
+    "names_bare_law": false,
+    "rule": "z_H = (gamma_hat - gamma_H)/sigma_tot; consistent |z|<2, disfavored |z|>3",
+    "against_outcome": true
+   },
+   {
+    "source": "PREREGISTRATION_DR4.md Amendments 10-11 (Arm A)",
+    "hypothesis": "Arm A: the frozen kernel as modified gravity, no coherence length; band 1.1614-1.1814 / 1.1917-1.2267",
+    "kernel": "Route A, nu = 1/(1 - exp(-sqrt(y)))",
+    "names_bare_law": false,
+    "rule": "table: gamma_hat <= 1.007 Arm A falsified; ... ; > 1.23 no verdict",
+    "against_outcome": true
+   },
+   {
+    "source": "NOTE_2026-10-22_FORK_SCORING_PRE_DR4.md (D2, owner-approved) + A1-A3",
+    "hypothesis": "law-first: the canonical law g_N = g\u00b2/(g + a\u2080) holds at every scale, read with the Galactic external field.",
+    "kernel": "names g_N = g^2/(g + a0) (n = 1); its decision rows use Arm A's registered floor (Route A kernel); A1/A3 quote the n = 1 AQUAL values 1.167/1.199 (primary g_ext), 1.145/1.173 (alternative)",
+    "names_bare_law": true,
+    "rule": "\u03b3\u0302 \u2212 1.000 \u2265 3\u03c3 and \u03b3\u0302 not below Arm A's floor by \u2265 3\u03c3: medium-first excluded. | Arm A floor \u2212 \u03b3\u0302 \u2265 3\u03c3: law-first excluded. | Otherwise: UNDECIDED. ; sigma = sqrt(sigma_fit^2 + sigma_sys^2), sigma_sys definition (b) primary; (a), (e), (g2) must agree at >= 3 sigma, else UNDECIDED (A3)",
+    "against_outcome": true
+   },
+   {
+    "source": "CW1 SEALED_PREDICTION.md (df7801238b)",
+    "hypothesis": "PQ plain QUMOND (n = 1 nu, Newtonian host field) and filter forms",
+    "kernel": "n = 1",
+    "names_bare_law": true,
+    "rule": "none: separation labels between forms (dQ/0.020, dgamma/0.028) and a qualitative 'What DR4 would decide'; no gamma_hat band or z rule",
+    "against_outcome": false
+   },
+   {
+    "source": "CFG800 / Amendment 22 R rule",
+    "hypothesis": "'FRAMEWORK KILLED' = the CFG740 stiffness construction (Amendment 22 c4)",
+    "kernel": "CFG740",
+    "names_bare_law": false,
+    "rule": "KILLED iff R - 1 >= 0.01 and >= 3 sigma_R",
+    "against_outcome": true
+   }
+  ],
+  "label": "RULE EXISTS, ANCHOR NOT THE BARE LAW'S OWN NUMBER",
+  "arm_a_kernel_equals_bare_law": false,
+  "anchor_offset_sigma_tot": {
+   "canonical": 6.277678571428639,
+   "alt": 7.516071428571493
+  },
+  "floors": {
+   "canonical": 1.1614,
+   "alt": 1.1917
+  },
+  "pipeline_constants": {
+   "GAMMA_TARGET": 1.1614,
+   "GAMMA_TARGET_ALT": 1.1917,
+   "GAMMA_TARGET_TOP": 1.1814,
+   "GAMMA_TARGET_ALT_TOP": 1.2267,
+   "NOVERDICT_EDGE": 1.23
+  },
+  "CW1_PQ": {
+   "canonical": [
+    0.9856249999999981,
+    0.016524130083002467
+   ],
+   "alt": [
+    0.9812499999999982,
+    0.019080421903091734
+   ]
+  }
+ },
+ "C3": {
+  "(a) sigma_fit 0.019, sigma_sys 0.020 (registered, N = 30,000)|canonical": {
+   "sigma": 0.027586228448267445,
+   "law_first_excluded_at_or_below": 1.0786413146551976,
+   "medium_first_excluded_at_or_above": 1.0827586853448024,
+   "CW1_PQ": 0.9856249999999981,
+   "CW1_PQ_call": "law-first EXCLUDED",
+   "newton_1p000_call": "law-first EXCLUDED",
+   "info_anchor_A1_AQUAL": 1.167,
+   "info_law_first_excluded_if_anchor_were_A1": 1.0842413146551977
+  },
+  "(a) sigma_fit 0.019, sigma_sys 0.020 (registered, N = 30,000)|alt": {
+   "sigma": 0.027586228448267445,
+   "law_first_excluded_at_or_below": 1.1089413146551976,
+   "medium_first_excluded_at_or_above": 1.1089413146551976,
+   "CW1_PQ": 0.9812499999999982,
+   "CW1_PQ_call": "law-first EXCLUDED",
+   "newton_1p000_call": "law-first EXCLUDED",
+   "info_anchor_A1_AQUAL": 1.199,
+   "info_law_first_excluded_if_anchor_were_A1": 1.1162413146551977
+  },
+  "(b) sigma_fit 0.019, sigma_sys DR3 def. (b) 0.0375 / 0.041 (NON-SCORING illustration)|canonical": {
+   "sigma": 0.04203867267171978,
+   "law_first_excluded_at_or_below": 1.0352839819848407,
+   "medium_first_excluded_at_or_above": 1.1261160180151593,
+   "CW1_PQ": 0.9856249999999981,
+   "CW1_PQ_call": "law-first EXCLUDED",
+   "newton_1p000_call": "law-first EXCLUDED",
+   "info_anchor_A1_AQUAL": 1.167,
+   "info_law_first_excluded_if_anchor_were_A1": 1.0408839819848408
+  },
+  "(b) sigma_fit 0.019, sigma_sys DR3 def. (b) 0.0375 / 0.041 (NON-SCORING illustration)|alt": {
+   "sigma": 0.04518849411078001,
+   "law_first_excluded_at_or_below": 1.05613451766766,
+   "medium_first_excluded_at_or_above": 1.13556548233234,
+   "CW1_PQ": 0.9812499999999982,
+   "CW1_PQ_call": "law-first EXCLUDED",
+   "newton_1p000_call": "law-first EXCLUDED",
+   "info_anchor_A1_AQUAL": 1.199,
+   "info_law_first_excluded_if_anchor_were_A1": 1.06343451766766
+  }
+ },
+ "C4": [
+  {
+   "file": "AMENDMENT12_DRAFT_NOT_FILED.md",
+   "amendment": 12,
+   "filed_in_prereg": true,
+   "hash_file": true,
+   "draft_lines_not_in_filed": 62,
+   "filed_lines_not_in_draft": 64,
+   "rows": "CHANGES ROWS: Arm B's coherence length, prediction and kill threshold corrected; declares Arm B not a testable arm; Arm A untouched",
+   "label": "FILED, CHANGES ROWS"
+  },
+  {
+   "file": "AMENDMENT15_DRAFT_NOT_FILED.md",
+   "amendment": 15,
+   "filed_in_prereg": true,
+   "hash_file": true,
+   "draft_lines_not_in_filed": 19,
+   "filed_lines_not_in_draft": 47,
+   "rows": "NO ROW CHANGE (its own text: 'CHANGES NO CUT VALUE, THRESHOLD, ESTIMATOR SETTING OR DECISION ROW...')",
+   "label": "FILED, NO ROW CHANGE"
+  },
+  {
+   "file": "AMENDMENT16_DRAFT_NOT_FILED.md",
+   "amendment": 16,
+   "filed_in_prereg": true,
+   "hash_file": true,
+   "draft_lines_not_in_filed": 8,
+   "filed_lines_not_in_draft": 6,
+   "rows": "NO ROW CHANGE (its own text: 'CHANGES NO CUT VALUE, THRESHOLD, ESTIMATOR SETTING OR DECISION ROW...')",
+   "label": "FILED, NO ROW CHANGE"
+  },
+  {
+   "file": "AMENDMENT17_DRAFT_NOT_FILED.md",
+   "amendment": 17,
+   "filed_in_prereg": true,
+   "hash_file": true,
+   "draft_lines_not_in_filed": 21,
+   "filed_lines_not_in_draft": 1,
+   "rows": "NO ROW CHANGE (its own text: 'CHANGES NO CUT VALUE, THRESHOLD, ESTIMATOR SETTING OR DECISION ROW...')",
+   "label": "FILED, NO ROW CHANGE"
+  },
+  {
+   "file": "AMENDMENT18_DRAFT_NOT_FILED.md",
+   "amendment": 18,
+   "filed_in_prereg": true,
+   "hash_file": true,
+   "draft_lines_not_in_filed": 57,
+   "filed_lines_not_in_draft": 1,
+   "rows": "NO ROW CHANGE (its own text: 'CHANGES NO CUT VALUE, THRESHOLD, ESTIMATOR SETTING, \u03c3_tot DEFINITION OR DECISION ROW...')",
+   "label": "FILED, NO ROW CHANGE"
+  },
+  {
+   "file": "AMENDMENT19_DRAFT_NOT_FILED.md",
+   "amendment": 19,
+   "filed_in_prereg": true,
+   "hash_file": true,
+   "draft_lines_not_in_filed": 9,
+   "filed_lines_not_in_draft": 1,
+   "rows": "NO ROW CHANGE (its own text: 'CHANGES NO CUT, THRESHOLD, ESTIMATOR SETTING, \u03c3_tot, DECISION ROW...')",
+   "label": "FILED, NO ROW CHANGE"
+  },
+  {
+   "file": "AMENDMENT20_DRAFT_NOT_FILED.md",
+   "amendment": 20,
+   "filed_in_prereg": true,
+   "hash_file": true,
+   "draft_lines_not_in_filed": 0,
+   "filed_lines_not_in_draft": 0,
+   "rows": "NO ROW CHANGE (its own text: 'CHANGES NO CUT, THRESHOLD, ESTIMATOR SETTING, GRID, \u03c3_tot, DECISION ROW...')",
+   "label": "FILED, NO ROW CHANGE"
+  },
+  {
+   "file": "AMENDMENT21_DRAFT_NOT_FILED.md",
+   "amendment": 21,
+   "filed_in_prereg": true,
+   "hash_file": true,
+   "draft_lines_not_in_filed": 0,
+   "filed_lines_not_in_draft": 0,
+   "rows": "NO ROW CHANGE (its own text: 'CHANGES NO CUT, THRESHOLD, ESTIMATOR SETTING, GRID, \u03c3_tot, DECISION ROW...')",
+   "label": "FILED, NO ROW CHANGE"
+  },
+  {
+   "file": "AMENDMENT22_DRAFT_NOT_FILED.md",
+   "amendment": 22,
+   "filed_in_prereg": true,
+   "hash_file": true,
+   "draft_lines_not_in_filed": 0,
+   "filed_lines_not_in_draft": 1,
+   "rows": "NO ROW CHANGE (its own text: 'CHANGES NO CUT, THRESHOLD, ESTIMATOR SETTING, GRID, \u03c3_tot, DECISION ROW...')",
+   "label": "FILED, NO ROW CHANGE"
+  },
+  {
+   "file": "AMENDMENT9_DRAFT_NOT_FILED.md",
+   "amendment": 9,
+   "filed_in_prereg": true,
+   "hash_file": true,
+   "draft_lines_not_in_filed": 102,
+   "filed_lines_not_in_draft": 65,
+   "rows": "CHANGES ROWS: MG target 1.2139/1.2592 replaces MI 1.1582; no-verdict edge 1.20 -> 1.26; rows 1.145-1.26 relabelled (all later superseded by Amendment 10)",
+   "label": "FILED, CHANGES ROWS"
+  }
+ ]
+}

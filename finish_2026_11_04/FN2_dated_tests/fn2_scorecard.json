@@ -1,0 +1,91 @@
+{
+ "map": [
+  {
+   "row": "A",
+   "prediction": "U4_27928: G1 fails, nothing scored",
+   "evaluation": "G1 passing at its frozen aperture counts against this forecast.",
+   "file": "cfg942_u4_RELEASE_results.json (CFG942 dir; byte-identical copy CFG806_u4_27928_scoring/cfg806_u4_results.json)",
+   "fields": "results.measured.G1 (selection-aware S/N decides, CFG806 addendum A); results.measured.SN_selection; results.measured.G1_literal (information); results.measured.logMgas_UL; results.score.overall",
+   "note": "direct"
+  },
+  {
+   "row": "B0",
+   "prediction": "U4_28473 detected and V_c scored, conditional on the sister-unit noise and beam forecast",
+   "evaluation": "Report measured noise/beam, detection and fit validity. Non-detection or an invalid fit challenges the forecast only under its stated conditions.",
+   "file": "ac1_score_RELEASE.json",
+   "fields": "detected, gate, G1_3D.{S,SN,PASS}, G1_frozen.{SN,PASS} (printed beside); sig_ch and dv (noise per 10 km/s = sig_ch*sqrt(dv/10)); beam; fits.<incl>.valid",
+   "note": "direct fields; GAP: the tex gives no numeric tolerance for 'the sister-unit noise and beam hold', so measured/forecast ratios are printed with no call"
+  },
+  {
+   "row": "B1",
+   "prediction": "V_c >= Newton for the true baryons; lowest input-grid branch at 3 kpc is 431 km/s",
+   "evaluation": "Compare the mass/pressure branches and uncertainties. A value below the grid challenges those inputs; it is not an unconditional test of a0.",
+   "file": "ac1_score_RELEASE.json + ac1_results.json",
+   "fields": "fits.<incl>.V.{Vc_PB,Vc_P0}, fits.<incl>.error_calibration.<P-B|P0>.error, fits.<incl>.R_score; score.<branch>.<lgM*|shape>.'Newton|...' class",
+   "note": "GAP: no stored 'Newton grid at R_score' field; computed here from the frozen inputs (v2_exp, logMgas), z = (V - V_N,min)/error printed, no call (the tex gives no numeric line)"
+  },
+  {
+   "row": "B2",
+   "prediction": "Conditional example: at V_c ~ 430, alpha_CO = 4.36 with published masses is out for every reading",
+   "evaluation": "Evaluate the branch-specific required gas conversion and interval. A different speed makes the 430 example inapplicable; it does not falsify the implication.",
+   "file": "ac1_score_RELEASE.json",
+   "fields": "score.<branch>.<lgM*11.31|S1/S2, 11.35|S1/S2>.<kernel|footing|a0>.{nominal,lo,hi,class_}",
+   "note": "GAP: lg M* 11.11 (the tex's 0.88) is not a stored key (the scorer stores 11.31 and 11.35; 11.11 enters only as an interval end); recomputed with alpha_req. GAP: 'near 430' has no numeric width in the tex; |V-430|/error printed. Applies only if R_score = 3 kpc."
+  },
+  {
+   "row": "B3",
+   "prediction": "flat, F-DESI and the band not separated",
+   "evaluation": "Any pair separated under the filed rule counts against this forecast.",
+   "file": "ac1_score_RELEASE.json",
+   "fields": "score.<branch>.<lgM*|shape>.<kernel|footing|{F-flat,F-DESI,band low 0.325,band high 1.212}>.{nominal,ms_width}; rule = ac1_score.separated",
+   "note": "computed from stored fields (the scorer prints only flat vs R-H)"
+  },
+  {
+   "row": "B4",
+   "prediction": "R-H not separated",
+   "evaluation": "Separation under the same rule counts against this forecast.",
+   "file": "ac1_score_RELEASE.json",
+   "fields": "same fields, pair F-flat vs R-H; the scorer's printed line 'flat vs R-H: separated|not separated' (lg M* 11.31, canonical, n = 1)",
+   "note": "direct for the printed cells; computed from stored fields for the rest"
+  },
+  {
+   "row": "B5",
+   "prediction": "record only (route N retired)",
+   "evaluation": "No live score.",
+   "file": "ac1_score_RELEASE.json",
+   "fields": "score.<branch>.<lgM*|shape>.'route N|12.0/12.5/13.0' (computed, no weight)",
+   "note": "record only"
+  }
+ ],
+ "known": [
+  [
+   "K-A2a B1 Newton V_c(3 kpc), lg M* 11.11, S2, alpha_CO 1 = 431 (tex) +- 0.5",
+   true
+  ],
+  [
+   "K-A2b B2 alpha_CO,req at V_c 430, 3 kpc, n=1 flat canonical: 0.88 (11.11 S2) and 0.07 (11.31 S2) +- 0.005",
+   true
+  ],
+  [
+   "K-A2c B2 every S1 branch FLOOR at V_c 430 (lg M* 11.11, 11.15, 11.31, 11.35)",
+   true
+  ],
+  [
+   "K-A2d B3 flat - F-DESI at 3 kpc = 2 km/s (tex) +- 0.5",
+   true
+  ],
+  [
+   "K-A2e B4 R-H - flat at 3 kpc = 22 km/s (tex) +- 0.5",
+   true
+  ],
+  [
+   "K-A2f B5 n=1 flat - route N 12.5 = 9 (3 kpc) and 22 (8 kpc) km/s (tex) +- 0.5",
+   true
+  ],
+  [
+   "K-A2g reader's flat vs R-H call equals the scorer's printed call on a MOCK selftest",
+   true
+  ]
+ ],
+ "mutate": false
+}

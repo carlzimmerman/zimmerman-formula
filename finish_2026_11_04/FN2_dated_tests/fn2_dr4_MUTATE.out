@@ -1,0 +1,42 @@
+C1 ESA page https://www.cosmos.esa.int/web/gaia/release read 2026-11-04T18:34:30Z (page sha256 6029e53ef101ed5d): 'Gaia DR4 (based on 66 months of data) 2 December 2026' -> DATE CONFIRMED; PROVISIONAL (a web page; ESA can move it)
+[FAIL] K-C3 prereg SHA-256 equals Amendment 22's after-hash: 897079c4b983d34f vs 20677265fdace8e1
+[PASS] K-C4 wide_binary_pipeline.py SHA-256 equals the hash CW1 recorded: 7c884e0e0a4cb9cb vs 7c884e0e0a4cb9cb
+[PASS] K-C2 CW1 seal SHA-256 equals its .sha256 file: df7801238b3652ea vs df7801238b3652ea
+[FAIL] K-C1 CW1 PQ gamma_inf (cw1.json) = 1.149 +- 0.027 canonical, 1.208 +- 0.007 alt (printed 3 decimals): canonical 0.9856 +- 0.0165, alt 0.9812 +- 0.0191 (MUTATE: LOC3 row read)
+[PASS] K-C5 D2 note unchanged since 3d82af0a7e: sha256 e25be2cf54bdd933
+[PASS] K-C6 Arm A floors in the prereg text (Amendment 10 table) equal the pipeline's GAMMA_TARGET / GAMMA_TARGET_ALT: text ('1.1614', '1.1917'); code {'canonical': 1.1614, 'alt': 1.1917}
+[PASS] K-C7 D2 §3 ceilings (floor - 1)/3 = 0.054 / 0.064: 0.0538 / 0.0639 against the note's ('0.054', '0.064')
+
+C2 kernels behind the numbers (nu at y = 0.1, 1.0, 1.4647, 10.0):
+   bare law, n = 1 (PAPER67, CW1 PQ, D2 A1):  3.7016, 1.6180, 1.4658, 1.0916
+   Arm A, Route A (aqual_efe_full_solve_2026.py nu):  3.6886, 1.5820, 1.4248, 1.0442
+   prereg 2026-07-16 statement, n = 2 (sqrt(1+1/y)):  3.3166, 1.4142, 1.2972, 1.0488
+   PREREGISTRATION_DR4.md §1.5 (2026-07-16): names the bare law False; rule against it False; kernel: n = 2 framework MI/MG of 2026-07 (sqrt(1+1/y)); amended to alpha = 2, then Route A
+   PREREGISTRATION_DR4.md Amendments 10-11 (Arm A): names the bare law False; rule against it False; kernel: Route A, nu = 1/(1 - exp(-sqrt(y)))
+   NOTE_2026-10-22_FORK_SCORING_PRE_DR4.md (D2, owner-approved) + A1-A3: names the bare law True; rule against it True; kernel: names g_N = g^2/(g + a0) (n = 1); its decision rows use Arm A's registered floor (Route A kernel); A1/A3 quote the n = 1 AQUAL values 1.167/1.199 (primary g_ext), 1.145/1.173 (alternative)
+   CW1 SEALED_PREDICTION.md (df7801238b): names the bare law True; rule against it False; kernel: n = 1
+   CFG800 / Amendment 22 R rule: names the bare law False; rule against it False; kernel: CFG740
+C2 label: RULE EXISTS, ANCHOR NOT THE BARE LAW'S OWN NUMBER. Arm A's kernel equals the bare law's nu: False. Anchor offset |Arm A floor - CW1 PQ gamma_inf| / 0.028: canonical 6.28, alt 7.52 sigma_tot
+
+C3 the D2 law-first rows, mechanically. law-first EXCLUDED iff gamma_hat <= floor - 3 sigma; medium-first EXCLUDED iff gamma_hat >= 1 + 3 sigma and not law-first excluded; else UNDECIDED.
+   (a) sigma_fit 0.019, sigma_sys 0.020 (registered, N = 30,000) | canonical: sigma 0.0276; law-first excluded at gamma_hat <= 1.0786; medium-first excluded at gamma_hat >= 1.0828; CW1 PQ 0.9856 reads 'law-first EXCLUDED'; a Newtonian 1.000 reads 'law-first EXCLUDED'; information: with A1's AQUAL anchor 1.167 the law-first edge would be 1.0842
+   (a) sigma_fit 0.019, sigma_sys 0.020 (registered, N = 30,000) | alt: sigma 0.0276; law-first excluded at gamma_hat <= 1.1089; medium-first excluded at gamma_hat >= 1.1089; CW1 PQ 0.9812 reads 'law-first EXCLUDED'; a Newtonian 1.000 reads 'law-first EXCLUDED'; information: with A1's AQUAL anchor 1.199 the law-first edge would be 1.1162
+   (b) sigma_fit 0.019, sigma_sys DR3 def. (b) 0.0375 / 0.041 (NON-SCORING illustration) | canonical: sigma 0.0420; law-first excluded at gamma_hat <= 1.0353; medium-first excluded at gamma_hat >= 1.1261; CW1 PQ 0.9856 reads 'law-first EXCLUDED'; a Newtonian 1.000 reads 'law-first EXCLUDED'; information: with A1's AQUAL anchor 1.167 the law-first edge would be 1.0409
+   (b) sigma_fit 0.019, sigma_sys DR3 def. (b) 0.0375 / 0.041 (NON-SCORING illustration) | alt: sigma 0.0452; law-first excluded at gamma_hat <= 1.0561; medium-first excluded at gamma_hat >= 1.1356; CW1 PQ 0.9812 reads 'law-first EXCLUDED'; a Newtonian 1.000 reads 'law-first EXCLUDED'; information: with A1's AQUAL anchor 1.199 the law-first edge would be 1.0634
+   (D2 A3: both frozen g_ext values are scored separately; the floor above is Arm A's at the primary g_ext. sigma_fit scales as sqrt(30000/N) per PREREG §1.5.)
+
+C4 drafts marked NOT FILED in prep_2026/gaia_dr4_prep/:
+   AMENDMENT12_DRAFT_NOT_FILED.md: Amendment 12 filed in the prereg True, hash file True; draft lines not in the filed block 62, filed lines not in the draft 64; CHANGES ROWS: Arm B's coherence length, prediction and kill threshold corrected; declares Arm B not a testable arm; Arm A untouched -> FILED, CHANGES ROWS
+   AMENDMENT15_DRAFT_NOT_FILED.md: Amendment 15 filed in the prereg True, hash file True; draft lines not in the filed block 19, filed lines not in the draft 47; NO ROW CHANGE (its own text: 'CHANGES NO CUT VALUE, THRESHOLD, ESTIMATOR SETTING OR DECISION ROW...') -> FILED, NO ROW CHANGE
+   AMENDMENT16_DRAFT_NOT_FILED.md: Amendment 16 filed in the prereg True, hash file True; draft lines not in the filed block 8, filed lines not in the draft 6; NO ROW CHANGE (its own text: 'CHANGES NO CUT VALUE, THRESHOLD, ESTIMATOR SETTING OR DECISION ROW...') -> FILED, NO ROW CHANGE
+   AMENDMENT17_DRAFT_NOT_FILED.md: Amendment 17 filed in the prereg True, hash file True; draft lines not in the filed block 21, filed lines not in the draft 1; NO ROW CHANGE (its own text: 'CHANGES NO CUT VALUE, THRESHOLD, ESTIMATOR SETTING OR DECISION ROW...') -> FILED, NO ROW CHANGE
+   AMENDMENT18_DRAFT_NOT_FILED.md: Amendment 18 filed in the prereg True, hash file True; draft lines not in the filed block 57, filed lines not in the draft 1; NO ROW CHANGE (its own text: 'CHANGES NO CUT VALUE, THRESHOLD, ESTIMATOR SETTING, σ_tot DEFINITION OR DECISION ROW...') -> FILED, NO ROW CHANGE
+   AMENDMENT19_DRAFT_NOT_FILED.md: Amendment 19 filed in the prereg True, hash file True; draft lines not in the filed block 9, filed lines not in the draft 1; NO ROW CHANGE (its own text: 'CHANGES NO CUT, THRESHOLD, ESTIMATOR SETTING, σ_tot, DECISION ROW...') -> FILED, NO ROW CHANGE
+   AMENDMENT20_DRAFT_NOT_FILED.md: Amendment 20 filed in the prereg True, hash file True; draft lines not in the filed block 0, filed lines not in the draft 0; NO ROW CHANGE (its own text: 'CHANGES NO CUT, THRESHOLD, ESTIMATOR SETTING, GRID, σ_tot, DECISION ROW...') -> FILED, NO ROW CHANGE
+   AMENDMENT21_DRAFT_NOT_FILED.md: Amendment 21 filed in the prereg True, hash file True; draft lines not in the filed block 0, filed lines not in the draft 0; NO ROW CHANGE (its own text: 'CHANGES NO CUT, THRESHOLD, ESTIMATOR SETTING, GRID, σ_tot, DECISION ROW...') -> FILED, NO ROW CHANGE
+   AMENDMENT22_DRAFT_NOT_FILED.md: Amendment 22 filed in the prereg True, hash file True; draft lines not in the filed block 0, filed lines not in the draft 1; NO ROW CHANGE (its own text: 'CHANGES NO CUT, THRESHOLD, ESTIMATOR SETTING, GRID, σ_tot, DECISION ROW...') -> FILED, NO ROW CHANGE
+   AMENDMENT9_DRAFT_NOT_FILED.md: Amendment 9 filed in the prereg True, hash file True; draft lines not in the filed block 102, filed lines not in the draft 65; CHANGES ROWS: MG target 1.2139/1.2592 replaces MI 1.1582; no-verdict edge 1.20 -> 1.26; rows 1.145-1.26 relabelled (all later superseded by Amendment 10) -> FILED, CHANGES ROWS
+C4: 10 drafts; 0 not filed in the prereg (every draft file name is stale; the filed block governs)
+
+known answers 5 of 7 PASS; MUTATE: K-C3 and K-C1 must fail
+MUTATE bites

@@ -1,0 +1,119 @@
+MOCK V_c error fraction 0.088731: fixed archived RMS, not S/N-matched; no coverage guarantee
+2026-11-04 G2 correction: all three starts, both pressure branches; outputs finish_2026_11_04/FN2_dated_tests/a1_selftest_default
+AC1 scoring harness; criteria 57d3ac6b64 unchanged; kappa = 1/2 FITTED; one disc excludes no model; not theory closed
+
+=== MOCK realistic: V_c 430, flux 0.79, noise archive ===
+file AC1_MOCK_realistic.fits sha256 5d2bdbf4055dd73b; OBJECT MOCK; pix 0.0219", beam 0.070x0.062", dv 20.0, sigma/ch 0.304 mJy/beam, line covered True, shift +0
+*** MOCK cube, NOT ALMA DATA ***
+G1 frozen (moment-0, selection-aware): S 0.7829 Jy km/s, S/N 1.56, offset 0.038", z 2.52455 -> FAIL
+G1-3D (addendum, decides): S 0.6217 Jy km/s in 1302 voxels, S/N 8.26 (null mean 0.0451, sd 0.0658, mask-sum noise 0.0698, null nonzero 0.42), z 2.52586 -> PASS
+1" radius aperture flux -0.372 +- 1.329 Jy km/s against published 0.79 +- 0.08; 3 sigma limit 3.987; measured noise, single-channel, scaled: 0.430 mJy/beam at 10 km/s (the archive's listed figure can differ: 3.7 x higher on the validation cube)
+flux check: measured/published 0.79; a thresholded 3D mask misses faint flux, so also: moment-0 mask 0.783, 1" aperture -0.372
+moment-0 q 0.098 -> i 90.0; Tadaki q4.4 0.55 -> i 58.5; initial PA 111, vsys -4, amp 94
+thin-disc fit [incl-mom0, i 90.0]: V_f 94, R_t 1.00 kpc, sigma0 40, h 0.404"; G2 PASS (90% flux radius 65.18 kpc), at 3.00 kpc: V_c P-B 126 +- nan, P0 75 +- nan; chi2/N 1.029; start spread 1.35; at bound []; FIT NOT CONSTRAINED: not scored
+thin-disc fit [incl-Tadaki, i 58.5]: V_f 529, R_t 0.84 kpc, sigma0 49, h 0.093"; G2 PASS (90% flux radius 10.25 kpc), at 3.00 kpc: V_c P-B 455 +- 61, P0 437 +- 63; chi2/N 1.028; start spread 0.00; at bound []; scored
+  incl-Tadaki|P-B lgM*11.31|S1: alpha_req n=1 flat FLOOR [FLOOR]; F-DESI FLOOR [FLOOR]; R-H FLOOR [FLOOR]; Newton FLOOR [FLOOR]; route N 12.5 FLOOR [FLOOR]
+    flat vs R-H: not separated
+  incl-Tadaki|P-B lgM*11.31|S2: alpha_req n=1 flat 0.35 [CONSISTENT]; F-DESI 0.37 [CONSISTENT]; R-H 0.09 [CONSISTENT]; Newton 0.46 [CONSISTENT]; route N 12.5 0.45 [CONSISTENT]
+    flat vs R-H: not separated
+  incl-Tadaki|P0 lgM*11.31|S1: alpha_req n=1 flat FLOOR [FLOOR]; F-DESI FLOOR [FLOOR]; R-H FLOOR [FLOOR]; Newton FLOOR [FLOOR]; route N 12.5 FLOOR [FLOOR]
+    flat vs R-H: not separated
+  incl-Tadaki|P0 lgM*11.31|S2: alpha_req n=1 flat 0.15 [CONSISTENT]; F-DESI 0.17 [CONSISTENT]; R-H FLOOR [CONSISTENT]; Newton 0.26 [CONSISTENT]; route N 12.5 0.25 [CONSISTENT]
+    flat vs R-H: not separated
+C1 injection V_c 300, flux 0.79 into off-source noise: recovered 252 +- 12 (ratio 0.84) -> NOT within 15%
+C1 injection V_c 430, flux 0.79 into off-source noise: recovered 448 +- 34 (ratio 1.04) -> within 15%
+
+=== MOCK compact: V_c 430, flux 0.79, noise archive ===
+file AC1_MOCK_compact.fits sha256 0ad4a33dedfb75c2; OBJECT MOCK; pix 0.0219", beam 0.070x0.062", dv 20.0, sigma/ch 0.303 mJy/beam, line covered True, shift +0
+*** MOCK cube, NOT ALMA DATA ***
+G1 frozen (moment-0, selection-aware): S 0.5574 Jy km/s, S/N 0.04, offset 0.095", z 2.52425 -> FAIL
+G1-3D (addendum, decides): S 0.5654 Jy km/s in 1026 voxels, S/N 5.07 (null mean 0.0689, sd 0.0979, mask-sum noise 0.0619, null nonzero 0.42), z 2.52361 -> PASS
+1" radius aperture flux 0.717 +- 1.441 Jy km/s against published 0.79 +- 0.08; 3 sigma limit 4.322; measured noise, single-channel, scaled: 0.429 mJy/beam at 10 km/s (the archive's listed figure can differ: 3.7 x higher on the validation cube)
+flux check: measured/published 0.72; a thresholded 3D mask misses faint flux, so also: moment-0 mask 0.557, 1" aperture 0.717
+moment-0 q 0.001 -> i 90.0; Tadaki q4.4 0.55 -> i 58.5; initial PA 12, vsys -35, amp 98
+thin-disc fit [incl-mom0, i 90.0]: V_f 98, R_t 1.00 kpc, sigma0 40, h 3.000"; G2 PASS (90% flux radius 25.93 kpc), at 3.00 kpc: V_c P-B 128 +- nan, P0 78 +- nan; chi2/N 1.041; start spread 1.34; at bound ['h']; FIT NOT CONSTRAINED: not scored
+thin-disc fit [incl-Tadaki, i 58.5]: V_f 800, R_t 1.11 kpc, sigma0 48, h 0.049"; G2 FAIL (90% flux radius 2.75 kpc), at 2.75 kpc: V_c P-B 616 +- 164, P0 604 +- 167; chi2/N 1.039; start spread 1.00; at bound ['V_f']; FIT NOT CONSTRAINED: not scored
+
+=== MOCK noise: V_c 430, flux 0.0, noise archive ===
+file AC1_MOCK_noise.fits sha256 666780934e631ffa; OBJECT MOCK; pix 0.0219", beam 0.070x0.062", dv 20.0, sigma/ch 0.303 mJy/beam, line covered True, shift +0
+*** MOCK cube, NOT ALMA DATA ***
+G1 frozen (moment-0, selection-aware): S 0.3762 Jy km/s, S/N -0.93, offset 0.167", z 2.52447 -> FAIL
+G1-3D (addendum, decides): S 0.0000 Jy km/s in 0 voxels, S/N 0.00 (null mean 0.0665, sd 0.1576, mask-sum noise nan, null nonzero 0.21), z nan -> FAIL
+1" radius aperture flux 0.164 +- 1.023 Jy km/s against published 0.79 +- 0.08; 3 sigma limit 3.069; measured noise, single-channel, scaled: 0.428 mJy/beam at 10 km/s (the archive's listed figure can differ: 3.7 x higher on the validation cube)
+G1-3D (addendum) FAILED: upper limit reported, no kinematic test (criteria section 4)
+[PASS] noise: frozen G1 fails 
+[PASS] noise: G1-3D fails S/N 0.00
+
+=== MOCK bright: V_c 430, flux 0.79, noise archive/30 ===
+file AC1_MOCK_bright.fits sha256 8270091168c54097; OBJECT MOCK; pix 0.0219", beam 0.070x0.062", dv 20.0, sigma/ch 0.010 mJy/beam, line covered True, shift +0
+*** MOCK cube, NOT ALMA DATA ***
+G1 frozen (moment-0, selection-aware): S 0.6928 Jy km/s, S/N 111.55, offset 0.004", z 2.52459 -> PASS
+G1-3D (addendum, decides): S 0.7884 Jy km/s in 18774 voxels, S/N 89.21 (null mean 0.0017, sd 0.0022, mask-sum noise 0.0088, null nonzero 0.45), z 2.52450 -> PASS
+1" radius aperture flux 0.715 +- 0.047 Jy km/s against published 0.79 +- 0.08; 3 sigma limit 0.141; measured noise, single-channel, scaled: 0.014 mJy/beam at 10 km/s (the archive's listed figure can differ: 3.7 x higher on the validation cube)
+flux check: measured/published 1.00; a thresholded 3D mask misses faint flux, so also: moment-0 mask 0.693, 1" aperture 0.715
+moment-0 q 0.497 -> i 62.3; Tadaki q4.4 0.55 -> i 58.5; initial PA 30, vsys -4, amp 181
+thin-disc fit [incl-mom0, i 62.3]: V_f 458, R_t 0.51 kpc, sigma0 39, h 0.120"; G2 PASS (90% flux radius 4.22 kpc), at 3.00 kpc: V_c P-B 421 +- 1, P0 409 +- 1; chi2/N 1.047; start spread 0.00; at bound []; scored
+thin-disc fit [incl-Tadaki, i 58.5]: V_f 469, R_t 0.50 kpc, sigma0 40, h 0.114"; G2 PASS (90% flux radius 3.99 kpc), at 3.00 kpc: V_c P-B 431 +- 1, P0 419 +- 1; chi2/N 1.044; start spread 0.00; at bound []; scored
+  incl-mom0|P-B lgM*11.31|S1: alpha_req n=1 flat FLOOR [FLOOR]; F-DESI FLOOR [FLOOR]; R-H FLOOR [FLOOR]; Newton FLOOR [FLOOR]; route N 12.5 FLOOR [FLOOR]
+    flat vs R-H: not separated
+  incl-mom0|P-B lgM*11.31|S2: alpha_req n=1 flat FLOOR [CONSISTENT]; F-DESI FLOOR [CONSISTENT]; R-H FLOOR [CONSISTENT]; Newton 0.08 [CONSISTENT]; route N 12.5 0.08 [CONSISTENT]
+    flat vs R-H: not separated
+  incl-mom0|P0 lgM*11.31|S1: alpha_req n=1 flat FLOOR [FLOOR]; F-DESI FLOOR [FLOOR]; R-H FLOOR [FLOOR]; Newton FLOOR [FLOOR]; route N 12.5 FLOOR [FLOOR]
+    flat vs R-H: not separated
+  incl-mom0|P0 lgM*11.31|S2: alpha_req n=1 flat FLOOR [CONSISTENT]; F-DESI FLOOR [CONSISTENT]; R-H FLOOR [CONSISTENT]; Newton FLOOR [CONSISTENT]; route N 12.5 FLOOR [CONSISTENT]
+    flat vs R-H: not separated
+  incl-Tadaki|P-B lgM*11.31|S1: alpha_req n=1 flat FLOOR [FLOOR]; F-DESI FLOOR [FLOOR]; R-H FLOOR [FLOOR]; Newton FLOOR [FLOOR]; route N 12.5 FLOOR [FLOOR]
+    flat vs R-H: not separated
+  incl-Tadaki|P-B lgM*11.31|S2: alpha_req n=1 flat 0.08 [CONSISTENT]; F-DESI 0.10 [CONSISTENT]; R-H FLOOR [CONSISTENT]; Newton 0.19 [CONSISTENT]; route N 12.5 0.18 [CONSISTENT]
+    flat vs R-H: not separated
+  incl-Tadaki|P0 lgM*11.31|S1: alpha_req n=1 flat FLOOR [FLOOR]; F-DESI FLOOR [FLOOR]; R-H FLOOR [FLOOR]; Newton FLOOR [FLOOR]; route N 12.5 FLOOR [FLOOR]
+    flat vs R-H: not separated
+  incl-Tadaki|P0 lgM*11.31|S2: alpha_req n=1 flat FLOOR [CONSISTENT]; F-DESI FLOOR [CONSISTENT]; R-H FLOOR [CONSISTENT]; Newton 0.06 [CONSISTENT]; route N 12.5 0.05 [CONSISTENT]
+    flat vs R-H: not separated
+C1 injection V_c 300, flux 0.79 into off-source noise: recovered 301 +- 1 (ratio 1.00) -> within 15%
+C1 injection V_c 430, flux 0.79 into off-source noise: recovered 429 +- 1 (ratio 1.00) -> within 15%
+[PASS] bright: G1-3D passes S/N 89.2
+[PASS] noise-limited mock not forced: bright fit scored 
+[PASS] bright: V_c within 15% on the Tadaki P-B branch 431 of 430
+[PASS] bright: flux within 30% 1.00
+[PASS] bright: injection within 15% 
+[PASS] bright: V_c 430 reads FLOOR on lg M* 11.31, S1 (stars exceed) FLOOR
+
+--- MUTATE on bright: velocity axis +1000 ---
+file AC1_MOCK_bright.fits sha256 8270091168c54097; OBJECT MOCK; pix 0.0219", beam 0.070x0.062", dv 20.0, sigma/ch 0.010 mJy/beam, line covered True, shift +1000
+*** MOCK cube, NOT ALMA DATA ***
+G1 frozen (moment-0, selection-aware): S 0.0282 Jy km/s, S/N 1.02, offset 0.080", z 2.52417 -> FAIL
+G1-3D (addendum, decides): S 0.0000 Jy km/s in 0 voxels, S/N 0.00 (null mean 0.0020, sd 0.0033, mask-sum noise nan, null nonzero 0.34), z nan -> FAIL
+1" radius aperture flux 0.053 +- 0.059 Jy km/s against published 0.79 +- 0.08; 3 sigma limit 0.177; measured noise, single-channel, scaled: 0.014 mJy/beam at 10 km/s (the archive's listed figure can differ: 3.7 x higher on the validation cube)
+G1-3D (addendum) FAILED: upper limit reported, no kinematic test (criteria section 4)
+[PASS] MUTATE: frozen G1 and G1-3D both fail S/N 1.02, 0.00
+
+=== MOCK tension: V_c 300, flux 0.79, noise archive/30 ===
+file AC1_MOCK_tension.fits sha256 0360aa638097bf01; OBJECT MOCK; pix 0.0219", beam 0.070x0.062", dv 20.0, sigma/ch 0.010 mJy/beam, line covered True, shift +0
+*** MOCK cube, NOT ALMA DATA ***
+G1 frozen (moment-0, selection-aware): S 0.7389 Jy km/s, S/N 140.13, offset 0.009", z 2.52455 -> PASS
+G1-3D (addendum, decides): S 0.8188 Jy km/s in 18564 voxels, S/N 93.25 (null mean 0.0014, sd 0.0023, mask-sum noise 0.0088, null nonzero 0.34), z 2.52460 -> PASS
+1" radius aperture flux 0.842 +- 0.033 Jy km/s against published 0.79 +- 0.08; 3 sigma limit 0.098; measured noise, single-channel, scaled: 0.014 mJy/beam at 10 km/s (the archive's listed figure can differ: 3.7 x higher on the validation cube)
+flux check: measured/published 1.04; a thresholded 3D mask misses faint flux, so also: moment-0 mask 0.739, 1" aperture 0.842
+moment-0 q 0.548 -> i 58.6; Tadaki q4.4 0.55 -> i 58.5; initial PA 27, vsys -2, amp 132
+thin-disc fit [incl-mom0, i 58.6]: V_f 316, R_t 0.50 kpc, sigma0 40, h 0.115"; G2 PASS (90% flux radius 4.54 kpc), at 3.00 kpc: V_c P-B 301 +- 1, P0 283 +- 1; chi2/N 1.037; start spread 0.00; at bound []; scored
+thin-disc fit [incl-Tadaki, i 58.5]: V_f 317, R_t 0.50 kpc, sigma0 40, h 0.115"; G2 PASS (90% flux radius 4.53 kpc), at 3.00 kpc: V_c P-B 301 +- 1, P0 283 +- 1; chi2/N 1.037; start spread 0.00; at bound []; scored
+  incl-mom0|P-B lgM*11.31|S1: alpha_req n=1 flat FLOOR [FLOOR]; F-DESI FLOOR [FLOOR]; R-H FLOOR [FLOOR]; Newton FLOOR [FLOOR]; route N 12.5 FLOOR [FLOOR]
+    flat vs R-H: not separated
+  incl-mom0|P-B lgM*11.31|S2: alpha_req n=1 flat FLOOR [FLOOR]; F-DESI FLOOR [FLOOR]; R-H FLOOR [FLOOR]; Newton FLOOR [FLOOR]; route N 12.5 FLOOR [FLOOR]
+    flat vs R-H: not separated
+  incl-mom0|P0 lgM*11.31|S1: alpha_req n=1 flat FLOOR [FLOOR]; F-DESI FLOOR [FLOOR]; R-H FLOOR [FLOOR]; Newton FLOOR [FLOOR]; route N 12.5 FLOOR [FLOOR]
+    flat vs R-H: not separated
+  incl-mom0|P0 lgM*11.31|S2: alpha_req n=1 flat FLOOR [FLOOR]; F-DESI FLOOR [FLOOR]; R-H FLOOR [FLOOR]; Newton FLOOR [FLOOR]; route N 12.5 FLOOR [FLOOR]
+    flat vs R-H: not separated
+  incl-Tadaki|P-B lgM*11.31|S1: alpha_req n=1 flat FLOOR [FLOOR]; F-DESI FLOOR [FLOOR]; R-H FLOOR [FLOOR]; Newton FLOOR [FLOOR]; route N 12.5 FLOOR [FLOOR]
+    flat vs R-H: not separated
+  incl-Tadaki|P-B lgM*11.31|S2: alpha_req n=1 flat FLOOR [FLOOR]; F-DESI FLOOR [FLOOR]; R-H FLOOR [FLOOR]; Newton FLOOR [FLOOR]; route N 12.5 FLOOR [FLOOR]
+    flat vs R-H: not separated
+  incl-Tadaki|P0 lgM*11.31|S1: alpha_req n=1 flat FLOOR [FLOOR]; F-DESI FLOOR [FLOOR]; R-H FLOOR [FLOOR]; Newton FLOOR [FLOOR]; route N 12.5 FLOOR [FLOOR]
+    flat vs R-H: not separated
+  incl-Tadaki|P0 lgM*11.31|S2: alpha_req n=1 flat FLOOR [FLOOR]; F-DESI FLOOR [FLOOR]; R-H FLOOR [FLOOR]; Newton FLOOR [FLOOR]; route N 12.5 FLOOR [FLOOR]
+    flat vs R-H: not separated
+[PASS] tension: V_c 300 reads FLOOR on lg M* 11.31, S2 FLOOR
+
+selftest: PASS, PASS, PASS, PASS, PASS, PASS, PASS, PASS, PASS, PASS

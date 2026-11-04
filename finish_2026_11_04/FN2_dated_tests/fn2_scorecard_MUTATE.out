@@ -1,0 +1,22 @@
+FN2 A2 scorecard reader. AC1 scorer imported read only (sha256 1dd20eefdde36ab3...). MUTATE: R31 x 10 in the L' conversion. kappa = 1/2 FITTED; one disc excludes no model; not theory closed.
+
+Row map, PAPER66 v1.4 Table t:card:
+  A: 'U4_27928: G1 fails, nothing scored' | evaluation: 'G1 passing at its frozen aperture counts against this forecast.' | file: cfg942_u4_RELEASE_results.json (CFG942 dir; byte-identical copy CFG806_u4_27928_scoring/cfg806_u4_results.json) | fields: results.measured.G1 (selection-aware S/N decides, CFG806 addendum A); results.measured.SN_selection; results.measured.G1_literal (information); results.measured.logMgas_UL; results.score.overall | direct
+  B0: 'U4_28473 detected and V_c scored, conditional on the sister-unit noise and beam forecast' | evaluation: 'Report measured noise/beam, detection and fit validity. Non-detection or an invalid fit challenges the forecast only under its stated conditions.' | file: ac1_score_RELEASE.json | fields: detected, gate, G1_3D.{S,SN,PASS}, G1_frozen.{SN,PASS} (printed beside); sig_ch and dv (noise per 10 km/s = sig_ch*sqrt(dv/10)); beam; fits.<incl>.valid | direct fields; GAP: the tex gives no numeric tolerance for 'the sister-unit noise and beam hold', so measured/forecast ratios are printed with no call
+  B1: 'V_c >= Newton for the true baryons; lowest input-grid branch at 3 kpc is 431 km/s' | evaluation: 'Compare the mass/pressure branches and uncertainties. A value below the grid challenges those inputs; it is not an unconditional test of a0.' | file: ac1_score_RELEASE.json + ac1_results.json | fields: fits.<incl>.V.{Vc_PB,Vc_P0}, fits.<incl>.error_calibration.<P-B|P0>.error, fits.<incl>.R_score; score.<branch>.<lgM*|shape>.'Newton|...' class | GAP: no stored 'Newton grid at R_score' field; computed here from the frozen inputs (v2_exp, logMgas), z = (V - V_N,min)/error printed, no call (the tex gives no numeric line)
+  B2: 'Conditional example: at V_c ~ 430, alpha_CO = 4.36 with published masses is out for every reading' | evaluation: 'Evaluate the branch-specific required gas conversion and interval. A different speed makes the 430 example inapplicable; it does not falsify the implication.' | file: ac1_score_RELEASE.json | fields: score.<branch>.<lgM*11.31|S1/S2, 11.35|S1/S2>.<kernel|footing|a0>.{nominal,lo,hi,class_} | GAP: lg M* 11.11 (the tex's 0.88) is not a stored key (the scorer stores 11.31 and 11.35; 11.11 enters only as an interval end); recomputed with alpha_req. GAP: 'near 430' has no numeric width in the tex; |V-430|/error printed. Applies only if R_score = 3 kpc.
+  B3: 'flat, F-DESI and the band not separated' | evaluation: 'Any pair separated under the filed rule counts against this forecast.' | file: ac1_score_RELEASE.json | fields: score.<branch>.<lgM*|shape>.<kernel|footing|{F-flat,F-DESI,band low 0.325,band high 1.212}>.{nominal,ms_width}; rule = ac1_score.separated | computed from stored fields (the scorer prints only flat vs R-H)
+  B4: 'R-H not separated' | evaluation: 'Separation under the same rule counts against this forecast.' | file: ac1_score_RELEASE.json | fields: same fields, pair F-flat vs R-H; the scorer's printed line 'flat vs R-H: separated|not separated' (lg M* 11.31, canonical, n = 1) | direct for the printed cells; computed from stored fields for the rest
+  B5: 'record only (route N retired)' | evaluation: 'No live score.' | file: ac1_score_RELEASE.json | fields: score.<branch>.<lgM*|shape>.'route N|12.0/12.5/13.0' (computed, no weight) | record only
+
+Known answers against the tex:
+[PASS] K-A2a B1 Newton V_c(3 kpc), lg M* 11.11, S2, alpha_CO 1 = 431 (tex) +- 0.5: ac1_results.json 431.422; recomputed from the frozen inputs 431.422
+[FAIL] K-A2b B2 alpha_CO,req at V_c 430, 3 kpc, n=1 flat canonical: 0.88 (11.11 S2) and 0.07 (11.31 S2) +- 0.005: 0.088 / 0.007; ac1_results.json information block 0.88 / 0.07
+[PASS] K-A2c B2 every S1 branch FLOOR at V_c 430 (lg M* 11.11, 11.15, 11.31, 11.35): 11.11: FLOOR, 11.15: FLOOR, 11.31: FLOOR, 11.35: FLOOR
+[PASS] K-A2d B3 flat - F-DESI at 3 kpc = 2 km/s (tex) +- 0.5: 1.645
+[PASS] K-A2e B4 R-H - flat at 3 kpc = 22 km/s (tex) +- 0.5: 22.432
+[PASS] K-A2f B5 n=1 flat - route N 12.5 = 9 (3 kpc) and 22 (8 kpc) km/s (tex) +- 0.5: 8.774 / 22.088
+[PASS] K-A2g reader's flat vs R-H call equals the scorer's printed call on a MOCK selftest: 20 printed cells, 0 differ (reviews/alma_readiness_2026_11_04/revision_v1_4/selftest/ac1_score_selftest_results.json)
+
+known answers: 6 of 7 PASS (MUTATE: K-A2b must fail)
+MUTATE bites
