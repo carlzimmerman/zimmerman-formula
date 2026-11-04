@@ -14,3 +14,5 @@ Route portfolio and screens:
 - Existing exact-certification claims: trace each physical bridge rather than accepting a theorem title. AZ18 completes the PD07/Q010 premise audit. The next useful evidence is a derivation of a previously assumed bridge, not another rational identity.
 
 No qualifying new normalization mechanism has yet been produced. That fact is not a proof of impossibility, and this goal remains active. Writes remain under astra_goal_2026_11_03/. The old seventeen-lane verifiers and completion audit refer to their frozen earlier scope; AZ18 has its own check.py and audit.json.
+
+Current screen checkpoint: P3/NORMALIZATION_ROUTE_SCREEN.md reconciles the conformal, supersymmetric, vacuum/flux and existing formal non-selection routes. The apparent pending p63 routes have completed superseding results. No fresh qualifying action was identified. Existing non-selection proofs are scoped to their premises and are not universal impossibility theorems. Additional premise audits are not a substitute for the missing physical mechanism.
