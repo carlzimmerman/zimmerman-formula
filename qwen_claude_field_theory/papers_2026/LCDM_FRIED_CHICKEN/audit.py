@@ -4,7 +4,7 @@ Rival-flavoured exercise, adopts nothing. kappa = 1/2 FITTED; not theory closed.
 import os, sys
 H = os.path.dirname(os.path.abspath(__file__))
 T = open(os.path.join(H, "lcdm_fried_chicken.tex"), encoding="utf-8").read()
-R = {s: open(os.path.join(H, "scripts", s + ".out"), encoding="utf-8").read() for s in ("recipe", "recipe2", "recipe3", "recipe4", "recipe5", "recipe6", "recipe6b", "recipe7", "recipe8", "recipe9", "recipe10", "recipe11", "recipe12", "recipe13", "recipe14", "recipe15", "recipe16")}
+R = {s: open(os.path.join(H, "scripts", s + ".out"), encoding="utf-8").read() for s in ("recipe", "recipe2", "recipe3", "recipe4", "recipe5", "recipe6", "recipe6b", "recipe7", "recipe8", "recipe9", "recipe10", "recipe11", "recipe12", "recipe13", "recipe14", "recipe15", "recipe16", "recipe17")}
 L = [("3373", "recipe", "3373 points"), ("171", "recipe", "171 galaxies"), ("0.1951", "recipe", "rms 0.1951"),
  ("0.1419 & 0.2877 & 0.1613 & 15.76", "recipe", "0.1419 dex [FAIL E1]; p95 per-galaxy 0.2877 [FAIL E2]; worst bin 0.1613"), ("15.76", "recipe", "a fit 1.576e-10"),
  ("0.0715 & 0.1486 & 0.0441 & 9.12", "recipe", "0.0715 dex [FAIL E1]; p95 per-galaxy 0.1486 [FAIL E2]; worst bin 0.0441"), ("9.12", "recipe", "a fit 9.122e-11"),
@@ -39,6 +39,7 @@ L += [("0.0290, 0.0640, 0.0187","recipe12","0.0290 dex [FAIL E1]; p95 per-galaxy
 L += [("0.00004\\,dex","recipe14","rms to law 0.00004 dex"),("$\\beta=0.0997$","recipe14","beta 0.0997"),("$c=0.0199$","recipe14","c 0.0199"),("0.0579","recipe14","max s 0.0579"),("0.328","recipe14","0.328"),("49 decades","recipe14","1e-49")]
 L += [("$\\kappa_{\\rm eff}=0.461$","recipe15","kappa_eff 0.461"),("$1.1\\times10^{-5}\\,a_0$","recipe15","Lambda pull 1.10e-05 a0"),("$\\kappa_{\\rm eff}=0.551$","recipe15","kappa_eff 0.551"),("3.432 times","recipe15","2.33: 3.432"),("0.830\\,$a_0$","recipe15","(0.830 a0)"),("$-0.46$ to $+0.48$","recipe15","-0.46 to +0.48"),("$+1.381$ and $+3.561$","recipe15","+1.381 +3.561"),("0.202\\,$a_0$","recipe15","(0.202 a0)"),("0.505\\,dex","recipe15","0.505 dex"),("No route passes","recipe15","NO native LCDM route")]
 L += [("1.715\\,$a_0$","recipe16","(1.715 a0)"),("0.830\\,dex","recipe16","0.830 dex"),("3.200 times","recipe16","2.33: 3.200"),("only 0.001\\,$a_0$","recipe16","(0.001 a0)"),("gives 0.005\\,$a_0$","recipe16","(0.005 a0)"),("no acceleration scale","recipe16","no acceleration scale")]
+L += [("0.612\\,$a_0$","recipe17","median 0.612 a0"),("spread 0.156","recipe17","rms 0.156 dex"),("$\\kappa_{\\rm eff}=0.306$","recipe17","kappa_eff 0.306"),("1.493 times","recipe17","2.33: 1.493"),("factor, 1.404","recipe17","factor 1.404"),("0.0586\\,dex","recipe17","rms to law 0.0586"),("0.1941\\,dex","recipe17","rms to observed 0.1941"),("0.121 to 0.126","recipe17","0.1212"),("0.121 to 0.126","recipe17","0.1255")]
 L = [x for x in L]
 F = 0
 for frag, s, lit in L:
