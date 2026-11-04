@@ -27,7 +27,7 @@ def model(typ, xi):
         dl = .5 * (-3 * b - 3 * c - Qn + Qn) / E2   # d ln H / d ln a (Q cancels between c and v)
         q = 0. if typ == 'Q1' else xi * v / c
         dc, db, u = y
-        return [u + q * dc, u, -(1 + dl) * u + 1.5 * (c * dc + b * db) / E2]
+        return [u + q * dc, u, -(2 + dl) * u + 1.5 * (c * dc + b * db) / E2]
     s = solve_ivp(rhs, (lna[0], 0), [1e-3, 1e-3, 1e-3], t_eval=lna, rtol=1e-7, atol=1e-12)
     dm = (rc * s.y[0] + rb * s.y[1]) / (rb + rc); D = dm / dm[-1]; z = 1 / a - 1; E2 = rb + rc + rv
     return dict(E2=lambda zz: np.interp(-zz, -z, E2), D=lambda zz: np.interp(-zz, -z, D), Dinv=lambda d: np.interp(d, D, z), rv=lambda zz: np.interp(-zz, -z, rv))

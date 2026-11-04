@@ -81,3 +81,11 @@ Knobs, derived vs imposed. (a) 2 knobs plus the choice of form, with the couplin
 Deviations: diagnostic scripts added after the run (above). Secondary G4 (log M200 11-12.5) is 0.071 to 0.082 in every (a)/(b) row, so it passes everywhere. The verdict uses the primary, and the secondary changes nothing because G1 and GT never pass together on the grid. PROVISIONAL from memory: Ludlow C, coupling and nu ranges, the GCG alpha bound, Chavanis B, Donato Sigma_0.
 
 Rival language; adopts nothing. kappa = 1/2 FITTED; not theory closed.
+
+## Correction, 4 November 2026 (after A32)
+
+`scripts/recipe33.py` copied A20's growth equation with the wrong damping term, -(1 + d ln H/d ln a) in place of -(2 + d ln H/d ln a); its own control printed LCDM D(z=1) 0.4517 against colossus 0.6068. Fixed and rerun, with `recipe33_diag.py` and `recipe33_diag2.py` (which load recipe33's code). Wrong outputs kept as `*_before_growth_fix.out`.
+
+After the fix, on the frozen grids: still no point passes G1 and GT together in any form, and no point passes all gates. G2 slope ranges become Qc +0.112 to +0.169, Qv +0.094 to +0.561, Qm -0.020 to +0.180. Running vacuum at literature nu (<= 3e-3) gives kappa_eff 0.304 to 0.312, still LCDM; its best point moves to nu 0.05 with kappa_eff 0.459, failing G2 (+0.212) and G3. The unified-fluid rows do not use the growth code and are unchanged. Post-result off-grid diagnostic: the Qm minimax point is now xi0 +1.574, xi1 -5.563, kappa_eff 0.470 with GT within 0.027 but G4 0.113 (fails), again at a coupling far outside any plausible range. Verdict unchanged: no tie.
+
+Rival language; adopts nothing. kappa = 1/2 FITTED; not theory closed.

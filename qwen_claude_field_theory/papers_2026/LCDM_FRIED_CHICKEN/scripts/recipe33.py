@@ -39,7 +39,7 @@ def integ(typ, X0, X1, f=1.):
         ok = np.isfinite(rc).all(0) & np.isfinite(rv).all(0) & (rc > 0).all(0) & (rv[np.exp(XS) > 1 / 11] >= 0).all(0)
         def pt(j, dc, db, u):
             b, c, v, x = rb[j], rc[j], rv[j], XS[j]; E2 = b + c + v; dl = -1.5 * (b + c) / E2
-            return u + qf(typ, X0, X1, x, b, c, v) * dc, u, -(1 + dl) * u + 1.5 * (c * dc + b * db) / E2
+            return u + qf(typ, X0, X1, x, b, c, v) * dc, u, -(2 + dl) * u + 1.5 * (c * dc + b * db) / E2
         y = [np.full(n, 1e-3)] * 3; Dr = np.empty((NS + 1, n)); H = -2 * HB
         j = len(XS) - 1; Dr[NS] = 1e-3
         while j > 0:
