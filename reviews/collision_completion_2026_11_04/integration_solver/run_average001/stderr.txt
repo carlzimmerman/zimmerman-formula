@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/collision_completion_2026_11_04/integration_solver/average_control.py", line 12, in <module>
+    if __name__=='__main__':main_average(sys.argv[1])
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/collision_completion_2026_11_04/integration_solver/average_control.py", line 11, in main_average
+    start=time.monotonic();a=ScaledBackend(1.);b=ScaledBackend(2.);av= AveragedNumberEvents([a,b],[.25,.75],[1.,2.]);state=QuantumState(a.measure,a.eta,Y=a.measure*np.array([.3,.2,.7]));f,p=state.arrays();factor=1.75;rhs_error=float(max(abs(av.number_rhs(f,p)-factor*a.number_rhs(f,p))));jac_error=float(max(abs((av.number_jacobian(f,p)-factor*a.number_jacobian(f,p)).toarray()).ravel()));gross_error=float(max(abs(av.number_gross(f,p)-factor*a.number_gross(f,p))));m=av.forward_omission(f);new,diag=implicit_step(av,state,.1,tol=2e-10);nf,np_=new.arrays();checks=dict(rhs=rhs_error<1e-14,jacobian=jac_error<1e-14,gross=gross_error<1e-14,local_energy=float(max(abs(av.local_energy_rates(f,p))))<1e-14,phase_weights=abs(sum(av.phase_weights)-1)<1e-15,omission=m['available'] and 0<m['occupied_forward_omitted_fraction']<1,physical_step=min(nf)>=0 and max(nf[[0,2]])<=1);result=dict(claim_id='CC10_AVERAGED_NUMBER_PROTOCOL_CONTROL',checks=checks,rhs_error=rhs_error,jacobian_error=jac_error,gross_error=gross_error,omission=m,newton=diag,runtime_seconds=time.monotonic()-start,peak_rss_bytes=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss);Path(out).write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result));assert all(checks.values())
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/__init__.py", line 234, in dumps
+    return cls(
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 201, in encode
+    chunks = list(chunks)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 431, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 438, in _iterencode
+    o = _default(o)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool_ is not JSON serializable

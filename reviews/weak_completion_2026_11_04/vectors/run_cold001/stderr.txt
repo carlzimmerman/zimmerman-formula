@@ -1,0 +1,34 @@
+reviews/weak_completion_2026_11_04/vectors/cold_response.py:14: RuntimeWarning: divide by zero encountered in matmul
+  q=np.array(qq);W=np.array(ww);x=25.4000254000381;t=1e-6;N=math.log(T0/t);bg=CommonBackground();model=CommonOrbit(bg,q,W,8);ev=VectorFactory(HERE/'run_table003/result.json').full_events(bg.at(x),t,q,W,angle_order=4);v=ev.vector_operator;g=ev.by['F8_2'];m=v.measure;eta=v.eta;Z=m*1e-45;soft=np.exp(-q*q/2)*W;soft/=soft.sum();Z[g*len(q):(g+1)*len(q)]+=1e-9*soft;st=QuantumState(m,eta,Z=Z);initial=st.copy();width=sum(c['width'] for c in ev.channels if c['parent']=='Vc_L');dt=.5/width;rows=[];partial=True;reason='started';checks={};E0=float(v.energy@st.numbers());seed=float(m.sum()*1e-45)
+reviews/weak_completion_2026_11_04/vectors/cold_response.py:14: RuntimeWarning: overflow encountered in matmul
+  q=np.array(qq);W=np.array(ww);x=25.4000254000381;t=1e-6;N=math.log(T0/t);bg=CommonBackground();model=CommonOrbit(bg,q,W,8);ev=VectorFactory(HERE/'run_table003/result.json').full_events(bg.at(x),t,q,W,angle_order=4);v=ev.vector_operator;g=ev.by['F8_2'];m=v.measure;eta=v.eta;Z=m*1e-45;soft=np.exp(-q*q/2)*W;soft/=soft.sum();Z[g*len(q):(g+1)*len(q)]+=1e-9*soft;st=QuantumState(m,eta,Z=Z);initial=st.copy();width=sum(c['width'] for c in ev.channels if c['parent']=='Vc_L');dt=.5/width;rows=[];partial=True;reason='started';checks={};E0=float(v.energy@st.numbers());seed=float(m.sum()*1e-45)
+reviews/weak_completion_2026_11_04/vectors/cold_response.py:14: RuntimeWarning: invalid value encountered in matmul
+  q=np.array(qq);W=np.array(ww);x=25.4000254000381;t=1e-6;N=math.log(T0/t);bg=CommonBackground();model=CommonOrbit(bg,q,W,8);ev=VectorFactory(HERE/'run_table003/result.json').full_events(bg.at(x),t,q,W,angle_order=4);v=ev.vector_operator;g=ev.by['F8_2'];m=v.measure;eta=v.eta;Z=m*1e-45;soft=np.exp(-q*q/2)*W;soft/=soft.sum();Z[g*len(q):(g+1)*len(q)]+=1e-9*soft;st=QuantumState(m,eta,Z=Z);initial=st.copy();width=sum(c['width'] for c in ev.channels if c['parent']=='Vc_L');dt=.5/width;rows=[];partial=True;reason='started';checks={};E0=float(v.energy@st.numbers());seed=float(m.sum()*1e-45)
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/collision_completion_2026_11_04/cascades/capture.py", line 12, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/collision_completion_2026_11_04/cascades/capture.py", line 7, in main
+    sys.argv=[script]+args;runpy.run_path(script,run_name='__main__')
+                           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "reviews/weak_completion_2026_11_04/vectors/cold_response.py", line 23, in <module>
+    if __name__=='__main__':main(sys.argv[1])
+                            ~~~~^^^^^^^^^^^^^
+  File "reviews/weak_completion_2026_11_04/vectors/cold_response.py", line 19, in main
+    old=st;st,info=implicit_step(v,st,dt,tol=2e-8,number_floor=1e-18);Y=st.numbers();f,a=st.arrays();num=Y.reshape(30,len(q)).sum(axis=1);gas=model.gas(x,N,Y);F,R,*_=v._logs(f,a);parent=v.index[:,0]//len(q);mask=(parent==25)|(parent==26);dcharged=model.charged[v.index[:,1:]//len(q)];mult=np.sum(v.a[:,1:]*dcharged,axis=1);ret=float(np.sum((v.coefficient*F[0])[mask]*mult[mask]));rev=float(np.sum((v.coefficient*R[0])[mask]*mult[mask]));rhs=st.rhs(v);res=Y-old.numbers()-dt*rhs;forward=float(np.sum(v.coefficient*F[0]));row=dict(step=i,tau=i*dt,info=info,number_by_group=num.tolist(),charged_number=float(num@model.charged),vector_number=float(num[25:].sum()),heavy_parent_number=float(num[g]),vector_force=float(gas['force_by'][0,25:].sum()),gas_force=float(gas['force'][0]),vector_energy=float(t**3*np.sum(Y.reshape(30,len(q))[25:]*v.energies[25:])),relative_total_energy_drift=float((v.energy@Y-E0)/E0),number_balance_L1=float(sum(abs(res))),forward_charged_return_rate=ret,inverse_charged_consumption_rate=rev,entropy_change=st.entropy()-initial.entropy(),occupied_forward_omission_fraction=float(ev.omitted_by_parent@f/max(forward,1e-300)),max_fermion_f=float(f[eta<0].max()),Y=Y.tolist());rows.append(row);print(i,row['vector_number'],row['charged_number'],row['relative_total_energy_drift'],flush=True);save()
+                   ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/collision_completion_2026_11_04/initial_solver/log_number.py", line 26, in implicit_step
+    matrix=eye(len(res),format='csr')-dt*new.jacobian(events);linear=diags(1/scale)@matrix@diags(new.Z);du=spsolve(linear,-res/scale)
+                                         ~~~~~~~~~~~~^^^^^^^^
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/collision_completion_2026_11_04/integration_solver/protocol_holes.py", line 27, in jacobian
+    f,a=self.arrays();s=np.where(self.holes,-1.,1.);return diags(s)@events.number_jacobian(f,a)@diags(s)
+                                                           ~~~~~^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/scipy/sparse/_construct.py", line 279, in diags
+    A = diags_array(diagonals, offsets=offsets, shape=shape, dtype=dtype)
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/scipy/sparse/_construct.py", line 149, in diags_array
+    if len(diagonals) == 0 or isscalarlike(diagonals[0]):
+       ~~~^^^^^^^^^^^
+TypeError: len() of unsized object

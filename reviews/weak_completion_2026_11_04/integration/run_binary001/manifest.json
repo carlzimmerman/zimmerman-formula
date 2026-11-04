@@ -1,0 +1,134 @@
+{
+  "schema_version": 2,
+  "claim_id": "CC11_BINARY_COLLISION_ALGEBRA",
+  "repository": {
+    "commit": "7b2840d2095bd86faf05b3071e92f51f472cc6ea",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/weak_completion_2026_11_04/integration/binary_control.py",
+    "reviews/weak_completion_2026_11_04/integration/run_binary001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Conservation, detailed balance, entropy identity, analytic number Jacobian and stable near-forward flux of a positive finite 2-to-2 operator.",
+    "coefficient_domain": "float64 finite arrays and sparse matrices",
+    "conventions": "Y=measure*f, eta=+1 Bose/-1 Fermi, two incoming particles and two energy-projected outgoing particles; physical cross section and symmetry coefficients are supplied externally.",
+    "inputs": [
+      "Two labelled three-node species, four explicitly energy-conserving reactions, one high-coefficient near-forward reaction."
+    ],
+    "bounds": {
+      "cells": 6,
+      "reactions": 4,
+      "statistics": [
+        1,
+        -1
+      ],
+      "near_forward_weight": 1e-08,
+      "coefficient_max": 1000000000000.0
+    },
+    "non_claims": [
+      "No physical Coulomb rate, plasma history or cold-matter assertion from this algebraic fixture."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-04T21:11:58.592405+00:00",
+    "runtime_seconds": 0.486302,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 55,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/weak_completion_2026_11_04/integration/binary_events.py",
+    "reviews/weak_completion_2026_11_04/integration/binary_control.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/weak_completion_2026_11_04/integration/binary_events.py",
+      "sha256": "f072957882981c43151ca84d6e6d242e4055479516cb833855c9b9c48af70da6",
+      "sha256_after": "f072957882981c43151ca84d6e6d242e4055479516cb833855c9b9c48af70da6"
+    },
+    {
+      "path": "reviews/weak_completion_2026_11_04/integration/binary_control.py",
+      "sha256": "4bcbdf12371471992b4638dfcceca4e2c33431d5820fbcaab4a5cf507dd851d6",
+      "sha256_after": "4bcbdf12371471992b4638dfcceca4e2c33431d5820fbcaab4a5cf507dd851d6"
+    }
+  ],
+  "output_directory": "reviews/weak_completion_2026_11_04/integration/run_binary001",
+  "declared_results": [
+    "reviews/weak_completion_2026_11_04/integration/run_binary001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/weak_completion_2026_11_04/integration/run_binary001/stdout.txt",
+      "sha256": "586943b256fc12ed1fa5ae18420916e02f616eded3f7183aed50505badc751de",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/weak_completion_2026_11_04/integration/run_binary001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/weak_completion_2026_11_04/integration/run_binary001/result.json",
+      "sha256": "b7b660ff4fbee5f81f17e11342b4a4f639c590e2b34c1031435ba5e6e810383d",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/weak_completion_2026_11_04/energy/initial_step.py", line 5, in <module>
+    if __name__=='__main__':main_initial(sys.argv[1])
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/weak_completion_2026_11_04/energy/initial_step.py", line 4, in main_initial
+    start=time.monotonic();p=ROOT/'reviews/collision_completion_2026_11_04/integration/run_initial001/result.json';d=json.loads(p.read_text());s=d['state'];q=np.array(d['case']['q']);W=np.array(d['case']['W']);bg=ConsistentVertexBackground(ROOT/'reviews/collision_completion_2026_11_04/cascades/run_vertices001/result.json');model=GenericOrbit(bg,q,W,8);model.J0=s['J0'];model.last_x=s['xmid'];old=QuantumState(model.measure,model.eta,Z=s['Z'],holes=s['hole_flags']);J=s['J0'];orb=model.orbit(0,old.numbers(),J=J);before=time.monotonic();new,Jn,on,work,info=step(model,bg,averaged_exact_events,0,old,J,1e-6,geometry='midpoint',max_outer=8,outer_tol=2e-5);f,a=new.arrays();res=on['E']-orb['E']+work;checks=dict(positive=min(f)>=0,Pauli=max(f[model.eta<0])<=1,entropy=new.entropy()>=old.entropy(),independent_energy=abs(res)/(orb['E']-orb['minimum'])<.01,physical_number_balance=info['collision']['physical_number_balance_L1']<1e-12);result=dict(claim_id='CC11_FRESH_INITIAL_MATCHED_STEP',checks={k:bool(v) for k,v in checks.items()},dN=1e-6,final_J=Jn,independent_energy_work_residual=res,residual_over_excitation=res/(orb['E']-orb['minimum']),info=info,runtime_seconds=time.monotonic()-start,peak_rss_bytes=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss);Path(out).write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result));assert all(checks.values())
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/weak_completion_2026_11_04/energy/split_energy_v5.py", line 66, in step
+    ns,Jb,ob,db=collision(model,background,operator_factory,N+dN/2,state,oa,dN,geometry,population,max_outer,outer_tol)
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/weak_completion_2026_11_04/energy/split_energy_v5.py", line 56, in collision
+    nextstate,info=implicit_step(solve_events,state,dN/H,tol=2e-8,maxiter=60,number_floor=1e-14,guess=previous_state)
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/weak_completion_2026_11_04/energy/hybrid_number.py", line 45, in implicit_step
+    new,info=linear_step(events,state,dt,tol=tol,maxiter=max(60,maxiter),number_floor=number_floor,guess=guess,zero_guess_occupation=zero_guess_occupation);info['rare_coordinate_fraction']=fraction;info['log_route_failure']=failure;return new,info
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/weak_completion_2026_11_04/energy/hybrid_number.py", line 29, in linear_step
+    if alpha<=1e-18:raise RuntimeError('linear-number boundary blocked')
+RuntimeError: linear-number boundary blocked

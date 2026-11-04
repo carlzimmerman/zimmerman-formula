@@ -1,0 +1,12 @@
+import sys,json,time,resource,numpy as np
+from pathlib import Path
+HERE=Path(__file__).parent;ROOT=HERE.parents[3];sys.path.insert(0,str(HERE));sys.path.insert(0,str(ROOT/'reviews/weak_completion_2026_11_04/integration'))
+from common import CommonBackground
+from scalar_factory_v2 import scalar_events
+from elastic_builder_v2 import grid,screening,event_arrays_chunked
+from binary_events_v2 import BinaryEvents
+
+def main(out):
+ start=time.monotonic();stage=json.loads((ROOT/'reviews/collision_completion_2026_11_04/memory/run_stage001/result.json').read_text());q,W,cells=grid(np.array(stage['q_edges']),1);f=np.full((30,len(q)),1e-45);good=cells>=0;f[0,good]=2*np.array(stage['final_fS'])[cells[good]];bg=CommonBackground();x=25.4000254000381;T=1e-6;d=bg.at(x);ev=scalar_events(d,T,q,W,f.ravel());m=d['groups'][0]['mass'];a=event_arrays_chunked(q,W,T,m,screening(q,W,f[0],T,m),incoming_angles=8,azimuth=2,log_order=2,max_log_span=3.);loc=BinaryEvents(a['index'],a['weights'],a['coefficient'],a['measure'],a['energy'],a['eta'],a['groups']);r=ev.number_rhs(f.ravel());rl=loc.number_rhs(f[0]);rng=np.random.default_rng(55);h=rng.normal(size=f.shape)*f*ev.measure.reshape(f.shape);fd=(ev.number_rhs((f+1e-5*h/ev.measure.reshape(f.shape)).ravel())-ev.number_rhs((f-1e-5*h/ev.measure.reshape(f.shape)).ravel()))/2e-5;an=ev.number_jacobian(f.ravel())@h.ravel();jac=float(np.linalg.norm(fd-an)/np.linalg.norm(fd));ratio=float(np.linalg.norm(r[:len(q)]-rl)/np.linalg.norm(rl));K=a['energy'];safek=float(abs(K@r[:len(q)])/sum(abs(K*r[:len(q)])));fullE=float(abs(ev.energy@r)/sum(abs(ev.energy*r)));checks=dict(embedding=bool(ratio<1e-13),other_groups_zero=bool(np.all(r[len(q):]==0)),Jacobian=bool(jac<1e-5),eta=bool(np.all(ev.eta[25*len(q):]==1)),kinetic_energy=bool(safek<1e-10),full_energy=bool(fullE<1e-12))
+ Path(out).write_text(json.dumps(dict(checks=checks,RHS_embedding_relative=ratio,Jacobian_relative=jac,kinetic_energy_rhs_relative=safek,full_energy_rhs_relative=fullE,events=len(ev.coefficient),runtime_seconds=time.monotonic()-start,peak_rss_bytes_macos=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,scope='Frozencommon30groupAPIembeddingofcoldSc0selfelastic; other25+4 speciesuntouchedbythispartialelasticchannel. Commonmasses/statistics/physicalYJacobianmatched. Noall-specieselasticcoverageclaim.'),indent=2)+'\n');assert all(checks.values()),checks
+if __name__=='__main__':main(sys.argv[1])

@@ -1,0 +1,67 @@
+{
+  "target": "Compute actual neutral resonance parents and daughter populations, charged returns, inverse reactions, momentum distributions and occupation forces.",
+  "status": "The finite 25-group operator and an exact-angular conditional coupled bridge are implemented and executed. The coordinator continues the full cooling history.",
+  "code": {
+    "groups": "network.py",
+    "invariant_vertices": "vertices.py",
+    "common_mass_wrapper": "consistent_background_frozen.py",
+    "reference_angular_operator": "angular_exact.py",
+    "production_angular_operator": "angular_fast.py",
+    "neutral_transfer": "transfer.py"
+  },
+  "source_hashes": {
+    "network.py": "0361d34bdb330ac28277a3968eec13425deebc181fb212538644c009b881583e",
+    "vertices.py": "807ef7ee5d057790ff435347bd397551643dc6eeb267737b2ca8f5c7d7148ef8",
+    "reaction.py": "9aa96934ca77152b58d4bcdc187f39734cbd5f78bc01d4506978ce0fdf01151c",
+    "angular_exact.py": "40e83d3bd666b7642af8766bef057e634cd82c1c921aaead06a6b5620a2b1d9a",
+    "angular_fast.py": "c623c5b612de6ef37216a51112c2ff7bd620970d5faffae7c362df0ef712531e",
+    "transfer.py": "d18f12d5cadbdfffbeb8031772ff03f0be6f34eaa923db32cf6922ada1c60b99"
+  },
+  "primary_runs": [
+    "run_network001",
+    "run_basis002",
+    "run_vertices001",
+    "run_audit_vertices002",
+    "run_transfer001",
+    "run_angular001",
+    "run_fast002",
+    "run_warm_direct_exact128",
+    "run_warm_direct_exact256",
+    "run_warm_averaged_exact001",
+    "run_compare_bridge_exact001"
+  ],
+  "interface": {
+    "factories": "angular_fast.exact_events(data,t,q,W,source=None,signed=False); angular_fast.averaged_exact_events(background,xs,weights,t,q,W)",
+    "backend": "number_rhs(f,availability=None), number_jacobian(f,availability=None) with respect to physical comoving Y, and number_gross(f,availability=None). Attributes: measure, eta, energy_average, groups, by; local_events/localops and phase_weights on a composite.",
+    "state": "Use the frozen integration_solver/protocol_holes.py QuantumState and implicit_step. Pass occupation and availability independently; preserve Z and holes in checkpoints.",
+    "units": "tau=mu*time; x=X/mu; q=p/Tc; Y=g*W*f/(2*pi^2); physical number=Tc^3*sum(Y). The field force is d(rho/mu^4)/dx.",
+    "species": "25 groups. Lowest scalar degeneracy 12, lowest fermion 24; U1/SU2/SU3 gaugino spin degeneracies 2/6/16. Goldstino F1_0 is separate from U1 F1_1."
+  },
+  "results": [
+    "All physical tree FFS and SSS vertices are included; twelve charged Goldstones are removed and signed lifting is available.",
+    "The per-daughter four-state Gamma matrices in the CT09 basis reproduce the prior pole Gamma with maximum error 4.963e-24.",
+    "Global two-angle warm RHS errors of 30-40% and soft saturation are finite angular artifacts. Analytic angular moments agree with independent segmented GL32 to about 1e-15; directional Jacobian errors are about 1e-10.",
+    "The vectorized and reference builders are bit-for-bit equivalent. An eight-phase backend takes about 0.30 seconds to build, 0.17 seconds per RHS and 0.40 seconds per Jacobian here, with measured peak RSS 558 MB.",
+    "The one-period exact direct runs with 128 and 256 steps differ in charged fraction by 4.04e-9. The exact eight-phase averaged comparison has charged relative error 1.176e-6, U1 yield error 5.09e-8, U1 weighted shape error 2.13e-7 and action endpoint error 2.00e-5.",
+    "The exact-pole coherent unit pulse retains about 92.3% of its energy in massive neutral particles at tau=3e12. Its momentum-resolved force is -1.747e-4 per initial parent. Neutral does not imply radiation.",
+    "At x=3, low B3 ultimately returns about 1.8573 charged carriers per parent. A3 stable at x=3 reopens charged decays near the inner x=.18 part of the orbit. An early charged deficit is partly stored neutral population."
+  ],
+  "limits": [
+    "Exact angular integration refers to the finite entropy and energy projection, not the momentum continuum. The tested early GL40 grid has minimum q=.0019855 and maximum q<80.",
+    "Near the ordering crossing, weighted forward omission reaches about 2e-5. Arbitrary hard-bath inverse omission is not bounded; late hard neutral particles require a separate momentum range.",
+    "Broken-vector widths are omitted. The early vector-open parent energy fraction of at most 8.27e-4 is a population diagnostic, not an omitted-rate bound.",
+    "The warm fourfold singlet group is diagonal. The memory package separately uses the coherent late channel matrices and the actual neutral transfer operator.",
+    "Gauge 2-to-2 reactions, bound-state formation, adjoint loop decays, full thermal self energies and complete gravitational pole retuning remain outside this package.",
+    "The corrected warm bridge is a conditional restart from an old two-angle checkpoint. A fresh corrected cosmology must start from the initial packet."
+  ],
+  "next_actions": [
+    "Continue the coordinator cooling history with the exact vectorized operator; do not inherit abundances from the coarse global-angle history.",
+    "Use centered action covariance at small orbital amplitude, with phase and momentum refinements and one energy ledger.",
+    "Track vector-open populations and weighted omitted forward/reverse rates; compute vector widths if they become material.",
+    "Feed coherent memory exits into the explicit neutral transfer response and retain massive rest energy, kinetic energy and force.",
+    "Resolve neutral radiative exits and late abundances before claiming the combined physical target."
+  ],
+  "active_package_jobs": [],
+  "validation": "VALIDATION.json records manifest checks. SOURCE_ARCHIVES.json binds the original API-only fast candidate source to run_fast001; run_fast002 is the current canonical evidence.",
+  "review": "DERIVATION.md received mathematical-prose self-review. Independent controls include prior Gamma reproduction, adaptive moment quadrature, segmented GL32 reference, directional Jacobians, a separately authored protocol solver and the coordinator energy ledger."
+}

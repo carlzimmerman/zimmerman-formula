@@ -1,0 +1,67 @@
+{
+  "claim_id": "CC10_CHANGING_SHAPE_SIGNED_MEMORY_ACTION",
+  "mathematics": {
+    "assertion_tested": "Reconstruct new changing scalar shape and compute actual signed sideband scalar power, absolute sideband work bound, finite-width energy residual and radial-cell projection energy residual on all80 saved orbits. Integrate first action response and compare fast diagonal work against full matrix moments.",
+    "coefficient_domain": "Float64/complex128",
+    "conventions": "mu=1 tau=mu*t, actual fC=2fS, cell-constant radial occupation, isotropic pair angles, exact boost M/EN, neutral vacuum Gamma fixed; dilute source linearized detuning; exact analytic arcsine stationary phase average; cascade daughter-channel matrices in CT09 basis; finite-window parent-energy boundary subtracted explicitly in ODE ledger comparison",
+    "inputs": [
+      "CT09 e=.003 mu=2e6 xi=.02 fixed tree pole packet; 37 cells endpoint shapes; five recorded late orbits; interior distributions explicitly endpoint log-interpolated"
+    ],
+    "bounds": {
+      "snapshots": [
+        0,
+        40,
+        79
+      ],
+      "radial": 2,
+      "angular": 8,
+      "FFT_nodes": [
+        256,
+        512
+      ],
+      "iterations": [
+        10,
+        14
+      ],
+      "wall_seconds": 240,
+      "cpu_seconds": 235
+    },
+    "non_claims": [
+      "No full dynamical charged self-energy resummation",
+      "No occupied inverse bath or cascade evolution",
+      "No complete cosmological history or trapping theorem"
+    ]
+  },
+  "execution_artifacts": [
+    "reviews/collision_completion_2026_11_04/memory/response_api_v2.py",
+    "reviews/collision_completion_2026_11_04/memory/work_stage.py",
+    "reviews/coupled_trapping_2026_11_04/microphysics/run_pole002/result.json",
+    "reviews/coupled_trapping_2026_11_04/microphysics/run_medium001/result.json",
+    "reviews/coupled_trapping_2026_11_04/gravity_resonance/run_leading001/result.json",
+    "reviews/coupled_trapping_2026_11_04/kinetics/run_leading_two_001/result.json",
+    "reviews/coupled_trapping_2026_11_04/kinetics/run_hybrid_bw_001/result.json",
+    "reviews/collision_completion_2026_11_04/cascades/run_basis002/result.json",
+    "reviews/collision_completion_2026_11_04/memory/response_api_v4.py",
+    "reviews/collision_completion_2026_11_04/memory/run_stage001/result.json",
+    "reviews/collision_completion_2026_11_04/memory/run_stage001/kernels.json"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

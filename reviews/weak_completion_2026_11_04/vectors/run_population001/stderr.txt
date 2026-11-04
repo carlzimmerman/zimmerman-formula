@@ -1,0 +1,29 @@
+reviews/weak_completion_2026_11_04/vectors/population_v1.py:13: RuntimeWarning: divide by zero encountered in matmul
+  Y=st.numbers();f,a=st.arrays();num=Y.reshape(30,len(q)).sum(axis=1);gas=model.gas(x,N,Y);v=ev.vector_operator;F,R,*_=v._logs(f,a);flux=v.coefficient*(F[0]-R[0]);pg=v.index[:,0]//len(q);isdaughtercharged=charged[v.index[:,1:]//len(q)];chargedreturn=np.sum(v.a[:,1:]*isdaughtercharged,axis=1);mask=(pg==25)|(pg==26);ret=float(np.sum(flux[mask]*chargedreturn[mask]));return dict(Y=Y.tolist(),Z=st.Z.tolist(),hole_flags=st.holes.tolist(),number_by_group=num.tolist(),charged_number=float(num@charged),vector_number=float(num[25:].sum()),photino_number=float(num[23]),energy_comoving=float(ev.energy@Y),gas_force=float(gas['force'][0]),vector_force=float(gas['force_by'][0,25:].sum()),neutral_force=float(gas['force_by'][0,~charged].sum()),net_vector_decay_charged_return_rate=ret,entropy=st.entropy(),min_f=float(f.min()),max_fermion_f=float(f[eta<0].max()),occupied_forward_omission=float(ev.omitted_by_parent@f))
+reviews/weak_completion_2026_11_04/vectors/population_v1.py:13: RuntimeWarning: overflow encountered in matmul
+  Y=st.numbers();f,a=st.arrays();num=Y.reshape(30,len(q)).sum(axis=1);gas=model.gas(x,N,Y);v=ev.vector_operator;F,R,*_=v._logs(f,a);flux=v.coefficient*(F[0]-R[0]);pg=v.index[:,0]//len(q);isdaughtercharged=charged[v.index[:,1:]//len(q)];chargedreturn=np.sum(v.a[:,1:]*isdaughtercharged,axis=1);mask=(pg==25)|(pg==26);ret=float(np.sum(flux[mask]*chargedreturn[mask]));return dict(Y=Y.tolist(),Z=st.Z.tolist(),hole_flags=st.holes.tolist(),number_by_group=num.tolist(),charged_number=float(num@charged),vector_number=float(num[25:].sum()),photino_number=float(num[23]),energy_comoving=float(ev.energy@Y),gas_force=float(gas['force'][0]),vector_force=float(gas['force_by'][0,25:].sum()),neutral_force=float(gas['force_by'][0,~charged].sum()),net_vector_decay_charged_return_rate=ret,entropy=st.entropy(),min_f=float(f.min()),max_fermion_f=float(f[eta<0].max()),occupied_forward_omission=float(ev.omitted_by_parent@f))
+reviews/weak_completion_2026_11_04/vectors/population_v1.py:13: RuntimeWarning: invalid value encountered in matmul
+  Y=st.numbers();f,a=st.arrays();num=Y.reshape(30,len(q)).sum(axis=1);gas=model.gas(x,N,Y);v=ev.vector_operator;F,R,*_=v._logs(f,a);flux=v.coefficient*(F[0]-R[0]);pg=v.index[:,0]//len(q);isdaughtercharged=charged[v.index[:,1:]//len(q)];chargedreturn=np.sum(v.a[:,1:]*isdaughtercharged,axis=1);mask=(pg==25)|(pg==26);ret=float(np.sum(flux[mask]*chargedreturn[mask]));return dict(Y=Y.tolist(),Z=st.Z.tolist(),hole_flags=st.holes.tolist(),number_by_group=num.tolist(),charged_number=float(num@charged),vector_number=float(num[25:].sum()),photino_number=float(num[23]),energy_comoving=float(ev.energy@Y),gas_force=float(gas['force'][0]),vector_force=float(gas['force_by'][0,25:].sum()),neutral_force=float(gas['force_by'][0,~charged].sum()),net_vector_decay_charged_return_rate=ret,entropy=st.entropy(),min_f=float(f.min()),max_fermion_f=float(f[eta<0].max()),occupied_forward_omission=float(ev.omitted_by_parent@f))
+/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/collision_completion_2026_11_04/integration/holes_v2.py:45: RuntimeWarning: divide by zero encountered in matmul
+  return float(self.measure@s)
+/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/collision_completion_2026_11_04/integration/holes_v2.py:45: RuntimeWarning: overflow encountered in matmul
+  return float(self.measure@s)
+/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/collision_completion_2026_11_04/integration/holes_v2.py:45: RuntimeWarning: invalid value encountered in matmul
+  return float(self.measure@s)
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/collision_completion_2026_11_04/cascades/capture.py", line 12, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/collision_completion_2026_11_04/cascades/capture.py", line 7, in main
+    sys.argv=[script]+args;runpy.run_path(script,run_name='__main__')
+                           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "reviews/weak_completion_2026_11_04/vectors/population_v1.py", line 27, in <module>
+    if __name__=='__main__':main(sys.argv[1])
+                            ~~~~^^^^^^^^^^^^^
+  File "reviews/weak_completion_2026_11_04/vectors/population_v1.py", line 25, in main
+    partial=False;reason='target_reached';checks.update(bounds=bool(all(r['min_f']>=0 and r['max_fermion_f']<=1 for r in rows)),energy=bool(max(abs(r['relative_energy_drift']) for r in rows)<1e-10),entropy=bool(all(r['entropy']>=initialrow['entropy']-1e-10 for r in rows)),balance=bool(max(r['number_balance_L1'] for r in rows)<1e-10),actual_vector_population=bool(endpoints['full']['vector_number']>1e-15),charged_return=bool(endpoints['full']['integrated_net_charged_return']>0));save();assert all(checks.values()),checks
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ~~~^^^^^^^^^^^^^^^^^
+AssertionError: {'bounds': True, 'energy': True, 'entropy': True, 'balance': True, 'actual_vector_population': True, 'charged_return': False}

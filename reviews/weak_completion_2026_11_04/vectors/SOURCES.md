@@ -1,0 +1,7 @@
+# Primary-source verification
+
+- A. Djouadi, *The Anatomy of Electro-Weak Symmetry Breaking. I*, arXiv:hep-ph/0503172v2, [versioned full text](https://arxiv.org/html/hep-ph/0503172v2). The identical massive-vector scalar-decay normalization is independently rederived from canonical K and explicit polarizations. This source does not establish the model's gauge-current matrices, inverse transport, or a viable cosmology.
+- Richard Fitzpatrick, *Born Approximation*, University of Texas, 2013-04-08, [author's notes](https://farside.ph.utexas.edu/teaching/qm/Quantumhtml/node85.html), equations941–948 and951–954. Checked the Fourier-transform Yukawa Born amplitude and its high/low-momentum validity distinction. Our transport moments and colour factors are derived explicitly from that screened amplitude.
+- P. Arnold, G. D. Moore, L. G. Yaffe, *Effective Kinetic Theory for High Temperature Gauge Theories*, arXiv:hep-ph/0209353v3, 2003-01-08, [versioned full text](https://arxiv.org/html/hep-ph/0209353v3), sectionsI andIII–IV. Checked that screened2↔2 processes and quantum inverse processes belong in a weak-coupling kinetic description, and that a transport time differs from a soft collision count. Its ultrarelativistic hypotheses do not establish the nonrelativistic cold scalar approximation used here. The cold potential, screening integral, group traces and CM kernel are derived locally and tested separately.
+
+No external table of model widths or claimed thermal bath is substituted for the actual component tensors or recorded distributions.

@@ -1,0 +1,46 @@
+{
+  "status": "Verified finite local ingredient; not a drop-in replacement for the coupled stepper",
+  "implementation": "oracle_v2.py:OffsetOrbit",
+  "constructor": "OffsetOrbit(common_model,N,physical_flat_Y,phase_nodes=64,mp_dps=70)",
+  "method": "orbit(J), strictly positive existing dimensionless GenericOrbit action coordinate",
+  "input_state": "actual common30 warm Y in integration/run_joint006; artificial smallJ only in controls",
+  "output": {
+    "excitation": "rho_exc/mu^4, retained separately",
+    "minimum_energy_base": "float diagnostic anchor energy only; adding excitation can lose it",
+    "minimum_offset_from_anchor": "stable small potential offset",
+    "anchor": "absolute float x coordinate",
+    "minimum_displacement": "refined minimum offset relative to anchor",
+    "left_displacement": "turning point relative to refined minimum",
+    "right_displacement": "turning point relative to refined minimum",
+    "phase_displacements": "phase positions relative to refined minimum, not absolute x",
+    "weights": "normalized physical-time orbit weights",
+    "period": "mu*t units",
+    "omega": "inverse dimensionless period times2pi",
+    "kin2": "M*(dx/dtau)^2 in the existing convention",
+    "harmonic": "always false"
+  },
+  "domain": [
+    "Finite local cubic mass-squared and cubic/local-quartic potential interval",
+    "No mass-squared clipping crossing",
+    "Positive finite action and physical nonnegative number coordinates",
+    "The tested state is warm; it does not define a real cold trajectory"
+  ],
+  "needed_for_real_coupling": [
+    "Store excitation separately and reconstruct action without large-total subtraction",
+    "Stable minimum-energy difference at common anchor between N/Y states",
+    "Retain integrated collision increments or compensated physical numbers; rounded Ynew-Yold can exceed excitation budget",
+    "Centered phase flux with stable energy differences is a proposed identity, not implemented coupled closure",
+    "Compensated or higher precision work/minimum bookkeeping and an independent work check at the claimed excitation scale",
+    "Validate actual cold minimum lag, mass/current shifts, momentum support and linewidth sensitivity"
+  ],
+  "authoritative_record": "run002/manifest.json",
+  "prior_version": "run001 preserved unchanged",
+  "non_claims": [
+    "No common cold history, final abundance, vacuum selection or dark-energy derivation",
+    "No uniform action/linewidth theorem or continuum/interpolation proof",
+    "No arbitrary J=0 or cross-spline-interval continuation"
+  ],
+  "conditional_cold_implementation": "oracle_v3.py; exact zero-weight species omitted from sums, original background untouched",
+  "conditional_cold_record": "run004/manifest.json",
+  "conditional_cold_input": "CC10memoryfinalfS mapped to physicalSc0f=2legacy on37physicalelasticgridcells; Tc/mu1e-6, allothercommon30numbers0; not a newcommonhistory"
+}

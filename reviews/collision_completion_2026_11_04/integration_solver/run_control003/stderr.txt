@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/collision_completion_2026_11_04/integration_solver/control_v3.py", line 61, in <module>
+    if __name__=='__main__':main(sys.argv[1])
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/collision_completion_2026_11_04/integration_solver/control_v3.py", line 47, in main
+    old=current.copy();current,diag=implicit_step(ev,current,step/H,tol=2e-9);f,a=current.arrays();F,R,_,_=current.products(ev);flux=current.flux(ev);rhs=np.asarray(ev.S@flux).ravel();dn=current.numbers()-old.numbers();signed=np.where(current.holes,-1.,1.);coordinate_old=np.where(current.holes==old.holes,old.Z,old.measure-old.Z);balance=current.Z-coordinate_old-step/H*signed*rhs
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/collision_completion_2026_11_04/integration_solver/log_holes.py", line 39, in implicit_step
+    raise RuntimeError('log hole iteration budget; norm='+str(norm)+' worst='+str(int(np.argmax(abs(res)/scale))))
+RuntimeError: log hole iteration budget; norm=0.12121280658891136 worst=921

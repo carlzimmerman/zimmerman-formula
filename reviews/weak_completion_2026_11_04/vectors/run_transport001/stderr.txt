@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/collision_completion_2026_11_04/cascades/capture.py", line 12, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/collision_completion_2026_11_04/cascades/capture.py", line 7, in main
+    sys.argv=[script]+args;runpy.run_path(script,run_name='__main__')
+                           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen runpy>", line 287, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "reviews/weak_completion_2026_11_04/vectors/check_transport.py", line 42, in <module>
+    if __name__=='__main__':main(sys.argv[1])
+                            ~~~~^^^^^^^^^^^^^
+  File "reviews/weak_completion_2026_11_04/vectors/check_transport.py", line 13, in main
+    data=bg.at(x);t=.00465 if x<10 else .000001;ev=factory.full_events(data,t,q,W,angle_order=2);v=ev.vector_operator;f=1/(np.exp(np.minimum(v.energy/(.012 if x<10 else .02),700))-v.eta);a=1+v.eta*f;aud=v.audit(f,a);rng=np.random.default_rng(418);h=rng.normal(size=len(f));h*=np.maximum(f,.01)*v.measure;eps=1e-6;fp=f+eps*h/v.measure;fm=f-eps*h/v.measure;num=(v.number_rhs(fp)-v.number_rhs(fm))/(2*eps);analytic=v.number_jacobian(f)@h;jerr=float(np.linalg.norm(num-analytic)/max(np.linalg.norm(num),1e-100))
+                                                   ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/weak_completion_2026_11_04/vectors/transport.py", line 33, in full_events
+    def full_events(self,data,t,q,W,angle_order=2,source=None):return full_events(data,t,q,W,self.table,angle_order,source)
+                                                                      ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/reviews/weak_completion_2026_11_04/vectors/transport.py", line 40, in full_events
+    mass=np.array([g['mass'] for g in groups]);energy=np.sqrt(mass[:,None]**2+(t*q[None,:])**2);measure=np.repeat([g['degeneracy'] for g in groups],n)*np.tile(W,n)/(2*math.pi**2)
+                                                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+ValueError: operands could not be broadcast together with shapes (1200,) (1600,) 

@@ -1,0 +1,12 @@
+import sys,json,time,resource,math
+from pathlib import Path
+HERE=Path(__file__).parent;ROOT=HERE.parents[3];sys.path.insert(0,str(HERE));import numpy as np
+from elastic_builder_v2 import grid,screening,event_arrays_chunked as event_arrays
+
+def main(out):
+ start=time.monotonic();old=json.loads((ROOT/'reviews/coupled_trapping_2026_11_04/kinetics/run_hybrid_bw_001/result.json').read_text())['case'];stage=json.loads((ROOT/'reviews/collision_completion_2026_11_04/memory/run_stage001/result.json').read_text());probe=json.loads((HERE.parent/'run_coulomb003/result.json').read_text());ref=probe['refined_stage_final'];T=old['history'][-1]['Tc_over_mu'];x=old['history'][-1]['x_minimum'];m=.003/2*math.sqrt(x*x+2/(31*.003));H=probe['cases'][1]['H_mu'];edges=np.array(stage['q_edges']);ff=2*np.array(stage['final_fS']);rows=[]
+ for order,angle,phi,lg,span in [(1,4,2,2,3.),(1,8,2,2,3.),(1,8,4,3,3.)]:
+  q,W,cells=grid(edges,order);f=np.full(len(q),1e-45);good=cells>=0;f[good]=ff[cells[good]];md=screening(q,W,f,T,m);a=event_arrays(q,W,T,m,md,incoming_angles=angle,azimuth=phi,log_order=lg,max_log_span=span,diagnostic_f=f);diag=a['diagnostics'];p2=float(np.sum(a['measure']*f*(T*q)**2)/sum(a['measure']*f));row=dict(momentum_order=order,incoming_angles=angle,azimuth=phi,log_order=lg,max_log_span=span,nodes=len(q),events=len(a['coefficient']),energy_residual=a['energy_residual'],Debye_masses_mu=np.sqrt(md).tolist(),diagnostics=diag,transport_over_H=diag['transport_rate']/H,dp2_over_p2H=diag['dp2_rate']/H/p2,radial_dp2_over_H=diag['radial_dp2_rate']/H,reference_dp2_over_p2H=ref['mean_dp2_dt_over_p2H'],runtime_seconds=time.monotonic()-start);rows.append(row);print(row,flush=True);del a
+ checks=dict(energy=bool(all(r['energy_residual']<1e-20 for r in rows)),support=bool(all(r['diagnostics']['dropped_dp2_fraction']<.01 for r in rows)),diffusion_probe=bool(abs(rows[-1]['dp2_over_p2H']/ref['mean_dp2_dt_over_p2H']-1)<.05),angular=bool(abs(rows[0]['dp2_over_p2H']/rows[1]['dp2_over_p2H']-1)<.05))
+ Path(out).write_text(json.dumps(dict(rows=rows,checks=checks,runtime_seconds=time.monotonic()-start,peak_rss_bytes_macos=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,scope='Positive direct-t exact-CM binaryeventbuilder kinematic and diffusion normalization against independent relative-speed convolution. No nonlinear evolution yet; direct-t finite-log approximation declared.'),indent=2)+'\n');assert all(checks.values()),checks
+if __name__=='__main__':main(sys.argv[1])
