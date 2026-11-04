@@ -1,0 +1,57 @@
+sample: 171 galaxies, 3373 points; Y_disk 0.5, Y_bul 0.7
+
+M1 scan (match) log m22: -1.5:0.2318 -1.2:0.1873 -0.9:0.1799 -0.6:0.1748 -0.3:0.1871 0.0:0.2062 0.3:0.2142 0.6:0.2079 0.9:0.1927 1.2:0.1757 1.5:0.1621 1.8:0.1532
+M1 (match) best log m22 2.000 (m22 99.9), rms to law 0.1494
+
+== A17 M1 m22 only, transition match (1 knob)
+ rms to law 0.1494 dex [FAIL E1]; p95 per-galaxy 0.2984 [FAIL E2]; worst bin 0.1696 [FAIL E3]
+ bins -12.0:+0.170 -11.5:+0.101 -11.0:+0.097 -10.5:+0.053 -10.0:+0.042 -9.5:+0.015 -9.0:+0.007
+ a fit 1.611e-10; rms to observed 0.2491 dex, mean +0.0825
+
+M1 scan (3rc) log m22: -1.5:0.3719 -1.2:0.3001 -0.9:0.2291 -0.6:0.1816 -0.3:0.1795 0.0:0.2004 0.3:0.2117 0.6:0.2069 0.9:0.1923 1.2:0.1755 1.5:0.1618 1.8:0.1529
+M1 (3rc) best log m22 2.000 (m22 99.9), rms to law 0.1492
+
+== A17 M1 m22 only, transition 3rc (1 knob)
+ rms to law 0.1492 dex [FAIL E1]; p95 per-galaxy 0.2981 [FAIL E2]; worst bin 0.1694 [FAIL E3]
+ bins -12.0:+0.169 -11.5:+0.101 -11.0:+0.097 -10.5:+0.053 -10.0:+0.041 -9.5:+0.015 -9.0:+0.007
+ a fit 1.610e-10; rms to observed 0.2489 dex, mean +0.0824
+
+M2 m22 + core-halo norm, slope knobs {'log m22': 0.015, 'log A': 0.451, 'beta': 0.032} at bound []
+
+== A17 M2 m22 + core-halo norm, slope (3 knobs)
+ rms to law 0.1419 dex [FAIL E1]; p95 per-galaxy 0.2877 [FAIL E2]; worst bin 0.1613 [FAIL E3]
+ bins -12.0:+0.161 -11.5:+0.098 -11.0:+0.094 -10.5:+0.050 -10.0:+0.040 -9.5:+0.014 -9.0:+0.004
+ a fit 1.576e-10; rms to observed 0.2424 dex, mean +0.0790
+
+M3 M2 + compactness response s knobs {'log m22': 1.138, 'log A': 0.235, 'beta': 0.163, 's': -0.19} at bound []
+
+== A17 M3 M2 + compactness response s (4 knobs)
+ rms to law 0.1419 dex [FAIL E1]; p95 per-galaxy 0.2877 [FAIL E2]; worst bin 0.1613 [FAIL E3]
+ bins -12.0:+0.161 -11.5:+0.098 -11.0:+0.093 -10.5:+0.050 -10.0:+0.040 -9.5:+0.014 -9.0:+0.004
+ a fit 1.576e-10; rms to observed 0.2423 dex, mean +0.0790
+
+M4 M3 + SHMR norm, c offset knobs {'log m22': 1.274, 'log A': 0.337, 'beta': 0.118, 's': -0.329, 'dn': 0.175, 'dc': -0.11} at bound []
+
+== A17 M4 M3 + SHMR norm, c offset (6 knobs)
+ rms to law 0.0921 dex [FAIL E1]; p95 per-galaxy 0.1811 [FAIL E2]; worst bin 0.0452 [FAIL E3]
+ bins -12.0:+0.042 -11.5:-0.023 -11.0:-0.033 -10.5:-0.045 -10.0:-0.025 -9.5:-0.016 -9.0:-0.007
+ a fit 8.264e-11; rms to observed 0.2186 dex, mean -0.0210
+
+holdout: tune on GS[::2], grade GS[1::2]
+ 1 knobs: tuned 0.1798, unseen 0.1674 dex [FAIL <= 0.025] knobs [-0.644]
+ 3 knobs: tuned 0.1529, unseen 0.1309 dex [FAIL <= 0.025] knobs [0.015, 0.451, 0.032]
+ 4 knobs: tuned 0.1528, unseen 0.1309 dex [FAIL <= 0.025] knobs [1.138, 0.235, 0.163, -0.19]
+ 6 knobs: tuned 0.0915, unseen 0.0944 dex [FAIL <= 0.025] knobs [1.274, 0.442, 0.101, -0.329, 0.227, -0.109]
+
+acceleration scale g_c = G M_s(r_c)/r_c^2 per galaxy, at fitted knobs
+ 1 knobs: median g_c 265 a0, kappa_eff 132 (log off +2.42 dex) [FAIL]; rms log g_c 0.895 dex [FAIL <= 0.1]; soliton present in 171/171
+   slope dlog g_c/dlog M200 1.000
+ 3 knobs: median g_c 0.00142 a0, kappa_eff 0.000711 (log off -2.85 dex) [FAIL]; rms log g_c 0.086 dex [PASS <= 0.1]; soliton present in 0/171
+ 4 knobs: median g_c 0.177 a0, kappa_eff 0.0884 (log off -0.75 dex) [FAIL]; rms log g_c 0.354 dex [FAIL <= 0.1]; soliton present in 9/171
+ 6 knobs: median g_c 0.0175 a0, kappa_eff 0.00877 (log off -1.76 dex) [FAIL]; rms log g_c 0.420 dex [FAIL <= 0.1]; soliton present in 0/171
+ z 1: g_c(z)/g_c(0) at fixed M200 and m 2.218 [FAIL band 0.76-1.03]
+ z 1.5: g_c(z)/g_c(0) at fixed M200 and m 3.013 [FAIL band 0.71-1.12]
+ z 2.33: g_c(z)/g_c(0) at fixed M200 and m 4.544 [FAIL band 0.33-1.21]
+ dimensional a_q = (hbar/m)^(1/2) (G rho_DE)^(3/4) at M1 m22 99.9: 3.800e-17 m/s^2 = 4.06e-07 a0, kappa_eff 2.03e-07; rho_DE enters by hand
+ hbar/m and G alone form no acceleration; c sqrt(G rho_DE) contains no m, so m22 cannot set kappa.
+Rival language; every knob disclosed. Passing shows freedom, not evidence. kappa = 1/2 FITTED; not theory closed.
