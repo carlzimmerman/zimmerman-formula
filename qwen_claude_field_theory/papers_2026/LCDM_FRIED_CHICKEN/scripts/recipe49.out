@@ -1,0 +1,189 @@
+sample: 171 galaxies, 3373 points; Y_disk 0.5, Y_bul 0.7
+A48 recipe49; c sqrt(G rho_DE) 1.8727e-10, a_T 9.3637e-11, A0 9.3625e-11
+table: L_disk from 2 pi SBdisk Rd^2 clipped to L in 145 galaxies; RHI = 0 in 3
+
+CONTROL: N0 noiseless plain LCDM, nominal baryons (A40 l.109: E1 0.1419 E2 0.2877 E3 0.1613, a 1.576e-10)
+
+== N0 control 
+ rms to law 0.1419 dex [FAIL E1]; p95 per-galaxy 0.2877 [FAIL E2]; worst bin 0.1613 [FAIL E3]
+ bins -12.0:+0.161 -11.5:+0.098 -11.0:+0.094 -10.5:+0.050 -10.0:+0.040 -9.5:+0.014 -9.0:+0.004
+ a fit 1.576e-10; rms to observed 0.2424 dex, mean +0.0790
+ holdout reference: N0 on GS[1::2] E1 0.1309
+  law on data (nominal, control): refit a0 9.262e-11 (-0.005 dex), rms to observed 0.1951 at refit, 0.1951 at A0 (nominal 0.1951); observer fit scatter all 0.1489, good 0.0814, a0 8.034e-11
+ SPARC observer fit: scatter 0.1489, good 0.0814, a0 8.034e-11 (A20 0.1489 / 0.0814 / 8.03e-11)
+
+================ (a) BEAM SMEARING
+ control: 1" beam, 18 galaxies, median max |V_s/V - 1| 0.0077 (max 0.3696); grid 1500 vs 4000 at 15": max |dV/V| 0.0002
+ smearing of N0 and the law for 3 beams: 23.6 s
+ check: unsmeared N0 V(R) from the interpolator reproduces N0 curves to 1.78e-15 dex
+
+ theta 15.0": full first-moment smearing changes the law curve by >5 % at 0.369 of points, >10 % at 0.267
+  f_bs 0.25: smeared N0 vs law E1 0.1334 E2 0.2735 E3 0.1461 [FAIL E]; a fit 1.411e-10 | smeared law vs law rms 0.0461; smeared N0 vs smeared law 0.1400; smeared law rms to observed 0.1963 (unsmeared 0.1951)
+  f_bs 0.50: smeared N0 vs law E1 0.1448 E2 0.2690 E3 0.1843 [FAIL E]; a fit 1.248e-10 | smeared law vs law rms 0.1005; smeared N0 vs smeared law 0.1379; smeared law rms to observed 0.2110 (unsmeared 0.1951)
+  f_bs 1.00: smeared N0 vs law E1 0.2678 E2 0.5300 E3 0.4913 [FAIL E]; a fit 9.167e-11 | smeared law vs law rms 0.2678; smeared N0 vs smeared law 0.1328; smeared law rms to observed 0.3155 (unsmeared 0.1951)
+
+ theta 22.5": full first-moment smearing changes the law curve by >5 % at 0.476 of points, >10 % at 0.361
+  f_bs 0.25: smeared N0 vs law E1 0.1323 E2 0.2691 E3 0.1409 [FAIL E]; a fit 1.358e-10 | smeared law vs law rms 0.0554; smeared N0 vs smeared law 0.1395; smeared law rms to observed 0.1976 (unsmeared 0.1951)
+  f_bs 0.50: smeared N0 vs law E1 0.1516 E2 0.2568 E3 0.2533 [FAIL E]; a fit 1.151e-10 | smeared law vs law rms 0.1215; smeared N0 vs smeared law 0.1368; smeared law rms to observed 0.2195 (unsmeared 0.1951)
+  f_bs 1.00: smeared N0 vs law E1 0.3266 E2 0.5626 E3 0.7133 [FAIL E]; a fit 7.539e-11 | smeared law vs law rms 0.3355; smeared N0 vs smeared law 0.1304; smeared law rms to observed 0.3708 (unsmeared 0.1951)
+
+ theta 30.0": full first-moment smearing changes the law curve by >5 % at 0.549 of points, >10 % at 0.430
+  f_bs 0.25: smeared N0 vs law E1 0.1316 E2 0.2626 E3 0.1360 [FAIL E]; a fit 1.311e-10 | smeared law vs law rms 0.0630; smeared N0 vs smeared law 0.1391; smeared law rms to observed 0.1991 (unsmeared 0.1951)
+  f_bs 0.50: smeared N0 vs law E1 0.1588 E2 0.2499 E3 0.3045 [FAIL E]; a fit 1.067e-10 | smeared law vs law rms 0.1388; smeared N0 vs smeared law 0.1360; smeared law rms to observed 0.2279 (unsmeared 0.1951)
+  f_bs 1.00: smeared N0 vs law E1 0.3785 E2 0.6380 E3 0.8969 [FAIL E]; a fit 6.261e-11 | smeared law vs law rms 0.3929; smeared N0 vs smeared law 0.1288; smeared law rms to observed 0.4207 (unsmeared 0.1951)
+
+ (a) best cell (all) theta 30.0 f 0.25: E1 0.1316 E2 0.2626 E3 0.1360 [FAIL E]
+ (a) holdout: chosen on GS[::2] -> theta 30.0 f 0.25 (even 0.1433); unseen GS[1::2] 0.1197 [FAIL]
+
+== (a) smeared N0, theta 30.0 f_bs 0.25 
+ rms to law 0.1316 dex [FAIL E1]; p95 per-galaxy 0.2626 [FAIL E2]; worst bin 0.1360 [FAIL E3]
+ bins -12.0:+0.136 -11.5:+0.072 -11.0:+0.065 -10.5:+0.019 -10.0:-0.014 -9.5:-0.061 -9.0:-0.134
+ a fit 1.311e-10; rms to observed 0.2310 dex, mean +0.0402
+  law on data with smearing theta 30.0 f 1.0 forward-modelled: refit a0 1.863e-10 (+0.299 dex), rms to observed 0.3889 at refit, 0.4207 at A0 (unsmeared 0.1951)
+  law on data with smearing theta 15.0 f 0.25 forward-modelled: refit a0 1.034e-10 (+0.043 dex), rms to observed 0.1957 at refit, 0.1963 at A0 (unsmeared 0.1951)
+  TIE (a) theta 30.0 f_bs 0.25: fitted a 1.311e-10, kappa_eff 0.700 (+0.146 dex) [FAIL G1]; G2 halo route slope not native [FAIL G2, from A26/A29]; a(z)/a(0) 1.316 1.666 2.588 [FAIL G3]
+   GT B0   (LCDM a(z) ratio, approximation): dev +0.119 +0.222 +0.413 [FAIL GT]
+   GT B1   (LCDM a(z) ratio, approximation): dev +0.116 +0.251 +0.501 [FAIL GT]
+   GT B1p  (LCDM a(z) ratio, approximation): dev +0.124 +0.253 +0.489 [FAIL GT]
+   GT B1u  (LCDM a(z) ratio, approximation): dev +0.106 +0.247 +0.509 [FAIL GT]
+   GT B2   (LCDM a(z) ratio, approximation): dev +0.087 +0.183 +0.367 [FAIL GT]
+   GT B3   (LCDM a(z) ratio, approximation): dev +0.053 +0.120 +0.259 [FAIL GT]
+   GT B4   (LCDM a(z) ratio, approximation): dev +0.127 +0.220 +0.393 [FAIL GT]
+   GT B5   (LCDM a(z) ratio, approximation): dev +0.119 +0.222 +0.413 [FAIL GT]
+   G4 per-galaxy fitted a over log M200 11-12.5 (79) rms 0.140 dex [FAIL G4]; G5 median galaxy max halo pull at 1-30 kpc 0.51 a_T [PASS G5]
+ (a) parameters: 2 grid knobs (theta_b, f_bs). runtime 56 s
+
+================ (b) SAMPLE SELECTION
+ b1 observable subsets of the real sample (N0 against the law on the subset; the law refit on the subset)
+  all                      171 gal: N0 E1 0.1419 E2 0.2877 E3 0.1613 [FAIL E]; N0 a 1.576e-10 (+0.226); data law refit a0 9.262e-11 (-0.005), law rms to observed 0.1951
+  Q=1                       99 gal: N0 E1 0.1472 E2 0.2913 E3 0.1206 [FAIL E]; N0 a 1.596e-10 (+0.232); data law refit a0 1.167e-10 (+0.096), law rms to observed 0.1632
+  Q<=2                     159 gal: N0 E1 0.1417 E2 0.2888 E3 0.1538 [FAIL E]; N0 a 1.574e-10 (+0.226); data law refit a0 9.980e-11 (+0.028), law rms to observed 0.1808
+  Inc>=30                  159 gal: N0 E1 0.1417 E2 0.2888 E3 0.1676 [FAIL E]; N0 a 1.579e-10 (+0.227); data law refit a0 9.078e-11 (-0.013), law rms to observed 0.1911
+  Q<=2 & Inc>=30           149 gal: N0 E1 0.1416 E2 0.2889 E3 0.1605 [FAIL E]; N0 a 1.578e-10 (+0.227); data law refit a0 9.725e-11 (+0.016), law rms to observed 0.1767
+  HI-rich MHI/M*>=1         72 gal: N0 E1 0.1698 E2 0.3020 E3 0.1644 [FAIL E]; N0 a 1.615e-10 (+0.237); data law refit a0 8.552e-11 (-0.039), law rms to observed 0.2322
+  extended RHI/Rd>=5.60     84 gal: N0 E1 0.1245 E2 0.2462 E3 0.0892 [FAIL E]; N0 a 1.425e-10 (+0.183); data law refit a0 1.026e-10 (+0.040), law rms to observed 0.1899
+  Vflat>0                  135 gal: N0 E1 0.1370 E2 0.2806 E3 0.1367 [FAIL E]; N0 a 1.540e-10 (+0.216); data law refit a0 1.036e-10 (+0.044), law rms to observed 0.1740
+
+ b2 halo-dependent selection at fixed SPARC baryons, K = 40 realisations per galaxy (Upsilon 0.1, SHMR 0.15, c 0.11 dex)
+  SF1 rule on real curves: flat 109 of 171; agreement with table Vflat>0: 0.848
+  realisations built 0.9 s
+  SF1 keeps 0.711 of realisations; SF2 keeps 0.730; both 0.504
+  SF1 0 SF2 0 beta +0.0: E1 0.1805 E2 0.3267 E3 0.1561 [FAIL E] (dropped 0); shift log M200 +0.000, log c -0.000 [REALISTIC]; obs good-pt scatter 0.1253 [FAIL B1], a0 1.684e-10 (+0.255) [FAIL B2]
+  SF1 0 SF2 0 beta -0.5: E1 0.1537 E2 0.2682 E3 0.1099 [FAIL E] (dropped 0); shift log M200 -0.031, log c -0.048 [REALISTIC]; obs good-pt scatter 0.1282 [FAIL B1], a0 1.358e-10 (+0.162) [FAIL B2]
+  SF1 0 SF2 0 beta -1.0: E1 0.1371 E2 0.2241 E3 0.0688 [FAIL E] (dropped 0); shift log M200 -0.059, log c -0.092 [REALISTIC]; obs good-pt scatter 0.1138 [FAIL B1], a0 1.049e-10 (+0.049) [PASS B2]
+  SF1 0 SF2 0 beta -2.0: E1 0.1292 E2 0.1993 E3 0.0821 [FAIL E] (dropped 0); shift log M200 -0.099, log c -0.154 [NOT REALISTIC]; obs good-pt scatter 0.1030 [FAIL B1], a0 7.416e-11 (-0.101) [FAIL B2]
+  SF1 0 SF2 0 beta -3.0: E1 0.1326 E2 0.2128 E3 0.1079 [FAIL E] (dropped 0); shift log M200 -0.116, log c -0.182 [NOT REALISTIC]; obs good-pt scatter 0.0991 [PASS B1], a0 6.537e-11 (-0.156) [FAIL B2]
+  SF1 0 SF2 0 beta -5.0: E1 0.1375 E2 0.2190 E3 0.1249 [FAIL E] (dropped 0); shift log M200 -0.127, log c -0.200 [NOT REALISTIC]; obs good-pt scatter 0.0938 [PASS B1], a0 5.818e-11 (-0.207) [FAIL B2]
+  SF1 1 SF2 0 beta +0.0: E1 0.1872 E2 0.3485 E3 0.1966 [FAIL E] (dropped 30); shift log M200 -0.002, log c +0.000 [REALISTIC]; obs good-pt scatter 0.1191 [FAIL B1], a0 1.695e-10 (+0.258) [FAIL B2]
+  SF1 1 SF2 0 beta -0.5: E1 0.1627 E2 0.2902 E3 0.1541 [FAIL E] (dropped 30); shift log M200 -0.033, log c -0.042 [REALISTIC]; obs good-pt scatter 0.1162 [FAIL B1], a0 1.439e-10 (+0.187) [FAIL B2]
+  SF1 1 SF2 0 beta -1.0: E1 0.1474 E2 0.2351 E3 0.1156 [FAIL E] (dropped 30); shift log M200 -0.060, log c -0.080 [REALISTIC]; obs good-pt scatter 0.1024 [FAIL B1], a0 1.197e-10 (+0.107) [FAIL B2]
+  SF1 1 SF2 0 beta -2.0: E1 0.1396 E2 0.2131 E3 0.0712 [FAIL E] (dropped 30); shift log M200 -0.100, log c -0.135 [NOT REALISTIC]; obs good-pt scatter 0.0923 [PASS B1], a0 9.496e-11 (+0.006) [PASS B2]
+  SF1 1 SF2 0 beta -3.0: E1 0.1419 E2 0.2173 E3 0.0979 [FAIL E] (dropped 30); shift log M200 -0.117, log c -0.161 [NOT REALISTIC]; obs good-pt scatter 0.0875 [PASS B1], a0 8.484e-11 (-0.043) [PASS B2]
+  SF1 1 SF2 0 beta -5.0: E1 0.1460 E2 0.2307 E3 0.1156 [FAIL E] (dropped 30); shift log M200 -0.128, log c -0.177 [NOT REALISTIC]; obs good-pt scatter 0.0864 [PASS B1], a0 7.998e-11 (-0.068) [FAIL B2]
+  SF1 0 SF2 1 beta +0.0: E1 0.2189 E2 0.3554 E3 0.1646 [FAIL E] (dropped 17); shift log M200 +0.061, log c +0.025 [NOT REALISTIC]; obs good-pt scatter 0.1376 [FAIL B1], a0 2.057e-10 (+0.342) [FAIL B2]
+  SF1 0 SF2 1 beta -0.5: E1 0.1942 E2 0.3155 E3 0.1225 [FAIL E] (dropped 17); shift log M200 +0.044, log c -0.017 [NOT REALISTIC]; obs good-pt scatter 0.1340 [FAIL B1], a0 1.577e-10 (+0.227) [FAIL B2]
+  SF1 0 SF2 1 beta -1.0: E1 0.1764 E2 0.2859 E3 0.0854 [FAIL E] (dropped 17); shift log M200 +0.030, log c -0.057 [NOT REALISTIC]; obs good-pt scatter 0.1324 [FAIL B1], a0 1.315e-10 (+0.148) [FAIL B2]
+  SF1 0 SF2 1 beta -2.0: E1 0.1588 E2 0.2418 E3 0.0450 [FAIL E] (dropped 17); shift log M200 +0.010, log c -0.112 [NOT REALISTIC]; obs good-pt scatter 0.1338 [FAIL B1], a0 1.031e-10 (+0.042) [PASS B2]
+  SF1 0 SF2 1 beta -3.0: E1 0.1531 E2 0.2305 E3 0.0639 [FAIL E] (dropped 17); shift log M200 +0.001, log c -0.136 [NOT REALISTIC]; obs good-pt scatter 0.1332 [FAIL B1], a0 9.233e-11 (-0.006) [PASS B2]
+  SF1 0 SF2 1 beta -5.0: E1 0.1500 E2 0.2200 E3 0.0779 [FAIL E] (dropped 17); shift log M200 -0.006, log c -0.151 [NOT REALISTIC]; obs good-pt scatter 0.1316 [FAIL B1], a0 8.539e-11 (-0.040) [PASS B2]
+  SF1 1 SF2 1 beta +0.0: E1 0.2296 E2 0.3887 E3 0.1997 [FAIL E] (dropped 44); shift log M200 +0.063, log c +0.026 [NOT REALISTIC]; obs good-pt scatter 0.1273 [FAIL B1], a0 1.861e-10 (+0.298) [FAIL B2]
+  SF1 1 SF2 1 beta -0.5: E1 0.2066 E2 0.3483 E3 0.1576 [FAIL E] (dropped 44); shift log M200 +0.046, log c -0.011 [NOT REALISTIC]; obs good-pt scatter 0.1271 [FAIL B1], a0 1.574e-10 (+0.226) [FAIL B2]
+  SF1 1 SF2 1 beta -1.0: E1 0.1897 E2 0.3042 E3 0.1199 [FAIL E] (dropped 44); shift log M200 +0.032, log c -0.046 [NOT REALISTIC]; obs good-pt scatter 0.1302 [FAIL B1], a0 1.384e-10 (+0.170) [FAIL B2]
+  SF1 1 SF2 1 beta -2.0: E1 0.1718 E2 0.2709 E3 0.0689 [FAIL E] (dropped 44); shift log M200 +0.013, log c -0.094 [NOT REALISTIC]; obs good-pt scatter 0.1283 [FAIL B1], a0 1.191e-10 (+0.105) [FAIL B2]
+  SF1 1 SF2 1 beta -3.0: E1 0.1650 E2 0.2540 E3 0.0639 [FAIL E] (dropped 44); shift log M200 +0.005, log c -0.116 [NOT REALISTIC]; obs good-pt scatter 0.1261 [FAIL B1], a0 1.091e-10 (+0.066) [FAIL B2]
+  SF1 1 SF2 1 beta -5.0: E1 0.1607 E2 0.2451 E3 0.0779 [FAIL E] (dropped 44); shift log M200 -0.001, log c -0.130 [NOT REALISTIC]; obs good-pt scatter 0.1202 [FAIL B1], a0 1.018e-10 (+0.036) [PASS B2]
+
+ (b2) best overall: SF1 0 SF2 0 beta -2.0: E1 0.1292 E2 0.1993 E3 0.0821 [FAIL E] [NOT REALISTIC]
+ (b2) best realistic: SF1 0 SF2 0 beta -1.0: E1 0.1371 E2 0.2241 E3 0.0688 [FAIL E]
+ (b2) holdout: chosen on GS[::2] -> SF1 0 SF2 0 beta -2.0 (even 0.1236); unseen 0.1343 [FAIL]
+  diagnostic SF1 beta -8: E1 0.1483 E2 0.2474 E3 0.1223 [FAIL E]; shift log M200 -0.133, log c -0.182 (not realistic if outside [-0.3,0], [-0.11,0])
+  diagnostic SF1 beta -12: E1 0.1490 E2 0.2474 E3 0.1245 [FAIL E]; shift log M200 -0.136, log c -0.184 (not realistic if outside [-0.3,0], [-0.11,0])
+  diagnostic SF1 beta -20: E1 0.1494 E2 0.2520 E3 0.1255 [FAIL E]; shift log M200 -0.139, log c -0.184 (not realistic if outside [-0.3,0], [-0.11,0])
+ tie gates on the best realistic selection (per galaxy, weighted geometric-mean curve)
+  TIE (b2) SF1 0 SF2 0 beta -1.0: fitted a 9.692e-11, kappa_eff 0.518 (+0.015 dex) [PASS G1]; G2 halo route slope not native [FAIL G2, from A26/A29]; a(z)/a(0) 1.334 1.693 2.625 [FAIL G3]
+   GT B0   (LCDM a(z) ratio, approximation): dev +0.125 +0.229 +0.419 [FAIL GT]
+   GT B1   (LCDM a(z) ratio, approximation): dev +0.122 +0.258 +0.507 [FAIL GT]
+   GT B1p  (LCDM a(z) ratio, approximation): dev +0.130 +0.260 +0.495 [FAIL GT]
+   GT B1u  (LCDM a(z) ratio, approximation): dev +0.112 +0.254 +0.516 [FAIL GT]
+   GT B2   (LCDM a(z) ratio, approximation): dev +0.093 +0.190 +0.374 [FAIL GT]
+   GT B3   (LCDM a(z) ratio, approximation): dev +0.059 +0.127 +0.265 [FAIL GT]
+   GT B4   (LCDM a(z) ratio, approximation): dev +0.133 +0.227 +0.399 [FAIL GT]
+   GT B5   (LCDM a(z) ratio, approximation): dev +0.125 +0.229 +0.419 [FAIL GT]
+   G4 per-galaxy fitted a over log M200 11-12.5 (85) rms 0.143 dex [FAIL G4]; G5 median galaxy max halo pull at 1-30 kpc 0.39 a_T [PASS G5]
+ (b) parameters: beta + 2 switches; thresholds fixed; 3 literature scatter amplitudes. runtime 180 s
+
+================ (c) M/L TREND (d, p, q, A_imf)
+  16 corners, reading alpha: E1 0.1264 to 0.2339; mock a 1.028e-10 to 2.352e-10; law refit a0 on data 6.800e-11 (-0.139) to 1.343e-10 (+0.157)
+  search all galaxies, allowed box: E1 0.1222 at d -0.097, p -0.034, q -0.010, A +0.150; at bound ['d']
+  search GS[::2], allowed box: E1 0.1281 at d -0.097, p -0.041, q -0.020, A +0.148; at bound ['d']
+  best allowed (all): alpha E1 0.1222 E2 0.2766 E3 0.1478 [FAIL E]; beta E1 0.1332 E2 0.2930 E3 0.1607 [FAIL E]
+  holdout: unseen GS[1::2] alpha E1 0.1172 [FAIL]
+
+== (c) M/L TREND (d, p, q, A_imf) best allowed, reading alpha 
+ rms to law 0.1222 dex [FAIL E1]; p95 per-galaxy 0.2766 [FAIL E2]; worst bin 0.1478 [FAIL E3]
+ bins -12.0:+0.148 -11.5:+0.069 -11.0:+0.030 -10.5:-0.027 -10.0:-0.042 -9.5:-0.046 -9.0:-0.018
+ a fit 1.189e-10; rms to observed 0.2354 dex, mean +0.0266
+  law on data at best allowed knobs: refit a0 1.180e-10 (+0.100 dex), rms to observed 0.2005 at refit, 0.2039 at A0 (nominal 0.1951); observer fit scatter all 0.1523, good 0.0861, a0 9.308e-11
+  law on data at the corner with lowest a0: refit a0 6.800e-11 (-0.139 dex), rms to observed 0.2014 at refit, 0.2072 at A0 (nominal 0.1951); observer fit scatter all 0.1524, good 0.0867, a0 6.893e-11
+  law on data at the corner with highest a0: refit a0 1.343e-10 (+0.157 dex), rms to observed 0.2133 at refit, 0.2214 at A0 (nominal 0.1951); observer fit scatter all 0.1543, good 0.0893, a0 9.542e-11
+  N0c (contracted) at best allowed: alpha E1 0.1704 E2 0.3143 E3 0.1831 [FAIL E]
+  search all galaxies, WIDENED diagnostic: E1 0.1197 at d -0.218, p -0.063, q +0.084, A +0.342; at bound []
+  widened: alpha E1 0.1197 E2 0.2622 E3 0.1313 [FAIL E]
+  TIE (c) best allowed: fitted a 1.189e-10, kappa_eff 0.635 (+0.104 dex) [FAIL G1]; G2 halo route slope not native [FAIL G2, from A26/A29]; a(z)/a(0) 1.298 1.626 2.477 [FAIL G3]
+   GT B0   (LCDM a(z) ratio, approximation): dev +0.113 +0.211 +0.394 [FAIL GT]
+   GT B1   (LCDM a(z) ratio, approximation): dev +0.110 +0.240 +0.481 [FAIL GT]
+   GT B1p  (LCDM a(z) ratio, approximation): dev +0.118 +0.242 +0.470 [FAIL GT]
+   GT B1u  (LCDM a(z) ratio, approximation): dev +0.100 +0.237 +0.490 [FAIL GT]
+   GT B2   (LCDM a(z) ratio, approximation): dev +0.081 +0.172 +0.348 [FAIL GT]
+   GT B3   (LCDM a(z) ratio, approximation): dev +0.047 +0.109 +0.240 [FAIL GT]
+   GT B4   (LCDM a(z) ratio, approximation): dev +0.121 +0.209 +0.374 [FAIL GT]
+   GT B5   (LCDM a(z) ratio, approximation): dev +0.113 +0.211 +0.394 [FAIL GT]
+   G4 per-galaxy fitted a over log M200 11-12.5 (84) rms 0.197 dex [FAIL G4]; G5 median galaxy max halo pull at 1-30 kpc 0.50 a_T [PASS G5]
+
+================ (d) GAS (X, k_g, f_mol, s)
+  16 corners, reading alpha: E1 0.1416 to 0.1554; mock a 1.560e-10 to 1.817e-10; law refit a0 on data 6.274e-11 (-0.174) to 9.636e-11 (+0.012)
+  search all galaxies, allowed box: E1 0.1416 at X +1.330, kg +0.900, fm +0.000, s -0.240; at bound ['X', 'kg', 'fm']
+  search GS[::2], allowed box: E1 0.1526 at X +1.330, kg +0.900, fm +0.000, s -0.243; at bound ['X', 'kg', 'fm']
+  best allowed (all): alpha E1 0.1416 E2 0.2872 E3 0.1593 [FAIL E]; beta E1 0.1438 E2 0.2904 E3 0.1714 [FAIL E]
+  holdout: unseen GS[1::2] alpha E1 0.1305 [FAIL]
+
+== (d) GAS (X, k_g, f_mol, s) best allowed, reading alpha 
+ rms to law 0.1416 dex [FAIL E1]; p95 per-galaxy 0.2872 [FAIL E2]; worst bin 0.1593 [FAIL E3]
+ bins -12.0:+0.159 -11.5:+0.095 -11.0:+0.092 -10.5:+0.049 -10.0:+0.040 -9.5:+0.014 -9.0:+0.004
+ a fit 1.560e-10; rms to observed 0.2421 dex, mean +0.0774
+  law on data at best allowed knobs: refit a0 9.636e-11 (+0.012 dex), rms to observed 0.1947 at refit, 0.1948 at A0 (nominal 0.1951); observer fit scatter all 0.1481, good 0.0803, a0 8.494e-11
+  law on data at the corner with lowest a0: refit a0 6.274e-11 (-0.174 dex), rms to observed 0.2103 at refit, 0.2186 at A0 (nominal 0.1951); observer fit scatter all 0.1726, good 0.0936, a0 5.090e-11
+  law on data at the corner with highest a0: refit a0 9.636e-11 (+0.012 dex), rms to observed 0.1947 at refit, 0.1948 at A0 (nominal 0.1951); observer fit scatter all 0.1481, good 0.0803, a0 8.494e-11
+  N0c (contracted) at best allowed: alpha E1 0.2216 E2 0.3632 E3 0.2268 [FAIL E]
+  search all galaxies, WIDENED diagnostic: E1 0.1408 at X +1.330, kg +0.346, fm +0.000, s -0.266; at bound ['X', 'fm']
+  widened: alpha E1 0.1408 E2 0.2846 E3 0.1480 [FAIL E]
+  TIE (d) best allowed: fitted a 1.560e-10, kappa_eff 0.833 (+0.222 dex) [FAIL G1]; G2 halo route slope not native [FAIL G2, from A26/A29]; a(z)/a(0) 1.314 1.662 2.583 [FAIL G3]
+   GT B0   (LCDM a(z) ratio, approximation): dev +0.119 +0.221 +0.412 [FAIL GT]
+   GT B1   (LCDM a(z) ratio, approximation): dev +0.115 +0.250 +0.500 [FAIL GT]
+   GT B1p  (LCDM a(z) ratio, approximation): dev +0.123 +0.252 +0.488 [FAIL GT]
+   GT B1u  (LCDM a(z) ratio, approximation): dev +0.105 +0.247 +0.508 [FAIL GT]
+   GT B2   (LCDM a(z) ratio, approximation): dev +0.086 +0.182 +0.366 [FAIL GT]
+   GT B3   (LCDM a(z) ratio, approximation): dev +0.052 +0.119 +0.258 [FAIL GT]
+   GT B4   (LCDM a(z) ratio, approximation): dev +0.126 +0.219 +0.392 [FAIL GT]
+   GT B5   (LCDM a(z) ratio, approximation): dev +0.119 +0.221 +0.412 [FAIL GT]
+   G4 per-galaxy fitted a over log M200 11-12.5 (79) rms 0.131 dex [FAIL G4]; G5 median galaxy max halo pull at 1-30 kpc 0.51 a_T [PASS G5]
+
+================ COMBINED (c) + (d), 8 knobs in their boxes
+  search all, combined box: E1 0.1192 at d -0.097, p -0.016, q -0.050, A +0.106, X +1.400, kg +1.100, fm +0.150, s +0.000; at bound ['d', 'q', 'X', 'kg', 'fm', 's']
+  search GS[::2], combined box: E1 0.1254 at d -0.097, p -0.041, q -0.050, A +0.122, X +1.330, kg +0.900, fm +0.150, s +0.000; at bound ['d', 'q', 'X', 'kg', 'fm', 's']
+  combined best: alpha E1 0.1192 E2 0.2771 E3 0.1468 [FAIL E]; beta E1 0.1188 E2 0.2744 E3 0.1299 [FAIL E]; holdout unseen 0.1146 [FAIL]
+  law on data at combined best: refit a0 9.979e-11 (+0.028 dex), rms to observed 0.2016 at refit, 0.2018 at A0 (nominal 0.1951); observer fit scatter all 0.1575, good 0.0895, a0 8.013e-11
+  combined + beam theta 30.0 f 0.25: alpha E1 0.1217 E2 0.2369 E3 0.1657 [FAIL E]; unseen GS[1::2] 0.1198
+  TIE combined (c)+(d) best allowed (no beam): fitted a 1.211e-10, kappa_eff 0.646 (+0.112 dex) [FAIL G1]; G2 halo route slope not native [FAIL G2, from A26/A29]; a(z)/a(0) 1.282 1.589 2.377 [FAIL G3]
+   GT B0   (LCDM a(z) ratio, approximation): dev +0.108 +0.201 +0.376 [FAIL GT]
+   GT B1   (LCDM a(z) ratio, approximation): dev +0.104 +0.230 +0.464 [FAIL GT]
+   GT B1p  (LCDM a(z) ratio, approximation): dev +0.113 +0.232 +0.452 [FAIL GT]
+   GT B1u  (LCDM a(z) ratio, approximation): dev +0.095 +0.227 +0.472 [FAIL GT]
+   GT B2   (LCDM a(z) ratio, approximation): dev +0.075 +0.162 +0.330 [FAIL GT]
+   GT B3   (LCDM a(z) ratio, approximation): dev +0.041 +0.099 +0.222 [FAIL GT]
+   GT B4   (LCDM a(z) ratio, approximation): dev +0.115 +0.199 +0.356 [FAIL GT]
+   GT B5   (LCDM a(z) ratio, approximation): dev +0.108 +0.201 +0.376 [FAIL GT]
+   G4 per-galaxy fitted a over log M200 11-12.5 (86) rms 0.178 dex [FAIL G4]; G5 median galaxy max halo pull at 1-30 kpc 0.49 a_T [PASS G5]
+
+parameters: (a) 2; (b) beta + 2 switches; (c) 4; (d) 4 (3 effective); combined 8 (+2 beam). runtime 323 s
+Rival language; adopts nothing. Passing shows freedom, not evidence. kappa = 1/2 FITTED; not theory closed.

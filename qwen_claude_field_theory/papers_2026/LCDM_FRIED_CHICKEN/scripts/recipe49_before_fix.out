@@ -1,0 +1,43 @@
+sample: 171 galaxies, 3373 points; Y_disk 0.5, Y_bul 0.7
+A48 recipe49; c sqrt(G rho_DE) 1.8727e-10, a_T 9.3637e-11, A0 9.3625e-11
+table: L_disk from 2 pi SBdisk Rd^2 clipped to L in 145 galaxies; RHI = 0 in 3
+
+CONTROL: N0 noiseless plain LCDM, nominal baryons (A40 l.109: E1 0.1419 E2 0.2877 E3 0.1613, a 1.576e-10)
+
+== N0 control 
+ rms to law 0.1419 dex [FAIL E1]; p95 per-galaxy 0.2877 [FAIL E2]; worst bin 0.1613 [FAIL E3]
+ bins -12.0:+0.161 -11.5:+0.098 -11.0:+0.094 -10.5:+0.050 -10.0:+0.040 -9.5:+0.014 -9.0:+0.004
+ a fit 1.576e-10; rms to observed 0.2424 dex, mean +0.0790
+ holdout reference: N0 on GS[1::2] E1 0.1309
+  law on data (nominal, control): refit a0 9.262e-11 (-0.005 dex), rms to observed 0.1951 at refit, 0.1951 at A0 (nominal 0.1951); observer fit scatter all 0.1489, good 0.0814, a0 8.034e-11
+ SPARC observer fit: scatter 0.1489, good 0.0814, a0 8.034e-11 (A20 0.1489 / 0.0814 / 8.03e-11)
+
+================ (a) BEAM SMEARING
+ control: beam 0.05" on ESO444-G084: max |V_s/V - 1| 0.0131 (should be ~0)
+ smearing of N0 and the law for 3 beams: 7.9 s
+ check: unsmeared N0 V(R) from the interpolator reproduces N0 curves to 1.78e-15 dex
+
+ theta 15.0": full first-moment smearing changes the law curve by >5 % at 0.369 of points, >10 % at 0.267
+  f_bs 0.25: smeared N0 vs law E1 nan E2 nan E3 0.1461 [FAIL E]; a fit 3.372e-11 | smeared law vs law rms 0.0461; smeared N0 vs smeared law nan; smeared law rms to observed 0.1963 (unsmeared 0.1951)
+  f_bs 0.50: smeared N0 vs law E1 nan E2 nan E3 0.1290 [FAIL E]; a fit 3.372e-11 | smeared law vs law rms 0.1005; smeared N0 vs smeared law nan; smeared law rms to observed 0.2110 (unsmeared 0.1951)
+  f_bs 1.00: smeared N0 vs law E1 nan E2 nan E3 0.0827 [FAIL E]; a fit 3.372e-11 | smeared law vs law rms 0.2678; smeared N0 vs smeared law nan; smeared law rms to observed 0.3155 (unsmeared 0.1951)
+
+ theta 22.5": full first-moment smearing changes the law curve by >5 % at 0.476 of points, >10 % at 0.361
+  f_bs 0.25: smeared N0 vs law E1 0.1323 E2 0.2691 E3 0.1409 [FAIL E]; a fit 1.358e-10 | smeared law vs law rms 0.0554; smeared N0 vs smeared law 0.1395; smeared law rms to observed 0.1976 (unsmeared 0.1951)
+  f_bs 0.50: smeared N0 vs law E1 0.1516 E2 0.2568 E3 0.2533 [FAIL E]; a fit 1.151e-10 | smeared law vs law rms 0.1215; smeared N0 vs smeared law 0.1368; smeared law rms to observed 0.2195 (unsmeared 0.1951)
+  f_bs 1.00: smeared N0 vs law E1 0.3266 E2 0.5626 E3 0.7133 [FAIL E]; a fit 7.539e-11 | smeared law vs law rms 0.3355; smeared N0 vs smeared law 0.1304; smeared law rms to observed 0.3708 (unsmeared 0.1951)
+
+ theta 30.0": full first-moment smearing changes the law curve by >5 % at 0.549 of points, >10 % at 0.430
+  f_bs 0.25: smeared N0 vs law E1 nan E2 nan E3 0.1360 [FAIL E]; a fit 3.372e-11 | smeared law vs law rms 0.0630; smeared N0 vs smeared law nan; smeared law rms to observed 0.1991 (unsmeared 0.1951)
+  f_bs 0.50: smeared N0 vs law E1 nan E2 nan E3 0.1070 [FAIL E]; a fit 3.372e-11 | smeared law vs law rms 0.1388; smeared N0 vs smeared law nan; smeared law rms to observed 0.2279 (unsmeared 0.1951)
+  f_bs 1.00: smeared N0 vs law E1 nan E2 nan E3 0.0259 [FAIL E]; a fit 3.372e-11 | smeared law vs law rms 0.3929; smeared N0 vs smeared law nan; smeared law rms to observed 0.4207 (unsmeared 0.1951)
+
+ (a) best cell (all) theta 15.0 f 0.25: E1 nan E2 nan E3 0.1461 [FAIL E]
+ (a) holdout: chosen on GS[::2] -> theta 15.0 f 0.25 (even nan); unseen GS[1::2] 0.1211 [FAIL]
+
+== (a) smeared N0, theta 15.0 f_bs 0.25 
+ rms to law nan dex [FAIL E1]; p95 per-galaxy nan [FAIL E2]; worst bin 0.1461 [FAIL E3]
+ bins -12.0:+0.146 -11.5:+nan -11.0:+nan -10.5:+nan -10.0:+nan -9.5:+nan -9.0:+nan
+ a fit 3.372e-11; rms to observed nan dex, mean +nan
+  law on data with smearing theta 30.0 f 1.0 forward-modelled: refit a0 1.863e-10 (+0.299 dex), rms to observed 0.3889 at refit, 0.4207 at A0 (unsmeared 0.1951)
+  law on data with smearing theta 15.0 f 0.25 forward-modelled: refit a0 1.034e-10 (+0.043 dex), rms to observed 0.1957 at refit, 0.1963 at A0 (unsmeared 0.1951)
