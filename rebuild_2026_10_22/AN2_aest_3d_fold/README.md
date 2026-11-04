@@ -48,6 +48,9 @@ M_d / M_ph is at the last step read (alt, canonical where they differ). At 1e15 
 ## Diagnostic SG (2026-11-04)
 `diag_a2/SHAPE_GRID_RESULT.md`, frozen note first. Pure-dust shapes at 128^3 carry 12.5-13.5 % grid error against exact dust ellipsoids, 2-3 points less than the sphere's 15.6 %, same order. So the own-sphere shifts above overstate the shapes by 1.4-2.5 points. Grid-corrected, the 1e15 shifts land on S0 to 0.1 points (−5.3, −10.0 %), and every shape folds before AN1's sphere (−5 to −16 %); the 1e15 A "+7.0 % LATER" is grid error. A read, no label changes.
 
+## Diagnostic P160 (2026-11-04)
+`diag_a2/PRED160_RESULT.md`. The grid correction, frozen before the runs, predicted all four 160^3 shape rows within 0.7 % (1e12 A 5.262 vs 5.232, B 4.901 vs 4.868; 1e15 A 4.879 vs 4.870, B 4.626 vs 4.616 Gyr): PREDICTED. SG's corrected read stands as a read; rows still move ~3 % from 128 to 160.
+
 ## Compute
 40 rows in all. 128^3 rows took 1240-1765 CPU s, none near the 67.5 min cap; RSS 1.6-1.7 GB at 128^3, 2.3 GB at 96^3, **over the 1 GB target**. Free disk dipped to 14 GB before the rows; they started once it was back over 15 GB. A KB row at eta 0.0125 was stopped by SIGTERM at 56 CPU min, unread (A3).
 
