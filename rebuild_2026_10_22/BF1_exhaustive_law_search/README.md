@@ -1,4 +1,4 @@
-# BF1_exhaustive_law_search, level L3: NO HIT. 2.1e9 expressions in three wrappers, zero Stage 1 survivors, same as the scrambled control. A near-miss family fits X-COP out of sample and breaks discs
+# BF1_exhaustive_law_search, levels L3 and L4: NO HIT. 2.1e9 (L3) and 7.5e11 (L4, AMENDMENT_A1) expressions in three wrappers, zero Stage 1 survivors at either level, same as the scrambled control. A near-miss family fits X-COP out of sample and breaks discs
 
 Criteria: `FROZEN_CRITERIA.md` (f8e7d248fa, moved in 18622e62b3). `bf1.py`, `bf1_read.py`, `bf1_check.py`, logs. **Not blind.** kappa = 1/2 FITTED. No cold component. Reinstates nothing. Not theory closed. Nothing here says the data favour the framework.
 
@@ -8,6 +8,10 @@ Criteria: `FROZEN_CRITERIA.md` (f8e7d248fa, moved in 18622e62b3). `bf1.py`, `bf1
 | scrambled control | 2.103e9 | 1 | 0 |
 | MUTATE, gate 1 at 1e-6 | 2.102e9 | 0 | 0 |
 | planted (1 + f) log1p(1/y) | 2.102e9 | 3.7e6 | recovered exactly, rms 0.0 |
+| **L4 real** (A1, gates unchanged) | 7.5e11 | 17,692 | **0** |
+| L4 scrambled control | 7.5e11 | 1,283 | 0 |
+
+L4 read with `bf1_read.py` (BF1_SUF=_L4): `bf1_real_L4_hits.out`, `bf1_control_L4_hits.out`. Its prefilter near misses are the same W3 gas family (3,918 of 3,920 scored use a g_gas-like term; best SPARC train rms 0.184 against the law's 0.166 and the line 0.175; `bf1_L4_near_interim.out`). Real over control on prefilter, 14x, is the BF2 situation: one scramble, one family, and BF2 found scrambles ranging 0 to 266 on that family. No MUTATE or planted run at L4.
 
 Known answer: H = 1 gives X-COP +0.4675, 0.4763, record +0.467, 0.476. The L2 closure was 26,469, under the 150,000 cap, so the cap didn't bind. The prefilter is looser than Stage 1, so these counts are an upper bound on Stage 1.
 
