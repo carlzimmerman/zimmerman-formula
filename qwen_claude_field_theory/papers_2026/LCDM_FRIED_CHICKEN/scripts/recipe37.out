@@ -1,0 +1,80 @@
+sample: 171 galaxies, 3373 points; Y_disk 0.5, Y_bul 0.7
+c sqrt(G rho_DE0) = 1.8727e-10 m/s^2 (2 A0 = 1.8725e-10)
+LE check: xi_h 5.8448 (paper 5.85), theta'_h 0.6935 (paper 0.693), 4 pi theta'_h/xi_h 1.4911 (paper 1.49)
+LE asymptote: theta/xi at xi 1e6 0.70711 (1/sqrt2 = 0.70711); theta' at 1e7 0.70711
+  => rho -> (A/2 pi G)^(1/2)/r from the ODE; the reader quoted (A/8 pi G)^(1/2)/r for eq. 148 (reading issue, ODE used)
+B 3.5324e-03 (paper 3.53e-3); A 1.8563e-12 Pa; Sigma0 0.2750 kg/m^2 = 131.6 Msun/pc^2 (paper 133); Sigma0 G/(c sqrt Lambda) 0.01955 (paper 0.01955); rho_DE0 5.847e-27 kg/m^3 (paper 5.96e-27)
+
+halo dark-acceleration ceiling g_inf = 2.790e-11 m/s^2 = 0.298 a0; law needs g_obs-g_b = 0.618 a0 at g_b = a0
+
+== L0 logotrope, 0 knobs, M_h = M_b/0.17, r_h from M_h = 1.49 Sigma0 r_h^2 
+ rms to law 0.1511 dex [FAIL E1]; p95 per-galaxy 0.2313 [FAIL E2]; worst bin 0.1883 [FAIL E3]
+ bins -12.0:+0.188 -11.5:+0.042 -11.0:-0.117 -10.5:-0.173 -10.0:-0.123 -9.5:-0.060 -9.0:-0.023
+ a fit 7.654e-11; rms to observed 0.2435 dex, mean -0.0502
+ L0 median r_h 12.50 kpc
+
+== L1 logotrope, 1 global knob f_b = 1.0000 
+ rms to law 0.1292 dex [FAIL E1]; p95 per-galaxy 0.2255 [FAIL E2]; worst bin 0.2485 [FAIL E3]
+ bins -12.0:+0.249 -11.5:+0.090 -11.0:-0.057 -10.5:-0.127 -10.0:-0.103 -9.5:-0.055 -9.0:-0.022
+ a fit 1.015e-10; rms to observed 0.2344 dex, mean -0.0064
+ L1 holdout: f_b tuned on GS[::2] 1.0000, unseen GS[1::2] rms 0.1349 dex [FAIL holdout]
+
+== L2 logotrope, r_h per galaxy (171 knobs), Sigma0 fixed (r_h at bound: 2; median r_h 1.52 kpc)
+ rms to law 0.1026 dex [FAIL E1]; p95 per-galaxy 0.1876 [FAIL E2]; worst bin 0.1384 [FAIL E3]
+ bins -12.0:+0.138 -11.5:+0.082 -11.0:-0.037 -10.5:-0.097 -10.0:-0.078 -9.5:-0.041 -9.0:-0.018
+ a fit 9.988e-11; rms to observed 0.2191 dex, mean -0.0039
+ L2 rms over GS[1::2] (no true holdout for per-galaxy knobs) 0.1069
+ L2 max dark accel over all points 0.302 a0; points with g_b > 3e-11: mean log(g/law) -0.0750
+ [0 s]
+
+== L3 logotrope in baryon+own potential (not as published), rho0 per galaxy (171 knobs) (grid-edge minima: 10)
+ rms to law 0.1851 dex [FAIL E1]; p95 per-galaxy 0.2648 [FAIL E2]; worst bin 0.2217 [FAIL E3]
+ bins -12.0:+0.108 -11.5:-0.021 -11.0:-0.222 -10.5:-0.220 -10.0:-0.139 -9.5:-0.063 -9.0:-0.023
+ a fit 5.156e-11; rms to observed 0.2798 dex, mean -0.1078
+ [2 s]
+
+== L4 probe (not the model): Sigma0 x 0.794 global + r_h per galaxy (172 knobs) (Sigma0 needed 105 Msun/pc^2; ceiling 0.237 a0)
+ rms to law 0.0956 dex [FAIL E1]; p95 per-galaxy 0.1309 [FAIL E2]; worst bin 0.1286 [FAIL E3]
+ bins -12.0:+0.129 -11.5:+0.022 -11.0:-0.094 -10.5:-0.127 -10.0:-0.091 -9.5:-0.047 -9.0:-0.019
+ a fit 7.768e-11; rms to observed 0.2191 dex, mean -0.0418
+ [7 s]
+
+== (b) acceleration readings, kappa_eff = a/(c sqrt(G rho_DE0)); G1 window 0.5 +- 0.05 dex
+ i  G Sigma0: a 1.835e-11 m/s^2, kappa_eff 0.0980, |dex| 0.708 [FAIL G1]
+ ii g = G M_h/r_h^2 = 1.49 G Sigma0 (paper 2.76e-11): a 2.734e-11 m/s^2, kappa_eff 0.1460, |dex| 0.535 [FAIL G1]
+ iii a0 = g/f_b, f_b 0.17 (paper; PRIMARY): a 1.608e-10 m/s^2, kappa_eff 0.8589, |dex| 0.235 [FAIL G1]
+ iii' a0 = g/f_b, f_b Ob0/Om0 0.1565: a 1.747e-10 m/s^2, kappa_eff 0.9329, |dex| 0.271 [FAIL G1]
+ iv halo ceiling g_inf: a 2.790e-11 m/s^2, kappa_eff 0.1490, |dex| 0.526 [FAIL G1]
+ v a_fit of L2 pooled (what the law sees): a 9.988e-11 m/s^2, kappa_eff 0.5333, |dex| 0.028 [PASS G1]
+ paper cross-check: H0 c/4 = 1.637e-10; 0.0419 H0 c = 2.744e-11
+ G2 slope d ln Sigma0/d ln rho_Lambda (rho_Lambda x 0.5..2, B recomputed) 0.5018 [PASS G2]; with B held fixed 0.5000 identically; (0.5 + B/2 = 0.5018)
+ G3: A is an EoS constant, Sigma0(z) = Sigma0: a(z)/a(0) = 1.000 at z 1, 1.5, 2.33 inside all bands [PASS G3, by construction]
+ G4: readings i-iv universal by construction [PASS]; per-galaxy a_i on L2, 0 galaxies with log M_h 11-12.5: median nan a0, rms log nan dex [FAIL G4]; all 171 rms 0.204
+  log M_h (L2) range 5.69 to 10.99, median 8.66
+ G5: g_DM at 1 kpc over L2 galaxies: median 0.272 a0, 16-84% 0.152-0.300 [PASS G5]
+ G5: g_DM at 10 kpc over L2 galaxies: median 0.298 a0, 16-84% 0.298-0.301 [PASS G5]
+ G5: g_DM at 30 kpc over L2 galaxies: median 0.298 a0, 16-84% 0.298-0.299 [PASS G5]
+ Cassini: not applicable (dark fluid, no force modification)
+
+== (c) tracking GT: |log10 a(z)/a(0) - 0.5 log10 rho_DE(z)/rho_DE0| <= 0.05
+ C1 own logotropic background, A constant: rho_DE ratio 0.9927 0.9903 0.9873; GT dev +0.0016 +0.0021 +0.0028 [PASS GT]
+  C1 w_DE today -1 - B = -1.00353; at z 2.33 -1.00358 (phantom by B; DESI-like rows have w0 > -1)
+ C2a B0 (w0 -1, wa 0), A constant: rho_DE ratio 1.0000 1.0000 1.0000; GT dev +0.0000 +0.0000 +0.0000 [PASS GT]
+ C2b B0, A re-identified as B rho_DE(z) c^2 by hand: rho_DE ratio 1.0000 1.0000 1.0000; GT dev +0.0000 +0.0000 +0.0000 [PASS GT]
+ C2a B1 (w0 -0.752, wa -0.86), A constant: rho_DE ratio 1.0175 0.8743 0.6680; GT dev -0.0038 +0.0292 +0.0876 [FAIL GT]
+ C2b B1, A re-identified as B rho_DE(z) c^2 by hand: rho_DE ratio 1.0175 0.8743 0.6680; GT dev +0.0000 +0.0000 +0.0000 [PASS GT]
+ C2a B1p (w0 -0.838, wa -0.62), A constant: rho_DE ratio 0.9779 0.8668 0.7037; GT dev +0.0049 +0.0310 +0.0763 [FAIL GT]
+ C2b B1p, A re-identified as B rho_DE(z) c^2 by hand: rho_DE ratio 0.9779 0.8668 0.7037; GT dev +0.0000 +0.0000 +0.0000 [PASS GT]
+ C2a B1u (w0 -0.667, wa -1.09), A constant: rho_DE ratio 1.0628 0.8879 0.6415; GT dev -0.0132 +0.0258 +0.0964 [FAIL GT]
+ C2b B1u, A re-identified as B rho_DE(z) c^2 by hand: rho_DE ratio 1.0628 0.8879 0.6415; GT dev +0.0000 +0.0000 +0.0000 [PASS GT]
+ C2a B2 (w0 -0.9, wa -0.1), A constant: rho_DE ratio 1.1618 1.1972 1.2336; GT dev -0.0326 -0.0391 -0.0456 [PASS GT]
+ C2b B2, A re-identified as B rho_DE(z) c^2 by hand: rho_DE ratio 1.1618 1.1972 1.2336; GT dev +0.0000 +0.0000 +0.0000 [PASS GT]
+ C2a B3 (w0 -0.95, wa 0.35), A constant: rho_DE ratio 1.3590 1.5993 2.0317; GT dev -0.0666 -0.1020 -0.1539 [FAIL GT]
+ C2b B3, A re-identified as B rho_DE(z) c^2 by hand: rho_DE ratio 1.3590 1.5993 2.0317; GT dev +0.0000 +0.0000 +0.0000 [PASS GT]
+ C2a B4 (w0 -1.1, wa 0.3), A constant: rho_DE ratio 0.9665 1.0098 1.0964; GT dev +0.0074 -0.0021 -0.0200 [PASS GT]
+ C2b B4, A re-identified as B rho_DE(z) c^2 by hand: rho_DE ratio 0.9665 1.0098 1.0964; GT dev +0.0000 +0.0000 +0.0000 [PASS GT]
+ C2a B5 EDE, A constant: rho_DE ratio 1.0000 1.0001 1.0002; GT dev -0.0000 -0.0000 -0.0000 [PASS GT]
+  B5 EDE share of rho_DE today 9.98e-07
+
+runtime 7 s
+Rival language; adopts nothing. kappa = 1/2 FITTED; not theory closed.
