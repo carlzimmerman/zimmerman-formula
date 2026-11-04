@@ -1,0 +1,98 @@
+sample: 171 galaxies, 3373 points; Y_disk 0.5, Y_bul 0.7
+A38 recipe39; sample 171 galaxies; c sqrt(G rho_DE0) 1.8727e-10; A0 9.3625e-11
+
+=== (a) dissipative / mirror DM (Foot 2013; Chashchina, Foot & Silagadze 2017) ===
+Eq.11 table: x^2 fbar at x=1e3 1.0000 (->1), m(x)/x at 1e3 1.0002 (->1)
+control C_F: best quasi-isothermal r0/r_D = 0.707 (paper ~1.4; consistent window 1.0-2.0: FAIL), rms in log v^2 0.0358 dex
+F0 published 2013 (r0 1.4 R_d, rho0 r0 50 Msun/pc^2): knobs 0; E1 0.1536 [FAIL] E2 0.2098 [FAIL] E3 0.1850 [FAIL]; rms to observed 0.2511; a_fit 4.1769e-11 = 0.4461 A0, kappa_eff 0.2230
+  F0 G4 per-galaxy a over 79 hosts (log M200 11-12.5): rms 0.196 dex [FAIL], median 0.325 A0
+  F0 native a_i = (4 pi G Sigma r0)^2/(G M_b): median 0.814 A0, rms log 0.525 dex over 171
+F1 tuned on all: knobs 1; E1 0.1163 [FAIL] E2 0.2053 [FAIL] E3 0.1057 [FAIL]; rms to observed 0.2318; a_fit 8.0432e-11 = 0.8591 A0, kappa_eff 0.4295
+  knobs [1.8894] at bound []
+  G4 rms 0.226 dex over 79 hosts [FAIL]
+  holdout: tuned GS[::2] knobs [1.8654] (at bound []); unseen GS[1::2] E1 0.1171 [FAIL]
+F1b tuned on all: knobs 2; E1 0.1161 [FAIL] E2 0.2026 [FAIL] E3 0.1071 [FAIL]; rms to observed 0.2306; a_fit 8.0296e-11 = 0.8576 A0, kappa_eff 0.4288
+  knobs [1.8846, 1.4885] at bound []
+  G4 rms 0.221 dex over 79 hosts [FAIL]
+  holdout: tuned GS[::2] knobs [1.8627, 1.4767] (at bound []); unseen GS[1::2] E1 0.1167 [FAIL]
+F2 tuned on all: knobs 1; E1 0.0715 [FAIL] E2 0.1520 [FAIL] E3 0.0152 [PASS]; rms to observed 0.1961; a_fit 9.0479e-11 = 0.9664 A0, kappa_eff 0.4831
+  knobs [20.1939] at bound []
+  G4 rms 0.126 dex over 79 hosts [FAIL]
+  holdout: tuned GS[::2] knobs [20.2075] (at bound []); unseen GS[1::2] E1 0.0648 [FAIL]
+  native scale a_F = G K^2/1e10 Msun = 8.1939e-11 = 0.8752 A0, kappa_eff 0.4375
+F3 tuned on all: knobs 3; E1 0.0702 [FAIL] E2 0.1623 [FAIL] E3 0.0164 [PASS]; rms to observed 0.1980; a_fit 9.0891e-11 = 0.9708 A0, kappa_eff 0.4853
+  knobs [20.1674, 0.5025, 0.885] at bound []
+  G4 rms 0.113 dex over 79 hosts [FAIL]
+  holdout: tuned GS[::2] knobs [20.1718, 0.4934, 0.8643] (at bound []); unseen GS[1::2] E1 0.0646 [FAIL]
+  native scale a_F = G K^2/1e10 Msun = 7.2546e-11 = 0.7749 A0, kappa_eff 0.3874 (at M_b 1e10; with p=0.503 a_i goes as M_b^0.005)
+F4 per galaxy lamR_i, k global (172 params): knobs 172; E1 0.0468 [FAIL] E2 0.1018 [FAIL] E3 0.0117 [PASS]; rms to observed 0.1946; a_fit 9.2551e-11 = 0.9885 A0, kappa_eff 0.4942
+F5 per galaxy lamR_i and k_i (342 params): knobs 342; E1 0.0306 [FAIL] E2 0.0635 [FAIL] E3 0.0115 [PASS]; rms to observed 0.1911; a_fit 9.2964e-11 = 0.9929 A0, kappa_eff 0.4964
+  F5 k_i median 1.058, 16-84 0.768-1.393, at bound 0
+  F5 per-galaxy native a_i = (G lamR_i)^2/(G M_b): median 0.873 A0, rms log 0.195 dex
+  F4 G4 rms 0.008 dex over 79 hosts
+  F5 G4 rms 0.003 dex over 79 hosts
+[1s]
+
+=== (b) Famaey, Khoury & Penco 2018 DM-baryon heat balance ===
+control C_K M_b 1e+08 L 0.5: dim vs nondim max 6.4e-06 dex [PASS]; V^4(10L)/V^4_simpleIF - 1 = -0.011 [PASS]
+control C_K M_b 1e+09 L 1.0: dim vs nondim max 6.2e-06 dex [PASS]; V^4(10L)/V^4_simpleIF - 1 = -0.018 [PASS]
+control C_K M_b 1e+10 L 2.0: dim vs nondim max 5.8e-06 dex [PASS]; V^4(10L)/V^4_simpleIF - 1 = +0.003 [PASS]
+(one pass over 171 galaxies: 1.2s)
+K0 published (C 1/16, a0 = A0 imposed, R 5.7, v0^2 1.8 for all): knobs 0; E1 0.1864 [FAIL] E2 0.2971 [FAIL] E3 0.1929 [FAIL]; rms to observed 0.2649; a_fit 4.4407e-11 = 0.4743 A0, kappa_eff 0.2371
+  K0 G4 rms 0.522 dex over 79 hosts [FAIL], median 0.383 A0
+  [K3 all 79s]
+K3 tuned on all (C a0, R, v0^2 global): knobs 3; E1 0.1550 [FAIL] E2 0.2596 [FAIL] E3 0.1022 [FAIL]; rms to observed 0.2487; a_fit 8.3385e-11 = 0.8906 A0, kappa_eff 0.4453
+  knobs [2.773, 7.3942, 1.0012] at bound []; C a0 = 1.9217e-11 m/s^2 = 0.2053 A0 (with C 1/16: a0 = 3.284 A0); kappa_eff of C a0 0.1026
+  G4 rms 0.508 dex over 79 hosts [FAIL]
+  holdout: tuned GS[::2] [2.7736, 7.046, 1.0028] (at bound []); unseen GS[1::2] E1 0.1417 [FAIL]
+  K3 at last radius: H0 tau median 0.0979, 16-84 0.0255-1.42e+34; fraction H0 tau <= 1: 0.643
+  K3 FKP sigma/m = C a0/(rho v^2) at last radius: median 374 cm^2/g (16-84 71.2-887); A7 M3 record: 0.63 at g_b = a0, 40 at last point (one exchange in 13 Gyr)
+[124s]
+K2g per galaxy R_i, v0_i^2 (343 params): knobs 343; E1 0.0577 [FAIL] E2 0.1030 [FAIL] E3 0.0265 [FAIL]; rms to observed 0.1962; a_fit 9.0621e-11 = 0.9679 A0, kappa_eff 0.4839
+  R_i median 7.41 (16-84 3.99-24.34); v0^2 median 0.93; galaxies with a knob at bound 18
+  K2g G4 rms 0.021 dex over 79 hosts
+[165s]
+
+=== (c) acceleration scale: G1-G5 and GT in the A29 backgrounds ===
+-- reading flat (Foot r1: lambda, K constant; FKP r1: C a0 constant)
+   B0   rho_DE ratio 1.000 1.000 1.000; a(z)/a(0) 1.000 1.000 1.000 [G3 PASS]; GT dev +0.000 +0.000 +0.000 [PASS]; G2z not measurable
+   B1   rho_DE ratio 1.018 0.874 0.668; a(z)/a(0) 1.000 1.000 1.000 [G3 PASS]; GT dev -0.004 +0.029 +0.088 [FAIL]; G2z -0.000
+   B1p  rho_DE ratio 0.978 0.867 0.704; a(z)/a(0) 1.000 1.000 1.000 [G3 PASS]; GT dev +0.005 +0.031 +0.076 [FAIL]; G2z -0.000
+   B1u  rho_DE ratio 1.063 0.888 0.642; a(z)/a(0) 1.000 1.000 1.000 [G3 PASS]; GT dev -0.013 +0.026 +0.096 [FAIL]; G2z -0.000
+   B2   rho_DE ratio 1.162 1.197 1.234; a(z)/a(0) 1.000 1.000 1.000 [G3 PASS]; GT dev -0.033 -0.039 -0.046 [PASS]; G2z -0.000
+   B3   rho_DE ratio 1.359 1.599 2.032; a(z)/a(0) 1.000 1.000 1.000 [G3 PASS]; GT dev -0.067 -0.102 -0.154 [FAIL]; G2z +0.000
+   B4   rho_DE ratio 0.966 1.010 1.096; a(z)/a(0) 1.000 1.000 1.000 [G3 PASS]; GT dev +0.007 -0.002 -0.020 [PASS]; G2z +0.000
+   B5   rho_DE ratio 1.000 1.000 1.000; a(z)/a(0) 1.000 1.000 1.000 [G3 PASS]; GT dev -0.000 -0.000 -0.000 [PASS]; G2z not measurable
+   G2x pooled slope over 18 points +0.000 [FAIL]
+-- reading Foot r2: R_SN follows cosmic SFR, a ~ psi^2
+   B0   rho_DE ratio 1.000 1.000 1.000; a(z)/a(0) 33.544 68.719 66.311 [G3 FAIL]; GT dev +1.526 +1.837 +1.822 [FAIL]; G2z not measurable
+   B1   rho_DE ratio 1.018 0.874 0.668; a(z)/a(0) 33.544 68.719 66.311 [G3 FAIL]; GT dev +1.522 +1.866 +1.909 [FAIL]; G2z -5.699
+   B1p  rho_DE ratio 0.978 0.867 0.704; a(z)/a(0) 33.544 68.719 66.311 [G3 FAIL]; GT dev +1.530 +1.868 +1.898 [FAIL]; G2z -7.919
+   B1u  rho_DE ratio 1.063 0.888 0.642; a(z)/a(0) 33.544 68.719 66.311 [G3 FAIL]; GT dev +1.512 +1.863 +1.918 [FAIL]; G2z -4.299
+   B2   rho_DE ratio 1.162 1.197 1.234; a(z)/a(0) 33.544 68.719 66.311 [G3 FAIL]; GT dev +1.493 +1.798 +1.776 [FAIL]; G2z +21.372
+   B3   rho_DE ratio 1.359 1.599 2.032; a(z)/a(0) 33.544 68.719 66.311 [G3 FAIL]; GT dev +1.459 +1.735 +1.668 [FAIL]; G2z +6.041
+   B4   rho_DE ratio 0.966 1.010 1.096; a(z)/a(0) 33.544 68.719 66.311 [G3 FAIL]; GT dev +1.533 +1.835 +1.802 [FAIL]; G2z +12.291
+   B5   rho_DE ratio 1.000 1.000 1.000; a(z)/a(0) 33.544 68.719 66.311 [G3 FAIL]; GT dev +1.526 +1.837 +1.822 [FAIL]; G2z not measurable
+   G2x pooled slope over 18 points -0.136 [FAIL]
+-- reading FKP r2: a0 = c H(z)/6
+   B0   rho_DE ratio 1.000 1.000 1.000; a(z)/a(0) 1.790 2.368 3.510 [G3 FAIL]; GT dev +0.253 +0.374 +0.545 [FAIL]; G2z not measurable
+   B1   rho_DE ratio 1.018 0.874 0.668; a(z)/a(0) 1.794 2.350 3.477 [G3 FAIL]; GT dev +0.250 +0.400 +0.629 [FAIL]; G2z -2.276
+   B1p  rho_DE ratio 0.978 0.867 0.704; a(z)/a(0) 1.786 2.349 3.480 [G3 FAIL]; GT dev +0.257 +0.402 +0.618 [FAIL]; G2z -2.922
+   B1u  rho_DE ratio 1.063 0.888 0.642; a(z)/a(0) 1.802 2.352 3.474 [G3 FAIL]; GT dev +0.243 +0.397 +0.637 [FAIL]; G2z -1.851
+   B2   rho_DE ratio 1.162 1.197 1.234; a(z)/a(0) 1.821 2.396 3.532 [G3 FAIL]; GT dev +0.228 +0.340 +0.502 [FAIL]; G2z +5.478
+   B3   rho_DE ratio 1.359 1.599 2.032; a(z)/a(0) 1.858 2.453 3.609 [G3 FAIL]; GT dev +0.202 +0.288 +0.403 [FAIL]; G2z +1.812
+   B4   rho_DE ratio 0.966 1.010 1.096; a(z)/a(0) 1.784 2.369 3.519 [G3 FAIL]; GT dev +0.259 +0.372 +0.526 [FAIL]; G2z +6.849
+   B5   rho_DE ratio 1.000 1.000 1.000; a(z)/a(0) 1.790 2.368 3.510 [G3 FAIL]; GT dev +0.253 +0.374 +0.545 [FAIL]; G2z not measurable
+   G2x pooled slope over 18 points -0.112 [FAIL]
+G1 kappa_eff: F2 native a_F 0.4375; F3 a_F 0.3874; K3 C a0 0.1026; FKP r2 cH0/6 0.5828; pooled a_fit F0 0.2230, K0 0.2371 (a0 = A0 imposed); target 0.5 +- 0.05 dex
+   G1 F2 a_F: 0.4375, |log(k/0.5)| 0.058 [FAIL]
+   G1 F3 a_F: 0.3874, |log(k/0.5)| 0.111 [FAIL]
+   G1 K3 C a0: 0.1026, |log(k/0.5)| 0.688 [FAIL]
+   G1 FKP cH0/6: 0.5828, |log(k/0.5)| 0.067 [FAIL]
+   G1 F0 a_fit: 0.2230, |log(k/0.5)| 0.351 [FAIL]
+   G1 K0 a_fit: 0.2371, |log(k/0.5)| 0.324 [FAIL]
+G2 from the equations: Foot scale a_F = G K^2/M (K = lambda R_SN normalisation; lambda from dark photoionisation and cooling cross sections, SN spectrum); FKP scale C a0 (cross-section normalisation, Eq. 4.1). rho_DE, Lambda, H appear in neither; native slope 0 [FAIL]. a0 = cH0/6 in FKP is an estimate, not derived.
+G5: both are halo gravity at measured radii, pass by definition. Cassini: not graded (equilibrium on Solar System scales not stated in either source).
+
+runtime 165s, peak RSS 84 MB
+Rival language; adopts nothing. kappa = 1/2 FITTED; not theory closed.
