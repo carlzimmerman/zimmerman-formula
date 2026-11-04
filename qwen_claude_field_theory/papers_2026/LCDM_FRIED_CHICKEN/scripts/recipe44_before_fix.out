@@ -1,0 +1,115 @@
+sample: 171 galaxies, 3373 points; Y_disk 0.5, Y_bul 0.7
+A43 recipe44; sample 171 galaxies, 3373 points; c sqrt(G rho_DE0) 1.8727e-10; A0 9.3625e-11; hosts 79
+points with V_gas^2 < 0: 359
+
+=== (a) baryon-tracing dark mass: g = g_b + eta g_gas + eps g_star ===
+H0 published HvAS 2001 eta = 7 (0 fitted): knobs 0; E1 0.4066 [FAIL] E2 0.8360 [FAIL] E3 0.4215 [FAIL]; rms to observed 0.4471; a_fit 2.8929e-11 = 0.3090 A0, kappa_eff 0.1545
+  floored points 26
+  H0 scales: native a_dg = 2 pi G (1+eta) Sigma_gas: median 0.3782 A0 (kappa_eff 0.1891), spread 0.142 dex over 168; outer a_out = V_last^4/(G M_b): median 1.2595 A0, spread 0.340 dex; G4 per-galaxy fit_a rms 0.382 dex over 79 hosts [FAIL], median 0.3390 A0
+  C_loc: eta x 13.7 Msun/pc^2 = 95.9 vs room 20 [FAIL]
+H1 global eta tuned on all: knobs 1; E1 0.4066 [FAIL] E2 0.8401 [FAIL] E3 0.4166 [FAIL]; rms to observed 0.4471; a_fit 2.9761e-11 = 0.3179 A0, kappa_eff 0.1589
+  knobs [7.1363] at bound []; floored points 26
+  H1 scales: native a_dg = 2 pi G (1+eta) Sigma_gas: median 0.3846 A0 (kappa_eff 0.1923), spread 0.142 dex over 168; outer a_out = V_last^4/(G M_b): median 1.2869 A0, spread 0.341 dex; G4 per-galaxy fit_a rms 0.383 dex over 79 hosts [FAIL], median 0.3494 A0
+  holdout: tuned GS[::2] [5.7905] (at bound []); unseen GS[1::2] E1 0.3772 [FAIL]
+  C_loc: eta x 13.7 = 97.8 Msun/pc^2 vs room 20 [FAIL]
+H2 global eta + eps tuned on all: knobs 2; E1 0.2084 [FAIL] E2 0.3647 [FAIL] E3 0.2883 [FAIL]; rms to observed 0.2835; a_fit 6.6074e-11 = 0.7057 A0, kappa_eff 0.3528
+  knobs [4.8971, 1.0412] at bound []; floored points 2
+  H2 scales: native a_dg = 2 pi G (1+eta) Sigma_gas: median 0.2788 A0 (kappa_eff 0.1394), spread 0.142 dex over 168; outer a_out = V_last^4/(G M_b): median 1.1856 A0, spread 0.302 dex; G4 per-galaxy fit_a rms 0.358 dex over 79 hosts [FAIL], median 0.8242 A0
+  holdout: tuned GS[::2] [5.5327, 0.9024] (at bound []); unseen GS[1::2] E1 0.2427 [FAIL]
+  C_loc: eta x 13.7 = 67.1 Msun/pc^2 vs room 20 [FAIL] (plus eps x stellar ~35: 36.4)
+H3 per-galaxy eta (171): knobs 171; E1 0.3016 [FAIL] E2 0.6541 [FAIL] E3 0.2475 [FAIL]; rms to observed 0.3496; a_fit 4.9492e-11 = 0.5286 A0, kappa_eff 0.2643
+  eta median 9.56 (16-84 6.40-16.15); knobs at bound 0; fraction with eta <= C_loc limit 1.46: 0.012
+  H3 scales: native a_dg = 2 pi G (1+eta) Sigma_gas: median 0.4818 A0 (kappa_eff 0.2409), spread 0.208 dex over 168; outer a_out = V_last^4/(G M_b): median 1.8202 A0, spread 0.262 dex; G4 per-galaxy fit_a rms 0.351 dex over 79 hosts [FAIL], median 0.7278 A0
+H4 per-galaxy eta + eps (342): knobs 342; E1 0.0423 [FAIL] E2 0.0759 [FAIL] E3 0.0461 [FAIL]; rms to observed 0.2010; a_fit 9.2355e-11 = 0.9864 A0, kappa_eff 0.4932
+  eta median 5.20 (16-84 3.47-10.44); eps median 1.286 (16-84 0.224-3.504); knobs at bound 6; fraction with eta <= C_loc limit 1.46: 0.029
+  H4 scales: native a_dg = 2 pi G (1+eta) Sigma_gas: median 0.2759 A0 (kappa_eff 0.1379), spread 0.244 dex over 168; outer a_out = V_last^4/(G M_b): median 1.3328 A0, spread 0.162 dex; G4 per-galaxy fit_a rms 0.011 dex over 79 hosts [PASS], median 0.9950 A0
+[0s]
+
+=== (b) DM-baryon scattering: heavy (100 GeV) dark disc and light (10 MeV) heated core ===
+N0 base halo, no coupling (SHMR + Diemer19 NFW, 0 knobs): knobs 0; E1 0.1420 [FAIL] E2 0.2878 [FAIL] E3 0.1613 [FAIL]; rms to observed 0.2424; a_fit 1.5768e-10 = 1.6841 A0, kappa_eff 0.8420
+heavy_n-4: s = log10(sigma_ref/m at 100 km/s) tuned on all: knobs 1; E1 0.1373 [FAIL] E2 0.2774 [FAIL] E3 0.1233 [FAIL]; rms to observed 0.2282; a_fit 1.4188e-10 = 1.5154 A0, kappa_eff 0.7576
+  knob s -1.377 at bound False; holdout tuned GS[::2] s -0.431, unseen E1 0.1349 [FAIL]; G4 0.138 over 79 [FAIL]
+  coupled DM fraction (within r_last) median 0.004 (16-84 0.000-0.049); eta_eff = M_c/M_gas median 0.04 (16-84 0.00-0.45); fraction with eta_eff <= C_loc 1.46: 0.959
+  bounds: sigma_ref/m 0.042 cm^2/g at 100 km/s -> sigma0 (v in c) 9.27e-38 cm^2 at m 100 GeV; limit 1.81e-39 (ESTIMATE: n=-4 limit on sigma0/m matched at m_p (from memory)) = 0.000821 cm^2/g at 100 km/s; needed/limit 51.2 [EXCLUDED]; 0.4 % subcomponent loophole usable; A7 M3 record 0.63 (g_b = a0), 40 (last point)
+heavy_n-2: s = log10(sigma_ref/m at 100 km/s) tuned on all: knobs 1; E1 0.1347 [FAIL] E2 0.2717 [FAIL] E3 0.1185 [FAIL]; rms to observed 0.2281; a_fit 1.3444e-10 = 1.4360 A0, kappa_eff 0.7179
+  knob s -0.428 at bound False; holdout tuned GS[::2] s 0.234, unseen E1 0.1296 [FAIL]; G4 0.152 over 79 [FAIL]
+  coupled DM fraction (within r_last) median 0.063 (16-84 0.008-0.211); eta_eff = M_c/M_gas median 0.41 (16-84 0.15-1.60); fraction with eta_eff <= C_loc 1.46: 0.830
+  bounds: sigma_ref/m 0.373 cm^2/g at 100 km/s -> sigma0 (v in c) 7.4e-30 cm^2 at m 100 GeV; limit 2.45e-31 (ESTIMATE: n=-2 limit on sigma0/m matched at m_p (from memory)) = 0.0124 cm^2/g at 100 km/s; needed/limit 30.2 [EXCLUDED]; A7 M3 record 0.63 (g_b = a0), 40 (last point)
+heavy_n+0: s = log10(sigma_ref/m at 100 km/s) tuned on all: knobs 1; E1 0.1299 [FAIL] E2 0.2594 [FAIL] E3 0.1157 [FAIL]; rms to observed 0.2317; a_fit 1.1846e-10 = 1.2653 A0, kappa_eff 0.6326
+  knob s 0.311 at bound False; holdout tuned GS[::2] s 0.497, unseen E1 0.1265 [FAIL]; G4 0.163 over 79 [FAIL]
+  coupled DM fraction (within r_last) median 0.392 (16-84 0.225-0.619); eta_eff = M_c/M_gas median 3.99 (16-84 2.24-7.90); fraction with eta_eff <= C_loc 1.46: 0.076
+  bounds: sigma_ref/m 2.04 cm^2/g at 100 km/s -> sigma0 (v in c) 3.65e-22 cm^2 at m 100 GeV; limit 3.52e-24 (CMB n=0 (interp 1 GeV-1 TeV)) = 0.0197 cm^2/g at 100 km/s; needed/limit 104 [EXCLUDED]; A7 M3 record 0.63 (g_b = a0), 40 (last point)
+heavy_n+2: s = log10(sigma_ref/m at 100 km/s) tuned on all: knobs 1; E1 0.1380 [FAIL] E2 0.2842 [FAIL] E3 0.1595 [FAIL]; rms to observed 0.2418; a_fit 1.4745e-10 = 1.5749 A0, kappa_eff 0.7873
+  knob s -0.882 at bound False; holdout tuned GS[::2] s -0.779, unseen E1 0.1278 [FAIL]; G4 0.143 over 79 [FAIL]
+  coupled DM fraction (within r_last) median 0.080 (16-84 0.032-0.335); eta_eff = M_c/M_gas median 0.59 (16-84 0.23-6.40); fraction with eta_eff <= C_loc 1.46: 0.655
+  bounds: sigma_ref/m 0.131 cm^2/g at 100 km/s -> sigma0 (v in c) 2.1e-16 cm^2 at m 100 GeV; limit 1.4e-19 (ESTIMATE: n=2 10 MeV limit x m/10 MeV (heavy n=2 not retrieved)) = 8.74e-05 cm^2/g at 100 km/s; needed/limit 1.5e+03 [EXCLUDED]; A7 M3 record 0.63 (g_b = a0), 40 (last point)
+light_n-4: s = log10(sigma_ref/m at 100 km/s) tuned on all: knobs 1; E1 0.1340 [FAIL] E2 0.2797 [FAIL] E3 0.1253 [FAIL]; rms to observed 0.2304; a_fit 1.4745e-10 = 1.5749 A0, kappa_eff 0.7873
+  knob s 2.988 at bound False; holdout tuned GS[::2] s 2.972, unseen E1 0.1220 [FAIL]; G4 0.129 over 79 [FAIL]
+  DM fraction inside r1 (heated/cooled region) median 0.000; galaxies with r1 > 0: 92; unmatched mass 0
+  bounds: sigma_ref/m 973 cm^2/g at 100 km/s -> sigma0 (v in c) 2.15e-37 cm^2 at m 0.01 GeV; limit 1.7e-41 (CMB n=-4 (m<10 MeV)) = 0.077 cm^2/g at 100 km/s; needed/limit 1.26e+04 [EXCLUDED]; 0.4 % subcomponent loophole usable; A7 M3 record 0.63 (g_b = a0), 40 (last point)
+light_n-2: s = log10(sigma_ref/m at 100 km/s) tuned on all: knobs 1; E1 0.1352 [FAIL] E2 0.2781 [FAIL] E3 0.0982 [FAIL]; rms to observed 0.2234; a_fit 1.3784e-10 = 1.4723 A0, kappa_eff 0.7360
+  knob s 3.739 at bound False; holdout tuned GS[::2] s 3.384, unseen E1 0.1256 [FAIL]; G4 0.143 over 79 [FAIL]
+  DM fraction inside r1 (heated/cooled region) median 0.000; galaxies with r1 > 0: 78; unmatched mass 0
+  bounds: sigma_ref/m 5.48e+03 cm^2/g at 100 km/s -> sigma0 (v in c) 1.09e-29 cm^2 at m 0.01 GeV; limit 2.3e-33 (CMB n=-2 (m<10 MeV)) = 1.16 cm^2/g at 100 km/s; needed/limit 4.73e+03 [EXCLUDED]; A7 M3 record 0.63 (g_b = a0), 40 (last point)
+light_n+0: s = log10(sigma_ref/m at 100 km/s) tuned on all: knobs 1; E1 0.1419 [FAIL] E2 0.2877 [FAIL] E3 0.1613 [FAIL]; rms to observed 0.2424; a_fit 1.5763e-10 = 1.6836 A0, kappa_eff 0.8417
+  knob s -7.501 at bound False; holdout tuned GS[::2] s -7.501, unseen E1 0.1309 [FAIL]; G4 0.130 over 79 [FAIL]
+  DM fraction inside r1 (heated/cooled region) median 0.000; galaxies with r1 > 0: 0; unmatched mass 0
+  bounds: sigma_ref/m 3.16e-08 cm^2/g at 100 km/s -> sigma0 (v in c) 5.63e-34 cm^2 at m 0.01 GeV; limit 5.35e-26 (CMB n=0 (interp 1 MeV-1 GeV); MW satellites 8.8e-29 at 100 MeV stronger) = 3 cm^2/g at 100 km/s; needed/limit 1.05e-08 [ALLOWED]; A7 M3 record 0.63 (g_b = a0), 40 (last point)
+light_n+2: s = log10(sigma_ref/m at 100 km/s) tuned on all: knobs 1; E1 0.1419 [FAIL] E2 0.2877 [FAIL] E3 0.1613 [FAIL]; rms to observed 0.2424; a_fit 1.5763e-10 = 1.6836 A0, kappa_eff 0.8417
+  knob s -7.501 at bound False; holdout tuned GS[::2] s -7.501, unseen E1 0.1309 [FAIL]; G4 0.130 over 79 [FAIL]
+  DM fraction inside r1 (heated/cooled region) median 0.000; galaxies with r1 > 0: 0; unmatched mass 0
+  bounds: sigma_ref/m 3.16e-08 cm^2/g at 100 km/s -> sigma0 (v in c) 5.06e-27 cm^2 at m 0.01 GeV; limit 1.4e-23 (MW satellites n=2 at 10 MeV) = 8.74e-05 cm^2/g at 100 km/s; needed/limit 0.000361 [ALLOWED]; A7 M3 record 0.63 (g_b = a0), 40 (last point)
+[32s] best (b) row by E1: heavy_n+0
+X2 heavy_n+0 + global log c offset (2 knobs): knobs 2; E1 0.0991 [FAIL] E2 0.1663 [FAIL] E3 0.0514 [FAIL]; rms to observed 0.2162; a_fit 7.4823e-11 = 0.7992 A0, kappa_eff 0.3995
+  knobs s -8.000, dc -0.20 (at bound False); holdout tuned s -8.000 dc -0.20, unseen E1 0.0971 [FAIL]; G4 0.109 [FAIL]
+X3 heavy_n+0 per-galaxy s (171, freedom only): knobs 171; E1 0.1131 [FAIL] E2 0.2450 [FAIL] E3 0.0707 [FAIL]; rms to observed 0.2228; a_fit 1.2095e-10 = 1.2919 A0, kappa_eff 0.6458
+  s median 0.34 (16-84 -1.00-1.07), spread 3.32 dex in sigma/m; at bound 24
+[35s]
+
+=== (c) acceleration scale: G1-G5 and GT in the A29 backgrounds ===
+-- reading (a) r1 / (b) r1 flat: eta, Sigma, sigma microphysics constant
+   B0   rho_DE ratio 1.000 1.000 1.000; age ratio 0.424 0.309 0.204; a(z)/a(0) 1.000 1.000 1.000 [G3 PASS]; GT dev +0.000 +0.000 +0.000 [PASS]; G2z not measurable
+   B1   rho_DE ratio 1.018 0.874 0.668; age ratio 0.430 0.314 0.206; a(z)/a(0) 1.000 1.000 1.000 [G3 PASS]; GT dev -0.004 +0.029 +0.088 [FAIL]; G2z -0.000
+   B1p  rho_DE ratio 0.978 0.867 0.704; age ratio 0.428 0.312 0.205; a(z)/a(0) 1.000 1.000 1.000 [G3 PASS]; GT dev +0.005 +0.031 +0.076 [FAIL]; G2z -0.000
+   B1u  rho_DE ratio 1.063 0.888 0.642; age ratio 0.432 0.315 0.207; a(z)/a(0) 1.000 1.000 1.000 [G3 PASS]; GT dev -0.013 +0.026 +0.096 [FAIL]; G2z -0.000
+   B2   rho_DE ratio 1.162 1.197 1.234; age ratio 0.426 0.311 0.206; a(z)/a(0) 1.000 1.000 1.000 [G3 PASS]; GT dev -0.033 -0.039 -0.046 [PASS]; G2z -0.000
+   B3   rho_DE ratio 1.359 1.599 2.032; age ratio 0.423 0.310 0.205; a(z)/a(0) 1.000 1.000 1.000 [G3 PASS]; GT dev -0.067 -0.102 -0.154 [FAIL]; G2z +0.000
+   B4   rho_DE ratio 0.966 1.010 1.096; age ratio 0.421 0.307 0.202; a(z)/a(0) 1.000 1.000 1.000 [G3 PASS]; GT dev +0.007 -0.002 -0.020 [PASS]; G2z +0.000
+   B5   rho_DE ratio 1.000 1.000 1.000; age ratio 0.424 0.309 0.204; a(z)/a(0) 1.000 1.000 1.000 [G3 PASS]; GT dev -0.000 -0.000 -0.000 [PASS]; G2z not measurable
+   G2x pooled slope over 18 points +0.000 [FAIL]
+-- reading (a) r2 gas surface density follows Omega_HI(z) ~ (1+z)^0.57
+   B0   rho_DE ratio 1.000 1.000 1.000; age ratio 0.424 0.309 0.204; a(z)/a(0) 1.485 1.686 1.985 [G3 FAIL]; GT dev +0.172 +0.227 +0.298 [FAIL]; G2z not measurable
+   B1   rho_DE ratio 1.018 0.874 0.668; age ratio 0.430 0.314 0.206; a(z)/a(0) 1.485 1.686 1.985 [G3 FAIL]; GT dev +0.168 +0.256 +0.385 [FAIL]; G2z -1.158
+   B1p  rho_DE ratio 0.978 0.867 0.704; age ratio 0.428 0.312 0.205; a(z)/a(0) 1.485 1.686 1.985 [G3 FAIL]; GT dev +0.176 +0.258 +0.374 [FAIL]; G2z -1.511
+   B1u  rho_DE ratio 1.063 0.888 0.642; age ratio 0.432 0.315 0.207; a(z)/a(0) 1.485 1.686 1.985 [G3 FAIL]; GT dev +0.158 +0.253 +0.394 [FAIL]; G2z -0.930
+   B2   rho_DE ratio 1.162 1.197 1.234; age ratio 0.426 0.311 0.206; a(z)/a(0) 1.485 1.686 1.985 [G3 FAIL]; GT dev +0.139 +0.188 +0.252 [FAIL]; G2z +3.099
+   B3   rho_DE ratio 1.359 1.599 2.032; age ratio 0.423 0.310 0.205; a(z)/a(0) 1.485 1.686 1.985 [G3 FAIL]; GT dev +0.105 +0.125 +0.144 [FAIL]; G2z +0.969
+   B4   rho_DE ratio 0.966 1.010 1.096; age ratio 0.421 0.307 0.202; a(z)/a(0) 1.485 1.686 1.985 [G3 FAIL]; GT dev +0.179 +0.225 +0.278 [FAIL]; G2z +3.215
+   B5   rho_DE ratio 1.000 1.000 1.000; age ratio 0.424 0.309 0.204; a(z)/a(0) 1.485 1.686 1.985 [G3 FAIL]; GT dev +0.172 +0.227 +0.298 [FAIL]; G2z not measurable
+   G2x pooled slope over 18 points -0.068 [FAIL]
+-- reading (b) r2 coupling time = cosmic age(z), best row heavy_n+0 re-run
+   B0   rho_DE ratio 1.000 1.000 1.000; age ratio 0.424 0.309 0.204; a(z)/a(0) 1.117 1.156 1.201 [G3 FAIL]; GT dev +0.048 +0.063 +0.080 [FAIL]; G2z not measurable
+   B1   rho_DE ratio 1.018 0.874 0.668; age ratio 0.430 0.314 0.206; a(z)/a(0) 1.115 1.154 1.200 [G3 FAIL]; GT dev +0.043 +0.091 +0.167 [FAIL]; G2z -0.304
+   B1p  rho_DE ratio 0.978 0.867 0.704; age ratio 0.428 0.312 0.205; a(z)/a(0) 1.115 1.155 1.201 [G3 FAIL]; GT dev +0.052 +0.094 +0.156 [FAIL]; G2z -0.399
+   B1u  rho_DE ratio 1.063 0.888 0.642; age ratio 0.432 0.315 0.207; a(z)/a(0) 1.114 1.154 1.200 [G3 FAIL]; GT dev +0.034 +0.088 +0.175 [FAIL]; G2z -0.243
+   B2   rho_DE ratio 1.162 1.197 1.234; age ratio 0.426 0.311 0.206; a(z)/a(0) 1.116 1.155 1.200 [G3 FAIL]; GT dev +0.015 +0.024 +0.034 [PASS]; G2z +0.837
+   B3   rho_DE ratio 1.359 1.599 2.032; age ratio 0.423 0.310 0.205; a(z)/a(0) 1.117 1.156 1.201 [G3 FAIL]; GT dev -0.019 -0.039 -0.075 [FAIL]; G2z +0.259
+   B4   rho_DE ratio 0.966 1.010 1.096; age ratio 0.421 0.307 0.202; a(z)/a(0) 1.117 1.157 1.202 [G3 FAIL]; GT dev +0.056 +0.061 +0.060 [FAIL]; G2z +0.829
+   B5   rho_DE ratio 1.000 1.000 1.000; age ratio 0.424 0.309 0.204; a(z)/a(0) 1.117 1.156 1.201 [G3 FAIL]; GT dev +0.048 +0.063 +0.080 [FAIL]; G2z not measurable
+   G2x pooled slope over 18 points -0.016 [FAIL]
+G1 kappa_eff (target 0.5, 0.05 dex):
+   H0 a_fit: 0.1545, |log(k/0.5)| 0.510 [FAIL]
+   H1 a_fit: 0.1589, |log(k/0.5)| 0.498 [FAIL]
+   H2 a_fit: 0.3528, |log(k/0.5)| 0.151 [FAIL]
+   H4 a_fit: 0.4932, |log(k/0.5)| 0.006 [PASS]
+   H0 native a_dg median: 0.1891, |log(k/0.5)| 0.422 [FAIL]
+   H1 native a_dg median: 0.1923, |log(k/0.5)| 0.415 [FAIL]
+   N0 base a_fit: 0.8420, |log(k/0.5)| 0.226 [FAIL]
+   heavy_n+0 a_fit: 0.6326, |log(k/0.5)| 0.102 [FAIL]
+   X2 a_fit: 0.3995, |log(k/0.5)| 0.097 [FAIL]
+   X3 a_fit: 0.6458, |log(k/0.5)| 0.111 [FAIL]
+G2 from the equations: (a) scale from eta (dimensionless dark/gas ratio) and Sigma_gas (HI surface density, set by gas physics and the HI edge column); (b) scale from sigma/m_chi, m_chi, t_age, gas temperature, rho_gas and the SHMR/NFW halo. rho_DE, Lambda, H appear in none (H enters (b) only through t_age reading r2); native slope 0 [FAIL].
+G5: dark-mass gravity at measured radii, pass by definition. Cassini: not graded (no gas, so no term at AU scale, in either family).
+
+runtime 39s, peak RSS 103 MB
+Rival language; adopts nothing. kappa = 1/2 FITTED; not theory closed.
