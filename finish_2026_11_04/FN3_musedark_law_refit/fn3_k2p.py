@@ -100,7 +100,7 @@ def main():
     flat = [done[(g, "flat")] for g in prim]
     rise = [done[(g, "rising")] for g in prim]
     lines = [f"K2' (A2), fresh synthetics, N {len(prim)} per scenario, matched-filter S/N 30, Sigma_HI ~ U[0, 15]"]
-    ok_a = True
+    ok_a = True  # numpy bools are cast before json.dump (the first run crashed there after writing fn3_k2p.out)
     for t in range(3):
         e = [r["d_fit"] - r["d_true"] for r in flat if r["third"] == t]
         b = float(np.median(e))
@@ -121,8 +121,8 @@ def main():
     lines.append("kappa = 1/2 FITTED; not theory closed.")
     print("\n".join(lines))
     open(os.path.join(C.HERE, "fn3_k2p.out"), "w").write("\n".join(lines) + "\n")
-    json.dump(dict(amendment="A2", pass_=allok, a=ok_a, b=ok_b, c=ok_c, d=ok_d, slope_flat=sf, slope_rising=sr,
-                   mutate_shift=sh, zmed=zmed), open(os.path.join(C.HERE, "fn3_k2p.json"), "w"), indent=1)
+    json.dump(dict(amendment="A2", pass_=bool(allok), a=bool(ok_a), b=bool(ok_b), c=bool(ok_c), d=bool(ok_d), slope_flat=float(sf),
+                   slope_rising=float(sr), mutate_shift=float(sh), zmed=float(zmed)), open(os.path.join(C.HERE, "fn3_k2p.json"), "w"), indent=1)
 
 
 if __name__ == "__main__":
