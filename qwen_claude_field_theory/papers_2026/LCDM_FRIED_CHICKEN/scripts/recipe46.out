@@ -1,0 +1,208 @@
+sample: 171 galaxies, 3373 points; Y_disk 0.5, Y_bul 0.7
+cosmology OL 0.685, H0 67.4: AC = c sqrt(G rho_DE0) 1.8727e-10, A0 9.3625e-11 (kappa 0.4999); c/H0 4448.1 Mpc
+GT targets B1 (w0 -0.752, wa -0.86): z 1.0: +0.0038, z 1.5: -0.0292, z 2.33: -0.0876
+GT targets B1p (w0 -0.838, wa -0.62): z 1.0: -0.0049, z 1.5: -0.0310, z 2.33: -0.0763
+GT targets B1u (w0 -0.667, wa -1.09): z 1.0: +0.0132, z 1.5: -0.0258, z 2.33: -0.0964
+Galileon tracker E(z): z 1.0: E 1.6636, rho_DE/rho_DE0 = 1/E^2 0.3613, z 1.5: E 2.2488, rho_DE/rho_DE0 = 1/E^2 0.1977, z 2.33: E 3.4191, rho_DE/rho_DE0 = 1/E^2 0.0855; E(0) 1.000000
+
+######## (a) Vainshtein screening: DGP normal branch, cubic Galileon (spherical, enclosed mass)
+control: unscreened y/g_N 0.100000 (-> 1/(3 beta) = B = 0.1); deep y 1.499000e-21 vs c sqrt(g_N r)/(2 r_c) 1.499000e-21
+nDGP natural: r_c H0 = 1, beta(0) = 1 + 2 (1 - Om/2) = 2.6850, unscreened boost B = 1/(3 beta) 0.1241
+
+== GD0 nDGP natural r_c H0 = 1, no halo (0 knobs, beta 2.685)
+ rms to law 0.4956 dex [FAIL E1]; p95 per-galaxy 0.7901 [FAIL E2]; worst bin 0.8381 [FAIL E3]
+ bins -12.0:-0.838 -11.5:-0.653 -11.0:-0.462 -10.5:-0.277 -10.0:-0.147 -9.5:-0.064 -9.0:-0.024
+ a fit 1.000e-12; rms to observed 0.5277 dex, mean -0.4287
+ GD0 nDGP natural r_c H0 = 1, no halo kappa_eff 0.00534 (-1.971 dex) [FAIL G1]
+ GD0 nDGP natural r_c H0 = 1, no halo G4 per-galaxy fit_a over 79 hosts log M200 11-12.5: rms 0.000 dex (all 171: 0.000) [PASS G4]
+ GD0 nDGP natural r_c H0 = 1, no halo G5 median (g - g_N)/g_N 0.003229, median (g - g_N)/a0 0.0008403 [FAIL G5]
+ GD0 deep-Vainshtein scale a_V(r) = c^2 r/(4 r_c^2) at 1 kpc: 3.680e-17 = 1.965e-07 AC
+ GD0 deep-Vainshtein scale a_V(r) = c^2 r/(4 r_c^2) at 10 kpc: 3.680e-16 = 1.965e-06 AC
+ GD0 deep-Vainshtein scale a_V(r) = c^2 r/(4 r_c^2) at 30 kpc: 1.104e-15 = 5.896e-06 AC
+ GD0 g_N at the Vainshtein radius (baryonic M): median 3.403e-04 AC; rms over hosts 0.157 dex [FAIL G4 on g_N(r_V)]; slope with log M_b 0.333
+ GD0 Vainshtein radius of a 6.5e10 Msun baryonic galaxy 247.6 kpc
+ GD0 Cassini: y at Saturn 1.051e-14 = 0.000112 a0 [PASS <1e-3 a0]; |gamma-1| at 1.6 R_sun 7.042e-15 [PASS]; Moon (Earth alone) y/g_N 4.12e-13 (LLR-scale ~1e-11, provisional) => PASS Cassini
+
+== GD0h nDGP natural + LCDM halo (0 knobs)
+ rms to law 0.1424 dex [FAIL E1]; p95 per-galaxy 0.2881 [FAIL E2]; worst bin 0.1629 [FAIL E3]
+ bins -12.0:+0.163 -11.5:+0.099 -11.0:+0.095 -10.5:+0.051 -10.0:+0.040 -9.5:+0.014 -9.0:+0.004
+ a fit 1.586e-10; rms to observed 0.2426 dex, mean +0.0800
+ GD0h nDGP natural + LCDM halo kappa_eff 0.8467 (+0.229 dex) [FAIL G1]
+ GD0h nDGP natural + LCDM halo G4 per-galaxy fit_a over 79 hosts log M200 11-12.5: rms 0.130 dex (all 171: 0.209) [FAIL G4]
+ GD0h nDGP natural + LCDM halo G5 median (g - g_N)/g_N 0.001676, median (g - g_N)/a0 0.001307 [FAIL G5]
+ G2 (a): r_c, B Lagrangian constants: slope 0 natively [FAIL]; with r_c = c/H0 imposed a_V ~ H0^2 ~ rho_crit: slope 1 at fixed Omega [FAIL]
+
+GA1 knobs log10(r_c H0/c) -2.8736 (r_c 5.95 Mpc), log10 B 0.6890 (B 4.887, beta 0.06821); at bound []
+
+== GA1 DGP/Galileon fit, no halo (2 knobs)
+ rms to law 0.1420 dex [FAIL E1]; p95 per-galaxy 0.2689 [FAIL E2]; worst bin 0.2112 [FAIL E3]
+ bins -12.0:-0.211 -11.5:-0.079 -11.0:+0.047 -10.5:+0.083 -10.0:+0.098 -9.5:+0.060 -9.0:+0.024
+ a fit 8.355e-11; rms to observed 0.2158 dex, mean +0.0038
+ GA1 DGP/Galileon fit, no halo kappa_eff 0.4461 (-0.050 dex) [PASS G1]
+ GA1 DGP/Galileon fit, no halo G4 per-galaxy fit_a over 79 hosts log M200 11-12.5: rms 0.232 dex (all 171: 0.358) [FAIL G4]
+ GA1 DGP/Galileon fit, no halo G5 median (g - g_N)/g_N 1.909, median (g - g_N)/a0 0.4107 [PASS G5]
+ GA1 deep-Vainshtein scale a_V(r) = c^2 r/(4 r_c^2) at 1 kpc: 2.057e-11 = 1.098e-01 AC
+ GA1 deep-Vainshtein scale a_V(r) = c^2 r/(4 r_c^2) at 10 kpc: 2.057e-10 = 1.098e+00 AC
+ GA1 deep-Vainshtein scale a_V(r) = c^2 r/(4 r_c^2) at 30 kpc: 6.170e-10 = 3.295e+00 AC
+ GA1 g_N at the Vainshtein radius (baryonic M): median 1.724e-02 AC; rms over hosts 0.157 dex [FAIL G4 on g_N(r_V)]; slope with log M_b 0.333
+ GA1 Vainshtein radius of a 6.5e10 Msun baryonic galaxy 34.79 kpc
+ GA1 Cassini: y at Saturn 7.856e-12 = 0.0839 a0 [FAIL <1e-3 a0]; |gamma-1| at 1.6 R_sun 5.264e-12 [PASS]; Moon (Earth alone) y/g_N 3.08e-10 (LLR-scale ~1e-11, provisional) => FAIL Cassini
+ GA1 holdout tuned on GS[::2] [-2.8719, 0.6902] (at bound []) unseen rms 0.1408 [FAIL]
+ r_c needed for a_V(10 kpc) = 0.5 AC: 8.819 Mpc = 0.001983 c/H0
+
+GH1 knobs log10(r_c H0/c) -1.7063 (r_c 87.48 Mpc), log10 B 1.5000, dn +0.5400; at bound [1, 2]
+
+== GH1 DGP/Galileon fit + LCDM halo (3 knobs)
+ rms to law 0.0916 dex [FAIL E1]; p95 per-galaxy 0.2464 [FAIL E2]; worst bin 0.1369 [FAIL E3]
+ bins -12.0:+0.137 -11.5:+0.043 -11.0:-0.004 -10.5:-0.028 -10.0:-0.018 -9.5:-0.010 -9.0:-0.004
+ a fit 1.081e-10; rms to observed 0.2254 dex, mean +0.0165
+ GH1 DGP/Galileon fit + LCDM halo kappa_eff 0.5771 (+0.062 dex) [FAIL G1]
+ GH1 DGP/Galileon fit + LCDM halo G4 per-galaxy fit_a over 79 hosts log M200 11-12.5: rms 0.142 dex (all 171: 0.179) [FAIL G4]
+ GH1 DGP/Galileon fit + LCDM halo G5 median (g - g_N)/g_N 0.09507, median (g - g_N)/a0 0.06125 [FAIL G5]
+ GH1 Cassini: y at Saturn 5.344e-13 = 0.00571 a0 [FAIL <1e-3 a0]; |gamma-1| at 1.6 R_sun 3.581e-13 [PASS]; Moon (Earth alone) y/g_N 2.10e-11 (LLR-scale ~1e-11, provisional) => FAIL Cassini
+ GH1 holdout tuned on GS[::2] [-1.6686, 1.5, 0.54] (at bound [1, 2]) unseen rms 0.0900 [FAIL]
+
+(a) GT readings:
+ (a) r_c constant GT constant scale in B1: residuals 1.0: -0.0038, 1.5: +0.0292, 2.33: +0.0876 [FAIL]
+ (a) r_c constant GT constant scale in B1p: residuals 1.0: +0.0049, 1.5: +0.0310, 2.33: +0.0763 [FAIL]
+ (a) r_c constant GT constant scale in B1u: residuals 1.0: -0.0132, 1.5: +0.0258, 2.33: +0.0964 [FAIL]
+ (a) nDGP own background = LCDM expansion (Schmidt 2009): rho_DE flat, constant r_c flat: trivial PASS, not tracking
+ (a) cubic-Galileon tracker, coefficient ~ H(z): a(z)/a(0) = E 1.0: 1.664, 1.5: 2.249, 2.33: 3.419; GT residuals 1.0: +0.4421, 1.5: +0.7039, 2.33: +1.0678 [FAIL]; G3 FAIL
+ (a) cubic-Galileon tracker, constant coefficient: GT residuals 1.0: +0.2210, 1.5: +0.3520, 2.33: +0.5339 [FAIL]
+[2 s]
+
+######## (b) beyond-Horndeski / DHOST: dPhi/dr = G M/r^2 + Upsilon1 G M''/4 inside matter
+baryon M'' term G M_b''/(4 g_b) per unit Upsilon1: median +0.0089, median |.| 0.3044, p05/p95 -1.108/+1.236
+
+== HB0 Upsilon1 0.027, no halo (0 knobs)
+ rms to law 0.4971 dex [FAIL E1]; p95 per-galaxy 0.7886 [FAIL E2]; worst bin 0.8353 [FAIL E3]
+ bins -12.0:-0.835 -11.5:-0.655 -11.0:-0.466 -10.5:-0.278 -10.0:-0.149 -9.5:-0.065 -9.0:-0.024
+ a fit 1.000e-12; rms to observed 0.5291 dex, mean -0.4304
+ HB0 Upsilon1 0.027, no halo kappa_eff 0.00534 (-1.971 dex) [FAIL G1]
+ HB0 Upsilon1 0.027, no halo G4 per-galaxy fit_a over 79 hosts log M200 11-12.5: rms 0.000 dex (all 171: 0.000) [PASS G4]
+ HB0 Upsilon1 0.027, no halo G5 median (g - g_N)/g_N 0.0002403, median (g - g_N)/a0 2.377e-05 [FAIL G5]
+
+== HB0h Upsilon1 0.027, + LCDM halo (0 knobs)
+ rms to law 0.1434 dex [FAIL E1]; p95 per-galaxy 0.2897 [FAIL E2]; worst bin 0.1629 [FAIL E3]
+ bins -12.0:+0.163 -11.5:+0.099 -11.0:+0.094 -10.5:+0.051 -10.0:+0.041 -9.5:+0.014 -9.0:+0.004
+ a fit 1.586e-10; rms to observed 0.2433 dex, mean +0.0800
+ HB0h Upsilon1 0.027, + LCDM halo kappa_eff 0.8469 (+0.229 dex) [FAIL G1]
+ HB0h Upsilon1 0.027, + LCDM halo G4 per-galaxy fit_a over 79 hosts log M200 11-12.5: rms 0.132 dex (all 171: 0.211) [FAIL G4]
+ HB0h Upsilon1 0.027, + LCDM halo G5 median (g - g_N)/g_N 0.002617, median (g - g_N)/a0 0.001625 [FAIL G5]
+
+== HB0 Upsilon1 -0.11, no halo (0 knobs)
+ rms to law 0.5183 dex [FAIL E1]; p95 per-galaxy 0.8383 [FAIL E2]; worst bin 0.9016 [FAIL E3]
+ bins -12.0:-0.902 -11.5:-0.668 -11.0:-0.463 -10.5:-0.277 -10.0:-0.145 -9.5:-0.061 -9.0:-0.022
+ a fit 1.000e-12; rms to observed 0.5502 dex, mean -0.4375
+ HB0 Upsilon1 -0.11, no halo kappa_eff 0.00534 (-1.971 dex) [FAIL G1]
+ HB0 Upsilon1 -0.11, no halo G4 per-galaxy fit_a over 79 hosts log M200 11-12.5: rms 0.097 dex (all 171: 0.118) [PASS G4]
+ HB0 Upsilon1 -0.11, no halo G5 median (g - g_N)/g_N -0.0009788, median (g - g_N)/a0 -9.686e-05 [FAIL G5]
+
+== HB0h Upsilon1 -0.11, + LCDM halo (0 knobs)
+ rms to law 0.1367 dex [FAIL E1]; p95 per-galaxy 0.2758 [FAIL E2]; worst bin 0.1541 [FAIL E3]
+ bins -12.0:+0.154 -11.5:+0.093 -11.0:+0.089 -10.5:+0.044 -10.0:+0.036 -9.5:+0.013 -9.0:+0.004
+ a fit 1.533e-10; rms to observed 0.2393 dex, mean +0.0745
+ HB0h Upsilon1 -0.11, + LCDM halo kappa_eff 0.8187 (+0.214 dex) [FAIL G1]
+ HB0h Upsilon1 -0.11, + LCDM halo G4 per-galaxy fit_a over 79 hosts log M200 11-12.5: rms 0.126 dex (all 171: 0.205) [FAIL G4]
+ HB0h Upsilon1 -0.11, + LCDM halo G5 median (g - g_N)/g_N -0.01066, median (g - g_N)/a0 -0.00662 [FAIL G5]
+
+== HB0 Upsilon1 -0.6, no halo (0 knobs)
+ rms to law 0.7352 dex [FAIL E1]; p95 per-galaxy 1.4757 [FAIL E2]; worst bin 1.2660 [FAIL E3]
+ bins -12.0:-1.266 -11.5:-0.798 -11.0:-0.477 -10.5:-0.310 -10.0:-0.156 -9.5:-0.052 -9.0:-0.018
+ a fit 1.000e-12; rms to observed 0.7596 dex, mean -0.5158
+ HB0 Upsilon1 -0.6, no halo kappa_eff 0.00534 (-1.971 dex) [FAIL G1]
+ HB0 Upsilon1 -0.6, no halo G4 per-galaxy fit_a over 79 hosts log M200 11-12.5: rms 0.258 dex (all 171: 0.287) [FAIL G4]
+ HB0 Upsilon1 -0.6, no halo G5 median (g - g_N)/g_N -0.005339, median (g - g_N)/a0 -0.0005283 [FAIL G5]
+
+== HB0h Upsilon1 -0.6, + LCDM halo (0 knobs)
+ rms to law 0.1541 dex [FAIL E1]; p95 per-galaxy 0.2724 [FAIL E2]; worst bin 0.1008 [FAIL E3]
+ bins -12.0:+0.101 -11.5:+0.065 -11.0:+0.061 -10.5:+0.006 -10.0:+0.010 -9.5:+0.006 -9.0:+0.002
+ a fit 1.281e-10; rms to observed 0.2504 dex, mean +0.0453
+ HB0h Upsilon1 -0.6, + LCDM halo kappa_eff 0.684 (+0.136 dex) [FAIL G1]
+ HB0h Upsilon1 -0.6, + LCDM halo G4 per-galaxy fit_a over 79 hosts log M200 11-12.5: rms 0.153 dex (all 171: 0.203) [FAIL G4]
+ HB0h Upsilon1 -0.6, + LCDM halo G5 median (g - g_N)/g_N -0.05815, median (g - g_N)/a0 -0.03611 [FAIL G5]
+
+HA1 Upsilon1 0.0290 at bound [] (allowed -2/3 < U < 0.027, provisional)
+
+== HA1 Upsilon1 fit, no halo (1 knobs)
+ rms to law 0.4971 dex [FAIL E1]; p95 per-galaxy 0.7885 [FAIL E2]; worst bin 0.8348 [FAIL E3]
+ bins -12.0:-0.835 -11.5:-0.655 -11.0:-0.467 -10.5:-0.278 -10.0:-0.149 -9.5:-0.065 -9.0:-0.024
+ a fit 1.000e-12; rms to observed 0.5291 dex, mean -0.4304
+ HA1 Upsilon1 fit, no halo kappa_eff 0.00534 (-1.971 dex) [FAIL G1]
+ HA1 Upsilon1 fit, no halo G4 per-galaxy fit_a over 79 hosts log M200 11-12.5: rms 0.000 dex (all 171: 0.000) [PASS G4]
+ HA1 Upsilon1 fit, no halo G5 median (g - g_N)/g_N 0.0002582, median (g - g_N)/a0 2.555e-05 [FAIL G5]
+ HA1 holdout tuned on GS[::2] [0.0194] (at bound []) unseen rms 0.5010 [FAIL]
+
+HH1 Upsilon1 -0.1658, dn +0.3259, at bound []
+
+== HH1 Upsilon1 + dn, LCDM halo (2 knobs)
+ rms to law 0.0990 dex [FAIL E1]; p95 per-galaxy 0.2266 [FAIL E2]; worst bin 0.0829 [FAIL E3]
+ bins -12.0:+0.083 -11.5:+0.012 -11.0:-0.015 -10.5:-0.031 -10.0:-0.015 -9.5:-0.008 -9.0:-0.003
+ a fit 9.635e-11; rms to observed 0.2276 dex, mean +0.0012
+ HH1 Upsilon1 + dn, LCDM halo kappa_eff 0.5145 (+0.012 dex) [PASS G1]
+ HH1 Upsilon1 + dn, LCDM halo G4 per-galaxy fit_a over 79 hosts log M200 11-12.5: rms 0.149 dex (all 171: 0.194) [FAIL G4]
+ HH1 Upsilon1 + dn, LCDM halo G5 median (g - g_N)/g_N -0.008926, median (g - g_N)/a0 -0.004775 [FAIL G5]
+ HH1 holdout tuned on GS[::2] [-0.2875, 0.3564] (at bound []) unseen rms 0.1180 [FAIL]
+ (b) no acceleration scale: G2 0 natively [FAIL]; GT: nothing to track [FAIL]; if alpha_i ~ Omega_DE(a), Upsilon1(z)/Upsilon1(0) in B1 = 1.0: 0.316, 1.5: 0.158, 2.33: 0.055 (dimensionless fraction, information only)
+ (b) Cassini: outside sources Vainshtein holds, extra force 0 at Saturn and the limb ray [PASS folder gate]; operative limits are stellar (-2/3 < U < 0.027, provisional)
+[6 s]
+
+######## (c1) non-local gravity, Mashhoon kernel (Rahvar & Mashhoon 2014 Eq. 36, a_k -> 0), spherical shells
+control: shell s 0.1 kpc at r 10.0 kpc vs point mass Eq. 36: ratio 0.999966
+control: shell s 1.0 kpc at r 10.0 kpc vs point mass Eq. 36: ratio 0.996585
+control: shell s 0.05 kpc at r 3.0 kpc vs point mass Eq. 36: ratio 0.999907
+control: alpha 0 gives -0.0e+00; shell interior r 0.5 s 1.0 extra 7.908e-11 (non-zero: no shell theorem)
+shells: 4057 total, 302 with negative dM kept signed
+published: alpha 10.94, mu 0.059 kpc^-1, lambda0 = 2/(alpha mu) 3.099 kpc
+
+== NL0 Mashhoon published (alpha 10.94, mu 0.059/kpc) (0 knobs)
+ rms to law 0.3172 dex [FAIL E1]; p95 per-galaxy 0.5161 [FAIL E2]; worst bin 0.3277 [FAIL E3]
+ bins -12.0:-0.328 -11.5:-0.147 -11.0:+0.128 -10.5:+0.224 -10.0:+0.308 -9.5:+0.233 -9.0:+0.119
+ a fit 9.960e-11; rms to observed 0.3390 dex, mean +0.0595
+ NL0 Mashhoon published (alpha 10.94, mu 0.059/kpc) kappa_eff 0.5318 (+0.027 dex) [PASS G1]
+ NL0 Mashhoon published (alpha 10.94, mu 0.059/kpc) G4 per-galaxy fit_a over 79 hosts log M200 11-12.5: rms 0.511 dex (all 171: 0.840) [FAIL G4]
+ NL0 Mashhoon published (alpha 10.94, mu 0.059/kpc) G5 median (g - g_N)/g_N 1.92, median (g - g_N)/a0 0.5675 [PASS G5]
+ NL0 implied G M_b/lambda0^2: median 4.038e-01 AC, rms over hosts 0.470 dex [FAIL G4 on this scale]
+ NL0 BTFR slope d log M_b / d log V(last point) of the model 2.268 (law ~4; mu r << 1 analytic 2)
+ NL0 Cassini (a_k -> 0): y at Saturn 9.684e-13 = 0.0103 a0 [FAIL], check G M/(lambda0 r) 9.684e-13; |gamma-1| limb 2.328e-11 [PASS]; Moon y/g_N 4.02e-12 => FAIL Cassini
+ NL0 with a_k = 1e-3 lambda0 (0.0031 kpc): q1 extra at Saturn ~ G M r/(3 lambda0 a_k^2) 7.253e-23 = 7.75e-13 a0 [PASS]; q2 ~ G M/(2 lambda0 a_k) 7.258e-18 = 7.75e-08 a0 [PASS] (a_k not fitted by SPARC; galaxy rows use a_k -> 0)
+
+NL1 lambda0 4.941 kpc (mu fixed 0.059, alpha 6.861), at bound []
+
+== NL1 lambda0 fit (1 knobs)
+ rms to law 0.2946 dex [FAIL E1]; p95 per-galaxy 0.5748 [FAIL E2]; worst bin 0.4494 [FAIL E3]
+ bins -12.0:-0.449 -11.5:-0.267 -11.0:-0.003 -10.5:+0.105 -10.0:+0.190 -9.5:+0.146 -9.0:+0.072
+ a fit 4.090e-11; rms to observed 0.3233 dex, mean -0.0573
+ NL1 lambda0 fit kappa_eff 0.2184 (-0.360 dex) [FAIL G1]
+ NL1 lambda0 fit G4 per-galaxy fit_a over 79 hosts log M200 11-12.5: rms 0.498 dex (all 171: 0.812) [FAIL G4]
+ NL1 lambda0 fit G5 median (g - g_N)/g_N 1.204, median (g - g_N)/a0 0.3559 [PASS G5]
+ NL1 implied G M_b/lambda0^2: median 1.588e-01 AC, rms over hosts 0.470 dex [FAIL G4 on this scale]
+ NL1 BTFR slope d log M_b / d log V(last point) of the model 2.348 (law ~4; mu r << 1 analytic 2)
+ NL1 Cassini (a_k -> 0): y at Saturn 6.073e-13 = 0.00649 a0 [FAIL], check G M/(lambda0 r) 6.073e-13; |gamma-1| limb 1.460e-11 [PASS]; Moon y/g_N 2.52e-12 => FAIL Cassini
+ NL1 with a_k = 1e-3 lambda0 (0.00494 kpc): q1 extra at Saturn ~ G M r/(3 lambda0 a_k^2) 1.789e-23 = 1.91e-13 a0 [PASS]; q2 ~ G M/(2 lambda0 a_k) 2.854e-18 = 3.05e-08 a0 [PASS] (a_k not fitted by SPARC; galaxy rows use a_k -> 0)
+ NL1 holdout tuned on GS[::2] [0.7169] (at bound []) unseen rms 0.2907 [FAIL]
+
+NL2 alpha 1.864, mu 1.864 kpc^-1 (lambda0 0.5756 kpc), at bound []
+
+== NL2 alpha, mu fit (2 knobs)
+ rms to law 0.2432 dex [FAIL E1]; p95 per-galaxy 0.3697 [FAIL E2]; worst bin 0.4016 [FAIL E3]
+ bins -12.0:-0.402 -11.5:-0.220 -11.0:-0.027 -10.5:+0.153 -10.0:+0.292 -9.5:+0.358 -9.0:+0.318
+ a fit 5.467e-11; rms to observed 0.2977 dex, mean +0.0010
+ NL2 alpha, mu fit kappa_eff 0.2919 (-0.234 dex) [FAIL G1]
+ NL2 alpha, mu fit G4 per-galaxy fit_a over 79 hosts log M200 11-12.5: rms 0.439 dex (all 171: 0.541) [FAIL G4]
+ NL2 alpha, mu fit G5 median (g - g_N)/g_N 1.838, median (g - g_N)/a0 0.349 [PASS G5]
+ NL2 implied G M_b/lambda0^2: median 1.170e+01 AC, rms over hosts 0.470 dex [FAIL G4 on this scale]
+ NL2 BTFR slope d log M_b / d log V(last point) of the model 2.907 (law ~4; mu r << 1 analytic 2)
+ NL2 Cassini (a_k -> 0): y at Saturn 5.213e-12 = 0.0557 a0 [FAIL], check G M/(lambda0 r) 5.213e-12; |gamma-1| limb 1.253e-10 [PASS]; Moon y/g_N 2.16e-11 => FAIL Cassini
+ NL2 with a_k = 1e-3 lambda0 (0.000576 kpc): q1 extra at Saturn ~ G M r/(3 lambda0 a_k^2) 1.132e-20 = 1.21e-10 a0 [PASS]; q2 ~ G M/(2 lambda0 a_k) 2.103e-16 = 2.25e-06 a0 [PASS] (a_k not fitted by SPARC; galaxy rows use a_k -> 0)
+ NL2 holdout tuned on GS[::2] [0.2507, 0.2493] (at bound []) unseen rms 0.2306 [FAIL]
+ (c1) G2: lambda0, mu Lagrangian constants, slope 0 [FAIL]; G3 ratio 1 trivial
+ (c1) lambda0 constant GT constant scale in B1: residuals 1.0: -0.0038, 1.5: +0.0292, 2.33: +0.0876 [FAIL]
+ (c1) lambda0 constant GT constant scale in B1p: residuals 1.0: +0.0049, 1.5: +0.0310, 2.33: +0.0763 [FAIL]
+ (c1) lambda0 constant GT constant scale in B1u: residuals 1.0: -0.0132, 1.5: +0.0258, 2.33: +0.0964 [FAIL]
+
+######## (c2) Deser-Woodard / RR non-local cosmology (analytic)
+ RR m ~ 0.28 H0 (from memory): (m r/c)^2 at 10 kpc 3.96e-13 => G5 FAIL; Deser-Woodard f(box^-1 R) fixed by the chosen expansion history (G2 by construction only), no static acceleration scale (from memory); non-local MOND realisations insert a0 by hand
+
+runtime 15 s, peak RSS 116 MB
+Rival language; adopts nothing. kappa = 1/2 FITTED; not theory closed.
