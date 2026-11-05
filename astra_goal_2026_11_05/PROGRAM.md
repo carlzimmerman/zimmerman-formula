@@ -174,6 +174,10 @@ claim, including the coordinator's previous AZC1 construction.
   Pure convergence evaluator now passes58/58 synthetic/adversarial fixtures;
   disabling point-pair lines fails four. Production evidence aggregation,
   postprocessor restart and actual ladders remain incomplete.
+  Postprocessor live restart now passes9/9 in main and sign-reversed modes,
+  twice, after a completed disc checkpoint; integration remains11/11.
+  N16 sampler physical footprint0.0452GB measured. Evidence aggregation and
+  actual queued production ladders remain outstanding.
 - Tiers4-5: pending in brief order.
 - AZ43 control update: first10 mutation small-grid pairs numerically pass,
   all fail dwarf/SPARC physical gates on both footings; batch exited75.

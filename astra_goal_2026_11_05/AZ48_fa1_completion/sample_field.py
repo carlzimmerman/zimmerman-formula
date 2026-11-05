@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Hash-verified single-grid diagnostics; never a full convergence verdict."""
-import argparse,json,platform
+import argparse,json,platform,signal
 from pathlib import Path
 import numpy as np
 import scipy
@@ -10,7 +10,10 @@ import grid3d as D
 import sampling3d as S
 
 def main():
- parser=argparse.ArgumentParser();parser.add_argument('--field',required=True);parser.add_argument('--tag',required=True);parser.add_argument('--mutate',action='store_true');args=parser.parse_args()
+ parser=argparse.ArgumentParser();parser.add_argument('--field',required=True);parser.add_argument('--tag',required=True);parser.add_argument('--mutate',action='store_true');parser.add_argument('--resume',action='store_true');args=parser.parse_args()
+ stop=[False]
+ def handler(signum,frame):stop[0]=True
+ signal.signal(signal.SIGTERM,handler);signal.signal(signal.SIGINT,handler)
  folder=(A.HERE/args.field).resolve();out=(A.HERE/args.tag).resolve()
  if A.HERE.resolve() not in folder.parents or A.HERE.resolve() not in out.parents:raise ValueError('Paths must be within lane')
  if folder==out:raise ValueError('Diagnostics must have a separate output directory')
@@ -26,20 +29,44 @@ def main():
  if result['identity']['versions']!=versions:raise ValueError('Field environment mismatch')
  config=result['identity']['arguments'];foot=config['foot'];epsilon=B.normalization(foot)['epsilon']
  grid=D.Grid(config['n'],config['half_width'],result['alpha'],result['centre_kpc'])
+ source_hashes={A.relative(p):A.sha(p) for p in [Path(__file__).resolve(),Path(S.__file__).resolve(),Path(D.__file__).resolve(),Path(B.__file__).resolve(),Path(S.R.__file__).resolve(),Path(A.__file__).resolve(),S.THRESHOLDS,A.HERE/'SAMPLING_CONTRACT.md',A.HERE/'FROZEN_BULLET.md']}
+ identity=dict(field_result_sha256=A.sha(folder/'result.json'),field_sha256=result['field_sha256'],mutate=args.mutate,source_hashes=source_hashes,versions=versions)
+ checkpoint_path=out/'sampling_checkpoint.json'
+ if checkpoint_path.exists():
+  if not args.resume:raise RuntimeError('Existing sampling output requires --resume')
+  progress=json.loads(checkpoint_path.read_text())
+  if progress['identity']!=identity:raise RuntimeError('Stale sampling checkpoint')
+  if progress['status']=='complete':
+   if A.sha(out/'samples.json')!=progress['result_sha256']:raise RuntimeError('Changed completed sampling output')
+   print('Verified complete sampling');return 0
+ else:
+  if out.exists() and any(out.iterdir()):raise RuntimeError('Nonempty sampling output without checkpoint')
+  progress=dict(identity=identity,status='preparing',discs={})
+ def save():A.atomic(checkpoint_path,progress)
+ def safe():
+  if stop[0]:save();raise SystemExit(75)
+ save();safe()
  phi=np.load(folder/'field.npy',allow_pickle=False)
  if A.sha(folder/'field.npy')!=result['field_sha256']:raise ValueError('Field/report hash mismatch')
- h=D.hessian(grid,phi);x,y,z=grid.coordinates()
+ h=D.hessian(grid,phi);safe();x,y,z=grid.coordinates()
  source=B.density(x*B.L0_KPC,y*B.L0_KPC,z*B.L0_KPC,np.asarray(result['source_components']))[1:-1,1:-1,1:-1]/B.RHO_REF
  residual=float(np.max(abs(D.operator(h,epsilon)-source))/max(1.,float(np.max(abs(source)))))
  minimum=D.principal_min(h,epsilon)
+ safe()
  finite=bool(np.all(np.isfinite(phi)) and all(np.all(np.isfinite(v)) for v in h))
  residual_eligible=finite and np.isfinite(residual) and residual<=1e-8 and np.isfinite(minimum) and minimum>0 and result['status']=='RESIDUAL CONVERGED'
  sampler=S.Sampler(grid,h,mutate=args.mutate);threshold=S.inherited_threshold(foot)
- obj=dict(field_identity=result['identity'],field_result_sha256=A.sha(folder/'result.json'),field_sha256=result['field_sha256'],mutate=args.mutate,residual=residual,principal_min=minimum,finite=finite,residual_eligible=bool(residual_eligible),max_hessian_norm=sampler.max_norm,inherited_threshold=threshold,threshold_scope='Inherited I6 data-calibrated value; not derived from the action or newly authenticated native data',source_hashes={A.relative(p):A.sha(p) for p in [Path(__file__).resolve(),Path(S.__file__).resolve(),Path(D.__file__).resolve(),Path(B.__file__).resolve(),Path(S.R.__file__).resolve(),S.THRESHOLDS,A.HERE/'SAMPLING_CONTRACT.md',A.HERE/'FROZEN_BULLET.md']},status='PILOT ONLY' if config['n']<=16 else 'SINGLE GRID ONLY',scope='No physical Bullet verdict until all frozen known-answer, field/box and disc convergence gates pass. kappa=1/2 FITTED; not theory closed')
+ obj=dict(field_identity=result['identity'],field_result_sha256=A.sha(folder/'result.json'),field_sha256=result['field_sha256'],mutate=args.mutate,residual=residual,principal_min=minimum,finite=finite,residual_eligible=bool(residual_eligible),max_hessian_norm=sampler.max_norm,inherited_threshold=threshold,threshold_scope='Inherited I6 data-calibrated value; not derived from the action or newly authenticated native data',source_hashes=source_hashes,status='PILOT ONLY' if config['n']<=16 else 'SINGLE GRID ONLY',scope='No physical Bullet verdict until all frozen known-answer, field/box and disc convergence gates pass. kappa=1/2 FITTED; not theory closed')
  if config['source']=='bullet':
   sampled=sampler(list(S.POINTS.values()));point_values={name:float(sampled['s'][i]) for i,name in enumerate(S.POINTS)}
   obj['points']={name:dict(position_kpc=S.POINTS[name],s=point_values[name],norm=float(sampled['norm'][i]),tiny=bool(sampled['tiny'][i])) for i,name in enumerate(S.POINTS)}
-  obj['discs']={name:[S.disc(sampler,position,threshold,nr,nt) for nr,nt in [(32,64),(64,128)]] for name,position in S.POINTS.items()}
+  progress['status']='sampling';save();safe()
+  for name,position in S.POINTS.items():
+   saved=progress['discs'].setdefault(name,[])
+   for i,(nr,nt) in enumerate([(32,64),(64,128)]):
+    if len(saved)<=i:saved.append(S.disc(sampler,position,threshold,nr,nt));save()
+    safe()
+  obj['discs']=progress['discs']
   obj['threshold_diagnostics']=S.threshold_reading(point_values,threshold)
   obj['disc_quadrature_eligible']=all(abs(v[0]['mean_s']-v[1]['mean_s'])<=.01 and abs(v[0]['on_fraction']-v[1]['on_fraction'])<=.01 and v[0]['mean_on']==v[1]['mean_on'] and v[0]['tiny_samples']==v[1]['tiny_samples']==0 for v in obj['discs'].values())
  else:
@@ -48,6 +75,8 @@ def main():
    actual=sampler(oracle['points_kpc']);truth=np.asarray(oracle['s']);error=np.abs(actual['s']-truth)
    obj['plummer']=dict(s=actual['s'].tolist(),norm=actual['norm'].tolist(),tiny=actual['tiny'].tolist(),absolute_errors=error.tolist(),max_error=float(error.max()),threshold_flags_match=bool(np.array_equal(actual['s']>=threshold,oracle['on'])),oracle_line_met=bool(np.all(error<=.02) and not np.any(actual['tiny'])))
   except ValueError as exc:obj['plummer']=dict(status='NOT EVALUABLE',sampling_domain_error=str(exc),oracle_line_met=False)
- A.atomic(out/'samples.json',obj)
+ safe();A.atomic(out/'samples.json',json.loads(json.dumps(obj,sort_keys=True)))
+ progress.update(status='complete',result_sha256=A.sha(out/'samples.json'));save();safe()
  print(json.dumps(dict(status=obj['status'],residual_eligible=obj['residual_eligible'],source=config['source'],mutate=args.mutate),indent=2))
-if __name__=='__main__':main()
+ return 0
+if __name__=='__main__':raise SystemExit(main())

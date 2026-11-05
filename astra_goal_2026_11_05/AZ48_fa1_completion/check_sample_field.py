@@ -14,6 +14,7 @@ env=dict(os.environ,OMP_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1')
 def run(tag,mutate=False):
  command=[sys.executable,str(A.HERE/'sample_field.py'),'--field',str(base.relative_to(A.HERE)),'--tag',str((base/tag).relative_to(A.HERE))]
  if mutate:command.append('--mutate')
+ if (base/tag/'sampling_checkpoint.json').exists():command.append('--resume')
  return subprocess.run(command,env=env,capture_output=True,text=True,timeout=30)
 for tag,mutation in [('main',False),('mutate',True)]:
  r=run(tag,mutation);check(tag+'_executes',r.returncode==0)

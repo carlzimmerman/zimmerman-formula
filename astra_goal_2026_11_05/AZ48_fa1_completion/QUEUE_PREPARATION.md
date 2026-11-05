@@ -71,3 +71,34 @@ labels, inspect live1024-cubed/other queue work, and add only through heavyq.
 Still needed: postprocessing/known-answer/convergence grader, frozen physical
 Plummer32/64/128 on both footings, Bullet64/128/256 and N256 expanded box,
 plus separate selector-sign mutation output from each converged field.
+
+## Saved-field analysis restart qualification
+
+sample_field.py now has a separate atomic sampling_checkpoint.json. Its
+identity binds the field/report hashes, sampling sources, mutation mode and
+numerical environment. Completed disc quadratures are retained individually;
+on resume the deterministic Hessian/physical residual is reconstructed from
+the saved field, then completed disc work is reused. Signals only set a flag;
+safe points save state and exit75. Completed sampling verifies its result
+hash before idempotent exit0, and stale/damaged outputs are rejected.
+
+Live tests wait until at least one disc result is actually checkpointed,
+then send SIGTERM. Main and sign-reversed tests each pass9/9, repeated in
+fresh folders with exact scientific output and exact compact test reports.
+The independent saved-field integration suite remains11/11. Comparing
+pre/post-checkpoint reports after removing the changed source hashes finds
+identical scientific values; no numerical method or gate changed.
+
+The N16 sampler measurement uses33 macOS samples and records lifetime
+physical peak45,154,928bytes (0.0452GB rounded up). Its output hash matches
+the independently checked baseline. Keep the existing conservative memory
+reservation for queued analysis too; the smaller pilot does not justify
+reducing the unmeasured large-grid allowance. The sampler keeps only compact
+checkpoints in addition to the existing field artifact.
+
+    python check_sample_resume.py --tag NEW_TAG
+    python check_sample_resume.py --tag NEW_MUTATION_TAG --mutate
+    python measure_worker.py --tag NEW_MEMORY_TAG --stage sample
+
+No production jobs are submitted by these tools. Authenticated aggregation
+of physical ladder evidence and all actual production runs remain pending.

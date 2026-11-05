@@ -265,3 +265,13 @@ Both scientific test reports repeat byte-identically with warnings as errors.
 Remaining: production postprocessor restart qualification, authenticated
 evidence aggregation and the queued physical ladders. No final Bullet
 numerical eligibility or conditional physical verdict has been established.
+
+Saved-field analysis is now restart-qualified: main and sign-reversed live
+SIGTERM tests pass9/9 each, twice, after observing a completed disc checkpoint.
+Resumed scientific reports are byte-identical to uninterrupted runs, and
+the11/11 integration checks still pass. Output values are unchanged from
+the earlier sampler after accounting for changed source hashes. The measured
+N16 physical footprint is0.0452GB (rounded up), with the existing conservative
+production reservation retained. QUEUE_PREPARATION.md documents the safe
+points, cache identities and rerun commands. Authenticated physical evidence
+aggregation and actual queued ladders remain outstanding.
