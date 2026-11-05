@@ -113,7 +113,11 @@ claim, including the coordinator's previous AZC1 construction.
   repeat byte-identically. Individual fit worker restart/identity checks12/12
   pass twice, live SIGTERM/resume and fresh results byte-identical; ungraded
   budget2 pilot remains status0. Fit physical footprint0.285GB (RSS0.905GB).
-  Full mock/grid workers, production scaling, queue and fit verdicts pending.
+  Paired native-noise checks23/23, separate uncorrelated mutation bites.
+  All eight pilot mock constructions62/62 twice, exact full-manifest repeats;
+  live noise interruption/resume exact. Mock-input fit integrity12/12 and
+  updated worker restart12/12 pass. Full grid orchestration, production
+  scaling, queue and fit-based mock/local-cube verdicts remain pending.
 - Tier3 lane13: AZ47 IN PROGRESS. Measurement protocol75abae6f8b,
   criteria774bb8db44 and pre-result wording amendment b06499a5dc.
   Four train clusters yield rank3 empirical covariance, scatter.067-.106dex;

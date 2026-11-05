@@ -219,8 +219,8 @@ interrupted optimizer unit restarts from its identical input; completed
 units verify their result hash and return without refitting. Fixed-inclination
 law-family results can seed a free-inclination refinement after identity
 checks. Real and seed7 channel-shuffle datasets are supported, with shuffle
-outputs required in a separate mutate tree. The noisy KA1/KA2 datasets and
-full grid orchestration remain to be implemented. Every production fit is
+outputs required in a separate mutate tree. The mock integration below adds
+KA1/KA2 input datasets; full grid orchestration remains pending. Every production fit is
 heavyq-only; the sole unqueued allowance is bin8 with budget2.
 
 check_fit_resume.py passes 12/12 checks in each of two independent fresh
@@ -246,3 +246,57 @@ It does not yet establish the full-resolution, robust-ring or production
 optimizer memory bound. Full mocks, fit grid, refinement/bracket execution,
 numerical comparisons and final grading remain pending. No queue submission
 or fit verdict follows from this checkpoint.
+
+## Paired physical-noise mocks
+
+NOISE_CONTRACT.md was committed alone before implementation. mock_noise.py
+streams the native physical noise field in three channel planes, applies
+the own CLEAN beam and spectral Hanning kernel, then bins and trims it.
+Spatial rungs share the same underlying native draw before their measured
+rms normalization. This is an explicit synthetic covariance convention,
+not a measured interferometric covariance. The signal retains each observed
+intensity template and mask, so these mocks do not test mask recovery.
+
+check_noise.py passes23/23 and repeats byte-identically, including the
+separate mutate/noise_fixture.json output. Independent direct circular
+convolution, spectral filtering, shared-field block averages, seed mapping
+for all eight combinations and rms normalization pass. The fixed covariance
+fixture gives spatial lag-one correlation0.97546 versus0.97475 expected,
+and spectral0.67213 versus2/3, within the predeclared0.05 lines. The
+uncorrelated mutation gives0.00152 and-0.00139 and fails both lines. This
+is a noise implementation control, not the physical channel-shuffle fit.
+
+mock_cube.py constructs law and0.505 slow-rotation signals at the fixed
+35deg reference geometry, adds the matched noise, and checkpoints signal,
+noise and combined cube separately. Both weightings and both footings are
+kept separate. Production-rung construction requires heavyq. check_mock.py
+passes62/62 in each of two fresh runs: every output hash, exact signal/noise
+sum, rms, seed/beam identity, conditional intensity and slow factor passes.
+Live interruption during native noise generation exits75; resumed and
+fresh repeated manifests match exactly. All eight complete manifests and
+both reports match byte-for-byte across the two runs. Maximum pilot runtime
+is4.39seconds and maximum RSS449MB. Compact manifests/reports are committed;
+signal/noise/cube arrays and execution checkpoints remain local artifacts.
+
+fit_unit.py accepts those mocks only after verifying preparation, footing,
+mock type, environment, every source hash and every array hash. Mock identity
+is also required to match for fixed-grid-to-free-inclination refinement.
+check_fit_mock.py passes12/12: both NA/canonical mock fit units execute at
+the ungraded two-evaluation budget, retain their mock identities and remain
+ineligible for production acceptance. Missing/mismatched inputs, stale
+source engines and changed arrays are rejected. The updated worker's live
+interruption suite also passes12/12. These are implementation and integrity
+checks, not the frozen KA1/KA2 recovery/rejection verdicts.
+Both updated-worker suites were repeated in fresh directories; their
+check reports and scientific fit results match byte-for-byte.
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python -W error astra_goal_2026_11_05/AZ46_ic1613_redo/check_noise.py
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python -W error astra_goal_2026_11_05/AZ46_ic1613_redo/check_mock.py --tag mock_verified/fresh_contract
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python -W error astra_goal_2026_11_05/AZ46_ic1613_redo/check_fit_mock.py --tag mock_fit_verified/fresh_contract
+
+The last checker uses mock_verified/contract_a input arrays; regenerate
+that local input tree from the matching committed source if absent. Always
+use fresh tags for new verification runs. Full model/inclination/start and
+bracket orchestration, fit-based controls, production scaling/queue work and
+final grading remain pending. Earlier beam and forward accuracy failures
+remain recorded; no new galaxy or action verdict follows from these mocks.

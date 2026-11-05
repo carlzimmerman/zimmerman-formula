@@ -14,7 +14,8 @@ def main():
  parser.add_argument('--prepared',required=True);parser.add_argument('--tag',required=True)
  parser.add_argument('--model',choices=['free','law','nc','newton'],required=True)
  parser.add_argument('--foot',choices=list(M.A0),default='canonical')
- parser.add_argument('--dataset',choices=['real','mutate'],default='real')
+ parser.add_argument('--dataset',choices=['real','mutate','ka1','ka2'],default='real')
+ parser.add_argument('--mock-source',help='Relative directory of a hash-verified constructed mock')
  parser.add_argument('--inclination',type=float,help='Fixed inclination; omit for free-inclination fit')
  parser.add_argument('--start-inc',type=float,choices=[35.,48.],default=48.)
  parser.add_argument('--budget',type=int,choices=[2,100,200],default=100)
@@ -33,13 +34,29 @@ def main():
  P=M.load_prepared(args.prepared)
  if (P['binning']!=8 or args.budget!=2) and not os.environ.get('HEAVYQ_JOB_ID'):raise RuntimeError('Full fits require heavyq; only bin8 budget2 is an unqueued pilot')
  sources=[Path(__file__),Path(F.__file__),Path(M.__file__),M.OLD,R.HERE/'io_beam.py',R.HERE/'raw_cube.py',R.HERE/'FROZEN_CRITERIA.md',R.HERE/'AMENDMENTS.md',R.HERE/'MODEL_NUMERICS.md',R.ROOT/'rebuild_2026_10_22/RQ3_acceptance_v2/candidates/law.py']
- identity=dict(arguments={k:v for k,v in vars(args).items() if k not in ('tag','resume','prepared','initial')},
+ identity=dict(arguments={k:v for k,v in vars(args).items() if k not in ('tag','resume','prepared','initial','mock_source')},
                preparation_sha256=P['manifest_sha256'],source_hashes={str(p.relative_to(R.ROOT)):R.sha(p) for p in sources},
                versions=dict(python=platform.python_version(),numpy=np.__version__,scipy=scipy.__version__))
+ mock_data=None
+ if args.dataset in ('ka1','ka2'):
+  if not args.mock_source:raise ValueError('Mock dataset requires --mock-source')
+  mock_dir=R.HERE/args.mock_source;mock_path=mock_dir/'mock_manifest.json';mock=json.loads(mock_path.read_text())
+  mi=mock['identity']
+  if mi['preparation_sha256']!=P['manifest_sha256'] or mi['footing']!=args.foot or mi['mock']!=('law' if args.dataset=='ka1' else 'slow'):raise ValueError('Mock preparation/footing/type mismatch')
+  if mi['versions']!=identity['versions']:raise ValueError('Mock environment mismatch')
+  for name,digest in mi['source_hashes'].items():
+   if R.sha(R.ROOT/name)!=digest:raise ValueError('Stale mock engine')
+  for stage in mock['stages'].values():
+   for name,digest in stage['outputs'].items():
+    if R.sha(mock_dir/name)!=digest:raise ValueError('Changed mock array')
+  identity['mock_manifest_sha256']=R.sha(mock_path);mock_data=np.load(mock_dir/'cube.npy',mmap_mode='r',allow_pickle=False)
+  if mock_data.shape!=P['cube'].shape:raise ValueError('Mock shape mismatch')
+ elif args.mock_source:raise ValueError('Mock source supplied for non-mock dataset')
  initial=None
  if args.initial:
   ipath=R.HERE/args.initial;initial=json.loads(ipath.read_text());identity['initial_sha256']=R.sha(ipath)
   if initial['identity']['preparation_sha256']!=P['manifest_sha256']:raise ValueError('Refinement preparation mismatch')
+  if initial['identity'].get('mock_manifest_sha256')!=identity.get('mock_manifest_sha256'):raise ValueError('Refinement mock mismatch')
   if initial['identity']['source_hashes']!=identity['source_hashes'] or initial['identity']['versions']!=identity['versions']:raise ValueError('Refinement engine mismatch')
   prior=initial['identity']['arguments']
   for name in ('model','foot','dataset','mstar','thickness'):
@@ -57,7 +74,7 @@ def main():
  state=dict(identity=identity,status='preparing');B.atomic(checkpoint,state)
  def runtime(status):B.atomic(out/'runtime.json',dict(status=status,seconds=time.time()-t0,peak_rss_native=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss))
  if stop[0]:runtime('yield');return 75
- permutation=None;data=None
+ permutation=None;data=mock_data
  if args.dataset=='mutate':
   permutation=np.random.default_rng(7).permutation(len(P['v']));data=np.asarray(P['cube'])[permutation]
  cube=M.Cube(P,data=data)
