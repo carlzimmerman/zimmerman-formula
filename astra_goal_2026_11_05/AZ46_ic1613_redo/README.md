@@ -107,3 +107,36 @@ runtime artifacts, identified by hashes in those manifests. raw_contract/
 is the superseded pre-A1 prototype and must not be used as production input.
 raw_verified/ holds the current tested raw pilots. Neither is a finished
 mask preparation or a cube fit; the existing robust beam failure remains.
+
+## Complete8x8 preparation pilot
+
+masking.py implements own-cube noise, physical smoothing, component
+selection, dilation and the beam-based sampling lattice. Its10 synthetic
+checks pass, including source recovery, a negative-source mutation and
+rejection of an empty emission mask. prepare.py adds the shared natural
+PB gas map, own-width stellar profile and mask-based ring extent, with
+atomic stage checkpoints and strict raw-input/source/output hash checks.
+The grid is anchored at crop pixel0 and native channel0. Physical dilation
+uses the actual header pixel scale; boundary pixels are selected by the
+stated12arcsec distance, not a transplanted nominal-pixel stencil.
+
+All19 check_prepare.py checks pass. Natural/robust masks and beams differ;
+noise at this pilot binning is0.221714/0.188885mJy per beam. Their common
+gas-map files match byte-for-byte. Both complete; live SIGTERM exits75;
+resume reproduces every stage manifest and final manifest exactly; an
+independent fresh repeat matches. Known map block means and disc geometry
+pass, and a mismatched map/cube grid is rejected. Peak RSS283/335MB in the
+baseline pair; macOS physical footprint of a separate robust pilot peaks
+at140,772,384bytes over17 samples. That measurement covers preparation,
+not the still-unimplemented new fit worker or full-resolution memory.
+
+    python -W error astra_goal_2026_11_05/AZ46_ic1613_redo/check_mask.py
+    python -W error astra_goal_2026_11_05/AZ46_ic1613_redo/check_prepare.py --tag fresh_preparation_contract
+
+The second command uses raw_verified/baseline/ raw inputs and requires a
+fresh output tag. Masks and prepared arrays remain local runtime artifacts;
+compact stage/final manifests, hashes and verification outputs are committed.
+No8x8 pilot is a numerical convergence pair or a local-cube verdict. Full
+2x2/4x4 preparation remains queue-only. New forward model, mocks, fits,
+physical-footprint scaling, full-resolution comparison and final grader
+are still required. The coarse robust beam failure is unchanged.
