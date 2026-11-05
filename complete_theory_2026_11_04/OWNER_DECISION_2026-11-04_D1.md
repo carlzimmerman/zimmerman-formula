@@ -8,3 +8,7 @@ Recorded at the owner's instruction. Asked in chat (CT0_ROADMAP.md, decision D1)
 - Gates are frozen in each lane before its numbers, fastest death first; a candidate stops at its first failed gate, and the failure is recorded as hard as a pass.
 
 kappa = 1/2 FITTED; not theory closed. Nothing here says the data favour the framework.
+
+## Follow-up, 2026-11-04: C'' graded through the remaining gates
+
+Asked in chat whether to grade candidate C'' (CT10, reviewed in CT13) through the cosmology gate with a fitted dust amount, the owner answered, verbatim: "Yes, grade it". The remaining gates run: full G0 health (mixing with the curvature mode, P and the dust; W4b; the tracker branch), G5 CMB and background with the dust amount counted as a fitted constant, G6 disc depletion, G7 lensing and clusters. Still grading only: nothing adopted.
