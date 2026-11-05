@@ -1,4 +1,14 @@
-# Investigation outcome: scoped obstructions established
+# Active joint-model continuation
+
+The user requested further constructive work after the previous scoped
+audit. The new goal is active. joint_phase/RESULT.md computes the phase
+energy and cubic response of an explicit condensed-plus-gapless potential.
+Its17 exact checks pass; the deliberate mutation fails its two intended
+checks. It gives a conditional MOND force but leaves the vacuum offset and
+criticality unprotected. No coefficient is derived. The next meaningful
+step needs a mechanism fixing those inputs, not a numerical parameter scan.
+
+## Previous investigation outcome: scoped obstructions established
 
 Original user target: derive the acceleration scale and coefficient from an
 action, continuing across failed routes. Original target NOT REACHED.
