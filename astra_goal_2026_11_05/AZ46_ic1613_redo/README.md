@@ -93,8 +93,8 @@ Astropy real-plane access. All13 raw-stage contract checks pass: both cubes
 complete at32/64 row chunks with identical scientific fields/array hashes;
 a live SIGTERM after the first committed plane exits75; resume reproduces
 the uninterrupted manifest byte-for-byte; complete resume exits0; stale
-identity is rejected. Each pilot uses107x150x150 voxels and roughly144MB
-peak RSS. Full physical footprint will be measured after mask/model pilot
+identity is rejected. Each pilot uses107x150x150 voxels and 144–187MB
+peak RSS across the two row sizes. Full physical footprint will be measured after mask/model pilot
 preparation, not inferred from RSS.
 
     python -W error astra_goal_2026_11_05/AZ46_ic1613_redo/check_raw.py
