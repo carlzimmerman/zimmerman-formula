@@ -1,0 +1,161 @@
+{
+  "schema_version": 2,
+  "claim_id": "CONDOR_HALO_PRIOR_SENSITIVITY_20261104",
+  "repository": {
+    "commit": "d1f83bfd72693b0aa9e6726f3755c4b5ae4bf74a",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "forecasts/condor_2026_11_04/halo_robustness.py",
+    "forecasts/condor_2026_11_04/run02"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Constructive NFW degeneracy test with Dutton Maccio 2014 concentration relation fixed or +/-0.22 dex, for all 36 original profiles",
+    "coefficient_domain": "IEEE float64 with scipy special functions and nonlinear optimization",
+    "conventions": "Total-equivalent simulation M200, dark amplitude (1-.157); baryonic inventory <=.157 M200. Concentration relation uses original h=.671, radii original forecast cosmology. This small cosmology mismatch and lack of halo response make this a sensitivity exercise, not an LCDM posterior.",
+    "inputs": [
+      "PAPER66 fixed CPL and n=1 law",
+      "published mass/size/flux inputs",
+      "public ALMA metadata snapshot"
+    ],
+    "bounds": {
+      "profiles": 36,
+      "concentration_width_dex": [
+        0,
+        0.22
+      ],
+      "stellar_dex": [
+        -0.2,
+        0.2
+      ],
+      "gas_dex": [
+        -0.3,
+        0.3
+      ],
+      "logM200_max": 14
+    },
+    "non_claims": [
+      "No calibrated significance or universal model exclusion",
+      "No proprietary data accessed",
+      "ID2993 absolute forecast unavailable"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-04T17:12:58.103786+00:00",
+    "runtime_seconds": 7.332339,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "forecasts/condor_2026_11_04/halo_robustness.py",
+    "forecasts/condor_2026_11_04/forecast.py",
+    "forecasts/condor_2026_11_04/inputs.json",
+    "forecasts/condor_2026_11_04/run01/profile_fits.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "forecasts/condor_2026_11_04/halo_robustness.py",
+      "sha256": "61670331d6f5a145d11989bddeedd410174595507cc4c4c8946db839415dc99e",
+      "sha256_after": "61670331d6f5a145d11989bddeedd410174595507cc4c4c8946db839415dc99e"
+    },
+    {
+      "path": "forecasts/condor_2026_11_04/forecast.py",
+      "sha256": "f4c1f66873d67268dbd98fdc47b0dc74a83fea1a2f86d7a5e2b51ff4e0c97f5f",
+      "sha256_after": "f4c1f66873d67268dbd98fdc47b0dc74a83fea1a2f86d7a5e2b51ff4e0c97f5f"
+    },
+    {
+      "path": "forecasts/condor_2026_11_04/inputs.json",
+      "sha256": "2fff557cfad20980510288e120ef2f05af5ba0723d6518b9b662e202eae42657",
+      "sha256_after": "2fff557cfad20980510288e120ef2f05af5ba0723d6518b9b662e202eae42657"
+    },
+    {
+      "path": "forecasts/condor_2026_11_04/run01/profile_fits.json",
+      "sha256": "c202166e51c5510c49f04ed0a7a33b502b9a6ca8266ebf49e9fb82dd547830cd",
+      "sha256_after": "c202166e51c5510c49f04ed0a7a33b502b9a6ca8266ebf49e9fb82dd547830cd"
+    }
+  ],
+  "output_directory": "forecasts/condor_2026_11_04/run02",
+  "declared_results": [
+    "forecasts/condor_2026_11_04/run02/halo_fits.json",
+    "forecasts/condor_2026_11_04/run02/summary.json"
+  ],
+  "outputs": [
+    {
+      "path": "forecasts/condor_2026_11_04/run02/stdout.txt",
+      "sha256": "25b15a2b59d24b37e1ad69cb5da5df786933b7ff5b1cacf86fa0b35482f4d01b",
+      "kind": "log"
+    },
+    {
+      "path": "forecasts/condor_2026_11_04/run02/stderr.txt",
+      "sha256": "00ff9094d0d646e4e0d25f5307f1b3cd35034d24cc7f81e0025978c54ed70e9b",
+      "kind": "log"
+    },
+    {
+      "path": "forecasts/condor_2026_11_04/run02/halo_fits.json",
+      "sha256": "8984203b92d1066c8f52fd39dd00e6b11897cd5ca3c6b3fd1b2f8e8044d3c9f1",
+      "kind": "result"
+    },
+    {
+      "path": "forecasts/condor_2026_11_04/run02/summary.json",
+      "sha256": "f5580855aad47596e46fde1345b422bb8a65216ce52c95eeaf421a5c4675d416",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
