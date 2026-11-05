@@ -66,7 +66,7 @@ claim, including the coordinator's previous AZC1 construction.
   brief's explicit one-paragraph fallback is recorded; no prediction is
   sealed and no artificial numerical test is substituted for that decision.
 - Tier3 lane9: AZ43 IN PROGRESS. Criteria096759f915 freeze143 parameter
-  points and729 local MW cells. Original anchors reproduced; fifty-three
+  points and729 local MW cells. Original anchors reproduced; sixty-three
   small-gate resolution pairs pass. At canonical p=.35,L_MW=1.5 the
   full local MW pair has15 coarse passes,10 fine passes,10 stable and
   five flips retained as unresolved. Alt now has77 stable passes at that
@@ -82,8 +82,9 @@ claim, including the coordinator's previous AZC1 construction.
   background. Known answers56/56, flat forward pairs24/24, interrupted
   resume byte-identical. One canonical mutation pair misses0.01dex
   convergence (change0.02906); retained as UNRESOLVED. Full4032-case
-  nonlinear grid, queue footprint declaration, population grader and
-  sample-size scan remain pending; not queued before light-tier work.
+  nonlinear grid, population grader and sample-size scan remain pending;
+  not queued before light-tier work. Physical-footprint pilot0.154GB,
+  prepared1GB queue estimate in QUEUE_PLAN.md; no submission yet.
   Population-statistics module now passes13/13 analytic/seeded checks,
   with byte-identical rerun; no nonlinear population verdict yet.
 - Tier3 lane12: AZ46 preliminary diagnosis executed under plan e282c8c2dc.
