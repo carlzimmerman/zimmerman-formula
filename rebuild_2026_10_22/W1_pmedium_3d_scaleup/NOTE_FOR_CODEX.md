@@ -9,23 +9,26 @@ with your recorded command lines on the interpreter your manifests name, give by
 **2. A faster engine of the same discretized action exists and is bit-identical to yours.** `engine/pmedium3d.py` +
 `engine/tsc_kernels.c` reproduce your `evolve` bit for bit at 8³/12³/16³, weak and strong, at 1 and 4 threads (C TSC
 kernels with your arithmetic and summation order; one force evaluation per step). It is 15× faster at 16³ on one thread
-(64³ in ~10 min) and meets `compute_queue/JOB_CONTRACT.md` (SIGTERM → checkpoint → exit 75, `--resume` bit-identical,
+(64³ in ~10 min; 128³ in ~3 h on 8 threads) and meets `compute_queue/JOB_CONTRACT.md` (SIGTERM → checkpoint → exit 75, `--resume` bit-identical,
 atomic writes, measured footprint 0.35–0.38 GB at 64³). Dropping the h-force on cold particles breaks the gate (8³ strong
-peak 28.8 instead of 2.0). Use it in place of the 120–300 s bound; long runs go through the queue.
+peak 28.8 instead of 2.0). Use it in place of the 120–300 s bound; long runs go through the queue (each weak 128³ job was preempted and resumed 15–16 times).
 
-**3. Resolution ladder (z = 10).** Strong-seed cell peak δ_c, canonical: 2.000, 2.763, 3.270, 4.104, 4.480 at 8–64³
-(32→64 change 9.2%: still NOT CONVERGED against your 5% criterion; alt footing 2.016 … 4.053 at 8–32³). Weak seed
-converges (.03783 at 64³, 0.09%). The cell maximum of a contracting peak keeps rising as cells shrink; the fixed-physical-
-aperture cold mass settles: M_c(<2.88 kpc) = 1.5148e7 → 1.5156e7 M☉ from 32³ to 64³ (0.05%; 4 cells at 32³ to within
-0.1%, see the lane's A3 note). M_c(<1.44 kpc) = 2.67e6 → 2.47e6 needs 128³. Your 0.3215 kpc radius is 0.89 cells at 64³.
-128³ runs and the alt 64³ runs are listed for the queue.
+**3. Resolution ladder through 128³ (z = 10).** On the alt footing (a₀ = 1.1312e-10) the strong-seed cell peak δ_c goes
+2.016, 2.772, 3.265, 4.053, 4.408, 4.587 at 8–128³. The 64→128 change is 4.1%, so it **converges** under your own 5%
+criterion; the steps shrink at about first order (24%, 8.8%, 4.1%). On the canonical footing the 128³ runs failed the
+initial-state residual gate (2.0e-5 / 1.0e-5 against your 1e-5; L-BFGS-B stopped early at 2M cells). They are not used:
+canonical stays NOT CONVERGED at 32→64 (9.2%) until a fixed rerun is queued. Its 128³ diagnostics (peak 4.727) track alt.
+The fixed-physical-aperture cold mass settles first: M_c(<2.88 kpc) = 1.5231e7 → 1.5303e7 M☉ (alt, 64→128, 0.47%) and
+M_c(<1.44 kpc) = 2.469e6 → 2.532e6 (2.5%). Your 0.3215 kpc radius is still under 2 cells at 128³. Weak seeds converge on
+both footings. If you minimize on large grids, check the residual: the default stop can fall short of the gate there.
 
-**4. Binding certificate: NOT CERTIFIED.** Isolated matter-plus-field energy of the central region (Hubble-flow
-velocities, pairwise potential, your five field energy densities) is negative at all 11 snapshots of the last e-fold but
-changes by a factor ≈ 20; at z = 10 the region inside 1.44 kpc is at turnaround (2K/|U| = 0.005, down from 0.99 one e-fold
-earlier) and losing mass through the fixed aperture before that. It is a collapsing overdensity, not a stationary core.
-Any overdense EdS region has negative energy, so the sign alone certifies nothing (as your AUDIT already warned for the
-periodic energy). The certificate is `Model.certificate(...)`; read it after virialization (2K/|U| → 1, E stable).
+**4. Binding certificate: NOT CERTIFIED** (alt at 128³, canonical at 64³). The isolated matter-plus-field energy of the
+central region (Hubble-flow velocities, pairwise potential, your five field energy densities) is negative at all 11
+snapshots of the last e-fold but changes by a factor ≈ 18. At z = 10 the region inside 1.44 kpc is at turnaround
+(2K/|U| = 0.005, down from 0.97 one e-fold earlier) and still losing mass through the fixed aperture. It is resolved and
+converged, and it is a collapsing overdensity, not a stationary core. Any overdense EdS region has negative energy, so the
+sign alone certifies nothing (as your AUDIT already warned for the periodic energy). The certificate is
+`Model.certificate(...)`; read it after virialization (2K/|U| → 1, E stable).
 
 **5. Two things the runs show about the model, worth building on.**
 - The P sector stays linear: max|P| = 1.6e-4, χ − 1 ≈ 3.6e-3 at z = 10 (strong, 64³). The saturation P/(1−|P|) is never

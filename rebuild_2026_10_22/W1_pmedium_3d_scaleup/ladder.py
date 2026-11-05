@@ -60,7 +60,21 @@ def enqueue():
               f'    --note "W1 lane ladder {nm}; checkpoint {ck:.0f} MB (+ final_state.npz {ck:.0f} MB)"\n')
 
 
+def enqueue_a4():
+    """AMENDMENT A4: re-run the two canonical 128^3 jobs (INIT-FAIL under FROZEN_CRITERIA 3) with the A4 engine into
+    runs/ladder_a4/ (the INIT-FAIL outputs in runs/ladder/ are kept). est-gb = 1.2 x the 128^3 peak footprint the queue
+    measured for the first round (2.111 GB)."""
+    for n, amp, prio in ((128, .03, 259), (128, .001, 258)):
+        nm = name(n, amp, 'canonical')
+        base = f"/usr/bin/python3 engine/pmedium3d.py --n {n} --amp {amp} --footing canonical --threads 8 --outdir runs/ladder_a4"
+        print(f'python3 compute_queue/heavyq.py add --id W1A4_{nm} --cwd rebuild_2026_10_22/W1_pmedium_3d_scaleup \\\n'
+              f'    --cmd "{base}" \\\n    --resume-cmd "{base} --resume" \\\n'
+              f'    --est-gb 2.6 --threads 8 --priority {prio} --done-file runs/ladder_a4/{nm}/result.json --grace 900 \\\n'
+              f'    --note "W1 lane A4 rerun {nm} (INIT-FAIL fix); checkpoint 336 MB (+ final_state.npz 336 MB)"\n')
+
+
 if __name__ == '__main__':
-    ap = argparse.ArgumentParser(); ap.add_argument('--direct', action='store_true'); ap.add_argument('--enqueue', action='store_true'); a = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument('--direct', action='store_true'); ap.add_argument('--enqueue', action='store_true'); ap.add_argument('--enqueue-a4', action='store_true'); a = ap.parse_args()
     if a.direct: direct()
     if a.enqueue: enqueue()
+    if a.enqueue_a4: enqueue_a4()

@@ -60,3 +60,20 @@ Disclosure, in order:
    (0.106 / 0.376 GB), as §2.4 requires, scaled linearly in n³ to 128³ (2.542 GB) and multiplied by 1.2. The 128³ jobs add
    `--grace 900` (contract §2 permits a per-job grace) because SIGTERM is honoured at step boundaries and the 128³ initial
    minimization may outlast 300 s.
+
+## A4 (POST-RESULT for the first queue round; PRE-RESULT for the two reruns) — canonical 128³ INIT-FAIL and its fix
+
+1. The six queued jobs finished (exit 0; the weak 128³ jobs were preempted and resumed 15–16 times by the queue).
+   The queue measured peak footprints of 0.376–0.380 GB (64³) and 1.93–2.11 GB (128³), under the est-gb of 0.5 / 3.1.
+2. Both **canonical 128³** runs fail the frozen initial-state gate (§3: residual < 1e-5): strong max residual 2.03e-5 (the
+   unperturbed solve), weak 1.03e-5 (the −ε tangent solve). L-BFGS-B stopped on its relative-reduction test after
+   ~210–550 iterations, far below maxiter. Per §3 these are **INIT-FAIL** and are not used for any verdict. Their numbers
+   are reported as diagnostics only, labelled. The alt 128³ runs pass (4.9e-6 strong, 3.8e-6 weak), as do every n ≤ 64 run.
+3. Fix-forward (engine sha256 e52f4c6b…): when, and only when, the frozen residual gate fails after the first solve
+   (n ≥ 32), L-BFGS-B is restarted from its own solution with the same options, up to 20 times. The objective, the minimizer
+   and the gate are unchanged; runs that pass on the first solve take an unchanged code path. Evidence on the A4 engine:
+   G-P1 PASS bit-identical, G-P2 PASS, G-P3 PASS at 16³ and 32³; the 32³ strong canonical run is bit-identical to the
+   committed ladder run (rows, certificate rows, final-state sha256). The restart is untested at 128³ (that size exceeds
+   the 2 GB direct-run limit); the rerun's own residual check decides, and a rerun that still fails stays INIT-FAIL.
+4. Two rerun jobs are listed (`ENQUEUE_A4_commands.txt`, outputs to `runs/ladder_a4/`, est-gb 2.6 = 1.2 × 2.111 GB).
+   `analyze.py` reads `runs/ladder_a4/` over `runs/ladder/` and lists INIT-FAIL residuals per seed and footing.

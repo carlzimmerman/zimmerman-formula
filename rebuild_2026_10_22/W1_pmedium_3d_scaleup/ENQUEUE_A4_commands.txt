@@ -1,0 +1,12 @@
+python3 compute_queue/heavyq.py add --id W1A4_n128_strong_can --cwd rebuild_2026_10_22/W1_pmedium_3d_scaleup \
+    --cmd "/usr/bin/python3 engine/pmedium3d.py --n 128 --amp 0.03 --footing canonical --threads 8 --outdir runs/ladder_a4" \
+    --resume-cmd "/usr/bin/python3 engine/pmedium3d.py --n 128 --amp 0.03 --footing canonical --threads 8 --outdir runs/ladder_a4 --resume" \
+    --est-gb 2.6 --threads 8 --priority 259 --done-file runs/ladder_a4/n128_strong_can/result.json --grace 900 \
+    --note "W1 lane A4 rerun n128_strong_can (INIT-FAIL fix); checkpoint 336 MB (+ final_state.npz 336 MB)"
+
+python3 compute_queue/heavyq.py add --id W1A4_n128_weak_can --cwd rebuild_2026_10_22/W1_pmedium_3d_scaleup \
+    --cmd "/usr/bin/python3 engine/pmedium3d.py --n 128 --amp 0.001 --footing canonical --threads 8 --outdir runs/ladder_a4" \
+    --resume-cmd "/usr/bin/python3 engine/pmedium3d.py --n 128 --amp 0.001 --footing canonical --threads 8 --outdir runs/ladder_a4 --resume" \
+    --est-gb 2.6 --threads 8 --priority 258 --done-file runs/ladder_a4/n128_weak_can/result.json --grace 900 \
+    --note "W1 lane A4 rerun n128_weak_can (INIT-FAIL fix); checkpoint 336 MB (+ final_state.npz 336 MB)"
+

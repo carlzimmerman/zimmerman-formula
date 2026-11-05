@@ -113,8 +113,14 @@ class Model:
         h0 = np.fft.ifftn(np.fft.fftn(rho) / (1 + self.k2 / A ** 2)).real
         if np.linalg.norm(rho) < 1e-12: return np.zeros((3,) + (rho.shape)), np.ones_like(rho), 0.
         maxiter = 1000 if self.n <= 16 else 20000
-        op = minimize(fg, h0.ravel(), jac=True, method='L-BFGS-B', options={'ftol': 1e-14, 'gtol': 1e-9, 'maxiter': maxiter}); h = op.x.reshape(rho.shape); g = self.grad(h) / A; s = np.sqrt(np.sum(g * g, axis=0))
-        self.last_minimizer = dict(nit=int(op.nit), success=bool(op.success), message=str(op.message))
+        op = minimize(fg, h0.ravel(), jac=True, method='L-BFGS-B', options={'ftol': 1e-14, 'gtol': 1e-9, 'maxiter': maxiter})
+        nit = int(op.nit); restarts = 0
+        # AMENDMENT A4: only when the frozen residual gate (< 1e-5) fails, restart L-BFGS-B from its own solution (same
+        # options, same objective, same minimizer). Runs that pass on the first solve take the unchanged path.
+        while self.n >= 32 and restarts < 20 and float(np.linalg.norm(fg(op.x)[1]) / np.linalg.norm(rho)) >= 1e-5:
+            op = minimize(fg, op.x, jac=True, method='L-BFGS-B', options={'ftol': 1e-14, 'gtol': 1e-9, 'maxiter': maxiter}); nit += int(op.nit); restarts += 1
+        h = op.x.reshape(rho.shape); g = self.grad(h) / A; s = np.sqrt(np.sum(g * g, axis=0))
+        self.last_minimizer = dict(nit=nit, success=bool(op.success), message=str(op.message), restarts_A4=restarts)
         return -g / (1 + s), 1 + .5 * inv(h * h), float(np.linalg.norm(fg(op.x)[1]) / np.linalg.norm(rho))
 
     # SE model.py evaluate(), force part (positions and fields only)

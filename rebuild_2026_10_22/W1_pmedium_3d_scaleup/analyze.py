@@ -27,8 +27,9 @@ CERT_RADII = (1.44, 2.88)
 
 
 def load():
+    """runs/ladder/ plus, overriding it, runs/ladder_a4/ (AMENDMENT A4 reruns of INIT-FAIL configurations)."""
     runs = {}
-    for f in sorted(RUNS.glob('*/result.json')):
+    for f in sorted(RUNS.glob('*/result.json')) + sorted((HERE / 'runs' / 'ladder_a4').glob('*/result.json')):
         r = json.loads(f.read_text()); p = r['parameters']
         if p.get('mutate'): continue
         seed = {0.001: 'weak', 0.03: 'strong'}[p['amp']]
@@ -124,10 +125,11 @@ def analyse(runs, planted=None):
         for seed in ('weak', 'strong'):
             rs = {n: r for (f2, s2, n), r in runs.items() if f2 == fo and s2 == seed and completed(r)}
             notdone = sorted(n for (f2, s2, n), r in runs.items() if f2 == fo and s2 == seed and not completed(r))
+            initfail = {n: max(r['initial_residuals']) for (f2, s2, n), r in runs.items() if f2 == fo and s2 == seed and max(r['initial_residuals']) >= 1e-5}
             if not rs: continue
             prov = 128 not in rs
             peak = {n: r['rows'][-1]['contrast_c_max'] for n, r in rs.items()}
-            S = F[seed] = dict(grids=sorted(rs), incomplete=notdone, provisional=prov,
+            S = F[seed] = dict(grids=sorted(rs), incomplete=notdone, init_fail_residual=initfail, provisional=prov,
                                steps={n: r['steps'] for n, r in rs.items()},
                                max_work_error={n: r['max_work_error'] for n, r in rs.items()},
                                peak_delta_c_z10=peak, peak_baryon_z10={n: r['rows'][-1]['contrast_b_max'] for n, r in rs.items()},
