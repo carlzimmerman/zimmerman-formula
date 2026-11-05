@@ -167,6 +167,10 @@ claim, including the coordinator's previous AZC1 construction.
   Live direct/homotopy restart now passes12/12 each, repeated exactly; N16
   physical footprint0.0545GB measured. Production estimates documented,
   no jobs submitted. Sampling/convergence grader and full ladders pending.
+  Sampling contract9f5116b016 now implemented:42/42 analytic checks,
+  sign mutation fails ten; saved-field integration11/11 repeated exactly.
+  N16 samples remain PILOT ONLY. Production postprocessor restart and
+  cross-resolution/box grader, followed by full queued ladders, still open.
 - Tiers4-5: pending in brief order.
 - AZ43 control update: first10 mutation small-grid pairs numerically pass,
   all fail dwarf/SPARC physical gates on both footings; batch exited75.

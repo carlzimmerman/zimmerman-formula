@@ -202,3 +202,41 @@ The N16 homotopy worker's measured lifetime physical footprint is0.0545GB
 conservative cubic memory allowance and remaining requirements. No queued
 production run has been submitted and no physical convergence label is
 claimed. Field sampling and convergence grading remain to be implemented.
+
+## Verified field sampling, still no physical Bullet verdict
+
+SAMPLING_CONTRACT.md (9f5116b016) was committed alone before selector
+outputs. It specifies interior trilinear Hessian interpolation, equal-area
+disc nodes, the tiny-Hessian diagnostic, inherited threshold semantics and
+70 signed-axis/diagonal samples for the independent Plummer oracle.
+No physical gate or numerical tolerance was widened.
+
+sampling3d.py passes42/42 analytic fixtures, including rotated/mixed
+Hessians, planar/zero controls, exact constant/radius-squared disc averages,
+out-of-domain rejection and independent angularly invariant oracle values.
+The separate sign mutation fails ten checks (32/42, expected exit1).
+Both reports repeat byte-identically. sample_field.py validates the saved
+checkpoint/result identities, source and field hashes, and environment;
+it recomputes the physical residual and ellipticity before recording samples.
+Its bounded saved-field integration tests pass11/11 twice, with exact
+main/mutation reports and deliberate damaged-field rejection.
+
+The canonical N16 pilot samples are BCG1=0.94764, BCG3=0.61971,
+GASM=0.96379 and GASB=0.70684. They satisfy the disc-quadrature comparison
+(largest mean change2.27e-6), but these are explicitly PILOT ONLY, not
+physically eligible Bullet results. At the inherited calibrated threshold,
+the coarse conditional reading is WEIGHT ALLOWED AT GALAXIES; reversing
+s gives NO SIGN. Neither reading is promoted to a physical verdict before
+the required Plummer,128/256 and expanded-box gates. No threshold was
+changed to make the mutation alter a reading.
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python check_sampling.py
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python check_sampling.py --mutate
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python check_sample_field.py --tag NEW_TAG
+
+The saved-field checker uses the retained N16 contract_d baseline. Compact
+samples and their hashes are committed under sampling_verified; field
+arrays remain reproducible runtime artifacts. The sampler is presently
+tested as a bounded postprocessor. Production restart qualification for
+that stage and the cross-resolution/box convergence grader are still
+required before queued production analysis.
