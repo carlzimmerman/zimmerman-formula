@@ -146,3 +146,45 @@ result. Grids above N16 are guarded for heavyq execution.
 Run from this directory with NumPy/SciPy available. Next: spherical boundary
 quadrature, a bounded nonlinear pilot, interruption/resume validation and
 resource measurement before queued known-answer and Bullet ladders.
+
+## Boundary and bounded Newton pilots
+
+spherical_boundary.py integrates the positive root of the combined enclosed
+mass, with every component recentered for this boundary approximation only.
+The actual3D source retains its separate centres. The4096/8192 radial pair
+passes on both footings and both box sizes: maximum relative boundary
+difference4.87e-10 against1e-6. Independent adaptive integrals differ by at
+most6.13e-11 of the centre-to-corner amplitude. The centred-Plummer radial
+Hessian independently satisfies the nonlinear equation and positive branch.
+All16 spherical checks pass; no3D solver is used by this oracle.
+
+newton3d.py implements the exact matrix-free Jacobian, a diagonal
+preconditioner, bounded GMRES and a residual-decreasing line search that
+rejects nonpositive ellipticity. Quadratic N8/N16 pilots pass22/22 checks;
+maximum relative field error2.57e-13. In-process interruption after an
+accepted step resumes to exactly the uninterrupted field and report.
+This does not replace the required live SIGTERM/checkpoint-worker test.
+
+The local numerical library emits divide/overflow/invalid warnings in
+GMRES's matmul. A captured20x343 multiplication had maximum operand
+magnitudes0.01287 and0.42489, finite output, and disagreement6.51e-19
+with a direct einsum. The solver retains these warning strings in each
+accepted-step report and independently recomputes the unpreconditioned
+linear residual (relative line1e-5). Unknown warnings, nonfinite answers
+and failed residuals reject the solve; warnings are not convergence evidence.
+This platform behaviour remains a recorded numerical-library limitation.
+
+bullet_pilot.py solves the combined source at N8/N16 on both footings,
+using the physical epsilon directly. All four converge in4/5 updates;
+maximum final normalized residual5.01e-11. These coarse implementation
+pilots have no physical Bullet label, point-selector grade or convergence
+claim. Source identities and histories are in bullet_pilot.json. All three
+new reports repeat byte-identically.
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python check_spherical_boundary.py
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python check_newton.py
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python bullet_pilot.py
+
+Next: persistent worker identities/checkpoints, live interruption/resume,
+footprint measurement and queue qualification. The centred-Plummer32/64/128
+and Bullet64/128/256 plus expanded-box runs remain required and unexecuted.

@@ -160,6 +160,10 @@ claim, including the coordinator's previous AZC1 construction.
   Full3D stretched-grid operators now pass21/21 N8/N16 analytic checks;
   separate sign mutation fails five, exact repeats. These validate operators
   only; nonlinear solve, restart contract and field convergence remain open.
+  Spherical boundary/oracle16/16 and Newton pilot22/22 now pass; all four
+  combined-source N8/N16 pilots converge at physical epsilon. Reports repeat
+  exactly; platform GMRES warnings retained with independent residual checks.
+  No physical Bullet grade: live restart/footprint and queued ladders pending.
 - Tiers4-5: pending in brief order.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.
