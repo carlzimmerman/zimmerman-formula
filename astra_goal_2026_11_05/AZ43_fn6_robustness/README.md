@@ -15,7 +15,7 @@ not a native v3s-action result.
   fails all eight original-anchor comparisons. The canonical MW twin
   passes its Newtonian-field identity and fails the original MW anchor
   (4/5 checks). Outputs are separate.
-- Small-gate points0,1,56 have both resolution rungs. All three numerical
+- Small-gate points0-6 and56 have both resolution rungs. All eight numerical
   pair checks pass. At the old anchor56, dwarf counts remain18/24 on
   both footings, the largest matched dispersion change is below0.085%,
   and the largest SPARC statistic change is below0.00005dex.
@@ -25,8 +25,8 @@ not a native v3s-action result.
   unresolved rather than being retained as survivors. Maximum absolute
   changes over all729 cells are0.04714Msun/pc² in K0 and0.02192km/s in
   vc. The independent V1 checks pass on both rungs.
-- Alternative-footing point56 currently has its full coarse729-cell
-  calculation. Its fine rung remains to be completed before comparison.
+- Alternative-footing point56 now has both full729-cell rungs, with77
+  cells passing at both resolutions. The full parameter grid remains open.
 - An uninterrupted recomputation of the first16 canonical cells agrees
   exactly with the resumed full-point checkpoint. Completed-point resume
   exits0 without recomputing. Input hashes are checked before reuse.

@@ -66,11 +66,16 @@ claim, including the coordinator's previous AZC1 construction.
   brief's explicit one-paragraph fallback is recorded; no prediction is
   sealed and no artificial numerical test is substituted for that decision.
 - Tier3 lane9: AZ43 IN PROGRESS. Criteria096759f915 freeze143 parameter
-  points and729 local MW cells. Original anchors reproduced; three
+  points and729 local MW cells. Original anchors reproduced; eight
   small-gate resolution pairs pass. At canonical p=.35,L_MW=1.5 the
   full local MW pair has15 coarse passes,10 fine passes,10 stable and
-  five flips retained as unresolved. Alt coarse exists; full grid pending.
-- Tier3 lanes10-14 and Tiers4-5: pending in brief order.
+  five flips retained as unresolved. Alt now has77 stable passes at that
+  parameter point; full grid pending.
+- Tier3 lane10: AZ44 criteriaffc0dd9d60 freeze a conditional optimistic
+  Fisher bound to avoid importing FN4c's LambdaCDM distances or inventing
+  DESI stellar masses. Bound/SIS controls11/11 pass; catalogue processing
+  and rotated-position mutation are not yet run.
+- Tier3 lanes11-14 and Tiers4-5: pending in brief order.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.
 - Other sessions have now landed W1/X1 updates (handoff bfe49ed3c2,
