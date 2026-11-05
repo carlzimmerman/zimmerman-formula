@@ -1,10 +1,13 @@
-# Active investigation checkpoint
+# Investigation outcome: scoped obstructions established
 
 Original user target: derive the acceleration scale and coefficient from an
 action, continuing across failed routes. Original target NOT REACHED.
 Kappa=1/2 FITTED. No adopted action or shared campaign record changed.
 Base e9a6997b51148461ddeb901c0ccfba06f6af16e9; this directory owns all writes.
-The desktop goal remains active.
+The positive derivation remains unresolved. The goal's explicitly allowed
+obstruction-and-missing-input outcome is documented in FINAL_AUDIT.md,
+including its requirement audit and open research handoff. This is not
+completion of the theory or exhaustion of all extensions.
 
 ## Executed routes
 
@@ -73,7 +76,7 @@ The desktop goal remains active.
   normalization_corrected passes16 exact identities; normalization_mutate
   deliberately fails the operational-scale check.
 
-## Live continuation
+## Open positive-derivation research
 
 Carrier obligation: address the near-saturation obstruction before treating
 the candidate as globally healthy. A physical/cutoff-valid applicability
