@@ -41,7 +41,12 @@ claim, including the coordinator's previous AZC1 construction.
   incoming ray families focus downstream outside the Sun. Main87/87,
   flat-profile mutant69/103; charged-background response36/36 with paired
   ODE solves and independent convolution. Nonlinear Galactic matching open.
-- Tier 2 lanes 5(d-e),6-8 and Tiers 3-5: pending in brief order.
+- Tier 2 lane 5(d): AZ38 NOT EVALUABLE for a realistic interior: no
+  authenticated local model found in the recorded inventory. Model S
+  acquisition recorded in NEEDS_OWNER, no payload downloaded. Exact
+  Green-integral engine validated on two analytic fixtures, main21/21,
+  mutant15/21,256/512 convergence; fixtures are not called a realistic Sun.
+- Tier 2 lanes 5(e),6-8 and Tiers 3-5: pending in brief order.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.
 - Other sessions have now landed W1/X1 updates (handoff bfe49ed3c2,
