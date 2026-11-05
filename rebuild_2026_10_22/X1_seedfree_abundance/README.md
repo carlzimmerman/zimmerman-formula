@@ -135,6 +135,48 @@ H_inf = 1e13 GeV. n/c means closure K did not complete within its solver budget 
 branch, Γ/H < 10 at onset; 11 of 28). K never decides G1. G2 FAILS at all 28 points for L and C, by 1.8e8–3.6e8 (L)
 and 6e8 (C). The ξ = 1/6 control sits 2e28–1e30 below 0.12 everywhere.
 
+
+## Production lattices (queued runs, analysed 2026-11-04; POST-RESULT reading under the frozen rules and A1–A4)
+
+All 9 ENQUEUE jobs completed (exit 0, done-files present; the 256³ TW job resumed 5 times and the 128³ CSA job once).
+Analysis script: `x1_production.py` → `x1_production_results.json`; hand-over: `handover/X1_E1_*_nstar16.json`.
+
+- **Coherent fraction: not converged.** The windowed |φ̄|²/⟨|φ|²⟩ depends on the output cadence: P64 at out-every 10
+  and the 64³ long run at out-every 50 evolve the identical state but give 0.52 vs 0.68 at τ = 1000. So it is not a usable
+  convergence measure. The phase-independent proxy E₀/E_Φ (zero-mode energy share), averaged over τ ≈ 2000–3000, gives:
+  - TW_full: 0.30–0.34 (64³), 0.24–0.40 (128³, two seeds), 0.15–0.20 (256³), falling with N;
+  - CSA (no UV noise): 0.45 (64³), 0.33–0.46 (128³), 0.36–0.39 (256³), roughly stable.
+
+  The TW condensate decays faster as more vacuum noise is added. This is the TW cutoff dependence expected outside the
+  certified window, not a converged physical rate. The 64³ long run shows slow decay, with E₀/E_Φ = 0.32 → 0.15 → 0.08
+  at τ = 4000 → 1e4 → 2e4. X stays fully coherent in every run (f₀(X) = 1.0000).
+- **Non-Gaussian cumulants.** g₄ (connected complex 4th cumulant of δφ) is −0.07 to −0.34 at τ ≈ 2000–3000 in every
+  run. It is smaller in magnitude in TW_full at higher N (256³: −0.07; 128³: −0.07 to −0.23) than in CSA (−0.14 to −0.34),
+  so the vacuum noise Gaussianises the field. By V3, the normalised cumulants are not certified at any n.
+- **K11 hand-over overlap with lattice spectra** (classical Boltzmann, 0.75 τ_end → τ_end):
+
+  | run | L1 | no-evolution baseline | frozen threshold 0.15 |
+  |---|---|---|---|
+  | 128³ | 1.18 | 0.21 | FAIL |
+  | 64³ long | 0.75 | 0.23 | FAIL |
+  | 256³ | 0.083 | 0.066 | PASS |
+
+  The 256³ pass is not discriminating: the spectrum barely moves over that interval, and evolving it makes the match
+  slightly worse than not evolving it.
+- **Hand-over criterion.** The frozen n* does not exist, so the frozen hand-over is still unreachable and E2 stays
+  CONDITIONAL. With the occupation-only diagnostic n* = 16, the criterion is met only in the 64³ long run, at τ ≈ 9800,
+  where 84 % of the fluctuation energy sits below n = 16 by τ = 2e4. At X onset the bath is still overpopulated 6.9–9.1×,
+  and the tachyonic-window ratio is r = 0.02–0.04 (0.65 for a μ = 0 bath). Unchanged from the prototypes.
+- **Effect on the abundance.** The production conformal energy is E_Φ = 0.832 (64³), 0.842 (128³) and 0.869 (256³), a
+  shift of ≤ 4 %. Since Ω_L,K ∝ ρ^{3/4}, that moves Ω_L and Ω_K by ≤ 3 %; Ω_C does not depend on E_Φ.
+- **K isocurvature.** Computed at 16 more grid points (all where K completed except H_inf = 1e9, T_rh = 1e6, which did
+  not finish). Every point FAILS: P_S = 3.1e-5 to 3.3e-2 against the bound 8.3e-11, i.e. ≥ 4e5×. One point, H_inf = 1e13
+  with T_rh = 1e6, gives P_S = 11 with dlnY/dln|Φ| = −25; it comes from the unstable slow-absorption branch and is not
+  reliable, but it fails in any case.
+- **Verdict: unchanged, UNDETERMINED by the frozen word rule.** G2 is still missing for K at the 9 grid points where K
+  itself did not complete, and the X-onset epoch is still a bracket. Every isocurvature value computed for every closure
+  fails by ≥ 4e5×. The production runs move neither Ω (≤ 3 %) nor any G1 classification.
+
 ## Which inputs the action does not fix
 - H_inf, N_e (Y_C ∝ N_e through ⟨|X|²⟩ ∝ N_e), the reheating history T_rh, ξ, and which stochastic patch we live in.
 - The physics, not the action, of the X-onset epoch: whether the coherent condensate dissipates at the kinetic rate, by
