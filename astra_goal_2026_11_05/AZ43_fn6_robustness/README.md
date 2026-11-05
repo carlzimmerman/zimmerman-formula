@@ -108,3 +108,10 @@ Of these, 101 meet the small-gate numerical lines. The only failed points
 remain 91 and 92, on T2 on both footings; newly completed points 93 through
 102 meet those lines. This is still an incomplete robustness grid, with
 eligible MW work and the independent mutation grid outstanding.
+
+At 113 pairs (indices0–112),103 meet all small-gate numerical lines.
+In addition to91/92, points104–111 fail T2 on both footings. These are
+p=.45 at L_MW=1,1.25,1.45,1.475,1.5,1.525,1.55,1.75. Maximum relative
+dispersion changes range from1.0881% to3.7326%, exceeding the frozen1%.
+No other small-gate numerical line fails at this checkpoint. Failed T2
+rows remain UNDECIDED; separate decisive physical gates are kept separate.
