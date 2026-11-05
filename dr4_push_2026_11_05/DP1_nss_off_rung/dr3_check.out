@@ -1,0 +1,38 @@
+====================================================================================================
+DP1 NSS-off rung DR3 reproduction check (NON-SCORING; code-path test)   mutation: none
+====================================================================================================
+K1 PASS  registered build 6210 pairs sha 6fff64d964ebaa72; equals on-disk csv True
+K2 PASS  wrapper == build_variant_catalogue.build(True, 30): True; rung 6282 pairs sha 1dbdf21a461a2f3b
+K3 PASS  build(True, 50) sha 80c1292457b50104 vs committed CFG816 variant 80c1292457b50104
+K6 PASS  s range [2.00, 29.73] kAU; NSS-flagged 99
+
+building the D2 estimator (1e6 master) ... [13 s]
+K4 PASS  12 D2 fits reproduced, max |delta| 0.00e+00
+P1 PASS  NSS-flagged rung 99 / probe 100, Jaccard 0.990 (>=0.90); other pairs: probe absent from rung 2.63%, rung absent from probe 2.33% (<=5%)
+  P2 canonical base 1.0750+-0.0550  rung 1.1200+-0.0587 (N 6282)  shift +0.0450 vs ref +0.0750  |diff| 0.0300 <= 0.0704?  N4.2: passes NSS-off condition (|shift| < 1 sigma_fit)
+  P2 alt       base 1.0700+-0.0500  rung 1.1000+-0.0487 (N 6282)  shift +0.0300 vs ref +0.0575  |diff| 0.0275 <= 0.0597?  N4.2: passes NSS-off condition (|shift| < 1 sigma_fit)
+P2 PASS  canonical diff -0.0300; alt diff -0.0275
+
+registered fit path (pipeline --catalog, seed 20261216) on baseline, rung, probe ... [26 s]
+  base  canonical 1.0750+-0.0550 (kappa 1.0232)  alt 1.0775+-0.0512 (kappa 1.0247)  pipeline self-test passed: True
+  rung  canonical 1.1425+-0.0637 (kappa 1.0038)  alt 1.1025+-0.0525 (kappa 1.0161)  pipeline self-test passed: True
+  probe canonical 1.1500+-0.0587 (kappa 1.0041)  alt 1.1200+-0.0537 (kappa 1.0132)  pipeline self-test passed: True
+  P3 canonical rung shift +0.0675, probe shift +0.0750, |rung - probe| 0.0075 <= 0.0704?  N4.2: shift >= 1 sigma_fit (ladder rule applies as written)
+  P3 alt       rung shift +0.0250, probe shift +0.0425, |rung - probe| 0.0175 <= 0.0597?  N4.2: passes NSS-off condition (|shift| < 1 sigma_fit)
+P3 PASS  canonical diff -0.0075; alt diff -0.0175
+
+ensemble K = 8 (stage-G seed offsets 1..8) ... [135 s]
+  k=1  N base/probe/rung 6195/6323/6282  base==Q-G50 build True  canonical: base 1.1025 probe +1.1400-b=+0.0375 rung-b=+0.0475  alt: base 1.1000 probe +1.1150-b=+0.0150 rung-b=-0.0150
+  k=2  N base/probe/rung 6214/6300/6278  base==Q-G50 build True  canonical: base 1.0750 probe +1.1125-b=+0.0375 rung-b=+0.0450  alt: base 1.0925 probe +1.1075-b=+0.0150 rung-b=+0.0075
+  k=3  N base/probe/rung 6221/6305/6286  base==Q-G50 build True  canonical: base 1.1075 probe +1.1300-b=+0.0225 rung-b=-0.0325  alt: base 1.1000 probe +1.1000-b=+0.0000 rung-b=-0.0150
+  k=4  N base/probe/rung 6191/6281/6306  base==Q-G50 build True  canonical: base 1.1000 probe +1.1500-b=+0.0500 rung-b=-0.0150  alt: base 1.0700 probe +1.1275-b=+0.0575 rung-b=+0.0000
+  k=5  N base/probe/rung 6212/6294/6310  base==Q-G50 build True  canonical: base 1.1300 probe +1.0750-b=-0.0550 rung-b=-0.0275  alt: base 1.1000 probe +1.0700-b=-0.0300 rung-b=-0.0075
+  k=6  N base/probe/rung 6209/6305/6304  base==Q-G50 build True  canonical: base 1.1025 probe +1.0725-b=-0.0300 rung-b=+0.0050  alt: base 1.0775 probe +1.0700-b=-0.0075 rung-b=+0.0075
+  k=7  N base/probe/rung 6198/6289/6288  base==Q-G50 build True  canonical: base 1.1000 probe +1.0650-b=-0.0350 rung-b=+0.0200  alt: base 1.0850 probe +1.0575-b=-0.0275 rung-b=+0.0300
+  k=8  N base/probe/rung 6192/6305/6311  base==Q-G50 build True  canonical: base 1.1125 probe +1.1675-b=+0.0550 rung-b=-0.0100  alt: base 1.1025 probe +1.1275-b=+0.0250 rung-b=-0.0025
+  P4 canonical mean(rung - probe) -0.0062 (SD 0.0483) |.| <= 0.0249?   mean NSS-off shift: probe +0.0103 (SD 0.0433), rung +0.0041 (SD 0.0310)
+  P4 alt       mean(rung - probe) -0.0053 (SD 0.0360) |.| <= 0.0211?   mean NSS-off shift: probe +0.0059 (SD 0.0288), rung +0.0006 (SD 0.0147)
+P4 PASS  canonical mean diff -0.0062; alt mean diff -0.0053
+K5 PASS  frozen sha256 unchanged: True; pipeline 7c884e0e
+
+DP1 DR3 CHECK: REPRODUCED   (K 6/6, P 4/4)  [211 s]
