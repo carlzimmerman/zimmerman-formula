@@ -25,6 +25,15 @@ The desktop goal remains active.
 4. Own-action static radial equations obtained and checked symbolically.
    Density dependence adds N W_N to the lapse source. STATIC_RESULT.md,
    including its important restriction of the formal GR metric benchmark.
+5. All four frozen finite-shell BVPs converge at two resolutions; maximum
+   scaled profile difference2.27e-7. Not a physical galaxy or cosmic match.
+6. Radial kinetic/principal-symbol derivation: positive sampled coefficients
+   and subluminal local radial characteristic speed on804 points of those
+   backgrounds. See RADIAL_RESULT.md for the exact restricted statement.
+7. Finite radial box low modes: initial40/80/160 ladder failed convergence;
+   separate160/320/640 refinements pass the same2% line on all four cases,
+   with positive reported modes. SPECTRUM_RESULT.md retains the initial
+   failure and the fixed-interpolant/conditioning limitations.
 
 ## Evidence at this checkpoint
 
@@ -37,14 +46,20 @@ The desktop goal remains active.
   evidence/static_mutate: omitted portal lapse source; expected failed identity.
 - All six v2 manifests validated against current input/output hashes. Every
   negative control failed only its intended assertion; main runs completed.
+- Subsequent evidence/shell and evidence/radial completed; radial_mutate
+  deliberately fails the omitted-portal lapse identity. evidence/spectrum
+  is a genuine failed convergence test, not an expected negative control.
+  spectrum_refine and spectrum_second completed with refined-grid passes.
 
 ## Live continuation
 
-Carrier obligation: establish the single-clock candidate's actual sourced
-branch and its perturbations. Start from STATIC_RESULT.md's equations;
-first verify omitted scalar/off-diagonal equations for the static ansatz,
-then freeze and solve a finite-shell boundary problem. No positivity from
-FRW may be transferred to it. V=constant is only a restricted static branch.
+Carrier obligation: extend the candidate beyond the solved finite shell.
+First test sensitivity of the radial spectrum to a denser independent
+background representation, since current eigenproblems use a fixed201-point
+interpolant. Then derive angular modes and/or cosmological/source matching.
+RADIAL_RESULT.md records the analytic ADM argument for the static momentum
+and scalar constraints; a separately coded full covariant stress check is
+still absent. V=constant is only a restricted static branch.
 
 Normalization obligation: no present action supplies a principle fixing b.
 The CFG894 reopen screen stays in force. Do not mistake the imposed portal
@@ -54,7 +69,7 @@ trying further numerical values or linear-health fixtures cannot do that.
 The next normalization route must address the freely deformable cubic
 polarization coefficient identified in DERIVATION.md section2.
 
-Not attempted here: matter gradient/mass spectrum, full Dirac count, quantum
-matching, nonlinear X>0 preservation, finite-shell solve, cosmological
-matching, publication or observational regrading. Routes remain open rather
+Not attempted here: cosmological matter gradient/mass spectrum, full Dirac
+count, quantum matching, nonlinear X>0 preservation, angular stability,
+cosmological matching, publication or observational regrading. Routes remain open rather
 than exhausted. All audit provenance here is self-review, not independent.

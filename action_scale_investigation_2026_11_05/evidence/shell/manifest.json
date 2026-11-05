@@ -1,0 +1,154 @@
+{
+  "schema_version": 2,
+  "claim_id": "SINGLE-CLOCK-FINITE-SHELL",
+  "repository": {
+    "commit": "e7ab5e296df5a01d82a53d1845c47faae7edfbed",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "action_scale_investigation_2026_11_05/shell.py",
+    "--out",
+    "action_scale_investigation_2026_11_05/evidence/shell/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Four finite-shell BVPs converge on two tolerance/initial mesh settings and satisfy sampled domain checks",
+    "coefficient_domain": "float64 numerical BVP, arbitrary dimensionless units",
+    "conventions": "c=1, signature -+++, fixed polarization versus fixed conjugate distinguished",
+    "inputs": [
+      "M2=1,K=.5,V=1e-8,q2=2e-9,m=1e-4,r=1..20,b=.1,.3,Lstar=1,3"
+    ],
+    "bounds": {
+      "cases": 4,
+      "initial_nodes": [
+        100,
+        200
+      ],
+      "tolerances": [
+        1e-06,
+        1e-08
+      ],
+      "max_nodes": 10000,
+      "mesh_agreement": 1e-05,
+      "boundary_tolerance": 1e-08
+    },
+    "non_claims": [
+      "No coefficient derivation",
+      "No physical source or cosmic matching",
+      "No stability or rigorous interval existence proof"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-05T16:18:11.300164+00:00",
+    "runtime_seconds": 0.439949,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "action_scale_investigation_2026_11_05/shell.py",
+    "action_scale_investigation_2026_11_05/SHELL_CONTRACT.md",
+    "action_scale_investigation_2026_11_05/STATIC_RESULT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "action_scale_investigation_2026_11_05/shell.py",
+      "sha256": "4ecb4bce137d9fdd9cda088e923205b4625e36f62dda080c39afd7773516948c",
+      "sha256_after": "4ecb4bce137d9fdd9cda088e923205b4625e36f62dda080c39afd7773516948c"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/SHELL_CONTRACT.md",
+      "sha256": "928241084bf66a8cae9bf97f258020af5e51a6bb3cb87ea5ca6acf54dd21a60c",
+      "sha256_after": "928241084bf66a8cae9bf97f258020af5e51a6bb3cb87ea5ca6acf54dd21a60c"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/STATIC_RESULT.md",
+      "sha256": "caca242c3b4e1321360f8301f108e4b5c6743d3fc9233eb12461ae179e9e39a0",
+      "sha256_after": "caca242c3b4e1321360f8301f108e4b5c6743d3fc9233eb12461ae179e9e39a0"
+    }
+  ],
+  "output_directory": "action_scale_investigation_2026_11_05/evidence/shell",
+  "declared_results": [
+    "action_scale_investigation_2026_11_05/evidence/shell/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "action_scale_investigation_2026_11_05/evidence/shell/stdout.txt",
+      "sha256": "141e3bf49595f5991bea12ced374cd4ef832dc02bb49be43d29888f0d380c996",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/evidence/shell/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/evidence/shell/result.json",
+      "sha256": "87bc3a455873afbb034fbf076bf43910bbb4ef00f62c3983f2d8b209d02b156d",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

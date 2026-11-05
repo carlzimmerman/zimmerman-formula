@@ -1,0 +1,152 @@
+{
+  "schema_version": 2,
+  "claim_id": "SINGLE-CLOCK-RADIAL-BOX-SPECTRUM",
+  "repository": {
+    "commit": "9ed31dae3337b78ca20d16227fee6b94fd8fe298",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "action_scale_investigation_2026_11_05/spectrum.py",
+    "--out",
+    "action_scale_investigation_2026_11_05/evidence/spectrum/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Variational radial box low eigenmodes and mesh agreement on four saved shell backgrounds",
+    "coefficient_domain": "float64 numerical BVP, arbitrary dimensionless units",
+    "conventions": "c=1, signature -+++, fixed polarization versus fixed conjugate distinguished",
+    "inputs": [
+      "Four saved fixed-interpolant shell backgrounds; B,p Dirichlet perturbations and cell lapse"
+    ],
+    "bounds": {
+      "cases": 4,
+      "cells": [
+        40,
+        80,
+        160
+      ],
+      "modes": 5,
+      "low3_ladder_tolerance": 0.02,
+      "backward_error_limit": 1e-08,
+      "scaled_condition_limit": 100000000000000.0
+    },
+    "non_claims": [
+      "No coefficient derivation",
+      "No angular or nonlinear health",
+      "No continuum positivity theorem"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-05T16:32:24.776787+00:00",
+    "runtime_seconds": 0.693441,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "action_scale_investigation_2026_11_05/spectrum.py",
+    "action_scale_investigation_2026_11_05/SPECTRUM_CONTRACT.md",
+    "action_scale_investigation_2026_11_05/evidence/shell/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "action_scale_investigation_2026_11_05/spectrum.py",
+      "sha256": "ee2ce6e482d82bc4223bd35e01f62bd0e26867c0bceefb305cc95d2f60493601",
+      "sha256_after": "ee2ce6e482d82bc4223bd35e01f62bd0e26867c0bceefb305cc95d2f60493601"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/SPECTRUM_CONTRACT.md",
+      "sha256": "d166837e2f87eb77df9b3fb503803c4c191148aed06ec732ad07441a7422c0e8",
+      "sha256_after": "d166837e2f87eb77df9b3fb503803c4c191148aed06ec732ad07441a7422c0e8"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/evidence/shell/result.json",
+      "sha256": "87bc3a455873afbb034fbf076bf43910bbb4ef00f62c3983f2d8b209d02b156d",
+      "sha256_after": "87bc3a455873afbb034fbf076bf43910bbb4ef00f62c3983f2d8b209d02b156d"
+    }
+  ],
+  "output_directory": "action_scale_investigation_2026_11_05/evidence/spectrum",
+  "declared_results": [
+    "action_scale_investigation_2026_11_05/evidence/spectrum/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "action_scale_investigation_2026_11_05/evidence/spectrum/stdout.txt",
+      "sha256": "95b664296368323eb634288ebaa7edf853f2898dd27a3324c828414063fd48cb",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/evidence/spectrum/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/evidence/spectrum/result.json",
+      "sha256": "3ee1d1e87b13244cbcd7fcfb0083b8c6afa34572ef744884767816a8f67d173c",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
