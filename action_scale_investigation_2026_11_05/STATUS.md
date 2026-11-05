@@ -40,6 +40,12 @@ The desktop goal remains active.
    the exact scoped nonselection theorem and distinguishes the saturation
    scale from the physical force normalization. No full-health result is
    transferred to the deformed actions.
+9. Dynamical scale promotion: the exact two-canonical-scalar FRW solution
+   retains its arbitrary initial scale offset even with gravitational
+   backreaction. The polarization force has one sign; a regular static
+   polarized solution with zero total scalar boundary flux is excluded
+   for the specified monotone, potential-free promotion. New potentials
+   or nonzero flux are outside the result. DYNAMICAL_SCALE_RESULT.md.
 
 ## Evidence at this checkpoint
 
