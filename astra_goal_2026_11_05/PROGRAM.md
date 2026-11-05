@@ -95,7 +95,10 @@ claim, including the coordinator's previous AZC1 construction.
   gives18.8803, not a new grade. Robust beam differs and must be fixed in
   a new engine. Missing published products recorded in NEEDS_OWNER.
   New physical criteria e3d557204a freeze the full beam-aware cube redo;
-  implementation, pilot, queue and production fits remain pending.
+  beam/raw-reader implementation started: raw I/O4/4 passes, beam16/18;
+  robust6arcsec minor-axis moments miss2% at5/9 quadrature (6.30/5.33%).
+  Wrong-beam mutation bites; failures repeat exactly. Full preparation,
+  pilot, queue and production fits remain pending.
 - Tier3 lane13: AZ47 IN PROGRESS. Measurement protocol75abae6f8b,
   criteria774bb8db44 and pre-result wording amendment b06499a5dc.
   Four train clusters yield rank3 empirical covariance, scatter.067-.106dex;
