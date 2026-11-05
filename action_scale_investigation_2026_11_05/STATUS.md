@@ -40,6 +40,19 @@ Q^3. Microscopic generation of the curvature/kinetic operators and this
 critical matching identity remain the next obligations. This is partial
 progress, not a predicted coefficient or adopted action.
 
+joint_phase/NODAL_CURVATURE_RESULT.md now computes a microscopic candidate
+for the linear coupling and amplitude kinetic term: the minimally coupled
+parity-even Dirac determinant on intrinsic2+1-dimensional leaves. Its15
+exact checks pass. The finite cubic is positive, but the linear curvature
+threshold is negative, D=-C_A/(12h^2), and Z_sigma=-2D/sigma. A warped
+metric distinguishes the intrinsic curvature operator from Einstein R_4.
+A constant bare Einstein term alone does not repair positive stationary
+vacuum on the stated critical surface. Allowing normal propagation restores
+a quartic-logarithmic deep infrared response, with a possible intermediate
+cubic regime and an additional crossover scale. This closes that explicit
+microscopic bridge, not other interacting/curved completions. No coefficient
+is selected; the positive derivation remains open.
+
 ## Previous investigation outcome: scoped obstructions established
 
 Original user target: derive the acceleration scale and coefficient from an
