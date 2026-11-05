@@ -58,23 +58,33 @@ What is put in by hand (none of it derived):
 | Wide binaries | OPEN; Gaia DR4 pre-registration frozen | prep_2026/gaia_dr4_prep |
 | Unification, SM bridge, fine-structure constant | STOPPED / WALLED / NOT DERIVED | owner 11-01; FSP-010 |
 
-## 3. The one live constructive route: AC2
+## 3. The one live constructive route: AC2, repaired as AC2q
 
 AC2 (`action_search_2026_11_05/AC2_single_clock/ACTION.md`) lets the dark-energy
-scalar itself be the clock, with a smooth, unswitched stiffness. It removes the
-independent-clock caustic branch that AC1 proved.
+scalar itself be the clock. It removes the independent-clock caustic branch
+that AC1 proved. As written (smooth stiffness) it is ill-posed in galaxies (AC6).
+AC2q switches the stiffness on the khronon charge D.P + 2X (AC7):
+-(gamma/2){[max(D.P + 2X, 0)]^2 - (2X)^2}.
 
 | Test | Result |
 |---|---|
 | Scalar-only FRW quadratic action | healthy (AC2) |
 | Coupled matter, UV principal speeds | positive, subluminal (AC3) |
 | Frozen finite-wavelength roots | 8/81 negative, slow (|omega| < H), not a controlled test (AC3) |
-| Those 8 modes evolved on their own background | NO VERDICT (AC4): no growth beyond GR (witness max R 0.305), one witness misses the frozen convergence line, and the flipped-stiffness control does not bite, so the test has no power on the constant-V background (the clock stops rolling) |
+| Those 8 modes evolved, constant V | NO VERDICT (AC4): no growth beyond GR, but the flipped-stiffness control does not bite (clock stops rolling) |
+| Same, rolling clock (exponential V) | NO VERDICT, no power (AC5): flipped control reaches R 8.6 < 1e3; even a wrong-sign stiffness gives only Hubble-rate growth there. Main 81 cases still running |
+| AC2 inside galaxies | ILL-POSED (AC6): charge = div P + phidot^2; phidot^2 <= 2 rho_DE cannot fill the phantom's negative regions (6/7 H4 systems, both footings) |
+| AC2q, FRW | healthy: lapse term x (1 - 2 gamma phidot^2)^2, 72/72 fixtures (AC7 Q1) |
+| AC2q, galaxies | no Gamma ~ k anywhere; off-region bounded (AC7 Q2) |
+| AC2q, static limit | = v3s at mu_K = 0 up to phidot^2-proportional terms (<= 2.2e-10 relative, Poisson + rho_DE): v3s's static passes carry (AC8) |
+| Switch on D.P alone (v3s placement) with a dark-energy clock | non-analytic on FRW (AC7 control M-b) |
 
-Still owed before AC2 could replace v3s: sourced inhomogeneous backgrounds,
-X > 0 preservation (on the constant-V background the clock's X falls as a^-6),
-the near-saturation obstruction, and own-equation Solar-System, galaxy,
-lensing and tensor regrades. It fixes no coefficient: xi and kappa stay by hand.
+AC2q is a candidate, not adopted: one field is dark energy and the clock, no
+dust, healthy on FRW and in galaxies at this order, static limit = v3s.
+Still owed: nonlinear evolution, X > 0 preservation, a moving Sun in the clock
+frame (the same open item as v3s's AZ37), lensing and tensor regrades on its own
+equations. It fixes no coefficient: xi and kappa stay by hand. Having no dust,
+it says nothing new for clusters, growth or the CMB.
 
 ## 4. What is left, and what would move it
 
