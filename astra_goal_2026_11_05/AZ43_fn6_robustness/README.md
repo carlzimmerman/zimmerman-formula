@@ -115,3 +115,10 @@ p=.45 at L_MW=1,1.25,1.45,1.475,1.5,1.525,1.55,1.75. Maximum relative
 dispersion changes range from1.0881% to3.7326%, exceeding the frozen1%.
 No other small-gate numerical line fails at this checkpoint. Failed T2
 rows remain UNDECIDED; separate decisive physical gates are kept separate.
+
+At123 pairs (indices0–122),107 meet the small-gate numerical lines and16
+have T2 failures on both footings. Newly failed points117–122 have p=.475
+and L_MW=1,1.25,1.45,1.475,1.5,1.525. Their worst dispersion changes range
+from2.8930% to7.1744%, versus the unchanged1% line. Points113–116 meet the
+numerical lines. The remainder of the frozen grid is still running; no
+resolution, tolerance or point has been changed to recover a pass.
