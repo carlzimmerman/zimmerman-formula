@@ -10,7 +10,16 @@ exact checks pass. The residual depends on a scalar history and boundary
 term; the homogeneous selector still does not contain the response couplings
 B,h. No coefficient or protected criticality is derived. A shared interaction
 or symmetry must connect those sectors before more homogeneous history solves
-could select the coefficient. The goal remains active.
+could select the coefficient.
+
+joint_phase/INDUCED_RESULT.md tests a changed shared-condensate gravitational
+coupling. It derives stable positive scalar-tensor vacuum conditions, the
+curvature-induced quadratic response and a tree-level cancellation option.
+Its18 exact checks pass. The joint ratio remains
+128pi/[r_B^2 x^2 theta^3(x-1)]; even B=A leaves vacuum and mass-ratio data.
+No microscopic selection, protected criticality or full source/clock health
+is supplied. This alternative has not been combined with sequestering.
+The goal remains active.
 
 ## Previous investigation outcome: scoped obstructions established
 
