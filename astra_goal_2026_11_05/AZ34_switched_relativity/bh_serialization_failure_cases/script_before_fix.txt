@@ -1,0 +1,124 @@
+#!/usr/bin/env python3
+"""Fresh P3 reduced BH response, switched-domain checks and doubled resolution."""
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import resource
+import signal
+import sys
+import time
+sys.dont_write_bytecode=True
+for key in ('OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS','VECLIB_MAXIMUM_THREADS'):
+    os.environ[key]='1'
+os.environ.pop('P3_MUTATE',None)
+HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[1]
+ap=argparse.ArgumentParser();ap.add_argument('--resume',action='store_true');ap.add_argument('--max-cases',type=int)
+args=ap.parse_args();STOP=[]
+signal.signal(signal.SIGTERM,lambda s,f:STOP.append(s))
+signal.signal(signal.SIGINT,lambda s,f:STOP.append(s))
+P3=ROOT/'rebuild_2026_10_22/P3_v3_strong_field'
+srcpath=P3/'p3_v3_strong_field.py';src=srcpath.read_text()
+record=json.loads((P3/'p3_v3_strong_field_results.json').read_text())
+files=[Path(__file__),HERE/'FROZEN_CRITERIA.md',srcpath,P3/'p3_v3_strong_field_results.json']
+hashes={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in files}
+fingerprint=hashlib.sha256(json.dumps(hashes,sort_keys=True).encode()).hexdigest()
+out=HERE/'bh_cases';out.mkdir(exist_ok=True);t0=time.monotonic()
+def atomic(p,obj):
+    tmp=p.with_suffix('.tmp');tmp.write_text(json.dumps(obj,indent=2,allow_nan=False)+'\n');os.replace(tmp,p)
+def checkpoint(name,fn):
+    if STOP:sys.exit(75)
+    p=out/(name+'.json')
+    if p.exists():
+        if not args.resume:raise RuntimeError('Existing result requires --resume')
+        r=json.loads(p.read_text())
+        if r['fingerprint']!=fingerprint:raise RuntimeError('Changed inputs')
+        print('RESUME',name,flush=True);return r['data']
+    t=time.monotonic();data=fn()
+    rss=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss*(1 if sys.platform=='darwin' else 1024)
+    atomic(p,dict(data=data,seconds=time.monotonic()-t,rss_bytes=rss,fingerprint=fingerprint))
+    print('CASE',name,'sec',round(time.monotonic()-t,2),'RSS',rss,flush=True)
+    if rss>850e6:raise RuntimeError('Memory line exceeded; defer further work to queue')
+    return data
+
+# Audited prefix derives the covariant reduced stress and PG known answer.
+# Stop before the neutron-star definitions and every historical output writer.
+prefix=src[:src.index('# static foliation on a general static background')]
+defs=src[src.index('# ==================================================================================== PART B/C:'):src.index('# B1: static branch')]
+# The benchmark heading between scaled() and B1 only logs inputs; no production loop.
+defs=defs.replace('xx = np.cos(np.pi * (np.arange(deg + 1)',
+                  'deg = int(deg * REFINE)\n    xx = np.cos(np.pi * (np.arange(deg + 1)')
+defs=defs.replace('math.log(rn), 1601)', 'math.log(rn), 1600 * REFINE + 1)')
+env={'__file__':str(srcpath),'__name__':'az34_readonly_P3','REFINE':1}
+exec(compile(prefix,'P3[reduced action]','exec'),env)
+exec(compile(defs,'P3[response definitions]','exec'),env)
+np,math=env['np'],env['math']
+def evaluate(mass,a0,L,charge,refine):
+    env['REFINE']=refine
+    ah,sigma,eps,rg=env['scaled'](mass,a0,L)
+    member=env['Member']('C',sigma,eps,c=charge) if sigma<.5 else env['Member']('T',sigma,eps,ph=0.)
+    coef,lin,_=env['response'](member,50.)
+    radii=np.linspace(2.00001,50.,512*refine)
+    dps=[];cap=[];omitted=[];js=[];js0=[]
+    for r in radii:
+        # C interpolation ends at12; use its direct algebraic far branch.
+        if member.kind=='C' and r>12:
+            N,N1,N2=env['num_derivs'](member.Nfun,r)
+        else:N,N1,N2=member.N(r),member.N(r,1),member.N(r,2)
+        p,p1,p2=member.p(r)
+        q=p1+2*p/r;dp=N*q
+        dps.append(dp);cap.append(abs(p))
+        # Euler derivative of -sigma*r^2*(D.P)^2/2 wrt p.
+        omitted.append(sigma*r*r*(2*N*N1*q+N*N*(p2+2*p1/r-2*p/r**2)))
+    # Exact positive-branch formula for screened T; for C, p=1 gives2N/r.
+    if member.kind=='T':
+        identity=max(abs(d-(1-member.N(r))/(sigma*member.N(r))) for d,r in zip(dps,radii))
+    else:identity=0.
+    return dict(kind=member.kind,a_hat=ah,sigma=sigma,charge=member.c,Lpc=L,
+                coef=coef,linearity=lin,shifts={k:abs(v)*ah for k,v in coef.items()},
+                min_divergence=min(dps),max_abs_p=max(cap),min_N=float(min(member.Nfun(r) for r in radii)),
+                divergence_identity_abs=identity,inverted_omitted_ELp_max=max(abs(v) for v in omitted),
+                inverted_scope='Removed stiffness Euler term on the main member, not an inverted-switch solution.',
+                capped_scope='C uses p=1 limiting profile; finite-a_hat cap gap not solved by this truncation.')
+
+known=checkpoint('known_BH10_24pc',lambda:evaluate(10.,9.36e-11,24.,0.,1))
+reference=next(v for v in record['observables']['BH10|canonical|24pc'] if v['info'].get('p(2M)')==0.)['coef']
+kdev=max(abs(known['coef'][k]/v-1) for k,v in reference.items())
+checks=dict(Schwarzschild=bool(env['c1dev']<1e-10),PG=bool(env['okA2']),known_response=kdev<=1e-3)
+footings={'canonical':9.3603e-11,'alt':1.1312e-10}
+lengths={'canonical':(21.68,24.,27.),'alt':(22.85,24.,24.60)}
+results={};count=0
+for foot,a0 in footings.items():
+    results[foot]={}
+    for L in lengths[foot]:
+        for name,mass in env['BH'].items():
+            _,sigma,_,_=env['scaled'](mass,a0,L)
+            for charge in ((.01,.1,.3,1.) if sigma<.5 else (0.,)):
+                key=f'{foot}_{name}_L{L}_c{charge}'
+                pair={}
+                for refine in (1,2):
+                    pair[refine]=checkpoint(key+'_r'+str(refine),lambda:evaluate(mass,a0,L,charge,refine))
+                    count+=1
+                    if args.max_cases and count>=args.max_cases:sys.exit(75)
+                low,high=pair[1],pair[2]
+                err=max(abs(high['coef'][k]/v-1) for k,v in low['coef'].items() if v!=0)
+                ck=dict(convergence=err<=1e-3,linearity=max(low['linearity'],high['linearity'])<=1e-3,
+                        positive_divergence=min(low['min_divergence'],high['min_divergence'])>0,
+                        physical_floor=max(high['shifts'].values())<=1e-2,
+                        positive_lapse=min(low['min_N'],high['min_N'])>0)
+                results[foot][key]=dict(coarse=low,fine=high,convergence_relative=err,checks=ck,
+                                       label='PASS reduced static response' if all(ck.values()) else 'UNDECIDED')
+                atomic(HERE/'main/bh_partial.json',results)
+result=dict(checks=checks,known_response_relative=kdev,footings=results,inputs=hashes,
+            seconds=time.monotonic()-t0,
+            label='PASS reduced static response' if all(checks.values()) and all(r['label'].startswith('PASS') for f in results.values() for r in f.values()) else 'UNDECIDED',
+            scope='Stationary reduced response only. Charges and benchmark masses illustrative/free. Full finite-a_hat branch, moving/rotating BHs and selected charge not established.',
+            statement='kappa = 1/2 FITTED; not theory closed')
+atomic(HERE/'main/black_holes.json',result)
+atomic(HERE/'mutate/black_holes.json',dict(label='NOT EVALUABLE on shell',
+    footings={f:{k:dict(omitted_ELp_max=r['fine']['inverted_omitted_ELp_max'],
+                       reason=r['fine']['inverted_scope']) for k,r in rows.items()} for f,rows in results.items()},
+    statement='Switch inverted: main screened backgrounds cannot simply be reused. Global control bites in structural_results.'))
+print('FINAL',result['label'],checks,'known',kdev,flush=True)
+sys.exit(0 if result['label'].startswith('PASS') else 1)
