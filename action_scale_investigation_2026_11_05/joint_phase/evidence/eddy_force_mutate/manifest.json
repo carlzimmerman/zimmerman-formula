@@ -1,0 +1,152 @@
+{
+  "schema_version": 2,
+  "claim_id": "EDDY-GRAVITY-AND-ROTATION-CURVES",
+  "repository": {
+    "commit": "d1c09a0d3b729d92fe4b786ff6b68bdae52db46c",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "action_scale_investigation_2026_11_05/joint_phase/eddy_force.py",
+    "--out",
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/eddy_force_mutate/result.json",
+    "--mutate"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Canonical vortex stress, radial virial identity, resolved fundamental core profiles and rotating-vortex active-density contrast",
+    "coefficient_domain": "Exact symbolic identities and float64 collocation/quadrature with frozen convergence tests",
+    "conventions": "c=1, signature -+++, fixed polarization versus fixed conjugate distinguished",
+    "inputs": [
+      "Canonical broken U(1) scalar with minimal matter coupling",
+      "Dimensionless n=1 radial vortex equation; weak-field gravity with all principal pressures"
+    ],
+    "bounds": {
+      "R": [
+        20,
+        40,
+        80
+      ],
+      "core_cutoff": 0.0001,
+      "initial_nodes": [
+        400,
+        800
+      ],
+      "solver_tolerances": [
+        1e-08,
+        1e-09
+      ],
+      "max_nodes": 20000,
+      "profile_agreement": 1e-05,
+      "virial_relative_limit": 1e-06,
+      "corrected_integral_limit": 0.0001
+    },
+    "non_claims": [
+      "Not a finite galaxy simulation",
+      "Not a fully backreacted stationary metric or full stability proof",
+      "No numerical coefficient selection or empirical fit"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-05T22:29:38.381801+00:00",
+    "runtime_seconds": 0.615958,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "action_scale_investigation_2026_11_05/joint_phase/eddy_force.py",
+    "action_scale_investigation_2026_11_05/joint_phase/EDDY_FORCE_CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/eddy_force.py",
+      "sha256": "3f79bc9df11909791a1bb35efa14f908b3b1baef9bce4fda5ee9da0dcf68b048",
+      "sha256_after": "3f79bc9df11909791a1bb35efa14f908b3b1baef9bce4fda5ee9da0dcf68b048"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/EDDY_FORCE_CONTRACT.md",
+      "sha256": "46d9a19f2c48f8f97b488405ae340ed99570a2f01275f8eb6c9886112c547c22",
+      "sha256_after": "46d9a19f2c48f8f97b488405ae340ed99570a2f01275f8eb6c9886112c547c22"
+    }
+  ],
+  "output_directory": "action_scale_investigation_2026_11_05/joint_phase/evidence/eddy_force_mutate",
+  "declared_results": [
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/eddy_force_mutate/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/eddy_force_mutate/stdout.txt",
+      "sha256": "3ce4f380879e4a1a0f8d40ccfc9246b4afbaa371baac74f64a7395612b32aba6",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/eddy_force_mutate/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/eddy_force_mutate/result.json",
+      "sha256": "b8a13d5e5be0a3108f6dec8c592d5fd76d68c4203623adaa5fe37601699910a9",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

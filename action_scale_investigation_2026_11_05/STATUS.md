@@ -1,5 +1,21 @@
 # Joint-model continuation: blocked on coefficient selection
 
+Latest user-authorized calculation: joint_phase/EDDY_FORCE_RESULT.md derives
+the force on stars from the illustrative canonical vortex, including pressure.
+The static source is -2U and its leading far force is outward
+2pi G n^2 v0^2/r. A finite-charge vortex also has negative active source
+relative to its ambient condensate. Six converged profiles verify the core
+virial coefficient;31 checks pass and the density-only control fails its
+two intended checks. A separate rho_h=A/r^2 overdensity would yield flat
+curves, but its required A(M_b,rho_DE) is not derived. This completed bounded
+test follows new user authorization; no previous blocked-turn count applies
+to it. The overall coefficient remains unresolved, and no action is adopted.
+joint_phase/MATERIAL_POOL_DERIVATION.md derives an attractive flat-curve
+tail from isothermal hydrostatic balance, rather than imposing a density
+profile: v_flat^2=2c_s^2. Its free dispersion does not supply the required
+c_s^4=G M_b c sqrt(G rho_DE)/8. This is an analytic alternative concentration
+model, not a numerical fit or a completed unified medium.
+
 Current selection boundary: joint_phase/SELECTION_IMPASSE.md rechecks the
 adopted action and microscopic mechanism notes and records three consecutive audits
 of a research impasse. No coefficient-selecting physical principle has been
