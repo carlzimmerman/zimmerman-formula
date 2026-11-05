@@ -52,4 +52,25 @@ hits as a law. Stage1/Stage2 grading of200 candidates per arm is complete:
 candidates reject on both footings; remaining full acceptance is pending.
 See ../rebuild_2026_10_22/SY1_free_constant_law_search/CONTROL_RESULTS_2026-11-05.md.
 The export stall was fixed and checkpoint progress verified. L1/CB1 holds remain
-unchanged; no computation from this chat is intentionally left running.
+unchanged. At 10:31 Eastern the user requested more Mac calculations: the
+original SY1 real --stage3 reader was relaunched detached, nice10, one BLAS
+thread, PID25895. It repeats the two previously completed candidates and then
+continues the canonical survivors within the existing200-per-arm cap. See
+../rebuild_2026_10_22/SY1_free_constant_law_search/acceptance_resume_2026_11_05/
+for the launch record, pre-run input snapshots and live log. Launch is not
+completion. A leftover temporary debugging probe PID8257 was discovered and
+stopped; the earlier statement that no job remained running was too broad.
+
+## AC3 coupled matter gradient continuation
+
+AC3_matter_gradients/RESULT.md resolves the finite-positive-Lstar FRW UV
+principal scalar block: squared speeds are F_Y/Rm and
+ epsilon_phi/[epsilon_phi+2/(H Lstar)^2], both positive and <=1 under the
+stated matter assumptions.81 high-precision fixtures and exact ADM identities
+pass. This applies to both P=0 single-clock portals and does not fix kappa.
+A full frozen finite-wavelength canonical-matter check finds8 of81 negative
+slow roots, all with |omega|<H. They require evolving-background integration;
+no physical stability or instability verdict is inferred from those roots.
+Original symbolic comparison failure, determinant timeout and unpacking bug
+are retained in separate evidence records. Time-dependent equations are
+written in RESULT.md; integration remains outstanding.
