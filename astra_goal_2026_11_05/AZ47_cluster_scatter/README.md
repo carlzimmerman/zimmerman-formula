@@ -137,3 +137,10 @@ Full same-size repeats remain pending; no final lane verdict follows.
 L1 alt real at chunk1000 reaches its180second limit at4,545,000 rows
 and requires heavyq resume. That prefix is preserved separately and is
 not compared to its4,948,893-row full chunk2000 run as a convergence pair.
+
+All16 initial bounded runs have now ended:14 complete, with the two L1
+real chunk1000 runs deferred to heavyq. Six complete chunk pairs have no
+validation failure. L2 alt also completes both real/control pairs; see
+census_checks.json for their counts. Independent chunk2000 repeats are
+running under the same180second limit; an exhausted repeat also requires
+the queue. A completed initial census never substitutes for its repeat.
