@@ -1,11 +1,12 @@
-# Active joint-model continuation
+# Joint-model continuation: blocked on coefficient selection
 
 Current selection boundary: joint_phase/SELECTION_IMPASSE.md rechecks the
-adopted action and microscopic mechanism notes and records two consecutive audits
+adopted action and microscopic mechanism notes and records three consecutive audits
 of a research impasse. No coefficient-selecting physical principle has been
 identified. The user has been asked for any additional theory-defining
-postulate or source. No process is running; the goal remains active and
+postulate or source. No process is running; the goal is blocked and
 unachieved. This revalidation is not a new successful physics calculation.
+Earlier active-status statements below describe their historical checkpoints.
 
 The user requested further constructive work after the previous scoped
 audit. The new goal is active. joint_phase/RESULT.md computes the phase

@@ -104,3 +104,19 @@ therefore remains; no new calculation is justified by changed evidence.
 This administrative audit does not count as research progress. The goal
 remains active and unachieved; the three-turn blocked threshold is not yet
 met. The outstanding question is retained without asking it again.
+
+## Third consecutive impasse audit: goal blocked
+
+Base:9e953155e7. The preceding turn made no scientific progress. The scoped
+worktree is clean and the same adopted-action and mechanism inputs remain
+unchanged against46a2605406. No response supplying an additional physical
+postulate has arrived. No live computation exists whose completion could
+resolve this gap. The same selection blocker has therefore persisted for
+three consecutive goal turns. The goal status was set to blocked, not
+complete; the tool confirmed that status.
+
+The unresolved objective is preserved unchanged. Resumption requires new
+theory-defining input or a concrete independently justified mechanism that
+addresses the matching identity above. This is a research impasse for the
+present investigation, not a proof that no derivation is possible. All
+completed calculations and failed constructions remain available for reuse.
