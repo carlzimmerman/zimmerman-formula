@@ -1,35 +1,58 @@
 # The Crispy Fried Chicken Status Board
 
-**Crispiest recipe (the a₀ law):** g_N = g²/(g + a₀), a₀ = κ c √(G ρ_DE), κ = ½ fitted. Nothing else: no action, no screen, no dust term.
+**Crispiest recipe (the a₀ law):** g_N = g²/(g + a₀), a₀ = κ c √(G ρ_DE), put in by hand, κ = ½ fitted. Its action is v3s, adopted by the owner on 4 November for isolated galaxies, the Solar System, galaxy lensing and gravitational waves only. It supplies no cluster or CMB mass.
 
-*Where the current best theory stands as of 1 November 2026. The board shows the law only. The theory is not complete, and nothing here says the data favour this framework.*
+*Where the current best theory stands as of 4 November 2026. Column 0 is graded on v3s within that scope; every other tile is the law's. The theory is not complete, and nothing here says the data favour this framework.*
 
 The simple form is Milgrom's, and so is the nearness of a₀ to cH₀. Limbach, Psaltis and Özel proposed the tie to the dark energy density. None of it originated here. κ = ½ is **fitted**. Every number is quoted on two footings, 9.3603 × 10⁻¹¹ and 1.1312 × 10⁻¹⁰ m/s², and the two are never pooled.
 
 ![Status board: every test of the a₀ law as a coloured tile](img/status_board.png)
 
+## What changed on 4 November
+
+The owner adopted v3s as the a₀ law's action, scoped ([decision](../finish_2026_11_04/FN1_action_call/OWNER_DECISION_2026-11-04_ADOPT_V3S_SCOPED.md), pushed in 7ac515f958). It supersedes the same day's "no action" call. The scope is isolated galaxies, the Solar System, galaxy lensing and gravitational waves. Clusters, linear growth and the CMB, the radiation era, hosted dwarfs and the Milky Way joint fit stay open, and the 24 October verdict's failures there stand. a₀ is put in by hand.
+
+- **Column 0 is now graded on v3s.** The relativity tiles had gone grey on 1 November because the law had no action.
+  - Solar System (C6P), gravity-wave speed (V3W W4a) and the new lensing = dynamics tile (V3W W3) are green from post-adoption lanes, each with a verified entry.
+  - Health is conditional: galaxy backgrounds pass (V3W W4b), and the Solar-System spectrum is UNDECIDED (V3X).
+  - Binary pulsars, leaf problem, causality, strong coupling, matter conservation and black holes keep their 24 October v3s colours. They are marked as carried, not regraded, and each number is checked against its lane's file.
+- **The action's tile is conditional and states the carried weak spots:** V3X W2 and W4c(b) are UNDECIDED on numerics, and constraints act instantaneously. The generator refuses the board if any of the three drops off that tile.
+- **Three tiles came back from "left the board":** Solar system + Cassini (screened), the leaf problem and the stiffness length L★.
+- **The unscreened Cassini tile is a control again.** AX1 found that every unscreened action class fails, 1.69–5.18× Hees.
+- **Other notes changed:**
+  - Radiative stability moved to column 4. It was never recomputed for v3 or v3s.
+  - The DR4 wide-binary tile carries CQ2's sealed NEWTONIAN (SCREENED) prediction.
+  - The tidal dwarfs and outer globulars stay grey: they are hosted systems, outside the scope.
+- **No verdict on the law's own tiles changed.**
+- **Fix-forward:** the generator pointed at PAPER67's draft file, which was renamed at deposit on 2 November, so it couldn't run. It now reads the deposited file. That file counts 550 κ attempts where the draft said 537.
+- **Counts:** of 48 tiles, canonical has 12 pass, 8 conditional, 1 not decidable, 9 fail, 5 open and 13 grey; alt has 11 pass and 10 fail. The 1 November board is kept as [`img/status_board_2026-11-01law.png`](img/status_board_2026-11-01law.png).
+- **PAPER67 v1.1** (DOI 10.5281/zenodo.23966443) still says no action is selected. A v1.2 needs the owner's go.
+
+**LW1 has landed, not folded.** [`LW1_law_scorecard`](../rebuild_2026_10_22/LW1_law_scorecard/README.md) (afcf01fc96) reads FAIL on K, X, Dw, DM and IC on both footings. This board still shows FG1's cells for those lines: X-COP and DiskMass are grey there. The refold is a separate step.
+
 ## What changed on 1 November
 
 The owner retired route E's cold sector after FG1 failed all four candidates ([decision](../rebuild_2026_10_22/OWNER_DECISION_2026-11-01_RETIRE_COLD_SECTOR.md)), so under the rule of 23 October this board now shows the a₀ law alone. It never carried route E: its last fold was v3s on 24 October, so this rebuild replaces v3s directly. Every tile is rebuilt from FG1's C4 and alt rows and the lanes PAPER67 cites. Of 44 tiles, 7 are green on the canonical footing and 6 on alt, 9 and 10 red, 2 conditional, 1 not decidable, 4 open and 21 grey. Only SPARC splits by footing: canonical passes and alt fails Υ 0.44. All the relativistic greens went grey, because the law has no action to test, and the Cassini tile is no longer a control but the law's own failure. The tidal-dwarf green went grey too, because it came from v3's dust theorem. Nine tiles are new and five left the board. No verdict was changed here, and the PAPER67 draft stays undeposited.
 
-**Running, not folded.** [`LW1_law_scorecard`](../rebuild_2026_10_22/LW1_law_scorecard/FROZEN_CRITERIA.md) (criteria e9694d20a9) is computing the law's K, X, Dw, DM and MW lines on the measured chain. Its numbers aren't on this board. Those five tiles need a refold when it lands.
+*(As written on 1 November: "Running, not folded. LW1 is computing the law's K, X, Dw, DM and MW lines." It has since landed; see above.)*
 
 ## The tiles
 
-Colours restate FG1 or the lane named, on the footing named. Grey means no graded number for the law, and the tile gives the reason. FG1 isn't blind, and its clean-room regrade (CRG1) is mainly a test of code that didn't recompute MW, DM or IC.
+Column 0 is graded on v3s. The other colours restate FG1 or the lane named, on the footing named. Grey means no graded number, and the tile gives the reason. FG1 isn't blind, and its clean-room regrade (CRG1) is mainly a test of code that didn't recompute MW, DM or IC.
 
 | tile | canonical | alt | source lanes | v3s colour |
 |---|---|---|---|---|
-| The law vs Cassini (unscreened) | fails | same | E2, PAPER67 | fails |
-| An action | no graded number for the law | same | PAPER67, OWNER-11-01, V3S-VERDICT | fails |
-| Gravity waves at light speed | no graded number for the law | same | PAPER67, V3S-VERDICT | pass |
-| Binary pulsars + GW170817 | no graded number for the law | same | PAPER67, V3S-VERDICT | pass |
-| Health: ghosts, gradients | no graded number for the law | same | PAPER67, V3S-VERDICT | conditional |
-| Causality: criterion A / B | no graded number for the law | same | PAPER67, V3S-VERDICT | conditional |
-| Strong coupling | no graded number for the law | same | PAPER67, V3S-VERDICT | conditional |
-| Radiative stability (G12) | no graded number for the law | same | PAPER67, V3S-VERDICT | not yet recomputed for v3 |
-| Matter conservation (G9) | no graded number for the law | same | PAPER67, V3S-VERDICT | pass |
-| Black holes (EHT, LIGO ringdown) | no graded number for the law | same | PAPER67, V3S-VERDICT | conditional |
+| An action | conditional | same | OWNER-11-04, AX1 | fails |
+| Solar system + Cassini (screened) | pass | same | C6P, V3W | pass |
+| The law vs Cassini (unscreened) | fails | same | E2, AX1 | fails |
+| Gravity waves at light speed | pass | same | V3W, V3X | pass |
+| Binary pulsars + GW170817 | pass | same | C8 | pass |
+| Health: ghosts, gradients | conditional | same | V3W, V3X | conditional |
+| Leaf problem well-posed | conditional | same | C8, H4, X3 | conditional |
+| Causality: criterion A / B | conditional | same | C5, C8, OWNER-11-04 | conditional |
+| Strong coupling | conditional | same | P3 | conditional |
+| Matter conservation (G9) | pass | same | CFG329, C4 | pass |
+| Black holes (EHT, LIGO ringdown) | conditional | same | P3 | conditional |
 | Rotation curves (SPARC RAR) | pass | fails | FG1, NR2, PAPER67, P4 | conditional |
 | Tilt with speed | pass | same | FG1, NR2 | new |
 | LITTLE THINGS dwarfs | pass | same | FG1, NR2 | new |
@@ -38,6 +61,7 @@ Colours restate FG1 or the lane named, on the footing named. Grey means no grade
 | Local a0 from MeerKAT | pass | same | PAPER60, P4, PAPER67 | pass |
 | Isolated-galaxy lensing, shape | pass | same | FG1, NR2, PAPER67 | not decidable yet |
 | Isolated-galaxy lensing, inner | conditional | same | CFG829, BL1, S2, PAPER67 | conditional |
+| Lensing = dynamics (v3s) | pass | same | V3W, OWNER-11-04 | new |
 | Red (early-type) lenses | conditional | same | CFG829, BL1, S2, PAPER67 | conditional |
 | MW vertical force | fails | same | FG1, X5 | fails |
 | MW outer slope (Gaia) | fails | same | X5, PAPER67 | fails |
@@ -50,23 +74,32 @@ Colours restate FG1 or the lane named, on the footing named. Grey means no grade
 | X-COP | no graded number for the law | same | FG1, CS2, DR1, LW1-CRITERIA | new |
 | DiskMass | no graded number for the law | same | FG1, CFG576, CFG577, OD1, LW1-CRITERIA | new |
 | a0(z): native band vs a0 ~ H(z) | not decidable yet | same | CFG689, PAPER67 | not decidable yet |
-| CMB | no graded number for the law | same | RF5, PAPER67, OWNER-11-01 | fails |
+| CMB | no graded number for the law | same | RF5, PAPER67, OWNER-11-01, OWNER-11-04 | fails |
 | Linear growth | no graded number for the law | same | RF5, PAPER67 | fails |
 | High-z on halo-free inputs | no graded number for the law | same | CFG303, S4 | not decidable yet |
 | CRISTAL z~5 / ALESS 122.1 | no graded number for the law | same | CFG307, CFG308, S4 | not decidable yet |
 | ALMA U4 (6 Nov), GS4 (28 Nov) | open | same | LEDGER, AC1, PAPER67 | open |
-| Gaia DR4 wide binaries (Dec) | open | same | DR4-PREREG, PAPER67 | open |
+| Gaia DR4 wide binaries (Dec) | open | same | CQ2, DR4-PREREG, PAPER67 | open |
 | Gaia DR4 MW predictions | open | same | OWNER-11-01, S3 | open |
 | The owner's wave a0(z) idea | no graded number for the law | same | CFG956, CFG957 | open |
 | Why kappa = 1/2 | open | same | PAPER67, CFG894, MI-PROFILE | open |
+| Stiffness length L* | open | same | C3, D10, C6P | open |
+| Radiative stability (G12) | no graded number for the law | same | V3S-BOARD | not yet recomputed for v3 |
 | The matter term | no graded number for the law | same | PAPER67, OWNER-11-01 | open |
-| Tidal dwarfs, NGC 1052-DF2/DF4 | no graded number for the law | same | P4, U1 | pass |
+| Tidal dwarfs, NGC 1052-DF2/DF4 | no graded number for the law | same | P4, U1, OWNER-11-04 | pass |
 | Central ellipticals (SLUGGS) | no graded number for the law | same | CFG528, S4 | not decidable yet |
 | Coma ultra-diffuse galaxies | no graded number for the law | same | S1 | fails |
-| Outer globulars | no graded number for the law | same | D10 | conditional |
+| Outer globulars | no graded number for the law | same | D10, OWNER-11-04 | conditional |
 
 ## Readings to take with the colours
 
+- **The action is adopted for a scope, not proven complete.** v3s is the only action class AX1 found that passes G1–G4 on both footings. Its own weak spots are carried, not graded:
+  - V3X's W2 ladder meets its lines, but its known-answer check K1 was frozen too tight at an ungraded radius.
+  - W4c(b) finds no instability, but misses its spectral ladder (14.6 % against 5 %) and its tensor line (1.1e-10 against 1e-10).
+  - Constraints propagate instantaneously (C5's criterion A fails).
+  - Still asserted, not shown: post-Newtonian sign stability, the Sun at rest in the khronon frame, a uniform-density solar interior, and nonlinear well-posedness.
+- **Lensing = dynamics has weak power.** On KiDS alone its MUTATE twin is caught at only 1.9σ; GH1 is what catches it.
+- **Carried tiles** (binary pulsars, leaf problem, causality, strong coupling, matter conservation, black holes) restate the 24 October board. Several of their lanes (C8, P3) ran on v3 before the switched stiffness; the 24 October verdict lists them as v3s's.
 - **Isolated-galaxy lensing, shape, is green because FG1 grades it PASS.** The rule's first term is zero by construction when the lens sits on the law, and the comparison is against halos now retired. No tested model fits these profiles in absolute terms.
 - **Rotation curves, canonical half.** The 0.50–0.80 line was first written for this law, and its lower edge is a population model's value. Read it beside the measured stellar masses tile. P4's χ² line fails on both footings, and FG1 doesn't grade that line.
 - **Surface brightness is green on HS1's frozen class,** with a MUTATE twin and PAPER67's audit behind it. It has no second run: on 1 November its chain wouldn't run outside its own folder. n = 47, and the result separates the law from the retired halos only.
@@ -84,19 +117,26 @@ Kept with their v3s colours on [`img/status_board_2026-10-24v3s.png`](img/status
 
 | tile | v3s colour | why it left | the law's counterpart |
 |---|---|---|---|
-| Leaf problem well-posed | conditional | v3s's (P, lapse) field problem; the law has no such fields | An action |
-| Solar system + Cassini (screened) | pass | tested v3s's screen; the law has none | The law vs Cassini (unscreened) |
-| One selector for the family | open | chose who gets v3's cold component; the law has none | none needed |
-| Stiffness length L* | open | v3s's fitted constant | none needed |
+| One selector for the family | open | chose who gets v3's cold component in hosts and clusters, outside v3s's adopted scope; the law has none | none needed |
 | Law + a^1 growth + no EFE, local | fails | a no-go on law + cold component + growth; PAPER67 keeps its question as an open gap | CMB; Linear growth |
+
+Leaf problem well-posed, Solar system + Cassini (screened) and Stiffness length L* left on 1 November and came back on 4 November with v3s as the action.
 
 ## The bottom line
 
-On isolated disc galaxies the law does well on the canonical footing: SPARC, tilt, LITTLE THINGS, groups, surface brightness. Alt misses SPARC's Υ line. It fails the unscreened Solar System, the Milky Way's vertical force and outer slope, IC 1613, the Local Group classes, measured stellar masses at 60–150 km/s, cluster cores and keys, and the outer shear's slope with gas mass. It has no action and no account of the CMB, cluster cores or the matter term in its own expansion history. Those gaps are open and unanswered; retiring the cold sector removed the proposed answer, not the question. The distinctive claim, the tie of a₀ to dark energy over cH₀, has no decisive test yet. The dated tests are ALMA U4_28473 (6 November), GS4_24110 (28 November by earlier metadata) and Gaia DR4 (December); none separates the tie by itself. The one that would is a clean deep-MOND a₀ point at z ≈ 2.5 to about 0.10 dex, not scheduled. κ = ½ is fitted, and the theory is not closed.
+*4 November:* with v3s as its action, the law passes the screened Solar System, gravity-wave speed and lensing = dynamics. Its health and well-posedness are conditional, and the weak spots above are carried. That covers the action's scope only. Clusters, the CMB, growth, hosted dwarfs and the Milky Way joint fit stay open, and v3s supplies no mass there. *1 November, the law's own tiles (unchanged):* On isolated disc galaxies the law does well on the canonical footing: SPARC, tilt, LITTLE THINGS, groups, surface brightness. Alt misses SPARC's Υ line. It fails the unscreened Solar System, the Milky Way's vertical force and outer slope, IC 1613, the Local Group classes, measured stellar masses at 60–150 km/s, cluster cores and keys, and the outer shear's slope with gas mass. It has no action and no account of the CMB, cluster cores or the matter term in its own expansion history. Those gaps are open and unanswered; retiring the cold sector removed the proposed answer, not the question. The distinctive claim, the tie of a₀ to dark energy over cH₀, has no decisive test yet. The dated tests are ALMA U4_28473 (6 November), GS4_24110 (28 November by earlier metadata) and Gaia DR4 (December); none separates the tie by itself. The one that would is a clean deep-MOND a₀ point at z ≈ 2.5 to about 0.10 dex, not scheduled. κ = ½ is fitted, and the theory is not closed.
 
 ## How this board is built
 
-[`make_status_board.py`](make_status_board.py) reads FG1's verdict table at build time and refuses a colour that differs from it, one colour per footing, and NOT GRADED must be grey. It checks each quoted number against the named lane's committed file. It also refuses a green with no FG1 row or verified entry, a verdict colour resting on a v3-only lane, and a v3s tile that vanishes. `--mutate` must fail, `--selftest` breaks each guard (24 cases), and `--md` prints the table above. The v3s generator is kept as [`status_board_v3s_2026_10_24.py`](status_board_v3s_2026_10_24.py), and `make_flavor_boards.py` and Y1 still read its tiles.
+[`make_status_board.py`](make_status_board.py) reads FG1's verdict table at build time and refuses a colour that differs from it, one colour per footing, and NOT GRADED must be grey. It checks each quoted number against the named lane's committed file. It also refuses:
+- a green with no FG1 row, verified entry or carried 24 October colour;
+- a verdict colour resting on a v3-only lane, unless the tile is graded on the adopted action;
+- a v3s grade outside the owner's scope (column 0, lensing = dynamics, L★);
+- a carried tile whose colour or lanes differ from the 24 October board;
+- an action tile missing any of the three carried weak spots;
+- a v3s tile that vanishes.
+
+`--mutate` must fail, `--selftest` breaks each guard (29 cases), and `--md` prints the table above. The v3s generator is kept as [`status_board_v3s_2026_10_24.py`](status_board_v3s_2026_10_24.py), and `make_flavor_boards.py` and Y1 still read its tiles.
 
 ---
 

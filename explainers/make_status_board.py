@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
-"""The Crispy Fried Chicken status board, 1 November 2026: the a0 law alone. Plot only.
+"""The Crispy Fried Chicken status board, 4 November 2026: the a0 law, with v3s as its action in a stated scope. Plot only.
 
 The owner's rule of 23 October: the board shows the current best theory only. The owner retired route E's cold sector on
-1 November (rebuild_2026_10_22/OWNER_DECISION_2026-11-01_RETIRE_COLD_SECTOR.md), so that theory is now the law,
-g_N = g^2/(g + a0), a0 = kappa c sqrt(G rho_DE), kappa = 1/2 FITTED. The last fold before this was v3s (24 October); the
-board never carried route E. Every tile is rebuilt from FG1's C4 and alt rows and the lanes PAPER67 cites.
+1 November (rebuild_2026_10_22/OWNER_DECISION_2026-11-01_RETIRE_COLD_SECTOR.md), so that theory is the law,
+g_N = g^2/(g + a0), a0 = kappa c sqrt(G rho_DE), kappa = 1/2 FITTED. On 4 November the owner adopted v3s as the law's
+action for isolated galaxies, the Solar System, galaxy lensing and GWs only
+(finish_2026_11_04/FN1_action_call/OWNER_DECISION_2026-11-04_ADOPT_V3S_SCOPED.md); clusters, growth/CMB, the radiation era,
+hosted dwarfs and the MW joint fit stay open, and a0 is put in by hand. Column 0 is graded on v3s; every other tile is
+the law's, from FG1's C4 and alt rows and the lanes PAPER67 cites.
 
 A colour restates a recorded verdict, and check_law() holds it there:
   * a tile naming an FG1 line takes its colour from FG1's README, read at build time, one colour per footing; NOT GRADED
@@ -12,7 +15,12 @@ A colour restates a recorded verdict, and check_law() holds it there:
   * footings are never pooled: a tile whose footings differ is drawn in two halves;
   * green needs a passing FG1 row, or a VERIFIED_GREEN entry (lane, result commit, rerun);
   * every tile names lanes in SOURCES, each with a committed file, and each quoted number is checked against that file;
-  * a verdict colour can't rest on a lane that computed only v3 or v3s (V3S_ONLY);
+  * a verdict colour can rest on a lane that computed only v3 or v3s (V3S_ONLY) only on a tile graded on the adopted
+    action (act), and such a tile must sit in the owner's scope: column 0 or ACTION_SCOPE_EXTRA;
+  * a tile carried from the 24 October v3s board (carried) keeps that board's colour and names its lanes; its numbers
+    are still checked against the lanes' files. Newer v3s lanes regrade a tile only through a VERIFIED_GREEN entry or
+    a non-green colour;
+  * the action's tile must carry the weak spots the owner's decision lists (WEAK_SPOTS), each quoted from it;
   * no tile of the v3s board vanishes: it is here (LAW_RENAMES), or in LAW_RETIRED with its old colour and a reason;
   * grey is for a tile with no graded number for the law, and it must give its reason.
 
@@ -47,10 +55,11 @@ from status_board_v3s_2026_10_24 import (ARCHIVE, COL, COLUMNS, INK, LAB, PREVIO
 REPO = os.path.dirname(HERE)
 OUT = os.path.join(HERE, "img", "status_board.png")
 LAW_LAB = dict(LAB, STALE="no graded number for the law")
-LAW_COLUMNS = ["Relativity (the law has no action)", "Isolated galaxies", "Where the law misses",
+LAW_COLUMNS = ["Relativity: v3s, the action in its scope", "Isolated galaxies", "Where the law misses",
                "a0 over time, the CMB, dated tests", "The deep 'why'; tiles not regraded"]
-LAW_RECIPE = ("Crispiest recipe (the a₀ law): g_N = g²/(g + a₀), a₀ = κ c √(G ρ_DE), κ = ½ fitted. Nothing else: no "
-              "action, no screen, no dust term. The simple form is Milgrom's; the tie to dark energy was proposed earlier.")
+LAW_RECIPE = ("Crispiest recipe (the a₀ law): g_N = g²/(g + a₀), a₀ = κ c √(G ρ_DE) put in by hand, κ = ½ fitted. Its "
+              "action is v3s (owner, 4 Nov) for isolated galaxies, the Solar System, galaxy lensing and GWs only; no "
+              "cluster or CMB mass. The simple form is Milgrom's; the tie to dark energy was proposed earlier.")
 
 _Q, _C, _P = "rebuild_2026_10_22/", "campaign_fresh_gravity/", "qwen_claude_field_theory/papers_2026/"
 FG1_README = _Q + "FG1_final_grade/README.md"
@@ -80,10 +89,25 @@ SOURCES = {
     "MI-PROFILE": "real_research/reviews/mi_a0_profile_likelihood_milgrom_footing_2026.out",
     "DR4-PREREG": "prep_2026/gaia_dr4_prep/PREREGISTRATION_DR4.md",
     "PAPER60": _P + "PAPER60_scope_of_the_screened_theory_2026.tex",
-    "PAPER67": _P + "PAPER67_DRAFT_galaxy_law_and_what_it_leaves_2026.tex",
+    "PAPER67": _P + "PAPER67_galaxy_law_and_what_it_leaves_2026.tex",      # the deposited file (the draft was renamed)
+    "OWNER-11-04": "finish_2026_11_04/FN1_action_call/OWNER_DECISION_2026-11-04_ADOPT_V3S_SCOPED.md",
+    "AX1": _Q + "AX1_action_for_law/README.md", "C6P": _Q + "C6P_cassini_high_precision/README.md",
+    "V3W": _Q + "V3W_v3s_weak_spots/README.md", "V3X": _Q + "V3X_v3s_close_undecided/README.md",
+    "X3": _Q + "X3_switched_stiffness/README.md", "H4": _Q + "H4_v3_saddle_stability/README.md",
+    "P3": _Q + "P3_v3_strong_field/README.md", "CQ2": "cq_lanes_2026_11_04/CQ2_v3s_dr4_seal/README.md",
+    "C3": "covariant_push_2026_10_22/C3_scale_map/README.md", "C4": "covariant_push_2026_10_22/C4_khronon_parent/README.md",
+    "C5": "covariant_push_2026_10_22/C5_health/README.md", "C8": "covariant_push_2026_10_22/C8_instantaneous/README.md",
+    "CFG329": _C + "CFG329_g9_g0_structure/README.md", "V3S-BOARD": "explainers/status_board_v3s_2026_10_24.py",
 }
-# Lanes that computed only v3 or v3s: a grey tile may name them for the record; a verdict colour may not rest on them.
-V3S_ONLY = {"U1", "S1", "S3", "S4", "D10", "V3S-VERDICT"}
+# Lanes that computed only v3 or v3s: a verdict colour may rest on them only on a tile graded on the adopted action.
+V3S_ONLY = {"U1", "S1", "S3", "S4", "D10", "V3S-VERDICT", "V3S-BOARD", "AX1", "C6P", "V3W", "V3X", "X3", "H4", "P3",
+            "CQ2", "C3", "C4", "C5", "C8", "CFG329"}
+# The owner's scope for v3s outside column 0 (galaxy lensing; the action's own constant).
+ACTION_SCOPE_EXTRA = {"Lensing = dynamics (v3s)", "Stiffness length L*"}
+ACTION_TILE = "An action"
+# Carried with the adoption: (fragment the action tile's note must hold, literal in the owner's decision).
+WEAK_SPOTS = [("W2", "V3X W2 UNDECIDED"), ("W4c(b)", "V3X W4c(b) UNDECIDED"),
+              ("instantaneous", "Constraints act instantaneously")]
 FG1_LINES = ("S", "Tl", "LT", "G", "K", "X", "Ln", "Dw", "MW", "DM", "IC")
 FG1_COLOUR = {"PASS": "PASS", "FAIL": "FAIL", "NOT GRADED": "STALE"}
 # Greens from outside FG1: tile -> (lane, result commit, how it was verified, stated as it is). FG1's own greens rest on
@@ -92,6 +116,12 @@ VERIFIED_GREEN = {
     "Surface brightness at fixed speed": ("HS1", "573bc465e9", "frozen class FLAT, MUTATE twin caught, literals in PAPER67's audit; "
                                           "NOT rerun on 11-01: its chain wouldn't run outside its own folder"),
     "Local a0 from MeerKAT": ("P4", "6c0249a8bc", "coordinator rerun 2026-10-23, read in PAPER60's audit"),
+    "Solar system + Cassini (screened)": ("C6P", "8c5703da06", "frozen label PASS both footings, checks 9/9, rerun "
+                                          "byte-identical, MUTATE twin caught"),
+    "Gravity waves at light speed": ("V3W", "17d7b7ecdc", "W4a PASS both footings; byte-identical reruns and MUTATE twins "
+                                     "in the lane"),
+    "Lensing = dynamics (v3s)": ("V3W", "17d7b7ecdc", "W3 PASS both footings; on KiDS alone its MUTATE twin is caught at "
+                                 "only 1.9 sigma, GH1 catches it"),
 }
 MUST_STAY_RED = ["The law vs Cassini (unscreened)", "MW vertical force", "MW outer slope (Gaia)", "IC 1613",
                  "Local Group dwarfs (five classes)", "Cluster cores (318 eRASS1)", "Cluster keys (15, old template)"]
@@ -99,44 +129,89 @@ BANNED = ("theory closed", "cold dark matter", "cdm-like", "cold energy", "5.364
 WRAP, MAXL = 56, 5
 
 
-def L(col, name, st, note, lanes, q, fg1=None, alt=None, lab=None):
+def L(col, name, st, note, lanes, q, fg1=None, alt=None, lab=None, act=False, carried=False):
     """One tile. q: [(fragment in the note, lane, literal in that lane's file), ...]. fg1: the FG1 line it restates.
-    alt: the alt footing's colour, only where it differs from canonical's."""
-    return dict(col=col, name=name, st=st, note=note, lanes=list(lanes), q=list(q), fg1=fg1, alt=alt, lab=lab)
+    alt: the alt footing's colour, only where it differs from canonical's. act: graded on v3s, the adopted action.
+    carried: colour carried from the 24 October v3s board, not regraded since."""
+    return dict(col=col, name=name, st=st, note=note, lanes=list(lanes), q=list(q), fg1=fg1, alt=alt, lab=lab, act=act,
+                carried=carried)
 
 
-_NOACT = ("no action", "PAPER67", "None is selected")
+_OUT = ("outside v3s's adopted scope", "OWNER-11-04", "hosted dwarfs and the Milky Way joint fit")
 LAW_TILES = [
-    # ---- column 0: relativity. No action means no number; the v3s results were that model's. ----
+    # ---- column 0: relativity, graded on v3s, the action the owner adopted on 4 November for this scope ----
+    L(0, "An action", "COND",
+      "v3s, adopted by the owner 4 Nov for isolated galaxies, the Solar System, galaxy lensing and GWs; a₀ by hand. "
+      "Carried: V3X W2 and W4c(b) UNDECIDED on numerics; constraints instantaneous. Clusters, CMB open",
+      ["OWNER-11-04", "AX1"],
+      [("isolated galaxies, the Solar System, galaxy lensing and GWs", "OWNER-11-04",
+        "isolated galaxies, the Solar System, galaxy lensing and gravitational waves"),
+       ("by hand", "OWNER-11-04", "a0 is put in by hand"),
+       ("Clusters, CMB open", "OWNER-11-04", "clusters, linear growth and the CMB"),
+       ("v3s", "AX1", "Only v3s's screening length passes G1–G4")]
+      + [(f, "OWNER-11-04", lit) for f, lit in WEAK_SPOTS],
+      lab="conditional: adopted, scoped (owner 4 Nov)", act=True),
+    L(0, "Solar system + Cassini (screened)", "PASS",
+      "Q₂ ≥ 4.85e7 inside the Hees line, alt ≥ 5.70e7; Mars 0.173 of its bound at L★ 24 pc. PPN γ = β = 1 derived "
+      "from the action, remainders ≤ 1.1e-12",
+      ["C6P", "V3W"],
+      [("≥ 4.85e7", "C6P", "≥ 4.85e7 inside Hees"), ("≥ 5.70e7", "C6P", "≥ 5.70e7 (Hees)"),
+       ("Mars 0.173", "C6P", "Mars 0.173 of bound at 24 pc"), ("γ = β = 1", "V3W", "β = 1; remainder ≤ 1.1e-12"),
+       ("≤ 1.1e-12", "V3W", "remainder ≤ 1.1e-12 at Mercury")], lab="pass, both footings", act=True),
     L(0, "The law vs Cassini (unscreened)", "FAIL",
-      "Q₂ 2.44–4.59× the 2σ line, alt 2.85–5.19×. Not a control any more: the law as written needs a screen it "
-      "doesn't contain",
-      ["E2", "PAPER67"],
+      "control, v3s's screen off: Q₂ 2.44–4.59× the 2σ line, alt 2.85–5.19×. Every unscreened action class fails, "
+      "1.69–5.18× Hees, so the screen is required",
+      ["E2", "AX1"],
       [("2.44–4.59×", "E2", "**2.44–4.59×**"), ("2.85–5.19×", "E2", "**2.85–5.19×**"),
-       ("needs a screen", "PAPER67", "needs a screen it doesn't contain")], lab="fails, both footings"),
-    L(0, "An action", "STALE", "no action selected; the covariant attempt (v3s) is closed and the a₀ sector's action "
-      "stays open. Not a pass and not a fail: an unanswered gap",
-      ["PAPER67", "OWNER-11-01", "V3S-VERDICT"],
-      [("no action", "PAPER67", "None is selected"), ("covariant attempt (v3s) is closed", "PAPER67",
-       "covariant attempt (v3s) is closed"), ("stays open", "OWNER-11-01", "The a₀ sector's action stays open")],
-      lab="no action, no number"),
-    L(0, "Gravity waves at light speed", "STALE", "no action, so no wave equation to test. v3s's pass was that "
-      "model's", ["PAPER67", "V3S-VERDICT"], [_NOACT], lab="no action, no number"),
-    L(0, "Binary pulsars + GW170817", "STALE", "no action, so no radiative sector to test. v3s's pass was that "
-      "model's", ["PAPER67", "V3S-VERDICT"], [_NOACT], lab="no action, no number"),
-    L(0, "Health: ghosts, gradients", "STALE", "no action, so no modes to check. v3s's conditional was that "
-      "model's", ["PAPER67", "V3S-VERDICT"], [_NOACT], lab="no action, no number"),
-    L(0, "Causality: criterion A / B", "STALE", "no action, so no signal speeds to read. v3s's reading was that "
-      "model's", ["PAPER67", "V3S-VERDICT"], [_NOACT], lab="no action, no number"),
-    L(0, "Strong coupling", "STALE", "no action, so no cutoff to estimate. v3s's estimate was that model's",
-      ["PAPER67", "V3S-VERDICT"], [_NOACT], lab="no action, no number"),
-    L(0, "Radiative stability (G12)", "STALE", "no action, so nothing to renormalise. It stayed grey on v3s too",
-      ["PAPER67", "V3S-VERDICT"], [_NOACT], lab="no action, no number"),
-    L(0, "Matter conservation (G9)", "STALE", "the Bianchi argument needs a diffeomorphism-invariant action, and the "
-      "law has none", ["PAPER67", "V3S-VERDICT"], [("has none", "PAPER67", "None is selected")],
-      lab="no action, no number"),
-    L(0, "Black holes (EHT, LIGO ringdown)", "STALE", "no action, so no strong-field solution. v3s's conditional was "
-      "that model's", ["PAPER67", "V3S-VERDICT"], [_NOACT], lab="no action, no number"),
+       ("1.69–5.18×", "AX1", "1.69–5.18× Hees")], lab="fails: control (screen off)", act=True),
+    L(0, "Gravity waves at light speed", "PASS",
+      "c_T = c; |Δv/c| ≤ 5.1e-32 at 100 Hz, alt 6.2e-32, against GW170817. On the Solar-System background the "
+      "tensor roots sit 1.1e-10 below c, line 1e-10 (V3X: UNDECIDED)",
+      ["V3W", "V3X"],
+      [("5.1e-32", "V3W", "≤ 5.1e-32 at 100 Hz"), ("6.2e-32", "V3W", "≤ 6.2e-32"),
+       ("1.1e-10 below", "V3X", "the tensor roots sit 1.1e-10 below 1")], lab="pass, both footings", act=True),
+    L(0, "Binary pulsars + GW170817", "PASS",
+      "no radiative channel; the largest effect is 3.2e-14 of the double pulsar's error, GW170817 Δv/c ≤ 6e-32. "
+      "From the 24 Oct board, not regraded",
+      ["C8"],
+      [("no radiative channel", "C8", "No radiative channel"), ("3.2e-14", "C8", "the largest effect is 3.2e-14"),
+       ("6e-32", "C8", "Δv/c ≤ 6e-32")], act=True, carried=True),
+    L(0, "Health: ghosts, gradients", "COND",
+      "galaxy backgrounds: no ghost, no gradient instability (V3W, WKB). Solar System: quadratic action and 3D "
+      "hyperbolicity pass; the spectrum shows no instability found but misses its ladder, 14.6 % against 5 %",
+      ["V3W", "V3X"],
+      [("no ghost, no gradient instability", "V3W", "no ghost, no gradient instability"),
+       ("no instability found", "V3X", "UNDECIDED (no instability found)"), ("14.6 %", "V3X", "up to 14.6 % at l = 4")],
+      lab="conditional: Solar-System spectrum undecided", act=True),
+    L(0, "Leaf problem well-posed", "COND",
+      "C8's (P, lapse) leaf problem; X3: the switched leaf functional is convex with a unique solution, an "
+      "obstacle-type free boundary. From the 24 Oct board, not regraded",
+      ["C8", "H4", "X3"],
+      [("convex with a unique solution", "X3", "The switched leaf functional is convex and has a unique solution"),
+       ("obstacle-type", "X3", "(obstacle-type) problem")], act=True, carried=True),
+    L(0, "Causality: criterion A / B", "COND",
+      "constraints propagate instantaneously: criterion B (global time) met, A (v ≤ c) failed; the signal is about "
+      "1e-46 m/s² at lab scales. Carried with the adoption",
+      ["C5", "C8", "OWNER-11-04"],
+      [("criterion B", "C5", "It passes criterion B"), ("1e-46 m/s²", "C8", "about 1e-46 m/s²"),
+       ("Carried with the adoption", "OWNER-11-04", "Constraints act instantaneously")],
+      lab="B met, A violated", act=True, carried=True),
+    L(0, "Strong coupling", "COND",
+      "estimate: loop factor ≤ 1.3e-3, worst at Eöt-Wash's 38.6 μm with L★ 90 pc; it breaks down below about 5 μm, "
+      "so sub-5 μm tests would probe it. From the 24 Oct board",
+      ["P3"], [("1.3e-3", "P3", "eps 1.3e-3 (L* 90 pc)"), ("below about 5 μm", "P3", "breaks down below ~5 um")],
+      act=True, carried=True),
+    L(0, "Matter conservation (G9)", "PASS",
+      "Bianchi identity, ∇T = 0: holds off shell for any diffeomorphism-invariant action, v3s's included; GR "
+      "control 1e-46. From the 24 Oct board",
+      ["CFG329", "C4"], [("holds off shell", "CFG329", "holds off shell"), ("1e-46", "CFG329", "GR Bianchi identity: 1e-46")],
+      act=True, carried=True),
+    L(0, "Black holes (EHT, LIGO ringdown)", "COND",
+      "static non-rotating holes: shadow and ISCO move ≤ 2.9e-11, ringdown ≤ 2.8e-11. A regular hole needs the "
+      "khronon infalling near the horizon; rotating, moving holes open",
+      ["P3"],
+      [("≤ 2.9e-11", "P3", "moves by at most 2.9e-11"), ("2.8e-11", "P3", "at most 2.8e-11 (M87*)"),
+       ("infalling", "P3", "khronon tilted (infalling) near the horizon")], act=True, carried=True),
     # ---- column 1: isolated galaxies ----
     L(1, "Rotation curves (SPARC RAR)", "PASS",
       "canonical Υ 0.52, rms 0.0541; alt Υ 0.44, rms 0.0537, below the 0.50–0.80 line. That line's lower edge is a "
@@ -179,6 +254,13 @@ LAW_TILES = [
       ["CFG829", "BL1", "S2", "PAPER67"],
       [("1.016 ± 0.086", "CFG829", "**1.016 ± 0.086**"), ("0.878 / 0.802", "BL1", "0.878 / 0.802"),
        ("depends on", "PAPER67", "amplitude depends on colour and on the baryon inventory")]),
+    L(1, "Lensing = dynamics (v3s)", "PASS",
+      "v3s gives M_lens/M_dyn = 1 to ≤ 6.5e-5. KiDS isolated A 1.129 ± 0.206, alt 1.035 ± 0.187. Weak power: on "
+      "KiDS alone the MUTATE twin is caught at 1.9σ; GH1 catches it",
+      ["V3W", "OWNER-11-04"],
+      [("≤ 6.5e-5", "V3W", "M_lens/M_dyn = 1 to ≤ 6.5e-5"), ("1.129 ± 0.206", "V3W", "A = 1.129 ± 0.206"),
+       ("1.035 ± 0.187", "V3W", "A = 1.035 ± 0.187"), ("1.9σ", "OWNER-11-04", "caught at only 1.9 sigma"),
+       ("GH1 catches it", "OWNER-11-04", "GH1 is what catches it")], lab="pass, both footings", act=True),
     L(1, "Red (early-type) lenses", "COND",
       "A 1.587 (CFG829); 1.313 / 1.200 with hot gas (BL1): short. Only CFG667 + an IMF α–σ relation reach 1.020 / "
       "0.933 (S2)",
@@ -260,10 +342,11 @@ LAW_TILES = [
        ("0.4–0.5", "CFG689", "best 0.4–0.5 dex"), ("retired input", "PAPER67", "isn't free of the retired sector's input")]),
     L(3, "CMB", "STALE",
       "a₀ is absent from the linear FRW equations, so the law can't act there. The record has no CMB pass without a "
-      "dust-like term; the law offers none. Open, unanswered",
-      ["RF5", "PAPER67", "OWNER-11-01"],
+      "dust-like term, and v3s supplies no CMB mass. Open, unanswered",
+      ["RF5", "PAPER67", "OWNER-11-01", "OWNER-11-04"],
       [("absent from the linear FRW", "RF5", "a₀ is absent from the linear FRW equations"),
-       ("no CMB pass", "PAPER67", "no CMB pass without a dust-like component"), ("offers none", "PAPER67", "The law offers no replacement"),
+       ("no CMB pass", "PAPER67", "no CMB pass without a dust-like component"),
+       ("supplies no CMB mass", "OWNER-11-04", "v3s supplies no cluster or CMB mass"),
        ("unanswered", "OWNER-11-01", "open and unanswered")], lab="no account from the law"),
     L(3, "Linear growth", "STALE",
       "the law can't act on linear FRW. The window z_on 3e4–1e6 belongs to a dust component it doesn't have; v3's red "
@@ -285,11 +368,11 @@ LAW_TILES = [
        ("one disc excludes no model", "LEDGER", "one disc excludes no model"), ("2026-11-28", "LEDGER", "2026-11-28 by earlier metadata"),
        ("0.51σ", "PAPER67", "at or below 0.51$\\sigma$")], lab="open: dated"),
     L(3, "Gaia DR4 wide binaries (Dec)", "OPEN",
-      "Newton 1.000, AQUAL point 1.137, MOND's benchmark 1.33. The bare law has no gate, so Newton at 2–30 kAU would "
-      "count against it: a reading, not a frozen line",
-      ["DR4-PREREG", "PAPER67"],
-      [("1.137", "DR4-PREREG", "1.137 (computed 1.1389)"), ("1.33", "DR4-PREREG", "| conventional-MOND benchmark | 1.33"),
-       ("count against it", "PAPER67", "would count against it"), ("not a frozen line", "PAPER67", "Reading, not a frozen line")],
+      "v3s sealed NEWTONIAN (SCREENED): the frozen pipeline returns γ_inf 1.0019 / 1.0100, Newton's own; plain "
+      "QUMOND 1.1494 / 1.2081. Unscreened, Newton would count against the law",
+      ["CQ2", "DR4-PREREG", "PAPER67"],
+      [("NEWTONIAN (SCREENED)", "CQ2", "NEWTONIAN (SCREENED)"), ("1.0019 / 1.0100", "CQ2", "γ_inf (1.0019 / 1.0100)"),
+       ("1.1494 / 1.2081", "CQ2", "plain QUMOND (1.1494 / 1.2081)"), ("count against", "PAPER67", "would count against it")],
       lab="open: dated"),
     L(3, "Gaia DR4 MW predictions", "OPEN",
       "sealed files scored as frozen, v3's among them; no seal reopened or edited. Their rows are not the bare law's",
@@ -303,24 +386,35 @@ LAW_TILES = [
       lab="not regraded for the law"),
     # ---- column 4: the deep 'why', and tiles not regraded ----
     L(4, "Why kappa = 1/2", "OPEN",
-      "fitted; 537 attempts, none derives it. SPARC best fit 1.0766e-10: κ = ½ Δχ² 63.90 (1.82σ), alt 7.04 (0.60σ), "
+      "fitted; 550 attempts, none derives it. SPARC best fit 1.0766e-10: κ = ½ Δχ² 63.90 (1.82σ), alt 7.04 (0.60σ), "
       "Milgrom's cH₀/2π 5.34 (0.53σ), which fits at least as well",
       ["PAPER67", "CFG894", "MI-PROFILE"],
-      [("537 attempts", "PAPER67", "537 attempts"), ("1.0766e-10", "MI-PROFILE", "1.0766e-10"),
+      [("550 attempts", "PAPER67", "550 derivation or selection attempts"), ("1.0766e-10", "MI-PROFILE", "1.0766e-10"),
        ("63.90 (1.82σ)", "MI-PROFILE", "0.9361   0.8696    63.90     7.99     1.82"),
        ("7.04 (0.60σ)", "MI-PROFILE", "1.1300   1.0496     7.04     2.65     0.60"), ("5.34 (0.53σ)", "PAPER67", "5.34 (0.53$\\sigma$)")],
       lab="open: fitted"),
+    L(4, "Stiffness length L*", "OPEN",
+      "v3s's own constant, set by fits, not derived: the native floor holds at ≈ 22 pc with SPS M/L, falls to 3–10 pc "
+      "with MF-slope M/L; the Solar-System gate passes at L★ 24 and 90 pc",
+      ["C3", "D10", "C6P"],
+      [("≈ 22 pc", "D10", "the native floor holds at ≈ 22 pc"), ("3–10 pc", "D10", "falls to 3–10 pc"),
+       ("24 and 90 pc", "C6P", "0.012 at 90 pc")], lab="open: fitted", act=True, carried=True),
+    L(4, "Radiative stability (G12)", "STALE",
+      "not recomputed for v3 or v3s: grey on the 24 Oct board too. Its old conditional, UV new physics below about "
+      "1e9 GeV, was an older chassis's",
+      ["V3S-BOARD"], [("1e9 GeV", "V3S-BOARD", "needs UV new physics <~1e9 GeV (filtered chassis)")],
+      lab="not recomputed for v3s"),
     L(4, "The matter term", "STALE",
       "ρ_DE comes from an expansion history whose matter term is several times the baryons. The law doesn't explain "
       "it, and it has no replacement for the retired sector",
       ["PAPER67", "OWNER-11-01"],
       [("several times the baryons", "PAPER67", "several times the baryons")], lab="no account from the law"),
     L(4, "Tidal dwarfs, NGC 1052-DF2/DF4", "STALE",
-      "v3's green came from its dust theorem (U1), gone with v3. P4 read −0.59 / −0.62 dex and −1.66 / −1.74 ln, FAIL "
-      "there, but with a screen on; not in FG1 or PAPER67",
-      ["P4", "U1"],
+      "v3's green came from its dust theorem (U1). P4 read −0.59 / −0.62 dex and −1.66 / −1.74 ln, FAIL there, with a "
+      "screen on. Hosted, so outside v3s's adopted scope; not in FG1",
+      ["P4", "U1", "OWNER-11-04"],
       [("−0.59 / −0.62 dex", "P4", "**−0.59 / −0.62 dex**"), ("−1.66 / −1.74 ln", "P4", "**−1.66 / −1.74 ln**"),
-       ("dust theorem", "U1", "T3")], lab="not regraded for the law"),
+       ("dust theorem", "U1", "T3"), _OUT], lab="not regraded; outside the action's scope"),
     L(4, "Central ellipticals (SLUGGS)", "STALE",
       "S4 read 2.8σ → 3.1σ with the law's kernel, on v3's board; not in FG1 or PAPER67, so not regraded here",
       ["CFG528", "S4"], [("2.8σ → 3.1σ", "S4", "the tension rises from 2.8σ to 3.1σ")], lab="not regraded for the law"),
@@ -329,13 +423,14 @@ LAW_TILES = [
       ["S1"], [("+1.12 / +1.08 dex", "S1", "+2.581 (+1.121)"), ("+1.12 / +1.08 dex", "S1", "+2.481 (+1.078)")],
       lab="not regraded for the law"),
     L(4, "Outer globulars", "STALE",
-      "D10 measured v3's screening length, not the bare law. The law has no screen; not in FG1 or PAPER67, so not "
-      "regraded here",
-      ["D10"], [("screening length", "D10", "the L★ floor measured")], lab="not regraded for the law"),
+      "D10 measured the screening length's floor from them; that floor is on L★'s tile. Hosted systems are outside "
+      "v3s's adopted scope, and FG1 doesn't grade them",
+      ["D10", "OWNER-11-04"], [("screening length", "D10", "the L★ floor measured"), _OUT],
+      lab="not regraded; outside the action's scope"),
 ]
 LAW_EXTRA_TILES = {"Tilt with speed", "LITTLE THINGS dwarfs", "Surface brightness at fixed speed", "IC 1613",
                    "Measured stellar masses", "Cluster keys (15, old template)", "Outer shear against gas mass", "X-COP",
-                   "DiskMass"}
+                   "DiskMass", "Lensing = dynamics (v3s)"}
 # v3s tile -> its name here, where the name was about a retired model.
 LAW_RENAMES = {
     "Unscreened law vs Cassini": "The law vs Cassini (unscreened)", "Covariant completion": "An action",
@@ -344,12 +439,11 @@ LAW_RENAMES = {
     "Native CMB (patched CLASS)": "CMB", "Linear growth, v3 Khronon": "Linear growth",
     "What sets the cold-mass amount": "The matter term", "Outer globulars: L* floor": "Outer globulars",
 }
-# Tiles of the v3s board that test something the law doesn't contain: old colour, why, the law's counterpart.
+# Tiles of the v3s board that test something the current theory doesn't contain: old colour, why, the counterpart here.
+# Leaf problem, screened Solar System and L* came back on 4 November with v3s as the action.
 LAW_RETIRED = {
-    "Leaf problem well-posed": ("COND", "v3s's (P, lapse) field problem; the law has no such fields", "An action"),
-    "Solar system + Cassini (screened)": ("PASS", "tested v3s's screen; the law has none", "The law vs Cassini (unscreened)"),
-    "One selector for the family": ("OPEN", "chose who gets v3's cold component; the law has none", "none needed"),
-    "Stiffness length L*": ("OPEN", "v3s's fitted constant", "none needed"),
+    "One selector for the family": ("OPEN", "chose who gets v3's cold component in hosts and clusters, outside v3s's "
+                                    "adopted scope; the law has none", "none needed"),
     "Law + a^1 growth + no EFE, local": ("FAIL", "a no-go on law + cold component + growth; PAPER67 keeps its question "
                                          "as an open gap", "CMB; Linear growth"),
 }
@@ -380,6 +474,10 @@ def _src(lane):
     return (s,) if isinstance(s, str) else s
 
 
+def _have(lane):
+    return all(os.path.exists(os.path.join(REPO, f)) for f in _src(lane))
+
+
 def _read(lane, cache={}):
     if lane not in cache:
         cache[lane] = "\n".join(open(os.path.join(REPO, f), encoding="utf-8", errors="replace").read() for f in _src(lane))
@@ -392,6 +490,7 @@ def check_law(tiles, retired=None, verified=None, fg1=None):
     fg1 = read_fg1_c4() if fg1 is None else fg1
     errs = []
     names = {t["name"]: t for t in tiles}
+    v3s_tiles = {LAW_RENAMES.get(x["name"], x["name"]): x for x in TILES}
     if len(names) != len(tiles):
         errs.append("duplicate tile names")
     for t in tiles:
@@ -403,7 +502,7 @@ def check_law(tiles, retired=None, verified=None, fg1=None):
         for x in t["lanes"]:
             if x not in SOURCES:
                 errs.append(f"lane not in SOURCES: {x} on {n}")
-            elif not all(os.path.exists(os.path.join(REPO, f)) for f in _src(x)):
+            elif not _have(x):
                 errs.append(f"lane's file is missing: {x} on {n}")
         if not t["q"]:
             errs.append(f"no number or reason checked against a source: {n}")
@@ -412,7 +511,7 @@ def check_law(tiles, retired=None, verified=None, fg1=None):
                 errs.append(f"quoted fragment not in the note: {frag!r} on {n}")
             if lane not in t["lanes"]:
                 errs.append(f"quote from a lane the tile doesn't name: {lane} on {n}")
-            elif lane in SOURCES and lit not in _read(lane):
+            elif lane in SOURCES and _have(lane) and lit not in _read(lane):
                 errs.append(f"literal not in {lane}'s file: {lit!r} on {n}")
         if t["alt"] is not None and (t["alt"] == st or t["alt"] not in COL):
             errs.append(f"split colour where the footings agree: {n}")
@@ -424,12 +523,18 @@ def check_law(tiles, retired=None, verified=None, fg1=None):
                 errs.append(f"colour {st} is not FG1's {canon}: {n}")
             if (t["alt"] or st) != want_alt:
                 errs.append(f"alt colour is not FG1's {alt} (footings never pooled): {n}")
-        if "PASS" in (st, t["alt"]) and t["fg1"] is None:
+        if t.get("carried"):
+            old = v3s_tiles.get(n)
+            if old is None or old["st"] != st or not set(old["lanes"]) <= set(t["lanes"]) or not t.get("act"):
+                errs.append(f"carried tile must keep the 24 Oct board's colour and lanes, on the action: {n}")
+        if "PASS" in (st, t["alt"]) and t["fg1"] is None and not t.get("carried"):
             vg = verified.get(n)
             if vg is None or vg[0] not in t["lanes"] or not vg[1] or not vg[2]:
                 errs.append(f"green with no FG1 row and no VERIFIED_GREEN entry: {n}")
-        if st in ("PASS", "FAIL", "COND", "UNDEC") and V3S_ONLY & set(t["lanes"]):
+        if st in ("PASS", "FAIL", "COND", "UNDEC") and V3S_ONLY & set(t["lanes"]) and not t.get("act"):
             errs.append(f"verdict colour resting on a v3/v3s lane: {n}")
+        if t.get("act") and t["col"] != 0 and n not in ACTION_SCOPE_EXTRA:
+            errs.append(f"graded on v3s outside its adopted scope: {n}")
         if st == "STALE" and not (t["lab"] and t["note"].strip()):
             errs.append(f"grey tile without its reason: {n}")
         if any(b in f"{n} {t['note']} {t['lab'] or ''}".lower() for b in BANNED):
@@ -439,6 +544,13 @@ def check_law(tiles, retired=None, verified=None, fg1=None):
     missing = set(FG1_LINES) - {t["fg1"] for t in tiles}
     if missing:
         errs.append(f"FG1 lines not on the board: {sorted(missing)}")
+    act = names.get(ACTION_TILE)
+    if act is None or not act.get("act"):
+        errs.append("the action's tile is missing or not graded on the action")
+    else:
+        for frag, lit in WEAK_SPOTS:
+            if (frag, "OWNER-11-04", lit) not in act["q"]:
+                errs.append(f"weak spot carried with the adoption is off the action's tile: {lit}")
     v3s = {t["name"]: t["st"] for t in TILES}
     for n, st in v3s.items():
         here = LAW_RENAMES.get(n, n)
@@ -489,12 +601,12 @@ def draw(tiles, out):
     top_in, bot_in = 1.70, 0.95
     ax = fig.add_axes([0.012, bot_in / H, 0.976, 1 - (top_in + bot_in) / H])
     ax.set_xlim(0, ncol); ax.set_ylim(-0.25, nmax + 0.65); ax.axis("off")
-    fig.text(0.015, 1 - 0.50 / H, "The Crispy Fried Chicken Status Board  ·  1 November 2026 — the a₀ law alone",
-             fontsize=24, fontweight="bold", color="#16201d")
+    fig.text(0.015, 1 - 0.50 / H, "The Crispy Fried Chicken Status Board  ·  4 November 2026 — the a₀ law, with v3s as "
+             "its action in scope", fontsize=24, fontweight="bold", color="#16201d")
     _fit(fig, 0.015, 1 - 0.95 / H, LAW_RECIPE, 12.0, color="#16201d", fontstyle="italic")
     fig.text(0.015, 1 - 1.30 / H, "κ = ½ fitted; footings 9.3603e-11 / 1.1312e-10 m/s² never pooled (a tile in two halves: "
-             "left canonical, right alt).  Route E's cold sector retired by the owner, 1 November.  Colours restate FG1 "
-             "and the lanes named.  The theory is incomplete.", fontsize=10.5, color="#4d5a56")
+             "left canonical, right alt).  Route E's cold sector retired, 1 Nov; v3s adopted, scoped, 4 Nov.  Column 0 is "
+             "graded on v3s, the rest on the law.  The theory is incomplete.", fontsize=10.5, color="#4d5a56")
     dy = 0.127 / row_in                                 # one note line, in row units
     for c, title in enumerate(LAW_COLUMNS):
         ax.text(c + 0.03, nmax + 0.4, title, fontsize=13, fontweight="bold", color="#16201d", va="center")
@@ -518,12 +630,13 @@ def draw(tiles, out):
                                           transform=fig.transFigure, figure=fig))
         fig.text(lx + 0.019, ly, LAW_LAB[st], fontsize=10.5, va="center", color="#16201d")
         lx += 0.095
-    fig.text(0.015, 0.40 / H, "Grey, dashed = no graded number for the law, with the reason on the tile. NOT GRADED is not a "
-             "pass.  Earlier model: img/status_board_2026-10-24v3s.png.  Green is FG1's frozen line or a named lane's frozen class; "
-             "FG1 is not blind, and its clean-room regrade is mainly a test of code.", fontsize=9.0, va="center", color="#4d5a56")
-    fig.text(0.015, 0.18 / H, "Sources: rebuild_2026_10_22/FG1_final_grade, PAPER67 draft (not deposited).  The retired sector "
-             "was called cold dark energy, never a particle.  Nothing here says the data favour this framework.", fontsize=9.0,
-             va="center", color="#4d5a56")
+    fig.text(0.015, 0.40 / H, "Grey, dashed = no graded number, with the reason on the tile. NOT GRADED is not a pass.  Earlier: "
+             "img/status_board_2026-11-01law.png, img/status_board_2026-10-24v3s.png.  Green is FG1's frozen line, a named lane's "
+             "frozen class, or a 24 Oct v3s green carried in the action's scope; FG1 is not blind.", fontsize=9.0, va="center",
+             color="#4d5a56")
+    fig.text(0.015, 0.18 / H, "Sources: FG1_final_grade, the lanes named, the owner's 4 Nov decision (FN1_action_call).  PAPER67 "
+             "v1.1 still says no action is selected.  The retired sector was called cold dark energy, never a particle.  Nothing "
+             "here says the data favour this framework.", fontsize=9.0, va="center", color="#4d5a56")
     fig.savefig(out, dpi=150, facecolor=fig.get_facecolor())
     plt.close(fig)
 
@@ -551,7 +664,7 @@ def broken_cases():
         f["Tl"] = ("FAIL", "FAIL")
 
     def c6(t, r, v, f):
-        _by(t, "Binary pulsars + GW170817").update(st="PASS")
+        _by(t, "Radiative stability (G12)").update(st="PASS")
 
     def c7(t, r, v, f):
         _by(t, "Tidal dwarfs, NGC 1052-DF2/DF4").update(st="PASS", lab="pass (U1)")
@@ -581,16 +694,16 @@ def broken_cases():
         t.remove(_by(t, "Causality: criterion A / B"))
 
     def c16(t, r, v, f):
-        r["Solar system + Cassini (screened)"] = ("FAIL",) + r["Solar system + Cassini (screened)"][1:]
+        r["One selector for the family"] = ("FAIL",) + r["One selector for the family"][1:]
 
     def c17(t, r, v, f):
-        del r["Stiffness length L*"]
+        del r["Law + a^1 growth + no EFE, local"]
 
     def c18(t, r, v, f):
         _by(t, "Cluster cores (318 eRASS1)").update(st="UNDEC")
 
     def c19(t, r, v, f):
-        _by(t, "Health: ghosts, gradients").update(lab=None)
+        _by(t, "Radiative stability (G12)").update(lab=None)
 
     def c20(t, r, v, f):
         _by(t, "CMB")["note"] += " favour the framework"
@@ -607,16 +720,35 @@ def broken_cases():
     def c24(t, r, v, f):
         _by(t, "Tilt with speed").update(alt="PASS")
 
+    def c25(t, r, v, f):
+        _by(t, "Coma ultra-diffuse galaxies").update(st="FAIL", act=True)
+
+    def c26(t, r, v, f):
+        _by(t, "Strong coupling").update(st="PASS")
+
+    def c27(t, r, v, f):
+        a = _by(t, ACTION_TILE)
+        a["q"] = [x for x in a["q"] if x[0] != "W4c(b)"]
+
+    def c28(t, r, v, f):
+        del v["Gravity waves at light speed"]
+
+    def c29(t, r, v, f):
+        _by(t, "Leaf problem well-posed")["lanes"].remove("H4")
+
     return [("NOT GRADED X-COP coloured a pass", c1), ("NOT GRADED DiskMass coloured a pass", c2),
             ("SPARC's footings pooled (alt half dropped)", c3), ("FG1's failing dwarfs coloured a pass", c4),
-            ("FG1 row changed under a green tile", c5), ("v3s green carried over with no law number", c6),
+            ("FG1 row changed under a green tile", c5), ("v3s grey tile coloured a pass with no lane", c6),
             ("v3's dust-theorem green restored", c7), ("first green with no FG1 row or verified entry", c8),
             ("VERIFIED_GREEN entry names a lane not on the tile", c9), ("tile with no source lane", c10),
             ("lane not in SOURCES", c11), ("quoted literal not in its source", c12), ("quoted fragment not in the note", c13),
             ("tile with nothing checked against a source", c14), ("v3s tile vanished", c15), ("retired tile repainted", c16),
             ("retired tile dropped silently", c17), ("must-stay-red tile turned blue", c18), ("grey tile with no reason", c19),
             ("banned wording", c20), ("FG1 line off the board", c21), ("note too long", c22),
-            ("verdict colour on a v3-only lane", c23), ("split colour where footings agree", c24)]
+            ("verdict colour on a v3-only lane", c23), ("split colour where footings agree", c24),
+            ("v3s graded outside its adopted scope (Coma, a cluster)", c25), ("carried v3s tile recoloured", c26),
+            ("weak spot dropped from the action's tile", c27), ("new action green with no verified entry", c28),
+            ("carried tile drops the 24 Oct board's lanes", c29)]
 
 
 def selftest():
