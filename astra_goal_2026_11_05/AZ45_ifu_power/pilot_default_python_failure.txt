@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "worker.py", line 36, in <module>
+    result=E.fit_case(args.template,args.rung,args.foot,args.replicate,args.scenario,args.snr,args.hi,args.mode,args.step,lambda:stop)
+  File "engine.py", line 63, in fit_case
+    t,cm,g,mh2,delta,gas,noise,model=truth(tid,rung,foot,rep,scenario,noiseless)
+  File "engine.py", line 51, in truth
+    model=gen.model(theta)
+  File "fn3_cube.py", line 196, in model
+    vp, sg = self.curves(d)
+  File "fn3_cube.py", line 189, in curves
+    vc2 = self.mass.vc2(R, Re, d["n"], d["logM"], d["SigHI"])
+  File "fn3_cube.py", line 57, in vc2
+    vN2 = disc_v2(R, 10 ** logM + self.MH2, Re, n) + C.sgas_vc2(R, SigHI, self.k)
+  File "fn3_cube.py", line 41, in disc_v2
+    x, f = mge_unit(n)
+  File "fn3_cube.py", line 34, in mge_unit
+    sig, frac, _ = C.sersic_mge(key)
+  File "fn3_common.py", line 269, in sersic_mge
+    w, _ = optimize.nnls(A * W[:, None], I * W)
+  File "_nnls.py", line 83, in nnls
+    raise RuntimeError("too many iterations")
+RuntimeError: too many iterations
+
+ NNLS quitting on iteration count.

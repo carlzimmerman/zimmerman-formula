@@ -77,11 +77,15 @@ claim, including the coordinator's previous AZC1 construction.
   convergence/repeatability13/13 pass. Rotation count drops41.2%, failing
   frozen>50%; provisional area980.3 versus777deg2 also misses. Full
   isolated/native-geometry forecast not supplied; no stage1 authorization.
-- Tier3 lanes11-14 and Tiers4-5: pending in brief order. Lane11 source
-  review found fn3_k2.setup explicitly calls a Planck15 luminosity-distance
-  conversion for its synthetic SED masses. Do not reuse that setup under
-  this run's native-input rule; freeze stated synthetic inputs or justify
-  an independent native calibration first. No new lane11 numbers graded.
+- Tier3 lane11: AZ45 IN PROGRESS, criteria616d7954c8. Explicit synthetic
+  population avoids FN3's Planck15 mass conversion and retired Native
+  background. Known answers56/56, flat forward pairs24/24, interrupted
+  resume byte-identical. One canonical mutation pair misses0.01dex
+  convergence (change0.02906); retained as UNRESOLVED. Full4032-case
+  nonlinear grid, queue footprint declaration, population grader and
+  sample-size scan remain pending; not queued before light-tier work.
+- Tier3 lanes12-14 and Tiers4-5: pending in brief order. IC1613 data
+  confirmed under ../_external_data/fn4a_ic1613_2026_11, not inside repo.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.
 - Other sessions have now landed W1/X1 updates (handoff bfe49ed3c2,
