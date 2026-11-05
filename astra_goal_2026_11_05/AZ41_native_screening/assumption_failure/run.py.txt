@@ -1,0 +1,101 @@
+#!/usr/bin/env python3
+"""Native constitutive screen; no Gaussian observational grades transferred."""
+import argparse, hashlib, itertools, json, time
+from pathlib import Path
+import sympy as S
+import mpmath as mp
+start=time.time()
+ap=argparse.ArgumentParser(); ap.add_argument('--mutate',action='store_true')
+mut=ap.parse_args().mutate
+here=Path(__file__).resolve().parent; out=here/('mutate' if mut else 'main'); out.mkdir(exist_ok=True)
+checks=[]
+def check(n,ok,value=None): checks.append(dict(name=n,passed=bool(ok),value=value))
+def zero(e): return S.simplify(S.expand_power_base(e,force=True))==0
+r,a,rm,lam,q,d,L=S.symbols('r a rM lambda q d L',positive=True)
+p=S.Function('p')(r); dp=S.diff(p,r)+2*p/r
+F=lam*d**q/q
+# Radial action density -r²F(p'+2p/r): EL / r² is +d_r F'(d).
+u,up=S.symbols('u up',real=True)
+radial=-r*r*F.subs(d,up+2*u/r)
+ev=S.diff(radial,u).subs({u:p,up:S.diff(p,r)})-S.diff(S.diff(radial,up).subs({u:p,up:S.diff(p,r)}),r)
+check('radial_stiffness_EL_sign',zero(ev/r**2-S.diff(S.diff(F,d).subs(d,dp),r)))
+W=a*(-u-a*S.log(1-u/a))
+check('own_W_conjugate',zero(S.diff(W,u)-a*u/(a-u)))
+check('radial_poisson_elimination',zero(S.diff(W,u)-u-u*u/(a-u)))
+pdeep=a*rm/r; ddeep=S.diff(pdeep,r)+2*pdeep/r
+raw=-S.diff(S.diff(F,d).subs(d,ddeep),r)
+computed=raw*r if mut else raw
+ratio=S.simplify(computed/(a*rm**2/r**2))
+expected=2*lam*(q-1)*a**(q-2)*rm**(q-3)*r**(3-2*q)
+check('deep_MOND_radial_ratio',zero(ratio-expected),str(ratio))
+check('quadratic_stiffness_known_answer',zero(ratio.subs({q:2,lam:L**2/2})-L**2/(rm*r)))
+exponent=(q-3)/(4*q-6)
+check('mass_exponent_derivation',zero((2*q-3)*exponent-(q-3)/2))
+check('inward_regime_exponent_below_quarter',zero(exponent-S.Rational(1,4)+S.Rational(3,4)/(2*q-3)))
+check('q_three_halves_no_radial_crossover',zero(S.diff(expected.subs(q,S.Rational(3,2)),r)))
+high=-S.diff(S.diff(F,d).subs(d,2*a/r),r)/(a*rm**2/r**2)
+check('high_field_ratio',zero(high-lam*(q-1)*2**(q-1)*a**(q-2)*r**(2-q)/rm**2))
+check('zero_stiffness_known_answer',zero(expected.subs(lam,0)))
+endpoints=[]
+for target in [S.Rational(3,10),S.Rational(1,3),S.Rational(2,5),S.Rational(9,20)]:
+    qq=S.solve(exponent-target,q)[0]
+    # For q<0, lambda=-1 makes lambda*(q-1)>0. Units arbitrary here.
+    trial=-d**qq/qq
+    lim=S.limit(trial,d,0,dir='+')
+    check('formal_target_requires_singular_endpoint_'+str(target),qq<0 and lim==S.oo)
+    endpoints.append(dict(target=str(target),q=str(qq),F_zero_limit=str(lim),
+                          derivative_zero_limit=str(S.limit(S.diff(trial,d),d,0,dir='+'))))
+
+k,M,gamma,gb,pp,gg=S.symbols('k M gamma gb pp gg',positive=True)
+sol=S.solve([gg-gb-pp,gg-(M+gamma*k*k)*pp],[gg,pp])
+transfer=S.simplify(sol[gg]/gb)
+check('native_longitudinal_response',zero(transfer-1-1/(M-1+gamma*k*k)))
+C=1/(M-1); width2=gamma/(M-1)
+gaussian=1+C*S.exp(-width2*k*k)
+diff4=S.simplify(S.diff(transfer-gaussian,k,4).subs(k,0)/24)
+check('zero_wavenumber_known_answer',zero((transfer-gaussian).subs(k,0)))
+check('k_squared_match',zero(S.diff(transfer-gaussian,k,2).subs(k,0)))
+check('k_fourth_mismatch',zero(diff4-gamma**2/(2*(M-1)**3)))
+
+def numeric(dps):
+    with mp.workdps(dps):
+        result=[]
+        for foot,av in [('canonical','9.3603e-11'),('alt','1.1312e-10')]:
+            aa=mp.mpf(av); rrM=mp.mpf(1) # length unit; no physical mass fit
+            for qq,rr in itertools.product([2,3,4],[10,100,1000]):
+                ll=aa**(2-qq)*rrM**qq
+                fprime=lambda rad:ll*(aa*rrM/rad**2)**(qq-1)
+                deriv=-mp.diff(fprime,mp.mpf(rr))
+                if mut: deriv*=rr
+                measured=deriv/(aa*rrM**2/rr**2)
+                predicted=2*(qq-1)*mp.mpf(rr)**(3-2*qq)
+                result.append(dict(footing=foot,q=qq,r=rr,ratio=mp.nstr(measured,dps),
+                                   predicted=mp.nstr(predicted,dps)))
+        response=[]
+        for kv in ['0','.1','1','10']:
+            kk=mp.mpf(kv)
+            response.append(dict(k=kv,native=mp.nstr(1+1/(1+kk**2),dps),
+                                 gaussian=mp.nstr(1+mp.exp(-kk**2),dps)))
+        return result,response
+n40,t40=numeric(40); n80,t80=numeric(80)
+with mp.workdps(90):
+    paired=max(abs(mp.mpf(x['ratio'])-mp.mpf(y['ratio']))/(1+abs(mp.mpf(y['ratio']))) for x,y in zip(n40,n80))
+    tp=max(abs(mp.mpf(x[key])-mp.mpf(y[key])) for x,y in zip(t40,t80) for key in ['native','gaussian'])
+    for foot in ['canonical','alt']:
+        er=max(abs(mp.mpf(x['ratio'])/mp.mpf(x['predicted'])-1) for x in n80 if x['footing']==foot)
+        check(foot+'_numerical_derivative_identity',er<=mp.mpf('1e-30'),str(er))
+        check(foot+'_precision_pair',paired<=mp.mpf('1e-30'),str(paired))
+        check(foot+'_transfer_precision_pair',tp<=mp.mpf('1e-30'),str(tp))
+result=dict(label='NO VERDICT',kappa='1/2 FITTED; not theory closed',mutate=mut,
+ checks=checks,footings={'canonical':9.3603e-11,'alt':1.1312e-10},
+ endpoints=endpoints,radial_ratio=str(ratio),mass_exponent=str(exponent),high_field_ratio=str(S.simplify(high)),
+ transfer=str(transfer),transfer_k4_difference=str(diff4),rows_40=n40,rows_80=n80,
+ transfer_40=t40,transfer_80=t80,
+ observational_gates={key:'NOT EVALUABLE: no eligible own-equation mechanism mapped to this engine' for key in ['T0','T1','T2','T3','T4','Q2']},
+ tensor_speed='UNDECIDED for a new complete mechanism',
+ source_hashes={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [Path(__file__),here/'FROZEN_CRITERIA.md']},
+ seconds=time.time()-start)
+(out/'results.json').write_text(json.dumps(result,indent=2)+'\n')
+failed=[c['name'] for c in checks if not c['passed']]
+print(json.dumps(dict(mutate=mut,passed=len(checks)-len(failed),total=len(checks),failed=failed,seconds=result['seconds']),indent=2))
+raise SystemExit(bool(failed))

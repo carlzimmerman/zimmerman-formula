@@ -56,7 +56,13 @@ claim, including the coordinator's previous AZC1 construction.
   coefficient; exact constant-w potential-portal branch and restricted
   clock-retaining kinetic positivity verified. Main32/32, three mutants
   21/32,30/32,25/32. No kappa-derivation reopen condition is met.
-- Tier 2 lanes7-8 and Tiers 3-5: pending in brief order.
+- Tier 2 lane7: AZ41 NO VERDICT on a complete covariant FN6 mechanism.
+  Native power-law stiffness asymptotic obstruction and rational-versus-
+  Gaussian operator mismatch derived; main28/28, mutant24/28. No candidate
+  is transferred to the five observational engines; new-mechanism T0-T4
+  and Q2 NOT EVALUABLE, tensor speed UNDECIDED. Finite-radius/non-power
+  mechanisms and their full own-equation observable solves remain open.
+- Tier 2 lane8 and Tiers 3-5: pending in brief order.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.
 - Other sessions have now landed W1/X1 updates (handoff bfe49ed3c2,
