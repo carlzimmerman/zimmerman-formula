@@ -1,0 +1,103 @@
+% The Universe of Knobs. Build: tectonic universe_of_knobs.tex
+% Figures: python3 figures.py. Worked numbers: python3 worked_numbers.py.
+\documentclass[10pt,openany]{book}
+\usepackage[paperwidth=6in,paperheight=9in,inner=0.72in,outer=0.6in,top=0.7in,bottom=0.75in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,array,tabularx}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={The Universe of Knobs},pdfauthor={C. P. Zimmerman}}
+
+\definecolor{knobred}{HTML}{C0392B}
+\definecolor{knobink}{HTML}{1F2A44}
+\definecolor{knobgold}{HTML}{D4A017}
+\definecolor{knobblue}{HTML}{2E6DA4}
+
+\setlist{itemsep=2pt,topsep=4pt,leftmargin=1.4em}
+\setlength{\parskip}{3pt}
+\sloppy
+
+\titleformat{\chapter}[display]{\normalfont\bfseries\color{knobink}}{\large\scshape Chapter \thechapter}{6pt}{\LARGE}
+\titlespacing*{\chapter}{0pt}{0pt}{18pt}
+\titleformat{\section}{\normalfont\large\bfseries\color{knobink}}{}{0pt}{}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries\itshape\color{knobink}}{}{0pt}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\small\scshape The Universe of Knobs}
+\fancyhead[RO]{\small\scshape\nouppercase{\leftmark}}
+\fancyfoot[C]{\small\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+
+% Boxes
+\newtcolorbox{knobbox}[1]{enhanced,breakable,colback=knobred!4,colframe=knobred!70,
+  fonttitle=\bfseries\small,title={#1},arc=2pt,boxrule=0.6pt,left=5pt,right=5pt,top=3pt,bottom=3pt}
+\newtcolorbox{honestbox}[1][Honesty box]{enhanced,breakable,colback=knobink!4,colframe=knobink!75,
+  fonttitle=\bfseries\small,title={#1},arc=2pt,boxrule=0.6pt,left=5pt,right=5pt,top=3pt,bottom=3pt}
+\newtcolorbox{mathbox}[1]{enhanced,breakable,colback=knobblue!4,colframe=knobblue!70,
+  fonttitle=\bfseries\small,title={#1},arc=2pt,boxrule=0.6pt,left=5pt,right=5pt,top=3pt,bottom=3pt}
+
+\usepackage[section]{placeins}
+\usepackage{etoolbox}
+\AtBeginEnvironment{tabular}{\footnotesize}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\topfraction}{0.85}\renewcommand{\bottomfraction}{0.6}\renewcommand{\textfraction}{0.1}\renewcommand{\floatpagefraction}{0.75}
+\setcounter{totalnumber}{5}\setcounter{topnumber}{3}\setcounter{bottomnumber}{3}
+\newcommand{\fig}[3][0.9]{\begin{figure}[!htbp]\centering\includegraphics[width=#1\linewidth]{figures/#2.pdf}\caption{#3}\end{figure}}
+\newcommand{\dex}{\ensuremath{\,\mathrm{dex}}}
+\newcommand{\gbar}{\ensuremath{g_{\rm bar}}}
+\newcommand{\rhoDE}{\ensuremath{\rho_{\rm DE}}}
+\newcommand{\Msun}{\ensuremath{M_\odot}}
+\newcommand{\LCDM}{$\Lambda$CDM}
+\newcommand{\kms}{\ensuremath{\,\mathrm{km\,s^{-1}}}}
+\newcommand{\ms}{\ensuremath{\,\mathrm{m\,s^{-2}}}}
+\newcommand{\epi}[1]{\begin{flushright}\begin{minipage}{0.82\linewidth}\raggedleft\small\itshape #1\end{minipage}\end{flushright}\vspace{6pt}}
+
+\begin{document}
+\frontmatter
+\input{front}
+\tableofcontents
+
+\input{ch00_preface}
+
+\mainmatter
+\part{The Knob Shop}
+\input{ch01_what_is_a_knob}
+\input{ch02_six_knobs}
+\input{ch03_galaxy_knobs}
+
+\part{The Fried Chicken Kitchen}
+\input{ch04_twelve_knobs}
+\input{ch05_exact_dish}
+\input{ch06_dark_energy_tie}
+\input{ch07_high_priest}
+\input{ch08_other_kitchens}
+
+\part{A Knob With \texorpdfstring{$10^{500}$}{10\textasciicircum 500} Clicks}
+\input{ch09_landscape}
+
+\part{What About One Knob?}
+\input{ch10_one_knob}
+\input{ch11_wins}
+\input{ch12_losses}
+
+\part{The Knob That Can't Be Turned}
+\input{ch13_unturnable}
+\input{ch14_count_your_knobs}
+
+\appendix
+\input{appendices}
+
+\backmatter
+\input{references}
+\end{document}

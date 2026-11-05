@@ -1,0 +1,151 @@
+\chapter{The High Priest's Complete Recipe}
+
+\epi{Twenty-six knobs walk into a cluster.\\ Seven of them are pinned to the wall.}
+
+\section{Beyond rotation curves}
+
+So far the kitchen has cooked for one customer, the SPARC rotation curves. A real theory has to feed everyone: gravitational lensing around galaxies, the hot gas in galaxy clusters, the dark energy tie and the Solar System. The paper's next move, at my request, was to ask for the complete meal. Build one global \LCDM\ recipe, using the law as its basis, that passes every line on a scoreboard frozen in advance. I called it the high priest's recipe, because it's the one a determined defender of the faith would cook.
+
+First, though, the new customers.
+
+\section{Lensing: the bending of light around galaxies}
+
+A galaxy's mass bends the light of galaxies behind it, slightly distorting their shapes. Averaging the distortion over many foreground galaxies (lenses) gives the excess surface density profile, $\Delta\Sigma(R)$, the mean surface density inside projected radius $R$ minus that at $R$:
+\begin{equation}
+\Delta\Sigma(R)=\bar\Sigma(<R)-\Sigma(R),\qquad\Sigma(R)=\int\rho\!\left(\sqrt{R^2+z^2}\right)dz.
+\end{equation}
+The KiDS-1000 survey measured this for isolated lens galaxies (Brouwer and collaborators, 2021) in four bins of stellar mass, 60 points from 35\,kpc out to 2.6\,Mpc, with a full covariance matrix. Lensing reaches far beyond the visible discs, which makes it a strong test of what the halo does where rotation curves can't see.
+
+The recipes need extra knobs to face lensing. Out at a megaparsec, a lens's signal includes its neighbours, through a two-halo term with a large-scale bias $b(M)$ from Tinker and collaborators (2010):
+\begin{equation}
+\Delta\Sigma=\Delta\Sigma_{\rm 1h}+b(M)\,\Delta\Sigma_{\rm lin}.
+\end{equation}
+The plain law has neither a truncation nor a two-halo term; it is applied as is. All models were graded against the gate $p\ge0.01$ with nothing refitted, frozen before the numbers in Amendments A4 to A6.
+
+\begin{table}[h]\centering\small
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+model & $\chi^2$, 60 pts & $\chi^2$, $R\le1$\,Mpc (44) & amplitude $A$\\
+\midrule
+plain law, R12 untruncated & 276.1 & 211.4 & 1.367\\
+R12 cut at $R_{200}$, two-halo & 457.7 & 290.4 & 1.422\\
+R11 twelve knobs & 277.9 & 146.5 & 1.179\\
+R11b fourteen knobs & 242.1 & 120.9 & 1.140\\
+base \LCDM\ control, untuned & 563.1 & 444.2 & 0.809\\
+\bottomrule
+\end{tabular}
+\caption{KiDS-1000 isolated lenses. Every row fails the $p\ge0.01$ gate. $A$ is one fitted scale factor, a diagnostic only; 1 means no offset.}
+\end{table}
+
+\begin{honestbox}
+Every model fails, mine included. The recipes, tuned only to the law on SPARC, don't lose to the law here; the fourteen-knob recipe does better. A halo made more realistic by a cutoff does worse. A post-result diagnostic with a free mass shift in each bin (so not a grade) gives the law 167.7 on 56 degrees of freedom at $+0.2$ to $+0.3\dex$, close to an earlier independent run of 163.1 on the same file. All the rows may share a problem with lens masses or the covariance. In Chapter~12 we'll see that the law has a real lensing shortfall of about $0.09\dex$ inside 0.3\,Mpc that survives every estimator the programme has.
+\end{honestbox}
+
+\fig{kids_chi2}{The lensing grade on KiDS-1000. Every single-recipe model fails the $p=0.01$ line. Only R14's patchwork of about 1066 parameters gets under it (on 46 degrees of freedom, line 71.2).}
+
+
+\section{Clusters: the X-COP test}
+
+Galaxy clusters are the other big customer. X-COP is a sample of clusters with excellent X-ray data, where the hot gas's temperature and density profiles give the total mass through hydrostatic equilibrium:
+\begin{equation}
+M_{\rm HSE}(<r)=-\frac{k_BT(r)\,r}{G\mu m_p}\left[\frac{d\ln n_e}{d\ln r}+\frac{d\ln T}{d\ln r}\right].
+\end{equation}
+Clusters are where modified dynamics has always struggled, and my law is no exception. On X-COP the law's mean log offset is $-0.467\dex$ with rms $0.476$. In mass terms, the hydrostatic mass is 2.93 times what the law provides from the visible baryons, and all seven clusters come up short (Chapter~12). \LCDM\ halos, by contrast, are at home here.
+
+\section{R13: the high priest's recipe}
+
+R13 is one global recipe tuned jointly to the law on SPARC, to KiDS lensing and to X-COP hydrostatic masses, frozen as Amendment A10. Its ingredients:
+
+\begin{knobbox}{R13: 21 knobs plus 5 hand terms}
+\begin{itemize}
+\item R11b's 14 feedback and concentration knobs;
+\item an AGN core cutoff for massive systems;
+\item a lens mass offset;
+\item a two-halo multiplier;
+\item a satellite fraction and host mass;
+\item a hydrostatic bias;
+\item a cluster baryon fraction;
+\item and the 5 dark-energy and redshift hand terms from Chapter~6.
+\end{itemize}
+It was tuned on half of each dataset and graded on the rest, then tuned on everything.
+\end{knobbox}
+
+The first run had an X-COP radius error of a factor of 1000 and two smaller errors. They were fixed under the same gates and the wrong output was kept on the record. Here's the frozen scoreboard.
+
+\begin{table}[h]\centering\small
+\begin{tabular}{@{}p{4.3cm}p{2.6cm}l@{}}
+\toprule
+line & R13 & result\\
+\midrule
+L1 distance to the law (0.02, 0.04, 0.02) & 0.0290, 0.0640, 0.0187 & fail (E3 passes)\\
+L2 rms to observed SPARC ($\le0.205$) & 0.1943 & pass\\
+L3 KiDS, 60 points, $p\ge0.01$ & $\chi^2=145.2$ & fail\\
+L4 X-COP mean, rms (0.05, 0.12) & $-0.001$, 0.075 & pass\\
+L5 slope with $\rhoDE$; $\kappa$ & $+0.500$; 0.483, 0.49, 0.51 & pass\\
+L6 $a(z)/a(0)$ & 0.929, 0.913, 0.92 & pass\\
+L7 Cassini, smooth halo & $2.0\times10^{-9}\,a_0$ & pass\\
+L8 unseen SPARC, KiDS, X-COP & 0.0281; 82.1 on 30; 0.048 & fail on KiDS\\
+L9 knobs at bounds ($\le3$); $M_{200}$ shift ($\le0.3$) & 7; 0.32 & fail\\
+\bottomrule
+\end{tabular}
+\caption{R13's frozen scoreboard. Verdict: \textbf{not complete}.}
+\end{table}
+
+Four fails out of nine. And two of the passes are softer than they look.
+
+\fig{r13_scoreboard}{R13's frozen scoreboard as tiles. Light green marks passes that rest on hand terms or a parameter at its bound.}
+
+
+\textbf{The dark energy passes are typed in.} L5 and L6 pass because of the hand terms, which are still extreme: $c\propto\rhoDE^{3.00}H_0^{-4.86}$ and $M_{200}\propto H_0^{-9.54}$. Without them the slope is $+0.245$.
+
+\textbf{The cluster pass is propped up.} L4 passes with the cluster baryon fraction at its lower bound of 0.08, when the sample's measured value in one system is 0.138, and with the hydrostatic bias at zero. That's a poor physical reading, so the X-COP pass is weak.
+
+\section{R14: escalation}
+
+When R13 failed, the obvious next move was to give the recipe more freedom, and the paper did, frozen as Amendment A11. R14 uses R9's 1026 per-galaxy parameters on SPARC, and adds 14 per-bin parameters for lensing on R13's halo.
+
+It gets lensing to pass: $\chi^2=69.6$ on 60 points, $p=0.014$ at 46 degrees of freedom, and 44.7 on 28 unseen radii, $p=0.024$. Four of the 14 new knobs are at their bounds, including truncation at three times $R_{200}$ and the host mass.
+
+Count it up: 1026 per galaxy, 14 per lensing bin, R13's 21 knobs and 5 hand terms. About \textbf{1066 parameters}. And it's a patchwork. Nothing connects R9's per-galaxy values to the lensing side, and the hand terms weren't rechecked on R9's halos. It's not one theory; it's a quilt.
+
+\section{The honest reading}
+
+This is the chapter where it would be easy to crow, so let me be precise about what was found.
+
+\textbf{Getting close is easy.} A dozen knobs get the law's level, nearly its shape, and a tie with the law on observed rotation curves.
+
+\textbf{Getting everything at once, as one theory, wasn't achieved here.} R13, with 26 knobs and hand terms, fails four of nine lines. R14 passes more lines with about 1066 parameters, but it isn't a single theory.
+
+\textbf{And on two datasets, the tuned recipe beats the law.} On X-COP the law's mean offset is $-0.467$ with rms 0.476; R13 gets $-0.001$ with rms 0.075. On KiDS the law's $\chi^2$ is 276.1 against R13's 145.2. The tuned \LCDM\ recipe fits clusters and lensing better than my law. It does so with a weak physical reading in clusters and hand terms for the tie, but it does.
+
+\fig{xcop_compare}{X-COP clusters: the law comes up short by about half a dex; the tuned recipe lands on the data, with a baryon fraction at its lower bound.}
+
+
+\textbf{Not graded:} the CMB and growth on the recipe, cluster keys, dwarfs, IC~1613, the Milky Way, the Bullet Cluster, wide binaries and any formation path.
+
+\begin{honestbox}[The fourth lesson]
+A complete \LCDM\ recipe that contains the law and its tie wasn't found. That doesn't refute \LCDM: real hydrodynamic simulations could do things a semi-analytic model can't, and \LCDM\ never claimed to contain my law. What the experiment does show is that if a \LCDM\ paper ever claims to \emph{derive} this law, it has five things to show: the per-galaxy priors on $M_{200}$ and $c$; the fit against surface-density diversity, not just mass; the slope with $\rhoDE$ with baryons evolved; $\kappa$ across cosmologies; and a formation path to the required halos. Passing those would be a real result, and the law would then have to be read as an output of the halo side.
+\end{honestbox}
+
+\section{An interlude: what if the halo were a particle?}
+
+Since R5 and R12 showed that equilibrium halos can carry the law, the paper took the reasoning one step further, in the rival's language. I don't hold this reading. The point is to see what a reverse-engineered particle would need.
+
+\textbf{A field version.} A static scalar field with
+\begin{equation}
+\frac{y^2}{a_0-y}=\gbar
+\end{equation}
+reproduces the law to $3.9\times10^{-13}$ on all 3373 points in spherical symmetry, so $y<a_0$ everywhere. It's not new: it's the scalar function $\mu_s=\tilde\mu/(1-\tilde\mu)$ of Zhao and Famaey (2006) for the simple interpolating function of Famaey and Binney (2005).
+
+\textbf{A particle version.} If a real particle halo supplies all of $g_{\rm law}-\gbar$, there's no extra force on baryons, so no double counting. Such a halo can't bind to the Sun beyond 0.076\,AU, so the Solar System passes, and wide binary stars should be Newtonian, unlike a field reading of the law.
+
+\textbf{Its bill.} A boson that condenses in all of SPARC but not in clusters at 100\,kpc lands between 9.2 and 13.7\,eV. But the pressure at fixed density scatters by $0.521\dex$ between galaxies against a limit of 0.1, so no single equation of state holds these halos up. The halos need a median of 0.516 of \emph{all} the supernova energy available, at full coupling. Tracking baryons by scattering would need $\sigma/m$ of 0.63 to 40\,cm$^2$\,g$^{-1}$. A fermion needs a mass above about 56\,eV for a typical galaxy and 245\,eV for the most demanding. And nothing in any of it puts the dark energy density in the halo.
+
+\textbf{A posited action.} Amendment A12 wrote the link as one action with one scale:
+\begin{gather}
+L=-\rhoDE\left[1+\frac{\kappa^2}{4\pi}H(s)\right]-\frac{\kappa}{\sqrt{8\pi}}\frac{\phi\,\rho_b}{M_{\rm Pl}},\\
+s=\frac{|\nabla\phi|}{\sqrt{\rhoDE}},\qquad H'(s)=\frac{s^2}{1-s}.
+\end{gather}
+It gives $a_0=\kappa c\sqrt{G\rhoDE}$ and reproduces the law to $0.00004\dex$, with the field's gradient energy capped at $\rhoDE$. It's a posit, not a derivation. $\kappa$ stays fitted, the free function leaves the vacuum constant free and turns complex for timelike gradients, so the action has no cosmology yet. Close neighbours exist in the literature: Banik and Zhao's observation that a gravitational field's energy density reaches the dark energy density at $c^2\sqrt\Lambda$, and a Skordis--Z\l{}o\'snik extension that ties the MOND scale to the dark energy potential.
+
+The particle detour ends where every road in this kitchen ends. Everything can be imitated. The dark energy tie has to be put in by hand.

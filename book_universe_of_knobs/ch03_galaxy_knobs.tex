@@ -1,0 +1,149 @@
+\chapter{Where the Knobs Multiply: Galaxies}
+
+\epi{The six knobs build the universe's scaffolding beautifully.\\ Then someone asks what goes on inside a single galaxy,\\ and the panel grows a second floor.}
+
+\section{From the horizon to the halo}
+
+The six knobs of Chapter~2 describe the universe in its smooth, early, linear phase, when every region was within a part in a hundred thousand of average. Galaxies are the opposite: a disc of stars a hundred thousand times denser than average, spinning in a cloud of gas. Between the two lies the nonlinear growth of structure. The six knobs alone can't give you a galaxy; you need to say what happens when gas cools, forms stars, and the stars explode.
+
+\LCDM\ handles this in two layers. The first, dark matter alone, is nearly knob-free. The second, ordinary matter, is where the knobs breed.
+
+\section{Layer one: halos, two numbers each}
+
+Simulate cold dark matter alone, starting from the CMB's initial fluctuations, and it collapses into roughly spherical clumps called halos. In the 1990s Navarro, Frenk and White found that simulated halos share a single profile shape, now called NFW:
+\begin{equation}
+\rho(r)=\frac{\rho_s}{(r/r_s)\,(1+r/r_s)^2}.
+\end{equation}
+It falls as $r^{-1}$ near the centre (the ``cusp'') and $r^{-3}$ far out. The enclosed mass is
+\begin{equation}
+M(<r)=4\pi\rho_sr_s^3\left[\ln(1+x)-\frac{x}{1+x}\right],\qquad x=\frac{r}{r_s}.
+\end{equation}
+A halo is usually labelled by its mass $M_{200}$, the mass inside the radius $r_{200}$ where the mean density is 200 times critical,
+\begin{equation}
+M_{200}=\frac{4\pi}{3}\,200\,\rho_c\,r_{200}^3,
+\end{equation}
+and its \emph{concentration} $c=r_{200}/r_s$. Two numbers per halo, then. Better still, the simulations predict how they're distributed: how many halos of each mass (the mass function) and a mean concentration for each mass, the $c(M)$ relation, with a scatter of about $0.11\dex$. A refinement, the Einasto profile,
+\begin{equation}
+\rho(r)=\rho_{-2}\exp\left\{-\frac{2}{\alpha}\left[\left(\frac{r}{r_{-2}}\right)^{\alpha}-1\right]\right\},
+\end{equation}
+adds a third shape number $\alpha\approx0.16$, also predicted rather than tuned.
+
+\fig{nfw_profiles}{Halo shapes. Left: NFW and Einasto densities, with the inner $r^{-1}$ cusp and outer $r^{-3}$ fall-off. Right: circular speed in an NFW halo for three concentrations; more concentrated halos rise faster and peak higher.}
+
+
+\begin{knobbox}{Layer one: dark matter only}
+Per halo: $M_{200}$ and $c$, both drawn from predicted distributions. Shape: NFW or Einasto with $\alpha$ predicted. Global knobs added: essentially none beyond the six. This layer is a genuine prediction of \LCDM\, and it is knob-light.
+\end{knobbox}
+
+If galaxies simply sat in these halos, the theory would make sharp predictions. It does, and some of them fail. That is where layer two comes in.
+
+\section{The small-scale headaches}
+
+Over the past thirty years a series of problems have turned up where the dark-matter-only predictions meet real galaxies.
+
+\begin{description}[leftmargin=1em,style=nextline]
+\item[Cusp versus core.] Many dwarf and low-surface-brightness galaxies have rotation curves that rise gently, as if the central dark matter density were flat (a core) rather than rising as $r^{-1}$.
+\item[Missing satellites.] Simulated Milky Way halos contain hundreds of subhalos massive enough to host dwarf galaxies; far fewer bright satellites are seen. This one is mostly solved by the faintness of small galaxies and the discovery of many ultra-faint ones.
+\item[Too big to fail.] The most massive simulated subhalos are too dense at their centres to host the Milky Way's actual bright satellites, yet are too massive to have failed to form stars.
+\item[Diversity.] Galaxies with the same maximum rotation speed show a wide range of inner rotation-curve shapes, wider than halos of the same mass predict.
+\end{description}
+
+And then there are the regularities, which in some ways are the deeper puzzle.
+
+\section{The regularities: one acceleration scale}
+
+Take a disc galaxy, measure the light from its stars and the radio emission from its gas, and you can compute how fast it \emph{would} spin under Newton's law with no dark matter. Call the resulting gravitational acceleration at radius $r$
+\begin{equation}
+\gbar(r)=\frac{V_{\rm bar}^2(r)}{r},\qquad V_{\rm bar}^2=V_{\rm gas}|V_{\rm gas}|+\Upsilon_{\rm disk}V_{\rm disk}^2+\Upsilon_{\rm bul}V_{\rm bul}^2,
+\end{equation}
+where $\Upsilon$ is the stellar mass-to-light ratio, which converts starlight into stellar mass. Measure the actual rotation speed $V$ and you get the observed acceleration $g_{\rm obs}=V^2/r$.
+
+The SPARC sample assembled by Lelli, McGaugh and Schombert in 2016 has 175 disc galaxies with infrared photometry from the Spitzer telescope and good rotation curves. Plot $g_{\rm obs}$ against $\gbar$ for every point in every galaxy, and the points don't scatter all over the place, as you might expect if each galaxy's halo had its own history. They fall on one narrow curve, the \emph{radial acceleration relation}. At high acceleration it follows Newton, $g_{\rm obs}=\gbar$. Below a characteristic scale of about $10^{-10}\ms$ it bends away and follows
+\begin{equation}
+g_{\rm obs}\approx\sqrt{\gbar\,a_0}.
+\end{equation}
+At the outer edge of a disc, where the rotation curve is flat at speed $V_f$ and $\gbar\approx GM_b/r^2$, this gives
+\begin{equation}
+\frac{V_f^4}{r^2}=\frac{GM_b}{r^2}\,a_0\quad\Longrightarrow\quad V_f^4=GM_b\,a_0,
+\end{equation}
+the \emph{baryonic Tully--Fisher relation}: the fourth power of the rotation speed is proportional to the total mass in stars and gas, with no reference to a halo.
+
+\fig{rotation_anatomy}{Anatomy of a rotation curve, for a toy disc galaxy of $4\times10^{10}M_\odot$ in stars and $10^{10}M_\odot$ in gas. Newton with the visible matter (blue) falls off. The law (red) stays up, heading for $(GM_ba_0)^{1/4}$. A \LCDM\ halo (dashed) can do the same with its two knobs set suitably.}
+
+
+\fig{rar_toy}{The same toy galaxy in the radial acceleration plane. Under the law its points lie on the red curve by construction. The halo model's points (black) lie close to it too: for one galaxy, a suitably chosen halo can mimic the law. The puzzle is that every galaxy lands on the same curve.}
+
+
+Mordehai Milgrom predicted both of these in 1983, decades before the data were good enough to check them, as consequences of his modified Newtonian dynamics, MOND. They're among the most striking successful predictions in astrophysics, and \LCDM\ has to explain them as an outcome.
+
+\begin{honestbox}
+To be fair to \LCDM: the radial acceleration relation is a relation between two measured quantities, and simulation groups have reported that relations of this kind emerge in their simulated galaxies (for example Ludlow and collaborators, and Keller and Wadsley, both in 2017). A relation emerging isn't the same as the \emph{same} relation emerging, with the same scale, the same shape and the same tightness. That is exactly the question the fried chicken paper asks, and Chapter~8 reports how close the published simulations come.
+\end{honestbox}
+
+\section{Layer two: the baryon panel}
+
+To turn a halo into a galaxy, \LCDM\ modelling adds processes that depend on gas physics and star formation. Each one is real physics, and each one comes with knobs.
+
+\subsection{How many stars? Abundance matching}
+
+The first question is how much of a halo's share of baryons becomes stars. The stellar-to-halo mass relation, found by matching the number density of galaxies to the number density of halos, is usually written in the double power-law form of Moster, Naab and White:
+\begin{equation}
+\frac{M_*}{M_{200}}=2N\left[\left(\frac{M_{200}}{M_1}\right)^{-\beta}+\left(\frac{M_{200}}{M_1}\right)^{\gamma}\right]^{-1}.
+\end{equation}
+Four knobs: a normalisation $N$, a characteristic mass $M_1$ near $10^{12}\Msun$, a low-mass slope $\beta$ and a high-mass slope $\gamma$. Star formation peaks at a few per cent efficiency near $M_1$ and falls on both sides. In the original paper each of the four also evolves with redshift, which doubles the count.
+
+\fig{shmr}{The stellar-to-halo mass relation and its four knobs. $N$ sets the peak efficiency (a few per cent), $M_1$ its position, $\beta$ and $\gamma$ the slopes either side. Dotted curves show $\beta$ and $\gamma$ turned.}
+
+
+\subsection{Blowing things up: feedback}
+
+Supernovae and the jets of supermassive black holes heat and expel gas. That suppresses star formation in small and large halos, explaining the shape of the stellar-to-halo relation. Rapid outflows can also shake the dark matter: if gas is repeatedly blown out of the centre and falls back, the gravitational potential fluctuates and dark matter orbits are pumped outward, softening a cusp into a core.
+
+In hydrodynamic simulations these processes happen below the resolution limit, so they're put in as \emph{subgrid} recipes with tunable efficiencies, thresholds and coupling constants. The simulation teams say this openly. The EAGLE project, for example, calibrated its stellar feedback to reproduce the present-day galaxy stellar mass function and galaxy sizes; IllustrisTNG calibrated its model to a set of observed relations. That's a reasonable engineering choice. It also means the calibrated observables are inputs, not predictions.
+
+\subsection{Cores: a recipe}
+
+A popular analytic description of feedback cores is the coreNFW form of Read, Agertz and Collins (2016):
+\begin{equation}
+M_{\rm cNFW}(<r)=M_{\rm NFW}(<r)\,f^n,\qquad f=\tanh\!\left(\frac{r}{r_c}\right),
+\end{equation}
+where $r_c$ is a core radius tied to the stellar half-light radius and the exponent $0\le n\le1$ measures how complete the core is. With $n=0$ you have the cusp; with $n=1$ a full core. Two more knobs per galaxy, or two global functions with their own coefficients.
+
+\fig{corenfw}{The coreNFW knob $n$. At $n=0$ the halo keeps its cusp; at $n=1$ the centre is flattened into a core inside $r_c$, and the inner rotation curve rises more slowly.}
+
+
+\subsection{Squeezing: adiabatic contraction}
+
+Gas cooling into the centre deepens the potential, and the dark matter responds by contracting. The classic model of Blumenthal and collaborators (1986) assumes circular orbits that conserve the adiabatic invariant $rM(r)$:
+\begin{equation}
+r_i\,M_i(r_i)=r_f\left[M_b(r_f)+(1-f_b)\,M_i(r_i)\right],
+\end{equation}
+where $M_i$ is the initial total mass profile, $M_b$ the final baryon profile and $f_b$ the baryon fraction. Real halos contract less than this model says, so in practice it's scaled by a contraction fraction, which is another knob, between 0 (none) and 1 (full).
+
+\fig{contraction}{Adiabatic contraction: a $10^{12}M_\odot$ NFW halo before (grey dashed) and after (red) a $5\times10^{10}M_\odot$ disc forms (blue), using the Blumenthal invariant. The dark matter is pulled inward.}
+
+
+\begin{knobbox}{Layer two: the baryon panel}
+\begin{tabular}{@{}lp{6.2cm}@{}}
+\toprule
+process & typical knobs\\
+\midrule
+stars per halo & 4 (8 with redshift evolution)\\
+feedback energy & efficiency, mass and density scalings\\
+core size and strength & 2 per galaxy, or a global function\\
+contraction & 1 per galaxy, or a global function\\
+halo shape & $\alpha$, $c$ scatter, $M_{200}$ scatter\\
+subgrid simulation & dozens of efficiencies and thresholds\\
+\bottomrule
+\end{tabular}
+\smallskip
+Every one of these is defensible physics. Every one of them is also a dial.
+\end{knobbox}
+
+\section{The question}
+
+So here is the situation. On one side, a regularity in galaxies that looks like it has one acceleration scale, set once for every galaxy, with no visible role for any galaxy's history. On the other side, a theory whose galaxy panel has dozens of dials, each representing real but uncertain physics.
+
+The obvious question is whether the dials can reproduce the regularity. The less obvious and more interesting question is: \emph{how many} dials does it take, \emph{which} ones, \emph{set to what}, and is there anything about the regularity that no dial can reach?
+
+That's an experiment you can actually run. I ran it, and gave it a silly name so nobody would mistake it for a belief. Welcome to the kitchen.
