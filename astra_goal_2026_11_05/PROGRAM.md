@@ -99,8 +99,9 @@ claim, including the coordinator's previous AZC1 construction.
   robust6arcsec minor-axis moments miss2% at5/9 quadrature (6.30/5.33%).
   Wrong-beam mutation bites; failures repeat exactly. Row-chunked V profile
   checks7/7 pass, original photometry recovered exactly,442MB peak RSS.
-  Full preparation,
-  pilot, queue and production fits remain pending.
+  Raw8x8 stage now has16/16 reader and13/13 restart checks; full cubes
+  are queue-guarded. A1 corrects FELO spectral WCS before fits (old linear
+  axis differs0.06208km/s). Masks/model pilot, queue and fits remain pending.
 - Tier3 lane13: AZ47 IN PROGRESS. Measurement protocol75abae6f8b,
   criteria774bb8db44 and pre-result wording amendment b06499a5dc.
   Four train clusters yield rank3 empirical covariance, scatter.067-.106dex;

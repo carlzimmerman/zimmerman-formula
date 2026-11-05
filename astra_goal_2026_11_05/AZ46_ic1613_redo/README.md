@@ -76,3 +76,34 @@ warnings as errors. Raw headers/files are never edited. Full cube/mask
 preparation and interrupted/resumed8x8 pilot remain the next required work.
 
     python -W error astra_goal_2026_11_05/AZ46_ic1613_redo/check_stars.py
+
+## Restartable raw-cube stage and spectral correction
+
+Amendment2ab4024308 was committed alone after the first raw prototype,
+before any new cube fit. FELO-HEL is not a linear optical-velocity axis:
+the old expression differs from the header's spectral WCS by up to
+0.06207714km/s for both cubes. The corrected worker uses spectral WCS;
+an independent optical Doppler calculation agrees within5.12e-11km/s.
+This is a coordinate correction, not a changed physical acceptance line.
+
+raw_cube.py reads/crops/bins planes with rolling, hashed, atomic checkpoints.
+Full2x2/4x4 work is refused outside heavyq; the8x8 pilot is allowed. All16
+known-answer checks pass, including exact synthetic binning and independent
+Astropy real-plane access. All13 raw-stage contract checks pass: both cubes
+complete at32/64 row chunks with identical scientific fields/array hashes;
+a live SIGTERM after the first committed plane exits75; resume reproduces
+the uninterrupted manifest byte-for-byte; complete resume exits0; stale
+identity is rejected. Each pilot uses107x150x150 voxels and roughly144MB
+peak RSS. Full physical footprint will be measured after mask/model pilot
+preparation, not inferred from RSS.
+
+    python -W error astra_goal_2026_11_05/AZ46_ic1613_redo/check_raw.py
+    python -W error astra_goal_2026_11_05/AZ46_ic1613_redo/check_raw_resume.py --tag fresh_raw_contract
+
+The second command requires a fresh tag and regenerates the pilot artifacts.
+Compact manifests and verification output are committed; cube/coordinate
+NumPy arrays and per-plane rolling checkpoints remain local reproducible
+runtime artifacts, identified by hashes in those manifests. raw_contract/
+is the superseded pre-A1 prototype and must not be used as production input.
+raw_verified/ holds the current tested raw pilots. Neither is a finished
+mask preparation or a cube fit; the existing robust beam failure remains.
