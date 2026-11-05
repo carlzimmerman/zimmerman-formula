@@ -120,7 +120,7 @@ L += [
 # v1.1, lanes landed 2026-11-02 to 2026-11-04 (lane FN5): numbers to the lane's .out/.json, labels to its README or result note
 KCL = C + "CFG894_kappa_campaign_ledger/"; K03 = "kappa_closure/k03_half_vs_two_pi_precision.out"; AT = Q + "AT1_a0z_tracking_decision/"; LE = Q + "LE1_lensing_estimator_audit/"
 CWL = "cw_lanes_2026_11_04/"; W6 = CWL + "CW6_lensing_measured_gas/"; W1 = CWL + "CW1_wide_binary_seal_dr4/"; W3 = CWL + "CW3_cz1_defect_sweep/"
-CZL = "claude_goal_2026_11_03/"; Z5 = CZL + "CZ5_local_rule_3d_regrade/"; AX = Q + "AX1_action_for_law/"; CP = Q + "C6P_cassini_high_precision/"
+CZL = "claude_goal_2026_11_03/"; Z5 = CZL + "CZ5_local_rule_3d_regrade/"; AX = Q + "AX1_action_for_law/"; CP = Q + "C6P_cassini_high_precision/"; VH = Q + "VH1_v3s_health_gates/"; AZ = "forecasts/aztec159_2026_11_04/"
 N1 = Q + "AN1_aest_nonlinear_dust/"; N2 = Q + "AN2_aest_3d_fold/"; HF = Q + "HF1_hybrid_fermion/"; VW = Q + "VW1_velocity_window/"; FC = P + "LCDM_FRIED_CHICKEN/"
 L += [
  # KC1, KC2: the kappa closure
@@ -198,12 +198,22 @@ L += [
  ("the scrambled control's 1.01 and 1.02", B + "bk2_read_L2_canonical_control.out", "by LINE\nZl 1.01 cass"),
  ("the scrambled control's 1.01 and 1.02", B + "bk2_read_L2_alt_control.out", "by LINE\nZl 1.02 cass"),
  ("NO HIT at L2 on both footings & eeb2f01037", B + "README.md", "**Labels, frozen: NO HIT at L2 on both footings."),
+ # KT33-KT42, VH1, AzTEC/C159 (merged 2026-11-04)
+ ("find no viable response with the fixed baryons", Q + "KT42_curvature_filter/RESULTS_AND_NEXT_STEPS.md", "No viable response was obtained with the fixed baryon sources"), ("accelerates gas away from the plane in the outer disc", Q + "KT40_mechanism/README.md", "**away from the plane** at positive z"),
+ ("(1,805 of 2,952 configurations)", Q + "KT40_mechanism/efe/README.md", "Of the 2,952 configurations including zero field, **1,805 have negative total"), ("(all 16 cases fail)", Q + "KT42_curvature_filter/planets/README.md", "All 16 tested planet/filter/footing combinations fail"),
+ ("NO VIABLE RESPONSE; the four-cut and $Q_2$ pass fails force sign, dwarf virials and planets & c1ac71c574", Q + "KT42_curvature_filter/RESULTS_AND_NEXT_STEPS.md", "No viable response was obtained"),
+ ("no outward cell in any Milky Way model", VH + "vh1_mw.out", "canonical: G1 PASS"), ("no outward cell in any Milky Way model", VH + "vh1_mw.out", "alt: G1 PASS"),
+ ("all 1,476 dwarf configurations per footing", VH + "vh1_dwarfs.out", "canonical: 1476 configs, W <= 0 in 0"), ("all 1,476 dwarf configurations per footing", VH + "vh1_dwarfs.out", "alt: 1476 configs, W <= 0 in 0"),
+ ("Mars at $Z=0.052$ (alt 0.047)", VH + "vh1_planets.out", "worst radial Mars Z 0.05215"), ("Mars at $Z=0.052$ (alt 0.047)", VH + "vh1_planets.out", "worst radial Mars Z 0.04683"),
+ ("PASS on both footings; adopts nothing & 0c677158c7", VH + "README.md", "v3s PASSES Codex's three KT40/KT42 health gates on both footings"),
+ ("conditional forecast at $z=4.5668$", AZ + "REPORT.md", "At z=4.5668 this ratio is 0.659339"), ("law 374.4, matched MOND 382.2\\,km/s at 7.5\\,kpc", AZ + "NEXT_STEPS.md", "At 7.5 kpc: canonical FDESI 374.4 km/s; matched MOND 382.2 km/s"),
+ ("cannot separate them & 7564b34405", AZ + "NEXT_STEPS.md", "does not support a decisive FDESI/MOND separation"),
 ]
 # commits in Table tab:late: each must exist and touch the lane folder named beside it
 COMMITS = [("93ab39c78a", Q + "HF1_hybrid_fermion"), ("086516fd25", Q + "VW1_velocity_window"), ("2d73d459fb", Q + "DF2_dark_fluid_requirement"), ("1139b88abb", Q + "DF3_barotrope_settling"), ("9f549e8963", Q + "DF3_fluid_next_gates"), ("36742f590f", Q + "RS1_required_source"), ("d390fc1580", Q + "WF1_wave_pressure_field"),
  ("1cba79837d", Q + "CX1_leaf_collision"), ("811d215010", Q + "NP1_nonparametric_rule"), ("b1bb9b29d9", Q + "NP2_admissible_rule"), ("e5371291f9", Q + "NV1_nonlocal_variable"), ("472328c26c", Q + "NV2_external_field_xcop_lenses"), ("22f8e50070", "finish_2026_11_04/FN1_action_call/FN1b_fixed_length_static"), ("5c1880e6c6", "finish_2026_11_04/FN3_musedark_law_refit"), ("79658c0ec8", "finish_2026_11_04/FN4_galaxy_rows_data/FN4b_lg_external_field"), ("ae9bd592c8", "finish_2026_11_04/FN4_galaxy_rows_data/FN4c_brouwer_lens_rebuild"), ("db14eb9fac", "finish_2026_11_04/FN4_galaxy_rows_data/FN4a_ic1613_cube_model"), ("bbe016eff5", "finish_2026_11_04/FN4_galaxy_rows_data/FN4f_mw_thick_share_apogee"), ("cec5a0337d", "finish_2026_11_04/FN3b_musedark_fixed_hi"), ("3ae8ffb2d1", Q + "TX1_temperature_leaf"), ("8f23cc6c57", Q + "MB1_member_bound_law"), ("648ec0ebc6", Q + "BF3_all_gates_first"), ("40e2665f48", Q + "DB1_cluster_dark_baryons"), ("2654bb5551", Q + "BF1_exhaustive_law_search"), ("aeec6c0283", Q + "BK2_dimensional_law_search"),
  ("17574fce14", Q + "LE1_lensing_estimator_audit"), ("b01c37cdc7", CWL + "CW6_lensing_measured_gas"), ("a3441c7725", Q + "KT14_filtered_phantom_mw"), ("ffa3e14d39", Q + "KT32_tidal_rule_rz_scatter"), ("8e701cc3e6", CZL + "CZ1_newtonian_external_field"), ("351db5b6de", CZL + "CZ4_solar_neighbourhood_filter"), ("528285bafe", CZL + "CZ5_local_rule_3d_regrade"),
- ("e7672a30e1", CWL + "CW1_wide_binary_seal_dr4"), ("5540d45cb5", CWL + "CW3_cz1_defect_sweep"), ("9c11102bf3", Q + "AX1_action_for_law"), ("8c5703da06", Q + "C6P_cassini_high_precision"), ("4f88481487", C + "CFG894_kappa_campaign_ledger"), ("ca9116175a", C + "CFG894_kappa_campaign_ledger"), ("4c5c84576a", Q + "AT1_a0z_tracking_decision"),
+ ("e7672a30e1", CWL + "CW1_wide_binary_seal_dr4"), ("5540d45cb5", CWL + "CW3_cz1_defect_sweep"), ("9c11102bf3", Q + "AX1_action_for_law"), ("8c5703da06", Q + "C6P_cassini_high_precision"), ("c1ac71c574", Q + "KT42_curvature_filter"), ("0c677158c7", Q + "VH1_v3s_health_gates"), ("7564b34405", "forecasts/aztec159_2026_11_04"), ("4f88481487", C + "CFG894_kappa_campaign_ledger"), ("ca9116175a", C + "CFG894_kappa_campaign_ledger"), ("4c5c84576a", Q + "AT1_a0z_tracking_decision"),
  ("f9fc20c54d", Q + "AN1_aest_nonlinear_dust"), ("a9db4ae6b2", Q + "AN2_aest_3d_fold"), ("f04da07be4", Q + "AN2_aest_3d_fold"), ("53d1be5347", Q + "LAM1_spin_lens_split"), ("430c890385", Q + "LAM9_imf_from_spectra"), ("de023a7ba7", P + "LCDM_FRIED_CHICKEN"), ("93e5f4e99c", Q + "WG1_cmb_lensing_web_gradient"), ("6856666719", Q + "WG2_bare_law_web_lensing"), ("d4d81be402", Q + "WG3_bound_only_web_rule"), ("eeb2f01037", Q + "BK2_dimensional_law_search")]
 F = 0; n = 0; miss = 0; caught = 0
 def rd(f):
