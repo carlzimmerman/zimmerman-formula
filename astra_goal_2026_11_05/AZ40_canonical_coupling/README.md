@@ -1,5 +1,16 @@
 # NO VERDICT — a complete healthy density-tie action is not established
 
+New mixed-block result: MIXED_BLOCK_FINDING.md restores the omitted
+algebraic scalar–polarization mixing. The restricted kinetic matrix stays
+positive and the nonzero frequency can stay real, yet the Hamiltonian is
+indefinite when Omega2-A^2/(D-1)<0. For the potential-only constant-w
+branch its large-s coefficient is -a*a_phiphi<0. Imposing zero conserved
+clock momentum removes this particular negative-energy direction; whether
+that is a physical restriction of the complete action is unproved.
+This is a restricted Hamiltonian obstruction, not a full-action no-go or
+a demonstrated instability on a solved physical background. Exact main
+checks19/19; deleting the gyro mixing fails three checks (16/19).
+
 The constant-w exception to the potential-portal objection is an exact
 canonical scalar plus baryonic-dust branch. Its restricted static kinetic
 block is positive with the khronon velocity retained. This corrects a gap
