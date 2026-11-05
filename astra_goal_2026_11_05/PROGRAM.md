@@ -171,6 +171,10 @@ claim, including the coordinator's previous AZC1 construction.
 - AZ43 control update: first10 mutation small-grid pairs numerically pass,
   all fail dwarf/SPARC physical gates on both footings; batch exited75.
   Remaining mutation and eligible MW coverage is still incomplete.
+  Flag-only controller correction04268d5b7d passes9/9 live fixture checks
+  twice; next20 mutation tasks resumed. Explicit main-grid work plan:
+  canonical71 MW-required/69 excluded/3 unresolved; alt93/48/2.
+  Planner23/23 fixtures pass, numerical-failure mutation fails eight.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.
 - Other sessions have now landed W1/X1 updates (handoff bfe49ed3c2,

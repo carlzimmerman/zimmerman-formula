@@ -178,3 +178,32 @@ This validates process control, not a new scientific result. Numerical
 worker identities and all completed grid outputs are unchanged.
 
     OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python check_batch_signal.py --tag NEW_TAG
+
+## Explicit remaining MW work
+
+plan_mw.py applies the already-frozen rule that an independently evaluable
+decisive failure can exclude a point even if another gate is unresolved.
+It validates the scientific input identities and known-answer checks,
+preserves each footing, and records every input hash and decision. A
+fresh main pair audit was run before confirming the report's exact repeat.
+
+Of143 points, canonical has71 requiring MW work,69 excluded by a stable
+small-gate failure and3 unresolved at the small-gate level. Alt has93,
+48 and2 respectively. "MW REQUIRED" means the four small gates pass
+their frozen numerical lines; it is not an MW pass or an all-gate verdict.
+The completed anchor's MW pairs remain in their separate record, so this
+classification does not mean every required point is wholly unstarted.
+
+Known-answer planner fixtures pass23/23. A separate deliberately incorrect
+planner treats nonconverged/unevaluable failures as decisive and fails
+eight checks (15/23, expected exit1). This audit mutation is distinct from
+the physical nu=1 grid. Main plan and both fixture reports repeat exactly.
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python check_pairs.py
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python plan_mw.py --mode main
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python check_mw_plan.py
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python check_mw_plan.py --mutate
+
+The next20 bounded mutation tasks are running under the corrected batch
+controller. The full mutation grid and eligible MW calculations remain
+necessary before a final robustness label.
