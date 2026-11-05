@@ -75,3 +75,27 @@ check_resume0, one-case batch75. The resume test requires a fresh tag
 and the uninterrupted fine reference pilot. It stops its own test worker
 only, never shared queue jobs. Completed but scientifically unresolved
 fits return0; science and process status are deliberately separate.
+
+## Population-statistics implementation checkpoint
+
+population.py now implements the frozen equal-third OLS slope and its
+within-third sampling variance, exactly balanced four-template resampling,
+identical512/1024 prefixes, all three trend floors, Wilson95% intervals,
+and Monte Carlo gate agreement. This module accepts all36 residuals and
+rejects an incomplete array; it supplies no missing nonlinear fits.
+
+check_population.py passes13/13 independent checks, including the analytic
+slope/variance, Gaussian95% coverage0.94928 in16,384 seeded draws (three-sigma
+tolerance0.00511), exact template balance, prefix identity, known power
+fixtures and missing-replicate rejection. A fresh run is byte-identical.
+Run with the recorded conda Python and warnings treated as errors:
+
+    python -W error astra_goal_2026_11_05/AZ45_ifu_power/check_population.py
+
+During implementation, NumPy's three-column matrix-vector operation emitted
+floating-point warnings despite finite correct fixture results. Explicit
+three-term elementwise sums remove that backend path; all analytic checks
+then pass with warnings raised as errors. No criterion changed. Source
+hashes and versions accompany population_checks.json. The full4032-case
+fit grid and its calibration/provenance-aware population grader remain
+pending; no observational power forecast follows from these fixtures.
