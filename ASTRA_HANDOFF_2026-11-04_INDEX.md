@@ -25,7 +25,7 @@ Each line says where its full spec lives. Commit FROZEN_CRITERIA.md alone before
 ### Small, closes weak spots in the adopted action
 1. **V3X W2 (K1 at the graded radius only).** New lane with frozen criteria; don't amend V3X. Spec: M A1.
 2. **V3X W4c(b) (tensor ladder).** State a source for the 1e-10 line before rerunning; needs >= 24 cells per decade. Spec: M A1.
-3. **Status board: fold LW1 (B1) and correct the PAPER67 footer.** Owner said "Yes, fold LW1". X-COP and DiskMass leave grey; keys 10 of 15. Ask the owner the MW/DiskMass vertical-force form (recommended default form A, form R stated on the tile) **before** committing those two colours. Spec: B, section B1.
+3. **Status board: fold LW1 (B1) and correct the PAPER67 footer.** Owner said "Yes, fold LW1". X-COP and DiskMass leave grey; keys 10 of 15. **Owner decision 2026-11-04: colour MW and DiskMass by form A** (the adopted action's field equation), with form R's result stated on each tile. So MW is FAIL (form A infeasible, both footings) and DiskMass is NO LABEL (grey, r 1.477), each tile naming form R's reading. Add a selftest case that catches a tile whose form isn't A. Spec: B, section B1.
 4. **Regrade the six carried relativity tiles on v3s with the switch on (B2).** Binary pulsars, leaf, causality, strong coupling, G9, black holes. Don't cite X15/X16 for them. Spec: B, section B2.
 
 ### Theory, medium
