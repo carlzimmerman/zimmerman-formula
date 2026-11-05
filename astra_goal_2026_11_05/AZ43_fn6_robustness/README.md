@@ -102,3 +102,9 @@ the failed ratios exactly. It uses the unchanged bounded-kernel definition,
 checks source identities, and writes separate diagnostic outputs. Runtime
 is under1second, peak RSS257MB. No tolerance, grid point or resolution was
 changed to obtain a pass. Remaining original-grid and mutation work continues.
+
+The next checkpoint contains 103 paired points (indices 0 through 102).
+Of these, 101 meet the small-gate numerical lines. The only failed points
+remain 91 and 92, on T2 on both footings; newly completed points 93 through
+102 meet those lines. This is still an incomplete robustness grid, with
+eligible MW work and the independent mutation grid outstanding.
