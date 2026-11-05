@@ -1,0 +1,151 @@
+{
+  "schema_version": 2,
+  "claim_id": "HC011",
+  "repository": {
+    "commit": "b32ff09ae9a5abd42ea04c008b2db1b554498c38",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python",
+    "horizon_cluster_2026_11_05/force_models.py",
+    "horizon_cluster_2026_11_05/force001"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "scipy",
+        "version": "1.14.1"
+      },
+      {
+        "name": "sympy",
+        "version": "1.13.1"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Three force-law profiles on 17 outer radii, bounded stellar nuisance fit, fixed BH scalar diagnostic and exact horizon/source checks",
+    "coefficient_domain": "float64 and exact symbolic",
+    "conventions": "FORCE_CONTRACT.md",
+    "inputs": [
+      "SPARC N7331",
+      "primary inclination-dependent BH upper limit"
+    ],
+    "bounds": {
+      "fixed_ML_choices": 9,
+      "free_ML_cases": 1,
+      "s_range": [
+        -3,
+        3
+      ],
+      "max_nfev": 4000
+    },
+    "non_claims": [
+      "No population detection or causal inference",
+      "No relativistic completion",
+      "No coefficient derivation"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-05T19:16:03.208920+00:00",
+    "runtime_seconds": 0.637111,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "horizon_cluster_2026_11_05/force_models.py",
+    "horizon_cluster_2026_11_05/FORCE_CONTRACT.md",
+    "real_research/data/sparc_data/NGC7331_rotmod.dat",
+    "horizon_cluster_2026_11_05/data/bh_upper_limit_audit.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "horizon_cluster_2026_11_05/force_models.py",
+      "sha256": "bb015bcfc25ddf03c74630e63907987d527b7b9cc2cb0e4e2aab161cd6c29d42",
+      "sha256_after": "bb015bcfc25ddf03c74630e63907987d527b7b9cc2cb0e4e2aab161cd6c29d42"
+    },
+    {
+      "path": "horizon_cluster_2026_11_05/FORCE_CONTRACT.md",
+      "sha256": "a687c188efd6987f7cf5d8371076ce60b7dfff06131b378922b1c56c258d533f",
+      "sha256_after": "a687c188efd6987f7cf5d8371076ce60b7dfff06131b378922b1c56c258d533f"
+    },
+    {
+      "path": "real_research/data/sparc_data/NGC7331_rotmod.dat",
+      "sha256": "87055981e7f0c741584ddea2f0fe9660dba7cc0c86697f2eb53cdaa75e536c9b",
+      "sha256_after": "87055981e7f0c741584ddea2f0fe9660dba7cc0c86697f2eb53cdaa75e536c9b"
+    },
+    {
+      "path": "horizon_cluster_2026_11_05/data/bh_upper_limit_audit.json",
+      "sha256": "8773335e644b92cd03dcfcc07e18d9fd4fc15ebc8199fc27d3049218f8596f88",
+      "sha256_after": "8773335e644b92cd03dcfcc07e18d9fd4fc15ebc8199fc27d3049218f8596f88"
+    }
+  ],
+  "output_directory": "horizon_cluster_2026_11_05/force001",
+  "declared_results": [
+    "horizon_cluster_2026_11_05/force001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "horizon_cluster_2026_11_05/force001/stdout.txt",
+      "sha256": "babae1b7846c8c13106fad51ea4ebbcfbc25384ad613981ab75a15c737f22934",
+      "kind": "log"
+    },
+    {
+      "path": "horizon_cluster_2026_11_05/force001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "horizon_cluster_2026_11_05/force001/results.json",
+      "sha256": "ef7e5c013d51adea6229380685d0844f3a31f3ba4b1c0fa0e4a258462177d224",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

@@ -1,0 +1,12 @@
+# HC-005 continuation contract, 2026-11-05
+
+Parent: HC-004, run002 and robustness002 manifests. Preserve those results; new exclusive files are continuation.py, continuation_contract.json, continuation001/ (or fresh numbered reruns), data/davis.json and records/HC005.md. User authorized continued rigorous investigation.
+
+Before examining new fitted outputs:
+
+1. Refit the 85-system hot-gas analysis with group-held-out prediction, a group bootstrap, equal group weighting, and removal of Virgo. Group assignments derive from the published host column and an explicit alias dictionary, not fitted outcomes. All isolated galaxies get distinct groups. Report ambiguity and retained group counts. A lower leave-group-out error is predictive evidence only within this selected sample.
+2. Fit optical baseline versus optical-plus-temperature using a Gaussian effective-variance likelihood. Variance is intrinsic scatter² + σ_y² + sum(b_j² σ_xj²). This is a sensitivity model, not a full latent-population/selection model. Compare diagonal quoted errors with a shared-distance covariance sensitivity; report optimizer convergence, bound hits and slope range. Do not double-count the distance term: where the catalog's total errors include distance, the exact decomposition is unavailable, so covariance assumptions must be labeled.
+3. Acquire the 48-galaxy Davis/Graham/Combes 2019 rotation sample. Parse limits, missing data and inclination; retain only finite measured rotation speeds for fits. Crossmatch to published stellar masses and exclusions. Primary new response: log vmax conditioned on log total stellar mass, then add log BH mass; secondary control includes log spheroid radius. Report raw and conditional relationships, full sample counts and leave-one-out prediction. No dark-mass inference from a vmax-to-halo-mass calibration counts as an independent observation. vmax lacks a matched radius and gas profile, so it is not an acceleration-discrepancy measurement.
+4. Test whether simple ordinary virial/co-evolution scaling can produce a BH–temperature slope without a horizon interaction. This is an alternative explanatory construction, not a fitted physical proof.
+
+Success: an independently controlled predictive association or a concrete limitation/refutation with usable next data requirements. No new 32π derivation is presumed. Finite regression and bootstrap evidence cannot establish causation. Seed 32007. Same-agent review; no independent reviewer requested.
