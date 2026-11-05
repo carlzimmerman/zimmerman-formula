@@ -71,10 +71,12 @@ claim, including the coordinator's previous AZC1 construction.
   full local MW pair has15 coarse passes,10 fine passes,10 stable and
   five flips retained as unresolved. Alt now has77 stable passes at that
   parameter point; full grid pending.
-- Tier3 lane10: AZ44 criteriaffc0dd9d60 freeze a conditional optimistic
-  Fisher bound to avoid importing FN4c's LambdaCDM distances or inventing
-  DESI stellar masses. Bound/SIS controls11/11 pass; catalogue processing
-  and rotated-position mutation are not yet run.
+- Tier3 lane10: AZ44 NO VERDICT on fully validated FN4e stage0;
+  conditional STOP: NOT ENOUGH POWER. Fisher upper4.3678/5.2785,
+  log-a0 error lower.4785/.4353dex. Mathematical controls11/11 and
+  convergence/repeatability13/13 pass. Rotation count drops41.2%, failing
+  frozen>50%; provisional area980.3 versus777deg2 also misses. Full
+  isolated/native-geometry forecast not supplied; no stage1 authorization.
 - Tier3 lanes11-14 and Tiers4-5: pending in brief order.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.
