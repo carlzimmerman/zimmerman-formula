@@ -84,8 +84,14 @@ claim, including the coordinator's previous AZC1 construction.
   convergence (change0.02906); retained as UNRESOLVED. Full4032-case
   nonlinear grid, queue footprint declaration, population grader and
   sample-size scan remain pending; not queued before light-tier work.
-- Tier3 lanes12-14 and Tiers4-5: pending in brief order. IC1613 data
-  confirmed under ../_external_data/fn4a_ic1613_2026_11, not inside repo.
+- Tier3 lane12: AZ46 preliminary diagnosis executed under plan e282c8c2dc.
+  Reproduces old mass3.0346e7 and drift20.8492 exactly; all4 I/O/recovery
+  checks pass. Natural versus published robust mass differs10.44%; full
+  gap to Oh's table remains unidentified. Same-profile analytical drift
+  gives18.8803, not a new grade. Robust beam differs and must be fixed in
+  a new engine. Missing published products recorded in NEEDS_OWNER.
+  New physical criteria and independent cube redo remain pending.
+- Tier3 lanes13-14 and Tiers4-5: pending in brief order.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.
 - Other sessions have now landed W1/X1 updates (handoff bfe49ed3c2,
