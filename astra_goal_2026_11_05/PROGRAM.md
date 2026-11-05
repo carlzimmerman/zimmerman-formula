@@ -66,7 +66,7 @@ claim, including the coordinator's previous AZC1 construction.
   brief's explicit one-paragraph fallback is recorded; no prediction is
   sealed and no artificial numerical test is substituted for that decision.
 - Tier3 lane9: AZ43 IN PROGRESS. Criteria096759f915 freeze143 parameter
-  points and729 local MW cells. Original anchors reproduced; forty-three
+  points and729 local MW cells. Original anchors reproduced; fifty-three
   small-gate resolution pairs pass. At canonical p=.35,L_MW=1.5 the
   full local MW pair has15 coarse passes,10 fine passes,10 stable and
   five flips retained as unresolved. Alt now has77 stable passes at that
@@ -100,6 +100,9 @@ claim, including the coordinator's previous AZC1 construction.
   G3 passes L1/L2:11/26 canonical,9/24 alt; scrambled sets all0 under
   full covariance, though diagonal inflation accepts many. Full retained-
   hit census/pairs still pending; calibrated population inference NO VERDICT.
+  Streaming contract44/44 passes, including live interruption/resume. First
+  complete L1 canonical real set:4,816,238 rows,37,525 conditional flags,
+  28,125 stable;168seconds,127MB. Remaining sets and full pairs pending.
 - Tier3 lane14 and Tiers4-5: pending in brief order.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.

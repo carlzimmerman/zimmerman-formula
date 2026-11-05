@@ -66,3 +66,30 @@ Both exit0 for these recorded checks. measure.py regenerates the frozen
 scientific scatter JSON deterministically in the recorded environment;
 g3.py refuses a mismatching hash. Source hashes and versions are recorded.
 No downloads, publications, messages or pushes occurred.
+
+## Streaming checkpoint (not a completed lane)
+
+The checkpointed worker stream.py uses bounded-memory SQLite uniqueness
+counts and checks expanded formula evaluation against the vectorized
+calculation. check_stream.py passes44/44 checks on20,000 rows: all45
+formula templates, chunk1000/2000 agreement, a fresh same-size repeat,
+and live SIGTERM followed by byte-identical resumed scientific output.
+stream_contract.json identifies the exact worker hash.
+
+The first full set, L1 canonical real at chunk2000, completes4,816,238
+retained formulas in168seconds with127MB peak RSS. Conditional covariance
+flags total37,525;28,125 remain passing under every leave-one-out estimate.
+Zero intrinsic covariance removes all37,525 flags. Independent scalar
+checks total2,584, with maximum absolute Z difference2.85e-13. These are
+G3 flags, not all-gate survivors. Full chunk convergence and the other
+seven sets remain pending. The complete output is under census/.
+
+Each production invocation has a180second light-job limit. An exhausted
+job checkpoints and requires heavyq to continue; rerunning light slices
+cannot bypass the queue requirement. SQLite checkpoints are local runtime
+artifacts, not committed data. Regenerate from the hash-identified inputs:
+
+    python astra_goal_2026_11_05/AZ47_cluster_scatter/stream.py --foot canonical --mode real --level L1 --chunk 2000 --light-budget-seconds 180 --tag fresh_census
+
+Use a new tag for independent repeats, or --resume for an existing matching
+checkpoint. The other footing, level and mode are explicit CLI arguments.
