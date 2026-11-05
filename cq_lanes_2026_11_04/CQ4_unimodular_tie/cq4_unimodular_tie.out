@@ -1,0 +1,68 @@
+==============================================================================================================
+CQ4_unimodular_tie -- a0 tied to the Henneaux-Teitelboim multiplier; kappa = 1/2 FITTED; not theory closed
+==============================================================================================================
+
+K0 [known answer] HT sector alone: L = sqrt(-g)(-2 Lambda) + 2 Lambda d_mu B^mu
+  [OK ] K0a  B^mu equation is -2 d_mu Lambda = 0 (Lambda constant)
+  [OK ] K0b  Lambda equation is d_mu B^mu = sqrt(-g) (unimodular volume)
+
+E1-E2  with the tie: L = -2 sqrt(-g) J(Y, Lambda) + 2 Lambda d_mu B^mu, J generic
+  [OK ] E1   B^mu equation unchanged by the tie: d_mu Lambda = 0 exactly, whatever J is
+  [OK ] E2   Lambda equation: d_mu B^mu = sqrt(-g) dJ/dLambda|_Y  (fixes B only)
+
+E3   dJ/dLambda at fixed Y
+  [OK ] E3a  form G: J = Lambda j(Y/Lambda) gives dJ/dLambda = j - y j'(y), y = Y/Lambda
+  [OK ] E3b  form U: dJ/dLambda = 1 - alpha^2 h(u), h(u) = 2(u - ln(1+u)) - u^2/(1+u)
+  [OK ] E3c  h(u) = u^3/3 - u^4/2 + ... near u = 0
+  [OK ] E3d  h(u) > 0 for u in [1e-3, 1e3] (61 log points)   (min h = 3.328e-10 at u = 1e-3)
+
+K1 [known answer] v3s's J: 1 + J' = u/(1+u) (simple-mu static law), a0 = c^2 alpha sqrt(Lambda)
+  [OK ] K1a  1 + dJ/dY = u/(1+u)
+  [OK ] K1b  J(0; Lambda) = Lambda (the vacuum value the multiplier carries)
+
+E4   at Lambda = const the remaining field equations are the parent's (stand-in field phi, Y = (d phi)^2)
+  [OK ] E4   EL_phi[Lambda(x)] at Lambda(x) = Lambda0 minus EL_phi[Lambda0] = 0 (test configuration, 30 digits)   (|difference| = 3.4e-167)
+  [OK ] E4b  the 2 Lambda d_mu B^mu term contains no metric (zero stress tensor)
+
+E5   d det(g)/d g_ij = det(g) (g^-1)_ji, so -2 sqrt(-g) J(0) gives J(0) g_mu_nu = Lambda g_mu_nu in the metric equation
+  [OK ] E5   Jacobi's formula on a general 4x4 matrix
+
+S / G5   scale relation: kappa^2 = a0^2 / (c^2 G rho_Lambda,obs),  rho_Lambda,obs = Lambda_obs c^2/(8 pi G),  Lambda_obs = Lambda + Lambda_v
+  [OK ] S1   kappa^2 = 8 pi alpha^2 (1 - Lambda_v/Lambda_obs) = 8 pi alpha^2 (1 - rho_v/rho_Lambda,obs)   (kappa^2 = 8*pi*alpha**2*(Lambda_obs - Lambda_v)/Lambda_obs)
+  [OK ] S2   v3s value alpha^2 = 1/(32 pi), rho_v = 0 gives kappa = 1/2
+  [PASS] S    static weak-field limit = the parent law with a0 = alpha c^2 sqrt(Lambda); kappa^2 in closed form
+  [PASS] G5a  form: the only acceleration built from G, c, Lambda is (number) x c^2 sqrt(Lambda), so a0 ~ c sqrt(G rho)   (exponents [{a: 0, b: 2, d: 1/2}])
+  [OK ] G5b' alpha promoted to a field: dJ/dalpha = -2 alpha Lambda h(u), zero only at u = 0 (kills the MOND sector)
+  [FAIL] G5b  number: kappa fixed by the action (no free constant left)   (d kappa^2/d alpha = 16*pi*alpha*(Lambda_obs - Lambda_v)/Lambda_obs; alpha has no field equation)
+  [FAIL] G5c  tie to the observed vacuum: d kappa^2 / d rho_v = 0 at fixed rho_Lambda,obs   (d kappa^2/d Lambda_v = -8*pi*alpha**2/Lambda_obs)
+
+C1   renormalisation: HT + vacuum is invariant under Lambda -> Lambda + delta, Lambda_v -> Lambda_v - delta (up to a total derivative)
+  [OK ] C1a  without the tie: Delta L = 2 delta d_mu B^mu (a total derivative), metric equations unchanged
+  [OK ] C1b  with the tie: Delta L - total derivative = 2 sqrt(-g) delta alpha^2 h(u) + O(delta^2), nonzero for u > 0
+    window: kappa^2/kappa0^2 = 1 - r, r = rho_v/rho_Lambda,obs;  |log kappa - log kappa0| <= 0.099 dex needs -0.578 <= r <= 0.366
+    electron one-loop vacuum energy (MS-bar, mu = m_e): 1.351e+22 J/m^3;  d/d ln(mu): 1.801e+22 J/m^3
+    canonical: rho_Lambda c^2 = 5.2509e-10 J/m^3;  rho_e/rho_Lambda = 2.57e+31;  per e-fold of mu: 3.43e+31
+    alt      : rho_Lambda c^2 = 7.6689e-10 J/m^3;  rho_e/rho_Lambda = 1.76e+31;  per e-fold of mu: 2.35e+31
+  [FAIL] C1   the tie survives a vacuum-energy shift (absorbed with no change in kappa)   (kappa^2 moves by -8 pi alpha^2 delta rho_v/rho_Lambda; window |r| <~ 0.37-0.58 vs electron loop 2.6e+31 (canonical), 1.8e+31 (alt))
+
+MUTATE  tie a0 to the four-form flux q (k04) instead: the conserved quantity is dF/dq, which depends on Y
+    MUTATE: dq/dY at u = 1, Z = 8 beta^2: +0.0302 (q, hence a0, follows the local MOND invariant)
+    multiplier: conserved quantity 2 Lambda, d(2 Lambda)/dY = 0; d_mu Lambda = 0 exactly (E1)
+  [OK ] MUTATE  feedback found for the flux tie and exactly none for the multiplier tie
+
+H    health of the (Lambda, B) sector
+  [OK ] H1a  velocity Hessian of (Lambda, B^mu) is zero: no kinetic term, so no sign to get wrong
+  [OK ] H1b  momentum conjugate to B^0 is 2 Lambda (a first-order pair; one global mode)
+  [OK ] H1c  gauge symmetry B^mu -> B^mu + d_nu omega^[mu nu]: d_mu B^mu unchanged (3 of 4 components are gauge)
+  [PASS] H1   no ghost: the tie adds no kinetic term; the parent's health is inherited (v3s: V3W W4, V3X W4c)
+  [PASS] H2   no new long-range force: d_mu Lambda = 0 on shell, so delta Lambda = 0 locally (only the global zero mode)
+  [PASS] H3   c_T = c: the added terms carry no metric derivative; tensor sector = the parent's (v3s, beta = 0: c_T = c)
+
+C2   time dependence (reported, not graded): d_mu Lambda = 0, so the tied vacuum has w = -1 exactly and
+     a0(z)/a0(0) = 1 at every z, whatever any other dark-energy component does.
+
+--------------------------------------------------------------------------------------------------------------
+gates: S PASS, G5a PASS, G5b FAIL, G5c FAIL, C1 FAIL, H1 PASS, H2 PASS, H3 PASS
+script checks: all OK
+RESULT: TIE BY HAND (no gain over AX1)
+kappa = 1/2 FITTED; not theory closed.
