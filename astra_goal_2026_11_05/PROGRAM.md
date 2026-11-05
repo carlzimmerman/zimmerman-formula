@@ -31,7 +31,12 @@ claim, including the coordinator's previous AZC1 construction.
   variables, with a frozen polarization-variable repair; principal-only
   caustic verified, not promoted to a full-action counterexample. Main18/18,
   mutant15/18, all numerical convergence/known-answer checks pass.
-- Tier 2 lanes 5(b-e),6-8 and Tiers 3-5: pending in brief order.
+- Tier 2 lane 5(b): AZ36 complete to NO VERDICT on full nonspherical
+  PN signs. Exact conditional radial UV kinetic/gradient signs derived
+  without a PN expansion, including lapse/shift and matter cancellation.
+  Main26/28 retains two float64 misses; mutant24/28 additionally fails
+  gradient signs. Separately frozen stable-offset diagnostic passes.
+- Tier 2 lanes 5(c-e),6-8 and Tiers 3-5: pending in brief order.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.
 - Other sessions have now landed W1/X1 updates (handoff bfe49ed3c2,
