@@ -59,3 +59,7 @@ Checks on the primary:
 **Run.**
 - `python3 wg4_pm.py checks`, then `python3 wg4_run_all.py` (about 25 min).
 - `python3 wg4_grade.py`, then `python3 wg4_grade.py --mutate`.
+
+## Correction 2026-11-04 (WG5)
+The line on a modified-inertia reading of the law ("could differ for the web's infall motion. No such computation exists on record") missed the record. Pure modified inertia, the framework's original arm, was closed on 2026-08-08: galaxy lensing excludes it at 21σ, and all three rescues are closed (`RETRACTIONS.md`, `STANDING.md` line 284). In it, light sees no phantom, so it can't be the rule that weakens the law on the web but not in galaxies. WG5's diagnostic adds that it also misses CMB lensing, low with the measured-style expansion (r 0.013-0.051). No number here changes.
+
