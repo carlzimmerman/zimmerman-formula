@@ -35,13 +35,14 @@ def loss_str(w, arm, nx):
     return LOSS % (nx, WJ[w], f"(c > {MAXFLOATS[arm]} ? T(1000) * (c - {MAXFLOATS[arm]}) : zero(T))")
 def worker(a):
     from pysr import PySRRegressor
+    from sy1_export import mappings
     import numpy as np, sy1_data as DD
     mode, t = a.mode, (a.w_tag, a.w_arm, a.w_w, a.w_seed); d = tdir(a.runs, mode, t); os.makedirs(d, exist_ok=True); P = os.path.join(d, "progress.json"); S = os.path.join(d, "state.pkl"); run = os.path.join(d, "hof")
     tag = t[0] if mode == "planted" else None; X, y, yt, nx = DD.build(mode, tag); prog = json.load(open(P)) if os.path.exists(P) else dict(iters=0, secs=0.0, bf1_sha=DD.BF1_SHA)
-    kw = dict(binary_operators=["+", "-", "*", "/"], unary_operators=["sqrt", "log1p", "inv1p(x) = 1 / (1 + x)", "square"], extra_sympy_mappings={"inv1p": lambda x: 1 / (1 + x)}, loss_function=loss_str(t[2], t[1], nx), maxsize=30, parallelism="serial", deterministic=True, random_state=t[3], warm_start=True, niterations=a.slice, output_directory=d, run_id="hof", verbosity=0, progress=False, precision=64, update=False)
+    kw = dict(binary_operators=["+", "-", "*", "/"], unary_operators=["sqrt", "log1p", "inv1p(x) = 1 / (1 + x)", "square"], extra_sympy_mappings=mappings(), loss_function=loss_str(t[2], t[1], nx), maxsize=30, parallelism="serial", deterministic=True, random_state=t[3], warm_start=True, niterations=a.slice, output_directory=d, run_id="hof", verbosity=0, progress=False, precision=64, update=False)
     if t[1] == "Z": kw.update(should_optimize_constants=False, weight_mutate_constant=0.0, optimize_probability=0.0)
     if prog["iters"] and os.path.exists(S):
-        shutil.copy(S, os.path.join(run, "checkpoint.pkl")); m = PySRRegressor.from_file(run_directory=run); m.set_params(niterations=a.slice, warm_start=True, extra_sympy_mappings=kw["extra_sympy_mappings"])
+        shutil.copy(S, os.path.join(run, "checkpoint.pkl")); m = PySRRegressor.from_file(run_directory=run, extra_sympy_mappings=mappings()); m.set_params(niterations=a.slice, warm_start=True, extra_sympy_mappings=kw["extra_sympy_mappings"])
     else: m = PySRRegressor(**kw)
     names = list(DD.FEATURES)
     while prog["iters"] < a.iters:

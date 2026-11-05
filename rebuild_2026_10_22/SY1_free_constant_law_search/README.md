@@ -33,3 +33,31 @@ PySR 1.5.9 with its own Julia 1.11.9 from juliapkg, already installed, offline. 
 A2's list. Point-rule rows for s and D, Pareto front only, no refit at alt.
 
 kappa = 1/2 FITTED; not theory closed.
+
+## Resume repair, 2026-11-05
+
+The remaining scrambled S_Z_W3_s1 was repeatedly stopped at progress 240.
+A bounded reproduction found it stuck after Julia's search slice in
+PySR get_hof -> SymPy export -> sqrt evaluation -> multinomial expansion.
+It was consuming a CPU core, not waiting for memory. Checkpoint reload alone
+completed. The failed diagnostic stack and pre-fix script are retained under
+recovery_2026_11_05/. Temporary probe output is diagnostic, not search evidence.
+
+sy1_export.py now supplies inert (evaluate=False) SymPy mappings for sqrt,
+square, log1p and inv1p, including during checkpoint loading. Julia operators,
+loss, seed, data, bounds and reader are unchanged. A copied checkpoint advanced
+240 -> 260 in 19.54 seconds. test_export_resume.py checks 27 export expressions
+against direct NumPy evaluation at 17 points each, using 80-digit evaluation
+of the symbolic form to avoid the pre-existing log(1+x) cancellation in ordinary
+lambdified export. The search/reader use their original log1p implementations.
+The original active launcher was terminated only after the diagnosis and test;
+its progress/state at 240 were preserved. The repaired live run subsequently
+passed 460 and continued writing checkpoints.
+
+resume_controls.py launches the unchanged run_sy1.sh with the original
+Python environment, checks every expected DONE plus iters=1500 (166 searches),
+then reads planted, scrambled and mutation controls. It records
+controls_completion.json. A marker file by itself is not completion evidence.
+This wrapper never reads the ordinary real-data grades; MUTATE intentionally
+checks the real fronts under its frozen 1e-6 gate as required by A2.
+Logs and live completion files are runtime records, not a scientific verdict.
