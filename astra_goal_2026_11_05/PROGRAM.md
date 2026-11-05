@@ -134,7 +134,14 @@ claim, including the coordinator's previous AZC1 construction.
   Eight independent full chunk2000 repeats now match byte-for-byte;
   six chunk pairs pass. Two L1 real chunk1000 remainders require heavyq.
   Census-auditor mutation fixtures8/8 pass.
-- Tier3 lane14 and Tiers4-5: pending in brief order.
+- Tier3 lane14: AZ48 IN PROGRESS, preparation plan716ca50b84. Local input
+  audit21/21, parser/control fixtures11/11. All43 CFG713 lenses match the
+  catalogue, but no rotation evidence in the inspected tables;11-file
+  bounded text search supplies no measured classes. Missing kinematics
+  recorded in NEEDS_OWNER. X30/CFG713 cosmology dependencies and signed
+  Bullet components recorded; native shear trace, physical criteria and
+  genuine3D nonlinear solve remain pending. Retired sector, adopts nothing.
+- Tiers4-5: pending in brief order.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.
 - Other sessions have now landed W1/X1 updates (handoff bfe49ed3c2,
