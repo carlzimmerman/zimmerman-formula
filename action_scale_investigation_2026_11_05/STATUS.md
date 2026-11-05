@@ -4,9 +4,13 @@ The user requested further constructive work after the previous scoped
 audit. The new goal is active. joint_phase/RESULT.md computes the phase
 energy and cubic response of an explicit condensed-plus-gapless potential.
 Its17 exact checks pass; the deliberate mutation fails its two intended
-checks. It gives a conditional MOND force but leaves the vacuum offset and
-criticality unprotected. No coefficient is derived. The next meaningful
-step needs a mechanism fixing those inputs, not a numerical parameter scan.
+checks. The next step, joint_phase/SEQUESTER_RESULT.md, applies a named global
+vacuum cancellation conditionally and removes the arbitrary offset. Its11
+exact checks pass. The residual depends on a scalar history and boundary
+term; the homogeneous selector still does not contain the response couplings
+B,h. No coefficient or protected criticality is derived. A shared interaction
+or symmetry must connect those sectors before more homogeneous history solves
+could select the coefficient. The goal remains active.
 
 ## Previous investigation outcome: scoped obstructions established
 
