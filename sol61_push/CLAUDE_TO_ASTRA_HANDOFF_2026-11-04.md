@@ -48,3 +48,16 @@ These are theorems, not just failed fits: U1 T1/T3, O1, M5 S1–S5, PH1, TM1.
   - Finished L1 checkpoints (≈ 43 GB) are kept on purpose.
 - **Status board:** `explainers/make_status_board.py` (v3 main) and `explainers/make_flavor_boards.py`, which covers 7 flavors: v3, v4, canonical rules, plain MOND, ΛCDM reference, P-medium and v3v. Both have `--selftest` / `--mutate` guards; colour comes only from verified lanes.
 - **PAPER59 v1.1:** drafted and audited (392/392). NOT published; it awaits the owner's approval.
+
+## Update (2026-11-04, later): W1 and X1 finalised
+- **W1** (ac0e22f6e1):
+  - Alt footing CONVERGED through 128³: strong peak 4.408 → 4.587, a 4.1 % change.
+  - Canonical 128³ failed the initial-state gate. A4 fixes the minimizer restart, and the two canonical 128³ reruns are queued (`ENQUEUE_A4_commands.txt`).
+  - Core mass in 2.88 kpc converged (0.47 %).
+  - Binding is NOT certified at 64³ or 128³: the core is still at turnaround at z = 10 (2K/|U| = 0.005).
+- **X1** (c36e9a00b7):
+  - Still UNDETERMINED.
+  - The coherent fraction is not converged: in TW it falls with resolution, a vacuum-noise cutoff effect.
+  - The K11 hand-over remains unreachable.
+  - Ω moves ≤ 3 %.
+  - K isocurvature fails at 16 more grid points by ≥ 4e5; it is still missing at the 9 points where K never completed.
