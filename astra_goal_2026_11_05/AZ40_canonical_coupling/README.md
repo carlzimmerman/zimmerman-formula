@@ -1,5 +1,15 @@
 # NO VERDICT — a complete healthy density-tie action is not established
 
+[Clock repair and solved-background tests](clock_repair/RESULT.md) now evaluates
+the corrected gradient bound on all24 original radial models: all16 nonzero-
+epsilon cases have positive spline envelopes, with gradient penalty at most
+7.35e-6 of the conservative positive part. An explicit bounded-expansion action
+candidate and unswitched stiffness pass restricted algebraic tests. Its vacuum
+Bianchi-I operator sector has an analytic finite-proper-time continuation proof
+and six successful nonlinear collapse checks. General inhomogeneous clock
+regularity, full coupled health and the candidate's own galaxy backgrounds
+remain unproved; the old backgrounds are not transferred to the new action.
+
 The next constraint/on-shell calculation is in
 [constraint_continuation/RESULT.md](constraint_continuation/RESULT.md).
 Solving lapse and shift on the scalar-only P=0 FRW branch retains a physical

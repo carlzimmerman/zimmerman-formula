@@ -1,0 +1,114 @@
+#!/usr/bin/env python3
+"""Regenerate AC1 backgrounds, evaluate the corrected bound, retain spline data."""
+import os
+for key in ['OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS']:os.environ[key]='1'
+import argparse,itertools,json,time,hashlib
+from pathlib import Path
+import numpy as np
+from scipy.integrate import solve_bvp
+import scipy
+ap=argparse.ArgumentParser();ap.add_argument('--out',required=True);args=ap.parse_args()
+out=Path(args.out);out.mkdir(parents=True,exist_ok=True)
+t0=time.monotonic();rows=[];archive={};lo=1e-4;hi=20.
+oldpath=Path('action_search_2026_11_05/AC1_canonical_portal/evidence/radial/results.json')
+old=json.loads(oldpath.read_text())['models']
+
+def polynomial_range(poly,component,derivative=0):
+    """Extrema of a component of SciPy's piecewise cubic, not sample extrema."""
+    pp=poly.derivative(derivative);low=np.inf;high=-np.inf
+    for i,width in enumerate(np.diff(pp.x)):
+        coeff=pp.c[:,i,component]
+        roots=np.roots(np.polyder(coeff)) if len(coeff)>1 else []
+        points=[0.,width]+[float(z.real) for z in roots if abs(z.imag)<1e-12 and 0<z.real<width]
+        values=np.polyval(coeff,points)
+        low=min(low,float(np.min(values)));high=max(high,float(np.max(values)))
+    # Conservative floating-point padding, not directed-rounding certification.
+    pad=1e-10*(1+max(abs(low),abs(high)))
+    return low-pad,high+pad
+
+for beta,mass,ell in itertools.product([2/3,.9],[1,100],[.1,.3]):
+    B=2*np.sqrt(3*(1-beta))/(3*beta);n=(1-beta)/beta;xi=.5/(1+beta);C=4*np.pi/xi
+    bary=lambda x:mass*x/(1+x*x)**1.5
+    def vals(d,eps):
+        dy=eps*d/B;y=1+dy
+        logratio=np.log1p(2*np.sinh(dy/2)*np.cosh(1+dy/2)/np.sinh(1))
+        A=np.exp(-n*logratio);ct=1/np.tanh(y)
+        Ap=-n/B*A*ct
+        Vdiff=-2*n/B*(np.expm1(-2*n*logratio)*ct-np.sinh(dy)/(np.sinh(y)*np.sinh(1)))
+        return A,Ap,Vdiff
+    def gfun(z):
+        with np.errstate(invalid='ignore',divide='ignore'):
+            result=2*(-z-np.log1p(-z))-z*z/(1-z)
+        small=abs(z)<.01
+        return np.where(small,sum((2-j)/j*z**j for j in range(3,17)),result)
+    Jbg=C*(-2*n/B/np.tanh(1.))
+    last=[None,None]
+    for length in [0.,1e-4,1e-3]:
+        eps=2*length*length
+        def source(Y):
+            A,Ap,Vd=vals(Y[2],eps)
+            return C*Vd+A*Ap*gfun(Y[0]/A)
+        def ode(x,Y):
+            A,_,_=vals(Y[2],eps)
+            return np.array([Y[1],-2*Y[1]/x+2*Y[0]/x**2+2/ell**2*(Y[0]**2/(A-Y[0])-bary(x)),Y[3],source(Y)-2*Y[3]/x])
+        edge=(np.sqrt(bary(hi)**2+4*bary(hi))-bary(hi))/2
+        def bc(a,b):return np.array([a[1]-a[0]/lo,a[3],b[0]-edge,b[2]])
+        sols=[];statuses=[]
+        for idx,(nodes,tol) in enumerate([(400,1e-5),(800,1e-7)]):
+            xx=np.geomspace(lo,hi,nodes)
+            if last[idx] is not None:guess=last[idx].sol(xx)
+            else:
+                up=(np.sqrt(bary(xx)**2+4*bary(xx))-bary(xx))/2*xx/np.sqrt(xx*xx+ell*ell)
+                guess=np.array([up,np.gradient(up,xx),np.zeros(nodes),np.zeros(nodes)])
+            sol=solve_bvp(ode,bc,xx,guess,tol=tol,max_nodes=20000)
+            statuses.append(dict(success=bool(sol.success),status=int(sol.status),nodes=len(sol.x),max_residual=float(max(sol.rms_residuals)),bc_error=float(max(abs(bc(sol.y[:,0],sol.y[:,-1]))))))
+            sols.append(sol)
+            if sol.success:last[idx]=sol
+        row=dict(beta=beta,mass=mass,L_over_R=ell,aR_over_c2=length,epsilon=eps,solvers=statuses)
+        if all(s.success for s in sols):
+            samples=[];envelopes=[]
+            for idx,sol in enumerate(sols):
+                x=np.geomspace(lo,hi,[3001,6001][idx]);Y=sol.sol(x);dp=sol.sol(x,1)[2]
+                A,Ap,Vd=vals(Y[2],eps);y=1+eps*Y[2]/B;ct=1/np.tanh(y);cs=1/np.sinh(y)**2
+                App=A/B**2*(n*n*ct**2+n*cs)
+                r3=(n*n*ct**2+(3*n+2)*cs)/B**2
+                s=Y[0]/(A-Y[0]);J=2*np.log1p(s)-4*s/(s+2)
+                positive=Ap**2*(2*C+J)+(App/Ap)*Jbg
+                penalty=eps*r3*dp**2
+                Bnorm=positive-penalty
+                # Rebuild the untransformed Schur mass independently from W derivatives.
+                z=Y[0]/A;g=gfun(z);gp=-z*z/(1-z)**2
+                Upp=1/(1-z)**2-1;cross=gp*Ap
+                Vpp=2*(Ap*Ap+A*App)
+                raw=C*Vpp+(g-z*gp)*Ap*Ap+A*g*App-cross*cross/Upp
+                lapf_over_epsf=r3*eps*dp**2+(App/Ap)*source(Y)
+                identity=abs(raw-(Bnorm+lapf_over_epsf))/(1+abs(raw))
+                mutated=Bnorm-(App/Ap)*Jbg
+                muterr=abs(raw-(mutated+lapf_over_epsf))/(1+abs(raw))
+                samples.append(dict(points=len(x),B_over_epsilon_min=float(min(Bnorm)),B_min=float(eps*min(Bnorm)),max_penalty_fraction=float(max(penalty/positive)),identity_error=float(max(identity)),mutation_omitted_background_error=float(max(muterr)),switch_min=float(min(Y[1]+2*Y[0]/x)),state_derivative_error=float(max(abs(dp-Y[3])/(1+abs(dp)))),a_fraction_max=float(max(abs(A-1))),d_min=float(min(Y[2]))))
+                dmin,dmax=polynomial_range(sol.sol,2);vmin,vmax=polynomial_range(sol.sol,2,1)
+                umin,umax=polynomial_range(sol.sol,0)
+                ymin=1+eps*dmin/B;ymax=1+eps*dmax/B;vmaxabs=max(abs(vmin),abs(vmax))
+                Amin=(np.sinh(ymax)/np.sinh(1))**(-n)
+                Aminprime=n/B*Amin/np.tanh(ymax)
+                ratio2min=(n/np.tanh(ymax)+(1/np.sinh(ymax)**2)*np.tanh(ymax))/B
+                ratio3max=(n*n/np.tanh(ymin)**2+(3*n+2)/np.sinh(ymin)**2)/B**2
+                positive_lower=2*C*Aminprime**2+abs(Jbg)*ratio2min
+                penalty_upper=eps*ratio3max*vmaxabs**2
+                lower=positive_lower-penalty_upper
+                envelopes.append(dict(y_min=ymin,y_max=ymax,dprime_abs_max=vmaxabs,u_min=umin,u_max=umax,a_min=Amin,physical_spline=bool(ymin>0 and umin>0 and umax<Amin),positive_lower=positive_lower,penalty_upper=penalty_upper,B_over_epsilon_lower=lower,B_lower=eps*lower,penalty_fraction_upper=penalty_upper/positive_lower))
+            probe=np.geomspace(lo,hi,301);fine=sols[1].sol(probe)
+            row.update(sampled=samples,envelopes=envelopes,profile_agreement=float(np.max(abs(fine-sols[0].sol(probe))/(1+abs(fine)))),envelope_agreement=abs(envelopes[0]['B_over_epsilon_lower']-envelopes[1]['B_over_epsilon_lower'])/(1+abs(envelopes[1]['B_over_epsilon_lower'])))
+            A,_,_=vals(fine[2],eps)
+            previous=next(r for r in old if r['beta']==beta and r['mass']==mass and r['L_over_R']==ell and r['aR_over_c2']==length)
+            row['old_summary_agreement']=max(abs(float(max(abs(A-1)))-previous['a_fraction_max'])/(1+abs(previous['a_fraction_max'])),abs(float(min(fine[2]))-previous['d_min'])/(1+abs(previous['d_min'])))
+            key=f'm{len(rows):02d}';archive[key+'_x']=sols[1].sol.x;archive[key+'_c']=sols[1].sol.c
+        rows.append(row)
+        print(json.dumps({'model':len(rows),'parameters':[beta,mass,ell,length],'envelope':row.get('envelopes',[{},{}])[-1].get('B_over_epsilon_lower'),'converged':all(s.success for s in sols)}),flush=True)
+checks=dict(count=len(rows)==24,solvers=all(all(s['success'] for s in r['solvers']) for r in rows),profile=all(r.get('profile_agreement',np.inf)<1e-4 for r in rows),envelope_convergence=all(r.get('envelope_agreement',np.inf)<1e-3 for r in rows),old_summary=all(r.get('old_summary_agreement',np.inf)<1e-4 for r in rows),physical=all(all(e['physical_spline'] for e in r.get('envelopes',[])) and 'envelopes' in r for r in rows),switch=all(r.get('sampled',[{}])[-1].get('switch_min',-1)>=0 for r in rows),identity=all(r.get('sampled',[{}])[-1].get('identity_error',np.inf)<1e-9 for r in rows),mutation_detected=all(r.get('sampled',[{}])[-1].get('mutation_omitted_background_error',0)>1e-3 for r in rows),zero_epsilon=all(r['envelopes'][1]['B_lower']==0 for r in rows if r['epsilon']==0))
+finite=[r for r in rows if r['epsilon']>0 and 'envelopes' in r]
+R=dict(checks=checks,models=rows,finite_epsilon_models=len(finite),positive_envelopes=int(sum(r['envelopes'][1]['B_lower']>0 for r in finite)),max_penalty_fraction_upper=max(r['envelopes'][1]['penalty_fraction_upper'] for r in finite),runtime_seconds=time.monotonic()-t0,versions={'numpy':np.__version__,'scipy':scipy.__version__},scope='Numerical spline envelope on original force-subtracted finite-box backgrounds; not an interval-certified enclosure of exact BVP solutions, full dynamical stability or new-action background.')
+np.savez_compressed(out/'fine_splines.npz',**archive)
+(out/'results.json').write_text(json.dumps(R,indent=2)+'\n')
+print(json.dumps({k:R[k] for k in ['checks','finite_epsilon_models','positive_envelopes','max_penalty_fraction_upper','runtime_seconds']},indent=2))
+raise SystemExit(int(not all(checks.values())))
