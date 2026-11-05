@@ -18,10 +18,14 @@ claim, including the coordinator's previous AZC1 construction.
   both; full mixed-mode W4c UNDECIDED. Negative controls bite.
 - Tier 1 lane 3: AZ33 committed47da097d08. LW1 folded; both vertical forms
   visible, 34/34 board controls caught, all32 integration checks pass.
-- Tier 1 lane 4: AZ34 criteria825835993f; calculations pending. Audit leads:
-  matter conservation needs its on-shell hypothesis; negative divergence is
-  unpenalized in the switched energy, so the H(div) coercivity proof needs
-  an explicit check. C8's no-radiative-channel claim conflicts with P3.
+- Tier 1 lane 4: AZ34 criteria825835993f; partial structural audit executed.
+  Exact bounded-energy/unbounded-H(div) witness confirms an existence-proof
+  gap, not nonexistence. Matter conservation's off-shell-zero wording is
+  disproved; the matter-shell Noether identity is verified. Original global
+  quadrature fails two checks; separately frozen post-result A1 mapped
+  quadrature passes unchanged tolerances. Inverted switch bites. BH and
+  coupling recomputations and the six-tile board regrade remain pending.
+  C8's no-radiative-channel claim conflicts with P3; preserve this caveat.
 - Tiers 2-5: pending, in the order specified by the brief.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.
