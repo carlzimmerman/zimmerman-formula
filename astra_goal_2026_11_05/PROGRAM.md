@@ -66,10 +66,11 @@ claim, including the coordinator's previous AZC1 construction.
   brief's explicit one-paragraph fallback is recorded; no prediction is
   sealed and no artificial numerical test is substituted for that decision.
 - Tier3 lane9: AZ43 IN PROGRESS. Criteria096759f915 freeze143 parameter
-  points and729 local MW cells. Original anchors reproduced;123 small-gate
-  pairs completed:107 pass, points91/92,104–111 and117–122 have T2
-  nonconvergence on both footings (maximum7.17% versus1%). Targeted Andromeda IX replay8/8
-  reproduces those failures; no tolerance changed. At canonical p=.35,L_MW=1.5 the
+  points and729 local MW cells. Original anchors reproduced;133 small-gate
+  pairs completed:110 pass,23 points have T2 nonconvergence on both footings
+  (maximum13.30% versus1%). All92 worst-witness values freshly replayed:
+  184/184 checks, max difference2.23e-16, exact repeated scientific output.
+  No tolerance changed. At canonical p=.35,L_MW=1.5 the
   full local MW pair has15 coarse passes,10 fine passes,10 stable and
   five flips retained as unresolved. Alt now has77 stable passes at that
   parameter point; full grid pending.

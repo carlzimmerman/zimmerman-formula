@@ -122,3 +122,23 @@ and L_MW=1,1.25,1.45,1.475,1.5,1.525. Their worst dispersion changes range
 from2.8930% to7.1744%, versus the unchanged1% line. Points113–116 meet the
 numerical lines. The remainder of the frozen grid is still running; no
 resolution, tolerance or point has been changed to recover a pass.
+
+At133 pairs (indices0–132),110 meet the small-gate numerical lines and23
+have T2 failures on both footings. The additional failures are123–126
+(p=.475, L_MW=1.55,1.75,2,2.25) and130–132 (p=.5, L_MW=1,1.25,1.45).
+The largest relative change is13.3046%, versus1%. Points127–129 meet the
+numerical lines. The final ten main-grid pairs are running separately.
+
+verify_all_dwarf_failures.py now selects the worst cached dispersion witness
+for every failed T2 footing in the saved pair-audit snapshot, verifies input
+and engine identities, and recomputes both unchanged resolutions. For this
+133-pair snapshot, all92 values reproduce within2.23e-16 relative;184/184
+checks pass. The complete scientific replay output repeats byte-identically.
+This validates the numerical failures, not a final physical grid verdict.
+The original first-failure replay is retained separately. No saved point,
+threshold or resolution was changed.
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python verify_all_dwarf_failures.py
+
+Run from this directory in the recorded numerical environment. Update the
+pair audit first when intentionally verifying a later completed-grid snapshot.
