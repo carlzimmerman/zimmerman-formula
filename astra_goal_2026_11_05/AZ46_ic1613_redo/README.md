@@ -300,3 +300,13 @@ use fresh tags for new verification runs. Full model/inclination/start and
 bracket orchestration, fit-based controls, production scaling/queue work and
 final grading remain pending. Earlier beam and forward accuracy failures
 remain recorded; no new galaxy or action verdict follows from these mocks.
+
+## A2 border arithmetic repair
+
+The fixed-border direct-summation fallback specified in MODEL_NUMERICS.md
+is implemented. The original model fixture passes16/16 at unchanged
+tolerances, with maximum Gaussian residual7.771561172376096e-16
+(previously1.6379172323999214e-12). The fixture uses direct summation at
+312 pixels. This does not fix the separate robust6arcsec beam-moment
+failure. Earlier downstream mock and fit reports use the previous model
+hash and must be regenerated before reuse with this implementation.
