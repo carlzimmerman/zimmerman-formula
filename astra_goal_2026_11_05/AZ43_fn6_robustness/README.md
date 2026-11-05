@@ -168,3 +168,13 @@ comparison lines; every point fails the dwarf and SPARC physical gates
 on both footings, so the nu=1 control bites without a convergence failure.
 All20 output identities and known-answer check arrays were verified.
 The other133 mutation pairs and eligible MW pairs remain outstanding.
+
+A2 (5d675a522d) fixes controller-only signal handling before continuation:
+the handler now only sets a flag, and the polling loop forwards SIGTERM once.
+The bounded process fixture failed the old handler-structure check, then
+passes9/9 twice with the correction, including a live parent interruption,
+child termination, exit75, exact resumed outputs and idempotent completion.
+This validates process control, not a new scientific result. Numerical
+worker identities and all completed grid outputs are unchanged.
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python check_batch_signal.py --tag NEW_TAG

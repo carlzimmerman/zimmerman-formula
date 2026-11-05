@@ -14,7 +14,6 @@ stop=False;child=None
 def handler(sig,frame):
     global stop
     stop=True
-    if child is not None and child.poll() is None: child.send_signal(signal.SIGTERM)
 signal.signal(signal.SIGTERM,handler);signal.signal(signal.SIGINT,handler)
 indices=range(len(E.points())) if args.indices=='all' else [int(i) for i in args.indices.split(',')]
 count=0
@@ -32,8 +31,12 @@ for index in indices:
         if args.mutate: cmd+=['--mutate']
         with (out/('p%03d_r%d.log'%(index,rung))).open('w') as f:
             child=subprocess.Popen(cmd,stdout=f,stderr=subprocess.STDOUT,env=dict(os.environ,PYTHONDONTWRITEBYTECODE='1'))
-            proc=psutil.Process(child.pid);peak=0;limited=False
+            proc=psutil.Process(child.pid);peak=0;limited=False;forwarded=False
             while child.poll() is None:
+                if stop and not forwarded:
+                    try:child.send_signal(signal.SIGTERM)
+                    except ProcessLookupError:pass
+                    forwarded=True
                 try:
                     rss=proc.memory_info().rss;peak=max(peak,rss)
                     if rss>1_000_000_000:
