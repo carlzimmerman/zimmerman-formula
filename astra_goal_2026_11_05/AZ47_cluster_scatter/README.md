@@ -144,3 +144,8 @@ validation failure. L2 alt also completes both real/control pairs; see
 census_checks.json for their counts. Independent chunk2000 repeats are
 running under the same180second limit; an exhausted repeat also requires
 the queue. A completed initial census never substitutes for its repeat.
+
+Independent full chunk2000 repeats now match the original result files
+byte-for-byte (both main and mutation) for L1 canonical real, L1 canonical
+control and L1 alt real. The two real chunk1000 remainders still need the
+queue; the other full repeats remain in progress.
