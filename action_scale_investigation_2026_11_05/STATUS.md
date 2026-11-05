@@ -53,6 +53,17 @@ cubic regime and an additional crossover scale. This closes that explicit
 microscopic bridge, not other interacting/curved completions. No coefficient
 is selected; the positive derivation remains open.
 
+joint_phase/ISOTROPIC_LAYER_AUDIT.md changes the microscopic matter and
+embedding rather than repeating the Dirac-only test. A parity pair of
+Dirac fields plus one massive vector gives positive finite cubic and
+curvature coefficients for 1/2<h_v/h_f<2^(1/3). However, a covariant
+coarea-weighted isotropic material-layer action has potential stress
+w=-2/3 at held condensate and zero tensor spatial stiffness at two
+derivatives. A bare Einstein term restores propagation with an independent
+coefficient. This is an analytic self-review, not an executable test run;
+full vacuum/operational MOND matching and microscopic inter-layer dynamics
+remain unresolved. No numerical coefficient is inferred from the sign repair.
+
 ## Previous investigation outcome: scoped obstructions established
 
 Original user target: derive the acceleration scale and coefficient from an
