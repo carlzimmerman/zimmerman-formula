@@ -93,3 +93,10 @@ artifacts, not committed data. Regenerate from the hash-identified inputs:
 
 Use a new tag for independent repeats, or --resume for an existing matching
 checkpoint. The other footing, level and mode are explicit CLI arguments.
+
+The matching chunk1000 L1 canonical real attempt reached the180second
+limit after4,391,000 rows (107.8MB), exited75 and requires heavyq for
+completion. Its main/mutate outputs explicitly say INCOMPLETE PREFIX ONLY;
+its counts cannot be compared as a full convergence pair. The remaining
+sets are receiving one bounded attempt each; any exhausted attempt also
+waits for the heavy queue. No final census verdict is available yet.
