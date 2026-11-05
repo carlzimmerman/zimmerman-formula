@@ -36,7 +36,12 @@ claim, including the coordinator's previous AZC1 construction.
   without a PN expansion, including lapse/shift and matter cancellation.
   Main26/28 retains two float64 misses; mutant24/28 additionally fails
   gradient signs. Separately frozen stable-offset diagnostic passes.
-- Tier 2 lanes 5(c-e),6-8 and Tiers 3-5: pending in brief order.
+- Tier 2 lane 5(c): AZ37 complete to NO VERDICT on the selected moving
+  Sun. Exact conditional v3s GR/geodesic branch verified; all tested
+  incoming ray families focus downstream outside the Sun. Main87/87,
+  flat-profile mutant69/103; charged-background response36/36 with paired
+  ODE solves and independent convolution. Nonlinear Galactic matching open.
+- Tier 2 lanes 5(d-e),6-8 and Tiers 3-5: pending in brief order.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.
 - Other sessions have now landed W1/X1 updates (handoff bfe49ed3c2,
