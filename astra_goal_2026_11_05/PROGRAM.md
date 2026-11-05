@@ -84,6 +84,8 @@ claim, including the coordinator's previous AZC1 construction.
   convergence (change0.02906); retained as UNRESOLVED. Full4032-case
   nonlinear grid, queue footprint declaration, population grader and
   sample-size scan remain pending; not queued before light-tier work.
+  Population-statistics module now passes13/13 analytic/seeded checks,
+  with byte-identical rerun; no nonlinear population verdict yet.
 - Tier3 lane12: AZ46 preliminary diagnosis executed under plan e282c8c2dc.
   Reproduces old mass3.0346e7 and drift20.8492 exactly; all4 I/O/recovery
   checks pass. Natural versus published robust mass differs10.44%; full
@@ -102,7 +104,10 @@ claim, including the coordinator's previous AZC1 construction.
   hit census/pairs still pending; calibrated population inference NO VERDICT.
   Streaming contract44/44 passes, including live interruption/resume. First
   complete L1 canonical real set:4,816,238 rows,37,525 conditional flags,
-  28,125 stable;168seconds,127MB. Remaining sets and full pairs pending.
+  28,125 stable;168seconds,127MB. The1000-row chunk attempt exceeds180s
+  and must resume through heavyq. Canonical L1 control full pair agrees:
+  3,297,394 rows,two stable conditional passes (mutation zero). Full
+  repeats/other sets pending. Census-auditor mutation fixtures8/8 pass.
 - Tier3 lane14 and Tiers4-5: pending in brief order.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.

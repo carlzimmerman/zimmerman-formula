@@ -100,3 +100,20 @@ completion. Its main/mutate outputs explicitly say INCOMPLETE PREFIX ONLY;
 its counts cannot be compared as a full convergence pair. The remaining
 sets are receiving one bounded attempt each; any exhausted attempt also
 waits for the heavy queue. No final census verdict is available yet.
+
+The L1 canonical scrambled-control census completes3,297,394 rows at both
+chunk sizes (104.7seconds at2000,117.5seconds at1000). Counts agree exactly;
+reported extrema satisfy the frozen1e-10 relative tolerance. Two formulas
+pass conditional covariance G3 and remain passing across leave-one-out
+estimates; the zero-covariance mutation accepts none. These full-set counts
+supersede the pilot's zero only for this set. A fresh full same-size repeat
+is still required, so this is not final validation or a physical survivor.
+
+check_census.py rehashes every recorded input, checks complete chunk pairs,
+and requires independent full repeats under census_repeat/. It reports
+pending files/prefixes without granting a full census verdict. Its eight
+synthetic tests pass, including changed counts, stale inputs, failed
+numerical tolerance, altered repeats and incomplete-prefix rejection.
+Run test_census.py for these auditor checks, then check_census.py for the
+current production state (exit75 means pending; exit1 means validation
+failure). census_checks.json is a dated-worktree snapshot, not a live view.
