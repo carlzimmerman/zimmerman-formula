@@ -115,3 +115,15 @@ driver or top-level bootstrap was executed.
 Run from this directory with NumPy/Astropy. Missing external product needs
 are recorded in NEEDS_OWNER. Native calibration and selector completion
 would require new frozen physical criteria before these keys can be graded.
+
+## Bullet3D preparation
+
+FROZEN_BULLET.md (7cd8cf3ed7) now fixes the full3D equation, signed source,
+physical epsilon,64/128/256 ladder, doubled-box check, ellipticity/residual
+gates, known answers, mutation and queue contract before implementation.
+The signed source is everywhere positive: the negative correction is bounded
+by8262/8575 of its common-centre positive component. No clipping is applied.
+All24 source/normalization checks pass, including paired mass quadratures;
+the selector-sign mutation fails two known answers, exit1. Outputs repeat
+exactly. BULLET_NORMALIZATION.md gives the derivation and scope. The3D
+solver, field convergence and conditional Bullet readings remain pending.

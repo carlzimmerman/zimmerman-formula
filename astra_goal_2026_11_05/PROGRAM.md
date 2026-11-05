@@ -152,6 +152,10 @@ claim, including the coordinator's previous AZC1 construction.
   checks pass, mutation fails two; exact repeats. Missing radial gas/flow
   products recorded in NEEDS_OWNER. This is not a physical exclusion or a
   substitute for the remaining3D Bullet computation.
+  Bullet criteria7cd8cf3ed7 freeze full3D64/128/256 and boundary checks.
+  Source/normalization24/24 pass; signed correction preserves total density
+  positivity, physical epsilon retained per footing. Sign mutation fails
+  two known answers and outputs repeat exactly.3D solver still pending.
 - Tiers4-5: pending in brief order.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.
