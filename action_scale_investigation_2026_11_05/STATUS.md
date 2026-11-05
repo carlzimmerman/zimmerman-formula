@@ -1,5 +1,12 @@
 # Active joint-model continuation
 
+Current selection boundary: joint_phase/SELECTION_IMPASSE.md rechecks the
+adopted action and microscopic mechanism notes and records the first audit
+of a research impasse. No coefficient-selecting physical principle has been
+identified. The user has been asked for any additional theory-defining
+postulate or source. No process is running; the goal remains active and
+unachieved. This revalidation is not a new successful physics calculation.
+
 The user requested further constructive work after the previous scoped
 audit. The new goal is active. joint_phase/RESULT.md computes the phase
 energy and cubic response of an explicit condensed-plus-gapless potential.
