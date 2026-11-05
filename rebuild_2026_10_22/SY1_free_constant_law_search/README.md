@@ -61,3 +61,9 @@ controls_completion.json. A marker file by itself is not completion evidence.
 This wrapper never reads the ordinary real-data grades; MUTATE intentionally
 checks the real fronts under its frozen 1e-6 gate as required by A2.
 Logs and live completion files are runtime records, not a scientific verdict.
+
+**Controls complete 2026-11-05 09:53 Eastern:** all166 searches reached1500.
+Planted forms recovered on both arms; strict-gate mutations reject own and
+real fronts. Scrambled Stage1 baseline444(T),97(Z), so training hits alone
+are not compelling. See CONTROL_RESULTS_2026-11-05.md and its verification
+JSON for completion evidence and the separate status of real holdout grading.
