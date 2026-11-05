@@ -1,0 +1,159 @@
+\documentclass[10pt]{article}
+\usepackage[margin=0.85in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{booktabs,array}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={A Screened, Saddle-Free Khronon Action for the a0 Galaxy Law}}
+\setlist{nosep,leftmargin=1.3em}
+\setlength{\parskip}{3pt}\setlength{\parindent}{0pt}
+\sloppy
+\begin{document}
+\begin{center}
+{\Large\bfseries A Screened, Saddle-Free Khronon Action\\ for the $a_0$ Galaxy Law}\\[6pt]
+{\small Working note (PAPER68), version 1.0 draft, 2026-11-05. AI-assisted research programme; not peer reviewed. Companion to PAPER67 (DOI 10.5281/zenodo.23968171). $\kappa=\tfrac12$ is fitted. The theory is not closed. Nothing here says the data favour this framework.}
+\end{center}
+
+\begin{abstract}\noindent
+We state, in one place, the action the programme adopted on 2026-11-04 for the galaxy law $g_N=g^2/(g+a_0)$, $a_0=\kappa c\sqrt{G\rho_{\rm DE}}$:
+a Blanchet--Skordis Khronon theory \cite{BS} with a postulated acceleration function and one added term, a \emph{switched} stiffness $-(\gamma_L/2)[\max(D\!\cdot\!P,0)]^2$.
+The switch is exact and adds no constant. It removes the Hadamard ill-posedness that an unswitched stiffness has wherever the khronon charge is negative, and it leaves every screened static solution unchanged.
+In its stated scope (isolated galaxies, the Solar System, galaxy lensing and gravitational waves) the action reproduces the simple-$\mu$ law, passes Cassini by at least $4.8\times10^{7}$, gives $\gamma=\beta=1$ to $10^{-12}$, a tensor speed equal to $c$, and galaxy lensing equal to dynamics.
+Outside that scope it fails: hosted dwarfs, linear growth, clusters and the radiation era, all through one identity that fixes the khronon dust's coupling at $\alpha\equiv1$.
+$a_0$, the acceleration function and the screening length are put in by hand. We write down the identity a vacuum principle would have to supply to derive $\kappa$, and we state which health questions remain undecided.
+\end{abstract}
+
+\section{Credit}
+The action's structure is not ours. The preferred-foliation (khronon) field and its healthy extension are Blas, Pujol\`as and Sibiryakov's \cite{BPS}. The relativistic MOND theory built on it, including the dust sector $\mathcal K(\mathcal Q)$, is Blanchet and Skordis's \cite{BS}, whose dust sector follows Skordis and Z\l{}o\'snik \cite{SZ}. The law is Milgrom's \cite{M83}; its static field equation is Bekenstein and Milgrom's AQUAL \cite{BM84}. The tie of $a_0$ to the dark energy density is Limbach, Psaltis and \"Ozel's \cite{LPO}.
+What this note adds: a specific acceleration function, the switched stiffness, the proofs and numerical checks that the switch cures the saddle problem, and a graded record of the combination.
+
+\section{The action}
+\begin{equation}
+S=\frac{c^3}{16\pi G}\int\!\sqrt{-g}\,\big[R-2\mathcal J(\mathcal Y)+2\mathcal K(\mathcal Q)\big]
+-\frac{\gamma_L}{2}\int\!\sqrt{-g}\,\big[\max(D_iP^i,0)\big]^2+S_m[g,\text{matter}].
+\label{eq:S}
+\end{equation}
+$\tau$ is the khronon, which defines the preferred foliation; $A_\mu$ is the acceleration of its unit normal and $\mathcal Y=A_\mu A^\mu/c^4$; $\mathcal Q=c\sqrt{-g^{\mu\nu}\partial_\mu\tau\partial_\nu\tau}$. $P$ is an independent spatial covector ($n\!\cdot\!P=0$) and $D$ the spatial derivative on the leaves. There is no extra curvature term ($\beta=0$) and no $P$ kinetic term ($\eta=0$). The ingredients:
+\begin{align}
+\mathcal J(\mathcal Y)&=\Lambda-2a_{\rm geo}^2\,[u-\ln(1+u)],\qquad 1+\mathcal J'=\frac{u}{1+u},\\
+u&=\sqrt{\mathcal Y}/a_{\rm geo},\qquad a_{\rm geo}=a_0/c^2,\\
+\mathcal K(\mathcal Q)&=\mu_K^2(\mathcal Q-1)^2,\qquad \gamma_L=K L_\star^2/2,\\
+a_0&=\kappa c\sqrt{G\rho_{\rm DE}}=c^2\sqrt{\Lambda/32\pi}\quad\text{at }\kappa=\tfrac12 .
+\end{align}
+
+\begin{table}[h]\centering\small
+\caption{What the action takes as input. None of it is derived.}\label{tab:inputs}
+\begin{tabular}{@{}llp{9.2cm}@{}}\toprule
+input & status & note\\\midrule
+$\kappa=\tfrac12$ & fitted & shown not derivable from the programme's premises (Lean, \texttt{half\_not\_derivable})\\
+$\mathcal J(\mathcal Y)$ & postulated & outside Blanchet--Skordis's admissible class\\
+$L_\star$ & postulated, lower bound & $L_\star\ge21.7/22.9$\,pc (canonical/alt), from outer globulars\\
+$\mu_K$ & free & $\mu_K\le14.8\,h$/Mpc (Blanchet--Skordis); isolated-galaxy lensing wants $<0.1$\,Mpc$^{-1}$\\
+dust abundance & initial condition & \\\bottomrule
+\end{tabular}
+\end{table}
+Two footings are carried throughout and never pooled: canonical $a_0=9.3603\times10^{-11}$ and alt $1.1312\times10^{-10}$\,m\,s$^{-2}$.
+
+\section{Field equations}
+\textbf{Static limit.} Re-derived from (\ref{eq:S}) with residual zero, the static equation is AQUAL with a mass term,
+\begin{equation}
+\nabla\!\cdot\![\mu(|\nabla\psi|/a_0)\nabla\psi]+\mu_K^2\psi=4\pi G\rho_b,\qquad \mu(x)=\frac{x}{1+x},\qquad \phi=\psi ,
+\end{equation}
+so lensing sees the dynamical potential. In the isolated spherical stationary limit with $\mu_K=0$ and no screening contribution it gives $g_N=g^2/(g+a_0)$: the simple-$\mu$ law, not the squared-excess form $g^2=g_N^2+a_0g_N$.
+
+\textbf{Weak field.} With the lapse perturbation $\Xi=\phi-\dot\sigma+|\nabla\sigma|^2/2$,
+\begin{equation}
+4\pi G\rho_\tau=-[\nabla\!\cdot\!(\mathcal J_Y\nabla\Xi)+\mu_K^2\Xi],\qquad \nabla^2\phi=4\pi G(\rho_b+\rho_\tau),\qquad
+\frac{Dv_\tau}{Dt}=-\nabla\phi+\nabla\Xi,\quad \frac{Dv_b}{Dt}=-\nabla\phi .
+\end{equation}
+
+\textbf{The khronon pair's dispersion} (weak field, first order in background gradients, with self-gravity), at $\mu_K=0$:
+\begin{equation}
+\omega^2=4\pi G\rho_\tau\,(M_\theta-1+L_\star^2k^2/2),\qquad M_\theta\in[1+x,(1+x)^2],\qquad \rho_\tau=D\!\cdot\!P+\mu_K^2(\bar{\mathcal Q}-1)/(4\pi G).
+\label{eq:disp}
+\end{equation}
+
+\section{Why the switch}
+With an unswitched stiffness $-(\gamma_L/2)(D\!\cdot\!P)^2$, eq.~(\ref{eq:disp}) at $\rho_\tau<0$ and $L_\star>0$ gives $-\omega^2$ growing without bound in $k$: the theory is Hadamard ill-posed in every region of negative khronon charge. Such regions exist around outer globular clusters and satellites. The constraint algebra is not the cause: it closes with 3 degrees of freedom, 8 second-class constraints and rank 4 on every background tested. The ill-posedness is the scalar's own dynamics, so a cure has to change those dynamics.
+
+The switched form does, and it adds no constant. Proved pointwise at leading WKB order (Lean):
+\begin{itemize}
+\item \texttt{switched\_bounded\_where\_negative}: the growth rate is $k$-independent wherever $\rho_\tau<0$;
+\item \texttt{switched\_stable\_where\_positive}: stable wherever $\rho_\tau\ge0$ and $M\ge1$;
+\item \texttt{switched\_agrees\_where\_screened}: identical to the unswitched theory wherever $D\!\cdot\!P\ge0$, which covers every screened region;
+\item \texttt{switched\_uniform\_bound}: $-\omega^2\le4\pi G|\rho_\tau||M-1|$ for all $k$.
+\end{itemize}
+Beyond leading order (lane X3, verdict \textbf{well-posed, statics unchanged}, 13/13 checks; the twin with the switch removed fails 6 of 12):
+\begin{itemize}
+\item \emph{Nonlinear, 1D.} The khronon pair is exactly a barotropic Euler fluid with $c^2=\gamma_L(D\!\cdot\!P+\rho_d)\Theta(D\!\cdot\!P)\ge0$ for $\rho_d\ge0$. Any smoothing of the switch gives $c^2\approx-0.058\,\epsilon\gamma_L<0$, so the switch must be exact.
+\item \emph{Interface.} The leaf functional stays convex, so the leaf problem stays uniquely solvable; it becomes an obstacle-type free-boundary problem.
+\item \emph{Slab, no WKB.} The growth rate converges under resolution doubling ($\Gamma\to1.22474$ against the localised 1.224745), where the unswitched theory diverges.
+\item \emph{Statics.} The Galactic phantom keeps $D\!\cdot\!P>0$ within 1\,kpc of the Sun (margin $\ge1.8\times10^4$). The outer-globular lobes do have $D\!\cdot\!P<0$; the full switched re-solve (11,250 solves, 0 unconverged) moves the $L_\star$ floor by $+0.006$\,\%.
+\end{itemize}
+The remaining bounded saddle growth at the lobes is benign: the lobe pattern rides with the moving system while the host khronon streams through and keeps $D\!\cdot\!P>0$ there, and even granting a static lobe the e-folds are $N\le0.048$ (globulars) and $\le0.013$ (satellites).
+
+\section{What passes, in scope}
+\begin{table}[h]\centering\small
+\caption{The gates the scoped adoption rests on. Each lane's README is the record.}\label{tab:pass}
+\begin{tabular}{@{}p{3.6cm}p{8.6cm}l@{}}\toprule
+gate & result & lane\\\midrule
+SPARC radial acceleration relation & rms 0.054\,dex on both footings, one $\Upsilon$ per galaxy, EFE solved for 109 galaxies; the $\chi^2$ line fails (63--64\,\% acceptable) & P4\\
+acceleration scale & MeerKAT $a_0$ is +0.032\,dex from SPARC's with the same recipe & P4\\
+Solar System (Cassini $Q_2$, planets) & PASS; margin to the Hees bound $\ge$ 4.8e7 (canonical), 5.7e7 (alt); planets $\le0.17$ of bound & C6P\\
+PPN $\gamma$, $\beta$ & derived from the action: $\gamma=\beta=1$, remainders $\le$ 9.8e-14 ($\gamma$) and 1.1e-12 ($\beta$) & V3W W1\\
+galaxy lensing = dynamics & KiDS isolated $A$ 1.13 $\pm$ 0.21 / 1.04 $\pm$ 0.19 (weak power on KiDS alone) & V3W W3\\
+gravitational waves & $c_T=c$ ($\le$ 6e-32); no ghost or gradient instability on galaxy backgrounds & V3W W4\\
+binary pulsars & at most 3.2e-14 of the double pulsar's precision & C8, P3\\
+static black holes & shifts $\le$ 2.9e-11 & P3\\
+health gates (MW force sign, dwarf virial, planets) & PASS on both footings & VH1\\\bottomrule
+\end{tabular}
+\end{table}
+The unscreened law fails Cassini by 2.44--5.19 times; the pass belongs to the screen. Every unscreened action class graded fails Cassini's $Q_2$ by 1.69--5.18 times; only this screening length passes the four action gates on both footings (AX1).
+
+\section{Weak spots carried with the adoption}
+\begin{itemize}
+\item V3X W2 \textbf{UNDECIDED}: the in-window ladder reads Richardson $-0.7$\,\% against a 2\,\% line, but one check was frozen too tight at an ungraded radius.
+\item V3X W4c(b) \textbf{UNDECIDED}: the $l=1$--4 spectral ladder misses at 14.6\,\% against 5\,\%, and the tensor roots sit 1.1e-10 below $c$ against a $10^{-10}$ line.
+\item The constraints act instantaneously; the cone-causality criterion fails and is carried, not graded.
+\item The 2026-11-05 re-audit (AZ35--AZ39) returned \textbf{NO VERDICT} on nonlinear well-posedness, on the post-Newtonian sign of the corrections, on a Sun moving through the khronon frame and on charged-background causality, and found no counterexample to any of them. A realistic solar interior was not evaluable without an external model.
+\item A single-stream khronon forms caustics generically; removing them needs a new constant. Whether they matter for real galaxies is \textbf{UNDECIDED} in the self-consistent axisymmetric solver.
+\item No 2D/3D time evolution of the switched interface, and no well-posedness proof for a moving interface.
+\end{itemize}
+
+\section{What fails, out of scope, and the one identity behind it}
+The khronon dust's coupling weight is fixed by kinematics at $\alpha\equiv1$: the khronon charge's acceleration relative to free fall is $\nabla\Xi$, the same field that carries the law. From this one identity:
+\begin{itemize}
+\item \emph{Hosted systems.} A static host has $\Xi=\Phi+C$, so the dust has no weight across a held system and hosted dwarfs are predicted Newtonian. Six hosted sets disagree at $\ge5\sigma$.
+\item \emph{Linear growth.} The dust is held only below $\mu_K$. At the $\mu_K$ isolated galaxies allow, $\sigma_8/\sigma_{8,\rm dust}$ is 0.003--0.005.
+\item \emph{Clusters.} The static dust oscillates and its onset hits lighter systems first: 0 of 1,804 cells pass.
+\item \emph{The radiation era.} The quadratic $\mathcal K$ carries a stiff partner $\rho_s\propto a^{-6}$; BBN needs $\mu_K$ far above what galaxies allow.
+\end{itemize}
+A separate dust that weighs in hosts and grows must be a separate field, and it double counts in isolated galaxies. The CMB-lensing shape is also wrong under every rule tried for the law alone (PAPER67).
+
+\section{What the action does not explain}
+It does not derive $a_0$. In the simplest local, unscreened, scalar-decoupled convention, $G=1/(8\pi F)$, $K=1/(2F)$, $W(p)=C_3p^3/3$ and $a_{\rm MOND}=2F/C_3$, so
+\begin{equation}
+\kappa^2=\frac{a_{\rm MOND}^2}{G\rho_{\rm vac}}=\frac{32\pi F^3}{C_3^2\rho_{\rm vac}},\qquad \kappa=\tfrac12\iff C_3^2\rho_{\rm vac}=128\pi F^3 .
+\end{equation}
+This is a necessary matching identity, not a derivation. No construction on record supplies it together with a positive vacuum, a protected response and valid source matching. Choosing a constant to satisfy it would insert the answer.
+
+A successor candidate (AC2) lets the dark-energy scalar itself be the clock, with a smooth unswitched stiffness. Its scalar FRW quadratic action is healthy and its coupled-matter principal speeds are positive and subluminal. It still sets $\kappa$ by hand, and it owes sourced backgrounds, clock preservation and every observational regrade before it could replace (\ref{eq:S}).
+
+\section{Status}
+Equation~(\ref{eq:S}) is the programme's action for the $a_0$ law in a stated scope: isolated galaxies, the Solar System, galaxy lensing and gravitational waves. Clusters, linear growth, the CMB, the radiation era, hosted dwarfs and the Milky Way joint fit are outside it and still fail. $\kappa$ is fitted.
+
+\textbf{Data and code.} Every result cites a committed lane: X3 (\texttt{8aeba82a87}), C6P (\texttt{8c5703da06}), V3W (\texttt{17d7b7ecdc}), V3X (\texttt{ee4210e959}), AX1 (\texttt{9c11102bf3}), the adoption decision (\texttt{7ac515f958}). The full picture is \texttt{covariant\_push\_2026\_10\_22/V3\_FULL\_PICTURE.md}. \texttt{PAPER68\_audit.py} checks every quoted number against its source.
+
+\begin{thebibliography}{99}\small
+\bibitem{BS} L.~Blanchet, C.~Skordis, arXiv:2404.06584 (2024).
+\bibitem{BPS} D.~Blas, O.~Pujol\`as, S.~Sibiryakov, Phys.\ Rev.\ Lett.\ 104, 181302 (2010), arXiv:0909.3525.
+\bibitem{SZ} C.~Skordis, T.~Z\l{}o\'snik, arXiv:2007.00082 (2020).
+\bibitem{M83} M.~Milgrom, ApJ 270, 365 (1983).
+\bibitem{BM84} J.~Bekenstein, M.~Milgrom, ApJ 286, 7 (1984).
+\bibitem{LPO} C.~Limbach, D.~Psaltis, F.~\"Ozel, arXiv:0809.2790 (2008).
+\end{thebibliography}
+\end{document}
