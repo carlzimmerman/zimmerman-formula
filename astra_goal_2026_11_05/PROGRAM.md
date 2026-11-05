@@ -157,6 +157,9 @@ claim, including the coordinator's previous AZC1 construction.
   Source/normalization24/24 pass; signed correction preserves total density
   positivity, physical epsilon retained per footing. Sign mutation fails
   two known answers and outputs repeat exactly.3D solver still pending.
+  Full3D stretched-grid operators now pass21/21 N8/N16 analytic checks;
+  separate sign mutation fails five, exact repeats. These validate operators
+  only; nonlinear solve, restart contract and field convergence remain open.
 - Tiers4-5: pending in brief order.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.

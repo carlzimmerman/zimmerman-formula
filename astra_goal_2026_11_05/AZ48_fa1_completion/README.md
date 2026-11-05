@@ -1,9 +1,10 @@
-# IN PROGRESS — FA1 record completion, input audit only
+# IN PROGRESS — FA1 record completion
 
 Retired sector, adopts nothing. Kappa = 1/2 FITTED; not theory closed.
 Original I1, I2 and I6 records remain untouched. No new action is
 established by this audit. PREPARATION_PLAN.md was committed alone before
-the audit script; physical criteria and computations are still pending.
+the audit script. Subsequent frozen substudies and their limited conclusions
+are recorded below; the full nonlinear Bullet computation is still pending.
 
 audit_inputs.py records43 CFG713 lens identifiers separately for both
 footings, with identical rosters. All43 match entries in the local Auger
@@ -127,3 +128,21 @@ All24 source/normalization checks pass, including paired mass quadratures;
 the selector-sign mutation fails two known answers, exit1. Outputs repeat
 exactly. BULLET_NORMALIZATION.md gives the derivation and scope. The3D
 solver, field convergence and conditional Bullet readings remain pending.
+
+The full3D physical-coordinate derivative module passes21/21 analytic
+checks on N8/N16 stretched grids, including mixed Hessian components,
+both-footing quadratic operators, the principal ellipticity matrix and
+finite-difference Jacobian products. The maximum relative quadratic-operator
+error is2.55e-13; the maximum Jacobian comparison error is1.09e-9 against
+the frozen1e-8 line. Expanded-box central spacing is independently checked.
+The separate selector-sign mutation fails five checks (16/21, exit1).
+Both outputs repeat byte-identically with warnings treated as errors.
+These are operator checks, not a nonlinear solution or field-convergence
+result. Grids above N16 are guarded for heavyq execution.
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python check_grid3d.py
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python check_grid3d.py --mutate
+
+Run from this directory with NumPy/SciPy available. Next: spherical boundary
+quadrature, a bounded nonlinear pilot, interruption/resume validation and
+resource measurement before queued known-answer and Bullet ladders.
