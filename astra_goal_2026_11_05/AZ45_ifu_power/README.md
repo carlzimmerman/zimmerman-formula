@@ -99,3 +99,10 @@ then pass with warnings raised as errors. No criterion changed. Source
 hashes and versions accompany population_checks.json. The full4032-case
 fit grid and its calibration/provenance-aware population grader remain
 pending; no observational power forecast follows from these fixtures.
+
+A further bounded fine-rung alt-footing pilot measures physical footprint,
+not just RSS: peak0.154GB, runtime13.72seconds. Sanitized samples and source-
+identified fit output are saved. QUEUE_PLAN.md prepares a1GB serial-job
+estimate with margin, resume evidence and the exact4032-case submission
+command. It has NOT been submitted; light-tier prerequisites still apply.
+The extra pilot is a memory measurement, not a numerical convergence pair.
