@@ -13,11 +13,11 @@ post-result diagnostics with no label: `fa1_diag.py` → `fa1_diag.out`, `fa1_di
 | id | selector | status (Phase 2) | graded here |
 |---|---|---|---|
 | I1 | tidal isotropy of the baryons, zeta = rho_b / rho_bar_b (Weyl-electric over Ricci) | UNTESTED as a dust selector (neighbours X67, KT30 tested other uses) | **KILLED AT GATE 1**, both footings |
-| I2 | mean-flow vorticity | PARTLY TESTED (DR5 40d43dbb8a; uncommitted vorticity_gate) | no; isolated ETG/dSph kill not run |
+| I2 | mean-flow vorticity | PARTLY TESTED (DR5 40d43dbb8a; uncommitted vorticity_gate) | **KILLED**, both readings, both footings (`I2_vorticity/`): Phase 1's omega_* ~ a0/c is 27-130x below the ICM's shear floor (dust off in clusters); scale-free V/sigma reading fails the ellipticals (13 on, +0.094 vs +0.199, Z -2.15); dSph extra ALLOWED (12 -> 12 of 19) |
 | I3 | fixed Jeans length, k^4 dispersion | TESTED, FAIL (X22 a2b532e3c6, X57 M4 436ff03cb9) | no |
 | I4 | staticity, AeST dust term | TESTED, FAIL / NO VERDICT (H1 1654b84f78, H2 385f61a14c, AN1 a3ce1814c5) | no |
 | I5 | bulk motion against the khronon frame, disformal | UNTESTED; dead on order of magnitude (LG 600 km/s vs clusters 300-1000 km/s) | no |
-| I6 | Galileon determinant, source dimensionality | UNTESTED as a dust switch (galileons for planets: M1 836cc3661f) | no; needs a field solve |
+| I6 | Galileon determinant, source dimensionality | UNTESTED as a dust switch (galileons for planets: M1 836cc3661f) | **KILLED AT THE SPARC NULL**, both footings (`I6_galileon/`): cubic-galileon field solve; 3 of 6 SPARC-like discs stay on (gas-rich dwarfs), spherical f_SP 0.429; Q2 fails on pi's own force at beta = 1 |
 | I7 | defect network of the a0 field | UNTESTED; dead on paper (strings, walls are not w = 0) | no |
 | I8 | Weyl/Ricci of the full metric | PARTLY TESTED (K1 83d3592c87); reads as gas density in clusters | no |
 | I9 | nonlocal curvature history, box^-1 R | TESTED, FAIL (DR4 552b98907e, TM2 c5bae4c406) | no |
@@ -70,8 +70,10 @@ The fail is not noise and not a threshold artefact. These are canonical numbers;
 - No action was found, and nothing here is one.
 - I1's weight switch on a gravitating component is not a standard field-theory object. Gate 1 tests a necessary condition
   only.
-- I2's kill test (isolated ellipticals and dSphs against the law) was not run.
-- I6 would need a field solve.
+- I2 and I6 were run on 11-04 (owner: "Yes, run both"); see `I2_vorticity/README.md` and `I6_galileon/README.md`. Both
+  are killed; neither reopens the cold sector.
+- `fa1_results.json` stores X-COP `r_kpc` 1000x too large (R500 is already in kpc). zeta is a log slope, so the I1 result is
+  unaffected; found by I6, fixed there.
 - The keys were not wired at the selector level.
 - The record's bigger walls still stand for any successor: X22's capture of forest-passing dust by galaxies, the mu-pincer
   and Theorem G (X57).
