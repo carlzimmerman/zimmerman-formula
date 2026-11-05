@@ -146,6 +146,11 @@ claim, including the coordinator's previous AZC1 construction.
   Frozen e3fe114390;23/23 kinematic checks, separate mutation fails four,
   exact covariant normal-field check4/4. This challenges that inference only,
   not the actual cluster flow or I2-R's separate elliptical constraint.
+  Fifteen-key native-input gate a3b7195720 records60 explicit null rows:
+  I1/I2 x both footings NOT EVALUABLE from the audited chain. All21 input
+  checks pass, mutation fails two; exact repeats. Missing radial gas/flow
+  products recorded in NEEDS_OWNER. This is not a physical exclusion or a
+  substitute for the remaining3D Bullet computation.
 - Tiers4-5: pending in brief order.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.

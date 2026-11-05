@@ -76,3 +76,42 @@ The old G-P-CL exclusion is not established by that gradient alone.
 Run these from this lane directory with NumPy and SymPy available. The
 mutation command must exit1. No observational or field-equation solve is
 substituted by these kinematic identity checks.
+
+## Fifteen shear keys: NOT EVALUABLE from the audited inputs
+
+FROZEN_SHEAR_INPUTS.md (a3b7195720) fixes the input gate before this report.
+shear_inputs.json lists all15 BA1 key names for both selectors and both
+footings (60 rows). Every value is null, with its missing inputs named.
+The label concerns the audited input chain, not a physical failure or a
+proof that no usable product exists elsewhere. The Bullet3D task remains
+open; this input report does not satisfy that computation.
+
+The distinction in the distance chain matters: F1 uses measured BAO ratios
+with an HRD/h absolute calibration, plus an explicit LCDM reference-distance
+conversion for catalogue masses/radii. It is not uniformly a Planck18
+calculation. This audit has not authenticated a complete native calibration
+and gas-profile reconstruction. The inspected eRASS1 table has integrated
+aperture quantities and derived MGAS500/R500, while X2 supplies a parametric
+radial shape and taper. These are not by themselves raw radial gas evidence.
+
+I1 also leaves its non-decreasing selector function unspecified; necessary
+threshold support alone does not fix15 shear amplitudes. I2's old
+system-level reading specifies a conditional uniform1.5-times-law extra
+mass, but the chain supplies no per-cluster mean-flow constraints. KT is
+not a mean-flow measurement. A common single-gradient proxy is inadequate
+for the independently demonstrated kinematic reason above. No new F,
+velocity field or cosmic normalization has been fitted to fill these gaps.
+
+The isolated BA1 key function reproduces an independent15-name list and
+the constant synthetic ratios/slopes:21/21 input checks pass. The mutation
+accepts missing evidence and fails both incomplete-input controls,19/21,
+expected exit1. Main and mutation outputs repeat byte-identically. This is
+an input gate, so it has no graded PDE/N-body resolution number. No old
+driver or top-level bootstrap was executed.
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python shear_inputs.py
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python shear_inputs.py --mutate
+
+Run from this directory with NumPy/Astropy. Missing external product needs
+are recorded in NEEDS_OWNER. Native calibration and selector completion
+would require new frozen physical criteria before these keys can be graded.
