@@ -83,3 +83,22 @@ main/small_pair_checks.json (or mutate/ with `--mutate`). It deliberately
 does not issue a final robustness label. Remaining work includes the
 rest of the parameter grid, eligible MW pairs on both footings, the
 mutation grid, final gate aggregation and a final README verdict.
+
+## First small-gate numerical failures retained
+
+At the93-pair checkpoint,91 pairs meet all small-gate numerical lines.
+Point91 (p=.425,L_MW=1.0) and point92 (p=.425,L_MW=1.25) miss the frozen
+T2 dispersion-change line1% on both footings. The worst witness is
+Andromeda IX at mass297187.1284574018Msun, widths.00556318454 and
+.00695398068kpc. Relative changes are1.911659%/1.913153% (canonical/alt)
+for point91 and1.166178%/1.167077% for point92. Dwarf pass lists themselves
+do not flip, but that does not waive the numerical line. These T2 rows
+remain UNDECIDED; any separate decisive physical gate remains separately
+gradable under the frozen rules.
+
+verify_dwarf_failures.py freshly recomputes all8 witness values at the
+same2000/4000 radial sizes. All8 agree with their saved values, reproducing
+the failed ratios exactly. It uses the unchanged bounded-kernel definition,
+checks source identities, and writes separate diagnostic outputs. Runtime
+is under1second, peak RSS257MB. No tolerance, grid point or resolution was
+changed to obtain a pass. Remaining original-grid and mutation work continues.
