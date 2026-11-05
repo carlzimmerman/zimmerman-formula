@@ -27,6 +27,19 @@ No justified shared microscopic selector has yet been identified. The goal
 remains active; no successful coefficient derivation or complete theory is
 claimed.
 
+joint_phase/RG_MATCHING_AUDIT.md checks the actual nodal interacting fixed
+point: it does not fix the relevant mass detuning or supply the curved-space
+matching, and an anomalous response exponent needs a separate MOND check.
+The resulting changed construction in joint_phase/LINEAR_INDUCED_RESULT.md
+uses F=D sqrt(sigma^2+p^2). Its16 exact identities pass; the tensor ratio
+64pi D^3/(C_A C_B^2) cancels the condensate scale. But m_sigma^2/H^2<4,
+so scalar exchange cannot be removed by a short Compton wavelength locally.
+An explicit conditional local-source calculation shifts the critical
+quadratic coefficient from1 to Q=1+2alpha^2 and the operational ratio by
+Q^3. Microscopic generation of the curvature/kinetic operators and this
+critical matching identity remain the next obligations. This is partial
+progress, not a predicted coefficient or adopted action.
+
 ## Previous investigation outcome: scoped obstructions established
 
 Original user target: derive the acceleration scale and coefficient from an
