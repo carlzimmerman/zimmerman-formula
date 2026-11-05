@@ -10,8 +10,8 @@ hosted dwarfs and the MW joint fit stay open, and a0 is put in by hand. Column 0
 the law's, from FG1's C4 and alt rows and the lanes PAPER67 cites.
 
 A colour restates a recorded verdict, and check_law() holds it there:
-  * a tile naming an FG1 line takes its colour from FG1's README, read at build time, one colour per footing; NOT GRADED
-    must be grey, and the eleven lines must all be on the board;
+  * LW1 overrides K, X, Dw, MW and DM; other FG1 lines keep their recorded colours.
+    Both vertical-force forms are shown on MW/DM; the eleven FG1 identifiers remain present;
   * footings are never pooled: a tile whose footings differ is drawn in two halves;
   * green needs a passing FG1 row, or a VERIFIED_GREEN entry (lane, result commit, rerun);
   * every tile names lanes in SOURCES, each with a committed file, and each quoted number is checked against that file;
@@ -37,6 +37,7 @@ One core, seconds, < 0.3 GB.
 kappa = 1/2 is FITTED; footings never pooled; the theory is not closed; nothing here says the data favour the framework.
 """
 import copy
+import json
 import os
 import re
 import sys
@@ -76,6 +77,7 @@ SOURCES = {
     "P4": _Q + "P4_v3_galaxy_tiles/README.md", "U1": _Q + "U1_v3_dust_content/README.md",
     "F1": _Q + "F1_cluster_cores/README.md", "DR1": _Q + "DR1_density_term_law/README.md",
     "LW1-CRITERIA": _Q + "LW1_law_scorecard/FROZEN_CRITERIA.md", "AC1": _Q + "AC1_alma_condor_predictions/README.md",
+    "LW1": (_Q + "LW1_law_scorecard/README.md", _Q + "LW1_law_scorecard/lw1_results.json"),
     "SP1": _Q + "SP1_sealed_lensing_step/README.md", "SP2": _Q + "SP2_sealed_basin_lensing/README.md",
     "LEDGER": _Q + "CLOSING_LEDGER_2026-11-01_DRAFT.md", "OWNER-11-01": _Q + "OWNER_DECISION_2026-11-01_RETIRE_COLD_SECTOR.md",
     "V3S-VERDICT": "covariant_push_2026_10_22/V3S_FINAL_VERDICT_2026-10-24.md",
@@ -110,6 +112,8 @@ WEAK_SPOTS = [("W2", "V3X W2 UNDECIDED"), ("W4c(b)", "V3X W4c(b) UNDECIDED"),
               ("instantaneous", "Constraints act instantaneously")]
 FG1_LINES = ("S", "Tl", "LT", "G", "K", "X", "Ln", "Dw", "MW", "DM", "IC")
 FG1_COLOUR = {"PASS": "PASS", "FAIL": "FAIL", "NOT GRADED": "STALE"}
+LW1_TILES = {"MW vertical force": "MW", "DiskMass": "DM", "X-COP": "X",
+             "Local Group dwarfs (five classes)": "Dw", "Cluster keys (15, old template)": "K"}
 # Greens from outside FG1: tile -> (lane, result commit, how it was verified, stated as it is). FG1's own greens rest on
 # 1c8d43d901 and on CRG1's regrade 83002f24a2, which recomputed C4's S, Tl, LT, G and Ln (mainly a test of code).
 VERIFIED_GREEN = {
@@ -129,12 +133,12 @@ BANNED = ("theory closed", "cold dark matter", "cdm-like", "cold energy", "5.364
 WRAP, MAXL = 56, 5
 
 
-def L(col, name, st, note, lanes, q, fg1=None, alt=None, lab=None, act=False, carried=False):
+def L(col, name, st, note, lanes, q, fg1=None, alt=None, lab=None, act=False, carried=False, lw1=None, forms=None):
     """One tile. q: [(fragment in the note, lane, literal in that lane's file), ...]. fg1: the FG1 line it restates.
     alt: the alt footing's colour, only where it differs from canonical's. act: graded on v3s, the adopted action.
     carried: colour carried from the 24 October v3s board, not regraded since."""
     return dict(col=col, name=name, st=st, note=note, lanes=list(lanes), q=list(q), fg1=fg1, alt=alt, lab=lab, act=act,
-                carried=carried)
+                carried=carried, lw1=lw1, forms=forms)
 
 
 _OUT = ("outside v3s's adopted scope", "OWNER-11-04", "hosted dwarfs and the Milky Way joint fit")
@@ -268,11 +272,14 @@ LAW_TILES = [
       [("1.587", "CFG829", "1.587 ± 0.076"), ("1.313 / 1.200", "BL1", "1.313 / 1.200"), ("1.020 /", "S2", "1.020 / 0.933")]),
     # ---- column 2: where the law misses ----
     L(2, "MW vertical force", "FAIL",
-      "7 of 175 cells pass (alt 4), wide priors, short disc only; those have K_z 76.7–80.9 against 66.4 ± 2.2, +4.7 to "
-      "+6.6σ. X5 stands in for RF1, which has no law row",
-      ["FG1", "X5"],
-      [("7 of 175", "FG1", "7 of 175 cells (alt 4)"), ("+4.7 to +6.6σ", "FG1", "K_z +4.7 to +6.6 sigma"),
-       ("76.7–80.9", "X5", "76.7–80.9 against 66.4 ± 2.2"), ("stands in", "FG1", "X5's AQUAL row stands in")], fg1="MW"),
+      "A field equation: infeasible both. R round rule: 1 / 6 in-prior cells, canonical / alt; K_z scale length "
+      "+3.9 to +4.4σ (post-result, not its gate). Both forms shown; neither selected",
+      ["FG1", "LW1"],
+      [("infeasible both", "LW1", "form A INFEASIBLE, 0 cells"),
+       ("1 / 6", "LW1", "1 in-prior cell"), ("1 / 6", "LW1", "17 cells, 6 in priors"),
+       ("+3.9 to +4.4σ", "LW1", "+3.9 to +4.4 sigma")],
+      fg1="MW", lw1="MW", forms={"A": {"canonical": "FAIL", "alt": "FAIL"},
+                                  "R": {"canonical": "PASS", "alt": "PASS"}}),
     L(2, "MW outer slope (Gaia)", "FAIL", "SHAPE EXCLUDED ROBUST: Z −3.88, alt −4.09, on the short-disc cells too",
       ["X5", "PAPER67"], [("Z −3.88", "X5", "Z −3.88"), ("−4.09", "X5", "Z −4.09"), ("short-disc cells", "PAPER67",
                                                                                      "leave the outer slope excluded")],
@@ -283,12 +290,11 @@ LAW_TILES = [
       [("E −0.593, Z −7.9", "FG1", "E -0.593 (Z -7.9)"), ("every halo-free inclination", "RF2",
        "FAILS under every halo-free inclination"), ("disfavoured, not excluded", "RF2", "disfavoured, not excluded")], fg1="IC"),
     L(2, "Local Group dwarfs (five classes)", "FAIL",
-      "Z MW ultra-faint +5.22, bright M31 +2.20, M31 others +2.29, MW classical +1.69, field +0.57; alt +4.87, +1.81, "
-      "+2.12, +1.42, +0.08. No external-field term",
-      ["FG1", "NR2"],
-      [("+5.22", "FG1", "MW ultra-faint +5.22; bright M31 +2.20; M31 others +2.29; MW classical +1.69; LG field +0.57"),
-       ("+4.87", "FG1", "MW ultra-faint +4.87; bright M31 +1.81; M31 others +2.12; MW classical +1.42; LG field +0.08"),
-       ("No external-field term", "FG1", "no external-field term in X51's path")], fg1="Dw"),
+      "With E1's external field, MW ultra-faint E +1.30 (Z +6.76), alt +1.26 (+6.59). The field worsens the deficit; "
+      "the plain and E1 rows both fail",
+      ["FG1", "LW1"],
+      [("+1.30 (Z +6.76)", "LW1", "MW ultra-faint +1.30 (Z +6.76)"),
+       ("+1.26 (+6.59)", "LW1", "**+1.26 (+6.59)**")], fg1="Dw", lw1="Dw"),
     L(2, "Measured stellar masses", "FAIL",
       "60–150 km/s: law Υ 0.62, 0.65 against GSWLC 0.277, 0.304; Z +3.4, +5.6, alt +2.8, +4.6. Estimators against W1, "
       "not a 3.6 μm measurement",
@@ -305,33 +311,35 @@ LAW_TILES = [
        ("1.01 ± 0.09", "CFG687", "**1.01 ± 0.09**"), ("0.93 ± 0.08", "CFG687", "**0.93 ± 0.08**")],
       lab="fails, both footings"),
     L(2, "Cluster keys (15, old template)", "FAIL",
-      "6 of 15 fail, alt 10; worst G-MID-T3 +4.46, alt +4.11, on f★ 0.20 with no gas tail. DR1's plain law on measured "
-      "gas: 10 of 15 pass, G-OUT-M3 +4.76",
-      ["FG1", "NR2", "DR1"],
-      [("6 of 15", "FG1", "9 of 15, over 2 in either h"), ("alt 10", "FG1", "5 of 15, over 2 in either h"),
-       ("+4.46", "FG1", "G-MID-T3 +4.46"), ("+4.11", "FG1", "G-MID-T3 +4.11"), ("no gas tail", "FG1", "f★ 0.20 with no gas tail"),
-       ("10 of 15 pass, G-OUT-M3 +4.76", "DR1", "| **+0.467, 0.476** | **10** | **+4.76** |")], fg1="K"),
+      "Measured chain replaces the old template: 10 of 15 pass on both footings and both f★ values. Same five keys "
+      "fail; joint fit fails throughout. G-OUT-M3 +4.76 / +3.99 at f★ 0.034, h 0.672",
+      ["FG1", "LW1"],
+      [("10 of 15", "LW1", "10 of 15 at both f*"), ("+4.76 / +3.99", "LW1", "M3 +4.76/+4.26"),
+       ("+4.76 / +3.99", "LW1", "M3 +3.99/+3.51")],
+      fg1="K", lw1="K"),
     L(2, "Outer shear against gas mass", "FAIL",
       "ΔΣ_OUTER ∝ M_gas^s, s 0.90 ± 0.21 against the law's 0.47 and Newton's 0.84. The amplitude match is an average "
       "over a slope the law misses",
       ["CFG687", "PAPER67"],
       [("s 0.90 ± 0.21", "CFG687", "s = 0.90 ± 0.21 vs the law's s = 0.47 and Newton's 0.84"),
        ("a slope the law misses", "PAPER67", "over a slope the law misses")], lab="fails as frozen (T2)"),
-    L(2, "X-COP", "STALE",
-      "FG1 shows CS2's −0.151, rms 0.205, numbers only; that row carries a Burkert core, so it isn't the plain law. "
-      "DR1's plain-law row: +0.467, 0.476. No grade",
-      ["FG1", "CS2", "DR1", "LW1-CRITERIA"],
-      [("numbers only", "FG1", "-0.151, 0.205 [READ HO1, numbers only]"),
-       ("Burkert core", "LW1-CRITERIA", "CS2's mc is a Burkert core law"), ("+0.467, 0.476", "DR1", "**+0.467, 0.476**")],
-      fg1="X", lab="not graded by FG1"),
-    L(2, "DiskMass", "STALE",
-      "r 1.250 (alt 1.212), 1.342 on the exact integral; target 0.90–1.10. Lanes frozen inconclusive and their ν isn't "
-      "the law's, so no grade; OD1: NOT SEPARATED",
-      ["FG1", "CFG576", "CFG577", "OD1", "LW1-CRITERIA"],
-      [("r 1.250 (alt 1.212), 1.342", "FG1", "r 1.250 (alt 1.212) CFG576, 1.342 CFG577"),
-       ("frozen inconclusive", "FG1", "both lanes are frozen INCONCLUSIVE"), ("isn't", "LW1-CRITERIA", "CFG576/577 use a different nu"),
-       ("NOT SEPARATED", "OD1", "NOT SEPARATED")],
-      fg1="DM", lab="not graded by FG1"),
+    L(2, "X-COP", "FAIL",
+      "Law on measured gas: mean +0.467, rms 0.476; alt +0.434, 0.444. HSE/law mass 2.93 / 2.72. All seven clusters "
+      "are short. FG1's grey row was a different model",
+      ["FG1", "LW1"],
+      [("+0.467, rms 0.476", "LW1", "mean +0.467, rms 0.476"),
+       ("+0.434, 0.444", "LW1", "+0.434, 0.444"), ("2.93 / 2.72", "LW1", "M_HSE/M_law 2.93"),
+       ("2.93 / 2.72", "LW1", "M_HSE/M_law 2.72")],
+      fg1="X", lw1="X"),
+    L(2, "DiskMass", "FAIL",
+      "A: r 1.477 both, NO LABEL: a₀ control barely moves r. R: 1.239 / 1.204, outside 0.90–1.10. "
+      "OD1's tracer caveat stands. Field equation A and round rule R; neither selected",
+      ["FG1", "LW1", "OD1"],
+      [("r 1.477", "LW1", "form A r 1.477, NO LABEL"), ("1.239 / 1.204", "LW1", "form R r 1.239"),
+       ("1.239 / 1.204", "LW1", "form R r 1.204"),
+       ("tracer", "LW1", "this cell depends on sigma_z's tracer")],
+      fg1="DM", lw1="DM", forms={"A": {"canonical": "STALE", "alt": "STALE"},
+                                  "R": {"canonical": "FAIL", "alt": "FAIL"}}),
     # ---- column 3: a0 over time, the CMB, dated tests ----
     L(3, "a0(z): native band vs a0 ~ H(z)", "UNDEC",
       "0.91 [0.76, 1.03] at z 1, 0.94 [0.71, 1.12] at z 1.5; rival 1.76, 2.35. Needs 0.055 dex at z 1; best sample "
@@ -469,6 +477,33 @@ def read_fg1_c4(text=None):
     return {k: tuple(v) for k, v in out.items()}
 
 
+def read_lw1():
+    """Read each footing and both forms; retain NO LABEL as grey."""
+    with open(os.path.join(REPO, _Q + "LW1_law_scorecard/lw1_results.json")) as f:
+        table = json.load(f)["table"]
+    out = {}
+    for line in ("K", "X", "Dw", "MW", "DM"):
+        out[line] = {"colours": {}, "forms": {}}
+        for foot in ("canonical", "alt"):
+            label, note = table[foot][line]
+            if line == "MW":
+                forms = dict(re.findall(r"([AR]) (PASS|FAIL)", label))
+                # Red backing preserves MUST_STAY_RED; the displayed A/R
+                # badges and markdown carry the actual two-form verdicts.
+                out[line]["colours"][foot] = "FAIL"
+            elif line == "DM":
+                if "form A" not in note or "NO LABEL" not in note or "form R" not in note:
+                    raise ValueError("Unrecognised LW1 DiskMass form record")
+                forms = {"A": "STALE", "R": FG1_COLOUR[label]}
+                out[line]["colours"][foot] = "FAIL"
+            else:
+                forms = {}
+                out[line]["colours"][foot] = FG1_COLOUR[label]
+            for form, colour in forms.items():
+                out[line]["forms"].setdefault(form, {})[foot] = colour
+    return out
+
+
 def _src(lane):
     s = SOURCES[lane]
     return (s,) if isinstance(s, str) else s
@@ -488,6 +523,7 @@ def check_law(tiles, retired=None, verified=None, fg1=None):
     retired = LAW_RETIRED if retired is None else retired
     verified = VERIFIED_GREEN if verified is None else verified
     fg1 = read_fg1_c4() if fg1 is None else fg1
+    lw1 = read_lw1()
     errs = []
     names = {t["name"]: t for t in tiles}
     v3s_tiles = {LAW_RENAMES.get(x["name"], x["name"]): x for x in TILES}
@@ -515,7 +551,17 @@ def check_law(tiles, retired=None, verified=None, fg1=None):
                 errs.append(f"literal not in {lane}'s file: {lit!r} on {n}")
         if t["alt"] is not None and (t["alt"] == st or t["alt"] not in COL):
             errs.append(f"split colour where the footings agree: {n}")
-        if t["fg1"] is not None:
+        if n in LW1_TILES:
+            if t.get("lw1") != LW1_TILES[n] or "LW1" not in t["lanes"]:
+                errs.append(f"LW1 override or source missing: {n}")
+            row = lw1[LW1_TILES[n]]
+            if st != row["colours"]["canonical"] or (t["alt"] or st) != row["colours"]["alt"]:
+                errs.append(f"colour differs from LW1's footing-specific result: {n}")
+            if (t.get("forms") or {}) != row["forms"]:
+                errs.append(f"both A/R forms and both footings must match LW1: {n}")
+        elif t.get("lw1") is not None:
+            errs.append(f"unexpected LW1 override: {n}")
+        elif t["fg1"] is not None:
             canon, alt = fg1.get(t["fg1"], (None, None))
             want = FG1_COLOUR.get(canon)
             want_alt = FG1_COLOUR.get(alt)
@@ -616,8 +662,18 @@ def draw(tiles, out):
             _tile(ax, c + 0.03, y - 0.46, 0.93, 0.90, t)
             ax.text(c + 0.065, y + 0.34, t["name"], fontsize=10.4, fontweight="bold", color=ink, va="center")
             lab = t["lab"] or (f"canonical {LAW_LAB[t['st']]}  ·  alt {LAW_LAB[t['alt']]}" if t["alt"] else LAW_LAB[t["st"]])
-            ax.text(c + 0.065, y + 0.22, lab.upper(), fontsize=8.2, color=ink, va="center", alpha=0.95,
-                    fontweight="bold" if t["st"] == "STALE" else "normal")
+            if t.get("forms"):
+                for fi, form in enumerate(("A", "R")):
+                    values = t["forms"][form]
+                    labels = ["NO LABEL" if values[f] == "STALE" else values[f] for f in ("canonical", "alt")]
+                    label = f"{form}: {labels[0]} BOTH" if labels[0] == labels[1] else f"{form}: {' / '.join(labels)}"
+                    colour = values["canonical"]
+                    ax.text(c + 0.065 + fi * 0.445, y + 0.22, label, fontsize=7.4,
+                            color=INK.get(colour, "white"), va="center", fontweight="bold",
+                            bbox=dict(facecolor=COL[colour], edgecolor="white", linewidth=0.4, pad=2))
+            else:
+                ax.text(c + 0.065, y + 0.22, lab.upper(), fontsize=8.2, color=ink, va="center", alpha=0.95,
+                        fontweight="bold" if t["st"] == "STALE" else "normal")
             for j, ln in enumerate(note_lines(t)):
                 ax.text(c + 0.065, y + 0.10 - dy * j, ln, fontsize=7.8, color=ink, va="center", alpha=0.97)
     lx, ly = 0.015, 0.68 / H
@@ -635,7 +691,7 @@ def draw(tiles, out):
              "frozen class, or a 24 Oct v3s green carried in the action's scope; FG1 is not blind.", fontsize=9.0, va="center",
              color="#4d5a56")
     fig.text(0.015, 0.18 / H, "Sources: FG1_final_grade, the lanes named, the owner's 4 Nov decision (FN1_action_call).  PAPER67 "
-             "v1.1 still says no action is selected.  The retired sector was called cold dark energy, never a particle.  Nothing "
+             "v1.2 deposited: DOI 10.5281/zenodo.23968171.  A/R badges show both vertical forms; neither selected. Nothing "
              "here says the data favour this framework.", fontsize=9.0, va="center", color="#4d5a56")
     fig.savefig(out, dpi=150, facecolor=fig.get_facecolor())
     plt.close(fig)
@@ -736,7 +792,22 @@ def broken_cases():
     def c29(t, r, v, f):
         _by(t, "Leaf problem well-posed")["lanes"].remove("H4")
 
-    return [("NOT GRADED X-COP coloured a pass", c1), ("NOT GRADED DiskMass coloured a pass", c2),
+    def c30(t, r, v, f):
+        _by(t, "X-COP")["st"] = "STALE"
+
+    def c31(t, r, v, f):
+        _by(t, "MW vertical force")["forms"].pop("R")
+
+    def c32(t, r, v, f):
+        _by(t, "DiskMass")["forms"].pop("A")
+
+    def c33(t, r, v, f):
+        _by(t, "DiskMass")["forms"]["R"]["alt"] = "PASS"
+
+    def c34(t, r, v, f):
+        _by(t, "X-COP")["lw1"] = None
+
+    return [("LW1 X-COP fail coloured a pass", c1), ("LW1 DiskMass backing coloured a pass", c2),
             ("SPARC's footings pooled (alt half dropped)", c3), ("FG1's failing dwarfs coloured a pass", c4),
             ("FG1 row changed under a green tile", c5), ("v3s grey tile coloured a pass with no lane", c6),
             ("v3's dust-theorem green restored", c7), ("first green with no FG1 row or verified entry", c8),
@@ -748,7 +819,10 @@ def broken_cases():
             ("verdict colour on a v3-only lane", c23), ("split colour where footings agree", c24),
             ("v3s graded outside its adopted scope (Coma, a cluster)", c25), ("carried v3s tile recoloured", c26),
             ("weak spot dropped from the action's tile", c27), ("new action green with no verified entry", c28),
-            ("carried tile drops the 24 Oct board's lanes", c29)]
+            ("carried tile drops the 24 Oct board's lanes", c29),
+            ("LW1 X-COP returned to grey", c30), ("MW drops form R", c31),
+            ("DiskMass drops form A", c32), ("DiskMass alt R fail promoted", c33),
+            ("LW1 override dropped", c34)]
 
 
 def selftest():
@@ -772,7 +846,13 @@ def md_table():
     for c in range(len(LAW_COLUMNS)):
         for t in [t for t in LAW_TILES if t["col"] == c]:
             alt = "" if t["alt"] is None else LAW_LAB[t["alt"]]
-            print(f"| {t['name']} | {LAW_LAB[t['st']]} | {alt or 'same'} | {', '.join(t['lanes'])} | "
+            canonical = LAW_LAB[t['st']]
+            if t.get("forms"):
+                def form_label(foot):
+                    return "; ".join(f"{form}: {'NO LABEL' if t['forms'][form][foot]=='STALE' else t['forms'][form][foot]}"
+                                     for form in ("A", "R"))
+                canonical, alt = form_label("canonical"), form_label("alt")
+            print(f"| {t['name']} | {canonical} | {alt or 'same'} | {', '.join(t['lanes'])} | "
                   f"{LAB[v3s[t['name']]] if t['name'] in v3s else 'new'} |")
 
 

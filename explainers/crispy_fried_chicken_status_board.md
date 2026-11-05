@@ -26,9 +26,13 @@ The owner adopted v3s as the a₀ law's action, scoped ([decision](../finish_202
 - **No verdict on the law's own tiles changed.**
 - **Fix-forward:** the generator pointed at PAPER67's draft file, which was renamed at deposit on 2 November, so it couldn't run. It now reads the deposited file. That file counts 550 κ attempts where the draft said 537.
 - **Counts:** of 48 tiles, canonical has 12 pass, 8 conditional, 1 not decidable, 9 fail, 5 open and 13 grey; alt has 11 pass and 10 fail. The 1 November board is kept as [`img/status_board_2026-11-01law.png`](img/status_board_2026-11-01law.png).
-- **PAPER67 v1.1** (DOI 10.5281/zenodo.23966443) still says no action is selected. A v1.2 needs the owner's go.
+- **PAPER67 v1.2 is deposited:** [DOI 10.5281/zenodo.23968171](https://doi.org/10.5281/zenodo.23968171), as corrected in the 5 November goal brief.
 
-**LW1 has landed, not folded.** [`LW1_law_scorecard`](../rebuild_2026_10_22/LW1_law_scorecard/README.md) (afcf01fc96) reads FAIL on K, X, Dw, DM and IC on both footings. This board still shows FG1's cells for those lines: X-COP and DiskMass are grey there. The refold is a separate step.
+**LW1 folded (AZ33, 5 November goal).** The measured-chain K, X, Dw, MW and DM rows now supersede their FG1 entries. X-COP is FAIL on both footings; ten of fifteen cluster keys pass, which fails the key gate; the E1 external field worsens the dwarf deficit. This is integration of LW1's recorded calculations, not a new physical fit.
+
+MW and DiskMass show **both forms, neither selected**. A is the field equation; R is the round rule. MW A fails on both footings; R passes on one canonical and six alt in-prior cells, with the post-result K_z scale-length discrepancy still stated. DiskMass R fails at r=1.239/1.204; A has NO LABEL at r=1.477 because its control barely moves r. The OD1 tracer caveat remains. Their red tile backings preserve the failure guards; the separate A/R badges and table entries carry the form-specific verdicts. Overall colour counts count backings, not preferred models.
+
+The pre-fold image is preserved as [`status_board_2026-11-04v3s.png`](img/status_board_2026-11-04v3s.png). All column-0 carried and adoption-scope guards remain unchanged pending their separate regrade.
 
 ## What changed on 1 November
 
@@ -63,16 +67,16 @@ Column 0 is graded on v3s. The other colours restate FG1 or the lane named, on t
 | Isolated-galaxy lensing, inner | conditional | same | CFG829, BL1, S2, PAPER67 | conditional |
 | Lensing = dynamics (v3s) | pass | same | V3W, OWNER-11-04 | new |
 | Red (early-type) lenses | conditional | same | CFG829, BL1, S2, PAPER67 | conditional |
-| MW vertical force | fails | same | FG1, X5 | fails |
+| MW vertical force | A: FAIL; R: PASS | A: FAIL; R: PASS | FG1, LW1 | fails |
 | MW outer slope (Gaia) | fails | same | X5, PAPER67 | fails |
 | IC 1613 | fails | same | FG1, ND1, RF2 | new |
-| Local Group dwarfs (five classes) | fails | same | FG1, NR2 | fails |
+| Local Group dwarfs (five classes) | fails | same | FG1, LW1 | fails |
 | Measured stellar masses | fails | same | UL1, PAPER67 | new |
 | Cluster cores (318 eRASS1) | fails | same | CFG687, F1, PAPER67 | fails |
-| Cluster keys (15, old template) | fails | same | FG1, NR2, DR1 | new |
+| Cluster keys (15, old template) | fails | same | FG1, LW1 | new |
 | Outer shear against gas mass | fails | same | CFG687, PAPER67 | new |
-| X-COP | no graded number for the law | same | FG1, CS2, DR1, LW1-CRITERIA | new |
-| DiskMass | no graded number for the law | same | FG1, CFG576, CFG577, OD1, LW1-CRITERIA | new |
+| X-COP | fails | same | FG1, LW1 | new |
+| DiskMass | A: NO LABEL; R: FAIL | A: NO LABEL; R: FAIL | FG1, LW1, OD1 | new |
 | a0(z): native band vs a0 ~ H(z) | not decidable yet | same | CFG689, PAPER67 | not decidable yet |
 | CMB | no graded number for the law | same | RF5, PAPER67, OWNER-11-01, OWNER-11-04 | fails |
 | Linear growth | no graded number for the law | same | RF5, PAPER67 | fails |
