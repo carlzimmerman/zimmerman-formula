@@ -117,3 +117,23 @@ numerical tolerance, altered repeats and incomplete-prefix rejection.
 Run test_census.py for these auditor checks, then check_census.py for the
 current production state (exit75 means pending; exit1 means validation
 failure). census_checks.json is a dated-worktree snapshot, not a live view.
+
+## Additional complete-set checkpoint
+
+The table records completed individual runs only. A pair is ready only
+when both chunk sizes are complete and check_census.py validates them.
+Full same-size repeats remain pending; no final lane verdict follows.
+
+| Set | Chunk | Rows | Conditional covariance | Stable |
+|---|---:|---:|---:|---:|
+|L1_alt_real|2000|4948893|28873|17050|
+|L1_alt_control|1000|3498158|0|0|
+|L1_alt_control|2000|3498158|0|0|
+|L2_canonical_real|1000|2574832|135612|104306|
+|L2_canonical_real|2000|2574832|135612|104306|
+|L2_canonical_control|1000|479910|0|0|
+|L2_canonical_control|2000|479910|0|0|
+
+L1 alt real at chunk1000 reaches its180second limit at4,545,000 rows
+and requires heavyq resume. That prefix is preserved separately and is
+not compared to its4,948,893-row full chunk2000 run as a convergence pair.
