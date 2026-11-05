@@ -8,6 +8,14 @@ postulate or source. No process is running; the goal is blocked and
 unachieved. This revalidation is not a new successful physics calculation.
 Earlier active-status statements below describe their historical checkpoints.
 
+The user has now answered with a flow/pool/eddy analogy, explicitly offered
+as examples. joint_phase/FLOW_POSTULATE_TRANSLATION.md records a bounded
+field-theory translation: a vacuum background plus vortex excitations is
+possible, but a simple illustrative action leaves their scales independent
+and does not derive the force on stars. The question is no longer unanswered;
+the coefficient-selection gap remains. No candidate or retired carrier is
+adopted, and no automatic goal resumption is claimed.
+
 The user requested further constructive work after the previous scoped
 audit. The new goal is active. joint_phase/RESULT.md computes the phase
 energy and cubic response of an explicit condensed-plus-gapless potential.
