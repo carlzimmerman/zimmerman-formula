@@ -64,6 +64,17 @@ coefficient. This is an analytic self-review, not an executable test run;
 full vacuum/operational MOND matching and microscopic inter-layer dynamics
 remain unresolved. No numerical coefficient is inferred from the sign repair.
 
+joint_phase/CURVED_BAND_RESULT.md retains the quadratic nodal-band operator
+on a curved surface instead of replacing it by intrinsic Dirac leaves.
+The flat cubic comes from the nodal neighborhood, while the surface-curvature
+coefficient comes from the band endpoint and is analytic in Delta^2 for
+positive endpoint gap. Fifteen checks pass, including a discrete sphere
+sum convergence ladder; the endpoint-removal mutation fails its three
+intended matches. A flat-preserving curvature coupling changes that
+coefficient independently. Full metric/source matching and microscopic
+selection of geometric couplings remain missing; more sphere radii cannot
+resolve them. No positive coefficient derivation is claimed.
+
 ## Previous investigation outcome: scoped obstructions established
 
 Original user target: derive the acceleration scale and coefficient from an
