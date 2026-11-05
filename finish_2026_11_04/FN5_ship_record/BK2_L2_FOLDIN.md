@@ -82,3 +82,6 @@ In `rebuild_2026_10_22/EXTERNAL_SUMMARY_2026-11-04_DRAFT.md`: `it waits on one r
 3. `python3 PAPER67_audit.py > PAPER67_audit.out` must exit 0 with every check passing. `python3 PAPER67_audit.py --mutate > PAPER67_audit_MUTATE.out` must exit 0.
 4. Commit with explicit paths only, because other sessions stage files in the same index: `git add` nothing new, then `git commit -m "..." -- <tex> <pdf> <audit.py> <audit.out> <audit_MUTATE.out> <zenodo.json>`.
 5. The owner runs `python3 PAPER67_zenodo_publish.py --newversion 23883741`. Its guard reads the marker and the audit first.
+
+## Deposited, 2026-11-04
+BK2 L2 folded in (controls finished; NO HIT at L2 on both footings, control comes about as close; BK2 commit eeb2f01037). Fold-in commit f44a9e488a. Audit 685 of 685; MUTATE 607 of 608 literals (old TD1 survivor), 54 of 54 recomputations and commits. Publish guard passed. Deposited at the owner's go as a new version of 23883741: **PAPER67 v1.1, DOI 10.5281/zenodo.23966443.** The slot E wording says "the control comes about as close" (real 1.01 / 1.01, control 1.01 / 1.02), since the control is neither clearly closer nor clearly farther.
