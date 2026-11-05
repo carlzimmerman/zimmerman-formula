@@ -168,6 +168,9 @@ claim, including the coordinator's previous AZC1 construction.
   physical footprint0.0545GB measured. Production estimates documented,
   no jobs submitted. Sampling/convergence grader and full ladders pending.
 - Tiers4-5: pending in brief order.
+- AZ43 control update: first10 mutation small-grid pairs numerically pass,
+  all fail dwarf/SPARC physical gates on both footings; batch exited75.
+  Remaining mutation and eligible MW coverage is still incomplete.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.
 - Other sessions have now landed W1/X1 updates (handoff bfe49ed3c2,

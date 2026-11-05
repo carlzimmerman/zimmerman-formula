@@ -161,3 +161,10 @@ stable decisive physical gate may still exclude a point under the criteria.
 The independent nu=1 mutation grid has started. Eligible local MW pairs,
 mutation completion, final per-gate aggregation and robustness labels remain
 outstanding. Main small-grid completion alone is not completion of AZ43.
+
+The first20 mutation tasks have now finished (indices0–9, both rungs),
+and the bounded batch exited75 normally. All10 pairs meet the numerical
+comparison lines; every point fails the dwarf and SPARC physical gates
+on both footings, so the nu=1 control bites without a convergence failure.
+All20 output identities and known-answer check arrays were verified.
+The other133 mutation pairs and eligible MW pairs remain outstanding.
