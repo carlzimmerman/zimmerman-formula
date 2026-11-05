@@ -62,7 +62,10 @@ claim, including the coordinator's previous AZC1 construction.
   is transferred to the five observational engines; new-mechanism T0-T4
   and Q2 NOT EVALUABLE, tensor speed UNDECIDED. Finite-radius/non-power
   mechanisms and their full own-equation observable solves remain open.
-- Tier 2 lane8 and Tiers 3-5: pending in brief order.
+- Tier 2 lane8: AZ42 NOT EVALUABLE, no verified healthy carrier. The
+  brief's explicit one-paragraph fallback is recorded; no prediction is
+  sealed and no artificial numerical test is substituted for that decision.
+- Tiers 3-5: pending in brief order, starting with lane9 FN6 robustness.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.
 - Other sessions have now landed W1/X1 updates (handoff bfe49ed3c2,
