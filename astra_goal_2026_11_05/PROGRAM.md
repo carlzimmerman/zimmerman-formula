@@ -82,11 +82,12 @@ claim, including the coordinator's previous AZC1 construction.
   background. Known answers56/56, flat forward pairs24/24, interrupted
   resume byte-identical. One canonical mutation pair misses0.01dex
   convergence (change0.02906); retained as UNRESOLVED. Full4032-case
-  nonlinear grid, population grader and sample-size scan remain pending;
+  nonlinear grid and execution of the sample-size scan remain pending;
   not queued before light-tier work. Physical-footprint pilot0.154GB,
   prepared1GB queue estimate in QUEUE_PLAN.md; no submission yet.
   Population-statistics module now passes13/13 analytic/seeded checks,
-  with byte-identical rerun; no nonlinear population verdict yet.
+  with byte-identical rerun. Calibration10/10 and full4032-case synthetic
+  grader7/7 checks pass; production report0/4032, no power verdict yet.
 - Tier3 lane12: AZ46 preliminary diagnosis executed under plan e282c8c2dc.
   Reproduces old mass3.0346e7 and drift20.8492 exactly; all4 I/O/recovery
   checks pass. Natural versus published robust mass differs10.44%; full

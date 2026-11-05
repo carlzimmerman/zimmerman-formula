@@ -96,9 +96,9 @@ During implementation, NumPy's three-column matrix-vector operation emitted
 floating-point warnings despite finite correct fixture results. Explicit
 three-term elementwise sums remove that backend path; all analytic checks
 then pass with warnings raised as errors. No criterion changed. Source
-hashes and versions accompany population_checks.json. The full4032-case
-fit grid and its calibration/provenance-aware population grader remain
-pending; no observational power forecast follows from these fixtures.
+hashes and versions accompany population_checks.json. The full4032-case fit grid remains pending; the grader implementation is
+now verified as described below. No observational power forecast follows
+from these fixtures.
 
 A further bounded fine-rung alt-footing pilot measures physical footprint,
 not just RSS: peak0.154GB, runtime13.72seconds. Sanitized samples and source-
@@ -106,3 +106,29 @@ identified fit output are saved. QUEUE_PLAN.md prepares a1GB serial-job
 estimate with margin, resume evidence and the exact4032-case submission
 command. It has NOT been submitted; light-tier prerequisites still apply.
 The extra pilot is a memory measurement, not a numerical convergence pair.
+
+## Complete-grid grader implementation
+
+calibration.py applies every frozen recovery, mutation-lever and numerical
+resolution line to the complete36-galaxy populations. Its10 positive and
+negative fixture checks pass, including an ineffective mutation, a wrong
+lever, unresolved fits and single-fit nonconvergence. grade.py enumerates
+all4032 unique inputs, verifies their source/worker/package identities,
+recomputes two-start resolution and best-fit mass residuals, and never
+imputes or drops missing/failed cases. After all calibration gates pass,
+it evaluates all6 sample sizes and3 systematic floors at both Monte Carlo
+rungs, separately for each footing, HI case and S/N.
+
+check_grader.py creates and removes4032 temporary synthetic records. All7
+end-to-end checks pass:16 cells with18 forecasts each, complete coverage,
+corrupted resolution rejection, stale-worker rejection and missing-case
+power suppression. Fresh calibration and grader checks are byte-identical.
+These fixtures are not saved as scientific fits or counted as production.
+The production grid/population_report.json currently reports0/4032 found,
+NO VERDICT on both footings, and no power forecasts. After queued work:
+
+    python -W error astra_goal_2026_11_05/AZ45_ifu_power/grade.py --tag grid
+
+Exit75 means missing cases; exit1 means invalid evidence; exit0 means the
+full grid was graded, not that it passed. A complete grid can yield NO
+VERDICT from calibration failures, or FAIL within the frozen power grid.
