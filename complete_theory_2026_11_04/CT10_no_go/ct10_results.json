@@ -1,0 +1,178 @@
+{
+ "mutate": false,
+ "T1b": [
+  {
+   "eta": 0.009947183943243459,
+   "x_star": 10.141768746679737,
+   "x_star_sqrt_eta": 1.0114950877760986,
+   "band_hi": 100.43043394995854,
+   "in_G1_canonical": true,
+   "in_G1_alt": true
+  },
+  {
+   "eta": 0.001,
+   "x_star": 31.68848970167237,
+   "x_star_sqrt_eta": 1.0020780306807429,
+   "band_hi": 999.0000000000001,
+   "in_G1_canonical": true,
+   "in_G1_alt": true
+  },
+  {
+   "eta": 0.0001,
+   "x_star": 100.0314560234837,
+   "x_star_sqrt_eta": 1.0003145602348371,
+   "band_hi": 9990.0,
+   "in_G1_canonical": true,
+   "in_G1_alt": false
+  },
+  {
+   "eta": 1e-05,
+   "x_star": 316.2412599460127,
+   "x_star_sqrt_eta": 1.0000426715507773,
+   "band_hi": 99899.99999999991,
+   "in_G1_canonical": false,
+   "in_G1_alt": false
+  },
+  {
+   "eta": 1e-06,
+   "x_star": 1000.0053708301415,
+   "x_star_sqrt_eta": 1.0000053708301415,
+   "band_hi": 998999.9999999991,
+   "in_G1_canonical": false,
+   "in_G1_alt": false
+  }
+ ],
+ "T1b_eta_crit": {
+  "canonical": 8.599775186469245e-05,
+  "alt": 0.00012511473831354055
+ },
+ "T2b_rows": {
+  "0.0001": [
+   1.0000000000033102,
+   1.000000000003311,
+   1.0000500025001255
+  ],
+  "0.05": [
+   1.0000000000030627,
+   1.000000000003311,
+   1.0256410256410264
+  ],
+  "0.1": [
+   1.0000000000028144,
+   1.000000000003311,
+   1.052631578947369
+  ],
+  "0.3": [
+   1.0000000000018217,
+   1.000000000003311,
+   1.1764705882352948
+  ],
+  "1.0": [
+   0.9998876533252128,
+   1.000000000003311,
+   2.000000000000002
+  ],
+  "1.9": [
+   0.9738804108025937,
+   1.000000000003311,
+   20.000000000000533
+  ]
+ },
+ "cs2_asym": "-2/(opw - 2)",
+ "G2_canonical": {
+  "potential": 3.626e-09,
+  "kinetic": {
+   "MW 30 kpc, x 1": 5.145209328422367e-14,
+   "cluster 1 Mpc, x 1": 5.716899253802628e-11,
+   "cluster core 30 kpc, x 3.24": 5.045514036118188e-13
+  },
+  "spread_dex": 1.599579969376424e-09
+ },
+ "G2_alt": {
+  "potential": 4.088e-09,
+  "kinetic": {
+   "MW 30 kpc, x 1": 5.145209328422367e-14,
+   "cluster 1 Mpc, x 1": 5.716899253802628e-11,
+   "cluster core 30 kpc, x 3.24": 5.045514036118188e-13
+  },
+  "spread_dex": 1.8002240200157263e-09
+ },
+ "checks": [
+  [
+   "S1 flux j = g a/(g + a) (law S, CT5 S1)",
+   true
+  ],
+  [
+   "S2 dL_M/d ln a^2 = (a^2/8 pi G) h(g/a)",
+   true
+  ],
+  [
+   "S3 h' = s^2/(1+s)^2 > 0, h -> s - 2 ln s (tail)",
+   true
+  ],
+  [
+   "T1a delta ln a = -(kappa^2/8 pi)(S_E/2) h: eta = eps S_E/2, S_E = q^2 P''/E (fixed by the tie up to one stiffness)",
+   true
+  ],
+  [
+   "T1a' P = Z q^2/2 gives S_E = 2, eta = eps (CT5's slaving r[1 + eps h] = 1)",
+   true
+  ],
+  [
+   "T1b' dj/dg < 0 iff da_loc/dg < -(a_loc/g)^2 (any response law)",
+   true
+  ],
+  [
+   "T1b reproduces CT5's pole x = 10.14 at eta = eps",
+   true
+  ],
+  [
+   "T1b band exists for every eta tested and x* sqrt(eta) -> 1 (x* = eta^-1/2 (1 + O(eta^1/2)))",
+   true
+  ],
+  [
+   "T1c sigma = -1 (a rises): dj/dg > 0 on x in [1e-3, 1e6] for eta in {eps, 1e-3, 0.1}: NO M_L band (counterexample to T1 as posed)",
+   true
+  ],
+  [
+   "T1d algebraic FRW equation has no time derivative: q constant, rho constant, w = -1",
+   true
+  ],
+  [
+   "T2a rho independent of X iff P = C1 + C2 sqrt(X) (cuscuton): the only X-free exact tie",
+   true
+  ],
+  [
+   "T2b K_s = 1 + eps h(s) (canonical)",
+   true
+  ],
+  [
+   "T2b general P(X): K_s = P_X + eps h rho_X (no flip when P_X > 0 and rho_X > 0)",
+   true
+  ],
+  [
+   "T2b C'' gradient coefficient K_s >= 1 > 0 on x in [1e-3, 1e22] (no flip)",
+   true
+  ],
+  [
+   "T2b C'' time coefficient K_t > 0 on x in [1e-3, 1e22], 1+w in (0, 2)",
+   true
+  ],
+  [
+   "T2b L_gg < 0 everywhere (total static operator elliptic), so solving the khronon constraint adds +B^2/|L_gg| >= 0 to K_t",
+   true
+  ],
+  [
+   "G0 FRW: d^2 J/(dY da) -> 0 and dJ/dY -> -1 at Y = 0: phi is plain quintessence on FRW at quadratic order (A4, CT7 S5)",
+   true
+  ],
+  [
+   "G1 law deviation <= 0.01 dex and G2 spread <= 0.015 dex (both footings; order-of-magnitude bounds, labelled)",
+   true
+  ],
+  [
+   "G3 on FRW 2XP_X - P = phidot^2/2 + V = rho_DE identically: a0 = kappa c sqrt(G rho_DE), slope 0.5 exactly, tracking 0 dex in every realisable background (B2, B3, F1 of CT7)",
+   true
+  ]
+ ]
+}

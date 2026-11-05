@@ -1,0 +1,72 @@
+
+==============================================================================================================
+S. Common symbolic layer (A3)
+==============================================================================================================
+  j = 4 pi G dL_M/dg = a*g/(a + g);  h = (-s**2 + 2*(s + 1)*(s - log(s + 1)))/(s + 1);  h' = s**2/(s + 1)**2
+  [PASS] S1 flux j = g a/(g + a) (law S, CT5 S1)
+  [PASS] S2 dL_M/d ln a^2 = (a^2/8 pi G) h(g/a)
+  [PASS] S3 h' = s^2/(1+s)^2 > 0, h -> s - 2 ln s (tail)
+
+==============================================================================================================
+T1. Algebraic (locally responding) tie: response strength, M_L band
+==============================================================================================================
+  delta ln a^2 = -H*kappa**2*q**2*Derivative(P(q), (q, 2))/(8*pi*(q*Derivative(P(q), q) - P(q)))
+  [PASS] T1a delta ln a = -(kappa^2/8 pi)(S_E/2) h: eta = eps S_E/2, S_E = q^2 P''/E (fixed by the tie up to one stiffness)
+  [PASS] T1a' P = Z q^2/2 gives S_E = 2, eta = eps (CT5's slaving r[1 + eps h] = 1)
+  P = Z q^n/n: S_E = n (E > 0 needs n > 1, so S_E > 1 for every power law)
+  dj/dg = (a**2 + a_p*g**2)/(a + g)**2  (a_p = da_loc/dg)
+  [PASS] T1b' dj/dg < 0 iff da_loc/dg < -(a_loc/g)^2 (any response law)
+  leading-order pole: 1/(1+s)^2 = eta h'(s) -> s* = [1/sqrt(eta)]
+  sigma=+1 eta 9.947e-03: pole x* =    10.142  x* sqrt(eta) = 1.0115  band to x 1.004e+02  inside G1 range: canonical True, alt True
+  sigma=+1 eta 1.000e-03: pole x* =    31.688  x* sqrt(eta) = 1.0021  band to x 9.990e+02  inside G1 range: canonical True, alt True
+  sigma=+1 eta 1.000e-04: pole x* =   100.031  x* sqrt(eta) = 1.0003  band to x 9.990e+03  inside G1 range: canonical True, alt False
+  sigma=+1 eta 1.000e-05: pole x* =   316.241  x* sqrt(eta) = 1.0000  band to x 9.990e+04  inside G1 range: canonical False, alt False
+  sigma=+1 eta 1.000e-06: pole x* =  1000.005  x* sqrt(eta) = 1.0000  band to x 9.990e+05  inside G1 range: canonical False, alt False
+  [PASS] T1b reproduces CT5's pole x = 10.14 at eta = eps
+         (x* = 10.1418)
+  [PASS] T1b band exists for every eta tested and x* sqrt(eta) -> 1 (x* = eta^-1/2 (1 + O(eta^1/2)))
+  band onset inside the G1 range iff eta >= 8.60e-05 (canonical) / 1.25e-04 (alt), i.e. S_E >= 0.017 / 0.025 at kappa 1/2
+  [PASS] T1c sigma = -1 (a rises): dj/dg > 0 on x in [1e-3, 1e6] for eta in {eps, 1e-3, 0.1}: NO M_L band (counterexample to T1 as posed)
+         (min dj/dg = 1.581e-05)
+  T1d: an algebraic variable has no kinetic term; on FRW (h = 0) its equation P'(q) = Pi (or P'(chi) = 0) fixes q: w = -1 exactly.
+  [PASS] T1d algebraic FRW equation has no time derivative: q constant, rho constant, w = -1
+
+==============================================================================================================
+T2. Locally inert scalar P(X, phi): exact tie, kinetic energy, gradient sign
+==============================================================================================================
+  rho_X = P_X + 2 X P_XX = 0  ->  Eq(P(X), C1 + C2*sqrt(X))
+  [PASS] T2a rho independent of X iff P = C1 + C2 sqrt(X) (cuscuton): the only X-free exact tie
+  cuscuton P = mu^2 sqrt(2X) - V: rho = V(phi), rho + p = sqrt(2)*sqrt(X)*mu**2 (w != -1, cannot cross)
+  [covariant rho(X, phi)] K_s = (-kappa**2*s**2/8 + kappa**2*(s + 1)*(s - log(s + 1))/4 + pi*(s + 1))/(pi*(s + 1))
+  K_t = (-6*kappa**2*s**2*v**2 + 3*kappa**2*s*v**2*(s + 1)**2 + kappa**2*s*(2*V0 + v**2)*(s + 1)**2 + kappa**2*s*(2*V0 - 4*s**2*v**2 + s*(2*V0 + v**2) - 2*v**2) - 2*kappa**2*(2*V0 + v**2)*(s + 1)**2*log(s + 1) + 8*pi*(2*V0 + v**2)*(s + 1)**2)/(8*pi*(2*V0 + v**2)*(s + 1)**2)
+  [PASS] T2b K_s = 1 + eps h(s) (canonical)
+  [PASS] T2b general P(X): K_s = P_X + eps h rho_X (no flip when P_X > 0 and rho_X > 0)
+         (residual 0)
+  K_t(s, 1+w) = (-3*kappa**2*opw*s*(2*s - (s + 1)**2) + 2*kappa**2*s*(s + 1)**2 - kappa**2*s*(opw*(4*s**2 + 3) - 2*s - 2) - 4*kappa**2*(s + 1)**2*log(s + 1) + 16*pi*(s + 1)**2)/(16*pi*(s + 1)**2)
+  1+w = 0.0001: min K_t +1.0000e+00  min K_s +1.0000e+00  max c_s^2 = K_s/K_t 1.0001
+  1+w = 0.0500: min K_t +1.0000e+00  min K_s +1.0000e+00  max c_s^2 = K_s/K_t 1.0256
+  1+w = 0.1000: min K_t +1.0000e+00  min K_s +1.0000e+00  max c_s^2 = K_s/K_t 1.0526
+  1+w = 0.3000: min K_t +1.0000e+00  min K_s +1.0000e+00  max c_s^2 = K_s/K_t 1.1765
+  1+w = 1.0000: min K_t +9.9989e-01  min K_s +1.0000e+00  max c_s^2 = K_s/K_t 2.0000
+  1+w = 1.9000: min K_t +9.7388e-01  min K_s +1.0000e+00  max c_s^2 = K_s/K_t 20.0000
+  [PASS] T2b C'' gradient coefficient K_s >= 1 > 0 on x in [1e-3, 1e22] (no flip)
+  [PASS] T2b C'' time coefficient K_t > 0 on x in [1e-3, 1e22], 1+w in (0, 2)
+  c_s^2 at s -> inf: -2/(opw - 2)  (= 2/(1 - w)); max over grid 20.0000: SUPERLUMINAL phi inside high-x regions (caveat)
+  [PASS] T2b L_gg < 0 everywhere (total static operator elliptic), so solving the khronon constraint adds +B^2/|L_gg| >= 0 to K_t
+  [PASS] G0 FRW: d^2 J/(dY da) -> 0 and dJ/dY -> -1 at Y = 0: phi is plain quintessence on FRW at quadratic order (A4, CT7 S5)
+
+==============================================================================================================
+C'' gates G1-G3 (candidate: a0^2 = kappa^2 G rho_phi, rho_phi = 2 X P_X - P, canonical, inside v3s)
+==============================================================================================================
+  canonical: potential channel <= 3.63e-09 (CT7 ct7_candidate_c.out G2 rows x lambda^2 = 100, bound since K_s >= 1); kinetic channel MW 30 kpc, x 1 5.1e-14, cluster 1 Mpc, x 1 5.7e-11, cluster core 30 kpc, x 3.24 5.0e-13; spread <= 1.6e-09 dex
+  alt: potential channel <= 4.09e-09 (CT7 ct7_candidate_c.out G2 rows x lambda^2 = 100, bound since K_s >= 1); kinetic channel MW 30 kpc, x 1 5.1e-14, cluster 1 Mpc, x 1 5.7e-11, cluster core 30 kpc, x 3.24 5.0e-13; spread <= 1.8e-09 dex
+  [PASS] G1 law deviation <= 0.01 dex and G2 spread <= 0.015 dex (both footings; order-of-magnitude bounds, labelled)
+  [PASS] G3 on FRW 2XP_X - P = phidot^2/2 + V = rho_DE identically: a0 = kappa c sqrt(G rho_DE), slope 0.5 exactly, tracking 0 dex in every realisable background (B2, B3, F1 of CT7)
+  NOT REALISABLE by a canonical phi (no w = -1 crossing): B1 DESY5, B1p, B1u, B4 (CT7 l.69-80); k-essence P(X) cannot cross healthily either.
+  kappa^2 = xi (TRADE); hand-set: xi, V0, V's shape, phi_i, L*, mu_K, J_x form, dust abundance.
+
+==============================================================================================================
+Summary
+==============================================================================================================
+  checks 19/19
+kappa = 1/2 FITTED; not theory closed.
