@@ -79,6 +79,12 @@ AC2q switches the stiffness on the khronon charge D.P + 2X (AC7):
 | AC2q, static limit | = v3s at mu_K = 0 up to phidot^2-proportional terms (<= 2.2e-10 relative, Poisson + rho_DE): v3s's static passes carry (AC8) |
 | Switch on D.P alone (v3s placement) with a dark-energy clock | non-analytic on FRW (AC7 control M-b) |
 
+Inherited, by inference (not a new run): X14's "caustics generic" for soft
+khronon elements. X14's mechanism is that nothing in the action grows with k at
+the fold scale; AC7 Q2c shows the dark-energy clock adds no k-growing term in the
+off-region (omega^2 -> K rho_q (M_theta - 1)), so AC2q's soft side folds as v3s's
+does, and only a new constant (X14's beta class) could remove it.
+
 AC2q is a candidate, not adopted: one field is dark energy and the clock, no
 dust, healthy on FRW and in galaxies at this order, static limit = v3s.
 Still owed: nonlinear evolution, X > 0 preservation, a moving Sun in the clock
