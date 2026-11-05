@@ -15,7 +15,7 @@ The owner adopted v3s as the a₀ law's action, scoped ([decision](../finish_202
 - **Column 0 is now graded on v3s.** The relativity tiles had gone grey on 1 November because the law had no action.
   - Solar System (C6P), gravity-wave speed (V3W W4a) and the new lensing = dynamics tile (V3W W3) are green from post-adoption lanes, each with a verified entry.
   - Health is conditional: galaxy backgrounds pass (V3W W4b), and the Solar-System spectrum is UNDECIDED (V3X).
-  - Binary pulsars, leaf problem, causality, strong coupling, matter conservation and black holes keep their 24 October v3s colours. They are marked as carried, not regraded, and each number is checked against its lane's file.
+  - These six relativity claims were initially carried from 24 October. AZ34 now supersedes them with the independent switched-action audit described below.
 - **The action's tile is conditional and states the carried weak spots:** V3X W2 and W4c(b) are UNDECIDED on numerics, and constraints act instantaneously. The generator refuses the board if any of the three drops off that tile.
 - **Three tiles came back from "left the board":** Solar system + Cassini (screened), the leaf problem and the stiffness length L★.
 - **The unscreened Cassini tile is a control again.** AX1 found that every unscreened action class fails, 1.69–5.18× Hees.
@@ -25,14 +25,22 @@ The owner adopted v3s as the a₀ law's action, scoped ([decision](../finish_202
   - The tidal dwarfs and outer globulars stay grey: they are hosted systems, outside the scope.
 - **No verdict on the law's own tiles changed.**
 - **Fix-forward:** the generator pointed at PAPER67's draft file, which was renamed at deposit on 2 November, so it couldn't run. It now reads the deposited file. That file counts 550 κ attempts where the draft said 537.
-- **Counts:** of 48 tiles, canonical has 12 pass, 8 conditional, 1 not decidable, 9 fail, 5 open and 13 grey; alt has 11 pass and 10 fail. The 1 November board is kept as [`img/status_board_2026-11-01law.png`](img/status_board_2026-11-01law.png).
+- **Initial 4 November counts, superseded below:** of 48 tiles, canonical had 12 pass, 8 conditional, 1 not decidable, 9 fail, 5 open and 13 grey; alt has 11 pass and 10 fail. The 1 November board is kept as [`img/status_board_2026-11-01law.png`](img/status_board_2026-11-01law.png).
 - **PAPER67 v1.2 is deposited:** [DOI 10.5281/zenodo.23968171](https://doi.org/10.5281/zenodo.23968171), as corrected in the 5 November goal brief.
 
 **LW1 folded (AZ33, 5 November goal).** The measured-chain K, X, Dw, MW and DM rows now supersede their FG1 entries. X-COP is FAIL on both footings; ten of fifteen cluster keys pass, which fails the key gate; the E1 external field worsens the dwarf deficit. This is integration of LW1's recorded calculations, not a new physical fit.
 
 MW and DiskMass show **both forms, neither selected**. A is the field equation; R is the round rule. MW A fails on both footings; R passes on one canonical and six alt in-prior cells, with the post-result K_z scale-length discrepancy still stated. DiskMass R fails at r=1.239/1.204; A has NO LABEL at r=1.477 because its control barely moves r. The OD1 tracer caveat remains. Their red tile backings preserve the failure guards; the separate A/R badges and table entries carry the form-specific verdicts. Overall colour counts count backings, not preferred models.
 
-The pre-fold image is preserved as [`status_board_2026-11-04v3s.png`](img/status_board_2026-11-04v3s.png). All column-0 carried and adoption-scope guards remain unchanged pending their separate regrade.
+The pre-fold image is preserved as [`status_board_2026-11-04v3s.png`](img/status_board_2026-11-04v3s.png). The adoption-scope and failure guards remain. AZ34 replaces the six carried-claim guards with checks against its new evidence and preserves their prior provenance.
+
+## Independent switched-action audit (AZ34)
+
+[AZ34](../astra_goal_2026_11_05/AZ34_switched_relativity/README.md), calculation commit c869c20b96, regrades all six carried relativity claims on both footings. Full pulsar radiation and physical causality have NO VERDICT; nonlinear leaf existence and regularity are UNDECIDED. The switched energy does not control H(div), so convexity alone does not complete the existence argument. These are proof gaps, not a proof that all solutions fail.
+
+Matter conservation is now correctly stated on the matter equations: the off-shell identity is ∇T = Eχ∇χ. Strong-coupling estimates and reduced static black-hole responses survive their scoped checks, while their full dynamical claims stay conditional. All60 black-hole convergence pairs pass; maximum coefficient change is2.05e-7 against1e-3. The inverted-switch control fails stability and energy-bound checks; the original quadrature failures remain recorded separately.
+
+The rebuilt board passes27/27 integration checks and37/37 mutation selftests. Both explicit board mutants exit1. Current counts: canonical11 pass,6 conditional,4 undecided,11 fail,5 open,11 grey; alt10 pass and12 fail, otherwise the same. The LW1 A/R badges remain unchanged. The action tile still quotes the owner's adoption-time W2/W4c caveats; AZ31/AZ32's newer scoped results are recorded in the research program, not silently substituted for the owner's historical text.
 
 ## What changed on 1 November
 
@@ -50,13 +58,13 @@ Column 0 is graded on v3s. The other colours restate FG1 or the lane named, on t
 | Solar system + Cassini (screened) | pass | same | C6P, V3W | pass |
 | The law vs Cassini (unscreened) | fails | same | E2, AX1 | fails |
 | Gravity waves at light speed | pass | same | V3W, V3X | pass |
-| Binary pulsars + GW170817 | pass | same | C8 | pass |
+| Binary pulsars + GW170817 | not decidable yet | same | C8, P3, AZ34 | pass |
 | Health: ghosts, gradients | conditional | same | V3W, V3X | conditional |
-| Leaf problem well-posed | conditional | same | C8, H4, X3 | conditional |
-| Causality: criterion A / B | conditional | same | C5, C8, OWNER-11-04 | conditional |
-| Strong coupling | conditional | same | P3 | conditional |
-| Matter conservation (G9) | pass | same | CFG329, C4 | pass |
-| Black holes (EHT, LIGO ringdown) | conditional | same | P3 | conditional |
+| Leaf problem well-posed | not decidable yet | same | C8, H4, X3, AZ34 | conditional |
+| Causality: criterion A / B | not decidable yet | same | C5, C8, OWNER-11-04, AZ34 | conditional |
+| Strong coupling | conditional | same | P3, AZ34 | conditional |
+| Matter conservation (G9) | pass | same | CFG329, C4, AZ34 | pass |
+| Black holes (EHT, LIGO ringdown) | conditional | same | P3, AZ34 | conditional |
 | Rotation curves (SPARC RAR) | pass | fails | FG1, NR2, PAPER67, P4 | conditional |
 | Tilt with speed | pass | same | FG1, NR2 | new |
 | LITTLE THINGS dwarfs | pass | same | FG1, NR2 | new |

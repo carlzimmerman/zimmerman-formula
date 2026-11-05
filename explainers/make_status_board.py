@@ -66,6 +66,7 @@ _Q, _C, _P = "rebuild_2026_10_22/", "campaign_fresh_gravity/", "qwen_claude_fiel
 FG1_README = _Q + "FG1_final_grade/README.md"
 # lane -> the committed file(s) its numbers are checked against
 SOURCES = {
+    "AZ34": ("astra_goal_2026_11_05/AZ34_switched_relativity/README.md", "astra_goal_2026_11_05/AZ34_switched_relativity/BOARD_CLAIMS.json"),
     "FG1": FG1_README, "NR2": _Q + "NR2_low_mass_ng80/README.md", "ND1": _Q + "ND1_native_dwarfs/README.md",
     "RF2": _Q + "RF2_ic1613_inclination_footing/README.md", "RF5": _Q + "RF5_growth_native_yardstick/README.md",
     "X5": _Q + "X5_mw_joint_baryons/README.md", "CS2": _Q + "CS2_core_law_out_of_sample/README.md",
@@ -102,7 +103,7 @@ SOURCES = {
     "CFG329": _C + "CFG329_g9_g0_structure/README.md", "V3S-BOARD": "explainers/status_board_v3s_2026_10_24.py",
 }
 # Lanes that computed only v3 or v3s: a verdict colour may rest on them only on a tile graded on the adopted action.
-V3S_ONLY = {"U1", "S1", "S3", "S4", "D10", "V3S-VERDICT", "V3S-BOARD", "AX1", "C6P", "V3W", "V3X", "X3", "H4", "P3",
+V3S_ONLY = {"AZ34", "U1", "S1", "S3", "S4", "D10", "V3S-VERDICT", "V3S-BOARD", "AX1", "C6P", "V3W", "V3X", "X3", "H4", "P3",
             "CQ2", "C3", "C4", "C5", "C8", "CFG329"}
 # The owner's scope for v3s outside column 0 (galaxy lensing; the action's own constant).
 ACTION_SCOPE_EXTRA = {"Lensing = dynamics (v3s)", "Stiffness length L*"}
@@ -117,6 +118,7 @@ LW1_TILES = {"MW vertical force": "MW", "DiskMass": "DM", "X-COP": "X",
 # Greens from outside FG1: tile -> (lane, result commit, how it was verified, stated as it is). FG1's own greens rest on
 # 1c8d43d901 and on CRG1's regrade 83002f24a2, which recomputed C4's S, Tl, LT, G and Ln (mainly a test of code).
 VERIFIED_GREEN = {
+    "Matter conservation (G9)": ("AZ34", "c869c20b96", "exact matter-shell Noether identity and off-shell counterexample; inverted-switch control bites separately"),
     "Surface brightness at fixed speed": ("HS1", "573bc465e9", "frozen class FLAT, MUTATE twin caught, literals in PAPER67's audit; "
                                           "NOT rerun on 11-01: its chain wouldn't run outside its own folder"),
     "Local a0 from MeerKAT": ("P4", "6c0249a8bc", "coordinator rerun 2026-10-23, read in PAPER60's audit"),
@@ -174,12 +176,10 @@ LAW_TILES = [
       ["V3W", "V3X"],
       [("5.1e-32", "V3W", "≤ 5.1e-32 at 100 Hz"), ("6.2e-32", "V3W", "≤ 6.2e-32"),
        ("1.1e-10 below", "V3X", "the tensor roots sit 1.1e-10 below 1")], lab="pass, both footings", act=True),
-    L(0, "Binary pulsars + GW170817", "PASS",
-      "no radiative channel; the largest effect is 3.2e-14 of the double pulsar's error, GW170817 Δv/c ≤ 6e-32. "
-      "From the 24 Oct board, not regraded",
-      ["C8"],
-      [("no radiative channel", "C8", "No radiative channel"), ("3.2e-14", "C8", "the largest effect is 3.2e-14"),
-       ("6e-32", "C8", "Δv/c ≤ 6e-32")], act=True, carried=True),
+    L(0, 'Binary pulsars + GW170817', 'UNDEC',
+      'conservative estimates survive both L★ windows; full radiation NO VERDICT. P3 has a propagating background-gradient mode; mixing leakage ≤ 3.45e-18 / 3.10e-18 is an estimate.',
+      ['C8', 'P3', 'AZ34'],
+      [('conservative estimates survive both L★ windows; full radiation NO VERDICT. P3 has a propagating background-gradient mode; mixing leakage ≤ 3.45e-18 / 3.10e-18 is an estimate.', "AZ34", 'conservative estimates survive both L★ windows; full radiation NO VERDICT. P3 has a propagating background-gradient mode; mixing leakage ≤ 3.45e-18 / 3.10e-18 is an estimate.')], act=True),
     L(0, "Health: ghosts, gradients", "COND",
       "galaxy backgrounds: no ghost, no gradient instability (V3W, WKB). Solar System: quadratic action and 3D "
       "hyperbolicity pass; the spectrum shows no instability found but misses its ladder, 14.6 % against 5 %",
@@ -187,35 +187,26 @@ LAW_TILES = [
       [("no ghost, no gradient instability", "V3W", "no ghost, no gradient instability"),
        ("no instability found", "V3X", "UNDECIDED (no instability found)"), ("14.6 %", "V3X", "up to 14.6 % at l = 4")],
       lab="conditional: Solar-System spectrum undecided", act=True),
-    L(0, "Leaf problem well-posed", "COND",
-      "C8's (P, lapse) leaf problem; X3: the switched leaf functional is convex with a unique solution, an "
-      "obstacle-type free boundary. From the 24 Oct board, not regraded",
-      ["C8", "H4", "X3"],
-      [("convex with a unique solution", "X3", "The switched leaf functional is convex and has a unique solution"),
-       ("obstacle-type", "X3", "(obstacle-type) problem")], act=True, carried=True),
-    L(0, "Causality: criterion A / B", "COND",
-      "constraints propagate instantaneously: criterion B (global time) met, A (v ≤ c) failed; the signal is about "
-      "1e-46 m/s² at lab scales. Carried with the adoption",
-      ["C5", "C8", "OWNER-11-04"],
-      [("criterion B", "C5", "It passes criterion B"), ("1e-46 m/s²", "C8", "about 1e-46 m/s²"),
-       ("Carried with the adoption", "OWNER-11-04", "Constraints act instantaneously")],
-      lab="B met, A violated", act=True, carried=True),
-    L(0, "Strong coupling", "COND",
-      "estimate: loop factor ≤ 1.3e-3, worst at Eöt-Wash's 38.6 μm with L★ 90 pc; it breaks down below about 5 μm, "
-      "so sub-5 μm tests would probe it. From the 24 Oct board",
-      ["P3"], [("1.3e-3", "P3", "eps 1.3e-3 (L* 90 pc)"), ("below about 5 μm", "P3", "breaks down below ~5 um")],
-      act=True, carried=True),
-    L(0, "Matter conservation (G9)", "PASS",
-      "Bianchi identity, ∇T = 0: holds off shell for any diffeomorphism-invariant action, v3s's included; GR "
-      "control 1e-46. From the 24 Oct board",
-      ["CFG329", "C4"], [("holds off shell", "CFG329", "holds off shell"), ("1e-46", "CFG329", "GR Bianchi identity: 1e-46")],
-      act=True, carried=True),
-    L(0, "Black holes (EHT, LIGO ringdown)", "COND",
-      "static non-rotating holes: shadow and ISCO move ≤ 2.9e-11, ringdown ≤ 2.8e-11. A regular hole needs the "
-      "khronon infalling near the horizon; rotating, moving holes open",
-      ["P3"],
-      [("≤ 2.9e-11", "P3", "moves by at most 2.9e-11"), ("2.8e-11", "P3", "at most 2.8e-11 (M87*)"),
-       ("infalling", "P3", "khronon tilted (infalling) near the horizon")], act=True, carried=True),
+    L(0, 'Leaf problem well-posed', 'UNDEC',
+      'switched energy is convex, but existence and regularity remain UNDECIDED: bounded energy need not control H(div). Conditional uniqueness only; original quadrature failures retained.',
+      ['C8', 'H4', 'X3', 'AZ34'],
+      [('switched energy is convex, but existence and regularity remain UNDECIDED: bounded energy need not control H(div). Conditional uniqueness only; original quadrature failures retained.', "AZ34", 'switched energy is convex, but existence and regularity remain UNDECIDED: bounded energy need not control H(div). Conditional uniqueness only; original quadrature failures retained.')], act=True),
+    L(0, 'Causality: criterion A / B', 'UNDEC',
+      'retarded response NO VERDICT. An elliptic constraint alone does not prove an acausal signal (GR control). Global time is conditional on a regular timelike khronon.',
+      ['C5', 'C8', 'OWNER-11-04', 'AZ34'],
+      [('retarded response NO VERDICT. An elliptic constraint alone does not prove an acausal signal (GR control). Global time is conditional on a regular timelike khronon.', "AZ34", 'retarded response NO VERDICT. An elliptic constraint alone does not prove an acausal signal (GR control). Global time is conditional on a regular timelike khronon.')], act=True),
+    L(0, 'Strong coupling', 'COND',
+      'scoped estimate: loop factor ≤ 1.182e-4 / 9.805e-5 over declared L★ intervals. Positive-divergence backgrounds only; nonlinear and interface EFT open.',
+      ['P3', 'AZ34'],
+      [('scoped estimate: loop factor ≤ 1.182e-4 / 9.805e-5 over declared L★ intervals. Positive-divergence backgrounds only; nonlinear and interface EFT open.', "AZ34", 'scoped estimate: loop factor ≤ 1.182e-4 / 9.805e-5 over declared L★ intervals. Positive-divergence backgrounds only; nonlinear and interface EFT open.')], act=True),
+    L(0, 'Matter conservation (G9)', 'PASS',
+      'matter-shell conservation: ∇T = Eχ∇χ, hence ∇T = 0 when the matter equation holds. Exact symbolic identity and off-shell counterexample checked; full gravity health open.',
+      ['CFG329', 'C4', 'AZ34'],
+      [('matter-shell conservation: ∇T = Eχ∇χ, hence ∇T = 0 when the matter equation holds. Exact symbolic identity and off-shell counterexample checked; full gravity health open.', "AZ34", 'matter-shell conservation: ∇T = Eχ∇χ, hence ∇T = 0 when the matter equation holds. Exact symbolic identity and off-shell counterexample checked; full gravity health open.')], act=True),
+    L(0, 'Black holes (EHT, LIGO ringdown)', 'COND',
+      'reduced static shifts ≤ 2.44e-11 / 2.94e-11; refinement change ≤ 2.05e-7 against 1e-3. Positive-divergence profiles checked. Full finite-cap solution and moving/rotating holes open; charge free.',
+      ['P3', 'AZ34'],
+      [('reduced static shifts ≤ 2.44e-11 / 2.94e-11; refinement change ≤ 2.05e-7 against 1e-3. Positive-divergence profiles checked. Full finite-cap solution and moving/rotating holes open; charge free.', "AZ34", 'reduced static shifts ≤ 2.44e-11 / 2.94e-11; refinement change ≤ 2.05e-7 against 1e-3. Positive-divergence profiles checked. Full finite-cap solution and moving/rotating holes open; charge free.')], act=True),
     # ---- column 1: isolated galaxies ----
     L(1, "Rotation curves (SPARC RAR)", "PASS",
       "canonical Υ 0.52, rms 0.0541; alt Υ 0.44, rms 0.0537, below the 0.50–0.80 line. That line's lower edge is a "
@@ -524,6 +515,8 @@ def check_law(tiles, retired=None, verified=None, fg1=None):
     verified = VERIFIED_GREEN if verified is None else verified
     fg1 = read_fg1_c4() if fg1 is None else fg1
     lw1 = read_lw1()
+    with open(os.path.join(REPO, "astra_goal_2026_11_05/AZ34_switched_relativity/BOARD_CLAIMS.json"), encoding="utf-8") as src:
+        az34 = json.load(src)
     errs = []
     names = {t["name"]: t for t in tiles}
     v3s_tiles = {LAW_RENAMES.get(x["name"], x["name"]): x for x in TILES}
@@ -569,6 +562,12 @@ def check_law(tiles, retired=None, verified=None, fg1=None):
                 errs.append(f"colour {st} is not FG1's {canon}: {n}")
             if (t["alt"] or st) != want_alt:
                 errs.append(f"alt colour is not FG1's {alt} (footings never pooled): {n}")
+        if n in az34:
+            record = az34[n]
+            if st != record["st"] or t["note"] != record["note"] or t.get("carried"):
+                errs.append(f"AZ34 regraded status and scope must match its result: {n}")
+            if not set(record["lanes"] + ["AZ34"]) <= set(t["lanes"]):
+                errs.append(f"AZ34 evidence or prior provenance dropped: {n}")
         if t.get("carried"):
             old = v3s_tiles.get(n)
             if old is None or old["st"] != st or not set(old["lanes"]) <= set(t["lanes"]) or not t.get("act"):
@@ -807,6 +806,15 @@ def broken_cases():
     def c34(t, r, v, f):
         _by(t, "X-COP")["lw1"] = None
 
+    def c35(t, r, v, f):
+        _by(t, "Matter conservation (G9)")["note"] = "Conservation holds off shell."
+
+    def c36(t, r, v, f):
+        _by(t, "Binary pulsars + GW170817").update(st="PASS", carried=True)
+
+    def c37(t, r, v, f):
+        _by(t, "Causality: criterion A / B")["lanes"].remove("AZ34")
+
     return [("LW1 X-COP fail coloured a pass", c1), ("LW1 DiskMass backing coloured a pass", c2),
             ("SPARC's footings pooled (alt half dropped)", c3), ("FG1's failing dwarfs coloured a pass", c4),
             ("FG1 row changed under a green tile", c5), ("v3s grey tile coloured a pass with no lane", c6),
@@ -817,12 +825,13 @@ def broken_cases():
             ("retired tile dropped silently", c17), ("must-stay-red tile turned blue", c18), ("grey tile with no reason", c19),
             ("banned wording", c20), ("FG1 line off the board", c21), ("note too long", c22),
             ("verdict colour on a v3-only lane", c23), ("split colour where footings agree", c24),
-            ("v3s graded outside its adopted scope (Coma, a cluster)", c25), ("carried v3s tile recoloured", c26),
+            ("v3s graded outside its adopted scope (Coma, a cluster)", c25), ("AZ34 scoped estimate promoted", c26),
             ("weak spot dropped from the action's tile", c27), ("new action green with no verified entry", c28),
-            ("carried tile drops the 24 Oct board's lanes", c29),
+            ("AZ34 tile drops prior provenance", c29),
             ("LW1 X-COP returned to grey", c30), ("MW drops form R", c31),
             ("DiskMass drops form A", c32), ("DiskMass alt R fail promoted", c33),
-            ("LW1 override dropped", c34)]
+            ("LW1 override dropped", c34), ("G9 off-shell-zero claim restored", c35),
+            ("pulsar old green carried over audit", c36), ("AZ34 causal evidence dropped", c37)]
 
 
 def selftest():

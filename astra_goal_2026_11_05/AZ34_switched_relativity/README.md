@@ -95,3 +95,24 @@ initial serialization bug and full rerun are documented in
 The next calculations are the separately frozen nonlinear-existence,
 moving-source, PN, interior, and full constrained-response lanes. A small
 static correction is not a proof of full dynamical health.
+
+## Board integration
+
+The six cards now use `BOARD_CLAIMS.json`, backed by calculation commit
+c869c20b96. The source/provenance, adoption-scope, red-tile and LW1 form guards
+remain enforced. The baseline integration test failed21/27 checks before
+editing; the new board passes27/27. All37 generator selftest mutants are
+caught. The explicit off-shell-claim mutant and the generator's stripped-
+source mutant both exit1. The rendered image was inspected; notes and both
+vertical-force badges fit within their tiles.
+
+```sh
+MPLCONFIGDIR=/tmp/az34_mpl python3 -B explainers/make_status_board.py --selftest
+MPLCONFIGDIR=/tmp/az34_mpl python3 -B explainers/make_status_board.py --mutate
+MPLCONFIGDIR=/tmp/az34_mpl python3 -B astra_goal_2026_11_05/AZ34_switched_relativity/board_check.py --output board_main.json
+MPLCONFIGDIR=/tmp/az34_mpl python3 -B astra_goal_2026_11_05/AZ34_switched_relativity/board_check.py --mutate --output board_mutate.json
+MPLCONFIGDIR=/tmp/az34_mpl python3 -B explainers/make_status_board.py
+```
+
+Expected exits0,1,0,1,0. Nothing here certifies the action's remaining
+nonlinear, moving-source or cosmological questions.
