@@ -2,6 +2,9 @@
 
 \epi{A theory with no knobs predicts everything and is almost certainly wrong.\\ A theory with infinitely many knobs predicts nothing and is never wrong.\\ Physics lives in between, counting.}
 
+\fig[1.0]{plate_amplifier}{The amplifier problem. With one dial, the box can only play one kind of sound: if it matches the song, that's a discovery. With thirty dials it can play the song, and any other song, and the sea. A perfect match then tells you about the box, not the music.}
+
+
 \section{The amplifier problem}
 
 Imagine you've been handed a black box with a speaker on the front and a row of dials on top. Somebody plays a song in another room, and your job is to make the box reproduce it. If the box has one dial, volume, you'll get the loudness right and nothing else. Add bass and treble and you're doing better. Give it a thirty-band equaliser, a reverb unit, a pitch shifter and a sampler, and you can make it reproduce the song perfectly. You could also make it reproduce any other song, or a dog barking, or the sound of the sea.
@@ -23,11 +26,22 @@ Some numbers in $\boldsymbol\theta$ are fixed by things outside the problem: the
 A \textbf{knob} is any number, function or choice in a model whose value is set by looking at the data the model is meant to explain, rather than by the model's own logic or by an independent measurement.
 \end{knobbox}
 
+Every knob in this book has the same four parts, and it's worth learning to see them, because the rest of the book keeps pointing at them.
+
+
+\fig{knob_anatomy}{Anatomy of a knob. The \emph{prior} is every setting the theory allowed before looking (blue arc). The data squeeze it to a narrower \emph{allowed width} (red arc), with a best \emph{setting} (the pointer). The \emph{bounds} are the stops at either end. The ratio of blue to red, in bits, is how much the data taught you.}
+
+
+
 The definition has teeth because of the last clause. If you measure the mass of the electron in a lab and then use it to predict the hydrogen spectrum, the electron mass isn't a knob for the hydrogen problem; it came from elsewhere. If you set it by fitting the hydrogen spectrum, it is. The same number can be a knob in one problem and an input in another. What makes something a knob is where its value came from.
 
 \section{A field guide to knobs}
 
 Knobs come in several species, and part of the fun of this book is learning to spot them in the wild. Here are the ones we'll meet.
+
+\fig{knob_species}{Six species of knob, as icons that recur through the book: one global dial; a dial for every object; a choice of curve; a term written in by hand; a prior's range with its stops; and the forking choices of sample and statistic.}
+
+
 
 \begin{description}[leftmargin=1em,style=nextline]
 \item[Global knobs.] One number for the whole universe. The density of dark matter in \LCDM, or the coefficient $\kappa$ in my galaxy law. These are the honest, visible dials on the front panel.
@@ -67,7 +81,14 @@ Minimise it over the knobs to get $\chi^2_{\min}$. If the model is right and the
 \begin{equation}
 \nu=n-k,
 \end{equation}
-with a scatter of about $\sqrt{2\nu}$. Here is the first place knob-counting enters: every knob you add lowers the expected $\chi^2$ by about one, because it soaks up one dimension of the noise. A model with $k=n$ has $\nu=0$ and fits perfectly whether or not it's true.
+with a scatter of about $\sqrt{2\nu}$.
+
+Here is what that looks like. The curves below are the chi-squared distributions for 5, 20 and 60 degrees of freedom: where a correct model's $\chi^2$ should land. The KiDS lensing grade of Chapter~7 uses 60 points, and its pass line sits where only one honest model in a hundred would land beyond it.
+
+
+\fig{chi2_dist}{Where a correct model's $\chi^2$ lands: near $\nu$, give or take $\sqrt{2\nu}$ (shaded). The gold line is the 99 per cent line for 60 points. The law's 276.1 and the 26-knob recipe's 145.2 on KiDS lensing are both far off this chart to the right.}
+
+ Here is the first place knob-counting enters: every knob you add lowers the expected $\chi^2$ by about one, because it soaks up one dimension of the noise. A model with $k=n$ has $\nu=0$ and fits perfectly whether or not it's true.
 
 In this book I'll often quote a simpler number, the \textbf{rms distance in dex},
 \begin{equation}
@@ -136,6 +157,10 @@ The Occam factor is the fraction of the prior range that survives the data. With
 
 This is Occam's razor with numbers in it. It doesn't say simple models are true. It says a model that could have accommodated a wide range of outcomes gets less credit when the actual outcome turns up, because it spread its bets.
 
+\fig{mackay_occam}{Occam's razor as a picture, after David MacKay. Each model spreads one unit of probability over all the outcomes it could have produced. The few-knob model (red) bets on a narrow range; if the data land there, it wins big. The many-knob model (dashed) covers more outcomes, including surprises, but pays for it with a lower height everywhere, including at what we actually observed.}
+
+
+
 \section{Knobs measured in bits}
 
 There's a neat way to put all knobs on one scale. A knob whose prior range is $\Delta$ and whose data-allowed width is $\sigma$ carries about
@@ -159,9 +184,24 @@ One more diagnostic will matter a great deal in Part~II. When you tune a model i
 
 The fried chicken paper reports, for every recipe, how many knobs sit at their bounds. The twelve-knob recipe has three. The ``complete'' recipe of Chapter~7 has seven, against a limit of three set in advance. When half of 171 galaxies push their halo concentration to the same lower edge, that's not scatter. It's a population asking for a different kind of halo.
 
+\fig{bounds_pileup}{What ``knobs at the bounds'' looks like (an illustration with made-up numbers). If galaxies want a setting beyond the allowed range (grey), a bounded fit piles them up at the stop (red). A pile-up at an edge is the signature to look for in any fit.}
+
+
+
 \section{Freeze first, then turn}
 
 The last knob is the most dangerous because it's invisible: the freedom to decide \emph{after} seeing the results what counts as success. Physicists call this the garden of forking paths, or, less politely, moving the goalposts. The cure is to write the targets down, date them and commit them before the first number is computed. The programme behind this book does this for every calculation, which it calls a \emph{lane}. Each lane commits its criteria to a public repository before any script exists. It also runs a deliberately broken twin, called MUTATE, which must fail; if it passes, the test can't tell right from wrong. Failures are published under the label frozen in advance.
+
+Why bother? Because every choice made after seeing the data is a hidden knob, and hidden knobs add up fast. If each analysis choice has a 5 per cent chance of producing a fluke ``win'', the chance that at least one of $m$ choices does is $1-0.95^m$: about 23 per cent for 5 choices, about half for 14, and four in five for 30.
+
+
+\fig{forking_paths}{The garden of forking paths. Left: the chance of at least one fluke ``win'' grows quickly with the number of choices tried after seeing the data. Right: each fork in an analysis is a hidden knob; a few branches land on flukes (gold) by chance.}
+
+
+
+\fig{freeze_timeline}{How a frozen lane runs. Everything to the right of the commit happens after the targets are public and dated. The broken twin (MUTATE) must fail, or the test can't tell right from wrong.}
+
+
 
 The fried chicken paper's targets were frozen before any recipe was cooked:
 \begin{itemize}
