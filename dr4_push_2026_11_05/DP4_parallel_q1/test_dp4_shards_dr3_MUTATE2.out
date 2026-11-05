@@ -1,0 +1,15 @@
+DP4: SHARDED Q1 CONES AGAINST THE UNSHARDED DRIVER RUN ON THE 10,231 DR3 CANDIDATES (code-path test; non-scoring)   *** MUTATE=2 ***
+final 6,210, delta 4,021; neighbour rows full 1,956,086, delta 1,242,252
+unsharded cones-literal: 6,180 pairs, sha256 c5cb89e8f95bfe3d
+unsharded cones-orbit: 6,190 pairs, sha256 31b1c8b99a594b6e
+
+CONTROLS
+  [PASS] S2 every candidate is in exactly one shard (K = 2, 4, 8)
+         K=2: sizes [5116, 5115], disjoint True, union = candidates True; K=4: sizes [2558, 2558, 2558, 2557], disjoint True, union = candidates True; K=8: sizes [1279, 1279, 1279, 1279, 1279, 1279, 1279, 1278], disjoint True, union = candidates True
+  [PASS] S1 the driver's final CSV from K shards is byte-identical to the unsharded run (K = 4 literal from files, 4 orbit, 2, 8)
+         K=4 cones-literal (from files): sha256 c5cb89e8f95bfe3d == reference, 6,180 pairs; K=4 cones-orbit (in memory): sha256 31b1c8b99a594b6e == reference, 6,190 pairs; K=2 cones-literal (in memory): sha256 c5cb89e8f95bfe3d == reference, 6,180 pairs; K=8 cones-literal (in memory): sha256 c5cb89e8f95bfe3d == reference, 6,180 pairs
+  [FAIL] S5 a subset of final pairs (the two WP1 literal hits + 100 seeded) evaluated on the K = 4 shards flags exactly the two hits
+         102 pairs; flagged [5584] (expected [1371, 5584])
+
+checks: 2 of 3 pass; 31 s
+[MUTATE CONTROL] MUTATE=2: S5 FAILED as designed

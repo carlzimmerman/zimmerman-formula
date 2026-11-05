@@ -1,0 +1,15 @@
+DP4: SHARDED Q1 CONES AGAINST THE UNSHARDED DRIVER RUN ON THE 10,231 DR3 CANDIDATES (code-path test; non-scoring)   *** MUTATE=1 ***
+final 6,210, delta 4,021; neighbour rows full 1,956,086, delta 1,242,252
+unsharded cones-literal: 6,180 pairs, sha256 c5cb89e8f95bfe3d
+unsharded cones-orbit: 6,190 pairs, sha256 31b1c8b99a594b6e
+
+CONTROLS
+  [PASS] S2 every candidate is in exactly one shard (K = 2, 4, 8)
+         K=2: sizes [5116, 5115], disjoint True, union = candidates True; K=4: sizes [2558, 2558, 2558, 2557], disjoint True, union = candidates True; K=8: sizes [1279, 1279, 1279, 1279, 1279, 1279, 1279, 1278], disjoint True, union = candidates True
+  [FAIL] S1 the driver's final CSV from K shards is byte-identical to the unsharded run (K = 4 literal from files, 4 orbit, 2, 8)
+         K=4 cones-literal (from files): ConeCoverageError: 2558 of 10231 pairs that reach cut 13 have NO neighbour cone (covered 7673); a pair without a cone is never treated as '; K=4 cones-orbit (in memory): ConeCoverageError: 2558 of 10231 pairs that reach cut 13 have NO neighbour cone (covered 7673); a pair without a cone is never treated as '; K=2 cones-literal (in memory): ConeCoverageError: 5115 of 10231 pairs that reach cut 13 have NO neighbour cone (covered 5116); a pair without a cone is never treated as '; K=8 cones-literal (in memory): ConeCoverageError: 1279 of 10231 pairs that reach cut 13 have NO neighbour cone (covered 8952); a pair without a cone is never treated as '
+  [FAIL] S5 a subset of final pairs (the two WP1 literal hits + 100 seeded) evaluated on the K = 4 shards flags exactly the two hits
+         ConeCoverageError: 26 of 102 pairs that reach cut 13 have NO neighbour cone (covered 76); a pair without a cone is never treated as 'no thi
+
+checks: 1 of 3 pass; 14 s
+[MUTATE CONTROL] MUTATE=1: S1 FAILED as designed
