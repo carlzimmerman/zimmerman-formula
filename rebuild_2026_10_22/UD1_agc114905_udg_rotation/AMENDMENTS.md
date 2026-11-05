@@ -21,3 +21,12 @@ labels (§3, §4) and the checks' intent are unchanged.
   clean label.
 - 2022's V_circ, if its figure (vcvdisp_fixed.pdf) is vector, is read the same way; its baryons use 2024's forms (2022's
   gas parameters are not given), said so in the label.
+
+## A2 (2026-11-04, after reading the figure geometry, before any law number)
+
+The paper's i = 12° points are not V_circ × sin(31°)/sin(12°): it rescales V_rot and keeps the asymmetric-drift term,
+and its mass models scale the deprojected baryon surface densities with cos i. §4's frozen scan (all of V_circ and its
+error × sin i0 / sin i, baryons fixed) stays the graded escape. Reported beside, not graded: the paper-consistent scan,
+V_circ(i)² = (V_rot sin i0 / sin i)² + (V_circ0² − V_rot0²), baryon Σ × cos i / cos i0. V_rot is read from the right
+panel of plot_kinematics.pdf (vector) the same way as A1. K0(c) uses this variant, since that is how the paper made its
+statement.
