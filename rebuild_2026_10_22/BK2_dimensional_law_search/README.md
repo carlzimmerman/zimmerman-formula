@@ -1,4 +1,4 @@
-# BK2_dimensional_law_search, level L1: NO HIT on both footings. 2.7e10 dimensioned expressions per footing, zero through G1-G3 on either reading, and the scrambled control comes as close on the lines on both footings. L2 is still running
+# BK2_dimensional_law_search, levels L1 and L2: NO HIT on both footings. 2.7e10 (L1) and 7.4e11 (L2) dimensioned expressions per footing, zero through G1-G3 on either reading, and the scrambled control comes as close on the lines at both levels
 
 Criteria: `FROZEN_CRITERIA.md` (28aa67bde5), committed alone first; `AMENDMENT_A1.md` holds A1 (11462b5388) and A2, both before any candidate number. Scripts `bk2_lib.py`, `bk2_search.py`, `bk2_read.py`, `bk2_stage2.py`, `bk2_gates.py`, `bk2_dear.py`, `bk2_checks.py`, driver `run_bk2.sh`, watcher `bk2_watch.sh`. Numbers in `bk2_train_*.json`, `bk2_stage2_*`, `bk2_dear_*`, `bk2_checks.out`. **Not blind.** No action, no CMB. kappa = 1/2 FITTED. The cold sector stays retired; nothing here reinstates it. Footings never pooled. Not theory closed. Nothing here says the data favour the framework.
 
@@ -79,14 +79,16 @@ K1 law row, both footings: X-COP, SPARC, LT, groups, S all to print precision. K
 ## Expectation against result
 Passing G1 and G2 LINE: yes. G1-G3 ERR 60 %: no, by my own Z_shape. G1-G3 LINE 25 %: no. I didn't expect 15 of 15 keys on a no-fit near miss.
 
-## Level L2, real runs, 2026-11-04 (controls still running)
+## Level L2, 2026-11-04: NO HIT on both footings, with controls
 Both real runs finished: 7.378e11 dimensioned expressions on canonical, 7.378e11 on alt (`bk2_train_L2_*_real.json`). **Train pass 0 on both footings, on the line and within errors** (`bk2_read_L2_*_real.out` FINAL: `train_line 0, train_err 0`; `bk2_stage2_L2_*_real.out`: 50 formulas, train pass 0). No SURVIVOR_FLAG. G3 LINE 475,470 / 412,406, G3 ERR 0 / 0; G2 LINE 1,368 / 1,205.
 
 Closest by line: canonical Zl 1.01 (I5(g_b,a0) + 126 g_gas (Phi/c^2)^(1/4), fitted, Cassini passes, X -0.012, SPARC 0.177 against the law's 0.166), alt Zl 1.01 (fit0, X +0.033). Smallest Z_max 7.07 canonical, 7.69 alt, down from L1's 9.3 and 8.2, still far over any line. Same "the cluster gets about 8x" family as L1.
 
-**The L2 label waits on the scrambled controls** (canonical at T1|I4, alt at T1|I5 when this was written). Until they land this is "no train pass on the real data", not the frozen NO HIT label with its control.
+**Controls, finished 2026-11-04** (`bk2_read_L2_*_control.out`, `bk2_stage2_L2_*_control.out`): 7.375e11 / 7.375e11 expressions, train pass 0, G3 LINE 1,230 / 1,004, G3 ERR 0 / 0, G2 LINE 496 / 327. Closest by line: canonical control Zl 1.01, alt control Zl 1.02, against the real 1.01 and 1.01. Smallest Z_max: control 25.4 / 20.8 against real 7.07 / 7.69.
 
-## Unfinished, running
-Canonical's mutate and control L1, then L2 (CAP_D 1e5, CAP_A 3e5, about 3e12 enumerated per run) real and control, both footings, nice 19, two processes, days. Watcher: `bk2_watch.sh`, writes `bk2_status.out` every 30 min, runs `bk2_stage2.py` as each harvest lands, sets `SURVIVOR_FLAG` on an all-LINE cheap pass; commits nothing. Restart: `./run_bk2.sh canonical`, `./run_bk2.sh alt`; they resume. A flag means: dear gates, then a separate recheck before any label. **This README covers L1 only until it's updated.**
+**Labels, frozen: NO HIT at L2 on both footings. SURVIVOR 0. WITHIN ERRORS, OUTSIDE A LINE 0. FAILS ONLY CASSINI 0.** Real over control: G3 LINE is about 400x higher (the control destroys X-COP's radial order, as at L1) and Z_max is lower, but on closeness to the lines the control comes as close as the real data, so no near miss earns weight from its closeness alone.
+
+## Status
+Both levels finished on both footings, real and scrambled control, 2026-11-04. No L3 is planned. The watcher (`bk2_watch.sh`) is stopped. Not run: temperature and dispersion are not in the grammar, and check K3 failed on the IC 1613 row (above).
 
 kappa = 1/2 FITTED. Not theory closed. Nothing here says the data favour the framework.
