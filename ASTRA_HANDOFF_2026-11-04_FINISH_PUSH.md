@@ -10,7 +10,7 @@ Written at the owner's request ("push up this work and lanes for astra to pick u
 
 ## What is decided (don't reopen without the owner)
 - **Action:** the owner adopted v3s as the a0 law's action, scoped to isolated galaxies, the Solar System, galaxy lensing and gravitational waves (`finish_2026_11_04/FN1_action_call/OWNER_DECISION_2026-11-04_ADOPT_V3S_SCOPED.md`, 7ac515f958). Clusters and growth/CMB stay open. It supersedes that day's earlier no-action call.
-- **PAPER67 v1.1 is deposited**, DOI 10.5281/zenodo.23966443. **The v1.2 draft has landed, not deposited** (5e2df43607; audit 794 of 794). It states v3s's scoped adoption and lists FN6 with its DR4 seal. Never run `PAPER67_zenodo_publish.py`; the deposit waits on the owner's go.
+- **PAPER67 v1.1 is deposited**, DOI 10.5281/zenodo.23966443. **PAPER67 v1.2 is deposited too: DOI 10.5281/zenodo.23968171** (same concept, from record 23966443; audit 794 of 794). It states v3s's scoped adoption and lists FN6 with its DR4 seal. Never run `PAPER67_zenodo_publish.py` without the owner's go.
 
 ## Dated events
 | Date (UTC) | What | How |
