@@ -66,7 +66,7 @@ claim, including the coordinator's previous AZC1 construction.
   brief's explicit one-paragraph fallback is recorded; no prediction is
   sealed and no artificial numerical test is substituted for that decision.
 - Tier3 lane9: AZ43 IN PROGRESS. Criteria096759f915 freeze143 parameter
-  points and729 local MW cells. Original anchors reproduced; eight
+  points and729 local MW cells. Original anchors reproduced; fifteen
   small-gate resolution pairs pass. At canonical p=.35,L_MW=1.5 the
   full local MW pair has15 coarse passes,10 fine passes,10 stable and
   five flips retained as unresolved. Alt now has77 stable passes at that
@@ -77,7 +77,11 @@ claim, including the coordinator's previous AZC1 construction.
   convergence/repeatability13/13 pass. Rotation count drops41.2%, failing
   frozen>50%; provisional area980.3 versus777deg2 also misses. Full
   isolated/native-geometry forecast not supplied; no stage1 authorization.
-- Tier3 lanes11-14 and Tiers4-5: pending in brief order.
+- Tier3 lanes11-14 and Tiers4-5: pending in brief order. Lane11 source
+  review found fn3_k2.setup explicitly calls a Planck15 luminosity-distance
+  conversion for its synthetic SED masses. Do not reuse that setup under
+  this run's native-input rule; freeze stated synthetic inputs or justify
+  an independent native calibration first. No new lane11 numbers graded.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.
 - Other sessions have now landed W1/X1 updates (handoff bfe49ed3c2,

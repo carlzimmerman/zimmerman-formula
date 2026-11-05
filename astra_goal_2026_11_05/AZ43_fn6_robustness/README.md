@@ -15,7 +15,7 @@ not a native v3s-action result.
   fails all eight original-anchor comparisons. The canonical MW twin
   passes its Newtonian-field identity and fails the original MW anchor
   (4/5 checks). Outputs are separate.
-- Small-gate points0-6 and56 have both resolution rungs. All eight numerical
+- Small-gate points0-13 and56 have both resolution rungs. All fifteen numerical
   pair checks pass. At the old anchor56, dwarf counts remain18/24 on
   both footings, the largest matched dispersion change is below0.085%,
   and the largest SPARC statistic change is below0.00005dex.
