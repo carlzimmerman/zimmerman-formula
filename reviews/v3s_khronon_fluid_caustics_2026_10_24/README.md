@@ -50,3 +50,26 @@ galaxies in every run (stiff min J ≪ 0). Physically, those are γ_L-regularise
 
 h = 5, O1 at h = 10, non-axisymmetric motions, a time-dependent outer boundary, the Hubble flow and other Local Group
 members, BS dust, the DBI K, and resolving γ_L's sub-grid regularisation of the stiff sheets.
+
+## Addendum (AMENDMENT A2, 2026-10-24 → run 2026-11-04): the timing orbit O1 at h = 10 and h = 5
+
+The queue stalled from 10-31 behind `L1_calib_512` (needed 46.6 GB, 38.4 GB free). With the owner's approval the two h = 5
+jobs were removed from it and run directly: one at a time, one thread, nice 15, preemptible engine; 34–35 min and
+≤ 2.5 GB each.
+
+| O1 case | soft min J by r = 300 kpc, h = 20 → 10 → 5 | to r = 150 kpc (no verdict weight), h = 20 → 10 → 5 |
+|---|---|---|
+| canonical t_i 3 / 6 | 0.78 / 0.76 → 0.67 / 0.65 | 0.54 / 0.19 → 0.30 / 0.21 |
+| alt t_i 3 / 6 | 0.78 / 0.75 → 0.67 / 0.58 | 0.55 / 0.15 → 0.29 / 0.02 |
+| **canonical t_i 9** | 0.534 → 0.390 → **0.336** | 0.190 → 0.019 → 0.034 |
+| **alt t_i 9** | 0.536 → 0.412 → **0.328** | 0.142 → 0.059 → **−0.011 (crosses at 16.9 Gyr, 137 kpc from a galaxy)** |
+
+**Reading (frozen A2 rule): O1 is CROSSING-FREE through r = 300 kpc** on all six cases at h = 10 and on the lowest-J
+case at h = 5, both footings.
+- The minimum J converges: steps of 0.14 then 0.05 (canonical); Richardson extrapolation gives ≈ 0.31.
+- Past the window, as the pair closes from 300 to 150 kpc (≈ 0.4 Gyr before their encounter, ~3 Gyr from now), the lobe
+  sits at the edge of crossing. alt h = 5 crosses at 16.9 Gyr; canonical h = 5 reaches J = 0.034.
+- So on the Local Group's own timing orbit, v3s's soft khronon stays single-stream until shortly before the merger,
+  then folds or nearly folds. The constant-velocity orbit folds 0.1–3 Gyr from now (main result).
+- Either way the soft caustic is a structural gap of v3s (no soft-side pressure). On the realistic orbit it does not
+  bite before the MW–M31 encounter.
