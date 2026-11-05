@@ -207,3 +207,12 @@ the physical nu=1 grid. Main plan and both fixture reports repeat exactly.
 The next20 bounded mutation tasks are running under the corrected batch
 controller. The full mutation grid and eligible MW calculations remain
 necessary before a final robustness label.
+
+The next bounded batch has completed normally with exit75. Mutation
+coverage is now20/143 parameter pairs (indices0–19), with no failed
+numerical pair. All40 raw outputs have current source identities and
+passing known-answer checks; dwarf and SPARC physical gates fail on both
+footings at both rungs. The mutation work plan therefore excludes these20
+points by stable small-gate failures, with123 pairs still missing on each
+footing. This is partial control coverage, not completion of the robustness
+lane. The numerical and physical failure lines are unchanged.

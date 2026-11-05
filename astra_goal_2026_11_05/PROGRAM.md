@@ -193,6 +193,9 @@ claim, including the coordinator's previous AZC1 construction.
   twice; next20 mutation tasks resumed. Explicit main-grid work plan:
   canonical71 MW-required/69 excluded/3 unresolved; alt93/48/2.
   Planner23/23 fixtures pass, numerical-failure mutation fails eight.
+  Second bounded mutation batch exited75:20/143 pairs now complete, all
+  numerically pass and physically fail dwarf/SPARC on both footings.
+  Mutation work plan20 excluded/123 missing per footing; remaining work open.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.
 - Other sessions have now landed W1/X1 updates (handoff bfe49ed3c2,
