@@ -26,7 +26,12 @@ claim, including the coordinator's previous AZC1 construction.
   separately frozen mapped diagnostic passes. Board27/27 integration checks,
   37/37 selftest mutants caught; both explicit board mutants exit1.
 - Tier 1 is complete to scoped labels, not full dynamical health.
-- Tiers 2-5: pending, in the order specified by the brief.
+- Tier 2 lane 5(a): AZ35 complete to NO VERDICT on full nonlinear
+  well-posedness. New exact derivative-loss diagnostic in density/velocity
+  variables, with a frozen polarization-variable repair; principal-only
+  caustic verified, not promoted to a full-action counterexample. Main18/18,
+  mutant15/18, all numerical convergence/known-answer checks pass.
+- Tier 2 lanes 5(b-e),6-8 and Tiers 3-5: pending in brief order.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.
 - Other sessions have now landed W1/X1 updates (handoff bfe49ed3c2,
