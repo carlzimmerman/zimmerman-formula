@@ -1,0 +1,62 @@
+{
+  "claim_id": "KT34_INDEPENDENT_MW_CONTINUUM_TAIL_APPLICATION_AUDIT",
+  "mathematics": {
+    "assertion_tested": "Independently replay continuum upper bound on circular speed for1375 frozen MW cells per footing at epsilon2.5, retaining physical solver G and kpc separately from assigned-width constants and allowing worst width rounding; check all nominal and +1km/s Newtonian,+1%physical-mass upper bounds are below219.9km/s.",
+    "coefficient_domain": "IEEE754 float64 scalar arithmetic from saved numerical baseline; AST reads literal solver constants",
+    "conventions": "Force lemma |gph,outer(x)|<=2 sqrt(GMa0)|x|/sigma^2; delta v\u00b2=2 sqrt(Gk_solver M a0k_solver) R0\u00b2 exp(.005)/(epsilon\u00b2 RM_width\u00b2); mass robustness varies physical mass while holding nominal assigned width fixed.",
+    "inputs": [
+      "1375 stored Newton baselines/cells per footing",
+      "stored nominal Mstar and gas integral",
+      "R0=8.122kpc,eps=2.5,L1 necessary lower219.9km/s",
+      "A0 canonical9.3603e-11 alt1.1312e-10 SI",
+      "nominal width Gk4.30091e-6 and kpc3.0857e19; actual solver GSI/MSUN/KPC read fromp4_solver.py"
+    ],
+    "bounds": {
+      "footings": 2,
+      "cells_per_footing": 1375,
+      "epsilon_min": 2.5,
+      "timeout_seconds": 30,
+      "max_cpu_seconds": 20,
+      "max_threads": 1,
+      "max_output_bytes": 1048576
+    },
+    "non_claims": [
+      "No independent Newtonian gravity solve or mass integration",
+      "Continuum application requires intended unclipped sech\u00b2 gas profiles, finite mass, and accurate stored baselines",
+      "Robustness allowances are not certified error bounds",
+      "Does not exclude unsampled intermediate epsilon below2.5",
+      "Does not prove finite discrete Gaussian filters satisfy continuum force lemma"
+    ]
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/KT34_reciprocal_epsilon_scan/cassini/mw_tail_audit.py",
+    "rebuild_2026_10_22/KT33_reciprocal_filter/mw/grid_refined_run/results.json",
+    "rebuild_2026_10_22/P4_v3_galaxy_tiles/p4_solver.py",
+    "rebuild_2026_10_22/KT34_reciprocal_epsilon_scan/mw/scan.py",
+    "rebuild_2026_10_22/X5_mw_joint_baryons/x5_lib.py",
+    "rebuild_2026_10_22/P4_v3_galaxy_tiles/p4_v3_galaxy_tiles.py"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    },
+    {
+      "name": "platform",
+      "version": "macOS-26.5.2-arm64-arm-64bit"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

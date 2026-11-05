@@ -1,0 +1,54 @@
+{
+  "claim_id": "KT34_CASSINI_UNIFORM_LARGE_WIDTH_BOUND",
+  "mathematics": {
+    "assertion_tested": "Exact rational slack checks support the analytically derived bound abs(Q2)/ceiling <45/epsilon^3 for epsilon>=1 and both frozen footings; hence all epsilon>=4 pass the Cassini quadrupole cut. The analytic inequalities are documented in README and independently reviewed.",
+    "coefficient_domain": "Rational exact arithmetic for safe constants, IEEE float64 for optional sharper displayed constants",
+    "conventions": "Dimensionless sigma_source=sigma_outer=epsilon in rM units, corrected KT33 operator and exact zero inner surface for reciprocal Gaussian, signed Q2=1.5 a0/rM q; grade absolute Q2 against 5.2e-27 s^-2",
+    "inputs": [
+      "KT33 GM,GEXT,A0,CEILING frozen",
+      "Elementary Gaussian envelopes and density-Hessian integral",
+      "eta>=2, physical prefactor/ceiling<31, pi>25/8 and exponential-series lower bound"
+    ],
+    "bounds": {
+      "footings": 2,
+      "epsilon_bound_domain": "epsilon>=1",
+      "uniform_pass_domain": "epsilon>=4",
+      "timeout_seconds": 30,
+      "max_cpu_seconds": 20,
+      "max_threads": 1,
+      "max_output_bytes": 1048576
+    },
+    "non_claims": [
+      "Does not prove monotonicity or exclude unsampled islands for 0<epsilon<4",
+      "Not a full ephemeris validation",
+      "The arithmetic run verifies constants; analytic reasoning is separately documented and reviewed"
+    ]
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/KT34_reciprocal_epsilon_scan/cassini/tail_bounds.py",
+    "rebuild_2026_10_22/KT33_reciprocal_filter/cassini/cassini_v2.py"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    },
+    {
+      "name": "platform",
+      "version": "macOS-26.5.2-arm64-arm-64bit"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

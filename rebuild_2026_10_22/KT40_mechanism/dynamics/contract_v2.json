@@ -1,0 +1,68 @@
+{
+  "claim_id": "KT40_LOCAL_MATTER_DYNAMICS_V2",
+  "mathematics": {
+    "assertion_tested": "Independent finite differences of full KT39 tensor energy, frozen-symbol K,N and mixed symmetry; sinusoidal second energy variation; explicit positive-density tidal jet.",
+    "coefficient_domain": "IEEE754 float64; analytic inequalities proved separately",
+    "conventions": "E=a0\u00b2xR(x+s**p); K=.5E_gg[n,n],N=.5E_HH[nn,nn]; delta_rho_ddot=[4piG rho K+(4piG rho N\u2212cs\u00b2)k\u00b2]delta_rho. Mixed derivative finite differences compare against its exact analytic contraction normalized by the full mixed-tensor envelope; legacy component-relative diagnostics retained.",
+    "inputs": [
+      "Frozen KT39 full tensor API and KT37 scalar primitive",
+      "Deterministic local jets with full Frobenius contraction"
+    ],
+    "bounds": {
+      "powers": [
+        1,
+        1.125,
+        1.25,
+        1.5,
+        1.75,
+        2
+      ],
+      "g_scales": [
+        0.1,
+        1,
+        10
+      ],
+      "tidal_scales": [
+        0.01,
+        0.1,
+        1,
+        10
+      ],
+      "density_shift": [
+        0,
+        0.01
+      ],
+      "directions": 3,
+      "jet_count": 432,
+      "wall_seconds": 120,
+      "cpu_seconds": 110,
+      "max_threads": 1
+    },
+    "non_claims": [
+      "No new empirical cuts or parameter search",
+      "No actual MW local-density evaluation in this lane",
+      "No collisionless or relativistic stability theorem",
+      "Numerical jet checks support but do not replace the analytic sign proof"
+    ]
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/KT40_mechanism/dynamics/checks_v2.py",
+    "rebuild_2026_10_22/KT39_power_curvature/analytic/law.py",
+    "rebuild_2026_10_22/KT37_generalized_action/analytic/law.py"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

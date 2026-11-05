@@ -1,0 +1,126 @@
+{
+  "claim_id": "KT42_CURVATURE_ONLY_GAUSSIAN_DWARF_VIRIAL",
+  "mathematics": {
+    "assertion_tested": "At fixed KT39 p=9/8, ell=3kpc, original Plummer sources and a0 footings, compute signed full-action homology virial for curvature-only Gaussian filtering at nine fixed physical widths. First discriminator Draco Upsilon2 eta.01; Fornax Upsilon3 eta.01 is a declared size control.",
+    "coefficient_domain": "IEEE754float64, analytic Gaussian-mixture representation and deterministic numerical quadrature",
+    "conventions": "g unfiltered; Hbar=Hess(T_a psi)=T_a Hess psi; T_a Gaussian variance a\u00b2 per Cartesian direction. Full homology uses T_a delta H with filter width fixed, external Newtonian gradient fixed. Signed W/(3M), not a direction-specific observed dispersion.",
+    "inputs": [
+      "Unchanged McConnachie sample and original Plummer profiles",
+      "Original G and canonical/alternate a0",
+      "KT37 Q(0)=0, Qprime=nu_simple(sqrt(z))",
+      "KT40 eta.01 baseline signed virials"
+    ],
+    "bounds": {
+      "p": 1.125,
+      "ell_kpc": 3,
+      "filter_widths_kpc": [
+        0,
+        0.0001,
+        0.001,
+        0.003,
+        0.01,
+        0.03,
+        0.1,
+        0.3,
+        1
+      ],
+      "cases": [
+        {
+          "name": "Draco",
+          "upsilon": 2,
+          "eta": 0.01
+        },
+        {
+          "name": "Fornax",
+          "upsilon": 3,
+          "eta": 0.01
+        }
+      ],
+      "footings": [
+        "canonical",
+        "alt"
+      ],
+      "quadratures": [
+        [
+          801,
+          32,
+          401,
+          1
+        ],
+        [
+          1601,
+          64,
+          801,
+          1
+        ],
+        [
+          2401,
+          96,
+          1201,
+          2
+        ]
+      ],
+      "quadrature_columns": [
+        "radial_nodes",
+        "angular_nodes",
+        "Gaussian_mixture_logt_nodes",
+        "outer_domain_factor"
+      ],
+      "rmin": "1e-6 source_scale",
+      "rmax": "domain*(200 source_scale+120kpc)",
+      "mixture_log_t_bounds": [
+        -32,
+        8
+      ],
+      "finite_energy_control_domain_source_scales": [
+        0.01,
+        10
+      ],
+      "energy_difference_steps": [
+        0.0001,
+        5e-05
+      ],
+      "numerical_variance_absolute_refinement_gate_km2s2": 0.02,
+      "energy_fd_relative_gate": 5e-05,
+      "energy_fd_absolute_gate_km2s2": 1e-05,
+      "zero_filter_baseline_absolute_gate_km2s2": 0.001,
+      "gaussian_mixture_unfiltered_scaled_error_gate": 1e-07,
+      "wall_seconds": 1200,
+      "cpu_seconds": 1100,
+      "max_threads": 1
+    },
+    "non_claims": [
+      "No actual external-field assignment for either dwarf",
+      "No anisotropic equilibrium or line-of-sight prediction",
+      "No continuous-width exclusion",
+      "No global novelty, relativistic completion, or physical survival claim"
+    ]
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/KT42_curvature_filter/dwarf/calculate.py",
+    "rebuild_2026_10_22/KT42_curvature_filter/dwarf/DERIVATION.md",
+    "rebuild_2026_10_22/KT37_generalized_action/analytic/law.py",
+    "rebuild_2026_10_22/KT39_power_curvature/dwarfs/isolated.py",
+    "real_research/data/dsph/mcconnachie2012_dsph.csv",
+    "rebuild_2026_10_22/KT40_mechanism/efe/low_001/results.json"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

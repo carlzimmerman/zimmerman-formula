@@ -1,0 +1,82 @@
+{
+  "claim_id": "KT38_CASSINI_FOCUSED_LENGTHS",
+  "mathematics": {
+    "assertion_tested": "Explicitly authorized additional lengths1.5,1.75,2,2.25,2.5kpc, both footings, same full A/B implementation with fresh base/fine and density comparisons at every point. Original origin/Newton/QUMOND controls remain pinned and unchanged; tensor API comparison is rerun.",
+    "coefficient_domain": "IEEE float64 quadrature with scaled analytic derivatives",
+    "conventions": "x=g\u00b2,s=ell\u00b2H:H,z=x+s\u00b2,P=xQ(z)/z,Qprime=simple nu(sqrt z),Q(0)=0; A=(R-1+xRprime)g; B=2ell\u00b2s xRprime H; q=STFzz Hessian and Q2=1.5a0/rM q. No field filter.",
+    "inputs": [
+      "Shared KT38 analytic law and unchanged KT37 Q primitive",
+      "Unmodified KT37 radial source profiles and KT33 Solar constants",
+      "Full derivative/contact formulas in DERIVATION.md"
+    ],
+    "bounds": {
+      "physical_ell_kpc": [
+        1.5,
+        1.75,
+        2,
+        2.25,
+        2.5
+      ],
+      "nr": [
+        8000,
+        12000,
+        16000
+      ],
+      "nm": [
+        160,
+        240,
+        320
+      ],
+      "radial_domain": [
+        1e-10,
+        10000000.0
+      ],
+      "gaussian_sigma_rM": [
+        0.5,
+        0.1,
+        0.01,
+        0.001,
+        5e-07
+      ],
+      "core_rmin": "max(1e-10,.001sigma), with .0005/.00025 broad-core checks",
+      "relative_refinement_density_gate": 0.0002,
+      "absolute_core_radius_gate": 1e-10
+    },
+    "non_claims": [
+      "Finite prescribed lengths, not global parameter coverage",
+      "Constant external field, not actual Galactic-gradient embedding or ephemeris fit",
+      "Not a Milky Way or dwarf pass",
+      "Gaussian-source limit for fixed positive ell, not every possible regulator",
+      "New phenomenological function, not literally the original equation16"
+    ]
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/KT38_weak_field_curvature/cassini/focus.py",
+    "rebuild_2026_10_22/KT38_weak_field_curvature/cassini/run_001/results.json",
+    "rebuild_2026_10_22/KT38_weak_field_curvature/cassini/calculate.py",
+    "rebuild_2026_10_22/KT38_weak_field_curvature/cassini/DERIVATION.md",
+    "rebuild_2026_10_22/KT38_weak_field_curvature/analytic/law.py",
+    "rebuild_2026_10_22/KT37_generalized_action/analytic/law.py",
+    "rebuild_2026_10_22/KT37_generalized_action/cassini/calculate.py",
+    "rebuild_2026_10_22/KT33_reciprocal_filter/cassini/cassini_v2.py"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

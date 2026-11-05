@@ -1,0 +1,44 @@
+{
+  "claim": "A fixed Gaussian and its reciprocal outer action restore variational reciprocity in a periodic QUMOND realization.",
+  "assertion_tested": "Independent spectral solver reproduces the two-mode response integral and cancels net internal force for declared finite asymmetric periodic sources, while source-only controls do not.",
+  "mathematics": {
+    "domain": "2*pi periodic 3D cube, 4*pi*G=a0=1, mean-subtracted source, fixed nonzero external gradient",
+    "conventions": "Phi Laplacian=rho+div[(nu-1)u], nu=.5+sqrt(.25+1/|u|), positive grad potential points outward; Gaussian Fourier exp(-sigma^2*k^2/2)",
+    "inputs": [
+      "sigma=0.7 and0",
+      "Fourier grids n=16,24,32,48",
+      "positive analytic sinusoidal source backgrounds"
+    ],
+    "bounds": {
+      "n_max": 48,
+      "finite_difference_step": 0.0001
+    },
+    "non_claims": [
+      "No isolated galaxy or Cassini boundary validation",
+      "No proof for all densities or grid sizes"
+    ],
+    "assertion_tested": "Independent spectral solver reproduces the two-mode response integral and cancels net internal force for declared finite asymmetric periodic sources, while source-only controls do not.",
+    "coefficient_domain": "double precision real and complex Fourier arithmetic"
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/KT33_reciprocal_filter/validation/periodic_filter.py",
+    "rebuild_2026_10_22/KT33_reciprocal_filter/validation/test_periodic_filter.py",
+    "rebuild_2026_10_22/KT33_reciprocal_filter/validation/run_checks.py"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "claim_id": "KT33_PERIODIC_RECIPROCITY"
+}

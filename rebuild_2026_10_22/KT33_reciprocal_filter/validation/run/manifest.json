@@ -1,0 +1,136 @@
+{
+  "schema_version": 2,
+  "claim_id": "KT33_PERIODIC_RECIPROCITY",
+  "repository": {
+    "commit": "f8b6e97ec191a8eca399a5f158a8b400ae996b4a",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "-B",
+    "rebuild_2026_10_22/KT33_reciprocal_filter/validation/run_checks.py",
+    "--output",
+    "rebuild_2026_10_22/KT33_reciprocal_filter/validation/run/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "domain": "2*pi periodic 3D cube, 4*pi*G=a0=1, mean-subtracted source, fixed nonzero external gradient",
+    "conventions": "Phi Laplacian=rho+div[(nu-1)u], nu=.5+sqrt(.25+1/|u|), positive grad potential points outward; Gaussian Fourier exp(-sigma^2*k^2/2)",
+    "inputs": [
+      "sigma=0.7 and0",
+      "Fourier grids n=16,24,32,48",
+      "positive analytic sinusoidal source backgrounds"
+    ],
+    "bounds": {
+      "n_max": 48,
+      "finite_difference_step": 0.0001
+    },
+    "non_claims": [
+      "No isolated galaxy or Cassini boundary validation",
+      "No proof for all densities or grid sizes"
+    ],
+    "assertion_tested": "Independent spectral solver reproduces the two-mode response integral and cancels net internal force for declared finite asymmetric periodic sources, while source-only controls do not.",
+    "coefficient_domain": "double precision real and complex Fourier arithmetic"
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-04T16:44:31.069627+00:00",
+    "runtime_seconds": 0.405478,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 20,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/KT33_reciprocal_filter/validation/periodic_filter.py",
+    "rebuild_2026_10_22/KT33_reciprocal_filter/validation/test_periodic_filter.py",
+    "rebuild_2026_10_22/KT33_reciprocal_filter/validation/run_checks.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "rebuild_2026_10_22/KT33_reciprocal_filter/validation/periodic_filter.py",
+      "sha256": "cc83be7b7c6bd782f5a53a8a85ec9241f95ff86280c00f4874fa9b384705dd3e",
+      "sha256_after": "cc83be7b7c6bd782f5a53a8a85ec9241f95ff86280c00f4874fa9b384705dd3e"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT33_reciprocal_filter/validation/test_periodic_filter.py",
+      "sha256": "fcc6c3f775a8082495be126b9915322721e58bc43356065df7ec977235a51b5e",
+      "sha256_after": "fcc6c3f775a8082495be126b9915322721e58bc43356065df7ec977235a51b5e"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT33_reciprocal_filter/validation/run_checks.py",
+      "sha256": "86aa38b8b8992ffa073da7015ba89e52d0f4327e482206b0cb3c278a84895089",
+      "sha256_after": "86aa38b8b8992ffa073da7015ba89e52d0f4327e482206b0cb3c278a84895089"
+    }
+  ],
+  "output_directory": "rebuild_2026_10_22/KT33_reciprocal_filter/validation/run",
+  "declared_results": [
+    "rebuild_2026_10_22/KT33_reciprocal_filter/validation/run/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "rebuild_2026_10_22/KT33_reciprocal_filter/validation/run/stdout.txt",
+      "sha256": "744eff0bfc88149f5eceacf5667e18026a074e88a9dd7b43f763a3eedbbba94b",
+      "kind": "log"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT33_reciprocal_filter/validation/run/stderr.txt",
+      "sha256": "86d9818c6b0864fd1b6a31060cd34535abc905ccea9cf4c83fb2dba35fc4128c",
+      "kind": "log"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT33_reciprocal_filter/validation/run/results.json",
+      "sha256": "744eff0bfc88149f5eceacf5667e18026a074e88a9dd7b43f763a3eedbbba94b",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

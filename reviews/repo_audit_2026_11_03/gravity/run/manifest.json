@@ -1,0 +1,118 @@
+{
+  "schema_version": 2,
+  "claim_id": "KT_FIXED_FILTER_FORCE_RECIPROCITY_AUDIT",
+  "repository": {
+    "commit": "unavailable",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "fixed_filter_force.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "The source-only Gaussian-filter QUMOND map has nonzero net internal force in a positive-density planar periodic case; the unfiltered and adjoint-completed maps vanish.",
+    "coefficient_domain": "Double-precision real quadrature",
+    "conventions": "4 pi G=a0=1; period 2 pi; mean gravitational source removed; external g_N=3; sigma=0.7; h=sin x+0.2 sin 2x; rho=2+h_prime",
+    "inputs": [
+      "Analytic two-mode density and simple nu(y)=0.5+sqrt(0.25+1/y)"
+    ],
+    "bounds": {
+      "N": [
+        256,
+        1024,
+        4096,
+        16384
+      ]
+    },
+    "non_claims": [
+      "Not an isolated finite-mass 3D calculation",
+      "Not a theorem forbidding other filtered actions"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-03T21:05:05.697911+00:00",
+    "runtime_seconds": 0.161876,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 20.0,
+    "max_output_bytes": 20000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 10,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fixed_filter_force.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fixed_filter_force.py",
+      "sha256": "11f1e87438543044e78b5bde353a73bc158b4fe4042849ea6f54ac9d45eef829",
+      "sha256_after": "11f1e87438543044e78b5bde353a73bc158b4fe4042849ea6f54ac9d45eef829"
+    }
+  ],
+  "output_directory": "run",
+  "declared_results": [
+    "run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "run/stdout.txt",
+      "sha256": "8d049a6874cdd52d42191fad8d6b9df631a27f4f868f717a9f9f9bb4b4f40b2c",
+      "kind": "log"
+    },
+    {
+      "path": "run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "run/result.json",
+      "sha256": "8d049a6874cdd52d42191fad8d6b9df631a27f4f868f717a9f9f9bb4b4f40b2c",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

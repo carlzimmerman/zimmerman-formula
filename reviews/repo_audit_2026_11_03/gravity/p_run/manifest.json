@@ -1,0 +1,123 @@
+{
+  "schema_version": 2,
+  "claim_id": "RQ3_CHISQ_TAIL_AUDIT",
+  "repository": {
+    "commit": "unavailable",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "chisq_tail_check.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Compare RQ3 Gaussian-tail p-value for A30 law to exact even-degree chi-square survival probability.",
+    "coefficient_domain": "Double precision, exact finite gamma-series identity",
+    "conventions": "chi-square 56 dof; p=exp(-x/2)*sum(k=0..27)(x/2)^k/k!",
+    "inputs": [
+      "Pinned RQ3 law.json A30 values canonical and alt"
+    ],
+    "bounds": {
+      "dof": 56,
+      "footings": [
+        "canonical",
+        "alt"
+      ]
+    },
+    "non_claims": [
+      "No empirical covariance or 56-dof validation",
+      "No assertion overall candidate rejection reverses"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-03T21:06:53.107378+00:00",
+    "runtime_seconds": 0.101504,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 20.0,
+    "max_output_bytes": 20000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 10,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "chisq_tail_check.py",
+    "law_snapshot.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "chisq_tail_check.py",
+      "sha256": "f3818335133057ea654b9b02481c96ebed18122ecf4445e534d5f8422779942e",
+      "sha256_after": "f3818335133057ea654b9b02481c96ebed18122ecf4445e534d5f8422779942e"
+    },
+    {
+      "path": "law_snapshot.json",
+      "sha256": "888b172f4261c7de4ff85a854f8b95a0d9d197d5acf707b20ad8f7b0cf640961",
+      "sha256_after": "888b172f4261c7de4ff85a854f8b95a0d9d197d5acf707b20ad8f7b0cf640961"
+    }
+  ],
+  "output_directory": "p_run",
+  "declared_results": [
+    "p_run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "p_run/stdout.txt",
+      "sha256": "49d0727989e918a73a97ad22bcf8aad7c5f2fee16082ee7ca0204f311db332aa",
+      "kind": "log"
+    },
+    {
+      "path": "p_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "p_run/result.json",
+      "sha256": "49d0727989e918a73a97ad22bcf8aad7c5f2fee16082ee7ca0204f311db332aa",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

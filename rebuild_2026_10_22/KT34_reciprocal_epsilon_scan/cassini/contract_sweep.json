@@ -1,0 +1,61 @@
+{
+  "claim_id": "KT34_CASSINI_COMMON_GAUSSIAN_EPSILON_SWEEP",
+  "mathematics": {
+    "assertion_tested": "Signed reciprocal Gaussian Cassini quadrupole for deterministic epsilon samples, all else frozen; reproduce epsilon=.5, locate every sampled sign and ceiling crossing and local extrema.",
+    "coefficient_domain": "IEEE754 float64 numerical quadrature",
+    "conventions": "Dimensionless sigma_source=sigma_outer=epsilon in rM units, corrected KT33 operator and exact zero inner surface for reciprocal Gaussian, signed Q2=1.5 a0/rM q; grade absolute Q2 against 5.2e-27 s^-2",
+    "inputs": [
+      "KT33 GM, GEXT, canonical and alt A0 unchanged",
+      "Simple nu unchanged",
+      "Zero plus epsilon=1e-6,1e-5,301 log-spaced points 1e-4..10,101 linearly spaced .35...85,epsilon=.5,100,1000; union deduplicated"
+    ],
+    "bounds": {
+      "nr": 6000,
+      "nm": 120,
+      "rmin": 1e-08,
+      "rmax": 1000000.0,
+      "footings": 2,
+      "timeout_seconds": 300,
+      "max_cpu_seconds": 240,
+      "max_threads": 1,
+      "max_output_bytes": 1048576
+    },
+    "non_claims": [
+      "No interval certification or universal exclusion of narrow unsampled islands",
+      "No monotonicity assumption",
+      "No MW,dwarf,SPARC,relativistic or full ephemeris validation",
+      "Only epsilon varied; no physical refit"
+    ]
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/KT34_reciprocal_epsilon_scan/cassini/epsilon_scan.py",
+    "rebuild_2026_10_22/KT33_reciprocal_filter/cassini/cassini_v2.py",
+    "rebuild_2026_10_22/KT33_reciprocal_filter/cassini/run_002/results.json",
+    "rebuild_2026_10_22/KT33_reciprocal_filter/cassini/README.md",
+    "rebuild_2026_10_22/KT25_eps_equals_kappa/FROZEN_CRITERIA.md",
+    "rebuild_2026_10_22/KT16_filtered_phantom_cassini/FROZEN_CRITERIA.md"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    },
+    {
+      "name": "platform",
+      "version": "macOS-26.5.2-arm64-arm-64bit"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

@@ -1,0 +1,83 @@
+Particle / matching / gravity / Yang–Mills audit, 2026-11-03
+
+PRIMARY CLAIM AND VERDICT
+Claim audited: the recent SU(5) matching and cold-state work supplies a gravity-compatible produced dark component, or closes the model's raw-vacuum-to-DE scale relation.
+Verdict: INCOMPLETE, with the smallest missing implications being a stable matched SUGRA stationary point and a derived production history. The current TP01–05 status documents already correctly state this. No completed gravity-compatible produced state was found. The raw-F=DE version defeats the tested photino and small-amplitude radial constructions. This does not prove a universal no-go.
+
+CURRENT OWNER SCOPE
+The Nov1 cold-sector retirement stands. The Nov2 particle exception is HF1 only (rebuild_2026_10_22/OWNER_DECISION_2026-11-02_FERMION_EXPERIMENT.md). SU(5) TP01–05 and qwen's LCDM_FRIED_CHICKEN particle constructions must be reported as historical/separate experiments, not the current flagship or authorization to restart them. HF1's own failure supplies no support for the remaining framework.
+
+COVERAGE / PROVENANCE
+Base 4cba03defe795a2f8e40bc181d8bd7c1a5362752; initial task HEAD c8b2586bb1921cff3bcb75feae827233ce62db8b. Shared HEAD observed during audit advanced to 8ff07640c9d2142eccc43ddc1997b713b4bf433d. Exact current bytes are pinned in changed_path_hashes.json (764 changed committed paths, not 764 fully audited proofs) and c2_current_hashes.json (27 current C2 files). Eight families inventoried: TP01 132 changed paths, TP02 129, TP03 117, TP04 206, TP05 24, qwen_claude_field_theory 95, HF1 61, Yang–Mills 0 in the specified committed interval. C2 is current untracked material, with dirty parent status/claims files. This distinction matters to a fresh-clone claim.
+Read all five TP entrypoint summaries, gravity contract and all three current subroute statuses, cold-state current status, HF1 criteria/amendments/owner exception, and Yang–Mills current statuses. Inspected raw canonical action/tilt, finite vacuum/current code, gaugino-threshold code, cold selection-rule and hard-loop proof, lifetime composition and FD travel-distance code, HF1 CLASS adapter and profile solver, and seven principal C2 proof artifacts. This is a targeted dependency audit, not a full rederivation of every SU(5) vertex or every qwen paper.
+No existing repository file was edited. No scientific pipeline, CLASS fit, simulation or queue job was launched. Tiny independent symbolic checks only; outputs confined to /private/tmp/particle_field_audit_20261103/.
+
+CONCRETE FINDINGS
+1. HF1's capped profile is not an isothermal equilibrium where saturated.
+   Location: rebuild_2026_10_22/HF1_hybrid_fermion/hf1_fermion.py:24–43, especially sigma at 31 and min(cap, exp(...)) at 36. AMENDMENT_A1.md R4 calls this an equilibrium profile.
+   The source uses one spatially constant sigma and rho=min[rho_cap, rho1 exp(-(Phi-Phi_ta)/sigma²)]. In a capped interval rho=rho_cap>0, so d(rho sigma²)/dr=0 while the isotropic Jeans equation requires -rho g<0. The normalized force-balance defect is exactly one there. A numerical fixed point of the density/potential iteration cannot fix this missing pressure balance.
+   Restriction: valid as a stipulated capped density template and a Maxwellian phase-density bound; not a derived stationary fermion distribution. An actual Fermi-Dirac/Thomas-Fermi distribution has pressure/dispersion varying through the degenerate core; anisotropy would also need a specified distribution and Jeans term.
+   Impact: invalidates the physical equilibrium interpretation of capped-disc safety, not the arithmetic of the capped-template outputs. HF1 explicitly says the cap does no work in clusters; therefore the cluster-shape failure is not repaired by this finding. The independent CMB failure remains untouched. Cheapest test: report |d(rho sigma²)/dr+rho g|/(rho g) on each saturated segment before any further G2/G3 interpretation. No new production simulation needed.
+
+2. HF1 formal outcome remains 5/6 failures, one undetermined; universal language must not replace it.
+   README.md:3 says the 3.74eV fit is unconverged but also says the family is killed. Prefer the stored formal label: 'fails at 5 of 6, 1 UNDETERMINED [3.74]'. It is also a six-point specified FD family test, not every continuous mass or nonthermal distribution.
+   hf1_g1_results.json confirms FD failures at 11.8,11,9,7, fixed-YHe FDY failure at5; FDY3.74 unconverged. Best FD: plik1432.4247 and S−RF5=1041.7572. COLD best11.8: plik911.516 and S−RF5=455.136; COLD5 is now complete and fails (plik3755.386, S−RF5=3470.072). CHI11,9,7 fail; CHI11.8 is unconverged. README.md:28's unfinished-variants wording is stale relative to these files. No job was polled or altered.
+   G2 m5: X-COP mean+.1586 approximately, rms.251; 3/15 keys; G3 groups Z−5.90. These are numbers-only after G1 failure, not passes toward an accepted model. Fixed helium for low masses is explicitly not a BBN calculation. Gate4 not run is the correct frozen response.
+
+3. No new mathematical bug found in the inspected canonical SUGRA tadpole or cubic.
+   canonical_gravity/DERIVATION.md: exact real D-flat potential independently expands to deltaV=−4 f W0 ReX/Mp². Cubic contributions cancel by Euler degree; no leading a,b tadpole.
+   The physical Cartesian sigma-aa cubic is (m_sigma²−m_a²)/(sqrt(2)R), so the stated width carries both (1−m_a²/m_sigma²)² and sqrt(1−4m_a²/m_sigma²). Both reproduced independently.
+   canonical_gravity/STATUS.md:14–17 / run_shape/result.json: closure t1.1319622499, fold t1.2667398671, mu_fold600578.144GeV, mchi_at_fold26.131896keV for e=.003, old benchmark force/max30.25528366. shape.py uses the exact rigid one-loop profile and leading tuned-W0 tilt, not full SUGRA. Its scope language is accurate. mchi_at_fold is not asserted to be the global maximum mchi along the branch; cchi(t) varies.
+   STATUS.md:26 correctly lists finite V2, heavy-normal stationarity, metric and complete spectrum as unfinished. The old MeV point is excluded on this leading small-field branch; the table does not exclude all lower scales or every gravity construction.
+
+4. No-scale is not a vacuum-energy solution here.
+   protected_gravity/STATUS.md:57–75: exact n=3 cancels W0's own terms, leaves Y^-2 sum|Wi|² and an unstabilized/runaway modulus. For n=3−epsilon the additional negative term allows tuning but does not produce a controlled modulus minimum by itself.
+   Independently inverted the 2x2 Kähler metric for one real matter coordinate plus real modulus, confirming the stated CP-slice formula with DH=P²−HQ. This corroborates the algebraic structure; it is not the full complex SU(5) spectrum check.
+   Proposed quartic stabilization is unexecuted. STATUS.md:155–160 correctly flags the orthogonal neutral fermion: making m3/2>mchi does not close chi→light neutral fermion+photon. New epsilon,b,c,W0 are physical input/tuning, not a derivation of rhoDE or kappa.
+
+5. Production remains wholly unsolved.
+   production/STATUS.md:5–7 explicitly has no runner, Boltzmann solution or derived relic abundance. Existing FD temperature/density in TP04 is imposed. Phase closure changes branching and decay time; a massive phase can cascade to gauginos. No saved computation tracks that cascade, nonabelian companions, entropy or momentum. Warm-injection risk must be checked before fitting an initial mother amplitude.
+
+SURVIVING RESULTS AND LIMITS
+TP01/02/03: the current documents separate the full rigid tree spectrum, exact one-loop supertrace cancellation, running/CS pieces, finite heavy response, and direct finite graphs. TP03's ten graph classes and finite angular current are implemented; inspected full.py and current.py respect the stated separation and add heavy displacement once. The pressure result is 48 finite cases at e=.01,.03, not a uniform all-coupling/all-orders result. Phase endpoints ~1.21394/1.21819 and cs²(1.3)<0 support the stated pressure-rich circular-branch obstruction. No independent all-vertex rederivation or numerical rerun was done in this audit.
+TP04: leading gaugino scaling mchi=1.1164161506e-4 mu e^(5/2) is implemented with full finite tree splittings and ordinary-messenger, gauge/scale and SUSY controls. The transpose symmetry on the supplied action consistently distinguishes odd photino/photon and even Goldstino/phase; allowed two-vector channels are bounded rather than set to zero. The hard-loop radial integral coefficient 4/(15*16pi²*M³) was independently checked. The current loss composer uses amplitude triangle bounds for overlapping classes. Its ≥1.15116e20s lifetime and ≥.996224 age-survival refer ONLY to the named leading rigid vacuum/NR loss set. The 103.75pc FD travel distance is conditional on a stipulated population, not abundance/production or a transfer-function fit. Raw vacuum mismatch1.396e74 and raw-V=DE ultralight failure are correctly retained.
+Yang–Mills: read raw gauge reduction, single-square/cactus gap, weighted matrix, cubic concentration, torus-flux scope, shared-edge operator and weak-gap transfer. The cactus proof's direct-sum structure, the shared-edge product-vacuum obstruction, and the winding-trial scope all survive this targeted check. The shared-edge oscillator has B eigenvalues3,5 and gap sqrt(3b)/2 before root-conjugation restriction; the physical bound follows by restriction. Simon's 1983 original Theorem1.1 and section6 were authenticated at https://www.numdam.org/item/AIHPA_1983__38_3_295_0.pdf on2026-11-03. Its fixed-operator leading low-eigenvalue limit applies after the displayed smooth compact metric/unique nondegenerate minimum checks. It supplies no volume-uniform constants or conditional coarse-holonomy estimates. The original paper gives the manifold extension through a localization argument; no novelty claim follows. The source was not cached, so no retained source-file hash is claimed. Full cubic physical fast-layer weighted propagation, Schur stability and continuum mass gap remain open.
+qwen: material changed particle work is explicitly a rival-language stress experiment, not a reinstatement. LCDM_FRIED_CHICKEN/README.md and PARTICLE_PROPERTY_SHEET.md correctly disclose hand-inserted DE scale, failure of one barotrope, no production/action and failed lensing. No framework success should be inferred from reverse-engineered exact-law matches. PAPER67 excerpts accurately retain retirement and open action status.
+
+DEPENDENCY GRAPH / OBLIGATION MATRIX
+Raw SU5 K,W [internal action] -> rigid spectrum [finite exact algebra + numerical implementation] -> finite CW/current [fixed order and sampled parameter range] -> cold pole/loss [rigid current and leading selected channels] -> SUGRA stationary state [NOT ADDRESSED beyond leading shape] -> physical neutral spectrum [NOT ADDRESSED] -> production/entropy/momentum [NOT ADDRESSED] -> viable abundance/coldness [NOT ESTABLISHED].
+Raw F=DE -> scale fixed -> tested photino/small-radial state fails density: PASSED within specified constructions.
+Tuned W0 -> tiny residual DE: CONDITIONAL/TUNED; does not imply raw-source DE derivation.
+HF1 fitted FD histories -> stored G1 failures: computational outcomes inspected, not refitted. HF1 hard-capped isothermal profile -> equilibrium: FAILED wherever saturated.
+C2 rooted gauge step -> cactus/finite cluster bounds: inspected internal proof passes, semiclassical source transfer verified. Finite-cluster -> full cubic conditional correlation/mass gap: NOT ADDRESSED.
+
+NEXT ROUTES / CHEAP DISCRIMINATORS (RECOMMENDATIONS, NOT EXECUTED)
+A. Current HF1 exception: close the audit boundary first. Add/inspect Jeans residuals and restrict 'equilibrium' language. If formal closure of the six-point G1 label is worth pursuing, a separately authorized bounded convergence restart of the existing3.74eV FDY cell would decide that cell; it would still not validate BBN or every spectrum. Do not launch Gate4 while no primary point passes. A change to a true degenerate minimum-momentum distribution must be a disclosed new spectrum, not relabeling the existing ksi=5 COLD run.
+B. Archived canonical SU5 route, only if owner reopens it: solve one interior phase-closed point away from the fold using exact microscopic K,W+W0, finite V2/heavy reduction once, actual kinetic metric, and full physical neutral/transverse Hessian. Kill if no positive physical Hessian or an unsuppressed neutral-fermion channel; only a surviving point earns production work. This is more decisive than extending the old rigid lifetime bounds.
+C. Archived production route, only after B and owner reopening: compute the actual radial/phase total widths and daughter p/m, including sigma→aa→gauginos, and first obtain a momentum/free-streaming lower bound in the most favorable allowed expansion history. Kill if too warm or radiation/companion energy unavoidable; only then integrate abundance and entropy. A free initial amplitude cannot fix momentum per daughter or relative branching. Protected gravity is a distinct alternative with extra fields; its cheapest gate is CP/complex Kähler positivity plus eaten/orthogonal neutral spectrum, not a new arbitrary offset.
+For an independent pure-math direction, C2's useful next object is a physical fast/slow split of the two-square system conditional on retained coarse holonomy, especially worst-holonomy/center-near cases. An unconditional harmonic gap and tiny plaquette expectation are already known insufficient. This is separate from the empirical gravity program.
+
+COMMANDS / CHECKS
+python3 -B /private/tmp/particle_field_audit_20261103/independent_checks.py
+Five checks passed; result includes Python/SymPy/platform/runtime and19 input SHA256 pins. Runtime~.41s; no source import from repo.
+python3 /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/4.0.0/skills/computation-audit/scripts/validate_manifest.py <manifest> --root /Users/carlzimmerman/new_physics/zimmerman-formula
+Independently executed for TP05 canonical_gravity/run_shape, TP04 run_loss_v2, TP03 run_pressure. All exit0: 'valid evidence record (run status: completed); mathematical interpretation requires review'. This checks provenance, not reproduction of the science. Broader58-manifest handoff claim was not rerun in full.
+Inspection commands were cat/sed/rg, git status/diff/ls-files, and read-only hash inventory. No mathematical output above should be read as a new independent complete spectrum calculation.
+
+EXACT HIGH-IMPACT INPUT HASHES (SHA256 at audit time)
+rebuild_2026_10_22/HF1_hybrid_fermion/hf1_fermion.py
+7602403f27a1ce3d57dc0cc607ed6763109050d091dd41bb915696025fffb868
+rebuild_2026_10_22/HF1_hybrid_fermion/hf1_g1.py
+750f2294a3618bda6616460ce624860923da2613718a3675da2bf72b147da69a
+rebuild_2026_10_22/HF1_hybrid_fermion/hf1_g1_results.json
+a50eaf0ff0ae1cd38ca4d634577cd4b2eb5869a3c1fbc025fbf80515d8fc8929
+reviews/gravity_vacuum_production_2026_11_01/canonical_gravity/shape.py
+d53e4a2cd4a61f771cbb02a4cb8a0a437501d257c0f0ee2deebbb0738c82e753
+reviews/gravity_vacuum_production_2026_11_01/canonical_gravity/run_shape/result.json
+d02225c1837a21df08608c7f73939f6cd7d344d452b810ebcd7e456323ecf89f
+reviews/gravity_vacuum_production_2026_11_01/protected_gravity/STATUS.md
+2290dbe0562db9a54c99920eb1c6aedc6a0845a7db69167349747863dc0914aa
+reviews/gravity_vacuum_production_2026_11_01/production/STATUS.md
+bc16af1ec72de38e23187f130bbbbfb44126c3a7d832b987802c0e287cabccb5
+real_research/yang_mills_layer_2026_10_28/correlation_c2/SHARED_EDGE_WEAK_GAP.md
+2557b3925d002c0511413e8f027a95df6ec95c0d99fdbdda26b12cb60a0a4bf4

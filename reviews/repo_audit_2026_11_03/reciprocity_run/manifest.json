@@ -1,0 +1,124 @@
+{
+  "schema_version": 2,
+  "claim_id": "RA20261103_FILTER_RECIPROCITY",
+  "repository": {
+    "commit": "8e5b84e6a12bf0367eb4c4e520373db540a49783",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "reviews/repo_audit_2026_11_03/reciprocity_check.py",
+    "reviews/repo_audit_2026_11_03/reciprocity_run/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite quadrature of analytic two-mode source-response asymmetry for fixed Gaussian source-only QUMOND on the specified positive-density planar periodic background.",
+    "coefficient_domain": "real double precision arithmetic with an accompanying analytic sign proof",
+    "conventions": "4piG=a0=1, period 2pi, mean-subtracted Poisson, external gradient 1, mean integral inner product",
+    "inputs": [
+      "sigma=0.7",
+      "epsilon=0.2",
+      "rho_c=1",
+      "simple nu",
+      "cos x and cos 2x zero-mass source variations"
+    ],
+    "bounds": {
+      "quadrature_nodes": [
+        64,
+        256,
+        1024,
+        4096
+      ]
+    },
+    "non_claims": [
+      "No isolated 3D halo test",
+      "No astrophysical fit",
+      "No certification of adaptive widths or a covariant completion"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-03T21:08:09.630490+00:00",
+    "runtime_seconds": 0.122318,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 15.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 10,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "reviews/repo_audit_2026_11_03/reciprocity_check.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "reviews/repo_audit_2026_11_03/reciprocity_check.py",
+      "sha256": "6d71af7712d69ec25a7cd1ccce6a64b1f384170f7b813fdee0c1f97fcb4ddf0a",
+      "sha256_after": "6d71af7712d69ec25a7cd1ccce6a64b1f384170f7b813fdee0c1f97fcb4ddf0a"
+    }
+  ],
+  "output_directory": "reviews/repo_audit_2026_11_03/reciprocity_run",
+  "declared_results": [
+    "reviews/repo_audit_2026_11_03/reciprocity_run/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "reviews/repo_audit_2026_11_03/reciprocity_run/stdout.txt",
+      "sha256": "17462c028d3f93c0916939b4385a5a7f2c34f63a43afa1634a9c3fd7a8dc3359",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/repo_audit_2026_11_03/reciprocity_run/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "reviews/repo_audit_2026_11_03/reciprocity_run/result.json",
+      "sha256": "17462c028d3f93c0916939b4385a5a7f2c34f63a43afa1634a9c3fd7a8dc3359",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

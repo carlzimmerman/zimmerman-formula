@@ -1,0 +1,154 @@
+{
+  "schema_version": 2,
+  "claim_id": "KT40_MW_GAS_COMPLETION_INDEPENDENT_AUDIT",
+  "repository": {
+    "commit": "648817a07dc9a597a251da7684a85a1cdd7038fd",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "rebuild_2026_10_22/KT40_mechanism/dynamics/audit_hydro.py",
+    "--output",
+    "rebuild_2026_10_22/KT40_mechanism/dynamics/hydro_audit_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Independent90-row tensor derivative and gas hydrostatic/multifluid matrix algebra; all-direction Nmax classification from stored actual MW probes.",
+    "coefficient_domain": "IEEE754 float64; analytic inequalities proved separately",
+    "conventions": "E=a0²xR(x+s**p); K=.5E_gg[n,n],N=.5E_HH[nn,nn]; delta_rho_ddot=[4piG rho K+(4piG rho N−cs²)k²]delta_rho. Mixed derivative finite differences compare against its exact analytic contraction normalized by the full mixed-tensor envelope; legacy component-relative diagnostics retained. Mixed-block comparison uses Richardson-extrapolated centered differences over relative steps .03,.01,.003,.001,.0001 to resolve small curvature dependence of a much larger gradient response. Same tensor-normalized 2e-6 gate.",
+    "inputs": [
+      "Frozen KT39 full tensor API and KT37 scalar primitive",
+      "Deterministic local jets with full Frobenius contraction"
+    ],
+    "bounds": {
+      "rows": 90,
+      "refinements": [
+        3,
+        4,
+        5
+      ],
+      "points_per_footing": 15,
+      "wall_seconds": 120,
+      "cpu_seconds": 110,
+      "max_threads": 1
+    },
+    "non_claims": [
+      "No independent field solve or global equilibrium proof",
+      "No collisionless, nonbarotropic or MHD stability theorem",
+      "The outward-force sign itself requires the root field-level verification"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-04T19:58:29.520522+00:00",
+    "runtime_seconds": 0.133544,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 110,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/KT40_mechanism/dynamics/audit_hydro.py",
+    "rebuild_2026_10_22/KT40_mechanism/dynamics/checks_v3.py",
+    "rebuild_2026_10_22/KT39_power_curvature/analytic/law.py",
+    "rebuild_2026_10_22/KT37_generalized_action/analytic/law.py",
+    "rebuild_2026_10_22/KT40_mechanism/mw/hydro_002/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "rebuild_2026_10_22/KT40_mechanism/dynamics/audit_hydro.py",
+      "sha256": "0910b9ce08cca95be4c86ce91b7a051db3d63bc16968e379659e3dda2bf64df5",
+      "sha256_after": "0910b9ce08cca95be4c86ce91b7a051db3d63bc16968e379659e3dda2bf64df5"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT40_mechanism/dynamics/checks_v3.py",
+      "sha256": "136f677cd9821e251943e170c5dc1538940e44919ef1e50d101ef9c59c7ac0f0",
+      "sha256_after": "136f677cd9821e251943e170c5dc1538940e44919ef1e50d101ef9c59c7ac0f0"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT39_power_curvature/analytic/law.py",
+      "sha256": "52a5f9bece8f46aa307f320fe2bb8418b04d581e7d53801518d8448ea2952390",
+      "sha256_after": "52a5f9bece8f46aa307f320fe2bb8418b04d581e7d53801518d8448ea2952390"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT37_generalized_action/analytic/law.py",
+      "sha256": "7a7f4710cacb6b33a88e170147c64eb6554ba44f6fda1fc81104bea5a222740f",
+      "sha256_after": "7a7f4710cacb6b33a88e170147c64eb6554ba44f6fda1fc81104bea5a222740f"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT40_mechanism/mw/hydro_002/results.json",
+      "sha256": "fc57d5823da0fa7dccfebcb7f1193910394c0bea1da0df42464b050c8f4d934d",
+      "sha256_after": "fc57d5823da0fa7dccfebcb7f1193910394c0bea1da0df42464b050c8f4d934d"
+    }
+  ],
+  "output_directory": "rebuild_2026_10_22/KT40_mechanism/dynamics/hydro_audit_001",
+  "declared_results": [
+    "rebuild_2026_10_22/KT40_mechanism/dynamics/hydro_audit_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "rebuild_2026_10_22/KT40_mechanism/dynamics/hydro_audit_001/stdout.txt",
+      "sha256": "e403274889864846504afa03c3258700a1a7787da57b7ad0f7894c7797f16608",
+      "kind": "log"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT40_mechanism/dynamics/hydro_audit_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT40_mechanism/dynamics/hydro_audit_001/results.json",
+      "sha256": "40ce45c0989dac4e1cdd557b299bb31ddf34b23c125e17c8105235c241af50e9",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

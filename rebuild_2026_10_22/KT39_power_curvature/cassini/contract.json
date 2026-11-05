@@ -1,0 +1,92 @@
+{
+  "claim_id": "KT39_POWER_CURVATURE_CASSINI_FIXED_PORTFOLIO",
+  "mathematics": {
+    "assertion_tested": "All18 fixed power-length choices on both Solar footings, full A/B response including beta derivatives; base/fine and density identities, tensor API checks for each power, shared exact zero-length controls, Newton/zero-external-field controls, and Gaussian source shrink/cutoff checks.",
+    "coefficient_domain": "IEEE float64 with analytic scaled derivatives",
+    "conventions": "p=5/4,3/2,7/4; s=ell\u00b2H:H,z=x+s^p; beta=pell\u00b2s^(p-1); A=(R-1+xRprime)g,B=beta*xRprime*H; Q(0)=0. No field filter or H floor. Q2=1.5a0/rM times STFzz Hessian.",
+    "inputs": [
+      "KT39 analytic tensor API",
+      "Read-only KT38 scaled Green/density coefficient routines",
+      "Read-only KT37 smooth Solar profiles and Q primitive",
+      "Unchanged KT33 Solar constants and observational ceiling"
+    ],
+    "bounds": {
+      "powers": [
+        1.25,
+        1.5,
+        1.75
+      ],
+      "physical_lengths_kpc": [
+        1.5,
+        2,
+        2.5,
+        3,
+        3.5,
+        4
+      ],
+      "footings": 2,
+      "radial_n": [
+        8000,
+        12000,
+        16000
+      ],
+      "angular_n": [
+        160,
+        240,
+        320
+      ],
+      "radial_domain": [
+        1e-10,
+        10000000.0
+      ],
+      "gaussian_sigma_rM": [
+        0.5,
+        0.1,
+        0.01,
+        0.001,
+        5e-07
+      ],
+      "relative_refinement_density_gate": 0.0002,
+      "absolute_core_radius_gate": 1e-10,
+      "legacy_endpoint_relative_gate": 1e-07
+    },
+    "non_claims": [
+      "Finite portfolio, no global power-length acceptance theorem",
+      "Constant external field, not actual Galactic-gradient embedding or ephemeris fit",
+      "For p<=1.5 the general H=0 source may require weak derivatives",
+      "No dynamical-health inference from static uniform-field behavior",
+      "Gaussian source limit, not regulator independence"
+    ]
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/KT39_power_curvature/cassini/calculate.py",
+    "rebuild_2026_10_22/KT39_power_curvature/cassini/DERIVATION.md",
+    "rebuild_2026_10_22/KT39_power_curvature/analytic/law.py",
+    "rebuild_2026_10_22/KT38_weak_field_curvature/cassini/calculate.py",
+    "rebuild_2026_10_22/KT38_weak_field_curvature/analytic/law.py",
+    "rebuild_2026_10_22/KT37_generalized_action/cassini/calculate.py",
+    "rebuild_2026_10_22/KT37_generalized_action/analytic/law.py",
+    "rebuild_2026_10_22/KT33_reciprocal_filter/cassini/cassini_v2.py",
+    "rebuild_2026_10_22/KT37_generalized_action/cassini/run_002/results.json",
+    "rebuild_2026_10_22/KT38_weak_field_curvature/cassini/run_001/results.json"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

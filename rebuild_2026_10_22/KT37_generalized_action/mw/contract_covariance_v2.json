@@ -1,0 +1,77 @@
+{
+  "claim_id": "KT37_COVARIANCE_REGRESSION_V2_FINITE_VOLUME_ANGULAR_TRACE",
+  "mathematics": {
+    "assertion_tested": "Same covariance regression applied to the continuum-equivalent angular trace Ltheta=Divt Dt, with Htt=Ltheta-cot(theta)/r Dtheta+Dr/r. Require weighted symmetry/radial cancellation and convergence before physical replay.",
+    "coefficient_domain": "IEEE754 float64 and sparse weighted adjoints",
+    "conventions": "x=g\u00b2,z=x+ell\u00b2H:H,P=xQ(z)/z,Q0=0,Qprime=simple nu(sqrtz). Odd polar-component parity for second angular derivative. All Hessian transpose terms retained; mixed component multiplicity two. No Gaussian.",
+    "inputs": [
+      "Original KT33/P4 grid and Poisson operator",
+      "KT37 analytic stable law",
+      "Independent radial Plummer continuum reduction"
+    ],
+    "bounds": {
+      "refinements": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "spherical_lengths": [
+        0,
+        1,
+        10
+      ],
+      "cancellation_tolerance": 1e-12,
+      "polar_force_relative_tolerance": 1e-06,
+      "wall_seconds": 120,
+      "cpu_seconds": 100
+    },
+    "non_claims": [
+      "No observational grade",
+      "No continuum error certificate",
+      "No dynamical stability or healthy relativistic completion",
+      "Finite Hessian boundary behavior must be checked by refinement"
+    ]
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/KT33_reciprocal_filter/mw/mw_reciprocal.py",
+    "rebuild_2026_10_22/KT25_eps_equals_kappa/kt25.py",
+    "rebuild_2026_10_22/KT25_eps_equals_kappa/kt25.json",
+    "rebuild_2026_10_22/KT25_eps_equals_kappa/FROZEN_CRITERIA.md",
+    "rebuild_2026_10_22/UX5_mw_stellar_mass/ux5_core.py",
+    "rebuild_2026_10_22/UX5_mw_stellar_mass/FROZEN_CRITERIA.md",
+    "rebuild_2026_10_22/X5_mw_joint_baryons/x5_lib.py",
+    "rebuild_2026_10_22/P4_v3_galaxy_tiles/p4_solver.py",
+    "rebuild_2026_10_22/P4_v3_galaxy_tiles/p4_v3_galaxy_tiles.py",
+    "real_research/data/mw_rc_ou2024_table1.tsv",
+    "real_research/data/mw_rc_eilers2019_table1.tsv",
+    "real_research/data/mw_kz11_bovyrix2013_table3.tsv",
+    "rebuild_2026_10_22/KT34_reciprocal_epsilon_scan/mw/scan.py",
+    "rebuild_2026_10_22/KT37_generalized_action/analytic/law.py",
+    "rebuild_2026_10_22/KT37_generalized_action/mw/generalized.py",
+    "rebuild_2026_10_22/KT37_generalized_action/mw/invariants.py",
+    "rebuild_2026_10_22/KT37_generalized_action/mw/invariants_v2.py",
+    "rebuild_2026_10_22/KT37_generalized_action/mw/refine.py",
+    "rebuild_2026_10_22/KT37_generalized_action/mw/covariance_check.py",
+    "rebuild_2026_10_22/KT37_generalized_action/mw/generalized_v2.py"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

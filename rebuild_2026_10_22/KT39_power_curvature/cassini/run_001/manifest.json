@@ -1,0 +1,220 @@
+{
+  "schema_version": 2,
+  "claim_id": "KT39_POWER_CURVATURE_CASSINI_FIXED_PORTFOLIO",
+  "repository": {
+    "commit": "e7f1ac9ca025031f5ec15679645913b10f66f4ad",
+    "dirty": true
+  },
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "rebuild_2026_10_22/KT39_power_curvature/cassini/calculate.py",
+    "--output",
+    "rebuild_2026_10_22/KT39_power_curvature/cassini/run_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "All18 fixed power-length choices on both Solar footings, full A/B response including beta derivatives; base/fine and density identities, tensor API checks for each power, shared exact zero-length controls, Newton/zero-external-field controls, and Gaussian source shrink/cutoff checks.",
+    "coefficient_domain": "IEEE float64 with analytic scaled derivatives",
+    "conventions": "p=5/4,3/2,7/4; s=ell²H:H,z=x+s^p; beta=pell²s^(p-1); A=(R-1+xRprime)g,B=beta*xRprime*H; Q(0)=0. No field filter or H floor. Q2=1.5a0/rM times STFzz Hessian.",
+    "inputs": [
+      "KT39 analytic tensor API",
+      "Read-only KT38 scaled Green/density coefficient routines",
+      "Read-only KT37 smooth Solar profiles and Q primitive",
+      "Unchanged KT33 Solar constants and observational ceiling"
+    ],
+    "bounds": {
+      "powers": [
+        1.25,
+        1.5,
+        1.75
+      ],
+      "physical_lengths_kpc": [
+        1.5,
+        2,
+        2.5,
+        3,
+        3.5,
+        4
+      ],
+      "footings": 2,
+      "radial_n": [
+        8000,
+        12000,
+        16000
+      ],
+      "angular_n": [
+        160,
+        240,
+        320
+      ],
+      "radial_domain": [
+        1e-10,
+        10000000.0
+      ],
+      "gaussian_sigma_rM": [
+        0.5,
+        0.1,
+        0.01,
+        0.001,
+        5e-07
+      ],
+      "relative_refinement_density_gate": 0.0002,
+      "absolute_core_radius_gate": 1e-10,
+      "legacy_endpoint_relative_gate": 1e-07
+    },
+    "non_claims": [
+      "Finite portfolio, no global power-length acceptance theorem",
+      "Constant external field, not actual Galactic-gradient embedding or ephemeris fit",
+      "For p<=1.5 the general H=0 source may require weak derivatives",
+      "No dynamical-health inference from static uniform-field behavior",
+      "Gaussian source limit, not regulator independence"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-04T19:33:44.647687+00:00",
+    "runtime_seconds": 29.720585,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 300.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 280,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/KT39_power_curvature/cassini/calculate.py",
+    "rebuild_2026_10_22/KT39_power_curvature/cassini/DERIVATION.md",
+    "rebuild_2026_10_22/KT39_power_curvature/analytic/law.py",
+    "rebuild_2026_10_22/KT38_weak_field_curvature/cassini/calculate.py",
+    "rebuild_2026_10_22/KT38_weak_field_curvature/analytic/law.py",
+    "rebuild_2026_10_22/KT37_generalized_action/cassini/calculate.py",
+    "rebuild_2026_10_22/KT37_generalized_action/analytic/law.py",
+    "rebuild_2026_10_22/KT33_reciprocal_filter/cassini/cassini_v2.py",
+    "rebuild_2026_10_22/KT37_generalized_action/cassini/run_002/results.json",
+    "rebuild_2026_10_22/KT38_weak_field_curvature/cassini/run_001/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "rebuild_2026_10_22/KT39_power_curvature/cassini/calculate.py",
+      "sha256": "03a6fe2b3ee76ebd792919dc5f5b93d0395d3f212fc2305b601aa0005a931c3f",
+      "sha256_after": "03a6fe2b3ee76ebd792919dc5f5b93d0395d3f212fc2305b601aa0005a931c3f"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT39_power_curvature/cassini/DERIVATION.md",
+      "sha256": "93a33ebbfad749c8b122a05691aea4e2935958a1a070c2fabadda4315a8677bc",
+      "sha256_after": "93a33ebbfad749c8b122a05691aea4e2935958a1a070c2fabadda4315a8677bc"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT39_power_curvature/analytic/law.py",
+      "sha256": "52a5f9bece8f46aa307f320fe2bb8418b04d581e7d53801518d8448ea2952390",
+      "sha256_after": "52a5f9bece8f46aa307f320fe2bb8418b04d581e7d53801518d8448ea2952390"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT38_weak_field_curvature/cassini/calculate.py",
+      "sha256": "2a2d9926f060d5e18285d8ab8443a6206b447e2fdfd2cdfd622691724ecea4f2",
+      "sha256_after": "2a2d9926f060d5e18285d8ab8443a6206b447e2fdfd2cdfd622691724ecea4f2"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT38_weak_field_curvature/analytic/law.py",
+      "sha256": "06ce3b23eebb90093d9cb1ef5dee650e370baa0ca29f5524838eeef6ac23f263",
+      "sha256_after": "06ce3b23eebb90093d9cb1ef5dee650e370baa0ca29f5524838eeef6ac23f263"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT37_generalized_action/cassini/calculate.py",
+      "sha256": "a62ca27fbe23f278302e31dddd1b21b16e83fe0907903f96a06b8441d17f9eda",
+      "sha256_after": "a62ca27fbe23f278302e31dddd1b21b16e83fe0907903f96a06b8441d17f9eda"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT37_generalized_action/analytic/law.py",
+      "sha256": "7a7f4710cacb6b33a88e170147c64eb6554ba44f6fda1fc81104bea5a222740f",
+      "sha256_after": "7a7f4710cacb6b33a88e170147c64eb6554ba44f6fda1fc81104bea5a222740f"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT33_reciprocal_filter/cassini/cassini_v2.py",
+      "sha256": "7d928d700ea4c371b4ac3551a19fa3fbda4f6bb8acac1d9842b4a689f13ac1bf",
+      "sha256_after": "7d928d700ea4c371b4ac3551a19fa3fbda4f6bb8acac1d9842b4a689f13ac1bf"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT37_generalized_action/cassini/run_002/results.json",
+      "sha256": "1479248947f363588f5454314d1dd5fc7c2e1c5a0eee18a96fedd114a83acff1",
+      "sha256_after": "1479248947f363588f5454314d1dd5fc7c2e1c5a0eee18a96fedd114a83acff1"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT38_weak_field_curvature/cassini/run_001/results.json",
+      "sha256": "402b3bfd704873faec18fd14faafdced861f281c49285312180127db979f3839",
+      "sha256_after": "402b3bfd704873faec18fd14faafdced861f281c49285312180127db979f3839"
+    }
+  ],
+  "output_directory": "rebuild_2026_10_22/KT39_power_curvature/cassini/run_001",
+  "declared_results": [
+    "rebuild_2026_10_22/KT39_power_curvature/cassini/run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "rebuild_2026_10_22/KT39_power_curvature/cassini/run_001/stdout.txt",
+      "sha256": "f4dfe590a4de1736205c937ed876b85f75a1c52af962fdef688e932d08769dce",
+      "kind": "log"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT39_power_curvature/cassini/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT39_power_curvature/cassini/run_001/results.json",
+      "sha256": "07f4f980709874befbd38e7c26a0fcf00f974313625f7f0629fdcb5dc157d172",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

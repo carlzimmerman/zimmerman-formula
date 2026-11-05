@@ -1,0 +1,235 @@
+{
+  "schema_version": 2,
+  "claim_id": "KT42_CURVATURE_ONLY_GAUSSIAN_DWARF_VIRIAL",
+  "repository": {
+    "commit": "131401cc29e391764602c22a4191dedd345ee056",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "-B",
+    "rebuild_2026_10_22/KT42_curvature_filter/dwarf/calculate.py",
+    "--output",
+    "rebuild_2026_10_22/KT42_curvature_filter/dwarf/run_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "At fixed KT39 p=9/8, ell=3kpc, original Plummer sources and a0 footings, compute signed full-action homology virial for curvature-only Gaussian filtering at nine fixed physical widths. First discriminator Draco Upsilon2 eta.01; Fornax Upsilon3 eta.01 is a declared size control.",
+    "coefficient_domain": "IEEE754float64, analytic Gaussian-mixture representation and deterministic numerical quadrature",
+    "conventions": "g unfiltered; Hbar=Hess(T_a psi)=T_a Hess psi; T_a Gaussian variance a² per Cartesian direction. Full homology uses T_a delta H with filter width fixed, external Newtonian gradient fixed. Signed W/(3M), not a direction-specific observed dispersion.",
+    "inputs": [
+      "Unchanged McConnachie sample and original Plummer profiles",
+      "Original G and canonical/alternate a0",
+      "KT37 Q(0)=0, Qprime=nu_simple(sqrt(z))",
+      "KT40 eta.01 baseline signed virials"
+    ],
+    "bounds": {
+      "p": 1.125,
+      "ell_kpc": 3,
+      "filter_widths_kpc": [
+        0,
+        0.0001,
+        0.001,
+        0.003,
+        0.01,
+        0.03,
+        0.1,
+        0.3,
+        1
+      ],
+      "cases": [
+        {
+          "name": "Draco",
+          "upsilon": 2,
+          "eta": 0.01
+        },
+        {
+          "name": "Fornax",
+          "upsilon": 3,
+          "eta": 0.01
+        }
+      ],
+      "footings": [
+        "canonical",
+        "alt"
+      ],
+      "quadratures": [
+        [
+          801,
+          32,
+          401,
+          1
+        ],
+        [
+          1601,
+          64,
+          801,
+          1
+        ],
+        [
+          2401,
+          96,
+          1201,
+          2
+        ]
+      ],
+      "quadrature_columns": [
+        "radial_nodes",
+        "angular_nodes",
+        "Gaussian_mixture_logt_nodes",
+        "outer_domain_factor"
+      ],
+      "rmin": "1e-6 source_scale",
+      "rmax": "domain*(200 source_scale+120kpc)",
+      "mixture_log_t_bounds": [
+        -32,
+        8
+      ],
+      "finite_energy_control_domain_source_scales": [
+        0.01,
+        10
+      ],
+      "energy_difference_steps": [
+        0.0001,
+        5e-05
+      ],
+      "numerical_variance_absolute_refinement_gate_km2s2": 0.02,
+      "energy_fd_relative_gate": 5e-05,
+      "energy_fd_absolute_gate_km2s2": 1e-05,
+      "zero_filter_baseline_absolute_gate_km2s2": 0.001,
+      "gaussian_mixture_unfiltered_scaled_error_gate": 1e-07,
+      "wall_seconds": 1200,
+      "cpu_seconds": 1100,
+      "max_threads": 1
+    },
+    "non_claims": [
+      "No actual external-field assignment for either dwarf",
+      "No anisotropic equilibrium or line-of-sight prediction",
+      "No continuous-width exclusion",
+      "No global novelty, relativistic completion, or physical survival claim"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-04T20:21:27.342761+00:00",
+    "runtime_seconds": 14.394424,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 1200.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 1100,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "rebuild_2026_10_22/KT42_curvature_filter/dwarf/calculate.py",
+    "rebuild_2026_10_22/KT42_curvature_filter/dwarf/DERIVATION.md",
+    "rebuild_2026_10_22/KT37_generalized_action/analytic/law.py",
+    "rebuild_2026_10_22/KT39_power_curvature/dwarfs/isolated.py",
+    "real_research/data/dsph/mcconnachie2012_dsph.csv",
+    "rebuild_2026_10_22/KT40_mechanism/efe/low_001/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "rebuild_2026_10_22/KT42_curvature_filter/dwarf/calculate.py",
+      "sha256": "74a3acd2a0afac0e0342090f27f29b97609c5d007f99cef5bcb4bc23a592a831",
+      "sha256_after": "74a3acd2a0afac0e0342090f27f29b97609c5d007f99cef5bcb4bc23a592a831"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT42_curvature_filter/dwarf/DERIVATION.md",
+      "sha256": "069095e6027b571c0c1723f6700b1f02edc566e8c7f75d86eab877ec0605beb2",
+      "sha256_after": "069095e6027b571c0c1723f6700b1f02edc566e8c7f75d86eab877ec0605beb2"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT37_generalized_action/analytic/law.py",
+      "sha256": "7a7f4710cacb6b33a88e170147c64eb6554ba44f6fda1fc81104bea5a222740f",
+      "sha256_after": "7a7f4710cacb6b33a88e170147c64eb6554ba44f6fda1fc81104bea5a222740f"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT39_power_curvature/dwarfs/isolated.py",
+      "sha256": "5e887a4800b585812d948fb41ef953e9768b6135e027af7c5a95c92ad35132b9",
+      "sha256_after": "5e887a4800b585812d948fb41ef953e9768b6135e027af7c5a95c92ad35132b9"
+    },
+    {
+      "path": "real_research/data/dsph/mcconnachie2012_dsph.csv",
+      "sha256": "ddd30df4b6ac833bad14c90c6860dcd5591fb5dc2f8d5cccabd0b002f33c5382",
+      "sha256_after": "ddd30df4b6ac833bad14c90c6860dcd5591fb5dc2f8d5cccabd0b002f33c5382"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT40_mechanism/efe/low_001/results.json",
+      "sha256": "4cd3a8943f695aeb4d6f1fc5701ddc6a0da9c847b5d563dc69524895d3d903d6",
+      "sha256_after": "4cd3a8943f695aeb4d6f1fc5701ddc6a0da9c847b5d563dc69524895d3d903d6"
+    }
+  ],
+  "output_directory": "rebuild_2026_10_22/KT42_curvature_filter/dwarf/run_001",
+  "declared_results": [
+    "rebuild_2026_10_22/KT42_curvature_filter/dwarf/run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "rebuild_2026_10_22/KT42_curvature_filter/dwarf/run_001/stdout.txt",
+      "sha256": "adc20cc49c6f9f049c6b710d1ec758a965a3f5d2530ebf08a6a17f0a8648f7ea",
+      "kind": "log"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT42_curvature_filter/dwarf/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "rebuild_2026_10_22/KT42_curvature_filter/dwarf/run_001/results.json",
+      "sha256": "6a1b2dc6c146fa8fd2dbf4bc368e0d880c26e34f2d272ffbd4f9594d083c5b06",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
