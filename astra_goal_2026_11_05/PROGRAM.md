@@ -66,8 +66,8 @@ claim, including the coordinator's previous AZC1 construction.
   brief's explicit one-paragraph fallback is recorded; no prediction is
   sealed and no artificial numerical test is substituted for that decision.
 - Tier3 lane9: AZ43 IN PROGRESS. Criteria096759f915 freeze143 parameter
-  points and729 local MW cells. Original anchors reproduced;93 small-gate
-  pairs completed:91 pass, points91/92 have T2 nonconvergence on both
+  points and729 local MW cells. Original anchors reproduced;103 small-gate
+  pairs completed:101 pass, points91/92 have T2 nonconvergence on both
   footings (1.91%/1.17% versus1%). Targeted Andromeda IX replay8/8
   reproduces those failures; no tolerance changed. At canonical p=.35,L_MW=1.5 the
   full local MW pair has15 coarse passes,10 fine passes,10 stable and
@@ -105,7 +105,12 @@ claim, including the coordinator's previous AZC1 construction.
   are queue-guarded. A1 corrects FELO spectral WCS before fits (old linear
   axis differs0.06208km/s). Mask fixtures10/10 and complete8x8 preparation
   checks19/19 pass; own masks/noise, shared gas map, exact resume/repeat.
-  Preparation physical footprint0.141GB; model pilot, queue and fits pending.
+  Preparation physical footprint0.141GB. Forward checks14/16: direct
+  positive convolution reduces edge-normalization error3.64e-10 to1.64e-12,
+  still above the unchanged1e-12 line; retain both failed tests. Dense
+  fitting implementation14/14 checks, including fixed physical30arcsec
+  pressure smoothing and ungraded stationary-fit pilot; both check suites
+  repeat byte-identically. Full mock/fit workers, fit footprint and queue pending.
 - Tier3 lane13: AZ47 IN PROGRESS. Measurement protocol75abae6f8b,
   criteria774bb8db44 and pre-result wording amendment b06499a5dc.
   Four train clusters yield rank3 empirical covariance, scatter.067-.106dex;

@@ -49,7 +49,9 @@ class Cube:
         self.nk,self.ny,self.nx=self.D.shape;self.I=np.maximum(np.asarray(P['mom0']),0).copy()
         # Fixed24arcsec border equals the old four6arcsec pixels.
         border=max(1,int(math.ceil(24/self.pixel[0])));self.I[:border]=0;self.I[-border:]=0;self.I[:,:border]=0;self.I[:,-border:]=0
-        self.otf=np.fft.rfft2(B.beam_kernel(self.ny,self.nx,float(self.pixel[0]),self.beam,sub))
+        self.beam_kernel=B.beam_kernel(self.ny,self.nx,float(self.pixel[0]),self.beam,sub)
+        self.otf=np.fft.rfft2(self.beam_kernel)
+        self.fallback_last=0;self.fallback_max=0;self.fallback_total=0
         self.Sobs=(self.D*self.mask).sum(0);self.sel=self.grid&self.mask;self.ndat=int(self.sel.sum())
         # Original Gaussian instrumental-width convention at the native channel spacing.
         self.sig_inst=2*float(np.median(abs(np.diff(self.v))))/2.355
@@ -57,7 +59,17 @@ class Cube:
         effective=np.sqrt(sigma**2+self.sig_inst**2)
         line=self.I[None]*np.exp(-.5*((self.v[:,None,None]-vlos[None])/effective[None])**2)
         convolved=np.fft.irfft2(np.fft.rfft2(line)*self.otf[None],s=(self.ny,self.nx))
-        summed=(convolved*self.mask).sum(0);factor=np.zeros_like(summed)
+        summed=(convolved*self.mask).sum(0)
+        # Same full periodic kernel, but no cancellation from FFT roundoff in
+        # weak pixels whose local normalization would amplify that roundoff.
+        weak=(self.Sobs>0)&(summed<=np.sqrt(np.finfo(float).eps)*np.max(abs(summed)))
+        self.fallback_last=int(weak.sum());self.fallback_max=max(self.fallback_max,self.fallback_last)
+        self.fallback_total+=self.fallback_last
+        for y,x in np.argwhere(weak):
+            weights=self.beam_kernel[(y-np.arange(self.ny))[:,None]%self.ny,(x-np.arange(self.nx))[None,:]%self.nx]
+            convolved[:,y,x]=np.einsum('kij,ij->k',line,weights,optimize=False)
+            summed[y,x]=np.sum(convolved[:,y,x]*self.mask[:,y,x])
+        factor=np.zeros_like(summed)
         np.divide(self.Sobs,summed,out=factor,where=(self.Sobs>0)&(summed>0))
         return convolved*factor[None]
     def residual(self,vlos,sigma):return ((self.D-self.model(vlos,sigma))/self.sig)[self.sel]

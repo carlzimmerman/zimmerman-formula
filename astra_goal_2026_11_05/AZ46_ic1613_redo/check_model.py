@@ -25,7 +25,8 @@ check('wrong_velocity_control_bites',np.mean(c.residual(np.full(I.shape,-222.),n
 location=np.unravel_index(np.argmax(abs(result-D)),D.shape)
 edge_diagnostic=dict(max_error_index=[int(i) for i in location],data_at_max=float(D[location]),
     error_at_max=float(result[location]-D[location]),
-    interior_max_error=float(np.max(abs(result[:,3:-3,3:-3]-D[:,3:-3,3:-3]))))
+    interior_max_error=float(np.max(abs(result[:,3:-3,3:-3]-D[:,3:-3,3:-3]))),
+    direct_fallback_max_pixels=c.fallback_max)
 compact=I*(np.hypot(east,north)<=120.)
 compact_P=dict(P,cube=profile[:,None,None]*compact[None],mom0=profile.sum()*compact)
 compact_cube=M.Cube(compact_P)
@@ -58,6 +59,7 @@ for weight in ['NA','R']:
  check(weight+'_own_beam_loaded',cube.beam==prepared['beam'])
  check(weight+'_finite_forward_model',np.all(np.isfinite(cube.model(np.full(cube.XE.shape,-232.2),np.full(cube.XE.shape,9.)))))
 obj=dict(checks=checks,passed=sum(c['passed'] for c in checks),total=len(checks),source_hashes={str(p.relative_to(R.ROOT)):R.sha(p) for p in [Path(__file__),Path(M.__file__),M.OLD,R.HERE/'io_beam.py',R.HERE/'FROZEN_CRITERIA.md',R.HERE/'AMENDMENTS.md']},versions=dict(python=platform.python_version(),numpy=np.__version__,scipy=scipy.__version__),scope='Forward/field implementation checks only; full fits and mocks pending; kappa=1/2 FITTED; not theory closed')
+obj['source_hashes'][str((R.HERE/'MODEL_NUMERICS.md').relative_to(R.ROOT))]=R.sha(R.HERE/'MODEL_NUMERICS.md')
 obj['edge_normalization_diagnostic']=edge_diagnostic
 B.atomic(R.HERE/'model_checks.json',obj);B.atomic(R.HERE/'model_runtime.json',dict(seconds=time.time()-start,peak_rss_native=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss))
 print(json.dumps(dict(passed=obj['passed'],total=obj['total'],failed=[c for c in checks if not c['passed']]),indent=2));raise SystemExit(int(not all(c['passed'] for c in checks)))

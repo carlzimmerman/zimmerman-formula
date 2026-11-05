@@ -153,7 +153,7 @@ these are conditional cube-model assumptions, not a generative action.
 The new fitter must not inherit the old fixed-ring Jacobian sparsity:
 changing geometry and beam convolution invalidate those exact zeros.
 
-check_model.py currently passes 14 of 16 checks and exits 1. The independent
+The initial check_model.py checkpoint passed 14 of 16 checks and exited 1. The independent
 softened point-mass FFT comparison differs by 3.40e-16 relative. The old
 force calculation is reproduced exactly on an identical explicit radial
 grid, for Newtonian/modified gravity on both footings. Both prepared pilot
@@ -161,8 +161,8 @@ cubes load their own beams and produce finite forward predictions. A wrong
 velocity control fails, and a compact Gaussian source is recovered within
 6.67e-16 absolute error.
 
-The two original extended-source tests remain FAILED at their unchanged
-tolerances. Maximum line-profile error is 3.6402e-10 at channel/pixel
+At that checkpoint the two original extended-source tests FAILED at their unchanged
+tolerances. Maximum line-profile error was 3.6402e-10 at channel/pixel
 (15,0,40), where the data value is 7.8492e-6. Interior error is 7.78e-16.
 The fixed border removes intrinsic light at those corners; normalizing
 tiny beam leakage there amplifies floating-point error. The compact-source
@@ -176,3 +176,37 @@ Use the recorded NumPy/SciPy/Astropy environment. The saved runtime is about
 2 seconds with peak RSS about 255 MB; it does not establish fit memory use.
 Mocks, optimization, fit restart tests and production convergence remain
 pending. kappa = 1/2 FITTED; not theory closed.
+
+## Dense fitting implementation and arithmetic fallback
+
+MODEL_NUMERICS.md was committed before these implementations. model.py
+now recomputes weak positive-intensity pixels by direct summation of the
+same full periodic beam kernel. No physical mask, beam or tolerance is
+changed. The extended-source maximum error falls to 1.638e-12, but both
+original tests still FAIL: check_model.py remains 14/16, exit 1. This is
+an improvement in arithmetic, not a successful numerical qualification.
+The original 3.6402e-10 failure remains in commit 8a18286e8e. Selected
+pixels at one reference evaluation of the real 8x8 pilots contain neither
+border pixels nor fallback pixels; other geometries are not certified.
+
+fitting.py provides free-ring, law, noncircular and Newtonian model
+parameterizations with dense finite-difference Jacobians, original bounds,
+six radial dispersion/noncircular nodes, and signal checks at each residual
+boundary. Pressure smoothing preserves the original 30-arcsec physical
+width with explicit cell-overlap weights and reflected boundaries. Frozen
+production budgets are 100/200; the separate two-evaluation implementation
+pilot is explicitly ineligible for production acceptance even if stationary.
+The fit summary records status, evaluations, parameter count, residual calls
+and fallback use; it does not issue a local-cube verdict.
+
+check_fitting.py passes 14/14 bounded synthetic implementation checks:
+original 6-arcsec filter reproduction, 3-arcsec half-weight endpoints,
+independent top-hat cell integration and DC response, exact free-model
+truth recovery, stationary optimizer, explicit pilot ineligibility,
+wrong-systemic-velocity control, interruption, constant-density pressure
+support, independent projected velocity and noncircular harmonics. These
+are not the frozen noisy KA1/KA2 mocks. Restartable fit workers, matched
+physical noise, real-data fits, footprint measurements and full convergence
+comparisons remain pending. The beam and extended-source failures remain.
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python -W error astra_goal_2026_11_05/AZ46_ic1613_redo/check_fitting.py
