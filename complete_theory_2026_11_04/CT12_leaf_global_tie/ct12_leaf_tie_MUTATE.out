@@ -1,0 +1,49 @@
+====================================================================================================
+CT12 leaf-global tie  [MUTATE: local value instead of leaf average]
+====================================================================================================
+S1 h(s) = 2f - s f' = (-s**2 + 2*(s + 1)*(s - log(s + 1)))/(s + 1);  h' = s**2/(s + 1)**2;  h'' = 2*s/(s + 1)**3  (> 0: convex, Jensen <h> >= h(<x>))
+   small s: -s**4/2 + s**3/3;  large s: h - (s + 1 - 2 ln s) -> 0
+S2 dL_J/d(a0^2) - h/(8 pi G) = 0   (a0-charge; with a0^2 = xi G sigma: dL_J/dsigma = xi h/(8 pi) = eps h)
+S3 DE quadratic action with the tie: kinetic coeff epsbar + 1, gradient coeff 1 - epsbar, potential coeff 1 - epsbar; c_s^2 = (1 - epsbar)/(epsbar + 1)
+   -> ghost-free for epsbar > -1 (always: epsbar >= 0); gradient instability iff epsbar > 1, i.e. <h>_leaf > 8 pi/kappa^2
+S4 DOF: sigma(tau), lambda(tau) enter without derivatives; p_sigma ~ 0, p_lambda ~ 0 (one pair per leaf);
+   the leaf equations sigma = <T_nn>, lambda = -eps<h> are second class with them: 0 local, 0 global DOF. Total 3 (v3s) + 1 (phi) = 4.
+S5 FRW: Y = 0 so h(0) = 0, epsbar = 0; <T_nn>_leaf = phi_dot^2/2 + V = rho_phi c^2 exactly (kinetic included).
+   threshold <h> = 8 pi/kappa^2 = 100.53 (h = thr at x = 108.9); at alt tied kappa 0.6043: 68.82 (x = 76.5, ungraded)
+
+G0(c) static coefficients with a0 leaf-uniform (no slaving)
+   canonical: x in [1e-3, 106.8], min M_T 1.0010, min M_L 1.0020  -> ok
+   alt: x in [1e-3, 88.4], min M_T 1.0010, min M_L 1.0020  -> ok
+   finite-leaf response: 1 Mpc ball with delta T_nn/rho_DE = 1 in a Hubble ball (c/H0 = 4416 Mpc): |d ln a0| <= 5.81e-12 (2.52e-12 dex)
+   local slaving d ln a0/d ln g = 0 at every point (sigma depends on leaf integrals of T_DE only) -> CT5's M_L < 1 band absent
+G0(c): PASS
+
+G0(d2) leaf average of h today (upper bounds)
+   canonical: diffuse <h> = 7.80e-07 (sigma_g0 0.0125 a0); point-mass classes 1e+00: 1.00e+12, 1e+09: 1.00e+12, 1e+10: 1.00e+12, 6e+10: 1.00e+12, 1e+12: 1.00e+12, 1e+14: 1.00e+12, 1e+15: 1.00e+12
+      epsbar_today <= 9.95e+09  (margin 1.0e-10)  -> FAIL
+   alt: diffuse <h> = 4.51e-07 (sigma_g0 0.0104 a0); point-mass classes 1e+00: 1.00e+12, 1e+09: 1.00e+12, 1e+10: 1.00e+12, 6e+10: 1.00e+12, 1e+12: 1.00e+12, 1e+14: 1.00e+12, 1e+15: 1.00e+12
+      epsbar_today <= 9.95e+09  (margin 1.0e-10)  -> FAIL
+G0(d2): FAIL
+
+G0(d3) earlier leaves, v3s's own cosmology (khronon charge = the dust; hold flux capped so x >= g_lin/a0)
+   canonical x10    : epsbar = 1 first at z = 1.34e+03; rms g_lin = a0 (hold-flux cap) at z = 49.1; epsbar at z 1100/1e4/1e5/4e8 = 0.75 / 12.8 / 145 / 5.92e+05
+   canonical central: epsbar = 1 first at z = 8.57e+03; rms g_lin = a0 (hold-flux cap) at z = 235; epsbar at z 1100/1e4/1e5/4e8 = 0.0473 / 1.2 / 14.4 / 5.92e+04
+   canonical div10  : epsbar = 1 first at z = 7.51e+04; rms g_lin = a0 (hold-flux cap) at z = 1.19e+03; epsbar at z 1100/1e4/1e5/4e8 = 0.00075 / 0.0858 / 1.37 / 5.92e+03
+   canonical: to keep epsbar < 1 through BBN (central) the khronon may carry at most 1.8e-05 of the dust's charge perturbation
+   alt x10    : epsbar = 1 first at z = 1.54e+03; rms g_lin = a0 (hold-flux cap) at z = 55.9; epsbar at z 1100/1e4/1e5/4e8 = 0.611 / 10.5 / 120 / 4.9e+05
+   alt central: epsbar = 1 first at z = 1.01e+04; rms g_lin = a0 (hold-flux cap) at z = 267; epsbar at z 1100/1e4/1e5/4e8 = 0.0361 / 0.984 / 11.9 / 4.9e+04
+   alt div10  : epsbar = 1 first at z = 9.06e+04; rms g_lin = a0 (hold-flux cap) at z = 1.37e+03; epsbar at z 1100/1e4/1e5/4e8 = 0.000484 / 0.0668 / 1.12 / 4.9e+03
+   alt: to keep epsbar < 1 through BBN (central) the khronon may carry at most 2.2e-05 of the dust's charge perturbation
+G0(d3): FAIL (fails even at the /10 end of the bracket, before BBN)
+
+G0 VERDICT: FAIL  (W4b inherited UNDECIDED, CT2_REPORT.md:7)
+
+UNGRADED READINGS (candidate stops at G0 if it failed)
+   G1 canonical: law S unchanged (a0 leaf-uniform); max deviation with the finite-leaf shift 1.20e-12 dex
+   G1 alt: law S unchanged (a0 leaf-uniform); max deviation with the finite-leaf shift 1.20e-12 dex
+   G2: environment spread <= 2.52e-12 dex (local DE perturbation + lapse weighting), both footings
+   G3 B2: ln rho_DE range 0.210; slope with worst 1e-4 corrections 0.4997; tracking 2.2e-05 dex
+   G3 B3: ln rho_DE range 0.709; slope with worst 1e-4 corrections 0.4999; tracking 2.2e-05 dex
+   G3 kappa: a0^2 = xi G <T_nn>, so kappa^2 = xi for every xi > 0 (rename test passes): a TRADE, not derived
+
+peak RSS 0.11 GB
