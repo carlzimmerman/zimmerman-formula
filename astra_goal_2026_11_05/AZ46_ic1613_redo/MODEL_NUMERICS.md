@@ -40,3 +40,24 @@ convolution. Production optimizer budgets remain the frozen 100/200.
 Tiny-budget implementation pilots must be labelled ungraded.
 
 Kappa = 1/2 FITTED; not theory closed.
+
+## A2 — border normalization arithmetic, after failed fixture, before production
+
+The original fallback leaves two known-answer checks failing: maximum
+absolute cube error1.6379172323999214e-12 at channel14,y20,x40 of the41x41
+extended-source fixture, against the unchanged1e-12 line. This pixel lies
+in the fixed24arcsec zeroed border. Its masked model sum is4.2285969605e-7
+of the maximum, above sqrt(epsilon)=1.4901161194e-8, so the old fallback
+does not run there. Interior error is7.78e-16. Direct positive summation
+of the same full periodic kernel at this pixel gives8.68e-19 maximum error.
+
+Before editing the model, extend the fallback to the union of the original
+weak-sum set and every fixed-border pixel with positive observed masked
+intensity. This is a categorical treatment of the already-declared zeroed
+border, not a newly tuned leakage threshold, intensity cut or acceptance
+line. The beam, border size, convolution, mask and local normalization are
+unchanged. Report cost/use and rerun the original failed tests without
+changing their tolerances. This amendment is explicitly post-fixture-result;
+it does not repair the separate robust6arcsec beam-moment failure or prove
+production accuracy across all fitted geometries. Downstream mock/fit
+evidence whose model hash changes must be regenerated before reuse.
