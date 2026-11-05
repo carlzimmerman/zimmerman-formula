@@ -89,3 +89,5 @@ r is the model's lensing amplitude over the measured one (PR4, PACKAGE rule; PLA
 ## Correction 2026-11-04 (after WG3, d4d81be402)
 "No rule on record lands in between" (Result section) was written when only R0 and R1 had been tried. WG3 then ran the record's one web rule, CFG354's bound-only switch T1. From a baryons-only start it never turns on and fails low with law-off. Read the line as: **no rule tried lands there: off, QUMOND on, or the record's bound-only switch (T1)**. No number here changes.
 
+## Shape correction 2026-11-04 (WG6 post-result shape diagnostic)
+The single amplitude r this lane grades hides a shape failure. Per PR4 bin, every law-alone rule gets the CMB-lensing spectrum's shape wrong. With QUMOND on, it is about 14× the measured value at L ≈ 28 and 0.08× at L ≈ 377, converged from 128³ to 192³ (`../WG6_screened_phantom_web/wg6_shape_diag.out`). Read "too much" and "too little" here as the best-fit amplitude only. The "factor of about ½" reading and WG3's T1τ0 "within ×2" are withdrawn. No number here changes.

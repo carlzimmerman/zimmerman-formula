@@ -72,3 +72,6 @@ r is the model's lensing amplitude over the measured one (Planck PR4, PACKAGE ru
 **Run.**
 - `python3 wg3_pm.py checks`, then `python3 wg3_run_all.py` (about 35 min).
 - `python3 wg3_grade.py`, then `python3 wg3_grade.py --mutate`.
+
+## Shape correction 2026-11-04 (WG6 post-result shape diagnostic)
+The single amplitude r this lane grades hides a shape failure. Per PR4 bin, every law-alone rule gets the CMB-lensing spectrum's shape wrong. With QUMOND on, it is about 14× the measured value at L ≈ 28 and 0.08× at L ≈ 377, converged from 128³ to 192³ (`../WG6_screened_phantom_web/wg6_shape_diag.out`). Read "too much" and "too little" here as the best-fit amplitude only. The "factor of about ½" reading and WG3's T1τ0 "within ×2" are withdrawn. No number here changes.
