@@ -149,3 +149,8 @@ Independent full chunk2000 repeats now match the original result files
 byte-for-byte (both main and mutation) for L1 canonical real, L1 canonical
 control and L1 alt real. The two real chunk1000 remainders still need the
 queue; the other full repeats remain in progress.
+
+All8 independent full chunk2000 repeats now match the originals byte-for-
+byte in both main and mutation trees. Six complete chunk pairs pass. Only
+the two L1 real chunk1000 remainders await heavyq; the lane remains IN
+PROGRESS until those pairs and the final conditional report are finished.
