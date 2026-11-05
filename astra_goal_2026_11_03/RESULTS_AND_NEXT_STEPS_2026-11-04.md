@@ -44,3 +44,7 @@ For a credit-limited continuation, item 1 is the highest-value calculation. Do n
 - `SUMMARY.md`: acceptance-row ranking and earlier P1–P6 work.
 
 All evidence was committed locally as the lanes progressed. Unrelated working-tree edits belong to other work and are excluded from this handoff commit. No claim of scientific completion or data preference is made.
+
+## Subsequent cheap test: AZ29
+
+The curved-background priority has now received a necessary tensor test: unrestricted AZ28 stability FAILS, since c_T²=1−2ell²R3 becomes negative on an allowed positive-dust expanding closed-FRW solution. All 19 exact checks pass. See `P3/AZ29_curved_tensor_gate/RESULT.md`. No galaxy simulation was run. The next inexpensive decision is whether a physically justified weak-curvature effective-theory domain can be supplied; only then does a curved scalar test within that domain merit continuation. This high-curvature failure does not itself exclude weak-curvature galaxies, and it does not select κ. This update is a new local checkpoint, not a claim of a second push.
