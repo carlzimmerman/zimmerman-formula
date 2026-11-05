@@ -18,8 +18,14 @@ curvature-induced quadratic response and a tree-level cancellation option.
 Its18 exact checks pass. The joint ratio remains
 128pi/[r_B^2 x^2 theta^3(x-1)]; even B=A leaves vacuum and mass-ratio data.
 No microscopic selection, protected criticality or full source/clock health
-is supplied. This alternative has not been combined with sequestering.
-The goal remains active.
+is supplied. joint_phase/MERGER_AUDIT.md now checks the proposed combination
+with sequestering: in a pure-induced protected action, a global curvature
+constraint disappears and the residual vacuum is not selected by it. A
+nonzero bare Einstein term changes the previously derived matching formula.
+The separate partial results cannot be combined without new equations.
+No justified shared microscopic selector has yet been identified. The goal
+remains active; no successful coefficient derivation or complete theory is
+claimed.
 
 ## Previous investigation outcome: scoped obstructions established
 
