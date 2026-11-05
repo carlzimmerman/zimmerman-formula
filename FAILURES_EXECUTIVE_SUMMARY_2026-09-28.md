@@ -156,3 +156,58 @@ X-COP without hydrostatic masses (RF3). IC 1613: disfavoured, not excluded (RF2)
 Nothing here re-scores tables A–D for candidate B; those stand as dated. The closure table and the main board are kept elsewhere and are not changed by this section. Drafts PAPER61 and PAPER65 still state the floor and need revising before any deposit. The lanes above are local and pushed as of 22272b3b32; RF1 A1–A4 and the Argon evening brief (`rebuild_2026_10_22/ARGON_BRIEF_2026-10-31_EVENING.md`) are in that push. Dated data still ahead: ALMA windows 11-06 and 11-28, Gaia DR4 12-02.
 
 κ = ½ FITTED. Cold dark energy is a gravitating field component, never a particle. Not theory closed. Nothing in this section says the data favour the framework.
+
+## F. Dated section, 2026-11-04: the search for a cluster term and an action, 11-02 to 11-04
+
+Appended; nothing above is edited. The theory under test is the a₀ law alone (route E's cold sector retired 11-01). These lanes asked whether any formula, carrier, selector or action fixes clusters and gives the law a field theory. Every row is a failure or a block; commits are each lane's result commit, and each README is the record.
+
+### F1. Cluster term searches (no hit)
+
+| Lane | What was tried | Result | Commit |
+|---|---|---|---|
+| BF1 | 2.1e9 (L3) and 7.5e11 (L4) expressions over gas fraction, size, acceleration | NO HIT at both levels, Stage 1 0, same as scrambled control | 2fc4385308 |
+| BF2 | BF1's near-miss gas family, hard | REJECTED, NOT ABOVE CONTROL (real 19 vs scrambles 0, 15, 266) | af73e8aa1f |
+| BF3 | all gates first | one form, NOT ABOVE CONTROL (scrambles 7-33x), keys 11/15, 8/15 | 648ec0ebc6 |
+| BK2 | dimensioned expressions, 2.7e10 (L1) and 7.4e11 (L2) per footing | NO HIT at both levels, both footings; control as close | eeb2f01037 |
+| SR3 | gas switch form | NO CLEAN FORM: 0 of 141 pass the disc gate | aa32311856 |
+| RS1 | required source | NO SOURCE FORM | (lane README) |
+| TX1 | gas temperature as a leaf | SELF-FIT ONLY: real-T 3/15 keys vs scrambled 4-8/15; Bullet kills all | 3ae8ffb2d1 |
+| WA1 | shared calibration errors as the common cause | WALLS HOLD, χ² 518-1219 vs mock ~50 | 681eed0353 |
+
+**Reading.** Formulas over gas, size, acceleration and temperature learn only "this is a cluster", at or below scrambled controls.
+
+### F2. Cluster carriers (all fail)
+
+| Lane | Carrier | Result | Commit |
+|---|---|---|---|
+| MB1 | law halos bound to member galaxies | REJECTED every arm; tide and EFE leave 13-16x / 90-114x too little; N and K carry the Bullet, fail keys 5-8/15 | 8f23cc6c57 |
+| DB1 | Milgrom's cluster baryonic dark matter (compact cold baryons) | every arm FAILS; best 14/15 keys fails the Bullet; needs 4.4-5.4x hot gas; cold clouds no window (x3.7); only 1e2-1e7 Msun black holes survive, no known origin | 40e2665f48 |
+| DF3 | DF2's barotropic fluid | NO GATE in all five cells; Γ ≤ 1 no cluster equilibrium, Γ 5/3 past TOV; Bullet 12.5e14 vs 3.5e14 | 9f549e8963 |
+| HF1, VW1 | light fermion (owner lift, lane-only) | gate 1 fails at 5 of 6 m; no velocity window on the Υ floor | (lane READMEs) |
+
+**Reading.** The missing cluster mass must be collisionless, cluster-wide, about 4-5x the hot gas, and nearly absent in isolated galaxies. No ordinary or tested carrier meets that.
+
+### F3. The action
+
+| Lane | What was tried | Result | Commit |
+|---|---|---|---|
+| AX1 | every action class for the law (AQUAL/QUMOND, BIMOND, TeVeS, AeST, khronon, Einstein-aether, superfluid-effective, nonlocal DEW, v3s) | every unscreened class FAILS Cassini Q2 by 1.69-5.18x Hees (TeVeS and Einstein-aether also on GW speed); DEW open on canonical only at a different μ; only v3s's screening length passes G1-G4; a₀ by hand in every class | 9c11102bf3 |
+| C6P, V3W, V3X | v3s's weak spots | Solar System clean PASS (Q2 margin ≥ 4.9e7); γ, β derived = 1; lensing = dynamics; c_T = c; two items UNDECIDED on numerics only, no physics failure. **v3s still fails clusters, growth/CMB (10-24 verdict); not adopted (owner, FN1 option c)** | 8c5703da06, 17d7b7ecdc, ee4210e959 |
+| FN1b | fixed-length smoothed QUMOND | no universal length on either footing | 22f8e50070 |
+| FA1 | ten fresh selector ideas for a dust part inert in galaxies | four already dead in the record; I1 tidal isotropy KILLED (SPARC on-fraction 0.40-0.46 vs 0.046); I2 vorticity KILLED (cluster shear switches it off, or 13/16 ellipticals get +0.199 dex against room for +0.094, Z −2.15); I6 cubic galileon KILLED (halo above gas-rich discs switches on; Q2 fails at β = 1); I5, I7 dead on paper | 7064559430, 71258ff202, 9ffb1e2c94 |
+
+**Reading.** No action gives the law, passes the Solar System and also supplies the cluster and CMB mass. The missing piece is a selector that makes a dust-like part invisible in isolated galaxies; every selector keyed to baryon mass, potential, gas, temperature, acceleration, hosting, epoch, orbit count, dispersion, tidal shape, vorticity or a galileon's Hessian has failed.
+
+### F4. The distinguishing prediction
+
+| Lane | What was tried | Result | Commit |
+|---|---|---|---|
+| AT2 | AT1's frozen a₀(z) rule on every high-z kinematic sample on disk (22 samples, 52 cells) | every cell BLOCKED: common mode 0.30-0.60 dex vs e_3σ 0.055-0.084, no same-estimator z < 0.1 reference; the earlier KURVS lean to the rival was never decidable | 7b2840d209 |
+
+**Reading.** The one claim that sets the framework apart from MOND, a₀ tracking ρ_DE, cannot be tested on public data; it needs a proposal-class ALMA sample.
+
+### F5. Where this leaves the record
+
+PAPER67 v1.1 (DOI 10.5281/zenodo.23966443) carries these lanes. The galaxy law stands. Clusters, growth/CMB and an action stay open, and κ = ½ is fitted. No lane in this section adopts anything; the cold sector stays retired.
+
+κ = ½ FITTED. Not theory closed. Nothing in this section says the data favour the framework.
