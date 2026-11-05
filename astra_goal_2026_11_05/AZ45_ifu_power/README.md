@@ -132,3 +132,23 @@ NO VERDICT on both footings, and no power forecasts. After queued work:
 Exit75 means missing cases; exit1 means invalid evidence; exit0 means the
 full grid was graded, not that it passed. A complete grid can yield NO
 VERDICT from calibration failures, or FAIL within the frozen power grid.
+
+## Corrected batch signal contract
+
+A1 (7fb5c584eb) was committed alone before this controller correction.
+The batch handler now only sets a flag; its polling loop forwards SIGTERM
+once. A job-local active_child.json records the actual owned child PID and
+case, avoiding unrestricted process enumeration in the test environment.
+This is execution metadata, not a numerical-engine or fitting change.
+
+The actual bounded batch/worker interruption suite passes11/11. It observes
+a live worker, signals the parent, verifies worker checkpoint plus parent
+exit75 and no surviving child, then compares resumed scientific output
+exactly to an uninterrupted baseline. A further one-case continuation
+preserves the completed first case and records two completed cases without
+a false COMPUTE_DONE marker. Only the first two cases were exercised;
+the full4032-case grid remains unsubmitted and its scientific labels open.
+The suite was repeated in a fresh directory; both case outputs and compact
+restart reports are byte-identical across runs.
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python check_batch_resume.py --tag NEW_TAG

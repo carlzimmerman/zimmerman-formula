@@ -183,6 +183,9 @@ claim, including the coordinator's previous AZC1 construction.
   reports current; physical production coverage0/7 per footing/mode,
   explicit INCOMPLETE / UNDECIDED. Actual queued ladders still required.
 - Tiers4-5: pending in brief order.
+- AZ45 controller A1 (7fb5c584eb): flag-only parent signal handling now
+  verified with a real bounded worker;11/11 checks pass, exact recovery.
+  Full4032-case queue submission remains pending light-tier completion.
 - AZ43 control update: first10 mutation small-grid pairs numerically pass,
   all fail dwarf/SPARC physical gates on both footings; batch exited75.
   Remaining mutation and eligible MW coverage is still incomplete.

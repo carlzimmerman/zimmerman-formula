@@ -28,7 +28,6 @@ stop=False;child=None
 def stopping(*_):
     global stop
     stop=True
-    if child is not None and child.poll() is None:child.send_signal(signal.SIGTERM)
 signal.signal(signal.SIGTERM,stopping);signal.signal(signal.SIGINT,stopping)
 out=E.HERE/args.tag;out.mkdir(parents=True,exist_ok=True);done=0;new=0;peaks=[]
 for c in allcases:
@@ -44,8 +43,13 @@ for c in allcases:
     log=out/(key(c)+'.log');peak=0;memory_limit=False
     with log.open('w') as f:
         child=subprocess.Popen(cmd,stdout=f,stderr=subprocess.STDOUT)
-        proc=psutil.Process(child.pid)
+        E.atomic(out/'active_child.json',dict(parent_pid=os.getpid(),pid=child.pid,case=key(c),status='running'))
+        proc=psutil.Process(child.pid);forwarded=False
         while child.poll() is None:
+            if stop and not forwarded:
+                try:child.send_signal(signal.SIGTERM)
+                except ProcessLookupError:pass
+                forwarded=True
             try:
                 rss=proc.memory_info().rss;peak=max(peak,rss)
                 if rss>1_000_000_000:
@@ -53,6 +57,7 @@ for c in allcases:
             except psutil.NoSuchProcess:pass
             time.sleep(.05)
         code=child.returncode
+        E.atomic(out/'active_child.json',dict(parent_pid=os.getpid(),pid=child.pid,case=key(c),status='terminal',exit_code=code))
     rec=dict(case=key(c),exit_code=code,peak_rss_bytes=peak,memory_limit=memory_limit);peaks.append(rec);print(json.dumps(rec),flush=True)
     E.atomic(out/'batch_checkpoint.json',dict(plan=plan,completed=done,last_runs=peaks,status='in progress'))
     if code==75 or stop:raise SystemExit(75)

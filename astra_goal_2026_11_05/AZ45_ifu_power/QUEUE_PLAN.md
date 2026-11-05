@@ -50,3 +50,14 @@ python3 compute_queue/heavyq.py add --id az45_ifu_full \
 
 Verify the current heavyq CLI before submission. Never set HEAVYQ_JOB_ID by
 hand to bypass the guard. No queue entry exists from this preparation.
+
+## Controller correction before submission
+
+AMENDMENTS.md A1 freezes the controller-only fix. The batch signal handler
+now sets only a flag; the ordinary polling loop forwards the request once.
+active_child.json records the owned child and terminal status. A real
+bounded batch test passes11/11, including live parent/worker interruption,
+worker checkpoint, parent exit75, exact resumed scientific output and
+preservation of completed work on the next bounded continuation. Numerical
+engine and worker identities, grid count and queue memory estimate remain
+unchanged. The full grid is still not submitted.
