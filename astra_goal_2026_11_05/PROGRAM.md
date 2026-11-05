@@ -51,7 +51,12 @@ claim, including the coordinator's previous AZC1 construction.
   derived, including a nonzero delayed TT signal and zero early response.
   Main29/29, deliberately instantaneous mutant25/29, exact integrals and
   16/32 quadrature agree. C8's elliptic-to-signal inference remains unproved.
-- Tier 2 lanes 6-8 and Tiers 3-5: pending in brief order.
+- Tier 2 lane6: AZ40 NO VERDICT on a complete healthy density-tie
+  action. Universal algebraic insertion reproduces CT14's negative
+  coefficient; exact constant-w potential-portal branch and restricted
+  clock-retaining kinetic positivity verified. Main32/32, three mutants
+  21/32,30/32,25/32. No kappa-derivation reopen condition is met.
+- Tier 2 lanes7-8 and Tiers 3-5: pending in brief order.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.
 - Other sessions have now landed W1/X1 updates (handoff bfe49ed3c2,
@@ -66,7 +71,8 @@ live execution record.
 
 Before this all-lanes goal arrived, a separate review froze a constant-w
 potential-portal branch check at `reviews/missing_links_2026_11_04/` (commit
-1a9955b2a9); it has not run. Resume it in the new lane-6 scope only after Tier 1.
+1a9955b2a9). AZ40 now executes it with its original criteria preserved,
+and extends it with a restricted static kinetic check; full health is open.
 Other source-level concerns to test: FN1b/FN6's Gaussian operator is not v3s;
 CT14's polarization-conjugate acceleration must be mapped to a screened
 background; CQ7's satellite solver carries an unswitched branch caveat.
