@@ -1,7 +1,7 @@
 # Active joint-model continuation
 
 Current selection boundary: joint_phase/SELECTION_IMPASSE.md rechecks the
-adopted action and microscopic mechanism notes and records the first audit
+adopted action and microscopic mechanism notes and records two consecutive audits
 of a research impasse. No coefficient-selecting physical principle has been
 identified. The user has been asked for any additional theory-defining
 postulate or source. No process is running; the goal remains active and

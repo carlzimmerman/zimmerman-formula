@@ -92,3 +92,15 @@ The goal remains active and unachieved. No universal impossibility theorem,
 exhaustive search of physics, or falsification of the Zimmerman relation is
 claimed. All completed work remains preserved; no action has been adopted
 from these candidate calculations.
+
+## Second consecutive impasse audit
+
+Base:46a2605406. The preceding goal turn is classified as no scientific
+progress, not a verified wait. The scoped worktree is clean, and comparison
+against that revision shows no changes to the adopted-action decision or
+the two mechanism inputs listed above. No additional physical postulate
+has arrived in the conversation. The same coefficient-selection blocker
+therefore remains; no new calculation is justified by changed evidence.
+This administrative audit does not count as research progress. The goal
+remains active and unachieved; the three-turn blocked threshold is not yet
+met. The outstanding question is retained without asking it again.
