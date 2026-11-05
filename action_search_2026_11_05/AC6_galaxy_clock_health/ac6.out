@@ -1,0 +1,57 @@
+AC6 (mutate = False); kappa = 1/2 FITTED; not theory closed
+A: derivation (sympy)
+  [PASS] A1: sigma-EL = -[d_t(divP + s^2(1+sigma_t)/(1+phi)^2) + div((divP + s^2) v)], residual 0; Poisson with clock density s^2(1+sigma_t)^2/(1+phi)^3, residual 0 (line: identically 0)
+  [PASS] A2: H4 dust system rebuilt minus rho_tau(k^2/chi - K): 0; clock s->0 minus H4 mu_K=0 form: 0 (line: identically 0)
+  [PASS] A3: clock UV limit omega^2/k^2 = gamma_L*rho_0/(gamma_L*s**2 + 1) (minus SGN gamma rho_0/(1+gamma s^2): 0) (line: identically 0: Gamma ~ k wherever SGN*rho_0 < 0)
+  [PASS] A4: switched (gamma = 0 where D.P < 0): omega^2/k^2 -> 0, omega^2 -> K*rho_0*(M_L*M_T - M_L*sin(theta)**2 + M_T*sin(theta)**2 - M_T)/(M_L*sin(theta)**2 - M_T*sin(theta)**2 + M_T) (minus SGN K rho_0 (M_theta - 1): 0) (line: k-independent bounded limit)
+B: 24 maps with H4's solver, parallel
+  solved S5a_MW_disc|canonical|e0           (2 s, child RSS 0.37 GB, t=3s)
+  solved S5b_dwarf_disc|canonical|e0        (2 s, child RSS 0.39 GB, t=3s)
+  solved S5b_dwarf_disc|canonical|e0.01     (4 s, child RSS 0.50 GB, t=4s)
+  solved S5a_MW_disc|canonical|e0.01        (6 s, child RSS 0.58 GB, t=6s)
+  solved S6_single_in_field|canonical|e0.01 (6 s, child RSS 0.61 GB, t=6s)
+  solved S2_LMC-MW|canonical|e0             (7 s, child RSS 0.65 GB, t=7s)
+  solved S4_cluster_pair|canonical|e0       (7 s, child RSS 0.63 GB, t=7s)
+  solved S3_galaxy_pair|canonical|e0        (7 s, child RSS 0.64 GB, t=7s)
+  solved S3_galaxy_pair|canonical|e0.01     (8 s, child RSS 0.80 GB, t=8s)
+  solved S1_MW-M31|canonical|e0             (9 s, child RSS 0.79 GB, t=9s)
+  solved S1_MW-M31|canonical|e0.01          (10 s, child RSS 0.86 GB, t=10s)
+  solved S5a_MW_disc|alt|e0                 (2 s, child RSS 0.36 GB, t=11s)
+  solved S1_MW-M31|alt|e0                   (9 s, child RSS 0.79 GB, t=11s)
+  solved S2_LMC-MW|alt|e0                   (7 s, child RSS 0.69 GB, t=12s)
+  solved S4_cluster_pair|canonical|e0.01    (12 s, child RSS 0.99 GB, t=12s)
+  solved S1_MW-M31|alt|e0.01                (10 s, child RSS 0.92 GB, t=13s)
+  solved S5b_dwarf_disc|alt|e0              (2 s, child RSS 0.38 GB, t=13s)
+  solved S3_galaxy_pair|alt|e0              (7 s, child RSS 0.66 GB, t=13s)
+  solved S6_single_in_field|alt|e0.01       (5 s, child RSS 0.61 GB, t=13s)
+  solved S4_cluster_pair|alt|e0             (6 s, child RSS 0.61 GB, t=14s)
+  solved S3_galaxy_pair|alt|e0.01           (8 s, child RSS 0.80 GB, t=14s)
+  solved S5b_dwarf_disc|alt|e0.01           (3 s, child RSS 0.43 GB, t=15s)
+  solved S5a_MW_disc|alt|e0.01              (5 s, child RSS 0.55 GB, t=15s)
+  solved S4_cluster_pair|alt|e0.01          (9 s, child RSS 0.89 GB, t=17s)
+  framework-native rho_DE = a0^2/(kappa^2 c^2 G): canonical 5.8424e-27, alt 8.5328e-27 kg/m^3 (8.632e-08 / 1.261e-07 Msun/pc^3)
+  known answer S2_LMC-MW|canonical|e0: median 7.105970e-24 vs H4 7.105970e-24 (rel 0.00e+00)
+  known answer S2_LMC-MW|alt|e0: median 7.717301e-24 vs H4 7.717301e-24 (rel 0.00e+00)
+  [PASS] B0: max rel diff 0.00e+00 (line: <= 1 % (H4 S2 near-zone fine medians, f = 3))
+  1+w=0.1  S1_MW-M31            canonical: 2/2 conv/neg maps, medians ['6.2e-07', '6.9e-09']; alt: 2/2
+  1+w=0.1  S2_LMC-MW            canonical: 0/1 conv/neg maps, medians ['1.1e-04']; alt: 1/1
+  1+w=0.1  S3_galaxy_pair       canonical: 2/2 conv/neg maps, medians ['3.3e-06', '7.3e-09']; alt: 2/2
+  1+w=0.1  S4_cluster_pair      canonical: 0/2 conv/neg maps, medians ['1.5e-06', '7.4e-10']; alt: 1/2
+  1+w=0.1  S5a_MW_disc          canonical: 1/1 conv/neg maps, medians ['7.2e-09']; alt: 0/1
+  1+w=0.1  S5b_dwarf_disc       canonical: 1/1 conv/neg maps, medians ['8.2e-09']; alt: 1/1
+  1+w=0.1  S6_single_in_field   canonical: 1/1 conv/neg maps, medians ['7.3e-09']; alt: 0/1
+  1+w=1.0  S1_MW-M31            canonical: 2/2 conv/neg maps, medians ['6.5e-07', '3.5e-08']; alt: 2/2
+  1+w=1.0  S2_LMC-MW            canonical: 0/1 conv/neg maps, medians ['1.1e-04']; alt: 1/1
+  1+w=1.0  S3_galaxy_pair       canonical: 2/2 conv/neg maps, medians ['3.4e-06', '3.8e-08']; alt: 2/2
+  1+w=1.0  S4_cluster_pair      canonical: 2/2 conv/neg maps, medians ['1.5e-06', '1.5e-06']; alt: 2/2
+  1+w=1.0  S5a_MW_disc          canonical: 1/1 conv/neg maps, medians ['4.7e-08']; alt: 1/1
+  1+w=1.0  S5b_dwarf_disc       canonical: 1/1 conv/neg maps, medians ['7.6e-08']; alt: 1/1
+  1+w=1.0  S6_single_in_field   canonical: 1/1 conv/neg maps, medians ['4.5e-08']; alt: 1/1
+  1+w=2.0  S1_MW-M31            canonical: 2/2 conv/neg maps, medians ['6.5e-07', '4.4e-08']; alt: 2/2
+  1+w=2.0  S2_LMC-MW            canonical: 0/1 conv/neg maps, medians ['1.0e-04']; alt: 1/1
+  1+w=2.0  S3_galaxy_pair       canonical: 2/2 conv/neg maps, medians ['3.4e-06', '4.8e-08']; alt: 2/2
+  1+w=2.0  S4_cluster_pair      canonical: 2/2 conv/neg maps, medians ['1.5e-06', '1.5e-06']; alt: 2/2
+  1+w=2.0  S5a_MW_disc          canonical: 1/1 conv/neg maps, medians ['6.1e-08']; alt: 1/1
+  1+w=2.0  S5b_dwarf_disc       canonical: 1/1 conv/neg maps, medians ['1.4e-07']; alt: 1/1
+  1+w=2.0  S6_single_in_field   canonical: 1/1 conv/neg maps, medians ['6.0e-08']; alt: 1/1
+LABEL: AC2 ILL-POSED (unswitched); AC2s bounded; systems ill-posed at 1+w=2 on both footings with converged maps: ['S1_MW-M31', 'S3_galaxy_pair', 'S4_cluster_pair', 'S5a_MW_disc', 'S5b_dwarf_disc', 'S6_single_in_field']
