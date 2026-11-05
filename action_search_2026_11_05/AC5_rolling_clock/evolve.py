@@ -16,6 +16,7 @@ ap.add_argument('--mode', choices=['main', 'm1', 'm2'], default='main')
 ap.add_argument('--only-witnesses', action='store_true')
 ap.add_argument('--lam0', action='store_true', help='known answer: lambda = 0 (AC4 flow)')
 ap.add_argument('--cases', default='')
+ap.add_argument('--stream', action='store_true')
 args = ap.parse_args()
 
 SOURCE = Path('action_scale_investigation_2026_11_05/single_clock.py')
@@ -98,6 +99,61 @@ def run_case(fn, eps, em, Ls, k, on, rtol, drop_kdot, lam):
                 a_end=float(Y[0, -1]), eps_end=float(Y[3, -1]), max_I=float(n1), max_II=float(n2), omega_drift=drift)
 
 
+def run_case_stream(fn, eps, em, Ls, k, on, rtol, drop_kdot, lam):
+    """Same measurement as run_case without storing the solution: DOP853 stepped by hand, the same 8 dense-output
+    points per accepted step, the same terminal event a = e^5 (brentq on the step's interpolant). Omega is sampled
+    every 16th grid point instead of 4000 evenly spaced points. Numerics only; no line changed."""
+    from scipy.integrate import DOP853
+    from scipy.optimize import brentq
+    v0 = math.sqrt(2 * em); aend = math.exp(5.0)
+
+    def rhs(t, y):
+        a, H, v, ep = y[:4]
+        K, Kd, A, S, B = fn(a, H, v, ep, k, Ls, on, lam)
+        Hd = -ep * H * H - v * v / 2
+        Vb = (3 - ep) * H * H - v * v / 2
+        out = [a * H, Hd, -3 * H * v, 2 * ep * (-3 * H + lam * Vb / (math.sqrt(2 * ep) * H) - Hd / H)]
+        damp = (0 * Kd if drop_kdot else Kd) + A
+        for o in (4, 8):
+            qq = y[o:o + 2]; qv = y[o + 2:o + 4]
+            acc = np.linalg.solve(K, -damp @ qv - S @ qq)
+            out += [qv[0], qv[1], acc[0], acc[1]]
+        return np.array(out)
+
+    y0 = np.array([1.0, 1.0, v0, eps, 1, 0, 0, 0, 0, 1, 0, 0])
+    sv = DOP853(rhs, 0.0, y0, 1e9, rtol=rtol, atol=1e-13)
+    n1 = n2 = 0.0; om0 = None; omx = 0.0; scale = 0.0; cnt = 0; steps = 1; done = False; yl = y0
+
+    def visit(Y):
+        nonlocal n1, n2, om0, omx, scale, cnt
+        n1 = max(n1, float(np.max(np.abs(Y[4:6])))); n2 = max(n2, float(np.max(np.abs(Y[8:10]))))
+        for i in range(Y.shape[1]):
+            if cnt % 16 == 0:
+                a, H, v, ep = Y[:4, i]
+                K, Kd, A, S, B = fn(a, H, v, ep, k, Ls, on, lam)
+                u, ud, w, wd = Y[4:6, i], Y[6:8, i], Y[8:10, i], Y[10:12, i]
+                x1 = u @ (K @ wd + B @ w); x2 = w @ (K @ ud + B @ u); o = x1 - x2
+                if om0 is None: om0 = o
+                omx = max(omx, abs(o - om0)); scale = max(scale, abs(x1), abs(x2))
+            cnt += 1
+
+    while not done:
+        t0 = sv.t
+        msg = sv.step()
+        if sv.status == 'failed':
+            return dict(ok=False, steps=steps, a_end=float(sv.y[0]), eps_end=float(sv.y[3]), max_I=n1, max_II=n2, omega_drift=float('nan'))
+        steps += 1
+        d = sv.dense_output()
+        if sv.y[0] >= aend:
+            te = brentq(lambda tt: d(tt)[0] - aend, t0, sv.t, xtol=1e-14, rtol=1e-15)
+            visit(d(np.linspace(t0, te, 8, endpoint=False)))
+            yl = d(te); visit(yl.reshape(-1, 1)); done = True
+        else:
+            visit(d(np.linspace(t0, sv.t, 8, endpoint=False)))
+    drift = float(omx / max(abs(om0), scale, 1e-300))
+    return dict(ok=True, steps=steps, a_end=float(yl[0]), eps_end=float(yl[3]), max_I=n1, max_II=n2, omega_drift=drift)
+
+
 rows = json.loads(AC3.read_text())['rows']
 cases = [(r['epsilon_phi'], r['epsilon_m'], r['Lstar'], r['k'], r['negative_roots'] > 0) for r in rows]
 if args.only_witnesses or args.mode != 'main':
@@ -112,8 +168,9 @@ for es, ms, ls, ks, wit in cases:
     row = dict(epsilon_phi=es, epsilon_m=ms, Lstar=ls, k=ks, witness=wit)
     lam = 0.0 if args.lam0 else math.sqrt(2 * float(es)); row['lambda'] = lam
     for rtol in (1e-9, 1e-11):
-        cand = run_case(fn, float(es), float(ms), float(ls), float(ks), 1.0, rtol, args.mode == 'm1', lam)
-        gr = run_case(fn, float(es), float(ms), float(ls), float(ks), 0.0, rtol, args.mode == 'm1', lam)
+        rc = run_case_stream if args.stream else run_case
+        cand = rc(fn, float(es), float(ms), float(ls), float(ks), 1.0, rtol, args.mode == 'm1', lam)
+        gr = rc(fn, float(es), float(ms), float(ls), float(ks), 0.0, rtol, args.mode == 'm1', lam)
         R = max(cand['max_I'] / gr['max_I'], cand['max_II'] / gr['max_II'])
         row[f'rtol_{rtol:g}'] = dict(candidate=cand, gr=gr, R=R)
     r9, r11 = row['rtol_1e-09']['R'], row['rtol_1e-11']['R']
