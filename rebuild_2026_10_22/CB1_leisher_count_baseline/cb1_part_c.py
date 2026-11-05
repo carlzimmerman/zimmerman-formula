@@ -87,7 +87,7 @@ def run_one(G, Y, inp, an, seed, tag, epochs=EP, resume=True, stop_after=None):
     opt = torch.optim.Adam(m.parameters(), lr=LR, weight_decay=WD); sch = torch.optim.lr_scheduler.CyclicLR(opt, base_lr=LR, max_lr=1e-3, cycle_momentum=False, step_size_up=500)
     gen = np.random.default_rng(seed); best, bestv, ep = None, 1e9, 0
     if resume and os.path.exists(ck):
-        c = torch.load(ck, weights_only=False, map_location=DEV); m.load_state_dict(c["m"]); opt.load_state_dict(c["o"]); sch.load_state_dict(c["s"]); gen.bit_generator.state = c["g"]; best, bestv, ep = c["b"], c["v"], c["e"]; torch.set_rng_state(c["t"])
+        c = torch.load(ck, weights_only=False, map_location=DEV); m.load_state_dict(c["m"]); opt.load_state_dict(c["o"]); sch.load_state_dict(c["s"]); gen.bit_generator.state = c["g"]; best, bestv, ep = c["b"], c["v"], c["e"]; torch.set_rng_state(c["t"].cpu())
     vb = batches(va, G, inp, arm, Y); teb = batches(te, G, inp, arm, Y)
     def save(): afile(ck, lambda f: torch.save(dict(m=m.state_dict(), o=opt.state_dict(), s=sch.state_dict(), g=gen.bit_generator.state, b=best, v=bestv, e=ep, t=torch.get_rng_state()), f))
     t0 = time.time()
