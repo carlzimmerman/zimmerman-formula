@@ -164,6 +164,9 @@ claim, including the coordinator's previous AZC1 construction.
   combined-source N8/N16 pilots converge at physical epsilon. Reports repeat
   exactly; platform GMRES warnings retained with independent residual checks.
   No physical Bullet grade: live restart/footprint and queued ladders pending.
+  Live direct/homotopy restart now passes12/12 each, repeated exactly; N16
+  physical footprint0.0545GB measured. Production estimates documented,
+  no jobs submitted. Sampling/convergence grader and full ladders pending.
 - Tiers4-5: pending in brief order.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.

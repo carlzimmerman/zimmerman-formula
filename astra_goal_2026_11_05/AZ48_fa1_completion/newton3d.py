@@ -6,6 +6,7 @@ from scipy.sparse.linalg import LinearOperator,gmres
 import grid3d as D
 
 class MatvecLimit(Exception):pass
+class YieldRequested(Exception):pass
 
 def solve(grid,source,epsilon,initial,accepted=None,stop=None,history=None):
     """One epsilon level. Callback persists accepted safe states for the worker."""
@@ -25,6 +26,7 @@ def solve(grid,source,epsilon,initial,accepted=None,stop=None,history=None):
     for step in range(history[-1]['step']+1,61):
         counter=[0]
         def product(vector):
+            if stop is not None and stop():raise YieldRequested
             counter[0]+=1
             if counter[0]>400:raise MatvecLimit
             return D.jacobian_product(h,D.hessian(grid,grid.with_interior(vector)),epsilon).ravel()
@@ -41,6 +43,7 @@ def solve(grid,source,epsilon,initial,accepted=None,stop=None,history=None):
                 warnings.simplefilter('always',RuntimeWarning)
                 delta,info=gmres(operator,-residual.ravel(),M=preconditioner,rtol=1e-5,atol=0.,restart=20,maxiter=400,callback_type='legacy')
         except MatvecLimit:return finish('linear_matvec_limit')
+        except YieldRequested:return finish('interrupted')
         if info!=0 or not np.all(np.isfinite(delta)):return finish('linear_solve_failed')
         warning_messages=sorted(set(str(w.message) for w in observed))
         known_warnings={name+' encountered in matmul' for name in ['divide by zero','overflow','invalid value']}
@@ -49,6 +52,7 @@ def solve(grid,source,epsilon,initial,accepted=None,stop=None,history=None):
         # platform matmul warnings are retained, never treated as convergence.
         try:linear_residual=product(delta)+residual.ravel()
         except MatvecLimit:return finish('linear_matvec_limit')
+        except YieldRequested:return finish('interrupted')
         linear_relative=float(np.linalg.norm(linear_residual)/np.linalg.norm(residual.ravel()))
         if not np.isfinite(linear_relative) or linear_relative>1e-5:return finish('linear_residual_failed')
         if stop is not None and stop():return finish('interrupted')

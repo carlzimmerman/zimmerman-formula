@@ -188,3 +188,17 @@ new reports repeat byte-identically.
 Next: persistent worker identities/checkpoints, live interruption/resume,
 footprint measurement and queue qualification. The centred-Plummer32/64/128
 and Bullet64/128/256 plus expanded-box runs remain required and unexecuted.
+
+worker3d.py now implements atomic field/state checkpoints and flag-only
+signal handling. Direct and homotopy live SIGTERM/resume tests pass12/12
+each and repeat exactly in fresh folders; scientific field and JSON output
+are byte-identical to uninterrupted runs. The initial JSON ordering failure
+was fixed without altering the numerical method. Matrix-vector applications
+check the stop flag so interrupted iterations can return to the last safe
+checkpoint. Numerical pilot checks were rerun after this change.
+
+The N16 homotopy worker's measured lifetime physical footprint is0.0545GB
+(rounded up), from90 macOS samples. QUEUE_PREPARATION.md records the
+conservative cubic memory allowance and remaining requirements. No queued
+production run has been submitted and no physical convergence label is
+claimed. Field sampling and convergence grading remain to be implemented.
