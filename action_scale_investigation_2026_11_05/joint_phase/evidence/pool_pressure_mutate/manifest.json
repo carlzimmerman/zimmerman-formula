@@ -1,0 +1,149 @@
+{
+  "schema_version": 2,
+  "claim_id": "POOL-PRESSURE-SPEED-SELECTION",
+  "repository": {
+    "commit": "ffff9618221aa16134dde5fa5bc65ef33ad0e92b",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "action_scale_investigation_2026_11_05/joint_phase/pool_pressure.py",
+    "--out",
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/pool_pressure_mutate/result.json",
+    "--mutate"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "First pressure-confined isothermal mass extremum, edge force identity and Newtonian similarity scaling",
+    "coefficient_domain": "Exact symbolic identities and float64 collocation/quadrature with frozen convergence tests",
+    "conventions": "c=1, signature -+++, fixed polarization versus fixed conjugate distinguished",
+    "inputs": [
+      "Regular isothermal Emden equation",
+      "Mass functional including surface density at fixed cs and external pressure"
+    ],
+    "bounds": {
+      "initial_x": 1e-05,
+      "endpoint": 12,
+      "root_search_lower": 0.01,
+      "root_bracket_samples": 2400,
+      "tolerances": [
+        1e-09,
+        1e-11
+      ],
+      "max_steps": [
+        0.05,
+        0.025
+      ],
+      "agreement_limit": 1e-06,
+      "edge_identity_limit": 1e-07
+    },
+    "non_claims": [
+      "No cosmological selection of external pressure or mass inventory",
+      "No assumption of universal criticality",
+      "Not a finite galaxy fit or a full stability eigenproblem",
+      "No target numerical coefficient inserted"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-05T22:54:06.620428+00:00",
+    "runtime_seconds": 0.62508,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "action_scale_investigation_2026_11_05/joint_phase/pool_pressure.py",
+    "action_scale_investigation_2026_11_05/joint_phase/POOL_PRESSURE_CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/pool_pressure.py",
+      "sha256": "68e03e468e731340fc01e866b022217c35c3e41a5ae785496ad0bc08b1decb06",
+      "sha256_after": "68e03e468e731340fc01e866b022217c35c3e41a5ae785496ad0bc08b1decb06"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/POOL_PRESSURE_CONTRACT.md",
+      "sha256": "64018d1bf6e0dab86aea170501693cae76ec54f4c851c4f848c98115574b5b06",
+      "sha256_after": "64018d1bf6e0dab86aea170501693cae76ec54f4c851c4f848c98115574b5b06"
+    }
+  ],
+  "output_directory": "action_scale_investigation_2026_11_05/joint_phase/evidence/pool_pressure_mutate",
+  "declared_results": [
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/pool_pressure_mutate/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/pool_pressure_mutate/stdout.txt",
+      "sha256": "e052bac4de8408ccff05f06da1972ad31be3d1aac98c670ae69ba6620453965a",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/pool_pressure_mutate/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/pool_pressure_mutate/result.json",
+      "sha256": "cc6b8afce9c615861d113647e637de291f42c967a7af5f1ab86c7928559cf73b",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

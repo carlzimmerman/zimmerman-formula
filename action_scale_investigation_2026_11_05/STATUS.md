@@ -1,4 +1,15 @@
-# Joint-model continuation: blocked on coefficient selection
+# Joint-model continuation: pool speed calculation; coefficient unresolved
+
+Latest user-authorized follow-up: joint_phase/POOL_PRESSURE_RESULT.md computes
+the first mass maximum of a pressure-confined isothermal pool. It gives
+cs^4=G^(3/2) Mp sqrt(Pext)/1.18222658849960, with the coefficient computed
+from the regular Emden equation. All 12 checks pass; the derivative mutation
+fails its intended check. Same-phase vacuum pressure cancels at the interface;
+Pext=rho_DE c^2, Mp(Mb), and universal marginality are not derived. The finite
+edge coefficient differs from the formal infinite-tail coefficient. Cosmic
+tidal confinement with fixed dimensionless boundary data gives v^4 scaling
+as Mb^(4/3), not Mb. No half coefficient or full galaxy model is obtained.
+This is new authorized work, not a revival of rejected turnaround fits.
 
 Latest user-authorized calculation: joint_phase/EDDY_FORCE_RESULT.md derives
 the force on stars from the illustrative canonical vortex, including pressure.
