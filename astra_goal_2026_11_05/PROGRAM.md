@@ -66,14 +66,15 @@ claim, including the coordinator's previous AZC1 construction.
   brief's explicit one-paragraph fallback is recorded; no prediction is
   sealed and no artificial numerical test is substituted for that decision.
 - Tier3 lane9: AZ43 IN PROGRESS. Criteria096759f915 freeze143 parameter
-  points and729 local MW cells. Original anchors reproduced;133 small-gate
-  pairs completed:110 pass,23 points have T2 nonconvergence on both footings
-  (maximum13.30% versus1%). All92 worst-witness values freshly replayed:
-  184/184 checks, max difference2.23e-16, exact repeated scientific output.
+  points and729 local MW cells. All143 main small-gate pairs complete:
+  110 meet numerical lines,33 have T2 nonconvergence on both footings
+  (maximum13.30% versus1%). All132 worst-witness values freshly replayed:
+  264/264 checks, max difference4.45e-16, exact repeated scientific output.
   No tolerance changed. At canonical p=.35,L_MW=1.5 the
   full local MW pair has15 coarse passes,10 fine passes,10 stable and
   five flips retained as unresolved. Alt now has77 stable passes at that
-  parameter point; full grid pending.
+  parameter point; eligible MW grid remains pending. Independent nu=1
+  mutation small-grid batch is running; no final robustness verdict yet.
 - Tier3 lane10: AZ44 NO VERDICT on fully validated FN4e stage0;
   conditional STOP: NOT ENOUGH POWER. Fisher upper4.3678/5.2785,
   log-a0 error lower.4785/.4353dex. Mathematical controls11/11 and

@@ -142,3 +142,22 @@ threshold or resolution was changed.
 
 Run from this directory in the recorded numerical environment. Update the
 pair audit first when intentionally verifying a later completed-grid snapshot.
+
+## Complete main small-gate grid (not a final robustness verdict)
+
+All143 prescribed main-grid points now have both numerical rungs.110 meet
+the small-gate numerical lines;33 fail T2 on both footings, with no other
+small-gate numerical failure. Failed indices are91–92,104–111,117–126 and
+130–142. The largest dispersion change remains13.3046% versus the frozen1%.
+The last ten completed points all belong to the failed p=.5 row.
+
+The current full-snapshot worst-witness replay recomputes132 values from
+all66 failing point/footing combinations.264/264 checks pass; maximum
+stored-versus-recomputed relative difference is4.45e-16, and the scientific
+report repeats byte-identically. This confirms numerical nonconvergence;
+it does not turn those T2 failures into physical exclusions. A separate
+stable decisive physical gate may still exclude a point under the criteria.
+
+The independent nu=1 mutation grid has started. Eligible local MW pairs,
+mutation completion, final per-gate aggregation and robustness labels remain
+outstanding. Main small-grid completion alone is not completion of AZ43.
