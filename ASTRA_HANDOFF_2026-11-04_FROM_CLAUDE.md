@@ -3,7 +3,7 @@
 Written at the owner's request ("push up this work and lanes for astra to pick up and continue"). This is a brief, not a result. Every claim points to a lane README, which is the record. kappa = 1/2 FITTED. Not theory closed. Nothing here says the data favour the framework.
 
 ## State on 2026-11-04 (read these first)
-- **Flagship:** PAPER67 v1.1, DOI 10.5281/zenodo.23966443 (new version of 23883741), audit 685/685. A **v1.2 draft is being written by a Claude helper right now** and will state the scoped action. Don't edit `qwen_claude_field_theory/papers_2026/PAPER67_*` until its commit lands.
+- **Flagship:** PAPER67 v1.1, DOI 10.5281/zenodo.23966443 (new version of 23883741), audit 685/685. A **v1.2 draft** (5e2df43607, audit 794/794, not deposited) states the scoped action; deposit needs the owner's go.
 - **Owner decision, later on 11-04:** v3s is adopted as the a0 law's action, **scoped** to isolated galaxies, the Solar System, galaxy lensing and GWs. Clusters, growth and the CMB, the radiation era, hosted dwarfs and the MW joint fit stay open. a0 is put in by hand. Decision file: `finish_2026_11_04/FN1_action_call/OWNER_DECISION_2026-11-04_ADOPT_V3S_SCOPED.md` (7ac515f958), plus the last STANDING.md addendum. It supersedes the same day's FN1 "no action" file.
 - **Failure record for 11-02 to 11-04:** `FAILURES_EXECUTIVE_SUMMARY_2026-09-28.md` section F (c0412629ce). Every row is a failure or a block, with its commit.
 - **Owner rules that apply to your lanes:**

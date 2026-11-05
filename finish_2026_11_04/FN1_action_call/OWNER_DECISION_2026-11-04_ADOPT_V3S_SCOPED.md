@@ -12,8 +12,8 @@ Recorded at the owner's instruction. Asked in chat whether to adopt v3s as the g
 | Gate | Result | Lane, commit |
 |---|---|---|
 | Every action class graded | only v3s's screening length L* passes G1-G4 on both footings; unscreened classes fail Cassini Q2 by 1.69-5.18x | AX1, 9c11102bf3 |
-| Solar System | clean PASS; Q2 margin to Hees >= 4.9e7 (canonical), 5.7e7 (alt); planets <= 0.17 of bound | C6P, 8c5703da06 |
-| PPN gamma, beta | derived from the action: gamma = beta = 1, remainders <= 1e-12 | V3W W1, 17d7b7ecdc |
+| Solar System | clean PASS; Q2 margin to Hees >= 4.8e7 (canonical; 4.849e7 in c6p_cassini_hp.out), 5.7e7 (alt); planets <= 0.17 of bound | C6P, 8c5703da06 |
+| PPN gamma, beta | derived from the action: gamma = beta = 1, remainders <= 9.8e-14 (gamma) and 1.1e-12 (beta) | V3W W1, 17d7b7ecdc |
 | Galaxy lensing = dynamics | KiDS isolated A 1.13 +- 0.21 / 1.04 +- 0.19; weak power | V3W W3, 17d7b7ecdc |
 | GW speed, galaxy health | c_T = c (<= 6e-32); no ghost or gradient instability | V3W W4a/b, 17d7b7ecdc |
 | Solar-System health, 3D hyperbolicity | (a) and (c) PASS; (b) no instability, two precision lines missed | V3X, ee4210e959 |

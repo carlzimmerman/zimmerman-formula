@@ -192,7 +192,7 @@ Appended; nothing above is edited. The theory under test is the a₀ law alone (
 | Lane | What was tried | Result | Commit |
 |---|---|---|---|
 | AX1 | every action class for the law (AQUAL/QUMOND, BIMOND, TeVeS, AeST, khronon, Einstein-aether, superfluid-effective, nonlocal DEW, v3s) | every unscreened class FAILS Cassini Q2 by 1.69-5.18x Hees (TeVeS and Einstein-aether also on GW speed); DEW open on canonical only at a different μ; only v3s's screening length passes G1-G4; a₀ by hand in every class | 9c11102bf3 |
-| C6P, V3W, V3X | v3s's weak spots | Solar System clean PASS (Q2 margin ≥ 4.9e7); γ, β derived = 1; lensing = dynamics; c_T = c; two items UNDECIDED on numerics only, no physics failure. **v3s still fails clusters, growth/CMB (10-24 verdict); not adopted (owner, FN1 option c)** | 8c5703da06, 17d7b7ecdc, ee4210e959 |
+| C6P, V3W, V3X | v3s's weak spots | Solar System clean PASS (Q2 margin ≥ 4.8e7); γ, β derived = 1; lensing = dynamics; c_T = c; two items UNDECIDED on numerics only, no physics failure. **v3s still fails clusters, growth/CMB (10-24 verdict); not adopted (owner, FN1 option c)** | 8c5703da06, 17d7b7ecdc, ee4210e959 |
 | FN1b | fixed-length smoothed QUMOND | no universal length on either footing | 22f8e50070 |
 | FA1 | ten fresh selector ideas for a dust part inert in galaxies | four already dead in the record; I1 tidal isotropy KILLED (SPARC on-fraction 0.40-0.46 vs 0.046); I2 vorticity KILLED (cluster shear switches it off, or 13/16 ellipticals get +0.199 dex against room for +0.094, Z −2.15); I6 cubic galileon KILLED (halo above gas-rich discs switches on; Q2 fails at β = 1); I5, I7 dead on paper | 7064559430, 71258ff202, 9ffb1e2c94 |
 
