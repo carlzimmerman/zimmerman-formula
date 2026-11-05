@@ -240,3 +240,28 @@ arrays remain reproducible runtime artifacts. The sampler is presently
 tested as a bounded postprocessor. Production restart qualification for
 that stage and the cross-resolution/box convergence grader are still
 required before queued production analysis.
+
+convergence.py now implements the frozen complete-ladder numerical gates
+as a pure evaluator of authenticated sample records. It requires all three
+Plummer rungs and all four Bullet resolution/box roles, checks both-footing
+identities separately, and rejects missing prerequisites, incomplete samples,
+changed thresholds, nonfinite/tiny fields, residual or ellipticity failures,
+oracle errors, resolution/box changes and threshold flips. Its PASS is only
+numerical eligibility for the inherited conditional reading, never a lensing
+or healthy-action PASS. The production evidence loader is not yet connected;
+the evaluator explicitly requires authenticated prerequisite evidence from
+its caller and defaults that requirement to false.
+
+Synthetic complete-ladder and adversarial fixtures pass58/58 on both
+footings combined. Oracle and disc-resolution fixtures isolate those gates
+instead of depending on incidental rejection by another check. A separate
+grader mutation disables point-resolution/box tolerances and fails four
+fixtures (54/58, exit1). These tests do not supply production field evidence.
+Both scientific test reports repeat byte-identically with warnings as errors.
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python check_convergence.py
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python check_convergence.py --mutate
+
+Remaining: production postprocessor restart qualification, authenticated
+evidence aggregation and the queued physical ladders. No final Bullet
+numerical eligibility or conditional physical verdict has been established.

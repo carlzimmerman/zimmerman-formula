@@ -171,6 +171,9 @@ claim, including the coordinator's previous AZC1 construction.
   sign mutation fails ten; saved-field integration11/11 repeated exactly.
   N16 samples remain PILOT ONLY. Production postprocessor restart and
   cross-resolution/box grader, followed by full queued ladders, still open.
+  Pure convergence evaluator now passes58/58 synthetic/adversarial fixtures;
+  disabling point-pair lines fails four. Production evidence aggregation,
+  postprocessor restart and actual ladders remain incomplete.
 - Tiers4-5: pending in brief order.
 - AZ43 control update: first10 mutation small-grid pairs numerically pass,
   all fail dwarf/SPARC physical gates on both footings; batch exited75.
