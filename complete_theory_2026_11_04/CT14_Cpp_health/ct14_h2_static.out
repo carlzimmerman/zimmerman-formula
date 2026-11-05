@@ -1,0 +1,50 @@
+====================================================================================================
+CT14 H2: C'' static weak field, frozen coefficients (phi, khronon sigma, lapse Phi, covector P)
+====================================================================================================
+  [PASS] S0 W'(P) = A(P) with P = a s/(1+s)
+  [PASS] S1 -dW/da|_P = h(s) (so -W_rho = eps h: the a0-charge of law S, CT13 R1a)
+  H_L = (s + 1)**2, H_T = s + 1, W_Pa = -s**2, W_aa = s**2 - 2*s + 2*log(s + 1)
+
+K1 known answer (phi decoupled, mu_K = 0): omega^2 = rho_tau [gamma k^2 + 1/(khat.H^-1.khat) - 1] (V3X README:128, H4)
+  [PASS] K1 dust branch omega^2 matches V3X/H4 formula  (max rel 3.28e-34)
+
+A1 analytic (A representation, gamma_L = 0): L_J(A, rho) with A = grad(Phi - sigma_dot); kinetic matrix of (phi, sigma) for k || g
+  [PASS] A1a dL_J/drho = eps h(s)
+  [PASS] A1b K_t(free P) = 1 + eps[h - (1+w) s h'/2] (CT13 R2b)
+  [PASS] A1c det K(phi, sigma) / (L_AA k^2) = K_t,eff = K_t(free) - L_Arho^2 v^2/L_AA = 1 + eps[h - (1+w) s^3/(2(1+s))] (= the fixed-P coefficient)
+  reason: delta A = grad(delta Phi - delta sigma_dot) contains the khronon velocity; the v phidot dependence of A's conjugate is absorbed by sigma,
+  leaving phi with the fixed-P coefficient. CT13's R2 treated delta g as a static constraint (+B^2/|L_gg|), which removes exactly this.
+  threshold s*(1+w): K_t,eff = 0 (k || g); g* = s* a0 per footing; cone half-angle at 2 s*: tan^2 theta < |K_t,eff| / ((1+s) K_t,free)
+    1+w   1e-05: s* =   200078.0; g* = 1.873e-05 (canonical) / 2.263e-05 (alt) m/s^2; unstable cone at 2 s*: theta < 0.09 deg
+    1+w   1e-04: s* =    20082.4; g* = 1.880e-06 (canonical) / 2.272e-06 (alt) m/s^2; unstable cone at 2 s*: theta < 0.29 deg
+    1+w   1e-03: s* =    2083.78; g* = 1.950e-07 (canonical) / 2.357e-07 (alt) m/s^2; unstable cone at 2 s*: theta < 0.91 deg
+    1+w   1e-02: s* =    268.328; g* = 2.512e-08 (canonical) / 3.035e-08 (alt) m/s^2; unstable cone at 2 s*: theta < 2.82 deg
+    1+w   5e-02: s* =     84.718; g* = 7.930e-09 (canonical) / 9.583e-09 (alt) m/s^2; unstable cone at 2 s*: theta < 5.81 deg
+    1+w   1e-01: s* =    54.9807; g* = 5.146e-09 (canonical) / 6.219e-09 (alt) m/s^2; unstable cone at 2 s*: theta < 7.68 deg
+    1+w   3e-01: s* =    29.2288; g* = 2.736e-09 (canonical) / 3.306e-09 (alt) m/s^2; unstable cone at 2 s*: theta < 11.49 deg
+    1+w   1e+00: s* =    15.3947; g* = 1.441e-09 (canonical) / 1.741e-09 (alt) m/s^2; unstable cone at 2 s*: theta < 17.10 deg
+
+M1 MUTATE (CT13's quasi-static khronon: sigma_dot left out of A, sigma not dynamical): s 108.9, 1e4, theta 0, 1+w 0.05 / 0.3
+  s 108.9 1+w 0.05: quasi-static K_t 1.97326 (CT13 R2b 1.97302), stable True; full: max |Im omega| / k = 1.472
+  s 108.9 1+w 0.3: quasi-static K_t 1.84151 (CT13 R2b 1.84007), stable True; full: max |Im omega| / k = 0.3588
+  s 10000 1+w 0.05: quasi-static K_t 97.8128 (CT13 R2b 97.8123), stable True; full: max |Im omega| / k = 0.06368
+  s 10000 1+w 0.3: quasi-static K_t 85.3838 (CT13 R2b 85.3808), stable True; full: max |Im omega| / k = 0.02604
+  [PASS] M1 the quasi-static mutation reproduces CT13's pass (so the new result comes from sigma_dot in A)
+
+H2 grid: s [0.001, 0.1, 1.0, 10.0, 108.9, 10000.0, 100000000.0, 2700000000000.0], theta 7 values on [0, pi/2], 1+w [0.0001, 0.05, 0.3, 1.0], rho_tau [1e-06, 1.0, 1000.0], gamma_L [0.0, 100000.0], mu_K [0.0, 0.1], k [100.0, 10000.0, 1000000.0]; lapse coupling on/off
+  s     0.001: own K_s 1+eps h = 1; effective min K_s 1.0, min K_t 1.0; kinetic matrix (phi, sigma) min eig/max eig 1.0e-15; ghosts/instabilities 0  (11s)
+  s       0.1: own K_s 1+eps h = 1; effective min K_s 1.0000029, min K_t 0.99999835; kinetic matrix (phi, sigma) min eig/max eig 1.0e-13; ghosts/instabilities 0  (21s)
+  s         1: own K_s 1+eps h = 1.00113; effective min K_s 1.0011311, min K_t 0.99864425; kinetic matrix (phi, sigma) min eig/max eig 1.0e-12; ghosts/instabilities 0  (32s)
+  s        10: own K_s 1+eps h = 1.06081; effective min K_s 1.0608101, min K_t 0.6086654; kinetic matrix (phi, sigma) min eig/max eig 1.02e-11; ghosts/instabilities 0  (46s)
+  s       109: own K_s 1+eps h = 1.99961; effective min K_s 1.99961, min K_t -56.446566; kinetic matrix (phi, sigma) min eig/max eig -5.64e+6; ghosts/instabilities 452  (58s)
+  s     1e+04: own K_s 1+eps h = 100.299; effective min K_s 100.29855, min K_t -497209.17; kinetic matrix (phi, sigma) min eig/max eig -4.97e+10; ghosts/instabilities 424  (71s)
+  s     1e+08: own K_s 1+eps h = 994719; effective min K_s 994719.04, min K_t -4.5214471e+13; kinetic matrix (phi, sigma) min eig/max eig -4.52e+18; ghosts/instabilities 420  (84s)
+  s   2.7e+12: own K_s 1+eps h = 2.68574e+10; effective min K_s 2.6857397e+10, min K_t -4.973095e+14; kinetic matrix (phi, sigma) min eig/max eig -4.97e+19; ghosts/instabilities 270  (96s)
+  cases 8736
+  [PASS] H2 no ghost: every real root has positive Krein energy  (0 bad; first [])
+  [FAIL] H2 no gradient instability: no complex/negative omega^2 beyond the Hubble-scale mass terms (|omega| > 30 a0/c)  (1566 bad; first [(108.9, 0.0, 0.05, 1e-06, 0.0, 0.0, 100.0, 1, '(5.78832e-9 + 151.859j)'), (108.9, 0.0, 0.05, 1e-06, 0.0, 0.0, 100.0, 1, '(5.78832e-9 - 151.859j)')])
+  [FAIL] H2 constrained kinetic matrix of (phi, sigma) positive definite  (813 bad; first [(108.9, 0.0, 0.05, 1e-06, 0.0, 0.0, 100.0, 1, '-0.062508'), (108.9, 0.0, 0.05, 1e-06, 0.0, 0.0, 10000.0, 1, '-0.23059')])
+  [PASS] H2 effective phi gradient coefficient >= 1 (no CT7 flip from P, stiffness, dust, lapse)  (min 1.0)
+
+checks 9/11; peak RSS 0.09 GB; 96s
+kappa = 1/2 FITTED; not theory closed.

@@ -32,3 +32,9 @@ kappa = 1/2 FITTED; not theory closed.
 Updated standing: C'' is the first action on record to carry the rho_DE tie through G0 to G4 (G0 conditional). It does not derive kappa, and it does not pass the cosmology wall: G5 still needs a dust amount that CT8 and CT11 find cannot be tied to rho_DE, so it would enter as a fitted constant. A confirmed w = -1 crossing would exclude it.
 
 kappa = 1/2 FITTED; not theory closed.
+
+## Correction, CT14 (2026-11-04)
+
+CT14 overturns C''s conditional G0 pass (CT13 and the addendum above). On the static weak-field background, v3s's khronon acceleration perturbation contains the khronon velocity, so the phi coupling enters the kinetic matrix: for k along g, K_eff = 1 + eps[h - (1+w) s^3/(2(1+s))]. CT13 treated the khronon as a static constraint, which removes that term; with it restored, the full system has growth |Im omega| proportional to k (a UV instability) above s* = 29 / 85 / 268 / 2084 for 1+w = 0.3 / 0.05 / 1e-2 / 1e-3, i.e. g* = 2.7e-9 to 1.9e-7 m/s^2, reached in inner galaxies outside L*. Only exact Lambda escapes, where the tie is trivial. The FRW sector, the tracker restriction and W4b (one tensor-root line left) do not change this. C'' FAILS G0.
+
+kappa = 1/2 FITTED; not theory closed.

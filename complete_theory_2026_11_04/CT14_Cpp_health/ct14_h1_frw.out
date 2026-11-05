@@ -1,0 +1,88 @@
+====================================================================================================
+CT14 H1: C'' on FRW, exact quadratic action (zeta = psi, delta phi; dust clock; lapse/shift solved)
+====================================================================================================
+H1.0 a^2 f(sqrt(Y)/a) = -Y**(3/2)/(3*a) + Y**2/(4*a**2) + Y/2 + O(Y^5/2)
+  [PASS] H1.0 d^2[a^2 f]/(da dY) -> 0 at Y = 0 (the Y^1 term Y/2 is a-free; a enters first at Y^3/2, cubic in perturbations on FRW)
+  expanded (1s)
+  x-averaged (1s)
+  constraints solved (1s)
+  kinetic / gradient matrices built (2s)
+
+H1.1 structure
+  K_zz with phi kinetic off: (2*c_Y*k**2 + Pd1(t)*a(t)**2*u(t)**2 + Pd2(t)*a(t)**2*u(t)**4)*a(t)/(4*H(t)**2)
+  K_zz full (symbolic) = (2*c_Y*k**2 + PX(t)*a(t)**2*v(t)**2 + PXX(t)*a(t)**2*v(t)**4 + Pd1(t)*a(t)**2*u(t)**2 + Pd2(t)*a(t)**2*u(t)**4)*a(t)/(4*H(t)**2)
+  det K / (K_phiphi) = (2*c_Y*k**2 + Pd1(t)*a(t)**2*u(t)**2 + Pd2(t)*a(t)**2*u(t)**4)*a(t)/(4*H(t)**2)
+  K_zphi (symbolic) = -(PX(t) + PXX(t)*v(t)**2)*a(t)**3*v(t)/(4*H(t))
+  K_phiphi (symbolic) = (PX(t) + PXX(t)*v(t)**2)*a(t)**3/4
+  (2s)
+
+H1.2 kinetic matrix eigenvalues (k/aH = 1e1..1e6), mode speeds c^2 = omega^2/k^2, max growth rate / H
+  (a) exact FRW        Om_d 0.300 w -0.9999 c_d^2 1e-06 c_Y 0.0: min kin eig 2.500e-01; c^2 at k=1e6 aH ['1e-06', '1'] (phi own K_s/K_t 1); max growth +3.30e-11 H
+  (a) exact FRW        Om_d 0.300 w -0.7000 c_d^2 1e-06 c_Y 0.0: min kin eig 2.500e-01; c^2 at k=1e6 aH ['1e-06', '1'] (phi own K_s/K_t 1); max growth +7.12e-12 H
+  (a) exact FRW        Om_d 0.300 w +0.0000 c_d^2 1e-06 c_Y 0.0: min kin eig 2.500e-01; c^2 at k=1e6 aH ['1e-06', '1'] (phi own K_s/K_t 1); max growth -6.02e-13 H
+  (a) exact FRW        Om_d 0.999 w -0.9999 c_d^2 1e-06 c_Y 0.0: min kin eig 2.500e-01; c^2 at k=1e6 aH ['1e-06', '1'] (phi own K_s/K_t 1); max growth +1.70e-11 H
+  (a) exact FRW        Om_d 0.999 w -0.7000 c_d^2 1e-06 c_Y 0.0: min kin eig 2.500e-01; c^2 at k=1e6 aH ['1e-06', '1'] (phi own K_s/K_t 1); max growth +7.18e-11 H
+  (a) exact FRW        Om_d 0.999 w +0.0000 c_d^2 1e-06 c_Y 0.0: min kin eig 2.500e-01; c^2 at k=1e6 aH ['1e-06', '1'] (phi own K_s/K_t 1); max growth +1.41e-11 H
+  (a) exact FRW        Om_d 0.300 w -0.9999 c_d^2 1e-02 c_Y 0.0: min kin eig 2.500e-01; c^2 at k=1e6 aH ['0.01', '1'] (phi own K_s/K_t 1); max growth -1.11e-11 H
+  (a) exact FRW        Om_d 0.300 w -0.7000 c_d^2 1e-02 c_Y 0.0: min kin eig 2.483e-01; c^2 at k=1e6 aH ['0.01', '1'] (phi own K_s/K_t 1); max growth +4.66e-11 H
+  (a) exact FRW        Om_d 0.300 w +0.0000 c_d^2 1e-02 c_Y 0.0: min kin eig 2.443e-01; c^2 at k=1e6 aH ['0.01', '1'] (phi own K_s/K_t 1); max growth -7.39e-12 H
+  (a) exact FRW        Om_d 0.999 w -0.9999 c_d^2 1e-02 c_Y 0.0: min kin eig 2.500e-01; c^2 at k=1e6 aH ['0.01', '1'] (phi own K_s/K_t 1); max growth -2.44e-12 H
+  (a) exact FRW        Om_d 0.999 w -0.7000 c_d^2 1e-02 c_Y 0.0: min kin eig 2.500e-01; c^2 at k=1e6 aH ['0.01', '1'] (phi own K_s/K_t 1); max growth +8.36e-12 H
+  (a) exact FRW        Om_d 0.999 w +0.0000 c_d^2 1e-02 c_Y 0.0: min kin eig 2.500e-01; c^2 at k=1e6 aH ['0.01', '1'] (phi own K_s/K_t 1); max growth +5.60e-11 H
+  (a) exact FRW        Om_d 0.300 w -0.9999 c_d^2 1e-06 c_Y 0.5: min kin eig 2.500e-01; c^2 at k=1e6 aH ['0', '1'] (phi own K_s/K_t 1); max growth +1.20e-15 H
+  (a) exact FRW        Om_d 0.300 w -0.7000 c_d^2 1e-06 c_Y 0.5: min kin eig 2.500e-01; c^2 at k=1e6 aH ['0', '1'] (phi own K_s/K_t 1); max growth -1.13e-11 H
+  (a) exact FRW        Om_d 0.300 w +0.0000 c_d^2 1e-06 c_Y 0.5: min kin eig 2.500e-01; c^2 at k=1e6 aH ['-0', '1'] (phi own K_s/K_t 1); max growth +6.57e-02 H
+  (a) exact FRW        Om_d 0.999 w -0.9999 c_d^2 1e-06 c_Y 0.5: min kin eig 2.500e-01; c^2 at k=1e6 aH ['0', '1'] (phi own K_s/K_t 1); max growth +2.16e-11 H
+  (a) exact FRW        Om_d 0.999 w -0.7000 c_d^2 1e-06 c_Y 0.5: min kin eig 2.500e-01; c^2 at k=1e6 aH ['0', '1'] (phi own K_s/K_t 1); max growth +5.77e-12 H
+  (a) exact FRW        Om_d 0.999 w +0.0000 c_d^2 1e-06 c_Y 0.5: min kin eig 2.500e-01; c^2 at k=1e6 aH ['0', '1'] (phi own K_s/K_t 1); max growth +1.06e-10 H
+  (a) exact FRW        Om_d 0.300 w -0.9999 c_d^2 1e-02 c_Y 0.5: min kin eig 2.500e-01; c^2 at k=1e6 aH ['0', '1'] (phi own K_s/K_t 1); max growth +3.65e-15 H
+  (a) exact FRW        Om_d 0.300 w -0.7000 c_d^2 1e-02 c_Y 0.5: min kin eig 2.492e-01; c^2 at k=1e6 aH ['0', '1'] (phi own K_s/K_t 1); max growth +2.77e-11 H
+  (a) exact FRW        Om_d 0.300 w +0.0000 c_d^2 1e-02 c_Y 0.5: min kin eig 2.473e-01; c^2 at k=1e6 aH ['0', '1'] (phi own K_s/K_t 1); max growth -1.20e-11 H
+  (a) exact FRW        Om_d 0.999 w -0.9999 c_d^2 1e-02 c_Y 0.5: min kin eig 2.500e-01; c^2 at k=1e6 aH ['0', '1'] (phi own K_s/K_t 1); max growth +3.05e-11 H
+  (a) exact FRW        Om_d 0.999 w -0.7000 c_d^2 1e-02 c_Y 0.5: min kin eig 2.500e-01; c^2 at k=1e6 aH ['0', '1'] (phi own K_s/K_t 1); max growth +8.99e-12 H
+  (a) exact FRW        Om_d 0.999 w +0.0000 c_d^2 1e-02 c_Y 0.5: min kin eig 2.500e-01; c^2 at k=1e6 aH ['0', '1'] (phi own K_s/K_t 1); max growth +5.62e-15 H
+  (a) exact FRW        Om_d 0.300 w -0.9999 c_d^2 1e-06 c_Y 1.0: min kin eig 2.500e-01; c^2 at k=1e6 aH ['0', '1'] (phi own K_s/K_t 1); max growth +2.45e-12 H
+  (a) exact FRW        Om_d 0.300 w -0.7000 c_d^2 1e-06 c_Y 1.0: min kin eig 2.500e-01; c^2 at k=1e6 aH ['-0', '1'] (phi own K_s/K_t 1); max growth +2.83e-01 H
+  (a) exact FRW        Om_d 0.300 w +0.0000 c_d^2 1e-06 c_Y 1.0: min kin eig 2.500e-01; c^2 at k=1e6 aH ['-0', '1'] (phi own K_s/K_t 1); max growth +7.20e-01 H
+  (a) exact FRW        Om_d 0.999 w -0.9999 c_d^2 1e-06 c_Y 1.0: min kin eig 2.500e-01; c^2 at k=1e6 aH ['0', '1'] (phi own K_s/K_t 1); max growth +1.82e-11 H
+  (a) exact FRW        Om_d 0.999 w -0.7000 c_d^2 1e-06 c_Y 1.0: min kin eig 2.500e-01; c^2 at k=1e6 aH ['0', '1'] (phi own K_s/K_t 1); max growth +3.55e-11 H
+  (a) exact FRW        Om_d 0.999 w +0.0000 c_d^2 1e-06 c_Y 1.0: min kin eig 2.500e-01; c^2 at k=1e6 aH ['0', '1'] (phi own K_s/K_t 1); max growth +6.30e-15 H
+  (a) exact FRW        Om_d 0.300 w -0.9999 c_d^2 1e-02 c_Y 1.0: min kin eig 2.500e-01; c^2 at k=1e6 aH ['0', '1'] (phi own K_s/K_t 1); max growth +1.11e-11 H
+  (a) exact FRW        Om_d 0.300 w -0.7000 c_d^2 1e-02 c_Y 1.0: min kin eig 2.495e-01; c^2 at k=1e6 aH ['-0', '1'] (phi own K_s/K_t 1); max growth +2.71e-01 H
+  (a) exact FRW        Om_d 0.300 w +0.0000 c_d^2 1e-02 c_Y 1.0: min kin eig 2.482e-01; c^2 at k=1e6 aH ['-0', '1'] (phi own K_s/K_t 1); max growth +7.16e-01 H
+  (a) exact FRW        Om_d 0.999 w -0.9999 c_d^2 1e-02 c_Y 1.0: min kin eig 2.500e-01; c^2 at k=1e6 aH ['0', '1'] (phi own K_s/K_t 1); max growth +5.51e-11 H
+  (a) exact FRW        Om_d 0.999 w -0.7000 c_d^2 1e-02 c_Y 1.0: min kin eig 2.500e-01; c^2 at k=1e6 aH ['0', '1'] (phi own K_s/K_t 1); max growth +3.48e-12 H
+  (a) exact FRW        Om_d 0.999 w +0.0000 c_d^2 1e-02 c_Y 1.0: min kin eig 2.500e-01; c^2 at k=1e6 aH ['0', '1'] (phi own K_s/K_t 1); max growth -7.23e-14 H
+  (b) leaf E=0.75      Om_d 0.999 w -0.9999 c_d^2 1e-06 c_Y 1.0: min kin eig 4.375e-01; c^2 at k=1e6 aH ['0', '1.00002'] (phi own K_s/K_t 1.00002); max growth -1.08e-12 H
+  (b) leaf E=0.75      Om_d 0.999 w -0.7000 c_d^2 1e-06 c_Y 1.0: min kin eig 4.094e-01; c^2 at k=1e6 aH ['0', '1.0687'] (phi own K_s/K_t 1.0687); max growth +2.11e-14 H
+  (b) leaf E=12.8      Om_d 0.999 w -0.9999 c_d^2 1e-06 c_Y 1.0: min kin eig 3.450e+00; c^2 at k=1e6 aH ['0', '1.00005'] (phi own K_s/K_t 1.00005); max growth +5.57e-11 H
+  (b) leaf E=12.8      Om_d 0.999 w -0.7000 c_d^2 1e-06 c_Y 1.0: min kin eig 2.970e+00; c^2 at k=1e6 aH ['0', '1.16162'] (phi own K_s/K_t 1.16162); max growth -2.36e-14 H
+  (b) leaf E=145       Om_d 0.999 w -0.9999 c_d^2 1e-06 c_Y 1.0: min kin eig 3.650e+01; c^2 at k=1e6 aH ['0', '1.00005'] (phi own K_s/K_t 1.00005); max growth +2.72e-12 H
+  (b) leaf E=145       Om_d 0.999 w -0.7000 c_d^2 1e-06 c_Y 1.0: min kin eig 3.106e+01; c^2 at k=1e6 aH ['0', '1.17505'] (phi own K_s/K_t 1.17505); max growth -3.30e-14 H
+  (b) leaf E=592000    Om_d 0.999 w -0.9999 c_d^2 1e-06 c_Y 1.0: min kin eig 1.480e+05; c^2 at k=1e6 aH ['0', '1.00005'] (phi own K_s/K_t 1.00005); max growth +5.79e-11 H
+  (b) leaf E=592000    Om_d 0.999 w -0.7000 c_d^2 1e-06 c_Y 1.0: min kin eig 1.258e+05; c^2 at k=1e6 aH ['0', '1.17647'] (phi own K_s/K_t 1.17647); max growth +1.46e-11 H
+  (c) static s=1       Om_d 0.300 w -0.9999 c_d^2 1e-06 c_Y 1.0: min kin eig 2.503e-01; c^2 at k=1e6 aH ['0', '1'] (phi own K_s/K_t 1); max growth -5.39e-15 H
+  (c) static s=1       Om_d 0.300 w -0.7000 c_d^2 1e-06 c_Y 1.0: min kin eig 2.502e-01; c^2 at k=1e6 aH ['-0', '1.00037'] (phi own K_s/K_t 1.00037); max growth +2.83e-01 H
+  (c) static s=1       Om_d 0.300 w +0.0000 c_d^2 1e-06 c_Y 1.0: min kin eig 2.500e-01; c^2 at k=1e6 aH ['-0', '1.00124'] (phi own K_s/K_t 1.00124); max growth +7.20e-01 H
+  (c) static s=108.9   Om_d 0.300 w -0.9999 c_d^2 1e-06 c_Y 1.0: min kin eig 4.999e-01; c^2 at k=1e6 aH ['0', '1.00003'] (phi own K_s/K_t 1.00003); max growth -9.17e-15 H
+  (c) static s=108.9   Om_d 0.300 w -0.7000 c_d^2 1e-06 c_Y 1.0: min kin eig 4.600e-01; c^2 at k=1e6 aH ['-0', '1.08671'] (phi own K_s/K_t 1.08671); max growth +1.29e-01 H
+  (c) static s=108.9   Om_d 0.300 w +0.0000 c_d^2 1e-06 c_Y 1.0: min kin eig 3.669e-01; c^2 at k=1e6 aH ['-0', '1.36232'] (phi own K_s/K_t 1.36232); max growth +6.50e-01 H
+  (c) static s=1e+08   Om_d 0.300 w -0.9999 c_d^2 1e-06 c_Y 1.0: min kin eig 2.251e+05; c^2 at k=1e6 aH ['0', '1.00005'] (phi own K_s/K_t 1.00005); max growth +2.05e-11 H
+  (c) static s=1e+08   Om_d 0.300 w -0.7000 c_d^2 1e-06 c_Y 1.0: min kin eig 2.114e+05; c^2 at k=1e6 aH ['0', '1.17647'] (phi own K_s/K_t 1.17647); max growth +2.88e-11 H
+  (c) static s=1e+08   Om_d 0.300 w +0.0000 c_d^2 1e-06 c_Y 1.0: min kin eig 1.243e+05; c^2 at k=1e6 aH ['-0', '2'] (phi own K_s/K_t 2); max growth +5.81e-01 H
+  (c) static s=1e+22   Om_d 0.300 w -0.9999 c_d^2 1e-06 c_Y 1.0: min kin eig 2.251e+05; c^2 at k=1e6 aH ['0', '1.00005'] (phi own K_s/K_t 1.00005); max growth +3.22e-11 H
+  (c) static s=1e+22   Om_d 0.300 w -0.7000 c_d^2 1e-06 c_Y 1.0: min kin eig 2.251e+05; c^2 at k=1e6 aH ['0', '1.17647'] (phi own K_s/K_t 1.17647); max growth +2.66e-12 H
+  (c) static s=1e+22   Om_d 0.300 w +0.0000 c_d^2 1e-06 c_Y 1.0: min kin eig 2.251e+05; c^2 at k=1e6 aH ['-0', '2'] (phi own K_s/K_t 2); max growth +5.81e-01 H
+
+H1.3 the O(H) k-independent rate seen with c_Y > 0 (k dependence; and with phi frozen / with c_Y = 0)
+  Om_d 0.3 w_2nd -0.7000 c_Y 1.0: max growth/H at k/aH 1e1, 1e2, 1e4, 1e6 = +1.366e+01, +2.226e+00, +2.802e-01, +2.832e-01; Hubble-friction reference 3/2 = 1.5
+  Om_d 0.3 w_2nd +0.0000 c_Y 1.0: max growth/H at k/aH 1e1, 1e2, 1e4, 1e6 = +2.964e+01, +9.126e+00, +7.177e-01, +7.202e-01; Hubble-friction reference 3/2 = 1.5
+  Om_d 0.3 w_2nd +0.0000 c_Y 0.0: max growth/H at k/aH 1e1, 1e2, 1e4, 1e6 = +2.964e+01, +9.172e+00, +1.338e-13, -6.023e-13; Hubble-friction reference 3/2 = 1.5
+  Om_d 0.3 w_2nd -0.9999 c_Y 1.0: max growth/H at k/aH 1e1, 1e2, 1e4, 1e6 = +2.058e-01, +8.926e-15, -2.182e-15, +2.448e-12; Hubble-friction reference 3/2 = 1.5
+  Om_d 0.7 w_2nd +0.0000 c_Y 1.0: max growth/H at k/aH 1e1, 1e2, 1e4, 1e6 = +2.965e+01, +9.190e+00, +1.208e-13, -1.488e-11; Hubble-friction reference 3/2 = 1.5
+  Om_d 0.3 w_2nd +0.3333 c_Y 1.0: max growth/H at k/aH 1e1, 1e2, 1e4, 1e6 = +3.604e+01, +1.327e+01, +9.313e-01, +9.306e-01; Hubble-friction reference 3/2 = 1.5
+  [PASS] H1 kinetic matrix of (zeta = psi, delta phi) positive definite and both c^2 >= 0 at every k, every case
+  [PASS] H1 no CT7 flip from mixing: the phi-branch speed at k >> aH equals its own K_s/K_t (mixing with psi, lapse, shift, dust and c_Y does not reduce it)
+
+checks 3/3; peak RSS 0.10 GB; 41s
+kappa = 1/2 FITTED; not theory closed.

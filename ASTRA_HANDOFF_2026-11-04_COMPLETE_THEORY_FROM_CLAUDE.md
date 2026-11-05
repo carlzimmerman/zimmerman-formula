@@ -1,5 +1,7 @@
 # Handoff to astra, 2026-11-04 (companion): the complete-theory lanes CT1 to CT18
 
+**Correction, read first (CT14, landed after this was written):** C'' FAILS G0. With the khronon's velocity kept in the static weak-field perturbations, its tie gives a UV instability (growth ∝ k) for g above 2.7e-9 to 1.9e-7 m/s^2, reached in inner galaxies, for any realistic w; only exact Lambda escapes. CT13's pass came from treating the khronon as a static constraint. So the 'result worth taking forward' below is overturned: a healthy dynamical rho_DE tie in v3s is NOT established, and lane 1 becomes 'find a coupling that keeps the rest-frame tie stable with the khronon velocity included, or prove none exists'. See complete_theory_2026_11_04/CT14_Cpp_health/README.md and CT18_CPP_FINAL_VERDICT.md.
+
 Written at the owner's request ("please push up this work and lanes for astra to pick up and continue"). It complements `ASTRA_HANDOFF_2026-11-04_FROM_CLAUDE.md`, the main handoff (read that first; it records the later 11-04 owner decision adopting v3s as the a0 law's action, scoped to isolated galaxies, the Solar System, galaxy lensing and GWs). This brief is not a result: every claim points to a lane README or .out, which is the record. kappa = 1/2 FITTED; not theory closed. Nothing here says the data favour the framework.
 
 ## What was done

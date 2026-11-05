@@ -1,0 +1,32 @@
+====================================================================================================
+CT14 H3: W4b (solar background) - V3X's W4c(b) spectrum on a finer ladder
+====================================================================================================
+  extracted from V3X: ['J', 'T', 'background', 'bg_task', 'forked', 'grid_r', 'interp_rho', 'mpf_list', 'rM_of', 'spectrum', 'tri_inv', 'tridiag']; GRES (30, 48); RSS line 0.85 GB
+
+[canonical] background: Route N residual 2.1e-14, M_lo 3.199914 (V3X 3.199914), M_hi 10.239646 (V3X 10.239646), min rho_tau 3.9757e-06 (V3X 3.9757e-06)
+  nd 12 (n = 82): lowest omega^2 l=0..4 lower bracket 2.829909e-05, 4.859871e-05, 7.398090e-05, 1.041781e-04, 1.389256e-04; all positive True; A-hat PD True; V >= gamma True  (5s)
+  nd 16 (n = 109): lowest omega^2 l=0..4 lower bracket 2.833252e-05, 4.874694e-05, 7.436493e-05, 1.049685e-04, 1.403679e-04; all positive True; A-hat PD True; V >= gamma True  (5s)
+  nd 24 (n = 163): lowest omega^2 l=0..4 lower bracket 2.835651e-05, 4.885025e-05, 7.462319e-05, 1.054759e-04, 1.412418e-04; all positive True; A-hat PD True; V >= gamma True  (5s)
+  nd 32 (n = 217): lowest omega^2 l=0..4 lower bracket 2.836495e-05, 4.888614e-05, 7.471166e-05, 1.056467e-04, 1.415297e-04; all positive True; A-hat PD True; V >= gamma True  (5s)
+  nd 48 (n = 326): lowest omega^2 l=0..4 lower bracket 2.837105e-05, 4.891193e-05, 7.477483e-05, 1.057679e-04, 1.417326e-04; all positive True; A-hat PD True; V >= gamma True  (5s)
+  known answer: float64 vs V3X's recorded 40-digit lowest three omega^2 (nd 12, 16; l 0-4; both brackets): max rel 6.44e-15 (<= 1e-8)
+  ladder, max rel change of the lowest three omega^2 over l 0-4 and both brackets: 12->16 1.455e-01, 16->24 7.855e-02, 24->32 2.030e-02, 32->48 1.362e-02  (V3X line 5e-2 on the last pair; worst at 32->48: l 4 lo)
+  min omega^2 over all rungs 2.8299e-05 a0/r_M = 2.225e-30 s^-2
+
+[alt] background: Route N residual 1.2e-14, M_lo 2.820357 (V3X 2.820357), M_hi 7.954535 (V3X 7.954535), min rho_tau 3.3583e-06 (V3X 3.3583e-06)
+  nd 12 (n = 82): lowest omega^2 l=0..4 lower bracket 2.262808e-05, 3.976955e-05, 6.120530e-05, 8.670265e-05, 1.160358e-04; all positive True; A-hat PD True; V >= gamma True  (8s)
+  nd 16 (n = 109): lowest omega^2 l=0..4 lower bracket 2.265667e-05, 3.989637e-05, 6.153427e-05, 8.738077e-05, 1.172755e-04; all positive True; A-hat PD True; V >= gamma True  (8s)
+  nd 24 (n = 164): lowest omega^2 l=0..4 lower bracket 2.267737e-05, 3.998555e-05, 6.175732e-05, 8.781926e-05, 1.180310e-04; all positive True; A-hat PD True; V >= gamma True  (8s)
+  nd 32 (n = 219): lowest omega^2 l=0..4 lower bracket 2.268455e-05, 4.001609e-05, 6.183260e-05, 8.796461e-05, 1.182760e-04; all positive True; A-hat PD True; V >= gamma True  (8s)
+  nd 48 (n = 328): lowest omega^2 l=0..4 lower bracket 2.268965e-05, 4.003763e-05, 6.188538e-05, 8.806586e-05, 1.184455e-04; all positive True; A-hat PD True; V >= gamma True  (8s)
+  known answer: float64 vs V3X's recorded 40-digit lowest three omega^2 (nd 12, 16; l 0-4; both brackets): max rel 5.66e-15 (<= 1e-8)
+  ladder, max rel change of the lowest three omega^2 over l 0-4 and both brackets: 12->16 1.466e-01, 16->24 8.110e-02, 24->32 2.052e-02, 32->48 1.351e-02  (V3X line 5e-2 on the last pair; worst at 32->48: l 4 lo)
+  min omega^2 over all rungs 2.2628e-05 a0/r_M = 2.363e-30 s^-2
+
+  mpmath (30 digits, V3X's own spectrum()) vs float64 at nd 24, l 4, lower bracket: max rel 1.33e-15  (17s)
+  [PASS] H3-K float64 route reproduces V3X's 40-digit spectra (<= 1e-8) and a 30-digit rung at nd 24
+  [PASS] H3-a every omega^2 > 0, A-hat PD, V-hat >= gamma_L at every rung 12..48, l 0-4, both brackets, both footings
+  [PASS] H3-b V3X's ladder line: lowest three omega^2 change < 5e-2 between the last two rungs (32 -> 48)
+
+checks 3/3; peak RSS (this process) 0.21 GB; background children [0.31, 0.3] GB; 27s
+kappa = 1/2 FITTED; not theory closed.

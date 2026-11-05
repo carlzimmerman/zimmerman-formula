@@ -6,7 +6,7 @@ C'': the v3s action with a0^2 = kappa^2 G rho_phi, where rho_phi = 2 X P_X - P i
 
 | Gate | Result | Lane |
 |---|---|---|
-| G0 health | Conditional pass (4 DOF, no ghost or gradient instability where checked); full mixing, W4b and the tracker branch pending | CT10, CT13, CT14 (pending) |
+| G0 health | FAIL (CT14): with the khronon velocity kept, a UV instability (growth ∝ k) appears for g above 2.7e-9 to 1.9e-7 m/s^2 (1+w 0.3 to 1e-3), reached in inner galaxies; only exact Lambda escapes. FRW sector passes; W4b one line left; thawing and some tracker potentials survive | CT14 (overturns CT13's conditional pass) |
 | G1 the law | Pass | CT10, CT13 |
 | G2 local constancy | Pass: at most 1.0e-10 dex in clusters, 7e-23 at the Sun | CT13 |
 | G3 the tie | Pass on FRW: slope 0.5 exactly, if the dark energy is phi alone and never crosses w = -1; kappa^2 hand-set | CT10, CT13 |
@@ -17,8 +17,8 @@ C'': the v3s action with a0^2 = kappa^2 G rho_phi, where rho_phi = 2 X P_X - P i
 
 ## Verdict
 
-C'' is the furthest any action on record has carried the rho_DE tie: it gives the law, a locally constant a0, the exact slope 0.5 and the Solar System together. It is not a complete theory. It fails the three gates it shares with v3s, because its dust is v3s's khronon: not dust at recombination, collapsing to caustics at discs, and too weak in cluster wells. Fitting the dust amount does not help, since the phase is not dust. Passing would need a separate dust component, which is the retired cold sector by another name (the record's "CDM under another name").
+Correction after CT14: C'' fails G0. Its rho_DE tie is unstable in the UV inside inner galaxies once the khronon's velocity is kept, for any realistic w; only exact Lambda escapes, where the tie is trivial. Before that finding, C'' was the furthest any action on record had carried the rho_DE tie (the law, a locally constant a0, the exact slope 0.5 and the Solar System together). It is not a complete theory. It fails the three gates it shares with v3s, because its dust is v3s's khronon: not dust at recombination, collapsing to caustics at discs, and too weak in cluster wells. Fitting the dust amount does not help, since the phase is not dust. Passing would need a separate dust component, which is the retired cold sector by another name (the record's "CDM under another name").
 
-What C'' shows: the tie itself can be built healthily (through the rest-frame energy). What blocks a complete theory is the same wall as before: cosmology and clusters need something that clusters like cold dust, and this action family does not supply it.
+What C'' shows: coupling to the rest-frame energy removes CT7's gradient flip, but the khronon's velocity brings back an instability; a healthy dynamical tie is not established. What blocks a complete theory is the same wall as before: cosmology and clusters need something that clusters like cold dust, and this action family does not supply it.
 
 kappa = 1/2 FITTED; not theory closed.
