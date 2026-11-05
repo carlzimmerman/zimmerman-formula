@@ -1,0 +1,41 @@
+R1 field equations
+  [PASS] R1a dL_M/drho|_g = eps h(s)  (h = (-s**2 + 2*(s + 1)*(s - log(s + 1)))/(s + 1))
+  [PASS] R1b khronon flux -(a/4piG) s mu(s): law S, a enters only via a(rho)
+  phi EOM: div[(1+eps h) grad phi] - d_t[(1+eps h) phidot] - 3H(..) = V'(1 - eps h)  (L = (1+eps h)X - (1-eps h)V at linear order)
+  [PASS] R1c h(0) = 0, h' = s^2/(1+s)^2 >= 0, so eps h >= 0
+R2 quadratic action, background phi0(t) (phidot = v), static g
+  [PASS] R2a K_s = 1 + eps h
+  [PASS] R2b K_t = 1 + eps[h - (1+w) s h'/2]
+  B^2/|L_gg| = kappa**2*s**3*w1/(16*pi*(s**3 + 4*s**2 + 5*s + 2));  s->oo: kappa**2*w1/(16*pi)
+  c_s^2(s->oo) = -2/(w1 - 2)  (no mixing); with mixing (k || g): K_s/(K_t + B^2/|L_gg|)
+  1+w 0.0001: min K_s 1.000e+00 min K_t +1.000e+00 max c_s^2 1.00005 (mixed k||g 1.00005) min 4piG|L_gg| 2.00e-03
+  1+w 0.0500: min K_s 1.000e+00 min K_t +1.000e+00 max c_s^2 1.02564 (mixed k||g 1.02564) min 4piG|L_gg| 2.00e-03
+  1+w 0.3000: min K_s 1.000e+00 min K_t +1.000e+00 max c_s^2 1.17647 (mixed k||g 1.17647) min 4piG|L_gg| 2.00e-03
+  1+w 1.0000: min K_s 1.000e+00 min K_t +9.999e-01 max c_s^2 2.00000 (mixed k||g 2.00000) min 4piG|L_gg| 2.00e-03
+  1+w 1.9000: min K_s 1.000e+00 min K_t +9.739e-01 max c_s^2 20.00000 (mixed k||g 20.00000) min 4piG|L_gg| 2.00e-03
+  1+w 2.0000: min K_s 1.000e+00 min K_t -4.166e+04 max c_s^2 99471839432434597888.00000 (mixed k||g 98492120195886071808.00000) min 4piG|L_gg| 2.00e-03
+  [PASS] R2c no ghost/gradient instability, 1e-3<=s<=1e22, 0<1+w<=1.9
+  note 1+w = 2 (kination): K_t = 1 - 2 eps ln s + O(1) -> 0 near ln s = 1/(2 eps) = 50.3, s ~ 1e22 (neutron-star surfaces); not DE
+  mass: m^2_eff = V''(1 - eps h) + eps s h' V'^2/(2 rho); with eps h >> 1 and V'' > 0: tachyonic at rate^2 ~ 2|V''|/(1-w) ~ H0^2, gradient-stabilised for k > H0: benign below the Hubble scale
+R5 local response (quasi-static solve, spherical, law-S g, u = dphi/V', d ln a0 = 4.5 (1+w) H0^2 u / c^2)
+  canonical void dwarf 1e8 Msun, ge 0.01 a0, 1 Mpc  : d log10 a0 at centre +7.81e-17 dex, at 1 AU +7.81e-17; max |grad dphi|/phidot 7.5e-10
+  canonical MW 6e10, field ge 0.03 a0, 1 Mpc        : d log10 a0 at centre +5.72e-14 dex, at 1 AU +5.72e-14; max |grad dphi|/phidot 8.2e-08
+  canonical cluster 1e14, ge 0.1 a0, 5 Mpc          : d log10 a0 at centre +9.97e-11 dex, at 1 AU +9.97e-11; max |grad dphi|/phidot 4.4e-06
+  canonical Sun in MW field ge 2.32e-10, 1 pc       : d log10 a0 at centre +7.03e-23 dex, at 1 AU +7.03e-23; max |grad dphi|/phidot 3.1e-12
+  alt       void dwarf 1e8 Msun, ge 0.01 a0, 1 Mpc  : d log10 a0 at centre +6.70e-17 dex, at 1 AU +6.70e-17; max |grad dphi|/phidot 5.7e-10
+  alt       MW 6e10, field ge 0.03 a0, 1 Mpc        : d log10 a0 at centre +4.44e-14 dex, at 1 AU +4.44e-14; max |grad dphi|/phidot 6.5e-08
+  alt       cluster 1e14, ge 0.1 a0, 5 Mpc          : d log10 a0 at centre +7.78e-11 dex, at 1 AU +7.78e-11; max |grad dphi|/phidot 3.5e-06
+  alt       Sun in MW field ge 2.32e-10, 1 pc       : d log10 a0 at centre +5.00e-23 dex, at 1 AU +5.00e-23; max |grad dphi|/phidot 2.4e-12
+  [PASS] R5 spread <= 0.015 dex (G2) and <= 0.01 dex (G1), both footings, 1+w = 0.3  ({'canonical': 9.970034149225514e-11, 'alt': 7.782697142657242e-11})
+  [PASS] R3 X stays > 0 locally (|grad dphi| << phidot), so rho_phi = X + V is the timelike rest-frame energy there  (rho_phi = X + V is a smooth scalar for X < 0 too (= minus the stress along grad phi), but a0^2 < 0 iff |grad phi|^2 > phidot^2 + 2V)
+R6 FRW: g = 0 -> L_M = 0, dL_M/drho = eps h(0) = 0: phi EOM is plain quintessence; a0^2 = kappa^2 G (phidot^2/2 + V) exactly
+  [PASS] R6 f(0) = h(0) = 0 and d^2 L_M/dg drho -> 0 at g -> 0
+R7 early universe, E = eps<h> (CT12 out:29-35, up to 5.9e5 at BBN); frozen phi: 1+w ~ (1+w0)(H0/H)^2
+  z     1100 E      0.75: H/H0 2.34e+04; 1+w 5.5e-10; c_s^2 - 1 1.2e-10; mixing/K_t <= 1.6e-12; background drift of ln rho_phi ~ 5.5e-10
+  z    10000 E      12.8: H/H0 1.10e+06; 1+w 2.5e-13; c_s^2 - 1 1.2e-13; mixing/K_t <= 8.9e-17; background drift of ln rho_phi ~ 2.5e-13
+  z   100000 E       145: H/H0 9.65e+07; 1+w 3.2e-17; c_s^2 - 1 0.0e+00; mixing/K_t <= 1.1e-21; background drift of ln rho_phi ~ 3.2e-17
+  z 400000000 E  5.92e+05: H/H0 1.52e+15; 1+w 1.3e-31; c_s^2 - 1 0.0e+00; mixing/K_t <= 1.1e-39; background drift of ln rho_phi ~ 1.3e-31
+  [PASS] R7 K_t, K_s ~ 1 + E > 0; c_s^2 - 1 <= (1+w)/2; potential force flips sign for E > 1 but phi is Hubble-frozen
+
+checks 10/10
+kappa = 1/2 FITTED; not theory closed.
