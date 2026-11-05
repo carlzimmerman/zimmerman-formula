@@ -1,0 +1,15 @@
+DP5 OFFLINE TESTS (fake archive; socket guard on)
+  [PASS] F1 DR3 spec: all 13 query texts byte-identical to the frozen fetch_extract.py's (manifest_dr3.json)
+         mismatches at []
+  [PASS] F2 DR4 default: table gaiadr4.gaia_source, no non_single_star, the other 16 columns and the WHERE unchanged
+         SELECT source_id, ra, dec, parallax, parallax_error, pmra, pmdec, pmra_error, pmdec_error, pmra_pmdec_corr, phot_g_mean_mag, bp_rp, ruwe, ipd_frac_multi_peak, r ...
+  [PASS] F3 sync-ranges returns exactly the brute-force row set (no duplicates, nothing lost); truncated pieces split
+         63,000 rows in the fake chunk; got 63,000 (63,000 unique); 102 queries, 19 truncated
+  [PASS] N1 inlist and upload transports return the same row set per table, equal to the brute-force truth (A17 union, own pairs once)
+         gaiadr4.nss_two_body_orbit: truth 900, inlist 900 (2 queries, 0 truncated), upload 900; gaiadr4.nss_resolved_pair: truth 600, inlist 600 (4 queries, 0 truncated), upload 600
+  [PASS] N2 the written id files load through cut12_nss_union.load_entries / load_ids and give the truth ids
+         gaiadr4.nss_two_body_orbit: 900 entries, solution_type present True; gaiadr4.nss_resolved_pair: 600 entries, solution_type present True
+  [PASS] N3 refuses with no counted tables; on the filed A17 template it fetches the union of the readings' tables, excluding nss_epoch_flags
+         template tables ['nss_acceleration_astro', 'nss_masses', 'nss_multiple_orbits', 'nss_multiplicity', 'nss_non_linear_spectro', 'nss_resolved_pair', 'nss_two_body_orbit', 'nss_vim_fl', 'optical_pair']
+
+checks: 6 of 6 pass
