@@ -110,7 +110,10 @@ claim, including the coordinator's previous AZC1 construction.
   still above the unchanged1e-12 line; retain both failed tests. Dense
   fitting implementation14/14 checks, including fixed physical30arcsec
   pressure smoothing and ungraded stationary-fit pilot; both check suites
-  repeat byte-identically. Full mock/fit workers, fit footprint and queue pending.
+  repeat byte-identically. Individual fit worker restart/identity checks12/12
+  pass twice, live SIGTERM/resume and fresh results byte-identical; ungraded
+  budget2 pilot remains status0. Fit physical footprint0.285GB (RSS0.905GB).
+  Full mock/grid workers, production scaling, queue and fit verdicts pending.
 - Tier3 lane13: AZ47 IN PROGRESS. Measurement protocol75abae6f8b,
   criteria774bb8db44 and pre-result wording amendment b06499a5dc.
   Four train clusters yield rank3 empirical covariance, scatter.067-.106dex;

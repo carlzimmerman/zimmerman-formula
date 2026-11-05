@@ -210,3 +210,39 @@ physical noise, real-data fits, footprint measurements and full convergence
 comparisons remain pending. The beam and extended-source failures remain.
 
     OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python -W error astra_goal_2026_11_05/AZ46_ic1613_redo/check_fitting.py
+
+## Restartable individual fit units
+
+fit_unit.py implements one model/inclination/start unit with atomic outputs,
+source/preparation/version identities and flag-only signal handlers. An
+interrupted optimizer unit restarts from its identical input; completed
+units verify their result hash and return without refitting. Fixed-inclination
+law-family results can seed a free-inclination refinement after identity
+checks. Real and seed7 channel-shuffle datasets are supported, with shuffle
+outputs required in a separate mutate tree. The noisy KA1/KA2 datasets and
+full grid orchestration remain to be implemented. Every production fit is
+heavyq-only; the sole unqueued allowance is bin8 with budget2.
+
+check_fit_resume.py passes 12/12 checks in each of two independent fresh
+runs. Each sees a live fitting checkpoint, sends SIGTERM, observes exit75,
+and resumes to a byte-identical result. Independent repeat and completed
+resume also match exactly. Changed start identities, unqueued production
+budgets and mutation outputs outside their own tree are rejected. Both
+complete check reports and all six fit results match across the two runs.
+The free-model pilot stops at its two-evaluation budget (status0), and the
+acceptance flag stays false. Its reduced chi-square is an ungraded early
+iterate, not evidence for a physical or local-cube conclusion.
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python -W error astra_goal_2026_11_05/AZ46_ic1613_redo/check_fit_resume.py --tag fit_verified/fresh_contract
+
+Use a fresh tag. Compact reports, scientific results and runtimes are
+committed; temporary execution checkpoints and logs remain runtime artifacts.
+A separate identical pilot completed in4.19seconds. macOS footprint sampled
+46 live-process records, with peak physical footprint284,607,952bytes
+(0.285GB); RSS high-water was904,806,400bytes. These are distinct memory
+measurements. The physical measurement is saved in
+fit_footprint_measurement.json and its scientific output matches the baseline.
+It does not yet establish the full-resolution, robust-ring or production
+optimizer memory bound. Full mocks, fit grid, refinement/bracket execution,
+numerical comparisons and final grading remain pending. No queue submission
+or fit verdict follows from this checkpoint.
