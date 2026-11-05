@@ -275,3 +275,32 @@ N16 physical footprint is0.0452GB (rounded up), with the existing conservative
 production reservation retained. QUEUE_PREPARATION.md documents the safe
 points, cache identities and rerun commands. Authenticated physical evidence
 aggregation and actual queued ladders remain outstanding.
+
+evidence.py and aggregate.py now connect the grader to authenticated local
+artifacts. All15 prerequisite reports have current source hashes and their
+expected known-answer/control outcomes. Field and sampling checkpoints must
+be complete; input/output hashes, source identities, environments, intended
+grid/footing roles and same-field sign twins are verified before grading.
+No supplied success flag substitutes for the stored check rows or coverage.
+This is reproducibility/provenance validation, not a cryptographic assertion
+that arbitrary external reports are trustworthy.
+
+Evidence fixtures pass13/13; deliberately bypassing a field hash fails the
+damaged-field control (12/13, exit1). Aggregation fixtures pass12/12, including
+empty ladders, changed sign twins and a valid N16 pilot falsely placed in an
+N128 production slot. All fixture reports and the current aggregation repeat
+exactly. aggregation/result.json records0/7 physical roles per footing per
+mode and therefore INCOMPLETE / UNDECIDED, with no conditional verdict.
+All actual queued physical ladders remain required.
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python check_evidence.py --tag NEW_TAG
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python check_evidence.py --tag NEW_MUTATION_TAG --mutate
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python check_aggregate.py --tag NEW_TAG
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python aggregate.py
+
+The production layout is fields/<source>_<foot>_n<N>_L<L> and
+samples/main/<same-key>, samples/mutate/<same-key>, under production/.
+The seven roles are Plummer32/64/128 at4000kpc and Bullet64/128/256 at
+4000kpc plus Bullet256 at8000kpc. The two footings are never pooled.
+Queue the physical Plummer known-answer ladder and verify it before Bullet
+production; finish the other light-tier preparations before heavy submission.

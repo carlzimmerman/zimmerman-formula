@@ -178,6 +178,10 @@ claim, including the coordinator's previous AZC1 construction.
   twice, after a completed disc checkpoint; integration remains11/11.
   N16 sampler physical footprint0.0452GB measured. Evidence aggregation and
   actual queued production ladders remain outstanding.
+  Authenticated evidence loader13/13 (hash-bypass mutation fails one) and
+  aggregate fixtures12/12 now pass, exact repeats. All15 prerequisite
+  reports current; physical production coverage0/7 per footing/mode,
+  explicit INCOMPLETE / UNDECIDED. Actual queued ladders still required.
 - Tiers4-5: pending in brief order.
 - AZ43 control update: first10 mutation small-grid pairs numerically pass,
   all fail dwarf/SPARC physical gates on both footings; batch exited75.
