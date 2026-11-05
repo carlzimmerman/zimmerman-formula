@@ -197,7 +197,7 @@ RES["partA"] = PA
 rss = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / (1024 ** 3 if sys.platform == "darwin" else 1024 ** 2)
 check("K5", rss < 1.0, f"peak RSS {rss:.2f} GB (line 1 GB)")
 P(f"\nfailed checks: {len(FAILS)} {FAILS}; wall {time.time() - T0:.0f} s; peak RSS {rss:.2f} GB")
-RES["failed"] = FAILS; RES["wall_s"] = time.time() - T0; RES["peak_rss_gb"] = rss; RES["copy_sha256"] = sha_c
+RES["failed"] = FAILS; RES["wall_s"] = time.time() - T0; RES["peak_rss_gb"] = rss; RES["copy_sha256"] = sha_c; RES["note"] = "kappa = 1/2 FITTED; not theory closed"
 sfx = "_MUTATE" if MUT else ""
 open(os.path.join(HERE, f"cq1{sfx}.out"), "w").write("\n".join(OUT) + "\n"); json.dump(RES, open(os.path.join(HERE, f"cq1{sfx}.json"), "w"), indent=1, default=float)
 sys.exit(1 if (MUT or FAILS) else 0)

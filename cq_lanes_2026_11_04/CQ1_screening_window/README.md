@@ -2,7 +2,7 @@
 
 κ = ½ FITTED; not theory closed. Footings are never pooled. No particle, no cold sector, no ΛCDM input. Nothing here says the data favour the framework.
 
-Criteria are in `FROZEN_CRITERIA.md` (98d0cbbefe), committed alone before the script. Run with `OMP_NUM_THREADS=1 nice -n 10 python3 -I -B cq1.py`. It took 5 s, single thread, peak RSS 0.63 GB, and wrote `cq1.out` / `cq1.json` / `cq1.log` / `cq1.time`. The MUTATE twin wrote `cq1_MUTATE.*`. No download. No file outside this folder is edited.
+Criteria are in `FROZEN_CRITERIA.md` (98d0cbbefe), committed alone before the script. Run with `OMP_NUM_THREADS=1 nice -n 10 python3 -I -B cq1.py`. It took 4 s, single thread, peak RSS 0.56 GB, and wrote `cq1.out` / `cq1.json` / `cq1.log` / `cq1.time`. The MUTATE twin wrote `cq1_MUTATE.*`. No download. No file outside this folder is edited.
 
 The Cassini solver is CW1's `Solver`, read from `cw1_copy.py`. That file is a byte copy of CW1's `cw1.py` (SHA-256 b3be0ab9…); it is never edited and never run. CQ1 adds one line: F_r = F_θ = 0 at nodes x < rscr.
 
@@ -97,7 +97,7 @@ The plain value matches CW1's Solver bit for bit (K2). It is above AX1's 1.69–
   - K2: CW1's unpatched Solver gives the same plain QUMOND Q2 (rel 0).
   - K3: direct screened solves equal the tail integral, to 2.3e-14.
   - K4: per_dec 400, L 96, n_μ 128 moves x_s,min by 0.57 %.
-  - K5: peak RSS was 0.63 GB.
+  - K5: peak RSS was 0.56 GB.
 - **MUTATE (ν ≡ 1) fails K1, as required** (exit 1). The Q2 source vanishes, so x_s,min → 0. The labels do not move. They are set by G3 against G6, not by the solver: Cassini binds no family.
 - **Translations are frozen readings.**
   - G3 for (i) and (ii) is "screened at r_h". "Screened at the centre" closes too.
