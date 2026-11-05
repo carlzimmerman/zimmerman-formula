@@ -1,5 +1,13 @@
 # NO VERDICT — a complete healthy density-tie action is not established
 
+[Full coupled inhomogeneous cap test](inhomogeneous_cap/RESULT.md) now derives
+and evolves the exact planar action with the metric, scalar, lapse and
+polarization coupled. Refinement and off-grid constraints validate the sampled
+interval through t=.78. Polarization/lapse steepening precedes cap saturation;
+late Fourier-domain and resolution failures prevent any claim of cured collapse
+or a relocated physical singularity. New constraint and exponential-lapse
+identities identify the separate continuation requirements. No run reaches t=3.
+
 [Clock repair and solved-background tests](clock_repair/RESULT.md) now evaluates
 the corrected gradient bound on all24 original radial models: all16 nonzero-
 epsilon cases have positive spline envelopes, with gradient penalty at most

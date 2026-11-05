@@ -1,0 +1,31 @@
+[workspace]/astra_goal_2026_11_05/AZ40_canonical_coupling/inhomogeneous_cap/planar.py:72: RuntimeWarning: divide by zero encountered in matmul
+  jac=2/self.n*self.C.T@mat
+[workspace]/astra_goal_2026_11_05/AZ40_canonical_coupling/inhomogeneous_cap/planar.py:72: RuntimeWarning: overflow encountered in matmul
+  jac=2/self.n*self.C.T@mat
+[workspace]/astra_goal_2026_11_05/AZ40_canonical_coupling/inhomogeneous_cap/planar.py:72: RuntimeWarning: invalid value encountered in matmul
+  jac=2/self.n*self.C.T@mat
+Traceback (most recent call last):
+  File "[workspace]/astra_goal_2026_11_05/AZ40_canonical_coupling/inhomogeneous_cap/planar.py", line 207, in <module>
+    else:ok=evolve(m,args,out)
+            ~~~~~~^^^^^^^^^^^^
+  File "[workspace]/astra_goal_2026_11_05/AZ40_canonical_coupling/inhomogeneous_cap/planar.py", line 183, in evolve
+    dense=solver.dense_output()
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/scipy/integrate/_ivp/base.py", line 224, in dense_output
+    return self._dense_output_impl()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/scipy/integrate/_ivp/rk.py", line 536, in _dense_output_impl
+    K[s] = self.fun(self.t_old + c * h, self.y_old + dy)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/scipy/integrate/_ivp/base.py", line 154, in fun
+    return self.fun_single(t, y)
+           ~~~~~~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/scipy/integrate/_ivp/base.py", line 23, in fun_wrapped
+    return np.asarray(fun(t, y), dtype=dtype)
+                      ~~~^^^^^^
+  File "[workspace]/astra_goal_2026_11_05/AZ40_canonical_coupling/inhomogeneous_cap/planar.py", line 112, in rhs
+    state=flat.reshape(7,self.n);bg=self.auxiliary(state);self.calls+=1
+                                    ~~~~~~~~~~~~~~^^^^^^^
+  File "[workspace]/astra_goal_2026_11_05/AZ40_canonical_coupling/inhomogeneous_cap/planar.py", line 87, in auxiliary
+    else:raise BranchError('polarization constraint line search stalled')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+BranchError: polarization constraint line search stalled

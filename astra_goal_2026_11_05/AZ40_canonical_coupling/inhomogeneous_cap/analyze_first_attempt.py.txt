@@ -1,0 +1,68 @@
+"""Post-run convergence and off-grid continuum audit; no evolution changes."""
+import os
+for key in ['OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS']:os.environ[key]='1'
+import argparse,json,hashlib
+from pathlib import Path
+import numpy as np
+from planar import Model
+
+def interp(values,nout=1024,order=0):
+    n=values.shape[-1];k=np.fft.fftfreq(n,d=1/n);x=np.arange(nout)*2*np.pi/nout
+    coeff=np.fft.fft(values,axis=-1)/n*(1j*k)**order
+    return np.einsum('jk,...k->...j',np.exp(1j*x[:,None]*k),coeff,optimize=False).real
+
+def audit(m,st):
+    bg=m.auxiliary(st);u=interp(st);ux=interp(st,order=1);uxx=interp(st,order=2)
+    A,B,phi,pa,pb,pphi=u[:6];Ax,Bx,phix=ux[:3];Bxx=uxx[1]
+    vol=np.exp(A+2*B);V,a,star=m.functions(phi);la=m.lam(pa/vol,pb/vol,star)
+    ky=-(pa/vol+la)/2;kx=(pa/vol-pb/vol-la)/2
+    P=interp(bg['P']);Px=interp(bg['P'],order=1);Pxx=interp(bg['P'],order=2)
+    N=interp(bg['N']);Nx=interp(bg['N'],order=1)
+    dp=np.exp(-A)*(Px+2*Bx*P);dpx=np.exp(-A)*(Pxx+2*Bxx*P+2*Bx*Px-Ax*(Px+2*Bx*P));F=1+m.gamma*dp
+    z=m.K*abs(P)/a;R3=np.exp(-2*A)*(-4*Bxx-6*Bx**2+4*Ax*Bx)
+    cm=pa*Ax+pb*Bx+pphi*phix-ux[3]
+    r={'dense_z_max':float(max(z)),'dense_N_min':float(min(N)),'dense_F_min':float(min(F)),'dense_momentum_residual':float(max(abs(cm))/(1+max(abs(pa))+max(abs(pb))+max(abs(pphi)))),'pointwise_domain':bool(max(z)<1)}
+    # Check the BLAS path against explicit summation, without trusting FP flags.
+    ref=np.einsum('ij,j->i',m.D2,st[1],optimize=False)
+    r['matmul_reference_error']=float(max(abs(ref-m.D2@st[1])))
+    r['all_finite']=bool(all(np.all(np.isfinite(v)) for v in [u,ux,uxx,P,N,dp,z]))
+    if max(z)<1:
+        W,Wp,_=m.polar(P,a)
+        U=m.T*la**2/(np.hypot(la,m.b*m.T)+m.b*m.T) if m.cap else np.zeros_like(la)
+        base=-2*kx*ky-ky**2-la*star-U-R3/2+pphi**2/(2*vol**2)+.5*np.exp(-2*A)*phix**2+V
+        hd=vol*(base+W+m.gamma*dp**2/2+dp)
+        terms=[F*np.exp(-A)*Nx,N*Wp,m.gamma*N*np.exp(-A)*dpx]
+        r['continuum_polarization_residual']=float(max(abs(terms[0]-terms[1]+terms[2]))/(1+sum(max(abs(q)) for q in terms)))
+        r['dense_hamiltonian_residual']=float(max(abs(hd))/(1+max(abs(vol*base))+max(abs(hd))))
+        g=(np.exp(A)*Wp-m.gamma*dpx)/F;k=np.fft.fftfreq(len(g),d=1/len(g));gh=np.fft.fft(g);integ=np.zeros_like(gh);integ[1:]=gh[1:]/(1j*k[1:]);logN=np.fft.ifft(integ).real
+        exact=np.exp(logN-max(logN));exact/=np.mean(exact)
+        r['lapse_exponential_profile_discrepancy']=float(max(abs(N-exact))/(1+max(abs(exact))))
+        r['exponential_lapse_min']=float(min(exact));r['period_integral_mean']=float(np.mean(g))
+    return r, np.concatenate([u[:6],P[None,:],N[None,:],la[None,:]],axis=0)
+
+def main(root,out):
+    names=['cap17_retry','cap33','cap65','cap33tight','cap65tight','cap129','cap257','uncap17','uncap33','uncap65','uncap33tight']
+    runs={};records={};hashes={}
+    for name in names:
+        p=root/'evidence'/name;z=np.load(p/'trajectory.npz');r=json.loads((p/'results.json').read_text());m=Model(r['n'],r['cap']);runs[name]=(z,r,m)
+        records[name]={'status':r['status'],'stop_time':r['last_time'],'reason':r['reason'],'last':r['diagnostics'][-1],'audits':{}}
+        for t in [.5,.75,.78,.79,.8,.81,.82]:
+            ii=np.argmin(abs(z['time']-t))
+            if abs(z['time'][ii]-t)<1e-8:records[name]['audits'][str(t)]=audit(m,z['state'][ii])[0]
+        records[name]['audits']['last']=audit(m,z['state'][-1])[0]
+        for f in ['results.json','trajectory.npz']:hashes[str(p/f)]=hashlib.sha256((p/f).read_bytes()).hexdigest()
+    pairs=[('cap33','cap65'),('cap65','cap129'),('cap129','cap257'),('cap33','cap33tight'),('cap65','cap65tight'),('uncap33','uncap65'),('uncap33','uncap33tight')]
+    comparisons={}
+    for a,b in pairs:
+        za,ra,ma=runs[a];zb,rb,mb=runs[b];rows=[]
+        for t in [.5,.75,.78,.79,.8,.81,.82]:
+            ia=np.argmin(abs(za['time']-t));ib=np.argmin(abs(zb['time']-t))
+            if max(abs(za['time'][ia]-t),abs(zb['time'][ib]-t))>1e-8:continue
+            aa,fa=audit(ma,za['state'][ia]);ab,fb=audit(mb,zb['state'][ib]);err=np.max(abs(fa-fb),axis=1)/(1+np.max(abs(fb),axis=1))
+            rows.append({'t':t,'errors':dict(zip(['A','B','phi','piA','piB','piPhi','P','N','lambda'],map(float,err))),'max_error':float(max(err))})
+        comparisons[a+'__'+b]=rows
+    result={'runs':records,'comparisons':comparisons,'additional_output_sha256':hashes,'non_claim':'Endpoint failure is not a resolved continuum singularity.'}
+    out.mkdir(parents=True,exist_ok=True);(out/'results.json').write_text(json.dumps(result,indent=2)+'\n')
+    print(json.dumps({'pairs':comparisons},indent=2))
+if __name__=='__main__':
+    ap=argparse.ArgumentParser();ap.add_argument('--root',required=True);ap.add_argument('--out',required=True);a=ap.parse_args();main(Path(a.root),Path(a.out))
