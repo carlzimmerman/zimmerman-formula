@@ -46,7 +46,12 @@ claim, including the coordinator's previous AZC1 construction.
   acquisition recorded in NEEDS_OWNER, no payload downloaded. Exact
   Green-integral engine validated on two analytic fixtures, main21/21,
   mutant15/21,256/512 convergence; fixtures are not called a realistic Sun.
-- Tier 2 lanes 5(e),6-8 and Tiers 3-5: pending in brief order.
+- Tier 2 lane 5(e): AZ39 NO VERDICT for full charged-background
+  causality. Conditional GR-branch conserved-source tidal response
+  derived, including a nonzero delayed TT signal and zero early response.
+  Main29/29, deliberately instantaneous mutant25/29, exact integrals and
+  16/32 quadrature agree. C8's elliptic-to-signal inference remains unproved.
+- Tier 2 lanes 6-8 and Tiers 3-5: pending in brief order.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.
 - Other sessions have now landed W1/X1 updates (handoff bfe49ed3c2,
