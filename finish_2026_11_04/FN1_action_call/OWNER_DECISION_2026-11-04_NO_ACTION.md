@@ -1,3 +1,5 @@
+> **Superseded later on 2026-11-04** by `OWNER_DECISION_2026-11-04_ADOPT_V3S_SCOPED.md` (7ac515f958): the owner adopted v3s as the a0 law's action, scoped. This file is kept as the record of the earlier call.
+
 # Owner decision, 2026-11-04: no action is selected for the galaxy law; requirement 12 stays open
 
 Recorded at the owner's instruction. Asked in chat which way to take PAPER67's requirement 12 (an action for the law), with the options of `DECISION_BRIEF.md`, the owner chose **"No action, keep it open"**: option (c). kappa = 1/2 FITTED. Not theory closed. Nothing here says the data favour the framework.
