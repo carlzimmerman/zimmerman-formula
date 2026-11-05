@@ -66,7 +66,7 @@ claim, including the coordinator's previous AZC1 construction.
   brief's explicit one-paragraph fallback is recorded; no prediction is
   sealed and no artificial numerical test is substituted for that decision.
 - Tier3 lane9: AZ43 IN PROGRESS. Criteria096759f915 freeze143 parameter
-  points and729 local MW cells. Original anchors reproduced; twenty-three
+  points and729 local MW cells. Original anchors reproduced; forty-three
   small-gate resolution pairs pass. At canonical p=.35,L_MW=1.5 the
   full local MW pair has15 coarse passes,10 fine passes,10 stable and
   five flips retained as unresolved. Alt now has77 stable passes at that
@@ -90,8 +90,17 @@ claim, including the coordinator's previous AZC1 construction.
   gap to Oh's table remains unidentified. Same-profile analytical drift
   gives18.8803, not a new grade. Robust beam differs and must be fixed in
   a new engine. Missing published products recorded in NEEDS_OWNER.
-  New physical criteria and independent cube redo remain pending.
-- Tier3 lanes13-14 and Tiers4-5: pending in brief order.
+  New physical criteria e3d557204a freeze the full beam-aware cube redo;
+  implementation, pilot, queue and production fits remain pending.
+- Tier3 lane13: AZ47 IN PROGRESS. Measurement protocol75abae6f8b,
+  criteria774bb8db44 and pre-result wording amendment b06499a5dc.
+  Four train clusters yield rank3 empirical covariance, scatter.067-.106dex;
+  all10 measurement checks pass. All400 archived stage2 candidates regraded
+  as a pilot,824/824 checks and byte-identical rerun. Stable conditional
+  G3 passes L1/L2:11/26 canonical,9/24 alt; scrambled sets all0 under
+  full covariance, though diagonal inflation accepts many. Full retained-
+  hit census/pairs still pending; calibrated population inference NO VERDICT.
+- Tier3 lane14 and Tiers4-5: pending in brief order.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.
 - Other sessions have now landed W1/X1 updates (handoff bfe49ed3c2,
