@@ -140,3 +140,39 @@ No8x8 pilot is a numerical convergence pair or a local-cube verdict. Full
 2x2/4x4 preparation remains queue-only. New forward model, mocks, fits,
 physical-footprint scaling, full-resolution comparison and final grader
 are still required. The coarse robust beam failure is unchanged.
+
+## Forward-model implementation checkpoint (not fit-qualified)
+
+model.py loads only hash-verified preparations and uses each cube's own
+beam, pixel scale, noise and mask. Before any new fits, the inherited
+four-pixel border is expressed as 24 arcsec and the force grid's radial
+extent as 960 arcsec (the old 160 bins at 6 arcsec). This preserves physical
+scales across the future resolution pair. The original empirical Gaussian
+line amplitude and data-dependent local intensity normalization remain;
+these are conditional cube-model assumptions, not a generative action.
+The new fitter must not inherit the old fixed-ring Jacobian sparsity:
+changing geometry and beam convolution invalidate those exact zeros.
+
+check_model.py currently passes 14 of 16 checks and exits 1. The independent
+softened point-mass FFT comparison differs by 3.40e-16 relative. The old
+force calculation is reproduced exactly on an identical explicit radial
+grid, for Newtonian/modified gravity on both footings. Both prepared pilot
+cubes load their own beams and produce finite forward predictions. A wrong
+velocity control fails, and a compact Gaussian source is recovered within
+6.67e-16 absolute error.
+
+The two original extended-source tests remain FAILED at their unchanged
+tolerances. Maximum line-profile error is 3.6402e-10 at channel/pixel
+(15,0,40), where the data value is 7.8492e-6. Interior error is 7.78e-16.
+The fixed border removes intrinsic light at those corners; normalizing
+tiny beam leakage there amplifies floating-point error. The compact-source
+check is a separate diagnostic, not a replacement or waiver. The model has
+not been shown numerically safe for fitting all selected real-data pixels;
+that limitation must be resolved or propagated before any fit verdict.
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python -W error astra_goal_2026_11_05/AZ46_ic1613_redo/check_model.py
+
+Use the recorded NumPy/SciPy/Astropy environment. The saved runtime is about
+2 seconds with peak RSS about 255 MB; it does not establish fit memory use.
+Mocks, optimization, fit restart tests and production convergence remain
+pending. kappa = 1/2 FITTED; not theory closed.
