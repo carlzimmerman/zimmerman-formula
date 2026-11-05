@@ -1,0 +1,142 @@
+{
+  "schema_version": 2,
+  "claim_id": "SINGLE-CLOCK-SATURATION-OBSTRUCTION",
+  "repository": {
+    "commit": "925ddccf2b34102499040c0ad0c30a998050a801",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "action_scale_investigation_2026_11_05/saturation.py",
+    "--out",
+    "action_scale_investigation_2026_11_05/evidence/saturation/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Negative constrained radial squared speed on a nonempty local static state domain for every positive b",
+    "coefficient_domain": "Exact real symbolic algebra with positive parameters as declared",
+    "conventions": "c=1, signature -+++, fixed polarization versus fixed conjugate distinguished",
+    "inputs": [
+      "d=0, s=p/(a-p)>0, X,rho,b,K,gamma positive",
+      "Exact static ODE and constrained symbol from previous derivations"
+    ],
+    "bounds": {
+      "method": "exact symbolic identities and polynomial positivity certificates"
+    },
+    "non_claims": [
+      "No physical source matching",
+      "No EFT cutoff-valid instability",
+      "No obstruction for modified actions or bounded admissible states"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-05T17:11:39.821955+00:00",
+    "runtime_seconds": 0.408057,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "action_scale_investigation_2026_11_05/saturation.py",
+    "action_scale_investigation_2026_11_05/SATURATION_CONTRACT.md",
+    "action_scale_investigation_2026_11_05/RADIAL_RESULT.md",
+    "action_scale_investigation_2026_11_05/STATIC_RESULT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "action_scale_investigation_2026_11_05/saturation.py",
+      "sha256": "cad66528fefb3683097bcb4d213698049a742c3b144ef44106b88df243f0ffb9",
+      "sha256_after": "cad66528fefb3683097bcb4d213698049a742c3b144ef44106b88df243f0ffb9"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/SATURATION_CONTRACT.md",
+      "sha256": "312550dc24c85c282861d974a02cdc01b76e727b93b161209c4e9693cf12442e",
+      "sha256_after": "312550dc24c85c282861d974a02cdc01b76e727b93b161209c4e9693cf12442e"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/RADIAL_RESULT.md",
+      "sha256": "2e168d0795e960a9ad6189f04f72bcd94fd1a5289ccf55502e338c18c0dd8946",
+      "sha256_after": "2e168d0795e960a9ad6189f04f72bcd94fd1a5289ccf55502e338c18c0dd8946"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/STATIC_RESULT.md",
+      "sha256": "caca242c3b4e1321360f8301f108e4b5c6743d3fc9233eb12461ae179e9e39a0",
+      "sha256_after": "caca242c3b4e1321360f8301f108e4b5c6743d3fc9233eb12461ae179e9e39a0"
+    }
+  ],
+  "output_directory": "action_scale_investigation_2026_11_05/evidence/saturation",
+  "declared_results": [
+    "action_scale_investigation_2026_11_05/evidence/saturation/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "action_scale_investigation_2026_11_05/evidence/saturation/stdout.txt",
+      "sha256": "05751448eb9dd5f9f4437dc75bdfc67055bc389290d896810d1c1b1aeafa7a2c",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/evidence/saturation/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/evidence/saturation/result.json",
+      "sha256": "de474bc1e9236f2dce989f383ec26e7d03c2fc2ee8ee82d5a580aca6ed28f675",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

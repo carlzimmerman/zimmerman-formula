@@ -46,6 +46,12 @@ The desktop goal remains active.
    polarized solution with zero total scalar boundary flux is excluded
    for the specified monotone, potential-free promotion. New potentials
    or nonzero flux are outside the result. DYNAMICAL_SCALE_RESULT.md.
+10. Near-saturation obstruction: for every positive b, local static d=0
+    states at sufficiently large finite p/(a-p) have Mt>0 but D0<0, hence
+    negative formal radial squared speed. SATURATION_RESULT.md gives an
+    explicit sufficient threshold and local ODE compatibility argument.
+    No physical-source or cutoff-valid instability is claimed. Earlier
+    healthy finite shells do not establish global health.
 
 ## Evidence at this checkpoint
 
@@ -69,7 +75,12 @@ The desktop goal remains active.
 
 ## Live continuation
 
-Carrier obligation: extend the candidate beyond the solved finite shell.
+Carrier obligation: address the near-saturation obstruction before treating
+the candidate as globally healthy. A physical/cutoff-valid applicability
+test, a dynamically preserved state restriction, or an action modification
+is required; more refinement of the healthy shells will not suffice.
+Extend the candidate beyond the solved finite shell only with this limit
+explicitly retained.
 The independent background refinement is now complete: all four radial
 box cases pass, with relative changes below1e-6 in the lowest three modes
 at640 cells. See BACKGROUND_SENSITIVITY_RESULT.md. Angular modes and/or
