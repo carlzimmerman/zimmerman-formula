@@ -53,3 +53,26 @@ The first exits0; the second deliberately exits1 for the two failed main
 checks. Full cube preparation, interrupted/resumed pilot, physical footprint,
 queued fits and local-cube grading remain pending. The external published
 benchmark remains NOT EVALUABLE for the separately documented missing data.
+
+## Bounded stellar-profile preparation
+
+stars.py computes the V-image WCS and radial samples in row chunks, using
+fixed Oh geometry, the original background region beyond1500arcsec and
+first-nonpositive-annulus truncation. check_stars.py passes7/7 checks:
+32/64-row scientific outputs are byte-identical at the original13.2arcsec
+spacing and the two beam-major-axis spacings; the original background,
+half-light radius301.047383arcsec and cut976.8arcsec are recovered exactly;
+a cooperative stop is observed. A fresh complete checker run is also
+byte-identical. The natural/robust spacings give half-light radii301.060780
+and304.027831arcsec; both profiles are saved, with no pooling or new mass
+calibration. Constant M/L and the two frozen mass normalizations remain
+assumptions. This does not resolve the failed coarse robust beam check.
+
+Runtime is about1.4seconds; peak RSS442MB. FITSFixedWarning header repairs
+(deprecated RADECSYS and legacy DATE-OBS spelling) initially stopped the
+warnings-as-errors test. The final code preserves Astropy's original WCS
+interpretation and explicitly records those repairs, while leaving other
+warnings as errors. Raw headers/files are never edited. Full cube/mask
+preparation and interrupted/resumed8x8 pilot remain the next required work.
+
+    python -W error astra_goal_2026_11_05/AZ46_ic1613_redo/check_stars.py

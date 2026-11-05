@@ -97,7 +97,9 @@ claim, including the coordinator's previous AZC1 construction.
   New physical criteria e3d557204a freeze the full beam-aware cube redo;
   beam/raw-reader implementation started: raw I/O4/4 passes, beam16/18;
   robust6arcsec minor-axis moments miss2% at5/9 quadrature (6.30/5.33%).
-  Wrong-beam mutation bites; failures repeat exactly. Full preparation,
+  Wrong-beam mutation bites; failures repeat exactly. Row-chunked V profile
+  checks7/7 pass, original photometry recovered exactly,442MB peak RSS.
+  Full preparation,
   pilot, queue and production fits remain pending.
 - Tier3 lane13: AZ47 IN PROGRESS. Measurement protocol75abae6f8b,
   criteria774bb8db44 and pre-result wording amendment b06499a5dc.
@@ -112,7 +114,9 @@ claim, including the coordinator's previous AZC1 construction.
   28,125 stable;168seconds,127MB. The1000-row chunk attempt exceeds180s
   and must resume through heavyq. Canonical L1 control full pair agrees:
   3,297,394 rows,two stable conditional passes (mutation zero). Full
-  repeats/other sets pending. Census-auditor mutation fixtures8/8 pass.
+  Eight independent full chunk2000 repeats now match byte-for-byte;
+  six chunk pairs pass. Two L1 real chunk1000 remainders require heavyq.
+  Census-auditor mutation fixtures8/8 pass.
 - Tier3 lane14 and Tiers4-5: pending in brief order.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.
