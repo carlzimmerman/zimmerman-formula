@@ -141,6 +141,11 @@ claim, including the coordinator's previous AZC1 construction.
   recorded in NEEDS_OWNER. X30/CFG713 cosmology dependencies and signed
   Bullet components recorded; native shear trace, physical criteria and
   genuine3D nonlinear solve remain pending. Retired sector, adopts nothing.
+  Focused I2-P audit finds the projected-gradient-to-vorticity lower bound
+  invalid: an irrotational strain witness has the same projected map.
+  Frozen e3fe114390;23/23 kinematic checks, separate mutation fails four,
+  exact covariant normal-field check4/4. This challenges that inference only,
+  not the actual cluster flow or I2-R's separate elliptical constraint.
 - Tiers4-5: pending in brief order.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.

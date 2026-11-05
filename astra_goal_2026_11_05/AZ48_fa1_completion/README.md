@@ -1,7 +1,7 @@
 # IN PROGRESS — FA1 record completion, input audit only
 
 Retired sector, adopts nothing. Kappa = 1/2 FITTED; not theory closed.
-Existing I1, I2 and I6 failures stand. No new action or physical grade is
+Original I1, I2 and I6 records remain untouched. No new action is
 established by this audit. PREPARATION_PLAN.md was committed alone before
 the audit script; physical criteria and computations are still pending.
 
@@ -50,3 +50,29 @@ The audit, fixture report and separate mutation output repeat byte-identically.
 Next: complete the native shear-input trace, freeze evaluable selector
 criteria, and derive/freeze the3D nonlinear solve and its known-answer,
 mutation, restart and convergence tests before any heavyq submission.
+
+## A missing inference in the I2-P exclusion
+
+FROZEN_KINEMATICS.md (e3fe114390) was committed alone before this focused
+audit. The implication from a projected velocity gradient to a positive
+vorticity floor FAILS: a pure symmetric-strain field has the same projected
+velocity map as a rotating field but zero curl. Its unit gradient-normal
+four-velocity also has exactly zero projected relativistic vorticity.
+KINEMATIC_FINDING.md gives the explicit witness, derivation and limits.
+
+kinematics.py passes23/23 known-answer, circulation and1/0.5kpc derivative
+checks; both footings give F=1 for the irrotational witness. The separate
+mutation confuses full strain with rotation and fails four checks, exit1.
+Main and mutation outputs repeat byte-identically. covariant_witness.py
+passes4/4 exact symbolic checks, including a nonzero rigid-rotation control.
+This invalidates that stated lower-bound inference, not the observed
+gradient, actual cluster rotation, or every independent failure of I2.
+The old G-P-CL exclusion is not established by that gradient alone.
+
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python kinematics.py
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python kinematics.py --mutate
+    OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python covariant_witness.py
+
+Run these from this lane directory with NumPy and SymPy available. The
+mutation command must exit1. No observational or field-equation solve is
+substituted by these kinematic identity checks.
