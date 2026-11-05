@@ -72,4 +72,4 @@ BK2 flagged its Z_shape as too strict, because no cluster-to-cluster scatter is 
 ## Housekeeping
 - Untracked caches and home-path copies sit in DB1, MB1 and BF1 (`cache_keys/`, `x74_*`, `*.err`, `*.done`). Never commit them, since several carry home paths.
 - Other sessions push often and share the git index. Commit with explicit paths (`git commit -- <paths>`), and report your own commit's hash, not HEAD after a merge. On 11-04 a race put the wrong BK2 hash into the PAPER67 draft; the audit caught it.
-- Leak check before any push: `git diff origin/main..HEAD | grep -cE '^\+.*(/Users/|ZENODO_ACCESS_TOKEN=|gmail\.com)'` must print 0.
+- Run the usual leak check before any push: grep the added lines of `git diff origin/main..HEAD` for home-directory paths, the Zenodo token variable and email domains, and push only on zero matches.
