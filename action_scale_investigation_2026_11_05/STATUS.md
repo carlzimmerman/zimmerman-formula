@@ -34,6 +34,12 @@ The desktop goal remains active.
    separate160/320/640 refinements pass the same2% line on all four cases,
    with positive reported modes. SPECTRUM_RESULT.md retains the initial
    failure and the fixed-interpolant/conditioning limitations.
+8. Normalization: an explicit continuous kernel deformation preserves
+   background/quadratic data, global convexity and saturation but changes
+   the operational MOND scale to a/(1+e). NORMALIZATION_RESULT.md gives
+   the exact scoped nonselection theorem and distinguishes the saturation
+   scale from the physical force normalization. No full-health result is
+   transferred to the deformed actions.
 
 ## Evidence at this checkpoint
 
@@ -50,13 +56,18 @@ The desktop goal remains active.
   deliberately fails the omitted-portal lapse identity. evidence/spectrum
   is a genuine failed convergence test, not an expected negative control.
   spectrum_refine and spectrum_second completed with refined-grid passes.
+- normalization initially failed an expression-tree equality check;
+  NORMALIZATION_ERRATUM.md preserves and explains that implementation issue.
+  normalization_corrected passes16 exact identities; normalization_mutate
+  deliberately fails the operational-scale check.
 
 ## Live continuation
 
 Carrier obligation: extend the candidate beyond the solved finite shell.
-First test sensitivity of the radial spectrum to a denser independent
-background representation, since current eigenproblems use a fixed201-point
-interpolant. Then derive angular modes and/or cosmological/source matching.
+The independent background refinement is now complete: all four radial
+box cases pass, with relative changes below1e-6 in the lowest three modes
+at640 cells. See BACKGROUND_SENSITIVITY_RESULT.md. Angular modes and/or
+cosmological/source matching remain next substantive health obligations.
 RADIAL_RESULT.md records the analytic ADM argument for the static momentum
 and scalar constraints; a separately coded full covariant stress check is
 still absent. V=constant is only a restricted static branch.
@@ -66,8 +77,12 @@ The CFG894 reopen screen stays in force. Do not mistake the imposed portal
 a0^2=b rho for a derivation of b=kappa^2 G. A new symmetry, dynamics or
 microscopic matching condition must fix an invariant coefficient; merely
 trying further numerical values or linear-health fixtures cannot do that.
-The next normalization route must address the freely deformable cubic
-polarization coefficient identified in DERIVATION.md section2.
+The next normalization route must fix the invariant physical combination,
+not the name of a parameter. NORMALIZATION_RESULT.md now supplies a globally
+convex saturation-preserving deformation and explicitly identifies the
+missing response/vacuum matching condition. NORMALIZATION_SOURCES.md checks
+three primary sources; none supplies that missing condition. The search
+was bounded and is not a proof that no new mechanism can exist.
 
 Not attempted here: cosmological matter gradient/mass spectrum, full Dirac
 count, quantum matching, nonlinear X>0 preservation, angular stability,

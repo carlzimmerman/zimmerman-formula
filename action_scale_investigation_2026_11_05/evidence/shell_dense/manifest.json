@@ -1,0 +1,155 @@
+{
+  "schema_version": 2,
+  "claim_id": "SINGLE-CLOCK-DENSE-BACKGROUND",
+  "repository": {
+    "commit": "4d787ccbbba363f0338b4d9de7b4b970edd00c6a",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "action_scale_investigation_2026_11_05/shell_dense.py",
+    "--out",
+    "action_scale_investigation_2026_11_05/evidence/shell_dense/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Four finite-shell BVPs converge on two tolerance/initial mesh settings and satisfy sampled domain checks",
+    "coefficient_domain": "float64 numerical BVP, arbitrary dimensionless units",
+    "conventions": "c=1, signature -+++, fixed polarization versus fixed conjugate distinguished",
+    "inputs": [
+      "M2=1,K=.5,V=1e-8,q2=2e-9,m=1e-4,r=1..20,b=.1,.3,Lstar=1,3"
+    ],
+    "bounds": {
+      "cases": 4,
+      "initial_nodes": [
+        400,
+        800
+      ],
+      "tolerances": [
+        1e-09,
+        1e-10
+      ],
+      "max_nodes": 10000,
+      "mesh_agreement": 1e-05,
+      "boundary_tolerance": 1e-08,
+      "profile_points": 2001
+    },
+    "non_claims": [
+      "No coefficient derivation",
+      "No physical source or cosmic matching",
+      "No stability or rigorous interval existence proof"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-05T16:58:09.067885+00:00",
+    "runtime_seconds": 1.067496,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 300.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "action_scale_investigation_2026_11_05/shell_dense.py",
+    "action_scale_investigation_2026_11_05/BACKGROUND_SENSITIVITY_CONTRACT.md",
+    "action_scale_investigation_2026_11_05/STATIC_RESULT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "action_scale_investigation_2026_11_05/shell_dense.py",
+      "sha256": "39e232662460c43573a8eff154656e70367598f9613cf702d7eb1f560155ce08",
+      "sha256_after": "39e232662460c43573a8eff154656e70367598f9613cf702d7eb1f560155ce08"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/BACKGROUND_SENSITIVITY_CONTRACT.md",
+      "sha256": "d4bc97e2485311a6f2a280742e697fc31b1bc5000516f52493717c7cb69c360b",
+      "sha256_after": "d4bc97e2485311a6f2a280742e697fc31b1bc5000516f52493717c7cb69c360b"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/STATIC_RESULT.md",
+      "sha256": "caca242c3b4e1321360f8301f108e4b5c6743d3fc9233eb12461ae179e9e39a0",
+      "sha256_after": "caca242c3b4e1321360f8301f108e4b5c6743d3fc9233eb12461ae179e9e39a0"
+    }
+  ],
+  "output_directory": "action_scale_investigation_2026_11_05/evidence/shell_dense",
+  "declared_results": [
+    "action_scale_investigation_2026_11_05/evidence/shell_dense/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "action_scale_investigation_2026_11_05/evidence/shell_dense/stdout.txt",
+      "sha256": "b3612c4d0c6f2333b2ca0e3fc651060fcc09da92baa133bbb0187e7ea5d929a1",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/evidence/shell_dense/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/evidence/shell_dense/result.json",
+      "sha256": "3b9b9e648dd390d51d07b7965b6b90285b92d426f8e75d4007322a6ee772cf93",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
