@@ -1,5 +1,17 @@
 # NO VERDICT — a complete healthy density-tie action is not established
 
+The next constraint/on-shell calculation is in
+[constraint_continuation/RESULT.md](constraint_continuation/RESULT.md).
+Solving lapse and shift on the scalar-only P=0 FRW branch retains a physical
+finite-k clock momentum; zero total charge does not set each mode to zero.
+A separate finite-Galerkin convexity proof retains this conclusion with the
+actual switched stiffness. The earlier large-s static Schur term includes an
+unbalanced scalar force; on a static solution it yields an explicit sufficient
+gradient bound, rather than a universal on-shell no-go. Exact checks36/36;
+two mutations fail4 and2 intended checks. Full charged-background dynamics,
+continuum switch regularity and the known nonlinear clock caustics remain open
+obligations. No previous full-health or observational verdict is promoted.
+
 New mixed-block result: MIXED_BLOCK_FINDING.md restores the omitted
 algebraic scalar–polarization mixing. The restricted kinetic matrix stays
 positive and the nonzero frequency can stay real, yet the Hamiltonian is

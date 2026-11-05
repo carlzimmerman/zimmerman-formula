@@ -1,0 +1,131 @@
+{
+  "schema_version": 2,
+  "claim_id": "AZ40_CLOCK_AND_ON_SHELL",
+  "repository": {
+    "commit": "bddd5251c29f3689d544baed6e6a0f08cf09f42b",
+    "dirty": true
+  },
+  "command": [
+    "/opt/homebrew/Caskroom/miniconda/base/bin/python3",
+    "astra_goal_2026_11_05/AZ40_canonical_coupling/constraint_continuation/verify.py",
+    "--out",
+    "astra_goal_2026_11_05/AZ40_canonical_coupling/constraint_continuation/evidence/main/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.13.1"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact ADM elimination, charge rank, time-dependent canonical mass, static Schur and on-shell gradient-factorization identities in CONTRACT.md; two deliberate mutations must violate their known answers.",
+    "coefficient_domain": "Real symbolic variables, positive parameters as specified; exact SymPy expressions",
+    "conventions": "Signature -+++; ADM M=Mpl; static K=4piG=1; separate notation R=FRW scale factor and a=polarization scale",
+    "inputs": [
+      "CONTRACT.md domains; exact symbolic formulas in verify.py"
+    ],
+    "bounds": {
+      "finite_modes": [
+        "main",
+        "clock_sign",
+        "drop_gradient"
+      ],
+      "per_run_wall_seconds": 60
+    },
+    "non_claims": [
+      "No full nonlinear or charged-background stability theorem",
+      "No observational gate",
+      "No kappa derivation",
+      "No proof from a parameter scan"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-05T19:44:06.937795+00:00",
+    "runtime_seconds": 0.901716,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "astra_goal_2026_11_05/AZ40_canonical_coupling/constraint_continuation/verify.py",
+    "astra_goal_2026_11_05/AZ40_canonical_coupling/constraint_continuation/CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "astra_goal_2026_11_05/AZ40_canonical_coupling/constraint_continuation/verify.py",
+      "sha256": "36908192507359abe23fce295806dc059c46cadc66af6f42e49b345554f94ab8",
+      "sha256_after": "36908192507359abe23fce295806dc059c46cadc66af6f42e49b345554f94ab8"
+    },
+    {
+      "path": "astra_goal_2026_11_05/AZ40_canonical_coupling/constraint_continuation/CONTRACT.md",
+      "sha256": "c24412f3e61201f5548f8fe1b1d7cdc069cbed990cdb260ffbc9b9daf97d3d81",
+      "sha256_after": "c24412f3e61201f5548f8fe1b1d7cdc069cbed990cdb260ffbc9b9daf97d3d81"
+    }
+  ],
+  "output_directory": "astra_goal_2026_11_05/AZ40_canonical_coupling/constraint_continuation/evidence/main",
+  "declared_results": [
+    "astra_goal_2026_11_05/AZ40_canonical_coupling/constraint_continuation/evidence/main/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "astra_goal_2026_11_05/AZ40_canonical_coupling/constraint_continuation/evidence/main/stdout.txt",
+      "sha256": "e53c5b12f7d2d7022d19f905876da1fc8722d2278843d8f02bf05d134667b27b",
+      "kind": "log"
+    },
+    {
+      "path": "astra_goal_2026_11_05/AZ40_canonical_coupling/constraint_continuation/evidence/main/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "astra_goal_2026_11_05/AZ40_canonical_coupling/constraint_continuation/evidence/main/results.json",
+      "sha256": "78d1828bef622a5316f46e4707b657a619dc5c81106102d29c5f1d9f2123091b",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
