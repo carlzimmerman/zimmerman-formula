@@ -1,0 +1,29 @@
+inputs: omega_DE 0.3070  omega_b 0.0224  omega_r 4.1834e-05  (h by flat closure)
+CHECK binary DUST at CT3 base: H3/H2 0.9918 (CT3 0.992; |d| <= 0.004: OK)  peaks [221, 537, 816]
+G5 LOB_mu0.1 n_s 0.93: H3/H2 on grid 0.0: 0.519  0.06: 0.537  0.12: 0.542  0.24: 0.546  0.48: 0.547 -> no omega_x reaches 0.979 (max 0.547)
+G5 LOB_mu0.1 n_s 0.9649: H3/H2 on grid 0.0: 0.527  0.06: 0.545  0.12: 0.550  0.24: 0.555  0.48: 0.556 -> no omega_x reaches 0.979 (max 0.556)
+G5 LOB_mu0.1 n_s 1.0: H3/H2 on grid 0.0: 0.535  0.06: 0.554  0.12: 0.559  0.24: 0.564  0.48: 0.565 -> no omega_x reaches 0.979 (max 0.565)
+G5 VERDICT LOB_mu0.1: FAIL
+G5 LOB_mu0.03 n_s 0.93: H3/H2 on grid 0.0: 0.519  0.06: 0.537  0.12: 0.544  0.24: 0.548  0.48: 0.548 -> no omega_x reaches 0.979 (max 0.548)
+G5 LOB_mu0.03 n_s 0.9649: H3/H2 on grid 0.0: 0.527  0.06: 0.546  0.12: 0.552  0.24: 0.556  0.48: 0.557 -> no omega_x reaches 0.979 (max 0.557)
+G5 LOB_mu0.03 n_s 1.0: H3/H2 on grid 0.0: 0.535  0.06: 0.554  0.12: 0.561  0.24: 0.565  0.48: 0.566 -> no omega_x reaches 0.979 (max 0.566)
+G5 VERDICT LOB_mu0.03: FAIL
+G5 DUST_notfaithful n_s 0.93: H3/H2 on grid 0.0: 0.519  0.06: 0.787  0.12: 0.981  0.24: 1.249  0.48: 1.523 -> fitted omega_x 0.1192 (omega_x/omega_b 5.32); H3/H2 0.979, H2/H1 0.439 (raw 0.451), peaks l [220, 538, 817] (raw 222/533/814), sigma8 0.8074
+G5 DUST_notfaithful n_s 0.9649: H3/H2 on grid 0.0: 0.527  0.06: 0.797  0.12: 0.992  0.24: 1.260  0.48: 1.531 -> fitted omega_x 0.1153 (omega_x/omega_b 5.15); H3/H2 0.979, H2/H1 0.453 (raw 0.451), peaks l [222, 541, 822] (raw 222/533/814), sigma8 0.8005
+G5 DUST_notfaithful n_s 1.0: H3/H2 on grid 0.0: 0.535  0.06: 0.807  0.12: 1.003  0.24: 1.271  0.48: 1.540 -> fitted omega_x 0.1116 (omega_x/omega_b 4.98); H3/H2 0.979, H2/H1 0.467 (raw 0.451), peaks l [224, 544, 827] (raw 222/533/814), sigma8 0.7932
+G5 VERDICT DUST_notfaithful: PASS (fitted omega_x); omega_x/omega_b 4.98-5.32 over n_s, in 4.9-5.4: yes
+G5 LOB_mu10_BScap_reported n_s 0.93: H3/H2 on grid 0.0: 0.519  0.06: 0.668  0.12: 0.649  0.24: 0.607  0.48: 0.580 -> no omega_x reaches 0.979 (max 0.668)
+G5 LOB_mu10_BScap_reported n_s 0.9649: H3/H2 on grid 0.0: 0.527  0.06: 0.678  0.12: 0.659  0.24: 0.616  0.48: 0.589 -> no omega_x reaches 0.979 (max 0.678)
+G5 LOB_mu10_BScap_reported n_s 1.0: H3/H2 on grid 0.0: 0.535  0.06: 0.687  0.12: 0.668  0.24: 0.625  0.48: 0.598 -> no omega_x reaches 0.979 (max 0.687)
+G5 VERDICT LOB_mu10_BScap_reported: FAIL
+CHECK background: Lambda, omega_x 0.12 -> h 0.6704 r_d 147.1 BAO chi2 46.8 (CT11 README: out:23, 46.8)
+BG LOB_mu0.1: no fitted omega_x at n_s 0.9649, not graded
+BG LOB_mu0.03: no fitted omega_x at n_s 0.9649, not graded
+BG DUST_notfaithful phi primary_frozen: omega_x 0.1153 h 0.6669 Omega_m 0.3097 r_d 148.3 Mpc  BAO chi2 (13) 53.3 -> FAIL;  SN diag chi2 699/1580 (reported)
+BG DUST_notfaithful phi thaw_w0-0.9_reported: omega_x 0.1153 h 0.6669 Omega_m 0.3097 r_d 148.3 Mpc  BAO chi2 (13) 11.9 -> PASS;  SN diag chi2 694/1580 (reported)
+BG LOB_mu10_BScap_reported: no fitted omega_x at n_s 0.9649, not graded
+GROWTH LOB_mu0.1 (no fit; grid omega_x 0.48 with the highest H3/H2): sigma8 0.0010, S8 0.0014 (reported)
+GROWTH LOB_mu0.03 (no fit; grid omega_x 0.48 with the highest H3/H2): sigma8 0.0005, S8 0.0007 (reported)
+GROWTH DUST_notfaithful (fitted omega_x 0.1153): sigma8 0.8005, Omega_m 0.3097, S8 0.8134 vs raw KiDS ~0.77, line [0.51, 1.16] -> PASS
+GROWTH LOB_mu10_BScap_reported (no fit; grid omega_x 0.06 with the highest H3/H2): sigma8 0.0819, S8 0.0688 (reported)
+runs 79, 337.0 s, peak RSS self 0.17 GB, children 0.13 GB
