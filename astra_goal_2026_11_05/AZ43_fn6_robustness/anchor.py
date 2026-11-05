@@ -1,0 +1,70 @@
+#!/usr/bin/env python3
+"""First known-answer checks before the AZ43 robustness grid."""
+import argparse
+import json
+import math
+import os
+from pathlib import Path
+import resource
+import time
+import engines as E
+ap=argparse.ArgumentParser();ap.add_argument('--gate',choices=['small','mw'],required=True)
+ap.add_argument('--footing',choices=['canonical','alt'],default='canonical')
+ap.add_argument('--mutate',action='store_true')
+args=ap.parse_args(); start=time.time()
+HERE=Path(__file__).resolve().parent
+OUT=HERE/('mutate' if args.mutate else 'main')/'anchor';OUT.mkdir(parents=True,exist_ok=True)
+checks=[]
+def check(n,ok,value=None): checks.append(dict(name=n,passed=bool(ok),value=value))
+def rel(x,y): return abs(x-y)/max(abs(y),1e-300)
+def atomic(path,obj):
+    tmp=path.with_suffix(path.suffix+'.tmp')
+    with tmp.open('w') as f: json.dump(obj,f,indent=2);f.write('\n');f.flush();os.fsync(f.fileno())
+    os.replace(tmp,path)
+
+if args.gate=='small':
+    ns=E.small()
+    if args.mutate:
+        ns['nu']=lambda y:ns['np'].ones_like(y)
+        ns['dnu']=lambda y:ns['np'].zeros_like(y)
+        # Native Cassini evaluates its own nu-1, so alter it explicitly.
+        ns['CV'].nu_minus_one=lambda y:ns['np'].zeros_like(y)
+    got=ns['run_point'](.35,1.5)
+    ref=None
+    for p in sorted(E.FN6.glob('fn6_small_part*of*.jsonl')):
+        for line in p.read_text().splitlines():
+            row=json.loads(line)
+            if row['p']==.35 and row['L_MW']==1.5: ref=row
+    if ref is None: raise RuntimeError('Missing original anchor row')
+    for foot in ['canonical','alt']:
+        for gate,keys in [('T1',['Q2']),('T2',['E1','fornax_U2']),('T3',['rms','med','d_rms']),('T4',['Z','Saturn_Z'])]:
+            err=max(rel(got[gate][foot][key],ref[gate][foot][key]) for key in keys)
+            check(foot+'_'+gate+'_anchor',err<=1e-8 and got[gate][foot]['ok']==ref[gate][foot]['ok'],err)
+        if args.mutate:
+            check(foot+'_Newtonian_Solar_limit',got['T1'][foot]['Q2']==0 and got['T4'][foot]['Z']==0)
+else:
+    K=E.mw(); C=K.C; foot=args.footing
+    raw=list(E.local_cells());cells=[c for c in raw if C.L.RD_TAG[0]<=c['rd']<=C.L.RD_TAG[1] and C.L.MSTAR_TAG[0]<=K.rho_cell(c)[1]<=C.L.MSTAR_TAG[1]]
+    check('raw_cell_count',len(raw)==729,len(raw));check('parameter_point_count',len(E.points())==143,len(E.points()))
+    cell=dict(box='BV2',sb=50.5,mbb=2.12e10,rd=2.6,ht=.35,hk=1.08,fk=.35,rdk=2.)
+    check('old_cell_retained',cell in cells,len(cells))
+    old=json.loads((E.FN6/('fn6_mw_'+foot+'.json')).read_text())['points']['0.35|1.5']
+    if foot=='alt':
+        cell={k:old['summary']['passing'][0][k] for k in K.KEYS if old['summary']['passing'][0].get(k) is not None}
+    g,mu=K.make_grid(C.A0[foot]);solver=K.Solver(g,mu,C.A0[foot])
+    if args.mutate: solver.phantom=lambda p,mut=False:K.np.zeros_like(p)
+    mass=K.rho_cell(cell)[1]+K.gas_mass();width=1.5*(mass/6e10)**.35
+    got=solver.solve(cell,width,lmax=2*(g.Nt-1))
+    matches=[r for r in old['summary']['passing'] if all(r.get(k)==v for k,v in cell.items())]
+    if not matches: raise RuntimeError('Original passing cell absent on '+foot)
+    ref=matches[0]
+    err=max(rel(got['corrected'][key],ref[key]) for key in ['vc','K0','cK','cO','h','D'])
+    check(foot+'_MW_anchor',err<=1e-8,err)
+    if args.mutate: check(foot+'_Newtonian_field_limit',all(got['corrected'][key]==got['newton'][key] for key in ['vc','K0','cK','cO']))
+result=dict(mode='mutate' if args.mutate else 'main',gate=args.gate,footing=args.footing,
+ checks=checks,result=got,source_hashes=E.hashes(),seconds=time.time()-start,
+ peak_rss_native=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
+atomic(OUT/(args.gate+('_'+args.footing if args.gate=='mw' else '')+'.json'),result)
+failed=[x['name'] for x in checks if not x['passed']]
+print(json.dumps(dict(failed=failed,passed=len(checks)-len(failed),total=len(checks),seconds=result['seconds'],rss_native=result['peak_rss_native']),indent=2))
+raise SystemExit(bool(failed))

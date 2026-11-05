@@ -65,7 +65,12 @@ claim, including the coordinator's previous AZC1 construction.
 - Tier 2 lane8: AZ42 NOT EVALUABLE, no verified healthy carrier. The
   brief's explicit one-paragraph fallback is recorded; no prediction is
   sealed and no artificial numerical test is substituted for that decision.
-- Tiers 3-5: pending in brief order, starting with lane9 FN6 robustness.
+- Tier3 lane9: AZ43 IN PROGRESS. Criteria096759f915 freeze143 parameter
+  points and729 local MW cells. Original anchors reproduced; three
+  small-gate resolution pairs pass. At canonical p=.35,L_MW=1.5 the
+  full local MW pair has15 coarse passes,10 fine passes,10 stable and
+  five flips retained as unresolved. Alt coarse exists; full grid pending.
+- Tier3 lanes10-14 and Tiers4-5: pending in brief order.
 - Lane 5 will have five separately frozen sublanes, with separate verdicts.
 - Lane 19 requires a beta-term health test before any queued disc run.
 - Other sessions have now landed W1/X1 updates (handoff bfe49ed3c2,
