@@ -80,6 +80,7 @@ AC2q switches the stiffness on the khronon charge D.P + 2X (AC7):
 | Switch on D.P alone (v3s placement) with a dark-energy clock | non-analytic on FRW (AC7 control M-b) |
 | AC2q, tensor speed (own terms) | PASS: c_T = c in the principal part; new tensor mass gives dv/c <= 1.9e-46 at 100 Hz (AC9 T1) |
 | AC2q, lensing slip (own terms) | PASS: Psi source and anisotropic stress are O(gamma s^2 grad Phi P), beyond O(GM); slip <= 3e-17 (AC9 T2) |
+| AC2q, moving Sun (AZ37 analogue) | NO VERDICT (AC11): no exact P=0 GR branch (clock's Klein-Gordon needs uniform theta on leaves; met only to gamma s^2 ~ 1e-17); forced oscillator = AZ37's to 2.5e-6, resonance survives; X > 0 (|dX/X| <= 1.3e-8); Sun's own charge >> Galactic rho0 inside ~1e3 AU |
 
 Inherited, by inference (not a new run): X14's "caustics generic" for soft
 khronon elements. X14's mechanism is that nothing in the action grows with k at
@@ -90,7 +91,8 @@ does, and only a new constant (X14's beta class) could remove it.
 AC2q is a candidate, not adopted: one field is dark energy and the clock, no
 dust, healthy on FRW and in galaxies at this order, static limit = v3s.
 Still owed: nonlinear evolution, X > 0 preservation away from statics (exact in
-statics), a moving Sun in the clock frame (the same open item as v3s's AZ37).
+statics; linear moving response keeps X > 0, AC11), the nonlinear moving Sun
+(co-moving charged halo matched to the Galactic flow at ~1e3 AU; AC11 linear NO VERDICT, as v3s's AZ37).
 Lensing and tensor regrades on its own terms: done, PASS (AC9). It fixes no coefficient: xi and kappa stay by hand. Having no dust,
 it says nothing new for clusters, growth or the CMB.
 

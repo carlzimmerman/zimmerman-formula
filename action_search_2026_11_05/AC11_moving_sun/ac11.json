@@ -1,0 +1,3921 @@
+{
+ "lane": "AC11_moving_sun",
+ "criteria": "8649eb6d06",
+ "mutate": false,
+ "checks": {
+  "B1a_Peq": {
+   "ok": true,
+   "detail": "solutions DX = [0] (unless 2 gamma X = 1): the clock must be geodesic, D X = 0"
+  },
+  "B1a_accel": {
+   "ok": true,
+   "detail": "a_mu + h_mu^nu d_nu X/(2X) = [0, 0, 0] (flat 1+2, general phi)"
+  },
+  "B1b": {
+   "ok": true,
+   "detail": "theta varies along each leaf (d theta/dr at M=1, r=10: {'1': '9*sqrt(5)/2000', '13/12': '74953*sqrt(1345)/217083000', '5/3': '63449*sqrt(445)/47526000'}); known answer M = 0, E = 1: theta = 0"
+  },
+  "B2a": {
+   "ok": true,
+   "detail": "s = 0: T - K rho0/(Omega^2 - omega^2) = 0  (gamma = K Lstar^2/2 gives AZ37's oscillator)"
+  },
+  "B2b_known_canonical": {
+   "ok": true,
+   "detail": "s = 0 phase speeds 753.5-938.4 m/s vs AZ37 753.5-938.4"
+  },
+  "B2b_json_canonical_postrun": {
+   "ok": true,
+   "detail": "s = 0 phase speeds vs AZ37 stored JSON 753.5118462578-938.4141996852: rel diff 1.1e-16"
+  },
+  "B2c_known_canonical": {
+   "ok": true,
+   "detail": "s = 0 max |rho_tau/rho_source| 5.383374e-15 vs AZ37 5.383374e-15"
+  },
+  "B2b_known_alt": {
+   "ok": false,
+   "detail": "s = 0 phase speeds 851.6-916.8 m/s vs AZ37 851.6-916.9"
+  },
+  "B2b_json_alt_postrun": {
+   "ok": true,
+   "detail": "s = 0 phase speeds vs AZ37 stored JSON 851.6179542645-916.8403359208: rel diff 2.2e-16"
+  },
+  "B2c_known_alt": {
+   "ok": true,
+   "detail": "s = 0 max |rho_tau/rho_source| 6.190110e-15 vs AZ37 6.190110e-15"
+  },
+  "B2_resonance": {
+   "ok": true,
+   "detail": "every physical cell has a real Omega' and 0 < pole <= 1 (resonance survives)"
+  },
+  "B2_convergence": {
+   "ok": true,
+   "detail": "DOP853 pairs vs exact <= 1e-7 (max 5.37e-12); 50-digit convolution <= 1e-30"
+  },
+  "B2d_Xpositive": {
+   "ok": true,
+   "detail": "|dX/X| <= 1.26e-08 < 1 at the Sun's Fourier amplitude: X stays > 0 in the linear moving response"
+  }
+ },
+ "B1": {
+  "label": "BRANCH ABSENT (s != 0, tested family)",
+  "P_equation": "DX*(2*X*gamma - 1)/(2*X)",
+  "theta": "(-3*M - 2*r*(E**2 - 1))/(r**(3/2)*sqrt(2*M + r*(E**2 - 1)))",
+  "dtheta_dr": "(2*E**4*r**2 + 8*E**2*M*r - 4*E**2*r**2 + 9*M**2 - 8*M*r + 2*r**2)/(r**(5/2)*(E**2*r + 2*M - r)**(3/2))"
+ },
+ "B2_symbolic": {
+  "transfer": "(8*K**2*M_theta*gamma_L**2*k**2*rho0**2*s**4 - 4*K**2*M_theta*gamma_L*k**2*rho0**2*s**2 - 8*K**2*M_theta*gamma_L*k**2*rho0*s**4 + 2*K**2*M_theta*k**2*rho0*s**2 + 2*K**2*M_theta*k**2*s**4 + 8*K*gamma_L**3*k**4*rho0**2*s**4 - 8*K*gamma_L**3*k**4*rho0*s**6 - 4*K*gamma_L**2*k**4*rho0**2*s**2 + 4*K*gamma_L**2*k**4*rho0*s**4 + 4*K*gamma_L**2*k**4*s**6 - 4*K*gamma_L*k**4*rho0*s**2 - 2*K*gamma_L*k**4*s**4 + K*k**4*rho0 + K*k**4*s**2)/(-12*K**2*M_theta*gamma_L**2*k**2*rho0**2*s**4 - 4*K**2*M_theta*gamma_L**2*omega**2*rho0**2*s**4 + 6*K**2*M_theta*gamma_L*k**2*rho0**2*s**2 + 12*K**2*M_theta*gamma_L*k**2*rho0*s**4 + 4*K**2*M_theta*gamma_L*omega**2*rho0*s**4 - 3*K**2*M_theta*k**2*rho0*s**2 - 3*K**2*M_theta*k**2*s**4 - K**2*M_theta*omega**2*s**4 - 2*K*M_theta*gamma_L*k**4*rho0*s**2 + 2*K*M_theta*gamma_L*k**2*omega**2*rho0*s**2 + K*M_theta*k**4*rho0 + K*M_theta*k**4*s**2 - K*M_theta*k**2*omega**2*s**2 - 12*K*gamma_L**3*k**4*rho0**2*s**4 + 8*K*gamma_L**3*k**4*rho0*s**6 - 4*K*gamma_L**3*k**2*omega**2*rho0**2*s**4 + 6*K*gamma_L**2*k**4*rho0**2*s**2 - 4*K*gamma_L**2*k**4*s**6 + 4*K*gamma_L**2*k**2*omega**2*rho0*s**4 + 3*K*gamma_L*k**4*rho0*s**2 + K*gamma_L*k**4*s**4 - K*gamma_L*k**2*omega**2*s**4 - K*k**4*rho0 - K*k**4*s**2 - 2*gamma_L**2*k**6*rho0*s**2 + 2*gamma_L**2*k**4*omega**2*rho0*s**2 - 4*gamma_L**2*k**4*omega**2*s**4 + gamma_L*k**6*rho0 + gamma_L*k**6*s**2 + 3*gamma_L*k**4*omega**2*s**2 - k**4*omega**2)",
+  "Omega2": "k**2*(2*gamma_L*rho0*s**2 - rho0 - s**2)*(-6*K**2*M_theta*gamma_L*rho0*s**2 + 3*K**2*M_theta*s**2 - K*M_theta*k**2 - 6*K*gamma_L**2*k**2*rho0*s**2 + 4*K*gamma_L**2*k**2*s**4 - K*gamma_L*k**2*s**2 + K*k**2 - gamma_L*k**4)/(4*K**2*M_theta*gamma_L**2*rho0**2*s**4 - 4*K**2*M_theta*gamma_L*rho0*s**4 + K**2*M_theta*s**4 - 2*K*M_theta*gamma_L*k**2*rho0*s**2 + K*M_theta*k**2*s**2 + 4*K*gamma_L**3*k**2*rho0**2*s**4 - 4*K*gamma_L**2*k**2*rho0*s**4 + K*gamma_L*k**2*s**4 - 2*gamma_L**2*k**4*rho0*s**2 + 4*gamma_L**2*k**4*s**4 - 3*gamma_L*k**4*s**2 + k**4)",
+  "c_inst": "0",
+  "F": "-K*k**2*(2*gamma_L*rho0*s**2 - rho0 - s**2)*(-4*K*M_theta*gamma_L*rho0*s**2 + 2*K*M_theta*s**2 - 4*gamma_L**2*k**2*rho0*s**2 + 4*gamma_L**2*k**2*s**4 - 2*gamma_L*k**2*s**2 + k**2)/(4*K**2*M_theta*gamma_L**2*rho0**2*s**4 - 4*K**2*M_theta*gamma_L*rho0*s**4 + K**2*M_theta*s**4 - 2*K*M_theta*gamma_L*k**2*rho0*s**2 + K*M_theta*k**2*s**2 + 4*K*gamma_L**3*k**2*rho0**2*s**4 - 4*K*gamma_L**2*k**2*rho0*s**4 + K*gamma_L*k**2*s**4 - 2*gamma_L**2*k**4*rho0*s**2 + 4*gamma_L**2*k**4*s**4 - 3*gamma_L*k**4*s**2 + k**4)",
+  "dsigma_per_drho": "(-4*I*K**2*M_theta*gamma_L*omega*rho0*s**2 + 2*I*K**2*M_theta*omega*s**2 - 4*I*K*gamma_L**2*k**2*omega*rho0*s**2 + 4*I*K*gamma_L**2*k**2*omega*s**4 - 2*I*K*gamma_L*k**2*omega*s**2 + I*K*k**2*omega)/(-12*K**2*M_theta*gamma_L**2*k**2*rho0**2*s**4 - 4*K**2*M_theta*gamma_L**2*omega**2*rho0**2*s**4 + 6*K**2*M_theta*gamma_L*k**2*rho0**2*s**2 + 12*K**2*M_theta*gamma_L*k**2*rho0*s**4 + 4*K**2*M_theta*gamma_L*omega**2*rho0*s**4 - 3*K**2*M_theta*k**2*rho0*s**2 - 3*K**2*M_theta*k**2*s**4 - K**2*M_theta*omega**2*s**4 - 2*K*M_theta*gamma_L*k**4*rho0*s**2 + 2*K*M_theta*gamma_L*k**2*omega**2*rho0*s**2 + K*M_theta*k**4*rho0 + K*M_theta*k**4*s**2 - K*M_theta*k**2*omega**2*s**2 - 12*K*gamma_L**3*k**4*rho0**2*s**4 + 8*K*gamma_L**3*k**4*rho0*s**6 - 4*K*gamma_L**3*k**2*omega**2*rho0**2*s**4 + 6*K*gamma_L**2*k**4*rho0**2*s**2 - 4*K*gamma_L**2*k**4*s**6 + 4*K*gamma_L**2*k**2*omega**2*rho0*s**4 + 3*K*gamma_L*k**4*rho0*s**2 + K*gamma_L*k**4*s**4 - K*gamma_L*k**2*omega**2*s**4 - K*k**4*rho0 - K*k**4*s**2 - 2*gamma_L**2*k**6*rho0*s**2 + 2*gamma_L**2*k**4*omega**2*rho0*s**2 - 4*gamma_L**2*k**4*omega**2*s**4 + gamma_L*k**6*rho0 + gamma_L*k**6*s**2 + 3*gamma_L*k**4*omega**2*s**2 - k**4*omega**2)",
+  "dphi_per_drho": "(2*K**2*M_theta*gamma_L*k**2*rho0*s**2 - 2*K**2*M_theta*gamma_L*omega**2*rho0*s**2 - K**2*M_theta*k**2*rho0 - K**2*M_theta*k**2*s**2 + K**2*M_theta*omega**2*s**2 + 2*K*gamma_L**2*k**4*rho0*s**2 - 2*K*gamma_L**2*k**2*omega**2*rho0*s**2 + 4*K*gamma_L**2*k**2*omega**2*s**4 - K*gamma_L*k**4*rho0 - K*gamma_L*k**4*s**2 - 3*K*gamma_L*k**2*omega**2*s**2 + K*k**2*omega**2)/(-12*K**2*M_theta*gamma_L**2*k**2*rho0**2*s**4 - 4*K**2*M_theta*gamma_L**2*omega**2*rho0**2*s**4 + 6*K**2*M_theta*gamma_L*k**2*rho0**2*s**2 + 12*K**2*M_theta*gamma_L*k**2*rho0*s**4 + 4*K**2*M_theta*gamma_L*omega**2*rho0*s**4 - 3*K**2*M_theta*k**2*rho0*s**2 - 3*K**2*M_theta*k**2*s**4 - K**2*M_theta*omega**2*s**4 - 2*K*M_theta*gamma_L*k**4*rho0*s**2 + 2*K*M_theta*gamma_L*k**2*omega**2*rho0*s**2 + K*M_theta*k**4*rho0 + K*M_theta*k**4*s**2 - K*M_theta*k**2*omega**2*s**2 - 12*K*gamma_L**3*k**4*rho0**2*s**4 + 8*K*gamma_L**3*k**4*rho0*s**6 - 4*K*gamma_L**3*k**2*omega**2*rho0**2*s**4 + 6*K*gamma_L**2*k**4*rho0**2*s**2 - 4*K*gamma_L**2*k**4*s**6 + 4*K*gamma_L**2*k**2*omega**2*rho0*s**4 + 3*K*gamma_L*k**4*rho0*s**2 + K*gamma_L*k**4*s**4 - K*gamma_L*k**2*omega**2*s**4 - K*k**4*rho0 - K*k**4*s**2 - 2*gamma_L**2*k**6*rho0*s**2 + 2*gamma_L**2*k**4*omega**2*rho0*s**2 - 4*gamma_L**2*k**4*omega**2*s**4 + gamma_L*k**6*rho0 + gamma_L*k**6*s**2 + 3*gamma_L*k**4*omega**2*s**2 - k**4*omega**2)",
+  "dC2_per_drho": "(-4*K**2*M_theta*gamma_L*k**2*rho0*s**4 - 4*K**2*M_theta*gamma_L*omega**2*rho0*s**4 + 2*K**2*M_theta*k**2*rho0*s**2 + 2*K**2*M_theta*k**2*s**4 + 2*K**2*M_theta*omega**2*s**4 - 4*K*gamma_L**2*k**4*rho0*s**4 - 4*K*gamma_L**2*k**2*omega**2*rho0*s**4 + 2*K*gamma_L*k**4*rho0*s**2 + 2*K*gamma_L*k**4*s**4 + 2*K*gamma_L*k**2*omega**2*s**4)/(-12*K**2*M_theta*gamma_L**2*k**2*rho0**2*s**4 - 4*K**2*M_theta*gamma_L**2*omega**2*rho0**2*s**4 + 6*K**2*M_theta*gamma_L*k**2*rho0**2*s**2 + 12*K**2*M_theta*gamma_L*k**2*rho0*s**4 + 4*K**2*M_theta*gamma_L*omega**2*rho0*s**4 - 3*K**2*M_theta*k**2*rho0*s**2 - 3*K**2*M_theta*k**2*s**4 - K**2*M_theta*omega**2*s**4 - 2*K*M_theta*gamma_L*k**4*rho0*s**2 + 2*K*M_theta*gamma_L*k**2*omega**2*rho0*s**2 + K*M_theta*k**4*rho0 + K*M_theta*k**4*s**2 - K*M_theta*k**2*omega**2*s**2 - 12*K*gamma_L**3*k**4*rho0**2*s**4 + 8*K*gamma_L**3*k**4*rho0*s**6 - 4*K*gamma_L**3*k**2*omega**2*rho0**2*s**4 + 6*K*gamma_L**2*k**4*rho0**2*s**2 - 4*K*gamma_L**2*k**4*s**6 + 4*K*gamma_L**2*k**2*omega**2*rho0*s**4 + 3*K*gamma_L*k**4*rho0*s**2 + K*gamma_L*k**4*s**4 - K*gamma_L*k**2*omega**2*s**4 - K*k**4*rho0 - K*k**4*s**2 - 2*gamma_L**2*k**6*rho0*s**2 + 2*gamma_L**2*k**4*omega**2*rho0*s**2 - 4*gamma_L**2*k**4*omega**2*s**4 + gamma_L*k**6*rho0 + gamma_L*k**6*s**2 + 3*gamma_L*k**4*omega**2*s**2 - k**4*omega**2)"
+ },
+ "B2": {
+  "canonical": [
+   {
+    "s": 0.0,
+    "Lstar_pc": 21.68,
+    "v": 220000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": 2.8228508942462874e-34,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 753.5118462578149,
+    "pole_cosine": 0.0034250538466264312,
+    "F_SI": 2.5374092476261415e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 5.865749723550455e-17,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.866317447987976e-19,
+      "conv_err": 6.106226635438361e-16,
+      "convolution_err": 6.375880215924933e-48
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.865749723550455e-17,
+      "conv_err": 4.996003610813204e-16,
+      "convolution_err": 5.425712361487157e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0034250538466264312,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.866315536384132e-19,
+      "conv_err": 6.106227020453325e-16,
+      "convolution_err": 5.4154806840813355e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0034250538466264312,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.86555858043293e-17,
+      "conv_err": 2.7809732887839817e-16,
+      "convolution_err": 1.8584067124859798e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.705166882100547e-19,
+      "conv_err": 5.365672306552489e-12,
+      "convolution_err": 1.0022867662845734e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.2555459549742199e-17,
+      "conv_err": 4.03497564871176e-12,
+      "convolution_err": 1.6704779438076223e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 1.4925952544669548e-286,
+      "dphi": 6.283837405737459e-09,
+      "dX_over_X": null
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 8.563041641798802e-06,
+      "dphi": 6.283837405736829e-09,
+      "dX_over_X": null
+     }
+    }
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 21.68,
+    "v": 220000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": 3.075791700632326e-36,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 753.5118462702059,
+    "pole_cosine": 0.003425053846682754,
+    "F_SI": 2.537409247626141e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 5.38337392928454e-15,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.383894966335235e-17,
+      "conv_err": 3.885780586188048e-16,
+      "convolution_err": 1.129109451778448e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.38337392928454e-15,
+      "conv_err": 6.106226635438361e-16,
+      "convolution_err": 2.2785319153535968e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.003425053846682754,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.3838932119340444e-17,
+      "conv_err": 8.881785851362324e-16,
+      "convolution_err": 4.869443206199219e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.003425053846682754,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.383198505012424e-15,
+      "conv_err": 1.2212453270876722e-15,
+      "convolution_err": 2.1329943352013393e-50
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.235996778384125e-17,
+      "conv_err": 5.365325512024777e-12,
+      "convolution_err": 9.449650255111442e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.152294877820953e-15,
+      "conv_err": 4.035332879116984e-12,
+      "convolution_err": 1.6704779438076223e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 1.2016229746276825e-286,
+      "dphi": 6.55932923360596e-10,
+      "dX_over_X": null
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 8.938456828600003e-07,
+      "dphi": 6.559329233545751e-10,
+      "dX_over_X": null
+     }
+    }
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 21.68,
+    "v": 369000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": 2.8228508942462874e-34,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 753.5118462578149,
+    "pole_cosine": 0.0020420375237339156,
+    "F_SI": 2.5374092476261415e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 2.0851798665669024e-17,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.0852516020293846e-19,
+      "conv_err": 4.996003610813204e-16,
+      "convolution_err": 9.42122832660398e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.0851798665669024e-17,
+      "conv_err": 9.43689570931383e-16,
+      "convolution_err": 4.64392868378519e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0020420375237339156,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.0852513604925285e-19,
+      "conv_err": 7.771562098818327e-16,
+      "convolution_err": 2.7600095939044322e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0020420375237339156,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.0851557136568107e-17,
+      "conv_err": 9.992142745978893e-16,
+      "convolution_err": 3.6046755229936145e-50
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.0279687434260823e-19,
+      "conv_err": 5.36551671576226e-12,
+      "convolution_err": 0.0
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 4.46349414706797e-18,
+      "conv_err": 4.034203045030057e-12,
+      "convolution_err": 1.6704779438076223e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 1.4925952544669548e-286,
+      "dphi": 6.283837405737459e-09,
+      "dX_over_X": null
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 5.105297878204064e-06,
+      "dphi": 6.2838374057368306e-09,
+      "dX_over_X": null
+     }
+    }
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 21.68,
+    "v": 369000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": 3.075791700632326e-36,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 753.5118462702059,
+    "pole_cosine": 0.0020420375237674955,
+    "F_SI": 2.537409247626141e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 1.9137030150599043e-15,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 1.9137688512848957e-17,
+      "conv_err": 1.6653345369377348e-16,
+      "convolution_err": 1.5481120934678263e-46
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.9137030150599043e-15,
+      "conv_err": 2.220446049250313e-16,
+      "convolution_err": 4.8844775076934875e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0020420375237674955,
+      "crossings": 1.0,
+      "transfer_magnitude": 1.9137686296110644e-17,
+      "conv_err": 7.216449741508992e-16,
+      "convolution_err": 1.4136419599472004e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0020420375237674955,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.9136808483885258e-15,
+      "conv_err": 3.330680367628952e-16,
+      "convolution_err": 1.7865732811021668e-50
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 1.8611967058416945e-17,
+      "conv_err": 5.365821858436524e-12,
+      "convolution_err": 1.8899300510222884e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 4.096434242389679e-16,
+      "conv_err": 4.034292328839914e-12,
+      "convolution_err": 1.7218892518958574e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 1.2016229746276825e-286,
+      "dphi": 6.55932923360596e-10,
+      "dX_over_X": null
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 5.329120958459359e-07,
+      "dphi": 6.559329233545753e-10,
+      "dX_over_X": null
+     }
+    }
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 24.0,
+    "v": 220000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": 3.4593289917368904e-34,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 834.1459552669261,
+    "pole_cosine": 0.003791572523940573,
+    "F_SI": 2.5374092476261415e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 5.865620429876441e-17,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.86631615493984e-19,
+      "conv_err": 7.216449660063518e-16,
+      "convolution_err": 1.779326286626127e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.865620429876441e-17,
+      "conv_err": 6.106226635438361e-16,
+      "convolution_err": 5.412348537936696e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.003791572523940573,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.866313812320449e-19,
+      "conv_err": 2.386980487865915e-15,
+      "convolution_err": 1.3585195698653527e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.003791572523940573,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.865386193868555e-17,
+      "conv_err": 6.109207463848969e-16,
+      "convolution_err": 2.902455427365744e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.705165617394706e-19,
+      "conv_err": 5.365748518557628e-12,
+      "convolution_err": 3.3409558876152446e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.2554956637282965e-17,
+      "conv_err": 4.035563073498078e-12,
+      "convolution_err": 1.6704779438076223e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 1.2179743120368322e-286,
+      "dphi": 6.283837405737342e-09,
+      "dX_over_X": null
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 8.563064291612338e-06,
+      "dphi": 6.28383740573683e-09,
+      "dX_over_X": null
+     }
+    }
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 24.0,
+    "v": 220000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": 3.7693012493731825e-36,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 834.1459552781192,
+    "pole_cosine": 0.003791572523991451,
+    "F_SI": 2.537409247626141e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 5.383255268205102e-15,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.383893779622205e-17,
+      "conv_err": 1.3877787807814457e-15,
+      "convolution_err": 3.0707393754249236e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.383255268205102e-15,
+      "conv_err": 5.551115123125783e-16,
+      "convolution_err": 1.937754414816842e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.003791572523991451,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.3838916296504633e-17,
+      "conv_err": 1.4432900338195446e-15,
+      "convolution_err": 2.092989023601182e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.003791572523991451,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.383040294829555e-15,
+      "conv_err": 1.8873799390700777e-15,
+      "convolution_err": 1.1597764760635547e-50
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.235995617682633e-17,
+      "conv_err": 5.365971415484286e-12,
+      "convolution_err": 7.470604474535835e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.1522487223259291e-15,
+      "conv_err": 4.035636675709072e-12,
+      "convolution_err": 1.6704779438076223e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 9.805376986685721e-287,
+      "dphi": 6.559329233594881e-10,
+      "dX_over_X": null
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 8.938480471411627e-07,
+      "dphi": 6.55932923354575e-10,
+      "dX_over_X": null
+     }
+    }
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 24.0,
+    "v": 369000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": 3.4593289917368904e-34,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 834.1459552669261,
+    "pole_cosine": 0.002260558144354813,
+    "F_SI": 2.5374092476261415e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 2.0851635290182072e-17,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.0852514386488945e-19,
+      "conv_err": 7.771561172376096e-16,
+      "convolution_err": 6.80312165483317e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.0851635290182072e-17,
+      "conv_err": 1.1102230246251565e-15,
+      "convolution_err": 5.4724857439137706e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.002260558144354813,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.0852511426518973e-19,
+      "conv_err": 4.996008581247124e-16,
+      "convolution_err": 3.6091586119272816e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.002260558144354813,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.0851339304831668e-17,
+      "conv_err": 1.554316106621012e-15,
+      "convolution_err": 4.077010231605478e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.0279685836267237e-19,
+      "conv_err": 5.3657296667133654e-12,
+      "convolution_err": 7.470604474535835e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 4.463430597663414e-18,
+      "conv_err": 4.03422624311892e-12,
+      "convolution_err": 1.6704779438076223e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 1.2179743120368322e-286,
+      "dphi": 6.283837405737342e-09,
+      "dX_over_X": null
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 5.105302678259655e-06,
+      "dphi": 6.283837405736831e-09,
+      "dX_over_X": null
+     }
+    }
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 24.0,
+    "v": 369000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": 3.7693012493731825e-36,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 834.1459552781192,
+    "pole_cosine": 0.002260558144385147,
+    "F_SI": 2.537409247626141e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 1.9136880210458636e-15,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 1.9137687013401636e-17,
+      "conv_err": 8.881784197001252e-16,
+      "convolution_err": 5.676818606000319e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.9136880210458636e-15,
+      "conv_err": 7.771561172376096e-16,
+      "convolution_err": 2.8732220633491103e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.002260558144385147,
+      "crossings": 1.0,
+      "transfer_magnitude": 1.9137684296847753e-17,
+      "conv_err": 6.66133894184428e-16,
+      "convolution_err": 3.847116507373788e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.002260558144385147,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.9136608565759503e-15,
+      "conv_err": 1.4988101182348332e-15,
+      "convolution_err": 4.217956808114246e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 1.861196559183596e-17,
+      "conv_err": 5.365267104469809e-12,
+      "convolution_err": 9.449650255111442e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 4.096375919033956e-16,
+      "conv_err": 4.0343423335300485e-12,
+      "convolution_err": 0.0
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 9.805376986685721e-287,
+      "dphi": 6.559329233594881e-10,
+      "dX_over_X": null
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 5.329125968955801e-07,
+      "dphi": 6.559329233545753e-10,
+      "dX_over_X": null
+     }
+    }
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 27.0,
+    "v": 220000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": 4.378213255166731e-34,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 938.4141996752629,
+    "pole_cosine": 0.004265519089433014,
+    "F_SI": 2.5374092476261415e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 5.865433772451585e-17,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.866314288164952e-19,
+      "conv_err": 6.106226635438361e-16,
+      "convolution_err": 1.0316871780955875e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.865433772451585e-17,
+      "conv_err": 1.1102230246251565e-16,
+      "convolution_err": 1.3029727961699454e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.004265519089433014,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.866311323288168e-19,
+      "conv_err": 1.6098239114509792e-15,
+      "convolution_err": 5.111923520230044e-51
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.004265519089433014,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.86513732630945e-17,
+      "conv_err": 1.054952938170233e-15,
+      "convolution_err": 1.5622824160500673e-50
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.705163791537626e-19,
+      "conv_err": 5.365734637985535e-12,
+      "convolution_err": 3.3409558876152446e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.2554230603632796e-17,
+      "conv_err": 4.036147938521156e-12,
+      "convolution_err": 1.6704779438076223e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 9.623500737081743e-287,
+      "dphi": 6.283837405737236e-09,
+      "dX_over_X": null
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 8.563096991389185e-06,
+      "dphi": 6.2838374057368306e-09,
+      "dX_over_X": null
+     }
+    }
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 27.0,
+    "v": 220000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": 4.770521893710768e-36,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 938.4141996852121,
+    "pole_cosine": 0.004265519089478237,
+    "F_SI": 2.537409247626141e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 5.383083960740236e-15,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.383892066363418e-17,
+      "conv_err": 7.771561172376096e-16,
+      "convolution_err": 8.28423421893076e-48
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.383083960740236e-15,
+      "conv_err": 1.6653345369377348e-16,
+      "convolution_err": 1.4432929434497856e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.004265519089478237,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.38388934530624e-17,
+      "conv_err": 3.8858023669742194e-16,
+      "convolution_err": 6.088239574731983e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.004265519089478237,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.382811893143041e-15,
+      "conv_err": 8.327323180583162e-16,
+      "convolution_err": 8.999699922263565e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.235993941976735e-17,
+      "conv_err": 5.3657851876891654e-12,
+      "convolution_err": 1.3363823550460978e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.1521820895712379e-15,
+      "conv_err": 4.035874559496824e-12,
+      "convolution_err": 1.7218892518958574e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 7.747458359894564e-287,
+      "dphi": 6.559329233584572e-10,
+      "dX_over_X": null
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 8.938514604790383e-07,
+      "dphi": 6.559329233545753e-10,
+      "dX_over_X": null
+     }
+    }
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 27.0,
+    "v": 369000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": 4.378213255166731e-34,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 938.4141996752629,
+    "pole_cosine": 0.0025431279123990865,
+    "F_SI": 2.5374092476261415e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 2.0851399426583873e-17,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.0852512027762844e-19,
+      "conv_err": 4.996003610813204e-16,
+      "convolution_err": 7.290500299718482e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.0851399426583873e-17,
+      "conv_err": 9.43689570931383e-16,
+      "convolution_err": 1.804116179312232e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0025431279123990865,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.0852508281551246e-19,
+      "conv_err": 1.0547121088355963e-15,
+      "convolution_err": 3.0734843955845355e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0025431279123990865,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.0851024824079707e-17,
+      "conv_err": 6.10623279567487e-16,
+      "convolution_err": 3.560206117739995e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.0279683529241984e-19,
+      "conv_err": 5.365402779756393e-12,
+      "convolution_err": 9.449650255111442e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 4.4633388522806434e-18,
+      "conv_err": 4.034214584323048e-12,
+      "convolution_err": 1.6704779438076223e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 9.623500737081743e-287,
+      "dphi": 6.283837405737236e-09,
+      "dX_over_X": null
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 5.105309608122124e-06,
+      "dphi": 6.2838374057368306e-09,
+      "dX_over_X": null
+     }
+    }
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 27.0,
+    "v": 369000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": 4.770521893710768e-36,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 938.4141996852121,
+    "pole_cosine": 0.0025431279124260493,
+    "F_SI": 2.537409247626141e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 1.9136663743339297e-15,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 1.9137684848647735e-17,
+      "conv_err": 4.996003610813204e-16,
+      "convolution_err": 1.7878123145806697e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.9136663743339297e-15,
+      "conv_err": 6.661338147750939e-16,
+      "convolution_err": 9.621952956331904e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0025431279124260493,
+      "crossings": 1.0,
+      "transfer_magnitude": 1.9137681410509593e-17,
+      "conv_err": 3.330671235573436e-16,
+      "convolution_err": 1.7786474165038636e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0025431279124260493,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.913631994664666e-15,
+      "conv_err": 1.4433066119497423e-15,
+      "convolution_err": 3.399035404153814e-50
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 1.8611963474531235e-17,
+      "conv_err": 5.3656584209017065e-12,
+      "convolution_err": 1.2045987761860069e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 4.0962917184244836e-16,
+      "conv_err": 4.034403291468641e-12,
+      "convolution_err": 1.6704779438076223e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 7.747458359894564e-287,
+      "dphi": 6.559329233584572e-10,
+      "dX_over_X": null
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 5.3291332026327e-07,
+      "dphi": 6.559329233545753e-10,
+      "dX_over_X": null
+     }
+    }
+   },
+   {
+    "s": 2.945732836051275e-27,
+    "Lstar_pc": 21.68,
+    "v": 220000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": 2.822861796979927e-34,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 753.5133014057008,
+    "pole_cosine": 0.0034250604609350034,
+    "F_SI": 2.5374190478948054e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 5.865772376696929e-17,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.86634010551983e-19,
+      "conv_err": 4.996003610813204e-16,
+      "convolution_err": 2.8268495956290107e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.865772376696929e-17,
+      "conv_err": 1.1102230246251565e-15,
+      "convolution_err": 1.7105694144590052e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0034250604609350034,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.866338193901219e-19,
+      "conv_err": 9.99202227997857e-16,
+      "convolution_err": 1.1107373265427088e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0034250604609350034,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.86558123210296e-17,
+      "conv_err": 1.3877855570284801e-15,
+      "convolution_err": 1.448593418674187e-50
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.705188917218967e-19,
+      "conv_err": 5.365799070714767e-12,
+      "convolution_err": 0.0
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.2555508034241625e-17,
+      "conv_err": 4.035059530953991e-12,
+      "convolution_err": 1.6704779438076223e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 1.4925894896192004e-286,
+      "dphi": 6.283837405737459e-09,
+      "dX_over_X": 1.2567674811474918e-08
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 8.563041642186787e-06,
+      "dphi": 6.2838374057368306e-09,
+      "dX_over_X": 1.4743361492670038e-13
+     }
+    }
+   },
+   {
+    "s": 2.945732836051275e-27,
+    "Lstar_pc": 21.68,
+    "v": 220000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": 3.075803580302525e-36,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 753.5133014180917,
+    "pole_cosine": 0.003425060460991326,
+    "F_SI": 2.5374190478948047e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 5.3833947195268594e-15,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.383915760602299e-17,
+      "conv_err": 6.661338147750939e-16,
+      "convolution_err": 4.930449060707073e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.3833947195268594e-15,
+      "conv_err": 6.661338147750939e-16,
+      "convolution_err": 1.0223325016102648e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.003425060460991326,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.383914006187556e-17,
+      "conv_err": 6.106228175498071e-16,
+      "convolution_err": 1.1439250250669493e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.003425060460991326,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.383219293899714e-15,
+      "conv_err": 1.6654438570686585e-15,
+      "convolution_err": 9.083223819453946e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.2360170014225444e-17,
+      "conv_err": 5.3654949848494944e-12,
+      "convolution_err": 9.449650255111442e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.1522993275537657e-15,
+      "conv_err": 4.035279230275756e-12,
+      "convolution_err": 0.0
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 1.2016183336015998e-286,
+      "dphi": 6.559329233605961e-10,
+      "dX_over_X": 1.3118658467211922e-09
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 8.938456829005e-07,
+      "dphi": 6.559329233545751e-10,
+      "dX_over_X": 1.5389730160009166e-14
+     }
+    }
+   },
+   {
+    "s": 2.945732836051275e-27,
+    "Lstar_pc": 21.68,
+    "v": 369000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": 2.822861796979927e-34,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 753.5133014057008,
+    "pole_cosine": 0.0020420414672241215,
+    "F_SI": 2.5374190478948054e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 2.0851879199042988e-17,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.085259655920908e-19,
+      "conv_err": 1.1102230246251565e-15,
+      "convolution_err": 5.2092184199696893e-48
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.0851879199042988e-17,
+      "conv_err": 9.992007221626409e-16,
+      "convolution_err": 1.1112019282208303e-48
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0020420414672241215,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.085259414382186e-19,
+      "conv_err": 1.66538121132836e-16,
+      "convolution_err": 2.585490871869217e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0020420414672241215,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.0851637668076375e-17,
+      "conv_err": 1.3322693942009925e-15,
+      "convolution_err": 2.9752452071141505e-50
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.0279765760733385e-19,
+      "conv_err": 5.3655929482115746e-12,
+      "convolution_err": 1.494120894907167e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 4.4635113853907385e-18,
+      "conv_err": 4.034258270008238e-12,
+      "convolution_err": 3.3409558876152446e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 1.4925894896192004e-286,
+      "dphi": 6.283837405737459e-09,
+      "dX_over_X": 1.2567674811474918e-08
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 5.105297878286288e-06,
+      "dphi": 6.283837405736831e-09,
+      "dX_over_X": 5.240658490914419e-14
+     }
+    }
+   },
+   {
+    "s": 2.945732836051275e-27,
+    "Lstar_pc": 21.68,
+    "v": 369000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": 3.075803580302525e-36,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 753.5133014180917,
+    "pole_cosine": 0.002042041467257701,
+    "F_SI": 2.5374190478948047e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 1.913710406123046e-15,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 1.9137762428565955e-17,
+      "conv_err": 1.1102230246251565e-15,
+      "convolution_err": 1.0300902011813074e-46
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.913710406123046e-15,
+      "conv_err": 3.3306690738754696e-16,
+      "convolution_err": 7.416922070505843e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.002042041467257701,
+      "crossings": 1.0,
+      "transfer_magnitude": 1.9137760211810516e-17,
+      "conv_err": 7.771561342538962e-16,
+      "convolution_err": 4.830421885480588e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.002042041467257701,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.913688239280441e-15,
+      "conv_err": 3.3306718973174304e-16,
+      "convolution_err": 1.6000046555532382e-50
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 1.861203894363371e-17,
+      "conv_err": 5.365707920295696e-12,
+      "convolution_err": 9.449650255111442e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 4.096450063101735e-16,
+      "conv_err": 4.034409696896042e-12,
+      "convolution_err": 1.7218892518958574e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 1.2016183336015998e-286,
+      "dphi": 6.559329233605961e-10,
+      "dX_over_X": 1.3118658467211922e-09
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 5.329120958545189e-07,
+      "dphi": 6.559329233545754e-10,
+      "dX_over_X": 5.47041596151812e-15
+     }
+    }
+   },
+   {
+    "s": 2.945732836051275e-27,
+    "Lstar_pc": 24.0,
+    "v": 220000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": 3.459342352748146e-34,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 834.1475661317445,
+    "pole_cosine": 0.0037915798460533843,
+    "F_SI": 2.5374190478948054e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 5.86564308202421e-17,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.866338812461706e-19,
+      "conv_err": 9.992007221626409e-16,
+      "convolution_err": 1.220718462216858e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.86564308202421e-17,
+      "conv_err": 2.7755575615628914e-16,
+      "convolution_err": 3.1872719167849433e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0037915798460533843,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.86633646982422e-19,
+      "conv_err": 9.43690193749521e-16,
+      "convolution_err": 9.2753084556619e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0037915798460533843,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.865408844207037e-17,
+      "conv_err": 4.44130712525147e-16,
+      "convolution_err": 1.087898760904714e-50
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.705187652503354e-19,
+      "conv_err": 5.365888147032438e-12,
+      "convolution_err": 1.3363823550460978e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.2555005117897805e-17,
+      "conv_err": 4.03560202046459e-12,
+      "convolution_err": 1.7218892518958574e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 1.217969607857011e-286,
+      "dphi": 6.283837405737343e-09,
+      "dX_over_X": 1.2567674811474685e-08
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 8.563064292087808e-06,
+      "dphi": 6.28383740573683e-09,
+      "dX_over_X": 1.8067646738184753e-13
+     }
+    }
+   },
+   {
+    "s": 2.945732836051275e-27,
+    "Lstar_pc": 24.0,
+    "v": 220000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": 3.7693158075943115e-36,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 834.1475661429375,
+    "pole_cosine": 0.0037915798461042615,
+    "F_SI": 2.537419047894805e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 5.383276057530848e-15,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.383914573880103e-17,
+      "conv_err": 1.8318679906315083e-15,
+      "convolution_err": 1.460264999358871e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.383276057530848e-15,
+      "conv_err": 4.996003610813204e-16,
+      "convolution_err": 2.445579709734359e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0037915798461042615,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.383912423891753e-17,
+      "conv_err": 2.2205318096800574e-16,
+      "convolution_err": 3.826047021766255e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0037915798461042615,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.383061082494801e-15,
+      "conv_err": 1.665338150941055e-15,
+      "convolution_err": 6.775876159569668e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.2360158407120866e-17,
+      "conv_err": 5.365853550310278e-12,
+      "convolution_err": 7.470604474535835e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.152253171702229e-15,
+      "conv_err": 4.035654250981939e-12,
+      "convolution_err": 1.6704779438076223e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 9.805339115397216e-287,
+      "dphi": 6.559329233594882e-10,
+      "dX_over_X": 1.3118658467189762e-09
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 8.938480471907942e-07,
+      "dphi": 6.559329233545751e-10,
+      "dX_over_X": 1.885975651232098e-14
+     }
+    }
+   },
+   {
+    "s": 2.945732836051275e-27,
+    "Lstar_pc": 24.0,
+    "v": 369000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": 3.459342352748146e-34,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 834.1475661317445,
+    "pole_cosine": 0.002260562509842126,
+    "F_SI": 2.5374190478948054e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 2.0851715822294043e-17,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.0852594925391553e-19,
+      "conv_err": 5.551115123125783e-16,
+      "convolution_err": 5.193649565533402e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.0851715822294043e-17,
+      "conv_err": 1.0547118733938987e-15,
+      "convolution_err": 8.499391778093182e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.002260562509842126,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.0852591965398718e-19,
+      "conv_err": 1.99840153329315e-15,
+      "convolution_err": 1.8415052460213924e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.002260562509842126,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.0851419834657302e-17,
+      "conv_err": 7.771910868111003e-16,
+      "convolution_err": 2.985979324556125e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.0279764162727456e-19,
+      "conv_err": 5.3653037771787355e-12,
+      "convolution_err": 9.449650255111442e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 4.4634478354952965e-18,
+      "conv_err": 4.034210864071891e-12,
+      "convolution_err": 1.6704779438076223e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 1.217969607857011e-286,
+      "dphi": 6.283837405737343e-09,
+      "dX_over_X": 1.2567674811474685e-08
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 5.105302678360418e-06,
+      "dphi": 6.283837405736831e-09,
+      "dX_over_X": 6.422294190480088e-14
+     }
+    }
+   },
+   {
+    "s": 2.945732836051275e-27,
+    "Lstar_pc": 24.0,
+    "v": 369000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": 3.7693158075943115e-36,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 834.1475661429375,
+    "pole_cosine": 0.0022605625098724596,
+    "F_SI": 2.537419047894805e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 1.9136954119931844e-15,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 1.913776092910705e-17,
+      "conv_err": 7.216449660063518e-16,
+      "convolution_err": 2.5717342040507107e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.9136954119931844e-15,
+      "conv_err": 2.1094237467877974e-15,
+      "convolution_err": 3.207317652110635e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0022605625098724596,
+      "crossings": 1.0,
+      "transfer_magnitude": 1.9137758212532186e-17,
+      "conv_err": 1.776357356388058e-15,
+      "convolution_err": 2.5244533826416712e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0022605625098724596,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.9136682473134392e-15,
+      "conv_err": 7.21645487257208e-16,
+      "convolution_err": 1.176120877312054e-50
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 1.86120374770414e-17,
+      "conv_err": 5.3655573153273555e-12,
+      "convolution_err": 2.4322525997077713e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 4.0963917392954966e-16,
+      "conv_err": 4.034562247459135e-12,
+      "convolution_err": 1.6704779438076223e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 9.805339115397216e-287,
+      "dphi": 6.559329233594882e-10,
+      "dX_over_X": 1.3118658467189762e-09
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 5.329125969060981e-07,
+      "dphi": 6.559329233545753e-10,
+      "dX_over_X": 6.703856148956185e-15
+     }
+    }
+   },
+   {
+    "s": 2.945732836051275e-27,
+    "Lstar_pc": 27.0,
+    "v": 220000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": 4.378230165196601e-34,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 938.4160118981835,
+    "pole_cosine": 0.0042655273268099245,
+    "F_SI": 2.5374190478948047e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 5.865456423157569e-17,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.866336945672396e-19,
+      "conv_err": 3.885780586188048e-16,
+      "convolution_err": 8.265524865960115e-49
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.865456423157569e-17,
+      "conv_err": 1.0547118733938987e-15,
+      "convolution_err": 3.461230299569393e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0042655273268099245,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.866333980772709e-19,
+      "conv_err": 4.996030080522685e-16,
+      "convolution_err": 7.700932200856193e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0042655273268099245,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.865159974725657e-17,
+      "conv_err": 1.8876374194142733e-15,
+      "convolution_err": 3.654170502079174e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.705185826632168e-19,
+      "conv_err": 5.36559005708665e-12,
+      "convolution_err": 7.470604474535835e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.2554279078639706e-17,
+      "conv_err": 4.035749790573111e-12,
+      "convolution_err": 1.6704779438076223e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 9.623463568253523e-287,
+      "dphi": 6.283837405737237e-09,
+      "dX_over_X": 1.256767481147447e-08
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 8.563096991990954e-06,
+      "dphi": 6.2838374057368306e-09,
+      "dX_over_X": 2.286695272505811e-13
+     }
+    }
+   },
+   {
+    "s": 2.945732836051275e-27,
+    "Lstar_pc": 27.0,
+    "v": 220000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": 4.770540318959384e-36,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 938.4160119081328,
+    "pole_cosine": 0.004265527326855149,
+    "F_SI": 2.5374190478948047e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 5.383104748742765e-15,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.383912860608081e-17,
+      "conv_err": 6.661338147750939e-16,
+      "convolution_err": 3.593264876247948e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.383104748742765e-15,
+      "conv_err": 2.7755575615628914e-16,
+      "convolution_err": 1.7573427968856186e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.004265527326855149,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.383910139529884e-17,
+      "conv_err": 1.2212456350996143e-15,
+      "convolution_err": 1.9256419921527272e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.004265527326855149,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.382832679044093e-15,
+      "conv_err": 3.910878194934126e-16,
+      "convolution_err": 6.786316646718466e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 5.2360141649932444e-17,
+      "conv_err": 5.3659625099954346e-12,
+      "convolution_err": 9.449650255111442e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.1521865384328623e-15,
+      "conv_err": 4.036018613417582e-12,
+      "convolution_err": 0.0
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 7.747428436901178e-287,
+      "dphi": 6.559329233584571e-10,
+      "dX_over_X": 1.311865846716914e-09
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 8.938514605418534e-07,
+      "dphi": 6.559329233545751e-10,
+      "dX_over_X": 2.386947048609275e-14
+     }
+    }
+   },
+   {
+    "s": 2.945732836051275e-27,
+    "Lstar_pc": 27.0,
+    "v": 369000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": 4.378230165196601e-34,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 938.4160118981835,
+    "pole_cosine": 0.002543132823572313,
+    "F_SI": 2.5374190478948047e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 2.0851479956873906e-17,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.0852592566647233e-19,
+      "conv_err": 4.440892098500626e-16,
+      "convolution_err": 2.943448956106783e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.0851479956873906e-17,
+      "conv_err": 9.43689570931383e-16,
+      "convolution_err": 3.534731329096929e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.002543132823572313,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.0852588820406693e-19,
+      "conv_err": 9.99200758926223e-16,
+      "convolution_err": 1.5818447332187983e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.002543132823572313,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.0851105351476142e-17,
+      "conv_err": 1.7763983435297993e-15,
+      "convolution_err": 3.967385116543103e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.0279761855684379e-19,
+      "conv_err": 5.366012015485354e-12,
+      "convolution_err": 1.494120894907167e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 4.463356089403844e-18,
+      "conv_err": 4.03439660442911e-12,
+      "convolution_err": 1.6704779438076223e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 9.623463568253523e-287,
+      "dphi": 6.283837405737237e-09,
+      "dX_over_X": 1.256767481147447e-08
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 5.105309608249654e-06,
+      "dphi": 6.283837405736831e-09,
+      "dX_over_X": 8.128227117988823e-14
+     }
+    }
+   },
+   {
+    "s": 2.945732836051275e-27,
+    "Lstar_pc": 27.0,
+    "v": 369000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": 4.770540318959384e-36,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 938.4160119081328,
+    "pole_cosine": 0.0025431328235992756,
+    "F_SI": 2.5374190478948047e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 1.91367376511404e-15,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 1.913775876433643e-17,
+      "conv_err": 3.3306690738754696e-16,
+      "convolution_err": 1.0035696933454176e-46
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.91367376511404e-15,
+      "conv_err": 8.326672684688674e-16,
+      "convolution_err": 3.949009859161219e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0025431328235992756,
+      "crossings": 1.0,
+      "transfer_magnitude": 1.913775532617173e-17,
+      "conv_err": 9.992007751021987e-16,
+      "convolution_err": 1.7089185124286016e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0025431328235992756,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.913639385179212e-15,
+      "conv_err": 7.771870938251914e-16,
+      "convolution_err": 1.0628415917475997e-50
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 1.861203535972032e-17,
+      "conv_err": 5.3657851876891654e-12,
+      "convolution_err": 2.1392555620183148e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 4.0963075380356205e-16,
+      "conv_err": 4.034237806281011e-12,
+      "convolution_err": 3.3409558876152446e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 7.747428436901178e-287,
+      "dphi": 6.559329233584571e-10,
+      "dX_over_X": 1.311865846716914e-09
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 5.329133202765819e-07,
+      "dphi": 6.559329233545753e-10,
+      "dX_over_X": 8.484579455332737e-15
+     }
+    }
+   }
+  ],
+  "canonical_summary": {
+   "phase_speeds_s0": [
+    753.5118462578149,
+    938.4141996852121
+   ],
+   "phase_speeds_AC2q": [
+    753.5133014057008,
+    938.4160119081328
+   ],
+   "max_rel_phase_change": 1.931154623768805e-06,
+   "max_transfer_s0": 5.38337392928454e-15,
+   "max_transfer_AC2q": 5.3833947195268594e-15,
+   "max_rel_transfer_change": 3.862178762359392e-06,
+   "max_instantaneous_c0": 0.0,
+   "pole_cosines": [
+    0.0020420414672241215,
+    0.004265527326855149
+   ],
+   "max_khronon_velocity_over_c": 8.563096991990954e-06,
+   "max_dX_over_X": 1.2567674811474918e-08,
+   "s2_geo": 8.677341941390688e-54
+  },
+  "alt": [
+   {
+    "s": 0.0,
+    "Lstar_pc": 22.85,
+    "v": 220000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": 3.605764742440467e-34,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 851.6179542645439,
+    "pole_cosine": 0.0038709907012024723,
+    "F_SI": 2.9177368082322973e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 6.744773179515115e-17,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.745607048606557e-19,
+      "conv_err": 4.996003610813204e-16,
+      "convolution_err": 2.942647126693755e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 6.744773179515115e-17,
+      "conv_err": 2.4424906541753444e-15,
+      "convolution_err": 2.405488239082976e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0038709907012024723,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.745604240828146e-19,
+      "conv_err": 4.996013139924773e-16,
+      "convolution_err": 4.0482988919462846e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0038709907012024723,
+      "crossings": 10.0,
+      "transfer_magnitude": 6.744492434069855e-17,
+      "conv_err": 1.0550117695824317e-15,
+      "convolution_err": 7.684198541515062e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.560301963715002e-19,
+      "conv_err": 5.36558115397995e-12,
+      "convolution_err": 9.449650255111442e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.4436662728304343e-17,
+      "conv_err": 4.035093082662201e-12,
+      "convolution_err": 1.6704779438076223e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 1.1685104685914972e-286,
+      "dphi": 6.283837405737396e-09,
+      "dX_over_X": null
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 8.563069502715834e-06,
+      "dphi": 6.28383740573683e-09,
+      "dX_over_X": null
+     }
+    }
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 22.85,
+    "v": 220000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": 3.928858336993961e-36,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 851.6179543061662,
+    "pole_cosine": 0.0038709907013916647,
+    "F_SI": 2.917736808232296e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 6.19011001232443e-15,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.190875307357342e-17,
+      "conv_err": 1.1102230246251565e-15,
+      "convolution_err": 3.4456614451331063e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 6.19011001232443e-15,
+      "conv_err": 1.27675647831893e-15,
+      "convolution_err": 4.3365607421245874e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0038709907013916647,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.190872730479399e-17,
+      "conv_err": 6.106245501143043e-16,
+      "convolution_err": 5.814307293165405e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0038709907013916647,
+      "crossings": 10.0,
+      "transfer_magnitude": 6.189852354261581e-15,
+      "conv_err": 3.331798259726381e-16,
+      "convolution_err": 2.1789104077465083e-50
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.02080897142693e-17,
+      "conv_err": 5.365697971810731e-12,
+      "convolution_err": 1.0022867662845734e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.3249449332179203e-15,
+      "conv_err": 4.035490662790492e-12,
+      "convolution_err": 4.176194859519056e-53
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 9.407165277119117e-287,
+      "dphi": 6.559329233599951e-10,
+      "dX_over_X": null
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 8.938485910976875e-07,
+      "dphi": 6.559329233545753e-10,
+      "dX_over_X": null
+     }
+    }
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 22.85,
+    "v": 369000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": 3.605764742440467e-34,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 851.6179542645439,
+    "pole_cosine": 0.002307907735134265,
+    "F_SI": 2.9177368082322973e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 2.3977004964064508e-17,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.3978058616211403e-19,
+      "conv_err": 1.4988010832439613e-15,
+      "convolution_err": 4.920292554808723e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.3977004964064508e-17,
+      "conv_err": 1.7208456881689926e-15,
+      "convolution_err": 5.7598079502486816e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.002307907735134265,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.397805506849893e-19,
+      "conv_err": 1.5543122949775713e-15,
+      "convolution_err": 2.7292950767975845e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.002307907735134265,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.3976650207367342e-17,
+      "conv_err": 1.2767600874107347e-15,
+      "convolution_err": 7.329221978455943e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.331936986771248e-19,
+      "conv_err": 5.365875294702063e-12,
+      "convolution_err": 6.681911775230489e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.1324291097958535e-18,
+      "conv_err": 4.034652533124297e-12,
+      "convolution_err": 4.176194859519056e-53
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 1.1685104685914972e-286,
+      "dphi": 6.283837405737396e-09,
+      "dX_over_X": null
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 5.105303782619035e-06,
+      "dphi": 6.2838374057368306e-09,
+      "dX_over_X": null
+     }
+    }
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 22.85,
+    "v": 369000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": 3.928858336993961e-36,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 851.6179543061662,
+    "pole_cosine": 0.002307907735247063,
+    "F_SI": 2.917736808232296e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 2.200523198383959e-15,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.200619898784863e-17,
+      "conv_err": 6.106226635438361e-16,
+      "convolution_err": 2.5051155436516627e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.200523198383959e-15,
+      "conv_err": 9.43689570931383e-16,
+      "convolution_err": 1.0904880017176158e-48
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.002307907735247063,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.200619573188584e-17,
+      "conv_err": 1.6653348898680922e-16,
+      "convolution_err": 3.2556509139999184e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.002307907735247063,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.2004906400914147e-15,
+      "conv_err": 1.276831898851135e-15,
+      "convolution_err": 2.2478368831361317e-50
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.140167816727126e-17,
+      "conv_err": 5.365615734511521e-12,
+      "convolution_err": 1.6704779438076223e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 4.710358669522641e-16,
+      "conv_err": 4.03445930475424e-12,
+      "convolution_err": 1.6704779438076223e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 9.407165277119117e-287,
+      "dphi": 6.559329233599951e-10,
+      "dX_over_X": null
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 5.329127121731772e-07,
+      "dphi": 6.559329233545753e-10,
+      "dX_over_X": null
+     }
+    }
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 24.0,
+    "v": 220000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": 3.9778413909484835e-34,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 894.4783764703731,
+    "pole_cosine": 0.0040658108021380595,
+    "F_SI": 2.9177368082322973e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 6.744686268665763e-17,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.745606179407669e-19,
+      "conv_err": 1.0547118733938987e-15,
+      "convolution_err": 2.2103095961284935e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 6.744686268665763e-17,
+      "conv_err": 1.0547118733938987e-15,
+      "convolution_err": 2.9400411811014152e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0040658108021380595,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.745603081896703e-19,
+      "conv_err": 6.661339559472369e-16,
+      "convolution_err": 1.5502048819708131e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0040658108021380595,
+      "crossings": 10.0,
+      "transfer_magnitude": 6.744376556995477e-17,
+      "conv_err": 5.551359063254697e-16,
+      "convolution_err": 1.2006560221117285e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.56030111356807e-19,
+      "conv_err": 5.365585077927394e-12,
+      "convolution_err": 3.3409558876152446e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.443632467431289e-17,
+      "conv_err": 4.035849425848113e-12,
+      "convolution_err": 0.0
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 1.0592111235021273e-286,
+      "dphi": 6.2838374057373434e-09,
+      "dX_over_X": null
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 8.563082743567834e-06,
+      "dphi": 6.2838374057368306e-09,
+      "dX_over_X": null
+     }
+    }
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 24.0,
+    "v": 220000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": 4.3342748149861426e-36,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 894.4783765100008,
+    "pole_cosine": 0.004065810802318185,
+    "F_SI": 2.917736808232296e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 6.190030248675686e-15,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.190874509637895e-17,
+      "conv_err": 2.7755575615628914e-16,
+      "convolution_err": 3.738396000005954e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 6.190030248675686e-15,
+      "conv_err": 8.881784197001252e-16,
+      "convolution_err": 3.487957946670315e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.004065810802318185,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.190871666853841e-17,
+      "conv_err": 1.5543122382566162e-15,
+      "convolution_err": 2.78661318300108e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.004065810802318185,
+      "crossings": 10.0,
+      "transfer_magnitude": 6.189746006454291e-15,
+      "conv_err": 3.335183523443879e-16,
+      "convolution_err": 1.428258641955517e-50
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.020808191192681e-17,
+      "conv_err": 5.365794093041602e-12,
+      "convolution_err": 1.7991598068174433e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.3249139078395791e-15,
+      "conv_err": 4.035497039291828e-12,
+      "convolution_err": 1.6704779438076223e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 8.527244188277827e-287,
+      "dphi": 6.559329233594881e-10,
+      "dX_over_X": null
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 8.938499732325517e-07,
+      "dphi": 6.559329233545751e-10,
+      "dX_over_X": null
+     }
+    }
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 24.0,
+    "v": 369000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": 3.9778413909484835e-34,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 894.4783764703731,
+    "pole_cosine": 0.0024240606408411193,
+    "F_SI": 2.9177368082322973e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 2.3976895142238833e-17,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.397805751795255e-19,
+      "conv_err": 8.326672684688674e-16,
+      "convolution_err": 7.08924111704854e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.3976895142238833e-17,
+      "conv_err": 5.551115123125783e-16,
+      "convolution_err": 1.0811333252322931e-48
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0024240606408411193,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.397805360415397e-19,
+      "conv_err": 1.6653772409679642e-16,
+      "convolution_err": 5.307385508343488e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0024240606408411193,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.3976503780089125e-17,
+      "conv_err": 7.771566012562859e-16,
+      "convolution_err": 4.9070289599348904e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.331936879352633e-19,
+      "conv_err": 5.36572469902591e-12,
+      "convolution_err": 1.0022867662845734e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.132386391672291e-18,
+      "conv_err": 4.034332194934216e-12,
+      "convolution_err": 4.176194859519056e-53
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 1.0592111235021273e-286,
+      "dphi": 6.2838374057373434e-09,
+      "dX_over_X": null
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 5.105306588673222e-06,
+      "dphi": 6.2838374057368306e-09,
+      "dX_over_X": null
+     }
+    }
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 24.0,
+    "v": 369000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": 4.3342748149861426e-36,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 894.4783765100008,
+    "pole_cosine": 0.0024240606409485117,
+    "F_SI": 2.917736808232296e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 2.2005131193321572e-15,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.200619797990619e-17,
+      "conv_err": 4.996003610813204e-16,
+      "convolution_err": 1.0370327075157719e-48
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.2005131193321572e-15,
+      "conv_err": 1.6653345369377348e-16,
+      "convolution_err": 7.550560306010453e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0024240606409485117,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.2006194387962748e-17,
+      "conv_err": 9.436895771595665e-16,
+      "convolution_err": 1.4565481129249511e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0024240606409485117,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.200477201522958e-15,
+      "conv_err": 9.992067454898888e-16,
+      "convolution_err": 5.0845172414644503e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.1401677181421882e-17,
+      "conv_err": 5.365439448235632e-12,
+      "convolution_err": 0.0
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 4.71031946436669e-16,
+      "conv_err": 4.034802182472337e-12,
+      "convolution_err": 1.6704779438076223e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 8.527244188277827e-287,
+      "dphi": 6.559329233594881e-10,
+      "dX_over_X": null
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 5.329130050807125e-07,
+      "dphi": 6.559329233545753e-10,
+      "dX_over_X": null
+     }
+    }
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 24.6,
+    "v": 220000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": 4.179219611365055e-34,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 916.8403358821108,
+    "pole_cosine": 0.0041674560721914125,
+    "F_SI": 2.9177368082322973e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 6.744639230472923e-17,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.745605708973118e-19,
+      "conv_err": 4.440892098500626e-16,
+      "convolution_err": 3.577696021811661e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 6.744639230472923e-17,
+      "conv_err": 8.881784197001252e-16,
+      "convolution_err": 2.1916670622756004e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0041674560721914125,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.745602454650871e-19,
+      "conv_err": 4.996017845652178e-16,
+      "convolution_err": 2.5025675887922193e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0041674560721914125,
+      "crossings": 10.0,
+      "transfer_magnitude": 6.74431384176745e-17,
+      "conv_err": 1.998404455995714e-15,
+      "convolution_err": 4.745497156286356e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.560300653444966e-19,
+      "conv_err": 5.365453330720029e-12,
+      "convolution_err": 2.1130060334027414e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.4436141712118424e-17,
+      "conv_err": 4.0353541274272425e-12,
+      "convolution_err": 1.6704779438076223e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 1.0081723959568611e-286,
+      "dphi": 6.283837405737319e-09,
+      "dX_over_X": null
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 8.563089909901914e-06,
+      "dphi": 6.28383740573683e-09,
+      "dX_over_X": null
+     }
+    }
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 24.6,
+    "v": 220000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": 4.553697477475161e-36,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 916.8403359207721,
+    "pole_cosine": 0.004167456072367146,
+    "F_SI": 2.917736808232296e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 6.189987078715671e-15,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.190874077889999e-17,
+      "conv_err": 8.326672684688674e-16,
+      "convolution_err": 1.5973110098688484e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 6.189987078715671e-15,
+      "conv_err": 5.551115123125783e-16,
+      "convolution_err": 2.118166032748065e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.004167456072367146,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.190871091190197e-17,
+      "conv_err": 8.326686519548653e-16,
+      "convolution_err": 1.1667435726073119e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.004167456072367146,
+      "crossings": 10.0,
+      "transfer_magnitude": 6.189688448675757e-15,
+      "conv_err": 7.220535111802844e-16,
+      "convolution_err": 1.1743691809116178e-50
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.020807768908261e-17,
+      "conv_err": 5.366306189295966e-12,
+      "convolution_err": 1.2045987761860069e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.324897116228035e-15,
+      "conv_err": 4.0359078303160994e-12,
+      "convolution_err": 3.3409558876152446e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 8.116353778288765e-287,
+      "dphi": 6.559329233592514e-10,
+      "dX_over_X": null
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 8.93850721284126e-07,
+      "dphi": 6.55932923354575e-10,
+      "dX_over_X": null
+     }
+    }
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 24.6,
+    "v": 369000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": 4.179219611365055e-34,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 916.8403358821108,
+    "pole_cosine": 0.0024846621568620888,
+    "F_SI": 2.9177368082322973e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 2.3976835703783187e-17,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.3978056923544354e-19,
+      "conv_err": 5.551115123125783e-16,
+      "convolution_err": 4.862293560599722e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.3976835703783187e-17,
+      "conv_err": 1.9984014443252818e-15,
+      "convolution_err": 2.666082798316965e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0024846621568620888,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.3978052811609823e-19,
+      "conv_err": 1.3322681159322993e-15,
+      "convolution_err": 7.662273518502587e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0024846621568620888,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.3976424529876014e-17,
+      "conv_err": 1.2768227661331368e-15,
+      "convolution_err": 4.854826524190902e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.331936821214695e-19,
+      "conv_err": 5.365620703735616e-12,
+      "convolution_err": 9.449650255111442e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.132363271527556e-18,
+      "conv_err": 4.034516496184015e-12,
+      "convolution_err": 0.0
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 1.0081723959568611e-286,
+      "dphi": 6.283837405737319e-09,
+      "dX_over_X": null
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 5.105308107389001e-06,
+      "dphi": 6.283837405736831e-09,
+      "dX_over_X": null
+     }
+    }
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 24.6,
+    "v": 369000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": 4.553697477475161e-36,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 916.8403359207721,
+    "pole_cosine": 0.002484662156966862,
+    "F_SI": 2.917736808232296e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 2.2005076642846763e-15,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.200619743437975e-17,
+      "conv_err": 9.43689570931383e-16,
+      "convolution_err": 6.447376671919899e-48
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.2005076642846763e-15,
+      "conv_err": 5.551115123125783e-16,
+      "convolution_err": 4.6773382426613424e-51
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.002484662156966862,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.2006193660594262e-17,
+      "conv_err": 1.3322677630019866e-15,
+      "convolution_err": 8.244134917914016e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.002484662156966862,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.200469928223699e-15,
+      "conv_err": 2.3314709331451437e-15,
+      "convolution_err": 4.103111449477472e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.140167664785282e-17,
+      "conv_err": 5.3655583659537984e-12,
+      "convolution_err": 6.681911775230489e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 4.710298245530175e-16,
+      "conv_err": 4.034412564750112e-12,
+      "convolution_err": 0.0
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 8.116353778288765e-287,
+      "dphi": 6.559329233592514e-10,
+      "dX_over_X": null
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 5.329131636105433e-07,
+      "dphi": 6.559329233545753e-10,
+      "dX_over_X": null
+     }
+    }
+   },
+   {
+    "s": 3.5599425062671094e-27,
+    "Lstar_pc": 22.85,
+    "v": 220000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": 3.605782430838879e-34,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 851.6200431056458,
+    "pole_cosine": 0.0038710001959347535,
+    "F_SI": 2.9177511214487196e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 6.744806262465776e-17,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.745640139738267e-19,
+      "conv_err": 8.881784197001252e-16,
+      "convolution_err": 1.5181971744501194e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 6.744806262465776e-17,
+      "conv_err": 4.996003610813204e-16,
+      "convolution_err": 2.338669121330671e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0038710001959347535,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.74563733193231e-19,
+      "conv_err": 3.3307142486596306e-16,
+      "convolution_err": 1.3805487355330424e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0038710001959347535,
+      "crossings": 10.0,
+      "transfer_magnitude": 6.744525514266226e-17,
+      "conv_err": 6.662151249755524e-16,
+      "convolution_err": 6.577506903742513e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.560334145817107e-19,
+      "conv_err": 5.3657267851379055e-12,
+      "convolution_err": 3.3409558876152446e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.4436733532561267e-17,
+      "conv_err": 4.035446611347925e-12,
+      "convolution_err": 1.7218892518958574e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 1.168504736387984e-286,
+      "dphi": 6.2838374057373955e-09,
+      "dX_over_X": 1.2567674811474788e-08
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 8.5630695033453e-06,
+      "dphi": 6.283837405736829e-09,
+      "dX_over_X": 1.883249363012814e-13
+     }
+    }
+   },
+   {
+    "s": 3.5599425062671094e-27,
+    "Lstar_pc": 22.85,
+    "v": 220000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": 3.928877610356627e-36,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 851.6200431472681,
+    "pole_cosine": 0.003871000196123946,
+    "F_SI": 2.917751121448719e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 6.190140374665561e-15,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.190905677206748e-17,
+      "conv_err": 1.0547118733938987e-15,
+      "convolution_err": 2.499302280407212e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 6.190140374665561e-15,
+      "conv_err": 1.1657341758564144e-15,
+      "convolution_err": 4.410061771652123e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.003871000196123946,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.190903100303522e-17,
+      "conv_err": 9.436903245412779e-16,
+      "convolution_err": 6.787882719790785e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.003871000196123946,
+      "crossings": 10.0,
+      "transfer_magnitude": 6.189882714074924e-15,
+      "conv_err": 1.2768062681543905e-15,
+      "convolution_err": 8.561199462014064e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.020838507001688e-17,
+      "conv_err": 5.365716825489226e-12,
+      "convolution_err": 1.0022867662845734e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.3249514313777258e-15,
+      "conv_err": 4.035589345277834e-12,
+      "convolution_err": 4.176194859519056e-53
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 9.407119129662762e-287,
+      "dphi": 6.559329233599951e-10,
+      "dX_over_X": 1.3118658467199903e-09
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 8.938485911633938e-07,
+      "dphi": 6.559329233545751e-10,
+      "dX_over_X": 1.9658135315368414e-14
+     }
+    }
+   },
+   {
+    "s": 3.5599425062671094e-27,
+    "Lstar_pc": 22.85,
+    "v": 369000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": 3.605782430838879e-34,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 851.6200431056458,
+    "pole_cosine": 0.0023079133959502595,
+    "F_SI": 2.9177511214487196e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 2.3977122580165778e-17,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.3978176242650177e-19,
+      "conv_err": 2.220446049250313e-16,
+      "convolution_err": 8.520038885478644e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.3977122580165778e-17,
+      "conv_err": 6.106226635438361e-16,
+      "convolution_err": 4.9112051547944095e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0023079133959502595,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.3978172694902893e-19,
+      "conv_err": 1.3877791630050104e-15,
+      "convolution_err": 3.2945873247222454e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0023079133959502595,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.39767678199881e-17,
+      "conv_err": 6.662292403188291e-16,
+      "convolution_err": 3.393158323359233e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.3319484262896375e-19,
+      "conv_err": 5.3659208681092865e-12,
+      "convolution_err": 6.681911775230489e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.132454285350761e-18,
+      "conv_err": 4.0342379374933636e-12,
+      "convolution_err": 1.7218892518958574e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 1.168504736387984e-286,
+      "dphi": 6.2838374057373955e-09,
+      "dX_over_X": 1.2567674811474788e-08
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 5.105303782752433e-06,
+      "dphi": 6.2838374057368306e-09,
+      "dX_over_X": 6.694162706624992e-14
+     }
+    }
+   },
+   {
+    "s": 3.5599425062671094e-27,
+    "Lstar_pc": 22.85,
+    "v": 369000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": 3.928877610356627e-36,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 851.6200431472681,
+    "pole_cosine": 0.0023079133960630573,
+    "F_SI": 2.917751121448719e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 2.2005339927663162e-15,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.2006306941159587e-17,
+      "conv_err": 9.992007221626409e-16,
+      "convolution_err": 2.155852015160365e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.2005339927663162e-15,
+      "conv_err": 7.216449660063518e-16,
+      "convolution_err": 4.804294566390722e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0023079133960630573,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.200630368516485e-17,
+      "conv_err": 1.2767564886766698e-15,
+      "convolution_err": 5.481255753118761e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0023079133960630573,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.200501434154342e-15,
+      "conv_err": 1.5543531335280068e-15,
+      "convolution_err": 1.0617975430327199e-50
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.140178315505283e-17,
+      "conv_err": 5.365925841070693e-12,
+      "convolution_err": 9.449650255111442e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 4.710381774740618e-16,
+      "conv_err": 4.034321138143859e-12,
+      "convolution_err": 1.6704779438076223e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 9.407119129662762e-287,
+      "dphi": 6.559329233599951e-10,
+      "dX_over_X": 1.3118658467199903e-09
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 5.32912712187102e-07,
+      "dphi": 6.559329233545753e-10,
+      "dX_over_X": 6.987643744607572e-15
+     }
+    }
+   },
+   {
+    "s": 3.5599425062671094e-27,
+    "Lstar_pc": 24.0,
+    "v": 220000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": 3.977860904601861e-34,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 894.4805704391453,
+    "pole_cosine": 0.004065820774723387,
+    "F_SI": 2.9177511214487196e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 6.744719350763769e-17,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.745639270530852e-19,
+      "conv_err": 2.3314683517128287e-15,
+      "convolution_err": 3.896222756136898e-48
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 6.744719350763769e-17,
+      "conv_err": 1.1657341758564144e-15,
+      "convolution_err": 3.508003681996007e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.004065820774723387,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.745636172989496e-19,
+      "conv_err": 7.771597776213686e-16,
+      "convolution_err": 1.770092803004667e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.004065820774723387,
+      "crossings": 10.0,
+      "transfer_magnitude": 6.744409636055035e-17,
+      "conv_err": 5.552639573108236e-16,
+      "convolution_err": 1.3384704524758574e-50
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.560333295661833e-19,
+      "conv_err": 5.36543552303304e-12,
+      "convolution_err": 1.7991598068174433e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.4436395475253337e-17,
+      "conv_err": 4.03576765440864e-12,
+      "convolution_err": 1.7218892518958574e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 1.0592059274736053e-286,
+      "dphi": 6.283837405737343e-09,
+      "dX_over_X": 1.2567674811474685e-08
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 8.563082744262255e-06,
+      "dphi": 6.28383740573683e-09,
+      "dX_over_X": 2.077583920299875e-13
+     }
+    }
+   },
+   {
+    "s": 3.5599425062671094e-27,
+    "Lstar_pc": 24.0,
+    "v": 220000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": 4.3342960771552615e-36,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 894.4805704787732,
+    "pole_cosine": 0.004065820774903514,
+    "F_SI": 2.917751121448719e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 6.190060610234281e-15,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.190904879479474e-17,
+      "conv_err": 8.881784197001252e-16,
+      "convolution_err": 2.593249959966953e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 6.190060610234281e-15,
+      "conv_err": 3.3306690738754696e-16,
+      "convolution_err": 2.6059455923398908e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.004065820774903514,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.190902036667529e-17,
+      "conv_err": 6.106230100572162e-16,
+      "convolution_err": 8.774968436385696e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.004065820774903514,
+      "crossings": 10.0,
+      "transfer_magnitude": 6.189776365224308e-15,
+      "conv_err": 8.327978142469714e-16,
+      "convolution_err": 1.941930609676361e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.020837726759784e-17,
+      "conv_err": 5.365693002945343e-12,
+      "convolution_err": 0.0
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.3249204056950105e-15,
+      "conv_err": 4.035660181458101e-12,
+      "convolution_err": 0.0
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 8.52720235733116e-287,
+      "dphi": 6.559329233594881e-10,
+      "dX_over_X": 1.3118658467189762e-09
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 8.938499733050383e-07,
+      "dphi": 6.559329233545751e-10,
+      "dX_over_X": 2.1686679754690558e-14
+     }
+    }
+   },
+   {
+    "s": 3.5599425062671094e-27,
+    "Lstar_pc": 24.0,
+    "v": 369000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": 3.977860904601861e-34,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 894.4805704391453,
+    "pole_cosine": 0.002424066586555949,
+    "F_SI": 2.9177511214487196e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 2.397701275726264e-17,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.397817514438054e-19,
+      "conv_err": 9.43689570931383e-16,
+      "convolution_err": 2.4264026229394475e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.397701275726264e-17,
+      "conv_err": 5.551115123125783e-16,
+      "convolution_err": 2.1515755916242175e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.002424066586555949,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.3978171230543563e-19,
+      "conv_err": 2.775558408595709e-16,
+      "convolution_err": 2.5392983986084178e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.002424066586555949,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.397662139127329e-17,
+      "conv_err": 1.2212896800075104e-15,
+      "convolution_err": 1.3244962644192503e-50
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.3319483188699685e-19,
+      "conv_err": 5.365657370151281e-12,
+      "convolution_err": 6.681911775230489e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.132411566808094e-18,
+      "conv_err": 4.034439814136521e-12,
+      "convolution_err": 0.0
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 1.0592059274736053e-286,
+      "dphi": 6.283837405737343e-09,
+      "dX_over_X": 1.2567674811474685e-08
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 5.105306588820385e-06,
+      "dphi": 6.2838374057368306e-09,
+      "dX_over_X": 7.384933302682312e-14
+     }
+    }
+   },
+   {
+    "s": 3.5599425062671094e-27,
+    "Lstar_pc": 24.0,
+    "v": 369000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": 4.3342960771552615e-36,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 894.4805704787732,
+    "pole_cosine": 0.002424066586663342,
+    "F_SI": 2.917751121448719e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 2.200523913615629e-15,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.2006305933207258e-17,
+      "conv_err": 9.43689570931383e-16,
+      "convolution_err": 4.722173870673139e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.200523913615629e-15,
+      "conv_err": 8.326672684688674e-16,
+      "convolution_err": 7.944793100749052e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.002424066586663342,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.2006302341228578e-17,
+      "conv_err": 3.3306692503406624e-16,
+      "convolution_err": 2.8819671921305182e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.002424066586663342,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.2004879954540403e-15,
+      "conv_err": 3.3325771748856727e-16,
+      "convolution_err": 6.092236725398598e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.1401782169193774e-17,
+      "conv_err": 5.365657370151281e-12,
+      "convolution_err": 3.3409558876152446e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 4.7103425692000245e-16,
+      "conv_err": 4.034518058665265e-12,
+      "convolution_err": 1.6704779438076223e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 8.52720235733116e-287,
+      "dphi": 6.559329233594881e-10,
+      "dX_over_X": 1.3118658467189762e-09
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 5.32913005096074e-07,
+      "dphi": 6.559329233545753e-10,
+      "dX_over_X": 7.708698646546321e-15
+     }
+    }
+   },
+   {
+    "s": 3.5599425062671094e-27,
+    "Lstar_pc": 24.6,
+    "v": 220000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": 4.179240112897135e-34,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 916.8425847001024,
+    "pole_cosine": 0.004167466294091374,
+    "F_SI": 2.9177511214487196e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 6.744672312109454e-17,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.745638800091685e-19,
+      "conv_err": 1.1102230246251565e-15,
+      "convolution_err": 5.140394728684815e-48
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 6.744672312109454e-17,
+      "conv_err": 8.326672684688674e-16,
+      "convolution_err": 2.9333592693261847e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.004167466294091374,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.74563554573751e-19,
+      "conv_err": 1.9984017384339225e-15,
+      "convolution_err": 1.419253721789679e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.004167466294091374,
+      "crossings": 10.0,
+      "transfer_magnitude": 6.744346920211742e-17,
+      "conv_err": 2.2265532284481145e-16,
+      "convolution_err": 1.9149074484924313e-50
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.560332835534215e-19,
+      "conv_err": 5.365439448235632e-12,
+      "convolution_err": 6.681911775230489e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.443621251126394e-17,
+      "conv_err": 4.035917952367707e-12,
+      "convolution_err": 4.176194859519056e-53
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 1.0081674503021106e-286,
+      "dphi": 6.2838374057373194e-09,
+      "dX_over_X": 1.2567674811474636e-08
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 8.563089910631492e-06,
+      "dphi": 6.2838374057368306e-09,
+      "dX_over_X": 2.1827634329990898e-13
+     }
+    }
+   },
+   {
+    "s": 3.5599425062671094e-27,
+    "Lstar_pc": 24.6,
+    "v": 220000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": 4.553719816041591e-36,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 916.8425847387639,
+    "pole_cosine": 0.004167466294267109,
+    "F_SI": 2.917751121448719e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 6.190017439850742e-15,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.190904447727343e-17,
+      "conv_err": 1.3877787807814457e-15,
+      "convolution_err": 1.5739243186555417e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 6.190017439850742e-15,
+      "conv_err": 2.3869795029440866e-15,
+      "convolution_err": 2.9734507399775677e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.004167466294267109,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.190901460998237e-17,
+      "conv_err": 5.551117770103112e-16,
+      "convolution_err": 2.7089148968449075e-50
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.004167466294267109,
+      "crossings": 10.0,
+      "transfer_magnitude": 6.189718806881105e-15,
+      "conv_err": 1.2214082545573735e-15,
+      "convolution_err": 1.6704779438076223e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 6.02083730447122e-17,
+      "conv_err": 5.3654216387795964e-12,
+      "convolution_err": 3.3409558876152446e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 1.3249036139187336e-15,
+      "conv_err": 4.035946572453036e-12,
+      "convolution_err": 4.176194859519056e-53
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 8.11631396299152e-287,
+      "dphi": 6.559329233592514e-10,
+      "dX_over_X": 1.3118658467185028e-09
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 8.938507213602823e-07,
+      "dphi": 6.559329233545751e-10,
+      "dX_over_X": 2.2784586985371293e-14
+     }
+    }
+   },
+   {
+    "s": 3.5599425062671094e-27,
+    "Lstar_pc": 24.6,
+    "v": 369000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": 4.179240112897135e-34,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 916.8425847001024,
+    "pole_cosine": 0.0024846682512197895,
+    "F_SI": 2.9177511214487196e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 2.3976953318223843e-17,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.3978174549966517e-19,
+      "conv_err": 1.1657341758564144e-15,
+      "convolution_err": 8.151063717250417e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.3976953318223843e-17,
+      "conv_err": 3.885780586188048e-16,
+      "convolution_err": 4.8978413312439485e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0024846682512197895,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.397817043799164e-19,
+      "conv_err": 4.996004081387042e-16,
+      "convolution_err": 2.4222218107724718e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0024846682512197895,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.3976542140282654e-17,
+      "conv_err": 7.772045176131504e-16,
+      "convolution_err": 1.0962511506237521e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.331948260731461e-19,
+      "conv_err": 5.3660654705304404e-12,
+      "convolution_err": 1.7991598068174433e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 5.132388446436529e-18,
+      "conv_err": 4.0347263823747e-12,
+      "convolution_err": 1.7218892518958574e-52
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 1.0081674503021106e-286,
+      "dphi": 6.2838374057373194e-09,
+      "dX_over_X": 1.2567674811474636e-08
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 5.105308107543616e-06,
+      "dphi": 6.283837405736831e-09,
+      "dX_over_X": 7.758797859211583e-14
+     }
+    }
+   },
+   {
+    "s": 3.5599425062671094e-27,
+    "Lstar_pc": 24.6,
+    "v": 369000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": 4.553719816041591e-36,
+    "real_phase_speed": true,
+    "phase_speed_m_s": 916.8425847387639,
+    "pole_cosine": 0.0024846682513245634,
+    "F_SI": 2.917751121448719e-30,
+    "c0": [
+     0.0,
+     0.0
+    ],
+    "max_transfer": 2.2005184585146285e-15,
+    "cells": [
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.2006305387675466e-17,
+      "conv_err": 1.9984014443252818e-15,
+      "convolution_err": 8.314436460154802e-47
+     },
+     {
+      "direction": "transverse",
+      "cosine": 0.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.2005184585146285e-15,
+      "conv_err": 1.6653345369377348e-16,
+      "convolution_err": 4.9512966254457924e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0024846682513245634,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.200630161385295e-17,
+      "conv_err": 1.8318681261888594e-15,
+      "convolution_err": 1.9312225850443753e-49
+     },
+     {
+      "direction": "resonant",
+      "cosine": 0.0024846682513245634,
+      "crossings": 10.0,
+      "transfer_magnitude": 2.200480722083424e-15,
+      "conv_err": 6.663376361887667e-16,
+      "convolution_err": 6.859400056760049e-51
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 1.0,
+      "transfer_magnitude": 2.1401781635619474e-17,
+      "conv_err": 5.3656356329165596e-12,
+      "convolution_err": 6.681911775230489e-52
+     },
+     {
+      "direction": "parallel",
+      "cosine": 1.0,
+      "crossings": 10.0,
+      "transfer_magnitude": 4.710321350155336e-16,
+      "conv_err": 4.034576993159263e-12,
+      "convolution_err": 0.0
+     }
+    ],
+    "B2d": {
+     "static": {
+      "khronon_velocity_over_c": 8.11631396299152e-287,
+      "dphi": 6.559329233592514e-10,
+      "dX_over_X": 1.3118658467185028e-09
+     },
+     "parallel": {
+      "khronon_velocity_over_c": 5.329131636266826e-07,
+      "dphi": 6.559329233545753e-10,
+      "dX_over_X": 8.098953924760591e-15
+     }
+    }
+   }
+  ],
+  "alt_summary": {
+   "phase_speeds_s0": [
+    851.6179542645439,
+    916.8403359207721
+   ],
+   "phase_speeds_AC2q": [
+    851.6200431056458,
+    916.8425847387639
+   ],
+   "max_rel_phase_change": 2.4527912916294525e-06,
+   "max_transfer_s0": 6.19011001232443e-15,
+   "max_transfer_AC2q": 6.190140374665561e-15,
+   "max_rel_transfer_change": 4.905370852403834e-06,
+   "max_instantaneous_c0": 0.0,
+   "pole_cosines": [
+    0.0023079133959502595,
+    0.004167466294267109
+   ],
+   "max_khronon_velocity_over_c": 8.563089910631492e-06,
+   "max_dX_over_X": 1.2567674811474788e-08,
+   "s2_geo": 1.267319064792735e-53
+  }
+ },
+ "B2e": {
+  "canonical": [
+   {
+    "Lstar_pc": 21.68,
+    "q_over_rho0_1AU": 1562.4497295345868,
+    "q_over_rho0_958AU": 163.09496132928882,
+    "r_equal_AU": 1562.4497295345868
+   },
+   {
+    "Lstar_pc": 24.0,
+    "q_over_rho0_1AU": 1274.976339852773,
+    "q_over_rho0_958AU": 133.08730061093664,
+    "r_equal_AU": 1274.976339852773
+   },
+   {
+    "Lstar_pc": 27.0,
+    "q_over_rho0_1AU": 1007.3887129700922,
+    "q_over_rho0_958AU": 105.15539801357956,
+    "r_equal_AU": 1007.3887129700921
+   }
+  ],
+  "alt": [
+   {
+    "Lstar_pc": 22.85,
+    "q_over_rho0_1AU": 1223.19755482704,
+    "q_over_rho0_958AU": 127.6824169965595,
+    "r_equal_AU": 1223.19755482704
+   },
+   {
+    "Lstar_pc": 24.0,
+    "q_over_rho0_1AU": 1108.7829259030923,
+    "q_over_rho0_958AU": 115.73934508383009,
+    "r_equal_AU": 1108.7829259030923
+   },
+   {
+    "Lstar_pc": 24.6,
+    "q_over_rho0_1AU": 1055.3555511272739,
+    "q_over_rho0_958AU": 110.16237485670918,
+    "r_equal_AU": 1055.3555511272739
+   }
+  ]
+ },
+ "off_region_Omega2": "K*k**2*(-3*K*M_theta*rho0*s**2 - 3*K*M_theta*s**4 + M_theta*k**2*rho0 + M_theta*k**2*s**2 - k**2*rho0 - k**2*s**2)/(K**2*M_theta*s**4 + K*M_theta*k**2*s**2 + k**4)",
+ "label": "NO VERDICT",
+ "scope": "Frozen Galactic on-region coefficients, isotropic Hessian, zero initial response; B1 on one congruence family. No nonlinear moving solve, no metric PPN coefficient, no observational exclusion.",
+ "sources": {
+  "action_search_2026_11_05/AC11_moving_sun/ac11.py": "23f48a70b3d85bd5c38136954a53a3a8f2b0a211d0d645851376b7a1c704dcfc",
+  "action_search_2026_11_05/AC11_moving_sun/FROZEN_CRITERIA.md": "79248a4c3073a00c4b8d5dbb67b76b0703d864ab931fc37a5e00961251d214b8",
+  "astra_goal_2026_11_05/AZ37_moving_sun/response.py": "680edf4c760346809fbef687d7f44fe748c294fc4130d12633b69a4ae7f35018",
+  "action_search_2026_11_05/AC7_charge_switch/ac7.py": "d27318562eb2f5a4523289738e8e3a4ebe3dfa0b6d709c220b6188c06c77a364"
+ },
+ "seconds": 5.550139415994636,
+ "peak_rss_bytes": 122568704
+}

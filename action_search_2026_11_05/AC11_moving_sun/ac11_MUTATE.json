@@ -1,0 +1,450 @@
+{
+ "lane": "AC11_moving_sun",
+ "criteria": "8649eb6d06",
+ "mutate": true,
+ "checks": {
+  "B1a_Peq": {
+   "ok": true,
+   "detail": "solutions DX = [0] (unless 2 gamma X = 1): the clock must be geodesic, D X = 0"
+  },
+  "B1a_accel": {
+   "ok": true,
+   "detail": "a_mu + h_mu^nu d_nu X/(2X) = [0, 0, 0] (flat 1+2, general phi)"
+  },
+  "B1b": {
+   "ok": true,
+   "detail": "theta varies along each leaf (d theta/dr at M=1, r=10: {'1': '9*sqrt(5)/2000', '13/12': '74953*sqrt(1345)/217083000', '5/3': '63449*sqrt(445)/47526000'}); known answer M = 0, E = 1: theta = 0"
+  },
+  "B2a": {
+   "ok": true,
+   "detail": "s = 0: T - K rho0/(Omega^2 - omega^2) = 0  (gamma = K Lstar^2/2 gives AZ37's oscillator)"
+  },
+  "B2_resonance": {
+   "ok": true,
+   "detail": "every physical cell has a real Omega' and 0 < pole <= 1 (resonance survives)"
+  },
+  "B2_convergence": {
+   "ok": true,
+   "detail": "DOP853 pairs vs exact <= 1e-7 (max 0.00e+00); 50-digit convolution <= 1e-30"
+  },
+  "MUTATE_bites": {
+   "ok": true,
+   "detail": "gamma -> -gamma: Omega'^2 < 0 on every cell (no real phase speed)"
+  }
+ },
+ "B1": {
+  "label": "BRANCH ABSENT (s != 0, tested family)",
+  "P_equation": "DX*(2*X*gamma - 1)/(2*X)",
+  "theta": "(-3*M - 2*r*(E**2 - 1))/(r**(3/2)*sqrt(2*M + r*(E**2 - 1)))",
+  "dtheta_dr": "(2*E**4*r**2 + 8*E**2*M*r - 4*E**2*r**2 + 9*M**2 - 8*M*r + 2*r**2)/(r**(5/2)*(E**2*r + 2*M - r)**(3/2))"
+ },
+ "B2_symbolic": {
+  "transfer": "(-8*K**2*M_theta*gamma_L**2*k**2*rho0**2*s**4 - 4*K**2*M_theta*gamma_L*k**2*rho0**2*s**2 - 8*K**2*M_theta*gamma_L*k**2*rho0*s**4 - 2*K**2*M_theta*k**2*rho0*s**2 - 2*K**2*M_theta*k**2*s**4 + 8*K*gamma_L**3*k**4*rho0**2*s**4 - 8*K*gamma_L**3*k**4*rho0*s**6 + 4*K*gamma_L**2*k**4*rho0**2*s**2 - 4*K*gamma_L**2*k**4*rho0*s**4 - 4*K*gamma_L**2*k**4*s**6 - 4*K*gamma_L*k**4*rho0*s**2 - 2*K*gamma_L*k**4*s**4 - K*k**4*rho0 - K*k**4*s**2)/(12*K**2*M_theta*gamma_L**2*k**2*rho0**2*s**4 + 4*K**2*M_theta*gamma_L**2*omega**2*rho0**2*s**4 + 6*K**2*M_theta*gamma_L*k**2*rho0**2*s**2 + 12*K**2*M_theta*gamma_L*k**2*rho0*s**4 + 4*K**2*M_theta*gamma_L*omega**2*rho0*s**4 + 3*K**2*M_theta*k**2*rho0*s**2 + 3*K**2*M_theta*k**2*s**4 + K**2*M_theta*omega**2*s**4 - 2*K*M_theta*gamma_L*k**4*rho0*s**2 + 2*K*M_theta*gamma_L*k**2*omega**2*rho0*s**2 - K*M_theta*k**4*rho0 - K*M_theta*k**4*s**2 + K*M_theta*k**2*omega**2*s**2 - 12*K*gamma_L**3*k**4*rho0**2*s**4 + 8*K*gamma_L**3*k**4*rho0*s**6 - 4*K*gamma_L**3*k**2*omega**2*rho0**2*s**4 - 6*K*gamma_L**2*k**4*rho0**2*s**2 + 4*K*gamma_L**2*k**4*s**6 - 4*K*gamma_L**2*k**2*omega**2*rho0*s**4 + 3*K*gamma_L*k**4*rho0*s**2 + K*gamma_L*k**4*s**4 - K*gamma_L*k**2*omega**2*s**4 + K*k**4*rho0 + K*k**4*s**2 + 2*gamma_L**2*k**6*rho0*s**2 - 2*gamma_L**2*k**4*omega**2*rho0*s**2 + 4*gamma_L**2*k**4*omega**2*s**4 + gamma_L*k**6*rho0 + gamma_L*k**6*s**2 + 3*gamma_L*k**4*omega**2*s**2 + k**4*omega**2)",
+  "Omega2": "-k**2*(2*gamma_L*rho0*s**2 + rho0 + s**2)*(6*K**2*M_theta*gamma_L*rho0*s**2 + 3*K**2*M_theta*s**2 - K*M_theta*k**2 - 6*K*gamma_L**2*k**2*rho0*s**2 + 4*K*gamma_L**2*k**2*s**4 + K*gamma_L*k**2*s**2 + K*k**2 + gamma_L*k**4)/(4*K**2*M_theta*gamma_L**2*rho0**2*s**4 + 4*K**2*M_theta*gamma_L*rho0*s**4 + K**2*M_theta*s**4 + 2*K*M_theta*gamma_L*k**2*rho0*s**2 + K*M_theta*k**2*s**2 - 4*K*gamma_L**3*k**2*rho0**2*s**4 - 4*K*gamma_L**2*k**2*rho0*s**4 - K*gamma_L*k**2*s**4 - 2*gamma_L**2*k**4*rho0*s**2 + 4*gamma_L**2*k**4*s**4 + 3*gamma_L*k**4*s**2 + k**4)",
+  "c_inst": "0",
+  "F": "K*k**2*(2*gamma_L*rho0*s**2 + rho0 + s**2)*(4*K*M_theta*gamma_L*rho0*s**2 + 2*K*M_theta*s**2 - 4*gamma_L**2*k**2*rho0*s**2 + 4*gamma_L**2*k**2*s**4 + 2*gamma_L*k**2*s**2 + k**2)/(4*K**2*M_theta*gamma_L**2*rho0**2*s**4 + 4*K**2*M_theta*gamma_L*rho0*s**4 + K**2*M_theta*s**4 + 2*K*M_theta*gamma_L*k**2*rho0*s**2 + K*M_theta*k**2*s**2 - 4*K*gamma_L**3*k**2*rho0**2*s**4 - 4*K*gamma_L**2*k**2*rho0*s**4 - K*gamma_L*k**2*s**4 - 2*gamma_L**2*k**4*rho0*s**2 + 4*gamma_L**2*k**4*s**4 + 3*gamma_L*k**4*s**2 + k**4)",
+  "dsigma_per_drho": "(-4*I*K**2*M_theta*gamma_L*omega*rho0*s**2 - 2*I*K**2*M_theta*omega*s**2 + 4*I*K*gamma_L**2*k**2*omega*rho0*s**2 - 4*I*K*gamma_L**2*k**2*omega*s**4 - 2*I*K*gamma_L*k**2*omega*s**2 - I*K*k**2*omega)/(12*K**2*M_theta*gamma_L**2*k**2*rho0**2*s**4 + 4*K**2*M_theta*gamma_L**2*omega**2*rho0**2*s**4 + 6*K**2*M_theta*gamma_L*k**2*rho0**2*s**2 + 12*K**2*M_theta*gamma_L*k**2*rho0*s**4 + 4*K**2*M_theta*gamma_L*omega**2*rho0*s**4 + 3*K**2*M_theta*k**2*rho0*s**2 + 3*K**2*M_theta*k**2*s**4 + K**2*M_theta*omega**2*s**4 - 2*K*M_theta*gamma_L*k**4*rho0*s**2 + 2*K*M_theta*gamma_L*k**2*omega**2*rho0*s**2 - K*M_theta*k**4*rho0 - K*M_theta*k**4*s**2 + K*M_theta*k**2*omega**2*s**2 - 12*K*gamma_L**3*k**4*rho0**2*s**4 + 8*K*gamma_L**3*k**4*rho0*s**6 - 4*K*gamma_L**3*k**2*omega**2*rho0**2*s**4 - 6*K*gamma_L**2*k**4*rho0**2*s**2 + 4*K*gamma_L**2*k**4*s**6 - 4*K*gamma_L**2*k**2*omega**2*rho0*s**4 + 3*K*gamma_L*k**4*rho0*s**2 + K*gamma_L*k**4*s**4 - K*gamma_L*k**2*omega**2*s**4 + K*k**4*rho0 + K*k**4*s**2 + 2*gamma_L**2*k**6*rho0*s**2 - 2*gamma_L**2*k**4*omega**2*rho0*s**2 + 4*gamma_L**2*k**4*omega**2*s**4 + gamma_L*k**6*rho0 + gamma_L*k**6*s**2 + 3*gamma_L*k**4*omega**2*s**2 + k**4*omega**2)",
+  "dphi_per_drho": "(2*K**2*M_theta*gamma_L*k**2*rho0*s**2 - 2*K**2*M_theta*gamma_L*omega**2*rho0*s**2 + K**2*M_theta*k**2*rho0 + K**2*M_theta*k**2*s**2 - K**2*M_theta*omega**2*s**2 - 2*K*gamma_L**2*k**4*rho0*s**2 + 2*K*gamma_L**2*k**2*omega**2*rho0*s**2 - 4*K*gamma_L**2*k**2*omega**2*s**4 - K*gamma_L*k**4*rho0 - K*gamma_L*k**4*s**2 - 3*K*gamma_L*k**2*omega**2*s**2 - K*k**2*omega**2)/(12*K**2*M_theta*gamma_L**2*k**2*rho0**2*s**4 + 4*K**2*M_theta*gamma_L**2*omega**2*rho0**2*s**4 + 6*K**2*M_theta*gamma_L*k**2*rho0**2*s**2 + 12*K**2*M_theta*gamma_L*k**2*rho0*s**4 + 4*K**2*M_theta*gamma_L*omega**2*rho0*s**4 + 3*K**2*M_theta*k**2*rho0*s**2 + 3*K**2*M_theta*k**2*s**4 + K**2*M_theta*omega**2*s**4 - 2*K*M_theta*gamma_L*k**4*rho0*s**2 + 2*K*M_theta*gamma_L*k**2*omega**2*rho0*s**2 - K*M_theta*k**4*rho0 - K*M_theta*k**4*s**2 + K*M_theta*k**2*omega**2*s**2 - 12*K*gamma_L**3*k**4*rho0**2*s**4 + 8*K*gamma_L**3*k**4*rho0*s**6 - 4*K*gamma_L**3*k**2*omega**2*rho0**2*s**4 - 6*K*gamma_L**2*k**4*rho0**2*s**2 + 4*K*gamma_L**2*k**4*s**6 - 4*K*gamma_L**2*k**2*omega**2*rho0*s**4 + 3*K*gamma_L*k**4*rho0*s**2 + K*gamma_L*k**4*s**4 - K*gamma_L*k**2*omega**2*s**4 + K*k**4*rho0 + K*k**4*s**2 + 2*gamma_L**2*k**6*rho0*s**2 - 2*gamma_L**2*k**4*omega**2*rho0*s**2 + 4*gamma_L**2*k**4*omega**2*s**4 + gamma_L*k**6*rho0 + gamma_L*k**6*s**2 + 3*gamma_L*k**4*omega**2*s**2 + k**4*omega**2)",
+  "dC2_per_drho": "(-4*K**2*M_theta*gamma_L*k**2*rho0*s**4 - 4*K**2*M_theta*gamma_L*omega**2*rho0*s**4 - 2*K**2*M_theta*k**2*rho0*s**2 - 2*K**2*M_theta*k**2*s**4 - 2*K**2*M_theta*omega**2*s**4 + 4*K*gamma_L**2*k**4*rho0*s**4 + 4*K*gamma_L**2*k**2*omega**2*rho0*s**4 + 2*K*gamma_L*k**4*rho0*s**2 + 2*K*gamma_L*k**4*s**4 + 2*K*gamma_L*k**2*omega**2*s**4)/(12*K**2*M_theta*gamma_L**2*k**2*rho0**2*s**4 + 4*K**2*M_theta*gamma_L**2*omega**2*rho0**2*s**4 + 6*K**2*M_theta*gamma_L*k**2*rho0**2*s**2 + 12*K**2*M_theta*gamma_L*k**2*rho0*s**4 + 4*K**2*M_theta*gamma_L*omega**2*rho0*s**4 + 3*K**2*M_theta*k**2*rho0*s**2 + 3*K**2*M_theta*k**2*s**4 + K**2*M_theta*omega**2*s**4 - 2*K*M_theta*gamma_L*k**4*rho0*s**2 + 2*K*M_theta*gamma_L*k**2*omega**2*rho0*s**2 - K*M_theta*k**4*rho0 - K*M_theta*k**4*s**2 + K*M_theta*k**2*omega**2*s**2 - 12*K*gamma_L**3*k**4*rho0**2*s**4 + 8*K*gamma_L**3*k**4*rho0*s**6 - 4*K*gamma_L**3*k**2*omega**2*rho0**2*s**4 - 6*K*gamma_L**2*k**4*rho0**2*s**2 + 4*K*gamma_L**2*k**4*s**6 - 4*K*gamma_L**2*k**2*omega**2*rho0*s**4 + 3*K*gamma_L*k**4*rho0*s**2 + K*gamma_L*k**4*s**4 - K*gamma_L*k**2*omega**2*s**4 + K*k**4*rho0 + K*k**4*s**2 + 2*gamma_L**2*k**6*rho0*s**2 - 2*gamma_L**2*k**4*omega**2*rho0*s**2 + 4*gamma_L**2*k**4*omega**2*s**4 + gamma_L*k**6*rho0 + gamma_L*k**6*s**2 + 3*gamma_L*k**4*omega**2*s**2 + k**4*omega**2)"
+ },
+ "B2": {
+  "canonical": [
+   {
+    "s": 0.0,
+    "Lstar_pc": 21.68,
+    "v": 220000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": -2.8228508942442415e-34,
+    "real_phase_speed": false
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 21.68,
+    "v": 220000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": -3.0757917004277816e-36,
+    "real_phase_speed": false
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 21.68,
+    "v": 369000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": -2.8228508942442415e-34,
+    "real_phase_speed": false
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 21.68,
+    "v": 369000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": -3.0757917004277816e-36,
+    "real_phase_speed": false
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 24.0,
+    "v": 220000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": -3.459328991734845e-34,
+    "real_phase_speed": false
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 24.0,
+    "v": 220000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": -3.769301249168638e-36,
+    "real_phase_speed": false
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 24.0,
+    "v": 369000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": -3.459328991734845e-34,
+    "real_phase_speed": false
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 24.0,
+    "v": 369000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": -3.769301249168638e-36,
+    "real_phase_speed": false
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 27.0,
+    "v": 220000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": -4.3782132551646854e-34,
+    "real_phase_speed": false
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 27.0,
+    "v": 220000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": -4.770521893506223e-36,
+    "real_phase_speed": false
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 27.0,
+    "v": 369000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": -4.3782132551646854e-34,
+    "real_phase_speed": false
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 27.0,
+    "v": 369000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": -4.770521893506223e-36,
+    "real_phase_speed": false
+   },
+   {
+    "s": 2.945732836051275e-27,
+    "Lstar_pc": 21.68,
+    "v": 220000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": -2.822861796977882e-34,
+    "real_phase_speed": false
+   },
+   {
+    "s": 2.945732836051275e-27,
+    "Lstar_pc": 21.68,
+    "v": 220000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": -3.0758035800979796e-36,
+    "real_phase_speed": false
+   },
+   {
+    "s": 2.945732836051275e-27,
+    "Lstar_pc": 21.68,
+    "v": 369000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": -2.822861796977882e-34,
+    "real_phase_speed": false
+   },
+   {
+    "s": 2.945732836051275e-27,
+    "Lstar_pc": 21.68,
+    "v": 369000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": -3.0758035800979796e-36,
+    "real_phase_speed": false
+   },
+   {
+    "s": 2.945732836051275e-27,
+    "Lstar_pc": 24.0,
+    "v": 220000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": -3.459342352746099e-34,
+    "real_phase_speed": false
+   },
+   {
+    "s": 2.945732836051275e-27,
+    "Lstar_pc": 24.0,
+    "v": 220000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": -3.769315807389765e-36,
+    "real_phase_speed": false
+   },
+   {
+    "s": 2.945732836051275e-27,
+    "Lstar_pc": 24.0,
+    "v": 369000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": -3.459342352746099e-34,
+    "real_phase_speed": false
+   },
+   {
+    "s": 2.945732836051275e-27,
+    "Lstar_pc": 24.0,
+    "v": 369000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": -3.769315807389765e-36,
+    "real_phase_speed": false
+   },
+   {
+    "s": 2.945732836051275e-27,
+    "Lstar_pc": 27.0,
+    "v": 220000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": -4.378230165194555e-34,
+    "real_phase_speed": false
+   },
+   {
+    "s": 2.945732836051275e-27,
+    "Lstar_pc": 27.0,
+    "v": 220000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": -4.770540318754838e-36,
+    "real_phase_speed": false
+   },
+   {
+    "s": 2.945732836051275e-27,
+    "Lstar_pc": 27.0,
+    "v": 369000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": -4.378230165194555e-34,
+    "real_phase_speed": false
+   },
+   {
+    "s": 2.945732836051275e-27,
+    "Lstar_pc": 27.0,
+    "v": 369000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": -4.770540318754838e-36,
+    "real_phase_speed": false
+   }
+  ],
+  "alt": [
+   {
+    "s": 0.0,
+    "Lstar_pc": 22.85,
+    "v": 220000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": -3.605764742432701e-34,
+    "real_phase_speed": false
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 22.85,
+    "v": 220000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": -3.9288583362174176e-36,
+    "real_phase_speed": false
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 22.85,
+    "v": 369000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": -3.605764742432701e-34,
+    "real_phase_speed": false
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 22.85,
+    "v": 369000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": -3.9288583362174176e-36,
+    "real_phase_speed": false
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 24.0,
+    "v": 220000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": -3.9778413909407176e-34,
+    "real_phase_speed": false
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 24.0,
+    "v": 220000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": -4.3342748142095996e-36,
+    "real_phase_speed": false
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 24.0,
+    "v": 369000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": -3.9778413909407176e-34,
+    "real_phase_speed": false
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 24.0,
+    "v": 369000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": -4.3342748142095996e-36,
+    "real_phase_speed": false
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 24.6,
+    "v": 220000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": -4.179219611357289e-34,
+    "real_phase_speed": false
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 24.6,
+    "v": 220000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": -4.553697476698617e-36,
+    "real_phase_speed": false
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 24.6,
+    "v": 369000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": -4.179219611357289e-34,
+    "real_phase_speed": false
+   },
+   {
+    "s": 0.0,
+    "Lstar_pc": 24.6,
+    "v": 369000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": -4.553697476698617e-36,
+    "real_phase_speed": false
+   },
+   {
+    "s": 3.5599425062671094e-27,
+    "Lstar_pc": 22.85,
+    "v": 220000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": -3.6057824308311135e-34,
+    "real_phase_speed": false
+   },
+   {
+    "s": 3.5599425062671094e-27,
+    "Lstar_pc": 22.85,
+    "v": 220000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": -3.9288776095800806e-36,
+    "real_phase_speed": false
+   },
+   {
+    "s": 3.5599425062671094e-27,
+    "Lstar_pc": 22.85,
+    "v": 369000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": -3.6057824308311135e-34,
+    "real_phase_speed": false
+   },
+   {
+    "s": 3.5599425062671094e-27,
+    "Lstar_pc": 22.85,
+    "v": 369000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": -3.9288776095800806e-36,
+    "real_phase_speed": false
+   },
+   {
+    "s": 3.5599425062671094e-27,
+    "Lstar_pc": 24.0,
+    "v": 220000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": -3.977860904594096e-34,
+    "real_phase_speed": false
+   },
+   {
+    "s": 3.5599425062671094e-27,
+    "Lstar_pc": 24.0,
+    "v": 220000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": -4.3342960763787144e-36,
+    "real_phase_speed": false
+   },
+   {
+    "s": 3.5599425062671094e-27,
+    "Lstar_pc": 24.0,
+    "v": 369000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": -3.977860904594096e-34,
+    "real_phase_speed": false
+   },
+   {
+    "s": 3.5599425062671094e-27,
+    "Lstar_pc": 24.0,
+    "v": 369000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": -4.3342960763787144e-36,
+    "real_phase_speed": false
+   },
+   {
+    "s": 3.5599425062671094e-27,
+    "Lstar_pc": 24.6,
+    "v": 220000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": -4.179240112889369e-34,
+    "real_phase_speed": false
+   },
+   {
+    "s": 3.5599425062671094e-27,
+    "Lstar_pc": 24.6,
+    "v": 220000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": -4.553719815265044e-36,
+    "real_phase_speed": false
+   },
+   {
+    "s": 3.5599425062671094e-27,
+    "Lstar_pc": 24.6,
+    "v": 369000.0,
+    "r_AU": 1.0,
+    "Omega2_geo": -4.179240112889369e-34,
+    "real_phase_speed": false
+   },
+   {
+    "s": 3.5599425062671094e-27,
+    "Lstar_pc": 24.6,
+    "v": 369000.0,
+    "r_AU": 9.58,
+    "Omega2_geo": -4.553719815265044e-36,
+    "real_phase_speed": false
+   }
+  ]
+ },
+ "label": "NO VERDICT",
+ "scope": "Frozen Galactic on-region coefficients, isotropic Hessian, zero initial response; B1 on one congruence family. No nonlinear moving solve, no metric PPN coefficient, no observational exclusion.",
+ "sources": {
+  "action_search_2026_11_05/AC11_moving_sun/ac11.py": "23f48a70b3d85bd5c38136954a53a3a8f2b0a211d0d645851376b7a1c704dcfc",
+  "action_search_2026_11_05/AC11_moving_sun/FROZEN_CRITERIA.md": "79248a4c3073a00c4b8d5dbb67b76b0703d864ab931fc37a5e00961251d214b8",
+  "astra_goal_2026_11_05/AZ37_moving_sun/response.py": "680edf4c760346809fbef687d7f44fe748c294fc4130d12633b69a4ae7f35018",
+  "action_search_2026_11_05/AC7_charge_switch/ac7.py": "d27318562eb2f5a4523289738e8e3a4ebe3dfa0b6d709c220b6188c06c77a364"
+ },
+ "seconds": 4.166808624999248,
+ "peak_rss_bytes": 121896960
+}

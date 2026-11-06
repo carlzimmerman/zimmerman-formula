@@ -1,0 +1,17 @@
+AC11  moving Sun in AC2q's clock frame  [MUTATE: gamma -> -gamma in B2]
+B1: exact P = 0 GR branch
+  P equation at P = 0 with A = -DX/(2X): DX*(2*X*gamma - 1)/(2*X) = 0
+B1a_Peq PASS solutions DX = [0] (unless 2 gamma X = 1): the clock must be geodesic, D X = 0
+B1a_accel PASS a_mu + h_mu^nu d_nu X/(2X) = [0, 0, 0] (flat 1+2, general phi)
+  theta(r) = (-3*M - 2*r*(E**2 - 1))/(r**(3/2)*sqrt(2*M + r*(E**2 - 1)));  d theta/dr = (2*E**4*r**2 + 8*E**2*M*r - 4*E**2*r**2 + 9*M**2 - 8*M*r + 2*r**2)/(r**(5/2)*(E**2*r + 2*M - r)**(3/2))
+B1b PASS theta varies along each leaf (d theta/dr at M=1, r=10: {'1': '9*sqrt(5)/2000', '13/12': '74953*sqrt(1345)/217083000', '5/3': '63449*sqrt(445)/47526000'}); known answer M = 0, E = 1: theta = 0
+  B1 label: BRANCH ABSENT (s != 0, tested family); at s = 0 the Klein-Gordon obstruction is absent (AZ37's v3s branch).
+B2: forced oscillator on AC7's hand-built on-region system with a baryon source
+  degree in omega^2: numerator 0, denominator 1
+  Omega'^2 = -k**2*(2*gamma_L*rho0*s**2 + rho0 + s**2)*(6*K**2*M_theta*gamma_L*rho0*s**2 + 3*K**2*M_theta*s**2 - K*M_theta*k**2 - 6*K*gamma_L**2*k**2*rho0*s**2 + 4*K*gamma_L**2*k**2*s**4 + K*gamma_L*k**2*s**2 + K*k**2 + gamma_L*k**4)/(4*K**2*M_theta*gamma_L**2*rho0**2*s**4 + 4*K**2*M_theta*gamma_L*rho0*s**4 + K**2*M_theta*s**4 + 2*K*M_theta*gamma_L*k**2*rho0*s**2 + K*M_theta*k**2*s**2 - 4*K*gamma_L**3*k**2*rho0**2*s**4 - 4*K*gamma_L**2*k**2*rho0*s**4 - K*gamma_L*k**2*s**4 - 2*gamma_L**2*k**4*rho0*s**2 + 4*gamma_L**2*k**4*s**4 + 3*gamma_L*k**4*s**2 + k**4)
+  instantaneous part c0 = 0;  forcing F' = K*k**2*(2*gamma_L*rho0*s**2 + rho0 + s**2)*(4*K*M_theta*gamma_L*rho0*s**2 + 2*K*M_theta*s**2 - 4*gamma_L**2*k**2*rho0*s**2 + 4*gamma_L**2*k**2*s**4 + 2*gamma_L*k**2*s**2 + k**2)/(4*K**2*M_theta*gamma_L**2*rho0**2*s**4 + 4*K**2*M_theta*gamma_L*rho0*s**4 + K**2*M_theta*s**4 + 2*K*M_theta*gamma_L*k**2*rho0*s**2 + K*M_theta*k**2*s**2 - 4*K*gamma_L**3*k**2*rho0**2*s**4 - 4*K*gamma_L**2*k**2*rho0*s**4 - K*gamma_L*k**2*s**4 - 2*gamma_L**2*k**4*rho0*s**2 + 4*gamma_L**2*k**4*s**4 + 3*gamma_L*k**4*s**2 + k**4)
+B2a PASS s = 0: T - K rho0/(Omega^2 - omega^2) = 0  (gamma = K Lstar^2/2 gives AZ37's oscillator)
+B2_resonance PASS every physical cell has a real Omega' and 0 < pole <= 1 (resonance survives)
+B2_convergence PASS DOP853 pairs vs exact <= 1e-7 (max 0.00e+00); 50-digit convolution <= 1e-30
+MUTATE_bites PASS gamma -> -gamma: Omega'^2 < 0 on every cell (no real phase speed)
+LABEL: NO VERDICT (complete moving-Sun prediction); B1 BRANCH ABSENT (s != 0, tested family)  [MUTATE]
