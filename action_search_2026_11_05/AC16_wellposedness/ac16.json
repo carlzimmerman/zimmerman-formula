@@ -1,0 +1,122 @@
+{
+ "mode": "main",
+ "label": "FAIL (classical, generic data): no C1 solution across a transverse switch interface; well-posed per branch [C3 numerics not fully confirming, see checks]",
+ "checks": {
+  "C1_principal_diag": true,
+  "C1_label_charge_const": true,
+  "C2_symmetrizer": true,
+  "C2_H_positive": true,
+  "C2_speeds_real": true,
+  "C3_force_jump": true,
+  "C3_transport_identity": true,
+  "C3_compatible_preserved": true,
+  "N3a_converged": true,
+  "N3a_matches_pred": true,
+  "N3a_not_shrinking": true,
+  "N3b_tinv_falls_sqrt2": true,
+  "N3c_opening": false,
+  "N3d_falls_with_N": true,
+  "N3d_small": true,
+  "N3d_tinv_not_sqrt2": true
+ },
+ "C1_pass": true,
+ "C2_pass": true,
+ "C3_sympy": true,
+ "C3_numerics": false,
+ "C3_control_separates": true,
+ "results": {
+  "C1": {
+   "principal": "Matrix([[v, 0], [0, v]])",
+   "label_charge_rate": "0"
+  },
+  "C2": {
+   "HA_minus_ATH": "Matrix([[0, 0], [0, 0]])",
+   "eigenvalues": [
+    "-sqrt(Pi)*sqrt(gamma) + v",
+    "sqrt(Pi)*sqrt(gamma) + v"
+   ],
+   "H_positive": true
+  },
+  "C3_sympy": {
+   "force_jump": "-c1*gamma",
+   "transport_identity_residual": "0",
+   "compatible_at_astar": "0"
+  },
+  "numerics": {
+   "N3a_transverse_stiff_right": [
+    {
+     "N": 400,
+     "D": -0.0996930570398392,
+     "t_inv": 0.2095000000000004
+    },
+    {
+     "N": 800,
+     "D": -0.09969817849593282,
+     "t_inv": 0.14724999999999855
+    },
+    {
+     "N": 1600,
+     "D": -0.09969944732389559,
+     "t_inv": 0.10412500000000074
+    },
+    {
+     "N": 3200,
+     "D": -0.09969976432171633,
+     "t_inv": 0.07354596622889244
+    }
+   ],
+   "N3c_transverse_stiff_left": [
+    {
+     "N": 400,
+     "D": -0.09969305703983534,
+     "t_inv": 0.2095000000000004
+    },
+    {
+     "N": 800,
+     "D": -0.09969817849592484,
+     "t_inv": 0.14724999999999855
+    },
+    {
+     "N": 1600,
+     "D": -0.09969944732388826,
+     "t_inv": 0.10412500000000074
+    },
+    {
+     "N": 3200,
+     "D": -0.09969976432168898,
+     "t_inv": 0.07354596622889244
+    }
+   ],
+   "N3d_compatible": [
+    {
+     "N": 400,
+     "D": -0.0007678947721003524,
+     "t_inv": null
+    },
+    {
+     "N": 800,
+     "D": -0.0007527936331658486,
+     "t_inv": null
+    },
+    {
+     "N": 1600,
+     "D": -0.0007490077105988112,
+     "t_inv": 0.9955000000000345
+    },
+    {
+     "N": 3200,
+     "D": -0.0007480623974849517,
+     "t_inv": 0.999062500000033
+    }
+   ]
+  },
+  "N3b_ratios": [
+   1.422750424448234,
+   1.4141656662664825,
+   1.415781250000022
+  ],
+  "N3d_tinv_ratios": null,
+  "prediction_N3a": -0.1
+ },
+ "note": "kappa = 1/2 FITTED; not theory closed"
+}
