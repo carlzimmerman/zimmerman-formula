@@ -1,0 +1,37 @@
+PASS G1-UVcount [v3s] lambda degrees of EL(sigma,p1,p2,p3,n) = [2, 2, 2, 2, 1]; no 3rd/4th-derivative terms survive
+PASS G1-lapse-subprincipal [v3s] n enters sigma/p equations below lambda^2
+PASS G1-lapse-gravity [v3s] with -|grad n|^2 gravity the n equation at lambda^2 is n alone, so n -> 0 at principal order
+PASS G1-structure [v3s] p block = N0*Psi0**6*gamma k k^T (longitudinal only), coupling = N0*Psi0**5*(P1_x*Psi0*gamma + P2_y*Psi0*gamma + P3_z*Psi0*gamma - Psi0 + 6*Psi_x*gamma*q1 + 6*Psi_y*gamma*q2 + 6*Psi_z*gamma*q3) * omega * k, symmetric
+PASS G1-isotropic-part [v3s] non-W part of the gradient weight is proportional to |k|^2
+PASS G1-closed-form [v3s] G(k) = N^3 Psi^2 |k|^2 [s + P.a + gamma s^2 + gamma P.grad(Ns)/N + mu^2(1-N)/(K N^2)] - K N^3 Psi^4 W1 (k.P)^2/|P|_flat (residual 0)
+v3s done 62.7
+PASS G1-UVcount [AC2q] lambda degrees of EL(sigma,p1,p2,p3,n) = [2, 2, 2, 2, 1]; no 3rd/4th-derivative terms survive
+PASS G1-lapse-subprincipal [AC2q] n enters sigma/p equations below lambda^2
+PASS G1-lapse-gravity [AC2q] with -|grad n|^2 gravity the n equation at lambda^2 is n alone, so n -> 0 at principal order
+PASS G1-structure [AC2q] p block = N0*Psi0**6*gamma k k^T (longitudinal only), coupling = Psi0**5*(N0**2*P1_x*Psi0*gamma + N0**2*P2_y*Psi0*gamma + N0**2*P3_z*Psi0*gamma - N0**2*Psi0 + 6*N0**2*Psi_x*gamma*q1 + 6*N0**2*Psi_y*gamma*q2 + 6*N0**2*Psi_z*gamma*q3 - Psi0*gamma*phidot0**2)/N0 * omega * k, symmetric
+PASS G1-isotropic-part [AC2q] non-W part of the gradient weight is proportional to |k|^2
+AC2q done 145.1
+PASS G1-background-P-equation E_P (W part aside) = N Psi^6 d_i ln N + gamma Psi^6 d_i(N s) exactly
+A_eff v3s = -Psi0**4*(K*N0**2*P1_x**2*Psi0**2*gamma**2 + 2*K*N0**2*P1_x*P2_y*Psi0**2*gamma**2 + 2*K*N0**2*P1_x*P3_z*Psi0**2*gamma**2 - 2*K*N0**2*P1_x*Psi0**2*gamma + 12*K*N0**2*P1_x*Psi0*Psi_x*gamma**2*q1 + 12*K*N0**2*P1_x*Psi0*Psi_y*gamma**2*q2 + 12*K*N0**2*P1_x*Psi0*Psi_z*gamma**2*q3 + K*N0**2*P2_y**2*Psi0**2*gamma**2 + 2*K*N0**2*P2_y*P3_z*Psi0**2*gamma**2 - 2*K*N0**2*P2_y*Psi0**2*gamma + 12*K*N0**2*P2_y*Psi0*Psi_x*gamma**2*q1 + 12*K*N0**2*P2_y*Psi0*Psi_y*gamma**2*q2 + 12*K*N0**2*P2_y*Psi0*Psi_z*gamma**2*q3 + K*N0**2*P3_z**2*Psi0**2*gamma**2 - 2*K*N0**2*P3_z*Psi0**2*gamma + 12*K*N0**2*P3_z*Psi0*Psi_x*gamma**2*q1 + 12*K*N0**2*P3_z*Psi0*Psi_y*gamma**2*q2 + 12*K*N0**2*P3_z*Psi0*Psi_z*gamma**2*q3 + K*N0**2*Psi0**2 - 12*K*N0**2*Psi0*Psi_x*gamma*q1 - 12*K*N0**2*Psi0*Psi_y*gamma*q2 - 12*K*N0**2*Psi0*Psi_z*gamma*q3 + 36*K*N0**2*Psi_x**2*gamma**2*q1**2 + 72*K*N0**2*Psi_x*Psi_y*gamma**2*q1*q2 + 72*K*N0**2*Psi_x*Psi_z*gamma**2*q1*q3 + 36*K*N0**2*Psi_y**2*gamma**2*q2**2 + 72*K*N0**2*Psi_y*Psi_z*gamma**2*q2*q3 + 36*K*N0**2*Psi_z**2*gamma**2*q3**2 - Psi0**2*gamma*mu**2)/(K*N0*gamma)
+PASS G1-kinetic [v3s] A_eff = Psi^6 [N (1+gamma s)^2/gamma + mu^2/(K N)] (> 0 for gamma > 0)
+{
+ "principal_symbol": "omega^2 [N Psi^6 (1+gamma s)^2/gamma + Psi^6 mu^2/(K N)] = |k|^2 N^3 Psi^2 [B_tau + x0 W1 sin^2(theta_kP)] (v3s, on shell)",
+ "physical_speed": "c^2(khat) = gamma [B_tau + x0 W'(x0) sin^2 theta] / [(1+gamma s)^2 + gamma mu^2/(K N^2)],  x0 = K|P|",
+ "A_eff_v3s": "-Psi0**4*(K*N0**2*P1_x**2*Psi0**2*gamma**2 + 2*K*N0**2*P1_x*P2_y*Psi0**2*gamma**2 + 2*K*N0**2*P1_x*P3_z*Psi0**2*gamma**2 - 2*K*N0**2*P1_x*Psi0**2*gamma + 12*K*N0**2*P1_x*Psi0*Psi_x*gamma**2*q1 + 12*K*N0**2*P1_x*Psi0*Psi_y*gamma**2*q2 + 12*K*N0**2*P1_x*Psi0*Psi_z*gamma**2*q3 + K*N0**2*P2_y**2*Psi0**2*gamma**2 + 2*K*N0**2*P2_y*P3_z*Psi0**2*gamma**2 - 2*K*N0**2*P2_y*Psi0**2*gamma + 12*K*N0**2*P2_y*Psi0*Psi_x*gamma**2*q1 + 12*K*N0**2*P2_y*Psi0*Psi_y*gamma**2*q2 + 12*K*N0**2*P2_y*Psi0*Psi_z*gamma**2*q3 + K*N0**2*P3_z**2*Psi0**2*gamma**2 - 2*K*N0**2*P3_z*Psi0**2*gamma + 12*K*N0**2*P3_z*Psi0*Psi_x*gamma**2*q1 + 12*K*N0**2*P3_z*Psi0*Psi_y*gamma**2*q2 + 12*K*N0**2*P3_z*Psi0*Psi_z*gamma**2*q3 + K*N0**2*Psi0**2 - 12*K*N0**2*Psi0*Psi_x*gamma*q1 - 12*K*N0**2*Psi0*Psi_y*gamma*q2 - 12*K*N0**2*Psi0*Psi_z*gamma*q3 + 36*K*N0**2*Psi_x**2*gamma**2*q1**2 + 72*K*N0**2*Psi_x*Psi_y*gamma**2*q1*q2 + 72*K*N0**2*Psi_x*Psi_z*gamma**2*q1*q3 + 36*K*N0**2*Psi_y**2*gamma**2*q2**2 + 72*K*N0**2*Psi_y*Psi_z*gamma**2*q2*q3 + 36*K*N0**2*Psi_z**2*gamma**2*q3**2 - Psi0**2*gamma*mu**2)/(K*N0*gamma)",
+ "coupling_v3s": "N0*Psi0**5*(P1_x*Psi0*gamma + P2_y*Psi0*gamma + P3_z*Psi0*gamma - Psi0 + 6*Psi_x*gamma*q1 + 6*Psi_y*gamma*q2 + 6*Psi_z*gamma*q3)",
+ "p_long_v3s": "N0*Psi0**6*gamma",
+ "AC2q_extra_vs_v3s_isotropic_weight": "Psi0*phidot0**2*(N0*P1_x*Psi0*gamma + N0*P2_y*Psi0*gamma + N0*P3_z*Psi0*gamma + N0*Psi0 + 6*N0*Psi_x*gamma*q1 + 6*N0*Psi_y*gamma*q2 + 6*N0*Psi_z*gamma*q3 + N_x*Psi0*gamma*q1 + N_y*Psi0*gamma*q2 + N_z*Psi0*gamma*q3)",
+ "AC2q_A": "Psi0**5*(2*K*P1_x*Psi0*gamma*phidot0**2 + 2*K*P2_y*Psi0*gamma*phidot0**2 + 2*K*P3_z*Psi0*gamma*phidot0**2 + K*Psi0*phidot0**2 + 12*K*Psi_x*gamma*phidot0**2*q1 + 12*K*Psi_y*gamma*phidot0**2*q2 + 12*K*Psi_z*gamma*phidot0**2*q3 + Psi0*mu**2)/(K*N0)",
+ "AC2q_coupling": "Psi0**5*(N0**2*P1_x*Psi0*gamma + N0**2*P2_y*Psi0*gamma + N0**2*P3_z*Psi0*gamma - N0**2*Psi0 + 6*N0**2*Psi_x*gamma*q1 + 6*N0**2*Psi_y*gamma*q2 + 6*N0**2*Psi_z*gamma*q3 - Psi0*gamma*phidot0**2)/N0",
+ "AC2q_pL": "N0*Psi0**6*gamma"
+}
+PASS G1-on-shell [v3s] G = N^3 Psi^2 |k|^2 [B + x0 W1 sin^2 theta] + (contracted P equation) x ..., residual 0; B_v3s = B_tau
+PASS G1-on-shell [AC2q] G = N^3 Psi^2 |k|^2 [B + x0 W1 sin^2 theta] + (contracted P equation) x ..., residual 0; B_AC2q = B_tau + 2X (1 - gamma s)
+PASS G1-kinetic [AC2q] A_eff = Psi^6 [N (1+gamma s-2 gamma X)^2/gamma + mu^2/(K N) + phidot^2 (1-2 gamma s)/N]
+PASS K3 GR limit P sector removed (P0 = p = 0, W = 0) and mu = 0: second-order Lagrangian is identically 0 (sigma pure gauge). Criteria wording corrected: with P0 = 0 but p kept, sigma still couples to p (P is an independent field), so that is not the GR limit.
+PASS K1 radial = AZ36 4x4 symbol (W1 from the radial P equation) vs AZ36 c_rad^2: max rel 7.68e-48 over 8 rows
+v3s G2 done 174.3
+AC2q G2 done 193.4
+PASS MUTATE bites (gamma -> -gamma) 873600/873600 points with c^2 <= 0 (must be all); max c^2 = see json
+LABEL MUTATE
+exit 0
