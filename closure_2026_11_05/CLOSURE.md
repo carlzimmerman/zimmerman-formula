@@ -82,6 +82,7 @@ AC2q switches the stiffness on the khronon charge D.P + 2X (AC7):
 | AC2q, lensing slip (own terms) | PASS: Psi source and anisotropic stress are O(gamma s^2 grad Phi P), beyond O(GM); slip <= 3e-17 (AC9 T2) |
 | AC2q, moving Sun (AZ37 analogue) | NO VERDICT (AC11): no exact P=0 GR branch (clock's Klein-Gordon needs uniform theta on leaves; met only to gamma s^2 ~ 1e-17); forced oscillator = AZ37's to 2.5e-6, resonance survives; X > 0 (|dX/X| <= 1.3e-8); Sun's own charge >> Galactic rho0 inside ~1e3 AU |
 | AC2q and v3s, the Sun's own halo carried along (kinematic) | NO VERDICT sharpened (AC12): continuity div(q w) = 0 partly drags the halo (relative flow f = 0.064-0.076 V at 1 AU, 0.16-0.19 V at 9.58 AU, 0.89 V at r_eq); local phase speed = sqrt(v_K^2 + c_gal^2), so 1 AU is SUBSONIC (Mach 0.47-0.94) but 9.58 AU and r_eq are supersonic (Mach 3.7-7.4, 150-310); the flow's Bernoulli term is not small (B 0.09-0.38 at 1 AU, 6-23 at 9.58 AU), so the kinematic halo is not self-consistent: nonlinear solve needed. Capped bounds at the planets: <= 1e-13 g_N (1 AU), 2e-10 (9.58 AU). v3s = AC2q to all digits shown |
+| AC2q, nonlinear planar evolution | NO VERDICT (AC10): first fold = v3s's to 0.3 % on a 12-row subset, both footings; s^2 and the charge switch do not regularize; clock-only fold threshold Omega tau_f = 1 (new, analytic); X > 0 holds to the fold; frozen K2/K3 missed (crossing-speed assumption); the post-fold interior reading is a stiffness shock, same in v3s |
 
 Inherited, by inference (not a new run): X14's "caustics generic" for soft
 khronon elements. X14's mechanism is that nothing in the action grows with k at
@@ -91,7 +92,8 @@ does, and only a new constant (X14's beta class) could remove it.
 
 AC2q is a candidate, not adopted: one field is dark energy and the clock, no
 dust, healthy on FRW and in galaxies at this order, static limit = v3s.
-Still owed: nonlinear evolution, X > 0 preservation away from statics (exact in
+Still owed: a frozen nonlinear label and post-fold shock evolution (AC10 NO VERDICT; its first-fold
+numbers support the caustic inference), X > 0 preservation away from statics (holds to the first fold, AC10; exact in
 statics; linear moving response keeps X > 0, AC11), the nonlinear moving Sun
 (co-moving charged halo matched to the Galactic flow at ~1e3 AU; AC11 linear NO VERDICT, as v3s's AZ37;
 AC12: kinematic halo subsonic at 1 AU but not self-consistent, a nonlinear Bernoulli-coupled solve inside ~10 AU is the open item).
