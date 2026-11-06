@@ -76,7 +76,7 @@ AC2q switches the stiffness on the khronon charge D.P + 2X (AC7):
 | AC2q's 8 slow roots to z = 1100 (and N = 20) | NO VERDICT, no power, as frozen (AC13): main R stays 1.0-2.53, flat from N = 5 to 20, no growth; planted 2H tachyon detected (R 3e3-1.9e4) on the 6 dark-energy-like witnesses but not on the 2 decelerating eps_phi = 2 fixtures; flipped stiffness is caught by det K changing sign (ghost), not by R. POST reading: HARMLESS on 6/8 |
 | AC2q slow roots, fresh dark-energy-like witnesses (powered per witness) | PASS (HARMLESS, scoped) (AC23): 16/16 fresh witnesses powered (planted 2H tachyon R 2.6e3-1.9e4), AC2q R 1.00-2.70 at z = 1100 (unchanged to N = 20), det K > 0 (>= 0.050) while the flipped stiffness turns det K negative on all 16; KA1 = AC13 exactly, KA2 = AC3 roots to 5e-30, MUTATE FAILs; eps_phi = 2 (decelerating) out of scope, stays NO VERDICT (AC13) |
 | AC2 inside galaxies | ILL-POSED (AC6): charge = div P + phidot^2; phidot^2 <= 2 rho_DE cannot fill the phantom's negative regions (6/7 H4 systems, both footings) |
-| AC2q, FRW | healthy: lapse term x (1 - 2 gamma phidot^2)^2, 72/72 fixtures (AC7 Q1) |
+| AC2q, FRW | healthy: lapse term x (1 - 2 gamma phidot^2)^2, 72/72 fixtures (AC7 Q1). ERRATUM 11-06: the factor is (1 - gamma phidot^2)^2 for AC2q as defined; signs hold for any f >= 0 (Lean), so healthy stands (see closure_2026_11_06/EQUATIONS_IN_ORDER.md, erratum) |
 | AC2q, galaxies | no Gamma ~ k anywhere; off-region bounded (AC7 Q2) |
 | AC2q, static limit | = v3s at mu_K = 0 up to phidot^2-proportional terms (<= 2.2e-10 relative, Poisson + rho_DE): v3s's static passes carry (AC8) |
 | Switch on D.P alone (v3s placement) with a dark-energy clock | non-analytic on FRW (AC7 control M-b) |

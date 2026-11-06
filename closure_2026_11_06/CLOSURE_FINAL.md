@@ -51,3 +51,11 @@ MUTATE twin.
 - Adoption: the Pi^6-blend stiffness repair.
 
 Kappa = 1/2 FITTED; not theory closed.
+
+## Erratum, 2026-11-06: FRW coefficient, QX19 CONDITIONAL
+- AC2q's FRW factor is (1 - z)^2, not (1 - 2z)^2, with z = gamma phidot^2. The signs hold for any f >= 0 (Lean), so FRW health stands
+  with corrected numbers. The source is the other session's FRW_RECONCILIATION_CHAIN/CHAIN.md, uncommitted at the time of writing.
+  See also EQUATIONS_IN_ORDER.md, end.
+- The one-action scorecard (QX19) is **CONDITIONAL**: TC03's finite-time gradient catastrophe transfers if a region can sit inside
+  Sigma > X. Its PASS rows hold only under that condition until it is decided.
+

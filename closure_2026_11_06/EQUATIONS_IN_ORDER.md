@@ -66,7 +66,7 @@ no dust sector and no K(Q). The stiffness is switched on the khronon charge:
 | 3.1 | a0 = kappa c sqrt(G rho_DE) = c^2 sqrt(Lambda/32 pi) at kappa = 1/2 | LEAN `TOE_BEST_ATTEMPT_2026_10_12.a0_lambda_form`, `a0_hubble_form` |
 | 3.2 | Clock bound at kappa = 1/2: rho_DE = 4 a0^2/(G c^2), so s^2 <= 8 a0^2/(G c^2) | LEAN `QX1.clock_bound` |
 | 3.3 | AC2q: the stiffness vanishes on FRW (D.P = 0, X >= 0), so the background is the canonical scalar's | LEAN `QX1.ac2q_frw_background` |
-| 3.4 | AC2q FRW quadratic action: the lapse term is multiplied by (1 - 2 gamma phidot^2)^2; healthy on 72/72 fixtures | SYMPY + NUM (AC7 Q1) |
+| 3.4 | [ERRATUM 11-06, see end] AC2q FRW quadratic action: the lapse term is multiplied by (1 - 2 gamma phidot^2)^2; healthy on 72/72 fixtures | SYMPY + NUM (AC7 Q1) |
 | 3.5 | v3s's literal K has a stiff partner that beats radiation iff a^2 < A/R; BBN needs mu_K >= 1.84e8 h/Mpc | LEAN `V3_PICTURE.stiff_beats_radiation_iff`, `crossing_redshift_linear`; NUM Q6 |
 
 ## 4. Static weak field: law S and the deep law
@@ -89,7 +89,7 @@ With x = g/a0 and mu(x) = x/(1+x):
 | Step | Statement | Tag |
 |---|---|---|
 | 5.1 | gamma = beta = 1 to 1e-12 | SYMPY + NUM, V3W W1 (17d7b7ecdc). It is a PDE statement, not Lean-certifiable here |
-| 5.2 | AC2q: the static difference from v3s is proportional to s^2 (Poisson + s^2(1 - 2 gamma div P)/(1+phi)^3; P eq + 2 gamma s^2 grad phi/(1+phi)^3), relative <= 2.2e-10 | SYMPY AC8 (bc4a81ee47) |
+| 5.2 | [ERRATUM 11-06, see end] AC2q: the static difference from v3s is proportional to s^2 (Poisson + s^2(1 - 2 gamma div P)/(1+phi)^3; P eq + 2 gamma s^2 grad phi/(1+phi)^3), relative <= 2.2e-10 | SYMPY AC8 (bc4a81ee47) |
 
 ## 6. Tensor speed
 
@@ -144,3 +144,17 @@ The complete Euler-Lagrange set of v3s (metric equation with every stress tensor
 multiplier) is in `QX17_covariant_field_equations/RESULT.md`. It is CERTIFIED against a direct sympy variation (residuals
 <= 1.2e-40, MUTATE fails). It is derived from the operative Legendre form P.A - W(K|P|). The printed J(Y) + independent-P
 form in §1 / PAPER68 decouples P if read literally (erratum on the printed form only; no number changes).
+
+## Erratum, 2026-11-06 (fix-forward; the rows above keep their original text)
+
+Source: an independent FRW reconciliation by another session, `closure_2026_11_06/FRW_RECONCILIATION_CHAIN/CHAIN.md`. It is
+uncommitted at the time of writing; cite that file and its Lean `FRW_correction.lean` once it lands.
+- **Row 3.4.** For AC2q as defined (D is the intrinsic leaf divergence, AC2 ACTION.md), the FRW lapse/polarization mixing is (1 - z),
+  with z = gamma phidot^2/N^2. The induced factor is (1 - z)^2, not (1 - 2 gamma phidot^2)^2. The legacy factor is exact only when D is
+  the spacetime divergence (control action A5). It is a coefficient error. The SIGNS survive: for any f >= 0, 0 < c_g <= c_ph <= 1
+  (Lean, 11 theorems). So "healthy" stands, and only the coefficient identity and its quoted numbers change. AC23's PASS reproduces
+  with the corrected insertion (max R 2.70011 vs 2.70014).
+- **Row 5.2.** With the full measure, the static P-equation offset is gamma v^2 grad phi/(1+phi)^2, half the stated
+  2 gamma s^2/(1+phi)^3. The bound becomes 1.1e-10 (was 2.2e-10). The conclusion (transfer to v3s) is unchanged.
+- **QX19 (one action).** The same reconciliation marks the scorecard **CONDITIONAL** (its J3). TC03's finite-time gradient
+  catastrophe transfers to the QX19 action if the bootstrap box can sit inside Sigma = D.P + 2X > X, where the blend equals AC2q.
