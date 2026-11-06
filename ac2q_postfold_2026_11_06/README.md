@@ -1,4 +1,4 @@
-# AC2q post-fold investigation — PF06 coupled-field checkpoint, 2026-11-06
+# AC2q post-fold investigation — PF07 dynamic-layer checkpoint, 2026-11-06
 
 **Outcome: a standard shock prescription does not close AC2q. Its post-break
 predictivity needs a justified completion. Full-action failure is not proved.**
@@ -9,7 +9,27 @@ native action avoids that route or generates its own stress-carrying completion
 remains open. Do not relabel this as "AC2q globally refuted" or "extension proved
 unavoidable for every possible solution".
 
-## Coupled-field update
+## PF07: solver repair and genuinely time-dependent layers
+
+The constrained solver now has a checked pre-break interval: curvature subtraction
+and padded nonlinear evaluation remove the early aliasing instability. Space,
+time, padding and raw-constraint checks pass; finer runs show steepening but
+stop at their declared accuracy limits. No physical singularity time is claimed.
+
+The regular corner obstruction survives time dependence exactly. Additional
+analytic estimates exclude polarization and scalar surface storage, and native
+matter surface stress, for the explicitly bounded clock/metric/cap regime with
+strong continuous traces and finite current-measure limits. These are stronger
+results than the earlier stationary calculation. Singular regimes outside those
+hypotheses and full coupled smooth-data breakdown remain open.
+
+[Current result and precise limits](pf07/STATUS.md) ·
+[Independent dynamic-layer review](coupled/time_layer_review/REVIEW.md) ·
+[Auxiliary stress and scalar-current proof](coupled/time_layer_review/AUXILIARY_STRESS.md) ·
+[Checked numerical comparisons](pf07/comparison_t1/result.json) ·
+[Diagnostic figure](pf07/evolution_diagnostics.png)
+
+## Earlier PF06 coupled-field update
 
 The native metric cannot carry the missing stress of a regular stationary
 planar corner with stationary field profiles: its own conjugate-flux conditions force the metric derivatives

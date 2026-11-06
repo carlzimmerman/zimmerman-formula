@@ -1,75 +1,86 @@
-# PF06 continuation handoff
+# PF07 continuation handoff
 
-Live entry: README.md and coupled/STATUS.md, 2026-11-06.
-Owner: current Codex chat; write scope ac2q_postfold_2026_11_06 only.
-User authorized finding whether AC2q's own coupled fields avoid breaking or
-supply missing interface stress; no scientific closure has been declared.
+Live entry: README.md and pf07/STATUS.md, 2026-11-06.
+Owner: current Codex chat; authorized write scope ac2q_postfold_2026_11_06 only.
+Target: determine native full-action avoidance/unique postfold completion versus
+necessary extension. This target has NOT been declared achieved.
 
-## Completed bounded obligations
+## New durable results
 
-PF01–03: exact breaking in the PN principal system; incompatible finite shock
-laws; exact flat stationary-profile corner obstruction; frozen flat symbol.
-These do not prove full-action breakdown. Existing AC10 threshold J=1e-3 and
-its pressure-dropping continuation do not close that gap.
+1. Solver repair: canonical r_mom subtracts the exact curvature contribution;
+   stage momentum reconstruction plus padded nonlinear evaluation removes the
+   observed early aliasing instability. Homogeneous, chain-rule, linear, physical
+   field space/time/padding, raw constraint and projection checks are recorded.
+   n127/n255 and evaluation-grid refinement agree through t=1 in the chosen
+   dimensionless constant-V fixture. This is not the canonical astrophysical
+   parameter footing or a validated weak continuation.
+2. Later accuracy stops: stricter raw momentum criterion stops n127 at1.2425
+   (both evaluation sizes255/381) and n255 at1.33375. The finite q,X,cap values
+   and increased gradients do not prove physical blowup. Earlier q-only runs
+   to~1.5 cannot override the stricter checks. Last failing steps are not accepted.
+3. Time-dependent regular corner: partial Legendre transform adds -JvT, affine
+   in v. Scalar normal flux shifts equally; normal stress and convexity
+   obstruction are unchanged. Stationary field profiles are no longer required.
+4. Finite-measure polarization storage excluded by the weighted native current's
+   fixed-sign cone and no-dipole condition on timelike interfaces.
+5. Finite-measure scalar storage excluded by the exact current-clock contraction
+   and div(phi J) product identity, requiring uniform phi convergence, bounded
+   current total variation, controlled source and C1 positive timelike trace.
+6. Matter Hilbert surface stress excluded by the auxiliary/KKT action and
+   clock-slice variation estimates: Q/r bounded from a crossing boundary;
+   positive Pi variation bounded; strong endpoint matching forces off-branch
+   multiplier mass to vanish. Require bounded frame-clock components, regular
+   metric coefficients, cap separation and strong endpoint control. Invariant
+   X bounds alone are insufficient. Gravitational defects require separate
+   metric regularity assumptions.
 
-PF04: four-dimensional plane reduction and regular coupled metric junction
-identities. Native metric derivatives cannot jump independently while their
-conjugate fluxes and P remain continuous. The PF02 obstruction extends to
-stationary metric/polarization profiles, phi=s t+psi, gamma>0, regular timelike
-same-sign through-flow and gamma*s_local^2<1/3. A stationary surface with evolving
-fields is NOT covered. See coupled/JUNCTION_RESULT.md and its independent review.
+Proofs and independent audits: coupled/time_layer_review/REVIEW.md,
+POLARIZATION_MEASURE.md, AUXILIARY_STRESS.md, and MATCHING_BRIDGE.md. The final bridge explicitly requires identification
+of native bulk stresses/currents from outer states, without a bulk oscillatory
+defect. Under the intersected hypotheses it proves the restricted no-layer
+connection, including layers that visit the off branch internally.
+Nine root exact identities pass; reversed-topological-sign control fails its
+intended equation. Independent earlier review has eight additional identities.
+The numerical reviewer identified reporting gaps that the final comparisons
+address. Keep original reviews and failed runs as provenance.
 
-PF05: bounded quasi-stationary negative-divergence sheets cannot carry the
-missing stress if limiting on-branch endpoints have a uniform positive flux
-gap, the clock and metric remain nondegenerate, and temporal derivatives/sources
-are uniformly bounded. Rapid temporal layers remain open. Plane tensor modes
-are unsourced from zero data while coefficients stay regular.
+## Research routes still open
 
-PF06: ADM constraints/evolution derived and independently reviewed; exact
-constraint-compatible initial family constructed; homogeneous and local linear
-benchmarks executed. The coupled homogeneous principal block remains wave-like,
-not a k^4 regulator. See coupled/ADM_FORMULATION.md and REVIEW_SOLVER.md.
+N1 formation/avoidance: derive a full coupled breakdown theorem or obtain a
+controlled finite-amplitude continuation farther toward a physical event. Do
+not import a local-source shock theorem without treating the spatial constraint.
+The current solver is useful before its accuracy stop. A future reformulation
+may evolve only mean p_lambda and reconstruct its spatial part consistently;
+then verify the differentiated constraint/evolution equations, not merely the
+small reconstructed residual. Adaptive resolution and an independent stable
+formulation are possible continuations, not executed proofs of an endpoint.
 
-## Unresolved routes and failed computational attempts
+N2 singular native escape: the bounded, continuous-field finite-measure layer
+route has strong exclusions. Remaining possibilities must explicitly demonstrate
+loss of one relevant bound (cap/source concentration, clock/frame degeneration,
+nonmeasure currents, discontinuous P traces, singular gravity or bulk oscillatory
+defects) and still establish finite observables, field equations and unique
+selection from smooth incoming data. Naming a loophole is not a completion.
+These routes remain open; none has been shown to exist or to be unique.
 
-N1 full nonlinear evolution: longer canonical-variable runs do not converge to
-a resolved endpoint. Centered derivatives, odd grids, smaller timesteps,
-momentum reconstruction and a joint lapse/polarization solve were tested.
-The last solve exhibits a constraint tolerance/roundoff problem even in its
-homogeneous benchmark. These failures are numerical, not full-action breaking
-or avoidance. Preserve failed runs. Do not run this solver postfold or use its
-stopping time as an observable. Next: a nonlinear formulation adapted to the
-constraint surface, tested against the independently derived lapse/metric
-linear system; then space/time refinement before any physical classification.
+E1 extension: a viscosity, entropy rule, new stress carrier or new operator needs
+explicit equations, charge/stress budget and stability. No particular extension,
+coefficient, empirical refit or manuscript change was adopted. For a finite
+corner obeying all intersected hypotheses, an ordinary native layer cannot
+supply its completion; this conditional statement is not universal failure of
+the full action.
 
-N2 native layer stress: derive a truly time-dependent layer balance without
-setting P_t+2P beta_t=0. Determine whether a finite defect stress exists, remains
-within the action's domain, and is uniquely selected by incoming data. Neither
-arbitrary stress assignment nor an unproved finite-action coercivity claim is
-acceptable. Unbounded metric gradients and oscillatory limits remain open.
+## Provenance
 
-E1 extension: if N1 establishes breaking and N2 cannot select a native carrier,
-specify a covariant carrier/operator and its energy budget. No particular new
-parameter or operator has been adopted. A completion of ordinary shocks is
-needed in the excluded class; a universal necessity of extra physics is not
-proved. Phenomenology and calibration must be retested only after such a model
-is actually specified.
+Earlier PF01–03 criteria/results and PF04–06 evidence remain in Git and their
+own manifests. PF07 base e50f32a0a7, criteria48c08b18e5. Individual amendments
+were recorded before their runs and hashed by the runner. Independent agent
+records identify inspected source hashes. pf07/VERIFICATION.json checks all
+available computation manifests; it validates provenance, including failed runs,
+not scientific success of each run. validation001 failed on NumPy-boolean JSON
+serialization; validation002 fixes output conversion and passes all five tests.
+Exploratory diagnose_modes.py was a diagnostic, not a load-bearing registered run.
 
-A general source-driven shock theorem cannot discharge N1 until strict
-hyperbolicity, genuine nonlinearity, locality and constrained-data compatibility
-are established for this action. See the source boundary in coupled/STATUS.md.
-
-## Provenance and review
-
-PF01–03 criteria: 57f9b8140d,21cb54b10b,bdaee092bf; results59cbc01d7c.
-PF04–06 criteria: f53b83d55a,4ccb8aceac,91cb3d3e3e,9b5b2fd660,17f8759991.
-Thirty recorded manifests validate against current inputs; failed outputs and
-mutation controls are retained. Independent linear benchmark uses a separate
-contract/command/result under coupled/review_linear. Check coupled/VERIFICATION.json.
-Independent reviewer checked the canonical system and junction proof, and
-identified stationary-profile and uniform-gap restrictions now made explicit.
-No unrelated files were edited. No background computation remains running.
-
-Definition of done: justified full-action survival, uniquely specified completion,
-or failure classification with controlled incoming data and outgoing observables.
-This checkpoint does not meet that definition; the routes above remain open.
+No unrelated working-tree files were edited. No postfold outcome or native
+surface stress was invented. Scientific closure still requires the unresolved
+formation/avoidance and singular-selection implications above.
