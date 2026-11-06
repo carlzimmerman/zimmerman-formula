@@ -1,0 +1,128 @@
+{
+  "schema_version": 2,
+  "claim_id": "SPECTRUM-THERMALIZATION-RETENTION",
+  "repository": {
+    "commit": "949c73998f92781d9b4f8188481d4d7c72e94ae7",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "action_scale_investigation_2026_11_05/joint_phase/spectrum_thermalization.py",
+    "--out",
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/spectrum_thermalization/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Soft Fokker Planck equilibrium, cold mean recoil closure, scattering/annihilation clocks, energy-conserving temperature and virial thermal response",
+    "coefficient_domain": "Exact symbolic algebra",
+    "conventions": "Natural units c=kB=1; dilute radiation, nonrelativistic targets; explicit fixed-density or fixed-mass closures as labeled",
+    "inputs": [
+      "Prior scalar contact scattering and annihilation",
+      "Soft Doppler variance",
+      "Closed cell energy conservation",
+      "One-zone virial relation with prescribed luminosity closures"
+    ],
+    "bounds": {
+      "scope": "No hard-collision diffusion approximation; diffusion times only scaling estimates; 60 seconds one thread"
+    },
+    "non_claims": [
+      "No emitted front spectrum",
+      "No full finite halo stability",
+      "No derived MOND coefficient"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-06T20:57:39.434090+00:00",
+    "runtime_seconds": 0.829019,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "action_scale_investigation_2026_11_05/joint_phase/spectrum_thermalization.py",
+    "action_scale_investigation_2026_11_05/joint_phase/SPECTRUM_THERMALIZATION_CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/spectrum_thermalization.py",
+      "sha256": "c31c5c96afbb95210d7fa635385973931259a31614f84e52be2005a1a8e26dbb",
+      "sha256_after": "c31c5c96afbb95210d7fa635385973931259a31614f84e52be2005a1a8e26dbb"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/SPECTRUM_THERMALIZATION_CONTRACT.md",
+      "sha256": "a77ef1db76a09e5e3758c95692b7028a930cbac565c7ebefc350f5aa47e83d60",
+      "sha256_after": "a77ef1db76a09e5e3758c95692b7028a930cbac565c7ebefc350f5aa47e83d60"
+    }
+  ],
+  "output_directory": "action_scale_investigation_2026_11_05/joint_phase/evidence/spectrum_thermalization",
+  "declared_results": [
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/spectrum_thermalization/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/spectrum_thermalization/stdout.txt",
+      "sha256": "a49208f207e142e9d5abcf0d9415bf2774e70430b4380d65a4532b1457a424ab",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/spectrum_thermalization/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/spectrum_thermalization/result.json",
+      "sha256": "a49208f207e142e9d5abcf0d9415bf2774e70430b4380d65a4532b1457a424ab",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

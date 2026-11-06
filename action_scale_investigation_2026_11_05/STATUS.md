@@ -1,5 +1,14 @@
 # Joint-model continuation: pool speed calculation; coefficient unresolved
 
+Latest checkpoint: joint_phase/SPECTRUM_THERMALIZATION_RESULT.md derives a
+conditional dilute Wien spectrum and tests repeated scattering, inverse
+reactions and virial thermal response. In the uniform cold unreplenished model,
+opacity and long material lifetime conflict because sigma_0 c/K=4. Dilute
+chemical equilibrium is radiation-dominated in the cold limit. Independent
+material thermalization still needs a coupling hierarchy and energy export.
+24 exact checks pass; reversed heat-capacity control fails two intended checks.
+No complete halo stability, preserved thick-limit rotation curve or1/2 follows.
+
 Latest checkpoint: joint_phase/FRONT_CAPTURE_RESULT.md derives thin-wall motion,
 its energy partition, a specified-gas drag limit and ballistic halo energy
 retention. An empty accelerating wall stores latent power; radiation requires
