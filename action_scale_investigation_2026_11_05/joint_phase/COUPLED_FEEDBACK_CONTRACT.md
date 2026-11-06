@@ -29,3 +29,14 @@ control omits h in d+h and must fail the determinant and neutral-mode checks.
 microscopic production/cooling rate derivation, or automatic phase-pressure
 selection is claimed. Numerical convergence is finite evidence; general
 scope follows from the algebra, not the number of runs.
+
+Pre-execution constructive extension C: a global homologous-halo feedback
+X_dot=gamma(Theta-X), Theta_dot=epsilon(S-X Theta), where X=v_h^2,
+Theta=2 kB T/m, S=B L, B=2 G kB sigma_abs/Lambda_1. The first equation is
+an explicitly postulated global abundance feedback, not a derived microscopic
+rate. Test whether it can stabilize both variables without fixing B. In units
+X*=Theta*=sqrt(S), take rates1 and the same four initial states and time bound.
+Check convergence to(1,1) and the exact Lyapunov identity for
+V=(x-1)^2/2+(y-1)^2/2: V_dot=-(x-1)^2-x(y-1)^2. Distinguish this constructive
+phenomenological attractor from deriving its material source, transport,
+energy budget, boundary or the coefficient. No 1/2 used as an input.
