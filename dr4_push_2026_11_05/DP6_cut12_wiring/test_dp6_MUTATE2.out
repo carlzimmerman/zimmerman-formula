@@ -1,0 +1,20 @@
+DP6 CHECKS (socket guard on)   *** MUTATE=2 ***
+  [PASS] T1 patched source differs from the frozen source in exactly one line; NSS cut line present once; getsource works; uninstall restores the original
+         changed line [20]: nss = _DP6_NSS(S, a, b)
+  [FAIL] T2 synthetic: patched frozen_cuts keep = base keep & ~(run_a17 A17_primary) = hand truth (exempt own pair kept, non-exempt own pair, third-source, solution-on-star rejected, untouched kept)
+         base keep [True, True, True, True, True]; patched keep [False, True, True, False, True]; run_a17 reject [True, False, False, True, False]; truth reject [True, False, True, True, False]
+  [PASS] T6 refusals: undeclared reading refuses at install; no readings refuses at the first call (run_a17's rule); install twice idempotent
+         undeclared True, no readings True, idempotent True
+  [PASS] T7 per-star file: stage-A columns preserved, non_single_star all 0, accepted by make_pair_table with --declare-neutral non_single_star
+         {'n_pairs': 5, 'n_missing_ids': 0, 'declared_neutral': ['non_single_star']}
+  [PASS] T3 DR3 equivalence (per-star column REMOVED from S; cut 12 from a one-table A17 manifest): 6,210 pairs, sha 6fff64d964ebaa72
+         6,210 pairs, sha 6fff64d964ebaa72; proxy ids 84,906; A17 rejected 5,555 of 213,097 stage-F pairs [3 s]
+  [PASS] T4 DP1 rung on the patched builder (column removed): 6,282 pairs, sha 1dbdf21a
+         6,282 pairs, sha 1dbdf21a461a2f3b [3 s]
+  [PASS] T5 launcher subprocess (dry_run_driver.py as __main__) writes the T3 CSV, with the A17 screen active in that process; T5b the unpatched frozen_cuts raises KeyError without the column
+         exit 0; sha 6fff64d964ebaa72; A17 report in subprocess: rejected 5555; T5b raised True [4 s]
+  [PASS] T0 frozen files unchanged (sha256 before = after)
+         build_catalog.py 46452daf1f2e, dry_run_driver.py 687ea1547599, cut12_nss_union.py e8f70c3fc850, cut12_stub.py 82080963bd38, build_variant_catalogue.py 0a259b7da706, seed_sweep.py 0f94d70e90ea, wide_binary_pipeline.py 7c884e0e0a4c, nss_off_rung.py c15c5290fb9b
+
+checks: 7 of 8 pass  (11 s)
+[MUTATE CONTROL] MUTATE=2: T2 FAILED as designed
