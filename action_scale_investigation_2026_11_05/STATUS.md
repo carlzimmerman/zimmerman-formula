@@ -1,5 +1,14 @@
 # Joint-model continuation: pool speed calculation; coefficient unresolved
 
+Latest checkpoint: joint_phase/BOUNDARY_COOLING_RESULT.md derives a soft-radiation
+cooling mechanism from the same scalar contact interaction. A local fixed-bath
+thermal equilibrium is restoring when16 U_a>rho_pool c^2; supplying that bath
+and including its stress remain unresolved. An explicit tilted-quartic wall
+and bounce give an exponentially barrier-dependent nucleation rate and a
+finite, time-dependent conversion power.15 exact checks pass; cooling-sign
+control fails two intended checks. No globally stable finite halo, source
+spectrum, selected decay rate or MOND1/2 is derived.
+
 Latest checkpoint: joint_phase/FINITE_HALO_RESULT.md finds that a smooth,
 stationary impermeable boundary with annihilation requires net cooling:
 H_net(R)=-K n(R)^2 kB T(R)<0. The prior heating-only completion therefore has

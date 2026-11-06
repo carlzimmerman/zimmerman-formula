@@ -1,0 +1,129 @@
+{
+  "schema_version": 2,
+  "claim_id": "BOUNDARY-COOLING-VACUUM-RATE",
+  "repository": {
+    "commit": "2288d8f3483b4b0e92baf7a2fc30a266efd15b00",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "action_scale_investigation_2026_11_05/joint_phase/boundary_cooling.py",
+    "--out",
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/boundary_cooling_mutate/result.json",
+    "--mutate"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Soft scalar-scattering cooling condition, local restoring mode, and explicit thin-wall conversion kinetics",
+    "coefficient_domain": "Exact symbolic algebra",
+    "conventions": "SI cooling variables; natural-unit canonical scalar bounce; dilute radiation without induced scattering; prescribed bath and fixed local density",
+    "inputs": [
+      "Existing scalar contact elastic and annihilation rates",
+      "Finite wall compression condition",
+      "Canonical tilted quartic in thin-wall flat-space limit"
+    ],
+    "bounds": {
+      "scope": "Soft radiation E and thermal energy much less than mc^2; small phase splitting; fixed prefactor/rate and bubble speed in growth model"
+    },
+    "non_claims": [
+      "No global halo stability",
+      "No bath supplied by a calculated vacuum decay history",
+      "No fluctuation prefactor or wall speed calculated",
+      "No target-based parameter choices"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-06T20:00:09.427171+00:00",
+    "runtime_seconds": 0.972038,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "action_scale_investigation_2026_11_05/joint_phase/boundary_cooling.py",
+    "action_scale_investigation_2026_11_05/joint_phase/BOUNDARY_COOLING_CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/boundary_cooling.py",
+      "sha256": "13b5d67f49cdf3f84ccd0328505db2772caed89377594741a4900afbc1b05880",
+      "sha256_after": "13b5d67f49cdf3f84ccd0328505db2772caed89377594741a4900afbc1b05880"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/BOUNDARY_COOLING_CONTRACT.md",
+      "sha256": "2c998bb429dd8cf3e231044ad819393c983694093e479f559c171bd16ab033e1",
+      "sha256_after": "2c998bb429dd8cf3e231044ad819393c983694093e479f559c171bd16ab033e1"
+    }
+  ],
+  "output_directory": "action_scale_investigation_2026_11_05/joint_phase/evidence/boundary_cooling_mutate",
+  "declared_results": [
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/boundary_cooling_mutate/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/boundary_cooling_mutate/stdout.txt",
+      "sha256": "6cbf65bd6785fcbc438183680e7cf3a491b93f9f262c2af5a4f7d3dfcda632fe",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/boundary_cooling_mutate/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/boundary_cooling_mutate/result.json",
+      "sha256": "5d9718a6baad208d1fb73344f5c7bb529b0c1d7de5c43a8e0ed21e0ddaf319fb",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
