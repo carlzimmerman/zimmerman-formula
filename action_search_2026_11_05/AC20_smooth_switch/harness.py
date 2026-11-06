@@ -9,13 +9,13 @@ kappa = 1/2 FITTED; not theory closed.
 import numpy as np
 
 
-def run(N, hprime, Pi0f=np.tanh, t_meas=0.05, t_max=2.0, ncell=4):
+def run(N, hprime, Pi0f=np.tanh, t_meas=0.05, t_max=2.0, ncell=4, v0f=None):
     an = np.linspace(-3.0, 3.0, N + 1)
     am = 0.5 * (an[1:] + an[:-1])
     da = an[1] - an[0]
     m = Pi0f(am) * da
     on = m > 0
-    X = an.copy(); V = np.zeros(N + 1)
+    X = an.copy(); V = np.zeros(N + 1) if v0f is None else v0f(an)   # v0f added for iter_4 (default unchanged)
 
     def acc(X):
         w = np.diff(X)
