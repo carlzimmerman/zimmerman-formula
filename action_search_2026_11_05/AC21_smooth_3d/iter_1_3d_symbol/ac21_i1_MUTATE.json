@@ -1,0 +1,152 @@
+{
+ "mode": "MUTATE",
+ "label": "MUTATE: bites (T1 c^2 sign broken, m = 2 fails T3)",
+ "checks": {
+  "T1_c_equals_sqrt_PiFpp": true,
+  "T1_force_equals_c_gradw": true,
+  "T1_symmetric": true,
+  "T1_speeds": true,
+  "T1_c2_nonneg_v3s": false,
+  "T2_pure_power_linear": true,
+  "T2_contact_not_smooth": true,
+  "T2_spline_m4_not_smooth": true,
+  "T2_pure_power_smooth": true,
+  "T3_m2_fails_all_d": true,
+  "T4_convex_member": false,
+  "T5_statics": true,
+  "T6_g1_g2": true,
+  "T6_factor": true
+ },
+ "results": {
+  "T1": {
+   "eigenvalues_k_z": [
+    "-c + v3",
+    "c + v3",
+    "v3"
+   ],
+   "speeds": "v.k (x2), v.k +- c|k|",
+   "c2_v3s": "-Pi*gamma"
+  },
+  "T2_pure_power_ratio": {
+   "3": "1",
+   "4": "3/2",
+   "5": "2",
+   "6": "5/2",
+   "7": "3"
+  },
+  "T2": {
+   "AC20_contact_a": {
+    "m": 4,
+    "c_over_w_series": "179413*Pi**4/174636 - 389*Pi**3/378 + 43*Pi**2/42 - Pi + 3/2",
+    "linear_coeff": "3/2",
+    "first_correction": "-1 Pi^1",
+    "first_nonlinear_w_power": "5/3",
+    "smooth_in_w": false
+   },
+   "AC20_spline_m4": {
+    "m": 4,
+    "c_over_w_series": "-2503*Pi**4/71280 - 143*Pi**3/540 - 7*Pi**2/12 - Pi + 3/2",
+    "linear_coeff": "3/2",
+    "first_correction": "-1 Pi^1",
+    "first_nonlinear_w_power": "5/3",
+    "smooth_in_w": false
+   },
+   "pure_power_6": {
+    "m": 6,
+    "c_over_w_series": "5/2",
+    "linear_coeff": "5/2",
+    "first_correction": "none",
+    "first_nonlinear_w_power": "none (c linear in w near 0)",
+    "smooth_in_w": true
+   }
+  },
+  "T3": {
+   "2": {
+    "1": false,
+    "2": false,
+    "3": false
+   }
+  },
+  "T3_cross_check_AC20_1D": {
+   "n3_kink_r": 0.9999409677104685,
+   "n3_Dinf": -0.22556968704676475,
+   "iter1_label": null
+  },
+  "T4_tried": [
+   {
+    "tau": "1/2",
+    "k": 4,
+    "solved": true,
+    "positive": false,
+    "A": "493920/8989",
+    "bern_all_pos": false
+   },
+   {
+    "tau": "1/3",
+    "k": 4,
+    "solved": true,
+    "positive": false,
+    "A": "1097145/10159",
+    "bern_all_pos": false
+   },
+   {
+    "tau": "2/3",
+    "k": 4,
+    "solved": true,
+    "positive": false,
+    "A": "1398222/42689",
+    "bern_all_pos": false
+   },
+   {
+    "tau": "1/2",
+    "k": 3,
+    "solved": true,
+    "positive": false,
+    "A": "11200/197",
+    "bern_all_pos": false
+   },
+   {
+    "tau": "1/3",
+    "k": 3,
+    "solved": true,
+    "positive": false,
+    "A": "33075/281",
+    "bern_all_pos": false
+   },
+   {
+    "tau": "2/3",
+    "k": 3,
+    "solved": true,
+    "positive": false,
+    "A": "52920/1597",
+    "bern_all_pos": false
+   }
+  ],
+  "T5_Sd": {
+   "canonical": {
+    "b_Msun_pc3": 8.6303164219219e-08,
+    "cassini": 1.5691484403494363e-05,
+    "globular": 1.027418621657369e-06,
+    "floor_shift_pct": 2.4164885981381323e-05,
+    "sparc": 5.60937726684928e-07,
+    "pass": "True"
+   },
+   "alt": {
+    "b_Msun_pc3": 1.2604510241234714e-07,
+    "cassini": 2.0329855227797927e-05,
+    "globular": 1.500536933480323e-06,
+    "floor_shift_pct": 3.5292628675457206e-05,
+    "sparc": 8.29928329536792e-07,
+    "pass": "True"
+   }
+  },
+  "T6": {
+   "g1": "gamma",
+   "g2": "2*gamma",
+   "factor": "(2*gamma*s**2 - 1)**2",
+   "exact_neighbourhood": "F = gamma Pi^2/2 for Pi >= b = X; FRW Pi = 2X, so |D.P| < X keeps the background exact"
+  },
+  "elapsed_s": 2.2
+ },
+ "note": "kappa = 1/2 FITTED; not theory closed"
+}
