@@ -1,0 +1,29 @@
+QX12_triangle_MUTATE.lean:7:8: warning: declaration uses `sorry`
+QX12_triangle_MUTATE.lean:15:2: warning: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+QX12_triangle_MUTATE.lean:16:2: error: linarith failed to find a contradiction
+h : ℝ → ℝ
+hh : StrictMono h
+ρ₁ ρ₂ c D₁ D₂ : ℝ
+e1 : h ρ₁ = c + D₁
+e2 : h ρ₂ = c + D₂
+hD : D₁ ≤ D₂
+hc : ρ₁ < ρ₂
+⊢ False
+failed
+QX12_triangle_MUTATE.lean:22:37: error: Application type mismatch: The argument
+  h1
+has type
+  0 < c₁
+but is expected to have type
+  0 < c₂
+in the application
+  div_le_div_of_nonneg_left hD h1
+'QX12M.law_inverse_bad' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'QX12M.baro_order_bad' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
+'QX12M.iso_ratio_bad' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
