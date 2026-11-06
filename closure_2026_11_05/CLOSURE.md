@@ -45,7 +45,7 @@ What is put in by hand (none of it derived):
 | Galaxy lensing = dynamics | PASS (weak power on KiDS alone) | V3W W3 17d7b7ecdc |
 | GW speed | PASS, c_T = c to 6e-32 | V3W W4a |
 | AGC 114905, Malin 1 | FAIL (inclination does not rescue) | UD1, UD2 |
-| Clusters | FAIL (closed for v3s / AC2q): every static term graded on X-COP (law +0.47/+0.43 dex; clock <= 3 % of baryons; stiffness <= 5e-5; K(Q) dust needs mu_K 17x the galaxy bound, rms still 0.28); no J(Y) can serve it, since X-COP needs 0.30-0.51 dex more than SPARC at the same g_N/a0; Lean QX2_cluster_nogo. Passing needs a new action (non-minimal coupling or a new source variable) | QX2; FAILURES section F; BF1-BF3, BK2, SR3, FA1 |
+| Clusters | FAIL (closed for v3s / AC2q): every static term graded on X-COP (law +0.47/+0.43 dex; clock <= 3 % of baryons; stiffness <= 5e-5; K(Q) dust needs mu_K 17x the galaxy bound, rms still 0.28); no J(Y) can serve it, since X-COP needs 0.30-0.51 dex more than SPARC at the same g_N/a0; Lean QX2_cluster_nogo. Passing needs a new action (non-minimal coupling or a new source variable). QX5 tried five new-term keys: matter pressure, khronon bulk velocity, enclosed density/rho_DE and collisional acceleration (CC as an AC2q term) are DEAD; a phantom multiplier on the clock-rate depth Q-1 passes X-COP + groups only with a cluster-set step (FAIL by the no-tuning rule) and Coma's UDGs then need 5-6x more (2.2-2.8 sigma); Lean QX5_monotone_sandwich | QX2, QX5; FAILURES section F; BF1-BF3, BK2, SR3, FA1 |
 | CMB lensing shape | FAIL under every rule tried | WG1-WG6 |
 | Linear growth, radiation era | OPEN, outside scope | FN1 decision |
 | Cold dark energy sector (route E) | RETIRED 11-01 | owner decision 11-01 |

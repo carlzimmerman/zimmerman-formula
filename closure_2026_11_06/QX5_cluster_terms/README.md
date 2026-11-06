@@ -34,6 +34,17 @@ or amplitude, though, and only clusters set them: at best CLUSTER-SET, which is 
 The post-hoc reading and its decisive test (galaxies that sit inside cluster potentials, i.e. Coma UDGs) are in
 AMENDMENTS.md and iter_a2_member_galaxies/, frozen before that test was computed.
 
+**iter a2 result: LEAD ALIVE, not explained.** With F_med the Coma UDGs move from +1.12 to +0.72 dex (z 4.28 -> 2.76;
+alt 4.11 -> 2.65). Zeroing them would need F = 22-26, 5-6x X-COP's. So one F(|Phi|/c^2) does not serve X-COP and Coma's
+members together (2.2-2.8 sigma tension), and the threshold and amplitude are still set by clusters alone.
+
+## Door reading after QX5
+
+Clusters stay **FAIL**. Classes b, c, d, e are DEAD. Class a (a phantom multiplier on the khronon clock-rate depth Q - 1)
+is the one lead: it passes X-COP and groups only with a cluster-set step (CLUSTER-SET = FAIL by the no-tuning rule).
+Coma's members need 5-6x more. Owed before it could become a candidate: a native threshold/amplitude, the Bullet-type
+lensing offset (the boost follows the baryons' potential), and lensing = dynamics on its own equations.
+
 ## Known answers and controls
 
 - F == 1 reproduces QX2 iteration 1: X-COP mean 0.467499 vs 0.467499 (canonical) and 0.434523 vs 0.434523 (alt),
