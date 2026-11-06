@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "claim_id": "POOL-RELAXATION-FEEDBACK",
+  "repository": {
+    "commit": "99c97903d57b7036c73651b95827c638df4825e9",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "action_scale_investigation_2026_11_05/joint_phase/relaxation.py",
+    "--out",
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/relaxation/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Conditional heating/cooling rotation scaling, local thermal stability and reservoir normalization",
+    "coefficient_domain": "Exact SymPy and float64 DOP853",
+    "conventions": "SI symbols; n number density; optically thin point luminosity; local isobaric/isochoric perturbations distinct",
+    "inputs": [
+      "Heating n sigma L/(4 pi r^2)",
+      "Cooling n^2 Lambda_q T^q",
+      "Halo-dominated isothermal hydrostatics"
+    ],
+    "bounds": {
+      "q_for_ODE": 2,
+      "initial_temperatures": [
+        0.1,
+        10
+      ],
+      "time_interval": [
+        0,
+        12
+      ],
+      "rtol": 1e-10,
+      "atol": 1e-12,
+      "exact_agreement": 1e-08
+    },
+    "non_claims": [
+      "No global attractor proof",
+      "No microscopic cooling law derived",
+      "No stellar luminosity law derived",
+      "No empirical coefficient input"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-06T13:15:30.187573+00:00",
+    "runtime_seconds": 0.567689,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "action_scale_investigation_2026_11_05/joint_phase/relaxation.py",
+    "action_scale_investigation_2026_11_05/joint_phase/RELAXATION_CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/relaxation.py",
+      "sha256": "ec75f8577fb43c1f8c789437bcdc7e8e7f9a1d4f5ae3ae5a91b1c307404f1d75",
+      "sha256_after": "ec75f8577fb43c1f8c789437bcdc7e8e7f9a1d4f5ae3ae5a91b1c307404f1d75"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/RELAXATION_CONTRACT.md",
+      "sha256": "cab12a496df46de6365ac22eaa4d8be16814da1ad61f91d3a39383af3f2f2349",
+      "sha256_after": "cab12a496df46de6365ac22eaa4d8be16814da1ad61f91d3a39383af3f2f2349"
+    }
+  ],
+  "output_directory": "action_scale_investigation_2026_11_05/joint_phase/evidence/relaxation",
+  "declared_results": [
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/relaxation/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/relaxation/stdout.txt",
+      "sha256": "cbe05a64d7da379126342ab2b1244d0f07781fcc59bb74ddd497c2b49098e6a5",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/relaxation/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/relaxation/result.json",
+      "sha256": "25ff0b2f143cf618a77c7711e7ca11c2ad1b2982d0bfa5b06eb1655ea1dc630c",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

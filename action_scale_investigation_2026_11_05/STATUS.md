@@ -1,5 +1,16 @@
 # Joint-model continuation: pool speed calculation; coefficient unresolved
 
+Latest checkpoint: joint_phase/RELAXATION_RESULT.md derives thermal reservoir
+relaxation and baryon-powered heating/cooling feedback. Reservoir exchange can
+erase abundance memory conditionally but imposes reservoir T and chemical
+potential; self-gravity prevents a blanket uniqueness claim. Heating/cooling
+plus hydrostatics gives a conditional flat tail, and linear cooling with
+L proportional to Mb yields v^4 proportional to Mb. That cooling law has a
+marginal isobaric thermal mode; the coefficient contains independent absorption,
+luminosity and cooling constants. The phase-pressure boundary remains unselected.
+19 checks pass; the isobaric-sign control fails its intended check. No full
+halo attractor or 1/2 derived; see the scoped continuations in the result.
+
 Latest checkpoint (2026-11-06): joint_phase/SHARED_INTERACTION_RESULT.md tests
 one explicit baryon-triggered scalar phase coupled to a particle-producing
 second scalar. It derives phase stress and mode creation together. The induced

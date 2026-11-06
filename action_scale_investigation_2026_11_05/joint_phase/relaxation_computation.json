@@ -1,0 +1,60 @@
+{
+  "claim_id": "POOL-RELAXATION-FEEDBACK",
+  "mathematics": {
+    "assertion_tested": "Conditional heating/cooling rotation scaling, local thermal stability and reservoir normalization",
+    "coefficient_domain": "Exact SymPy and float64 DOP853",
+    "conventions": "SI symbols; n number density; optically thin point luminosity; local isobaric/isochoric perturbations distinct",
+    "inputs": [
+      "Heating n sigma L/(4 pi r^2)",
+      "Cooling n^2 Lambda_q T^q",
+      "Halo-dominated isothermal hydrostatics"
+    ],
+    "bounds": {
+      "q_for_ODE": 2,
+      "initial_temperatures": [
+        0.1,
+        10
+      ],
+      "time_interval": [
+        0,
+        12
+      ],
+      "rtol": 1e-10,
+      "atol": 1e-12,
+      "exact_agreement": 1e-08
+    },
+    "non_claims": [
+      "No global attractor proof",
+      "No microscopic cooling law derived",
+      "No stellar luminosity law derived",
+      "No empirical coefficient input"
+    ]
+  },
+  "execution_artifacts": [
+    "action_scale_investigation_2026_11_05/joint_phase/relaxation.py",
+    "action_scale_investigation_2026_11_05/joint_phase/RELAXATION_CONTRACT.md"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    },
+    {
+      "name": "sympy",
+      "version": "1.14.0"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}
