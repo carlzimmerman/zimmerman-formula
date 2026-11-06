@@ -1,6 +1,6 @@
 # EB1 Amendment A1 (before the main run; only the check runs have been done)
 
-Check run (script ec47-era commit after 7ac6bbb3f9): K1 1.68652 PASS, K3 PASS, K4 PASS, K2 "PASS" but vacuous: on
+Check run (script 0f55942e3a): K1 1.68652 PASS, K3 PASS, K4 PASS, K2 "PASS" but vacuous: on
 the frozen K2 cell (B2, M 1e9, nu 3) neither R0 nor R1(a0 -> 1e-30) collapses by z 0, so there was no z_coll to compare.
 That result is itself the first physics number seen: a 3 sigma 1e9 Msun baryon clump does not collapse by z 0 under
 Newton from the baryons-only start. No R1 number has been seen.
