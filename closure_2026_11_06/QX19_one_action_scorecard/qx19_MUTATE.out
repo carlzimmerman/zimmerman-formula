@@ -1,0 +1,30 @@
+QX19  one-action scorecard: AC2q + Pi^6 blend (b = X); v3s + blend (b = rho_DE)  [MUTATE]
+blend: Delta0 = max|f - q^2/2| = 0.2357; Delta1 = max|f' - q| = 0.6850; f'' in [0, 6.239] on [0,2]
+C4: f = q^2/2 on q >= 1: False; F = b^2 f(Sigma/b) = Sigma^2/2 there: False; dF/db = 0: False; moments f'(1) = 59906063/44610575, f(1) = 65641871/89221150
+C4: FRW has P = 0 so Sigma = 2X, q = Sigma/X = 2 (> 1); perturbations with |dSigma| < X and any dX keep q > 1 (|dq| <= |dSigma|/X + 2|dX|/X < 1 + small for linear modes)
+C4 FAIL FRW point q = 2 lies where F = gamma Sigma^2/2 exactly and independent of b: AC2q's FRW quadratic action unchanged (AC7 Q1 72/72 carries)
+C7 FAIL linear FRW operator unchanged, so AC23 PASS (HARMLESS, scoped, eps_phi <= 0.5) carries
+C6: f on [0, 1/2] = 15295488*q**4/8922115  (pure power: True, m = 4)
+C5 PASS f(0) = f'(0) = 0 exactly and f'' >= 0 (min 0) on 20001 points: convex, so AC21 T7 gives B >= s (PN sign carries AC17)
+C6 FAIL pure power q^4 near 0, m > d + 2 = 5 required (AC21 theorem); AC22 curved-2D C1/C2 PASS carries  [MUTATE-2: m = 4 must FAIL]
+C9 PASS layer stiffness F'' = gamma f'' in [0, 6.24 gamma]: positive and bounded, so no Gamma ~ k branch (AC7 Q2 carries)
+  [AC2q generic F] (dh)(dh) coefficients all zero = False; h*dh total-derivative form = True
+  [AC2q local F] (dh)(dh) coefficients all zero = True; h*dh total-derivative form = True
+  [v3s generic F] (dh)(dh) coefficients all zero = False; h*dh total-derivative form = True
+  [v3s local F] (dh)(dh) coefficients all zero = True; h*dh total-derivative form = True
+C1a FAIL generic F(Sigma): no (dh)^2 term, only total-derivative h dh terms, both models: c_T = c  [MUTATE-1: must FAIL]
+  C1b [AC2q/canonical]: max |m^2| over the layer = 3.382e-57 m^-2 (2142 points x 41 q); dv/c at 100 Hz = 3.849e-46
+  C1b [AC2q/alt]: max |m^2| over the layer = 5.616e-57 m^-2 (2142 points x 41 q); dv/c at 100 Hz = 6.393e-46
+  C1b [v3s/canonical]: max |m^2| over the layer = 1.681e-57 m^-2 (2142 points x 41 q); dv/c at 100 Hz = 1.914e-46
+  C1b [v3s/alt]: max |m^2| over the layer = 2.494e-57 m^-2 (2142 points x 41 q); dv/c at 100 Hz = 2.839e-46
+C1b PASS blend-layer tensor mass: dv/c inside GW170817 band (-3e-15, 7e-16), both models and footings
+C2 structure: dL/d(d_i Psi) = F'(Sigma) * C_i with C_i free of F: True; C_i at Psi = Phi = 0: [gamma_L*P0(x, y, z), gamma_L*P1(x, y, z), gamma_L*P2(x, y, z)]
+C2: dSigma/dPsi|_(Psi=0, explicit) = -4*dd0*P0(x, y, z) - 4*dd1*P1(x, y, z) - 4*dd2*P2(x, y, z) + 2*Derivative(P0(x, y, z), x) + 2*Derivative(P1(x, y, z), y) + 2*Derivative(P2(x, y, z), z)
+  C2 [AC2q/canonical]: worst blend slip (non-div / rho_tot, divergence deflection / g) = 7.32e-15
+  C2 [AC2q/alt]: worst blend slip (non-div / rho_tot, divergence deflection / g) = 1.17e-14
+  C2 [v3s/canonical]: worst blend slip (non-div / rho_tot, divergence deflection / g) = 7.32e-15
+  C2 [v3s/alt]: worst blend slip (non-div / rho_tot, divergence deflection / g) = 1.17e-14
+C2 PASS blend changes S_Psi by an F/F' part and a total divergence F'(Sigma) C_i; both < 1e-6 relative on AC9 T2b profiles
+C3 PASS Cassini: AC21 statics change <= 2e-05 (b = rho_DE; AC2q b = X <= rho_DE) on C6P margin 4.8e+07: margin stays 4.7999e+07 > 1; PPN gamma = beta = 1 at O(GM) carries (stiffness beyond O(GM), V3W W1)
+C8 PASS galaxy phantom change <= QX2 stiffness bound 5e-5 x max(1, max f'' = 6.24) = 3.12e-04 -> 1.35e-04 dex < 1e-3: QX8 exact-field SPARC PASS (0.0560 / 0.0558) carries
+LABELS: C4 FAIL, C7 FAIL, C5 CARRY, C6 FAIL, C9 CARRY, C1a FAIL, C1b CARRY, C2 CARRY, C3 CARRY, C8 CARRY  (MUTATE: C1a and C6 must FAIL)
