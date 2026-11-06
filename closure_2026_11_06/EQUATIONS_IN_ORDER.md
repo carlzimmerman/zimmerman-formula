@@ -137,3 +137,10 @@ With x = g/a0 and mu(x) = x/(1+x):
 - **PPN, c_T and lensing**: PDE-level statements, held as SYMPY/NUM. Lean certifies only their algebraic kernels (2.3, 6.3).
 - **Clusters, CMB-lensing shape, linear growth (AC2q has no dust), AGC 114905 and Malin 1**: outside this chain's passes.
   Their labels are in closure_2026_11_05/CLOSURE.md section 2.
+
+## Addendum 11-06 (QX17): the full covariant field equations
+
+The complete Euler-Lagrange set of v3s (metric equation with every stress tensor, khronon current, P constitutive law,
+multiplier) is in `QX17_covariant_field_equations/RESULT.md`. It is CERTIFIED against a direct sympy variation (residuals
+<= 1.2e-40, MUTATE fails). It is derived from the operative Legendre form P.A - W(K|P|). The printed J(Y) + independent-P
+form in §1 / PAPER68 decouples P if read literally (erratum on the printed form only; no number changes).
