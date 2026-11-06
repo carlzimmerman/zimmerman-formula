@@ -1,3 +1,31 @@
+# PF11 continuation handoff
+
+Read pf11/STATUS.md and FED_LAYER.md first. Base PF10 commit 0fcfd4afac.
+Positive feeding cannot activate a combined clock/boost layer from zero charge
+in the regular matched Einstein junction class. Native stress gives p=sigma/2;
+clock charge gives q=2a sigma/v. Outer current/stress identity plus Israel and
+outer Codazzi yield sigma sqrt(a)/v² constant. Zero incoming charge forces zero.
+The actual corrected proof passed independent review; seven symbolic checks
+and the computation manifest passed. No finite interior-current bound or upper
+r/boost bound is needed. Positive continuous clock speed suffices at birth.
+
+Do not re-open the scalar-only positive-feed route without changing a stated
+hypothesis. Remaining work: compactness/trace propagation through breakdown,
+or an actual native singular continuation violating the retained class with
+the same incoming data. The theorem retains regular Einstein geometry and
+outer side fluxes, strong Pi/clock matching, cap and lower-clock bounds, finite
+stress, identified bulk limits and zero initial slice charge. A bounded shared
+smooth prebreak slice supplies zero charge only when the approximation and
+side balances connect it to the layer interval. A pre-existing nonzero sheet
+is not a continuation counterexample.
+
+Universal singular nonexistence, unique native outgoing selection, and necessity
+of new physical action terms remain unproved. PF11 eliminates the proposed
+fed-sheet repair, not every conceivable weak solution. Proof hashes and source
+normalization check are in pf11. Earlier checkpoints remain historical below.
+
+---
+
 # PF10 continuation handoff
 
 Read pf10/STATUS.md first. The original singular-selection target is still

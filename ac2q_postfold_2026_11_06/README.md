@@ -1,16 +1,21 @@
-# AC2q post-fold investigation — PF10 combined-layer checkpoint, 2026-11-06
+# AC2q post-fold investigation — PF11 coupled-layer checkpoint, 2026-11-06
 
-**Current result:** the combined clock/boost stress construction fails the
-full scalar equation in the matched finite-current regular-interface class.
-A separate small-kinetic branch barrier rules out reaching its high-clock
-component through an everywhere-hyperbolic smooth layer. General singular
-continuation and unique selection remain open; unavoidable new physics is not
-proved.
+**Current result:** a positively fed combined clock/boost sheet cannot grow
+from zero initial charge in the regular matched Einstein-interface class.
+Coupled scalar and energy conservation close this PF10 escape without assuming
+finite interior-current variation. General singular native continuation and
+unique selection remain open; universal necessity of new physics is not proved.
 
-[PF10 result, hypotheses and remaining gap](pf10/STATUS.md) ·
-[Full-current exclusion](pf10/COMBINED_CURRENT_EXCLUSION.md) ·
-[Independent audit](pf10/review/COMBINED_CURRENT_AUDIT.md) ·
-[Restricted branch barrier](pf10/BRANCH_BARRIER.md)
+[PF11 result and exact limits](pf11/STATUS.md) ·
+[Coupled balance proof](pf11/FED_LAYER.md) ·
+[Independent audit](pf11/review/FED_LAYER_AUDIT.md)
+
+## PF10: full-current exclusion and positive-feed question
+
+The finite-current matched-layer exclusion, restricted hyperbolicity barrier,
+and scalar-only positive-feed condition are preserved in
+[PF10 status](pf10/STATUS.md). PF11 resolves the positive-feed mechanism in the
+regular matched Einstein junction class with zero incoming slice charge.
 
 ## PF09: native coupled breakdown
 
