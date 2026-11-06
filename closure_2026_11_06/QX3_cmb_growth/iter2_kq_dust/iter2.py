@@ -57,27 +57,35 @@ def growth_ratio(M, ob, od, H0, mus, kgrid, zgrid):
     Hz = lambda z: math.exp(np.interp(math.log(1 / (1 + z)), lna_t, lnH_t))
     H0c = M.Hubble(0.0)
     ai = 1 / 3401.0; adec = 1 / 1091.0
-    def rhs_factory(k, mu):
-        def rhs(lna, y):
-            a = math.exp(lna); z = 1 / a - 1; H = Hz(z); E2 = (H / H0c) ** 2
+    lnz = np.log(1 / (1 + np.asarray(zgrid))); order = np.argsort(lnz); kv = np.asarray(kgrid); nk = len(kv)
+    def solve(mu):
+        """vectorised over k: implicit midpoint (A-stable, amplitude-preserving) on a fixed ln a grid that contains the output
+        epochs; same linear equations as the frozen text."""
+        grid = np.unique(np.concatenate([np.linspace(math.log(ai), 0.0, 6001), lnz]))
+        y = np.zeros((nk, 4)); y[:, 0] = ai; y[:, 1] = ai
+        rec = {}; tset = {float(x): i for i, x in enumerate(lnz)}
+        I4 = np.eye(4)[None, :, :]
+        def Amat(lna):
+            a = math.exp(lna); E2 = math.exp(2 * np.interp(lna, lna_t, lnH_t)) / H0c**2; dl = float(np.interp(lna, lna_t, dlnH_t))
+            Od = Om_d0 * a**-3 / E2; Ob = Om_b0 * a**-3 / E2; on = a > adec
+            jeans = 0.0 if mu is None else (kv / (a * mu)) ** 2
+            A = np.zeros((nk, 4, 4)); A[:, 0, 1] = 1; A[:, 1, 0] = 1.5 * Od * (1 - jeans); A[:, 1, 1] = -(2 + dl)
+            if on:
+                A[:, 1, 2] = 1.5 * Ob; A[:, 2, 3] = 1; A[:, 3, 0] = 1.5 * Od; A[:, 3, 2] = 1.5 * Ob; A[:, 3, 3] = -(2 + dl)
+            return A
+        for n in range(len(grid) - 1):
+            h_ = grid[n + 1] - grid[n]; A = Amat(0.5 * (grid[n] + grid[n + 1]))
+            y = np.linalg.solve(I4 - 0.5 * h_ * A, ((I4 + 0.5 * h_ * A) @ y[:, :, None]))[:, :, 0]
+            t = float(grid[n + 1])
+            if t in tset: rec[tset[t]] = y.copy()
+        out = np.empty((nk, len(zgrid)))
+        for jz in range(len(zgrid)):
+            yy = rec[jz]; a = 1 / (1 + zgrid[jz]); E2 = math.exp(2 * np.interp(math.log(a), lna_t, lnH_t)) / H0c**2
             Od = Om_d0 * a**-3 / E2; Ob = Om_b0 * a**-3 / E2
-            dlnH = float(np.interp(lna, lna_t, dlnH_t))
-            dd, ddp, db, dbp = y
-            jeans = 0.0 if mu is None else (k / (a * mu)) ** 2
-            src_d = 1.5 * (Od * dd * (1 - jeans) + (Ob * db if a > adec else 0.0))
-            src_b = 1.5 * (Od * dd + Ob * db) if a > adec else 0.0
-            return [ddp, src_d - (2 + dlnH) * ddp, dbp, (src_b - (2 + dlnH) * dbp) if a > adec else 0.0]
-        return rhs
-    lnz = np.log(1 / (1 + np.asarray(zgrid)))
-    order = np.argsort(lnz)
-    def dm(k, mu):
-        s = solve_ivp(rhs_factory(k, mu), (math.log(ai), 0.0), [ai, ai, 0.0, 0.0], t_eval=lnz[order], rtol=1e-6, atol=1e-12,
-                      method='LSODA')
-        out = np.empty(len(zgrid)); a = np.exp(s.t); E2 = np.array([(Hz(1 / x - 1) / H0c) ** 2 for x in a])
-        Od = Om_d0 * a**-3 / E2; Ob = Om_b0 * a**-3 / E2
-        out[order] = (Od * s.y[0] + Ob * s.y[2]) / (Od + Ob); return out
-    ref = np.array([dm(k, None) for k in kgrid])
-    return {mu: np.array([dm(k, mu) for k in kgrid]) / ref for mu in mus}
+            out[:, jz] = (Od * yy[:, 0] + Ob * yy[:, 2]) / (Od + Ob)
+        return out
+    ref = solve(None)
+    return {mu: solve(mu) / ref for mu in mus}
 
 def limber_ratio(M, H0, kgrid, zgrid, R):
     """S(L) = C_L^Limber[P R^2] / C_L^Limber[P], P = CLASS linear, weights (chi*-chi)/(chi chi*), (1+z)^2 Omega_m^2 constants cancel."""

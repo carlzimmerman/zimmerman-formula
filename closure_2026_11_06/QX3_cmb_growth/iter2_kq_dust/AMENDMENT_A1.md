@@ -10,3 +10,10 @@ Changes, nothing else:
   never a model or verdict input, as in CFG917's K tests) must give X/FFP10 within 10 % at L = 10, 40, 100 and 400.
   If it does not, G1 is NO VERDICT.
 Lines, gates and labels are unchanged.
+
+## A1b (numerics only, before any G2 number)
+
+The growth ODE is integrated vectorised over k with implicit midpoint on a fixed 6001-step ln a grid (plus the output epochs).
+This replaces per-k LSODA, which was too slow on deep sub-Jeans modes. K2 test run: R at mu = 1e6 deviates by at most 2.2e-4
+(line 1e-3). Deep sub-Jeans modes (k/(a mu) > ~180) have unresolved phases. Their amplitude stays bounded at its generous
+initial value, so this does not tighten mu_min.
