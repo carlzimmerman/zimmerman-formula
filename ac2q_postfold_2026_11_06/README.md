@@ -1,16 +1,21 @@
-# AC2q post-fold investigation — PF12 terminal-trace checkpoint, 2026-11-06
+# AC2q post-fold investigation — PF13 weak-form checkpoint, 2026-11-06
 
-**Current result:** the breaking packet retains compact field values,
-Lipschitz polarization, controlled incoming metric derivatives, and unique
-BV clock-gradient traces at its first strong endpoint. Its incoming sheet
-charge is zero. These are terminal-data results, not a postbreak evolution.
-A merely rough bounded-positive clock cannot rescue the fed sheet; small
-regular acoustic shocks are also excluded in the stated low-kinetic range.
-General native singular continuation and unique selection remain open.
+**Current result:** a bounded variational weak formulation is now explicit
+and independently checked; it avoids the differentiated solver's undefined
+jump products. Existence and unique native continuation are still unproved.
+The naive auxiliary-inverse-as-source route fails a local forcing-path test;
+a standard entropy theorem has not been shown applicable. The prior strong
+breakdown and regular shock/sheet exclusions remain intact.
 
-[PF12 result and precise gap](pf12/STATUS.md) ·
-[Terminal-trace derivation](pf12/review/TERMINAL_TRACE_AUDIT.md) ·
-[Weak-continuation obligation](pf12/WEAK_CONTINUATION_GAP.md)
+[PF13 result and remaining theorem](pf13/STATUS.md) ·
+[Direct weak equations](pf13/BOUNDED_WEAK_FORM.md) ·
+[Independent audit](pf13/review/WEAK_FORM_AUDIT.md)
+
+## PF12: controlled incoming terminal data
+
+The breaking packet has compact fields, Lipschitz polarization, controlled
+metric derivatives and unique BV clock-gradient terminal traces. These are
+incoming results, not postbreak evolution. See [PF12 status](pf12/STATUS.md).
 
 ## PF11: coupled surface balance
 

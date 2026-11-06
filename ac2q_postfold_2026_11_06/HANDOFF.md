@@ -1,3 +1,32 @@
+# PF13 continuation handoff
+
+Read pf13/STATUS.md and BOUNDED_WEAK_FORM.md first. Research base a038c807c9.
+A direct boundary-reduced EL–KKT weak system is now defined for Lipschitz
+phi,A,Pi, BV clock gradient, compact domain and regular Einstein geometry.
+Its products are bounded a.e.; no expanded R nr or derivative-measure products
+need be assigned. All Einstein equations remain imposed. This is a definition
+and derivation, not existence, uniqueness, or equivalence to every singular
+interpretation of the original higher-derivative action.
+
+The on-branch scalar has conservative variables (m,phi_x), locally invertible
+on the positive-R subluminal domain, but the auxiliary/metric coefficients and
+temporal auxiliary source are not a closed prescribed source map. Actual
+Colombo–Guerra theorem hypotheses were checked; no AC2q application is proved.
+A local collapsing (r,theta) loop has nonzero integral f(r)dtheta despite the
+same L1 lower-field limit. This blocks a naive claim that the differentiated
+inverse forcing is L1-Lipschitz on unrestricted BV profiles. It is NOT a native
+spacetime or periodic-data counterexample, and does not prove every reformulation
+fails. Three analytic audits and seven exact algebra checks are recorded.
+
+The remaining target is a native existence/nonexistence and selection theorem
+for the explicit full weak system from PF12 terminal data. A conservative
+coupled reformulation, stronger dynamic compactness, or direct nonexistence
+proof is needed. Concentration classes outside the bounded system also remain
+open. Do not infer native nonuniqueness from forcing paths, arbitrary products,
+or two external regularizers. No universal new-physics necessity is established.
+
+---
+
 # PF12 continuation handoff
 
 Read pf12/STATUS.md and review/TERMINAL_TRACE_AUDIT.md first. Research base
