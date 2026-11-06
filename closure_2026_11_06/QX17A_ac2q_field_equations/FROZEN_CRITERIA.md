@@ -1,8 +1,8 @@
-# QX18_ac2q_field_equations: FROZEN CRITERIA (committed alone, before any script)
+# QX17A_ac2q_field_equations: FROZEN CRITERIA (committed alone, before any script)
 
 Owner 11-06 "keep grinding on it", after QX17 (full covariant equations of v3s, CERTIFIED). This lane does the same for the
 **AC2q candidate** (AC7 b0d44a6952; not adopted). Adopts nothing. kappa = 1/2 FITTED. Not theory closed.
-Lane id checked free (`ls closure_2026_11_06 | grep QX18`, `git log --all | grep QX18`: empty).
+Lane id: first committed as QX18 (1b39bcb871), which collided with the parallel QX18_elliptical_gate lane; renamed to QX17A before any script (`ls`, `git log --all | grep QX17A`: empty). Criteria text otherwise unchanged.
 
 ## Action (AC7; c = 1, K = 4 pi G, Mpl^2 = 1/(8 pi G))
 
