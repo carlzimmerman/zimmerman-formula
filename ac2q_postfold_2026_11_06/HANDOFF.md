@@ -1,3 +1,34 @@
+# PF14 continuation handoff
+
+Read pf14/STATUS.md first. Research base 857b7495d1. Conditional full weak
+sequential closure now passes: uniform auxiliary Lipschitz/field convergence,
+strong clock-gradient compactness (uniform spacetime BV for the declared class),
+strong C1 metrics and retention of the limit curvature class suffice. The native
+Jacobian source is weakly continuous; full-switch KKT passes with strong Q and
+bounded weak multiplier. This is not an existence construction.
+
+Auxiliary fields are unique for prescribed clock/geometry, including the switch.
+On branch near homogeneous data, they exist for measurable/BV prescribed profiles
+and satisfy uniform L1→L∞ stability; L1-Lipschitz time input yields jointly
+Lipschitz auxiliary fields. That postbreak time input is unproved.
+
+In the compact positive-R on-branch low-u neighborhood (including frozen A and
+metric coefficients), all small BV clock-gradient jumps are excluded. No smooth
+interface or Pi derivative trace is needed: bounded native Jacobian, weak
+Bianchi in C1∩W2,1, approximate-jump RH and exact constitutive convexity suffice.
+Continuous/Cantor BV variation remains outside this exclusion.
+
+The PF13 one-time derivative-forcing loop is not an arbitrary native spacetime
+source and not evidence of native nonuniqueness. Remaining target: construct
+or exclude a coupled no-jump weak evolution from terminal data and prove
+selection; or analyze noncompact limits outside this bounded class. Do not infer
+full temporal uniqueness from instantaneous auxiliary uniqueness or closedness
+of the equations under a conditional convergence. No universal extension verdict.
+Four analytic review/reconstruction records and checked source normalization are
+in pf14. No new numerical evolution or physical regularizer was introduced.
+
+---
+
 # PF13 continuation handoff
 
 Read pf13/STATUS.md and BOUNDED_WEAK_FORM.md first. Research base a038c807c9.

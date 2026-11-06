@@ -1,15 +1,23 @@
-# AC2q post-fold investigation — PF13 weak-form checkpoint, 2026-11-06
+# AC2q post-fold investigation — PF14 native-compactness checkpoint, 2026-11-06
 
-**Current result:** a bounded variational weak formulation is now explicit
-and independently checked; it avoids the differentiated solver's undefined
-jump products. Existence and unique native continuation are still unproved.
-The naive auxiliary-inverse-as-source route fails a local forcing-path test;
-a standard entropy theorem has not been shown applicable. The prior strong
-breakdown and regular shock/sheet exclusions remain intact.
+**Current result:** the native Jacobian source has a fixed limit in the
+bounded compactness class, so the differentiated forcing loop is not a free
+native source. Auxiliary reconstruction is unique, with local existence and
+L1 stability on branch. Small BV clock-gradient jumps are excluded in the
+stated regular low-kinetic neighborhood. Full coupled postbreak existence and
+uniqueness remain open; these results do not prove an extension necessary.
 
-[PF13 result and remaining theorem](pf13/STATUS.md) ·
-[Direct weak equations](pf13/BOUNDED_WEAK_FORM.md) ·
-[Independent audit](pf13/review/WEAK_FORM_AUDIT.md)
+[PF14 result and exact scope](pf14/STATUS.md) ·
+[Native compactness](pf14/NATIVE_COMPACTNESS.md) ·
+[Auxiliary reconstruction](pf14/review/AUXILIARY_RECONSTRUCTION.md) ·
+[BV jump exclusion](pf14/BV_JUMP_EXCLUSION.md)
+
+## PF13: direct weak formulation
+
+A bounded first-order variational weak system is defined with all Einstein
+equations retained. The differentiated inverse has a one-time forcing-path
+obstruction, not a demonstrated native spacetime ambiguity. See
+[PF13 status](pf13/STATUS.md); PF14 narrows its interpretation.
 
 ## PF12: controlled incoming terminal data
 
