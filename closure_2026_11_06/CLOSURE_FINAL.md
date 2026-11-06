@@ -45,6 +45,7 @@ MUTATE twin.
 | Nonlinear fold (full grid) | RUNNING | AC14 |
 | Moving Sun, nonlinear halo | RUNNING | AC15 |
 | Constraint causality | RUNNING | AC18 |
+| ONE-ACTION SCORECARD: AC2q + Pi^6 blend (b = X), v3s column b = rho_DE | All 10 carries PROVED (c_T for generic F, layer tensor mass <= 5.8e-46, slip <= 5.9e-15, Cassini margin, FRW exact at q = 2, convex PN sign, m = 6 > 5, slow roots, SPARC 1.4e-4 dex, galaxy linear health): the one action PASSES galaxies / Solar System / GW / lensing / PN / well-posedness / FRW / slow roots, and FAILS FG1 tilt (canonical), X-ray ellipticals, clusters, CMB, AGC 114905, Malin 1, FN6. Not adopted | QX19 e2f938cdfc (criteria d65980ffcd) |
 | kappa | FITTED; Lean proves it is not derivable from the premises | KAPPA_LOGIC_2026_10_20 |
 | a0(z), wide binaries | Wait on data (ALMA proposal-class sample, Gaia DR4 around 12-02) | AT2, prep_2026 |
 
