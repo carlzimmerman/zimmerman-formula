@@ -1,0 +1,162 @@
+{
+ "mode": "main",
+ "labels": {
+  "3": {
+   "a": "FAIL (Lipschitz only: velocity-slope jump at the switch label for t > 0)",
+   "b": "CHANGED",
+   "repair": false
+  },
+  "4": {
+   "a": "PASS (1D C1)",
+   "b": "CHANGED",
+   "repair": false
+  }
+ },
+ "checks": {
+  "Pa_n2": true,
+  "Pb_n2": true,
+  "Pa_n3": true,
+  "Pb_n3": true,
+  "Pa_n4": true,
+  "Pb_n4": true,
+  "Pb_n3_burgers": true,
+  "Pc_n3_kink": true,
+  "Pc_n3_tinv": "True",
+  "Pc_n4_smooth": true,
+  "Pc_n4_tinv": "True",
+  "Pc_control_n2_sqrt2": true
+ },
+ "results": {
+  "Pa_jump_n2": "-c1*gamma_n",
+  "Pb_n2": {
+   "p": "Pi**2*gamma_n/2",
+   "c2": "Pi*gamma_n",
+   "w": "2*sqrt(Pi)*sqrt(gamma_n)",
+   "Pi_dw": "sqrt(Pi)*sqrt(gamma_n)",
+   "dFp_dw": "sqrt(Pi)*sqrt(gamma_n)",
+   "k": "1/2"
+  },
+  "Pa_jump_n3": "0",
+  "Pb_n3": {
+   "p": "2*Pi**3*gamma_n/3",
+   "c2": "2*Pi**2*gamma_n",
+   "w": "sqrt(2)*Pi*sqrt(gamma_n)",
+   "Pi_dw": "sqrt(2)*Pi*sqrt(gamma_n)",
+   "dFp_dw": "sqrt(2)*Pi*sqrt(gamma_n)",
+   "k": "1"
+  },
+  "Pa_jump_n4": "0",
+  "Pb_n4": {
+   "p": "3*Pi**4*gamma_n/4",
+   "c2": "3*Pi**3*gamma_n",
+   "w": "2*sqrt(3)*Pi**(3/2)*sqrt(gamma_n)/3",
+   "Pi_dw": "sqrt(3)*Pi**(3/2)*sqrt(gamma_n)",
+   "dFp_dw": "sqrt(3)*Pi**(3/2)*sqrt(gamma_n)",
+   "k": "3/2"
+  },
+  "numerics": {
+   "2": [
+    {
+     "N": 400,
+     "Dvx": 0.02226016025641553,
+     "t_inv": 0.20900000000000085
+    },
+    {
+     "N": 800,
+     "Dvx": 0.0804064081008028,
+     "t_inv": 0.1474999999999979
+    },
+    {
+     "N": 1600,
+     "Dvx": 0.33601750309294975,
+     "t_inv": 0.10437500000000197
+    },
+    {
+     "N": 3200,
+     "Dvx": 1.5246620703077862,
+     "t_inv": 0.07362500000000119
+    }
+   ],
+   "3": [
+    {
+     "N": 400,
+     "Dvx": -0.095003486134237,
+     "t_inv": 0.7805000000000117
+    },
+    {
+     "N": 800,
+     "Dvx": -0.09536118469547646,
+     "t_inv": 0.7527499999999947
+    },
+    {
+     "N": 1600,
+     "Dvx": -0.09545086658888442,
+     "t_inv": 0.7355000000000259
+    },
+    {
+     "N": 3200,
+     "Dvx": -0.09547330318352945,
+     "t_inv": 0.7120625000000254
+    }
+   ],
+   "4": [
+    {
+     "N": 400,
+     "Dvx": -0.008956841549378218,
+     "t_inv": 0.9575000000000184
+    },
+    {
+     "N": 800,
+     "Dvx": -0.004495653211313048,
+     "t_inv": 0.9552500000000024
+    },
+    {
+     "N": 1600,
+     "Dvx": -0.0022497206140222434,
+     "t_inv": 0.9308750000000333
+    },
+    {
+     "N": 3200,
+     "Dvx": -0.0011250310682313063,
+     "t_inv": 0.9218750000000333
+    }
+   ]
+  },
+  "pred_n3": {
+   "dvx": -0.1005025125628141,
+   "t_inv": 0.7071067811865475
+  },
+  "control_n2_ratios": [
+   1.4169491525423987,
+   1.4131736526945642,
+   1.4176570458404112
+  ],
+  "Pd": {
+   "3": {
+    "rel_change_L_eff": {
+     "floor_globular_minDP_inside_Lstar": 0.0,
+     "cassini_min_canonical": -0.7441168421404205,
+     "cassini_min_alt": -0.728320917607697,
+     "sun_canonical": -0.2705187753321837,
+     "sun_alt": -0.21775658398119968,
+     "NGC2419_inside_Lstar": 4.455447255899809
+    },
+    "worst": 4.455447255899809,
+    "label": "CHANGED"
+   },
+   "4": {
+    "rel_change_L_eff": {
+     "floor_globular_minDP_inside_Lstar": 0.0,
+     "cassini_min_canonical": -0.9345238095238095,
+     "cassini_min_alt": -0.9261904761904762,
+     "sun_canonical": -0.46785714285714297,
+     "sun_alt": -0.38809523809523816,
+     "NGC2419_inside_Lstar": 28.76190476190476
+    },
+    "worst": 28.76190476190476,
+    "label": "CHANGED"
+   }
+  }
+ },
+ "note": "kappa = 1/2 FITTED; not theory closed"
+}
