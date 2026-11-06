@@ -1,5 +1,14 @@
 # Joint-model continuation: pool speed calculation; coefficient unresolved
 
+Latest checkpoint: joint_phase/FINITE_HALO_RESULT.md finds that a smooth,
+stationary impermeable boundary with annihilation requires net cooling:
+H_net(R)=-K n(R)^2 kB T(R)<0. The prior heating-only completion therefore has
+no such finite equilibrium to test for stability. Capture/thermalization need
+unselected optical-depth and rate hierarchies. Constant vacuum supplies no
+local transfer power; phase conversion retains an independent rate and finite
+reservoir.12 exact checks pass; compression-omission control fails one intended
+check. No finite stable halo, luminosity-vacuum selector or1/2 is established.
+
 Latest checkpoint: joint_phase/TRANSPORT_CAPTURE_RESULT.md derives portal-based
 single-scatter capture conditions and a conditional annihilating-fluid outer
 balance n~r^-2,u~r^-1,T~constant. It includes exact finite-inertia/energy residuals,
