@@ -12,3 +12,11 @@ reconstructs an input; it fits nothing in the grade.
 - K4's line is unchanged (3 % at the Table radii, thin ring-sum). If K4 still fails, Malin 1 gets no
   iteration-1 label.
 - AGC 114905 is unaffected (its Sigma forms are published).
+
+## A2 (POST-RESULT, after the iteration-1 quick run): no annulus beyond the plotted range, reported alongside A1
+
+The quick run shows that A1's NNLS places most of the gas mass (total 3.4e11 Msun) in annuli between the last plotted
+radius (98.4 kpc) and 200 kpc, where the plotted curve does not constrain it. That mass changes the nonlinear field
+inside 98 kpc. A2 restricts the annuli to [0.3, 98.4] kpc, which means no mass beyond the plot (the same as a
+Keplerian extension). It was written after seeing A1's quick chi2 (54.1 / 42.2, NOT RESCUED). It is therefore
+labelled post-result. Both are reported, and Malin 1's iteration-1 label is given only if A1 and A2 agree.
