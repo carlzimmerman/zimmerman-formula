@@ -1,0 +1,34 @@
+AL2 main; criteria c3ea324663; diagnosis only, no V_c from a modified start, nothing scored; kappa = 1/2 FITTED; not theory closed
+R0 cutout sha256 61f147499c28123e -> MATCHES the release cutout
+    file U4_28473_spw25_cut.fits sha256 61f147499c28123e; OBJECT UDS28473; pix 0.0150", beam 0.105x0.087", dv 6.0, sigma/ch 0.132 mJy/beam, line covered True, shift +0
+    G1 frozen (moment-0, selection-aware): S 0.5550 Jy km/s, S/N 14.89, offset 0.079", z 2.52388 -> PASS
+    G1-3D (addendum, decides): S 0.7183 Jy km/s in 69727 voxels, S/N 24.11 (null mean 0.0082, sd 0.0138, mask-sum noise 0.0295, null nonzero 0.34), z 2.52253 -> PASS
+    1" radius aperture flux 0.538 +- 0.175 Jy km/s against published 0.79 +- 0.08; 3 sigma limit 0.525; measured noise, single-channel, scaled: 0.102 mJy/beam at 10 km/s (the archive's listed figure can differ: 3.7 x higher on the validation cube)
+    flux check: measured/published 0.91; a thresholded 3D mask misses faint flux, so also: moment-0 mask 0.555, 1" aperture 0.538
+    moment-0 q 0.812 -> i 36.6; Tadaki q4.4 0.55 -> i 58.5; initial PA 111, vsys -29, amp 87
+    thin-disc fit [incl-mom0, i 36.6]: V_f 181, R_t 1.75 kpc, sigma0 47, h 0.113"; G2 PASS (90% flux radius 4.14 kpc), at 3.00 kpc: V_c P-B 169 +- nan, P0 120 +- nan; chi2/N 0.936; start spread 1.13; at bound []; FIT NOT CONSTRAINED: not scored
+    thin-disc fit [incl-Tadaki, i 58.5]: V_f 121, R_t 1.78 kpc, sigma0 48, h 0.123"; G2 PASS (90% flux radius 4.94 kpc), at 3.00 kpc: V_c P-B 146 +- nan, P0 79 +- nan; chi2/N 0.936; start spread 1.15; at bound []; FIT NOT CONSTRAINED: not scored
+R1 incl-mom0: I0 0, max rel diff from release 0.00e+00, trial chi2 [2626595.68, 2626595.68, 2626595.68] -> REPRODUCED
+R1 incl-Tadaki: I0 0, max rel diff from release 0.00e+00, trial chi2 [2626595.68, 2626595.68, 2626595.68] -> REPRODUCED
+R2 call 0 (i 36.6, vf0 146): replay == frozen True; start cost 2657617.54, zero-model cost 2626595.68 (start - zero +31021.86); I0 -> 0 at step 0 (cost 2657617.54 -> 2626595.68; unclipped I0 -0.003224); steps 2, status 2
+      accepted steps: [-1] cost 2657617.5 I0 0.1276 vsys -29 vf 146 s0 40 h 0.094; [0] cost 2626595.7 I0 0 vsys -19 vf 181 s0 47 h 0.113
+R2 call 1 (i 36.6, vf0 300): replay == frozen True; start cost 2655276.43, zero-model cost 2626595.68 (start - zero +28680.75); I0 -> 0 at step 0 (cost 2655276.43 -> 2626595.68; unclipped I0 -0.007807); steps 2, status 2
+      accepted steps: [-1] cost 2655276.4 I0 0.1276 vsys -29 vf 300 s0 40 h 0.094; [0] cost 2626595.7 I0 0 vsys -9 vf 369 s0 54 h 0.118
+R2 call 2 (i 36.6, vf0 500): replay == frozen True; start cost 2649496.79, zero-model cost 2626595.68 (start - zero +22901.11); I0 -> 0 at step 0 (cost 2649496.79 -> 2626595.68; unclipped I0 -0.009495); steps 2, status 2
+      accepted steps: [-1] cost 2649496.8 I0 0.1276 vsys -29 vf 500 s0 40 h 0.094; [0] cost 2626595.7 I0 0 vsys -2 vf 538 s0 59 h 0.120
+R2 call 3 (i 58.5, vf0 102): replay == frozen True; start cost 2642593.34, zero-model cost 2626595.68 (start - zero +15997.66); I0 -> 0 at step 0 (cost 2642593.34 -> 2626595.68; unclipped I0 -0.01484); steps 2, status 2
+      accepted steps: [-1] cost 2642593.3 I0 0.1276 vsys -29 vf 102 s0 40 h 0.094; [0] cost 2626595.7 I0 0 vsys -17 vf 121 s0 48 h 0.123
+R2 call 4 (i 58.5, vf0 300): replay == frozen True; start cost 2640110.99, zero-model cost 2626595.68 (start - zero +13515.30); I0 -> 0 at step 0 (cost 2640110.99 -> 2626595.68; unclipped I0 -0.02422); steps 2, status 2
+      accepted steps: [-1] cost 2640111.0 I0 0.1276 vsys -29 vf 300 s0 40 h 0.094; [0] cost 2626595.7 I0 0 vsys 7 vf 360 s0 64 h 0.132
+R2 call 5 (i 58.5, vf0 500): replay == frozen True; start cost 2635354.12, zero-model cost 2626595.68 (start - zero +8758.43); I0 -> 0 at step 0 (cost 2635354.12 -> 2626595.68; unclipped I0 -0.01906); steps 2, status 2
+      accepted steps: [-1] cost 2635354.1 I0 0.1276 vsys -29 vf 500 s0 40 h 0.094; [0] cost 2626595.7 I0 0 vsys -13 vf 452 s0 82 h 0.134
+R3 call 0: cost start +31021.86 vs zero model; I0 start 0.1276 vs flux-implied 0.1666 (x0.77); vsys start -29 vs 3D -172; I0 -> flux-implied: +57966.15; vsys -> 3D centroid: +29313.55; both: +55736.10
+R3 call 1: cost start +28680.75 vs zero model; I0 start 0.1276 vs flux-implied 0.1666 (x0.77); vsys start -29 vs 3D -172; I0 -> flux-implied: +53069.12; vsys -> 3D centroid: +21018.40; both: +43066.53
+R3 call 2: cost start +22901.11 vs zero model; I0 start 0.1276 vs flux-implied 0.1666 (x0.77); vsys start -29 vs 3D -172; I0 -> flux-implied: +42877.56; vsys -> 3D centroid: +9235.74; both: +25038.49
+R3 call 3: cost start +15997.66 vs zero model; I0 start 0.1276 vs flux-implied 0.2558 (x0.50); vsys start -29 vs 3D -172; I0 -> flux-implied: +83569.85; vsys -> 3D centroid: +15837.10; both: +83247.93
+R3 call 4: cost start +13515.30 vs zero model; I0 start 0.1276 vs flux-implied 0.2558 (x0.50); vsys start -29 vs 3D -172; I0 -> flux-implied: +68064.06; vsys -> 3D centroid: +5537.22; both: +52068.06
+R3 call 5: cost start +8758.43 vs zero model; I0 start 0.1276 vs flux-implied 0.2558 (x0.50); vsys start -29 vs 3D -172; I0 -> flux-implied: +48905.28; vsys -> 3D centroid: -2117.86; both: +27098.34
+R4 continuum residual in r<=1" (line-free channels) -0.002 sigma; lag-1 channel autocorrelation off source +0.243; fit voxels |D| > 4 sigma 0.0000; peak voxel 4.9 sigma
+collapsing step: unclipped I0 -0.003224 clipped to 0, lam 0.001, accepted because zero-model cost 2626595.68 < current 2657617.54
+T0 frozen files unchanged: True
+peak RSS 3457 MB; 91 s
