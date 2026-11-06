@@ -26,7 +26,7 @@ The owner approved the data download in chat on 11-06.
 | Cell C2 (1.47, 3.5) | +0.27 | +0.28 | <= 4 | **PASS** |
 | Cell C3 (8.25, 5.625) | +5.95 | +6.03 | 4-25 | **TENSION** |
 | Cell C4 (2.15, 3.75) | +0.57 | +0.58 | <= 4 | **PASS** |
-| MUTATE M-A (p = 0, smooth sector) | see qx15_MUTATE.out | | > 25 FAIL required | see below |
+| MUTATE M-A (p = 0, smooth sector; CLASS) | +35,081 | +34,937 | > 25 FAIL required | FAIL, **bites** (fits sit on the n_s = 1.3 bracket edge; any fit they could reach is far worse) |
 
 Best fits:
 - canonical: h 0.6741, omega_b 0.02236, omega_d 0.1209, ln(1e10 A_s) 3.062, n_s 0.9674, tau 0.063.
