@@ -1,0 +1,42 @@
+AL4 summary; criteria 31e5110862 (origin 8551af59dd); G4 filed 8ff85f806e; MOCK only, NOT ALMA DATA; kappa = 1/2 FITTED; one disc excludes no model; not theory closed
+[PASS] all jobs present 92 jobs
+[PASS] T0 frozen + AL3 files unchanged in every job and now 
+[PASS] K0 AL3 writer with options off = frozen writer 57413f245ebf3504 vs 57413f245ebf3504
+[PASS] K1 (a)-(d) and V3 cubes = AL3's sha256 36 cubes, 0 differ []
+[PASS] T1 every G4 run on a detected cube: 6 G4 main fits, all final I0 > 0 72 runs, 246 fits logged, 0 wrong count, 0 with I0 <= 0
+
+--- C collapse calibration (frozen fitter only; class e = a + c with R_e x f) ---
+f = 2: detected 6/6; primary I0 = 0 in seeds []; primary I0 [0.056449, 0.031527, 0.043134, 0.0461, 0.043995, 0.045653]
+f = 3: detected 6/6; primary I0 = 0 in seeds []; primary I0 [0.028523, 0.023923, 0.016485, 0.016646, 0.022299, 0.035756]
+f = 4: detected 3/6; primary I0 = 0 in seeds []; primary I0 [0.032962, 0.018313, None, 0.006955, None, None]
+[FAIL] C some f in {2,3,4} collapses (smallest chosen) chosen f = None
+
+--- V1 no regression (G4 on) ---
+[PASS] V1 selftest: all checks PASS noise: frozen G1 fails:P, noise: G1-3D fails:P, bright: G1-3D passes:P, noise-limited mock not forced: bright fit scored:P, bright: V_c within 15% on the Tadaki P-B branch:P, bright: flux within 30%:P, bright: injection within 15%:P, bright: V_c 430 reads FLOOR on lg M* 11.31, S1 (stars exceed):P, MUTATE: frozen G1 and G1-3D both fail:P, tension: V_c 300 reads FLOOR on lg M* 11.31, S2:P
+archive     realistic: detected 0/6; primary valid 0/6 (G2 0/6); Tadaki P-B RMS n/a -> PASS
+archive     compact  : detected 5/6; primary valid 3/6 (G2 3/6); Tadaki P-B RMS 0.0819 (G2 0.0900) -> PASS
+archive     noise    : detected 0/6; primary valid 0/6 (G2 0/6); Tadaki P-B RMS n/a -> PASS
+sister-like realistic: detected 6/6; primary valid 6/6 (G2 6/6); Tadaki P-B RMS 0.0257 (G2 0.0257) -> PASS
+sister-like compact  : detected 6/6; primary valid 6/6 (G2 6/6); Tadaki P-B RMS 0.0221 (G2 0.0222) -> PASS
+sister-like noise    : detected 0/6; primary valid 0/6 (G2 0/6); Tadaki P-B RMS n/a -> PASS
+[PASS] V1 selftest + suites: valid counts >= G2, Tadaki P-B RMS <= G2 + 0.02 
+
+--- V2 recovery (a, c, e) and refusal (b, d), G4 on ---
+(a) offset -172       : detected 6/6; G4 primary valid 6/6; V_c P-B [438, 435, 420, 432, 422, 427]; median |V/truth-1| 0.015, |V/430-1| 0.015 -> PASS; rho1 [-0.003, -0.005, -0.004, -0.005, -0.005, -0.006]
+(c) rho 0.24          : detected 6/6; G4 primary valid 6/6; V_c P-B [427, 433, 436, 417, 435, 437]; median |V/truth-1| 0.013, |V/430-1| 0.013 -> PASS; rho1 [0.234, 0.233, 0.233, 0.233, 0.232, 0.233]
+(e) a+c, R_e xNone: NOT DRAWN (C found no collapsing f; G4 rule: NOT VALIDATED)
+(b) 40% clump         : valid fits (both inclination branches) 0; confident wrong (|V/truth-1| > 0.15) [] -> PASS (refused)
+(d) a+b+c             : valid fits (both inclination branches) 0; confident wrong (|V/truth-1| > 0.15) [] -> PASS (refused)
+[PASS] V2 (a), (c), (e) recover; (b), (d) refused 
+
+--- V3 no false fits (G4 on) ---
+noise   : detected 0/6, scored 0/6
+outside : detected 0/6, scored 0/6
+[PASS] V3 0 of 6 scored in each class 
+
+--- V4 MUTATE on the V2 class-(e) cubes ---
+[FAIL] V4 (i) frozen fitter collapses in >= 1 seed seeds []
+[FAIL] V4 (ii) G4 with rule 1 off collapses in >= 1 seed seeds []
+
+VERDICT: G4 NOT VALIDATED (no f collapses: V4 cannot bite)
+peak RSS per job 3701 MB; total job time 8.0 h
