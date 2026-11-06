@@ -18,6 +18,7 @@ PREP=prep_2026/gaia_dr4_prep
 READY=$PREP/dr4_ready_1
 CFG=campaign_fresh_gravity/CFG816_dr4_r_statistic_scoring
 DP1=dr4_push_2026_11_05/DP1_nss_off_rung
+DP5=dr4_push_2026_11_05/DP5_dr4_fetchers
 APPROVAL=$LANE/OWNER_APPROVAL_DR4.md
 RELEASE_DATE=2026-12-02
 MODE=${1:---check}
@@ -167,13 +168,16 @@ if [ "$MODE" = "--run" ]; then
     if skip G2; then log "G2 registered archive account: SKIP on record (anonymous TAP)"; mark G2
     elif go G2; then log "G2 registered archive account: the owner logs in; this script never handles a password. NOTE: the dr4_ready_1 tools and fetch_extract.py query anonymously (no login hook); see the runbook, open issue O3"; mark G2
     else stop G2 "Registered Gaia archive account (higher quotas for the ~47 h cone fetch): the owner's act. Write 'GO G2' (owner logged in) or 'SKIP G2'."; fi; fi
-  if gate G3 "Primary base: fetch_extract.py --release dr4 (12 sky chunks + Sigma_18 map; DR3: 4,582,547 rows, ~400 MB, 6,461 s; DR4 central x1.54: ~620 MB, ~2.8 h; async jobs, anonymous). The frozen SELECT names non_single_star in gaia_source; the draft puts it only in all_source_flags (open issue O1)."; then
-    caffeinate -i $PY $PREP/catalog_builder/fetch_extract.py --release dr4 > "$OUT/G3_fetch_extract.out" 2>&1; need_rc $? "G3 fetch_extract (see open issue O1 if a column is absent)"; mark G3; fi
+  if gate G3 "Primary base: DP5 fetch_extract_dr4.py --release dr4 (12 sky chunks + Sigma_18 map; frozen WHERE, non_single_star dropped: O1 fixed; DR3: 4,582,547 rows, ~400 MB, 6,461 s; DR4 central x1.54: ~620 MB, ~2.8 h; async jobs, anonymous; DP5_SYNC=1 for --sync-ranges)."; then
+    $PY $DP5/fetch_extract_dr4.py --release dr4 --print-queries > "$OUT/G3_queries.adql" 2>&1; need_rc $? "G3 print-queries"
+    GO3=$(grep -E '^GO G3' "$APPROVAL" | head -1)
+    caffeinate -i $PY $DP5/fetch_extract_dr4.py --release dr4 --manifest $PREP/catalog_builder/manifest_dr4.json ${DP5_SPEC:+--spec-json $DP5_SPEC} ${DP5_SYNC:+--sync-ranges} \
+        --owner-go-recorded "$GO3" > "$OUT/G3_fetch_extract.out" 2>&1; need_rc $? "G3 fetch_extract_dr4"; mark G3; fi
   if gate G4 "Stages A-F: build_catalog.py --release dr4 (offline for A-F; DR3 16 min on 16 cores; its own stage G fetches correlations: an archive query). Stage G of the frozen builder is information only; the primary build is step G8."; then
     caffeinate -i $PY $PREP/catalog_builder/build_catalog.py --release dr4 > "$OUT/G4_build_catalog.out" 2>&1; rc=$?
     [ -f "$EXT/stage_F.npz" ] || need_rc 1 "G4 build_catalog (no stage_F.npz)"
     [ $rc -eq 0 ] || log "G4: build_catalog exit $rc after stage F was cached (its own stage G is information only); continuing"; mark G4; fi
-  if gate G5 "Cut 12 / joins: run the ADQL of cut12_nss_union.adql_nss() for each Amendment 17 counted table (6 tables; uploads of the sample ids, < 10 MB) and the all_source_flags non_single_star join; place the id files and record table, solution types and row counts in $M (no fetch tool exists: open issue O2)."; then
+  if gate G5 "Cut 12 / joins: run the ADQL of cut12_nss_union.adql_nss() for each Amendment 17 counted table (6 tables; uploads of the sample ids, < 10 MB) via DP5 fetch_nss_dr4.py (inlist transport; O2 fixed for nss_*), the all_source_flags join by hand; record table, solution types and row counts in $M. NOTE open issue O8: no build reads these files yet."; then
     python3 -I -c "import json,sys; m=json.load(open(sys.argv[1])); c=m['cut12_nss']['counted_tables']; sys.exit(0 if c else 1)" "$M" || need_rc 1 "G5: cut12_nss.counted_tables not filled in $M"
     mark G5; fi
   if gate G6 "Candidates: dry_run_driver.py --release dr4 --manifest M --allow-network --cut13 extract-builder --dump-candidates (stage-G correlation fetch; DR3 ~3,000 ids per 1,000 pairs)."; then

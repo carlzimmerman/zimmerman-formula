@@ -37,9 +37,9 @@ Rehearsal: `DP3_ALLOW_LIVE_JOBS=1 bash dr4_push_2026_11_05/DP3_release_day/dr4_r
 | R0 | self-tests: `dry_run_driver.py --self-test`, `amdt14_distances.py --self-test`, `arm_c_rows.py --self-test`, `make_pair_table.py --self-test`, `dr4_outcome_map.py --self-test` | ~1 min | no |
 | G1 | save the published DR4 data model (URL, UTC, sha256) in `release_2026_12_02/datamodel/`; write `spec_dr4.json` (renames only; `--spec-json`, never a code edit) and `manifest_dr4.json` from `prep_2026/gaia_dr4_prep/dr4_ready_1/manifest_template_dr4.json` (every null filled; cut 12 counted tables per Amendment 17; cut 9 = SFD98 per Amendment 16(a)) | one page / PDF, a few MB; ~1 h of reading | **yes (download)** |
 | G2 | registered Gaia archive account: the owner logs in himself; this lane never handles a password. `SKIP G2` = anonymous | — | **yes (account)** |
-| G3 | `caffeinate -i python3 -B prep_2026/gaia_dr4_prep/catalog_builder/fetch_extract.py --release dr4` (12 async jobs + Σ₁₈ map) | DR3: 4,582,547 rows, ~400 MB, 6,461 s. DR4 central ×1.54: ~7 M rows, ~620 MB, ~2.8 h | **yes (archive)** |
+| G3 | `caffeinate -i python3 -B dr4_push_2026_11_05/DP5_dr4_fetchers/fetch_extract_dr4.py --release dr4 --manifest prep_2026/gaia_dr4_prep/catalog_builder/manifest_dr4.json --owner-go-recorded "<go>" [--spec-json S] [--sync-ranges]` (12 chunks + Σ₁₈ map; the frozen WHERE and layout, `non_single_star` dropped from the SELECT: DP5, fixes O1; `--print-queries` first) | DR3: 4,582,547 rows, ~400 MB, 6,461 s. DR4 central ×1.54: ~7 M rows, ~620 MB, ~2.8 h | **yes (archive)** |
 | G4 | `python3 -B prep_2026/gaia_dr4_prep/catalog_builder/build_catalog.py --release dr4` (stages A-F cached; its own stage G is information only and fetches correlations) | DR3: 16 min on 16 cores; stage A ~0.5 GB | **yes (archive, stage G)** |
-| G5 | cut 12 + joins: the ADQL of `cut12_nss_union.adql_nss(table, two_source)` for the 6 Amendment 17 counted tables (`nss_acceleration_astro`, `nss_multiple_orbits`, `nss_non_linear_spectro`, `nss_resolved_pair` (both id columns), `nss_two_body_orbit`, `nss_vim_fl`) and the `all_source_flags.non_single_star` join file; record table, solution types, row counts in the manifest | uploads of the sample ids, < 10 MB | **yes (archive, each table)** |
+| G5 | cut 12 + joins: `python3 -B dr4_push_2026_11_05/DP5_dr4_fetchers/fetch_nss_dr4.py --manifest M --ids <component ids> --out-dir <data_dir> --transport inlist --owner-go-recorded "<go>"` (DP5, fixes O2; same rows as the frozen `cut12_nss_union.adql_nss` text, which `--transport upload` sends unchanged) for the 6 Amendment 17 counted tables (`nss_acceleration_astro`, `nss_multiple_orbits`, `nss_non_linear_spectro`, `nss_resolved_pair` (both id columns), `nss_two_body_orbit`, `nss_vim_fl`) and the `all_source_flags.non_single_star` join file; record table, solution types, row counts in the manifest | uploads of the sample ids, < 10 MB | **yes (archive, each table)** |
 | G6 | `python3 -B prep_2026/gaia_dr4_prep/dr4_ready_1/dry_run_driver.py --release dr4 --manifest M --allow-network --cut13 extract-builder --dump-candidates C.csv`; then `dr4_q1_estimate.py --pairs-csv C.csv` (the pre-brief, read to the owner), `q1_cones_dr4.py --print-count-queries`, `q1_cones_dr4.py --spec dr4_all_source --spec-json S --stage-a <dr4_extract>/stage_A.npz --pairs-csv C.csv ... --plan-only` | ~49,000 candidates at N 30,000 (DR3 ratio 1.65) | **yes (correlations)** |
 | G7 | the Q1 neighbour-cone fetch (cut 13 primary, Amendment 16(b)): `caffeinate -i python3 -B .../q1_cones_dr4.py --spec dr4_all_source ... --cap-accepted-mb A --cap-received-mb R --max-queries Q --owner-go-recorded "<text>"` (resumable). The GO line carries the caps. Optional tables (`gaia_source_environment`, `crowded_field_source`) only if the owner decides, recorded in the neighbours manifest. A sharded parallel fetch (lane DP4) is an alternative only if its README says it passed and the owner says yes | central ~39,000 queries, ~1.7 GB accepted (2.1 GB received), **~47 h serial** at the DR3 pace (low/high 25k/64k queries, 31/77 h; a 2× slower archive doubles it). Suggested caps (1.5× central): 2,540 MB / 3,100 MB / 58,900 | **yes (archive, caps)** |
 | G8 | **primary build:** `dry_run_driver.py --release dr4 --manifest M --allow-network --cut13 cones-literal --neighbours-manifest NM --out-csv wide_binaries_dr4.csv` (`--cut13 cones-literal` passed explicitly, D7 N9; never the default `extract-literal`); `--corr-transport sync` only if async fails, recorded (Amendment 19) | stage-G correlations; minutes | **yes (archive)** |
@@ -94,11 +94,11 @@ See `DRY_RUN_2026-11-05.md` in this folder for the `--check`, `--run` (refused) 
 
 ## 5. Open issues (need the owner before 2026-12-02; none can be decided after the data)
 
-- **O1 (blocking for G3).** The frozen `fetch_extract.py` (d826f688) SELECTs `non_single_star` from `gaiadr4.gaia_source`; the
+- **O1: FIXED by DP5 (80a930c593); G3 now runs `fetch_extract_dr4.py`.** Original text: The frozen `fetch_extract.py` (d826f688) SELECTs `non_single_star` from `gaiadr4.gaia_source`; the
   draft data model puts it only in `all_source_flags`, so the stage-A query would fail as written. The script has no `--spec-json`.
   Options: a names-only edit checked by the checklist §3 diff rule (conflicts with "renames only via --spec-json"), or a new
   wrapper that imports it read-only and takes the column list from the spec JSON, with a DR3 equivalence test, filed pre-data.
-- **O2.** No DR4 fetch tool exists for the cut-12 NSS id files or the `all_source_flags` join file; G5 is the ADQL text of
+- **O2: FIXED by DP5 (80a930c593) for the nss_* id files (`fetch_nss_dr4.py`); `all_source_flags` and `all_source_rvs` joins still by hand.** Original text: No DR4 fetch tool exists for the cut-12 NSS id files or the `all_source_flags` join file; G5 is the ADQL text of
   `cut12_nss_union.adql_nss()` run by hand after the yes. `all_source_rvs` likewise, if RVs are not in `gaia_source`.
 - **O3.** None of the tools logs in: `fetch_extract.py` / `build_catalog.py` use anonymous `astroquery.gaia`, the cone fetch its
   own TAP client. A registered account's quota helps only if a login hook is added (new code, tested, before release).
@@ -115,3 +115,15 @@ See `DRY_RUN_2026-11-05.md` in this folder for the `--check`, `--run` (refused) 
 - **O7 (finding).** σ_sys(b) in the D2 recipe is sensitive to the bootstrap RNG stream: adding one fit before the alt footing
   moved the DR3 alt NSS-off shift from +0.0575 to +0.0375 (same data). DP1 found the same in builds (8-reseed mean +0.010 / +0.006).
   As frozen (D8 (a)) the single-stream value is binding; this is reported, not repaired.
+
+
+- **O8 (BLOCKING for G6, G8, G10, G11; found 2026-11-05 while repointing G3/G5).** The cut-12 NSS screen has no DR4 code path.
+  `build_catalog.frozen_cuts` reads `S["non_single_star"]` straight from stage A (build_catalog.py:328). DR4's `gaia_source` has
+  no such column (DP5 drops it from the SELECT; the frozen SELECT would fail instead). `dry_run_driver.py` imports
+  `cut12_nss_union` (its docstring's WP4) but never calls it, and `apply_manifest_columns` joins only ruwe,
+  ipd_frac_multi_peak and the two RV columns. So on DR4 every build raises KeyError at the first `frozen_cuts` call, and the
+  id files from G5 are read by nothing. The DR3 rehearsals could not see this: DR3 stage A carries the column. Fix: new code,
+  its own FROZEN_CRITERIA committed alone first. It sets a per-star flag (1 if the star is in the union of the declared
+  readings' counted tables, A17) from the G5 id files into the stage-A dict before `frozen_cuts`, without editing a frozen file.
+  It needs a DR3 equivalence test (the flag built from `gaia_source.non_single_star` reproduces 6,210 / 6fff64d9) and a
+  MUTATE.
