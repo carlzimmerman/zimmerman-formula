@@ -107,3 +107,20 @@ than 1 (column charge scales as M^2), and by 1 otherwise.
   Sun as a point mass outside r_in, Euler shock proxy checked by q_B. No PPN alpha_1 or alpha_2 is claimed,
   and no static potential is divided into a gravitomagnetic coefficient. AC2q differs from v3s only by
   s^2/rho0 ~ 4e-6 in the charge. This is reported, not run separately.
+
+## AMENDMENT 1 (before any graded hydro run)
+
+Committed after S1 ran (all PASS) and after one non-graded smoke test. That test evaluated the discrete
+right-hand side on the exact gravity-off uniform wind with the REFLECT inner wall, at t <= 20. It showed
+the wind cannot stay uniform against either frozen inner boundary: REFLECT is a wall, and ABSORB blocks
+the outflow on the downstream face, so a shadow forms. The physical khronon passes through the Sun.
+Changes:
+
+- A third inner boundary, TRANSMIT (zero-gradient copy of q, u and v, both signs), is added. It is the
+  physical boundary. The grading brackets become {TRANSMIT, ABSORB, REFLECT}, and PASS/FAIL need all three.
+  TRANSMIT is run coarse and medium at both M_inf, UNIFORM start. The HEDGEHOG start uses TRANSMIT.
+- KA3 is run with TRANSMIT. The 1e-10 line cannot be met by any finite-volume scheme on a curvilinear grid:
+  a uniform Cartesian flow is only preserved to truncation error. The new line is set from the scheme's
+  order, not from a measured value: max |q - 1| <= 1e-2 over r >= 5 at t = 50 on the coarse grid, and the
+  medium error at least 2x smaller than the coarse error.
+- KA5 is unchanged (ABSORB, periapsis > r_in).
