@@ -31,11 +31,14 @@ MUTATE twin.
 | Clusters, every static term of v3s / AC2q | FAIL, no-go: no universal nu; clock, stiffness and K(Q) all short | QX2 34a3050f18 |
 | Clusters, new keyed terms | FAIL: p/rho, khronon velocity, enclosed density and gas-g are dead; the depth key works only if clusters set it | QX5 00f9e19c9b |
 | Clusters, depth key derived from the action | FAIL: not derivable; groups overlap galaxies on that key | QX6 cefca47d52 |
+| Elliptical late-binding bug (QX5 host list, used by QX5/QX7 iter_4/QX10/QX12/QX13) | FIXED forward, NO LABEL CHANGES. The ellipticals' plain-law baseline moves from +0.083/+0.065 to +0.210/+0.189 dex: on their own NFW+stars masses (Kroupa M*/L) the law under-predicts the 7 Humphrey ellipticals by ~0.2 dex (not graded). QX12 iter_1's depth gap 32x -> 17x | QX16 a13ac841ac |
+| a0 law on 7 Humphrey+2006 X-ray ellipticals (2, 4, 8 Re; G7 line 0.15 dex) | FAIL both footings at the line: D (Kroupa) +0.210 canonical / +0.189 alt; spherical, so exact field = law. Line FAIL, not significance (1.33 / 1.21 sigma with IMF; CFG32 "large but not established" stands); Salpeter +0.07 / +0.05 would pass; gas neglected (upper bound); shortfall grows outward 7/7; carried by NGC 720, 4649, 4472, 1407; no mass trend inside the sample | QX18 (criteria 032ceedf31) |
+| Clusters, virial-shock-heated sector with entropy floor | FAIL (under): X-COP +0.463/+0.430 at the galaxy-set floor; the post-result Lean class_bound covers every shock radius and upstream density in the isentropic class; the floor violates adiabatic J0 by 6000x | QX13 10eb35b351 |
 | CMB lensing + growth inside the current action | FAIL, no-go (clock Jeans; K(Q) 500x gap; barotropic class) | QX3 0240c8e31d, 602db4263d |
 | Switched cold-dark-energy sector, window | KILLED: host galaxies retain the sector, and KiDS lensing is over-predicted by 0.15-0.27 dex. The primary TT/TE/EE as a cold component fit (chi2 6718 vs 6497) is NO VERDICT (J1) | QX7 9a8f2e4778, QX10 f8d51400c8 |
 | Constraint triangle (cold early / not retained by galaxies / clusters + groups) | RUNNING: iter_1's universal-density no-go does not fire (statics only) | QX12 8ea6100c3f |
 | Failure ladder: what the plain-law miss tracks | NO SINGLE VARIABLE: hot systems sit +0.32-0.37 dex above SPARC at the same M_b, g_N, depth, r/r_M, f_gas (+0.18 in v_obs); the miss is a hot-vs-cold STEP, flat in g_N inside the hot class; UDGs under-predicted 3-4 sigma by every variable | QX20 |
-| AGC 114905 | CONDITIONAL on an EFE host of >= 3.4e9 / 6.4e9 Msun; needs a neighbour census (download, owner) | QX4 beabff85b5 |
+| AGC 114905 | FAIL: NOT RESCUED by EFE, both footings. The owner-approved census finds no spectroscopic neighbour within 1 Mpc / +-500 km/s, and the record's field is ~1e-3 a0 against the 0.076 a0 needed (QX4 iters 1, 3 already NOT RESCUED) | QX4 beabff85b5, QX14 1e5ab2c2d9 |
 | Malin 1 | FAIL: no mechanism in the action | QX4 beabff85b5 |
 | FN6 window source | FAIL for v3s / AC2q, on a post-result control; NO VERDICT as frozen | AC19 f747d27e9e |
 | Nonlinear fold (full grid) | RUNNING | AC14 |
@@ -46,7 +49,7 @@ MUTATE twin.
 
 ## Waiting on the owner
 
-- Downloads: the neighbour census for AGC 114905 (QX4_udg/NEEDS_OWNER.md), and Planck PR4 / ACT primary spectra
+- Downloads: the AGC 114905 census was approved 11-06 and is done (QX14). Planck PR4 / ACT primary spectra
   (QX10_window_hardening/iter_1_primary_cmb/NEEDS_OWNER.md).
 - Adoption: the Pi^6-blend stiffness repair.
 
