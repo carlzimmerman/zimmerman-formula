@@ -1,0 +1,166 @@
+{
+  "schema_version": 2,
+  "claim_id": "COUPLED-FEEDBACK-ATTRACTOR",
+  "repository": {
+    "commit": "ad9d7470164fd2bc1b9e98d7310a2e50b903e771",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "action_scale_investigation_2026_11_05/joint_phase/coupled_feedback.py",
+    "--out",
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/coupled_feedback_mutate/result.json",
+    "--mutate"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Local rate-law degeneracy, explicit history dependence and global phenomenological Lyapunov attractor",
+    "coefficient_domain": "Exact SymPy and float64 DOP853",
+    "conventions": "Positive dimensionless density/temperature or halo-amplitude/temperature; externally maintained flux",
+    "inputs": [
+      "Linear-temperature cooling",
+      "Power-law production/removal rates",
+      "Postulated global abundance feedback"
+    ],
+    "bounds": {
+      "models": [
+        "A",
+        "B",
+        "C"
+      ],
+      "initial_states": [
+        [
+          0.2,
+          0.5
+        ],
+        [
+          2,
+          0.5
+        ],
+        [
+          0.5,
+          2
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "time": [
+        0,
+        60
+      ],
+      "rtol": 1e-10,
+      "atol": 1e-12,
+      "max_step": 0.1,
+      "agreement": 1e-07
+    },
+    "non_claims": [
+      "No microscopic derivation of global feedback",
+      "No conservation-complete galaxy dynamics",
+      "No selected pressure or MOND coefficient"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-06T14:20:07.690092+00:00",
+    "runtime_seconds": 0.994918,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "action_scale_investigation_2026_11_05/joint_phase/coupled_feedback.py",
+    "action_scale_investigation_2026_11_05/joint_phase/COUPLED_FEEDBACK_CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/coupled_feedback.py",
+      "sha256": "de0b8eb14bb3182483e7383b78b696398d61c6ff1c50ef94e63f20a466c776b3",
+      "sha256_after": "de0b8eb14bb3182483e7383b78b696398d61c6ff1c50ef94e63f20a466c776b3"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/COUPLED_FEEDBACK_CONTRACT.md",
+      "sha256": "2669a63c941eb2d19b97bb9461ac0ff428cee22d4cca9a828bf2191f95ac61d8",
+      "sha256_after": "2669a63c941eb2d19b97bb9461ac0ff428cee22d4cca9a828bf2191f95ac61d8"
+    }
+  ],
+  "output_directory": "action_scale_investigation_2026_11_05/joint_phase/evidence/coupled_feedback_mutate",
+  "declared_results": [
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/coupled_feedback_mutate/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/coupled_feedback_mutate/stdout.txt",
+      "sha256": "5d3cda5665658be49e05cfadbf5e9f89387faae687bcd604d4f62e911fffcb32",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/coupled_feedback_mutate/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/coupled_feedback_mutate/result.json",
+      "sha256": "c2cabf83c05db5c4df5d6caf1e1a93676be5e6c92846935184022f37a36c0896",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

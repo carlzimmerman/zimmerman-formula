@@ -1,5 +1,14 @@
 # Joint-model continuation: pool speed calculation; coefficient unresolved
 
+Latest checkpoint: joint_phase/COUPLED_FEEDBACK_RESULT.md constructs a global
+phenomenological abundance/temperature feedback with a positive-state Lyapunov
+proof of convergence, preserving conditional v^4 proportional to Mb. This is
+a postulated source law, not a microscopic derivation or a full halo attractor.
+A local power-law reaction calculation identifies a neutral mode in the
+scaling-compatible case. 42 checks pass, including12 trajectories; the negative
+control fails two intended determinant checks. Pressure, reaction energetics,
+transport, and heating/cooling normalization remain unselected. No1/2 derived.
+
 Latest checkpoint: joint_phase/RELAXATION_RESULT.md derives thermal reservoir
 relaxation and baryon-powered heating/cooling feedback. Reservoir exchange can
 erase abundance memory conditionally but imposes reservoir T and chemical
