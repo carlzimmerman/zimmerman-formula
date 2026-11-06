@@ -1,0 +1,57 @@
+{
+  "checks": {
+    "geometry_zero_source": true,
+    "geometry_derivatives_cancel": true,
+    "Ca_compact_formula": true,
+    "CA_transport": true,
+    "CP_transport": true,
+    "Cbeta_transport": true,
+    "no_independent_source": true,
+    "no_spatial_residual_derivatives": true
+  },
+  "all_pass": true,
+  "raw": {
+    "derive_geometry.py": {
+      "n_Cmom": "-(-3*B**2*Ca*M + 6*B*Cm*M + CA*D*r - 2*CH*E*M + 2*CH*M*a - CP*Wp + Ca*E**2*M - 2*Ca*E*M*a + Ca*rho + 2*Cm*K*M)/(2*M)",
+      "n_CH": "-B*CH + B*Ca*E + B*Ca*a - CH*K - Cm*E - Cm*a",
+      "coefficients_Cmom": {
+        "Ca": "(3*B**2*M - E**2*M + 2*E*M*a - rho)/(2*M)",
+        "Cm": "-3*B - K",
+        "CH": "E - a",
+        "CA": "-D*r/(2*M)",
+        "CP": "Wp/(2*M)"
+      },
+      "coefficients_CH": {
+        "Ca": "B*(E + a)",
+        "Cm": "-E - a",
+        "CH": "-B - K",
+        "CA": "0",
+        "CP": "0"
+      },
+      "independent_sources_zero": true,
+      "spatial_K_a_derivatives_cancel": true
+    },
+    "derive_matter.py": {
+      "checks": {
+        "Ca_compact_formula": true,
+        "CA_transport": true,
+        "CP_transport": true,
+        "Cbeta_transport": true,
+        "no_independent_source": true,
+        "no_spatial_residual_derivatives": true
+      },
+      "all_pass": true,
+      "V": "(-2*A**2*B*r**2 - A**2*K*r**2 + 6*A*B*gamma*r**3 + 2*A*B*r + 3*A*K*gamma*r**3 + A*K*r - A*r**3*u - 2*B*P*Wp*gamma - 4*B*gamma**2*r**4 - 6*B*gamma*r**2 - 2*K*gamma**2*r**4 - 3*K*gamma*r**2 - Wp*gamma*r*v + 2*gamma*r**4*u)/(r**2*(A**2 - 6*A*gamma*r + 6*gamma**2*r**2 + 3*gamma))",
+      "Ca_coefficients": {
+        "Ca": "-2*(-A**4*B*r**2 + 12*A**3*B*gamma*r**3 + 2*A**3*B*r + A**3*K*r - 3*A**2*B*P*Wp*gamma - 34*A**2*B*gamma**2*r**4 - 24*A**2*B*gamma*r**2 + 7*A**2*K*gamma**2*r**4 - 9*A**2*K*gamma*r**2 - A**2*Wp*gamma*r*v + 2*A**2*gamma*r**4*u + 24*A*B*P*Wp*gamma**2*r + 36*A*B*gamma**3*r**5 + 60*A*B*gamma**2*r**3 + 6*A*B*gamma*r - 18*A*K*gamma**3*r**5 + 12*A*K*gamma**2*r**3 + 3*A*K*gamma*r + 9*A*Wp*gamma**2*r**2*v - 6*A*gamma**2*r**5*u - 30*B*P*Wp*gamma**3*r**2 - 9*B*P*Wp*gamma**2 - 12*B*gamma**4*r**6 - 48*B*gamma**3*r**4 - 9*B*gamma**2*r**2 + 12*K*gamma**4*r**6 - 6*K*gamma**3*r**4 - 12*Wp*gamma**3*r**3*v - 3*Wp*gamma**2*r*v + 6*gamma**3*r**6*u - 3*gamma**2*r**4*u)/(r**2*(A**2 - 6*A*gamma*r + 6*gamma**2*r**2 + 3*gamma)**2)",
+        "CA": "(6*A**2*B*gamma*r**3 - 2*A**2*B*r + 3*A**2*K*gamma*r**3 - A**2*K*r + A**2*r**3*u + 4*A*B*P*Wp*gamma - 16*A*B*gamma**2*r**4 - 8*A*K*gamma**2*r**4 + 2*A*Wp*gamma*r*v - 4*A*gamma*r**4*u - 12*B*P*Wp*gamma**2*r + 12*B*gamma**3*r**5 - 6*B*gamma**2*r**3 + 6*B*gamma*r + 6*K*gamma**3*r**5 - 3*K*gamma**2*r**3 + 3*K*gamma*r - 6*Wp*gamma**2*r**2*v + 6*gamma**2*r**5*u - 3*gamma*r**3*u)/(r**2*(A**2 - 6*A*gamma*r + 6*gamma**2*r**2 + 3*gamma)**2)",
+        "CP": "-gamma*(2*B*P*Wpp + 2*B*Wp + Wpp*r*v)/(r**2*(A**2 - 6*A*gamma*r + 6*gamma**2*r**2 + 3*gamma))",
+        "Cmom": "-2*(A**2*r**2 - 3*A*gamma*r**3 - A*r + P*Wp*gamma + 2*gamma**2*r**4 + 3*gamma*r**2)/(r**2*(A**2 - 6*A*gamma*r + 6*gamma**2*r**2 + 3*gamma))"
+      },
+      "n_CA": "-CA*K",
+      "n_CP": "-CP*K",
+      "n_Cbeta": "-B*Ca - Cbeta*K + Cm"
+    }
+  },
+  "scope": "Exact symbolic residual identities for declared promoted on-branch system; not local existence or singular selection"
+}

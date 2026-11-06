@@ -1,3 +1,49 @@
+# PF09 continuation handoff
+
+Current live result: pf09/STATUS.md and pf09/THEOREM_CHAIN.md. PF09 closes the
+previous finite-regularity local evolution, continuation and constraint gaps
+for periodic planar strong solutions, and establishes packet breakdown with
+regular positive rolling potentials. See the independent audits in pf09/review/.
+The original scientific objective is NOT complete: singular native selection
+versus unavoidable physical extension remains open. Older handoffs below are
+historical and do not override PF09.
+
+Current research routes:
+1. Local/strong breakdown: proved in stated class. Do not re-open the old cusp
+   obstacle without new contrary evidence. Native W_PP is locally Lipschitz;
+   uniform first-derivative construction and exact residuals supply the theorem.
+2. Restricted singular layers: retain PF07 assumptions and the separate PF09
+   cap-cost, large-r, polarization-jump and boost-trace audit restrictions.
+   Do not combine separate lemmas to claim coverage of simultaneous escapes.
+3. General selection: still open. Need a fixed concentration-capable native
+   solution class and actual existence/uniqueness or nonuniqueness from identical
+   incoming smooth data. Merely assigning a surface stress or comparing two
+   external regularizers is insufficient.
+
+No new numerical evolution was needed for PF09. residual001 has8 exact checks;
+potential001 has4; combined001 has6 constitutive-limit checks. The first two
+manifests validated before the combined test; final validation covers allthree. All PF08 trajectories retain their
+original accuracy-stop limits. Proof approximants in PF09 are not postbreak
+physical regularizers. A selected rolling potential is covered only on a
+positive C2 interval with the stated bounded derivatives and cap margin;
+gamma remains constant. No claim is made for every datum, a particular fixture's
+breakdown time, full3D evolution or continuation across a potential zero.
+
+A concrete constitutive feasibility test is pf09/COMBINED_DEFECT_TEST.md:
+high-r radiationlike stress plus opposite off-branch boost defects leaves a
+nonzero tangent tensor diag(2c,0,c,c). This is NOT a differential field solution
+or a same-data nonuniqueness example. An algebra-only universal exclusion is
+therefore unavailable; the next route must use dynamics/clock compatibility.
+
+Next concrete discriminators: whether native equations enforce the missing
+weighted trace/compactness conditions at a formed interface, and whether
+combined invariant-clock/boost or intermittent-cap defects admit an intrinsic
+selection law. Preserve the distinction between a mathematical completion and
+new action terms/physical degrees of freedom.
+
+---
+Historical handoffs:
+
 # PF08 continuation handoff
 
 Latest evidence: pf08/STATUS.md and pf08/CURRENT_WORK.md. Read these before the

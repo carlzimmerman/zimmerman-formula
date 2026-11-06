@@ -1,13 +1,28 @@
-# AC2q post-fold investigation — PF08 coupled-breakdown checkpoint, 2026-11-06
+# AC2q post-fold investigation — PF09 native-breakdown checkpoint, 2026-11-06
 
-**Outcome: a standard shock prescription does not close AC2q. Its post-break
-predictivity needs a justified completion. Full-action failure is not proved.**
+**Outcome: native coupled strong evolution can break. A uniquely selected
+singular completion has not been established; unavoidable new physics is not
+proved.**
 
-The requested three-way classification is only partially resolved: the ordinary
-finite-shock survival route is excluded under explicit conditions; whether the
-native action avoids that route or generates its own stress-carrying completion
-remains open. Do not relabel this as "AC2q globally refuted" or "extension proved
-unavoidable for every possible solution".
+The finite-regularity evolution and constraint-propagation gap is now closed
+in the stated periodic planar class. The native hold-law cusp is retained.
+An independently audited construction proves local strong evolution and a
+continuation criterion; exact homogeneous residual equations preserve every
+constraint. Combined with a uniform geometric/variation bootstrap and weighted
+Riccati comparison, it proves finite-gradient breakdown for sufficiently narrow
+small-amplitude packets. Regular positive rolling potentials are covered by
+explicit checked source terms. This is not a curvature-singularity or
+astrophysical event-time prediction.
+
+Singular stress exclusions have also been strengthened, but retain explicit
+trace, geometry and measure hypotheses. No general singular native
+existence/uniqueness theorem or universal exclusion has been proved.
+
+[Current result and exact limits](pf09/STATUS.md) ·
+[Theorem chain](pf09/THEOREM_CHAIN.md) ·
+[Local evolution audit](pf09/review/LOCAL_EVOLUTION_AUDIT.md) ·
+[Constraint propagation](pf09/review/RESIDUAL_PROPAGATION.md) ·
+[Packet-breakdown audit](pf09/review/COMPACT_BOOTSTRAP_AUDIT.md)
 
 ## PF08: full coupled steepening and conditional breakdown structure
 
