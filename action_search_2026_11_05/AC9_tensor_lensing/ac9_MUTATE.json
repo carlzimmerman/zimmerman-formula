@@ -1,0 +1,146 @@
+{
+ "lane": "AC9_tensor_lensing",
+ "criteria": "0111fe2269",
+ "mutate": true,
+ "checks": {
+  "T1a": {
+   "ok": false,
+   "detail": "AC2q pieces add no (dh)^2 term and only total-derivative h*dh terms at O(h^2): principal part is GR's, c_T = c exactly"
+  },
+  "K1_tensor": {
+   "ok": true,
+   "detail": "known answer: s = 0 gives new masses [0, 0, 0, 0] (all 0: AC2q = v3s)"
+  },
+  "T1b": {
+   "ok": true,
+   "detail": "dv/c within GW170817 band (-3e-15, 7e-16) on both footings"
+  },
+  "T2a": {
+   "ok": true,
+   "detail": "T_on Psi source and anisotropic stress vanish at s = 0 [0, 0, 0, 0, 0, 0] and at grad Phi = 0 [0, 0, 0, 0, 0, 0]: O(s^2 grad Phi P), beyond O(GM)"
+  },
+  "T2_off_aniso": {
+   "ok": true,
+   "detail": "T_off anisotropic stress [0, 0, 0, 0, 0] (0: isotropic pressure only)"
+  },
+  "K2": {
+   "ok": true,
+   "detail": "planted term returns Pi_11-Pi_33 = -c(P1^2-P3^2), 2 Pi_12 = -2c P1 P2: residuals 0, 0"
+  },
+  "T2b": {
+   "ok": true,
+   "detail": "slip bound < 1e-6 on both footings (W3 v3s bound 6.5e-5; KiDS amplitude error ~0.2)"
+  }
+ },
+ "T1_symbolic": {
+  "m2p_on": "16*pi*gamma_L*s2*(-A_z*P0z + G_xx + G_yy)",
+  "m2x_on": "16*pi*gamma_L*s2*(-A_z*P0z + G_xx + G_yy)",
+  "m2p_off": "8*pi*gamma_L*s2**2",
+  "m2x_off": "8*pi*gamma_L*s2**2"
+ },
+ "T1b": {
+  "canonical": {
+   "max_abs_m2_new": 1.115064680141781e-57,
+   "dv_over_c_100Hz": 1.2692633300901657e-46,
+   "points": 7722,
+   "s2_geo": 8.677341941390688e-54,
+   "gamma_s2_Lstar_min": 2.4445191779326507e-17
+  },
+  "alt": {
+   "max_abs_m2_new": 1.6861871354955906e-57,
+   "dv_over_c_100Hz": 1.9193644430403816e-46,
+   "points": 7722,
+   "s2_geo": 1.267319064792735e-53,
+   "gamma_s2_Lstar_min": 3.975980101645737e-17
+  }
+ },
+ "T2_symbolic": {
+  "S_Psi_on": "gamma_L*s2*(P0(x, y, z)*Derivative(Phi(x, y, z), x) + P1(x, y, z)*Derivative(Phi(x, y, z), y) + P2(x, y, z)*Derivative(Phi(x, y, z), z))/(sqrt(1 - 2*Psi(x, y, z))*(Phi(x, y, z)**2 + 2*Phi(x, y, z) + 1))",
+  "coef": "1/(Phi(x, y, z)**2 + 2*Phi(x, y, z) + 1)",
+  "aniso11": "gamma_L*s2*(P0(x, y, z)*Derivative(Phi(x, y, z), x) - P2(x, y, z)*Derivative(Phi(x, y, z), z))/(Phi(x, y, z)**2 + 2*Phi(x, y, z) + 1)",
+  "S_Psi_off": "-3*gamma_L*s2**2*sqrt(1 - 2*Psi(x, y, z))/(2*(Phi(x, y, z) + 1)**3)"
+ },
+ "T2b": {
+  "canonical": [
+   {
+    "Lstar_pc": 21.7,
+    "r_kpc": 30.0,
+    "slip_bound_on": 2.3567676398498747e-23,
+    "slip_off_1e11Msun": 8.7360924845633e-21
+   },
+   {
+    "Lstar_pc": 21.7,
+    "r_kpc": 100.0,
+    "slip_bound_on": 7.855892132832914e-23,
+    "slip_off_1e11Msun": 9.706769427292554e-20
+   },
+   {
+    "Lstar_pc": 21.7,
+    "r_kpc": 310.0,
+    "slip_bound_on": 2.435326561178204e-22,
+    "slip_off_1e11Msun": 9.328205419628149e-19
+   },
+   {
+    "Lstar_pc": 90.0,
+    "r_kpc": 30.0,
+    "slip_bound_on": 4.0539866811323203e-22,
+    "slip_off_1e11Msun": 1.50273628925997e-19
+   },
+   {
+    "Lstar_pc": 90.0,
+    "r_kpc": 100.0,
+    "slip_bound_on": 1.351328893710773e-21,
+    "slip_off_1e11Msun": 1.669706988066633e-18
+   },
+   {
+    "Lstar_pc": 90.0,
+    "r_kpc": 310.0,
+    "slip_bound_on": 4.189119570503398e-21,
+    "slip_off_1e11Msun": 1.604588415532035e-17
+   }
+  ],
+  "alt": [
+   {
+    "Lstar_pc": 22.9,
+    "r_kpc": 30.0,
+    "slip_bound_on": 4.632518347633164e-23,
+    "slip_off_1e11Msun": 1.8877410455142396e-20
+   },
+   {
+    "Lstar_pc": 22.9,
+    "r_kpc": 100.0,
+    "slip_bound_on": 1.5441727825443877e-22,
+    "slip_off_1e11Msun": 2.0974900505713765e-19
+   },
+   {
+    "Lstar_pc": 22.9,
+    "r_kpc": 310.0,
+    "slip_bound_on": 4.786935625887603e-22,
+    "slip_off_1e11Msun": 2.0156879385990943e-18
+   },
+   {
+    "Lstar_pc": 90.0,
+    "r_kpc": 30.0,
+    "slip_bound_on": 7.155355278470781e-22,
+    "slip_off_1e11Msun": 2.915791550249869e-19
+   },
+   {
+    "Lstar_pc": 90.0,
+    "r_kpc": 100.0,
+    "slip_bound_on": 2.3851184261569267e-21,
+    "slip_off_1e11Msun": 3.2397683891665203e-18
+   },
+   {
+    "Lstar_pc": 90.0,
+    "r_kpc": 310.0,
+    "slip_bound_on": 7.393867121086474e-21,
+    "slip_off_1e11Msun": 3.113417421989028e-17
+   }
+  ]
+ },
+ "X_positive_note": "statics sigma = 0 (AC8): X = s^2/(2N^2) > 0 exactly; moving/nonlinear X > 0 needs |grad sigma| below the local light cone, open",
+ "labels": {
+  "tensor": "FAIL",
+  "lensing": "PASS"
+ }
+}

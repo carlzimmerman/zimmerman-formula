@@ -1,0 +1,40 @@
+AC9  AC2q tensor speed and lensing slip  [MUTATE: planted c P^2 (d_z h_+)^2]
+  [T_on] (dh)(dh) coefficients all zero = False; h*dh coefficients ['0', 'gamma_L*s2*(G_zx*x + G_zz*z + P0z)*hp(t, z)/(A_x*x + A_z*z + 1)', '0', 'gamma_L*s2*(G_zx*x + G_zz*z + P0z)*hx(t, z)/(A_x*x + A_z*z + 1)']
+  [T_on] m_+^2 = 16*pi*gamma_L*s2*(-A_z*P0z + G_xx + G_yy);  m_x^2 = 16*pi*gamma_L*s2*(-A_z*P0z + G_xx + G_yy)
+  [T_off] (dh)(dh) coefficients all zero = True; h*dh coefficients ['0', '0', '0', '0']
+  [T_off] m_+^2 = 8*pi*gamma_L*s2**2;  m_x^2 = 8*pi*gamma_L*s2**2
+T1a FAIL AC2q pieces add no (dh)^2 term and only total-derivative h*dh terms at O(h^2): principal part is GR's, c_T = c exactly
+K1_tensor PASS known answer: s = 0 gives new masses [0, 0, 0, 0] (all 0: AC2q = v3s)
+  T1b [canonical]: max |m^2| (AC2q pieces) = 1.115e-57 m^-2 over 7722 points; dv/c at 100 Hz = 1.269e-46; gamma s^2 at Lstar 21.7 pc = 2.44e-17
+  T1b [alt]: max |m^2| (AC2q pieces) = 1.686e-57 m^-2 over 7722 points; dv/c at 100 Hz = 1.919e-46; gamma s^2 at Lstar 22.9 pc = 3.98e-17
+T1b PASS dv/c within GW170817 band (-3e-15, 7e-16) on both footings
+  [T_on] S_Psi = gamma_L*s2*(P0(x, y, z)*Derivative(Phi(x, y, z), x) + P1(x, y, z)*Derivative(Phi(x, y, z), y) + P2(x, y, z)*Derivative(Phi(x, y, z), z))/(sqrt(1 - 2*Psi(x, y, z))*(Phi(x, y, z)**2 + 2*Phi(x, y, z) + 1))
+  [T_on] dL/dchi11 = gamma_L*s2*(P0(x, y, z)*Derivative(Phi(x, y, z), x) - P2(x, y, z)*Derivative(Phi(x, y, z), z))/(sqrt(1 - 2*Psi(x, y, z))*(Phi(x, y, z)**2 + 2*Phi(x, y, z) + 1))
+  [T_on] dL/dchi12 = gamma_L*s2*(P0(x, y, z)*Derivative(Phi(x, y, z), y) + P1(x, y, z)*Derivative(Phi(x, y, z), x))/(sqrt(1 - 2*Psi(x, y, z))*(Phi(x, y, z)**2 + 2*Phi(x, y, z) + 1))
+  [T_off] S_Psi = -3*gamma_L*s2**2*sqrt(1 - 2*Psi(x, y, z))/(2*(Phi(x, y, z) + 1)**3)
+  [T_off] dL/dchi11 = 0
+  [T_off] dL/dchi12 = 0
+T2a PASS T_on Psi source and anisotropic stress vanish at s = 0 [0, 0, 0, 0, 0, 0] and at grad Phi = 0 [0, 0, 0, 0, 0, 0]: O(s^2 grad Phi P), beyond O(GM)
+T2_off_aniso PASS T_off anisotropic stress [0, 0, 0, 0, 0] (0: isotropic pressure only)
+  T_off Psi source: -3*gamma_L*s2**2*sqrt(1 - 2*Psi(x, y, z))/(2*(Phi(x, y, z) + 1)**3)
+  S_Psi(Psi=0) / (gamma s^2 gradPhi.P) = 1/(Phi(x, y, z)**2 + 2*Phi(x, y, z) + 1)
+  Pi from chi11 at Psi = 0: gamma_L*s2*(P0(x, y, z)*Derivative(Phi(x, y, z), x) - P2(x, y, z)*Derivative(Phi(x, y, z), z))/(Phi(x, y, z)**2 + 2*Phi(x, y, z) + 1)
+  [K2 plant] S_Psi = -c_plant*(P0(x, y, z)**2*Phi(x, y, z) + P0(x, y, z)**2 + P1(x, y, z)**2*Phi(x, y, z) + P1(x, y, z)**2 + P2(x, y, z)**2*Phi(x, y, z) + P2(x, y, z)**2)/sqrt(1 - 2*Psi(x, y, z))
+  [K2 plant] dL/dchi11 = c_plant*(-P0(x, y, z)**2*Phi(x, y, z) - P0(x, y, z)**2 + P2(x, y, z)**2*Phi(x, y, z) + P2(x, y, z)**2)/sqrt(1 - 2*Psi(x, y, z))
+  [K2 plant] dL/dchi12 = -2*c_plant*(Phi(x, y, z) + 1)*P0(x, y, z)*P1(x, y, z)/sqrt(1 - 2*Psi(x, y, z))
+K2 PASS planted term returns Pi_11-Pi_33 = -c(P1^2-P3^2), 2 Pi_12 = -2c P1 P2: residuals 0, 0
+  |coef| at Phi -> 0: 1
+  T2b [canonical] Lstar  21.7 pc r    30 kpc: |S_Psi|/rho_tot <= 2.36e-23 (T_on); T_off 8.74e-21
+  T2b [canonical] Lstar  21.7 pc r   100 kpc: |S_Psi|/rho_tot <= 7.86e-23 (T_on); T_off 9.71e-20
+  T2b [canonical] Lstar  21.7 pc r   310 kpc: |S_Psi|/rho_tot <= 2.44e-22 (T_on); T_off 9.33e-19
+  T2b [canonical] Lstar  90.0 pc r    30 kpc: |S_Psi|/rho_tot <= 4.05e-22 (T_on); T_off 1.50e-19
+  T2b [canonical] Lstar  90.0 pc r   100 kpc: |S_Psi|/rho_tot <= 1.35e-21 (T_on); T_off 1.67e-18
+  T2b [canonical] Lstar  90.0 pc r   310 kpc: |S_Psi|/rho_tot <= 4.19e-21 (T_on); T_off 1.60e-17
+  T2b [alt] Lstar  22.9 pc r    30 kpc: |S_Psi|/rho_tot <= 4.63e-23 (T_on); T_off 1.89e-20
+  T2b [alt] Lstar  22.9 pc r   100 kpc: |S_Psi|/rho_tot <= 1.54e-22 (T_on); T_off 2.10e-19
+  T2b [alt] Lstar  22.9 pc r   310 kpc: |S_Psi|/rho_tot <= 4.79e-22 (T_on); T_off 2.02e-18
+  T2b [alt] Lstar  90.0 pc r    30 kpc: |S_Psi|/rho_tot <= 7.16e-22 (T_on); T_off 2.92e-19
+  T2b [alt] Lstar  90.0 pc r   100 kpc: |S_Psi|/rho_tot <= 2.39e-21 (T_on); T_off 3.24e-18
+  T2b [alt] Lstar  90.0 pc r   310 kpc: |S_Psi|/rho_tot <= 7.39e-21 (T_on); T_off 3.11e-17
+T2b PASS slip bound < 1e-6 on both footings (W3 v3s bound 6.5e-5; KiDS amplitude error ~0.2)
+LABELS: tensor FAIL; lensing PASS  (MUTATE: T1a must FAIL)

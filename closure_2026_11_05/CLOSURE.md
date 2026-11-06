@@ -78,6 +78,8 @@ AC2q switches the stiffness on the khronon charge D.P + 2X (AC7):
 | AC2q, galaxies | no Gamma ~ k anywhere; off-region bounded (AC7 Q2) |
 | AC2q, static limit | = v3s at mu_K = 0 up to phidot^2-proportional terms (<= 2.2e-10 relative, Poisson + rho_DE): v3s's static passes carry (AC8) |
 | Switch on D.P alone (v3s placement) with a dark-energy clock | non-analytic on FRW (AC7 control M-b) |
+| AC2q, tensor speed (own terms) | PASS: c_T = c in the principal part; new tensor mass gives dv/c <= 1.9e-46 at 100 Hz (AC9 T1) |
+| AC2q, lensing slip (own terms) | PASS: Psi source and anisotropic stress are O(gamma s^2 grad Phi P), beyond O(GM); slip <= 3e-17 (AC9 T2) |
 
 Inherited, by inference (not a new run): X14's "caustics generic" for soft
 khronon elements. X14's mechanism is that nothing in the action grows with k at
@@ -87,9 +89,9 @@ does, and only a new constant (X14's beta class) could remove it.
 
 AC2q is a candidate, not adopted: one field is dark energy and the clock, no
 dust, healthy on FRW and in galaxies at this order, static limit = v3s.
-Still owed: nonlinear evolution, X > 0 preservation, a moving Sun in the clock
-frame (the same open item as v3s's AZ37), lensing and tensor regrades on its own
-equations. It fixes no coefficient: xi and kappa stay by hand. Having no dust,
+Still owed: nonlinear evolution, X > 0 preservation away from statics (exact in
+statics), a moving Sun in the clock frame (the same open item as v3s's AZ37).
+Lensing and tensor regrades on its own terms: done, PASS (AC9). It fixes no coefficient: xi and kappa stay by hand. Having no dust,
 it says nothing new for clusters, growth or the CMB.
 
 ## 4. What is left, and what would move it

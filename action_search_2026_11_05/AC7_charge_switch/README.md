@@ -20,7 +20,7 @@ C^1 across the switch, convex in P at fixed X.
   the sign of that prediction was wrong; the derived factor is still a perfect square, = 1 at s = 0.
   All 72 physical fixtures (gamma s^2 = 0 and 1e-11) and all 72 stress fixtures (0.1, 1) have positive
   kinetic and gradient terms and phase and group speeds in (0, 1]. Known answer: factor 1 gives AC2's
-  analytic dispersion identically. Physically gamma phidot^2 ~ G Lstar^2 rho_DE / c^2 ~ 1e-11.
+  analytic dispersion identically. Physically gamma phidot^2 ~ G Lstar^2 rho_DE / c^2 ~ 1e-11 [erratum, AC9: 1e-11 is the fixture value, a conservative upper bound; the computed value at s^2 = 2 rho_DE is 2.4e-17 canonical / 4.0e-17 alt].
 - **Q2 (galaxies, PN WKB).** The hand-built linear system equals an automatic linearisation of the
   Euler-Lagrange equations (isotropic W) identically. On-region UV limit
   omega^2/k^2 -> gamma (d0 + s^2 - 2 gamma d0 s^2)/(1 - 3 gamma s^2 + 4 gamma^2 s^4 - 2 gamma^2 d0 s^2):
