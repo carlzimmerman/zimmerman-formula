@@ -1,3 +1,34 @@
+# PF10 continuation handoff
+
+Read pf10/STATUS.md first. The original singular-selection target is still
+open. PF10 rules out the PF09 combined stress mixture in a matched regular
+finite-current layer class, with no upper bound on r or boost. The exact
+finite-current representative and regular outer-current trace assumptions are
+load-bearing; see the independently audited COMBINED_CURRENT_EXCLUSION.md.
+
+A separate barrier excludes everywhere-hyperbolic smooth high-r layers when
+Astar²>6gamma; for D0 incoming data, gamma r0²<2-sqrt(3). The earlier proposed
+all-u<1 claim is false and its correction/counterexample is preserved.
+Do not turn principal-symbol loss into universal mixed-type nonexistence.
+
+Next unresolved discriminator: derive spacetime BV control of Pi (or sufficient
+nonlinear-product compactness) from the full native equations, or construct a
+native singular layer violating that control with identical incoming data.
+Clock-slab charge balance is an alternate route: independently matched side
+fluxes and vanishing initial charge exclude storage, but general outer flux
+mismatch can feed it. This is not outgoing-data selection.
+
+R1: differential exclusion proved in stated class. R2: automatic current bound
+and escaping regimes remain open. R3: actual singular existence/selection
+remains open. Do not infer same-data nonuniqueness from constitutive mixtures,
+undefined products, or different external regularizers. PF09 strong evolution,
+constraint propagation and packet breakdown remain the prior results.
+PF10 has two validated six-check exact runs and independent analytic reviews.
+No new evolution simulation. See pf10/PROOF_INDEX.json for checkpoint hashes.
+
+---
+Historical handoffs (superseded as live status):
+
 # PF09 continuation handoff
 
 Current live result: pf09/STATUS.md and pf09/THEOREM_CHAIN.md. PF09 closes the

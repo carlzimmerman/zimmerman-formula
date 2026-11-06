@@ -1,4 +1,18 @@
-# AC2q post-fold investigation — PF09 native-breakdown checkpoint, 2026-11-06
+# AC2q post-fold investigation — PF10 combined-layer checkpoint, 2026-11-06
+
+**Current result:** the combined clock/boost stress construction fails the
+full scalar equation in the matched finite-current regular-interface class.
+A separate small-kinetic branch barrier rules out reaching its high-clock
+component through an everywhere-hyperbolic smooth layer. General singular
+continuation and unique selection remain open; unavoidable new physics is not
+proved.
+
+[PF10 result, hypotheses and remaining gap](pf10/STATUS.md) ·
+[Full-current exclusion](pf10/COMBINED_CURRENT_EXCLUSION.md) ·
+[Independent audit](pf10/review/COMBINED_CURRENT_AUDIT.md) ·
+[Restricted branch barrier](pf10/BRANCH_BARRIER.md)
+
+## PF09: native coupled breakdown
 
 **Outcome: native coupled strong evolution can break. A uniquely selected
 singular completion has not been established; unavoidable new physics is not
