@@ -43,3 +43,21 @@ z coverage past the edge; it is not physical.
     p.set_for_lmax(2500, lens_potential_accuracy=1); p.NonLinearModel.set_params(halofit_version='mead2020')
     p.Recomb.set_params(recfast_approx_model='planck')
     -> qx15_like.CamSpec(P_FULL).chi2(D, published nuisances) = 11337.337
+
+## A2 (POST-RESULT for main and cells, disclosed; affects only the MB control and grading bookkeeping)
+
+- **The first MB (baryons-only) fits are void.** At omch2 = 1e-7, CAMB's non-linear lensing (HMCode) times out or
+  returns NaN spectra. The NaN chi^2 then poisoned the fit's best-point tracker (NaN < x is always false), so the
+  first MB fits returned chi2 = NaN. The first grade printed this as "FAIL ... MB control bites: True", because
+  L1(NaN) fell through to FAIL. That reading is void and is not used. The files are kept in logs/MB_nan_first/.
+- **Fix.**
+  - MB runs with linear lensing (NonLinear_none), as QX10's CLASS MB did.
+  - A non-finite chi^2 now counts as a failed evaluation.
+  - L1 of a non-finite value returns NO VERDICT.
+  - The MB fits were rerun unchanged otherwise.
+- The main and cell numbers were already printed when this was found. They are unchanged by A2: main uses CAMB's
+  non-linear lensing, which is finite there.
+- **Grading of KA.** The grade now reads KA through KA-P2 (A1; parts/ka_p2.json) and KA-A. The frozen KA-P FAIL line
+  is still printed.
+- **The cell refits needed one crash fix before any cell number existed.** CAMB requires C_L^phiphi out to
+  Params.max_l. The crash logs are in logs/crash_clpp_maxl/.
