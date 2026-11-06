@@ -73,6 +73,7 @@ AC2q switches the stiffness on the khronon charge D.P + 2X (AC7):
 | Frozen finite-wavelength roots | 8/81 negative, slow (|omega| < H), not a controlled test (AC3) |
 | Those 8 modes evolved, constant V | NO VERDICT (AC4): no growth beyond GR, but the flipped-stiffness control does not bite (clock stops rolling) |
 | Same, rolling clock (exponential V) | NO VERDICT, no power (AC5): flipped control reaches R 8.6 < 1e3; even a wrong-sign stiffness gives only Hubble-rate growth there. Main run 81/81 converged, max R 2.68 (under the PASS line, but not gradable without power) |
+| AC2q's 8 slow roots to z = 1100 (and N = 20) | NO VERDICT, no power, as frozen (AC13): main R stays 1.0-2.53, flat from N = 5 to 20, no growth; planted 2H tachyon detected (R 3e3-1.9e4) on the 6 dark-energy-like witnesses but not on the 2 decelerating eps_phi = 2 fixtures; flipped stiffness is caught by det K changing sign (ghost), not by R. POST reading: HARMLESS on 6/8 |
 | AC2 inside galaxies | ILL-POSED (AC6): charge = div P + phidot^2; phidot^2 <= 2 rho_DE cannot fill the phantom's negative regions (6/7 H4 systems, both footings) |
 | AC2q, FRW | healthy: lapse term x (1 - 2 gamma phidot^2)^2, 72/72 fixtures (AC7 Q1) |
 | AC2q, galaxies | no Gamma ~ k anywhere; off-region bounded (AC7 Q2) |
