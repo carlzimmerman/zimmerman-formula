@@ -30,3 +30,9 @@ the conservation identity must fail.60 seconds,one thread.
 Nonclaims: no stellar emissivity calculation, data fit, full halo transport,
 threshold abundance prediction, selected dark-energy offset or boundary.
 Local kinetic stability does not imply correct global gravity or rotation curves.
+
+Pre-execution extension: for the reaction-balanced profile n=C exp[-r/(2l)]/r,
+derive enclosed mass and circular speed. Find the nonzero peak of
+f(x)=[1-(1+x)exp(-x)]/x on x in[1,3] without preset root. Distinguish a peak-speed
+scaling from an extended flat curve. Test the isothermal pressure gradient
+against the profile's own gravity; reaction balance is not hydrostatic balance.
