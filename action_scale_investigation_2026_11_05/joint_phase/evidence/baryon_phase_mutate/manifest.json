@@ -1,0 +1,150 @@
+{
+  "schema_version": 2,
+  "claim_id": "BARYON-PHASE-LOADING",
+  "repository": {
+    "commit": "e6ad90fdc764354d552b2afbf0e3114afa63323c",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "action_scale_investigation_2026_11_05/joint_phase/baryon_phase.py",
+    "--out",
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/baryon_phase_mutate/result.json",
+    "--mutate"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Isothermal self-gravitating pool nonuniqueness at fixed baryons and surface pressure; scalar phase and thin-wall derivative identities",
+    "coefficient_domain": "Exact symbolic algebra and float64 DOP853",
+    "conventions": "Newtonian spherical hydrostatics; B=G Mb/(a cs^2)=1; d=4 pi G a^2 rho/cs^2; pressure positive inward confinement",
+    "inputs": [
+      "Plummer baryonic enclosed mass",
+      "isothermal pressure",
+      "quartic scalar potential with smooth cubic tilt"
+    ],
+    "bounds": {
+      "central_density": [
+        0.01,
+        0.03,
+        0.1
+      ],
+      "surface_density": 0.001,
+      "initial_radius": 1e-05,
+      "maximum_radius": 300,
+      "rtol": [
+        1e-09,
+        1e-11
+      ],
+      "max_step": 0.2,
+      "relative_agreement": 1e-06
+    },
+    "non_claims": [
+      "No stability spectrum or formation attractor",
+      "No observed rotation curve fit",
+      "No microscopic coupling selection",
+      "No target coefficient input"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-06T02:13:53.614466+00:00",
+    "runtime_seconds": 0.724439,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "action_scale_investigation_2026_11_05/joint_phase/baryon_phase.py",
+    "action_scale_investigation_2026_11_05/joint_phase/BARYON_PHASE_CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/baryon_phase.py",
+      "sha256": "707b48daaa236addba05fb80f220dade81127b3c15a1427189d414dd90f72814",
+      "sha256_after": "707b48daaa236addba05fb80f220dade81127b3c15a1427189d414dd90f72814"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/BARYON_PHASE_CONTRACT.md",
+      "sha256": "0e44e22da47551aeb7cfa99b9ab7845779524c235f741b03496bda34aaa7f6ae",
+      "sha256_after": "0e44e22da47551aeb7cfa99b9ab7845779524c235f741b03496bda34aaa7f6ae"
+    }
+  ],
+  "output_directory": "action_scale_investigation_2026_11_05/joint_phase/evidence/baryon_phase_mutate",
+  "declared_results": [
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/baryon_phase_mutate/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/baryon_phase_mutate/stdout.txt",
+      "sha256": "339816b99fd184d84a5318ca963eee067841962b9c68a92bb3096a89e3948c41",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/baryon_phase_mutate/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/baryon_phase_mutate/result.json",
+      "sha256": "a3e393b48baf3e837e98176f35d01e5202d651e9b07a162f8d8ce3cf5af721c5",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

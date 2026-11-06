@@ -1,5 +1,16 @@
 # Joint-model continuation: pool speed calculation; coefficient unresolved
 
+Latest checkpoint: joint_phase/BARYON_PHASE_RESULT.md adds baryon-loaded
+self-gravitating hydrostatics and a matter-coupled two-vacuum model. Fixed
+baryons, dispersion and surface pressure admit different pool inventories
+(six solves; 27 checks pass; pressure-sign control fails one intended check).
+A declining baryonic density can radially stabilize a phase wall under stated
+thin-wall assumptions, but its radius depends on baryonic size, phase splitting
+and coupling. Vacuum excess alone is not the attractive material pool. A
+conserved-charge inventory law is possible conditionally, with unspecified
+particle charges/masses. No universal inventory, phase pressure, or 1/2 has
+been derived. See the result for scoped dispositions and deferred prerequisites.
+
 Latest user-authorized follow-up: joint_phase/POOL_PRESSURE_RESULT.md computes
 the first mass maximum of a pressure-confined isothermal pool. It gives
 cs^4=G^(3/2) Mp sqrt(Pext)/1.18222658849960, with the coefficient computed
