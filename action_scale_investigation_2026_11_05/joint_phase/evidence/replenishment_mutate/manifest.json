@@ -1,0 +1,129 @@
+{
+  "schema_version": 2,
+  "claim_id": "RESERVOIR-REPLENISHMENT-POWER",
+  "repository": {
+    "commit": "40193fd0a92fcfab187ae24224077181f93c5abb",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "action_scale_investigation_2026_11_05/joint_phase/replenishment_geometry_checked.py",
+    "--out",
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/replenishment_mutate/result.json",
+    "--mutate"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Vacuum enthalpy flux, isothermal accretion normalization, front interception and pressure/power consistency; shell radiation energy density rather than central-source flux for cooling comparison",
+    "coefficient_domain": "Exact symbolic algebra",
+    "conventions": "SI energy density and pressure; ordinary nonrelativistic gas for accretion; isotropic lab-frame radiation for front geometry",
+    "inputs": [
+      "Perfect-fluid stress tensor",
+      "Steady isothermal spherical accretion",
+      "Expanding phase-front latent power",
+      "Prior conditional halo pressure-radius law"
+    ],
+    "bounds": {
+      "scope": "Front radius at least halo radius; subluminal front; radiative efficiency at most one; previous zeta at most one half"
+    },
+    "non_claims": [
+      "No globally stable halo",
+      "No selected accretion environment or phase speed",
+      "No universal no-go for anisotropic trapped or replenished models"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-06T20:42:28.140560+00:00",
+    "runtime_seconds": 0.609233,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "action_scale_investigation_2026_11_05/joint_phase/replenishment_geometry_checked.py",
+    "action_scale_investigation_2026_11_05/joint_phase/REPLENISHMENT_CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/replenishment_geometry_checked.py",
+      "sha256": "785a34aa3536d56c6dccc32d855e0532d8bb0e7f924e885982ccacc232acc9f5",
+      "sha256_after": "785a34aa3536d56c6dccc32d855e0532d8bb0e7f924e885982ccacc232acc9f5"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/REPLENISHMENT_CONTRACT.md",
+      "sha256": "1d86c3b2bb78c6cdea84ec671e24a71ba5ece793ccdaead2f4275d67e6e13366",
+      "sha256_after": "1d86c3b2bb78c6cdea84ec671e24a71ba5ece793ccdaead2f4275d67e6e13366"
+    }
+  ],
+  "output_directory": "action_scale_investigation_2026_11_05/joint_phase/evidence/replenishment_mutate",
+  "declared_results": [
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/replenishment_mutate/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/replenishment_mutate/stdout.txt",
+      "sha256": "82bf161193743a63d4539b2d809d61bdceea6da573653f99b9efee39665ee1f1",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/replenishment_mutate/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/replenishment_mutate/result.json",
+      "sha256": "a879a3f66c18ca2f9ccb4a5d67c321944c06136aa160d9fc0ff05155eaba001e",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

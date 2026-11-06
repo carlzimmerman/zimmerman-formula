@@ -1,5 +1,15 @@
 # Joint-model continuation: pool speed calculation; coefficient unresolved
 
+Latest checkpoint: joint_phase/REPLENISHMENT_RESULT.md tests physical supply:
+constant vacuum has zero advective enthalpy flux; spherical ordinary accretion
+has derived M^2 scaling with environmental inputs; an expanding phase front
+harvests fresh vacuum but fails the simple isotropic phase-pressure halo power
+and distant cooling-bath tests. A turnaround sweeping prescription yields a
+conditional linear mass power but retains an imposed speed and interception.
+16 revised exact checks pass; enthalpy-omission control fails one intended check.
+The original central-source cooling comparison is retained and superseded by
+correct external-shell geometry. No selected power, stable whole halo or1/2.
+
 Latest checkpoint: joint_phase/BARRIER_SUPPLY_RESULT.md derives a barrier from
 an explicit heavy-scalar interaction, including exact coexistence and the
 kinetic limitations of its effective expansion. Coupling conversion to bath
