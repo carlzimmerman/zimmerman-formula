@@ -1,5 +1,16 @@
 # Joint-model continuation: pool speed calculation; coefficient unresolved
 
+Latest checkpoint: joint_phase/TRANSPORT_CAPTURE_RESULT.md derives portal-based
+single-scatter capture conditions and a conditional annihilating-fluid outer
+balance n~r^-2,u~r^-1,T~constant. It includes exact finite-inertia/energy residuals,
+so is not a full halo solution. Existing chi-a scattering relates microscopic
+heating and annihilation: the coupling cancels from zeta=c sigma_E/K, yielding
+v_flat^4=2 G zeta L_a/c at leading order. Capture efficiency, fluid closure,
+hard-recoil retention, spectrum, source and boundaries remain unselected.
+14 exact checks pass; the sink-sign control fails its intended check. A
+kinematic upper bound zeta<=1/2 is explicitly NOT the MOND coefficient;
+no universal luminosity/vacuum relation or1/2 derived.
+
 Latest checkpoint: joint_phase/PARTICLE_REACTION_RESULT.md derives explicit
 S->chi chi and chi chi->a a rates with a baryonic mediator portal. Number and
 energy moments give a local joint attractor with a stellar energy source.
