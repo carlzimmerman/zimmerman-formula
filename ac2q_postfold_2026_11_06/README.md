@@ -1,4 +1,4 @@
-# AC2q post-fold investigation — PF07 dynamic-layer checkpoint, 2026-11-06
+# AC2q post-fold investigation — PF08 coupled-breakdown checkpoint, 2026-11-06
 
 **Outcome: a standard shock prescription does not close AC2q. Its post-break
 predictivity needs a justified completion. Full-action failure is not proved.**
@@ -8,6 +8,20 @@ finite-shock survival route is excluded under explicit conditions; whether the
 native action avoids that route or generates its own stress-carrying completion
 remains open. Do not relabel this as "AC2q globally refuted" or "extension proved
 unavoidable for every possible solution".
+
+## PF08: full coupled steepening and conditional breakdown structure
+
+The reduced constrained evolution now checks mean and differentiated-constraint
+compatibility against the native canonical equation. Refinement from 511 to
+2047 independent points extends the resolved interval while gradients grow;
+all reported late stops are resolution limits, not physical events. Curved
+coercivity and exact weighted characteristic identities remove two obstacles
+to a full coupled breakdown argument. Local-existence/continuation foundations
+and singular native selection remain open.
+
+[Current PF08 result and limits](pf08/STATUS.md) ·
+[Live continuation record](pf08/CURRENT_WORK.md) ·
+[Curved inverse audit](pf08/principal_review/CURVED_COERCIVITY.md)
 
 ## PF07: solver repair and genuinely time-dependent layers
 

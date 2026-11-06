@@ -1,3 +1,9 @@
+# PF08 continuation handoff
+
+Latest evidence: pf08/STATUS.md and pf08/CURRENT_WORK.md. Read these before the
+historical PF07 handoff below. The target remains unachieved; no full-action
+failure or unique singular continuation has been established.
+
 # PF07 continuation handoff
 
 Live entry: README.md and pf07/STATUS.md, 2026-11-06.
