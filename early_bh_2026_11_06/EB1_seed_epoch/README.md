@@ -31,9 +31,10 @@ JSON note: K1's `pass` field serialised as null (numpy bool, `default=None`); th
    growth at eps 0.1 (t_E 50.1 Myr) then reaches 10^7.7 by z 7.0451 (771 Myr) from a 1e5 seed. With eps 0.2 most
    cells become NO or NO (age) (t_E 112.6 Myr is too slow from any seed but 1e6).
 4. **The external field decides it.** With a frozen scalar external field e = 0.03 or 0.1 a0, nothing collapses at
-   any mass by z 0. WG2's own law-on box puts the ambient Newtonian field at 0.005-0.018 a0 over z 10-50, i.e. between
-   EB1's e = 0 and e = 0.03 rows. EB1 did not freeze that value; EB1b (criteria 0ff17cf4ce, written after this result
-   and labelled post-result) runs it.
+   any mass by z 0. WG2's own law-on box (A_s 2.1e-9 run) puts the ambient Newtonian field at 0.026 a0 at z 50 falling to
+   0.006 at z 10 (corrected: an earlier draft of this line quoted 0.005-0.018 from WG2's A_s 1e-9 run). EB1 did not
+   freeze that value; EB1b (criteria 0ff17cf4ce, written after this result and labelled post-result) runs it:
+   **with that field nothing collapses in time; QSO1's gate is NO everywhere** (see ../EB1b_web_efe/README.md).
 
 Other rows: B1 (baryons-only expansion) collapses much earlier (1e6 at z 26); RIVAL a0 E(z) earlier still
 (1e6 at z 30.6), z_on 200 earlier (1e6 at z 19.5). All in `eb1_results.json`.
