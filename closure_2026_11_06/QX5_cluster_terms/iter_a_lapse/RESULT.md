@@ -1,0 +1,1 @@
+# iter a RESULT: DEAD as frozen (galaxy-side rechecks); K passes G-X (+0.016/0.079 canonical) and groups. Post-hoc lead: AMENDMENTS.md, iter_a2. Numbers: ../qx5.out. kappa = 1/2 FITTED; not theory closed.
