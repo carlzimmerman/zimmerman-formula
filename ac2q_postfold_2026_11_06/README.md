@@ -1,4 +1,4 @@
-# AC2q post-fold investigation — PF03 checkpoint, 2026-11-06
+# AC2q post-fold investigation — PF06 coupled-field checkpoint, 2026-11-06
 
 **Outcome: a standard shock prescription does not close AC2q. Its post-break
 predictivity needs a justified completion. Full-action failure is not proved.**
@@ -9,7 +9,24 @@ native action avoids that route or generates its own stress-carrying completion
 remains open. Do not relabel this as "AC2q globally refuted" or "extension proved
 unavoidable for every possible solution".
 
-## New results
+## Coupled-field update
+
+The native metric cannot carry the missing stress of a regular stationary
+planar corner with stationary field profiles: its own conjugate-flux conditions force the metric derivatives
+to be continuous. A bounded quasi-stationary negative-divergence polarization
+sheet is excluded too. The coupled homogeneous scalar sector has a wave-like
+high-frequency principal part, with no new k^4 regularizer.
+
+Full nonlinear singularity avoidance and rapidly time-dependent singular
+layers remain open. The longer coupled simulations are numerically unreliable;
+their termination is not a physical failure result. Constraint-satisfying
+initial data and independently reviewed continuum evolution equations are now
+available. See [coupled status and limits](coupled/STATUS.md),
+[junction derivation](coupled/JUNCTION_RESULT.md),
+[ADM equations](coupled/ADM_FORMULATION.md), and
+[independent solver review](coupled/REVIEW_SOLVER.md).
+
+## Earlier PF01–03 results
 
 - AC10's "fold" event is J=1e-3, not J=0. Its compressed positive-charge rows do
   not distinguish true crossing from native pressure steepening into a shock.
@@ -47,7 +64,8 @@ unavoidable for every possible solution".
   [run](native001/result.json) retains two failed hand-expectation checks; the
   [mixing control](native_mutate002/result.json) must fail two root checks.
 - All seven computation manifests validate, including current input hashes.
-- Review status: self-review only. No new physical parameters adopted.
+- PF01–03 review status: self-review. The later coupled canonical equations
+  and linear benchmark have an independent review. No physical parameters adopted.
 
 Criteria commits: 57f9b8140d, 21cb54b10b, bdaee092bf. Earlier lanes were not edited.
 The parent physical question remains open; this directory is the live entry

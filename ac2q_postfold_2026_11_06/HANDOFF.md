@@ -1,67 +1,75 @@
-# PF03 continuation handoff
+# PF06 continuation handoff
 
-Base: 60263a84e20aaa1c98ba3729708f4171d059a253.
-Frozen checkpoints: PF01 57f9b8140d; PF02 21cb54b10b; PF03 bdaee092bf.
+Live entry: README.md and coupled/STATUS.md, 2026-11-06.
 Owner: current Codex chat; write scope ac2q_postfold_2026_11_06 only.
-User authorized investigating whether AC2q survives folds, needs an extension,
-or fails. No permission for publication, downloads, or adoption was requested.
+User authorized finding whether AC2q's own coupled fields avoid breaking or
+supply missing interface stress; no scientific closure has been declared.
 
-Current result and evidence: README.md, DERIVATION.md, AUDIT.md and seven manifests.
-Use those rather than the earlier general CLOSURE.md for this specific issue.
+## Completed bounded obligations
 
-## Route disposition
+PF01–03: exact breaking in the PN principal system; incompatible finite shock
+laws; exact flat stationary-profile corner obstruction; frozen flat symbol.
+These do not prove full-action breakdown. Existing AC10 threshold J=1e-3 and
+its pressure-dropping continuation do not close that gap.
 
-R1 (smooth principal dynamics): resolved its bounded sub-obligation. Exact
-simple-wave breaking; does not establish full covariant breaking. AC10's event
-threshold cannot repair this missing implication.
+PF04: four-dimensional plane reduction and regular coupled metric junction
+identities. Native metric derivatives cannot jump independently while their
+conjugate fluxes and P remain continuous. The PF02 obstruction extends to
+stationary metric/polarization profiles, phi=s t+psi, gamma>0, regular timelike
+same-sign through-flow and gamma*s_local^2<1/3. A stationary surface with evolving
+fields is NOT covered. See coupled/JUNCTION_RESULT.md and its independent review.
 
-R2 (ordinary finite weak shocks): PN incompatibility resolved; exact planar
-on-branch no-defect corner obstruction proved under listed hypotheses. That
-particular completion is excluded. Reopening it requires changing one of the
-actual hypotheses, not using a different mesh or numerical viscosity.
+PF05: bounded quasi-stationary negative-divergence sheets cannot carry the
+missing stress if limiting on-branch endpoints have a uniform positive flux
+gap, the clock and metric remain nondegenerate, and temporal derivatives/sources
+are uniformly bounded. Rapid temporal layers remain open. Plane tensor modes
+are unsourced from zero data while coefficients stay regular.
 
-R3 (discretization dependence): bounded experiment complete, including exact
-Riemann checks and grid refinement. No reason to extend this same grid merely
-to increase case counts. Different weak conservation laws predict different
-charge and Poisson-source profiles.
+PF06: ADM constraints/evolution derived and independently reviewed; exact
+constraint-compatible initial family constructed; homogeneous and local linear
+benchmarks executed. The coupled homogeneous principal block remains wave-like,
+not a k^4 regulator. See coupled/ADM_FORMULATION.md and REVIEW_SOLVER.md.
 
-## Remaining routes — open, not exhausted
+## Unresolved routes and failed computational attempts
 
-N1: Native full-action evolution might avoid finite shocks or develop resolved
-oscillations. PF03 executed the first step: NATIVE_DYNAMICS.md derives the exact
-time-dependent flat planar currents and the fixed-metric frozen-background
-symbol. It has one frequency root, asymptotically k^2 on and bounded off, with
-no k^4 regulator. Native002 verifies it; native001 retains a corrected expected
-coefficient error. This does not exclude nonlinear oscillations or metric effects.
+N1 full nonlinear evolution: longer canonical-variable runs do not converge to
+a resolved endpoint. Centered derivatives, odd grids, smaller timesteps,
+momentum reconstruction and a joint lapse/polarization solve were tested.
+The last solve exhibits a constraint tolerance/roundoff problem even in its
+homogeneous benchmark. These failures are numerical, not full-action breaking
+or avoidance. Preserve failed runs. Do not run this solver postfold or use its
+stopping time as an observable. Next: a nonlinear formulation adapted to the
+constraint surface, tested against the independently derived lapse/metric
+linear system; then space/time refinement before any physical classification.
 
-The next mathematical dependency is the coupled constrained metric evolution
-and its domain of validity, including the full W cap, timelike-clock condition
-and interface stress. Before another evolution, derive that system and establish
-that the chosen initial data solve its constraints. Then identify whether a
-short-wave regime can simultaneously control metric corrections, scalar
-corrections and strong coupling. A source-free principal test cannot discharge
-those requirements. This is open research, not a pending run of an existing
-valid solver; no full-action counterexample has been supplied.
+N2 native layer stress: derive a truly time-dependent layer balance without
+setting P_t+2P beta_t=0. Determine whether a finite defect stress exists, remains
+within the action's domain, and is uniquely selected by incoming data. Neither
+arbitrary stress assignment nor an unproved finite-action coercivity claim is
+acceptable. Unbounded metric gradients and oscillatory limits remain open.
 
-N2: Native concentrated or oscillatory stress may supply the missing momentum.
-First derive the full-action distributional/interface conditions including the
-metric and a time-dependent layer. Determine whether the layer stress is fixed
-by incoming data or requires an extra rule/state. PF02 excludes only the
-zero-defect stationary case. A bounded convergent pressure shock is insufficient.
-Deferred pending definition/derivation of an admissible layer and regularity
-class; do not choose its stress to cancel the residual by fiat.
+E1 extension: if N1 establishes breaking and N2 cannot select a native carrier,
+specify a covariant carrier/operator and its energy budget. No particular new
+parameter or operator has been adopted. A completion of ordinary shocks is
+needed in the excluded class; a universal necessity of extra physics is not
+proved. Phenomenology and calibration must be retested only after such a model
+is actually specified.
 
-E1: An explicit extension could supply dispersion or dissipation. It must first
-specify a covariant operator/carrier, energy budget and degrees of freedom.
-Then test the missing stress, stability, and the prior observational scope.
-Deferred until N1/N2 show whether native terms suffice; no reason yet to select
-beta or any particular additional constant. X14's nine-class list is not an
-exhaustive completion theorem.
+A general source-driven shock theorem cannot discharge N1 until strict
+hyperbolicity, genuine nonlinearity, locality and constrained-data compatibility
+are established for this action. See the source boundary in coupled/STATUS.md.
 
-Definition of done remains a justified full-action survival/completion/failure
-classification, with valid initial data and controlled observables. This
-checkpoint has not reached that definition. It has excluded a concrete proposed
-route and supplied exact tests for any claimed replacement.
+## Provenance and review
 
-No background jobs running; the three failed mutation runs are expected controls,
-not failed physical simulations. No other working tree changes were touched.
+PF01–03 criteria: 57f9b8140d,21cb54b10b,bdaee092bf; results59cbc01d7c.
+PF04–06 criteria: f53b83d55a,4ccb8aceac,91cb3d3e3e,9b5b2fd660,17f8759991.
+Thirty recorded manifests validate against current inputs; failed outputs and
+mutation controls are retained. Independent linear benchmark uses a separate
+contract/command/result under coupled/review_linear. Check coupled/VERIFICATION.json.
+Independent reviewer checked the canonical system and junction proof, and
+identified stationary-profile and uniform-gap restrictions now made explicit.
+No unrelated files were edited. No background computation remains running.
+
+Definition of done: justified full-action survival, uniquely specified completion,
+or failure classification with controlled incoming data and outgoing observables.
+This checkpoint does not meet that definition; the routes above remain open.

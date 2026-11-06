@@ -1,0 +1,25 @@
+{
+  "checks": {
+    "off_P_flux": true,
+    "on_P_flux": true,
+    "off_scalar_normal_delta_coefficient": true,
+    "off_scalar_full_current": true,
+    "off_speed_gap": true,
+    "excursion_cost_diverges": true,
+    "tensor_R": true,
+    "D_independent_of_tensor": true,
+    "zero_tensor_solves": true
+  },
+  "all_pass": true,
+  "mutation": false,
+  "off_polarization_flux": "-exp(alpha + 2*beta)/sqrt(1 - v**2)",
+  "off_scalar_flux": "v*(2*gamma*s**4*(1 - v**2)**(5/2) + s**2*(1 - v**2)**(3/2)*exp(2*alpha) + (2*P*beta_x + d)*exp(3*alpha))*exp(-2*alpha + 2*beta)/(s*(1 - v**2)**(3/2))",
+  "normal_delta_coefficient": "v*exp(alpha + 2*beta)/(s*(1 - v**2)**(3/2))",
+  "on_polarization_flux": "(-gamma*s**2*(v**2 - 1)**2 - gamma*sqrt(1 - v**2)*(2*P*beta_x + d)*exp(alpha) + (v**2 - 1)*exp(2*alpha))*exp(-alpha + 2*beta)/(1 - v**2)**(3/2)",
+  "tensor": {
+    "R": "2*(Derivative(alpha(t, x), (t, 2)) - Derivative(alpha(t, x), (x, 2)) + 3*Derivative(beta(t, x), t)**2 + 2*Derivative(beta(t, x), (t, 2)) - 3*Derivative(beta(t, x), x)**2 - 2*Derivative(beta(t, x), (x, 2)) + Derivative(h(t, x), t)**2 - Derivative(h(t, x), x)**2)*exp(-2*alpha(t, x))",
+    "tensor_equation": "2*(2*Derivative(beta(t, x), t)*Derivative(h(t, x), t) - 2*Derivative(beta(t, x), x)*Derivative(h(t, x), x) + Derivative(h(t, x), (t, 2)) - Derivative(h(t, x), (x, 2)))*exp(2*beta(t, x))",
+    "D": "(2*P(t, x)*sinh(theta(t, x))*Derivative(beta(t, x), t) + 2*P(t, x)*cosh(theta(t, x))*Derivative(beta(t, x), x) + sinh(theta(t, x))*Derivative(P(t, x), t) + cosh(theta(t, x))*Derivative(P(t, x), x))*exp(-alpha(t, x))"
+  },
+  "scope": "Stationary layers with bounded temporal variation, bounded metric first derivatives and bounded potential derivatives; no oscillatory layer theorem"
+}

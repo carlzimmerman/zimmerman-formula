@@ -1,0 +1,134 @@
+{
+  "schema_version": 2,
+  "claim_id": "PF04_coupled_junction",
+  "repository": {
+    "commit": "f53b83d55adcf8c02fa372a9c2030f45e4ab83fa",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "ac2q_postfold_2026_11_06/coupled/metric_junction_v2.py",
+    "--mutate",
+    "divergence",
+    "--output",
+    "ac2q_postfold_2026_11_06/coupled/mutate_divergence001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact 4D curvature and projected-divergence reduction; necessary planar metric and polarization corner identities and nondegenerate jump matrix.",
+    "coefficient_domain": "SymPy exact expressions, real fields with timelike scalar gradient",
+    "conventions": "signature -+++, M2=Mpl^2>0, conformal base and two equal transverse scale factors",
+    "inputs": [
+      "AC7 action, bounded potentials, continuous metric phi P, bounded one-sided derivatives"
+    ],
+    "bounds": {
+      "symmetry": "plane, stationary interface for jump identities",
+      "parameters": "gamma,M2,s positive, |v|<1"
+    },
+    "non_claims": [
+      "Not a constrained full evolution",
+      "No exclusion of every oscillatory or concentration measure",
+      "No smooth-data breakdown theorem"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-06T11:51:20.162959+00:00",
+    "runtime_seconds": 5.940969,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 90.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "ac2q_postfold_2026_11_06/coupled/metric_junction_v2.py",
+    "ac2q_postfold_2026_11_06/coupled/FROZEN_CRITERIA.md",
+    "action_search_2026_11_05/AC7_charge_switch/README.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "ac2q_postfold_2026_11_06/coupled/metric_junction_v2.py",
+      "sha256": "458557079ecb70c2c022d1f56efd3daaf4486a13f58eddb190d8eb1a9bc6cba5",
+      "sha256_after": "458557079ecb70c2c022d1f56efd3daaf4486a13f58eddb190d8eb1a9bc6cba5"
+    },
+    {
+      "path": "ac2q_postfold_2026_11_06/coupled/FROZEN_CRITERIA.md",
+      "sha256": "65ea3b5aa90ee3f0dd5e2e06159a87e901460d3bd7efae2dacfec029200bab26",
+      "sha256_after": "65ea3b5aa90ee3f0dd5e2e06159a87e901460d3bd7efae2dacfec029200bab26"
+    },
+    {
+      "path": "action_search_2026_11_05/AC7_charge_switch/README.md",
+      "sha256": "6627a35733c1700445d35e1dc1dc1125f6d1bc35e18d159ffe88b633f4d037e6",
+      "sha256_after": "6627a35733c1700445d35e1dc1dc1125f6d1bc35e18d159ffe88b633f4d037e6"
+    }
+  ],
+  "output_directory": "ac2q_postfold_2026_11_06/coupled/mutate_divergence001",
+  "declared_results": [
+    "ac2q_postfold_2026_11_06/coupled/mutate_divergence001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "ac2q_postfold_2026_11_06/coupled/mutate_divergence001/stdout.txt",
+      "sha256": "bfd7ec32658c9bad3e1a1e1e0456b4a721b0c1ea7150517b86300dab82b117f7",
+      "kind": "log"
+    },
+    {
+      "path": "ac2q_postfold_2026_11_06/coupled/mutate_divergence001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "ac2q_postfold_2026_11_06/coupled/mutate_divergence001/result.json",
+      "sha256": "bfd7ec32658c9bad3e1a1e1e0456b4a721b0c1ea7150517b86300dab82b117f7",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

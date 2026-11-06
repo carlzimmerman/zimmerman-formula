@@ -94,7 +94,8 @@ This section retains the full flat-space stationary AC2q matter action on the
 positive switch branch; it is not the PN expansion above. It proves a necessary
 interface obstruction under the stated restrictions, not a global evolution result.
 
-Assume a planar interface stationary in a local inertial frame, no unbounded
+Assume gamma>0 and stationary field profiles P=P(x), phi=s t+psi(x),
+with a planar interface stationary in a local inertial frame, no unbounded
 metric/tangential gradients, continuous phi and P, bounded one-sided derivatives,
 finite W and V, X>0, and no surface stress or unresolved oscillatory defect.
 The same-sign nonzero velocities are the usual through-flow case; negative

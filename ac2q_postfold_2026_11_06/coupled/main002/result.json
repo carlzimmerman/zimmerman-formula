@@ -1,0 +1,32 @@
+{
+  "checks": {
+    "four_dimensional_R": true,
+    "Einstein_integration_by_parts": true,
+    "projected_D": true,
+    "acceleration": true,
+    "pi_alpha": true,
+    "pi_beta_current_identity": true,
+    "Einstein_transverse_coefficient": true,
+    "pi_P": true,
+    "total_stress_cancellation": true,
+    "metric_jump_matrix_invertible": true
+  },
+  "all_pass": true,
+  "mutation": "none",
+  "geometry": {
+    "R": "2*(Derivative(alpha(t, x), (t, 2)) - Derivative(alpha(t, x), (x, 2)) + 3*Derivative(beta(t, x), t)**2 + 2*Derivative(beta(t, x), (t, 2)) - 3*Derivative(beta(t, x), x)**2 - 2*Derivative(beta(t, x), (x, 2)))*exp(-2*alpha(t, x))",
+    "D": "(2*P(t, x)*sinh(theta(t, x))*Derivative(beta(t, x), t) + 2*P(t, x)*cosh(theta(t, x))*Derivative(beta(t, x), x) + sinh(theta(t, x))*Derivative(P(t, x), t) + cosh(theta(t, x))*Derivative(P(t, x), x))*exp(-alpha(t, x))",
+    "PA": "(sinh(theta(t, x))*Derivative(alpha(t, x), t) + sinh(theta(t, x))*Derivative(theta(t, x), x) + cosh(theta(t, x))*Derivative(alpha(t, x), x) + cosh(theta(t, x))*Derivative(theta(t, x), t))*P(t, x)*exp(-alpha(t, x))",
+    "reduced_Einstein_over_M2": "(-2*Derivative(alpha(t, x), t)*Derivative(beta(t, x), t) + 2*Derivative(alpha(t, x), x)*Derivative(beta(t, x), x) - Derivative(beta(t, x), t)**2 + Derivative(beta(t, x), x)**2)*exp(2*beta(t, x))"
+  },
+  "junction": {
+    "pi_alpha": "2*M2*beta_x*exp(2*beta)",
+    "pi_beta": "-2*(M2*alpha_x*v**2*sqrt(1 - v**2)*exp(alpha) - M2*alpha_x*sqrt(1 - v**2)*exp(alpha) + M2*beta_x*v**2*sqrt(1 - v**2)*exp(alpha) - M2*beta_x*sqrt(1 - v**2)*exp(alpha) + 2*P**2*beta_x*gamma*sqrt(1 - v**2)*exp(alpha) + P*d*gamma*sqrt(1 - v**2)*exp(alpha) + P*gamma*s**2*v**4 - 2*P*gamma*s**2*v**2 + P*gamma*s**2 - P*v**2*exp(2*alpha) + P*exp(2*alpha))*exp(-alpha)*exp(2*beta)/(-(v - 1)*(v + 1))**(3/2)",
+    "pi_P": "-(2*P*beta_x*gamma*sqrt(1 - v**2)*exp(alpha) + d*gamma*sqrt(1 - v**2)*exp(alpha) + gamma*s**2*v**4 - 2*gamma*s**2*v**2 + gamma*s**2 - v**2*exp(2*alpha) + exp(2*alpha))*exp(-alpha)*exp(2*beta)/(-(v - 1)*(v + 1))**(3/2)",
+    "jump_matrix": "Matrix([[0, 2*M2*exp(2*beta)], [2*M2*exp(2*beta), 2*M2*exp(2*beta)]])",
+    "jump_determinant": "-4*M2**2*exp(4*beta)",
+    "total_spatial_H": "-(v - 1)*(v + 1)*(4*M2*alpha_x*beta_x*v**4*sqrt(1 - v**2)*exp(alpha) - 8*M2*alpha_x*beta_x*v**2*sqrt(1 - v**2)*exp(alpha) + 4*M2*alpha_x*beta_x*sqrt(1 - v**2)*exp(alpha) + 2*M2*beta_x**2*v**4*sqrt(1 - v**2)*exp(alpha) - 4*M2*beta_x**2*v**2*sqrt(1 - v**2)*exp(alpha) + 2*M2*beta_x**2*sqrt(1 - v**2)*exp(alpha) - 4*P**2*beta_x**2*gamma*v**2*sqrt(1 - v**2)*exp(alpha) - 4*P**2*beta_x**2*gamma*sqrt(1 - v**2)*exp(alpha) - 4*P*beta_x*d*gamma*v**2*sqrt(1 - v**2)*exp(alpha) - 4*P*beta_x*d*gamma*sqrt(1 - v**2)*exp(alpha) + 4*P*beta_x*gamma*s**2*v**6 - 8*P*beta_x*gamma*s**2*v**4 + 4*P*beta_x*gamma*s**2*v**2 + 4*P*beta_x*v**4*exp(2*alpha) - 4*P*beta_x*v**2*exp(2*alpha) - d**2*gamma*v**2*sqrt(1 - v**2)*exp(alpha) - d**2*gamma*sqrt(1 - v**2)*exp(alpha) + 2*d*gamma*s**2*v**6 - 4*d*gamma*s**2*v**4 + 2*d*gamma*s**2*v**2 + 2*d*v**4*exp(2*alpha) - 2*d*v**2*exp(2*alpha) - s**2*v**6*sqrt(1 - v**2)*exp(alpha) + s**2*v**4*sqrt(1 - v**2)*exp(alpha) + s**2*v**2*sqrt(1 - v**2)*exp(alpha) - s**2*sqrt(1 - v**2)*exp(alpha))*exp(-alpha)*exp(2*beta)/(2*(-(v - 1)*(v + 1))**(7/2))",
+    "metric_spatial_H": "M2*(2*alpha_x*beta_x + beta_x**2)*exp(2*beta)"
+  },
+  "scope": "Necessary regular stationary planar corner conditions; not full constrained evolution or all singular measures"
+}
