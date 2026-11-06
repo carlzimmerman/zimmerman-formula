@@ -34,6 +34,7 @@ MUTATE twin.
 | CMB lensing + growth inside the current action | FAIL, no-go (clock Jeans; K(Q) 500x gap; barotropic class) | QX3 0240c8e31d, 602db4263d |
 | Switched cold-dark-energy sector, window | KILLED: host galaxies retain the sector, and KiDS lensing is over-predicted by 0.15-0.27 dex. The primary TT/TE/EE as a cold component fit (chi2 6718 vs 6497) is NO VERDICT (J1) | QX7 9a8f2e4778, QX10 f8d51400c8 |
 | Constraint triangle (cold early / not retained by galaxies / clusters + groups) | RUNNING: iter_1's universal-density no-go does not fire (statics only) | QX12 8ea6100c3f |
+| Failure ladder: what the plain-law miss tracks | NO SINGLE VARIABLE: hot systems sit +0.32-0.37 dex above SPARC at the same M_b, g_N, depth, r/r_M, f_gas (+0.18 in v_obs); the miss is a hot-vs-cold STEP, flat in g_N inside the hot class; UDGs under-predicted 3-4 sigma by every variable | QX20 |
 | AGC 114905 | CONDITIONAL on an EFE host of >= 3.4e9 / 6.4e9 Msun; needs a neighbour census (download, owner) | QX4 beabff85b5 |
 | Malin 1 | FAIL: no mechanism in the action | QX4 beabff85b5 |
 | FN6 window source | FAIL for v3s / AC2q, on a post-result control; NO VERDICT as frozen | AC19 f747d27e9e |
