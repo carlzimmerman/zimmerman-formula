@@ -1,5 +1,15 @@
 # Joint-model continuation: pool speed calculation; coefficient unresolved
 
+Latest checkpoint: joint_phase/PARTICLE_REACTION_RESULT.md derives explicit
+S->chi chi and chi chi->a a rates with a baryonic mediator portal. Number and
+energy moments give a local joint attractor with a stellar energy source.
+The resulting reaction profile is exp[-r/(2l)]/r, not a flat-tail density, and
+its constant-temperature pressure is not hydrostatic. Conditional peak-speed
+v^4 proportional to Mb survives only with assumed L_S proportional to Mb;
+its normalization remains free and is not a supported flat-curve prediction.
+25 checks pass; dilution mutation fails two intended checks. The prior global
+feedback law, phase pressure and1/2 remain underived.
+
 Latest checkpoint: joint_phase/COUPLED_FEEDBACK_RESULT.md constructs a global
 phenomenological abundance/temperature feedback with a positive-state Lyapunov
 proof of convergence, preserving conditional v^4 proportional to Mb. This is

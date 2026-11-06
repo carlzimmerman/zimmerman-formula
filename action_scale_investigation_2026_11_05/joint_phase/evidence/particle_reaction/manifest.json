@@ -1,0 +1,168 @@
+{
+  "schema_version": 2,
+  "claim_id": "PARTICLE-REACTION-ENERGY",
+  "repository": {
+    "commit": "100b4d4924fc8f910d5644635d972a99a9a26d93",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "action_scale_investigation_2026_11_05/joint_phase/particle_reaction.py",
+    "--out",
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/particle_reaction/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Tree-level reaction normalization, energy/number moments, local stability and reaction-profile gravity",
+    "coefficient_domain": "Exact SymPy and float64 DOP853/root finding",
+    "conventions": "Natural units for rates; identical final-state factors; K=annihilation sigma times relative speed; particle loss K n^2",
+    "inputs": [
+      "S chi chi cubic coupling",
+      "chi chi a a contact coupling",
+      "Radial ballistic mediator flux"
+    ],
+    "bounds": {
+      "J": 2,
+      "K": 0.5,
+      "cv": 1,
+      "injected_kinetic_energy": 3,
+      "initial_states": [
+        [
+          0.2,
+          0.5
+        ],
+        [
+          2,
+          0.5
+        ],
+        [
+          0.5,
+          2
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "time": [
+        0,
+        40
+      ],
+      "rtol": 1e-10,
+      "atol": 1e-12,
+      "max_step": 0.1,
+      "agreement": 1e-07,
+      "peak_bracket": [
+        1,
+        3
+      ]
+    },
+    "non_claims": [
+      "No stellar emissivity computation",
+      "No full mechanical halo equilibrium",
+      "No dark-energy normalization derived"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-06T19:22:01.630518+00:00",
+    "runtime_seconds": 1.676633,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "action_scale_investigation_2026_11_05/joint_phase/particle_reaction.py",
+    "action_scale_investigation_2026_11_05/joint_phase/PARTICLE_REACTION_CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/particle_reaction.py",
+      "sha256": "aeb3a733a3f5810aff3ea63dc6b92422336ef1699407df43061e76e2baf76ba0",
+      "sha256_after": "aeb3a733a3f5810aff3ea63dc6b92422336ef1699407df43061e76e2baf76ba0"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/PARTICLE_REACTION_CONTRACT.md",
+      "sha256": "1a3d0a133922b66ec1f3aa896f0bb7289a5dfda7e63706eef400abcf61d3bd1b",
+      "sha256_after": "1a3d0a133922b66ec1f3aa896f0bb7289a5dfda7e63706eef400abcf61d3bd1b"
+    }
+  ],
+  "output_directory": "action_scale_investigation_2026_11_05/joint_phase/evidence/particle_reaction",
+  "declared_results": [
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/particle_reaction/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/particle_reaction/stdout.txt",
+      "sha256": "9307ba554f586db9e255d731bc0ba581f2fc1a9333a97c58d81f8236725cc55b",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/particle_reaction/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/particle_reaction/result.json",
+      "sha256": "0ff3a25d7b7dda10c79de46bfbc045601d18e4486c98fc8dbc5e46c4b57605a3",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
