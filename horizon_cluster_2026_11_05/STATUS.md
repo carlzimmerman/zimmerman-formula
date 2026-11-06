@@ -76,7 +76,7 @@ These tasks remain open in PLAN.md; none is marked exhausted. No request for new
 
 Validation commands:
 
-    python /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/4.0.0/skills/computation-audit/scripts/validate_manifest.py horizon_cluster_2026_11_05/run002/manifest.json --root /Users/carlzimmerman/new_physics/zimmerman-formula
-    python /Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/4.0.0/skills/computation-audit/scripts/validate_manifest.py horizon_cluster_2026_11_05/robustness002/manifest.json --root /Users/carlzimmerman/new_physics/zimmerman-formula
+    python <computation-audit-skill>/scripts/validate_manifest.py horizon_cluster_2026_11_05/run002/manifest.json --root .
+    python <computation-audit-skill>/scripts/validate_manifest.py horizon_cluster_2026_11_05/robustness002/manifest.json --root .
 
 Exact execution argv are in each manifest. Reruns must use fresh output directories and update both output/result arguments; historical evidence must not be overwritten.

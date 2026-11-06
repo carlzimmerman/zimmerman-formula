@@ -1,0 +1,153 @@
+{
+  "schema_version": 2,
+  "claim_id": "NONCONDOR_FIXED_LAW_SCREEN_20261104",
+  "repository": {
+    "commit": "928ab318baaf6aab5128e8fb8687dfe58417172b",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "forecasts/noncondor_2026_11_04/screen.py",
+    "forecasts/noncondor_2026_11_04/run01"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Conditional finite acceleration/radius grid separations and mass degeneracy; no target detection claim",
+    "coefficient_domain": "float64",
+    "conventions": "PAPER66 canonical n1 law, a00=9.3603e-11, w0=-.838 wa=-.62; MOND same local normalization/interpolation. R physical kpc. Precision budgets independent log-space linearized uncertainty, ideal 1% velocity error, no other nuisance terms. Spherical equivalent masses not actual disk masses. No fitted dark matter model.",
+    "inputs": [
+      "four redshifts",
+      "five radii",
+      "five acceleration levels",
+      "public archive metadata"
+    ],
+    "bounds": {
+      "redshifts": [
+        1.5,
+        4.5505,
+        4.567,
+        7
+      ],
+      "radii_kpc": [
+        3,
+        5,
+        7.5,
+        10,
+        15
+      ],
+      "gN_a00": [
+        0.1,
+        0.3,
+        1,
+        3,
+        10
+      ]
+    },
+    "non_claims": [
+      "No measurement precision or usable outer radius established",
+      "No blanket exclusion of MOND or dark matter",
+      "No unpublished target-specific mass imputed"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-04T18:02:12.292056+00:00",
+    "runtime_seconds": 0.07653,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 20.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": null
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "forecasts/noncondor_2026_11_04/screen.py",
+    "forecasts/noncondor_2026_11_04/archive_dynamics.csv"
+  ],
+  "input_artifacts": [
+    {
+      "path": "forecasts/noncondor_2026_11_04/screen.py",
+      "sha256": "d9928dd41787725e08d12633cd7c61d3e2caf7073dbc11fb6fdb1a58daf746db",
+      "sha256_after": "d9928dd41787725e08d12633cd7c61d3e2caf7073dbc11fb6fdb1a58daf746db"
+    },
+    {
+      "path": "forecasts/noncondor_2026_11_04/archive_dynamics.csv",
+      "sha256": "a596319713936085dcfce0340c13e0e799ec57291e959a1105134bd160703c1f",
+      "sha256_after": "a596319713936085dcfce0340c13e0e799ec57291e959a1105134bd160703c1f"
+    }
+  ],
+  "output_directory": "forecasts/noncondor_2026_11_04/run01",
+  "declared_results": [
+    "forecasts/noncondor_2026_11_04/run01/grid.csv",
+    "forecasts/noncondor_2026_11_04/run01/inventory.json",
+    "forecasts/noncondor_2026_11_04/run01/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "forecasts/noncondor_2026_11_04/run01/stdout.txt",
+      "sha256": "c63de2ec52acaf7a84e4ee9a6d57d04faec9f211607e5f4184b50cd8310eb924",
+      "kind": "log"
+    },
+    {
+      "path": "forecasts/noncondor_2026_11_04/run01/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "forecasts/noncondor_2026_11_04/run01/grid.csv",
+      "sha256": "f6d9e710cf24641ad312edac3f2226665775dc890afb3679c0eec507d328978c",
+      "kind": "result"
+    },
+    {
+      "path": "forecasts/noncondor_2026_11_04/run01/inventory.json",
+      "sha256": "d79952613664108dad823004f3b393a0c2c23d72d63d0aab98ea080ed82744e8",
+      "kind": "result"
+    },
+    {
+      "path": "forecasts/noncondor_2026_11_04/run01/results.json",
+      "sha256": "d3d5764cc15ab31c8a7592e4641263ee3beeee537e13a86abce806d5f5f8beb4",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions."
+  ]
+}
