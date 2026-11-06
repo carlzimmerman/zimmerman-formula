@@ -1,0 +1,29 @@
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+                    ~~~~^^^^^^^^^^^^^^^
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/closure_2026_11_06/QX8_sparc_exact_field/qx8.py", line 187, in solve_task
+    g = grid_for(q, GRID); dep = Dep(g); comp = components(q, g, dep)
+                                                ~~~~~~~~~~^^^^^^^^^^^
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/closure_2026_11_06/QX8_sparc_exact_field/qx8.py", line 155, in components
+    wts, _ = nnls(B, y) if np.any(y > 0) else (np.zeros(B.shape[1]), 0.0)
+             ~~~~^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/site-packages/scipy/optimize/_nnls.py", line 93, in nnls
+    raise RuntimeError("Maximum number of iterations reached.")
+RuntimeError: Maximum number of iterations reached.
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/closure_2026_11_06/QX8_sparc_exact_field/qx8.py", line 419, in <module>
+    run_solve(w)
+    ~~~~~~~~~^^^
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/closure_2026_11_06/QX8_sparc_exact_field/qx8.py", line 243, in run_solve
+    for _ in pool.imap_unordered(solve_task, tasks):
+             ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/lib/python3.13/multiprocessing/pool.py", line 873, in next
+    raise value
+RuntimeError: Maximum number of iterations reached.
