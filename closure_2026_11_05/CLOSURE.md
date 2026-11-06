@@ -115,3 +115,5 @@ Each open door waits on one of three things:
 3. **Finishing running work:** AZ43 (FN6 window), AZ47 (BK2 G3), SY1 stage 3.
 
 Kappa = 1/2 FITTED; not theory closed.
+
+QX16 (11-06): QX5's elliptical host list had a late-binding bug (all 7 Humphrey ellipticals carried NGC6482's mass model); fixed forward, every affected lane rerun into *_FIXED outputs (closure_2026_11_06/QX16_elliptical_binding_fix/): no label changes; the ellipticals' plain-law baseline is +0.210/+0.189 dex (was +0.083/+0.065). Kappa = 1/2 FITTED; not theory closed.
