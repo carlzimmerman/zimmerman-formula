@@ -1,5 +1,14 @@
 # Joint-model continuation: pool speed calculation; coefficient unresolved
 
+Latest checkpoint: joint_phase/BARRIER_SUPPLY_RESULT.md derives a barrier from
+an explicit heavy-scalar interaction, including exact coexistence and the
+kinetic limitations of its effective expansion. Coupling conversion to bath
+escape gives a finite-reservoir energy identity: no nonzero closed stationary
+bath exists. Thermal regulation can be transient; replenishment fixes power
+through an additional source.18 corrected exact checks pass; depletion-sign
+control fails one intended check. An initial solver-domain failure is preserved
+and explained. No selected source, whole-halo stability or1/2 is derived.
+
 Latest checkpoint: joint_phase/BOUNDARY_COOLING_RESULT.md derives a soft-radiation
 cooling mechanism from the same scalar contact interaction. A local fixed-bath
 thermal equilibrium is restoring when16 U_a>rho_pool c^2; supplying that bath
