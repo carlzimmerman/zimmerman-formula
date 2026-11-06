@@ -48,7 +48,7 @@ MUTATE twin.
 | Malin 1 | FAIL: no mechanism in the action | QX4 beabff85b5 |
 | FN6 window source | FAIL for v3s / AC2q, on a post-result control; NO VERDICT as frozen | AC19 f747d27e9e |
 | Nonlinear fold (full grid) | RUNNING | AC14 |
-| Moving Sun, nonlinear halo | RUNNING | AC15 |
+| Moving Sun, nonlinear halo (v3s, AC2q) | NO VERDICT as frozen (AC24). Power now shown: planted 2x reads FAIL and 0.1x PASS, recovery <= 4.6 %. KA3 PASS on three rungs. CONV fails only on the q_B Bernoulli proxy: medium to fine 0.50 / 0.57 vs 0.30, falling monotonically at every gate; the q reading converged (0.11 / 0.065). Worst over every bracket, q and q_B: Mars 0.20, Saturn 0.073, Earth 0.033, annual <= 0.049, Cassini 0.028 of the lines. Post-data reading: PASS on q | AC15 340f89b737, AC24 3f24c64253 |
 | Constraint causality | RUNNING | AC18 |
 | ONE-ACTION SCORECARD: AC2q + Pi^6 blend (b = X), v3s column b = rho_DE | All 10 carries PROVED (c_T for generic F, layer tensor mass <= 5.8e-46, slip <= 5.9e-15, Cassini margin, FRW exact at q = 2, convex PN sign, m = 6 > 5, slow roots, SPARC 1.4e-4 dex, galaxy linear health): the one action PASSES galaxies / Solar System / GW / lensing / PN / well-posedness / FRW / slow roots, and FAILS FG1 tilt (canonical), X-ray ellipticals, clusters, CMB, AGC 114905, Malin 1, FN6. Not adopted | QX19 e2f938cdfc (criteria d65980ffcd) |
 | kappa | FITTED; Lean proves it is not derivable from the premises | KAPPA_LOGIC_2026_10_20 |
