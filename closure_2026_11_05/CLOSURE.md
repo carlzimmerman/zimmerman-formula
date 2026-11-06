@@ -51,7 +51,7 @@ What is put in by hand (none of it derived):
 | Cold dark energy sector (route E) | RETIRED 11-01 | owner decision 11-01 |
 | v3s weak spots (well-posedness, PN sign, moving Sun, causality) | NO VERDICT / UNDECIDED, none broken | AZ31-AZ39 |
 | kappa / a0 from an action | BLOCKED: exact missing identity named; no reopen condition met | AZ40, CFG894, SELECTION_IMPASSE |
-| Covariant source for the FN6 window | NO VERDICT: no mechanism | AZ41 |
+| Covariant source for the FN6 window | FAIL for the actions on the table: v3s and AC2q's own static lengths have mass exponents 0, 1/2, -1/2, 1 and (AC2q charge offset, new) 1/4, none in [0.30, 0.45]; a window length must be a Newtonian-regime balance, and those are mass-independent (frozen MUTATE did not bite; post-result control bites). New constitutive families: AZ41 NO VERDICT, none regular | AZ41, AC19 |
 | FN6 window itself | PENDING: 33/143 points fail convergence; MW flips unresolved | AZ43 (running) |
 | AC2 single-clock successor action | see section 3 | AC2, AC3, AC4 |
 | a0(z) | NOT DECIDABLE on disk; ALMA U4_28473 scored tonight; proposal-class sample needed | AT2, FN2 |

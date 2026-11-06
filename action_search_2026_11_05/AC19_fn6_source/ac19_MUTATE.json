@@ -1,0 +1,181 @@
+{
+ "mutate": true,
+ "checks": {
+  "KA1_crossover": {
+   "ok": true,
+   "got": "Lstar**2*sqrt(a)/(sqrt(G)*sqrt(M))",
+   "want": "Lstar^2/r_M"
+  },
+  "KA1_exponent": {
+   "ok": true,
+   "got": "(q - 3)/(2*(2*q - 3)) -> -1/2; direct -1/2",
+   "want": "(q-3)/(4q-6) = -1/2 at q = 2"
+  },
+  "KA2_highfield": {
+   "ok": true,
+   "got": "Lstar**2*a/(G*M)",
+   "want": "independent of r"
+  },
+  "KA3_rhoDE": {
+   "ok": true,
+   "got": "{'canonical': 5.8424149405144164e-27, 'alt': 8.532801736469525e-27}",
+   "want": "AC6/AC7 values to 1e-3"
+  }
+ },
+ "rows": [
+  {
+   "name": "Lstar (stiffness length; also D10's embedded scale)",
+   "action": "v3s, AC2q",
+   "note": "fixed constant",
+   "expression": "Lstar",
+   "p": "0",
+   "p_in_window": false,
+   "MW_kpc": {
+    "canonical": 0.021699999999999997,
+    "alt": 0.0229
+   },
+   "regime_consistent": {
+    "canonical": true,
+    "alt": true
+   },
+   "size_ok": {
+    "canonical": false,
+    "alt": false
+   },
+   "passes": false
+  },
+  {
+   "name": "r_M: source vs Newtonian balance (g_N = a0)",
+   "action": "v3s, AC2q",
+   "note": "MOND radius",
+   "expression": "sqrt(G)*sqrt(M)/sqrt(a0)",
+   "p": "1/2",
+   "p_in_window": false,
+   "MW_kpc": {
+    "canonical": 9.452410616233923,
+    "alt": 8.598402383933273
+   },
+   "regime_consistent": {
+    "canonical": true,
+    "alt": true
+   },
+   "size_ok": {
+    "canonical": false,
+    "alt": true
+   },
+   "passes": false
+  },
+  {
+   "name": "stiffness vs source, deep MOND (AZ41 q = 2)",
+   "action": "v3s, AC2q",
+   "note": "needs r >> r_M",
+   "expression": "Lstar**2*sqrt(a0)/(sqrt(G)*sqrt(M))",
+   "p": "-1/2",
+   "p_in_window": false,
+   "MW_kpc": {
+    "canonical": 4.9816921748117454e-05,
+    "alt": 6.0989236905206656e-05
+   },
+   "regime_consistent": {
+    "canonical": false,
+    "alt": false
+   },
+   "size_ok": {
+    "canonical": false,
+    "alt": false
+   },
+   "passes": false
+  },
+  {
+   "name": "GM/c^2",
+   "action": "v3s, AC2q",
+   "note": "horizon scale, not a screen",
+   "expression": "G*M/c**2",
+   "p": "1",
+   "p_in_window": false,
+   "MW_kpc": {
+    "canonical": 2.871336331230828e-06,
+    "alt": 2.871336331230828e-06
+   },
+   "regime_consistent": {
+    "canonical": true,
+    "alt": true
+   },
+   "size_ok": {
+    "canonical": false,
+    "alt": false
+   },
+   "passes": false
+  },
+  {
+   "name": "c^2/a0",
+   "action": "v3s, AC2q",
+   "note": "Hubble scale",
+   "expression": "c**2/a0",
+   "p": "0",
+   "p_in_window": false,
+   "MW_kpc": {
+    "canonical": 31117241.643228818,
+    "alt": 25748472.14932061
+   },
+   "regime_consistent": {
+    "canonical": true,
+    "alt": true
+   },
+   "size_ok": {
+    "canonical": false,
+    "alt": false
+   },
+   "passes": false
+  },
+  {
+   "name": "PLANTED offset rho_X ~ M^-1/4 vs D.P, deep MOND",
+   "action": "MUTATE",
+   "note": "needs r >> r_M",
+   "expression": "M**(3/8)*a0**(1/4)/(2*sqrt(pi)*sqrt(A)*G**(1/4))",
+   "p": "3/8",
+   "p_in_window": true,
+   "MW_kpc": {
+    "canonical": 2.0,
+    "alt": 2.0
+   },
+   "regime_consistent": {
+    "canonical": false,
+    "alt": false
+   },
+   "size_ok": {
+    "canonical": true,
+    "alt": true
+   },
+   "passes": false
+  },
+  {
+   "name": "PLANTED offset rho_X ~ M^-1/4 vs D.P, Newtonian",
+   "action": "MUTATE",
+   "note": "needs r << r_M",
+   "expression": "M**(1/4)*a0/(2*pi*A*G)",
+   "p": "1/4",
+   "p_in_window": false,
+   "MW_kpc": {
+    "canonical": 0.8463449510181563,
+    "alt": 0.930405398908589
+   },
+   "regime_consistent": {
+    "canonical": true,
+    "alt": true
+   },
+   "size_ok": {
+    "canonical": true,
+    "alt": true
+   },
+   "passes": false
+  }
+ ],
+ "no_balance": [
+  "stiffness vs source, Newtonian: ratio independent of r (KA2), no radius",
+  "AC2q P-equation offset 2 gamma s^2 grad(phi) vs source grad(phi): ratio 2 gamma s^2 <= 2.2e-10, constant, no radius (AC8)",
+  "v3s dust term mu_K: free constant, 0 in galaxies, mass independent"
+ ],
+ "label": "control did NOT bite: no verdict",
+ "note": "kappa = 1/2 FITTED; not theory closed"
+}
