@@ -31,6 +31,7 @@ MUTATE twin.
 | Clusters, every static term of v3s / AC2q | FAIL, no-go: no universal nu; clock, stiffness and K(Q) all short | QX2 34a3050f18 |
 | Clusters, new keyed terms | FAIL: p/rho, khronon velocity, enclosed density and gas-g are dead; the depth key works only if clusters set it | QX5 00f9e19c9b |
 | Clusters, depth key derived from the action | FAIL: not derivable; groups overlap galaxies on that key | QX6 cefca47d52 |
+| Clusters, virial-shock-heated sector with entropy floor | FAIL (under): X-COP +0.463/+0.430 at the galaxy-set floor; the post-result Lean class_bound covers every shock radius and upstream density in the isentropic class; the floor violates adiabatic J0 by 6000x | QX13 10eb35b351 |
 | CMB lensing + growth inside the current action | FAIL, no-go (clock Jeans; K(Q) 500x gap; barotropic class) | QX3 0240c8e31d, 602db4263d |
 | Switched cold-dark-energy sector, window | KILLED: host galaxies retain the sector, and KiDS lensing is over-predicted by 0.15-0.27 dex. The primary TT/TE/EE as a cold component fit (chi2 6718 vs 6497) is NO VERDICT (J1) | QX7 9a8f2e4778, QX10 f8d51400c8 |
 | Constraint triangle (cold early / not retained by galaxies / clusters + groups) | RUNNING: iter_1's universal-density no-go does not fire (statics only) | QX12 8ea6100c3f |
