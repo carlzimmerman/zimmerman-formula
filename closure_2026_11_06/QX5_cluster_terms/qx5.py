@@ -95,8 +95,10 @@ def ellipticals():
         d = dict(zip(hdr, r)); LK = float(d["LK_1e11"]) * 1e11; Re = float(d["Re_kpc"]); Mv = float(d["Mvir_1e12"]) * 1e12
         Rv = float(d["Rvir_kpc"]); c = float(d["c"]); Mfit = float(d["ups_fit"]) * LK; Mkr = float(d["ups_krou"]) * LK
         a = Re / 1.8153; rs = Rv / c; Mh = Mv - Mfit; mc = math.log(1 + c) - c / (1 + c)
-        Mtot = lambda r: Mh * (math.log(1 + r / rs) - (r / rs) / (1 + r / rs)) / mc + Mfit * r ** 2 / (r + a) ** 2
-        Mbar = lambda r: Mkr * r ** 2 / (r + a) ** 2
+        # QX16 fix (criteria 7de1a2733f): bind per-row values via default args; before this, Python late binding gave
+        # all 7 ellipticals the LAST row's mass model (original outputs kept on record; reruns in QX16 as *_FIXED).
+        Mtot = lambda r, Mh=Mh, rs=rs, mc=mc, Mfit=Mfit, a=a: Mh * (math.log(1 + r / rs) - (r / rs) / (1 + r / rs)) / mc + Mfit * r ** 2 / (r + a) ** 2
+        Mbar = lambda r, Mkr=Mkr, a=a: Mkr * r ** 2 / (r + a) ** 2
         E.append(dict(name=d["name"], Re=Re, Mtot=Mtot, Mbar=Mbar))
     return E
 
