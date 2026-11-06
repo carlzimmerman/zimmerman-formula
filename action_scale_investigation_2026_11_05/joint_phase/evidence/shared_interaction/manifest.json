@@ -1,0 +1,152 @@
+{
+  "schema_version": 2,
+  "claim_id": "SHARED-INTERACTION-PRODUCTION",
+  "repository": {
+    "commit": "4b2c94656fdb79588b834a63e1828593b3185942",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "action_scale_investigation_2026_11_05/joint_phase/shared_interaction.py",
+    "--out",
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/shared_interaction/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Baryon-induced scalar phase identities and differing occupation for identical endpoint masses",
+    "coefficient_domain": "Exact SymPy and float64/complex128 DOP853",
+    "conventions": "Natural units; conserved nonrelativistic baryon density; positive squared masses; initial mode normalized to unit Wronskian",
+    "inputs": [
+      "Quartic scalar with quadratic baryonic coupling",
+      "Massive chi oscillator coupled quadratically to scalar"
+    ],
+    "bounds": {
+      "omega_i": 1,
+      "omega_f": 2,
+      "tau": [
+        0.05,
+        0.5,
+        5
+      ],
+      "endpoints_in_tau": [
+        -12,
+        12
+      ],
+      "rtol": [
+        1e-09,
+        1e-11
+      ],
+      "atol_over_rtol": 0.01,
+      "wronskian_limit": 1e-07,
+      "absolute_occupation_agreement": 1e-07
+    },
+    "non_claims": [
+      "Not a particle spectrum integral",
+      "No galaxy fit or full cosmological evolution",
+      "No quantum backreaction or loop-renormalization calculation",
+      "No MOND coefficient input"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-06T11:18:04.459547+00:00",
+    "runtime_seconds": 1.217846,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "action_scale_investigation_2026_11_05/joint_phase/shared_interaction.py",
+    "action_scale_investigation_2026_11_05/joint_phase/SHARED_INTERACTION_CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/shared_interaction.py",
+      "sha256": "2992e6c5da2ff02079a175b33b91a0dca73abebb8fd0d0a8a3a73dc09eed2fd4",
+      "sha256_after": "2992e6c5da2ff02079a175b33b91a0dca73abebb8fd0d0a8a3a73dc09eed2fd4"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/SHARED_INTERACTION_CONTRACT.md",
+      "sha256": "53a3468fc16c518c0c0b9a4f329d8895e555921e66a0ee155ee2148b16cea904",
+      "sha256_after": "53a3468fc16c518c0c0b9a4f329d8895e555921e66a0ee155ee2148b16cea904"
+    }
+  ],
+  "output_directory": "action_scale_investigation_2026_11_05/joint_phase/evidence/shared_interaction",
+  "declared_results": [
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/shared_interaction/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/shared_interaction/stdout.txt",
+      "sha256": "a618613c1ee3b27670b86618c8a5852b8fea36ae164ff555231c0b25ec1f01c0",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/shared_interaction/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/shared_interaction/result.json",
+      "sha256": "a0636d26837e303425a06a10e47ee44f9ca8ed4e64b0d0b13df8f2c399541820",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

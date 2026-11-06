@@ -1,5 +1,17 @@
 # Joint-model continuation: pool speed calculation; coefficient unresolved
 
+Latest checkpoint (2026-11-06): joint_phase/SHARED_INTERACTION_RESULT.md tests
+one explicit baryon-triggered scalar phase coupled to a particle-producing
+second scalar. It derives phase stress and mode creation together. The induced
+pressure contribution has negative compressibility; the direct exterior force
+is not MOND. Identical endpoint masses yield different production for different
+transition times (six mode solves per implementation). Original 30 checks pass;
+sign control fails two intended checks. A direct nonnegative projection resolves
+near-zero cancellation and passes 36 checks; all raw records are retained.
+Vacuum offset and couplings remain independent. No material halo inventory,
+positive isothermal pressure, or universal 1/2 is derived; full formation and
+backreaction remain conditional on unspecified microscopic/state inputs.
+
 Latest checkpoint: joint_phase/BARYON_PHASE_RESULT.md adds baryon-loaded
 self-gravitating hydrostatics and a matter-coupled two-vacuum model. Fixed
 baryons, dispersion and surface pressure admit different pool inventories

@@ -1,0 +1,152 @@
+{
+  "schema_version": 2,
+  "claim_id": "SHARED-INTERACTION-PRODUCTION",
+  "repository": {
+    "commit": "832fb4b7f565bb802598b4d315367d3b5f99307c",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "action_scale_investigation_2026_11_05/joint_phase/shared_interaction_projection.py",
+    "--out",
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/shared_interaction_projection/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Baryon-induced scalar phase identities and differing occupation for identical endpoint masses; direct positive occupation projection cross-checked against energy estimator and Wronskian",
+    "coefficient_domain": "Exact SymPy and float64/complex128 DOP853",
+    "conventions": "Natural units; conserved nonrelativistic baryon density; positive squared masses; initial mode normalized to unit Wronskian",
+    "inputs": [
+      "Quartic scalar with quadratic baryonic coupling",
+      "Massive chi oscillator coupled quadratically to scalar"
+    ],
+    "bounds": {
+      "omega_i": 1,
+      "omega_f": 2,
+      "tau": [
+        0.05,
+        0.5,
+        5
+      ],
+      "endpoints_in_tau": [
+        -12,
+        12
+      ],
+      "rtol": [
+        1e-09,
+        1e-11
+      ],
+      "atol_over_rtol": 0.01,
+      "wronskian_limit": 1e-07,
+      "absolute_occupation_agreement": 1e-07
+    },
+    "non_claims": [
+      "Not a particle spectrum integral",
+      "No galaxy fit or full cosmological evolution",
+      "No quantum backreaction or loop-renormalization calculation",
+      "No MOND coefficient input"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-06T11:18:48.892530+00:00",
+    "runtime_seconds": 0.785112,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "action_scale_investigation_2026_11_05/joint_phase/shared_interaction_projection.py",
+    "action_scale_investigation_2026_11_05/joint_phase/SHARED_INTERACTION_CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/shared_interaction_projection.py",
+      "sha256": "783d67306d6352c288ab0586ae332eab3564fb1db56e8319f9529c453741ea55",
+      "sha256_after": "783d67306d6352c288ab0586ae332eab3564fb1db56e8319f9529c453741ea55"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/SHARED_INTERACTION_CONTRACT.md",
+      "sha256": "53a3468fc16c518c0c0b9a4f329d8895e555921e66a0ee155ee2148b16cea904",
+      "sha256_after": "53a3468fc16c518c0c0b9a4f329d8895e555921e66a0ee155ee2148b16cea904"
+    }
+  ],
+  "output_directory": "action_scale_investigation_2026_11_05/joint_phase/evidence/shared_interaction_projection",
+  "declared_results": [
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/shared_interaction_projection/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/shared_interaction_projection/stdout.txt",
+      "sha256": "250cd583589aac447cc8c8aa277747f855316208d6c8de87e9bb68b4c1168f7a",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/shared_interaction_projection/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/shared_interaction_projection/result.json",
+      "sha256": "6cb43d374e12c158d0cdc9e56310977a552c43816b05bb5f55fd7acbfbf18a94",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
