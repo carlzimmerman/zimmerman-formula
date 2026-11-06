@@ -1,14 +1,23 @@
-# AC2q post-fold investigation — PF11 coupled-layer checkpoint, 2026-11-06
+# AC2q post-fold investigation — PF12 terminal-trace checkpoint, 2026-11-06
 
-**Current result:** a positively fed combined clock/boost sheet cannot grow
-from zero initial charge in the regular matched Einstein-interface class.
-Coupled scalar and energy conservation close this PF10 escape without assuming
-finite interior-current variation. General singular native continuation and
-unique selection remain open; universal necessity of new physics is not proved.
+**Current result:** the breaking packet retains compact field values,
+Lipschitz polarization, controlled incoming metric derivatives, and unique
+BV clock-gradient traces at its first strong endpoint. Its incoming sheet
+charge is zero. These are terminal-data results, not a postbreak evolution.
+A merely rough bounded-positive clock cannot rescue the fed sheet; small
+regular acoustic shocks are also excluded in the stated low-kinetic range.
+General native singular continuation and unique selection remain open.
 
-[PF11 result and exact limits](pf11/STATUS.md) ·
-[Coupled balance proof](pf11/FED_LAYER.md) ·
-[Independent audit](pf11/review/FED_LAYER_AUDIT.md)
+[PF12 result and precise gap](pf12/STATUS.md) ·
+[Terminal-trace derivation](pf12/review/TERMINAL_TRACE_AUDIT.md) ·
+[Weak-continuation obligation](pf12/WEAK_CONTINUATION_GAP.md)
+
+## PF11: coupled surface balance
+
+A positively fed combined clock/boost sheet cannot grow from zero initial
+charge in the regular matched Einstein-interface class, without assuming
+finite interior-current variation. See [PF11 status](pf11/STATUS.md) and
+[its independent audit](pf11/review/FED_LAYER_AUDIT.md).
 
 ## PF10: full-current exclusion and positive-feed question
 

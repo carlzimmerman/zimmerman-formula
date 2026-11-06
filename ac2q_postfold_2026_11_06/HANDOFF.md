@@ -1,3 +1,34 @@
+# PF12 continuation handoff
+
+Read pf12/STATUS.md and review/TERMINAL_TRACE_AUDIT.md first. Research base
+62d56e38ee. For each fixed PF09 packet, incoming r/rapidity stay compact and
+have unique L1/BV terminal traces; A,P,phi extend Lipschitz; metric first
+derivatives have continuous terminal traces by bounded-source null integration.
+Incoming stress/current are bounded, and shrinking-slice initial charge is zero.
+These statements stop at the first strong endpoint. They are not a construction
+of native postbreak approximants or proof of matching to unknown outgoing data.
+
+PF12 also removes continuity of positive clock speed from PF11 nonactivation
+(measurable speed bounded above/below suffices with the other balance/trace
+hypotheses) and places small regular acoustic shocks near 0<u<=.1 backgrounds
+inside the exact corner obstruction. Both implications passed independent audit.
+No claim that all BV continuations must form those shocks is established.
+
+The next missing implication is the native weak evolution: the prebreak spatial
+inverse may solve measure forcing, but its differentiated forcing equations
+cannot be assigned across jumps using classical chain rules. Derive the weak
+form from all original equations, construct a continuation from terminal data,
+and prove selection, or exclude all remaining classes. Merely continuing an
+estimate or using an entropy solver for a subset of equations is insufficient.
+Continuous non-Lipschitz, diffuse and irregular-trace alternatives remain open;
+none is an actual native same-data continuation or nonuniqueness example.
+
+No new numerical trajectory or physical regularizer. pf12/PROOF_INDEX.json
+identifies documents/reviews; the supplementary symbolic check reported by one
+reviewer is not a runner-provenanced new experiment. Earlier records are below.
+
+---
+
 # PF11 continuation handoff
 
 Read pf11/STATUS.md and FED_LAYER.md first. Base PF10 commit 0fcfd4afac.
