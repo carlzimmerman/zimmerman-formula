@@ -1,0 +1,129 @@
+{
+  "schema_version": 2,
+  "claim_id": "FRONT-MOTION-ENERGY-CAPTURE",
+  "repository": {
+    "commit": "83632bad61255a2567d17e5de6d049fb9c099ff0",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "action_scale_investigation_2026_11_05/joint_phase/front_capture.py",
+    "--out",
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/front_capture_mutate/result.json",
+    "--mutate"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Thin-wall mechanics, energy budget, drag limit, mass-step flux, halo column and ballistic recoil retention",
+    "coefficient_domain": "Exact symbolic algebra",
+    "conventions": "Natural units c=1 in checks; cold stationary scattering targets; specified thin spherical wall and sharp planar mass step",
+    "inputs": [
+      "Thin-wall area action and volume energy",
+      "Specified Maxwell gas opaque wall limit",
+      "Tree scalar contact scattering",
+      "Spherical inverse-square halo tail"
+    ],
+    "bounds": {
+      "scope": "Single-scatter ballistic retention; column average ideal integrable cusp; no numerical halo solution"
+    },
+    "non_claims": [
+      "No global halo stability",
+      "No selected ambient distribution or photon spectrum",
+      "No derived MOND coefficient"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-06T20:52:53.147976+00:00",
+    "runtime_seconds": 1.007029,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "action_scale_investigation_2026_11_05/joint_phase/front_capture.py",
+    "action_scale_investigation_2026_11_05/joint_phase/FRONT_CAPTURE_CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/front_capture.py",
+      "sha256": "e57483ed093e9345086b311778fdc6b8598c3754602ac6fea7af50599501e45e",
+      "sha256_after": "e57483ed093e9345086b311778fdc6b8598c3754602ac6fea7af50599501e45e"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/FRONT_CAPTURE_CONTRACT.md",
+      "sha256": "5b44d10edfe1c16362f54f4c0bf85e9709132ee951672e99b3872690f25fd439",
+      "sha256_after": "5b44d10edfe1c16362f54f4c0bf85e9709132ee951672e99b3872690f25fd439"
+    }
+  ],
+  "output_directory": "action_scale_investigation_2026_11_05/joint_phase/evidence/front_capture_mutate",
+  "declared_results": [
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/front_capture_mutate/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/front_capture_mutate/stdout.txt",
+      "sha256": "e470cc574da5d3fadfff6083c429990ccca2ce5362f6079bb72dc9dfdd3fd1d4",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/front_capture_mutate/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/front_capture_mutate/result.json",
+      "sha256": "e470cc574da5d3fadfff6083c429990ccca2ce5362f6079bb72dc9dfdd3fd1d4",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

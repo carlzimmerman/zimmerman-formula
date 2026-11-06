@@ -1,5 +1,13 @@
 # Joint-model continuation: pool speed calculation; coefficient unresolved
 
+Latest checkpoint: joint_phase/FRONT_CAPTURE_RESULT.md derives thin-wall motion,
+its energy partition, a specified-gas drag limit and ballistic halo energy
+retention. An empty accelerating wall stores latent power; radiation requires
+a corresponding loss. Hard photons mostly eject cold targets in the single-
+scatter limit. Speed and retained power still depend on unselected medium,
+wall and spectrum inputs.16 exact checks pass; double-counted-radiation control
+fails exactly one. No whole-halo stability or universal1/2 is established.
+
 Latest checkpoint: joint_phase/REPLENISHMENT_RESULT.md tests physical supply:
 constant vacuum has zero advective enthalpy flux; spherical ordinary accretion
 has derived M^2 scaling with environmental inputs; an expanding phase front
