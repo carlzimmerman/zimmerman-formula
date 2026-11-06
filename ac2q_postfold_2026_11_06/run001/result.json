@@ -1,0 +1,643 @@
+{
+  "checks": {
+    "bernoulli_jump_root": true,
+    "momentum_jump_root": true,
+    "potential_momentum_defect": true,
+    "euler_bernoulli_defect": true,
+    "incompatibility": true,
+    "smooth_energy": true,
+    "smooth_momentum": true,
+    "compression_breaks": true,
+    "expanding_control": true,
+    "RH_potential_0.01": true,
+    "RH_euler_0.01": true,
+    "RH_potential_0.1": true,
+    "RH_euler_0.1": true,
+    "RH_potential_1.0": true,
+    "RH_euler_1.0": true,
+    "RH_potential_10.0": true,
+    "RH_euler_10.0": true,
+    "charge_potential_0.3_256": true,
+    "charge_euler_0.3_256": true,
+    "charge_potential_0.3_512": true,
+    "charge_euler_0.3_512": true,
+    "charge_potential_0.3_1024": true,
+    "charge_euler_0.3_1024": true,
+    "charge_potential_0.3_2048": true,
+    "charge_euler_0.3_2048": true,
+    "charge_potential_1.5_256": true,
+    "charge_euler_1.5_256": true,
+    "charge_potential_1.5_512": true,
+    "charge_euler_1.5_512": true,
+    "charge_potential_1.5_1024": true,
+    "charge_euler_1.5_1024": true,
+    "charge_potential_1.5_2048": true,
+    "charge_euler_1.5_2048": true,
+    "prebreak_refinement_potential": true,
+    "riemann_refinement_potential": true,
+    "prebreak_refinement_euler": true,
+    "riemann_refinement_euler": true
+  },
+  "all_pass": true,
+  "mutate": false,
+  "algebra": {
+    "j2_potential": "2*a**2*b**2*gamma/(a + b)",
+    "j2_euler": "a*b*gamma*(a + b)/2",
+    "potential_momentum_defect": "-gamma*(a - b)**3/(2*(a + b))",
+    "euler_bernoulli_defect": "gamma*(a - b)**3/(4*a*b)"
+  },
+  "riemann_exact": [
+    {
+      "U": 0.01,
+      "model": "potential",
+      "density": 1.0100250312499512,
+      "shock_speed": 0.9975031249951101,
+      "mass_defect": 0.0,
+      "velocity_defect": -3.8163916471489756e-17,
+      "momentum_defect": -2.5062578138876357e-07,
+      "energy_defect": -2.5000000000892364e-07
+    },
+    {
+      "U": 0.01,
+      "model": "euler",
+      "density": 1.0100249062526698,
+      "shock_speed": 0.9975155625357398,
+      "mass_defect": 0.0,
+      "velocity_defect": 2.4937268767490084e-07,
+      "momentum_defect": 1.7520707107365752e-16,
+      "energy_defect": -2.5124686345821823e-07
+    },
+    {
+      "U": 0.1,
+      "model": "potential",
+      "density": 1.1025312451187128,
+      "shock_speed": 0.9753124511871276,
+      "mass_defect": 0.0,
+      "velocity_defect": -1.5265566588595902e-16,
+      "momentum_defect": -0.0002563281127967859,
+      "energy_defect": -0.000250000000000028
+    },
+    {
+      "U": 0.1,
+      "model": "euler",
+      "density": 1.1024065028644898,
+      "shock_speed": 0.9765004877895865,
+      "mass_defect": 0.0,
+      "velocity_defect": 0.00024354591446873464,
+      "momentum_defect": 1.4432899320127035e-15,
+      "energy_defect": -0.0002621772957234064
+    },
+    {
+      "U": 1.0,
+      "model": "potential",
+      "density": 2.2807764064044154,
+      "shock_speed": 0.780776406404415,
+      "mass_defect": 0.0,
+      "velocity_defect": -3.3306690738754696e-16,
+      "momentum_defect": -0.3201941016011046,
+      "energy_defect": -0.24999999999999956
+    },
+    {
+      "U": 1.0,
+      "model": "euler",
+      "density": 2.1700864866260337,
+      "shock_speed": 0.8546376797184615,
+      "mass_defect": 0.0,
+      "velocity_defect": 0.18455119309242785,
+      "momentum_defect": 1.1102230246251565e-16,
+      "energy_defect": -0.34227559654621387
+    },
+    {
+      "U": 10.0,
+      "model": "potential",
+      "density": 52.92582403567252,
+      "shock_speed": 0.192582403567252,
+      "mass_defect": 0.0,
+      "velocity_defect": 4.440892098500626e-16,
+      "momentum_defect": -1298.1456008918128,
+      "energy_defect": -250.00000000000006
+    },
+    {
+      "U": 10.0,
+      "model": "euler",
+      "density": 14.683860476546114,
+      "shock_speed": 0.7307879247336537,
+      "mass_defect": 0.0,
+      "velocity_defect": 43.62401877079042,
+      "momentum_defect": 7.105427357601002e-15,
+      "energy_defect": -468.1200938539521
+    }
+  ],
+  "simple_wave": [
+    {
+      "charge": 6.785840131753954,
+      "momentum": 1.9938887398475578,
+      "energy": 5.7868581983614495,
+      "q_min": 0.36249724737604583,
+      "q_max": 1.9547415432412494,
+      "N": 256,
+      "model": "potential",
+      "time": 0.3,
+      "steps": 68,
+      "initial": {
+        "charge": 6.785840131753952,
+        "momentum": 2.0106192982974678,
+        "energy": 5.805663223833939,
+        "q_min": 0.3600361440243808,
+        "q_max": 1.9599156669670117
+      },
+      "characteristic_residual": 8.881784197001252e-16,
+      "q_L1_error": 0.0023017897228343955,
+      "v_L1_error": 0.002270439033909736
+    },
+    {
+      "charge": 6.785840131753954,
+      "momentum": 2.0106192982974678,
+      "energy": 5.788265048310471,
+      "q_min": 0.36238529230114674,
+      "q_max": 1.9540381859162514,
+      "N": 256,
+      "model": "euler",
+      "time": 0.3,
+      "steps": 68,
+      "initial": {
+        "charge": 6.785840131753952,
+        "momentum": 2.0106192982974678,
+        "energy": 5.805663223833939,
+        "q_min": 0.3600361440243808,
+        "q_max": 1.9599156669670117
+      },
+      "characteristic_residual": 8.881784197001252e-16,
+      "q_L1_error": 0.0025173028065351155,
+      "v_L1_error": 0.003926802568480273
+    },
+    {
+      "charge": 6.785840131753954,
+      "momentum": 2.0022717943598236,
+      "energy": 5.796278859039703,
+      "q_min": 0.36124851244157746,
+      "q_max": 1.9573745447173347,
+      "N": 512,
+      "model": "potential",
+      "time": 0.3,
+      "steps": 135,
+      "initial": {
+        "charge": 6.785840131753954,
+        "momentum": 2.0106192982974678,
+        "energy": 5.805663223833938,
+        "q_min": 0.3600090359210507,
+        "q_max": 1.9599789163732124
+      },
+      "characteristic_residual": 8.881784197001252e-16,
+      "q_L1_error": 0.0011594961994934635,
+      "v_L1_error": 0.0011464284806201634
+    },
+    {
+      "charge": 6.785840131753954,
+      "momentum": 2.0106192982974678,
+      "energy": 5.796975977421325,
+      "q_min": 0.36118657938485543,
+      "q_max": 1.9570095176231703,
+      "N": 512,
+      "model": "euler",
+      "time": 0.3,
+      "steps": 135,
+      "initial": {
+        "charge": 6.785840131753954,
+        "momentum": 2.0106192982974678,
+        "energy": 5.805663223833938,
+        "q_min": 0.3600090359210507,
+        "q_max": 1.9599789163732124
+      },
+      "characteristic_residual": 8.881784197001252e-16,
+      "q_L1_error": 0.0012641959429290947,
+      "v_L1_error": 0.0019604152398371593
+    },
+    {
+      "charge": 6.785840131753954,
+      "momentum": 2.0064513655524676,
+      "energy": 5.800977697184552,
+      "q_min": 0.36062326972060854,
+      "q_max": 1.9586876110125495,
+      "N": 1024,
+      "model": "potential",
+      "time": 0.3,
+      "steps": 269,
+      "initial": {
+        "charge": 6.785840131753954,
+        "momentum": 2.0106192982974678,
+        "energy": 5.805663223833938,
+        "q_min": 0.3600022589749471,
+        "q_max": 1.9599947290702693
+      },
+      "characteristic_residual": 8.881784197001252e-16,
+      "q_L1_error": 0.0005827918189433528,
+      "v_L1_error": 0.0005770348782188398
+    },
+    {
+      "charge": 6.785840131753954,
+      "momentum": 2.0106192982974678,
+      "energy": 5.801324227155661,
+      "q_min": 0.3605922886800913,
+      "q_max": 1.9585016285581605,
+      "N": 1024,
+      "model": "euler",
+      "time": 0.3,
+      "steps": 269,
+      "initial": {
+        "charge": 6.785840131753954,
+        "momentum": 2.0106192982974678,
+        "energy": 5.805663223833938,
+        "q_min": 0.3600022589749471,
+        "q_max": 1.9599947290702693
+      },
+      "characteristic_residual": 8.881784197001252e-16,
+      "q_L1_error": 0.0006350674948625969,
+      "v_L1_error": 0.0009790910308477428
+    },
+    {
+      "charge": 6.785840131753954,
+      "momentum": 2.0085365500475363,
+      "energy": 5.803321754033053,
+      "q_min": 0.3603115576359504,
+      "q_max": 1.959342177225532,
+      "N": 2048,
+      "model": "potential",
+      "time": 0.3,
+      "steps": 538,
+      "initial": {
+        "charge": 6.785840131753954,
+        "momentum": 2.0106192982974678,
+        "energy": 5.805663223833939,
+        "q_min": 0.36000056474340447,
+        "q_max": 1.959998682266128
+      },
+      "characteristic_residual": 8.881784197001252e-16,
+      "q_L1_error": 0.0002925818933059159,
+      "v_L1_error": 0.0002898930966593664
+    },
+    {
+      "charge": 6.785840131753954,
+      "momentum": 2.0106192982974678,
+      "energy": 5.803494599748344,
+      "q_min": 0.36029606404611725,
+      "q_max": 1.959249234872696,
+      "N": 2048,
+      "model": "euler",
+      "time": 0.3,
+      "steps": 538,
+      "initial": {
+        "charge": 6.785840131753954,
+        "momentum": 2.0106192982974678,
+        "energy": 5.805663223833939,
+        "q_min": 0.36000056474340447,
+        "q_max": 1.959998682266128
+      },
+      "characteristic_residual": 8.881784197001252e-16,
+      "q_L1_error": 0.00031872213571853224,
+      "v_L1_error": 0.0004893278630532612
+    },
+    {
+      "charge": 6.785840131753954,
+      "momentum": 1.4460041470136873,
+      "energy": 5.203781207638089,
+      "q_min": 0.3879168972254609,
+      "q_max": 1.995035755430169,
+      "N": 256,
+      "model": "potential",
+      "time": 1.5,
+      "steps": 333,
+      "initial": {
+        "charge": 6.785840131753952,
+        "momentum": 2.0106192982974678,
+        "energy": 5.805663223833939,
+        "q_min": 0.3600361440243808,
+        "q_max": 1.9599156669670117
+      }
+    },
+    {
+      "charge": 6.785840131753954,
+      "momentum": 2.010619298297468,
+      "energy": 5.320736027824991,
+      "q_min": 0.4051631409826421,
+      "q_max": 1.7209649100765145,
+      "N": 256,
+      "model": "euler",
+      "time": 1.5,
+      "steps": 338,
+      "initial": {
+        "charge": 6.785840131753952,
+        "momentum": 2.0106192982974678,
+        "energy": 5.805663223833939,
+        "q_min": 0.3600361440243808,
+        "q_max": 1.9599156669670117
+      }
+    },
+    {
+      "charge": 6.785840131753954,
+      "momentum": 1.4717914610739344,
+      "energy": 5.232937825051058,
+      "q_min": 0.38010755337986846,
+      "q_max": 2.010999663867426,
+      "N": 512,
+      "model": "potential",
+      "time": 1.5,
+      "steps": 668,
+      "initial": {
+        "charge": 6.785840131753954,
+        "momentum": 2.0106192982974678,
+        "energy": 5.805663223833938,
+        "q_min": 0.3600090359210507,
+        "q_max": 1.9599789163732124
+      }
+    },
+    {
+      "charge": 6.785840131753954,
+      "momentum": 2.0106192982974678,
+      "energy": 5.350755491587556,
+      "q_min": 0.39766062979117917,
+      "q_max": 1.734279415852415,
+      "N": 512,
+      "model": "euler",
+      "time": 1.5,
+      "steps": 677,
+      "initial": {
+        "charge": 6.785840131753954,
+        "momentum": 2.0106192982974678,
+        "energy": 5.805663223833938,
+        "q_min": 0.3600090359210507,
+        "q_max": 1.9599789163732124
+      }
+    },
+    {
+      "charge": 6.785840131753954,
+      "momentum": 1.4846068822348728,
+      "energy": 5.2475003494979315,
+      "q_min": 0.3761365046832027,
+      "q_max": 2.0192280072608813,
+      "N": 1024,
+      "model": "potential",
+      "time": 1.5,
+      "steps": 1338,
+      "initial": {
+        "charge": 6.785840131753954,
+        "momentum": 2.0106192982974678,
+        "energy": 5.805663223833938,
+        "q_min": 0.3600022589749471,
+        "q_max": 1.9599947290702693
+      }
+    },
+    {
+      "charge": 6.785840131753954,
+      "momentum": 2.0106192982974678,
+      "energy": 5.3662366982952125,
+      "q_min": 0.393656336452851,
+      "q_max": 1.7417271398874343,
+      "N": 1024,
+      "model": "euler",
+      "time": 1.5,
+      "steps": 1356,
+      "initial": {
+        "charge": 6.785840131753954,
+        "momentum": 2.0106192982974678,
+        "energy": 5.805663223833938,
+        "q_min": 0.3600022589749471,
+        "q_max": 1.9599947290702693
+      }
+    },
+    {
+      "charge": 6.785840131753954,
+      "momentum": 1.4909823676821767,
+      "energy": 5.25477071433559,
+      "q_min": 0.37398033705623684,
+      "q_max": 2.0233564047443697,
+      "N": 2048,
+      "model": "potential",
+      "time": 1.5,
+      "steps": 2677,
+      "initial": {
+        "charge": 6.785840131753954,
+        "momentum": 2.0106192982974678,
+        "energy": 5.805663223833939,
+        "q_min": 0.36000056474340447,
+        "q_max": 1.959998682266128
+      }
+    },
+    {
+      "charge": 6.785840131753954,
+      "momentum": 2.010619298297468,
+      "energy": 5.374084371860656,
+      "q_min": 0.3915564666913818,
+      "q_max": 1.7459162690670542,
+      "N": 2048,
+      "model": "euler",
+      "time": 1.5,
+      "steps": 2714,
+      "initial": {
+        "charge": 6.785840131753954,
+        "momentum": 2.0106192982974678,
+        "energy": 5.805663223833939,
+        "q_min": 0.36000056474340447,
+        "q_max": 1.959998682266128
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "N": 256,
+      "time": 0.3,
+      "q_L1_difference": 0.00048541988661495415,
+      "gravity_primitive_Linf_difference": 0.0006880274798244379,
+      "potential_q_successive_L1": 0.0011352459925535671,
+      "euler_q_successive_L1": 0.001248674791683536
+    },
+    {
+      "N": 512,
+      "time": 0.3,
+      "q_L1_difference": 0.00024476272298893287,
+      "gravity_primitive_Linf_difference": 0.0003450717788727742,
+      "potential_q_successive_L1": 0.0005749021996090475,
+      "euler_q_successive_L1": 0.000627901136621114
+    },
+    {
+      "N": 1024,
+      "time": 0.3,
+      "q_L1_difference": 0.0001229165452860775,
+      "gravity_primitive_Linf_difference": 0.00017285870816008408,
+      "potential_q_successive_L1": 0.00028981570380421073,
+      "euler_q_successive_L1": 0.00031602538421555124
+    },
+    {
+      "N": 2048,
+      "time": 0.3,
+      "q_L1_difference": 6.15965614927548e-05,
+      "gravity_primitive_Linf_difference": 8.652303164946584e-05
+    },
+    {
+      "N": 256,
+      "time": 1.5,
+      "q_L1_difference": 0.08216199004912315,
+      "gravity_primitive_Linf_difference": 0.22837395665178628,
+      "potential_q_successive_L1": 0.004495501865589205,
+      "euler_q_successive_L1": 0.005413718803000086
+    },
+    {
+      "N": 512,
+      "time": 1.5,
+      "q_L1_difference": 0.08247872217835768,
+      "gravity_primitive_Linf_difference": 0.233104716769985,
+      "potential_q_successive_L1": 0.0025856349494161692,
+      "euler_q_successive_L1": 0.002963643444178643
+    },
+    {
+      "N": 1024,
+      "time": 1.5,
+      "q_L1_difference": 0.0825206081722653,
+      "gravity_primitive_Linf_difference": 0.23517735652060168,
+      "potential_q_successive_L1": 0.0013204050480944561,
+      "euler_q_successive_L1": 0.0016237638002784215
+    },
+    {
+      "N": 2048,
+      "time": 1.5,
+      "q_L1_difference": 0.08254807169005585,
+      "gravity_primitive_Linf_difference": 0.23625294225236404
+    }
+  ],
+  "riemann_numerical": [
+    {
+      "model": "potential",
+      "N": 256,
+      "q_L1_error": 0.014986919936507205,
+      "central_density": 2.2818404308375997,
+      "exact": {
+        "U": 1,
+        "model": "potential",
+        "density": 2.2807764064044154,
+        "shock_speed": 0.780776406404415,
+        "mass_defect": 0.0,
+        "velocity_defect": -3.3306690738754696e-16,
+        "momentum_defect": -0.3201941016011046,
+        "energy_defect": -0.24999999999999956
+      }
+    },
+    {
+      "model": "potential",
+      "N": 512,
+      "q_L1_error": 0.007545055100075591,
+      "central_density": 2.2809262952774616,
+      "exact": {
+        "U": 1,
+        "model": "potential",
+        "density": 2.2807764064044154,
+        "shock_speed": 0.780776406404415,
+        "mass_defect": 0.0,
+        "velocity_defect": -3.3306690738754696e-16,
+        "momentum_defect": -0.3201941016011046,
+        "energy_defect": -0.24999999999999956
+      }
+    },
+    {
+      "model": "potential",
+      "N": 1024,
+      "q_L1_error": 0.003774767358135022,
+      "central_density": 2.2807932637420967,
+      "exact": {
+        "U": 1,
+        "model": "potential",
+        "density": 2.2807764064044154,
+        "shock_speed": 0.780776406404415,
+        "mass_defect": 0.0,
+        "velocity_defect": -3.3306690738754696e-16,
+        "momentum_defect": -0.3201941016011046,
+        "energy_defect": -0.24999999999999956
+      }
+    },
+    {
+      "model": "potential",
+      "N": 2048,
+      "q_L1_error": 0.0018911698508668224,
+      "central_density": 2.280778269344383,
+      "exact": {
+        "U": 1,
+        "model": "potential",
+        "density": 2.2807764064044154,
+        "shock_speed": 0.780776406404415,
+        "mass_defect": 0.0,
+        "velocity_defect": -3.3306690738754696e-16,
+        "momentum_defect": -0.3201941016011046,
+        "energy_defect": -0.24999999999999956
+      }
+    },
+    {
+      "model": "euler",
+      "N": 256,
+      "q_L1_error": 0.014924795758941957,
+      "central_density": 2.1685815165593914,
+      "exact": {
+        "U": 1,
+        "model": "euler",
+        "density": 2.1700864866260337,
+        "shock_speed": 0.8546376797184615,
+        "mass_defect": 0.0,
+        "velocity_defect": 0.18455119309242785,
+        "momentum_defect": 1.1102230246251565e-16,
+        "energy_defect": -0.34227559654621387
+      }
+    },
+    {
+      "model": "euler",
+      "N": 512,
+      "q_L1_error": 0.007363952701841136,
+      "central_density": 2.1703451037016315,
+      "exact": {
+        "U": 1,
+        "model": "euler",
+        "density": 2.1700864866260337,
+        "shock_speed": 0.8546376797184615,
+        "mass_defect": 0.0,
+        "velocity_defect": 0.18455119309242785,
+        "momentum_defect": 1.1102230246251565e-16,
+        "energy_defect": -0.34227559654621387
+      }
+    },
+    {
+      "model": "euler",
+      "N": 1024,
+      "q_L1_error": 0.0037385604270624233,
+      "central_density": 2.170171511164839,
+      "exact": {
+        "U": 1,
+        "model": "euler",
+        "density": 2.1700864866260337,
+        "shock_speed": 0.8546376797184615,
+        "mass_defect": 0.0,
+        "velocity_defect": 0.18455119309242785,
+        "momentum_defect": 1.1102230246251565e-16,
+        "energy_defect": -0.34227559654621387
+      }
+    },
+    {
+      "model": "euler",
+      "N": 2048,
+      "q_L1_error": 0.0018164524226559056,
+      "central_density": 2.1700692911044306,
+      "exact": {
+        "U": 1,
+        "model": "euler",
+        "density": 2.1700864866260337,
+        "shock_speed": 0.8546376797184615,
+        "mass_defect": 0.0,
+        "velocity_defect": 0.18455119309242785,
+        "momentum_defect": 1.1102230246251565e-16,
+        "energy_defect": -0.34227559654621387
+      }
+    }
+  ],
+  "scope": "Positive-charge, source-free leading planar PN principal system only",
+  "libraries": {
+    "numpy": "1.26.2",
+    "scipy": "1.11.4",
+    "sympy": "1.14.0"
+  }
+}

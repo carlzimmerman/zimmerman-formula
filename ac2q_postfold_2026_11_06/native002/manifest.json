@@ -1,0 +1,139 @@
+{
+  "schema_version": 2,
+  "claim_id": "PF03_native_planar_symbol",
+  "repository": {
+    "commit": "bdaee092bf966f9d4f42b9cde926400626e32743",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "ac2q_postfold_2026_11_06/native_dynamics_v2.py",
+    "--output",
+    "ac2q_postfold_2026_11_06/native002/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact first-derivative action currents, background Hessians, Fourier determinant and eliminated root, and native high-k limits.",
+    "coefficient_domain": "SymPy exact rational symbolic algebra; IEEE float64 numerical evolution",
+    "conventions": "Flat 1+1, phi_t=s>0, phi_x=P_t=0, P_x=d, gamma>0, H=W_PP>0, both switch branches separate",
+    "inputs": [
+      "AC7 action and exact planar identity P.A=-D.P modulo a divergence"
+    ],
+    "bounds": {
+      "symbolic": "s,gamma,H,k positive; d real; coefficients require nonsingular denominators"
+    },
+    "non_claims": [
+      "No evolving full-background solution",
+      "Fixed metric only",
+      "No theorem excluding all nonlinear or oscillatory regularization"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-06T11:34:48.775220+00:00",
+    "runtime_seconds": 0.91708,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "ac2q_postfold_2026_11_06/native_dynamics_v2.py",
+    "ac2q_postfold_2026_11_06/NATIVE_DYNAMICS_CONTRACT.md",
+    "action_search_2026_11_05/AC7_charge_switch/README.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "ac2q_postfold_2026_11_06/native_dynamics_v2.py",
+      "sha256": "e4f505dbfe858470997536ea91c95674a29c9321cf3853a60652f7ba1bac7efd",
+      "sha256_after": "e4f505dbfe858470997536ea91c95674a29c9321cf3853a60652f7ba1bac7efd"
+    },
+    {
+      "path": "ac2q_postfold_2026_11_06/NATIVE_DYNAMICS_CONTRACT.md",
+      "sha256": "8655ad78eb15bb69e660b6a739523a268d2c11025a11b49d05a77e6bde2c2a35",
+      "sha256_after": "8655ad78eb15bb69e660b6a739523a268d2c11025a11b49d05a77e6bde2c2a35"
+    },
+    {
+      "path": "action_search_2026_11_05/AC7_charge_switch/README.md",
+      "sha256": "6627a35733c1700445d35e1dc1dc1125f6d1bc35e18d159ffe88b633f4d037e6",
+      "sha256_after": "6627a35733c1700445d35e1dc1dc1125f6d1bc35e18d159ffe88b633f4d037e6"
+    }
+  ],
+  "output_directory": "ac2q_postfold_2026_11_06/native002",
+  "declared_results": [
+    "ac2q_postfold_2026_11_06/native002/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "ac2q_postfold_2026_11_06/native002/stdout.txt",
+      "sha256": "795a72e6868db9087035301309a6f4109f7bba6939907498018df83668c22b81",
+      "kind": "log"
+    },
+    {
+      "path": "ac2q_postfold_2026_11_06/native002/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "ac2q_postfold_2026_11_06/native002/result.json",
+      "sha256": "795a72e6868db9087035301309a6f4109f7bba6939907498018df83668c22b81",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

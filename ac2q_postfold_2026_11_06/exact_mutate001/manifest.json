@@ -1,0 +1,152 @@
+{
+  "schema_version": 2,
+  "claim_id": "PF02_exact_planar_corner",
+  "repository": {
+    "commit": "21cb54b10b659d12d91f637b11c3532b2e30f842",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "ac2q_postfold_2026_11_06/exact_interface.py",
+    "--mutate",
+    "--output",
+    "ac2q_postfold_2026_11_06/exact_mutate001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact stationary planar on-branch action reduction, third-derivative strict convexity identity, and finite same-current root pairs with nonzero stress defect.",
+    "coefficient_domain": "SymPy exact rational symbolic algebra; IEEE float64 numerical evolution",
+    "conventions": "c=1, phi=s*t+psi(x), v=-psi_x/s, gamma>0, epsilon=gamma*s^2 in [0,1/3), A=-L_Pprime>0",
+    "inputs": [
+      "AC7 on-branch action, flat planar stationary ansatz, continuous P and phi, no surface defect"
+    ],
+    "bounds": {
+      "epsilon": [
+        0,
+        1e-17,
+        0.01,
+        0.1,
+        0.3
+      ],
+      "A": [
+        1.01,
+        1.2,
+        2
+      ],
+      "v": "same sign, |v|<1, positive switched charge"
+    },
+    "non_claims": [
+      "No global singularity theorem",
+      "No exclusion of oscillatory or surface-defect continuations",
+      "No full gravitating shock evolution"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-06T11:28:21.115590+00:00",
+    "runtime_seconds": 1.146219,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "ac2q_postfold_2026_11_06/exact_interface.py",
+    "ac2q_postfold_2026_11_06/EXACT_INTERFACE_CONTRACT.md",
+    "action_search_2026_11_05/AC7_charge_switch/README.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "ac2q_postfold_2026_11_06/exact_interface.py",
+      "sha256": "85d3ee8d59f7346a540c4b658b41fb2fcc40fcbd33e776150aa3ea90447dde7c",
+      "sha256_after": "85d3ee8d59f7346a540c4b658b41fb2fcc40fcbd33e776150aa3ea90447dde7c"
+    },
+    {
+      "path": "ac2q_postfold_2026_11_06/EXACT_INTERFACE_CONTRACT.md",
+      "sha256": "b2c85f3250025c25e101aebe569f9d291802ebdf3cd8d3ccbd1c2a30072affe3",
+      "sha256_after": "b2c85f3250025c25e101aebe569f9d291802ebdf3cd8d3ccbd1c2a30072affe3"
+    },
+    {
+      "path": "action_search_2026_11_05/AC7_charge_switch/README.md",
+      "sha256": "6627a35733c1700445d35e1dc1dc1125f6d1bc35e18d159ffe88b633f4d037e6",
+      "sha256_after": "6627a35733c1700445d35e1dc1dc1125f6d1bc35e18d159ffe88b633f4d037e6"
+    }
+  ],
+  "output_directory": "ac2q_postfold_2026_11_06/exact_mutate001",
+  "declared_results": [
+    "ac2q_postfold_2026_11_06/exact_mutate001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "ac2q_postfold_2026_11_06/exact_mutate001/stdout.txt",
+      "sha256": "b85078841833900e3fffb4b1919cd8e6210994b0537f0b7a34427cddb78cb788",
+      "kind": "log"
+    },
+    {
+      "path": "ac2q_postfold_2026_11_06/exact_mutate001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "ac2q_postfold_2026_11_06/exact_mutate001/result.json",
+      "sha256": "b85078841833900e3fffb4b1919cd8e6210994b0537f0b7a34427cddb78cb788",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

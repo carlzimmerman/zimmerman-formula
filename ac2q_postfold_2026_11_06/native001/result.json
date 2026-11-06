@@ -1,0 +1,64 @@
+{
+  "checks": {
+    "on_A": true,
+    "on_B": false,
+    "on_C": true,
+    "on_G": true,
+    "on_P_no_rest_time_kinetic": true,
+    "on_no_phi_tP_t": true,
+    "on_no_phi_xP_x": true,
+    "on_independent_root": true,
+    "on_no_k4": true,
+    "on_uv": false,
+    "off_A": true,
+    "off_B": true,
+    "off_C": true,
+    "off_G": true,
+    "off_P_no_rest_time_kinetic": true,
+    "off_no_phi_tP_t": true,
+    "off_no_phi_xP_x": true,
+    "off_independent_root": true,
+    "off_no_k4": true,
+    "off_bounded_uv": true,
+    "gamma_zero_matches": true
+  },
+  "all_pass": false,
+  "mutate": false,
+  "branches": {
+    "on": {
+      "L": "a**2/2 - b**2/2 - 2*gamma*(a**2/2 - b**2/2)*(a*d - b*u)/sqrt(a**2 - b**2) - gamma*(a*d - b*u)**2/(2*(a**2 - b**2)) - (a*d - b*u)/sqrt(a**2 - b**2)",
+      "currents": {
+        "Jphi_t": "(a - b)*(a + b)*(-2*a**6*d*gamma + a**5*b*gamma*u + a**5*sqrt(a**2 - b**2) + 5*a**4*b**2*d*gamma - 2*a**3*b**3*gamma*u - 2*a**3*b**2*sqrt(a**2 - b**2) - a**3*b*u - 4*a**2*b**4*d*gamma + a**2*b**2*d - a**2*b*d*gamma*u*sqrt(a**2 - b**2) + a*b**5*gamma*u + a*b**4*sqrt(a**2 - b**2) + a*b**3*u + a*b**2*d**2*gamma*sqrt(a**2 - b**2) + a*b**2*gamma*u**2*sqrt(a**2 - b**2) + b**6*d*gamma - b**4*d - b**3*d*gamma*u*sqrt(a**2 - b**2))/((a - b)*(a + b))**(7/2)",
+        "Jphi_x": "-(a - b)*(a + b)*(-a**6*gamma*u - a**5*b*d*gamma + 4*a**4*b**2*gamma*u + a**4*b*sqrt(a**2 - b**2) - a**4*u + 2*a**3*b**3*d*gamma + a**3*b*d - a**3*d*gamma*u*sqrt(a**2 - b**2) - 5*a**2*b**4*gamma*u - 2*a**2*b**3*sqrt(a**2 - b**2) + a**2*b**2*u + a**2*b*d**2*gamma*sqrt(a**2 - b**2) + a**2*b*gamma*u**2*sqrt(a**2 - b**2) - a*b**5*d*gamma - a*b**3*d - a*b**2*d*gamma*u*sqrt(a**2 - b**2) + 2*b**6*gamma*u + b**5*sqrt(a**2 - b**2))/((a - b)*(a + b))**(7/2)",
+        "JP_t": "-b*(-a**4*gamma + 2*a**2*b**2*gamma - a**2 - a*d*gamma*sqrt(a**2 - b**2) - b**4*gamma + b**2 + b*gamma*u*sqrt(a**2 - b**2))/((a - b)*(a + b))**(3/2)",
+        "JP_x": "a*(-a**4*gamma + 2*a**2*b**2*gamma - a**2 - a*d*gamma*sqrt(a**2 - b**2) - b**4*gamma + b**2 + b*gamma*u*sqrt(a**2 - b**2))/((a - b)*(a + b))**(3/2)"
+      },
+      "A": "-2*d*gamma + 1",
+      "B": "(d**2*gamma + d + s**2*(-d*gamma + 1))/s**2",
+      "C": "(d*gamma - gamma*s**2 + 1)/s",
+      "G": "gamma",
+      "determinant": "-(-H*d**2*gamma*k**2 + H*d*gamma*k**2*s**2 - 2*H*d*gamma*omega**2*s**2 - H*d*k**2 - H*k**2*s**2 + H*omega**2*s**2 - d**2*gamma**2*k**4 + d**2*gamma**2*k**2*omega**2 + d*gamma**2*k**4*s**2 - 4*d*gamma**2*k**2*omega**2*s**2 - d*gamma*k**4 + 2*d*gamma*k**2*omega**2 + gamma**2*k**2*omega**2*s**4 - gamma*k**4*s**2 - gamma*k**2*omega**2*s**2 + k**2*omega**2)/s**2",
+      "omega2": "-k**2*(H + gamma*k**2)*(-d**2*gamma + d*gamma*s**2 - d - s**2)/(-2*H*d*gamma*s**2 + H*s**2 + d**2*gamma**2*k**2 - 4*d*gamma**2*k**2*s**2 + 2*d*gamma*k**2 + gamma**2*k**2*s**4 - gamma*k**2*s**2 + k**2)",
+      "uv_omega2_over_k2": "gamma*(d**2*gamma - d*gamma*s**2 + d + s**2)/(d**2*gamma**2 - 4*d*gamma**2*s**2 + 2*d*gamma + gamma**2*s**4 - gamma*s**2 + 1)",
+      "uv_omega2": "None"
+    },
+    "off": {
+      "L": "a**2/2 - b**2/2 + 2*gamma*(a**2/2 - b**2/2)**2 - (a*d - b*u)/sqrt(a**2 - b**2)",
+      "currents": {
+        "Jphi_t": "-(-2*a**5*gamma*sqrt(a**2 - b**2) + 4*a**3*b**2*gamma*sqrt(a**2 - b**2) - a**3*sqrt(a**2 - b**2) - 2*a*b**4*gamma*sqrt(a**2 - b**2) + a*b**2*sqrt(a**2 - b**2) + a*b*u - b**2*d)/((a - b)*(a + b))**(3/2)",
+        "Jphi_x": "(-2*a**4*b*gamma*sqrt(a**2 - b**2) + 4*a**2*b**3*gamma*sqrt(a**2 - b**2) - a**2*b*sqrt(a**2 - b**2) + a**2*u - a*b*d - 2*b**5*gamma*sqrt(a**2 - b**2) + b**3*sqrt(a**2 - b**2))/((a - b)*(a + b))**(3/2)",
+        "JP_t": "b/sqrt((a - b)*(a + b))",
+        "JP_x": "-a/sqrt((a - b)*(a + b))"
+      },
+      "A": "6*gamma*s**2 + 1",
+      "B": "d/s**2 + 2*gamma*s**2 + 1",
+      "C": "1/s",
+      "G": "0",
+      "determinant": "(H*d*k**2 + 2*H*gamma*k**2*s**4 - 6*H*gamma*omega**2*s**4 + H*k**2*s**2 - H*omega**2*s**2 - k**2*omega**2)/s**2",
+      "omega2": "H*k**2*(d + 2*gamma*s**4 + s**2)/(6*H*gamma*s**4 + H*s**2 + k**2)",
+      "uv_omega2_over_k2": "0",
+      "uv_omega2": "H*(d + 2*gamma*s**4 + s**2)"
+    }
+  },
+  "scope": "Exact flat planar action; frozen background; fixed metric; no global nonlinear or gravitating evolution"
+}

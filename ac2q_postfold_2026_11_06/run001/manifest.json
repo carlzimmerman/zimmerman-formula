@@ -1,0 +1,149 @@
+{
+  "schema_version": 2,
+  "claim_id": "PF01_principal_shock",
+  "repository": {
+    "commit": "57f9b8140d147bc2a51e4ee77c8beabfb80cd636",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "ac2q_postfold_2026_11_06/check_postfold.py",
+    "--output",
+    "ac2q_postfold_2026_11_06/run001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact positive-charge jump incompatibility; finite-volume prebreak convergence and continuation-dependent postbreak charge profiles in the leading source-free planar PN principal system.",
+    "coefficient_domain": "SymPy exact rational symbolic algebra; IEEE float64 numerical evolution",
+    "conventions": "gamma=1; q>0; v=-sigma_x; F=0; positive p=q^2/2",
+    "inputs": [
+      "FROZEN_CRITERIA.md and analytic dimensionless fixtures"
+    ],
+    "bounds": {
+      "N": [
+        256,
+        512,
+        1024,
+        2048
+      ],
+      "simple_wave_times": [
+        0.3,
+        1.5
+      ],
+      "Riemann_U": [
+        0.01,
+        0.1,
+        1,
+        10
+      ],
+      "CFL": 0.4
+    },
+    "non_claims": [
+      "Not full covariant AC2q evolution",
+      "Not a universal nonexistence or uniqueness theorem",
+      "No empirical grading"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-06T11:21:00.135029+00:00",
+    "runtime_seconds": 1.108515,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 90.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "ac2q_postfold_2026_11_06/check_postfold.py",
+    "ac2q_postfold_2026_11_06/FROZEN_CRITERIA.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "ac2q_postfold_2026_11_06/check_postfold.py",
+      "sha256": "9f1762a70fb4eb723e6699f4b6729a27cdebb8ddab10eb4cc02f81cac9e85d1a",
+      "sha256_after": "9f1762a70fb4eb723e6699f4b6729a27cdebb8ddab10eb4cc02f81cac9e85d1a"
+    },
+    {
+      "path": "ac2q_postfold_2026_11_06/FROZEN_CRITERIA.md",
+      "sha256": "f45c93a6a8a062128973ab66bff722adc33bd07e75615d9e2257cda5fc9aab95",
+      "sha256_after": "f45c93a6a8a062128973ab66bff722adc33bd07e75615d9e2257cda5fc9aab95"
+    }
+  ],
+  "output_directory": "ac2q_postfold_2026_11_06/run001",
+  "declared_results": [
+    "ac2q_postfold_2026_11_06/run001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "ac2q_postfold_2026_11_06/run001/stdout.txt",
+      "sha256": "899b70a2b8de5cbc42467ca3683d76f5748963d4ddc3865f4116eb939dad6e61",
+      "kind": "log"
+    },
+    {
+      "path": "ac2q_postfold_2026_11_06/run001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "ac2q_postfold_2026_11_06/run001/result.json",
+      "sha256": "34f2c66f5288ce15c49af7ac73bba87bad3cee5760321802237987b23de2449d",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
