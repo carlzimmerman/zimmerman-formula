@@ -185,7 +185,7 @@ for es, ms, ls, ks, wit in cases:
 Rs = [r['R'] for r in res]
 summary = dict(
     mode=args.mode, n_cases=len(res), max_R=max(Rs),
-    witness_max_R=max(r['R'] for r in res if r['witness']),
+    witness_max_R=max((r['R'] for r in res if r['witness']), default=None),
     all_converged=all(r['converged'] for r in res),
     all_integrations_ok=all(r['all_integrations_ok'] for r in res),
     omega_drift_max=max(r['omega_drift_max'] for r in res),
