@@ -1,0 +1,8 @@
+21c21
+< ap.add_argument("--res", choices=("coarse", "medium"), required=True)
+---
+> ap.add_argument("--res", choices=("coarse", "medium", "fine"), required=True)
+33c33
+< dln, NT = (0.05, 80) if a.res == "coarse" else (0.025, 160)
+---
+> dln, NT = {"coarse": (0.05, 80), "medium": (0.025, 160), "fine": (0.0125, 320)}[a.res]
