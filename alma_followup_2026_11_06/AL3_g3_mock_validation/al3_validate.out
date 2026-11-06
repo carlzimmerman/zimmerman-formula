@@ -1,0 +1,37 @@
+AL3 summary; criteria 6dce9813a6; G3 filed 315d8e4eaa; MOCK only, NOT ALMA DATA; kappa = 1/2 FITTED; not theory closed
+[PASS] all jobs present 74 jobs
+[PASS] T0 frozen files unchanged in every job and now 
+[PASS] K0 AL3 writer with options off = frozen writer 57413f245ebf3504 vs 57413f245ebf3504
+[PASS] T1 every G3 run: 6 G3 main fits per detected cube, all final I0 > 0 72 runs, 246 G3 fits, 0 wrong count, 0 with I0 <= 0
+
+--- V1 no regression (G3 on) ---
+[PASS] V1 selftest: all checks PASS noise: frozen G1 fails:P, noise: G1-3D fails:P, bright: G1-3D passes:P, noise-limited mock not forced: bright fit scored:P, bright: V_c within 15% on the Tadaki P-B branch:P, bright: flux within 30%:P, bright: injection within 15%:P, bright: V_c 430 reads FLOOR on lg M* 11.31, S1 (stars exceed):P, MUTATE: frozen G1 and G1-3D both fail:P, tension: V_c 300 reads FLOOR on lg M* 11.31, S2:P
+archive     realistic: detected 0/6; primary valid 0/6 (G2 0/6); Tadaki P-B RMS n/a -> PASS; others 
+archive     compact  : detected 5/6; primary valid 2/6 (G2 3/6); Tadaki P-B RMS 0.0680 (G2 0.0900) -> FAIL; others incl-mom0|P-B n2 rms 0.301, incl-mom0|P0 n2 rms 0.312, incl-Tadaki|P0 n2 rms 0.056
+archive     noise    : detected 0/6; primary valid 0/6 (G2 0/6); Tadaki P-B RMS n/a -> PASS; others 
+sister-like realistic: detected 6/6; primary valid 4/6 (G2 6/6); Tadaki P-B RMS 0.0304 (G2 0.0257) -> FAIL; others incl-mom0|P-B n6 rms 0.052, incl-mom0|P0 n6 rms 0.054, incl-Tadaki|P0 n4 rms 0.043
+sister-like compact  : detected 6/6; primary valid 6/6 (G2 6/6); Tadaki P-B RMS 0.0221 (G2 0.0222) -> PASS; others incl-mom0|P-B n5 rms 0.101, incl-mom0|P0 n5 rms 0.104, incl-Tadaki|P0 n6 rms 0.024
+sister-like noise    : detected 0/6; primary valid 0/6 (G2 0/6); Tadaki P-B RMS n/a -> PASS; others 
+[FAIL] V1 suites: valid counts >= G2, Tadaki P-B RMS <= G2 + 0.02 
+
+--- V2 hard classes (G3 on) and V4 (frozen fitter, same cubes) ---
+(a) offset -172         : detected 6/6; G3 valid 6/6, V_c P-B [438, 435, 420, 432, 422, 427], median |V/430-1| 0.015, vs truth(R) 0.015 -> PASS; frozen fitter: I0 = 0 in seeds [], primary valid 6/6; rho1 measured [-0.08, -0.062, -0.059, -0.058, -0.067, -0.062]
+    first G3 fit per seed (dchi2, filed thr, passes strict 25(1+2rho)): [(38830, 29.8, True), (40949, 28.5, True), (40259, 28.3, True), (40286, 28.3, True), (39062, 28.8, True), (41028, 28.5, True)]
+(b) lopsided 40% clump  : detected 6/6; G3 valid 0/6, V_c P-B [], median |V/430-1| n/a, vs truth(R) n/a -> FAIL; frozen fitter: I0 = 0 in seeds [], primary valid 0/6; rho1 measured [-0.058, -0.053, -0.063, -0.066, -0.064, -0.055]
+    first G3 fit per seed (dchi2, filed thr, passes strict 25(1+2rho)): [(90461, 28.3, True), (100571, 28.0, True), (98303, 28.6, True), (102468, 28.8, True), (88128, 28.6, True), (94531, 28.1, True)]
+(c) rho 0.24            : detected 6/6; G3 valid 6/6, V_c P-B [427, 433, 436, 417, 435, 437], median |V/430-1| 0.012, vs truth(R) 0.012 -> PASS; frozen fitter: I0 = 0 in seeds [], primary valid 6/6; rho1 measured [0.139, 0.144, 0.145, 0.156, 0.136, 0.141]
+    first G3 fit per seed (dchi2, filed thr, passes strict 25(1+2rho)): [(40497, 19.6, True), (37838, 19.4, True), (37162, 19.4, True), (43499, 19.1, True), (38056, 19.7, True), (41465, 19.5, True)]
+(d) a+b+c               : detected 6/6; G3 valid 0/6, V_c P-B [], median |V/430-1| n/a, vs truth(R) n/a -> FAIL; frozen fitter: I0 = 0 in seeds [], primary valid 0/6; rho1 measured [0.132, 0.135, 0.132, 0.138, 0.132, 0.132]
+    first G3 fit per seed (dchi2, filed thr, passes strict 25(1+2rho)): [(107485, 19.8, True), (93155, 19.7, True), (100311, 19.8, True), (102537, 19.6, True), (84845, 19.8, True), (92010, 19.8, True)]
+[FAIL] V2 every hard class PASS 
+[FAIL] V4 MUTATE: frozen fitter collapses (I0 = 0) in >= 1 seed of >= 1 class 
+
+--- V3 no false fits (G3 on) ---
+noise   : detected 0/6, scored 0/6; G1-3D S/N [0.0, 0.47, -0.25, 0.0, 0.0, 0.0]
+outside : detected 0/6, scored 0/6; G1-3D S/N [-0.75, -1.59, 0.42, 0.53, -0.83, -1.38]
+[PASS] V3 0 of 6 scored in each class 
+
+information: G3 fits passing the filed threshold 25/(1+2rho) but not 25(1+2rho): 0 of 246
+
+VERDICT: G3 FAILS VALIDATION
+peak RSS per job 3600 MB; total job time 8.8 h
