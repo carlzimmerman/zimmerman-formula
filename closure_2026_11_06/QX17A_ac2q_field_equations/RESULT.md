@@ -70,6 +70,6 @@ Same method as QX17 (jet variation, mpmath 40 digits, seeds 11/22/33, Pi = 0.59/
 V = (2/5) phi - (3/7) phi^2). Runtime 2720 s, one thread.
 
 **MUTATE** (`QX17A_MUTATE=1`) drops the -2 gamma Q^2 Sigma_+ n n term from (F4) and the -2 gamma (Sigma_+ - Q^2) piece from rho_phi.
-- K2 fails at 7.3e-3 / 0.23 / 0.39 (seeds 11/22/33) and K3 at worst-component 0.55 / 0.65 / 0.67, as they must.
+- K2 fails at 0.23 / 0.39 / 7.3e-3 (seeds 11/22/33; order corrected after 48bc781928) and K3 at worst-component 0.55 / 0.65 / 0.67, as they must.
 - K5 also fails (0.81-0.84). That is expected, because the dropped nn term enters it; the criteria did not declare it.
 - K1 still passes, because it was not mutated.
