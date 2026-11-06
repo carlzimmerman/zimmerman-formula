@@ -117,7 +117,7 @@ See `DRY_RUN_2026-11-05.md` in this folder for the `--check`, `--run` (refused) 
   As frozen (D8 (a)) the single-stream value is binding; this is reported, not repaired.
 
 
-- **O8 (BLOCKING for G6, G8, G10, G11; found 2026-11-05 while repointing G3/G5).** The cut-12 NSS screen has no DR4 code path.
+- **O8: FIXED by DP6 (`dr4_push_2026_11_05/DP6_cut12_wiring/`, 8/8 checks, MUTATEs bite). G6, G8, G10 and G11 now run through `dp6_with_a17.py --a17-manifest M --`, which patches the one `nss =` line of frozen_cuts to `run_a17(...)['A17_primary']`; O12's per-star R input is `dp6_with_a17.py --write-per-star` (non_single_star = 0, declared neutral). Open: `seed_sweep.py` passes manifest None to the driver, so manifest column joins do not apply in G10 (matters only if DR4 moves ruwe/ipd/RV out of gaia_source).** Original text (found 2026-11-05 while repointing G3/G5): The cut-12 NSS screen has no DR4 code path.
   `build_catalog.frozen_cuts` reads `S["non_single_star"]` straight from stage A (build_catalog.py:328). DR4's `gaia_source` has
   no such column (DP5 drops it from the SELECT; the frozen SELECT would fail instead). `dry_run_driver.py` imports
   `cut12_nss_union` (its docstring's WP4) but never calls it, and `apply_manifest_columns` joins only ruwe,

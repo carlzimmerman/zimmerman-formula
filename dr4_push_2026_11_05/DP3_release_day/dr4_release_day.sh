@@ -19,6 +19,7 @@ READY=$PREP/dr4_ready_1
 CFG=campaign_fresh_gravity/CFG816_dr4_r_statistic_scoring
 DP1=dr4_push_2026_11_05/DP1_nss_off_rung
 DP5=dr4_push_2026_11_05/DP5_dr4_fetchers
+DP6=dr4_push_2026_11_05/DP6_cut12_wiring
 APPROVAL=$LANE/OWNER_APPROVAL_DR4.md
 RELEASE_DATE=2026-12-02
 MODE=${1:---check}
@@ -177,11 +178,11 @@ if [ "$MODE" = "--run" ]; then
     caffeinate -i $PY $PREP/catalog_builder/build_catalog.py --release dr4 > "$OUT/G4_build_catalog.out" 2>&1; rc=$?
     [ -f "$EXT/stage_F.npz" ] || need_rc 1 "G4 build_catalog (no stage_F.npz)"
     [ $rc -eq 0 ] || log "G4: build_catalog exit $rc after stage F was cached (its own stage G is information only); continuing"; mark G4; fi
-  if gate G5 "Cut 12 / joins: run the ADQL of cut12_nss_union.adql_nss() for each Amendment 17 counted table (6 tables; uploads of the sample ids, < 10 MB) via DP5 fetch_nss_dr4.py (inlist transport; O2 fixed for nss_*), the all_source_flags join by hand; record table, solution types and row counts in $M. NOTE open issue O8: no build reads these files yet."; then
-    python3 -I -c "import json,sys; m=json.load(open(sys.argv[1])); c=m['cut12_nss']['counted_tables']; sys.exit(0 if c else 1)" "$M" || need_rc 1 "G5: cut12_nss.counted_tables not filled in $M"
+  if gate G5 "Cut 12 / joins: run the ADQL of cut12_nss_union.adql_nss() for each Amendment 17 counted table (6 tables; uploads of the sample ids, < 10 MB) via DP5 fetch_nss_dr4.py (inlist transport; O2 fixed for nss_*), the all_source_flags join by hand; record table, solution types and row counts in $M. the builds G6/G8/G10/G11 read them through DP6 (A17_primary, O8 fixed)."; then
+    python3 -I -c "import json,sys; c=json.load(open(sys.argv[1]))['cut12_nss']; r=(c.get('readings') or {}).get('A17_primary') or {}; sys.exit(0 if r.get('counted_tables') and c.get('id_files') and c.get('solution_types_recorded') else 1)" "$M" || need_rc 1 "G5: cut12_nss readings.A17_primary / id_files / solution_types_recorded not filled in $M (A17 (d))"
     mark G5; fi
   if gate G6 "Candidates: dry_run_driver.py --release dr4 --manifest M --allow-network --cut13 extract-builder --dump-candidates (stage-G correlation fetch; DR3 ~3,000 ids per 1,000 pairs)."; then
-    $PY $READY/dry_run_driver.py --release dr4 --manifest "$M" --allow-network --cut13 extract-builder --dump-candidates "$CAND" > "$OUT/G6_candidates.json" 2>&1; need_rc $? "G6 candidates"
+    $PY $DP6/dp6_with_a17.py --a17-manifest "$M" --report-json "$OUT/G6_a17.json" -- $READY/dry_run_driver.py --release dr4 --manifest "$M" --allow-network --cut13 extract-builder --dump-candidates "$CAND" > "$OUT/G6_candidates.json" 2>&1; need_rc $? "G6 candidates"
     $PY $READY/dr4_q1_estimate.py --pairs-csv "$CAND" > "$OUT/G6_q1_prebrief.out" 2>&1; need_rc $? "G6 pre-brief"
     $PY $READY/q1_cones_dr4.py --print-count-queries > "$OUT/G6_count_queries.adql" 2>&1
     $PY $READY/q1_cones_dr4.py --spec dr4_all_source --spec-json "$SPEC" --stage-a $EXT/stage_A.npz --pairs-csv "$CAND" --tag dr4_all \
@@ -199,7 +200,7 @@ if [ "$MODE" = "--run" ]; then
     mark G7; fi
   PRIM=$OUT/wide_binaries_dr4.csv
   if gate G8 "Primary build: dry_run_driver.py --cut13 cones-literal (passed explicitly, D7 N9) --allow-network (stage-G correlations; --corr-transport sync only if async fails, recorded)."; then
-    $PY $READY/dry_run_driver.py --release dr4 --manifest "$M" --allow-network --cut13 cones-literal --neighbours-manifest "$NM" --out-csv "$PRIM" \
+    $PY $DP6/dp6_with_a17.py --a17-manifest "$M" --report-json "$OUT/G8_a17.json" -- $READY/dry_run_driver.py --release dr4 --manifest "$M" --allow-network --cut13 cones-literal --neighbours-manifest "$NM" --out-csv "$PRIM" \
         ${DP3_CORR_SYNC:+--corr-transport sync} > "$OUT/G8_primary_build.json" 2>&1; need_rc $? "G8 primary build"
     log "G8 manifest record: cut13 = cones-literal (explicit); correlation transport ${DP3_CORR_SYNC:+sync}${DP3_CORR_SYNC:-async}; sha256 $(shasum -a 256 "$PRIM" | cut -c1-16)"
     mark G8; fi
@@ -211,7 +212,7 @@ if [ "$MODE" = "--run" ]; then
     $PY $READY/arm_c_rows.py --log "$OUT/pipeline_dr4.log" > "$OUT/arm_c_dr4.out" 2>&1; need_rc $? "O9 arm_c_rows"
     mark O9; fi
   if gate G10 "Amendment 18 seed sweep: seed_sweep.py --release dr4 --mode g-only --K 50 --cut13 extract-builder (D7 N9) --fit --ladder --allow-network (delta correlation fetches; ~100 pipeline fits, ~1-2 h single job), then seed_label.py --evaluate."; then
-    $PY $READY/seed_sweep.py --release dr4 --mode g-only --K 50 --cut13 extract-builder --fit --ladder --allow-network --tag dr4_g50 > "$OUT/G10_seed_sweep.out" 2>&1; need_rc $? "G10 seed sweep"
+    $PY $DP6/dp6_with_a17.py --a17-manifest "$M" --report-json "$OUT/G10_a17.json" -- $READY/seed_sweep.py --release dr4 --mode g-only --K 50 --cut13 extract-builder --fit --ladder --allow-network --tag dr4_g50 > "$OUT/G10_seed_sweep.out" 2>&1; need_rc $? "G10 seed sweep"
     cp $EXT/seed_sweep/seed_sweep_manifest_dr4_g50.json "$OUT/" 2>/dev/null
     $PY $READY/seed_label.py --evaluate "$OUT/seed_sweep_manifest_dr4_g50.json" > "$OUT/G10_seed_label.out" 2>&1; need_rc $? "G10 seed label"
     mark G10; fi
@@ -220,7 +221,7 @@ if [ "$MODE" = "--run" ]; then
     st=$(dp1_state)
     if [ "$st" = "REPRODUCED" ]; then
       go G11 || stop G11 "NSS-off rung (DP1 REPRODUCED on DR3): build(drop_nss=True, smax_kau=30) on DR4 through DP1's nss_off_rung.py (stage-G correlation fetch)."
-      $PY $DP1/nss_off_rung.py --release dr4 --manifest "$M" --cut13 cones-literal --neighbours-manifest "$NM" --allow-network --out-csv "$OUT/nss_off_rung_dr4.csv" \
+      $PY $DP6/dp6_with_a17.py --a17-manifest "$M" --report-json "$OUT/G11_a17.json" -- $DP1/nss_off_rung.py --release dr4 --manifest "$M" --cut13 cones-literal --neighbours-manifest "$NM" --allow-network --out-csv "$OUT/nss_off_rung_dr4.csv" \
           > "$OUT/G11_nss_off.out" 2>&1; need_rc $? "G11 NSS-off rung"
       echo "IMPLEMENTED (DP1 REPRODUCED)" > "$OUT/nss_off_status.txt"
     else log "G11 NSS-off rung: NOT IMPLEMENTED (DP1 state $st; D7 N4.1): sigma_sys(b) is computed without it, and the report says so"
@@ -229,7 +230,8 @@ if [ "$MODE" = "--run" ]; then
   [ -f "$OUT/nss_off_rung_dr4.csv" ] && RUNG="--nss-off $OUT/nss_off_rung_dr4.csv"
   if ! done_ O12; then
     $PY $LANE/dp3_sigma_sys.py --base "$PRIM" $RUNG --seed-manifest "$OUT/seed_sweep_manifest_dr4_g50.json" --tag DR4 --out-json "$OUT/sigma_sys_dr4.json" > /dev/null 2>&1; need_rc $? "O12 sigma_sys"
-    $PY $CFG/make_pair_table.py --catalogue "$PRIM" --per-star $EXT/stage_A.npz --out "$OUT/pairs_dr4.csv" --declare-neutral non_single_star > "$OUT/O12_pair_table.out" 2>&1; need_rc $? "O12 pair table (D7 N5)"
+    [ -f "$OUT/stage_A_nss0.npz" ] || { $PY $DP6/dp6_with_a17.py --write-per-star "$OUT/stage_A_nss0.npz" --stage-a $EXT/stage_A.npz > "$OUT/O12_per_star.out" 2>&1; need_rc $? "O12 per-star file (DP6)"; }
+    $PY $CFG/make_pair_table.py --catalogue "$PRIM" --per-star "$OUT/stage_A_nss0.npz" --out "$OUT/pairs_dr4.csv" --declare-neutral non_single_star > "$OUT/O12_pair_table.out" 2>&1; need_rc $? "O12 pair table (D7 N5)"
     mark O12; fi
   if ! done_ G14; then
     if [ "$DR4SLOT" = "used" ]; then log "G14: CFG825's DR4 slot already used; reading its results"
