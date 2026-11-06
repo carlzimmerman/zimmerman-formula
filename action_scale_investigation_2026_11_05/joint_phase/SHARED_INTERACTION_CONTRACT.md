@@ -33,3 +33,10 @@ control changes the sign of beta in oscillator derivative matching and must
 fail that matching check. No 1/2 target used to set physical parameters. No
 claim that a static condensate is cold matter, or that an instantaneous
 quench yields a finite integrated energy in the continuum.
+
+Pre-execution extension: compare smooth tanh omega(t)^2 transitions from 1
+to 4 at tau=0.05,0.5,5. Integrate each oscillator on [-12 tau,12 tau] with
+DOP853 rtol 1e-9 and 1e-11, atol=rtol/100, max_step=min(tau/20,0.1).
+Require Wronskian error below 1e-7, occupation agreement below 1e-7 absolute,
+and a smaller occupation at the slowest than the fastest transition. These
+six solves test finite mode history dependence, not an integrated halo yield.
