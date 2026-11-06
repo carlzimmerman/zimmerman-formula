@@ -39,7 +39,7 @@ What is put in by hand (none of it derived):
 | Door | Label | Owner lane / commit |
 |---|---|---|
 | The action, stated standalone | DEPOSITED | PAPER68 v1.0, DOI 10.5281/zenodo.23990944 |
-| a0 law on galaxies (SPARC, RAR) | PASS, flagship. On the action's exact AQUAL field (QX8): EXACT FIELD PASSES both footings, U refits upward (canonical 0.0560 @ 0.58, alt 0.0558 @ 0.52, which now meets the U line; law 0.0541 @ 0.52 / 0.0537 @ 0.44); exact field fits worse at fixed U 0.50; no SB trend on either field | PAPER67 v1.2, DOI 10.5281/zenodo.23968171; QX8 3ba7c78ce6 |
+| a0 law on galaxies (SPARC, RAR) | PASS, flagship. On the action's exact AQUAL field (QX8): EXACT FIELD PASSES both footings, U refits upward (canonical 0.0560 @ 0.58, alt 0.0558 @ 0.52, which now meets the U line; law 0.0541 @ 0.52 / 0.0537 @ 0.44); exact field fits worse at fixed U 0.50; no SB trend on either field | PAPER67 v1.2, DOI 10.5281/zenodo.23968171; QX8 3ba7c78ce6; QX9 (cd94913d33): QX8's Vflat slope is not PAPER67's Upsilon tilt and vanishes once the galaxies pinned at the Upsilon grid edges are dropped; NO VERDICT as frozen (the planted-tilt control recovered half and missed its line). FG1's own Upsilon tilt on the exact field: +0.17 canonical (line 0.15) / +0.09 alt, reported, owes a frozen lane |
 | Solar System (Cassini, planets) | PASS, margin >= 4.8e7 | C6P 8c5703da06 |
 | PPN gamma, beta | PASS, = 1 to 1e-12 | V3W W1 17d7b7ecdc |
 | Galaxy lensing = dynamics | PASS (weak power on KiDS alone) | V3W W3 17d7b7ecdc |
