@@ -114,7 +114,7 @@ def collapse(M, delta0, fM, z_on, bgname, rule, foot="canonical", a0rule="TIE", 
     t0 = age(a_on, bgname)
     sol = solve_ivp(rhs, (t0, t0 + 50 / H0), [a_on, r0, v0], method="DOP853", rtol=1e-10, atol=[1e-14, 1e-6 * r0, 1e-14],
                     events=[ev_coll, ev_end, ev_ta], dense_output=False, max_step=np.inf)
-    out = {"z_ta": None, "z_coll": None, "t_coll_Myr": None, "a_coll": None}
+    out = {"z_ta": None, "z_coll": None, "t_coll_Myr": None, "a_coll": None, "r_end_over_r0": float(sol.y[1][-1] / r0)}
     if len(sol.t_events[2]): out["z_ta"] = 1 / sol.y_events[2][0][0] - 1
     if len(sol.t_events[0]):
         ac = sol.y_events[0][0][0]; out.update(a_coll=ac, z_coll=1 / ac - 1, t_coll_Myr=sol.t_events[0][0] / MYR)
@@ -137,8 +137,9 @@ def checks():
     # K2: R1 with a0 -> 0 equals R0
     s, f = sigma_f(1e9, 2.1e-9, "B2", 50.0, 300.0)
     r0 = collapse(1e9, 3 * s, f, 50.0, "B2", "R0"); r1 = collapse(1e9, 3 * s, f, 50.0, "B2", "R1", a0_override=1e-30)
-    if r0["z_coll"] is None and r1["z_coll"] is None:
-        res["K2"] = {"note": "neither collapses by z 0", "pass": True}
+    if r0["z_coll"] is None and r1["z_coll"] is None:          # A1: compare the final state at a = 1
+        rel = abs(r1["r_end_over_r0"] / r0["r_end_over_r0"] - 1)
+        res["K2"] = {"note": "neither collapses by z 0 (A1: final state compared)", "r0_end": r0["r_end_over_r0"], "r1_end": r1["r_end_over_r0"], "rel": rel, "pass": rel < 1e-6}
     elif r0["z_coll"] is None or r1["z_coll"] is None:
         res["K2"] = {"r0": r0, "r1": r1, "pass": False}
     else:
