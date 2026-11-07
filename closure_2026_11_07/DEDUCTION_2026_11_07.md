@@ -1,0 +1,95 @@
+# Deduction, 2026-11-07: what the record leaves standing, by elimination
+
+Owner (12:4x): "we have failed so many times.. we can figure out what does work from here.. use process of
+elimination and deductive reasoning to get me the answer." Synthesis from the record only; no new number. Adopts
+nothing. Kappa = 1/2 FITTED; not theory closed.
+
+## 1. The three facts that cannot all be carried by a time-independent ingredient
+
+F1. Something cold gravitates at z ~ 1100. Primary CMB (PR4 + ACT DR6, QX15) passes the footing background only
+    with a cold component; baryons only FAIL. The CMB-lensing shape needs the same (WG1-6, QX3). Linear growth and
+    the early black holes (EB1) need it too.
+F2. Galaxies hold none of it today. SPARC on the exact field allows f <= 0.33 / 0.19 of the baryons inside the
+    rotation curves; KiDS isolated-lens stacks allow about 0.9 M_b inside 200 kpc (QX10's 0.05 dex line);
+    ellipticals, the KiDS colour split and the bright M31 dwarfs are EXPLAINED by systematics (SE2).
+F3. Clusters hold it today: X-COP needs f ~ 4.2 / 3.8 (the cosmic ratio is ~5.4), with a profile between the gas
+    and the stars (NA2); groups 1.2-3.5 / 0.9-2.9, fragile; the Bullet needs a collisionless carrier (DB1, NA2).
+
+A component that is cold early falls into every well, galaxies first (wall 1, KD1: f_cap 4.1 in discs). A
+component hot enough to stay out of galaxies today was too hot at z 1100 (wall 3, HC1/EW4: CMB lensing chi^2
+166-194). A fixed temperature between the two gives a retention exp(-depth/sigma^2) that is a step in host mass,
+not the gradual 0 -> 1-3 -> 4 rise the classes show, and the wrong cluster profile (wall 2, QX12; re-derived here:
+in the law's logarithmic potential an isothermal sector has density slope -(v_f/sigma)^2, so one sigma gives
+slope ~0 in galaxies, ~1 in groups and ~3.4 in clusters; the group class alone would then span 100x in f). A
+sector heated by its own virial shocks is too hot to stay (wall 4 / QX13, SE1). PBHs and compact objects track the
+gas or fail the Bullet (PB1-PB4, NA2). Every local switch on the law itself is dead (QX5, QX6, QX22-25, EV1, OQ1/2,
+RS1), and the needed amount spans 100x (DX1), so no switch carries it. Local, nonlocal and history actions give
+no candidate (FA2, FA3); the everywhere matrix has no row (EW1); AeST and nuHDM fail (EW2, EW4).
+
+Therefore: if F1-F3 are all true, the component's state must CHANGE IN TIME: cold through recombination and the
+forest epoch, and either gone from galaxies or too diffuse to see there by today, while still bound in clusters.
+
+## 2. The two time-dependent cells, and their labels
+
+Cell A: ESCAPE. A late kick above the galaxy escape speed (~450-600 km/s at 30-100 kpc in the law's field) empties
+galaxies. The record built this in September (L321-L390: carrier kicked at 575-650 km/s, vacuum-gate trigger):
+galaxies, KiDS and S8 PASS; **X-COP FAILS at every kick** (retention inside r500 0.37-0.61 pooled, 0.79-0.85 in
+the top bin), because the kick that empties galaxies puffs clusters below what X-COP needs, and the trigger and
+kick speed were hand-set (owner 09-26: no knob scans; derive the kick from the action). Label: CLOSED unless an
+action supplies an environment-gated release (closed inside cluster wells, open in galaxy halos). No action on the
+table has such a term (AX1, AC lanes, FA2, FA3).
+
+Cell B: PUFF. A late heating BELOW the galaxy escape speed leaves the component bound to galaxies as a diffuse
+150-230 kpc halo of ~4 M_b, invisible to rotation curves, while clusters keep it concentrated. This is QX7
+iter_4's late-heated cold dark energy (Jeans scale lambda_* Omega_DE^p, late cores >= 0.73 Mpc): it PASSED the
+PR4 lensing shape, the forest and the galaxy gates in 270 cells, the only sector in the record to do so. QX10 then
+KILLED it on ONE gate: KiDS galaxy lensing at 100-300 kpc, over by 0.15-0.27 dex against a 0.05 dex line; a
+heating run reaches the same end state. Related variants died on the X-COP shape (QX7 iter_5, iter_7) or on
+galaxy capture (iter_6).
+
+## 3. Where the deduction lands
+
+Every door but one is closed by data or by the no-tuning rule. The one that is closed by a single gate is Cell B,
+and that gate carries a known systematic the record has not budgeted the way SE2 budgeted the dwarfs: the KiDS
+isolated-lens signal at 100-300 kpc depends on the hot circumgalactic gas assumed (Brouwer+2021 needed hot gas of
+order the stellar mass to bring their lensing RAR down onto the law at g_bar < 1e-12), on satellite and two-halo
+contamination of "isolated" lenses, and on the stellar-mass binning. The kinetic-SZ gas lane (CW6) left that gas
+budget as an open GAP. If the KiDS line at 100-300 kpc is 0.15 dex rather than 0.05 once that budget is drawn,
+Cell B is alive and the picture is simply:
+
+  the a0 law governs the inner, cold, isolated regime; the CMB's cold component is real and universal; it is
+  concentrated in clusters, partly retained by groups, and puffed into a ~200 kpc diffuse halo around galaxies
+  by a heating tied to the dark-energy era (the same rho_DE that sets a0); its only galaxy-scale signature is a
+  0.1-0.3 dex lensing excess at 100-300 kpc, which is exactly where Brouwer's raw stack sits above the law.
+
+If the KiDS line holds at 0.05 dex with the gas budget drawn, Cell B is dead with its systematic budget stated,
+and the deduction's conclusion is the stronger closure: no ingredient with any time dependence available to the
+action carries F1-F3 together, so one of F1-F3 is wrong, and the record points at F2's lensing leg as the one
+measured with the least power.
+
+## 4. The two calculations that decide it today (frozen criteria first, both footings, MUTATE must bite)
+
+KX1 (owner: the EV1 session, which holds the KiDS loaders). Re-grade QX10's kill of the iter_4 window as a joint
+systematic budget at 100-300 kpc: hot CGM gas drawn from the kSZ constraints on disk (CW6) rather than assumed;
+isolation and two-halo contamination from CFG96/CFG116's nulls; stellar-mass bin shifts; the ESD bias terms from
+CFG15. Output: the posterior excess of the window over the law per bin and the line it implies. Labels: KILL HOLDS
+(excess > 2 sigma_tot in >= 2 bins), KILL SOFTENS (inside 2 sigma_tot), NO POWER. MUTATE: the window at 4x mass
+must fail; the law itself must pass. KA: QX10's numbers to 0. No new data download.
+
+CE1 (owner: the KD1 session, which holds the capture and cluster loaders). Take the iter_4 window's own passing
+cells (no new constant) and grade what QX10 never graded: X-COP profile against NA2's gas-to-stars band, the 20
+groups with the predicted f-sigma trend, the Bullet (collisionless, must pass), CMB-lensing at z < 1 (kernel
+suppression, PR4 shape must stay chi^2 <= 18.5 at L <= 400), fsigma8 at z < 1 (suppression allowed only in the
+S8 direction and inside DESI's band), and the forest at z >= 2 (must stay cold). Read QX7 iter_7's SHAPE FAIL first
+and state how the window differs from it before any number. Labels per gate; the window is a CANDIDATE only if
+every gate passes and KX1 reads KILL SOFTENS or NO POWER.
+
+What is still owed if both come back alive: the action term that heats the sector in the dark-energy era (route E's
+coupling), which is the owner's 09-26 rule applied to heating instead of a kick. That is a derivation, not a knob.
+
+## 5. One sentence
+
+By elimination, the record allows exactly one ingredient: a cold component, real since recombination, that the
+dark-energy era puffs into diffuse ~200 kpc halos around galaxies while clusters keep it concentrated, and its
+life or death rests on whether the KiDS lensing excess at 100-300 kpc around isolated galaxies is hot gas or that
+component.
