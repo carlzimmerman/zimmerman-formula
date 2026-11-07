@@ -3,7 +3,7 @@
 Criteria: FROZEN_CRITERIA.md (9684f63ba8). Adopts nothing. kappa = 1/2 FITTED. Not theory closed.
 
 **Labels as frozen:**
-- **B1 (ADM form):** PENDING. The B1-N numeric check (`adm_check.py`) is being rerun; see §4.
+- **B1 (ADM form):** FAIL as frozen. B1-N (`adm_check.out`): rho and S_ij match the covariant forms to <= 1.3e-40 and the on-shell momentum density vanishes to <= 2.8e-41 on all 3 seeds, but the off-shell momentum density row reads 2.0 on every seed (the checker's ADM J carries the opposite sign to J_a = -n^m h_a^n T_mn); see §5.
 - **B2 (Lean):** PASS.
 - **S-sph (solutions):** FAIL. The known-answer run and the Sun's full nonlinear solve did not converge; see §3.
 - **Lane: NOT CERTIFIED.**
@@ -112,7 +112,17 @@ granularity was not tested. Do not cite this as a result about real galaxies.
 
 QX17C (closure_2026_11_06/QX17C_fd_spherical_solver) re-solved this problem with a finite-difference Newton solver: all gates PASS converged on both footings, MUTATE bites. S-sph here stays FAIL as frozen.
 
-## 5. Pending
+## 5. B1-N result (rerun, 126 min)
 
-B1-N rerun. When it lands, append its rows here and set B1 PASS/FAIL. S-sph stays FAIL as frozen whatever a later solver
-does; a fixed solver would be a new labelled lane.
+| seed | rho rel | S_ij rel | on-shell J abs | off-shell J rel |
+|---|---|---|---|---|
+| 11 | 8.5e-41 | 2.6e-41 | 2.3e-42 | 2.0 |
+| 22 | 1.3e-40 | 2.9e-41 | 2.8e-41 | 2.0 |
+| 33 | 4.2e-41 | 4.2e-41 | 1.2e-41 | 2.0 |
+
+**B1 FAIL as frozen** (line 1e-10). The off-shell momentum expression in `adm_check.py`, P_a [n.dl + lambda - gamma (n.dPi - Pi n.dl)],
+has the opposite sign to the covariant J_a = -n^m h_a^n T_mn; a relative residual of exactly 2.0 on the worst component is what
+J_adm = -J_cov gives. Not verified component by component (that needs a rerun with the sign flipped; not run).
+**What survives:** the Hamiltonian-constraint density and the spatial stress are numerically certified, and the P-sector momentum
+density vanishes on shell (sign-independent), so "the momentum constraint is GR's" holds. Lean `momentum_density_zero` uses the same
+sign convention as the checker; it proves only the on-shell vanishing, which is unaffected.
