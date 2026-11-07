@@ -93,3 +93,16 @@ Q3 (if Q2 has no answer). Which of F1, F2, F3 is wrong, and what measurement sho
 
 Both footings. No LCDM inputs. Derive from the action; do not posit a profile or scan a knob. Keep every existing
 pass in A1. State the kill measurement in advance. Nothing is adopted by an answer; the owner adopts.
+
+## F. Update, same day (CK2, fe224c21ec): Q1 is answered NO for the action in A2
+
+No isolated host ever changes the switch branch (the phantom density stays positive at every radius and epoch for
+1e8-1e15 Msun), the adopted blend has F = F' = 0 at the branch point so a branch change carries zero latent energy,
+and the only stored energy, pi G L*^2 rho_ph^2 per unit carrier, gives 0.8-125 km/s and tracks the well. AC2q's
+background stiffness vanishes at the FRW point. So the action as written releases nothing at virialisation or at the
+acceleration crossover. The question for an outside solver therefore narrows to:
+
+Q1'. What MINIMAL addition to A2 (one field or one term, no tuned constant) releases a well-independent
+     (1/2) v_k^2 with v_k in 500-650 km/s from the cold component at virialisation, keeps every pass in A1, and
+     has a stated kill? The scale must come from somewhere: name it.
+Q2 and Q3 stand as written.
