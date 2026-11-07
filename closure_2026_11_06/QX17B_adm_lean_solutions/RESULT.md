@@ -97,7 +97,7 @@ Residual is exactly 0 on 4 random profiles (sympy, 40 digits).
 | g / g_lawS, canonical | 0.0036 | 0.0059 | 0.018 | 0.051 | 0.156 |
 | g / g_lawS, alt | 0.0031 | 0.0051 | 0.015 | 0.045 | 0.137 |
 
-The law is reached only around 1e3 Lstar (~20 kpc). This is a point Sun with no Galactic field and no other stars.
+(Corrected in QX17C: the converged solve gives only 0.71 / 0.67 of law S at 1e3 Lstar, ~22 kpc; the earlier "law reached around 1e3 Lstar" was an extrapolation.) This is a point Sun with no Galactic field and no other stars.
 Whether a galaxy built from screened stars still shows law S is **open**. The smooth-ball galaxy above does show it, but
 granularity was not tested. Do not cite this as a result about real galaxies.
 
@@ -108,7 +108,11 @@ granularity was not tested. Do not cite this as a result about real galaxies.
   canonical scalar's.
 - **Tensors:** c_T = c in both.
 
-## 4. Pending
+## 4. Follow-up
+
+QX17C (closure_2026_11_06/QX17C_fd_spherical_solver) re-solved this problem with a finite-difference Newton solver: all gates PASS converged on both footings, MUTATE bites. S-sph here stays FAIL as frozen.
+
+## 5. Pending
 
 B1-N rerun. When it lands, append its rows here and set B1 PASS/FAIL. S-sph stays FAIL as frozen whatever a later solver
 does; a fixed solver would be a new labelled lane.
