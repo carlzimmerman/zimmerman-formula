@@ -42,3 +42,11 @@ the shell-averaged radial field. QX32 computes that bias.
 
 A systematics re-grade of the X-COP residue (DIRECTION 11-07 item 4). The new input against QX30 is the cluster's 3D shape in
 the law's nonlinear field. QX30's bounds are all spherical.
+
+## Amendment A2 (2026-11-07, before any QX32 number): the bias is taken against each shape's own sphere-enclosed baryons
+
+A volume-preserving homoeoid's baryon mass inside a sphere of radius r differs from the spherical model's M_b(<r). So the
+ratio M_app,q / M_app,1 would show a "bias" even in Newtonian gravity, and K2 could never pass. The observable is therefore
+the one the X-COP grade uses: the spherical law applied to the sphere-enclosed baryons of the SAME shape.
+  Delta_q(r) = log10[ M_app,q(r) / M_law(M_b,q(<r sphere)) ] - log10[ M_app,1(r) / M_law(M_b,1(<r sphere)) ].
+M_b,q(<r) is summed over the same grid cells. K2 (nu = 1) then gives Delta = 0 by Gauss, and the labels are unchanged.
