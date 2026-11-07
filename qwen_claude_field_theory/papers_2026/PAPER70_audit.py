@@ -111,6 +111,16 @@ L += [
  ("SHAPE FAIL, both footings", Q77, "SHAPE FAIL, both footings"),
  ("NEGLIGIBLE ($\\le$\\,0.005\\,dex, wrong sign)", Q32, "NEGLIGIBLE (<= 0.005 dex, wrong sign)"),
 ]
+EW1 = "closure_2026_11_07/EW1_everywhere_matrix/README.md"; EW3 = "closure_2026_11_07/EW3_two_switch/README.md"
+PX1 = "closure_2026_11_07/PI6_BLEND_ADOPTION_CASE_2026_11_07.md"
+L += [
+ ("(23 rows $\\times$ 17 columns, every cell sourced)", EW1, "23 rows x 17 columns"),
+ ("NO ROW PASSES EVERY COLUMN", EW1, "NO ROW PASSES EVERY COLUMN"),
+ ("UDGs, causality with well-posedness, and a derived $a_0$ stay uncovered", EW1, "Three columns stay uncovered by every framework row"),
+ ("(+0.123 / +0.103)", EW1, "**PASS +0.123 / +0.103**"),
+ ("EW3 keeps the map row only, no graded number", EW3, "EW3 keeps the map row only"),
+ ("it adopts nothing, owner decision pending", PX1, "It adopts nothing"),
+]
 ws = lambda t: re.sub(r"\s+", " ", t)
 cache = {}
 def src(p):
