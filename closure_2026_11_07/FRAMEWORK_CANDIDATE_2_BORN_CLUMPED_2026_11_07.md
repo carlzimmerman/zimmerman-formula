@@ -86,3 +86,14 @@ that formed between the clumps hold none and obey the law alone. Nothing is remo
 condition replaces every dead mechanism. It lives or dies on the forest, the CMB's tolerance of a clumped
 component, the clump spectrum against cluster counts, and the cluster-member galaxies. Kappa = 1/2 FITTED; not
 theory closed.
+
+## Post-result NC3 (39940c070e): members are clean too, so the clumps are smooth below galaxy scales
+
+Cluster-member early types show no residue at r_half (D +0.011 / +0.012 dex, upper edge 0.065; at most ~16 % extra
+mass there), and the pre-stated stripping budget cannot hide one. K4 does not fire by the frozen rule, but the only
+reading that survives is R9: inside a clump the component is smooth on scales below a galaxy's half-light radius; it
+has a minimum clustering scale of order 0.1 Mpc or more, even inside clusters. That sharpens the other kills: K5 must
+be met by a clump that is concentrated at X-COP's radii (0.1-1 Mpc) yet smooth below ~20 kpc; and K2 (forest) now
+concerns a component whose small-scale power is cut off near that scale, which the forest machinery must model as
+such. CLASH's concentration slope carries the sign an early clump gives (-0.08 to -0.13) with no power. R4 holds
+(KiDS field control clean).
