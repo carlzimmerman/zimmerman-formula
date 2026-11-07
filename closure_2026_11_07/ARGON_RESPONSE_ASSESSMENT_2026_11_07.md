@@ -60,3 +60,15 @@ chosen prefactor, and the action-level check already on the record (CK2) says th
 branch. AK1 asks the one place where the branch is actually crossed, the certified fold runs, whether the layer and
 the energy the solver describes exist. If they do, the solver has found a theorem to prove; if not, Q1 is closed by
 the PDE itself and the framework's third postulate stays a postulate.
+
+## Post-result AK1 (a6c9137af9): the identity is not in the fold equations
+
+Frozen label NO VERDICT, because the planted-speed control did not recover (the planar stream slows before the fold,
+so a planted 577.6 km/s reads 318 / 309). Every graded row nonetheless reads regime I: post-fold clock speeds of
+0.02-0.16 km/s against the 500-650 band, widths linear in L* (doubling gives 2.00, the identity predicts 1.587),
+speeds that track the well (d ln V / d ln v_f 1.00 / 0.95; doubling L* leaves V unchanged where the identity predicts
+1.260), alpha_L 1.01 / 0.94. Two disclosures matter: the protocol's lambda_crit of 2.09 / 2.25 kpc was a factor-10
+slip (it is 22.5 / 24.0 kpc), and the planar reduction is non-relativistic (1 - X/X_bg <= 2.4e-7) with no dynamical
+D.P = 0 crossing, so regime III cannot be reached by this machinery at all. The outside solver's number stays a
+dimensional construction; nothing in the certified fold equations produces it. Combined with CK2 (no release term,
+statics) the kick identity has no home in the action.
