@@ -78,7 +78,7 @@ AC2q switches the stiffness on the khronon charge D.P + 2X (AC7):
 | AC2 inside galaxies | ILL-POSED (AC6): charge = div P + phidot^2; phidot^2 <= 2 rho_DE cannot fill the phantom's negative regions (6/7 H4 systems, both footings) |
 | AC2q, FRW | healthy: lapse term x (1 - 2 gamma phidot^2)^2, 72/72 fixtures (AC7 Q1). ERRATUM 11-06: the factor is (1 - gamma phidot^2)^2 for AC2q as defined; signs hold for any f >= 0 (Lean), so healthy stands (see closure_2026_11_06/EQUATIONS_IN_ORDER.md, erratum) |
 | AC2q, galaxies | no Gamma ~ k anywhere; off-region bounded (AC7 Q2) |
-| AC2q, static limit | = v3s at mu_K = 0 up to phidot^2-proportional terms (<= 2.2e-10 relative, Poisson + rho_DE): v3s's static passes carry (AC8) |
+| AC2q, static limit | = v3s at mu_K = 0 up to phidot^2-proportional terms (<= 2.2e-10 relative, Poisson + rho_DE): v3s's static passes carry (AC8). ERRATUM 11-06: full-measure P offset is half; bound 1.1e-10, conclusion unchanged (closure_2026_11_06/EQUATIONS_IN_ORDER.md, erratum row 5.2) |
 | Switch on D.P alone (v3s placement) with a dark-energy clock | non-analytic on FRW (AC7 control M-b) |
 | AC2q, tensor speed (own terms) | PASS: c_T = c in the principal part; new tensor mass gives dv/c <= 1.9e-46 at 100 Hz (AC9 T1) |
 | AC2q, lensing slip (own terms) | PASS: Psi source and anisotropic stress are O(gamma s^2 grad Phi P), beyond O(GM); slip <= 3e-17 (AC9 T2) |
