@@ -105,7 +105,7 @@ Suppose a uniform extra baryon-mass fraction f is added at every point (b = 1 + 
   - That cannot rescue the result. The uniform-f diagnostic shows SPARC tolerates at most 0.33, against a cosmic
     share of 4.1.
 - The B1b line (Delta N_eff <= 0.5) is declared in KD1, and mu_B scales as line^-1/2. Even mu_J alone (2.5e4) sits
-  2.5e2 to 3e5 times above the galaxy bounds.
+  316 to 2.5e5 times above the galaxy bounds.
 - The CMB lensing shape is linear CLASS at L <= 400 with A_s refit, as in QX3. The A_s fixed at QX15's primary value
   also passes as a reported reading (chi^2 9.73 / 9.71). No LCDM parameter values were used: the background is
   QX15's footing fit.
