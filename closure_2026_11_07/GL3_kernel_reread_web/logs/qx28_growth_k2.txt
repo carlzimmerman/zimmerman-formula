@@ -1,0 +1,24 @@
+QX28 G6: growth + T1 for the condensed-phase EOS P = K rho^3 at the cosmic mean. kappa = 1/2 FITTED; not theory closed. Criteria c5852ac12f.
+corner omega_b 0.0215, omega_d 0.1196, H0 65.0, n_s 0.95; chi2(cold) 8.57; rho_d0 33.184 Msun/kpc^3
+K1 K 1e-30 (cold limit): Delta chi2 0.00e+00 (line 1e-2) -> PASS
+control K 1e3 (stiff sector from z 10): Delta chi2 114.1 -> BITES
+[canonical] K 1.585e-06: c_s(z 0, 3, 10, 100, 1089) = 0.0724, 4.63, 96.3, 7.46e+04, 9.37e+07 km/s; w(1089) 3.26e+04
+   G6a lambda_J comoving z 10 / 100 / 1089: 4.31 / 1.1e+03 / 4.21e+05 Mpc vs 0.646 -> FAIL
+   G6b Delta chi2 0.419 (line 4; Jeans term z < 10 only) -> PASS
+   G6c forest lambda_J(z 3) 0.344 Mpc vs 0.646 -> PASS
+   G6 -> FAIL
+[alt] K 1e-06: c_s(z 0, 3, 10, 100, 1089) = 0.0575, 3.68, 76.5, 5.92e+04, 7.44e+07 km/s; w(1089) 2.05e+04
+   G6a lambda_J comoving z 10 / 100 / 1089: 3.42 / 874 / 3.34e+05 Mpc vs 0.646 -> FAIL
+   G6b Delta chi2 0.304 (line 4; Jeans term z < 10 only) -> PASS
+   G6c forest lambda_J(z 3) 0.273 Mpc vs 0.646 -> PASS
+   G6 -> FAIL
+
+Reported: Delta chi2 against K (Jeans term z < 10), and K_min from qx28.json:
+   K 1.0e-10: Delta chi2     0.000
+   K 1.0e-09: Delta chi2     0.000
+   K 1.0e-08: Delta chi2     0.003
+   K 3.0e-08: Delta chi2     0.009
+   K 1.0e-07: Delta chi2     0.031
+   K 3.0e-07: Delta chi2     0.096
+   K 1.0e-06: Delta chi2     0.304
+   largest scanned K passing G6b: 1e-06; K_min (galaxies) canonical 1.58e-06, alt 1e-06

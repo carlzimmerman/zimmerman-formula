@@ -1,0 +1,11 @@
+--- a/closure_2026_11_06/QX3_cmb_growth/iter2_kq_dust/iter2.py
++++ b/closure_2026_11_06/QX3_cmb_growth/iter2_kq_dust/iter2.py
+@@ -94,6 +94,8 @@
+     lnk = np.log(kgrid)
+     P = np.array([[M.pk_lin(k, z) for z in zgrid] for k in kgrid])
+     w = ((chis - chi) / (chi * chis)) ** 2 * (1 + np.asarray(zgrid)) ** 2 / np.array([M.Hubble(z) for z in zgrid])  # dchi = dz/H
++    import os as _os; _K = _os.environ.get('GL3_KERNEL', 'old')  # GL3 sandbox switch: old (as committed) / new (chi^4 restored) / k2 (MUTATE)
++    w = w * (chi ** 4 if _K == 'new' else chi ** 2 if _K == 'k2' else 1.0)
+     Ls = np.arange(2, LMAX + 1); num = np.zeros(len(Ls)); den = np.zeros(len(Ls))
+     for j in range(len(zgrid)):
+         kk = (Ls + 0.5) / chi[j]; m = (kk >= kgrid[0]) & (kk <= kgrid[-1])

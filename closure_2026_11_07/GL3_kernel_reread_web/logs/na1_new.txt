@@ -1,0 +1,85 @@
+NA1 MAIN: FA1 doors I5 (disformal bulk motion) and I7 (defect network). kappa = 1/2 FITTED; not theory closed; footings never pooled.
+
+== I5 R: every local scalar of (g, g~, u, X, U, T) vs {gamma, X, B, rho, p} (sympy) ==
+   eig(g^-1 g~)         = {-B*X + 1: 1, 1: 3}                                          reduces: True
+   det g~ / det g       = -B*X + 1                                                     reduces: True
+   g~(U,U)              = B*X*gamma**2 - 1                                             reduces: True
+   g~^-1(U_lo,U_lo)     = (B*X*gamma**2 - B*X + 1)/(B*X - 1)                           reduces: True
+   g~_mn T^mn           = B*X*gamma**2*p + B*X*gamma**2*rho - B*X*p + 3*p - rho        reduces: True
+   T.g~.T.g~ trace      = B**2*X**2*gamma**4*p**2 + 2*B**2*X**2*gamma**4*p*rho + B**2*X**2*gamma**4*rho**2 - 2*B**2*X**2*gamma**2*p**2 - 2*B**2*X**2*gamma**2*p*rho + B**2*X**2*p**2 + 2*B*X*gamma**2*p**2 - 2*B*X*gamma**2*rho**2 - 2*B*X*p**2 + 3*p**2 + rho**2 reduces: True
+   u.U (gamma)          = gamma                                                        reduces: True
+KA3: g~(U,U) = -1 + B X gamma^2 -> True; light cone of g~ in the khronon frame c~/c = [sqrt(-B*X + 1)] -> sqrt(1 - B X) True
+   gamma-dependent part of g~(U,U): B*X*s**2*(s**2 + 1)  (= B X (v/c)^2 + O(v^4): DX1 D1's (v/c)^2 <= 1.1e-5 times B X)
+R: reduction shown = True; F = F(gamma; X, p/rho) -> khronon velocity, clock depth, p/rho: all on the dead list
+GW: P2 (matter on g~): B X in [-6.22e-15, 1.33e-15] -> selector spread B X (v/c)^2 <= 6.8e-20: P2 FAIL; P1: PASS (CONDITIONAL)
+
+[peak RSS 0.34 GB] SV5: sigma_A 0.0241 -> W1 line 0.0722; ZG [0.25, 0.5, 1.0, 2.0, 3.0, 5.0, 8.0, 12.0, 20.0, 50.0]; solver ob 0.0215 od 0.11958 h 0.65 (od/ob 5.562); FA3 S_host q {'canonical': 0.8831399095984355, 'alt': 0.8164569063461672}
+[z  0.25] f 0.6814; web speed (mass-weighted) median 455.6 p95 828.6 rms 513.1 km/s; |cos(v, g_N)| 1.0000000
+   [canonical] host fraction q 0.8831: increasing step on for v >= 240.0 km/s; decreasing step on for v <= 719.6 km/s
+   [alt] host fraction q 0.8165: increasing step on for v >= 286.5 km/s; decreasing step on for v <= 652.2 km/s
+   [peak RSS 0.84 GB]
+[z   0.5] f 0.7772; web speed (mass-weighted) median 442.3 p95 804.3 rms 498.1 km/s; |cos(v, g_N)| 1.0000000
+   [peak RSS 0.86 GB]
+[z     1] f 0.8865; web speed (mass-weighted) median 406.0 p95 738.5 rms 457.3 km/s; |cos(v, g_N)| 1.0000000
+   [peak RSS 0.87 GB]
+[z     2] f 0.9618; web speed (mass-weighted) median 343.3 p95 624.3 rms 386.5 km/s; |cos(v, g_N)| 1.0000000
+   [peak RSS 0.88 GB]
+[z     3] f 0.9829; web speed (mass-weighted) median 300.0 p95 545.6 rms 337.8 km/s; |cos(v, g_N)| 1.0000000
+   [peak RSS 0.89 GB]
+[z     5] f 0.9939; web speed (mass-weighted) median 246.2 p95 447.8 rms 277.2 km/s; |cos(v, g_N)| 1.0000000
+   [peak RSS 0.89 GB]
+[z     8] f 0.9968; web speed (mass-weighted) median 201.4 p95 366.3 rms 226.8 km/s; |cos(v, g_N)| 1.0000000
+   [peak RSS 0.89 GB]
+[z    12] f 0.9971; web speed (mass-weighted) median 167.8 p95 305.1 rms 188.9 km/s; |cos(v, g_N)| 1.0000000
+   [peak RSS 0.89 GB]
+[z    20] f 1.0000; web speed (mass-weighted) median 132.7 p95 241.4 rms 149.4 km/s; |cos(v, g_N)| 1.0000000
+   [peak RSS 0.89 GB]
+[z    50] f 1.0000; web speed (mass-weighted) median 85.5 p95 155.5 rms 96.3 km/s; |cos(v, g_N)| 1.0000000
+   [peak RSS 0.89 GB]
+KA4: linear velocity parallel to g_N at every z: True (min |cos| 1.00000000)
+[canonical] W1 KA1 F=1              r 32.527463 -> FAIL; web mass with F = 1 by z: 1.000, 1.000, 1.000, 1.000, 1.000, 1.000, 1.000, 1.000, 1.000, 1.000
+[canonical] W1 KA2 F=0              r 1.000000 -> PASS; web mass with F = 1 by z: 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000
+[canonical] W1 inc step             r 28.732782 -> FAIL; web mass with F = 1 by z: 0.883, 0.874, 0.843, 0.763, 0.679, 0.522, 0.339, 0.184, 0.052, 0.000
+[canonical] W1 dec step             r 27.373077 -> FAIL; web mass with F = 1 by z: 0.883, 0.900, 0.940, 0.985, 0.997, 1.000, 1.000, 1.000, 1.000, 1.000
+[canonical] KA1 F=1 r vs SV5 json 32.527463: rel 0.0e+00 -> PASS; KA2 F=0 |r-1| 0.0e+00 -> PASS
+[alt] W1 KA1 F=1              r 38.660721 -> FAIL; web mass with F = 1 by z: 1.000, 1.000, 1.000, 1.000, 1.000, 1.000, 1.000, 1.000, 1.000, 1.000
+[alt] W1 KA2 F=0              r 1.000000 -> PASS; web mass with F = 1 by z: 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000
+[alt] W1 inc step             r 30.951715 -> FAIL; web mass with F = 1 by z: 0.816, 0.803, 0.758, 0.648, 0.540, 0.361, 0.188, 0.075, 0.012, 0.000
+[alt] W1 dec step             r 29.152635 -> FAIL; web mass with F = 1 by z: 0.816, 0.838, 0.893, 0.964, 0.989, 0.999, 1.000, 1.000, 1.000, 1.000
+[alt] KA1 F=1 r vs SV5 json 38.660721: rel 2.2e-16 -> PASS; KA2 F=0 |r-1| 2.2e-16 -> PASS
+
+== I5 S1/S2: class speeds relative to the khronon (cosmic) frame; flow = SV5 z 0.25 mass-weighted linear field ==
+SPARC: 175 galaxies, max V_obs median 100.0 km/s (min 17.8, max 383.0)
+   SPARC   speed median   475.0  p5   183.9  p95   864.6 km/s
+   XCOP    speed median   549.7  p5   213.1  p95   997.2 km/s
+   groups  speed median   480.4  p5   185.6  p95   873.5 km/s
+   dSph    speed median   480.1  p5   185.4  p95   873.8 km/s
+   UDG     speed median  1605.2  p5   620.6  p95  2911.7 km/s
+   CMB     speed median    15.1  p5     1.5  p95    28.5 km/s
+[canonical] S1: SPARC FOSD CMB True (max CDF excess 0.0000) -> increasing F contradiction True (<F>_CMB >= 1.0 vs <F>_SPARC <= 0.33); UDG FOSD SPARC True (excess 0.0000) -> decreasing F contradiction True (<F>_UDG >= 23.6 vs <F>_SPARC <= 0.33) => S1 FAIL (no monotone F)
+[alt] S1: SPARC FOSD CMB True (max CDF excess 0.0000) -> increasing F contradiction True (<F>_CMB >= 1.0 vs <F>_SPARC <= 0.19); UDG FOSD SPARC True (excess 0.0000) -> decreasing F contradiction True (<F>_UDG >= 20.2 vs <F>_SPARC <= 0.19) => S1 FAIL (no monotone F)
+[canonical] S2 LP (increasing F, no CMB row, bins 25 km/s to 6000): NO VERDICT (feasible, tail-dependent); F > 0 from 250 km/s, F_max 9.78e+04; means {"SPARC": 0.33, "XCOP": 6.089, "groups": 0.6, "dSph": 0.82, "UDG": 44527.427, "CMB": 0.0}
+[alt] S2 LP (increasing F, no CMB row, bins 25 km/s to 6000): NO VERDICT (feasible, tail-dependent); F > 0 from 250 km/s, F_max 1.12e+05; means {"SPARC": 0.19, "XCOP": 6.53, "groups": 0.45, "dSph": 0.75, "UDG": 50811.396, "CMB": 0.0}
+[canonical] I5 LABEL: DEAD BY REDUCTION; reading A {'S1': 'FAIL (no monotone F)', 'W1_readingA': 'FAIL (r 32.527, plain law)', 'S2': 'NO VERDICT (feasible, tail-dependent)'}; reading B {'W1_inc': 'FAIL (r 28.733)', 'W1_dec': 'FAIL (r 27.373)'}; P2 GW FAIL
+[alt] I5 LABEL: DEAD BY REDUCTION; reading A {'S1': 'FAIL (no monotone F)', 'W1_readingA': 'FAIL (r 38.661, plain law)', 'S2': 'NO VERDICT (feasible, tail-dependent)'}; reading B {'W1_inc': 'FAIL (r 30.952)', 'W1_dec': 'FAIL (r 29.153)'}; P2 GW FAIL
+
+== I7: defect network of the a0 scalar (eta from a0) ==
+KA6: frozen w -1/3, -2/3 -> a^-2, a^-1: True; scaling rho ~ H^2 -> w_def = w_tot = w_tot: True
+KA7 (A1-1): 1 + z_eq 3372.4; solver vs two-fluid w: z 100000.0: 0.3225 vs 0.3225 (|d| 0.0000); z 3400.0: 0.1674 vs 0.1674 (|d| 0.0000); z 50.0: 0.0050 vs 0.0050 (|d| 0.0000) -> True (line 0.003)
+solver: rho_tot / rho_b at z 3400 = 13.180; od/ob = 5.562 (CMB need reported); Omega_m0 0.3339
+[canonical] KA5 eta round trip rel 0.0e+00 -> True; eta 2.2401e-03 eV; rho_DE 5.8424e-27 kg/m^3
+[canonical] D0: 1 + z_form = eta / kT0 -> z_form 8.54 vs 3400: FAIL
+[canonical] D1: frozen strings -1/3, walls -2/3; scaling (strings / global monopoles / textures) w = w_tot(3400) 0.1674; line |w| <= 0.01: FAIL; gauge monopoles w 0 -> D4
+[canonical] D2: strings rho/rho_b at z 3400 <= 3.73e-04 (CMB cap G mu 1.5e-7, zeta 10); at a0's eta G mu 1.06e-61 -> 2.63e-58; walls (isotropy cap Omega_w <= 1.33e-05) 1.08e-09; Omega_wall at a0's eta 4.56e-31; need >= 1 -> FAIL
+[canonical] D3: cluster f strings <= 9.44e-09, walls <= 1.33e-08 vs need 4.2: FAIL; D4 gauge monopoles: particle -> DEAD by rule
+[canonical] I7 LABEL: DEAD
+[alt] KA5 eta round trip rel 1.1e-16 -> True; eta 2.4626e-03 eV; rho_DE 8.5329e-27 kg/m^3
+[alt] D0: 1 + z_form = eta / kT0 -> z_form 9.49 vs 3400: FAIL
+[alt] D1: frozen strings -1/3, walls -2/3; scaling (strings / global monopoles / textures) w = w_tot(3400) 0.1674; line |w| <= 0.01: FAIL; gauge monopoles w 0 -> D4
+[alt] D2: strings rho/rho_b at z 3400 <= 3.73e-04 (CMB cap G mu 1.5e-7, zeta 10); at a0's eta G mu 1.28e-61 -> 3.18e-58; walls (isotropy cap Omega_w <= 1.33e-05) 1.08e-09; Omega_wall at a0's eta 6.05e-31; need >= 1 -> FAIL
+[alt] D3: cluster f strings <= 9.44e-09, walls <= 1.33e-08 vs need 3.8: FAIL; D4 gauge monopoles: particle -> DEAD by rule
+[alt] I7 LABEL: DEAD
+
+LABEL LINE: I5 DEAD BY REDUCTION / DEAD BY REDUCTION; I7 DEAD / DEAD (canonical / alt); KA I5 True I7 True
+peak RSS 0.904 GB (ru_maxrss)
+kappa = 1/2 FITTED; not theory closed.
