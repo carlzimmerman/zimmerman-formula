@@ -1,5 +1,16 @@
 # Joint-model continuation: pool speed calculation; coefficient unresolved
 
+Latest checkpoint: joint_phase/COUPLED_CONDENSATE_RESULT.md constructs a
+repulsive complex-scalar/phase/baryon interaction and derives its pressure.
+Capture by charge must include its additional force and reservoir; neutrality
+alone is not a complete inventory mechanism. Even granting N proportional to
+Mb, the conditional phase-confined Thomas-Fermi family has edge-speed exponent
+at least 6/5, precluding universal linear v_edge^4 scaling. Eight conditional
+Lean theorems pass; 121 refined checks pass, with the initial derivative failure
+and Laplace-factor negative control preserved. A symmetric coupling-identifying
+potential loses its nonzero wall-tension minimum. Full interaction-selected
+inventory, phase parameters, physical stability and MOND1/2 remain unresolved.
+
 Latest checkpoint: joint_phase/PARAMETER_SELECTION_RESULT.md tests phase
 coexistence, conserved inventory and de Sitter temperature response. A continuous
 canonical-field deformation preserves bulk phase energies and particle mass gap
