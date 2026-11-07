@@ -21,8 +21,8 @@ list for this lane only. EW1 opens no sector.
 - Literature cells carry [lit, PROVISIONAL]. They come from memory or the record's earlier web snippets. Nothing was
   downloaded.
 - 11-07 labels are read from CLOSURE_2026_11_07.md (95435f152c).
-- The two-switch door (SV5 item 4) is graded by WL1 (closure_2026_11_07/WL1_web_law_switch/), which was **not on origin
-  when this was written**. EW3 (520ed75443) keeps it as PENDING WL1. It is not a row here.
+- The two-switch door (SV5 item 4) is graded by WL1 (closure_2026_11_07/WL1_web_law_switch/), which had only its criteria on
+  origin when this was written (WL1 FROZEN CRITERIA c371c8ce59, no result). EW3 (520ed75443) keeps it as PENDING WL1. It is not a row here.
 
 ## Columns
 
