@@ -1,0 +1,105 @@
+12c12
+< import os, sys, json, time, signal, argparse
+---
+> import os, sys, json, time, signal, argparse, resource
+21c21
+< ap.add_argument("--res", choices=("coarse", "medium", "fine"), required=True)
+---
+> ap.add_argument("--res", choices=("coarse", "medium", "fine", "ultra"), required=True)
+24a25,27
+> # MS3 additions: chunked rhs (bitwise identical; KA5), RSS guard, tag suffix, self-test
+> ap.add_argument("--chunk", type=int, default=64); ap.add_argument("--rss_mb", type=float, default=450.0)
+> ap.add_argument("--suffix", default=""); ap.add_argument("--selftest", default="")
+27,29c30,34
+<       + ("_NOWIND" if a.nowind else "") + (f"_t{a.tend:g}" if a.tend != 3000.0 else "")
+< D = os.path.join(HERE, "parts", tag); os.makedirs(D, exist_ok=True)
+< if os.path.exists(os.path.join(D, "done.json")):
+---
+>       + ("_NOWIND" if a.nowind else "") + (f"_t{a.tend:g}" if a.tend != 3000.0 else "") + a.suffix
+> D = os.path.join(HERE, "parts", tag)
+> if not a.selftest:
+>     os.makedirs(D, exist_ok=True)
+> if not a.selftest and os.path.exists(os.path.join(D, "done.json")):
+33c38
+< dln, NT = {"coarse": (0.05, 80), "medium": (0.025, 160), "fine": (0.0125, 320)}[a.res]
+---
+> dln, NT = {"coarse": (0.05, 80), "medium": (0.025, 160), "fine": (0.0125, 320), "ultra": (0.00625, 640)}[a.res]
+154a160,203
+> # ---------------------------------------------------------------- MS3: chunked rhs (same elementwise expressions on radial blocks)
+> assert G == 2
+> 
+> 
+> def recon_(f, ax):
+>     d = np.diff(f, axis=ax)
+>     if ax == 0:
+>         s = minmod(d[:-1], d[1:])
+>         fL = f[1:-1] + 0.5 * s; fR = f[1:-1] - 0.5 * s
+>         return fL[:-1], fR[1:]
+>     s = minmod(d[:, :-1], d[:, 1:])
+>     fL = f[:, 1:-1] + 0.5 * s; fR = f[:, 1:-1] - 0.5 * s
+>     return fL[:, :-1], fR[:, 1:]
+> 
+> 
+> def rhs_chunked(W, CHK):
+>     W = bc(W)
+>     q, u, v = W
+>     out = [np.empty((NR, NT)) for _ in range(3)]
+>     js = slice(G, G + NT); st = slice(G - 2, G - 2 + NT + 1)
+>     for i0 in range(0, NR, CHK):
+>         i1 = min(NR, i0 + CHK)
+>         gs = slice(i0, i1 + 2 * G)                       # ghost rows i0 .. i1+3 -> radial faces i0 .. i1
+>         qL, qR = recon_(q[gs], 0); uL, uR = recon_(u[gs], 0); vL, vR = recon_(v[gs], 0)
+>         Fr = hll(np.maximum(qL[:, js], 1e-14), uL[:, js], vL[:, js], np.maximum(qR[:, js], 1e-14), uR[:, js], vR[:, js])
+>         ts = slice(G + i0, G + i1)
+>         qL, qR = recon_(q[ts], 1); uL, uR = recon_(u[ts], 1)
+>         vL, vR = recon_(v[ts] / SING[ts], 1)
+>         vL = vL * SINF[None, :]; vR = vR * SINF[None, :]
+>         Ft = hll(np.maximum(qL[:, st], 1e-14), vL[:, st], uL[:, st], np.maximum(qR[:, st], 1e-14), vR[:, st], uR[:, st])
+>         qi, ui, vi = q[ts, js], u[ts, js], v[ts, js]
+>         pi_ = qi ** 2 / (2 * M2)
+>         ar, at_, vo, rc_ = AR[i0:i1 + 1], AT[i0:i1], VOL[i0:i1], RC[i0:i1]
+>         out[0][i0:i1] = -(Fr[0][1:] * ar[1:] - Fr[0][:-1] * ar[:-1] + Ft[0][:, 1:] * at_[:, 1:] - Ft[0][:, :-1] * at_[:, :-1]) / vo
+>         out[1][i0:i1] = -(Fr[1][1:] * ar[1:] - Fr[1][:-1] * ar[:-1] + Ft[2][:, 1:] * at_[:, 1:] - Ft[2][:, :-1] * at_[:, :-1]) / vo \
+>             + qi * vi * vi / rc_ + pi_ * SRC_R[i0:i1] - qi * GRAV[i0:i1]
+>         out[2][i0:i1] = -(Fr[2][1:] * ar[1:] - Fr[2][:-1] * ar[:-1] + Ft[1][:, 1:] * at_[:, 1:] - Ft[1][:, :-1] * at_[:, :-1]) / vo \
+>             - qi * ui * vi / rc_ + pi_ * SRC_T[i0:i1]
+>     return out
+> 
+> 
+> RHS = (lambda W_: rhs_chunked(W_, a.chunk)) if a.chunk > 0 else rhs
+> 
+> 
+166a216,236
+> 
+> # ---------------------------------------------------------------- MS3 KA5(a) self-test: chunked == whole-grid, bit for bit
+> if a.selftest:
+>     sn = np.load(a.selftest); qs_, us_, vs_ = sn["q"], sn["u"], sn["v"]
+>     fac = NT // qs_.shape[1]
+>     assert fac in (1, 2) and qs_.shape[1] * fac == NT and abs(qs_.shape[0] * fac - NR) <= 1, (qs_.shape, NR, NT)
+>     if fac == 2:                                          # piecewise-constant injection onto the finer grid (NR = 2 x 553 - 1)
+>         qs_, us_, vs_ = (np.repeat(np.repeat(x_, 2, 0), 2, 1)[:NR] for x_ in (qs_, us_, vs_))
+>     res_ = {}
+>     def mk():
+>         W_ = [np.zeros_like(Rg) for _ in range(3)]
+>         W_[0][I] = qs_; W_[1][I] = us_; W_[2][I] = vs_
+>         return W_
+>     ref = rhs(mk())
+>     for ch in (64, 37, 1000):
+>         got = rhs_chunked(mk(), ch)
+>         res_[str(ch)] = [float(np.max(np.abs(np.asarray(got[k]) - np.asarray(ref[k])))) for k in range(3)]
+>         res_[str(ch) + "_equal"] = all(np.array_equal(got[k], ref[k]) for k in range(3))
+>     print(json.dumps(dict(selftest=a.selftest, res=a.res, M=a.M, NR=NR, NT=NT, inject=fac, out=res_)), flush=True)
+>     sys.exit(0)
+> 
+202c272
+<     k1 = rhs(W)
+---
+>     k1 = RHS(W)
+205c275
+<     k2 = rhs(W)
+---
+>     k2 = RHS(W)
+216a287,289
+>         rss_ = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / (1024 * 1024 if sys.platform == 'darwin' else 1024)
+>         if rss_ > a.rss_mb:
+>             save_ck(); print(f'RSS GUARD: peak {rss_:.0f} MB > {a.rss_mb:.0f} MB, checkpointed', flush=True); sys.exit(4)
