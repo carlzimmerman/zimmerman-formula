@@ -41,7 +41,7 @@ MaNGA's mean s for red against blue galaxies at log M* 10-11 predicts a lensing 
 - **T4 Local Group field dwarfs**, types provisional, from memory of McConnachie 2012:
   - gas-poor dSph / transition dwarfs (N 8): +0.134 / +0.123 dex above the SPARC anchor;
   - gas-rich dIrrs (N 5): -0.027 / -0.035.
-  - Most dIrrs are dispersion-supported in their stars too. So this split follows gas content or type, not stellar support.
+  - Most dIrrs are dispersion-supported in their stars too (literature, e.g. Kirby+2014 and Wheeler+2017; not on disk). So this split follows gas content or type, not stellar support.
 - **T5, what a support key cannot carry:** the fully dispersion-supported classes (bright M31 dSphs, ellipticals) average
   +0.19 dex. X-COP sits another +0.25 dex above that; groups sit +0.04 / +0.05 above.
 
