@@ -1,0 +1,159 @@
+{
+  "schema_version": 2,
+  "claim_id": "DYNAMICAL-PHASE-BOUNDARY-HALO",
+  "repository": {
+    "commit": "89d5ecb6ea82a1218866421351a28913fb7f4e2f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "action_scale_investigation_2026_11_05/joint_phase/phase_boundary.py",
+    "--out",
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/phase_boundary/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Free phase-wall equilibrium radii and coupled moving-wall radial eigenvalues, conservation checks",
+    "coefficient_domain": "Float64 BVP, root solves and eigenvalues",
+    "conventions": "Previous dimensionless fluid model; force P+DeltaV-2Sigma/R; wall inertia Sigma*1e-6; comoving volumes",
+    "inputs": [
+      "Thin-wall action with gas pressure",
+      "Previous radiative fluid model",
+      "Explicit constant phase parameters and high mass barrier limit"
+    ],
+    "bounds": {
+      "cases": [
+        [
+          1,
+          0.6,
+          0.03
+        ],
+        [
+          1,
+          0.6,
+          0.05
+        ],
+        [
+          8,
+          0.4,
+          0.03
+        ]
+      ],
+      "R_scan": [
+        0.5,
+        40,
+        20
+      ],
+      "grids": [
+        24,
+        48,
+        72
+      ],
+      "seconds": 240,
+      "threads": 1
+    },
+    "non_claims": [
+      "No unique microscopic phase parameters",
+      "No nonspherical or kinetic stability",
+      "No selected MOND coefficient"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-07T03:12:20.790913+00:00",
+    "runtime_seconds": 5.096207,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "action_scale_investigation_2026_11_05/joint_phase/phase_boundary.py",
+    "action_scale_investigation_2026_11_05/joint_phase/PHASE_BOUNDARY_CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/phase_boundary.py",
+      "sha256": "e3fb4debd076d53607e8a8acb48fd5c3d6c19d05ae1faa3a7699e1fd64dc259a",
+      "sha256_after": "e3fb4debd076d53607e8a8acb48fd5c3d6c19d05ae1faa3a7699e1fd64dc259a"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/PHASE_BOUNDARY_CONTRACT.md",
+      "sha256": "80c323775462cd77181a32b52b806c161c0cd0b0d816ff94f51ecb13d612cfe3",
+      "sha256_after": "80c323775462cd77181a32b52b806c161c0cd0b0d816ff94f51ecb13d612cfe3"
+    }
+  ],
+  "output_directory": "action_scale_investigation_2026_11_05/joint_phase/evidence/phase_boundary",
+  "declared_results": [
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/phase_boundary/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/phase_boundary/stdout.txt",
+      "sha256": "f995c176e71fa8df6cf1639670886b0f03f9b5bd852ab948e688219e375f4d0f",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/phase_boundary/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/phase_boundary/result.json",
+      "sha256": "35eb3651d8c0eaac48ee28cf049df395800e2013793d6b19d48fcfaaab326fa9",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

@@ -1,5 +1,15 @@
 # Joint-model continuation: pool speed calculation; coefficient unresolved
 
+Latest checkpoint: joint_phase/PHASE_BOUNDARY_RESULT.md replaces the fixed
+radius by a dynamic phase interface with mass-step trapping and force
+P+DeltaV-2Sigma/R. Coupled moving-wall radial stability was computed. A
+higher-energy interior yields sampled phase-confined damped branches with
+roughly flat outer curves; radii approach independent free-boundary BVP roots
+under refinement. A failed intermediate solve is preserved and recovered by
+continuation. The source family is not uniformly flat and v_edge^4/source
+varies strongly. Phase parameters, microscopic feasibility, source origin,
+kinetic/nonspherical stability and MOND1/2 remain unresolved.
+
 Latest checkpoint: joint_phase/COOLED_PROFILES_RESULT.md numerically solves
 coupled density, temperature, radial flow and self-gravity with excitation
 cooling and a prescribed reflecting outer wall. Eleven distinct parameter

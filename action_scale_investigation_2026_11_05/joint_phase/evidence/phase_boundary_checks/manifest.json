@@ -1,0 +1,127 @@
+{
+  "schema_version": 2,
+  "claim_id": "PHASE-WALL-POTENTIAL-AND-LEAKAGE",
+  "repository": {
+    "commit": "bf4cfcdae5e000733085053a28026fe20ecf1c5f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "action_scale_investigation_2026_11_05/joint_phase/phase_boundary_checks.py",
+    "--out",
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/phase_boundary_checks/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Phase potential endpoints curvature tension, wall mechanical work, pressure stiffness and Maxwell mass-barrier leakage",
+    "coefficient_domain": "Exact symbolic algebra and integration",
+    "conventions": "Thin wall, positive interior pressure, exterior higher vacuum energy; natural units",
+    "inputs": [
+      "Tilted quartic phase potential",
+      "Wall energy",
+      "Maxwell normal velocity distribution"
+    ],
+    "bounds": {
+      "seconds": 60,
+      "threads": 1
+    },
+    "non_claims": [
+      "No full field-theory stability",
+      "No unique phase couplings or normalization"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-07T03:14:48.018704+00:00",
+    "runtime_seconds": 0.974544,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "action_scale_investigation_2026_11_05/joint_phase/phase_boundary_checks.py",
+    "action_scale_investigation_2026_11_05/joint_phase/PHASE_BOUNDARY_REFINEMENT_CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/phase_boundary_checks.py",
+      "sha256": "250e350ee3bfc06b7e6aea554e5ac52ffaa9e6ddd0fff3fdf200b72d38c27767",
+      "sha256_after": "250e350ee3bfc06b7e6aea554e5ac52ffaa9e6ddd0fff3fdf200b72d38c27767"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/PHASE_BOUNDARY_REFINEMENT_CONTRACT.md",
+      "sha256": "7b9f4fd54f44eaffe60c6219aeadfbc89e2c1d2de92d04f1f4223b37a094b662",
+      "sha256_after": "7b9f4fd54f44eaffe60c6219aeadfbc89e2c1d2de92d04f1f4223b37a094b662"
+    }
+  ],
+  "output_directory": "action_scale_investigation_2026_11_05/joint_phase/evidence/phase_boundary_checks",
+  "declared_results": [
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/phase_boundary_checks/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/phase_boundary_checks/stdout.txt",
+      "sha256": "9650d6e71185225067d3a2b7fffc988c8724f7ca44871585457b98201ecc51f9",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/phase_boundary_checks/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/phase_boundary_checks/result.json",
+      "sha256": "9650d6e71185225067d3a2b7fffc988c8724f7ca44871585457b98201ecc51f9",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

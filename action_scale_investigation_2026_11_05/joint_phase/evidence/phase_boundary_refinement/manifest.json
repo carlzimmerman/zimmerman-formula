@@ -1,0 +1,143 @@
+{
+  "schema_version": 2,
+  "claim_id": "PHASE-BOUNDARY-BRANCH-REFINEMENT",
+  "repository": {
+    "commit": "bf4cfcdae5e000733085053a28026fe20ecf1c5f",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "action_scale_investigation_2026_11_05/joint_phase/phase_boundary_refinement.py",
+    "--out",
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/phase_boundary_refinement/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Refinement of seven saved free-boundary branches",
+    "coefficient_domain": "Float64 BVP, root solves and eigenvalues",
+    "conventions": "Previous dimensionless fluid model; force P+DeltaV-2Sigma/R; wall inertia Sigma*1e-6; comoving volumes",
+    "inputs": [
+      "Thin-wall action with gas pressure",
+      "Previous radiative fluid model",
+      "Explicit constant phase parameters and high mass barrier limit"
+    ],
+    "bounds": {
+      "grids": [
+        96,
+        144,
+        192
+      ],
+      "seconds": 240,
+      "threads": 1
+    },
+    "non_claims": [
+      "No unique microscopic phase parameters",
+      "No nonspherical or kinetic stability",
+      "No selected MOND coefficient"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-07T03:14:12.882593+00:00",
+    "runtime_seconds": 5.690077,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "action_scale_investigation_2026_11_05/joint_phase/phase_boundary_refinement.py",
+    "action_scale_investigation_2026_11_05/joint_phase/PHASE_BOUNDARY_REFINEMENT_CONTRACT.md",
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/phase_boundary/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/phase_boundary_refinement.py",
+      "sha256": "996a6dc7ba017713e62023b7c3efbdc3367ac872033e0355e6c9a1ea85056a26",
+      "sha256_after": "996a6dc7ba017713e62023b7c3efbdc3367ac872033e0355e6c9a1ea85056a26"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/PHASE_BOUNDARY_REFINEMENT_CONTRACT.md",
+      "sha256": "7b9f4fd54f44eaffe60c6219aeadfbc89e2c1d2de92d04f1f4223b37a094b662",
+      "sha256_after": "7b9f4fd54f44eaffe60c6219aeadfbc89e2c1d2de92d04f1f4223b37a094b662"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/phase_boundary/result.json",
+      "sha256": "35eb3651d8c0eaac48ee28cf049df395800e2013793d6b19d48fcfaaab326fa9",
+      "sha256_after": "35eb3651d8c0eaac48ee28cf049df395800e2013793d6b19d48fcfaaab326fa9"
+    }
+  ],
+  "output_directory": "action_scale_investigation_2026_11_05/joint_phase/evidence/phase_boundary_refinement",
+  "declared_results": [
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/phase_boundary_refinement/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/phase_boundary_refinement/stdout.txt",
+      "sha256": "9df4c83f95aa4ac88f6550a2905ea740b34da9228f22aff386bdc4d5f1abc305",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/phase_boundary_refinement/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/phase_boundary_refinement/result.json",
+      "sha256": "14ee4a10c886988f141d1b0630c06bdd41492e0eed332c8da87507ec795cf198",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

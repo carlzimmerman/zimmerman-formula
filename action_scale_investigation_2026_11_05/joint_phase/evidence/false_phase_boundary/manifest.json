@@ -1,0 +1,159 @@
+{
+  "schema_version": 2,
+  "claim_id": "HIGHER-ENERGY-INTERIOR-CONFINEMENT",
+  "repository": {
+    "commit": "3f3461bffdae07887d5a918de6b398b6e8793e89",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "action_scale_investigation_2026_11_05/joint_phase/false_phase_boundary.py",
+    "--out",
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/false_phase_boundary/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Free phase-wall equilibrium radii and coupled moving-wall radial eigenvalues, conservation checks",
+    "coefficient_domain": "Float64 BVP, root solves and eigenvalues",
+    "conventions": "Previous fluid model; signed DeltaV=Vout-Vin is negative here; force P+DeltaV-2Sigma/R; wall inertia Sigma*1e-6",
+    "inputs": [
+      "Thin-wall action with gas pressure",
+      "Previous radiative fluid model",
+      "Explicit constant phase parameters and high mass barrier limit"
+    ],
+    "bounds": {
+      "cases": [
+        [
+          4,
+          0.1,
+          -0.03
+        ],
+        [
+          8,
+          0.1,
+          -0.03
+        ],
+        [
+          8,
+          0.2,
+          -0.03
+        ]
+      ],
+      "R_scan": [
+        0.5,
+        40,
+        20
+      ],
+      "grids": [
+        48,
+        96,
+        144
+      ],
+      "seconds": 240,
+      "threads": 1
+    },
+    "non_claims": [
+      "No unique microscopic phase parameters",
+      "No nonspherical or kinetic stability",
+      "No selected MOND coefficient"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-07T03:16:14.359472+00:00",
+    "runtime_seconds": 5.226419,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 240.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "action_scale_investigation_2026_11_05/joint_phase/false_phase_boundary.py",
+    "action_scale_investigation_2026_11_05/joint_phase/FALSE_PHASE_BOUNDARY_CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/false_phase_boundary.py",
+      "sha256": "ca092874f4b169cb6c9540c23363f75987f0d94d17f0bfdaa902827ced3f4abc",
+      "sha256_after": "ca092874f4b169cb6c9540c23363f75987f0d94d17f0bfdaa902827ced3f4abc"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/FALSE_PHASE_BOUNDARY_CONTRACT.md",
+      "sha256": "6aab473ad82d83e2a525f1cc498b839417c34bcb22ffeb8a633bcd2cf35131c7",
+      "sha256_after": "6aab473ad82d83e2a525f1cc498b839417c34bcb22ffeb8a633bcd2cf35131c7"
+    }
+  ],
+  "output_directory": "action_scale_investigation_2026_11_05/joint_phase/evidence/false_phase_boundary",
+  "declared_results": [
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/false_phase_boundary/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/false_phase_boundary/stdout.txt",
+      "sha256": "6c19edb8cd26dd7ab3c44de8bafb7dd6c4de6604ba6788966797b8f278f0b2e0",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/false_phase_boundary/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/false_phase_boundary/result.json",
+      "sha256": "28faedbfa7582819e2a274c30099c4dc8cc624d819604b9979f2d9615005e0c0",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
