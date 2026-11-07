@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PAPER70 audit (draft v0.3): each quoted number appears in the TeX and, as the literal given, in the committed file named
+"""PAPER70 audit (draft v0.4): each quoted number appears in the TeX and, as the literal given, in the committed file named
 beside it; naming rules; no local paths; no pending placeholder. Run: python3 PAPER70_audit.py (exit 0 only if all pass).
 --mutate changes one digit of each source literal; exit 0 only if every mutated literal then fails.
 kappa = 1/2 FITTED; not theory closed; nothing here says the data favour the framework."""
@@ -89,6 +89,27 @@ L += [
  ("(0.084\\,dex at $z^*$ 2.33)", AT2, "0.055 / 0.072 / 0.074 / 0.084 dex at z* 1.0 / 1.2 / 1.5 / 2.33"),
  ("to $\\le6.5\\times10^{-5}$ at 310\\,kpc", V3W, "M_lens/M_dyn = 1 to ≤ 6.5e-5 (at 310 kpc)"),
  ("$A=1.129\\pm0.206$ (canonical)", V3W, "A = 1.129 ± 0.206"), ("$1.035\\pm0.187$ (alt)", V3W, "A = 1.035 ± 0.187"),
+]
+OQ2 = C + "OQ2_one_quantity_powered/RESULT.md"; FS2 = C + "FS2_fold_viscosity_free/README.md"
+OE = "closure_2026_11_07/OUTER_EDGE_CHECK_2026_11_07.md"; C7 = "closure_2026_11_07/CLOSURE_2026_11_07.md"
+Q76 = C + "QX7_unified_cold_switch/iter_6_efe_capped_wells/README.md"; Q77 = C + "QX7_unified_cold_switch/iter_7_collisionless_remnant/README.md"
+Q32 = C + "QX32_aspherical_hse_field/README.md"
+L += [
+ ("(OQ2 kept by the owner)", C7, "OWNER: \"Keep OQ2\""),
+ ("gap up to 0.497 / 0.483", OQ2, "0.497"), ("gap up to 0.497 / 0.483", OQ2, "0.483 / 0.372"),
+ ("($F_{\\rm web,max}$ 0.00481 / 0.00435)", OQ2, "F_web,max = 0.00481"), ("0.00481 / 0.00435", OQ2, "F_web,max = 0.00435"),
+ ("SEPARATED NO, as frozen", OQ2, "**NO** (as frozen"),
+ ("S1 reading is DEAD on both footings, every start", OQ2, "DEAD, every start, both f*"),
+ ("DIFFERS, both footings", FS2, "DIFFERS (frozen)"), ("fold 1.2\\,\\% earlier", FS2, "reaches J_reg 1.2 % before"),
+ ("(DIFF-TIME EARLIER, edge-carried)", FS2, "**DIFF-TIME EARLIER**"), ("read SAME-REACH", FS2, "SAME-REACH (r 0.99990-1.00004)"),
+ ("no row is REGULAR", FS2, "No row is REGULAR"),
+ ("becomes the FINAL moving-Sun label", C7, "MS3 running (~11 h from 08:00), its reading is the FINAL label"),
+ ("NO EDGE IN THE ACTION", C7, "NO EDGE IN THE ACTION"),
+ ("$\\Sigma/X=2+\\rho_{\\rm ph}/\\rho_{\\rm DE}\\ge2$", OE, "Sigma/X = 2 + rho_ph/rho_DE"),
+ ("FAIL (clusters, 0/20 cells, both footings)", Q76, "FAIL (clusters, 0/20 cells both footings)"),
+ ("misfit to +0.870", Q76, "+0.870 canonical"),
+ ("SHAPE FAIL, both footings", Q77, "SHAPE FAIL, both footings"),
+ ("NEGLIGIBLE ($\\le$\\,0.005\\,dex, wrong sign)", Q32, "NEGLIGIBLE (<= 0.005 dex, wrong sign)"),
 ]
 ws = lambda t: re.sub(r"\s+", " ", t)
 cache = {}
