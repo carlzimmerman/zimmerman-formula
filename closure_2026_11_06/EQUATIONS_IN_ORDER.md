@@ -190,3 +190,7 @@ in 8d075bf20f with the Lean file `fable_independent_2026/lean_2026/FRW_correctio
   and well-posedness is local-in-time.
 
 Kappa = 1/2 FITTED; not theory closed.
+
+> **Note (fix-forward, 2026-11-07):** the "Field equations (QX17D)" item of the addendum above repeats the earlier QX17D
+> addendum after the QX17 section (1a6c3c46a0); the two agree (gamma written inside F there, outside here; same equations).
+> That earlier addendum is the field-equation statement; this one adds the adopted stiffness, its limits and the TC1 note.
