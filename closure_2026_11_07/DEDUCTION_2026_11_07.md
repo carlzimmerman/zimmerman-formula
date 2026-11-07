@@ -104,3 +104,21 @@ QX10 fail came from beyond 300 kpc. Section 3's "if" is resolved against Cell B'
 halo around galaxies is excluded by lensing once the gas is measured rather than assumed. What remains of Cell B is
 the C3 form alone (evaporated at r_ta, so no galaxy halo), which lives or dies on X-COP's profile in CE1. The
 deduction's stronger closure (no time dependence available to the action carries F1-F3) now rests on CE1's C3 row.
+
+## 7. Post-result (CE2, 29cbfdbb95, same day): the last cell is closed
+
+The evaporated-core form C3 of the late-heated window fails X-COP (+0.324 / +0.287, inner bin +0.48: what evaporates
+from galaxies evaporates from clusters too), fails the groups (0-1 of 20) and fails the Bullet (a fluid at Mach
+1.7-1.9, ram-stripped, follows the gas), on both footings, while passing CMB lensing, fsigma8 and the forest. The
+bound forms C1, C2, C4 fail the same three gates and KiDS (KX1). So Cell B is closed on every form, Cell A was
+closed in September by X-COP, and no static ingredient or switch survives (sections 1-2).
+
+The elimination is complete for every ingredient the record can build: nothing cold at recombination, absent from
+galaxies, present and collisionless in clusters, with a gas-to-stars profile, exists in the space searched, whether
+time-independent or heated, kicked or evaporated in the dark-energy era. The deductive conclusion is the stronger
+closure of section 3: the a0 law with the adopted v3s action is the law of cold isolated gravity; the CMB's cold
+component, the cluster and group residue and the absence of either from galaxies are three measured facts that no
+single ingredient in reach of the action connects. Which of the three gives way is not decidable on disk: F2 is now
+the firmest (KX1); F3 rests on seven X-COP clusters and provisional group masses (UA1); F1 is a fit under the footing
+background (QX15: not independent evidence). That is the answer the record gives today. Kappa = 1/2 FITTED; not
+theory closed.
