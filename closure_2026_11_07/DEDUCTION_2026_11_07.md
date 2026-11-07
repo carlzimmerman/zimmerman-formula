@@ -93,3 +93,14 @@ By elimination, the record allows exactly one ingredient: a cold component, real
 dark-energy era puffs into diffuse ~200 kpc halos around galaxies while clusters keep it concentrated, and its
 life or death rests on whether the KiDS lensing excess at 100-300 kpc around isolated galaxies is hot gas or that
 component.
+
+## 6. Post-result (KX1, 6e1b777482, same day): the lensing leg is FIRM
+
+KX1 drew the budget section 3 asked for. The kinetic-SZ-measured hot gas alone accounts for Brouwer's raw +0.15-0.20
+dex excess at 100-300 kpc, the joint posterior excess of data over the law is -0.21 to +0.05 dex across the bins on
+both footings, and the implied line is 0.00-0.24 dex against the window's 0.17-0.25. KILL HOLDS on the two cells
+with power (C2, C4); C1 has no power; C3's core evaporates at the turnaround radius, so KiDS never sees it and its
+QX10 fail came from beyond 300 kpc. Section 3's "if" is resolved against Cell B's bound-halo form: a 4.2 M_b puffed
+halo around galaxies is excluded by lensing once the gas is measured rather than assumed. What remains of Cell B is
+the C3 form alone (evaporated at r_ta, so no galaxy halo), which lives or dies on X-COP's profile in CE1. The
+deduction's stronger closure (no time dependence available to the action carries F1-F3) now rests on CE1's C3 row.
