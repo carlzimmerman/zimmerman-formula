@@ -19,6 +19,9 @@ AC23 = A + "AC23_fresh_slow_roots/README.md"; EB1b = "early_bh_2026_11_06/EB1b_w
 IDEA = C + "IDEA_EARLY_BH_DARK_BARYONS_CHECK.md"; AC14C = A + "AC14_fold_final/FROZEN_CRITERIA.md"
 P68 = "qwen_claude_field_theory/papers_2026/PAPER68_screened_khronon_action_2026.zenodo.json"
 VH = "rebuild_2026_10_22/VH1_v3s_health_gates/README.md"
+Q27 = C + "QX27_tail_retention_sector/README.md"; Q28 = C + "QX28_superfluid_two_phase/README.md"
+Q29 = C + "QX29_dipolar_medium/README.md"; Q30 = C + "QX30_cluster_data_assumptions/README.md"
+Q31 = C + "QX31_growth_cmb_data_assumptions/README.md"
 # (fragment in the TeX, source file, literal in that file)
 L = [
  ("rms 0.0560", QX8, "0.0560"), ("0.0558 at 0.52", QX8, "0.0558"),
@@ -49,6 +52,18 @@ L = [
  ("NO VERDICT if any physical row is UNDECIDED", AC14C, "any physical row is NOT CONVERGED or UNDECIDED"),
  ("10.5281/zenodo.23968171", P68, "10.5281/zenodo.23968171"),
  ("PAPER68 (DOI 10.5281/zenodo.23990944", P68, "10.5281/zenodo.23990944"),
+ ("X-COP $-0.024/0.085$ canonical", Q27, "canonical n 4: -0.024 / 0.085"),
+ ("($\\Delta\\chi^2$ 231--1059 against 4)", Q27, "Delta chi^2 231-1059 against a line of 4"),
+ ("$5.6\\times10^3$--$7.0\\times10^3$ times", Q27, "X-COP 5.6e3-7.0e3"),
+ ("X-COP $+0.120$/rms 0.139", Q28, "+0.120 / 0.139"),
+ ("($\\Delta\\chi^2$ 140/70 against 4)", Q28, "Delta chi^2 140 / 70 (line 4)"),
+ ("(Q2 2.44--4.55$\\times$ the Hees line)", Q29, "Q2 2.44-4.55x / 2.85-5.15x"),
+ ("leaves X-COP at $+0.389$", Q29, "+0.389/0.396"),
+ ("moves X-COP by $-0.0205$\\,dex (to $+0.447/+0.414$)", Q30, "It moves X-COP by -0.0205 dex"),
+ ("(to $+0.447/+0.414$)", Q30, "**+0.447 / +0.414**"),
+ ("X-COP at $+0.329/+0.298$", Q30, "+0.329 / +0.298"),
+ ("shape $\\chi^2$ at 370--399 against 20.09", Q31, "shape chi^2 at 370-399, against a line of 20.09"),
+ ("0.4\\,\\% of the baryons-only", Q31, "all CamSpec nuisance freedom 732 (0.4 %)"),
  ("$a_0=9.3603\\times10^{-11}$", VH, "9.3603e-11"), ("$1.1312\\times10^{-10}$", VH, "1.1312e-10"),
 ]
 ws = lambda t: re.sub(r"\s+", " ", t)
@@ -56,7 +71,12 @@ cache = {}
 def src(p):
     if p not in cache:
         fp = os.path.join(ROOT, p)
-        cache[p] = ws(open(fp, encoding="utf-8").read()) if os.path.exists(fp) else ""
+        if os.path.exists(fp):
+            cache[p] = ws(open(fp, encoding="utf-8").read())
+        else:  # local main may lag origin: read the committed file from origin/main
+            import subprocess
+            r = subprocess.run(["git", "-C", ROOT, "show", "origin/main:" + p], capture_output=True, text=True)
+            cache[p] = ws(r.stdout) if r.returncode == 0 else ""
     return cache[p]
 def mutate(lit):
     m = re.search(r"\d", lit)

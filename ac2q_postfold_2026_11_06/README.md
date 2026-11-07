@@ -1,16 +1,23 @@
-# AC2q post-fold investigation — PF17 source-variation checkpoint
+# AC2q post-fold investigation — PF18 conditional-transport checkpoint
 
-**Current result:** the full coupled constraints give the missing spatial
-source-variation bound for existing solutions with continuous BV clock
-gradient, including the regular rolling potential. The bound is C(1+Z)^2.
-The native absolute-value/interaction estimate remains unproved, so full weak
-existence, uniqueness and Cantor exclusion remain open. An extension is not
-proved necessary.
+**Current result:** a valid absolute-variation inequality follows for the native
+wave equation under an additional quantitative Osgood bound on its acoustic
+speeds. That dynamical bound is not proved. Native constraint-compatible cusp
+approximants show it cannot be inferred uniformly from the existing compact
+and TV slice bounds. Full weak existence, uniqueness and Cantor exclusion
+remain open; an extension is not proved necessary.
 
-[PF17 result and exact gaps](pf17/STATUS.md) ·
-[Native source estimate](pf17/SOURCE_VARIATION.md) ·
-[Cantor-source identity](pf17/CANTOR_SOURCE.md) ·
-[Independent audit](pf17/review/SOURCE_AUDIT.md)
+[PF18 result and precise hypotheses](pf18/STATUS.md) ·
+[Conditional transport theorem](pf18/CONDITIONAL_TRANSPORT.md) ·
+[Native modulus test](pf18/MODULUS_TEST.md) ·
+[Independent audit](pf18/review/TRANSPORT_AUDIT.md)
+
+## PF17: native source variation
+
+The coupled constraints control spatial source variation for existing solutions
+with continuous BV clock gradients, including the regular rolling potential.
+The source bound is C(1+Z)^2; its slice Cantor part is homogeneous in the
+clock Cantor gradients. See [PF17 status](pf17/STATUS.md).
 
 ## PF16: conditional temporal regularity
 

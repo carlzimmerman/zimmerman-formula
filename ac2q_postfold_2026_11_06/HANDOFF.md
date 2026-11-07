@@ -1,3 +1,38 @@
+# PF18 continuation handoff
+
+Read pf18/STATUS.md first. Base 191cfbc063. Native rho_r/rho=B_q/(r c^2)
+removes opposite-family acoustic divergence but leaves rho A_q W_sigma.
+The remaining self-compression is not a bounded density in the Cantor class.
+
+Exact C1 clock chart n=r partial_tau+nu partial_x, e=l^-1 partial_x gives
+mu_sigma=D_x z_sigma+l omega(e)dx and
+lambda_sigma=nu/r+sigma c/(r l). The source is the finite measure
+q_sigma=D_x(F_sigma/r)+l Rbase/(2r)dx, norm<=C(1+Z)^2 by PF17.
+Ambrosio–Bernard arxiv0807.1592v1 Theorem1 was checked: quantitative two-sided
+Osgood speed modulus with C(time) integrable, bounded speeds, and L-infinity
+signed wave mass give unique fixed-speed homogeneous transport. Forced
+Duhamel then gives Z(t)<=Z(0)+C integral(1+Z)^2 for the actual wave equation,
+CONDITIONALLY on those additional hypotheses. Native preservation of the
+modulus and the measure class is not proved. This is not an admissibility
+rule added to AC2q, nor a full weak construction.
+
+Constraint-compatible cusp approximants have no uniform Osgood speed modulus:
+r_epsilon=1+delta chi[(x^2+epsilon^2)^(a/2)-epsilon^a], 0<a<1;
+auxiliaries by PF14; theta=alpha=beta=E=0; B constant nonzero;
+K=(rho/M-B^2)/(2B). At gamma=.1,r=1,A=1.1,
+partial_r(c^2/r^2)=6091/8281>0, so auxiliary Lipschitz response cannot remove
+the cusp. This is a slice-family test, NOT a nonsmooth native evolution or
+a proof that dynamical Osgood regularization fails.
+
+Two-solution wave difference has source delta q-partial_x[(delta lambda)mu2],
+not generally a finite measure; fixed-speed uniqueness cannot be promoted to
+coupled uniqueness by applying it twice. A new native interaction/dynamical
+modulus estimate or a full approximation and comparison construction is still
+required. Cantor survival, unique continuation and universal need for extension
+remain unresolved. No new physics or numerical experiment was introduced.
+
+---
+
 # PF17 continuation handoff
 
 Read pf17/STATUS.md first. Base 7e341e6a08. The source-variation bottleneck

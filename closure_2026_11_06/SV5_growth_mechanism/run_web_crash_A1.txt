@@ -1,0 +1,14 @@
+SV5 web lanes (main). kappa = 1/2 FITTED; not theory closed. sigma_A,rel 0.0241, A_X0 1.0210; box 128^3, 2000 Mpc.
+K1 realisation/input power at z 1: median 0.987 -> PASS
+Traceback (most recent call last):
+  File "closure_2026_11_06/SV5_growth_mechanism/sv5_web.py", line 99, in <module>
+    dk, _ = delta_k(W, dV, z); fl = fields(dk, z, a0, law=not MUT)
+            ~~~~~~~^^^^^^^^^^
+  File "closure_2026_11_06/SV5_growth_mechanism/sv5_web.py", line 33, in delta_k
+    Pu = np.array([M.pk_lin(float(np.exp(x)), z) for x in np.linspace(ku.min(), ku.max(), 400)])
+                   ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "python/classy.pyx", line 1279, in classy._classy.Class.pk_lin
+classy._classy.CosmoSevereError: 
+
+Error in Class: fourier_pk_at_k_and_z(L:530) :error in fourier_pk_at_z(pba, pfo, logarithmic, pk_output, z, index_pk, out_pk_at_z, out_pk_ic_at_z );
+=>fourier_pk_at_z(L:161) :condition (ln_tau<pfo->ln_tau[0]-100.*_EPSILON_) is true; requested z was not inside of tau tabulation range (Requested ln(tau_=7.5894492012e+00, Min 8.0020955057e+00). Solution might be to increase input parameter z_max_pk (see explanatory.ini)
