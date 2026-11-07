@@ -42,6 +42,6 @@ sympy scripts.
 
 - The AC7 Q2 / AC10-AC15 post-Newtonian chain still carries the literal legacy factor and needs a full rederivation. It is
   not rerun.
-- J3: the TC03 finite-time gradient catastrophe transfers to the QX19 action if its bootstrap box sits inside Sigma > X (the TC1
-  session is deciding this).
+- J3: DECIDED by TC1 (CLOSURE_FINAL row, f49e17f04d): FIRES. TC03's finite-time gradient catastrophe transfers to the QX19
+  action, so QX19's CONDITIONAL is replaced by that verdict. J3 is no longer open.
 - PAPER68 (deposited) is unaffected: it cites AC2 only.
