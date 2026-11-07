@@ -57,6 +57,7 @@ MUTATE twin.
 | ONE-ACTION SCORECARD: AC2q + Pi^6 blend (b = X), v3s column b = rho_DE | All 10 carries PROVED (c_T for generic F, layer tensor mass <= 5.8e-46, slip <= 5.9e-15, Cassini margin, FRW exact at q = 2, convex PN sign, m = 6 > 5, slow roots, SPARC 1.4e-4 dex, galaxy linear health): the one action PASSES galaxies / Solar System / GW / lensing / PN / well-posedness / FRW / slow roots, and FAILS FG1 tilt (canonical), X-ray ellipticals, clusters, CMB, AGC 114905, Malin 1, FN6. Not adopted | QX19 e2f938cdfc (criteria d65980ffcd) |
 | kappa | FITTED; Lean proves it is not derivable from the premises | KAPPA_LOGIC_2026_10_20 |
 | a0(z), wide binaries | Wait on data (ALMA proposal-class sample, Gaia DR4 around 12-02) | AT2, prep_2026 |
+| One action-native scalar for both walls (OQ1: AC2q charge q = Sigma/rho_DE sets F in hot systems AND switches the law off on the web) | NO VERDICT as frozen (M1 planted law reports false conflicts, max 0.157 / 0.369 dex, on single-point bins). S1 reads DEAD both footings, every start and f*: SPARC vs X-COP at fixed q (log q 2.8-4.4) F 0.7-1.3 vs 2.1-5.8, gap 0.35-0.53 dex; Coma UDGs up to 0.85. Web arm separates: F_web,max 0.0048 / 0.0044 keeps web q < 4 vs hosts >= 10^2.3. M2 step, M3 Newton bite. KA1-KA4 pass | OQ1 criteria 3d8e38ffb2 |
 
 ## Waiting on the owner
 
