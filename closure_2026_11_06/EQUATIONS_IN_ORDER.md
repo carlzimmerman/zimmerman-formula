@@ -117,7 +117,7 @@ With x = g/a0 and mu(x) = x/(1+x):
 | 8.2 | The unscreened law fails Cassini 2.44-5.19x (why Lstar exists) | NUM E2 |
 | 8.3 | The switched stiffness is well posed and leaves the statics unchanged (exact switch, no new scale) | NUM + SYMPY X3 (8aeba82a87); LEAN `V3_PICTURE.switched_*` (pointwise WKB) |
 | 8.4 | The saddle: an unswitched stiffness is Hadamard ill-posed where rho_tau < 0 | LEAN `V3_PICTURE.saddle_unbounded` |
-| 8.5 | AC2q carries 8.1-8.3 with corrections <= 2.2e-10 (static shift <= 1.1e-5) | SYMPY AC8; NUM AC7 Q4 |
+| 8.5 | [ERRATUM 11-06: bound 1.1e-10, see end] AC2q carries 8.1-8.3 with corrections <= 2.2e-10 (static shift <= 1.1e-5) | SYMPY AC8; NUM AC7 Q4 |
 
 ## 9. AC2q reductions and dynamics
 
@@ -147,8 +147,8 @@ form in §1 / PAPER68 decouples P if read literally (erratum on the printed form
 
 ## Erratum, 2026-11-06 (fix-forward; the rows above keep their original text)
 
-Source: an independent FRW reconciliation by another session, `closure_2026_11_06/FRW_RECONCILIATION_CHAIN/CHAIN.md`. It is
-uncommitted at the time of writing; cite that file and its Lean `FRW_correction.lean` once it lands.
+Source: an independent FRW reconciliation by another session, `closure_2026_11_06/FRW_RECONCILIATION_CHAIN/CHAIN.md`. It landed
+in 8d075bf20f with the Lean file `fable_independent_2026/lean_2026/FRW_correction.lean` (11 theorems, standard axioms; MUTATE 3/3 fail).
 - **Row 3.4.** For AC2q as defined (D is the intrinsic leaf divergence, AC2 ACTION.md), the FRW lapse/polarization mixing is (1 - z),
   with z = gamma phidot^2/N^2. The induced factor is (1 - z)^2, not (1 - 2 gamma phidot^2)^2. The legacy factor is exact only when D is
   the spacetime divergence (control action A5). It is a coefficient error. The SIGNS survive: for any f >= 0, 0 < c_g <= c_ph <= 1
