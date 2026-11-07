@@ -39,3 +39,13 @@ PASS / FAIL (clusters) / FAIL (no window) exactly as iter_5, at the PRIMARY e_N.
 - MUTATE A: e_N x 100 (0.33) must change the KiDS lensing shift by more than 0.05 at lambda_0 2.154 (the cap has power).
 - MUTATE B: lambda_0 1e-3 must fail G5 or G6 (bite, as iter_5).
 - MUTATE C: f_cap 0 reproduces the law+EFE baseline exactly (zero shift).
+
+## Amendment A1 (2026-11-07, before any iter_6 number): what separates this from killed iterations
+
+- **QX10 iter_2** (criteria c1f0cadb7a / A1 168db297bd) KILLED iter_4's window on KiDS lensing. It put the n = 1 fluid in the
+  host's own potential with the ISOLATED a0 law (G6 -0.15 to -0.27 in cells C1-C4).
+- **QX7 iter_5** (931e60027b) is an independent reproduction of that kill on the full lambda_0 grid. It agrees: -0.27 at 1.47,
+  -0.25 at 2.15, -0.15 / -0.10 at 8.25.
+- **The new input here is the measured external field** (gext_vectors_2026, e_N 0.0033) acting on every host through the
+  action's EFE. QX10 and iter_5 both assume isolated hosts.
+- A FAIL here is therefore a new label: "the measured EFE does not unbind the halo". It is not a replay.

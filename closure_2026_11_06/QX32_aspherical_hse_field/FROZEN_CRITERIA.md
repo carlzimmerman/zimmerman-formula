@@ -37,3 +37,8 @@ the shell-averaged radial field. QX32 computes that bias.
 - K2 (Gauss): with nu = 1 (Newtonian), Delta = 0 to within the K1 error scale for every q.
 - MUTATE (bite): replacing the field by nu^2 g_N (an over-boosted phantom) must move M_app,1 by more than 0.1 dex at 0.5 R500.
 - Memory/compute: float32/complex64, under 1 GB RSS, 1 thread, nice 15.
+
+## Amendment A1 (2026-11-07, before any QX32 number)
+
+A systematics re-grade of the X-COP residue (DIRECTION 11-07 item 4). The new input against QX30 is the cluster's 3D shape in
+the law's nonlinear field. QX30's bounds are all spherical.

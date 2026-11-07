@@ -4,6 +4,11 @@ Kappa = 1/2 FITTED; not theory closed. Adopts nothing. Criteria 2afe6bac03, comm
 Script: qx7_iter5.py (one thread, about 25 min); outputs qx7_iter5.json/.out, qx7_iter5_MUTATE.json/.out, run_main.txt,
 run_mutate.txt. Mutation of iter_4 (9a8f2e4778).
 
+**Disclosure (11-07): this is an independent REPRODUCTION, not a new kill.** QX10 iter_2 (criteria c1f0cadb7a, A1 168db297bd)
+already put the n = 1 fluid in the host's potential and KILLED iter_4's window on KiDS lensing (G6 -0.24 / -0.27 / -0.15 / -0.25 in
+cells C1-C4). iter_5 missed QX10 when it checked the record. It agrees on the full grid (-0.27 at 1.47, -0.25 at 2.15, -0.15 / -0.10 at 8.25).
+What is new here is the scan to lambda_0 = 100 Mpc (galaxies pass only at >= 10 Mpc, past the growth window) and the cluster readout.
+
 ## Mechanism
 
 iter_4 put each system's captured dust in the ISOLATED n = 1 core. iter_5 solves the n = 1 hydrostatic equation in the host's

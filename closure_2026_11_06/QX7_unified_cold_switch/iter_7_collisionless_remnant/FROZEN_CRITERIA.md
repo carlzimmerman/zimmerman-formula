@@ -47,3 +47,17 @@ Both footings, never pooled. A PASS is labelled "PASS (CONDITIONAL on the pressu
 - MUTATE A: f_cap 0 gives QX2 iter_1's X-COP (+0.4675 / +0.4345) to 1e-3.
 - MUTATE B: lambda_0 1e-3 (everyone keeps dust) must fail G5 or G6.
 - MUTATE C: f_cap x 0.3 must move the X-COP mean by more than 0.1 dex at a window lambda_0 (the profile has power).
+
+## Amendment A1 (2026-11-07, before any iter_7 number): scope narrowed, because the retention rule is a refuted idealisation
+
+- iter_7's retention is iter_4's rule (R_c = lambda_0/2 >= r_ta empties galaxies).
+- QX10 iter_2 (c1f0cadb7a / 168db297bd) and QX7 iter_5 showed that rule fails once the host's pull is included: the fluid stays
+  bound in galaxies. iter_7's galaxy gates would therefore pass BY ASSUMPTION.
+- **So the global PASS label is withdrawn in advance.** The graded output is narrowed to the new input, the gas-tracing remnant
+  shape in retaining systems:
+  - **SHAPE PASS (scoped, conditional):** some lambda_0 in iter_4's growth window gives X-COP AND groups (strict) on the HO1 /
+    group lines on both footings, AND the ellipticals inside the 0.15 line.
+  - **SHAPE FAIL:** otherwise.
+- Galaxy gates G5/G6 are reported only, labelled "by assumption".
+- What separates this from QX29 B1: hot-gas tracing in place of baryon tracing, and the switch's retention selecting
+  ellipticals vs groups by r_ta.
