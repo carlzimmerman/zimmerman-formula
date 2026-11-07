@@ -48,10 +48,10 @@ def qx4_record():
 class Field:
     """Exact AQUAL solution on a QX4 grid, with V(R, Z)^2 = R dPhi/dR at fixed Z anywhere in the solved volume."""
 
-    def __init__(self, rho, rmin, rmax, a0_si, rung=RUNG_TOP, mu_one=False, M=None):
+    def __init__(self, rho, rmin, rmax, a0_si, rung=RUNG_TOP, mu_one=False, M=None, Phi0=None, tol=1e-8):
         self.g = A.Grid(rmin, rmax, *rung, p=3)
-        self.M = self.g.deposit(rho) if M is None else M
-        self.Phi, self.res, self.it = A.solve(self.g, self.M, A.a0_kpc(a0_si), mu_one=mu_one)
+        self.M = deposit_fast(self.g, rho) if M is None else M
+        self.Phi, self.res, self.it = A.solve(self.g, self.M, A.a0_kpc(a0_si), mu_one=mu_one, Phi0=Phi0, tol=tol)
         g, P = self.g, self.Phi
         dlnr = np.gradient(P, g.xc, axis=0)                       # dPhi/dln r
         # mirror across the plane: theta' = pi - theta, Phi even, dPhi/dtheta odd
@@ -96,3 +96,16 @@ class Log:
     def save(self, path, res):
         open(path + ".out", "w").write("\n".join(self.lines) + "\n")
         json.dump(res, open(path + ".json", "w"), indent=1, sort_keys=True, default=float)
+
+
+def deposit_fast(g, rho_fn, nsub=6):
+    """Vectorised twin of aqual.Grid.deposit (same midpoint sub-sampling, same weights), row by row in r."""
+    M = np.zeros((g.nr, g.nt)); u = (np.arange(nsub) + 0.5) / nsub
+    tsub = g.tf[:-1, None] + u[None, :] * (g.tf[1:] - g.tf[:-1])[:, None]            # (nt, nsub)
+    dt = ((g.tf[1:] - g.tf[:-1]) / nsub)[:, None]
+    for i in range(g.nr):
+        r = np.exp(g.xf[i] + u * g.dx)                                                # (nsub,)
+        R = r[:, None, None] * np.sin(tsub)[None]; z = r[:, None, None] * np.cos(tsub)[None]
+        w = 2 * np.pi * (r ** 3)[:, None, None] * np.sin(tsub)[None] * (g.dx / nsub) * dt[None]
+        M[i] = np.sum(rho_fn(R, z) * w, axis=(0, 2))
+    return M
