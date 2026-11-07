@@ -84,3 +84,13 @@ Corrections: v_esc 107-421 km/s is XR16's, not XR13's; UA1's group medians are +
 Consequence: the sentence "Nothing in the September numbers fails today's rows" is true only of numbers that are
 themselves inadmissible as evidence under the record's rules. The candidate stands or falls on CK1's own
 framework-native retention and profile, not on L388.
+
+## POST-RESULT (CK1 8e171a71a8, ~15:00): the candidate FAILS on framework-native ground
+
+In the law's own field the escape speed at the release radius is 740-1480 km/s for the massive spirals (v_flat >= 250)
+and 4800-6300 km/s for the clusters, not the 107-421 km/s the September lanes quoted. So every kick that a cluster
+survives is kept by the big discs too: 9-10 of 10 keep f 1.5-3.9 against the cap 0.33 / 0.19, in every bracket
+cell, at every v_k from 500 to 650. The window is closed from both ends. The carrier that clusters keep traces the
+gas, not the gas-to-stars profile NA2 requires. CK2 had already found no release term; CK3's group slope was too
+steep; CK4's forest ceiling sat at 560. Postulate P3 is dead, and with it this candidate. The deduction's section 7
+stands as written, now with Cell A closed on the framework's own numbers rather than on September's.
