@@ -27,6 +27,7 @@ MUTATE twin.
 | PN sign, all directions, high-frequency limit | PASS, scoped (v3s and AC2q) | AC17 61b2a2fde9 |
 | Well-posedness, raw max switch | FAIL across the switch: no C1 solution for generic data. Each branch is well-posed on its own | AC16 6d5faba9bd |
 | Well-posedness, Pi^6-blend repair | 3D condition m > d+2 proved analytically (AC21); curved 2D C1 and C2 PASS, converged (AC22). Not adopted | AC21 63242d3e1e, AC22 23b4be92bf |
+| Well-posedness, Pi^6-blend repair, curved 3D (spherical switch) | PASS 3D: C1/C2/C3 on all five form rows to N 51200 (max D3_inf 0.010 vs line 1.27; C2 tightest 0.114 vs 0.117, converging at 2nd order); m5 boundary holds finite D3 -12.68 (analytic -12.75) and fails as m > d+2 says, m6 pure passes; v3s max collapses (sigma -0.50); KA reproduces AC22 2D bit for bit; MUTATE bites. Non-radial modes untested; count itself analytic. Not adopted | BL3 (criteria 5f66d85740) |
 | AC2q slow frozen roots, dark-energy-like backgrounds | PASS (HARMLESS, scoped): 16 fresh powered witnesses, R <= 2.70, det K > 0. eps_phi = 2 stays NO VERDICT | AC23 43009b6e76 (AC5, AC13 NO VERDICT) |
 | Clusters, every static term of v3s / AC2q | FAIL, no-go: no universal nu; clock, stiffness and K(Q) all short | QX2 34a3050f18 |
 | Clusters, new keyed terms | FAIL: p/rho, khronon velocity, enclosed density and gas-g are dead; the depth key works only if clusters set it | QX5 00f9e19c9b |
