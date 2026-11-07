@@ -1,5 +1,15 @@
 # Joint-model continuation: pool speed calculation; coefficient unresolved
 
+Latest checkpoint: joint_phase/SELF_COOL_SUPPLY_RESULT.md derives energy-
+dependent contact self-scattering and Maxwell evaporative cooling. With fixed
+injection, volume and escape potential, conserved particle/energy equations
+have a unique positive equilibrium and locally stable density/temperature
+modes. Actual retention still requires spatial transport. A no-flow flat tail
+requires J proportional r^-4, unlike the existing mediator source, and its
+replacement power depends on the unresolved core and microscopic rates.
+15 exact checks pass; omitted number-change energy term fails one control.
+No global halo stability or MOND1/2 is established.
+
 Latest checkpoint: joint_phase/SPECTRUM_THERMALIZATION_RESULT.md derives a
 conditional dilute Wien spectrum and tests repeated scattering, inverse
 reactions and virial thermal response. In the uniform cold unreplenished model,
