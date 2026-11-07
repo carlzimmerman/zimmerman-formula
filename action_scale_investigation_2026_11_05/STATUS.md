@@ -1,5 +1,14 @@
 # Joint-model continuation: pool speed calculation; coefficient unresolved
 
+Latest checkpoint: joint_phase/PARAMETER_SELECTION_RESULT.md tests phase
+coexistence, conserved inventory and de Sitter temperature response. A continuous
+canonical-field deformation preserves bulk phase energies and particle mass gap
+while changing wall tension. Eight general field-algebra implications compile
+in Lean (standard logical axioms only, no sorryAx). Neither neutrality nor the
+postulated detector response selects 1/2; the latter also exposes a Newtonian
+normalization constraint. No new physical selection law or halo stability proof
+is claimed. Required inventory-pressure matching is explicit and uncalibrated.
+
 Latest checkpoint: joint_phase/PHASE_BOUNDARY_RESULT.md replaces the fixed
 radius by a dynamic phase interface with mass-step trapping and force
 P+DeltaV-2Sigma/R. Coupled moving-wall radial stability was computed. A

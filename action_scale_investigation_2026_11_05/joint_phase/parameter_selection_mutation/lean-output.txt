@@ -1,0 +1,38 @@
+action_scale_investigation_2026_11_05/joint_phase/parameter_selection_mutation/WrongFactor.lean:34:36: error: `grind` failed
+case grind
+F : Type
+inst : Lean.Grind.Field F
+t g a gn beta : F
+temperature : t ^ 2 = g ^ 2 + a ^ 2
+response : gn = beta * (t - a)
+h : ¬beta ^ 2 * g ^ 2 = gn ^ 2 + a * beta * gn
+⊢ False
+[grind] Goal diagnostics
+  [facts] Asserted facts
+    [prop] t ^ 2 = g ^ 2 + a ^ 2
+    [prop] gn = beta * (t - a)
+    [prop] ¬beta ^ 2 * g ^ 2 = gn ^ 2 + a * beta * gn
+  [eqc] False propositions
+    [prop] beta ^ 2 * g ^ 2 = gn ^ 2 + a * beta * gn
+  [eqc] Equivalence classes
+    [eqc] {gn, beta * (t - a)}
+    [eqc] {1, (beta ^ 2 * g ^ 2 - (gn ^ 2 + a * beta * gn)) * (beta ^ 2 * g ^ 2 - (gn ^ 2 + a * beta * gn))⁻¹}
+    [eqc] {g ^ 2 + a ^ 2, t ^ 2}
+  [ematch] E-matching patterns
+    [thm] Nat.pow_pos: [@HPow.hPow `[Nat] `[Nat] `[Nat] `[instHPow] #2 #1]
+    [thm] Nat.div_pow_of_pos: [@HPow.hPow `[Nat] `[Nat] `[Nat] `[instHPow] #2 #1]
+  [ring] Ring `F`
+    [basis] Basis
+      [_] a * beta * gn * (beta ^ 2 * g ^ 2 - (gn ^ 2 + a * beta * gn))⁻¹ + -1 = 0
+      [_] a * gn ^ 2 * (beta ^ 2 * g ^ 2 - (gn ^ 2 + a * beta * gn))⁻¹ + -1 * t + a = 0
+      [_] g ^ 2 * beta + -1 * (t * gn) + -1 * (a * gn) = 0
+      [_] t ^ 2 + -1 * g ^ 2 + -1 * a ^ 2 = 0
+      [_] t * beta + -1 * (a * beta) + -1 * gn = 0
+'ParameterSelection.common_shift' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ParameterSelection.phase_deformation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ParameterSelection.tension_deformation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ParameterSelection.marginal_pressure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ParameterSelection.charge_inventory' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ParameterSelection.detector_response' depends on axioms: [sorryAx]
+'ParameterSelection.half_requires_response' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ParameterSelection.half_requires_inventory_pressure' depends on axioms: [propext, Classical.choice, Quot.sound]
