@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PAPER70 audit (draft v0.4): each quoted number appears in the TeX and, as the literal given, in the committed file named
+"""PAPER70 audit (v1.0): each quoted number appears in the TeX and, as the literal given, in the committed file named
 beside it; naming rules; no local paths; no pending placeholder. Run: python3 PAPER70_audit.py (exit 0 only if all pass).
 --mutate changes one digit of each source literal; exit 0 only if every mutated literal then fails.
 kappa = 1/2 FITTED; not theory closed; nothing here says the data favour the framework."""
@@ -189,7 +189,7 @@ rules = [
  ("no 'cold dark matter'", "cold dark matter" not in TEX.lower()),
  ("no pending placeholder", "\\pend{" not in body),
  ("no LCDM input claimed", "No $\\Lambda$CDM inputs were used" in TEX),
- ("not deposited stated", "Not deposited" in TEX),
+ ("version v1.0 stated, no draft marker", "v1.0, 2026-11-07" in TEX and "draft v0" not in TEX),
  ("seed abstract verbatim", "The next lane must find one covariant quantity that sets that amplitude (not just a switch) in today's hot systems and is non-zero in the early universe, or show the two failures need separate causes." in ws(TEX)),
  ("erratum stated", "erratum on PAPER68's printed form only; no number changes" in TEX),
 ]
