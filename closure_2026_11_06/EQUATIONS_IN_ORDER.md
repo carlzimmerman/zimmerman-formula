@@ -145,6 +145,12 @@ multiplier) is in `QX17_covariant_field_equations/RESULT.md`. It is CERTIFIED ag
 <= 1.2e-40, MUTATE fails). It is derived from the operative Legendre form P.A - W(K|P|). The printed J(Y) + independent-P
 form in §1 / PAPER68 decouples P if read literally (erratum on the printed form only; no number changes).
 
+> **Addendum 2026-11-07 (QX17D, 6b16322464; owner adopted the Pi^6 blend, 71e4014cd5).** For the adopted stiffness
+> F(Pi) = gamma b^2 f(Pi/b), b = rho_DE, the v3s Euler-Lagrange set above holds with Pi_+ -> F'(Pi) everywhere, and
+> the stress-tensor term written 2F h_mn for the raw step becomes Pi F'(Pi) h_mn (the two coincide for the raw F,
+> which is why QX17 could not separate them). Reading R1 (2F h kept) FAILS K3 at 9.1e-2 / 1.4e-1; reading R2 is
+> CERTIFIED to 7.1e-40 on both test stiffnesses. Tag: SYMPY + NUM (QX17D).
+
 ## Erratum, 2026-11-06 (fix-forward; the rows above keep their original text)
 
 Source: an independent FRW reconciliation by another session, `closure_2026_11_06/FRW_RECONCILIATION_CHAIN/CHAIN.md`. It landed
