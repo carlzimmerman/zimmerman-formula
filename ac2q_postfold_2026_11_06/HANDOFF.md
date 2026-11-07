@@ -1,3 +1,38 @@
+# PF17 continuation handoff
+
+Read pf17/STATUS.md first. Base 7e341e6a08. The source-variation bottleneck
+is now resolved for EXISTING solutions with continuous spacetime BV p=dphi,
+compact strict onbranch fields, Lipschitz auxiliaries, C1/W2,1 metric, regular
+periodic clock slices and positive b,c inverse margins. This is stronger
+than jump-free BV; continuity is not dynamically proved.
+
+Exterior-differentiate dA=u dphi+(Wp/r)e_flat and
+dP=v dphi+(D-2PE)e_flat in C1 clock coordinates. This proves spatial BV u,v
+before rate products occur. The corrected inverse and Einstein identities
+then give ||u,v||infinity+TV(u,v)<=C(1+Z) and source measure norm C(1+Z)^2.
+Rolling corrections: delta f0=Wp Zpot/(r^3 R)+Wp_phi/r;
+delta g0=-D_r Zpot/(rR); delta Fsigma=-sigma Zpot/(rcR).
+The slice Cantor source is homogeneous linear in W_plus^c,W_minus^c, but
+Lebesgue decomposition cannot simply be commuted with divergence to create
+a closed evolution for Cantor mass.
+
+New countertest b=sign(x)sqrt|x|, z=(t-2sqrt|x|)_+, W=z_x has zero initial
+trace, z continuous W1,1, W_t+(bW)_x=0, ||W(t)||1=2t. It invalidates automatic
+Kato even for exact integrable gradients; b is NOT native, so no AC2q
+nonuniqueness claim follows. Smooth residuals tend to zero in L1, but their
+spatial derivatives lack a vanishing bound at continuous/BV regularity.
+Bressan–De Lellis 2305.17203v1 Theorem1.1 was checked; it needs an autonomous
+conservation system and established small-TV semigroup domain, neither yet
+available for full native coupling.
+
+Next step is a specifically native interaction/renormalization estimate or a
+constraint-compatible approximation with uniform outgoing TV. Source control
+alone must not be recycled as that theorem. Full weak existence, uniqueness,
+Cantor exclusion and universal need for extension remain unresolved. No new
+physical term, viscosity selection, numerical evolution or manuscript edit.
+
+---
+
 # PF16 continuation handoff
 
 Read pf16/STATUS.md first. Research base 1009c50a76. Three actual results:
