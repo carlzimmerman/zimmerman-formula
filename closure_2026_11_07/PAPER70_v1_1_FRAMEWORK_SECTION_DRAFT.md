@@ -1,5 +1,7 @@
 # The one framework the record allows, and its four open gates (CONDITIONAL)
 
+**NOT FOLDED: CK1 8e171a71a8 FAIL; see FRAMEWORK_CANDIDATE_2026_11_07.md post-result.**
+
 Draft section for PAPER70 v1.1, written for the Field equations session. Fold it in **only if CK1-CK4 pass**. The
 source is FRAMEWORK_CANDIDATE_2026_11_07.md (51cd404f0c), with RESOLUTION (ab75dae2e3) and DEDUCTION (same day).
 Every number below is a literal from the committed file named beside it; `framework_section_check.py` checks each one,
