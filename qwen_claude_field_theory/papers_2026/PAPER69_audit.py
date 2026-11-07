@@ -16,7 +16,7 @@ QX26 = C + "QX26_imf_variation/README.md"; QX1 = C + "QX1_equation_chain/README.
 QX17B = C + "QX17B_adm_lean_solutions/RESULT.md"; CH = C + "FRW_RECONCILIATION_CHAIN/CHAIN.md"
 AC24 = A + "AC24_moving_sun_powered/README.md"; AC18 = A + "AC18_constraint_causality/README.md"
 AC23 = A + "AC23_fresh_slow_roots/README.md"; EB1b = "early_bh_2026_11_06/EB1b_web_efe/README.md"
-IDEA = C + "IDEA_EARLY_BH_DARK_BARYONS_CHECK.md"; AC14 = A + "AC14_fold_final/README.md"
+IDEA = C + "IDEA_EARLY_BH_DARK_BARYONS_CHECK.md"; AC14C = A + "AC14_fold_final/FROZEN_CRITERIA.md"
 P68 = "qwen_claude_field_theory/papers_2026/PAPER68_screened_khronon_action_2026.zenodo.json"
 VH = "rebuild_2026_10_22/VH1_v3s_health_gates/README.md"
 # (fragment in the TeX, source file, literal in that file)
@@ -46,6 +46,7 @@ L = [
  ("$R\\le2.70$", AC23, "2.70"),
  ("before $z$ 0.48 (canonical, weakest p05 field)", EB1b, "| p05 (weakest field) | canonical z 0.48"),
  ("at least 15$\\times$", IDEA, "at least 15"),
+ ("NO VERDICT if any physical row is UNDECIDED", AC14C, "any physical row is NOT CONVERGED or UNDECIDED"),
  ("10.5281/zenodo.23968171", P68, "10.5281/zenodo.23968171"),
  ("PAPER68 (DOI 10.5281/zenodo.23990944", P68, "10.5281/zenodo.23990944"),
  ("$a_0=9.3603\\times10^{-11}$", VH, "9.3603e-11"), ("$1.1312\\times10^{-10}$", VH, "1.1312e-10"),
@@ -79,6 +80,15 @@ rules = [
  ("no pending placeholder", "\\pend{" not in TEX.split("\\begin{document}")[1]),
  ("no LCDM input claimed", "No $\\Lambda$CDM inputs were used" in TEX),
 ]
+# AC14 counts read straight from the lane's part files (uncommitted at deposit; the lane commits them with its README)
+import glob, json
+_c = {}
+for f in glob.glob(os.path.join(ROOT, A, "AC14_fold_final", "parts", "*.json")):
+    d = json.load(open(f)); r = d.get("row", {})
+    k = (r.get("model"), r.get("kind"), d.get("label")); _c[k] = _c.get(k, 0) + 1
+und = sum(v for k, v in _c.items() if k[2] == "UNDECIDED"); tot = sum(_c.values())
+rules.append(("AC14 293 UNDECIDED of >= 482 parts", und == 293 and tot >= 482 and "293 of the 482 finished parts" in TEX))
+rules.append(("AC14 53 of 77 AC2q soft undecided", _c.get(("AC2q", "soft", "UNDECIDED")) == 53 and _c.get(("AC2q", "soft", "FOLD")) == 24))
 if not MUT:
     for name, good in rules:
         if good: ok += 1
