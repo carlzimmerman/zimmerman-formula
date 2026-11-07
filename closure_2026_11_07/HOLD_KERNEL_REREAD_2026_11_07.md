@@ -36,3 +36,9 @@ completion".
 ## Consequence if CONFIRMED
 The deduction's walls and the web-off door were partly graded with an over-weighted low-z lensing kernel. Which
 labels move is for GL1/GL3; the owner decides what is rewritten; v1.1 carries the erratum and the re-stated labels.
+
+## Update ~16:30: GL2 CONFIRMED (d0c3692fc6)
+Independent rebuild (own code, Poisson + Weyl potential, vs CLASS): with k^-4 the shape ratio is within 0.0007 of 1
+over L 20-400; without it, 0.045-33.9, matching CK4 to 1-3 %. The code reading agrees: net weight chi^-4, correct
+power chi^0. The error is REAL. GL1 and GL3 may now report which labels move; nothing is rewritten until the owner
+decides; v1.1 carries the erratum.
