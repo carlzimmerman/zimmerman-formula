@@ -148,3 +148,13 @@ stiffness + matter. Its field equations are certified. Its one unresolved failur
 a gap: its own cold dust, forced by the CMB and present in clusters at about 1 % of its total, falls into galaxies
 where no measurement finds it, and no mechanism or initial condition in reach of the action prevents that.
 Kappa = 1/2 FITTED; not theory closed.
+
+## 10. Post-result (KQ1 a3a5efb25d): the action's own dust cannot make the cluster core
+
+The one term the action has for the cold component, the clock-depth dust, cannot form the 50-100 kpc cored profile
+that the clusters show (NC4): in the law's 1/r field its hydrostatic equilibrium has one Jeans length that sets both
+the core and the outer surface, so a 50-100 kpc core comes with a 160 kpc edge (concentration 1.0, inner bin 1.1 dex
+over) and the measured concentration 0.25 needs a 360-400 kpc core (rms 0.30). The closest stiffness is 4.7e5 below
+the BBN bound and, even there, galaxy capture stays at 4.11. So the deposited action's cold term fails the cluster
+shape as well as the galaxies, and the cored, smooth-below-0.1 Mpc shape of the residue is a target no term on the
+table reproduces. Kappa = 1/2 FITTED; not theory closed.
