@@ -57,6 +57,7 @@ def main():
         log = run.stdout + run.stderr
         # Keep committed logs portable across checkouts.
         log = log.replace(str(ROOT) + "/", "")
+        log = "\n".join(line.rstrip() for line in log.splitlines()) + "\n"
         logpath = outdir / (source.stem + ".out")
         logpath.write_text(log)
         reports = re.findall(r"'([^']+)' depends on axioms: \[([^\]]*)\]", log)
