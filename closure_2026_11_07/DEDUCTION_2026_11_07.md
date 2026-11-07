@@ -132,3 +132,19 @@ galaxies are as clean as field galaxies (NC3), so whatever sits in clusters is s
 theorem of section 7 now covers mechanisms AND initial conditions available to the record: no cold component that
 the CMB and the forest allow is absent from galaxies by any route the record can build. Kappa = 1/2 FITTED; not
 theory closed.
+
+## 9. Post-result (F1A 7026dcb48e, ~16:05): all three facts are now independently confirmed
+
+F1 (the CMB's cold component) was the one fact the record marked "not independent evidence". An independent rebuild
+of the primary-CMB likelihood (own CamSpec NPIPE + ACT DR6 code, footing background) gives baryons-only a Delta of
++173,000 / +167,000 and the cold fit omega_d / omega_b = 5.410 / 5.412, within 3 % of the record's 5.562; an own
+Newtonian-gauge code reproduces the no-go that the khronon clock cannot cluster (Q <= 3.4e-11 at z 1100). QX15's
+cells C1-C4 and P1 ran through the k^-4-less kernel and need re-statement; F1 itself does not. With F2 hardened by
+KX1 and NC3 and F3 by QX32, UA1 and CLASH, the three measured facts of section 1 are each confirmed by code that
+shares nothing with the lane that first produced them. The exhaustion theorem (sections 7-8) therefore rests on three
+independently measured legs. The full action for the universe the record can write tonight is the one deposited:
+GR + the khronon with a0 from rho_DE + the clock-depth dust at the CMB's amount + the P sector + the adopted Pi^6
+stiffness + matter. Its field equations are certified. Its one unresolved failure is now a proven contradiction, not
+a gap: its own cold dust, forced by the CMB and present in clusters at about 1 % of its total, falls into galaxies
+where no measurement finds it, and no mechanism or initial condition in reach of the action prevents that.
+Kappa = 1/2 FITTED; not theory closed.
