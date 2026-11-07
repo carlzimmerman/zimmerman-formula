@@ -63,3 +63,23 @@ early-black-hole timing with the cold parent. Same gates CE2 passed, for the col
 KX/CE/RS/UA labels stand. If CK1-CK4 all pass, the contradiction is resolved by a cold carrier that galaxies shed
 and clusters keep, and the derivation (CK2) decides whether it is the action's or a new postulate. If any fails,
 section 7 of the deduction stands as written.
+
+## DISCLOSURES (added ~16:50 after the paper session's sourcing pass, f68fe972ee; they qualify section 1's table)
+
+D1. L388's retention is eps = M_c,model / M_c,LCDM, a ratio to a LCDM run; its boxes start from CLASS with
+    omega_cdm 0.12 (L362 -> L366 -> L377). Under the raw-data / framework-native rule those numbers are NOT evidence
+    and NOT a KA for CK1; CK1 must re-measure retention against a framework-native reference.
+D2. L388 ran on old footings (a0 9.3619e-11 / 1.1279e-10) and canonical only; only its shear gate was scored on both.
+D3. L388's retention is inside 1 Mpc/h, not r500; its top bin holds n = 7 halos; XR13's requirement was computed
+    "without the phantom" against retention measured "with the cluster phantoms on". The bins are not X-COP's.
+D4. The Bullet's "beta_excess 0.000" is L370's MUTATE (kernel off, nu = 1, LCDM physics); the main run reads
+    +0.001 to +0.072 intact. The Bullet row is therefore OPEN for the kicked carrier, not PASS.
+D5. "Cosmic 5.4" is not a literal: QX15 states omega_b 0.02236, omega_d 0.1209 and no ratio; QX12 states R = 5.562.
+D6. v_k was hand-set in L388 (575, 600, 625, 650) with "the trigger posited (no action)"; CK2 has since found NO
+    RELEASE TERM, so the owner's 09-26 rule applies in full.
+D7. KX1's frozen label is NO VERDICT on both footings; "kill holds" is the record's reading, not the label.
+Corrections: v_esc 107-421 km/s is XR16's, not XR13's; UA1's group medians are +0.259 / +0.221.
+
+Consequence: the sentence "Nothing in the September numbers fails today's rows" is true only of numbers that are
+themselves inadmissible as evidence under the record's rules. The candidate stands or falls on CK1's own
+framework-native retention and profile, not on L388.
