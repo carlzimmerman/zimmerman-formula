@@ -144,6 +144,18 @@ L += [
  ("I1's MUTATE M1 did not bite as frozen", FA3, "**NO, as frozen**"),
  ("peak RSS (1.87\\,GB)", FA3, "ru_maxrss read 1.87 GB"),
 ]
+EW2 = "closure_2026_11_07/EW2_aest_nonlinear/README.md"
+L += [
+ ("NO-GO FOR THE CLASS, both footings", EW2, "NO-GO FOR THE CLASS"),
+ ("$r$ 1.037 / 1.045 at 10", EW2, "r = 1.037 / 1.045 at mu 10"),
+ ("($\\mu\\le0.063$\\,Mpc$^{-1}$)", EW2, "PASS only for mu <= 0.063"),
+ ("the gap is $\\times$160", EW2, "(gap x160;"), ("\\texttt{window\\_empty}", EW2, "Lean `window_empty`"),
+ ("static dust $\\le$\\,0.03\\,$M_b$", EW2, "static dust <= 0.03 M_b"),
+ ("need of 2.39 / 2.07\\,$M_b$", EW2, "need 2.39 / 2.07 M_b"),
+ ("(0\\,\\% of X-COP radii)", EW2, "0 % at every host member"),
+ ("Primary CMB FAIL (read)", EW2, "FAIL [C7 read, not rerun]"),
+ ("no label moves & EW2", EW2, "no label moves"),
+]
 ws = lambda t: re.sub(r"\s+", " ", t)
 cache = {}
 def src(p):
