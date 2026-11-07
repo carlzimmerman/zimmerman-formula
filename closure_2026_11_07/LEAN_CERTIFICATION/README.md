@@ -114,3 +114,15 @@ not the truth of numerical source results.
 
 Self-proofreading scope: this README and ClosureLatest only. No existing
 mathematical statements or coefficients were edited.
+
+
+## Follow-up: memory and analytic gaps
+
+The [memory-kernel continuation](../MEMORY_KERNEL_CERTIFICATION/README.md)
+proves the continuous comparison with explicit source-ordering hypotheses and
+an age-fraction bound for decreasing kernels. It refutes the arbitrary-positive
+cross-epoch comparison with a normalized strictly positive kernel. It also
+proves the normalized H-inf integral/variation chain and simple-mu error band,
+and records an obstruction to the signed-shell algebraic extension. Consult
+that report for the remaining physical identifications; the original build
+record and its 107 theorem sources are preserved.
