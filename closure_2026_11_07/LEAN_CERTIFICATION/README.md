@@ -1,5 +1,7 @@
 # Lean certification of Claude's latest closure work, 2026-11-07
 
+**Premise update, 2026-11-07:** web-side CMB-lensing numerical bounds await GL3's reread following GL2's kernel audit. The conditional Lean statements remain valid; consult the [latest certification](../LEAN_LATEST_CERTIFICATION/README.md) before using their numerical premises.
+
 **Verdict: conditional on the named physical and numerical inputs.** Lean checks
 the algebra below. This is not certification of the complete gravity theory,
 of its covariant variational derivation, or of agreement with observations.

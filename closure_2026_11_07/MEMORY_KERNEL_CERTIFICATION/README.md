@@ -1,5 +1,7 @@
 # Memory-kernel and remaining-gap certification, 2026-11-07
 
+**Premise update, 2026-11-07:** the numerical web thresholds inherited from SV5/FA3 require the Limber-kernel reread. The integral theorems and counterexamples remain valid. See the [latest certification](../LEAN_LATEST_CERTIFICATION/README.md) for the premise hold.
+
 **The unrestricted positive-kernel comparison across epochs is refuted.**
 Positivity alone does not relate a web response at an earlier cosmic time to
 host response today. Continuous integral comparisons are proved under explicit
