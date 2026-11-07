@@ -26,7 +26,7 @@ field beats the external field inside r_e = sqrt(G M / (e a0)). Both are known i
 
 | id | question | status |
 |---|---|---|
-| PB1 | Seeds + growth: do PBHs (M, f) beat EB1b's quench and form bound structure / QSO1 in time under R1? minimal (M, f) | launched |
-| PB2 | Window: ceiling f_max(M) for 1e1-1e9 Msun from CMB accretion, dynamics, lensing, GW, mu-distortion, with framework-native modifications | launched |
-| PB3 | Clusters + class pattern: can a uniform-born PBH population give DB1's cluster mass and SE2's class pattern while staying out of SPARC discs? mass budget | launched |
-| PB4 | Synthesis: one (M, f) that PB1 needs, PB2 allows and PB3 uses? | after PB1-PB3 |
+| PB1 | Seeds + growth: do PBHs (M, f) beat EB1b's quench and form bound structure / QSO1 in time under R1? minimal (M, f) | DONE 8b603cda27: QUENCH BROKEN only at f ~1, M 1e6-1e7 |
+| PB2 | Window: ceiling f_max(M) for 1e1-1e9 Msun from CMB accretion, dynamics, lensing, GW, mu-distortion, with framework-native modifications | DONE f3af8b7cea: closed at f >= 0.2 every decade; seeds f~1e-4 to 1e7 OK |
+| PB3 | Clusters + class pattern: can a uniform-born PBH population give DB1's cluster mass and SE2's class pattern while staying out of SPARC discs? mass budget | DONE 1e6606a77c: SPLIT PARTIAL canon / FAILS alt; needs f 1.3-3.5; Bullet FAIL |
+| PB4 | Synthesis: one (M, f) that PB1 needs, PB2 allows and PB3 uses? | DONE: NO. f ~1 uses shut by 2-4 dex; only QSO1-as-primordial-seed allowed (relocation) |
