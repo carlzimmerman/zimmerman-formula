@@ -164,3 +164,27 @@ in 8d075bf20f with the Lean file `fable_independent_2026/lean_2026/FRW_correctio
   2 gamma s^2/(1+phi)^3. The bound becomes 1.1e-10 (was 2.2e-10). The conclusion (transfer to v3s) is unchanged.
 - **QX19 (one action).** The same reconciliation marks the scorecard **CONDITIONAL** (its J3). TC03's finite-time gradient
   catastrophe transfers to the QX19 action if the bootstrap box can sit inside Sigma = D.P + 2X > X, where the blend equals AC2q.
+
+## Addendum, 2026-11-07 (fix-forward; the rows above keep their original text): adopted blend stiffness and its field equations
+
+- **Stiffness adopted.** Per the owner's decision (`closure_2026_11_07/OWNER_DECISION_2026-11-07_ADOPT_PI6_BLEND.md`,
+  71e4014cd5), the stiffness in §1 is now the Pi^6 blend: -(gamma/2)[max(D.P, 0)]^2 becomes -gamma F(Pi), with
+  F(Pi) = b^2 f(Pi/b) and b = rho_DE (AC21 iter_6; f is a pure q^6 below 1/2, C4 and convex, and q^2/2 for q >= 1).
+  AC2q is not adopted. If it is, its L_stiff line carries the same blend with b = X (QX19).
+- **Limits adopted with it.**
+  - Row 8.3 ("well posed") is read with AC16, which labels the raw switch: well-posedness is local in time (TC1).
+  - It is tested in curved 2D (AC22) and in spherical 3D (BL3); non-radial modes are untested.
+  - Folds are unchanged.
+- **Field equations (QX17D, 6b16322464, criteria 78b03d2973: R2 CERTIFIED).** The equations of the blended action are
+  QX17's with Pi_+ -> F'(Pi) in the P equation, the khronon equation, the constitutive factor and J_P, **and with the
+  stress-tensor term 2F h_mn replaced by Pi F'(Pi) h_mn.**
+  - For the raw F the two terms are equal (Pi F' = 2F). So QX17's certification holds for v3s as printed but does not
+    carry to the blend.
+  - Keeping 2F h_mn fails the metric equation: K3 is 9.1e-2 for the generic test stiffness and 1.4e-1 for the blend's
+    Pi^6 branch. The corrected form passes at <= 7.1e-40.
+  - n n T = Pi + gamma F(Pi) is unchanged, so the static source and the Poisson limit are unchanged. No graded number
+    moves.
+- **QX19 CONDITIONAL**, noted in the erratum above, was later removed by TC1 (746f8b6fb4, FIRES). No PASS row was lost,
+  and well-posedness is local-in-time.
+
+Kappa = 1/2 FITTED; not theory closed.
