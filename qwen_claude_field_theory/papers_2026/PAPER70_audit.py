@@ -121,6 +121,16 @@ L += [
  ("EW3 keeps the map row only, no graded number", EW3, "EW3 keeps the map row only"),
  ("it adopts nothing, owner decision pending", PX1, "It adopts nothing"),
 ]
+WL1 = "closure_2026_11_07/WL1_web_law_switch/RESULT.md"
+L += [
+ ("FAIL (stage 2, population phantom)", WL1, "FAIL (stage 2)"),
+ ("all 59 points lie inside", WL1, "K-G6 KiDS 59 pts"),
+ ("$q_{\\rm pop}$ 0.936 / 1.079", WL1, "**0.936** (r_pop 3.75)"), ("0.936 / 1.079", WL1, "**1.079** (r_pop 4.32)"),
+ ("against a line of 0.0354", WL1, "<= 0.0354 (r <= 1.072)"),
+ ("($\\times$26 / $\\times$30;", WL1, "FAIL, x26 / x30"),
+ ("$\\times$11 / $\\times$12 self-consistent", WL1, "reported (x11 / x12)"),
+ ("any key that keeps the law on where KiDS needs it", WL1, "keeps the law on where KiDS needs it"),
+]
 ws = lambda t: re.sub(r"\s+", " ", t)
 cache = {}
 def src(p):
