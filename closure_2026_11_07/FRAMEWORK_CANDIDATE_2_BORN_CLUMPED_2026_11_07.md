@@ -97,3 +97,13 @@ be met by a clump that is concentrated at X-COP's radii (0.1-1 Mpc) yet smooth b
 concerns a component whose small-scale power is cut off near that scale, which the forest machinery must model as
 such. CLASH's concentration slope carries the sign an early clump gives (-0.08 to -0.13) with no power. R4 holds
 (KiDS field control clean).
+
+## Post-result NC2 (47c50d2827): candidate 2 is CLOSED
+
+The primary CMB tolerates a large-scale bias of the cold component between 0.9967 and 1.0014; a component born in
+few-Mpc clumps at the future nodes is a peaks population with bias 45 to 1866 at recombination, and even b = 1.2
+costs Delta 4e4. The forest at z 2.2-4.4 tolerates only 0.13-0.28 % of the component in clumps on both footings, at
+every clump mass and with NC3's 0.1 Mpc cutoff. The clumps' Poisson power also fails CMB lensing at and above 1e14.
+This is the same physics that closed the PBH door (PB1-PB4): a cold component cannot be born clumped at the CMB's
+mean abundance without the CMB and the forest seeing the clumping. K1 and K2 both fire; NC4's profile and abundance
+rows are now record rows, not a candidate's gates. One initial condition cannot replace the dead mechanisms either.

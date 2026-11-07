@@ -122,3 +122,13 @@ single ingredient in reach of the action connects. Which of the three gives way 
 the firmest (KX1); F3 rests on seven X-COP clusters and provisional group masses (UA1); F1 is a fit under the footing
 background (QX15: not independent evidence). That is the answer the record gives today. Kappa = 1/2 FITTED; not
 theory closed.
+
+## 8. Post-result (NC2 47c50d2827, NC3 39940c070e, CK1 8e171a71a8, same day): both candidates closed
+
+Candidate 1 (uniform component removed later by a kick) died on the law's own escape speeds (CK1). Candidate 2 (a
+component born clumped at the nodes, never in galaxies) died on the CMB's bias tolerance (0.997-1.001 against the
+45-1866 a peaks population carries) and on the forest (0.13-0.28 % of the component may be clumped). Cluster-member
+galaxies are as clean as field galaxies (NC3), so whatever sits in clusters is smooth below ~0.1 Mpc. The exhaustion
+theorem of section 7 now covers mechanisms AND initial conditions available to the record: no cold component that
+the CMB and the forest allow is absent from galaxies by any route the record can build. Kappa = 1/2 FITTED; not
+theory closed.
