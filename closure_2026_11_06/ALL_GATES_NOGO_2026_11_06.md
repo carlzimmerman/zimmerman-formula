@@ -50,3 +50,18 @@ Environment (QX24) is killed but fragile.
    only. QX22's slow-vs-fast null argues against rotation as the key in early types.
 
 None of these is a candidate. Each would need its own frozen lane and would still have to pass GB1 plus the CMB row.
+
+## Fourth wall (appended by SE1, 2026-11-06): the shock-entropy sector
+
+SE1 (criteria bf53473414; SE1_shock_entropy_sector/RESULT.md) graded the last unlabelled physics class: an entropy s
+per unit of the khronon sector's rest mass, L_x = F(Q, s) + zeta n.ds, sourced only by the sector's own shocks. Arm (a)
+K(Q, s) = mu_K^2 (Q-1)^2 g(s) is KD1 at every admissible g: discs and the CMB share s_0, the CMB/BBN need
+mu_K^2 g(s_0) >= (8.9e6)^2 Mpc^-2 and galaxies <= 79^2, and shocks only raise g. Arm (b), a gamma = 5/3 fluid, passes
+G9 (cold primordial s_0, c_0 0.07 km/s) but the action's own static solutions are isentropic per region (Theorem K:
+the sector's momentum is a pure gradient, sympy + Lean), so they hold almost nothing in hot systems (X-COP f <= 0.04).
+Allowing a stratified sector anyway, the entropy history that fills X-COP and the ellipticals (alpha 5/3) overfills
+discs, and the one discs allow (alpha <= 2/3) under-fills clusters; groups, Coma UDGs (conserved rest mass caps f at
+~4 against ~80), dSph classes and KiDS fail at every alpha. The needed history differs between classes at the same s:
+FAIL by the no-tuning rule. **Wall: a conserved, non-cooling shock-heated sector either sits isentropic (and keeps
+nothing) or needs a class-dependent entropy history.** With this, every physics class in the record carries a label.
+Adopts nothing. Kappa = 1/2 FITTED; not theory closed.
