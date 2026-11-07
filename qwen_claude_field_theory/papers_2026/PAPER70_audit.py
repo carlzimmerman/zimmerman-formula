@@ -53,12 +53,16 @@ L = [
  ("($w\\le0.01$), lensing $\\chi^2\\le18.5$", NOGO, "(w <= 0.01), and lensing chi^2 <= 18.5"),
  ("$\\mu_K\\ge8.9\\times10^6$", NOGO, "mu_K >= 8.9e6"), ("galaxies allow at most 79", NOGO, "galaxies need <= 0.1-79"),
 ]
-SE2R = SE2; CH = C + "FRW_RECONCILIATION_CHAIN/CHAIN.md"; CQ2 = "cq_lanes_2026_11_04/CQ2_v3s_dr4_seal/README.md"
+SE2R = SE2; CH = C + "FRW_RECONCILIATION_CHAIN/CHAIN.md"; SE3H = C + "FRW_RECONCILIATION_CHAIN/SE3_HANDOFF.md"; CQ2 = "cq_lanes_2026_11_04/CQ2_v3s_dr4_seal/README.md"
 OM = "campaign_fresh_gravity/DR4_OUTCOME_MAP_2026-10-15.md"; AT2 = "rebuild_2026_10_22/AT2_a0z_on_disk_samples/README.md"
 V3W = "rebuild_2026_10_22/V3W_v3s_weak_spots/README.md"; PRED = "closure_2026_11_07/PREDICTIONS_2026_11_07.md"
 L += [
  ("multiplies the induced lapse term by $(1-z)^2$, not the legacy $(1-2z)^2$", CH, "The legacy (1 - 2z)^2 is wrong for A1 as defined"),
  ("$c^2=z/(1-z+z^2)$", CH, "UV c^2 = z/(1-z+z^2)"),
+ ("Lean, 11 theorems, standard axioms only", SE3H, "| Lean, 11 theorems, standard axioms only |"),
+ ("MUTATE 3/3 fail", SE3H, "3/3 planted false claims fail"),
+ ("bounded by $1.1\\times10^{-10}$", SE3H, "The bound is 1.1e-10 (was 2.2e-10)"),
+ ("AC7 Q2 / AC10--AC15 post-Newtonian chain carries the legacy factor", SE3H, "AC7 Q2 / AC10-AC15 post-Newtonian chain still carries the literal legacy factor"),
  ("$+0.440$ [$+0.372$, $+0.484$]", SE2R, "| **+0.440** | [+0.412, +0.463] | [+0.372, +0.484] |"),
  ("$+0.408$ [$+0.341$, $+0.451$]", SE2R, "| **+0.408** | [+0.380, +0.431] | [+0.341, +0.451] |"),
  ("$+0.232$ [$+0.078$, $+0.362$]", SE2R, "| **+0.232** | [+0.156, +0.318] | [+0.078, +0.362] |"),
