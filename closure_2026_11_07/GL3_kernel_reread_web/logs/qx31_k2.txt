@@ -1,0 +1,43 @@
+QX31 main: data-product assumptions vs the growth / CMB-lensing failures. kappa = 1/2 FITTED; not theory closed.
+K1 package unit tests: CMB-marged FFP10 chi2 8.8634 (CFG917 8.3724), PS1 FFP10 9.3140 (CFG917 8.7094) -> FAIL
+K1' (A1): CMB-marged FFP10 chi2 8.863447 vs record QX3 iter2 K1 8.863447 -> PASS (PS1 at FFP10 9.3140: no record value, reported)
+K2 F_PS1 = sum M^XY C^XY_FFP10 + M^PP X_FFP10: max rel dev 1.33e-04 (line 1e-3) -> PASS
+   size of the corrections at FFP10 (bandpower units, per bin / data): marged F/d [0.0164, 0.0164, 0.0212, 0.031, 0.0443, 0.0737, 0.1098, 0.1582, 0.2322]
+   PS1 CMB-spectrum part sum M^XY C^XY / d [2.13, 1.92, 2.0, 2.24, 2.25, 2.27, 2.05, 2.14, 2.78] (cancels against F_PS1 at the fiducial)
+
+== A. CMB-lensing SHAPE, law alone (shape chi2 after best amplitude, 8 dof; line 20.09)
+   case | footing | V0 | V1 | V2 | V3 | V4 | V5 | bin1/bin9 model/data (V0, V1, V2) | label
+   WG2 R0 law off, B2, A_s 1e-9, 128^3                  | canonical |   1308.3 |   1186.6 |   1539.0 |    877.2 |    842.6 |    475.0 | -0.0161/-0.232, 0.000342/5.11e-06, -0.00934/-0.231 | move 0.179 of gap -> ROBUST
+   WG2 R1 a0 flat, B2, A_s 2.1e-9, 128^3                | canonical |   1573.8 |   1436.8 |   2000.4 |    669.1 |    979.4 |    388.7 | 14/-0.0666, 14.1/0.0722, 14.1/-0.0651 | move 0.275 of gap -> PARTIAL as frozen (V2 WORSENS the failure); largest move toward a pass 0.088 of gap
+   WG2 R1 a0 flat, B2, A_s 2.1e-9, 192^3                | canonical |   1581.7 |   1444.4 |   2016.3 |    633.6 |    983.3 |    369.9 | 13.8/-0.0641, 13.8/0.0824, 13.8/-0.0625 | move 0.278 of gap -> PARTIAL as frozen (V2 WORSENS the failure); largest move toward a pass 0.088 of gap
+   WG3 T1tau0, B2, A_s 1e-9, 128^3                      | canonical |   1572.1 |   1435.3 |   1997.1 |    666.4 |    978.5 |    385.5 | 1.47/-0.214, 1.49/0.00802, 1.48/-0.213 | move 0.274 of gap -> PARTIAL as frozen (V2 WORSENS the failure); largest move toward a pass 0.088 of gap
+   WG4 R1 a0 tracks rho_DE, B2D, A_s 2.1e-9, 128^3      | canonical |   1588.7 |   1450.9 |   2029.4 |    681.8 |    987.6 |    398.8 | 8.01/-0.151, 8.02/0.0334, 8.02/-0.149 | move 0.281 of gap -> PARTIAL as frozen (V2 WORSENS the failure); largest move toward a pass 0.088 of gap
+   WG4 R1 a0 tracks rho_DE, B2D, A_s 2.1e-9, 192^3      | canonical |   1593.8 |   1455.7 |   2039.8 |    646.8 |    990.0 |    380.4 | 7.8/-0.15, 7.81/0.0384, 7.81/-0.148 | move 0.283 of gap -> PARTIAL as frozen (V2 WORSENS the failure); largest move toward a pass 0.088 of gap
+   WG6 screened 100 Mpc, B2D, A_s 1e-9, 128^3           | canonical |    260.5 |    219.6 |    264.7 |    247.6 |    194.4 |    180.2 | 0.803/-0.0254, 0.815/0.139, 0.81/-0.0239 | move 0.170 of gap -> ROBUST
+   WG6 screened 33 Mpc, B2D, A_s 2.1e-9, 128^3          | canonical |    126.2 |    124.2 |    131.0 |    114.5 |     75.9 |     69.0 | 0.116/0.122, 0.13/0.293, 0.122/0.124 | move 0.046 of gap -> ROBUST
+   WG6 screened 33 Mpc, B2D, A_s 2.1e-9, 192^3          | canonical |    136.9 |    132.8 |    140.7 |    122.2 |     85.0 |     75.1 | 0.109/0.0338, 0.124/0.222, 0.116/0.0353 | move 0.035 of gap -> ROBUST
+   WG2 R1 a0 flat, B2, A_s 2.1e-9, 128^3 [alt]          | alt       |   1573.1 |   1436.2 |   1999.1 |    667.2 |    979.0 |    388.3 | 19.6/0.000307, 19.6/0.102, 19.6/0.00181 | move 0.274 of gap -> PARTIAL as frozen (V2 WORSENS the failure); largest move toward a pass 0.088 of gap
+   WG4 R1 a0 tracks rho_DE, B2D, A_s 2.1e-9, 128^3 [alt] | alt       |   1588.2 |   1450.4 |   2028.4 |    681.7 |    987.3 |    399.3 | 11.1/-0.119, 11.1/0.0465, 11.1/-0.118 | move 0.281 of gap -> PARTIAL as frozen (V2 WORSENS the failure); largest move toward a pass 0.088 of gap
+   MUTATE-twin reproduce of wg6_shape_diag (per bin 5e-3, shape chi2 within 1): PASS
+K3 bite (M x10 on WG2 R1 128^3): |S - S_V1| 137.0 -> 1930.8 -> BITES
+
+== B-D. growth Delta chi^2 at the iter2 G1 worst corner (omega_b 0.0215, omega_d 0.1196, H0 65.0, n_s 0.95); reference chi2 per variant V0 8.57, V1 8.45, V2 8.69, V3 8.05, V4 5.76, V5 5.46
+   B iter2 mu_min (Mpc^-1): V0 2512, V1 2512, V2 2512, V3 2512, V4 1585, V5 1585  vs mu_max 79.4; gap 1.50 dex, admissible move 0.000 dex -> ROBUST  [REPRODUCE MISS]
+     Delta chi2 at mu 79.4: V0 212.0, V1 177.8, V2 215.6, V3 199.0, V4 157.9, V5 143.1 (line 4)
+   C iter3 closest (beta 1.4, mu0 1.585e+04): V0 20.55, V1 17.99, V2 21.09, V3 17.26, V4 14.46, V5 12.11 (record 92.59); move 2.57 of gap 88.6 -> ROBUST  [REPRODUCE MISS]
+   D QX27 G6b n 6 canonical (sigma0 1843.5 km/s): V0 36.94, V1 35.98, V2 36.65, V3 28.42, V4 18.92, V5 13.88 (record 230.9); move 0.96 of gap 226.9 -> ROBUST  [REPRODUCE MISS]
+   (a0 does not enter B-D at linear order, QX3 assumption A-web: the labels hold for both footings.)
+
+== E. record-sized items
+   QX15 MB baryons-only [canonical]: Delta chi2 172848 vs line 25; all CamSpec nuisance freedom 732 = 0.0042 of gap -> ROBUST
+   QX15 MB baryons-only [alt]: Delta chi2 166612 vs line 25; all CamSpec nuisance freedom 732 = 0.0044 of gap -> ROBUST
+   KiDS shift statistic: g_obs rescale T cancels exactly (0); delta ln D_A native/fiducial at z_l 0.15/0.25/0.35 = +0.0346, +0.0325, +0.0305
+     QX10 C3 (smallest): shift 0.15 vs line 0.05, bound |d shift| <= 0.0156 = 0.156 of gap -> ROBUST
+     QX10 C2 (largest): shift 0.27 vs line 0.05, bound |d shift| <= 0.0280 = 0.127 of gap -> ROBUST
+   forest QX27 G6c smallest: lambda_J(z 3) 491.7 Mpc vs line 0.646; thermal-history range loosens the line x3.12 to 2.02 Mpc = 0.172 of the gap in log (0.0028 linear) -> ROBUST
+   forest QX27 G6c largest: lambda_J(z 3) 1024.0 Mpc vs line 0.646; thermal-history range loosens the line x3.12 to 2.02 Mpc = 0.155 of the gap in log (0.0013 linear) -> ROBUST
+   EB1b: no data product enters the failing step (collapse before z 0.48 at p05 vs QSO1's z 7.05) -> ROBUST
+
+K1 as frozen: FAIL (wrong reference values; Amendment A1)
+All checks (K1' per A1, K2, reproduce A-D, K3 bite): FAIL
+kappa = 1/2 FITTED; not theory closed; nothing here says the data favour the framework.
