@@ -1,17 +1,23 @@
-# AC2q post-fold investigation — PF16 dynamical-regularity checkpoint
+# AC2q post-fold investigation — PF17 source-variation checkpoint
 
-**Current result:** any existing bounded on-branch BV continuation is absolutely
-continuous in time in spatial L1. This excludes a purely temporal Cantor
-activation, but allows moving spatial Cantor variation. The native signed
-gradient balance survives; its variation/uniqueness estimate is still unproved.
-A positive local-state acoustic density cannot cancel genuine compression.
-Full weak existence and uniqueness remain open; an extension is not proved
-necessary.
+**Current result:** the full coupled constraints give the missing spatial
+source-variation bound for existing solutions with continuous BV clock
+gradient, including the regular rolling potential. The bound is C(1+Z)^2.
+The native absolute-value/interaction estimate remains unproved, so full weak
+existence, uniqueness and Cantor exclusion remain open. An extension is not
+proved necessary.
 
-[PF16 result and exact gaps](pf16/STATUS.md) ·
-[Conditional temporal theorem](pf16/CONDITIONAL_TIME_CONTROL.md) ·
-[Acoustic density obstruction](pf16/ACOUSTIC_DENSITY.md) ·
-[Weak gradient balance](pf16/GRADIENT_BALANCE.md)
+[PF17 result and exact gaps](pf17/STATUS.md) ·
+[Native source estimate](pf17/SOURCE_VARIATION.md) ·
+[Cantor-source identity](pf17/CANTOR_SOURCE.md) ·
+[Independent audit](pf17/review/SOURCE_AUDIT.md)
+
+## PF16: conditional temporal regularity
+
+Existing bounded on-branch BV solutions evolve absolutely continuously in
+spatial L1. This excludes purely temporal Cantor activation but allows moving
+spatial Cantor variation. A local positive density cannot universally cancel
+acoustic compression. See [PF16 status](pf16/STATUS.md).
 
 ## PF15: diffuse singularities
 
