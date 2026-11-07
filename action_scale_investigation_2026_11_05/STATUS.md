@@ -1,5 +1,14 @@
 # Joint-model continuation: pool speed calculation; coefficient unresolved
 
+Latest checkpoint: joint_phase/RADIATIVE_EXPORT_RESULT.md tests an explicitly
+new excited-scalar extension that exports heat through radiation without
+consuming heavy particles in its cooling cycle. Decay, thermal excitation,
+line-opacity and new-annihilation conditions are derived. Local source/cooling
+balance is restoring, but an exact isothermal inward-flow trial still fails
+pointwise heat balance. Coupled spatial equations are conservation-checked,
+not solved.21 positive checks pass; double-counted pair cooling fails one
+control. No finite globally stable halo or universal1/2 is established.
+
 Latest checkpoint: joint_phase/RADIAL_SUPPLY_RESULT.md derives radial
 redistribution for the actual mediator source. An explicit long-decay inward
 flow repairs the previous no-flow particle-profile mismatch. Its thermal
