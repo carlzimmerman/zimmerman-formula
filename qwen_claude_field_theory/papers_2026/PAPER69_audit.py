@@ -80,15 +80,15 @@ rules = [
  ("no pending placeholder", "\\pend{" not in TEX.split("\\begin{document}")[1]),
  ("no LCDM input claimed", "No $\\Lambda$CDM inputs were used" in TEX),
 ]
-# AC14 counts read straight from the lane's part files (uncommitted at deposit; the lane commits them with its README)
+# AC14 counts read straight from the lane's part files (complete run, 485 rows; the lane commits them with its README)
 import glob, json
 _c = {}
 for f in glob.glob(os.path.join(ROOT, A, "AC14_fold_final", "parts", "*.json")):
     d = json.load(open(f)); r = d.get("row", {})
     k = (r.get("model"), r.get("kind"), d.get("label")); _c[k] = _c.get(k, 0) + 1
 und = sum(v for k, v in _c.items() if k[2] == "UNDECIDED"); tot = sum(_c.values())
-rules.append(("AC14 293 UNDECIDED of >= 482 parts", und == 293 and tot >= 482 and "293 of the 482 finished parts" in TEX))
-rules.append(("AC14 53 of 77 AC2q soft undecided", _c.get(("AC2q", "soft", "UNDECIDED")) == 53 and _c.get(("AC2q", "soft", "FOLD")) == 24))
+rules.append(("AC14 296 UNDECIDED of 485 parts", und == 296 and tot == 485 and "296 of the 485 parts" in TEX))
+rules.append(("AC14 56 of 80 AC2q soft undecided", _c.get(("AC2q", "soft", "UNDECIDED")) == 56 and _c.get(("AC2q", "soft", "FOLD")) == 24 and "56 of 80 AC2q soft" in TEX))
 if not MUT:
     for name, good in rules:
         if good: ok += 1
