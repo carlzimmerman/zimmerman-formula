@@ -1,5 +1,13 @@
 # Joint-model continuation: pool speed calculation; coefficient unresolved
 
+Latest checkpoint: joint_phase/RADIAL_SUPPLY_RESULT.md derives radial
+redistribution for the actual mediator source. An explicit long-decay inward
+flow repairs the previous no-flow particle-profile mismatch. Its thermal
+budget requires conductive heat transport; a wide insulated isothermal shell
+fails energy balance. Strong self-scattering improves collisions but reduces
+short-path conductivity.12 exact checks pass; omitted source momentum fails
+one control. No complete spatial solution, global stability or1/2 is derived.
+
 Latest checkpoint: joint_phase/SELF_COOL_SUPPLY_RESULT.md derives energy-
 dependent contact self-scattering and Maxwell evaporative cooling. With fixed
 injection, volume and escape potential, conserved particle/energy equations

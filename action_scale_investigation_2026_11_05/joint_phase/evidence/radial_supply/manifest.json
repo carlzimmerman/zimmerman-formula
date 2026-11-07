@@ -1,0 +1,128 @@
+{
+  "schema_version": 2,
+  "claim_id": "RADIAL-SOURCE-REDISTRIBUTION",
+  "repository": {
+    "commit": "f647cbb72c918dbb3ec6721c5d6e840260fd4fc1",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "action_scale_investigation_2026_11_05/joint_phase/radial_supply.py",
+    "--out",
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/radial_supply/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Sourced radial continuity, injected momentum/energy consistency, conductive heat requirement and long-decay shell balance",
+    "coefficient_domain": "Exact symbolic algebra",
+    "conventions": "Natural units; nonrelativistic material; subsonic leading isothermal energy budget; R>r0>0",
+    "inputs": [
+      "Mediator decay source",
+      "Number momentum and internal energy moments",
+      "Trial inverse square tail",
+      "Short mean free path kinetic conductivity scaling"
+    ],
+    "bounds": {
+      "scope": "60 seconds one thread; constant retained injection energy in thermal closure; local long-decay limit holds j fixed"
+    },
+    "non_claims": [
+      "No global stability or complete exact finite-inertia solution",
+      "No computed conductivity coefficient or source luminosity",
+      "No MOND normalization"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-07T01:15:26.235206+00:00",
+    "runtime_seconds": 0.781845,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "action_scale_investigation_2026_11_05/joint_phase/radial_supply.py",
+    "action_scale_investigation_2026_11_05/joint_phase/RADIAL_SUPPLY_CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/radial_supply.py",
+      "sha256": "cb70711afac41a6fe6d3adc758073d479f58c96cc8d7cd53742f59ddf16594a5",
+      "sha256_after": "cb70711afac41a6fe6d3adc758073d479f58c96cc8d7cd53742f59ddf16594a5"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/RADIAL_SUPPLY_CONTRACT.md",
+      "sha256": "631c5ca72ad169b7284ba105a1e6a24012f47778270f50d42b35bdfbbef88bec",
+      "sha256_after": "631c5ca72ad169b7284ba105a1e6a24012f47778270f50d42b35bdfbbef88bec"
+    }
+  ],
+  "output_directory": "action_scale_investigation_2026_11_05/joint_phase/evidence/radial_supply",
+  "declared_results": [
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/radial_supply/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/radial_supply/stdout.txt",
+      "sha256": "324c15a707ca2b61079d6e1010c1a7677fc572ea236549ad7bd162338ba791da",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/radial_supply/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/radial_supply/result.json",
+      "sha256": "324c15a707ca2b61079d6e1010c1a7677fc572ea236549ad7bd162338ba791da",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
