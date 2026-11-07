@@ -34,8 +34,8 @@ favour the framework.
 | ellipticals, KiDS colour split, bright M31 dSphs | systematics | EXPLAINED | SE2 |
 | KiDS isolated lenses 100-300 kpc | law plus kSZ-measured gas, no bound carrier | label NO VERDICT; the bound-halo window is killed where it has power | KX1 |
 | AGC 114905, Malin 1, FG1 canonical tilt | law only, unchanged | FAIL (not rescued) | QX4, QX11, QX14 |
-| X-COP clusters | retained free phase | **OPEN (CK1)** | need from SE2 / ALL_GATES_NOGO; retention from L388 |
-| groups (20 Lovisari) | partial retention rising with mass | **OPEN (CK3)** | UA1; L388 |
+| X-COP clusters | retained free phase | **OPEN (CK1)** | need from SE2 / ALL_GATES_NOGO; retention and profile from CK1's own framework-native run (L388 inadmissible, disclosure 1) |
+| groups (20 Lovisari) | partial retention rising with mass | **OPEN (CK3)** | UA1; retention from CK1 (L388 inadmissible) |
 | Coma UDGs | n/a | NOT A TEST (2 of 9 admissible) | UA1 |
 | Bullet, Harvey mergers | collisionless free phase passes through | **OPEN (CK1)**; see disclosure 4 | L370 |
 | primary CMB | cold parent | PASS with a cold component | QX15 |
@@ -118,5 +118,5 @@ a0 and a cold condensed phase that the primary CMB requires. The condensed phase
 a free collisionless phase when a well virialises. So galaxies shed it, groups keep part of it in proportion to their
 depth, and clusters keep most of it. Every static test of the law stands. The framework is CONDITIONAL on four open
 gates (CK1-CK4) and on one derivation, CK2, which decides whether the release speed belongs to the action or is a
-postulate. Disclosures 1-7 bound how much weight the September carrier numbers can carry until CK1 re-measures them
-on today's footings without ΛCDM inputs. Kappa = 1/2 FITTED; not theory closed.
+postulate. By disclosures 1-7 the September carrier numbers carry no weight: L388 is inadmissible as KA or evidence, and the
+candidate rests on CK1's own framework-native retention and profile (RESOLUTION / FRAMEWORK_CANDIDATE, same day). Kappa = 1/2 FITTED; not theory closed.
