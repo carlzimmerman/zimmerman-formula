@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PAPER70 audit (v1.1): each quoted number appears in the TeX and, as the literal given, in the committed file named
+"""PAPER70 audit (v1.2): each quoted number appears in the TeX and, as the literal given, in the committed file named
 beside it; naming rules; no local paths; no pending placeholder. Run: python3 PAPER70_audit.py (exit 0 only if all pass).
 --mutate changes one digit of each source literal; exit 0 only if every mutated literal then fails.
 kappa = 1/2 FITTED; not theory closed; nothing here says the data favour the framework."""
@@ -363,6 +363,51 @@ L += [
  ("not on a converged extrapolation", MS3, "So the PASS rests on the frozen time-spread classes (NOISE, OSCILLATORY), not on a converged extrapolation."),
  ("a different memory allocator setting", MS3, "MallocMediumZone=0"),
 ]
+F1A = "closure_2026_11_07/F1A_primary_cmb_audit/RESULT.md"; GL4 = "closure_2026_11_07/GL4_qx15_cells_kernel/RESULT.md"
+L += [
+ ("deposited as DOI 10.5281/zenodo.24044606", Z70, '"doi": "10.5281/zenodo.24044606"'),
+ ("F1 CONFIRMED, both footings", F1A, "## Label: F1 CONFIRMED on both footings"),
+ ("$\\Delta$ +172,915.6 / +166,674.4", F1A, "| **G1** DeltaMB on B2 | **+172,915.6** | **+166,674.4** |"),
+ ("($\\Delta_{\\rm cal}$ $-65.21$ / $-65.07$ against $\\chi^2_{\\rm cal}$ 3805.37)", F1A, "| **G2** Delta_cal (chi2_cal 3805.37) | **-65.21** (adequate) | **-65.07** (adequate) |"),
+ ("$\\omega_d/\\omega_b$ 5.410 / 5.412 (0.973 of 5.562)", F1A, "**5.410** (0.973 of 5.562"),
+ ("($Q\\le3.4\\times10^{-11}$ at $z$ 1100)", DED, "(Q <= 3.4e-11 at z 1100)"),
+ ("(CLASS differs by 3.8)", F1A, "CLASS and CAMB differ by 3.8 on Pcut"),
+ ("one check peaked at 1.81\\,GB for 10\\,s", F1A, "KA-P peaked at 1.81 GB for 10 s"),
+ ("QX15 cells C1 / C2 / C4 (found by F1A)", F1A, "QX15's cell Delta_cell and P1 numbers sit on the wrong kernel"),
+ ("$\\Delta_{\\rm cell}$ +0.66 / +0.27 / +0.57, PASS", GL4, "| C1 | +0.66 / +0.67 | PASS"),
+ ("$+1.1\\times10^{-5}$ / $+6.5\\times10^{-6}$ / $+1.1\\times10^{-5}$", GL4, "| +6.5e-6 / +6.6e-6 | PASS"),
+ ("$\\Delta_{\\rm cell}$ +5.95 / +6.03, TENSION", GL4, "| C3 | +5.95 / +6.03 | TENSION"),
+ ("$+4.1\\times10^{-5}$ / $+4.2\\times10^{-5}$, PASS", GL4, "| +4.1e-5 / +4.2e-5 | PASS | **MOVES** to PASS"),
+ ("+192.46 / +189.91, bites", GL4, "+192.46 / +189.91, bites"),
+ ("its one unresolved failure is a contradiction rather than a gap", DED, "Its one unresolved failure is now a proven contradiction, not\na gap"),
+]
+KQ1 = "closure_2026_11_07/KQ1_kq_dust_cluster_core/RESULT.md"
+L += [
+ ("CANNOT FORM CORE, both footings", KQ1, "overall: **CANNOT FORM CORE**"),
+ ("for every $\\mu_K$ in 0.1--$10^4$", KQ1, "No mu_K in 0.1-1e4 Mpc^-1"),
+ ("falls like $\\ln(r_s/r)$", KQ1, "which falls like ln(r_s / r)"),
+ ("a surface near 160\\,kpc", KQ1, "sits at r_s ~ 160 kpc"),
+ ("inner bin over by 1.1\\,dex", KQ1, "the inner bin is over-filled by\n  1.1 dex"),
+ ("needs a 360--400\\,kpc core", KQ1, "the core is 360-400 kpc"),
+ ("rms anywhere is 0.226 / 0.222", KQ1, "The best per-bin rms anywhere is 0.226 / 0.222"),
+ ("($\\mu_K$ 19.05) is $4.67\\times10^5$ below the BBN bound", KQ1, "closest is 4.67e5 times below"),
+ ("galaxy capture stays at 4.111 / 4.112", KQ1, "| 4.1786 / 4.1110 | 3.7833 / 4.1121 |"),
+ ("(rms 0.091)", KQ1, "rms 0.0908"),
+ ("no term on the table reproduces", DED, "is a target no term on the\ntable reproduces"),
+]
+AK1 = "closure_2026_11_07/AK1_fold_release_layer/README.md"
+L += [
+ ("= 577.6 / 571.3\\,km/s)", AK1, "v_k = 2c(a0 L*/c^2)^(1/3) = 577.6 / 571.3 km/s"),
+ ("NO VERDICT (check failed)", AK1, "NO VERDICT (check failed).**"),
+ ("reads 317.7 / 309.2\\,km/s", AK1, "V reads 317.7 / 309.2 km/s"),
+ ("$v_{\\rm post}$ 0.024--0.157\\,km/s", AK1, "| 0.024-0.157 | 121-139 |"),
+ ("$R_\\delta$ $5\\times10^{-10}$--$3\\times10^{-7}$", AK1, "| 5e-10 - 2e-8 |"),
+ ("all 160 readings outside the bands", AK1, "160 converged readings fall outside the frozen bands"),
+ ("($d\\ln V/d\\ln v_f$ 1.000 / 0.95)", AK1, "d ln V / d ln v_f = 1.000 (clock-only) and 0.95 (phantom)"),
+ ("(ratio 1.000, where the identity predicts 1.260)", AK1, "(ratio 1.000; the identity predicts 1.260)"),
+ ("(22.53 / 24.04\\,kpc, not 2.09 / 2.25)", AK1, "The formula gives 22.53 / 24.04 kpc, not the brief's 2.09 / 2.25 kpc"),
+ ("($1-X/X_{\\rm bg}\\le2.4\\times10^{-7}$)", AK1, "Max (1 - X/X_bg) = 2.4e-7"),
+]
 def mutate(lit):
     m = re.search(r"\d", lit)
     return lit if not m else lit[:m.start()] + str((int(m.group()) + 1) % 10) + lit[m.end():]
@@ -385,7 +430,7 @@ rules = [
  ("no 'cold dark matter'", "cold dark matter" not in TEX.lower()),
  ("no pending placeholder", "\\pend{" not in body),
  ("no LCDM input claimed", "No $\\Lambda$CDM inputs were used" in TEX),
- ("version v1.1 stated, no draft marker", "v1.1, 2026-11-07" in TEX and "draft v0" not in TEX),
+ ("version v1.2 stated, no draft marker", "v1.2, 2026-11-07" in TEX and "draft v0" not in TEX),
  ("moved labels re-stated, not rewritten", "re-stated pending owner" in TEX and "no frozen label is rewritten here" in TEX),
  ("unification quote verbatim", UQ_OK),
  ("seed abstract verbatim", "The next lane must find one covariant quantity that sets that amplitude (not just a switch) in today's hot systems and is non-zero in the early universe, or show the two failures need separate causes." in ws(TEX)),
