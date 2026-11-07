@@ -76,3 +76,30 @@ web.
 - The khronon's own fold radius was not solved in 3D. Turnaround is used as its ceiling, since AC14 gives the clock a
   Hubble-sized pressure scale, so the clock is carried by the converging flow.
 - Stages 3-4 were not reached. Lean was not used.
+
+## Post-result scope note (added after grading; the frozen criteria are unchanged)
+**Split with EW3 (Repository session).** WL1 grades the shared SV5 two-switch door: law off on the single-stream web,
+the charge-switched K(Q) sector on the law-off web, and the KiDS shell-crossing kill. EW3 grades only the switch
+candidates WL1 does not cover, cites WL1, and stops if WL1 covers everything. EW3 (520ed75443) holds a map row only.
+This wording arrived after WL1's criteria were frozen and graded, so it is recorded here, not in FROZEN_CRITERIA.md.
+
+**EW3's two ungraded notes, answered (reported, not graded, post-result).**
+1. *KiDS points beyond turnaround, per mass bin.* EW3's turnaround radii (QX10's rule: 0.59 / 0.71 / 0.83 Mpc) are
+   WL1's self-consistent NC reading. Source: per_bin_reported.py, giving per_bin_reported.out. The shift vs the
+   plain law per mass bin (log M_b 9.4 / 10.45 / 10.7 / 10.9; R_max of the points 0.50 / 1.69 / 2.25 / 2.83 Mpc) is:
+
+   | R_ms reading | Shift per bin, both footings | Result |
+   |---|---|---|
+   | NC (QX10 turnaround) | -0.009 / -0.041 / -0.047 / -0.058 | top bin beyond 0.05 on its own |
+   | NL (Newton, no dust) | -0.083 / -0.137 / -0.155 / -0.168 | all bins fail |
+   | Ceiling / lower (law-on turnaround, the graded readings) | at most +0.008 | all bins pass |
+
+   So EW3's sharpened kill holds wherever the shells beyond turnaround are Newtonian. The graded law-on readings pass,
+   because the law-on turnaround already reaches 1.7-3.7 Mpc. Either way, stage 2 sets the label.
+2. *A charge-keyed law cannot turn back on (law off gives D.P = 0, Sigma = 2X on both the web and outskirts).*
+   - WL1's key reads the khronon fold (the sign of the label-map Jacobian J), not the charge. That objection does not
+     apply to it.
+   - Whether arm (ii)'s charge-switched dust still separates hosts from the web once the law is off in the outskirts
+     was NOT checked. Stage 3 was not reached, because stage 2 fails first.
+   - EW3's point stands as a second obstacle for arm (ii) under any law-off outskirts: Sigma = 2X there equals the
+     web's.
