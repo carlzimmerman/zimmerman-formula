@@ -156,6 +156,8 @@ L += [
  ("Primary CMB FAIL (read)", EW2, "FAIL [C7 read, not rerun]"),
  ("no label moves & EW2", EW2, "no label moves"),
 ]
+Z70 = "qwen_claude_field_theory/papers_2026/PAPER70_field_equations_closure_2026.zenodo.json"
+L += [("deposited as DOI 10.5281/zenodo.24040313", Z70, '"doi": "10.5281/zenodo.24040313"')]
 ws = lambda t: re.sub(r"\s+", " ", t)
 cache = {}
 def src(p):
