@@ -32,3 +32,17 @@ a two-sided prediction that the outer globulars at 22-30 pc must begin to show s
 FS1/FS2 and AC14 are planar, non-dimensionalised folds. Before reading any of the lines above, state the mapping of the
 code units to L*, a0 and c on both footings, and whether the solver's domain can resolve both 22 pc and 2 kpc at once
 (a factor 100 in scale); if it cannot, say which regime the resolution can and cannot see, and freeze that.
+
+## Addendum (~17:00): the invariant read of AK1, and one scope correction
+
+Exponent matrix (dimensionless, immune to the planar code-unit mapping): alpha_L = d ln delta_shock / d ln L*;
+alpha_v = d ln v_post / d ln v_f; alpha_M = ln(v_post[Pi^6] / v_post[Pi^4]) / ln sqrt(2).
+Regime I: alpha_L = 1, alpha_v > 0. Regime II: alpha_L = 2/3, alpha_v = 2/3, alpha_M ~ 0.
+Regime III: alpha_L = 2/3 (d ln v_post / d ln L* = 1/3), alpha_v = 0, alpha_M = 1.
+The AK1 lane should report these three numbers with their bootstrap errors on both footings, whatever else it reports.
+
+Scope correction (for the record, against the solver's decision-tree text): the confirmed kernel error (GL2) is in
+the CMB-lensing power-shape integrator `limber_ratio` (the Limber C_L^phiphi ratio) only. It is NOT in the
+galaxy-galaxy lensing pipeline: KX1's KiDS excess-surface-density numbers, the K5 cluster lensing-vs-hydrostatic
+line and the Bullet convergence peak use projected mass directly and never imported that function. GL1/GL3 cannot
+move them; the bound-galaxy-halo ceiling from KX1 stands whatever the re-read finds.
