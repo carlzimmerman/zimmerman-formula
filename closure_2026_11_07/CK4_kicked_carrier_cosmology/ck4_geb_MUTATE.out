@@ -1,0 +1,44 @@
+CK4 GEB MUTATE: cold reference CLASS model (QX3 iter2 / QX7 iter_4); the cold component is cold dark energy (cold parent)
+  N3 pars: {'output': 'tCl,lCl,mPk', 'l_max_scalars': 2600, 'h': 0.65, 'omega_b': 0.0215, 'omega_cdm': 0.11958060485606123, 'A_s': 2e-09, 'n_s': 0.95, 'tau_reio': 0.06, 'N_ur': 3.046, 'T_cmb': 2.7255, 'P_k_max_1/Mpc': 12.0, 'z_max_pk': 20.0}
+  h 0.65 (N4) / 0.65 (MC); omega_b 0.0215; omega_d (CLASS omega_cdm slot) 0.11958060; N3 Om_b0 0.05088757 Om_d0 0.28303102 (x h^2: 0.021500, 0.119581); rho_m0 3.915510e+10 Msun/Mpc^3; MC P_k_max 12.0 /Mpc, z_max_pk 20.0
+  MC's k range ends at 12.0 /Mpc < needed ~300-1000 /Mpc: recomputed CLASS with identical parameters, P_k_max 1500.0, z_max_pk 60.0
+  reproduction of MC.pk_lin: k0.1_z0.0 rel 0.00e+00; k0.1_z7.0451 rel 0.00e+00; k1.0_z0.0 rel 5.47e-11; k1.0_z7.0451 rel 5.38e-11 -> PASS (1e-4)
+  clock: t(z) = int da/(aH) with H = MC.Hubble (CLASS background, radiation + massless nu included). t(7.0451) = 757.512 Myr; independent quad on analytic E(a) (Om_m 0.333919, Om_r 9.9023e-05, Om_L 0.665982) 757.512 Myr; rel 1.8e-15 -> PASS (1e-3)
+  T_sal (EB1 formula) 450.490 Myr; t_E(eps 0.1) 50.054 Myr
+K1 sigma8: mine 0.795853 vs MC.sigma8() 0.795853 (extended model 0.795853); rel 5.61e-07 -> PASS (1e-3)
+K2 EB1 B2 arithmetic: t_obs 771.40 (771.4), t_seed 7.7 460.21 (460.2), 6.9 552.41 (552.4) -> PASS (0.1 Myr)
+  M_h(primary) = 1e6 x (1 + 5.56189) = 6.56189e+06 Msun, R_L 0.03420 Mpc; sigma(z=0) 1.06393, with k cut at 750 /Mpc 1.06393 (rel 3.3e-07) [MUTATE factor 0.15240 applied]
+-- z_coll / t_coll table (cols nu 1..5)
+   M_seed 1e+02: M_h 6.562e+03 sigma0 1.4823 sigma(7.05) 0.2368: none  z 1.14/5358 Myr  z 2.32/2843 Myr  z 3.47/1824 Myr  z 4.63/1295 Myr
+   M_seed 1e+04: M_h 6.562e+05 sigma0 1.2223 sigma(7.05) 0.1911: none  z 0.70/7345 Myr  z 1.68/3886 Myr  z 2.61/2504 Myr  z 3.54/1785 Myr
+   M_seed 1e+05: M_h 6.562e+06 sigma0 1.0639 sigma(7.05) 0.1659: none  z 0.43/9246 Myr  z 1.31/4823 Myr  z 2.13/3100 Myr  z 2.93/2209 Myr
+   M_seed 1e+06: M_h 6.562e+07 sigma0 0.9062 sigma(7.05) 0.1412: none  z 0.13/12260 Myr  z 0.93/6203 Myr  z 1.64/3964 Myr  z 2.34/2820 Myr
+-- seed time and nu_req (all cells; graded = eps 0.1, seed 1e5, logM 7.7 and 6.9)
+   eps0.1|logM7.7|seed1e+02: t_seed 100.6 Myr (EB1 bg 114.4), nu_req None, z_coll -, NO
+   eps0.1|logM7.7|seed1e+04: t_seed 331.1 Myr (EB1 bg 345.0), nu_req None, z_coll -, NO
+   eps0.1|logM7.7|seed1e+05: t_seed 446.3 Myr (EB1 bg 460.2), nu_req None, z_coll -, NO  <- GRADED
+   eps0.1|logM7.7|seed1e+06: t_seed 561.6 Myr (EB1 bg 575.5), nu_req None, z_coll -, NO
+   eps0.1|logM7.6|seed1e+02: t_seed 112.1 Myr (EB1 bg 126.0), nu_req None, z_coll -, NO
+   eps0.1|logM7.6|seed1e+04: t_seed 342.6 Myr (EB1 bg 356.5), nu_req None, z_coll -, NO
+   eps0.1|logM7.6|seed1e+05: t_seed 457.9 Myr (EB1 bg 471.7), nu_req None, z_coll -, NO
+   eps0.1|logM7.6|seed1e+06: t_seed 573.1 Myr (EB1 bg 587.0), nu_req None, z_coll -, NO
+   eps0.1|logM6.9|seed1e+02: t_seed 192.8 Myr (EB1 bg 206.6), nu_req None, z_coll -, NO
+   eps0.1|logM6.9|seed1e+04: t_seed 423.3 Myr (EB1 bg 437.2), nu_req None, z_coll -, NO
+   eps0.1|logM6.9|seed1e+05: t_seed 538.5 Myr (EB1 bg 552.4), nu_req None, z_coll -, NO  <- GRADED
+   eps0.1|logM6.9|seed1e+06: t_seed 653.8 Myr (EB1 bg 667.7), nu_req None, z_coll -, NO
+   eps0.2|logM7.7|seed1e+02: t_seed -720.6 Myr (EB1 bg -706.7), nu_req None, z_coll -, NO (age)
+   eps0.2|logM7.7|seed1e+04: t_seed -202.0 Myr (EB1 bg -188.1), nu_req None, z_coll -, NO (age)
+   eps0.2|logM7.7|seed1e+05: t_seed 57.3 Myr (EB1 bg 71.2), nu_req None, z_coll -, NO
+   eps0.2|logM7.7|seed1e+06: t_seed 316.7 Myr (EB1 bg 330.5), nu_req None, z_coll -, NO
+   eps0.2|logM7.6|seed1e+02: t_seed -694.7 Myr (EB1 bg -680.8), nu_req None, z_coll -, NO (age)
+   eps0.2|logM7.6|seed1e+04: t_seed -176.1 Myr (EB1 bg -162.2), nu_req None, z_coll -, NO (age)
+   eps0.2|logM7.6|seed1e+05: t_seed 83.3 Myr (EB1 bg 97.2), nu_req None, z_coll -, NO
+   eps0.2|logM7.6|seed1e+06: t_seed 342.6 Myr (EB1 bg 356.5), nu_req None, z_coll -, NO
+   eps0.2|logM6.9|seed1e+02: t_seed -513.2 Myr (EB1 bg -499.3), nu_req None, z_coll -, NO (age)
+   eps0.2|logM6.9|seed1e+04: t_seed 5.5 Myr (EB1 bg 19.4), nu_req None, z_coll -, NO
+   eps0.2|logM6.9|seed1e+05: t_seed 264.8 Myr (EB1 bg 278.7), nu_req None, z_coll -, NO
+   eps0.2|logM6.9|seed1e+06: t_seed 524.1 Myr (EB1 bg 538.0), nu_req None, z_coll -, NO
+  daughters: Sheth-Tormen F(>M_min, z 7.0451) (upper bound on converted, hence on escaped, fraction): M_min 1e+10 1.211e-54, M_min 1e+11 1.068e-88, M_min 1e+12 3.019e-158; primary M_min 1e11 below 1e-3 -> daughters do not enter GEB
+GEB MUTATE label (footing-independent; Newtonian cold collapse, a0 does not enter): FAIL  [logM 7.7: nu_req None NO; logM 6.9: nu_req None NO]
+MUTATE bite: YES (FAIL as required)
+peak RSS 267 MB. kappa = 1/2 FITTED; not theory closed
