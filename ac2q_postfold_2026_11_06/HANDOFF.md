@@ -1,3 +1,32 @@
+# PF15 continuation handoff
+
+Read pf15/STATUS.md first. Research base a3aa3abdeb. Diffuse/Cantor chain rules
+have canonical approximate representatives; no arbitrary jump-product choice
+remains in their linear measure identities. Stress Cantor divergence is
+-p_b div^c(k)+k^a(D_b^c p_a-D_a^c p_b), already zero from scalar+compatibility.
+The full Einstein equations are not redundant, only this singular conservation
+consequence. Rank-one BV polar plus the acoustic symbol gives one acoustic
+family at almost every nonzero Cantor point; this is not rectifiable support,
+existence, zero-Cantor propagation, or unique characteristic flow.
+
+The exact Ancona–Caravenna–Marson SBV theorem (arxiv2409.06087v4, Thm7/(G))
+was checked; its native source and selected-solution hypotheses are unproved.
+Do not adopt viscosity selection without showing all native equations survive.
+Even SBV+no jumps yields no bounded-gradient theorem. The recorded Burgers
+sqrt-cusp countertest disproves that abstract shortcut but is NOT an AC2q field,
+a same-data continuation, or PDE nonuniqueness example.
+
+Next obligation is genuinely dynamical: native one-sided/interaction or
+renormalized-flow control of continuous and Cantor variation, or a full weak
+construction with selection. The classical Riccati measure-square and a
+unique pointwise flow for BV speed are not justified. No universal extension,
+native nonuniqueness, or native Cantor existence has been proved. Prior strong
+breakdown, bounded weak formulation, auxiliary uniqueness, and restricted
+shock/sheet exclusions remain. Analytic reviews and source checks are in pf15;
+no new numerical evolution or physical regularizer was used.
+
+---
+
 # PF14 continuation handoff
 
 Read pf14/STATUS.md first. Research base 857b7495d1. Conditional full weak

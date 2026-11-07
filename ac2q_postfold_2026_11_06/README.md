@@ -1,16 +1,22 @@
-# AC2q post-fold investigation — PF14 native-compactness checkpoint, 2026-11-06
+# AC2q post-fold investigation — PF15 diffuse-singularity checkpoint, 2026-11-06
 
-**Current result:** the native Jacobian source has a fixed limit in the
-bounded compactness class, so the differentiated forcing loop is not a free
-native source. Auxiliary reconstruction is unique, with local existence and
-L1 stability on branch. Small BV clock-gradient jumps are excluded in the
-stated regular low-kinetic neighborhood. Full coupled postbreak existence and
-uniqueness remain open; these results do not prove an extension necessary.
+**Current result:** diffuse singular clock derivatives obey canonical BV
+identities and acoustic polarization. Unlike finite jumps, their stress-divergence
+condition adds no independent algebraic obstruction. A checked SBV theorem has
+not been shown applicable to the native coupling, and eliminating Cantor parts
+alone would not restore strong regularity. Continuous/Cantor native existence
+and uniqueness remain open; an extension is not proved necessary.
 
-[PF14 result and exact scope](pf14/STATUS.md) ·
-[Native compactness](pf14/NATIVE_COMPACTNESS.md) ·
-[Auxiliary reconstruction](pf14/review/AUXILIARY_RECONSTRUCTION.md) ·
-[BV jump exclusion](pf14/BV_JUMP_EXCLUSION.md)
+[PF15 result and exact gap](pf15/STATUS.md) ·
+[Diffuse identities](pf15/DIFFUSE_SINGULAR_IDENTITY.md) ·
+[Independent audit](pf15/review/CANTOR_SYMBOL_AUDIT.md)
+
+## PF14: native compactness and auxiliary reconstruction
+
+The bounded native source has a fixed conditional limit; spatial auxiliary
+reconstruction is unique, with local existence and stability on branch. Small
+BV clock jumps are excluded in the declared neighborhood. See
+[PF14 status](pf14/STATUS.md). None is a coupled temporal uniqueness theorem.
 
 ## PF13: direct weak formulation
 
