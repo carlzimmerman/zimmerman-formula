@@ -7,9 +7,11 @@ only where the lane itself gives one, and is marked as such.
 **Action on the table.** v3s, adopted and scoped (closure_2026_11_05/CLOSURE.md section 1). AC2q is the candidate
 successor; AC7 introduced it.
 
-**Repair on the table, NOT adopted.** Replace the stiffness kink max(D.P, 0)^2 with AC21's iter_6 blend: a pure
-Pi^6 near zero, C4-blended to (gamma/2) Pi^2 above b, with b = rho_DE (v3s) or b = X (AC2q). It adds no new
-constant.
+**Stiffness, ADOPTED by the owner (11-07, OWNER_DECISION_2026-11-07_ADOPT_PI6_BLEND.md, 71e4014cd5).** v3s's
+stiffness kink max(D.P, 0)^2 is replaced by AC21's iter_6 blend F = gamma b^2 f(Sigma/b): a pure Pi^6 near zero,
+C4-blended to (gamma/2) Pi^2 above b, with b = rho_DE (v3s). AC2q (b = X) is not adopted. It adds no new constant.
+Limits adopted with it: local in time, non-radial untested, folds unchanged, power 6 not forced. v3s scope and every
+graded label are unchanged.
 
 **Equation chain.** EQUATIONS_IN_ORDER.md (QX1). Every step is tagged LEAN / SYMPY / NUM / POSTULATED. QX1 has 28
 Lean theorems, 0 sorry, standard axioms only. The lanes add more Lean files (QX2-QX7, AC20, AC21), each with a
