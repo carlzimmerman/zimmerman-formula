@@ -131,6 +131,19 @@ L += [
  ("$\\times$11 / $\\times$12 self-consistent", WL1, "reported (x11 / x12)"),
  ("any key that keeps the law on where KiDS needs it", WL1, "keeps the law on where KiDS needs it"),
 ]
+FA2 = "closure_2026_11_07/FA2_local_action_search/RESULT.md"; FA3 = "closure_2026_11_07/FA3_nonlocal_action_search/RESULT.md"
+L += [
+ ("no local action found; C1, C2 and C3 all FAIL", FA2, "no local action found. C1 FAIL, C2 FAIL, C3 FAIL, both footings"),
+ ("KiDS shift +0.283 / +0.260", FA2, "**+0.283 FAIL**"), ("+0.283 / +0.260", FA2, "**+0.260 FAIL**"),
+ ("the natural local form does not screen", FA2, "natural local form does not screen"),
+ ("to 0.3\\,Mpc or less", FA2, "L_max =\n0.3 Mpc"),
+ ("the static operator is not elliptic (radial)", FA2, "the static operator is not elliptic (radial only)"),
+ ("NO CANDIDATE SURVIVES, both footings", FA3, "No candidate survives"),
+ ("(r 75.4 / 78.8)", FA3, "W1 web (r 75.4 / 78.8 at tau_gal)"),
+ ("NO VERDICT on G1--G7", FA3, "**NO VERDICT** (G1-G7; history not carried)"),
+ ("I1's MUTATE M1 did not bite as frozen", FA3, "**NO, as frozen**"),
+ ("peak RSS (1.87\\,GB)", FA3, "ru_maxrss read 1.87 GB"),
+]
 ws = lambda t: re.sub(r"\s+", " ", t)
 cache = {}
 def src(p):
