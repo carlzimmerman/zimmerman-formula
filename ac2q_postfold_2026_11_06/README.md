@@ -1,15 +1,24 @@
-# AC2q post-fold investigation — PF15 diffuse-singularity checkpoint, 2026-11-06
+# AC2q post-fold investigation — PF16 dynamical-regularity checkpoint
 
-**Current result:** diffuse singular clock derivatives obey canonical BV
-identities and acoustic polarization. Unlike finite jumps, their stress-divergence
-condition adds no independent algebraic obstruction. A checked SBV theorem has
-not been shown applicable to the native coupling, and eliminating Cantor parts
-alone would not restore strong regularity. Continuous/Cantor native existence
-and uniqueness remain open; an extension is not proved necessary.
+**Current result:** any existing bounded on-branch BV continuation is absolutely
+continuous in time in spatial L1. This excludes a purely temporal Cantor
+activation, but allows moving spatial Cantor variation. The native signed
+gradient balance survives; its variation/uniqueness estimate is still unproved.
+A positive local-state acoustic density cannot cancel genuine compression.
+Full weak existence and uniqueness remain open; an extension is not proved
+necessary.
 
-[PF15 result and exact gap](pf15/STATUS.md) ·
-[Diffuse identities](pf15/DIFFUSE_SINGULAR_IDENTITY.md) ·
-[Independent audit](pf15/review/CANTOR_SYMBOL_AUDIT.md)
+[PF16 result and exact gaps](pf16/STATUS.md) ·
+[Conditional temporal theorem](pf16/CONDITIONAL_TIME_CONTROL.md) ·
+[Acoustic density obstruction](pf16/ACOUSTIC_DENSITY.md) ·
+[Weak gradient balance](pf16/GRADIENT_BALANCE.md)
+
+## PF15: diffuse singularities
+
+Diffuse stress divergence adds no independent Cantor principal restriction.
+Acoustic polarization does not establish existence or unique flow. A checked
+SBV theorem has not been shown applicable to the native coupling, and SBV
+alone would not restore strong regularity. See [PF15 status](pf15/STATUS.md).
 
 ## PF14: native compactness and auxiliary reconstruction
 

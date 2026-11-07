@@ -1,3 +1,28 @@
+# PF16 continuation handoff
+
+Read pf16/STATUS.md first. Research base 1009c50a76. Three actual results:
+(1) bounded on-branch native BV balance gives metric absolute continuity of
+U=(m,b) in time into spatial L1, with modulus C integral(1+TVx U). This is
+conditional on an existing solution with bounded auxiliary Lipschitz norms;
+it is not propagation of those norms, existence, or a two-solution estimate.
+(2) positive local-state acoustic density cancellation implies 2 A_q rho=0,
+impossible on the GN packet domain. Extra density variables must have bounded
+frame derivatives; B,E and metric first derivatives do not automatically qualify.
+(3) div_2(D_sigma W_sigma-e F_sigma)=Rbase/2 survives by a curl cancellation,
+but the source-variation and signed-measure renormalization/Kato steps needed
+for the smooth Z estimate remain unproved. The waiting-Dirac countertest is
+not native and must not be reported as AC2q nonuniqueness.
+
+Time-projected derivative mass is AC; a moving spatial Cantor measure remains
+possible. Do not claim spacetime W1,1, unique characteristics, native existence,
+or new physics from these results. Review files and hashed proofs are in pf16.
+No numerical run or physical completion was adopted. Next work requires a
+new native interaction/renormalization estimate or a full weak approximation
+construction; the density shortcut and automatic sign step are now scoped
+obstructions, not reasons to terminate the broader research route.
+
+---
+
 # PF15 continuation handoff
 
 Read pf15/STATUS.md first. Research base a3aa3abdeb. Diffuse/Cantor chain rules
