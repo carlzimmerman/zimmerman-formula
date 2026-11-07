@@ -63,6 +63,7 @@ MUTATE twin.
 | a0(z), wide binaries | Wait on data (ALMA proposal-class sample, Gaia DR4 around 12-02) | AT2, prep_2026 |
 | One action-native scalar for both walls (OQ1: AC2q charge q = Sigma/rho_DE sets F in hot systems AND switches the law off on the web) | NO VERDICT as frozen (M1 planted law reports false conflicts, max 0.157 / 0.369 dex, on single-point bins). S1 reads DEAD both footings, every start and f*: SPARC vs X-COP at fixed q (log q 2.8-4.4) F 0.7-1.3 vs 2.1-5.8, gap 0.35-0.53 dex; Coma UDGs up to 0.85. Web arm separates: F_web,max 0.0048 / 0.0044 keeps web q < 4 vs hosts >= 10^2.3. M2 step, M3 Newton bite. KA1-KA4 pass | OQ1 criteria 3d8e38ffb2 |
 
+| QX19 CONDITIONAL (TC03 catastrophe vs Sigma > X) | FIRES; CONDITIONAL removed. QX19's blend = AC2q on Sigma > X and Sigma < 0 (sympy); TC03's family fits inside Sigma > X (J3 HOLDS, margin ~z0/8). Physical planar clock streams (AC10 rows, both footings) sit at Sigma/X >= 2 and fold identically to AC2q at 9 Myr-200 Myr; static SPARC / X-COP all in Sigma > X, never in the layer; FRW, linear: no fire; moving Sun NO VERDICT. No QX19 PASS row lost; well-posedness is local-in-time only | TC1 f49e17f04d (criteria 4f3d3efa6b) |
 ## Waiting on the owner
 
 - Downloads: the AGC 114905 census was approved 11-06 and is done (QX14). Planck PR4 / ACT primary spectra
