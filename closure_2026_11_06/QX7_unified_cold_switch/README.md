@@ -10,6 +10,7 @@ Lean: fable_independent_2026/lean_2026/QX7_cold_switch.lean has 7 theorems, stan
 | 2 | clock, lambda_J = lambda_3 (a/a_3)^m | analytic 56 cells; growth: none (closest dchi2 9.47) | - | FAIL (no window) |
 | 3 | dark-energy fraction, lambda_* Omega_DE^p | analytic 31 cells; growth: none (closest 17.87) | - | FAIL (no window) |
 | 4 | same switch, early capture, late cores R_c = lambda_J(0)/2 | **270 members**: CMB-lensing shape + forest + galaxy gates pass (scoped idealisation) | X-COP rms >= 0.235 (mean crosses 0); groups <= 1/20 | **FAIL (clusters)**; CMB/galaxy WINDOW (scoped) |
+| 5 | same switch; today's dust in n = 1 hydrostatic equilibrium in the HOST's field (no new constant) | **none**: lensing G6 fails at every lambda_0 <= 8.25 (shift -0.10 to -0.27); galaxies pass only at >= 10 Mpc, past the growth window | X-COP rms >= 0.225, groups <= 5/20 (reported, ungraded) | **FAIL (no window)**; one Jeans length cannot keep dust out of galaxies and concentrate it in clusters (iter_5_host_hydrostatic) |
 
 Door readings:
 - **Clusters: FAIL.** That holds for a switched cold sector too: on X-COP's profile shape the dust lands at the wrong radii,

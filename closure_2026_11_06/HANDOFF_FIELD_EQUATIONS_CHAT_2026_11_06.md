@@ -2,17 +2,20 @@
 
 Read first: closure_2026_11_05/CLOSURE.md, closure_2026_11_06/CLOSURE_FINAL.md,
 closure_2026_11_06/ALL_GATES_NOGO_2026_11_06.md, closure_2026_11_06/EQUATIONS_IN_ORDER.md,
-and the QX17/QX17C field-equation and FD-solver records. Kappa = 1/2 FITTED; not theory closed.
+closure_2026_11_06/SEED_2026_11_06.md (the checked seed paragraph; where this file and that one differ,
+SEED_2026_11_06.md wins), and the QX17/QX17C field-equation and FD-solver records. Kappa = 1/2 FITTED; not theory closed.
 
 ## The one-sentence seed
 
 Gravity carries one extra scale, a0 = (1/2) c sqrt(G rho_DE), realised by the v3s screened khronon
-action; it passes every static gate from Cassini through isolated discs, lensing and c_T, and
-underfills every hot pressure-supported system by an amount that varies a hundredfold between
+action; it passes Cassini, PPN, c_T, galaxy lensing and SPARC (fails AGC 114905, Malin 1 and the
+canonical FG1 tilt), and underfills every hot pressure-supported system by an amount that varies a hundredfold between
 classes (groups ~1, clusters ~4, Coma UDGs ~80 in units of the baryons), so no single switch keyed
 to any host property can close the triangle, and the probable finish is the deposited scoped law
 plus per-class systematics, with exactly one physics class still unlabelled: a non-isentropic,
-shock-sourced sector (QX13 left it unproved).
+shock-sourced sector (QX13 left it unproved). The CMB-lensing shape is a separate wall: it needs cold
+extra gravity at z 3400, where nothing is virialised, so any key that is on only in today's hot systems
+is off exactly where the CMB needs it on (SEED_2026_11_06.md).
 
 Closure means every door has a verdict (owner rule 11-04). It does not mean every door passes.
 Adopt nothing. The owner adopts.
@@ -60,8 +63,10 @@ Analysis and FROZEN CRITERIA first, committed before any script or number (rule)
    g(s) differs between classes at the same s, the label is FAIL by the no-tuning rule and the
    class is closed: write that into ALL_GATES_NOGO as a fourth wall.
 
-Expected outcome, stated in advance: most likely FAIL, because a hundredfold spread in needed
-amount is hard for any monotone g(s) to carry. A FAIL here closes the last physics class and is
+Expected outcome, stated in advance: most likely FAIL on two counts. The hundredfold spread in needed
+amount is hard for any monotone g(s) to carry, and s is primordial at z 3400 (no shocks yet), so the
+CMB gate G9 sees only the primordial value: either the primordial s already sources the CMB's cold
+extra gravity (then it is a cold fluid and KD1's disc capture returns) or G9 fails. Grade both arms. A FAIL here closes the last physics class and is
 the result. Verify a fail as hard as a win.
 
 ## Lane SE2: the step as systematics (the probable finish)
@@ -75,10 +80,12 @@ ST1 graded each class at the favourable edge, one systematic at a time. Finish i
 2. Grade the full systematic budget as a joint likelihood per class (IMF bracket, distance,
    anisotropy, gas, membership, tides), not each knob at its edge. Report the posterior step per
    class on both footings.
-3. Label each class: EXPLAINED (step consistent with zero inside the joint budget), NOT EXPLAINED
+3. Add one row for the CMB wall: is it a separate cause from the hot-system step? Label SEPARATE if no
+   single key passes both G9 and the hot classes in the record (SE1 included), COMMON otherwise.
+4. Label each class: EXPLAINED (step consistent with zero inside the joint budget), NOT EXPLAINED
    (step excluded), or NOT A TEST (fails admissibility). Coma UDGs at 6.4-6.8 sigma_stat with
    every knob favourable will most likely stay NOT EXPLAINED; say so plainly.
-4. Controls. KA: reproduce ST1's numbers to 0. MUTATE: inverted IMF bracket must bite.
+5. Controls. KA: reproduce ST1's numbers to 0. MUTATE: inverted IMF bracket must bite.
 
 ## Lane SE3: the closure statement
 
