@@ -11,6 +11,8 @@ Lean: fable_independent_2026/lean_2026/QX7_cold_switch.lean has 7 theorems, stan
 | 3 | dark-energy fraction, lambda_* Omega_DE^p | analytic 31 cells; growth: none (closest 17.87) | - | FAIL (no window) |
 | 4 | same switch, early capture, late cores R_c = lambda_J(0)/2 | **270 members**: CMB-lensing shape + forest + galaxy gates pass (scoped idealisation) | X-COP rms >= 0.235 (mean crosses 0); groups <= 1/20 | **FAIL (clusters)**; CMB/galaxy WINDOW (scoped) |
 | 5 | same switch; today's dust in n = 1 hydrostatic equilibrium in the HOST's field (no new constant) | **none**: lensing G6 fails at every lambda_0 <= 8.25 (shift -0.10 to -0.27); galaxies pass only at >= 10 Mpc, past the growth window | X-COP rms >= 0.225, groups <= 5/20 (reported, ungraded) | **FAIL (no window)**; one Jeans length cannot keep dust out of galaxies and concentrate it in clusters (iter_5_host_hydrostatic; reproduces QX10 iter_2's kill) |
+| 6 | iter_5 + measured EFE caps every well (1D EFE form, e_N 0.0033) | galaxies pass at 6.81-100 Mpc, so there is a 20-cell window; but the EFE alone puts the KiDS baseline at +0.87 (isolated +0.14) | X-COP +0.29 to +0.37 in the window, groups <= 1/20 | **FAIL (clusters, 0/20)**: wherever galaxies are clean, clusters are bare (iter_6_efe_capped_wells) |
+| 7 | iter_4 switch retention (assumed) + pressureless remnant tracing the hot gas | by assumption (A1) | X-COP on the line (rms 0.1003 / 0.0996); groups <= 2/20 | **SHAPE FAIL**: needed mass is more concentrated than the hot gas, like stars + gas (iter_7_collisionless_remnant) |
 
 Door readings:
 - **Clusters: FAIL.** That holds for a switched cold sector too: on X-COP's profile shape the dust lands at the wrong radii,
