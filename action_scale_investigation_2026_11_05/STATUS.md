@@ -1,5 +1,15 @@
 # Joint-model continuation: pool speed calculation; coefficient unresolved
 
+Latest checkpoint: joint_phase/COOLED_PROFILES_RESULT.md numerically solves
+coupled density, temperature, radial flow and self-gravity with excitation
+cooling and a prescribed reflecting outer wall. Eleven distinct parameter
+configurations yield damped discrete radial modes; selected profiles and modes
+converge through96 cells. Discrete number balance is exact and energy-budget
+error decreases under refinement. Most rotation curves rise; a strong-gravity
+example flattens near the edge. Edge-speed normalization varies with imposed
+radius, explained by v_edge^4/S_total=gamma^2 R f/(3K). No vacuum-selected
+boundary, universal galaxy stability or MOND1/2 is derived.
+
 Latest checkpoint: joint_phase/RADIATIVE_EXPORT_RESULT.md tests an explicitly
 new excited-scalar extension that exports heat through radiation without
 consuming heavy particles in its cooling cycle. Decay, thermal excitation,

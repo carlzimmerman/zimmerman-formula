@@ -1,0 +1,156 @@
+{
+  "schema_version": 2,
+  "claim_id": "COOLED-PROFILES-RADIAL-STABILITY",
+  "repository": {
+    "commit": "578eda54170cf1d6bd48534ab17021f41def5613",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "action_scale_investigation_2026_11_05/joint_phase/cooled_profiles.py",
+    "--out",
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/cooled_profiles/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Steady boundary profiles, staggered discretization residuals, radial Jacobian eigenvalues and refinement under specified inputs",
+    "coefficient_domain": "Float64 numerical boundary solves and finite-dimensional eigenvalues",
+    "conventions": "Dimensionless prescribed R=3, K=C=0.001, kappa0=0.2, gap=0.5, ein=3; gamma and source vary; rigid reflecting insulated wall; thin radiation",
+    "inputs": [
+      "Derived excitation cooling shape",
+      "Steady five-variable gravity flow conduction equations",
+      "Staggered radial time-dependent moments"
+    ],
+    "bounds": {
+      "gamma": [
+        0,
+        0.5,
+        1,
+        2,
+        4,
+        8
+      ],
+      "source_scale": [
+        0.5,
+        1,
+        2
+      ],
+      "grids": [
+        24,
+        48,
+        72
+      ],
+      "residual_tolerance": 1e-07,
+      "bvp_tolerance": 2e-07,
+      "jacobian_steps": [
+        2e-06,
+        1e-06
+      ],
+      "seconds": 180,
+      "threads": 1
+    },
+    "non_claims": [
+      "No vacuum-selected wall",
+      "No moving boundary nonspherical or kinetic stability",
+      "No physical parameter fit or proof of common MOND coefficient"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-07T02:09:20.149319+00:00",
+    "runtime_seconds": 1.966826,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 4194304,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "action_scale_investigation_2026_11_05/joint_phase/cooled_profiles.py",
+    "action_scale_investigation_2026_11_05/joint_phase/COOLED_PROFILES_CONTRACT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/cooled_profiles.py",
+      "sha256": "22e5c3a010fb51179aed9cf8b06c83cb70b6efc449589d10d5c76536dfd32b10",
+      "sha256_after": "22e5c3a010fb51179aed9cf8b06c83cb70b6efc449589d10d5c76536dfd32b10"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/COOLED_PROFILES_CONTRACT.md",
+      "sha256": "d170360ab4879ac286a1964373f1e41536e763bfedabf53f4315c130ff1d3d1f",
+      "sha256_after": "d170360ab4879ac286a1964373f1e41536e763bfedabf53f4315c130ff1d3d1f"
+    }
+  ],
+  "output_directory": "action_scale_investigation_2026_11_05/joint_phase/evidence/cooled_profiles",
+  "declared_results": [
+    "action_scale_investigation_2026_11_05/joint_phase/evidence/cooled_profiles/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/cooled_profiles/stdout.txt",
+      "sha256": "02cd04463b793750a7107d788db4dfd0b8e7d9843efb07b615fdec3025363f25",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/cooled_profiles/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "action_scale_investigation_2026_11_05/joint_phase/evidence/cooled_profiles/result.json",
+      "sha256": "ca2e6fa42636af032ba83fd61ae4084dc886f01eea57fbe956fe88c82dbf4a67",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
