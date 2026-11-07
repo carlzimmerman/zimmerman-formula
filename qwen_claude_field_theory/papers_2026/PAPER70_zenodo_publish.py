@@ -46,10 +46,19 @@ def supplement_gate():
     r = subprocess.run([sys.executable, SUPP_BUILD], capture_output=True, text=True)
     if r.returncode != 0:
         sys.exit(f"REFUSING TO PUBLISH: supplement build failed: {r.stderr[-300:]}")
-    man = json.load(open(SUPP_MAN))
+    # compare against the COMMITTED manifest (HEAD), not the one the builder just rewrote on disk
+    rel = os.path.relpath(SUPP_MAN, ROOT)
+    c = subprocess.run(["git", "-C", ROOT, "show", "HEAD:" + rel], capture_output=True, text=True)
+    if c.returncode != 0:
+        sys.exit("REFUSING TO PUBLISH: no committed supplement manifest at HEAD -- build, commit the manifest, rerun")
+    man = json.loads(c.stdout)
+    head = subprocess.check_output(["git", "-C", ROOT, "rev-parse", "HEAD"], text=True).strip()
     got = hashlib.sha256(open(SUPP, "rb").read()).hexdigest()
-    if got != man.get("zip_sha256"):
-        sys.exit("REFUSING TO PUBLISH: supplement zip sha256 differs from the committed manifest -- rebuild, commit the manifest, rerun")
+    if got != man.get("zip_sha256") or man.get("git_head") != head:
+        sys.exit(f"REFUSING TO PUBLISH: supplement zip (sha {got[:12]}, HEAD {head[:10]}) differs from the committed manifest (sha {str(man.get('zip_sha256'))[:12]}, git_head {str(man.get('git_head'))[:10]}) -- rebuild at HEAD, commit the manifest, rerun")
+    dirty = subprocess.run(["git", "-C", ROOT, "status", "--porcelain", "--", rel], capture_output=True, text=True).stdout.strip()
+    if dirty:
+        sys.exit("REFUSING TO PUBLISH: the on-disk manifest differs from HEAD (builder rewrote it) -- commit it or reset it, rerun")
     print(f"supplement gate passed: {man['count']} files, {man['zip_bytes']/1e6:.1f} MB, git {man['git_head'][:10]}")
 
 def pending_gate():
