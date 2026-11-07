@@ -54,8 +54,12 @@ def supplement_gate():
     man = json.loads(c.stdout)
     head = subprocess.check_output(["git", "-C", ROOT, "rev-parse", "HEAD"], text=True).strip()
     got = hashlib.sha256(open(SUPP, "rb").read()).hexdigest()
-    if got != man.get("zip_sha256") or man.get("git_head") != head:
-        sys.exit(f"REFUSING TO PUBLISH: supplement zip (sha {got[:12]}, HEAD {head[:10]}) differs from the committed manifest (sha {str(man.get('zip_sha256'))[:12]}, git_head {str(man.get('git_head'))[:10]}) -- rebuild at HEAD, commit the manifest, rerun")
+    # the manifest is built at commit X and then committed on top of X, so the only path allowed to
+    # differ between the manifest's git_head and HEAD is the manifest itself (and this script)
+    changed = subprocess.run(["git", "-C", ROOT, "diff", "--name-only", str(man.get("git_head")), head], capture_output=True, text=True).stdout.split()
+    allowed = {rel, os.path.relpath(os.path.abspath(__file__), ROOT)}
+    if got != man.get("zip_sha256") or set(changed) - allowed:
+        sys.exit(f"REFUSING TO PUBLISH: supplement zip (sha {got[:12]}, HEAD {head[:10]}) differs from the committed manifest (sha {str(man.get('zip_sha256'))[:12]}, git_head {str(man.get('git_head'))[:10]}; paths changed since: {sorted(set(changed) - allowed)[:5]}) -- rebuild at HEAD, commit the manifest, rerun")
     dirty = subprocess.run(["git", "-C", ROOT, "status", "--porcelain", "--", rel], capture_output=True, text=True).stdout.strip()
     if dirty:
         sys.exit("REFUSING TO PUBLISH: the on-disk manifest differs from HEAD (builder rewrote it) -- commit it or reset it, rerun")
