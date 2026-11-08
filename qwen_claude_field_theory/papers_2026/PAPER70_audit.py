@@ -531,6 +531,11 @@ L += [
  ("($\\Delta\\chi^2$ 309--1315, GL1's wall)", KR2, "**empty** (Delta chi^2 309-1315)"),
  ("(SPARC and groups carry $M\\ge2173$)", KR2, "C1's window tops out at 6.31; local M >= 2173."),
 ]
+L += [
+ ("(iii) fails for every member", KR1, "so (iii) is FAIL for every member on both"),
+ ("the brief's kill fires on both footings", KR1, "it now **FIRES** on both footings"),
+ ("the label is unchanged", KR1, "**Label.** Unchanged: FAIL / FAIL."),
+]
 def mutate(lit):
     m = re.search(r"\d", lit)
     return lit if not m else lit[:m.start()] + str((int(m.group()) + 1) % 10) + lit[m.end():]
