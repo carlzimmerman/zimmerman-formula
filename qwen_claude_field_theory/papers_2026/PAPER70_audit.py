@@ -463,6 +463,12 @@ L += [
  ("NO TERM IN ACTION: $\\mathcal K$ depends on $Q$ alone", SA1, "K depends on Q alone"),
  ("carry the largest need in the record", SA1, "they carry the largest need in the record"),
 ]
+REG = "closure_2026_11_07/CLOSURE_REGISTER.json"; CMB3C = "closure_2026_11_07/CMB3_cmb_assumption_audit/FROZEN_CRITERIA.md"
+L += [
+ ("RUNNING (criteria frozen e46081b7a9; assumption audit A1--A6; result in v1.6)", REG, "RUNNING at v1.5 deposit (criteria e46081b7a9; result to v1.6)"),
+ ("The parts of A1 and A3 that concern the action are already answered by CMB2", CMB3C, "CMB2 D4 owns it"),
+ ("the matter equations carry no khronon field (D3)", CMB3C, "if D3 finds no khronon field in the matter"),
+]
 def mutate(lit):
     m = re.search(r"\d", lit)
     return lit if not m else lit[:m.start()] + str((int(m.group()) + 1) % 10) + lit[m.end():]
