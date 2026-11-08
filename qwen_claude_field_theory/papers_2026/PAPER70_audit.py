@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PAPER70 audit (v1.6): each quoted number appears in the TeX and, as the literal given, in the committed file named
+"""PAPER70 audit (v1.7): each quoted number appears in the TeX and, as the literal given, in the committed file named
 beside it; naming rules; no local paths; no pending placeholder. Run: python3 PAPER70_audit.py (exit 0 only if all pass).
 --mutate changes one digit of each source literal; exit 0 only if every mutated literal then fails.
 kappa = 1/2 FITTED; not theory closed; nothing here says the data favour the framework."""
@@ -504,6 +504,19 @@ L += [
  ("discs shed at least 96\\,\\% of the dust", HY1, "Discs would have to shed at least 96 % of it"),
  ("covered HY1 only", HYD, "the no-cold-component rule is lifted for test lane HY1 only"),
 ]
+KR1 = "closure_2026_11_08/KR1_running_k_mass/RESULT.md"
+L += [
+ ("deposited as DOI 10.5281/zenodo.24053740", Z70, '"doi": "10.5281/zenodo.24053740"'),
+ ("$M(z\\,3)=630.957$", KR1, "lambda** is fixed by M(z = 3) = 630.957 Mpc^-1"),
+ ("& FAIL / FAIL. The mass runs the right way", KR1, "**Label, canonical: FAIL. Label, alt: FAIL.**"),
+ ("read $\\mu_K(0)$ 1.232--79.65", KR1, "| (iii) mu_K(0) <= 79.43 | PASS | PASS | PASS | **FAIL** | 1.232 / 1.265 / 10.45 / 79.65 |"),
+ ("$6.01\\times10^{13}$ at $z$ 1100", KR1, "| **1.232** | 631 | 5.98e4 | 1.29e9 | 6.01e13 |"),
+ ("the background density of $z$ 4.31", KR1, "That is the background\ndensity of z = 4.31"),
+ ("a Jeans length of 2.8--2.9\\,kpc against the 234\\,kpc", KR1, "Jeans length 2.8-2.9 kpc"),
+ ("SPARC rms 0.777 / 0.789 against 0.146 / 0.143", KR1, "| G1 SPARC | Z -0.70, rms 0.777 (line 0.146) | Z -0.71, rms 0.789 (line 0.143) |"),
+ ("for any convex $\\mathcal K$ the kernel mass is a function of the sector's own local density", KR1, "is a function of the sector's own local density, everywhere"),
+ ("not only its amplitude", KR1, "It holds for every K(Q), not only DBI."),
+]
 def mutate(lit):
     m = re.search(r"\d", lit)
     return lit if not m else lit[:m.start()] + str((int(m.group()) + 1) % 10) + lit[m.end():]
@@ -526,7 +539,7 @@ rules = [
  ("no 'cold dark matter'", "cold dark matter" not in TEX.lower()),
  ("no pending placeholder", "\\pend{" not in body),
  ("no LCDM input claimed", "No $\\Lambda$CDM inputs were used" in TEX),
- ("version v1.6 stated, no draft marker", "v1.6, 2026-11-08" in TEX and "draft v0" not in TEX),
+ ("version v1.7 stated, no draft marker", "v1.7, 2026-11-08" in TEX and "draft v0" not in TEX),
  ("owner decision carried, nothing pending", "re-stated (owner 2026-11-07)" in TEX and "pending owner" not in TEX and "the frozen RESULT files are not edited" in TEX),
  ("unification quote verbatim", UQ_OK),
  ("seed abstract verbatim", "The next lane must find one covariant quantity that sets that amplitude (not just a switch) in today's hot systems and is non-zero in the early universe, or show the two failures need separate causes." in ws(TEX)),
