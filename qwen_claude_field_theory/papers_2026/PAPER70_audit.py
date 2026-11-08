@@ -469,6 +469,15 @@ L += [
  ("The parts of A1 and A3 that concern the action are already answered by CMB2", CMB3C, "CMB2 D4 owns it"),
  ("the matter equations carry no khronon field (D3)", CMB3C, "if D3 finds no khronon field in the matter"),
 ]
+X35 = "rebuild_2026_10_22/X35_a0_tracks_ede/README.md"
+L += [
+ ("UNDECIDED by its frozen rule", X35, "## Verdict (frozen rule 5): **UNDECIDED**"),
+ ("1,147--7,565 times today's", X35, "puts a₀(1100) at 1,147–7,565 × today"),
+ ("(D1 NULL;", X35, "**The covariant theory gives nothing (D1, NULL).**"),
+ ("max$|\\Xi|$ $4.9\\times10^{-29}$", X35, "returns max|Ξ| = 4.9e-29"),
+ ("($k_{\\rm J}$ 0.024--0.039\\,Mpc$^{-1}$)", X35, "k < k_J,eff = 0.024–0.039 Mpc⁻¹"),
+ ("from 1.00 to 1.49 (a flat-$\\Lambda$ estimate)", X35, "moves the native sqrtX from 1.00 to **1.49 at z 2.33**"),
+]
 def mutate(lit):
     m = re.search(r"\d", lit)
     return lit if not m else lit[:m.start()] + str((int(m.group()) + 1) % 10) + lit[m.end():]
