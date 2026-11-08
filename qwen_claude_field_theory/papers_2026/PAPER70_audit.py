@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PAPER70 audit (v1.3): each quoted number appears in the TeX and, as the literal given, in the committed file named
+"""PAPER70 audit (v1.5): each quoted number appears in the TeX and, as the literal given, in the committed file named
 beside it; naming rules; no local paths; no pending placeholder. Run: python3 PAPER70_audit.py (exit 0 only if all pass).
 --mutate changes one digit of each source literal; exit 0 only if every mutated literal then fails.
 kappa = 1/2 FITTED; not theory closed; nothing here says the data favour the framework."""
@@ -423,6 +423,52 @@ L += [
  ("(27--39 with the kernel corrected)", GL3, "| 72.2-89.4 | 27.4-38.7 |"),
  ("that gate reads NO VERDICT", GL1, "**GL gate MOVES** to NO VERDICT"),
 ]
+CMB1 = "closure_2026_11_07/CMB1_cmb_requirement_anatomy/RESULT.md"; CMB2 = "closure_2026_11_07/CMB2_prerecombination_dof/RESULT.md"
+F1A2 = "closure_2026_11_07/F1A_primary_cmb_audit/AMENDMENT_A2.md"
+VR1 = "closure_2026_11_08/VR1_vacuum_response_identity/RESULT.md"; SA1 = "closure_2026_11_08/SA1_settling_age_cold_component/REDUCTION.md"
+L += [
+ ("deposited as DOI 10.5281/zenodo.24047508", Z70, '"doi": "10.5281/zenodo.24047508"'),
+ ("deposited as DOI 10.5281/zenodo.24047634", Z70, '"doi": "10.5281/zenodo.24047634"'),
+ ("moves H1/H2 by +343\\,$\\sigma$ and H3/H2 by +197\\,$\\sigma$", CMB1, "moves the odd/even ratio H1/H2 by +343 sigma and the third-to-second ratio H3/H2 by +197 sigma"),
+ ("ratio 0.57 inside [0.5, 2]", CMB1, "ratio 0.57, so M1 fails"),
+ ("Block C CLUSTERING PINNED, both footings", CMB1, "| Block C label | **CLUSTERING PINNED** | **CLUSTERING PINNED** |"),
+ ("no piece carries more than 19\\,\\%", CMB1, "No single piece carries more than 19 %"),
+ ("$\\omega_X$ 0.108", CMB1, "| E best fit omega_X / omega_b | 0.108 / 0.0215 (R 5.0) | 0.108 / 0.0230 (R 4.7) |"),
+ ("recovers 79\\,\\%", CMB1, "| Share of DeltaMB recovered by E, f_E | **0.79** | **0.79** |"),
+ ("$\\Delta_E$ +35,812 / +35,378", CMB1, "| **+35,812** | **+35,378** |"),
+ ("H3/H2 misses by $-36.8\\,\\sigma$", CMB1, "| H3 / H2, the third peak | 0.976 (0.009) | +0.9 | +66.4 / +61.6 | **-36.8 / -36.7** |"),
+ ("H1/H2 and the first peak by $-16\\,\\sigma$", CMB1, "| first peak L1 | 223.1 (2.2) | -1.1 | +84.3 / +65.1 | -15.9 / -15.7 |"),
+ ("the cold fit meets every feature within 1.1\\,$\\sigma$", CMB1, "The cold fit meets every feature within 1.1 sigma"),
+ ("still share 0.043 / 0.024", CMB2, "0.043 / 0.024 still"),
+ ("the clock about $10^{-20}$", CMB2, "Clock about 1e-20"),
+ ("(Hessian rank 0)", CMB2, "the Hessian in the P velocities has rank 0"),
+ ("$c_s^2=1/(3(1+R))$ exactly", CMB2, "c_s^2 = 1/(3(1+R)) exactly"),
+ ("at most $7\\times10^{-4}$ and follows the source", CMB2, "| at most 7e-4 (\"follows\") |"),
+ ("($r$ 0.992--0.997)", CMB2, "r 0.992-0.997"),
+ ("still share at most 0.28 / 0.30", CMB2, "k 0.03 at most 0.28 / 0.30"),
+ ("H3/H2 1.30 / 1.36 at 100 times, against the dust's 1.447", CMB2, "| law, x 100 | 1.71 [1.99] | 1.30 [1.36] |"),
+ ("against the dust's 1.447", CMB2, "| dust R 5.41 | 1.220 | 1.447 |"),
+ ("$\\rho_{\\rm DE}$ about 900--$10^4$ times today's", CMB2, "x = 30 needs about 900 times"),
+ ("(H3/H2 1.008 vs 1.006)", CMB2, "(H3/H2 1.008 vs 1.006)"),
+ ("converges ($-26.65$ / $-94.13$ at $k$ 0.05 / 0.3)", F1A2, "| dust contrast | -8.79 | -26.65 | -48.60 | -76.26 | -94.13 |"),
+ ("$Q_{X1}\\le3.7\\times10^{-12}$", F1A2, "Q_X1 <= 3.7e-12"),
+ ("G4 REPRODUCED, F1 CONFIRMED unchanged", F1A2, "G4 stays REPRODUCED, and F1 stays CONFIRMED"),
+ ("($\\nabla\\ln X=-2A/c^2$)", VR1, "grad ln X = -2 A / c^2"),
+ ("gives $\\kappa^2=1/(4q)$", VR1, "kappa^2 = 1/(4q)"),
+ ("1.447, 1.772, 0.921, 0.282, 2.507, 0.230", VR1, "1.447 (c/H), 1.772 (Poisson), 0.921 (c t_ff), 0.282 (Jeans, in window), 2.507 (1/sqrt Lambda), 0.230"),
+ ("equipartition gives 4.525 / 6.399", VR1, "kappa = 4.525 / 6.399"),
+ ("at most $6.9\\times10^{-8}$ of the cluster need", VR1, "That is 6.9e-8 of the X-COP cluster need"),
+ ("Lean: 7 theorems, MUTATE twin fails 4/4", VR1, "_MUTATE twin fails 4/4"),
+ ("nothing in reach supplies a $\\pi$-free length", VR1, "nothing in reach supplies a pi-free length"),
+ ("NO TERM IN ACTION: $\\mathcal K$ depends on $Q$ alone", SA1, "K depends on Q alone"),
+ ("carry the largest need in the record", SA1, "they carry the largest need in the record"),
+]
+REG = "closure_2026_11_07/CLOSURE_REGISTER.json"; CMB3C = "closure_2026_11_07/CMB3_cmb_assumption_audit/FROZEN_CRITERIA.md"
+L += [
+ ("RUNNING (criteria frozen e46081b7a9; assumption audit A1--A6; result in v1.6)", REG, "RUNNING at v1.5 deposit (criteria e46081b7a9; result to v1.6)"),
+ ("The parts of A1 and A3 that concern the action are already answered by CMB2", CMB3C, "CMB2 D4 owns it"),
+ ("the matter equations carry no khronon field (D3)", CMB3C, "if D3 finds no khronon field in the matter"),
+]
 def mutate(lit):
     m = re.search(r"\d", lit)
     return lit if not m else lit[:m.start()] + str((int(m.group()) + 1) % 10) + lit[m.end():]
@@ -445,7 +491,7 @@ rules = [
  ("no 'cold dark matter'", "cold dark matter" not in TEX.lower()),
  ("no pending placeholder", "\\pend{" not in body),
  ("no LCDM input claimed", "No $\\Lambda$CDM inputs were used" in TEX),
- ("version v1.3 stated, no draft marker", "v1.3, 2026-11-07" in TEX and "draft v0" not in TEX),
+ ("version v1.5 stated, no draft marker", "v1.5, 2026-11-08" in TEX and "draft v0" not in TEX),
  ("owner decision carried, nothing pending", "re-stated (owner 2026-11-07)" in TEX and "pending owner" not in TEX and "the frozen RESULT files are not edited" in TEX),
  ("unification quote verbatim", UQ_OK),
  ("seed abstract verbatim", "The next lane must find one covariant quantity that sets that amplitude (not just a switch) in today's hot systems and is non-zero in the early universe, or show the two failures need separate causes." in ws(TEX)),
