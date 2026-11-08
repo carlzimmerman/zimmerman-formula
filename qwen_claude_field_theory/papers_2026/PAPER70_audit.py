@@ -517,6 +517,20 @@ L += [
  ("for any convex $\\mathcal K$ the kernel mass is a function of the sector's own local density", KR1, "is a function of the sector's own local density, everywhere"),
  ("not only its amplitude", KR1, "It holds for every K(Q), not only DBI."),
 ]
+KR2 = "closure_2026_11_08/KR2_today_window/RESULT.md"
+L += [
+ ("FAIL / FAIL (canonical empty at X-COP; alt empty at SPARC", KR2, "| **Frozen label** | **FAIL (empty at C2)** | **FAIL (empty at C1)** |"),
+ ("by the frozen $T=0$ clause", KR2, "C1 is empty only through the frozen T = 0 clause"),
+ ("No $\\mu_K(0)$ in 0.1--79.43", KR2, "at any mu_K(0) in 0.1-79.43 Mpc^-1"),
+ ("over-filled by 0.89--1.23\\,dex", KR2, "The inner bin over-fills by -0.89 to -1.23 dex"),
+ ("best per-bin rms 0.439 / 0.425 against 0.10", KR2, "The best per-bin rms is 0.439 / 0.425 at mu_K 2.5 / 1.6"),
+ ("0.225 / 0.231 at the captured amount, KQ1's 0.226 again", KR2, "f_cap R amount 0.225 / 0.231. That is KQ1's 0.226 again"),
+ ("Groups need $\\mu_K$ in [1.585, 3.98]", KR2, "| C3 groups (UA1 95 % interval, both f*) | [1.585, 3.98] (edges 1.53, 4.76) |"),
+ ("needs at most 0.631: disjoint", KR2, "| C6 hosts inside R500 (NC4) | [0.1, 0.631] (edge 0.84) |"),
+ ("SPARC is clean to 6.31 and KiDS to 3.98", KR2, "| C5 KiDS G6 with kSZ gas (KX1, two-sided) | [0.1, 3.98] (edge 5.73) |"),
+ ("($\\Delta\\chi^2$ 309--1315, GL1's wall)", KR2, "**empty** (Delta chi^2 309-1315)"),
+ ("(SPARC and groups carry $M\\ge2173$)", KR2, "C1's window tops out at 6.31; local M >= 2173."),
+]
 def mutate(lit):
     m = re.search(r"\d", lit)
     return lit if not m else lit[:m.start()] + str((int(m.group()) + 1) % 10) + lit[m.end():]
