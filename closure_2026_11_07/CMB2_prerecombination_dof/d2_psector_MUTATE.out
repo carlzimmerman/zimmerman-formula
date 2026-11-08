@@ -1,0 +1,50 @@
+CMB2 / D2 P-sector  run: MUTATE 2026-11-07 23:33:54
+S1 ADM inverse metric identity: exact
+S1 n.P = 0  <=>  P^0 = 0 exactly (P_0 = N^i P_i)
+S1(a) dL_P/d(dP_i/dt) (simplified): ['m_kin*(a(t)**2*exp(2*zeta(t, x, y, z)))**(3/2)*(v0 - N1(t, x, y, z)*Derivative(P1(t, x, y, z), x) - N2(t, x, y, z)*Derivative(P1(t, x, y, z), y) - N3(t, x, y, z)*Derivative(P1(t, x, y, z), z))*exp(-2*zeta(t, x, y, z))/(N(t, x, y, z)*a(t)**2)', 'm_kin*(a(t)**2*exp(2*zeta(t, x, y, z)))**(3/2)*(v1 - N1(t, x, y, z)*Derivative(P2(t, x, y, z), x) - N2(t, x, y, z)*Derivative(P2(t, x, y, z), y) - N3(t, x, y, z)*Derivative(P2(t, x, y, z), z))*exp(-2*zeta(t, x, y, z))/(N(t, x, y, z)*a(t)**2)', 'm_kin*(a(t)**2*exp(2*zeta(t, x, y, z)))**(3/2)*(v2 - N1(t, x, y, z)*Derivative(P3(t, x, y, z), x) - N2(t, x, y, z)*Derivative(P3(t, x, y, z), y) - N3(t, x, y, z)*Derivative(P3(t, x, y, z), z))*exp(-2*zeta(t, x, y, z))/(N(t, x, y, z)*a(t)**2)']
+S1(a) dL_P/d(dN/dt)   (simplified): ['0']
+S1(a) Hessian d2 L / d(dP_i/dt) d(dP_j/dt): rank 3
+S1(a) Pi - (1/sqrt gamma) d_i(sqrt gamma gamma^ij P_j) = 0
+S1(a) A_i - d_i ln N = [0, 0, 0]
+S1(b) non-stiffness part: d/d(velocities) = ['0', 'm_kin*(a(t)**2*exp(2*zeta(t, x, y, z)))**(3/2)*(u1 - N1(t, x, y, z)*Derivative(P1(t, x, y, z), x) - N2(t, x, y, z)*Derivative(P1(t, x, y, z), y) - N3(t, x, y, z)*Derivative(P1(t, x, y, z), z))*exp(-2*zeta(t, x, y, z))/(N(t, x, y, z)*a(t)**2)', 'm_kin*(a(t)**2*exp(2*zeta(t, x, y, z)))**(3/2)*(u2 - N1(t, x, y, z)*Derivative(P2(t, x, y, z), x) - N2(t, x, y, z)*Derivative(P2(t, x, y, z), y) - N3(t, x, y, z)*Derivative(P2(t, x, y, z), z))*exp(-2*zeta(t, x, y, z))/(N(t, x, y, z)*a(t)**2)', 'm_kin*(a(t)**2*exp(2*zeta(t, x, y, z)))**(3/2)*(u3 - N1(t, x, y, z)*Derivative(P3(t, x, y, z), x) - N2(t, x, y, z)*Derivative(P3(t, x, y, z), y) - N3(t, x, y, z)*Derivative(P3(t, x, y, z), z))*exp(-2*zeta(t, x, y, z))/(N(t, x, y, z)*a(t)**2)', '0']
+S1(b) dPi/d(velocities) = [-1/N(t, x, y, z)**2, N1(t, x, y, z)/N(t, x, y, z)**2, N2(t, x, y, z)/N(t, x, y, z)**2, N3(t, x, y, z)/N(t, x, y, z)**2, 0] ; second derivatives all zero: True
+S1(b) P_0 free + multiplier: Hessian rank wrt (P_0, P_i, lambda) dots = 4
+S1(b) Hessian[0,0] = -gamma_L*(a(t)**2*exp(2*zeta(t, x, y, z)))**(3/2)*Fpp(Pi)/N(t, x, y, z)**3
+S1(b) Dirac count per point: phase-space dims 10, second-class constraints 4 -> DoF 3
+S2 det E(omega,k) = (Wp_over_p - m_kin*omega**2)*(Fpp*Wp_over_p*gamma_L*k1**2 + Fpp*Wpp*gamma_L*k2**2 + Fpp*Wpp*gamma_L*k3**2 - Fpp*gamma_L*k1**2*m_kin*omega**2 - Fpp*gamma_L*k2**2*m_kin*omega**2 - Fpp*gamma_L*k3**2*m_kin*omega**2 + Wp_over_p*Wpp - Wp_over_p*m_kin*omega**2 - Wpp*m_kin*omega**2 + m_kin**2*omega**4)
+S2 degree in omega: 6 -> propagating DoF 3
+S2 W(K|P|) about P = 0: K**2*p**3/(3*a0) + K*p**2/2
+S2 FRW point (Wpp = KW'/p = K): det at omega=0 = K**2*(Fpp*gamma_L*k1**2 + Fpp*gamma_L*k2**2 + Fpp*gamma_L*k3**2 + K) (nonzero => second class)
+MUTATE longitudinal omega^2 = [(Fpp*gamma_L*k1**2 + Wpp)/m_kin] ; transverse omega^2 = [Wp_over_p/m_kin]
+MUTATE c_s^2 (k -> inf, longitudinal) = gamma_L F''/m_kin = Fpp*gamma_L/m_kin ; FRW gap omega^2 = K/m_kin (massive mode)
+S3 K|P| = a0 u/(1+u) about A = 0: -A**2/a0 + A
+S3 linear order: div(A - KP) = 0 = K delta_rho  -> degenerate (no linear response)
+S3 next order : div( A**2/a0  Ahat ) = K delta_rho  (deep law, non-analytic |A|A)
+S3 source gN/a0 0.0001: phantom mean/amp -8.00e-14, cos 1.1134, sin +5.0e-13, zero crossings identical True, peak (nu-1) 99.5
+S3 source gN/a0 0.01: phantom mean/amp -8.37e-14, cos 1.1185, sin +5.2e-13, zero crossings identical True, peak (nu-1) 9.51
+S3 source gN/a0 1: phantom mean/amp -1.29e-13, cos 1.1677, sin +8.0e-13, zero crossings identical True, peak (nu-1) 0.618
+S3 source gN/a0 100: phantom mean/amp -8.03e-13, cos 1.2668, sin +5.0e-12, zero crossings identical True, peak (nu-1) 0.0099
+S3 control (source with still offset 0.5): phantom mean/amp +0.345  (nonzero: machinery sees a still part)
+S4 [canonical] z 1100: rho_b 5.605e-19, rho_r 1.155e-18, rho_tot 1.715e-18 kg/m^3; a0 9.3603e-11
+S4 [canonical] max gamma_L Pi/c^2 = 4.04e-09; max gamma_L|DPi|/|A| = 4.25e-04  (over Lstar 21.7-90 pc, x 1-100, k 0.01-0.3, delta 1e-4-1)
+    L  21.7 pc k  0.01  gN/a0 4.31e+00  nu-1 1.94e-01  gamma Pi 6.97e-14  gamma DPi/A 4.64e-09
+    L  21.7 pc k  0.03  gN/a0 1.44e+00  nu-1 4.73e-01  gamma Pi 1.70e-13  gamma DPi/A 8.25e-08
+    L  21.7 pc k  0.10  gN/a0 4.31e-01  nu-1 1.10e+00  gamma Pi 3.96e-13  gamma DPi/A 1.50e-06
+    L  21.7 pc k  0.30  gN/a0 1.44e-01  nu-1 2.19e+00  gamma Pi 7.84e-13  gamma DPi/A 1.76e-05
+    L  90.0 pc k  0.01  gN/a0 4.31e+00  nu-1 1.94e-01  gamma Pi 1.20e-12  gamma DPi/A 7.99e-08
+    L  90.0 pc k  0.03  gN/a0 1.44e+00  nu-1 4.73e-01  gamma Pi 2.92e-12  gamma DPi/A 1.42e-06
+    L  90.0 pc k  0.10  gN/a0 4.31e-01  nu-1 1.10e+00  gamma Pi 6.81e-12  gamma DPi/A 2.58e-05
+    L  90.0 pc k  0.30  gN/a0 1.44e-01  nu-1 2.19e+00  gamma Pi 1.35e-11  gamma DPi/A 3.03e-04
+S4 [alt] z 1100: rho_b 5.600e-19, rho_r 1.155e-18, rho_tot 1.715e-18 kg/m^3; a0 1.1312e-10
+S4 [alt] max gamma_L Pi/c^2 = 4.82e-09; max gamma_L|DPi|/|A| = 4.27e-04  (over Lstar 22.9-90 pc, x 1-100, k 0.01-0.3, delta 1e-4-1)
+    L  22.9 pc k  0.01  gN/a0 3.56e+00  nu-1 2.28e-01  gamma Pi 9.13e-14  gamma DPi/A 5.91e-09
+    L  22.9 pc k  0.03  gN/a0 1.19e+00  nu-1 5.45e-01  gamma Pi 2.18e-13  gamma DPi/A 1.01e-07
+    L  22.9 pc k  0.10  gN/a0 3.56e-01  nu-1 1.25e+00  gamma Pi 4.99e-13  gamma DPi/A 1.76e-06
+    L  22.9 pc k  0.30  gN/a0 1.19e-01  nu-1 2.44e+00  gamma Pi 9.77e-13  gamma DPi/A 2.03e-05
+    L  90.0 pc k  0.01  gN/a0 3.56e+00  nu-1 2.28e-01  gamma Pi 1.41e-12  gamma DPi/A 9.13e-08
+    L  90.0 pc k  0.03  gN/a0 1.19e+00  nu-1 5.45e-01  gamma Pi 3.36e-12  gamma DPi/A 1.56e-06
+    L  90.0 pc k  0.10  gN/a0 3.56e-01  nu-1 1.25e+00  gamma Pi 7.70e-12  gamma DPi/A 2.73e-05
+    L  90.0 pc k  0.30  gN/a0 1.19e-01  nu-1 2.44e+00  gamma Pi 1.51e-11  gamma DPi/A 3.14e-04
+S4 blend: min Pi / b over the delta 1e-4 rows = 3.91e+03 (b <= rho_crit today) -> q >> 1: F = q^2/2 raw branch
+S5 pre-screen D2: MUTATE: count finds a propagating mode (machinery bites); not a grade
+peak RSS 120 MB
