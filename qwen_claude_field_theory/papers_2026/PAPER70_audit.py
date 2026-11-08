@@ -478,6 +478,20 @@ L += [
  ("($k_{\\rm J}$ 0.024--0.039\\,Mpc$^{-1}$)", X35, "k < k_J,eff = 0.024–0.039 Mpc⁻¹"),
  ("from 1.00 to 1.49 (a flat-$\\Lambda$ estimate)", X35, "moves the native sqrtX from 1.00 to **1.49 at z 2.33**"),
 ]
+HY1 = "closure_2026_11_08/HY1_hybrid_law_plus_component/RESULT.md"; HYD = "closure_2026_11_08/OWNER_DECISION_2026-11-08_HY1_RULE_LIFT.md"
+L += [
+ ("the owner lifted the no-cold-component rule for HY1 only", HYD, "Lane HY1 only. Every other lane keeps the standing rules"),
+ ("NO VERDICT / NO VERDICT on the frozen M3 rule", HY1, "| **Lane (frozen rule)** | **NO VERDICT** | **NO VERDICT** |"),
+ ("so the control cannot bite", HY1, "It **DOES NOT BITE** on either footing"),
+ ("Under it, FAIL on both footings", HY1, "both **empty**: **FAIL**"),
+ ("about 4.1 times the baryons", HY1, "f_cap R = 4.1113 / 4.1133"),
+ ("SPARC rms 0.465--0.658 / 0.464--0.680 against 0.110", HY1, "rms 0.465-0.658, U pinned at the 0.30 floor"),
+ ("0.464--0.680 against", HY1, "rms 0.464-0.680, U 0.30"),
+ ("over-filled by about 1.1\\,dex", HY1, "The cusp over-fills the core by 1.1 dex"),
+ ("($\\kappa$ in [0.05, 0.17] / [0.05, 0.13])", HY1, "| Shared window of the columns with power | [0.05, 0.17] | [0.05, 0.13] |"),
+ ("discs shed at least 96\\,\\% of the dust", HY1, "Discs would have to shed at least 96 % of it"),
+ ("covered HY1 only", HYD, "the no-cold-component rule is lifted for test lane HY1 only"),
+]
 def mutate(lit):
     m = re.search(r"\d", lit)
     return lit if not m else lit[:m.start()] + str((int(m.group()) + 1) % 10) + lit[m.end():]
