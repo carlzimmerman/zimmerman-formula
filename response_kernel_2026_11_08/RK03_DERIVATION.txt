@@ -1,0 +1,114 @@
+RK03: nonlocal self-repulsion, not density-gradient pressure
+
+The following is a proposed extension; none of its new parameters is derived
+from the original v3s action or from kappa. In first-order clock variables,
+normalizations suppressed and c=1 in this paragraph,
+
+ Lnew = rho Q - U_quad(rho) - s2 rho[ln(rho/rho_star)-1]
+        - F_mu_nu F^mu_nu/4 -(m0^2+eta rho) B_mu B^mu/2
+        + e rho u^mu B_mu.
+
+u is the original khronon unit normal, rho its conjugate density, and B is a
+classical vector field. There is no new particle mass inventory, but there
+ARE new field degrees of freedom. Full relativistic constraint/health and
+cosmological perturbation analyses remain open. The logarithmic bulk term
+is an explicit constitutive addition to K, not something inferred from it.
+Matter is not assigned vector charge; it continues to couple to the metric.
+
+STATIC ACTION AND FORCE
+
+In the static weak-field sector B_i=0, b=B_0. In physical units the reduced
+interaction Lagrangian is
+ Lb = |grad b|^2/2 +(m0^2+eta rho)b^2/2 - e rho b.
+Varying b yields D_rho b=e rho, D_rho=-Delta+m0^2+eta rho.
+Eliminating the constrained b yields the POSITIVE interaction energy
+ E_V[rho]=1/2 integral e rho D_rho^(-1)(e rho) d^3x.
+Its variational derivative is NOT e b alone:
+ h_V=delta E_V/delta rho=e b-eta b^2/2.
+The mass derivative is forced by the action and was checked symbolically.
+
+Let rho_t=m0^2/eta, v2=e^2/eta, u=eta b/e, p=1-u. Then
+ [-Delta+m0^2(1+rho/rho_t)]u=m0^2 rho/rho_t,
+ h_V=v2(u-u^2/2)=v2(1-p^2)/2.
+For decreasing spherical density, p generally increases outward and the
+outward repulsive support is g_V=v2*p*p'. It is computed by solving the
+spatial boundary-value problem, not by substituting a local density switch.
+
+The bulk logarithm supplies h_bulk=s2 ln(rho/rho_star), hence
+ g_support=-s2 (ln rho)' - v2(1-u)u'.
+On an extended cored profile rho=rho_c/[1+(r/rc)^2],
+ g_bulk=2s2 r/(r^2+rc^2), tending to 2s2/r. Thus this construction has
+extended isothermal support rather than the r^-3/r^-5 terms rejected in
+RK01/RK02. It does not thereby establish an exact global equilibrium.
+
+NONLOCAL RESPONSE KERNEL
+
+Around a homogeneous rho_bar, b_bar=e rho_bar/(m0^2+eta rho_bar).
+Linearizing BOTH the vector equation and its chemical potential gives
+  (q^2+m_eff^2)delta b=(e-eta b_bar)delta rho,
+  delta h_V=(e-eta b_bar)delta b,
+where
+  m_eff^2=m0^2(1+rho_bar/rho_t),
+  e_eff=e/(1+rho_bar/rho_t).
+Therefore the STATIC kernel is
+  delta h/delta rho = s2/rho_bar + e_eff^2/(q^2+m_eff^2).
+Its density dependence is jointly forced by the mass coupling. Keeping the
+mass while omitting the screened effective charge is an incorrect kernel.
+
+The self-gravitating quasistatic longitudinal response can be written
+  omega^2 = s2 q^2 - 4piG rho_bar K(q,rho_bar),
+  K(q,rho_bar)=1-alpha_eff q^2/(q^2+m_eff^2),
+  alpha_eff=e_eff^2/(4piG).
+This uses Newtonian self-gravity for the CMB prescreen and the native
+nonlinear acceleration law for the cluster/galaxy static tests. It is NOT
+the complete metric-coupled, time-dependent FRW transfer function. Eliminating
+the static vector field does not certify its retarded longitudinal dynamics.
+
+POSITIVITY AND HIGH-DENSITY LIMIT
+
+For arbitrary density variations,
+  delta^2 E_V = integral [(e-eta b)delta rho]
+                    D_rho^(-1)[(e-eta b)delta rho] d^3x >=0.
+The logarithmic bulk contribution is also strictly convex for s2>0.
+Consequently, in a specified external potential and fixed reservoir, the
+static density problem is convex. This is reduced static positivity, not a
+full covariant no-ghost proof with gravity and clock constraints included.
+
+In the homogeneous limit,
+ E_V/V=e^2 rho^2/[2(m0^2+eta rho)]
+      =v2 rho^2/[2(rho+rho_t)].
+It approaches v2*rho/2 at high density, rather than a fixed-mass vector's
+stiff rho^2 energy. Its homogeneous second density derivative is
+ e^2 m0^4/(m0^2+eta rho)^3>0. The new pressure term can therefore be very
+small at recombination even if repulsion matters today.
+
+GALAXY NECESSARY EQUILIBRIUM TEST
+
+For cosmic mean rho_inf, p_inf=rho_t/(rho_inf+rho_t). Chemical equilibrium
+in a specified native potential depth Psi is
+ s2 ln(rho/rho_inf) + v2(p_inf^2-p^2)/2 = Psi.
+Together with the vector equation this is a nonlinear boundary-value problem.
+Since 0<=p<=1, the maximum positive repulsive barrier is v2*p_inf^2/2,
+giving a conservative density lower bound. Passing that bound is inconclusive.
+The actual nonlinear equation, not just this bound, was solved in refinement.
+
+Use z=r p. The nonlinear field equation is
+ -z''+m0^2[1+rho(z)/rho_t]z=m0^2 r,
+ rho(z)=rho_inf exp{[Psi-v2(p_inf^2-p^2)/2]/s2}.
+Its Newton diagonal contains the positive correction
+ m0^2 rho/rho_t * v2 p^2/s2. Stopping on a finite-difference residual alone
+is unsafe on a stretched grid. The corrected solver checks the Newton change
+to ln rho and re-solves the independent linear vector equation at the final
+density. Only that defect-checked refinement is credited.
+
+SCOPE OF REJECTION
+
+The observed potential is held fixed in the galaxy test, with an intentionally
+conservative truncation at 300 kpc and unresolved central depth omitted.
+The new vector energy is a small mass correction at fitted v/c, so it cannot
+remove a leading positive clock mass of order 0.7--0.8 baryon masses by itself.
+The resulting excess violates the requested one-percent ceiling in the
+tested equilibrium branch. This is not a proof of an inevitable late-time
+state from all primordial initial conditions. Nonequilibrium formation,
+the boundary reservoir, and direct isolated-lens selection require further
+analysis before any universal physical exclusion of the action family.

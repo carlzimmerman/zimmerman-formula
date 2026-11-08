@@ -1,0 +1,57 @@
+RK02: auxiliary-portal completion, frozen before execution.
+
+Do not retain the constant-coefficient candidate after its RK01 failure.
+Test instead the following explicit changed action, with one algebraic spatial
+covector B_mu, u.B=0, no B velocities:
+  L_B = +(m_B^2+g n) B_mu B^mu/2 - lambda B^mu D_mu n.
+m_B^2>0,g>0. Eliminating B gives exactly
+  L_eff = -lambda^2 (D n)^2/[2(m_B^2+g n)].
+After the fixed n-to-rest-density conversion write
+  zeta(rho)=zeta0/(1+rho/rho_t), zeta0>0,rho_t>0.
+The two ratios zeta0,rho_t are free extension parameters. They are not
+selected by the original action or by kappa. No microscopic origin is claimed.
+In the high-density limit this includes the familiar Fisher/quantum-pressure
+functional. Do NOT claim it is novel or that giving it an auxiliary action
+by itself escapes a prior wave/superfluid exclusion. The changed low-density
+kernel and its full variational force are what this test actually evaluates.
+
+Mathematical obligations:
+1. Exact algebraic elimination of B; density-gradient Hessian positive.
+2. Variation of the new energy is
+     mu_cap=-zeta Delta rho - (zeta'/2)|grad rho|^2.
+   Include BOTH derivative terms; never substitute zeta(rho) into the old
+   constant-zeta force. With p=rho', L=Delta rho,
+     g_cap=zeta L' + zeta' p(L+rho'') + zeta'' p^3/2.
+3. Homogeneous linear kernel has q^4 coefficient rho_bar*zeta(rho_bar).
+   This is a density-dependent nonlocal chemical response, not a phantom
+   multiplier. The same frozen-background and full-relativistic caveats as
+   RK01 apply. Homogeneous K(Q) and the unspecified abundance remain unchanged.
+
+Numerical test:
+- Use the RK01 audited target profiles verbatim (42 profiles, 7 systems,
+  two user footings, core radii 50,75,100 kpc, their fitted full-profile masses).
+  The input is run_v3/results.json, hashed. These are necessary target tests,
+  not equilibrium solutions or a fitting license for the mechanism.
+- rho_t grid: 45 logarithmic values from 1e-30 to 1e-19 kg/m^3.
+  Include analytic rho_t->0 (Fisher form) and rho_t->infinity (RK01 constant)
+  limits as checks. A finite grid does not rule out every rho_t.
+- Fit common A>=0,zeta0>=0 by the same scalar active-set inverse-equilibrium
+  minimization, separately per core radius and footing. Apply CMB capillary
+  Jcap<=1 with the rho-dependent coefficient. Report unconstrained fits too.
+- Use the baryon-density INTERVAL from both framework-native F1A B2 cold
+  reconstructions as a sensitivity bracket, not as fits to the two new a0
+  footings. rho_X(z)=5.4 rho_b0(1+z)^3. Carry the most generous endpoint for
+  the coldness bound and report both endpoints. No LambdaCDM parameters used.
+- Pre-screen for reproducing an equilibrium target: fractional force rms
+  <=0.10 for at least one shared parameter set on both footings. This is a
+  declared numerical equilibrium tolerance, not an observational p value.
+  No fit on this grid means only this target family/grid is unsupported.
+- Control: mu_cap differentiation checked symbolically; a deliberate omission
+  of zeta' and zeta'' terms must differ for a nonconstant-density fixture.
+- Existing RK01 derivative controls, positive Hamiltonian, and CMB units apply.
+
+The full CMB, galaxy retention, formation, lensing, relativistic constraints
+and calibration of m_B,g,lambda remain untested even if this prescreen passes.
+Stop this particular family at a failed profile prescreen; do not adopt a
+hand-picked density law to rescue it. Preserve unresolved continuum-of-rho_t
+and non-cored-profile questions explicitly in the handoff.

@@ -1,0 +1,32 @@
+RK03 continuation, before refinement execution.
+
+The first completed RK03 scan's best point lies on lambda=3000 kpc, the grid
+boundary. Do not close the action family at that boundary. Extend lambda to
+{1000,2000,3000,6000,10000,20000,30000} kpc, rho_t to 17 logarithmic values
+1e-26..1e-22 kg/m^3, same core grid and two requested footings. Preserve all
+first-scan results. No new action term, threshold, force formula or amplitude
+range is added by this refinement. Evaluate CMB and galaxy lower bounds for
+every cell. Repeat the best radial field at 1600 and 3200 points; require
+fitted force rms changes <=0.005 and fitted coefficients <=2%.
+
+Numerical issue found by self-review: the nonlinear galaxy solver's residual
+was divided by the large finite-difference diagonal on a nonuniform grid.
+It can call the constant field converged although the density is not a
+self-consistent solution. Replace this convergence criterion by the actual
+Newton-correction effect on ln rho, max |v2*p*delta_p/s2| <1e-8, together
+with relative field correction <1e-8. Always solve at least one Newton
+correction. This is a solver accuracy correction, NOT new physical input.
+Verify convergence by independently resolving the linear vector field with
+the converged density, and requiring the induced ln-rho correction <1e-5.
+Preserve old solver/code/results; old nonlinear galaxy numbers are not
+validated physical evidence until this check is passed.
+
+For the best parameter set on each footing, solve the nonlinear fixed-
+potential equilibrium of all 145 raw SPARC galaxies (not just three probes).
+Use the same conservative 300-kpc-truncated potential and mean-density
+reservoir. Report disc and conditional Mb>=1e10 halo100/halo300 failures of
+M_excess/(5.4 Mb)<=0.01. No failure of convergence counts as a physics FAIL;
+mark it not evaluable. Repeat the worst evaluable objects at 1600/3200 points.
+The fixed-potential, cosmic-reservoir calculation is still not a formation
+calculation or a direct isolated KiDS likelihood. Passing it is a scoped
+equilibrium check only. CMB tests remain quasistatic necessary tests.

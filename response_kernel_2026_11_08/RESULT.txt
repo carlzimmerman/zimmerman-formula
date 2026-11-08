@@ -1,0 +1,163 @@
+Response-kernel investigation, 2026-11-08
+Checkpoint RK01-RK02, base Git 30318aac117be39a2b25359efa3ac1f041ce6410.
+Original objective NOT reached. Two explicit action extensions were derived
+and subjected to new, scoped tests; neither supplies the requested mechanism.
+No modification to the adopted theory, historical results, or manuscript.
+
+Main physical result
+--------------------
+The Legendre density of the original clock admits a positive gradient energy
+without adding a particle. For constant zeta, its homogeneous longitudinal
+response in the frozen, weak-field approximation is
+
+  chi_deltaPhi = -q^2 / [rho_bar A q^2 + rho_bar zeta q^4 - (omega+i0)^2].
+
+A=4*pi*G/mu_K^2, q is physical. With self-gravity, subtract
+4*pi*G*rho_bar from the denominator. This is derived from the first-order
+clock-density action, not imposed as a multiplier of the galaxy law.
+
+The static chemical potential becomes A*rho-zeta*Delta rho, defeating the
+premise of a purely local-density constitutive reduction. Nevertheless its
+pressure/gravity ratio is Jcap=zeta*q^4/(4*pi*G)=(ell*q)^4. Density cancels.
+
+At recombination q_max=1101*0.3=330.3/Mpc. Physical wavelengths of the tested
+CMB band are 19.0227--190.2266 kpc (2*pi convention). A generous coldness
+prescreen Jcap<=1 gives ell<=3.02755 kpc. ell=50 kpc instead gives
+Jcap=74389.95776; ell=100 kpc gives 1190239.32416. These are dispersion
+prescreens, not computed CMB likelihoods or a full metric-coupled solution.
+
+Profile-aware result: do NOT identify ell with the core radius. On the actual
+extended target profiles, the largest capillary-force fraction permitted by
+the CMB inequality is 0.000452289945 (0.045229%). Even reaching a 10% effect
+anywhere on these profiles needs Jcap>=221.097111. Granting ten times stronger
+early self-gravity raises the maximum fraction only to 0.00452290 (0.45229%).
+The 10% relevance line is a declared pre-screen criterion, not an empirical
+confidence interval or a theorem bounding every forward halo solution.
+
+Second extension: forced coefficient from an auxiliary interaction
+----------------------------------------------------------------
+Adding one algebraic spatial covector B, with u.B=0,
+  L_B=(m_B^2+g*n)*B^2/2-lambda*B.Dn
+gives, after exact elimination,
+  L_eff=-lambda^2*(Dn)^2/[2*(m_B^2+g*n)].
+Thus zeta(rho)=zeta0/(1+rho/rho_t), not an inserted phenomenological switch.
+The remaining parameters are independent extension couplings; the original
+action does NOT predict them. The reduced gradient energy is jointly convex.
+Its high-density Fisher/quantum-pressure limit is known, not a discovery or
+an automatic escape from the excluded superfluid/wave routes. What is tested
+here is the explicit regularized coefficient and its full variational force.
+
+The full force includes zeta' and zeta''; replacing constant zeta by zeta(rho)
+in the old force would give an incorrect result. With p=rho', L=Delta rho:
+  g_cap=zeta*L' + zeta'*p*(L+rho'') + (zeta''/2)*p^3.
+The linear q^4 coefficient becomes rho_bar*zeta(rho_bar), so early density
+can suppress it. The constant-coefficient CMB obstruction does not alone
+close this changed action.
+
+RK02 result: 45 rho_t values, 1e-30--1e-19 kg/m^3; 3 core radii; 2 requested
+a0 footings; 270 parameter/core/footing cells. Every unconstrained fit chooses
+zero capillary amplitude. The best fractional equilibrium-force rms is
+0.632077037 versus the declared <=0.10 tolerance. The corresponding other
+footing gives 0.632322509. Neither bound on the early coefficient nor extra
+freedom in rho_t repairs the shape on this target grid. No cell passes.
+
+Cluster data and scope
+----------------------
+Seven systems: A1795, A2029, A2142, A2319, A644, A85, ZW1215.
+Gas, stellar and hydrostatic FITS profiles are read directly; no old research
+script executes and no LambdaCDM halo parameters enter. Requested a0 values
+1.2e-10 and 1.1e-10 m/s^2 are evaluated separately, not the repository's older
+canonical/alt numerical values. Each core radius is 50,75,100 kpc. Mass and
+extent are retained separately using M(<r) proportional to r-rc*atan(r/rc).
+
+First amplitude convention failed: A644 at its outermost common FITS radius
+requires negative extra mass after law inversion (F=-0.62246/-0.59237 for
+the requested footings). run_main preserves this failed assertion. It is
+not a physical verdict on RK01 or permission to clip the mass. CONTRACT_V2
+documents the amendment made before rerunning: fit each target amplitude to
+all graded 0.1,0.2,0.3,0.5,0.7 R500 mass points, rather than force a positive
+profile through the single outermost bin. No object was removed.
+
+These fitted target profiles have pooled mass residual rms 0.04446--0.06109
+dex, depending on core and footing. Their F at 0.7R500 spans 2.057--5.190,
+not a forced common budget. This grants the candidate additional freedom;
+it does not derive the abundance, and it is not a complete joint data fit.
+There are 35 native mass points per footing/core, 42 target profiles total,
+and 5040 radial inverse-equilibrium points for the RK01 evaluation.
+
+The equilibrium test asks whether the prescribed extended density can be
+supported by the derived force. It is NOT a forward free-boundary halo
+solution. A finite core/rho_t grid does not rule out every observationally
+allowed profile or every positive rho_t. Do not promote these outcomes to
+a universal no-go theorem. Formation and galaxy retention were not tested
+after the cluster prescreen failed. CMB peaks/lensing/growth remain open.
+
+Derivation review and numerical checks
+-------------------------------------
+Review provenance: self-review, no independent agent or Lean certificate.
+Exact SymPy identities verify Legendre duality, the quadratic dispersion,
+the radial derivatives, auxiliary elimination, the complete density-dependent
+force, its convexity and the Fisher limit. Finite-difference radial derivative
+relative error reaches 4.63e-10; enclosed-mass quadrature error 1.56e-14.
+Synthetic coefficient recovery and wrong-sign controls pass.
+
+The FRW projected density gradient contains delta n-dot(n_bar)*pi. Its frozen
+quadratic Hamiltonian determinant includes an additional NONNEGATIVE term
+A*zeta*dot(n_bar)^2*q^2; this was checked, not silently omitted. It is not a
+full time-dependent FRW or coupled metric constraint calculation. Those are
+unperformed obligations. In particular no CMB chi-square is reported.
+
+run_v2 emitted NumPy/SciPy matrix-operation warnings. run_v3 recomputes all
+two-coefficient fits via scalar active-set enumeration, without BLAS, and
+checks KKT conditions. All 288 compared coefficient/error entries agree
+within 1.39e-16. run_v3 and run_rk02 have empty stderr. Preserve run_v2.
+
+Omitting the redshift conversion changes Jcap(50 kpc) from 74389.95776 to
+5.0625e-8, a factor 1101^4=1.469431264401e12, and falsely passes the force-
+relevance comparison. The deliberately broken control is recorded separately;
+the unchanged equilibrium test still fails. Omitting density derivatives in
+RK02 changes the unit fixture force by -0.037037, so that control bites too.
+
+All five manifests validate against current inputs: initial run_main has
+run.status=failed; run_v2, run_v3, run_mutate_omit_redshift and run_rk02 have
+run.status=completed. Execution success is not physics success. Input FITS,
+contracts, scripts and declared results have observed before/after hashes.
+
+Reproduction
+------------
+Authoritative argv and limits are in each run's manifest.json. Numerical
+interpreter is /opt/homebrew/Caskroom/miniconda/base/bin/python3.13.
+The runner, executed by /opt/homebrew/bin/python3.12, is
+/Users/carlzimmerman/.codex/plugins/cache/openai-curated-remote/mathbox/4.0.0/skills/computation-audit/scripts/run_experiment.py.
+Use fresh output directories; do not overwrite historical runs. Direct
+scientific commands, from repository root, after creating a fresh directory:
+  /opt/homebrew/Caskroom/miniconda/base/bin/python3.13 response_kernel_2026_11_08/kernel_test_v3.py --output NEWDIR/results.json
+  /opt/homebrew/Caskroom/miniconda/base/bin/python3.13 response_kernel_2026_11_08/rk02_test.py --output NEWDIR/results.json
+For provenance repeat the manifest argv with a fresh --output/--result path.
+
+Continuation handoff
+--------------------
+RK01: rejected by its stated constant-coefficient pressure/force prescreen.
+RK02: no passing inverse-equilibrium target on the recorded finite grid;
+asymptotically the gradient support remains too rapidly decaying to supply
+an extended isothermal tail. This does not settle general finite profiles.
+
+Do not repeat the constant-gradient rescue, omit the proper/comoving factor,
+or omit the coefficient's density derivatives. Do not claim that the auxiliary
+portal's free scales are derived from the original action. Prior AZ14--AZ17
+is a different quartic-gradient attempt and its central regularity failure
+must be read before any proposed quartic continuation.
+
+Open mathematical continuation, deferred rather than claimed exhausted:
+(1) Allow observationally supported departures from the cored-isothermal
+target and solve the actual free-boundary fourth-order equilibrium, with
+profile errors propagated. This could distinguish a target-family failure
+from a stronger failure of RK02, but is not a new viable mechanism yet.
+(2) A microscopic or symmetry input connecting a new nonlocal stress to the
+outer halo support could define a substantially different kernel. None has
+been supplied or derived here; inventing another arbitrary scale function
+would not complete the requested action derivation.
+(3) Any surviving construction still owes the full relativistic constraints,
+abundance, time evolution, galaxy retention and CMB/lensing calculations.
+
+No universal mechanism, kappa derivation, or successful cosmology claimed.

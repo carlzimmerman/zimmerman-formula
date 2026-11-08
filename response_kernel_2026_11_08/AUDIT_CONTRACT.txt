@@ -1,0 +1,13 @@
+RK01 arithmetic audit, before v3 runs.
+
+run_v2 completed but emitted NumPy/SciPy matrix-operation warnings. Its
+numerical fit results must not be taken on trust. kernel_test_v3.py replaces
+only the two-coefficient equilibrium minimizer by scalar active-set face
+enumeration and verifies the convex KKT conditions. No BLAS operation is used
+in that fit. This is an orthogonal arithmetic check, not a new parameter scan.
+
+Require agreement with every v2 common fit and every cluster fit to 1e-8
+absolute in dimensionless coefficients. Preserve any disagreement. All input
+data, contract amendments, physical targets, significance lines and core grid
+are unchanged. Execute main and omitted-redshift control in distinct fresh
+run directories, then validate their manifests and compare numeric outputs.

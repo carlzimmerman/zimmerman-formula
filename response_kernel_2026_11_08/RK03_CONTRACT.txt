@@ -1,0 +1,92 @@
+RK03: finite-range self-repulsion of the clock continuum, 2026-11-08.
+Frozen before RK03 code/results. Base Git 30318aac117be39a2b25359efa3ac1f041ce6410.
+
+Objective: move beyond gradient energy and test a nonlocal interaction that
+can supply an extended halo's force. This is a proposed extension, not an
+adopted action or a discovered universal mechanism. No new particle carrier.
+
+Changed action in first-order clock variables, c=1:
+ L = rho Q - U_quad(rho)
+     -s2*rho[ln(rho/rho_star)-1]
+     -F_mu_nu F^mu_nu/4 -(m0^2+eta*rho) B_mu B^mu/2
+     +e*rho*u^mu B_mu.
+u_mu=-partial_mu tau/Q is the pre-existing khronon normal. B is a new
+classical vector field; it has field degrees of freedom, no particle mass
+inventory is introduced. rho is the existing conjugate density. The
+covariant full constraint/health analysis is unperformed; test the static
+weak-field and quasistatic longitudinal reduction explicitly, not full GR.
+New independent couplings: s2>=0, m0>0, eta>0, e^2>=0. Nothing selects them
+from a0 or derives kappa. The local logarithmic bulk energy is also an
+explicit constitutive addition, NOT a deduction from the quadratic K(Q).
+The vector interaction is the new forced kernel beyond a local convex K.
+
+Prior route distinction: X57 M2 repelled the clock FROM BARYONS, sourcing
+the mediator with baryonic density and constant mass. Here baryons have no
+vector charge, the source is the clock density itself, the mass is affine
+in that density, and its derivative alters the effective charge. Do not
+reuse X57 M2's transfer formula. No novelty claim over vector-fluid theory.
+
+Static reduction, b=B0, u=eta*b/e, rho_t=m0^2/eta, v2=e^2/eta:
+ (-Delta + m0^2*(1+rho/rho_t)) u = m0^2*rho/rho_t,
+ h_V=v2*(u-u^2/2),
+ g_support= -s2*(ln rho)' - v2*(1-u)*u'.
+Include the mass derivative term -eta*b^2/2 in h_V. The isothermal term has
+outer force 2*s2/r on rho~r^-2, unlike the rejected gradient terms.
+Original quadratic pressure is neglected in the cluster force to favor the
+candidate (it is tiny at the recorded BBN-compatible mu_K=8.89e6/Mpc).
+
+On a homogeneous density, u_bar=rho/(rho+rho_t),
+ e_eff=e*(1-u_bar), m_eff^2=m0^2*(1+rho/rho_t).
+The STATIC density/chemical susceptibility is
+ dh/d rho(q)=s2/rho + e_eff^2/(q^2+m_eff^2).
+Hence the leading quasistatic longitudinal frequency is
+ omega^2=s2*q^2+rho*e_eff^2*q^2/(q^2+m_eff^2)-4*pi*G*rho.
+The retarded vector/light-cone completion is not inferred from this static
+formula. The homogeneous energy E_V=v2*rho^2/[2(rho+rho_t)] saturates to a
+matterlike term rather than the stiff rho^2 of a fixed-mass charged fluid.
+
+Numerical contract:
+1. Reuse the hashed, native-XCOP calibrated 42 extended profiles from RK01.
+   Each core radius 50,75,100 kpc; user a0=1.2e-10,1.1e-10 separately.
+   Solve the radial vector equation on 0..max(20lambda0,5R500), 800 grid
+   points; density is the target inside 2R500 and cosmic mean outside.
+   Central Neumann and external homogeneous boundary conditions.
+   Evaluate force on the original 120 radii, 20 kpc..0.7R500.
+2. Fixed parameter grid: lambda0 in {1,3,10,30,100,300,1000,3000} kpc;
+   rho_t in 10 logarithmic values 1e-29..1e-20 kg/m^3.
+   Fit common s2 and v2 to all seven clusters, for each core/footing.
+   s in [10,3000] km/s, v in [0,10000] km/s; positive box-constrained
+   two-coefficient least squares. Record per-cluster fits as diagnostics
+   ONLY, never credit them as one universal action. Tolerance fractional
+   equilibrium-force rms<=0.10 on both footings at common parameters.
+3. CMB coldness prescreen Jpressure<=1 at proper q=330.3/Mpc, z=1100,
+   with the conserved clock weight 5.4. Include the original quadratic
+   contribution (q/8.89e6)^2. Use the two F1A B2 baryon-density values only
+   as a sensitivity interval, not as new fits to the requested a0 values.
+   Report vector homogeneous energy fraction and require <=0.01.
+   This is NOT a Boltzmann spectrum or a numerical CMB likelihood.
+4. Galaxies: parse raw SPARC catalogue/rotation curves with the native mask
+   (quality<=2, inclination>=30deg, eV/V<=0.1, positive baryonic force).
+   Compute a conservative potential truncated at 300 kpc, using observed
+   radial gravity within the curve and the native law outside. Use no
+   LambdaCDM halo. Disc aperture is the last measured rotation radius;
+   report 100/300 kpc diagnostics for Mb>=1e10 Msun, marked as a conditional
+   galaxy-host application because SPARC does not supply a uniform isolated
+   lens selection. Do not claim a direct KiDS likelihood.
+   Maximum possible vector chemical barrier is
+       hVmax-hVmean=v2*(rho_t/(rho_mean+rho_t))^2/2.
+   Therefore rho >= rho_mean exp[(depth-barrier)/s2]. Integrate this LOWER
+   bound on signed excess mass, allowing empty unresolved inner volume.
+   A lower bound M_excess/(5.4Mb)>0.01 kills the equilibrium at that aperture.
+   A passing lower bound is NO VERDICT on the actual nonlinear accumulation,
+   never a galaxy PASS. For top cluster candidates also attempt the actual
+   nonlinear vector/Boltzmann equilibrium in the fixed native potential.
+5. All three rows are evaluated even if the profile test fails. The original
+   objective remains open unless one common action actually satisfies them.
+
+Controls: exact homogeneous mass derivative/effective charge/convexity;
+mass-derivative omission mutation; uniform-density radial solution; radial
+matrix residual; finite-domain/grid refinement for selected candidates;
+two-coefficient box minimizer vs independent scalar KKT/face checks;
+zero-vector isothermal limit; physical-q convention. If a numerical control
+fails, preserve run and fix before interpreting it. One thread, 60s per run.
