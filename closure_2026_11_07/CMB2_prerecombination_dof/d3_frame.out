@@ -1,0 +1,45 @@
+== S1: Euler-Lagrange of S_m (minimal coupling) ==
+  scalar EL khronon-free: True
+  (sign check: with + sign residual zero? False )
+  nabla_m T^m_n = +(EL/sqrtg) d_n chi identically (EL as sympy euler_equations lhs): True [0, 0]
+  dust (baryon Euler) EL khronon-free: True
+  photon geodesic (Liouville operator of the Boltzmann hierarchy) EL khronon-free: True
+== S2: linear Newtonian gauge, nabla_m T^mn = 0 per fluid + Thomson drag ==
+  g: delta' = 4*Derivative(Phi(eta, X), eta) - 4*Derivative(v_g(eta, X), X)/3
+  g: v'     = -Derivative(Psi(eta, X), X) - Derivative(delta_g(eta, X), X)/4
+  b: delta' = 3*Derivative(Phi(eta, X), eta) - Derivative(v_b(eta, X), X)
+  b: v'     = -Hc(eta)*v_b(eta, X) - Derivative(Psi(eta, X), X)
+  free symbols: ['R', 'X', 'eta', 'taudot_T']  functions: ['Hc', 'Phi', 'Psi', 'delta_g', 'v_b', 'v_g']
+  linear photon-baryon system khronon-free: True
+  plane wave: dg' = -4*th(eta)/3 + 4*Derivative(ph(eta), eta) | theta_g' (no drag) = k**2*(dg(eta)/4 + ps(eta)) | theta_b' (no drag) = k**2*ps(eta) - Hc(eta)*th(eta)
+  tight-coupling dg'' coefficient of dg / (-k^2) = c_s^2 = 1/(3*(R + 1)) -> True
+== S3: anisotropic stress of the khronon/P sector, local orthonormal (Newtonian-gauge) frame ==
+  v3s: per sector: {'Q': {'tilt0': '0', 'tilt1_zero_offshell': True}, 'W': {'tilt0': 'Emag*Pmag', 'tilt1_zero_offshell': True}, 'P': {'tilt0': '-2*Amag*Pmag', 'tilt1_zero_offshell': False}, 'gamma': {'tilt0': '-2*Pmag*cpar*gamma', 'tilt1_zero_offshell': False}}
+     traceless spatial stress = s (khat khat - delta/3), s(off-shell, no tilt) = Pmag*(-2*Amag + Emag - 2*cpar*gamma)
+     on shell: s = -Pmag*(Amag*f1*gamma + Amag + Df1*gamma) | s == -|P||E|: True | tilt-linear piece zero on shell: True (off shell xy comp: Pmag*nu2*(-Ldot + cDn*gamma - lambda) )
+  AC2q: per sector: {'Q': {'tilt0': '0', 'tilt1_zero_offshell': True}, 'W': {'tilt0': 'Emag*Pmag', 'tilt1_zero_offshell': True}, 'P': {'tilt0': '-2*Amag*Pmag', 'tilt1_zero_offshell': False}, 'gamma': {'tilt0': '-2*Pmag*cpar*gamma', 'tilt1_zero_offshell': False}}
+     traceless spatial stress = s (khat khat - delta/3), s(off-shell, no tilt) = Pmag*(-2*Amag + Emag - 2*cpar*gamma)
+     on shell: s = -Pmag*(Amag*f1*gamma + Amag + Df1*gamma) | s == -|P||E|: True | tilt-linear piece zero on shell: True (off shell xy comp: Pmag*nu2*(-Ldot + cDn*gamma - lambda) )
+  on the law: s = -(a0/K) |E| x/(1+x) = -a0**2*x**2/(K*(x + 1))  -> linear in |E| once x >~ 1 (not zero)
+  slip/Psi upper bound (z 1100), canonical x=1: {'0.01': 5.837739878843329e-06, '0.03': 1.945913292947776e-06, '0.1': 5.837739878843327e-07, '0.3': 1.945913292947776e-07}  x=100: {'0.01': 0.0005837739878843328, '0.03': 0.0001945913292947776, '0.1': 5.837739878843327e-05, '0.3': 1.945913292947776e-05}
+  alt x=1: {'0.01': 7.054956946836718e-06, '0.03': 2.351652315612239e-06, '0.1': 7.054956946836716e-07, '0.3': 2.351652315612239e-07}  x=100: {'0.01': 0.0007054956946836718, '0.03': 0.0002351652315612239, '0.1': 7.054956946836716e-05, '0.3': 2.351652315612239e-05}
+== S4: S_m has no tau dependence ==
+  dL_m/dtau, dL_m/d(d tau) all zero: True
+== S5: MUTATE-gravity: L_int = beta n_m u^m on the baryon worldline ==
+  khronon in mutated baryon Euler equation: True | beta=0 reduces to geodesic: True
+  control: beta d tau/d lambda (total derivative) drops out: True
+== checks ==
+  S1_scalar_EL_no_khronon: True
+  S1b_noether_identity: True
+  S1_dust_worldline_no_khronon: True
+  S1_photon_worldline_no_khronon: True
+  S2_linear_system_no_khronon: True
+  S2_cs2_eq_1_over_3_1pR: True
+  S3_v3s_aniso_is_minus_P_E: True
+  S3_v3s_tilt_term_zero_onshell: True
+  S3_AC2q_aniso_is_minus_P_E: True
+  S3_AC2q_tilt_term_zero_onshell: True
+  S4_Sm_tau_independent: True
+  S5_MUTATE_finds_khronon: True
+  S5_MUTATE_beta0_reduces: True
+  S5_control_total_derivative_drops: True
