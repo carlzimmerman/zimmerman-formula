@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PAPER70 audit (v1.5): each quoted number appears in the TeX and, as the literal given, in the committed file named
+"""PAPER70 audit (v1.6): each quoted number appears in the TeX and, as the literal given, in the committed file named
 beside it; naming rules; no local paths; no pending placeholder. Run: python3 PAPER70_audit.py (exit 0 only if all pass).
 --mutate changes one digit of each source literal; exit 0 only if every mutated literal then fails.
 kappa = 1/2 FITTED; not theory closed; nothing here says the data favour the framework."""
@@ -464,10 +464,45 @@ L += [
  ("carry the largest need in the record", SA1, "they carry the largest need in the record"),
 ]
 REG = "closure_2026_11_07/CLOSURE_REGISTER.json"; CMB3C = "closure_2026_11_07/CMB3_cmb_assumption_audit/FROZEN_CRITERIA.md"
+CMB3 = "closure_2026_11_07/CMB3_cmb_assumption_audit/RESULT.md"
 L += [
- ("RUNNING (criteria frozen e46081b7a9; assumption audit A1--A6; result in v1.6)", REG, "RUNNING at v1.5 deposit (criteria e46081b7a9; result to v1.6)"),
- ("The parts of A1 and A3 that concern the action are already answered by CMB2", CMB3C, "CMB2 D4 owns it"),
- ("the matter equations carry no khronon field (D3)", CMB3C, "if D3 finds no khronon field in the matter"),
+ ("deposited as DOI 10.5281/zenodo.24053083", Z70, '"doi": "10.5281/zenodo.24053083"'),
+ ("A1: the frozen line reads BREAKS POSSIBLE", CMB3, "| frozen line | **BREAKS POSSIBLE** | **BREAKS POSSIBLE** |"),
+ ("A2 lensing HOLDS (unlensed theory: survival 0.993", CMB3, "+171,685.7, 0.993, 5.511 (+1.9 %)"),
+ ("0.877 / 0.862", CMB3, "+151,571.2, 0.877, 5.410 (0.0 %) | +143,585.7, 0.862, 5.412 (0.0 %)"),
+ ("$A_\\phi$ 1.00 and baryons alone 9.50 / 9.45", CMB3, "| A_phi at best fit, cold / MB | 1.00 / 9.50 | 1.00 / 9.45 |"),
+ ("A3, $N_{\\rm eff}$ and YHe free, HOLDS (0.892 / 0.871)", CMB3, "+154,315.4, 0.892, 5.290 (-2.2 %) | +145,139.3, 0.871, 5.295 (-2.2 %)"),
+ ("A4, $n_s$ and running free, HOLDS (0.901 / 0.895)", CMB3, "+155,732.5, 0.901, 5.429 (+0.4 %) | +149,207.6, 0.895, 5.428 (+0.3 %)"),
+ ("BREAKS / BREAKS on the record's own data", CMB3, "**BREAKS / BREAKS, by the record's own data"),
+ ("bound hosts hold 0.9\\,\\% / 0.8\\,\\%", CMB3, "hold 0.9 % / 0.8 % of the component"),
+ ("HOLDS (0.751 / 0.736) but is nuisance-sensitive ($-25$ / $-26$\\,\\%", CMB3, "| nuisance sensitivity | -25 % | -26 % |"),
+ ("(0.751 / 0.736)", CMB3, "+129,844.7, 0.751 | +122,711.1, 0.736"),
+ ("under any single relaxation is +122,711", CMB3, "The smallest DeltaMB under any single relaxation is +122,711"),
+ ("$\\nu-1$ 0.05--0.17", CMB3, "is 0.05 at its total gradient and 0.08-0.17 per band"),
+ ("move the amount $R$ by at most 2.2\\,\\%", CMB3, "0.892, 5.290 (-2.2 %)"),
+]
+X35 = "rebuild_2026_10_22/X35_a0_tracks_ede/README.md"
+L += [
+ ("UNDECIDED by its frozen rule", X35, "## Verdict (frozen rule 5): **UNDECIDED**"),
+ ("1,147--7,565 times today's", X35, "puts a₀(1100) at 1,147–7,565 × today"),
+ ("(D1 NULL;", X35, "**The covariant theory gives nothing (D1, NULL).**"),
+ ("max$|\\Xi|$ $4.9\\times10^{-29}$", X35, "returns max|Ξ| = 4.9e-29"),
+ ("($k_{\\rm J}$ 0.024--0.039\\,Mpc$^{-1}$)", X35, "k < k_J,eff = 0.024–0.039 Mpc⁻¹"),
+ ("from 1.00 to 1.49 (a flat-$\\Lambda$ estimate)", X35, "moves the native sqrtX from 1.00 to **1.49 at z 2.33**"),
+]
+HY1 = "closure_2026_11_08/HY1_hybrid_law_plus_component/RESULT.md"; HYD = "closure_2026_11_08/OWNER_DECISION_2026-11-08_HY1_RULE_LIFT.md"
+L += [
+ ("the owner lifted the no-cold-component rule for HY1 only", HYD, "Lane HY1 only. Every other lane keeps the standing rules"),
+ ("NO VERDICT / NO VERDICT on the frozen M3 rule", HY1, "| **Lane (frozen rule)** | **NO VERDICT** | **NO VERDICT** |"),
+ ("so the control cannot bite", HY1, "It **DOES NOT BITE** on either footing"),
+ ("Under it, FAIL on both footings", HY1, "both **empty**: **FAIL**"),
+ ("about 4.1 times the baryons", HY1, "f_cap R = 4.1113 / 4.1133"),
+ ("SPARC rms 0.465--0.658 / 0.464--0.680 against 0.110", HY1, "rms 0.465-0.658, U pinned at the 0.30 floor"),
+ ("0.464--0.680 against", HY1, "rms 0.464-0.680, U 0.30"),
+ ("over-filled by about 1.1\\,dex", HY1, "The cusp over-fills the core by 1.1 dex"),
+ ("($\\kappa$ in [0.05, 0.17] / [0.05, 0.13])", HY1, "| Shared window of the columns with power | [0.05, 0.17] | [0.05, 0.13] |"),
+ ("discs shed at least 96\\,\\% of the dust", HY1, "Discs would have to shed at least 96 % of it"),
+ ("covered HY1 only", HYD, "the no-cold-component rule is lifted for test lane HY1 only"),
 ]
 def mutate(lit):
     m = re.search(r"\d", lit)
@@ -491,7 +526,7 @@ rules = [
  ("no 'cold dark matter'", "cold dark matter" not in TEX.lower()),
  ("no pending placeholder", "\\pend{" not in body),
  ("no LCDM input claimed", "No $\\Lambda$CDM inputs were used" in TEX),
- ("version v1.5 stated, no draft marker", "v1.5, 2026-11-08" in TEX and "draft v0" not in TEX),
+ ("version v1.6 stated, no draft marker", "v1.6, 2026-11-08" in TEX and "draft v0" not in TEX),
  ("owner decision carried, nothing pending", "re-stated (owner 2026-11-07)" in TEX and "pending owner" not in TEX and "the frozen RESULT files are not edited" in TEX),
  ("unification quote verbatim", UQ_OK),
  ("seed abstract verbatim", "The next lane must find one covariant quantity that sets that amplitude (not just a switch) in today's hot systems and is non-zero in the early universe, or show the two failures need separate causes." in ws(TEX)),
