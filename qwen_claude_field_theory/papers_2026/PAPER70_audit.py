@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PAPER70 audit (v1.2): each quoted number appears in the TeX and, as the literal given, in the committed file named
+"""PAPER70 audit (v1.3): each quoted number appears in the TeX and, as the literal given, in the committed file named
 beside it; naming rules; no local paths; no pending placeholder. Run: python3 PAPER70_audit.py (exit 0 only if all pass).
 --mutate changes one digit of each source literal; exit 0 only if every mutated literal then fails.
 kappa = 1/2 FITTED; not theory closed; nothing here says the data favour the framework."""
@@ -97,7 +97,7 @@ Q32 = C + "QX32_aspherical_hse_field/README.md"
 L += [
  ("(OQ2 kept by the owner)", C7, "OWNER: \"Keep OQ2\""),
  ("gap up to 0.497 / 0.483", OQ2, "0.497"), ("gap up to 0.497 / 0.483", OQ2, "0.483 / 0.372"),
- ("($F_{\\rm web,max}$ 0.00481 / 0.00435)", OQ2, "F_web,max = 0.00481"), ("0.00481 / 0.00435", OQ2, "F_web,max = 0.00435"),
+ ("($F_{\\rm web,max}$ 0.00481 / 0.00435;", OQ2, "F_web,max = 0.00481"), ("0.00481 / 0.00435", OQ2, "F_web,max = 0.00435"),
  ("SEPARATED NO, as frozen", OQ2, "**NO** (as frozen"),
  ("S1 reading is DEAD on both footings, every start", OQ2, "DEAD, every start, both f*"),
  ("DIFFERS, both footings", FS2, "DIFFERS (frozen)"), ("fold 1.2\\,\\% earlier", FS2, "reaches J_reg 1.2 % before"),
@@ -138,7 +138,7 @@ L += [
  ("to 0.3\\,Mpc or less", FA2, "L_max =\n0.3 Mpc"),
  ("the static operator is not elliptic (radial)", FA2, "the static operator is not elliptic (radial only)"),
  ("NO CANDIDATE SURVIVES, both footings", FA3, "No candidate survives"),
- ("(r 75.4 / 78.8)", FA3, "W1 web (r 75.4 / 78.8 at tau_gal)"),
+ ("(r 75.4 / 78.8;", FA3, "W1 web (r 75.4 / 78.8 at tau_gal)"),
  ("NO VERDICT on G1--G7", FA3, "**NO VERDICT** (G1-G7; history not carried)"),
  ("I1's MUTATE M1 did not bite as frozen", FA3, "**NO, as frozen**"),
  ("peak RSS (1.87\\,GB)", FA3, "ru_maxrss read 1.87 GB"),
@@ -249,7 +249,7 @@ L += [
 CE2 = "closure_2026_11_07/CE2_late_heated_window/RESULT.md"
 L += [
  ("FAIL on every cell, C3 included, both footings", CE2, "FAIL, all four cells, both footings, C3 included"),
- ("($\\chi^2$ 8.70--11.69)", CE2, "PASS 8.70 (0.13)"), ("8.70--11.69", CE2, "PASS 11.69 (3.12)"),
+ ("($\\chi^2$ 8.70--11.69;", CE2, "PASS 8.70 (0.13)"), ("8.70--11.69", CE2, "PASS 11.69 (3.12)"),
  ("($R_f$ 1.000)", CE2, "Rf = 1.000 at every z < 1 bin"),
  ("X-COP +0.324 / +0.287", CE2, "C3 fails GX (+0.324 / +0.287"),
  ("(inner bin +0.48", CE2, "the centre (+0.48)"),
@@ -408,6 +408,21 @@ L += [
  ("(22.53 / 24.04\\,kpc, not 2.09 / 2.25)", AK1, "The formula gives 22.53 / 24.04 kpc, not the brief's 2.09 / 2.25 kpc"),
  ("($1-X/X_{\\rm bg}\\le2.4\\times10^{-7}$)", AK1, "Max (1 - X/X_bg) = 2.4e-7"),
 ]
+OKD = "closure_2026_11_07/OWNER_DECISION_2026-11-07_ACCEPT_CORRECTED_KERNEL_LABELS.md"
+L += [
+ ("deposited as DOI 10.5281/zenodo.24047420", Z70, '"doi": "10.5281/zenodo.24047420"'),
+ ("The owner accepted the corrected values as the standing labels on 2026-11-07", OKD, "Accept, ship v1.3"),
+ ("the frozen RESULT files are not edited", OKD, "The original frozen RESULT files are not edited"),
+ ("none of them opens a door", OKD, "None of the accepted moves opens a door"),
+ ("no row in the record is pending", OKD, "no row in the record is marked pending"),
+ ("with the kernel corrected 0.00798 / 0.00720", GL3, "0.00798 / 0.00720; DEAD"),
+ ("(1.0\\,Mpc with the kernel corrected", GL3, "| 0.3 / 0.3 Mpc | 1.0 / 1.0 Mpc |"),
+ ("19.1 / 18.8 with the kernel corrected", GL3, "75.39 / 78.77 | 19.12 / 18.75"),
+ ("$\\mu\\ge0.63$ / 1.0 with the kernel corrected", GL3, "0.63 / 1.0 (gap x10 / x16)"),
+ ("$\\times$10 / $\\times$16 with the kernel corrected", GL3, "(gap x10 / x16)"),
+ ("(27--39 with the kernel corrected)", GL3, "| 72.2-89.4 | 27.4-38.7 |"),
+ ("that gate reads NO VERDICT", GL1, "**GL gate MOVES** to NO VERDICT"),
+]
 def mutate(lit):
     m = re.search(r"\d", lit)
     return lit if not m else lit[:m.start()] + str((int(m.group()) + 1) % 10) + lit[m.end():]
@@ -430,8 +445,8 @@ rules = [
  ("no 'cold dark matter'", "cold dark matter" not in TEX.lower()),
  ("no pending placeholder", "\\pend{" not in body),
  ("no LCDM input claimed", "No $\\Lambda$CDM inputs were used" in TEX),
- ("version v1.2 stated, no draft marker", "v1.2, 2026-11-07" in TEX and "draft v0" not in TEX),
- ("moved labels re-stated, not rewritten", "re-stated pending owner" in TEX and "no frozen label is rewritten here" in TEX),
+ ("version v1.3 stated, no draft marker", "v1.3, 2026-11-07" in TEX and "draft v0" not in TEX),
+ ("owner decision carried, nothing pending", "re-stated (owner 2026-11-07)" in TEX and "pending owner" not in TEX and "the frozen RESULT files are not edited" in TEX),
  ("unification quote verbatim", UQ_OK),
  ("seed abstract verbatim", "The next lane must find one covariant quantity that sets that amplitude (not just a switch) in today's hot systems and is non-zero in the early universe, or show the two failures need separate causes." in ws(TEX)),
  ("erratum stated", "erratum on PAPER68's printed form only; no number changes" in TEX),
