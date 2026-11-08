@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PAPER70 audit (v1.7): each quoted number appears in the TeX and, as the literal given, in the committed file named
+"""PAPER70 audit (v1.8): each quoted number appears in the TeX and, as the literal given, in the committed file named
 beside it; naming rules; no local paths; no pending placeholder. Run: python3 PAPER70_audit.py (exit 0 only if all pass).
 --mutate changes one digit of each source literal; exit 0 only if every mutated literal then fails.
 kappa = 1/2 FITTED; not theory closed; nothing here says the data favour the framework."""
@@ -536,6 +536,30 @@ L += [
  ("the brief's kill fires on both footings", KR1, "it now **FIRES** on both footings"),
  ("the label is unchanged", KR1, "**Label.** Unchanged: FAIL / FAIL."),
 ]
+BG1 = "closure_2026_11_08/BG1_cold_gas_conversion/RESULT.md"; BGD = "closure_2026_11_08/OWNER_DECISION_2026-11-08_BG1_LAUNCH.md"
+L += [
+ ("deposited as DOI 10.5281/zenodo.24056963", Z70, '"doi": "10.5281/zenodo.24056963"'),
+ ("``Launch it anyway''", BGD, 'Owner\'s words: "Launch it anyway"'),
+ ("& FAIL / FAIL: no $\\alpha$ in the scan passes G1--G10", BG1, "No alpha in [1e-3, 1e3] passes G1-G10 on either footing"),
+ ("SPARC rms 0.0626 (line 0.0660)", BG1, "rms 0.0626 (line 0.0660)"),
+ ("(shift $-0.003$\\,dex)", BG1, "-0.003 dex"),
+ ("discs retain 0.4\\,\\% of the dust while quenched hosts keep 17--36\\,\\%", BG1, "(retained 0.4 %) while quenched hosts keep 17-36 % of theirs"),
+ ("converts 97\\,\\% of the component by $z$ 20", BG1, "the converted fraction by z 20 is 97 %"),
+ ("(7\\,$M_\\odot$\\,pc$^{-3}$ at $z$ 1000; its exposure is 1/7 of a disc's)", BG1, "is 1/7 of a SPARC disc's"),
+ ("holds only for $\\alpha\\le2.5$", BG1, "G9 needs alpha <= 2.5"),
+ ("only for $\\alpha\\le6.3$", BG1, "G8 and G10 need alpha <= 6.3"),
+ ("discs need $\\alpha\\ge1000$ (beyond the scan on alt)", BG1, "(alpha >= 1000 canonical, beyond the scan on alt)"),
+ ("disjoint by a factor 400", BG1, "Ratio 400 on canonical"),
+ ("an exposure $\\times10$ replay moves both alike", BG1, "the x10 replay moves both alike"),
+ ("Coma UDGs under-filled by 0.65--0.92\\,dex", BG1, "under-filled by 0.65-0.92 dex"),
+ ("gives $b=6.4$ where they need about 80", BG1, "b = 6.4 where the UDGs need about"),
+ ("groups at most 7/20", BG1, "(G4, at most 7/20 and 6/20)"),
+ ("X-COP over-filled by 0.06--0.10\\,dex at the CMB amount $R=5.41$", BG1, "over-filled by 0.06-0.10 dex at the\n   CMB amount R = 5.41"),
+ ("captured share $R=4.11$", BG1, "f_cap R = 4.11, reported"),
+ ("clusters keep at least 94\\,\\%", BG1, "Clusters keep >= 94 % of their dust"),
+ ("M3 ($10\\times$ the best $\\alpha$) does not bite as frozen", BG1, "**NO BITE**"),
+ ("the label does not rest on it", BG1, "The label does not rest on M3"),
+]
 def mutate(lit):
     m = re.search(r"\d", lit)
     return lit if not m else lit[:m.start()] + str((int(m.group()) + 1) % 10) + lit[m.end():]
@@ -558,7 +582,7 @@ rules = [
  ("no 'cold dark matter'", "cold dark matter" not in TEX.lower()),
  ("no pending placeholder", "\\pend{" not in body),
  ("no LCDM input claimed", "No $\\Lambda$CDM inputs were used" in TEX),
- ("version v1.7 stated, no draft marker", "v1.7, 2026-11-08" in TEX and "draft v0" not in TEX),
+ ("version v1.8 stated, no draft marker", "v1.8, 2026-11-08" in TEX and "draft v0" not in TEX),
  ("owner decision carried, nothing pending", "re-stated (owner 2026-11-07)" in TEX and "pending owner" not in TEX and "the frozen RESULT files are not edited" in TEX),
  ("unification quote verbatim", UQ_OK),
  ("seed abstract verbatim", "The next lane must find one covariant quantity that sets that amplitude (not just a switch) in today's hot systems and is non-zero in the early universe, or show the two failures need separate causes." in ws(TEX)),
