@@ -7,7 +7,7 @@ carried by the screened Khronon action v3s (Legendre form, Π⁶/Π² stiffness 
 certified in Lean. One page: [`closure_2026_11_07/FINAL_THEORY_2026_11_07.md`](closure_2026_11_07/FINAL_THEORY_2026_11_07.md).
 Paper of record: **PAPER70**, "The a₀ Galaxy Law and its Screened Khronon Action: Field Equations, Lean Certificates, Closure Record",
 concept DOI [10.5281/zenodo.24040312](https://doi.org/10.5281/zenodo.24040312) (always the latest version); v1.5 DOI
-[10.5281/zenodo.24053083](https://doi.org/10.5281/zenodo.24053083) (2026-11-08); v1.6 DOI [10.5281/zenodo.24053740](https://doi.org/10.5281/zenodo.24053740) (2026-11-08; CMB3 audit, HY1); **v1.7 DOI [10.5281/zenodo.24056963](https://doi.org/10.5281/zenodo.24056963)** (2026-11-08; KR1 + KR2: the dust sector K(Q) closed at the level of its functional form).
+[10.5281/zenodo.24053083](https://doi.org/10.5281/zenodo.24053083) (2026-11-08); v1.6 DOI [10.5281/zenodo.24053740](https://doi.org/10.5281/zenodo.24053740) (2026-11-08; CMB3 audit, HY1); v1.7 DOI [10.5281/zenodo.24056963](https://doi.org/10.5281/zenodo.24056963) (2026-11-08; KR1 + KR2: the dust sector K(Q) closed at the level of its functional form); **v1.8 DOI [10.5281/zenodo.24058756](https://doi.org/10.5281/zenodo.24058756)** (2026-11-08; BG1: the baryon-state key also fails; no local variable and no clock carries the boundary).
 PDF + Lean/record supplement: [`qwen_claude_field_theory/papers_2026/`](qwen_claude_field_theory/papers_2026/); lane register:
 [`closure_2026_11_07/CLOSURE_REGISTER.json`](closure_2026_11_07/CLOSURE_REGISTER.json) (no lane open).
 - **What it is a complete theory of:** galaxy dynamics and the solar system. Passes SPARC and the radial-acceleration relation,
