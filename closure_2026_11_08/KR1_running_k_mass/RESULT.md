@@ -194,10 +194,10 @@ KR2 sent its window after this file was written: result 05be295028, criteria 92c
 **KR2's reading.** The present-day window is **EMPTY on both footings**:
 - X-COP (C2) is empty at every mu_K(0) in 0.1-79.43;
 - groups [1.585, 3.98] and hosts [0.1, 0.631] are disjoint;
-- partial windows: SPARC <= 6.31, KiDS <= 3.98.
+- partial windows: SPARC [0.1, 6.31] on canonical only (alt C1 is empty under KR2's frozen T = 0 clause), KiDS [0.1, 3.98].
 
 **(iii) graded against it.** No member has a mu_K(0) inside an empty window, so (iii) is FAIL for every member on both
-footings. D0 and D1 (1.232 / 1.265) sit inside the partial SPARC and KiDS windows. D2 (10.45) and D3 (79.65) are outside
+footings. D0 and D1 (1.232 / 1.265) sit inside the partial KiDS window, and inside the partial SPARC window on canonical only. D2 (10.45) and D3 (79.65) are outside
 both.
 
 **Brief kill.** Graded against KR2's window, it now **FIRES** on both footings: no member meets (i) + (ii) with mu_K(0) in
