@@ -9,7 +9,9 @@ scripts; every line of code here is new.
 Inputs (git-ignored, on disk): real_research/data/lensing_rar/ lr_lenses.npz, cfg110_perlens.npz, cfg116_perlens.npz (WX only),
 cfg96_isoflags.npz, cfg96_stack.npz, KiDS_DR4_brightsample.fits (+ _LePhare.fits).  The shear catalogue is not read.
 Outputs (this folder): ko1r.json, ko1r.out, ko1r_MUTATE.json.
-Run: OMP_NUM_THREADS=1 python3 -u ko1r.py        (one thread, well under 1.5 GB, a few minutes)
+Run: OMP_NUM_THREADS=1 python3 -u ko1r.py        (one thread, under 1.5 GB, about 25 s)
+     python3 -u ko1r.py --tie0  (added after the comparison with KO1, not graded: mass ties by plain float comparison,
+                                 outputs ko1r_tie0.json / .out / _MUTATE.json; reproduces KO1's numbers)
 
 TEST lane, quarantined, not registered; relabels nothing.  Footings never pooled.
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
@@ -43,7 +45,9 @@ SETTINGS = ((0.3, 230.0), (0.3, 115.0), (0.5, 230.0), (0.5, 115.0))   # (Delta d
 SHIFTS = (0.0, 0.1, -0.1)                   # lens log M* shifts for the mass-scatter control
 XS = (5.562, 53.64)                         # two-phase shares
 GATE = 0.891                                # the record's KiDS gate line as printed in the criteria
-TIE = 1e-9                                  # dex; a decimal tie log M*_j = log M*_l + Delta counts as ">=" (reading choice C3)
+TIE0 = "--tie0" in sys.argv                 # comparison run only (not graded): ties decided by plain float comparison
+TIE = 0.0 if TIE0 else 1e-9                 # dex; a decimal tie log M*_j = log M*_l + Delta counts as ">=" (reading choice C3)
+SUF = "_tie0" if TIE0 else ""
 G_OUT = 1e-15                               # m/s^2, R_h = min(3 Mpc, sqrt(G Mgal / G_OUT))
 SEED = 52
 
@@ -728,7 +732,10 @@ RES["not_done"] = ("R2 except the three-bin bracket, R3, R4, R5, R6, R7 and the 
 RES["closing"] = CLOSE
 say(f"done; peak RSS {rss_mb():.0f} MB")
 say(CLOSE)
-json.dump(RES, open(os.path.join(HERE, "ko1r.json"), "w"), indent=1, default=float)
-json.dump(MUT, open(os.path.join(HERE, "ko1r_MUTATE.json"), "w"), indent=1, default=float)
-open(os.path.join(HERE, "ko1r.out"), "w").write("\n".join(OUT) + "\n" + CLOSE + "\n")
+if TIE0:
+    RES["comparison_run"] = ("--tie0: mass ties decided by plain float comparison (tie tolerance 0); added after the comparison "
+                             "with KO1 to reproduce its numbers; not graded")
+json.dump(RES, open(os.path.join(HERE, f"ko1r{SUF}.json"), "w"), indent=1, default=float)
+json.dump(MUT, open(os.path.join(HERE, f"ko1r{SUF}_MUTATE.json"), "w"), indent=1, default=float)
+open(os.path.join(HERE, f"ko1r{SUF}.out"), "w").write("\n".join(OUT) + "\n" + CLOSE + "\n")
 # kappa = 1/2 FITTED; not theory closed. Adopts nothing.
