@@ -1,6 +1,6 @@
 --- closure_2026_11_06/MS3_moving_sun_light/hydro_ms3.py	2026-11-07 06:42:24
-+++ closure_2026_11_08/XF1_moving_host_field/xf1_hydro.py	2026-11-08 22:25:02
-@@ -1,106 +1,158 @@
++++ closure_2026_11_08/XF1_moving_host_field/xf1_hydro.py	2026-11-09 01:05:15
+@@ -1,106 +1,159 @@
  #!/usr/bin/env python3
 -"""AC15 S2: axisymmetric (ln r, theta) barotropic flow of the khronon charge past the moving Sun.
 +"""XF1 Stage B: axisymmetric (ln r, theta) flow of the khronon charge past a hosted body, the Stage A system (A1) evolved
@@ -155,7 +155,7 @@
 -    # theta axes: reflect v
 +# static start of the galaxy cells: the record's nonlinear static EFE phantom (D10, A2) or the code's linear fixed point (A1h), plus
 +# the r^-3 continuation into the outer ghosts
-+S_STATIC = np.zeros((NR, NT)); S_GHOST = np.zeros((G, NT)); STATIC_INFO = None
++S_STATIC = np.zeros((NR, NT)); S_GHOST = np.zeros((G, NT + 2 * G)); STATIC_INFO = None
 +if a.start == "hedgehog" and not POINT:
 +    t0_ = time.monotonic()
 +    s_lin, phi_t = FV.static_start(RHO_B, F_IN)
@@ -168,6 +168,7 @@
 +                       fixed_point_residual=float(np.sqrt(np.mean((fr_ - GRAV) ** 2 + (ft_ - GRAV_T) ** 2)) / np.max(GRAV))), d10=info_d10,
 +                       min_total_charge=float(1 + S_STATIC.min()), kernel_extrapolated=bool(1 + S_STATIC.min() <= 0), wall_s=time.monotonic() - t0_,
 +                       body_gravity_FV_vs_analytic_maxrel=GRAV_ANALYTIC_MAXREL)
++    S_GHOST = np.zeros((G, NT))
      for k in range(G):
 -        q[:, G - 1 - k] = q[:, G + k]; u[:, G - 1 - k] = u[:, G + k]; v[:, G - 1 - k] = -v[:, G + k]
 -        q[:, G + NT + k] = q[:, G + NT - 1 - k]; u[:, G + NT + k] = u[:, G + NT - 1 - k]; v[:, G + NT + k] = -v[:, G + NT - 1 - k]
@@ -215,7 +216,7 @@
      return W
  
  
-@@ -108,10 +160,10 @@
+@@ -108,10 +161,10 @@
      return np.where(a_ * b_ > 0, np.sign(a_) * np.minimum(np.abs(a_), np.abs(b_)), 0.0)
  
  
@@ -230,15 +231,15 @@
      pL = qL ** 2 / (2 * M2); pR = qR ** 2 / (2 * M2)
      FL = (qL * uL, qL * uL * uL + pL, qL * uL * vL); FR = (qR * uR, qR * uR * uR + pR, qR * uR * vR)
      UL = (qL, qL * uL, qL * vL); UR = (qR, qR * uR, qR * vR)
-@@ -119,45 +171,11 @@
+@@ -119,45 +172,11 @@
      for fl, fr, ul, ur in zip(FL, FR, UL, UR):
          fh = (SR * fl - SL * fr + SL * SR * (ur - ul)) / (SR - SL)
          out.append(np.where(SL >= 0, fl, np.where(SR <= 0, fr, fh)))
 +    if cL is not None:
 +        out.append(out[0] * np.where(out[0] > 0, cL, cR))
      return out
- 
- 
+-
+-
 -def rhs(W):
 -    W = bc(W)
 -    q, u, v = W
@@ -272,13 +273,13 @@
 -    dmt = -(Fr[2][1:] * AR[1:] - Fr[2][:-1] * AR[:-1] + Ft[1][:, 1:] * AT[:, 1:] - Ft[1][:, :-1] * AT[:, :-1]) / VOL \
 -          - qi * ui * vi / RC + pi_ * SRC_T
 -    return dq, dmr, dmt
--
--
+ 
+ 
 -# ---------------------------------------------------------------- MS3: chunked rhs (same elementwise expressions on radial blocks)
  assert G == 2
  
  
-@@ -172,126 +190,137 @@
+@@ -172,126 +191,137 @@
      return fL[:, :-1], fR[:, 1:]
  
  

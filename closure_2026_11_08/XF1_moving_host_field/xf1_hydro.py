@@ -109,7 +109,7 @@ def hedgehog_q(r):
 
 # static start of the galaxy cells: the record's nonlinear static EFE phantom (D10, A2) or the code's linear fixed point (A1h), plus
 # the r^-3 continuation into the outer ghosts
-S_STATIC = np.zeros((NR, NT)); S_GHOST = np.zeros((G, NT)); STATIC_INFO = None
+S_STATIC = np.zeros((NR, NT)); S_GHOST = np.zeros((G, NT + 2 * G)); STATIC_INFO = None
 if a.start == "hedgehog" and not POINT:
     t0_ = time.monotonic()
     s_lin, phi_t = FV.static_start(RHO_B, F_IN)
@@ -122,6 +122,7 @@ if a.start == "hedgehog" and not POINT:
                        fixed_point_residual=float(np.sqrt(np.mean((fr_ - GRAV) ** 2 + (ft_ - GRAV_T) ** 2)) / np.max(GRAV))), d10=info_d10,
                        min_total_charge=float(1 + S_STATIC.min()), kernel_extrapolated=bool(1 + S_STATIC.min() <= 0), wall_s=time.monotonic() - t0_,
                        body_gravity_FV_vs_analytic_maxrel=GRAV_ANALYTIC_MAXREL)
+    S_GHOST = np.zeros((G, NT))
     for k in range(G):
         S_GHOST[k] = S_STATIC[-1] * (RC[-1, 0] / rcg[G + NR + k]) ** 3
     S_GHOST = np.concatenate([S_GHOST[:, :G][:, ::-1], S_GHOST, S_GHOST[:, -G:][:, ::-1]], axis=1)   # theta-ghost padding (even)
