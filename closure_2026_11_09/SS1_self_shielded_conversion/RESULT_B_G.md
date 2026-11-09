@@ -49,7 +49,7 @@ C fails growth (8).
 | 5b Ursa Major | PASS: Delta_pred -0.001 (the UMa host is far below Delta 500, so x_host = 0) vs EV1 -0.024 +- 0.064 | PASS -0.001 |
 | 6 background | PASS (mass kept) | PASS |
 | 7b CMB lensing | NO VERDICT; reading 8.48 (baseline 8.56) | NO VERDICT; 8.48 |
-| 8 forest + growth | FAIL. About 63 % of the component converts; sigma8 0.654 (ref 0.808), S8 0.670; Rf BGS 0.133, LRG1 0.651; forest 0.000 | FAIL. sigma8 0.639, S8 0.656; Rf 0.050, 0.599 |
+| 8 forest + growth | FAIL. About 63 % of the component converts; sigma8 0.654 (ref 0.808), S8 0.670; Rf BGS 0.133, LRG1 0.651 (pre-correction; corrected 0.090, 0.644, see Correction above); forest 0.000 | FAIL. sigma8 0.639, S8 0.656; Rf 0.050, 0.599 (pre-correction; corrected 0.008, 0.582) |
 | 9 Bullet | FAIL (cls FAIL): M300 4.32, 1.99 e14 (Z +1.56, -0.90); the subcluster's peak sits 95 kpc from its galaxies and 63 kpc from the gas | FAIL (Z +1.95, -0.56) |
 | 10 Cassini | PASS | PASS |
 
