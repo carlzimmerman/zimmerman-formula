@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PAPER70 audit (v2.0): each quoted number appears in the TeX and, as the literal given, in the committed file named
+"""PAPER70 audit (v2.1): each quoted number appears in the TeX and, as the literal given, in the committed file named
 beside it; naming rules; no local paths; no pending placeholder. Run: python3 PAPER70_audit.py (exit 0 only if all pass).
 --mutate changes one digit of each source literal; exit 0 only if every mutated literal then fails.
 kappa = 1/2 FITTED; not theory closed; nothing here says the data favour the framework."""
@@ -739,6 +739,51 @@ L += [
  ("Gaia DR4 wide binaries (expected 2026-12-02)", FEQ, "Gaia DR4 (2026-12-02)"),
 ]
 
+SSA = "closure_2026_11_09/SS1_self_shielded_conversion/RESULT.md"
+SSB = "closure_2026_11_09/SS1_self_shielded_conversion/RESULT_B_G.md"
+L += [
+ ("the CMB-era component ($R=5.4092$ times the baryons)", SSA, "R = 5.4092"),
+ ("a self-similar halo's column grows only as $R_{500}$", SSA, "halo's column grows only as R500"),
+ ("so groups keep 0.21--0.45\\,$M_b$ against the 1.23--3.46 they need", SSA, "or 0.21-0.45 M_b in all"),
+ ("so groups keep 0.21--0.45\\,$M_b$ against the 1.23--3.46 they need", SSA, "KD1's uniform need is 3.46 M_b (f* 0) and 1.23 M_b (f* 1)"),
+ ("(0/20 and 8/20 canonical, 2/20 and 9/20 alt)", SSA, "**FAIL** 0/20 (f* 0), 8/20 (f* 1)"),
+ ("(0/20 and 8/20 canonical, 2/20 and 9/20 alt)", SSA, "**FAIL** 2/20, 9/20"),
+ ("X-COP keeps 0.89--0.94 inside $0.25\\,R_{500}$ but 0.33--0.42 inside $R_{500}$", SSA, "keep 0.89-0.94 of their component, inside R500 only 0.33-0.42"),
+ ("(passing on alt only under the NFW bracket)", SSA, "**G3 P** (+0.019 / 0.098"),
+ ("About 97\\,\\% becomes dark radiation", SSA, "Today 96.9 % of the component has become dark radiation"),
+ ("($\\Delta\\chi^2$ +8.21; $h$ 0.6741 $\\to$ 0.6602; +3.7 with $r_d$ profiled, reported)", SSA, "**FAIL** Delta chi^2 +8.21 (BAO +8.18, SN +0.03); h 0.6741 -> 0.6602"),
+ ("($\\Delta\\chi^2$ +8.21; $h$ 0.6741 $\\to$ 0.6602; +3.7 with $r_d$ profiled, reported)", SSA, "With r_d profiled: +3.7, reported"),
+ ("fail under abundance-matched halos", SSA, "pass under abundance-matched halos"),
+ ("the Coma UDGs worsen to $+1.211$\\,dex (reported)", SSA, "+1.211 (+4.62 sigma_U)"),
+ ("the $\\Sigma_{\\rm gate}$ of A is not reproduced from its stated constants", SSA, "0.042 g/cm^2 is **NOT REPRODUCED**"),
+ ("move the numbers but flip no gate", SSA, "NO BITE by the frozen status-vector rule"),
+ ("move the numbers but flip no gate", SSB, "**NO BITE** by the status-vector rule"),
+ ("while the structural MUTATEs bite", SSB, "**BITES.**"),
+ ("the outside text's Theorems 2 and 4 are false as written", SSA, "**Theorem 2** (retention >= 0.615 at x0 3.2): **false as written.**"),
+ ("the outside text's Theorems 2 and 4 are false as written", SSA, "**Theorem 4** (Gamma0/Gamma_psi = 0.032): **false as written.**"),
+ ("compile with standard axioms. Adopts nothing & SS1", SSB, "Compiles with exit 0 and standard axioms only"),
+ ("CMB lensing is NO VERDICT throughout", SSA, "**NO VERDICT** (KA4b failed)"),
+ ("CMB lensing is NO VERDICT throughout", SSB, "| 7b CMB lensing | NO VERDICT"),
+ ("& FAIL / FAIL for every variant", SSB, "| **G (primary)** | **FAIL at 2 groups** | **FAIL at 2 groups** |"),
+ ("($z_{\\rm dec}$ 0.631, $\\alpha$ 4.367, $v_{\\rm stiff}$ 265.8 / 288.1\\,km/s)", SSB, "z_dec (q = 0): 0.631"),
+ ("($z_{\\rm dec}$ 0.631, $\\alpha$ 4.367, $v_{\\rm stiff}$ 265.8 / 288.1\\,km/s)", SSB, "alpha: 4.367 / 4.366"),
+ ("($z_{\\rm dec}$ 0.631, $\\alpha$ 4.367, $v_{\\rm stiff}$ 265.8 / 288.1\\,km/s)", SSB, "265.8 km/s canonical, 288.1 alt"),
+ ("Ursa Major $-0.001$ against EV1's $-0.024\\pm0.064$", SSB, "vs EV1 -0.024 +- 0.064"),
+ ("every Lovisari group retains $\\ge0.9919$", SSB, "Lovisari groups f >= 0.9919"),
+ ("keeps its whole $4.1\\,M_b$ share", SSB, "its whole pre-conversion share, 4.1 M_b"),
+ ("over-fills (3/20 and 0/20; median $-0.07$ / $-0.28$)", SSB, "**FAIL** 3/20 (f* 0), 0/20 (f* 1); median residual -0.07 / -0.28"),
+ ("X-COP over-fills (mean $-0.214$, inner bin $-0.30$)", SSB, "FAIL mean -0.214, rms 0.241; bins -0.30"),
+ ("turns 41--63\\,\\% of the component into daughters streaming over about 6.7\\,Mpc", SSB, "converts 63 % of the component (41 % if only halos"),
+ ("turns 41--63\\,\\% of the component into daughters streaming over about 6.7\\,Mpc", SSB, "streaming over about 6.7 Mpc"),
+ ("$\\sigma_8$ 0.64--0.71, $S_8$ 0.66--0.72", SSB, "sigma8 0.639, S8 0.656"),
+ ("$\\sigma_8$ 0.64--0.71, $S_8$ 0.66--0.72", SSB, "sigma8 0.706 / 0.695, S8 0.723 / 0.713"),
+ ("(C on its own shelf, 0.355\\,dex)", SSB, "its own shelf FAILS KiDS (max 0.355 dex)"),
+ ("E and F at the groups", SSB, "| E | FAIL at 2 groups"),
+ ("E and F at the groups", SSB, "| F | FAIL at 2 groups"),
+ ("a unit bug in the streaming length was fixed before grading", SSB, "Streaming-length bug, fixed before grading"),
+ ("recorded as frozen predictions (no lens-redshift split on disk)", SSB, "Frozen predictions (no lens-redshift split is on disk, so not graded)"),
+]
+
 def mutate(lit):
     m = re.search(r"\d", lit)
     return lit if not m else lit[:m.start()] + str((int(m.group()) + 1) % 10) + lit[m.end():]
@@ -761,8 +806,9 @@ rules = [
  ("no 'cold dark matter'", "cold dark matter" not in TEX.lower()),
  ("no pending placeholder", "\\pend{" not in body),
  ("no LCDM input claimed", "No $\\Lambda$CDM inputs were used" in TEX),
- ("version v2.0 stated, no draft marker", "v2.0, 2026-11-09" in TEX and "draft v0" not in TEX),
- ("v1.9 DOI recorded in header", "deposited as DOI 10.5281/zenodo.24082193; this version adds the closing statement" in TEX),
+ ("version v2.1 stated, no draft marker", "v2.1, 2026-11-09" in TEX and "draft v0" not in TEX),
+ ("v2.0 DOI recorded in header", "deposited as DOI 10.5281/zenodo.24086157; this version adds the quarantined self-shielded conversion test lane SS1" in TEX),
+ ("v1.9 DOI recorded in header", "deposited as DOI 10.5281/zenodo.24082193; v2.0, which added the closing statement" in TEX),
  ("closing statement present, three parts", "\\section{Closing statement}" in TEX and all(s in TEX for s in ("\\textbf{Domain.}", "\\textbf{Boundary, as a statement about the record.}", "\\textbf{What such a component must be, from the record's own numbers.}"))),
  ("header has no not-yet-deposited marker", "not yet deposited" not in TEX and "the quarantined test lanes PJ1, WD1 and XF1" in TEX),
  ("dSph widening about 0.9 dex", all(abs(d-0.9)<0.1 for d in (1.208-0.356, 1.555-0.633, 1.203-0.321, 1.555-0.600))),
