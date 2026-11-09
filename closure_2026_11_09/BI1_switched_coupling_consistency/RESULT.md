@@ -1,4 +1,42 @@
-# BI1 RESULT (criteria 91e81dcd76; A1 f661cc7517; A2 521a16260c): carriers (i), (ii), (iii)-generic FAIL at B0. Carrier (iii) as the source specified it in round 25 PASSES B0 CONDITIONALLY (canonical / alt). Its usual gates are NOT YET RUN.
+# BI1 RESULT: FAIL at B0 / FAIL at B0 on all carriers (criteria 91e81dcd76; A1 f661cc7517; A2 521a16260c; correction below)
+
+## Correction (post-result, disclosed): A2's conditional PASS is WITHDRAWN
+
+**What was wrong.** A2's "Yukawa-smoothed" reading estimated the reaction force as (dL/df)(df/dXi)(dXi/drho) x l^2 / (2 R_W^2) / R_W.
+That dilutes it by the window twice. The orchestrator's checked identity (dL/df = g_b g_chi / (4 pi G), so a_extra = g_b g_chi |df/dr|
+/ (4 pi G rho_chi)) has no such dilution. The conditional PASS rested on the diluted reading.
+
+**Recomputed** (`bi1_a2b.py`) with an actual Helmholtz-smoothed Xi = Psi_kin profile (spherical Yukawa convolution around SS1 halos;
+field dispersion 60 km/s outside the halo, stated), at R_W x 0.5 / 1 / 2:
+
+| system | canonical, R_W x 1 | alt, R_W x 1 |
+|---|---|---|
+| group (M_b 5e12) at 102 / 400 kpc | 6.0e-13 / 8.2e-14 m/s^2 = 0.0064 / 0.00088 a0 = **0.016 / 0.0047 of the law's g** | **0.0084 / 0.0023 of g** |
+| group at R_W x 0.5 | 0.040-0.052 of g | |
+| group at R_W x 2 | 3e-4 to 1e-3 of g | |
+| L* (100 / 250 / 1000 kpc) | <= 6e-7 of g | |
+
+**Line 1e-3 of g: FAIL at the group on both footings.**
+- The Psi_kin-only Xi gives f of only 0.02-0.08 in the group, against the specification's intended 0.30-0.55. Adding the
+  Psi_coll term raises f, and with it the force, so the FAIL is robust.
+- The orchestrator's own figures for a 2e13 group (0.009-0.105 a0 at 102-400 kpc) are larger still.
+- The force is borderline against a0, not a wall, but it is 2-50x over the frozen 1e-3-of-g line.
+
+**The open defect (orchestrator, concurred).** One Xi formula must be large on the linear web, small around galaxies out to 3 Mpc,
+and large in groups. The source set the web value by hand through (H / H0)^3 / (1 + Psi_coll^2). This is the record's non-monotone-key
+wall (HX1) again.
+
+**Label: FAIL at B0 on all carriers, both footings.**
+- (i): a fifth force.
+- (ii): momentum non-conservation.
+- (iii)-generic: the switch force is 0.3-21 % of g.
+- (iii)-explicit: ghost-free with local fields, but the reaction at groups is 0.2-1.6 % of g (line 0.1 %). The (1 + f^2) G
+  baryon coupling (2G at recombination) and the missing A . grad f term in the claimed Phi_chi equation are recorded.
+- No usual gates run.
+
+---
+
+# A2 text as first written (its conditional PASS is withdrawn above)
 
 ## A2 update: carrier (iii) as explicitly specified (added after the earlier results; disclosed in AMENDMENT_A2.md). Script `bi1_a2.py`.
 
