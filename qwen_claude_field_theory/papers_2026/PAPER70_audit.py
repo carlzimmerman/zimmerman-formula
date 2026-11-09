@@ -611,6 +611,21 @@ L += [
  ("AZ31 passes W2 at the graded radius as a new test", AZ31, "This is a new radius-specific test, not an amendment of V3X."),
  ("AZ32 keeps the full W4c UNDECIDED", AZ32, "# UNDECIDED full W4c"),
 ]
+PJ1 = "closure_2026_11_08/PJ1_potential_gated_jeans/RESULT.md"
+L += [
+ ("0 of 756 cells per footing", PJ1, "0 of 756 (252 grid points x 3 ell_theta) on canonical, 0 of 756 on"),
+ ("the as-written point passes only G10 (Cassini)", PJ1, "the as-written point passes only G10 on both footings"),
+ ("from $2.6\\times10^{-5}$ at $k$ 0.01 to $5.9\\times10^{-7}$ at $k$ 0.3", PJ1, "falls from 2.6e-5 at k 0.01 to 2.9e-6 at k 0.1, 1.1e-6 at k 0.2\n   and 5.9e-7 at k 0.3"),
+ ("+619.5 / +613.5 before refit", PJ1, "FAIL +619.5 no refit, +171.7 after the 40-eval refit"),
+ ("+171.7 / +170.9 after", PJ1, "FAIL +613.5 / +170.9"),
+ ("(shift 0.42--0.44\\,dex)", PJ1, "shift 0.42-0.44 dex"),
+ ("(0.209 against 0.202, need 0.267)", PJ1, "0.209 / 0.202 / 0.267 (component no more concentrated than gas)"),
+ ("($R_{J0}$ 2.5\\,Mpc, $\\Phi_*$ $3\\times10^{-7}$, $p$ 2, $\\ell_\\theta$ 0) passes 4 of 11", PJ1, "T | R_J0 2.5 Mpc | Phi_* 3e-7 | p 2 | ell_theta 0: 4 of 11 gates"),
+ ("M3 ($R_{J0}\\times10$) does not bite as frozen", PJ1, "**does NOT bite as frozen**"),
+ ("the label does not rest on it. Disclosed: a mass-conserving", PJ1, "The label does not rest on M3"),
+ ("a mass-conserving divergence-form operator", PJ1, "div(R_J^2 grad f), which conserves mass exactly"),
+ ("the Bullet graded under the record's instantaneous relation", PJ1, "G6 is graded under the record's instantaneous Bullet relation"),
+]
 def mutate(lit):
     m = re.search(r"\d", lit)
     return lit if not m else lit[:m.start()] + str((int(m.group()) + 1) % 10) + lit[m.end():]
