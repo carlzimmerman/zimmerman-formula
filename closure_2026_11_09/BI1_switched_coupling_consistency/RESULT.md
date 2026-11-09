@@ -1,4 +1,61 @@
-# BI1 RESULT: FAIL at B0 / FAIL at B0 (criteria 91e81dcd76; A1 f661cc7517), all three carriers
+# BI1 RESULT (criteria 91e81dcd76; A1 f661cc7517; A2 521a16260c): carriers (i), (ii), (iii)-generic FAIL at B0. Carrier (iii) as the source specified it in round 25 PASSES B0 CONDITIONALLY (canonical / alt). Its usual gates are NOT YET RUN.
+
+## A2 update: carrier (iii) as explicitly specified (added after the earlier results; disclosed in AMENDMENT_A2.md). Script `bi1_a2.py`.
+
+**(1) Field equations (sympy, 1D reduction of the stated L).**
+- The Phi equation matches the claim.
+- **The Phi_chi equation does not.** The Euler-Lagrange equation is lap Phi_chi = 4 pi G (rho_chi + f rho_b) + (grad Phi - f grad Phi_chi - grad Phi_Q) . grad f.
+  The claim drops the last term, which vanishes only where grad f = 0.
+- **Couplings at constant f** (Fourier): Phi is sourced by (1 + f^2) rho_b + f rho_chi; Phi_chi by rho_chi + f rho_b. The cross
+  coupling is symmetric (Newton's third law kept), but **the baryon-baryon coupling is (1 + f^2) G** wherever f is not 0.
+  - At recombination (H / H0)^3 is huge, so Xi is huge and f -> 1 (with Psi_coll -> 0): the baryons' self-gravity is 2G, and the
+    component sources the baryons' potential at full weight.
+  - That is a direct change to the primary CMB's baryon driving. It is not the "standard cold" early universe claimed, and it must
+    be graded at the CMB gate.
+- **Ghost:** the gradient energy is a sum of squares; the Hessian determinant is 1/(16 pi^2 G^2) > 0 for every f. No ghost.
+
+**(2) Helmholtz fields with an action (mu_0).**
+- Psi's equation: mu_0 (R_W^2 Psi'' - Psi + c_1 rho_chi) + (dL_g/df) F'(Psi) = 0.
+- Horn A (Helmholtz-dominated, large mu_0): the coupling mu_0 c_1 Psi rho_chi gives a Yukawa self-force on the component of at
+  least a_extra.
+- Horn B (small mu_0): Psi stops being the specified Helmholtz field, or momentum is violated by a_extra.
+- **No mu_0 escapes "force >= a_extra".** The source's "inescapable trade-off" is right in form. Whether it is fatal depends on how
+  large a_extra is.
+
+**(3) Numbers** (record halos: SS1 primary halo; R_W = v_stiff / (2 H0); Xi from Psi_kin only, the channel through which the
+reaction lands on the component):
+
+| system | Xi_local | a_extra unsmoothed | a_extra Yukawa-smoothed | smoothed / law's g | source's claim |
+|---|---|---|---|---|---|
+| L* at 250 kpc (canonical) | 4e-4 | 3.0e-19 | 2.4e-21 | 6e-10 | 4.6e-12 |
+| group (M_b 5e12) at 400 kpc (canonical) | 3.1 | 1.3e-13 (about 6e-3 of g) | 2.7e-15 | 1.2e-4 | 2.6e-9 |
+
+Alt is similar: 2.0e-19 / 1.6e-13 unsmoothed; 1.1e-4 of g smoothed at the group.
+
+- **The source's numbers do not follow from its own formula** with the record's halos: they are 10^4-10^7 too large.
+- Its "21 a0" uses a0 = 1.2e-10. In the record's footings 2.6e-9 m/s^2 is 27.8 / 23.0 a0, and 4.6e-12 is 0.049 / 0.041 a0.
+- Near isolated galaxies Xi is tiny and f proportional to Xi^2, so the reaction vanishes by design.
+- At the group boundary the smoothed reading is under the 1e-3 line. The unsmoothed upper bound (about 6e-3) is over it.
+
+**B0 status.**
+- Carrier (iii)-explicit uses local Helmholtz fields (so conservation can be carried), is ghost-free, and its Psi_kin reaction is
+  <= 1e-3 of the law's g in the smoothed (faithful) reading at the evaluated points: **PASS, CONDITIONAL**.
+- **Conditions, stated:**
+  - the Psi_coll channel is NOT EVALUATED (rho_b,crit is defined for M_b,min 1e9 and then 1e8 in the same answer; the reaction
+    through Psi_coll lands on the baryons);
+  - the unsmoothed bound at groups exceeds the line;
+  - only two radii were evaluated.
+
+**Per the frozen rule the usual gates (KiDS, SPARC, groups, X-COP, Bullet, web, CMB) must be frozen in a further amendment before
+any of their numbers. They are NOT RUN here.** The first one to run is the CMB primary under the (1 + f^2) G baryon coupling with
+f -> 1 at recombination: expected to be decisive.
+
+**Reported, not graded:** the source's web unscreened 12.5 % (sigma8 +6.5 %) is unchecked here. Its kill test (small spirals 1.8-2.4
+Mpc from rich clusters, Xi about 6.5) is recorded as its prediction.
+
+---
+
+# Earlier label: FAIL at B0 / FAIL at B0 on carriers (i), (ii), (iii)-generic (A1)
 
 ## A1 update: carrier (iii), bimetric (added after the first result; disclosed in AMENDMENT_A1.md)
 
