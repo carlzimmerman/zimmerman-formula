@@ -1,4 +1,50 @@
-# PD1 RESULT: FAIL / FAIL (criteria 0dc7929421), first failing gate P2 KiDS
+# PD1 RESULT: FAIL / FAIL (criteria 0dc7929421; A1 08b9797be3), first failing gate P2 KiDS
+
+## A1 update: the source's cluster rule for N (added after the first result; disclosed in AMENDMENT_A1.md)
+
+**Label under A1: FAIL / FAIL, first failing gate P2 KiDS (unchanged).**
+
+The rule:
+- f_core = (1/2)[1 - (v_stiff / v_vir)^2] of the share sits in a Duffy NFW core.
+- The phantom W_vir M_b (nu - 1) is capped by (1 - f_core) share. W_vir = 1.0000 in every virialised halo, since c_s,IGM
+  15 km/s is far below v_vir.
+- The remainder is isothermal to R_ms.
+
+**Graded (frozen share, 59.5 M_b), canonical / alt:**
+
+| gate | canonical | alt |
+|---|---|---|
+| KiDS | FAIL 0.635 (20/59; lenses have v_vir <= 241 km/s, so no core and no change) | FAIL 0.675 |
+| SPARC | PASS rms 0.0614 (23 galaxies get a core) | PASS 0.0604 |
+| groups | FAIL 4/0 | FAIL 3/0 |
+| X-COP | FAIL -0.145; bins -0.08 / -0.12 / -0.22 | FAIL -0.153 |
+| X-COP f_miss | 1.04 / 1.19 / 1.54 (core 0.87 / 0.97 / 1.24) vs TR1 0.71 / 0.66 / 0.58: rising outward, opposite to TR1 | same |
+| Bullet | FAIL, Z +32 / +16 | FAIL |
+
+- The frozen share gives clusters M200 = 60.5 M_b, i.e. v_vir about 2,750 km/s, unphysical.
+- The cluster failures are the share rule's as much as the core's.
+
+**Reported only, never graded (post-A1, disclosed): the cosmic-ratio share of 5.41 M_b**, the source's apparent convention.
+- X-COP: FAIL +0.16 (under-filled), f_miss 0.51 / 0.54 / 0.63 (core 0.35 / 0.33 / 0.33), against the source's claimed 0.71
+  inside 0.25 R500. The profile rises outward, not TR1's fall.
+- Groups: 0/6 (alt 0/7).
+- Bullet: FAIL, Z -0.4 / -2.2.
+- KiDS: fails worst, 1.61 / 1.65 (52-56 of 59), because a 5.41 M_b share truncates the phantom far inside the KiDS radii.
+- With v_vir about 1,300 km/s, f_core is about 0.48 in every cluster: a constant half, which gives no radial shape.
+- **Neither share reproduces the source's numbers.**
+
+**Equipartition (stated).**
+- For a field with a quadratic Pi^2 term and a gradient term, the virial theorem gives equal time-averaged energies in the two:
+  the 1/2. That is an energy split, not a mass split.
+- Nothing in it localises half the mass in an NFW core, and nothing produces the (v_stiff / v_vir)^2 subtraction.
+- The rule does not follow from the argument. The 1/2, the square and the NFW shape are recorded as form choices.
+
+Files: `AMENDMENT_A1.md`, `pd1_a1.py` -> `pd1_a1.json` / `.out` (graded), `pd1_a1_share5.41.json` / `.out` (reported), logs
+`run_pd1_a1*.txt`.
+
+---
+
+# Original result (6bd9621320)
 
 Variant N: the law's phantom IS the conserved dust. TEST lane, quarantined. Adopts nothing. kappa = 1/2 FITTED; not theory closed.
 Footings never pooled.
