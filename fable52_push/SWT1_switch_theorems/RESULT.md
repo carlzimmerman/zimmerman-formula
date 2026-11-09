@@ -1,5 +1,8 @@
 # SWT1 RESULT (criteria 4d86f4d107, amendment A1 4af87eb9c0)
 
+Commit ids: the hashes quoted in this folder are the shared checkout's. On origin the same commits are c892bac851 (criteria),
+6997214890 (A1) and cbf83986f3 (result).
+
 **SWT1-CP: KEY-DEPENDENT / KEY-DEPENDENT. SWT1-WP: NOT A NO-GO AS FROZEN / NOT A NO-GO AS FROZEN.**
 
 TEST lane, quarantined. Adopts nothing and relabels nothing. kappa = 1/2 FITTED; not theory closed. Footings never pooled
