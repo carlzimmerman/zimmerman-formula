@@ -53,6 +53,7 @@ Governing case P1G canonical: M_cb(<300 kpc) 4.9e13 Msun, mean column at least 0
 | Sub-Earth H/He bodies | pass | pass | untested | pass | pass | NOT ESTABLISHED: sublimation not computed |
 | Jupiters, brown dwarfs | pass | pass | pass | **fail** | pass | microlensing range |
 | Stellar remnants | pass | pass | pass | **fail** | pass | microlensing, and progenitors' metals about 25x the ICM's (PROVISIONAL) |
+| *Addendum 2026-11-09:* gate (d) for 0.1-100 Msun now measured | | | | **fail 4x-39x** | | Abell 370 Dragon arc, Sigma_* 104 +- 21 Msun/pc^2 (Palencia+2026, arXiv:2604.22702); see `LIT_A370_DRAGON_2026-11-09.md` |
 | **Massive black holes, 1e2 to about 1e7 Msun** | pass | pass | pass | pass | pass | **passes my gates.** Above the caustic range. Galaxy heating is reached only at 1.4e9 (sigma 200 km/s) and 8.7e7 (50 km/s). Bondi-Hoyle L about 3e42 erg/s at 1e6 against core L_X 1e44-45. **No known channel turns about 5 times the hot gas into black holes without stars or metals. Millilensing and dynamical effects at the high end are not computed.** |
 
 (e) Budget, raw data only: BBN with D/H, Omega_b h^2 0.02166 (Cooke+2018, PROVISIONAL, from memory, no Planck). If hot cluster gas holds 4-10 % of cosmic baryons (PROVISIONAL census range), CBDM in clusters alone is 19-54 %. FRB dispersion measures check the ionized total only to about +-40 % (Macquart+2020, from memory), so this reads pass within errors only, which is weak. Groups, if they carried the same lambda, would add more; B1 already fails there.
