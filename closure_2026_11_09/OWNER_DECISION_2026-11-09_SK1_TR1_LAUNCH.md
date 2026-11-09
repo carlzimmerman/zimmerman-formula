@@ -37,3 +37,12 @@ committed files (`git grep -il` the owner's handle before every commit). Downloa
 the lanes run on Opus 5.5 at the owner's instruction; the orchestrator registers, forwards labels to Field equations, and deposits.
 
 Folds into PAPER70 v2.0 (next deposit = --newversion 24082193) with the closing statement, whichever way SK1 lands.
+
+## Fix-forward correction (2026-11-09, after SK1 landed)
+
+The pre-read above called rotation "the one selector with no verdict". That was wrong: KU2 (`rebuild_2026_10_22/KU2_kappa_universality_model_choice`,
+10-22) had already graded the spin parameter UNIVERSAL on the same MaNGA DynPop file at matched (M*, Sigma_Re). SK1 re-grades it on the law's
+residual at matched (M*, g_N) and finds the same thing: slow minus fast +0.060 dex [+0.037, +0.081] both footings, carried by dispersion
+(HX1's killed key), FAIL / FAIL. A second slip: ST1's X-ray elliptical IMF offset comes from the Humphrey 2006 table, not the ATLAS3D table
+named above; SK1 replayed it on the right table. Both lanes landed: SK1 FAIL / FAIL (8fd9c516e3 / f193a68077), TR1 NO TRACER FOLLOWS /
+NO TRACER FOLLOWS (45ee5f7d8b / e5a73dc99d). The selector catalog is closed under the frozen rule; PAPER70 v2.0 carries the closing statement.
