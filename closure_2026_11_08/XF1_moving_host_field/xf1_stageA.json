@@ -1,0 +1,62 @@
+{
+ "lane": "XF1_moving_host_field",
+ "criteria": "8b99d12c42",
+ "checks": {
+  "A1a": {
+   "ok": true,
+   "detail": "P equation: grad(Xi + gamma_L F'(q)) = K W'(K|P|) P/|P|  (residuals [0, 0, 0])"
+  },
+  "A1b": {
+   "ok": true,
+   "detail": "khronon equation: d_t q + div(q v) = 0 with v = -grad sigma, q = div P (charge advected by the frame, conserved)"
+  },
+  "A1c": {
+   "ok": true,
+   "detail": "W'(p) = a0*p/(K*(a0 - p)); K W' = a0 u  <->  K|P| = a0 u/(1+u); max_P [P.A - W] = (a0^2/K)[u - ln(1+u)] (PAPER70's J, residual 0)"
+  },
+  "A1d": {
+   "ok": true,
+   "detail": "with P = grad chi/(K(1 + |grad chi|/a0)), K W'(K|P|) P/|P| = grad chi identically: the P equation inverts to the AQUAL-type constraint  div[grad chi/(1 + |grad chi|/a0)] = K q,  chi = Xi + gamma_L F'(q)"
+  },
+  "A1f": {
+   "ok": true,
+   "detail": "stationary pattern sigma(x - V t), w = v - V z^: Xi = phi + (w^2 - V^2)/2 (AC15 S1b) and the khronon equation is div(q w) = 0 (AC15 KA2); both with W live, since neither touches the P equation"
+  },
+  "A1g": {
+   "ok": true,
+   "detail": "dP/dA at A = x_e a0 e^: 1/(K(1+x_e)^2) along e^, 1/(K(1+x_e)) across (D10 Route F's mpar/mper); K^2 W''(K|P_h|) = K*(x_e + 1)**2 = AC15's K M_theta, M_theta = (1+x_e)^2"
+  },
+  "A1h": {
+   "ok": true,
+   "detail": "static linear EFE: K dq = div[D grad phi_t], lap phi_t = K(rho_b + dq)  =>  div[(I - D) grad phi_t] = K rho_b; for a point mass phi_t = -GM/(sqrt(S_par) S_perp sqrt(x^2/S_perp + y^2/S_perp + z^2/S_par)), S = I - D, is a vacuum solution (div[S grad phi_t] = 0 for r != 0; flux 4 pi G M by the change of variables x_i = sqrt(S_i) X_i); dq = lap phi_t / K outside the mass (the anisotropic EFE phantom). Stage B builds the HEDGEHOG start of B1-B4 as the discrete fixed point of this linear system on the grid."
+  },
+  "A2": {
+   "ok": true,
+   "detail": "V = 0: w = 0, Xi = phi; the system (1)-(4) becomes  grad phi + gamma_L grad q = K W'(K|P|) P^,  q = div P,  lap phi = K(rho_b + q). With p = K P/a0, lengths in a, accelerations in a0: K W'(a0 p) = -a0*p_v/(p_v - 1) = p/(1-p) a0 and gamma_L q -> (Lambda^2/2) div p with Lambda = L*/a: exactly D10's (L) + (P_L), the solver X1 and SE2 graded with (AQUAL + EFE + screening at the floor; external field as the far-field boundary grad chi -> x_e a0 e^). Identical for the raw kink; the Pi^6 blend differs only where Pi < rho_DE (the switch surface; AC21/BL3: no label moved)."
+  },
+  "A3": {
+   "ok": true,
+   "detail": "gravity off (M = 0): (i) rho_h = 0: q = 0, P = 0, chi = const, w = -V is exact trivially; (ii) rho_h != 0: Xi and the khronon equation are Galilean invariant (sigma' = sigma + V.x' + V^2 t/2), so the static host solution (q_h = rho_h, A_h, P_h) boosted to w = -V is an exact stationary solution of (1)-(4) with the host's own P_h carrying div P_h = rho_h. The 'uniform rho_h with g_ext constant' cell is the local approximation of that host state; Stage B advects rho_h as the background and evolves dq = q - rho_h with the body's forces (KB3)."
+  },
+  "A4": {
+   "ok": true,
+   "detail": "W -> 0 (screened PN regime, 2 M_theta (r/L*)^2 <= 1e-9) and F raw: grad chi = 0, so Xi + gamma q = C with C = gamma rho_h from the far field; with (2) and phi = -GM/r: gamma q = c_gal^2 + Phi_N + (V^2 - w^2)/2, AC15 S1b term by term (c_gal^2 = gamma rho_h, Phi_N = GM/r)"
+  }
+ },
+ "statements": {
+  "A1e": "Bernoulli-type integral: Xi + gamma_L F'(q) = chi, and grad chi = K W'(K|P|) P^. chi is constant iff W' = 0, i.e. P = 0 or W dropped (AC15's screened PN regime). With W live, chi is fixed nonlocally by div[grad chi/(1+|grad chi|/a0)] = K q (A1d): an elliptic constraint, not an algebraic integral along streamlines. Radial example: dchi/dr = K*a0*p(r)/(-K*p(r) + a0) != 0 for p != 0. HE-a (Bernoulli only in the unscreened/PN limit; screened system = coupled PDE): HIT.",
+  "A1 system": "CLOSED SYSTEM (body frame, aligned g_ext along z^; perpendicular: same equations with e^ = x^, not axisymmetric):\n   (1) div(q w) = 0,  w = -grad psi (irrotational),  w -> -V z^ at infinity\n   (2) Xi = phi + (w^2 - V^2)/2\n   (3) chi = Xi + gamma_L F'(q);   P = grad chi / (K (1 + |grad chi|/a0));   q = div P   (equivalently div[grad chi/(1+|grad chi|/a0)] = K q)\n   (4) lap phi = K (rho_b + q),  phi -> -g_ext . x far away;  grad chi -> A_h = x_e a0 e^ (the host's static khronon, A_h balances g_ext), q -> rho_h\n   Time-dependent form evolved in Stage B (the frame's momentum equation, the gradient of (2)-(3)):\n   Dw/Dt = -grad phi + grad chi - gamma_L grad F'(q),   d_t q + div(q w) = 0.\n   grad chi is the Legendre (W) force on the frame, absent from AC15; -grad phi includes the charge's own gravity, also absent from AC15.",
+  "A1h_phantom_density": "G*M*(S_par*(-3*S_par*x**2 - 3*S_par*y**2 + 2*S_par*(x**2 + y**2) + 2*S_perp*z**2) + S_perp*(S_par*(x**2 + y**2) - 2*S_perp*z**2))/(sqrt(S_perp)*(S_par*(x**2 + y**2) + S_perp*z**2)**(5/2))  / K"
+ },
+ "PN_orders": {
+  "canonical": {
+   "W_over_Pi": 1.1890514083548689e-07,
+   "gammaF_over_Pi": 5.457748469671096e-15
+  },
+  "alt": {
+   "W_over_Pi": 1.4369784655737827e-07,
+   "gammaF_over_Pi": 6.062718022281168e-15
+  }
+ },
+ "verdict": "A1 CLOSED SYSTEM: Stage B runs"
+}
