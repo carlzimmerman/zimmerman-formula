@@ -5,6 +5,17 @@ alone before any B-G number. A3 corrected E's central share (also committed alon
 result stands as recorded (RESULT.md, b8569ef94a). TEST lane, quarantined; adopts nothing; no particle adopted.
 kappa = 1/2 FITTED; not theory closed. Footings graded separately, never pooled.
 
+**Correction (with variant H, A4 8bcceec033):** the fsigma8 derivative is now computed by fine-grid central differences. The
+earlier coarse cubic spline rang across the onset kink; before-onset rows (LRG2, LRG3) now read exactly 1.000. Every variant
+cosmology was rerun, and ss1v.json / ss1v.out carry the corrected numbers. **No label changes.**
+- G: Rf BGS 0.090 / 0.008, LRG1 0.644 / 0.582 (was 0.133 / 0.050, 0.651 / 0.599), still FAIL.
+- D: gate 8 flips FAIL -> PASS (BGS 0.53, LRG1 0.97), but D's first failing gate is still KiDS.
+- B: Rf BGS 0.50, LRG1 0.09, still FAIL.
+- E: BGS 0.004, still FAIL.
+- F: BGS 0.081, still FAIL.
+- C: unchanged, PASS.
+See RESULT_H.md.
+
 ## Labels (frozen rule: first failing gate in the order 1, 2, 3, 5, 5b, 6, 7b, 8, 9, 10)
 
 | variant | canonical | alt | constants (as recorded beside the label) |

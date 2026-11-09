@@ -60,7 +60,7 @@ VAR = os.environ.get("SS1V", "G")
 OPT = os.environ.get("SS1V_OPT", "")
 FCEN = float(os.environ.get("SS1V_FCEN", "0.6"))        # F bracket value for groups / clusters (0.3 reported as a second run)
 def vpar(V, f):
-    F = footing(f); base = V[:1] if not V.startswith("MG") else "G"
+    F = footing(f); base = "G" if V.startswith("MG") else ("H" if V.startswith("MH") else V[:1])
     if base in ("B", "C", "D", "E"): p = dict(z_dec=0.55, alpha=3.80, kick={"B": 355.0, "C": 220.0}.get(base, 1150.0))
     else: p = dict(z_dec=F["z_q0"], alpha=F["alpha_G"], kick=4 * F["v_stiff"])
     p.update(base=base, v_stiff=F["v_stiff"], F=F)
@@ -68,11 +68,47 @@ def vpar(V, f):
     if V == "MG2": p["v_stiff"] /= 1.25
     if V == "MG3": p["alpha"] = 0.0
     p["force_x0_zero"] = (V == "MG4")
+    if base == "H":                                                            # A4: variant H
+        p["hfull"] = V.startswith("Hfull"); p["gform"] = "src" if V == "Hsrc" else "halo"
+        if p["hfull"]: p["kick"] = 2 * F["v_stiff"]
+        if V == "MH1": p["v_stiff"] = 0.0
+        if V == "MH2": p["kick"] = 0.0
     return p
+
+# ================================================================== variant H (AMENDMENT_A4): per-radius escape retention + bound daughters
+def h_profile(p, H, tau):
+    """shells of the pre-conversion halo: radii, component mass per shell, the retained fraction f(r, tau), the bound flag of
+    a daughter made there, and v_vir. SIS: sigma^2 = V^2/2 (g = 0.5); NFW: isotropic Jeans of the untruncated profile;
+    gform 'src': the source's g_pot(u) = u/(0.08 + u)/(1 + 2.5 u^1.5)."""
+    R5, R2 = H["R500"], H["R200"]; rg = np.geomspace(1e-3 * R5, R2, 300); M0 = H["Menc"](rg); dM = np.diff(np.concatenate([[0.0], M0]))
+    M200 = H["M200"]; V2 = G_KPC * M200 / R2; v = math.sqrt(G_KPC * H["M500"] / R5)
+    if H.get("c200") is None:
+        sig2 = np.full_like(rg, V2 / 2); Phi = -V2 * (1 + np.log(R2 / rg))
+    else:
+        c = H["c200"]; rs = R2 / c; mu = lambda x: np.log1p(x) - x / (1 + x); A = M200 / mu(c)
+        xg = np.geomspace(1e-4, 2000.0, 6000); rho = 1 / (xg * (1 + xg) ** 2); Mx = A * mu(xg); integ = rho * G_KPC * Mx / (xg * rs) ** 2 * rs
+        cum = np.concatenate([np.cumsum((0.5 * (integ[1:] + integ[:-1]) * np.diff(xg))[::-1])[::-1], [0.0]])
+        sig2 = np.interp(rg / rs, xg, cum / rho); Phi = -(G_KPC * A) * np.log1p(rg / rs) / rg
+    g = sig2 / v ** 2
+    if p.get("gform") == "src": u = rg / R5; g = u / (0.08 + u) / (1 + 2.5 * u ** 1.5)
+    f = np.exp(-(tau / math.pi) * (p["v_stiff"] / v) ** 2 / np.maximum(g, 1e-30)) if tau > 0 else np.ones_like(rg)
+    bound = (0.5 * (3 * sig2 + p["kick"] ** 2) + Phi) < 0
+    return rg, dM, f, bound, v
+def h_puffed(p, H): return p.get("hfull") and math.sqrt(G_KPC * H["M500"] / H["R500"]) < p["v_stiff"] / 2
+def h_enc(p, H, r, tau=None):
+    tau = p["alpha"] if tau is None else tau; r = np.asarray(r, float)
+    if h_puffed(p, H): return H["Mchi0"] * r ** 3 / (r * r + 180.0 ** 2) ** 1.5
+    rg, dM, f, b, v = h_profile(p, H, tau); Mc = np.cumsum(dM * (f + (1 - f) * b))
+    return np.interp(r, rg, Mc, left=0.0, right=Mc[-1])
+def h_escaped(p, H, tau):
+    if h_puffed(p, H): return 0.0
+    rg, dM, f, b, v = h_profile(p, H, tau); return float(np.sum(dM * (1 - f) * (~b)) / np.sum(dM))
+def h_bound_fraction(p, H, kick):
+    q = dict(p, kick=kick); rg, dM, f, b, v = h_profile(q, H, p["alpha"]); return float(np.sum(dM * b) / np.sum(dM))
 ISO_CLS = {"kids"}; GAL_CLS = {"kids", "sparc", "udg", "mw", "lsb"}
 def x0_of(p, H, cls, extra=None):
     """the variant's system gate x0 for a virialized pre-conversion halo H (Delta 500, R_sys = R500)."""
-    if p["force_x0_zero"]: return 0.0
+    if p["force_x0_zero"] or p["base"] == "H": return 0.0
     extra = extra or {}; b = p["base"]; R5 = H["R500"]; M5 = H["M500"]; v = math.sqrt(G_KPC * M5 / R5)
     Rsys = extra.get("R_sys", R5); Dsys = extra.get("Delta_sys", 500.0)
     fs = extra.get("f_sub", FSUB["isolated" if cls in ISO_CLS else "field"])
@@ -109,6 +145,7 @@ class VComp:
             elif b in ("C", "D", "E"): x0 = math.sqrt(x0 ** 2 + xh ** 2)
             else: x0 = max(x0, xh)
         fr = ret(x0, self.p["alpha"])
+        if self.p["base"] == "H": x0 = 0.0; fr = float(h_enc(self.p, H, H["R200"] * 1.0001)) / H["Mchi0"]       # A4: own halo only
         e = dict(H=H, x0=x0, f=fr, cls=cls); self.cache[key] = e; return e
     def build(self, keys):
         for k in keys:
@@ -125,6 +162,7 @@ class VComp:
             v = math.sqrt(G_KPC * H["M500"] / H["R500"]); vl = v * (1 + (rg / (0.35 * H["R500"])) ** 2) ** -0.25
             fr = np.array([ret(3 * max(0.0, (vi / self.p["v_stiff"]) ** 2 - 1), self.p["alpha"]) for vi in vl]); Mc = np.cumsum(dM * fr)
             return np.interp(r / 1.18, rg, Mc, left=0.0, right=Mc[-1])        # the 18 % expansion (bracket, as given)
+        if b == "H": return h_enc(self.p, H, r)
         out = e["f"] * H["Menc"](r)
         if b == "C":                                                          # evicted mass in the shelf (Gaussian shell, mean 1.2 Mpc, sigma 0.3 Mpc)
             rs = np.linspace(1.0, 4000.0, 4000); w = rs ** 2 * np.exp(-0.5 * ((rs - 1200.0) / 300.0) ** 2); cw = np.cumsum(w); cw /= cw[-1]
@@ -205,7 +243,7 @@ def run_local(V):
         F = footing("canonical"); M5 = 500 * C.rho_crit(0.05, F["h"], F["Om"]) * 4 / 3 * math.pi * R5 ** 3
         OBS[(round(z["Mb_last"][0], -3), "xcop")] = math.sqrt(G_KPC * M5 / R5)
     S.Comp = VComp; S.RES = {}; S.SUFFIX = f"_V{V}" + (f"_{OPT}" if OPT else "") + (f"_fcen{FCEN}" if VAR == "F" and FCEN != 0.6 else "")
-    if V.startswith("MG") or OPT: S.MUT = "primary-only"
+    if V.startswith("MG") or V.startswith("MH") or OPT: S.MUT = "primary-only"
     S.run_local()
     # gate 5b, Ursa Major (EV1 W1): members' pointwise shift minus the field's, primary halos
     out = {}
@@ -236,7 +274,8 @@ def run_local(V):
                 if xhost is not None: xo = max(xo, xhost) if b in ("B", "F", "G") else math.sqrt(xo ** 2 + xhost ** 2)
                 fr = ret(xo, CP.p["alpha"]); s_ = []
                 for pnt in per[n]:
-                    r = pnt["feat"]["r"] / S.KPC; Mb = pnt["feat"]["Mb"]; bb = 1 + fr * float(H["Menc"](r)) / Mb; gN = GB["need"](pnt["feat"], "x") * a0
+                    r = pnt["feat"]["r"] / S.KPC; Mb = pnt["feat"]["Mb"]; gN = GB["need"](pnt["feat"], "x") * a0
+                    bb = 1 + (float(h_enc(CP.p, H, r)) if b == "H" else fr * float(H["Menc"](r))) / Mb
                     s_.append(math.log10(S.glaw(bb * gN, a0) / S.glaw(gN, a0)))
                 vals.append(float(np.mean(s_)))
             return float(np.mean(vals))
@@ -264,14 +303,16 @@ def run_cosmo(V):
     x0n = []
     for m in MN:
         Mb = m / (1 + C.F_CAP * F["R"]); H = C.halo(Mb, F["R"], F["h"], F["Om"], M200=m, Mchi=m * C.F_CAP * F["R"] / (1 + C.F_CAP * F["R"]), z=p["z_dec"]); H["M500"] = float(H["Menc"](H["R500"])) / H["fchi"]
-        x0n.append(x0_of(p, H, "node" if m >= 1e13 else "sparc"))
+        x0n.append(H if p["base"] == "H" else x0_of(p, H, "node" if m >= 1e13 else "sparc"))
+    if p["base"] == "H":
+        TG = np.linspace(0, p["alpha"], 41); ESC = np.array([[h_escaped(p, Hn, tg) for tg in TG] for Hn in x0n])
     # background clock (unchanged background) and tau(a)
     z = REFBG["z"]; t = REFBG["t"]; tdec = float(np.interp(p["z_dec"], z, t)); t0 = float(t[0])
     def tau_of_z(zz): return np.where(zz < p["z_dec"], p["alpha"] * (np.interp(zz, z, t) - tdec) / (t0 - tdec), 0.0)
     def Fconv(zz):
         ta = float(tau_of_z(np.array([zz]))[0])
         if ta <= 0: return 0.0
-        halo = float(sum(d * (1 - y_of_tau(x, ta)) for d, x in zip(dF, x0n)))
+        halo = float(sum(d * np.interp(ta, TG, ESC[i]) for i, d in enumerate(dF))) if p["base"] == "H" else float(sum(d * (1 - y_of_tau(x, ta)) for d, x in zip(dF, x0n)))
         field = (1 - Fc[0]) * (1 - math.exp(-ta)) if p["base"] == "B" else 0.0
         return halo + field
     # streaming length (comoving Mpc) for a daughter produced at onset: integral of v (a_dec/a) / a dt
@@ -283,10 +324,11 @@ def run_cosmo(V):
         return float(abs(np.trapz(integ, ts)) * KMS_GYR_MPC)
     # growth (record's two-fluid ODE, WD1's k-dependent form) with fc(k, a) = Fconv (1 - T(k)), T = 1/(1 + (k lam)^2)
     lna_t = np.log(1 / (1 + z)); o = np.argsort(lna_t); lna_t = lna_t[o]; lnH = np.log(REFBG["H"][o]); dlnH = np.gradient(lnH, lna_t)
-    ai = 1 / 3401.0; adec = 1 / 1091.0; nk = len(KG); grid = np.unique(np.concatenate([np.linspace(math.log(ai), 0.0, 6001), np.log(1 / (1 + ZG))])); tset = {float(x): i for i, x in enumerate(np.log(1 / (1 + ZG)))}
+    ai = 1 / 3401.0; adec = 1 / 1091.0; nk = len(KG); ZF = np.linspace(0.0, 1.2, 241)                 # fine low-z epochs for fsigma8 (A4 disclosure: replaces the coarse-grid spline derivative)
+    grid = np.unique(np.concatenate([np.linspace(math.log(ai), 0.0, 6001), np.log(1 / (1 + ZG)), np.log(1 / (1 + ZF))])); tset = {float(x): i for i, x in enumerate(np.log(1 / (1 + ZG)))}; tsetF = {float(x): i for i, x in enumerate(np.log(1 / (1 + ZF)))}
     I4 = np.eye(4)[None, :, :]; zgrid_fc = np.linspace(0, p["z_dec"] + 0.01, 120); Fc_tab = np.array([Fconv(x) for x in zgrid_fc]); lam_tab = np.array([lam_of_z(x) for x in zgrid_fc])
     def solve(on):
-        y = np.zeros((nk, 4)); y[:, 0] = ai; y[:, 1] = ai; rec = {}
+        y = np.zeros((nk, 4)); y[:, 0] = ai; y[:, 1] = ai; rec = {}; recF = {}
         for n in range(len(grid) - 1):
             h_ = grid[n + 1] - grid[n]; lm = 0.5 * (grid[n] + grid[n + 1]); a = math.exp(lm); zz = 1 / a - 1
             E2 = math.exp(2 * np.interp(lm, lna_t, lnH)) / 100.0 ** 2; dl = float(np.interp(lm, lna_t, dlnH))
@@ -298,28 +340,34 @@ def run_cosmo(V):
             if a > adec: A[:, 1, 2] = 1.5 * Ob; A[:, 2, 3] = 1; A[:, 3, 0] = 1.5 * Od; A[:, 3, 2] = 1.5 * Ob; A[:, 3, 3] = -(2 + dl)
             y = np.linalg.solve(I4 - 0.5 * h_ * A, ((I4 + 0.5 * h_ * A) @ y[:, :, None]))[:, :, 0]
             if float(grid[n + 1]) in tset: rec[tset[float(grid[n + 1])]] = y.copy()
+            if float(grid[n + 1]) in tsetF: recF[tsetF[float(grid[n + 1])]] = y.copy()
+        def fcz(zz): return float(np.interp(zz, zgrid_fc, Fc_tab)) * (1 - 1 / (1 + (KG * float(np.interp(zz, zgrid_fc, lam_tab))) ** 2)) if (on and zz < p["z_dec"]) else np.zeros(nk)
+        outF = np.array([OB * recF[j][:, 2] + OD * (1 - fcz(ZF[j])) * recF[j][:, 0] for j in range(len(ZF))]).T
         outv = np.empty((nk, len(ZG)))
         for jz in range(len(ZG)):
             a = 1 / (1 + ZG[jz]); zz = ZG[jz]; fc = np.zeros(nk)
             if on and zz < p["z_dec"]: fc = float(np.interp(zz, zgrid_fc, Fc_tab)) * (1 - 1 / (1 + (KG * float(np.interp(zz, zgrid_fc, lam_tab))) ** 2))
             outv[:, jz] = OB * rec[jz][:, 2] + OD * (1 - fc) * rec[jz][:, 0]
-        return outv
-    Rr = solve(True) / solve(False)
+        return outv, outF
+    (o1, f1), (o0, f0) = solve(True), solve(False); Rr = o1 / o0; RF_ = f1 / f0
     # sigma8 / fsigma8 (WD1 / CE2 form), lensing reading
     hh = F["h"]; R8 = 8.0 / hh; lk = np.log(KG); W8 = lambda x: 3 * (np.sin(x) - x * np.cos(x)) / x ** 3; w2k3 = W8(KG * R8) ** 2 * KG ** 3 / (2 * np.pi ** 2); Pref = ns["PREF"]
     sig8 = lambda RR: np.sqrt(np.trapz(Pref * RR ** 2 * w2k3[:, None], lk, axis=0)); s_sw = sig8(Rr); s_rf = sig8(np.ones_like(Rr))
     from scipy.interpolate import CubicSpline
     lna_z = np.log(1 / (1 + ZG)); oo = np.argsort(lna_z)
-    d_sw = CubicSpline(lna_z[oo], s_sw[oo]).derivative()(lna_z); d_rf = CubicSpline(lna_z[oo], s_rf[oo]).derivative()(lna_z); rr = d_sw / d_rf
+    d_sw = CubicSpline(lna_z[oo], s_sw[oo]).derivative()(lna_z); d_rf = CubicSpline(lna_z[oo], s_rf[oo]).derivative()(lna_z); rr_spline = d_sw / d_rf
+    PrefF = np.array([[M.pk_lin(k_, z_) for z_ in ZF] for k_ in KG]); s8F = lambda RR: np.sqrt(np.trapz(PrefF * RR ** 2 * w2k3[:, None], lk, axis=0))
+    lnaF = np.log(1 / (1 + ZF)); rrF = np.gradient(s8F(RF_), lnaF) / np.gradient(s8F(np.ones_like(RF_)), lnaF)
+    rr = np.interp(ZG, ZF, rrF)                     # fine-grid central differences (graded); the coarse spline kept as rr_spline (reported)
     rows = []
     for (tb, zb, r1, p1, m1, r2, p2, m2) in ns["DESI"]:
-        e1, e2 = 0.5 * (p1 + m1), 0.5 * (p2 + m2); x = float(np.interp(zb, ZG, rr)); rows.append(dict(bin=tb, z=zb, Rf=x, in_sf=bool(abs(x - r1) <= 2 * e1), in_sfb=bool(abs(x - r2) <= 2 * e2), s8dir=bool(x <= 1.001)))
+        e1, e2 = 0.5 * (p1 + m1), 0.5 * (p2 + m2); x = float(np.interp(zb, ZF, rrF)); rows.append(dict(bin=tb, z=zb, Rf=x, Rf_coarse_spline_reported=float(np.interp(zb, ZG, rr_spline)), in_sf=bool(abs(x - r1) <= 2 * e1), in_sfb=bool(abs(x - r2) <= 2 * e2), s8dir=bool(x <= 1.001)))
     fs_pass = all(r_["in_sf"] and r_["in_sfb"] and r_["s8dir"] for r_ in rows)
     sig8_ref0 = float(M.sigma8()); s8r0 = float(s_sw[0] / s_rf[0]); Om = F["Om"]
     Sx = ns["limber4_bg"](REFBG, Rr); cl, A = Q3["best_amp_chi2"](X0 * Sx)
     FD = ns["forest_setup"](); fr = ns["forest_eval"](FD, REFBG, Rr)
     out = dict(variant=V, footing=f, z_dec=p["z_dec"], alpha=p["alpha"], kick=p["kick"], v_stiff=p["v_stiff"], F_conv_today=float(Fc_tab[0]), F_coll_gt_1e6=float(Fc[0]),
-               lambda_today_Mpc=float(lam_tab[0]), x0_nodes=dict(zip([f"{m:.3g}" for m in MN], x0n)),
+               lambda_today_Mpc=float(lam_tab[0]), x0_nodes=(dict(zip([f"{m:.3g}" for m in MN], x0n)) if p["base"] != "H" else dict(zip([f"{m:.3g}" for m in MN], [float(e[-1]) for e in ESC]))),
                G6=dict(status="PASS", note="mass kept: background identical to the reference (B: 2e-4 mass loss, |Delta chi2| < 1e-2 by A's integrator scale)"),
                sigma8_ratio_z0=s8r0, sigma8_ref=sig8_ref0, sigma8=sig8_ref0 * s8r0, S8=sig8_ref0 * s8r0 * math.sqrt(Om / 0.3), S8_ref=sig8_ref0 * math.sqrt(Om / 0.3),
                fs8=dict(rows=rows, pass_=bool(fs_pass)), forest=fr, G8=dict(status="PASS" if (fs_pass and fr["status"] == "PASS") else "FAIL"),
@@ -343,7 +391,9 @@ def run_bullet(V):
         CP = VComp(f); r_ = []; inf = []
         for j, cls in enumerate(("bullet_main", "bullet_sub")):
             H = CP.halo_for(Mb[j], cls); ex = dict(f_sub=mu + 0.012, f_slosh=mu * mu + 0.008) if j == 0 else {}
-            x = x0_of(CP.p, H, cls, ex); fr = ret(x, CP.p["alpha"]); r_.append(fr * H["Mchi0"])
+            x = x0_of(CP.p, H, cls, ex); fr = ret(x, CP.p["alpha"])
+            if CP.p["base"] == "H": x = 0.0; fr = float(h_enc(CP.p, H, H["R200"] * 1.0001)) / H["Mchi0"]
+            r_.append(fr * H["Mchi0"])
             inf.append(dict(M_b=Mb[j], x0=x, f=fr, v_vir=math.sqrt(G_KPC * H["M500"] / H["R500"]), retained_over_Mb=fr * H["Mchi0"] / Mb[j]))
         Mret[f] = r_; info[f] = inf
     o = call(json.dumps(Mret)); out = dict(variant=V, KA6=o0["KA"], subclusters=info, child_peak_rss_MB=max(o0["child_peak_rss_MB"], o["child_peak_rss_MB"]))

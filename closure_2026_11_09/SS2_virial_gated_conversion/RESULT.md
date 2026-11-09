@@ -13,6 +13,13 @@ What is new here:
 - M5 (onset at z 2);
 - the Lean separation bounds at alpha 4.39.
 
+**Correction (after the result, with SS1 A4):** fsigma8 is now computed by fine-grid central differences. The earlier coarse
+spline rang across the onset kink; before-onset rows now read exactly 1.000. ss2.json / ss2.out were rerun and regraded.
+**Label unchanged:**
+- G: Rf BGS 0.090 / 0.008, LRG1 0.644 / 0.582 (table below shows the pre-correction 0.133 / 0.651);
+- M_min 1e10 bracket: BGS 0.396 / 0.339;
+- G-source: BGS 0.016.
+
 **Label (frozen rule): FAIL on canonical, FAIL on alt. First failing gate: 2, groups.**
 - Also failing on both footings: 3 X-COP, 8 growth (fsigma8) and 9 Bullet.
 - Passing: 1 KiDS, 5 SPARC, 5b Ursa Major, 6 background (BAO + SN), 10 Cassini.
