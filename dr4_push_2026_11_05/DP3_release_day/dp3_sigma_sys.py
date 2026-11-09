@@ -58,6 +58,9 @@ def main(argv=None):
     ap.add_argument("--out-json", required=True); ap.add_argument("--tag", default="")
     ap.add_argument("--stage-a", default=None, help="OPTIONAL (open issue O6, owner decision needed): add the ladder rung RUWE < 1.2 on both components, "
                     "ruwe looked up by source_id in this stage_A.npz (as seed_sweep.py --ladder does); off = the D2 recipe")
+    ap.add_argument("--nss-off-seed-mean", default=None, help="OPTIONAL, default off (DP7, draft OWNER_DECISION_2026-11-05c, NOT FILED): a DP7 dp7.json; with it the "
+                    "NSS-off entry in (b) and (e) is gamma_hat(V0 base) + Delta_bar[footing] (the K-seed paired mean of rung_k - base_k from the DP7 sweep), and (b), (e) "
+                    "under the single-seed entry are printed beside it, information only, DR3; off = D8 (a) as filed, this file's behaviour unchanged")
     a = ap.parse_args(argv)
     rng = np.random.default_rng(SEED)
     pop = wbp.make_population(NM, rng, dr4=True)
@@ -96,13 +99,20 @@ def main(argv=None):
                nss_off_status=("IMPLEMENTED (catalogue given)" if a.nss_off else "NOT IMPLEMENTED (D7 N4.1); sigma_sys(b) computed without it"),
                fits=fits, seed_manifest=(os.path.basename(a.seed_manifest) if a.seed_manifest else None))
     ladder = [k for k in var if k.startswith(("V1", "V2", "V3", "V6"))]
-    for f in ("canonical", "alt"):
-        g0 = fits[f"{f}|V0 base"]["gamma"]
-        gl = [g0] + [fits[f"{f}|{k}"]["gamma"] for k in ladder]
+    sm = json.load(open(a.nss_off_seed_mean)) if a.nss_off_seed_mean else None
+    if sm:
+        out["nss_off_seed_mean"] = dict(file=os.path.basename(a.nss_off_seed_mean), K=sm.get("K"), cut13=sm.get("cut13"), fit_path=sm.get("fit_path"), complete=sm.get("complete"),
+                                        note="information only, DR3: the NSS-off entry of (b) and (e) is gamma_hat(V0 base) + Delta_bar (DP7 seed mean); draft 2026-11-05c NOT FILED")
+
+    def spread_jk(gl):
         spread = max(gl) - min(gl)
         n = len(gl)
         loo = [np.mean([x for j, x in enumerate(gl) if j != i]) for i in range(n)]
-        jk = math.sqrt((n - 1) / n * sum((x - np.mean(loo)) ** 2 for x in loo))
+        return spread, math.sqrt((n - 1) / n * sum((x - np.mean(loo)) ** 2 for x in loo))
+    for f in ("canonical", "alt"):
+        g0 = fits[f"{f}|V0 base"]["gamma"]
+        gl = [g0] + [fits[f"{f}|{k}"]["gamma"] for k in ladder]
+        spread, jk = spread_jk(gl)
         if sb and f in sb:
             sbf, src = float(sb[f]["sigma_build"]), "seed-sweep manifest"
         else:
@@ -115,6 +125,16 @@ def main(argv=None):
                                                       shifts_below_1_sigma_fit={k: abs(v) < sf0 for k, v in shifts.items()}))
         P(f"[{f}] shifts " + ", ".join(f"{k.split(':')[0]} {v:+.4f}" for k, v in shifts.items()) +
           f"; spread {spread:.4f}; (b) {out[f]['b']:.4f}  (a) 0.0200  (e) {jk:.4f}  (g2) {out[f]['g2']:.4f} [sigma_build {sbf:.4f}, {src}]")
+        if sm:                                                                       # the seed-mean NSS-off entry (DP7), beside the single-seed one
+            dbar = float(sm[f]["delta_bar"])
+            gl_sm = [g0] + [fits[f"{f}|{k}"]["gamma"] for k in ladder if not k.startswith("V3")] + [g0 + dbar]
+            spread_sm, jk_sm = spread_jk(gl_sm)
+            out[f].update(b_single_seed=out[f]["b"], e_single_seed=out[f]["e"], spread_single_seed=spread, b=max(0.020, 0.5 * spread_sm), e=jk_sm, spread=spread_sm,
+                          b_seed_mean=max(0.020, 0.5 * spread_sm), e_seed_mean=jk_sm, seed_mean_entry=g0 + dbar, delta_bar=dbar, delta_bar_se=sm[f].get("se"),
+                          single_seed_nss_off_shift=shifts.get("V3 NSS-off probe (s < 30 kAU)"), nss_off_entry_in_b_and_e="seed-mean (gamma_hat(V0 base) + Delta_bar); information only, DR3")
+            P(f"[{f}] seed-mean NSS-off entry {g0 + dbar:.4f} = base {g0:.4f} + Delta_bar {dbar:+.4f} (DP7 K {sm.get('K')}, SE {sm[f].get('se') or float('nan'):.4f}); "
+              f"(b) single-seed {out[f]['b_single_seed']:.4f} vs seed-mean {out[f]['b_seed_mean']:.4f}; (e) single-seed {out[f]['e_single_seed']:.4f} vs seed-mean {out[f]['e_seed_mean']:.4f}; "
+              f"spread {spread:.4f} -> {spread_sm:.4f}; information only, DR3")
     json.dump(out, open(a.out_json, "w"), indent=1, default=float)
     open(os.path.splitext(a.out_json)[0] + ".out", "w").write("\n".join(lines) + "\n")
     return 0
