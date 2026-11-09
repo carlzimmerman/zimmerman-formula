@@ -1,90 +1,98 @@
 # fable52_push: one swing at completion (2026-11-09)
 
-Adopts nothing. kappa = 1/2 FITTED; not theory closed. Nothing here is registered or folded into PAPER70.
+Adopts nothing. kappa = 1/2 FITTED; not theory closed. Nothing here is registered in the closure record.
+Paper: PAPER71, `qwen_claude_field_theory/papers_2026/PAPER71_switch_theorems_kids_outer_points_2026.pdf`.
 
 ## Answer first
 
-**No completion.** I could not build a theory that passes every gate, and I do not think one exists inside the gates as they are
-frozen. I worked the galaxy / cluster / CMB triangle from every direction I could find (single counting, two-phase media,
-dipolar-type media, velocity barriers, entropy floors, sign-flipped couplings). Each one landed on a lane already graded.
+**No completion.** I could not build a theory that passes every gate, and I do not think one exists inside the gates as
+they are frozen.
 
-What this swing does add is one lane, **SWT1**, with three exact results about every switch on the law that comes from an action.
-They are certified in Lean (19 theorems, standard axioms only). They correct one statistic in the record, remove one general
-reading, and reduce the whole switch class to a single conflict with numbers on it.
+**What this folder does close: one whole class of completion.** Every switch on the law that comes from an action (the
+"two-phase" reading: law inside cleared regions around galaxies, cold component elsewhere) now has a failing verdict on
+each of its exits. Six lanes carry it: SWT1 (theorems), EMV1 and GAL1 (the lensing allowance, checked twice), KO1 with its
+blind regrade KO1R (KiDS's outer points), and SNP1 (clearing dynamics). The Lean files hold 72 theorems, standard axioms
+only, each file with a twin of false statements that fails.
 
-## 1. Why it does not close
+## 1. The class and its exits
 
-1. The CMB needs a cold, clustering component of about 5.4 times the baryons (F1; F1A and CMB3 confirm it).
-2. Galaxies exist early, so that component had small-scale power and collapsed with them (WM1 A2: the law amplifies seeds, it
-   cannot make them).
-3. It is conserved (SS3; the BAO + SN and S8 rows). So today it is around galaxies, or something removed it.
-4. Removal has a verdict on every route: kicks (CK1), heating (CE2, KX1), conversion (SS1-SS4), switches. SWT1 adds the last
-   candidate, the law's own field stress: right sign, right ordering, but only against a share that has not yet settled.
-5. If it is still there, then either the law is not a second force on top of it (single counting: route E, retired on FG1; PD1
-   and PD2 fail KiDS, the groups and the Bullet's amount), or it must be invisible to baryons where the law acts (BI1's class,
-   failing its consistency gate today).
+By SWT1 T1 a law-on region shows only its baryons from outside. So outside its wall a truly isolated lens shows M_b plus
+whatever share was swept there. Three choices remain.
 
-The frozen gates exclude both branches. A completion has to move a gate or bring physics from outside the catalog. That is the
-record's own closing statement, reached again by a different road; I found no way round it.
+| Exit | What grades it | Verdict | Lanes |
+|---|---|---|---|
+| A. Law on over KiDS's whole range | needs a filling of 0.29; CMB lensing allows 0.0231 (0.0265 / 0.0259 with external fields; 0.0197 at 2 sigma with growth); and the wall never gets there (0.43-0.63 of the range at best) | FAIL: lensing, dynamics | SWT1, EMV1, GAL1, SNP1 |
+| B. Wall inside the allowance, the record's share outside | KiDS's host-free outer bins exclude it at 5.3 to 5.6 sigma, calibration-free | FAIL: KiDS | KO1 |
+| C. Wall inside the allowance, a heavy share outside | KiDS needs at least 28 / 33 M_b; clearing fails above 2.8 to 4.0 shares (16 to 22 M_b); such a shell outweighs the wall force by at least 5.6 / 7.1; with three shares bound, 8.6 to 19.0 M_b stay inside 200 kpc | FAIL: clearing | KO1, SWT1, SNP1 |
 
-## 2. What SWT1 adds (fable52_push/SWT1_switch_theorems, RESULT.md)
+## 2. The lanes
 
-- **Compensation.** A spherical switched law shows exactly M_b outside the switch radius. WL1's stage-2 statistic counted the
-  retained phantom as outside mass (0.94 / 1.08 against 0.0354). The correct large-scale statistic is the volume the law-on
-  regions fill, with an allowance of **2.3 %**. WL1's graded reading still fails (0.30 / 0.36); its self-consistent reading
-  passes (0.018). Label **KEY-DEPENDENT**: WL1's FAIL stands, its "any arm-(i) key" scope sentence does not.
-- **Wall pressure.** The force per unit area any such switch puts on its carrier is exactly
-  (a0^2 / 4 pi G) [u - ln(1 + u) - u^2 / (2 (1 + u)^2)], with u the law's field inside the wall. Around galaxies it exceeds the
-  pressure of the record's cosmic share by 3-20x; in groups and clusters it falls short by 4-40x. Label **NOT A NO-GO AS
-  FROZEN**. My own pre-freeze expectation was a no-go; it was wrong, and the amendment says so before any number.
-- **The conflict that is left.** Keeping the law on over KiDS's full range needs a filling of 0.29. The allowance reaches 0.43 of
-  that range, down to g_bar 7.5e-15 m/s^2. Bubbles sized by pressure balance against 35-52 km/s component sit right at the line
-  (1.8-4.6 % filling), but the ones that pass it leave 16 of the 59 KiDS points outside the wall and cost about 200 in chi2.
-
-## 3. The closest thing to a completion, scored
-
-"Two-phase" reading: the cold component everywhere it has not been cleared, Newtonian there; the law only inside cleared regions
-around galaxies, with its phantom compensated at the wall.
-
-| Gate | Status | Source |
+| Lane | Question | Label (canonical / alt) |
 |---|---|---|
-| CMB primary, forest, BAO + SN, f sigma8 | pass (the cold reference) | carried rows (PD1 P4) |
-| CMB lensing | pass only if law-on regions fill <= 2.3 % | SWT1 T2 |
-| SPARC, Cassini, Ursa Major | pass inside the wall (the law's rows) | carried |
-| Ordering: galaxies cleared, groups and clusters not | pass, no constant added | SWT1 T3 (new) |
-| KiDS, inner 43 % of the range | pass | SWT1 |
-| **KiDS, outer three or four points per bin** | **fail** (about +200 in chi2 at the allowed filling) | SWT1 E3 |
-| X-COP | pass with the full share and the law off (bracket) | PD1 A2 |
-| **Groups** | **fail** 0 of 9 | PD1 A2 |
-| **Bullet** | offset right, subcluster mass 2.6 sigma low | PD1 A2 |
-| **Clearing dynamics** | **not shown**; a settled share leaves 0.7-2.0 M_b inside 200 kpc (line 0.9) | SQ1, SWT1 E2 |
+| SWT1 | exact statements for any action-based switch | CP KEY-DEPENDENT; WP NOT A NO-GO AS FROZEN |
+| EMV1 | does the filling statistic survive a direct nonlinear solve with an external field? | T2 HOLDS / T2 HOLDS |
+| GAL1 | what do growth and CMB lensing allow for the filling history? | ALLOWANCE CONFIRMED / ALLOWANCE CONFIRMED (0.0197; 0.0134 if on from z 6) |
+| KO1 | are KiDS's outer points the lens's own field? | LAW LEVEL HOLDS / LAW LEVEL HOLDS by the frozen gate |
+| KO1R | blind regrade of KO1 from its criteria alone | NOT SEPARATED / LAW LEVEL HOLDS (518 tied lenses; knife edge) |
+| SNP1 | can the wall pressure clear the component and keep it out? | FAILS / FAILS |
 
-Three rows fail and one is not shown. It is the best row I can assemble, and it is not a completion.
+## 3. What KO1 found, in plain words
 
-## 4. What decides it
+- **The frozen gate passes the law.** Lenses with no galaxy 0.3 dex more massive inside their own measured range show an
+  outer amplitude of 1.10 +- 0.15 / 1.00 +- 0.14 of the law.
+- **That label is weaker than it looks.** The whole stack sits 1.6 to 1.8 times above the law at inner radii too, so an
+  absolute level of 1 says little. Relative to its own inner level the host-free outer signal is 0.61 +- 0.09, and
+  0.81 +- 0.13 once the veto's own edge effect is moved out of the way. The law's floor is 0.98; a heavy exterior gives
+  0.78 / 0.66. KiDS does not separate those two.
+- **What KiDS does settle.** The record's share outside a wall (5.56 M_b) is excluded at more than 5 sigma on every
+  reading. The outer bins need 41 to 56 / 48 to 66 M_b there.
+- **Hosts are not the story I expected.** Before the freeze I estimated that leaked hosts carry 30 to 50 % of the outer
+  signal. The difference is 4.9 sigma at the frozen radius but falls to +0.31 +- 0.21 when the veto is widened, so most of
+  it is the veto's edge.
+- **A lead, not a result.** Host-free late types show no outer signal (-0.19 +- 0.39; 0.13 +- 0.68 with the widest veto)
+  while early types sit at 1.34 +- 0.18. Seen after the freeze; shares the edge effect.
+- **The gas is the open flank.** With B21's own hot-gas estimate in g_bar, its published outer points drop from 1.50 to
+  0.47 of the law. Nothing on disk measures that gas.
 
-1. **KiDS's points below g_bar 7.5e-15 m/s^2.** KiDS beyond a few hundred kpc is a failing gate in at least eight lanes of the
-   last three days (PD1, PD2, SS1 H and I, SS4, WD1, PJ1, SQ1), and SWT1 shows the whole switch class turns on these points. Their per-point errors are 0.06-0.10 dex against a gate line of 0.05 dex. If that signal is the
-   lens's own field, the law is a force out to 3 Mpc and no switch survives the CMB. If it is neighbours' mass, the two-phase
-   reading passes both. A lane that grades those points against the data, with the measured gas and the isolation cut varied,
-   would settle more than another mechanism. (My recollection is that the survey paper flags its isolated sample as less reliable
-   beyond about 0.3 Mpc / h70; I have not re-read it, so treat that as unverified.)
-2. **The baryon census in groups.** "Newton plus the cosmic share of the observed baryons" under-fills the groups and the Bullet's
-   subcluster. Either those systems hold more baryons than are counted inside R500, or the share is not tied to the baryons.
-3. **Whether a settled share can be cleared.** The energetics are marginal at a quarter of the turnaround radius. A shell
-   integration with the wall force acting at the wall (not through a local density screen, as in SQ1) would decide it.
+## 4. Why the theory still does not close
 
-If I had to bet on which leg gives way, it is the outer galaxy leg, not the CMB and not the clusters.
+1. The CMB needs a cold, clustering component of about 5.4 times the baryons (F1).
+2. Galaxies exist early, so the component collapsed with them, and it is conserved.
+3. Removal from galaxies has a failing verdict on every route: kicks, heating, conversion, and now every action-based
+   switch as a class.
+4. If it is still there, either the law is not a second force on top of it (single counting: fails KiDS, the groups and
+   the Bullet's amount), or it is invisible to baryons where the law acts (fails its consistency gate).
 
-## 5. What I would stop doing
+A completion has to move a gate or bring physics from outside the catalogue.
 
-Grading further switch variants one at a time. Every variational switch is compensated, its reaction is bounded by the closed
-form above, and its fate is set by item 1.
+## 5. What would move it
+
+1. **A measured gas mass at Mpc radii around isolated galaxies.** It decides whether the law over-predicts KiDS's outer
+   bins (B21's estimate says by a factor of two).
+2. **A clean isolation test**: spectroscopic redshifts, a veto radius well beyond the measured range, a frozen shape gate,
+   late types first.
+3. **The baryon census in groups.** Unchanged from the first version of this file.
+
+## 6. Corrections (mine and the record's)
+
+- My first report said the wall pressure would rule out the "galaxies repel the component" family. It does not: the wall
+  wins against the record's share by 3 to 20 times. It fails for other reasons (it cannot carry what KiDS needs).
+- The first version of this file bet that the outer galaxy leg gives way, meaning that KiDS's outer points would turn
+  out to be neighbours' mass. KO1 does not support that bet.
+- My hand estimate for SNP1 (walls swept beyond KiDS's range, filling too large) was the reverse of what the runs show.
+- WL1's FAIL stands, but its "any key" scope sentence does not hold for a compensated switch. SQ1 graded the opposite sign
+  to the law's own term.
 
 ## Files
 
-- SWT1_switch_theorems/: FROZEN_CRITERIA.md (4d86f4d107; origin c892bac851), AMENDMENT_A1.md (4af87eb9c0; origin 6997214890),
-  RESULT.md (origin cbf83986f3), swt1.py and outputs,
-  swt1_extra.py and outputs (reported only), SWT1.lean, SWT1_MUTATE.lean, compile.txt, compile_MUTATE.txt.
+- `SWT1_switch_theorems/` (origin c892bac851, 6997214890, cbf83986f3)
+- `EMV1_effective_medium_validation/` (origin eeb830ace2, 0e3c23f7d5)
+- `GAL1_growth_lensing_allowance/` (origin f7b534d9e4, c8c6935efc, 5d9fa6d888)
+- `KO1_kids_outer_points/` (origin a8c30d93c3, b64341eb9f, 66df609b0c, 9813a4adfb)
+- `KO1R_kids_outer_regrade/` (origin 990bfd5450, 859e3f99fe)
+- `SNP1_snowplow_clearing/` (origin 25b134be31, 8466e3da4a, 93e2340522)
+
+Each folder has FROZEN_CRITERIA.md, any amendments, the scripts with their outputs and MUTATE outputs, RESULT.md, and (except
+GAL1 and KO1R) a Lean file with its compile output and a mutate twin.
 
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
