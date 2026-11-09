@@ -1,6 +1,10 @@
 # KO1 RESULT (criteria b1b91fae33; amendments A1 ae28af31fa, A2 a52e709b22)
 
-**KO1: LAW LEVEL HOLDS / LAW LEVEL HOLDS** (canonical / alt) by the frozen gate.
+**KO1: LAW LEVEL HOLDS / LAW LEVEL HOLDS** (canonical / alt) by the frozen gate as this lane read it.
+**Independent regrade KO1R: NOT SEPARATED / LAW LEVEL HOLDS.** The canonical label sits on a knife edge (section 2a).
+
+Commit ids: local b1b91fae33 (criteria), ae28af31fa (A1), a52e709b22 (A2), a11a8a9523 (result); on origin a8c30d93c3,
+b64341eb9f, 66df609b0c, 9813a4adfb.
 
 TEST lane, quarantined. Adopts nothing and relabels nothing. kappa = 1/2 FITTED; not theory closed. Footings never pooled.
 The first run failed a known answer (KA5) and was NO VERDICT; A1 explains why the check, not the pair finder, was wrong, and
@@ -54,6 +58,28 @@ Cut chosen by the frozen rule from weights only: Delta 0.3 dex, W 230 Mpc (outer
   208,250 lenses, KA2 fails.
 - **Lean.** `KO1.lean`: 12 theorems, `exit 0`, axioms propext, Classical.choice, Quot.sound only (`compile.txt`).
   `KO1_MUTATE.lean`: five false versions, five errors, `exit 1`.
+
+## 2a. Independent regrade (lane KO1R, `fable52_push/KO1R_kids_outer_regrade/`)
+
+A second session re-derived the primary statistic from the frozen criteria alone, with its own code, before opening any
+KO1 file.
+
+| quantity (canonical / alt) | KO1 | KO1R as it read the criteria | KO1R's code with KO1's tie rule |
+|---|---|---|---|
+| host-free lenses | 40,667 | 40,149 | 40,667 |
+| A_hf | 1.098 +- 0.154 / 0.999 +- 0.141 | 1.082 +- 0.158 / 0.985 +- 0.144 | identical to KO1 (2e-15) |
+| corrected A_hf^c | 1.399 +- 0.197 / 1.273 +- 0.179 | 1.388 +- 0.203 / 1.263 +- 0.185 | identical |
+| hosted minus host-free | +0.912 +- 0.186 / +0.830 +- 0.169 | +0.927 +- 0.187 / +0.843 +- 0.170 | identical |
+| label | LAW LEVEL HOLDS / LAW LEVEL HOLDS | **NOT SEPARATED** / LAW LEVEL HOLDS | LAW LEVEL HOLDS / LAW LEVEL HOLDS |
+
+- **One traced cause.** The catalogue's stellar masses carry 5 or 6 significant digits, so a neighbour exactly 0.3 dex
+  heavier is common. KO1 compares floats as they are; KO1R counts a decimal tie as a host. 518 lenses have only tied hosts.
+- **Why the canonical label flips.** Not through the amplitude (1.08 against 1.10). The corrected error is 0.197 here and
+  0.203 there, and the frozen NO POWER line is 0.20. Raw LAW LEVEL HOLDS with corrected NO POWER reads NOT SEPARATED.
+- The criteria did not anticipate mass quantization. Neither run has a bug. The honest statement is: **alt LAW LEVEL HOLDS
+  on both readings; canonical LAW LEVEL HOLDS or NOT SEPARATED, depending on 518 tied lenses.** Every measured number agrees
+  within 1.5 %.
+- KO1R also chose the brute-force reading of KA5 on its own, before seeing A1.
 
 ## 3. Reported items of the frozen list (canonical; alt in `ko1.out`)
 
