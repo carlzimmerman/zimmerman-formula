@@ -1,5 +1,8 @@
 # SNP1 RESULT (criteria 9ff5f59a72)
 
+Commit ids: the hashes quoted in this folder are the shared checkout's. On origin the same commits are 25b134be31 (criteria) and
+8466e3da4a (result).
+
 **SNP1: FAILS / FAILS** (canonical / alt). Failing gate **G-K at every nucleation epoch**; G-F2 as well at z_n 6 and 3.
 **SAME UNDER THE ENERGY-CONSERVING BRACKET** (that bracket also fails G-F2 at z_n 1.5, through the lightest bin). The brackets
 X = 0 (share never bound) and X = 3 also FAIL, X = 0 on G-K alone.
