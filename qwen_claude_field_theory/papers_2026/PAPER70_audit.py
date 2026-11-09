@@ -815,6 +815,84 @@ L += [
  ("the separation bounds at $\\alpha$ 4.39 compile with standard axioms", SS2, "the separation bounds at alpha 4.39"),
 ]
 
+SSI = "closure_2026_11_09/SS1_self_shielded_conversion/RESULT_I.md"
+SS3 = "closure_2026_11_09/SS3_vacuum_absorbed_conversion/RESULT.md"
+SS4 = "closure_2026_11_09/SS4_late_pressure_halves/RESULT.md"
+WM1 = "closure_2026_11_09/WM1_warm_component_law_baryons/RESULT.md"
+TS1 = "closure_2026_11_09/TS1_tidal_signature_switch/RESULT.md"
+PD1 = "closure_2026_11_09/PD1_phantom_is_dust/RESULT.md"
+PD2 = "closure_2026_11_09/PD2_sheet_captured_phantom_dust/RESULT.md"
+SQ1 = "closure_2026_11_09/SQ1_component_screened_law/RESULT.md"
+SS5 = "closure_2026_11_09/SS5_baryon_component_segregation/FROZEN_CRITERIA.md"
+L += [
+ ("fails first at KiDS (max 0.350 / 0.342\\,dex)", SSI, "**FAIL** max 0.350 (21/59 over)"),
+ ("fails first at KiDS (max 0.350 / 0.342\\,dex)", SSI, "**FAIL** max 0.342 (19/59)"),
+ ("the ceiling does no work (its MUTATE does not bite)", SSI, "**MI1 (ceiling -> 1): NO BITE.**"),
+ ("85--90\\,\\% of the galaxy share escapes into a shell near $R_{\\rm FS}$ 1.7--1.8\\,Mpc", SSI, "85-90 % of the share escapes with little excess"),
+ ("$+0.18$\\,dex at 1.5\\,Mpc in every massive bin", SSI, "+0.18 dex at\n1.5 Mpc in every massive bin"),
+ ("a daughter with negative energy does not leave its halo", SSI, "A daughter with E < 0 does not leave its halo"),
+ ("first failing gate the groups (0/20 and 2/20; groups keep 3--10\\,\\%)", SS3, "**FAIL** 0/20, 2/20; median +0.31 / +0.11 (under-filled: groups keep 3-10 %)"),
+ ("76\\,\\% of the component converts", SS3, "76 % of the component converts"),
+ ("rises 143\\,\\% / 145\\,\\% from $z_{\\rm dec}$ to today, against the source's 7.45\\,\\%", SS3, "rho_DE rises 143 % from z_dec to 0"),
+ ("rises 143\\,\\% / 145\\,\\% from $z_{\\rm dec}$ to today, against the source's 7.45\\,\\%", SS3, "FAIL: +145 %; chi^2 143"),
+ ("rises 143\\,\\% / 145\\,\\% from $z_{\\rm dec}$ to today, against the source's 7.45\\,\\%", SS3, "| rho_DE rise | +7.45 % |"),
+ ("BAO + SN fail ($\\Delta\\chi^2$ +283 / +287)", SS3, "FAIL Delta chi^2 +283"),
+ ("BAO + SN fail ($\\Delta\\chi^2$ +283 / +287)", SS3, "| FAIL +287 |"),
+ ("($\\chi^2$ 141 against 2.1 for the best constant)", SS3, "chi^2 141 vs best constant 2.1"),
+ ("can absorb only a transfer that is a gradient, $Q_\\nu=-\\partial_\\nu\\rho_{\\rm vac}$", SS3, "So Q_nu = -partial_nu rho_vac: Q must be a gradient."),
+ ("(its curl is $d(\\Gamma\\rho_\\chi)/dr\\neq0$)", SS3, "the curl is\n  partial_t Q_r - partial_r Q_t = d(Gamma rho_chi)/dr, which is non-zero"),
+ ("first failing gate KiDS (max 0.219 / 0.204\\,dex)", SS4, "**FAIL** max 0.219 (11/59 over)"),
+ ("first failing gate KiDS (max 0.219 / 0.204\\,dex)", SS4, "**FAIL** 0.204"),
+ ("(retained over $M_{\\rm dyn}$ 6.59 / 1.60 / 0.69 against TR1's 0.71 / 0.66 / 0.58)", SS4, "retained / M_dyn 6.59 / 1.60 / 0.69"),
+ ("cores of 10--40\\,kpc", SS4, "Half 2 collapses into a 10-40 kpc core"),
+ ("down 82--86\\,\\% at $k$ 3\\,$h$/Mpc by $z$ 0.3", SS4, "82-86 % at k 3 h/Mpc by z 0.3"),
+ ("at its own sound speed (38\\,km/s) in the 6.1\\,Gyr available", SS4, "c_s1 = R_c1 H sqrt(1.5 Omega_m) / pi = 38 km/s"),
+ ("at its own sound speed (38\\,km/s) in the 6.1\\,Gyr available", SS4, "takes 32-65 Gyr against the 6.1 Gyr available"),
+ ("at most 0.050 / 0.055 / 0.065 / 0.093 / 0.200 / 0.292 of its cosmic share", SS4, "| **0.050** | **0.055** | **0.065** | **0.093** | **0.200** | **0.292** |"),
+ ("radius 0.12 / 0.3 / 0.6 / 1.2 / 2.4 / 3.0\\,Mpc", SS4, "| R_c (Mpc) | 0.12 | 0.3 | 0.6 | 1.2 | 2.4 | 3.0 |"),
+ ("188.7\\,eV, its half-mode mass $4.97\\times10^{12}\\,M_\\odot$", WM1, "This gives **M_hm = 4.97e12 Msun**"),
+ ("188.7\\,eV, its half-mode mass $4.97\\times10^{12}\\,M_\\odot$", WM1, "**m = 188.7 eV**"),
+ ("first failing gate seeding", WM1, "**Label: FAIL at seeding on canonical and alt.**"),
+ ("primary $\\Delta\\chi^2$ +0.016; lensing at the cutoff 9.28 against 18.48", WM1, "PASS, +0.016. TT"),
+ ("primary $\\Delta\\chi^2$ +0.016; lensing at the cutoff 9.28 against 18.48", WM1, "PASS, worst 9.28, best 8.34 (line 18.48)"),
+ ("X-COP's inner bin 1.51 of $M_{\\rm dyn}$", WM1, "Retained / M_dyn 1.51 / 0.87 / 0.71"),
+ ("boosts the growth 3--18$\\times$ at $k$ 0.01--3\\,$h$/Mpc", WM1, "linear baryon growth runs 3-18x too fast at k 0.01-3 h/Mpc"),
+ ("$\\sigma_8\\times$3.64 / 4.17, CMB lensing with the law on the web $\\chi^2$ 107.9 / 128.1", WM1, "**FAIL** sigma8 x 3.64, S8 +264 %"),
+ ("$\\sigma_8\\times$3.64 / 4.17, CMB lensing with the law on the web $\\chi^2$ 107.9 / 128.1", WM1, "**FAIL** x 4.17, +317 %"),
+ ("$\\sigma_8\\times$3.64 / 4.17, CMB lensing with the law on the web $\\chi^2$ 107.9 / 128.1", WM1, "**FAIL** chi^2 107.9"),
+ ("$\\sigma_8\\times$3.64 / 4.17, CMB lensing with the law on the web $\\chi^2$ 107.9 / 128.1", WM1, "**FAIL** 128.1"),
+ ("leaves 1--13\\,\\% of the cold reference's abundance", WM1, "Galaxy-scale halos form at 1-13 % of the reference abundance."),
+ ("the 377\\,eV bracket, which still forms more, already fails KiDS", WM1, "**MW2 (M_hm / 10, 377 eV): BITES.** KiDS fails"),
+ ("($n(>10^{10})$ at $z$ 0 is 0.010 with the law and 0.011 with Newton)", WM1, "n(> 1e10) at z 0 is\n  0.010 with the law and 0.011 with Newton"),
+ ("first failing gate SPARC for the switch alone (rms 0.122 / 0.124 against 0.066", TS1, "| M-law rms | 0.122 | 0.124 |"),
+ ("so WL1's population phantom is untouched (FAIL $\\times$26 / $\\times$30)", TS1, "FAIL x26 / x30"),
+ ("the switch is on in half of space and keeps 23\\,\\% of the boost", TS1, "It keeps 23 % of the law's boost."),
+ ("recorded as a phenomenological switch", TS1, "**Recorded as a phenomenological switch.**"),
+ ("the Lagrangian share ($59.5\\,M_b$) falls short by up to 0.64\\,dex", PD1, "the Lagrangian share of 59.5 M_b: -0.64 dex"),
+ ("the basin share ($10.8\\,M_b$) by 1.34, the cosmic share ($5.41\\,M_b$) by 1.61", PD1, "the basin share of 10.8 M_b: -1.34 dex"),
+ ("the basin share ($10.8\\,M_b$) by 1.34, the cosmic share ($5.41\\,M_b$) by 1.61", PD1, "the cosmic share of 5.41 M_b: -1.61 dex"),
+ ("is 3.41 at $M_b=10^8\\,M_\\odot$ and 0.33 at $10^{14}\\,M_\\odot$", PD1, "| M_ph(<R_ms) / share | 3.41 | 2.32 | 1.58 | 1.07 | 0.73 | 0.49 | 0.33 |"),
+ ("(0.93 / 0.84 / 0.75 against TR1's 0.71 / 0.66 / 0.58, about 1.3$\\times$)", PD1, "f_miss 0.93 / 0.84 / 0.75 against TR1's 0.71 / 0.66 / 0.58: falling,\n    about 1.3x"),
+ ("its subcluster is 2.6$\\sigma$ light", PD1, "The subcluster's mass inside 300 kpc is 2.6 sigma low."),
+ ("the dispersion locked to $\\sigma^2=\\tfrac12\\sqrt{GM_ba_0}$", PD1, "sigma^2 = (1/2) sqrt(G M_b a0)"),
+ ("but at 0.301 / 0.326\\,Mpc", PD2, "**0.301 / 0.326 Mpc** at every mass"),
+ ("(max 0.959 / 0.926\\,dex)", PD2, "**FAIL** max 0.959 (23/59)"),
+ ("(max 0.959 / 0.926\\,dex)", PD2, "**FAIL** 0.926 (23/59)"),
+ ("the source's 1.48\\,Mpc does not follow from its own formulas", PD2, "**The source's claimed 143 M_b and 1.48 Mpc do not follow from its own formulas.**"),
+ ("At the source's claimed radius, 1.57 / 1.71\\,Mpc", PD2, "(1.57 / 1.71 Mpc)"),
+ ("($q$ 1.08 / 1.28, as WL1 found)", PD2, "q at z 0.5 / 1 / 2 is 1.08 / 0.59 / 0.20 (alt 1.28 / 0.70 / 0.24)"),
+ ("passing KiDS needs a truncation beyond 3\\,Mpc", PD2, "No universal R_trunc below about 3 Mpc can pass KiDS."),
+ ("the stated Lagrangian's force on the component is attractive toward galaxies", SQ1, "Its force is attractive toward luminous galaxies."),
+ ("by less than 0.1\\,\\% against collapse", SQ1, "by less than 0.1 % relative to the force-off run"),
+ ("7--27 / 6--22 times $\\rho_{\\rm screen}$", SQ1, "**FAIL**: 7.2 / 18.3 / 26.7 rho_screen"),
+ ("7--27 / 6--22 times $\\rho_{\\rm screen}$", SQ1, "**FAIL**: 6.0 / 15.2 / 22.1"),
+ ("(KiDS 0.618 / 0.658\\,dex, SPARC rms 0.127)", SQ1, "FAIL max 0.618 (59/59, mean -0.38)"),
+ ("(KiDS 0.618 / 0.658\\,dex, SPARC rms 0.127)", SQ1, "| FAIL 0.658 |"),
+ ("(KiDS 0.618 / 0.658\\,dex, SPARC rms 0.127)", SQ1, "FAIL rms 0.127 (line 0.066)"),
+ ("ran about 34$\\times$ low against its own formula", SQ1, "they are about 34x too small relative to their\nown stated formula"),
+ ("& RUNNING; no label & SS5", SS5, "registered RUNNING by the orchestrator"),
+]
+
 def mutate(lit):
     m = re.search(r"\d", lit)
     return lit if not m else lit[:m.start()] + str((int(m.group()) + 1) % 10) + lit[m.end():]
@@ -838,10 +916,11 @@ rules = [
  ("no pending placeholder", "\\pend{" not in body),
  ("no LCDM input claimed", "No $\\Lambda$CDM inputs were used" in TEX),
  ("version v2.1 stated, no draft marker", "v2.1, 2026-11-09" in TEX and "draft v0" not in TEX),
- ("v2.0 DOI recorded in header", "deposited as DOI 10.5281/zenodo.24086157; this version adds the quarantined late-conversion test lanes SS1 (variants A--H) and SS2" in TEX),
+ ("v2.0 DOI recorded in header", "deposited as DOI 10.5281/zenodo.24086157; this version adds the quarantined test lanes SS1 (variants A--I), SS2, SS3, SS4, WM1, TS1, PD1, PD2 and SQ1, with SS5 still running" in TEX),
  ("v1.9 DOI recorded in header", "deposited as DOI 10.5281/zenodo.24082193; v2.0, which added the closing statement" in TEX),
  ("closing statement present, three parts", "\\section{Closing statement}" in TEX and all(s in TEX for s in ("\\textbf{Domain.}", "\\textbf{Boundary, as a statement about the record.}", "\\textbf{What such a component must be, from the record's own numbers.}"))),
  ("header has no not-yet-deposited marker", "not yet deposited" not in TEX and "the quarantined test lanes PJ1, WD1 and XF1" in TEX),
+ ("exchange summary in closing statement", "leave four statements about the record" in TEX and "every label rests on the lanes' own solvers" in TEX),
  ("dSph widening about 0.9 dex", all(abs(d-0.9)<0.1 for d in (1.208-0.356, 1.555-0.633, 1.203-0.321, 1.555-0.600))),
  ("owner decision carried, nothing pending", "re-stated (owner 2026-11-07)" in TEX and "pending owner" not in TEX and "the frozen RESULT files are not edited" in TEX),
  ("unification quote verbatim", UQ_OK),
