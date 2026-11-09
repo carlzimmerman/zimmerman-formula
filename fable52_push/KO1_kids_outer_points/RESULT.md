@@ -1,4 +1,4 @@
-# KO1 RESULT (criteria b1b91fae33; amendments A1 ae28af31fa, A2 a52e709b22)
+# KO1 RESULT (criteria b1b91fae33; amendments A1 ae28af31fa, A2 a52e709b22, A3 d0424b7a57)
 
 **KO1: LAW LEVEL HOLDS / LAW LEVEL HOLDS** (canonical / alt) by the frozen gate as this lane read it.
 **Independent regrade KO1R: NOT SEPARATED / LAW LEVEL HOLDS.** The canonical label sits on a knife edge (section 2a).
@@ -8,7 +8,7 @@ b64341eb9f, 66df609b0c, 9813a4adfb.
 
 TEST lane, quarantined. Adopts nothing and relabels nothing. kappa = 1/2 FITTED; not theory closed. Footings never pooled.
 The first run failed a known answer (KA5) and was NO VERDICT; A1 explains why the check, not the pair finder, was wrong, and
-the re-run passes 11 of 11. A1 and A2 are post hoc and say so. Everything after section 1 is reported, not gated.
+the re-run passes 11 of 11. A1, A2 and A3 are post hoc and say so. Everything after section 1 is reported, not gated.
 
 ## Bottom line
 
@@ -17,14 +17,18 @@ the re-run passes 11 of 11. A1 and A2 are post hoc and say so. Everything after 
    4.1 sigma above the two-phase exterior at the census cap (0.46 / 0.42).
 2. **Robust on every reading: the record's share is not enough.** A two-phase exterior carrying the record's share
    (5.56 M_b) is excluded at 5.3 to 5.6 sigma, in a form that does not depend on the stellar-mass calibration and at every
-   veto radius tried.
+   veto radius tried. Counting the lens's catalogued neighbours with the same share each changes nothing: they add
+   0.012 / 0.011 of the law's level, and the exclusion is 5.2 to 5.4 sigma (E8).
 3. **Not decided: the law against a heavy exterior.** The exclusion of the census-cap exterior in item 1 rests on the
    record's stellar masses. Measured against the stack's own inner level, the least edge-affected sample gives
    0.81 +- 0.13; the law's floor is 0.98 and the census-cap exterior is 0.78 / 0.66. Both fit.
-4. **What a two-phase exterior needs.** A share of 41 to 56 M_b at the wall (2 sigma: at least 28) on the canonical footing,
-   48 to 66 (at least 33) on alt. That is at least 5.0 / 5.9 times the record's share. SWT1's gate clears a share only up
-   to 2.8 to 4.0 times, and a shell that heavy outweighs the wall force by at least 5.6 / 7.1 times (Lean,
-   `shell_unsupported_iff`). The two-phase reading therefore fails on KiDS without using the CMB-lensing allowance.
+4. **What a two-phase exterior needs.** With every galaxy carrying the same share, the outer bins need 33 to 47 M_b per
+   galaxy at the wall (2 sigma: at least 23) on the canonical footing and 40 to 56 (at least 27) on alt. That is at least
+   4.1 / 4.9 times the record's share. SWT1's energetic gate clears at most 2.8 to 4.0 times; SNP1's dynamics does not
+   clear even three; and a shell of 23 / 27 M_b outweighs the wall force by 3.8 / 4.9 (Lean, `shell_unsupported_iff`). The
+   two-phase reading therefore fails on KiDS without using the CMB-lensing allowance. The margin against the energetic gate
+   is thin at the frozen radius (4.1 against 3.8 on the canonical footing) and wider once the veto's edge is moved out
+   (5.6 / 6.7).
 5. **My pre-freeze estimate was wrong.** I expected hosts to carry 30 to 50 % of the outer signal. The 4.9 sigma difference
    between hosted and host-free lenses at the frozen radius is mostly the edge of the veto: it falls to +0.31 +- 0.21 when
    the veto radius is widened to 1.6 R_h.
@@ -161,22 +165,40 @@ outermost radius measured, so the edge effect applies to it as well. With B21's 
 **PH3, the two-phase exterior in the same calibration-free form** (added after E7 was seen; post hoc). k is the
 enclosed-mass factor the inner window asks for (about 3 canonical, 2.6 alt).
 
-| veto radius | R_s | law's floor | census cap (X 53.64) | record's share (X 5.56) | share needed (2 sigma) |
+| veto radius | R_s | law's floor | census cap (X 53.64) | record's share (X 5.56) | share needed, lens alone (2 sigma) |
 |---|---|---|---|---|---|
 | 1.0 R_h, canonical / alt | 0.61 +- 0.09 | 0.98 (3.9 / 4.0 sigma) | 0.80 / 0.67 (2.0 / 0.7) | 0.095 / 0.080 (-5.5 / -5.6) | 41 (28-54) / 48 (33-64) |
 | 1.3 R_h | 0.71 +- 0.12 | 0.98 (2.3 / 2.3) | 0.79 / 0.67 (0.7 / -0.4) | 0.095 / 0.080 (-5.3 / -5.5) | 48 (32-64) / 57 (38-77) |
 | 1.6 R_h | 0.81 +- 0.13 | 0.98 (1.3 / 1.3) | 0.78 / 0.66 (-0.2 / -1.1) | 0.094 / 0.079 (-5.4 / -5.5) | 56 (37-74) / 66 (44-88) |
 
+**E8, the neighbours' term in the two-phase reading** (A3, declared before it was run; `ko1_neighbours.py`). Every
+catalogued neighbour inside a host-free lens's measured range and within 230 Mpc, as a point of (1 + X) M_b, with the same sum
+around shuffled positions subtracted.
+
+| host-free set | neighbour pairs | net term per unit (1 + X), of the law's level | at the record's share | two-phase with the share and its neighbours, R_s | share needed when neighbours carry it too (2 sigma) |
+|---|---|---|---|---|---|
+| frozen radius, canonical / alt | 1,001,712 | 0.00181 +- 0.00013 / 0.00165 +- 0.00012 | 0.0119 / 0.0108 | 0.116 / 0.097 against 0.61 +- 0.09 (5.2 / 5.4 sigma) | 33 (23-44) / 40 (27-52) |
+| 1.6 R_h | 516,393 | 0.00151 +- 0.00017 / 0.00137 +- 0.00016 | 0.0099 / 0.0090 | 0.110 / 0.093 against 0.81 +- 0.13 (5.2 / 5.4 sigma) | 47 (31-63) / 56 (37-75) |
+
+- The term is a hundredth of the law's level at the record's share. My hand estimate (a few hundredths) was the right
+  order.
+- It is a lower bound: the catalogue is flux-limited, and the term in the high-redshift half is about half that in the low
+  half (0.0011 against 0.0022 per unit). Even ten times more would not fill the gap.
+- A shell of the 2 sigma minimum share outweighs the wall force by 3.8 / 4.9 at the frozen radius and 7.1 / 9.0 at 1.6 R_h;
+  at the best-fit shares by 8.0 / 10.2 and 15.7 / 20.1.
+
 ## 6. What it means for the switch class
 
 - SWT1's conflict stands: nothing here lets the law switch off inside KiDS's range at the record's share.
 - KO1 adds a second conflict that does not use the CMB-lensing allowance. A variational switch shows only M_b from outside
-  (SWT1 T1), so the outer bins must be made by the swept share. They need at least 28 / 33 M_b at 2 sigma and 41 to 66 at
-  best fit. SWT1 T3 clears a share only up to 2.8 to 4.0 times 5.56 M_b, about 16 to 22 M_b. A shell of 28 / 33 M_b at the
-  allowance radius (112 / 123 MOND radii) outweighs the wall force by 5.6 / 7.1; at the best-fit shares by 12 to 22 /
-  15 to 27. A wall further in does worse.
+  (SWT1 T1), so the outer bins must be made by the swept share or by neighbours' mass. E8 counts the neighbours: with the
+  record's share each they add a hundredth of the law's level. So the share itself must be heavy: at least 23 / 27 M_b per
+  galaxy at 2 sigma, 33 to 56 at best fit.
+- SWT1 T3 clears a share only up to 2.8 to 4.0 times 5.56 M_b, about 16 to 22 M_b. SNP1 shows three shares are not cleared
+  dynamically. A shell of 23 / 27 M_b at the allowance radius (112 / 123 MOND radii) outweighs the wall force by 3.8 / 4.9;
+  a wall further in does worse.
 - So the two-phase reading has two exits and both are graded: a light share is cleared but leaves KiDS's outer bins empty
-  (5 sigma); a heavy share fills them but cannot be cleared.
+  (more than 5 sigma); a heavy share fills them but cannot be cleared.
 - What is not excluded: the law as the lens's own field out to 3 Mpc (R_s floor 0.98 against 0.81 +- 0.13). That is the
   reading SWT1 showed needs a filling of 0.29, twelve times the lensing allowance.
 
@@ -198,9 +220,10 @@ shape gate, and a measured hot-gas mass. None of it is on disk.
 
 ## Files
 
-FROZEN_CRITERIA.md, AMENDMENT_A1.md, AMENDMENT_A2.md, ko1.py -> ko1.json / .out, ko1_MUTATE.json / .out,
+FROZEN_CRITERIA.md, AMENDMENT_A1.md, AMENDMENT_A2.md, AMENDMENT_A3.md, ko1.py -> ko1.json / .out, ko1_MUTATE.json / .out,
 ko1_run1_KA5_fail.json / .out (the first run, kept), ko1_extra.py -> ko1_extra.json / .out, ko1_shape.py -> ko1_shape.json /
-.out, KO1.lean, KO1_MUTATE.lean, compile.txt, compile_MUTATE.txt. One thread; 21 s, 30 s and 24 s; under 1 GB. The shear
+.out, ko1_neighbours.py -> ko1_neighbours.json / .out, KO1.lean, KO1_MUTATE.lean, compile.txt, compile_MUTATE.txt. One
+thread; 21 s, 30 s, 24 s and 10 s; under 1 GB. The shear
 catalogue was not read. The independent regrade is lane KO1R.
 
 Not registered: the closure register belongs to the orchestrator. Adopts nothing. kappa = 1/2 FITTED; not theory closed.
