@@ -1,0 +1,93 @@
+KO1 run.  lenses 181,477; W20 93,020; W30 57,265; bins 15; outer bins O = [0, 1, 2, 3], edges 1.000e-15 to 9.692e-15 m/s^2
+
+KA1: per-lens sums against cfg96_stack (patch x type x bin)
+  [PASS] KA1 per-lens sums reproduce cfg96_stack (W10, W20, W30) to 1e-9: max relative deviation 6.42e-14
+  [PASS] numerics: 24-node quadrature against the closed form of the two-phase cell: max relative difference 3.8e-15
+  [PASS] coverage: no cell holds pairs outside its modelled annulus: 0 cells with weight and no model
+
+KA3: amplitude machinery
+  [PASS] KA3 WG x 1.3 -> A x 1.3; WG = WW x law -> A = 1; WG = WW x two-phase -> A = A_II: scale exact True; |A - 1| 4.4e-16; |A - A_II| 5.6e-17
+
+KA4: jackknife calibration on 200 random halvings of W10 (seed 52)
+  [PASS] KA4 std of z over random halvings in [0.8, 1.2]: std 1.018, mean -0.031
+
+loading the bright sample
+  1,239,422 objects  [7 s]
+
+KA2: the record's isolation, rebuilt with this lane's loader and pair finder
+  isolation scan done  [13 s]
+
+neighbour pool 888,795 (masked = 1: 161,217)
+  host scan Delta 0.3: host-free at W 230 40,667, at W 115 71,420  [14 s]
+  mass-shifted scans done  [17 s]
+  host scan Delta 0.5: host-free at W 230 94,530, at W 115 121,183  [18 s]
+  mass-shifted scans done  [20 s]
+  shuffled-position scan done  [22 s]
+catalogue scans saved to the cache
+  [PASS] KA2 isolation rebuild reproduces lr_lenses, f20 and f30 exactly: candidates 605,531 (record 605,531); isolated 181,477 (record 181,477); rows equal True; f20 equal True; f30 equal True
+  neighbour pool 888,795 objects (masked = 1: 161,217)
+  [PASS] KA5 (A1) synthetic hosts: the finder equals the brute-force expectation, and every planted host is found: array equal True; planted hosts found True; lenses also reached by another lens's object 104; host-free lenses flipped 285
+
+the cut (weights only; WW holds no shear)
+  Delta 0.3 dex, W 230 Mpc: host-free 40,667 lenses, outer-weight share f_w 0.2896
+  Delta 0.3 dex, W 115 Mpc: host-free 71,420 lenses, outer-weight share f_w 0.4722
+  Delta 0.5 dex, W 230 Mpc: host-free 94,530 lenses, outer-weight share f_w 0.6409
+  Delta 0.5 dex, W 115 Mpc: host-free 121,183 lenses, outer-weight share f_w 0.7717
+  chosen by the frozen rule: Delta 0.3, W 230  (f_w 0.2896, 40,667 lenses)
+  mass-scatter slope b = d ln P(host-free) / d log M*: terciles [1.12, 6.12, 5.2], outer-weight shares [0.045, 0.269, 0.686], effective 5.26 per dex -> e = 0.210 dex at sigma_M 0.2, factor 1.274 (sigma_M 0.1: 1.062)
+  [PASS] cfg116 near + far weights equal the cfg110 weights (so WX shares WW): max relative deviation 3.1e-15
+
+================ footing canonical (a0 9.3603e-11)
+  [PASS] cross-shear null, host-free, O (canonical): A_x +0.118 +- 0.175
+  W10 stack     A 1.707 +- 0.086   (181,477 lenses)
+  hosted        A 2.009 +- 0.107   (140,810 lenses, weight share 0.710)
+  HOST-FREE     A_hf 1.098 +- 0.154   (40,667 lenses, weight share 0.290)
+     per bin g_obs / law: [0.086, 0.953, 1.563, 1.24]  +- [0.444, 0.356, 0.326, 0.274]
+     W10 per bin        : [1.542, 1.447, 1.968, 1.929]  +- [0.22, 0.149, 0.184, 0.173]
+  hosted - host-free    +0.912 +- 0.186  (+4.91 sigma)
+  two-phase exterior    A_II 0.0556 (share X 5.562), 0.4633 (cap X 53.64)
+  mass-scatter corrected A_hf^c 1.399 +- 0.197 (sigma_M 0.2); 1.166 (sigma_M 0.1)
+  label raw: LAW LEVEL HOLDS;  corrected: LAW LEVEL HOLDS
+  R1 isolation shells: W10 not W20 1.977 +- 0.142 (88,457); W20 not W30 2.210 +- 0.209 (35,755); W30 0.939 +- 0.163 (57,265);  (W10 not W20) - W30 = +1.038 +- 0.221
+  R2 host-free subsets: late -0.189 +- 0.391; early 1.337 +- 0.179; mass tercile 1 -1.138 +- 0.724; mass tercile 2 0.572 +- 0.322; mass tercile 3 1.372 +- 0.180; z low half 1.097 +- 0.222; z high half 1.225 +- 0.216
+     W10 by type: late 1.232 +- 0.139, early 1.986 +- 0.110;  three lowest bins A_hf 1.013 +- 0.188 (A_II cap 0.376)
+  R3 A by number of hosts: 0: 1.098 +- 0.154 (40,667); 1: 1.681 +- 0.165 (32,107); 2: 1.614 +- 0.252 (24,812); 3+: 2.375 +- 0.150 (83,891)
+  R5 host-free, near sources 1.014 +- 0.225; far sources 1.162 +- 0.215
+  all four settings: (0.3_230) 1.098 +- 0.154; (0.3_115) 1.308 +- 0.107; (0.5_230) 1.505 +- 0.112; (0.5_115) 1.566 +- 0.094
+
+================ footing alt (a0 1.1312e-10)
+  [PASS] cross-shear null, host-free, O (alt): A_x +0.107 +- 0.160
+  W10 stack     A 1.553 +- 0.078   (181,477 lenses)
+  hosted        A 1.828 +- 0.098   (140,810 lenses, weight share 0.710)
+  HOST-FREE     A_hf 0.999 +- 0.141   (40,667 lenses, weight share 0.290)
+     per bin g_obs / law: [0.078, 0.867, 1.423, 1.128]  +- [0.404, 0.324, 0.297, 0.249]
+     W10 per bin        : [1.403, 1.317, 1.791, 1.755]  +- [0.2, 0.136, 0.167, 0.157]
+  hosted - host-free    +0.830 +- 0.169  (+4.91 sigma)
+  two-phase exterior    A_II 0.0506 (share X 5.562), 0.4215 (cap X 53.64)
+  mass-scatter corrected A_hf^c 1.273 +- 0.179 (sigma_M 0.2); 1.061 (sigma_M 0.1)
+  label raw: LAW LEVEL HOLDS;  corrected: LAW LEVEL HOLDS
+  R1 isolation shells: W10 not W20 1.799 +- 0.130 (88,457); W20 not W30 2.011 +- 0.190 (35,755); W30 0.854 +- 0.148 (57,265);  (W10 not W20) - W30 = +0.945 +- 0.201
+  R2 host-free subsets: late -0.172 +- 0.356; early 1.216 +- 0.163; mass tercile 1 -1.035 +- 0.659; mass tercile 2 0.521 +- 0.293; mass tercile 3 1.249 +- 0.164; z low half 0.998 +- 0.202; z high half 1.114 +- 0.196
+     W10 by type: late 1.121 +- 0.127, early 1.807 +- 0.100;  three lowest bins A_hf 0.922 +- 0.171 (A_II cap 0.342)
+  R3 A by number of hosts: 0: 0.999 +- 0.141 (40,667); 1: 1.530 +- 0.150 (32,107); 2: 1.468 +- 0.230 (24,812); 3+: 2.161 +- 0.137 (83,891)
+  R5 host-free, near sources 0.923 +- 0.204; far sources 1.057 +- 0.195
+  all four settings: (0.3_230) 0.999 +- 0.141; (0.3_115) 1.190 +- 0.098; (0.5_230) 1.369 +- 0.102; (0.5_115) 1.425 +- 0.085
+
+R4 (A1) |dchi| of more massive (>= 0.3 dex) pool objects inside R_h: 1,204,179 pairs around the lenses, 1,244,992 around shuffled positions; excess below 500 Mpc -40,813 = -0.225 per lens; share inside 230 Mpc 0.746, inside 115 Mpc 0.706; host-free fraction 0.224 against 0.232 for shuffled positions
+  [PASS] published tables: covariance diagonal equals the tabulated errors (KiDS isolated): max relative difference 4.4e-05
+
+R6 / R7 published tables (B21), four lowest g_bar points, full covariance
+  canonical: KiDS-bright isolated A 1.503 +- 0.076; GAMA isolated A 0.973 +- 0.280 (ratio 0.647, difference -1.83 sigma, treated as independent); with hot gas in g_bar 0.468 +- 0.036
+     isolated / all per mass bin: bin1: 1.62 +- 0.19 / 2.49 +- 0.11 = 0.65; bin2: 1.56 +- 0.16 / 2.91 +- 0.10 = 0.53; bin3: 1.66 +- 0.13 / 2.75 +- 0.09 = 0.60; bin4: 1.32 +- 0.11 / 2.67 +- 0.08 = 0.49
+     R7 W10 stack / B21 isolated g_obs per outer bin: [1.286, 0.942, 1.227, 1.084] (z [1.29, -0.42, 1.56, 0.67])
+  alt: KiDS-bright isolated A 1.368 +- 0.069; GAMA isolated A 0.885 +- 0.255 (ratio 0.647, difference -1.83 sigma, treated as independent); with hot gas in g_bar 0.426 +- 0.033
+     isolated / all per mass bin: bin1: 1.47 +- 0.17 / 2.27 +- 0.10 = 0.65; bin2: 1.42 +- 0.14 / 2.65 +- 0.09 = 0.53; bin3: 1.51 +- 0.12 / 2.50 +- 0.08 = 0.60; bin4: 1.20 +- 0.10 / 2.43 +- 0.08 = 0.49
+     R7 W10 stack / B21 isolated g_obs per outer bin: [1.286, 0.942, 1.227, 1.084] (z [1.29, -0.42, 1.56, 0.67])
+
+================ result
+  KO1 canonical: LAW LEVEL HOLDS   (A_hf 1.098 +- 0.154; corrected 1.399 +- 0.197; line 0.891; two-phase cap 0.463, share 0.056)
+  KO1 alt: LAW LEVEL HOLDS   (A_hf 0.999 +- 0.141; corrected 1.273 +- 0.179; line 0.891; two-phase cap 0.422, share 0.051)
+  checks: 11 of 11 pass
+  runtime 23.2 s
+
+kappa = 1/2 FITTED; not theory closed. Adopts nothing.
