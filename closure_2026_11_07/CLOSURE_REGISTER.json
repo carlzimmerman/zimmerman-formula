@@ -531,13 +531,31 @@
    "amendment": "AMENDMENT_A1 9aeeb48503 (RK4 integrator; KA2 reworded; before any number)",
    "result_commit": "b8569ef94a",
    "result": "closure_2026_11_09/SS1_self_shielded_conversion/RESULT.md",
-   "scope_note": "graded the round-3 construction only (variant A: conversion to dark radiation, self-shielding column gate). Variants B-G sent later by the orchestrator were not graded; G goes to SS2.",
+   "scope_note": "variant A graded at b8569ef94a; variants B-G graded in the same lane under AMENDMENT_A2 2b866ef57a and A3 694668618a, result f3186ce8e7; every variant FAIL / FAIL",
    "reading": "first failing gate 2 (groups): under one consistent rule (self-consistent radial peeling) a self-similar halo's column grows only as R500, so groups (x0 1.6-3.2) drain to 0.21-0.45 M_b against the 1.2-3.5 they need: 0/20 and 8/20 canonical, 2/20 and 9/20 alt. X-COP keeps 0.9 inside 0.25 R500 but 0.33-0.42 inside R500 (inner bin -0.27; TR1 shape -0.22/+0.03/+0.20). Converting ~97 % to dark radiation fails BAO+SN with bare Lambda (dchi2 +8.2, h 0.674 -> 0.660, D_M +0.87 % at z 0.51); the w = -0.85 bracket is worse (+183). Bullet FAILS (M300 Z -2.7/-3.8). Passes on the primary (KD1 P3) halos: KiDS (max 0.020), SPARC (0.027 M_b), forest, fsigma8, Cassini; under the Moster13 abundance-matching bracket KiDS (+0.28) and SPARC fail too. CMB lensing NO VERDICT (Limber method missed the frozen CLASS validation 77.5 vs 59.7; reads 13.4 vs 18.48, reported only). Coma UDGs +1.21 (reported, UA1). Repair needs: a gate key rising ~R500^2.4, cluster retention high to R500, H(z) intact.",
    "mutate_note": "Sigma_gate x3 and /3 NO BITE by the frozen status-vector rule (numbers move, FAIL holds); z_dec = 2 bites (lensing 69.7); gate-off bites. Sigma_gate 0.042 not reproduced from the stated constants. Lean (ss1_lean/): outside Theorems 2 and 4 false as written; corrected versions plus peel_ge_bare and peel_le_frozen compile with standard axioms; MUTATE Lean file fails as it should; Theorems 1 and 3 NOT EVALUATED.",
-   "landed": "2026-11-09"
+   "landed": "2026-11-09",
+   "variants_B_to_G": {
+    "result_commit": "f3186ce8e7",
+    "amendments": [
+     "2b866ef57a",
+     "694668618a"
+    ],
+    "labels": {
+     "B": "FAIL/FAIL gate 1 KiDS (subhalo bracket)",
+     "C": "FAIL/FAIL gate 1 KiDS (own shelf 0.355 dex)",
+     "D": "FAIL/FAIL gate 1 KiDS (subhalo bracket)",
+     "E": "FAIL/FAIL gate 2 groups",
+     "F": "FAIL/FAIL gate 2 groups",
+     "G": "FAIL/FAIL gate 2 groups (primary)"
+    },
+    "G_reading": "on the record's footings z_dec 0.631, alpha 4.37, v_stiff 265.8/288.1 km/s. The threshold sorts correctly (KiDS, SPARC, Ursa Major -0.001 vs EV1 -0.024 +- 0.064, Cassini pass; every Lovisari group retains >= 0.9919) but a group above threshold keeps its whole 4.1 M_b share and over-fills: 3/20 and 0/20, median residual -0.07/-0.28; X-COP over-fills (mean -0.21, inner -0.30); Bullet fails on DB1's offset rule. Two-body conversion in every sub-threshold collapsed halo converts 63 % of the component (41 % above 1e10 Msun) into daughters streaming ~6.7 Mpc: sigma8 0.65-0.71, S8 0.67-0.72, low-z fsigma8 (BGS, LRG1) fail CE2; the source's 22 %, sigma8 0.748, fsigma8 0.450 not reproduced. Brackets G-local (local profile + 18 % expansion) and G-obs also FAIL. Lens-z steps of F and G recorded as frozen predictions (no lens-z split on disk).",
+    "mutate_note": "alpha -> 0 bites (KiDS, SPARC fail); x0 = 0 bites (groups, X-COP under-fill); v_stiff x/÷1.25 moves numbers, flips no status. Closed form solves the Hill-4 ODE to 4e-13; source's B retention claims not reproduced (x0 1.95 -> 0.569, not 0.25). Lean ss1_lean/SS1_variants.lean: closed form, x_crit formula, monotonicity, bounds at 1.95 and 3.2 compile with standard axioms; MUTATE fails; the 0.65 bound numerical only. Unit bug (km/s x Gyr in streaming length) found and fixed before grading, disclosed. f_sub from the Jiang & van den Bosch 2016 bracket where the record has no subhalo masses.",
+    "repair_needs": "mass-dependent group retention ~30-85 %, a falling cluster fraction not the whole share, far less small-scale conversion (only above ~1e12 Msun, or daughters that stay bound)"
+   }
   },
   "SS2": {
-   "status": "RUNNING",
+   "status": "FOLDED",
    "class": "TEST (quarantined; outside idea; owner decision closure_2026_11_09/OWNER_DECISION_2026-11-09_SS1_LAUNCH.md and the owner's 'Keep running rounds')",
    "title": "variant G of the self-shielded late conversion: onset at the acceleration onset z 0.642 (q = 0); the pre-conversion dark halo keeps its component iff its own virial speed clears v_stiff = (a0 c L*)^(1/3); converted part leaves as a non-relativistic 1144 km/s stream (background unchanged)",
    "criteria_commit": null,
@@ -545,8 +563,10 @@
    "opened": "2026-11-09",
    "owner_word": "Keep running rounds",
    "folds_into": "PAPER70 next version (--newversion 24086157)",
-   "label_can": null,
-   "label_alt": null
+   "label_can": "FAIL",
+   "label_alt": "FAIL",
+   "folded_into": "SS1 (variant G graded there under A2/A3, result f3186ce8e7); no separate SS2 folder was created",
+   "landed": "2026-11-09"
   }
  },
  "deposit": {
