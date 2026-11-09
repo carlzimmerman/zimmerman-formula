@@ -626,6 +626,21 @@ L += [
  ("a mass-conserving divergence-form operator", PJ1, "div(R_J^2 grad f), which conserves mass exactly"),
  ("the Bullet graded under the record's instantaneous relation", PJ1, "G6 is graded under the record's instantaneous Bullet relation"),
 ]
+HL3 = "closure_2026_11_08/HL3_lensing_leg_shape/RESULT.md"
+L += [
+ ("Tian+2020's 84 points, 16 X-ray-selected clusters", HL3, "primary samples: 16 X-ray-selected CLASH clusters; 7 X-COP clusters with measured stars"),
+ ("SAME SHAPE / SAME SHAPE, in every bin the two legs share", HL3, "# HL3 RESULT: SAME SHAPE (canonical) / SAME SHAPE (alt)"),
+ ("$+0.048$ [$-0.026$, $+0.114$]\\,dex at 0--0.25", HL3, "**+0.048 [-0.026, +0.114]**"),
+ ("$+0.053$ [$-0.022$, $+0.140$] at 0.25--0.5", HL3, "**+0.053 [-0.022, +0.140]**"),
+ ("$+0.049$ / $+0.056$ alt", HL3, "**+0.056 [-0.023, +0.140]**"),
+ ("every bracket within 0.04\\,dex", HL3, "sits\nwithin 0.04 dex of the primary value"),
+ ("not a hydrostatic artefact", HL3, "the hot-leg residual shape is NOT a hydrostatic artefact"),
+ ("slightly more missing mass, not less", HL3, "slightly MORE missing mass than the hydrostatic leg, not less"),
+ ("$\\times3.28$ [2.90, 3.90] against X-COP's $\\times2.90$", HL3, "| canonical | x3.28 [2.90, 3.90] | x2.90 [2.74, 3.17] |"),
+ ("ends at 600\\,kpc (0.28--0.59\\,$R_{500}$)", HL3, "The lensing leg stops at 600 kpc (0.28-0.59 R500)"),
+ ("by $+0.05$\\,dex in both shared bins", HL3, "+0.05 dex in both shared bins on both footings"),
+ ("MUTATE M1--M3 bite & HL3", HL3, "## MUTATE (hl3_MUTATE.out): all bite, both footings"),
+]
 def mutate(lit):
     m = re.search(r"\d", lit)
     return lit if not m else lit[:m.start()] + str((int(m.group()) + 1) % 10) + lit[m.end():]
