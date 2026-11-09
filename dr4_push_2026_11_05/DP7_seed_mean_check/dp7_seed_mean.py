@@ -15,6 +15,11 @@ with gamma_hat_0 the k = 0 primary fit of the same run; the single-seed shift De
   python3 -B dp7_seed_mean.py --cut13 cones-literal --fit-path pipeline --K 50 --out dp7        (the graded sweep; K3, K4, K6 inside)
   ... --mutate-k0 --out dp7_MUTATE1        (M1: the k = 0 paired difference returned for every k)
   ... --keep-nss  --out dp7_MUTATE2        (M2: drop_nss = False, the rung equals the base)
+AMENDMENT_A1: the graded sweep and M1 / M2 carry --rung-missing-cones extract-fallback (the RUNG's pairs reaching cut 13 with no DR3
+cone, the 139 NSS-flagged pairs, take the frozen builder's third-star flag on the extract; the BASE stays strict cones-literal), and
+  ... --cut13 cones-literal --fit-path pipeline --rung-missing-cones extract-fallback --control-c1 --out dp7_C1
+flags one randomly chosen uncovered pair (numpy default_rng seed 1103) in the k = 0 rung and refits it: the change in gamma_hat per
+footing is the measured bias bound (must be < 1e-3, else reported beside the label).
 Checkpoint: one json per k in parts/ (resumed on restart, so a SIGTERM loses at most one k). Offline: a socket guard is
 installed at import; DR3 inputs are read from the extract root the DP3 dry run used. No frozen file is edited (K5 checks the
 sha256 of the five DP1-pinned files and the 27 DP3-pinned files before and after). DR4 (untested; every k >= 1 stage-G fetch is an
@@ -176,13 +181,13 @@ def one_k(k, a, cones, fitter, est, ext, manifest):
     bb, rb = NR.rung_build(False, 30, a.release, a.variant, a.cut13, manifest, a.allow_network, seed_offset=k_eff, cones=cones)
     t_base = time.time() - tb
     tb = time.time()
-    br, rr = NR.rung_build(drop, 30, a.release, a.variant, a.cut13, manifest, a.allow_network, seed_offset=k_eff, cones=cones)
+    br, rr = NR.rung_build(drop, 30, a.release, a.variant, a.cut13, manifest, a.allow_network, seed_offset=k_eff, cones=cones, missing_cones=a.rung_missing_cones)
     t_rung = time.time() - tb
-    part = dict(k=k, k_eff=k_eff, cut13=a.cut13, fit_path=a.fit_path, mutate_k0=a.mutate_k0, keep_nss=a.keep_nss, drop_nss=drop,
+    part = dict(k=k, k_eff=k_eff, cut13=a.cut13, fit_path=a.fit_path, mutate_k0=a.mutate_k0, keep_nss=a.keep_nss, drop_nss=drop, rung_missing_cones=a.rung_missing_cones,
                 base=dict(n_pairs=rb["n_pairs"], sha256=rb["sha256"], build_s=round(t_base, 2), stage_G_seed=rb.get("stage_G_seed", "default (SEED)"),
                           correlations=rb.get("correlations")),
                 rung=dict(n_pairs=rr["n_pairs"], sha256=rr["sha256"], build_s=round(t_rung, 2), label=rr["rung"], switches=rr["variant_switches"],
-                          correlations=rr.get("correlations")),
+                          correlations=rr.get("correlations"), cut13_cones=rr.get("cut13_cones")),
                 rung_equals_base_bytes=(bb == br), n_builds=2)
     # K4: the extract-builder base_k against the G10/G50 build on disk (DP1's base_equals_g50_build, repeated)
     g50 = ext / f"seed_k{k_eff}" / "final_g50.csv"
@@ -228,7 +233,59 @@ def part_path(k, a):
 
 
 def part_matches(p, a, k):
-    return p.get("k") == k and p.get("cut13") == a.cut13 and p.get("fit_path") == a.fit_path and bool(p.get("mutate_k0")) == a.mutate_k0 and bool(p.get("keep_nss")) == a.keep_nss
+    return (p.get("k") == k and p.get("cut13") == a.cut13 and p.get("fit_path") == a.fit_path and bool(p.get("mutate_k0")) == a.mutate_k0 and bool(p.get("keep_nss")) == a.keep_nss
+            and p.get("rung_missing_cones", "error") == a.rung_missing_cones)
+
+
+# ------------------------------------------------------------------ control C1 (AMENDMENT_A1 item 3)
+def control_c1(a, cones, fitter, manifest, P):
+    """flag one randomly chosen uncovered pair (seed 1103) inside the k = 0 rung's extract-fallback and refit by the registered path."""
+    br, rr = NR.rung_build(True, 30, a.release, a.variant, a.cut13, manifest, a.allow_network, seed_offset=0, cones=cones, missing_cones="extract-fallback")
+    orig = D.B.third_star_flags
+    pick = dict(calls=0)
+
+    def patched(S_, a_, b_):                                                     # the fallback is the only caller of B.third_star_flags in a cones build
+        f = np.asarray(orig(S_, a_, b_), bool).copy()
+        i = int(np.random.default_rng(1103).integers(len(f)))
+        pick.update(calls=pick["calls"] + 1, n_uncovered=int(len(f)), index=i, pair=[int(S_["source_id"][a_[i]]), int(S_["source_id"][b_[i]])], already_flagged=bool(f[i]),
+                    fallback_flagged_before=int(f.sum()))
+        f[i] = True
+        return f
+    D.B.third_star_flags = patched
+    try:
+        bc, rc = NR.rung_build(True, 30, a.release, a.variant, a.cut13, manifest, a.allow_network, seed_offset=0, cones=cones, missing_cones="extract-fallback")
+    finally:
+        D.B.third_star_flags = orig
+    wk = WORK / "c1"; wk.mkdir(parents=True, exist_ok=True)
+    pr, pc = wk / "rung_k0_fallback.csv", wk / "rung_k0_fallback_one_flagged.csv"
+    pr.write_bytes(br); pc.write_bytes(bc)
+    fr, fc = fitter.fit(pr, br), fitter.fit(pc, bc)
+
+    def pair_set(b):                                                             # final-catalogue pair ids, to see what one flag at cut 13 moves
+        rows = list(csv.DictReader(io.StringIO(b.decode())))
+        ks = [c for c in rows[0] if "source_id" in c][:2]
+        return {(r[ks[0]], r[ks[1]]) for r in rows}
+    A, Bs = pair_set(br), pair_set(bc)
+    setdiff = dict(only_in_reference=len(A - Bs), only_in_one_flagged=len(Bs - A), symmetric_difference=len(A ^ Bs),
+                   note="the stage-G vtilde-error MC (B.vt_error_mc, seed SEED + k) is drawn over the post-cut-13 pair set; one pair fewer at cut 13 "
+                        "re-aligns that stream, so the final catalogue changes by many pairs, not one: the measured change is one draw of the stage-G "
+                        "seed noise (the quantity this lane measures), not the bias of the one pair")
+    res = dict(control="C1 (AMENDMENT_A1 item 3)", seed=1103, pick=pick, reference=dict(n_pairs=rr["n_pairs"], sha256=rr["sha256"], cut13_cones=rr.get("cut13_cones")),
+               one_flagged=dict(n_pairs=rc["n_pairs"], sha256=rc["sha256"], cut13_cones=rc.get("cut13_cones")), pair_removed_from_final=(rr["n_pairs"] - rc["n_pairs"]),
+               final_pair_set_difference=setdiff, fallback_called_once=(pick["calls"] == 1), threshold=1e-3)
+    ok = pick["calls"] == 1
+    for fo in FOOTS:
+        ch = fc[fo]["g"] - fr[fo]["g"]
+        res[fo] = dict(gamma_reference=fr[fo]["g"], sigma_fit_reference=fr[fo]["s"], gamma_one_flagged=fc[fo]["g"], sigma_fit_one_flagged=fc[fo]["s"], change=ch, below_1e3=abs(ch) < 1e-3,
+                       self_test=[fr.get("self_test_passed"), fc.get("self_test_passed")], rss_gb=[fr.get("rss_gb"), fc.get("rss_gb")])
+        ok &= abs(ch) < 1e-3
+        P(f"  C1 {fo:9s} rung k=0 (fallback) {fr[fo]['g']:.4f}+-{fr[fo]['s']:.4f}  one uncovered pair flagged {fc[fo]['g']:.4f}+-{fc[fo]['s']:.4f}  change {ch:+.6f}  (< 1e-3: {abs(ch) < 1e-3})")
+    res["passed"] = ok
+    P(f"C1: flagged pair {pick.get('pair')} (index {pick.get('index')} of {pick.get('n_uncovered')} uncovered; fallback called {pick['calls']} time(s); already flagged {pick.get('already_flagged')}); "
+      f"final pairs {rr['n_pairs']} -> {rc['n_pairs']}; bias bound {'BELOW 1e-3 on both footings' if ok else 'NOT below 1e-3: the measured change is reported beside the label'}")
+    P(f"C1 final pair sets: only in reference {setdiff['only_in_reference']}, only in one-flagged {setdiff['only_in_one_flagged']}, symmetric difference {setdiff['symmetric_difference']} "
+      f"(one flag at cut 13 re-aligns the seeded stage-G vtilde-error MC stream: the change is one draw of the stage-G seed noise, not a one-pair bias)")
+    return res
 
 
 # ------------------------------------------------------------------ K1 against DP1
@@ -285,6 +342,9 @@ def main():
     ap.add_argument("--mutate-k0", action="store_true", help="MUTATE M1: the k = 0 paired difference for every k")
     ap.add_argument("--keep-nss", action="store_true", help="MUTATE M2: drop_nss = False (the rung equals the base)")
     ap.add_argument("--no-fit-cache", action="store_true", help="refit identical bytes instead of serving the sha-keyed fit cache")
+    ap.add_argument("--rung-missing-cones", choices=("error", "extract-fallback"), default="error",
+                    help="AMENDMENT_A1: the RUNG's cut-13 pairs with no cone take the frozen builder's third-star flag on the extract (the base stays strict)")
+    ap.add_argument("--control-c1", action="store_true", help="AMENDMENT_A1 item 3: flag one random uncovered pair (seed 1103) in the k = 0 rung, refit, report the change")
     ap.add_argument("--release", choices=("dr3", "dr4"), default="dr3"); ap.add_argument("--variant", choices=("primary",), default="primary")
     ap.add_argument("--manifest", default=None); ap.add_argument("--allow-network", action="store_true")
     ap.add_argument("--neighbours", action="append", default=[]); ap.add_argument("--neighbour-pairs", action="append", default=[])
@@ -311,7 +371,8 @@ def main():
     ext = D.extract_dir(a.release, a.variant)
     manifest = json.loads(Path(a.manifest).read_text()) if a.manifest else None
     P("=" * 110)
-    P(f"DP7 seed-mean NSS-off entry: {a.release} {a.variant} cut13 {a.cut13}, fit path {a.fit_path}, K = {a.K}" + (" [MUTATE M1 --mutate-k0]" if a.mutate_k0 else "") + (" [MUTATE M2 --keep-nss]" if a.keep_nss else ""))
+    P(f"DP7 seed-mean NSS-off entry: {a.release} {a.variant} cut13 {a.cut13}, fit path {a.fit_path}, K = {a.K}, rung missing cones: {a.rung_missing_cones}" +
+      (" [MUTATE M1 --mutate-k0]" if a.mutate_k0 else "") + (" [MUTATE M2 --keep-nss]" if a.keep_nss else "") + (" [CONTROL C1]" if a.control_c1 else ""))
     P("NON-SCORING: DR3 numbers are code-path tests, never results (Amendment 7(e)). kappa = 1/2 FITTED; footings never pooled; not theory closed.")
     P("=" * 110)
     P(f"frozen files pinned: {len(sh0)} (DP1 five + DP3 27); pipeline sha {sh0['DP1:wide_binary_pipeline.py'][:8]}; OMP_NUM_THREADS {os.environ.get('OMP_NUM_THREADS')}; nice {os.nice(0)}")
@@ -323,6 +384,16 @@ def main():
     if a.fit_path == "d2":
         tb = time.time(); est = NR.D2Estimator(); P(f"D2 estimator built (1e6 master, seed {FIT_SEED}) [{time.time() - tb:.0f} s, wrapper RSS {rss_self_gb():.2f} GB]")
     fitter = FitCache(WORK / "fit_cache.json", enabled=not a.no_fit_cache)
+    if a.control_c1:
+        if a.cut13 != "cones-literal" or a.fit_path != "pipeline":
+            raise SystemExit("--control-c1 is the cones-literal, pipeline-fit control")
+        res = control_c1(a, cones, fitter, manifest, P)
+        res["K5"] = frozen_check(sh0, frozen_now())
+        P(f"K5 (frozen files unchanged): {'PASS' if res['K5']['passed'] else 'FAIL'}  {res['K5']['n_files']} files")
+        P(f"C1 done [{time.time() - t0:.0f} s; wrapper peak RSS {rss_self_gb():.2f} GB]")
+        (HERE / f"{a.out}.json").write_text(json.dumps(res, indent=1, default=float) + "\n")
+        (HERE / f"{a.out}.out").write_text("\n".join(lines) + "\n")
+        return 0
     parts = []
     for k in range(0, a.K + 1):
         pp = part_path(k, a)
@@ -344,7 +415,7 @@ def main():
     done = len(parts) == a.K + 1
     # summary
     sweep = [p for p in parts if p["k"] >= 1]
-    res = dict(release=a.release, variant=a.variant, cut13=a.cut13, fit_path=a.fit_path, K=a.K, mutate_k0=a.mutate_k0, keep_nss=a.keep_nss, fit_cache=not a.no_fit_cache,
+    res = dict(release=a.release, variant=a.variant, cut13=a.cut13, fit_path=a.fit_path, K=a.K, mutate_k0=a.mutate_k0, keep_nss=a.keep_nss, fit_cache=not a.no_fit_cache, rung_missing_cones=a.rung_missing_cones,
                complete=done, n_k_done=len(parts), cones=cones_info, fit_seed=FIT_SEED, criteria="dr4_push_2026_11_05/DP7_seed_mean_check/FROZEN_CRITERIA.md (1b87706e49)",
                non_scoring="DR3 numbers are code-path tests, never results (Amendment 7(e)); kappa = 1/2 FITTED; footings never pooled; not theory closed")
     p0 = next((p for p in parts if p["k"] == 0), None)
@@ -368,6 +439,13 @@ def main():
               f"seed-mean NSS-off entry {g0 + dbar:.6f}  (single-seed entry {g0 + d0:.6f});  N4.2 on Delta_bar: {res[fo]['n42_seed_mean']}")
     # K3, K4, K5, K6 of this run
     res["K3"] = p0.get("K3") if p0 else None
+    if p0 and a.cut13 == "cones-literal" and p0["rung"].get("cut13_cones"):                 # AMENDMENT_A1 item 3: the bias bound of the rung's extract-fallback
+        cc, cb = p0["rung"]["cut13_cones"], (p0.get("K3") or {})
+        rate = (cc.get("n_flagged_cones", 0) / max(1, cc.get("n_covered", 1)))
+        res["bias_bound"] = dict(rung_n_missing=cc.get("n_missing"), rung_n_covered=cc.get("n_covered"), fallback_flagged=cc.get("n_flagged_fallback"), cones_flag_rate=rate,
+                                 expected_flagged_by_cones=rate * cc.get("n_missing", 0), policy=cc.get("missing_policy"))
+        P(f"  bias bound (AMENDMENT_A1): rung k=0 has {cc.get('n_missing')} cut-13 pairs without a cone, policy {cc.get('missing_policy')}; fallback flagged {cc.get('n_flagged_fallback')}; "
+          f"cones flag {cc.get('n_flagged_cones')} of {cc.get('n_covered')} ({rate:.2e}) -> ~{rate * cc.get('n_missing', 0):.2f} pair expected; measured by control C1 (dp7_C1.out)")
     k4 = [p["K4"] for p in parts]
     res["K4"] = dict(passed=all(x["base_equals_g50_build"] for x in k4 if x["g50_exists"]), n_with_g50=sum(x["g50_exists"] for x in k4), n_equal=sum(bool(x["base_equals_g50_build"]) for x in k4),
                      k_without_g50=[p["k"] for p in parts if not p["K4"]["g50_exists"]], k_unequal=[p["k"] for p in parts if p["K4"]["g50_exists"] and not p["K4"]["base_equals_g50_build"]])

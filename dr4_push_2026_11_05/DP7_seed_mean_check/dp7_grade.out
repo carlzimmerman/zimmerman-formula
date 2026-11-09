@@ -1,0 +1,38 @@
+==============================================================================================================
+DP7 GRADE (FROZEN_CRITERIA.md 1b87706e49 section 6 + AMENDMENT_A1): the DR3 code-path check for the seed-mean NSS-off entry
+NON-SCORING: DR3 numbers are code-path tests, never results (Amendment 7(e)). kappa = 1/2 FITTED; footings never pooled; not theory closed.
+==============================================================================================================
+K1   PASS    DP1 P4 bit for bit, k 1..8: 72/72 values identical; mean rung shift canonical +0.0040625 (DP1 +0.0040625, exact True) SD 0.030965 (DP1 0.030965, exact True); alt +0.0006250 (DP1 +0.0006250, exact True) SD 0.014745 (DP1 0.014745, exact True)
+K2   PASS    registered fit at k = 0 = DP1 P3 to 1e-4: base canonical g 1.0750 vs 1.0750; base canonical s 0.0550 vs 0.0550; base alt g 1.0775 vs 1.0775; base alt s 0.0512 vs 0.0512; rung canonical g 1.1425 vs 1.1425; rung canonical s 0.0637 vs 0.0637; rung alt g 1.1025 vs 1.1025; rung alt s 0.0525 vs 0.0525; max |diff| 0.0e+00; base sha registered True, rung sha = DP1 rung True
+K3   PASS    cones-literal k = 0 base 6180 pairs sha256 c5cb89e8f95bfe3d (ref 6,180 / c5cb89e8f95bfe3d); bytes = dry-run csv on disk: True
+K4   PASS    extract-builder base_k == G50 build: 51 of 51 k with a file; k without a file []; unequal []
+K5   PASS    32 pinned files unchanged before/after the sweep; pipeline 7c884e0e (7c884e0e: True); changed []; off pinned value []
+K6   PASS    pipeline self-test at seed 20261216 passed on all 102 fitted catalogues; flagged k []
+SWEEP PASS    K = 50 cones-literal pipeline complete True (51 k); rung missing cones policy extract-fallback (AMENDMENT_A1)
+M1   PASS    --mutate-k0: canonical Delta_bar +0.000000 vs Delta_0 +0.000000 (diff +0.0e+00), SD 0.0e+00, entry 1.137500 vs gamma_hat(rung_0) 1.137500, every Delta_k == Delta_0 True; alt Delta_bar -0.010000 vs Delta_0 -0.010000 (diff +0.0e+00), SD 0.0e+00, entry 1.077500 vs gamma_hat(rung_0) 1.077500, every Delta_k == Delta_0 True; K 50 complete True
+M2   PASS    --keep-nss: canonical Delta_bar +0.0e+00, max |Delta_k| 0.0e+00 (within 1e-9 every k: True); alt Delta_bar +0.0e+00, max |Delta_k| 0.0e+00 (within 1e-9 every k: True); rung bytes == base bytes at every k True; K 50 complete True
+C1   BOUND = measured change (reported beside the label) one of 139 uncovered pairs flagged (seed 1103; fallback called once True): canonical change -0.017500 (ref 1.1375, one flagged 1.1200); alt change +0.025000 (ref 1.0775, one flagged 1.1025); final pairs 6311 -> 6289; final pair sets differ by 304 pairs (one flag at cut 13 re-aligns the seeded stage-G vtilde-error MC: the change is one draw of the stage-G seed noise, not a one-pair bias)
+S4   PASS    dp3_sigma_sys.py with the option off reproduces the dry run's sigma_sys_dr3.json: 74 numbers, max |diff| 0.0e+00, differences beyond 1e-9: 0; (b) 0.0375 / 0.0412
+
+LABEL: CHECK PASSED   (10/10 required checks pass; C1 bound canonical change -0.017500 (ref 1.1375, one flagged 1.1200); alt change +0.025000 (ref 1.0775, one flagged 1.1025))
+
+Information only, DR3 (no verdict weight):
+  canonical Delta_bar +0.0123 +- 0.0034 (SD 0.0241, K 50);  single-seed shift Delta_0 +0.0000;  gamma_0 1.1375 +- 0.0575 (cones-literal, pipeline);  seed-mean entry 1.1499 vs single-seed entry 1.1375;  N4.2 on Delta_bar: passes NSS-off condition (|shift| < 1 sigma_fit)
+  alt       Delta_bar +0.0147 +- 0.0033 (SD 0.0235, K 50);  single-seed shift Delta_0 -0.0100;  gamma_0 1.0875 +- 0.0537 (cones-literal, pipeline);  seed-mean entry 1.1021 vs single-seed entry 1.0775;  N4.2 on Delta_bar: passes NSS-off condition (|shift| < 1 sigma_fit)
+  sigma_sys(b) D6 inputs (NSS-off = the D2 probe)       canonical single-seed 0.0375 -> seed-mean 0.0200;  (e) 0.0162 -> 0.0067;  spread 0.0750 -> 0.0325
+  sigma_sys(b) D6 inputs (NSS-off = the D2 probe)       alt       single-seed 0.0412 -> seed-mean 0.0200;  (e) 0.0182 -> 0.0085;  spread 0.0825 -> 0.0396
+  sigma_sys(b) release-day path (NSS-off = DP1 rung)    canonical single-seed 0.0225 -> seed-mean 0.0200;  (e) 0.0099 -> 0.0067;  spread 0.0450 -> 0.0325
+  sigma_sys(b) release-day path (NSS-off = DP1 rung)    alt       single-seed 0.0287 -> seed-mean 0.0200;  (e) 0.0124 -> 0.0085;  spread 0.0575 -> 0.0396
+HE-a: HIT  Delta_bar canonical +0.0123 in [-0.005, +0.015] with SE 0.0034 <= 0.007
+HE-b: MISS  Delta_bar alt +0.0147 in [-0.005, +0.010] with SE 0.0033 <= 0.005
+HE-c: MISS  DR3 sigma_sys(b) unchanged by the seed-mean entry (3-20 kAU rung sets the spread)? (b) canonical 0.0375 -> 0.0200; alt 0.0412 -> 0.0200
+HE-d: HIT  K1 reproduced bit for bit on the first run
+
+Cost table (per run):
+  run                  builds  fits cached   wall s  s per k s per fit fit RSS GB wrapper GB
+  K1 (d2, K 8)             18    18      0       67      6.0       0.0       0.00       2.12
+  K2 (pipeline, k 0)        2     2      0       77     76.1      35.1       3.92       1.21
+  sweep (K 50)            153   102      0     4010     78.0      33.7       4.01       3.38
+  M1                      153   102    102      549     10.7      33.0       3.90       3.36
+  M2                      153   102    102      470      9.2      33.7       4.01       3.39
+  per k in the sweep: builds 3 (base, rung, extract-builder K4 build); fits 2; wall s per k (min/median/max) 76/78/83; fit RSS GB per k (max) 4.01
