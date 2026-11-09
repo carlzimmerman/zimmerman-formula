@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PAPER70 audit (v1.9): each quoted number appears in the TeX and, as the literal given, in the committed file named
+"""PAPER70 audit (v2.0): each quoted number appears in the TeX and, as the literal given, in the committed file named
 beside it; naming rules; no local paths; no pending placeholder. Run: python3 PAPER70_audit.py (exit 0 only if all pass).
 --mutate changes one digit of each source literal; exit 0 only if every mutated literal then fails.
 kappa = 1/2 FITTED; not theory closed; nothing here says the data favour the framework."""
@@ -687,6 +687,58 @@ L += [
  ("only marginally at Milky Way mass, and not at all for dwarfs (XF1)", XF1, "impossible for dwarfs"),
 ]
 
+SK1 = "closure_2026_11_09/SK1_spin_key/RESULT.md"
+SK1C = "closure_2026_11_09/SK1_spin_key/FROZEN_CRITERIA.md"
+TR1 = "closure_2026_11_09/TR1_cluster_tracer/RESULT.md"
+KU2 = "rebuild_2026_10_22/KU2_kappa_universality_model_choice/README.md"
+DED = "closure_2026_11_07/DEDUCTION_2026_11_07.md"
+DEC9 = "closure_2026_11_09/OWNER_DECISION_2026-11-09_SK1_TR1_LAUNCH.md"
+FEQ = "FRAMEWORK_EQUATIONS_2026-10-15.md"
+L += [
+ ("$D=+0.0602$ [$+0.0369$, $+0.0811$]\\,dex canonical", SK1, "**+0.0602 [+0.0369, +0.0811]**"),
+ ("$+0.0601$ [$+0.0369$, $+0.0812$] alt", SK1, "**+0.0601 [+0.0369, +0.0812]**"),
+ ("(6,056 galaxies, 536 slow rotators; quarantined test lane) & FAIL / FAIL", SK1, "52 / 6056 / 536 (492)"),
+ ("the whole interval under the $+0.10$ FAIL line", SK1, "**FAIL** (D < +0.10)"),
+ ("a 0.03--0.06\\,dex step confined to $\\lambda_{R_e}<0.2$", SK1, "a small step of 0.03-0.06 dex"),
+ ("(Spearman $-0.486$; a key needs $\\le-0.6$)", SK1, "S = -0.486"),
+ ("(Spearman $-0.486$; a key needs $\\le-0.6$)", SK1, "needs S <= -0.6"),
+ ("it falls to $+0.0096$: dispersion carries it, the key HX1 graded NO LADDER", SK1, "**+0.0096 [-0.003, +0.031]**"),
+ ("it falls to $+0.0096$: dispersion carries it, the key HX1 graded NO LADDER", SK1, "the dispersion key that HX1 already graded NO LADDER"),
+ ("KU2's UNIVERSAL on the same file is recovered", SK1, "KU2's UNIVERSAL, recovered"),
+ ("span $+0.014$ to $+0.198$", SK1, "spans +0.014 to +0.198"),
+ ("a model the data choose for 0.6\\,\\% of galaxies", SK1, "a model the data prefer for 0.6 % of galaxies"),
+ ("(spin shuffled: $+0.012$;", SK1, "+0.0122 [-0.016, +0.031]"),
+ ("a $+0.2$\\,dex plant returns $+0.2000$", SK1, "rise +0.2000"),
+ ("the other mass column keeps the label", SK1, "| M3 elpetro mass column | +0.0675, FAIL"),
+ ("$a_0$ $1.2$ / $1.1\\times10^{-10}$\\,m\\,s$^{-2}$", SK1C, "a0 = 1.2e-10 m s^-2 (canonical) and 1.1e-10 (alt)"),
+ ("at fixed $g_N$ the two agree to $10^{-4}$", SK1, "The two footings agree to 1e-4"),
+ ("& NO TRACER FOLLOWS / NO TRACER FOLLOWS, on both readings", TR1, "**NO TRACER FOLLOWS** (closest tot, inner HIGH)"),
+ ("(FOLLOWS iff rms $\\le0.10$\\,dex and max $|{\\rm SHAPE}_b|\\le0.15$\\,dex)", TR1, "FOLLOWS iff RMS <= 0.10 dex and max |SHAPE_b| <= 0.15 dex"),
+ ("(inner bins $+0.15$ to $+0.48$\\,dex)", TR1, "(inner bins +0.15 to +0.48 dex)"),
+ ("($-0.24$ to $-0.40$\\,dex in the inner bin; $-0.8$\\,dex inside $0.05\\,R_{500}$, reported, not graded)", TR1, "-0.8 dex in the inner 5 % of R500"),
+ ("($-0.24$ to $-0.40$\\,dex in the inner bin; $-0.8$\\,dex inside $0.05\\,R_{500}$, reported, not graded)", TR1, "(-0.24 to -0.40 dex in"),
+ ("(SD$(\\log A)$ 0.05--0.06\\,dex)", TR1, "tot SD 0.047-0.061"),
+ ("(0.71, 0.66, 0.58, 0.46 by bin), and 0.32 in the 1--2\\,$R_{500}$ bin", TR1, "| D canonical | 0.71 | 0.66 | 0.58 | 0.46 | 0.32 |"),
+ ("which is the forward-model hydrostatic mass", TR1, "The 1-2 R500 bin is the forward-model hydrostatic mass"),
+ ("reading S gives 0.60 falling to 0.16", TR1, "(D canonical; S canonical 0.60 to 0.16)"),
+ ("inside $R_{500}$ the total FOLLOWS (rms 0.077 / 0.090)", TR1, "**tot FOLLOWS: RMS 0.077, max 0.116 / RMS 0.090, max 0.138**"),
+ ("an amplitude of 0.71 / 0.69 over its two inner bins, beside X-COP's 0.71 and 0.66 in those bins", TR1, "median A 0.71 / 0.69 on D"),
+ ("an amplitude of 0.71 / 0.69 over its two inner bins, beside X-COP's 0.71 and 0.66 in those bins", TR1, "beside X-COP's 0.71 / 0.66 in its two inner bins"),
+ ("(rms 0.071); the same model's component misses by $-0.39$ and $-0.68$\\,dex", TR1, "mean +0.014, rms 0.071"),
+ ("(rms 0.071); the same model's component misses by $-0.39$ and $-0.68$\\,dex", TR1, "-0.17, -0.39, -0.68 dex by bin"),
+ ("(r4, added after the first run, reported)", TR1, "r4 was added after the first run"),
+ ("about 70\\,\\% inside $0.25\\,R_{500}$ to about 45\\,\\% at $R_{500}$ on TR1's reading D", TR1, "about 70 % inside 0.25 R500 falling to about 45 % at R500 on reading D"),
+ ("Known answers pass; every MUTATE bites. Adopts nothing & TR1", TR1, "all bite, both footings, both readings"),
+ ("KU2 (rebuild\\_2026\\_10\\_22) had already graded slow against fast rotators UNIVERSAL", KU2, "| Label | **UNIVERSAL** | **UNIVERSAL** |"),
+ ("A pre-read of 2026-11-09 listed rotation as the one selector with no verdict", DEC9, "The pre-read above called rotation \"the one selector with no verdict\". That was wrong"),
+ ("comes from the Humphrey 2006 table, not ATLAS3D", SK1, "Humphrey 2006 table, not ATLAS3D"),
+ ("Galaxies hold at most 0.33 / 0.19 of the baryons' mass of it", DED, "SPARC on the exact field allows f <= 0.33 / 0.19"),
+ ("isolated lenses about $0.9\\,M_b$ inside 200\\,kpc (F2)", DED, "about 0.9 M_b inside 200 kpc"),
+ ("still cold through the forest epoch at $z$ 2--4 (DEDUCTION section 1)", DED, "forest epoch, and either gone from galaxies"),
+ ("the switches of DEDUCTION section 1", DED, "Every local switch on the law itself is dead"),
+ ("Gaia DR4 wide binaries (expected 2026-12-02)", FEQ, "Gaia DR4 (2026-12-02)"),
+]
+
 def mutate(lit):
     m = re.search(r"\d", lit)
     return lit if not m else lit[:m.start()] + str((int(m.group()) + 1) % 10) + lit[m.end():]
@@ -709,8 +761,10 @@ rules = [
  ("no 'cold dark matter'", "cold dark matter" not in TEX.lower()),
  ("no pending placeholder", "\\pend{" not in body),
  ("no LCDM input claimed", "No $\\Lambda$CDM inputs were used" in TEX),
- ("version v1.9 stated, no draft marker", "v1.9, 2026-11-08" in TEX and "draft v0" not in TEX),
- ("v1.9 header deposit-ready (XF1 in, no not-yet-deposited marker)", "not yet deposited" not in TEX and "the quarantined test lanes PJ1, WD1 and XF1" in TEX),
+ ("version v2.0 stated, no draft marker", "v2.0, 2026-11-09" in TEX and "draft v0" not in TEX),
+ ("v1.9 DOI recorded in header", "deposited as DOI 10.5281/zenodo.24082193; this version adds the closing statement" in TEX),
+ ("closing statement present, three parts", "\\section{Closing statement}" in TEX and all(s in TEX for s in ("\\textbf{Domain.}", "\\textbf{Boundary, as a statement about the record.}", "\\textbf{What such a component must be, from the record's own numbers.}"))),
+ ("header has no not-yet-deposited marker", "not yet deposited" not in TEX and "the quarantined test lanes PJ1, WD1 and XF1" in TEX),
  ("dSph widening about 0.9 dex", all(abs(d-0.9)<0.1 for d in (1.208-0.356, 1.555-0.633, 1.203-0.321, 1.555-0.600))),
  ("owner decision carried, nothing pending", "re-stated (owner 2026-11-07)" in TEX and "pending owner" not in TEX and "the frozen RESULT files are not edited" in TEX),
  ("unification quote verbatim", UQ_OK),
