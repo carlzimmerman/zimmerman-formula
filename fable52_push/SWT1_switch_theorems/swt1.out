@@ -1,0 +1,84 @@
+SWT1 run. Background OB 0.0215 OD 0.11958 H0 65.0; R = OD/OB = 5.5619; rho_d0 2.246e-27 kg/m^3 = 3.319e+10 Msun/Mpc^3; line 0.0354
+KA-W1 closed form vs quadrature: max rel 1.47e-10 -> PASS
+KA-W2 limits: W / ((2/3) y^1.5) at 1e-6 = 0.999625; W / y at 1e4 = 0.999129 -> PASS
+bounds on a grid of 4001 y in [1e-8, 1e8]: min W 6.666e-13 (>= 0), max W/y 1.000000 (<= 1), max W / ((2/3) y^1.5) 0.999963 (<= 1)
+KA-W3 Plummer sphere, d L_total / d R against 4 pi R^2 p_wall: max rel 3.27e-09, outward True -> PASS
+KA-CP2 uniform inclusion, alpha against (mu - 1)/(mu + 2): max err 0.00e+00 -> PASS
+KA-CP3 smooth switch: |M_eff/M_b - 1| beyond 1.2 R <= 2.06e-09; at 0.5 R M_eff/M_b 39.3741 (law nu 39.3741) -> PASS
+
+T2. Radii tables (WL1's shell solver) ...
+   tables done (34 s)
+KA-CP1 [canonical] reading L, z 1: uncompensated q_pop 0.9361 (WL1 0.936), rel 1.52e-04
+KA-CP1 [canonical] reading NC, z 1: uncompensated q_pop 0.3843 (WL1 0.384), rel 7.03e-04
+KA-CP1 [alt] reading L, z 1: uncompensated q_pop 1.0792 (WL1 1.079), rel 1.44e-04
+KA-CP1 [alt] reading NC, z 1: uncompensated q_pop 0.4228 (WL1 0.423), rel 4.10e-04
+KA-CP1 -> PASS
+[canonical] reading L z 1.0: R(1e9 / 1e10.5 / 1e12) 0.365 / 0.866 / 2.063 Mpc; filling 0.1704; alpha -0.488; q_C 0.2990 (insulating 0.3081); q_ff +3.90e-03; total 0.3029 vs 0.0354 -> FAIL [GRADED EPOCH]; WL1's own statistic 0.936
+[canonical] reading L z 0.5: R(1e9 / 1e10.5 / 1e12) 0.511 / 1.213 / 2.886 Mpc; filling 0.1974; alpha -0.492; q_C 0.3607 (insulating 0.3689); q_ff +6.03e-03; total 0.3667 vs 0.0354 -> FAIL; WL1's own statistic 1.312
+[canonical] reading L z 2.0: R(1e9 / 1e10.5 / 1e12) 0.211 / 0.501 / 1.196 Mpc; filling 0.1111; alpha -0.480; q_C 0.1786 (insulating 0.1875); q_ff +1.69e-03; total 0.1803 vs 0.0354 -> FAIL; WL1's own statistic 0.539
+[canonical] reading L z 0.0: R(1e9 / 1e10.5 / 1e12) 0.728 / 1.728 / 4.105 Mpc; filling 0.1688; alpha -0.494; q_C 0.3000 (insulating 0.3046); q_ff +7.75e-03; total 0.3077 vs 0.0354 -> FAIL; WL1's own statistic 1.870
+[canonical] reading C z 1.0: R(1e9 / 1e10.5 / 1e12) 0.584 / 1.389 / 3.317 Mpc; filling 0.7028 NOT DILUTE; alpha -0.493; q_C >= 0.6286 (insulating 0.6429); q_ff +1.61e-02; total 0.6447 vs 0.0354 -> FAIL [GRADED EPOCH]; WL1's own statistic 1.504
+[canonical] reading C z 0.5: R(1e9 / 1e10.5 / 1e12) 0.818 / 1.944 / 4.633 Mpc; filling 0.8125 NOT DILUTE; alpha -0.495; q_C >= 0.6326 (insulating 0.6429); q_ff +2.48e-02; total 0.6574 vs 0.0354 -> FAIL; WL1's own statistic 2.106
+[canonical] reading C z 2.0: R(1e9 / 1e10.5 / 1e12) 0.337 / 0.804 / 1.929 Mpc; filling 0.4602 NOT DILUTE; alpha -0.487; q_C >= 0.6186 (insulating 0.6429); q_ff +7.02e-03; total 0.6256 vs 0.0354 -> FAIL; WL1's own statistic 0.869
+[canonical] reading C z 0.0: R(1e9 / 1e10.5 / 1e12) 1.165 / 2.767 / 6.583 Mpc; filling 0.6939 NOT DILUTE; alpha -0.496; q_C >= 0.6356 (insulating 0.6429); q_ff +3.18e-02; total 0.6674 vs 0.0354 -> FAIL; WL1's own statistic 2.998
+[canonical] reading NC z 1.0: R(1e9 / 1e10.5 / 1e12) 0.112 / 0.354 / 1.120 Mpc; filling 0.0124; alpha -0.472; q_C 0.0177 (insulating 0.0189); q_ff +3.32e-04; total 0.0180 vs 0.0354 -> PASS [GRADED EPOCH]; WL1's own statistic 0.384
+[canonical] reading NC z 0.5: R(1e9 / 1e10.5 / 1e12) 0.139 / 0.441 / 1.395 Mpc; filling 0.0101; alpha -0.478; q_C 0.0146 (insulating 0.0153); q_ff +3.62e-04; total 0.0149 vs 0.0354 -> PASS; WL1's own statistic 0.479
+[canonical] reading NC z 2.0: R(1e9 / 1e10.5 / 1e12) 0.078 / 0.246 / 0.779 Mpc; filling 0.0141; alpha -0.461; q_C 0.0196 (insulating 0.0214); q_ff +2.49e-04; total 0.0198 vs 0.0354 -> PASS; WL1's own statistic 0.266
+[canonical] reading NC z 0.0: R(1e9 / 1e10.5 / 1e12) 0.193 / 0.611 / 1.932 Mpc; filling 0.0080; alpha -0.484; q_C 0.0116 (insulating 0.0120); q_ff +4.29e-04; total 0.0120 vs 0.0354 -> PASS; WL1's own statistic 0.665
+[canonical] reading NL z 1.0: R(1e9 / 1e10.5 / 1e12) 0.060 / 0.189 / 0.598 Mpc; filling 0.0019; alpha -0.450; q_C 0.0025 (insulating 0.0028); q_ff +4.99e-05; total 0.0026 vs 0.0354 -> PASS [GRADED EPOCH]; WL1's own statistic 0.203
+[canonical] reading NL z 0.5: R(1e9 / 1e10.5 / 1e12) 0.075 / 0.236 / 0.745 Mpc; filling 0.0015; alpha -0.459; q_C 0.0021 (insulating 0.0023); q_ff +5.45e-05; total 0.0022 vs 0.0354 -> PASS; WL1's own statistic 0.254
+[canonical] reading NL z 2.0: R(1e9 / 1e10.5 / 1e12) 0.042 / 0.132 / 0.416 Mpc; filling 0.0021; alpha -0.431; q_C 0.0027 (insulating 0.0032); q_ff +3.72e-05; total 0.0028 vs 0.0354 -> PASS; WL1's own statistic 0.140
+[canonical] reading NL z 0.0: R(1e9 / 1e10.5 / 1e12) 0.093 / 0.294 / 0.930 Mpc; filling 0.0009; alpha -0.467; q_C 0.0012 (insulating 0.0013); q_ff +4.73e-05; total 0.0013 vs 0.0354 -> PASS; WL1's own statistic 0.318
+[alt] reading L z 1.0: R(1e9 / 1e10.5 / 1e12) 0.382 / 0.908 / 2.161 Mpc; filling 0.1962; alpha -0.490; q_C 0.3563 (insulating 0.3661); q_ff +4.94e-03; total 0.3612 vs 0.0354 -> FAIL [GRADED EPOCH]; WL1's own statistic 1.079
+[alt] reading L z 0.5: R(1e9 / 1e10.5 / 1e12) 0.536 / 1.272 / 3.024 Mpc; filling 0.2273; alpha -0.493; q_C 0.4324 (insulating 0.4412); q_ff +7.64e-03; total 0.4400 vs 0.0354 -> FAIL; WL1's own statistic 1.513
+[alt] reading L z 2.0: R(1e9 / 1e10.5 / 1e12) 0.221 / 0.525 / 1.252 Mpc; filling 0.1278; alpha -0.483; q_C 0.2105 (insulating 0.2197); q_ff +2.14e-03; total 0.2126 vs 0.0354 -> FAIL; WL1's own statistic 0.622
+[alt] reading L z 0.0: R(1e9 / 1e10.5 / 1e12) 0.763 / 1.811 / 4.302 Mpc; filling 0.1944; alpha -0.495; q_C 0.3571 (insulating 0.3620); q_ff +9.82e-03; total 0.3669 vs 0.0354 -> FAIL; WL1's own statistic 2.156
+[alt] reading C z 1.0: R(1e9 / 1e10.5 / 1e12) 0.612 / 1.456 / 3.472 Mpc; filling 0.8084 NOT DILUTE; alpha -0.494; q_C >= 0.6305 (insulating 0.6429); q_ff +2.03e-02; total 0.6508 vs 0.0354 -> FAIL [GRADED EPOCH]; WL1's own statistic 1.733
+[alt] reading C z 0.5: R(1e9 / 1e10.5 / 1e12) 0.858 / 2.038 / 4.852 Mpc; filling 0.9352 NOT DILUTE; alpha -0.495; q_C >= 0.6340 (insulating 0.6429); q_ff +3.13e-02; total 0.6653 vs 0.0354 -> FAIL; WL1's own statistic 2.427
+[alt] reading C z 2.0: R(1e9 / 1e10.5 / 1e12) 0.354 / 0.842 / 2.017 Mpc; filling 0.5285 NOT DILUTE; alpha -0.489; q_C >= 0.6217 (insulating 0.6429); q_ff +8.87e-03; total 0.6306 vs 0.0354 -> FAIL; WL1's own statistic 1.001
+[alt] reading C z 0.0: R(1e9 / 1e10.5 / 1e12) 1.222 / 2.901 / 6.897 Mpc; filling 0.7990 NOT DILUTE; alpha -0.497; q_C >= 0.6366 (insulating 0.6429); q_ff +4.02e-02; total 0.6768 vs 0.0354 -> FAIL; WL1's own statistic 3.456
+[alt] reading NC z 1.0: R(1e9 / 1e10.5 / 1e12) 0.112 / 0.354 / 1.120 Mpc; filling 0.0124; alpha -0.475; q_C 0.0178 (insulating 0.0189); q_ff +3.66e-04; total 0.0182 vs 0.0354 -> PASS [GRADED EPOCH]; WL1's own statistic 0.423
+[alt] reading NC z 0.5: R(1e9 / 1e10.5 / 1e12) 0.139 / 0.441 / 1.395 Mpc; filling 0.0101; alpha -0.479; q_C 0.0146 (insulating 0.0153); q_ff +3.99e-04; total 0.0150 vs 0.0354 -> PASS; WL1's own statistic 0.527
+[alt] reading NC z 2.0: R(1e9 / 1e10.5 / 1e12) 0.078 / 0.246 / 0.779 Mpc; filling 0.0141; alpha -0.464; q_C 0.0197 (insulating 0.0214); q_ff +2.75e-04; total 0.0200 vs 0.0354 -> PASS; WL1's own statistic 0.293
+[alt] reading NC z 0.0: R(1e9 / 1e10.5 / 1e12) 0.193 / 0.611 / 1.932 Mpc; filling 0.0080; alpha -0.485; q_C 0.0116 (insulating 0.0120); q_ff +4.72e-04; total 0.0121 vs 0.0354 -> PASS; WL1's own statistic 0.732
+[alt] reading NL z 1.0: R(1e9 / 1e10.5 / 1e12) 0.060 / 0.189 / 0.598 Mpc; filling 0.0019; alpha -0.454; q_C 0.0026 (insulating 0.0028); q_ff +5.50e-05; total 0.0026 vs 0.0354 -> PASS [GRADED EPOCH]; WL1's own statistic 0.224
+[alt] reading NL z 0.5: R(1e9 / 1e10.5 / 1e12) 0.075 / 0.236 / 0.745 Mpc; filling 0.0015; alpha -0.463; q_C 0.0021 (insulating 0.0023); q_ff +6.01e-05; total 0.0022 vs 0.0354 -> PASS; WL1's own statistic 0.280
+[alt] reading NL z 2.0: R(1e9 / 1e10.5 / 1e12) 0.042 / 0.132 / 0.416 Mpc; filling 0.0021; alpha -0.436; q_C 0.0028 (insulating 0.0032); q_ff +4.11e-05; total 0.0028 vs 0.0354 -> PASS; WL1's own statistic 0.155
+[alt] reading NL z 0.0: R(1e9 / 1e10.5 / 1e12) 0.093 / 0.294 / 0.930 Mpc; filling 0.0009; alpha -0.470; q_C 0.0012 (insulating 0.0013); q_ff +5.21e-05; total 0.0013 vs 0.0354 -> PASS; WL1's own statistic 0.350
+reported: law on to 0.43 Mpc for every lens with log M* >= 9.4 (n 0.0090 / Mpc^3): sum nV 0.003, Poisson union 0.003; needs <= 0.0231
+reported: law on to 1.0 Mpc for every lens with log M* >= 9.4 (n 0.0090 / Mpc^3): sum nV 0.038, Poisson union 0.037; needs <= 0.0231
+reported: law on to 2.8 Mpc for every lens with log M* >= 9.4 (n 0.0090 / Mpc^3): sum nV 0.832, Poisson union 0.565; needs <= 0.0231
+reported: law on down to g_bar 1.38e-15 (R_K 0.50 to 2.83 Mpc at log M 9.4 to 10.9): sum nV 0.290, Poisson union 0.252
+reported: the bound f_V <= 0.0231 lets the law reach 0.430 of R_K for every lens, i.e. down to g_bar 7.46e-15 m/s^2
+reported [canonical] pressure-balance bubbles, z 0.0, dispersion 17.5 km/s: R(1e10.5) 1.48 Mpc, filling 0.167, q_C 0.295 (FAIL the line), reach / R_K 0.84-0.84
+reported [canonical] pressure-balance bubbles, z 0.0, dispersion 35.0 km/s: R(1e10.5) 0.93 Mpc, filling 0.042, q_C 0.064 (FAIL the line), reach / R_K 0.53-0.53
+reported [canonical] pressure-balance bubbles, z 0.0, dispersion 52.5 km/s: R(1e10.5) 0.71 Mpc, filling 0.018, q_C 0.027 (PASS the line), reach / R_K 0.40-0.40
+reported [canonical] pressure-balance bubbles, z 1.0, dispersion 17.5 km/s: R(1e10.5) 0.74 Mpc, filling 0.166, q_C 0.290 (FAIL the line), reach / R_K 0.42-0.42
+reported [canonical] pressure-balance bubbles, z 1.0, dispersion 35.0 km/s: R(1e10.5) 0.47 Mpc, filling 0.041, q_C 0.062 (FAIL the line), reach / R_K 0.26-0.26
+reported [canonical] pressure-balance bubbles, z 1.0, dispersion 52.5 km/s: R(1e10.5) 0.36 Mpc, filling 0.018, q_C 0.027 (PASS the line), reach / R_K 0.20-0.20
+reported [alt] pressure-balance bubbles, z 0.0, dispersion 17.5 km/s: R(1e10.5) 1.53 Mpc, filling 0.183, q_C 0.331 (FAIL the line), reach / R_K 0.86-0.87
+reported [alt] pressure-balance bubbles, z 0.0, dispersion 35.0 km/s: R(1e10.5) 0.96 Mpc, filling 0.046, q_C 0.070 (FAIL the line), reach / R_K 0.54-0.54
+reported [alt] pressure-balance bubbles, z 0.0, dispersion 52.5 km/s: R(1e10.5) 0.74 Mpc, filling 0.020, q_C 0.030 (PASS the line), reach / R_K 0.41-0.42
+reported [alt] pressure-balance bubbles, z 1.0, dispersion 17.5 km/s: R(1e10.5) 0.77 Mpc, filling 0.183, q_C 0.326 (FAIL the line), reach / R_K 0.43-0.43
+reported [alt] pressure-balance bubbles, z 1.0, dispersion 35.0 km/s: R(1e10.5) 0.48 Mpc, filling 0.046, q_C 0.069 (FAIL the line), reach / R_K 0.27-0.27
+reported [alt] pressure-balance bubbles, z 1.0, dispersion 52.5 km/s: R(1e10.5) 0.37 Mpc, filling 0.020, q_C 0.029 (PASS the line), reach / R_K 0.21-0.21
+
+T3. Self-clearing gate (A1: local isothermal carrier pressure).
+[canonical] log M_b 9.4: R_h 0.263 Mpc, r_M 1.93 kpc; p_wall / p_d at 30 kpc, 100 kpc, R_h: 19.43 / 10.36 / 4.95; min 0.25; cleared 0.03976953094383556 to 262.5977041167228 kpc; uncleared inside 200 kpc 0.001 M_b of 4.23 (line 0.9) -> CLEARS; clearing fails only above 2.8 x the share
+[canonical] log M_b 10.45: R_h 0.588 Mpc, r_M 6.48 kpc; p_wall / p_d at 30 kpc, 100 kpc, R_h: 15.63 / 10.91 / 3.30; min 0.05; cleared 0.2004547826108892 to 587.8830311456188 kpc; uncleared inside 200 kpc 0.002 M_b of 1.89 (line 0.9) -> CLEARS; clearing fails only above 3.3 x the share
+[canonical] log M_b 10.7: R_h 0.712 Mpc, r_M 8.64 kpc; p_wall / p_d at 30 kpc, 100 kpc, R_h: 14.38 / 10.74 / 3.00; min 0.03; cleared 0.2942575459900545 to 712.2365522713329 kpc; uncleared inside 200 kpc 0.002 M_b of 1.56 (line 0.9) -> CLEARS; clearing fails only above 3.5 x the share
+[canonical] log M_b 10.9: R_h 0.830 Mpc, r_M 10.88 kpc; p_wall / p_d at 30 kpc, 100 kpc, R_h: 13.32 / 10.52 / 2.78; min 0.03; cleared 0.40074578173175046 to 830.4068533398186 kpc; uncleared inside 200 kpc 0.003 M_b of 1.34 (line 0.9) -> CLEARS; clearing fails only above 3.8 x the share
+[alt] log M_b 9.4: R_h 0.263 Mpc, r_M 1.76 kpc; p_wall / p_d at 30 kpc, 100 kpc, R_h: 21.40 / 11.40 / 5.44; min 0.30; cleared 0.03288948235394033 to 262.5977041167228 kpc; uncleared inside 200 kpc 0.001 M_b of 4.23 (line 0.9) -> CLEARS; clearing fails only above 3.0 x the share
+[alt] log M_b 10.45: R_h 0.588 Mpc, r_M 5.89 kpc; p_wall / p_d at 30 kpc, 100 kpc, R_h: 17.31 / 12.02 / 3.63; min 0.06; cleared 0.16540697958139716 to 587.8830311456188 kpc; uncleared inside 200 kpc 0.002 M_b of 1.89 (line 0.9) -> CLEARS; clearing fails only above 3.5 x the share
+[alt] log M_b 10.7: R_h 0.712 Mpc, r_M 7.86 kpc; p_wall / p_d at 30 kpc, 100 kpc, R_h: 15.96 / 11.85 / 3.30; min 0.04; cleared 0.2433509222064144 to 712.2365522713329 kpc; uncleared inside 200 kpc 0.002 M_b of 1.56 (line 0.9) -> CLEARS; clearing fails only above 3.8 x the share
+[alt] log M_b 10.9: R_h 0.830 Mpc, r_M 9.89 kpc; p_wall / p_d at 30 kpc, 100 kpc, R_h: 14.82 / 11.61 / 3.05; min 0.03; cleared 0.33117755516202235 to 830.4068533398186 kpc; uncleared inside 200 kpc 0.002 M_b of 1.34 (line 0.9) -> CLEARS; clearing fails only above 4.0 x the share
+reported [canonical] carrier B (v_h^4 = G M_b a0): cleared set None to None r_M (max ratio 0.476); ratio at 3 / 10 / 30 r_M 0.294 / 0.117 / 0.042 (same for every mass by scaling)
+reported [alt] carrier B (v_h^4 = G M_b a0): cleared set None to None r_M (max ratio 0.476); ratio at 3 / 10 / 30 r_M 0.294 / 0.117 / 0.042 (same for every mass by scaling)
+reported [canonical] group: p_wall / p_d at 0.1 / 0.3 / 1 R_h = 0.065 / 0.122 / 0.233 (y 0.221 / 0.074 / 0.022)
+reported [canonical] cluster: p_wall / p_d at 0.1 / 0.3 / 1 R_h = 0.024 / 0.049 / 0.099 (y 1.064 / 0.355 / 0.106)
+reported [alt] group: p_wall / p_d at 0.1 / 0.3 / 1 R_h = 0.073 / 0.135 / 0.257 (y 0.183 / 0.061 / 0.018)
+reported [alt] cluster: p_wall / p_d at 0.1 / 0.3 / 1 R_h = 0.028 / 0.055 / 0.110 (y 0.880 / 0.293 / 0.088)
+
+LABEL SWT1-CP (pending Lean T1): KEY-DEPENDENT
+LABEL SWT1-WP (pending Lean T3 identity): NOT A NO-GO AS FROZEN (clears: {"canonical": {"9.4": true, "10.45": true, "10.7": true, "10.9": true}, "alt": {"9.4": true, "10.45": true, "10.7": true, "10.9": true}})
+runtime 36 s. kappa = 1/2 FITTED; not theory closed.
