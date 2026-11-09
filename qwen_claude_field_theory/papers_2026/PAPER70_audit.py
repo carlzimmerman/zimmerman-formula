@@ -641,6 +641,24 @@ L += [
  ("by $+0.05$\\,dex in both shared bins", HL3, "+0.05 dex in both shared bins on both footings"),
  ("MUTATE M1--M3 bite & HL3", HL3, "## MUTATE (hl3_MUTATE.out): all bite, both footings"),
 ]
+WD1 = "closure_2026_11_08/WD1_cvwd_condensate/RESULT.md"
+L += [
+ ("4.40 times the baryons", WD1, "a supplementary component of cosmic amount 4.40 x baryons"),
+ ("a 1.6\\,Mpc Thomas--Fermi core around every collisionless centroid", WD1, "sits in a 1.6 Mpc Thomas-Fermi core around every collisionless baryonic centroid"),
+ ("4 of 11 gates pass on each footing", WD1, "As written, 4 of 11 gates pass on each footing (G1, G1b, G8, G10)"),
+ ("max shift 0.297\\,dex at 1.7\\,Mpc, 15 of 59 points over", WD1, "**FAIL** max 0.297 at 1.7 Mpc; 15 of 59 over"),
+ ("inner bin $-1.132$\\,dex with 4.38\\,$M_b$ inside 100\\,kpc", WD1, "0-0.25 -1.132 (n 14)"),
+ ("(concentration 3.34 against the gas's 0.20, need 0.27)", WD1, "component 3.34 vs gas 0.20, need 0.27; 4.38 M_b inside 100 kpc"),
+ ("Groups 3 / 4 of 20", WD1, "**FAIL** 3 / 4 (N 4 d 400)"),
+ ("Coma UDGs $+1.240$\\,dex (capture $4.9\\times10^{-6}$", WD1, "**FAIL** +1.240 (+4.73 sigma_U); capture median 4.9e-6"),
+ ("raises the host field $\\times1.72$, worse than the law-only $+1.121$", WD1, "raises the host field x1.72"),
+ ("peak 51 / 41\\,kpc from the gas", WD1, "peak 51 / 41 kpc from the gas"),
+ ("+3682.7 before and +1524.8 after a 5-parameter refit", WD1, "**FAIL** +3682.7 before the refit; +1524.8 after the 5-parameter refit"),
+ ("Forest $\\Delta\\chi^2$ 216,405", WD1, "**FAIL** 216,405"),
+ ("does not reproduce its own decoherence values (KA3 FAIL)", WD1, "| KA3 | rebuilt integrator"),
+ ("the dynamic bracket passes no gate the as-written fails", WD1, "passes no gate the as-written fails"),
+ ("MUTATE M1--M3 bite. Adopts nothing & WD1", WD1, "-> **BITES** (KA4 replay)"),
+]
 def mutate(lit):
     m = re.search(r"\d", lit)
     return lit if not m else lit[:m.start()] + str((int(m.group()) + 1) % 10) + lit[m.end():]
