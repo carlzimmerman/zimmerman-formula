@@ -1,9 +1,19 @@
-# OWNER DECISION DRAFT, 2026-11-05 (third note, pre-data): the NSS-off entry of σ_sys(b) as a seed mean
+# OWNER DECISION, 2026-11-05c, FILED 2026-11-08 (third note, pre-data): the NSS-off entry of σ_sys(b) as a seed mean
 
-**Status: DRAFT, NOT FILED.** The owner has not yet accepted this. It takes effect only if the owner says so in chat before
-any DR4 byte exists (DR4 due 2026-12-02). Filing means:
-- this text is committed alone, retitled "filed", with the owner's words quoted;
-- the DR3 code-path check in §4 has already passed.
+**Status: FILED 2026-11-08, before any DR4 byte exists (DR4 due 2026-12-02).** Drafted 2026-11-05 (4d8711da63). The owner's
+words, given in the orchestrator session on 2026-11-08 to the question "File the DR4 seed-mean amendment after its DR3
+code-path check?": **"Yes, check and file"**. The §4 condition is met: lane DP7 (`dr4_push_2026_11_05/DP7_seed_mean_check/`,
+criteria 1b87706e49 committed alone, AMENDMENT_A1 f78c3dd35c committed before the graded sweep, result 9a00f38d38) reads
+**CHECK PASSED**: K1 reproduced DP1's eight reseeded builds bit for bit; the K = 50 cones-literal sweep through the registered
+fit path completed on both footings; MUTATE M1 and M2 bite exactly. Information only, DR3 (code-path numbers, never results):
+Δ̄ = +0.0123 ± 0.0034 canonical, +0.0147 ± 0.0033 alt (SD of the paired differences 0.0241 / 0.0235); the single-seed shifts
+were +0.0000 / −0.0100; under the seed-mean entry the DR3 σ_sys(b) falls to its 0.020 floor on both footings because the
+3-20 kAU rung then sets the spread (§3 left the direction open; on DR3 it is down). Two disclosures from DP7 stand beside the
+label: the NSS-off rung in cones-literal mode needs `--missing-cones extract-fallback` for the pairs reaching cut 13 that have
+no DR3 cone (139, seed-independent; bias bound ~0.1 pair from the cones' own flag rate; control C1 measured one draw of the
+stage-G seed noise instead, −0.0175 / +0.0250, diagnosed in dp7_C1.json), and the release-day runbook's cones query (G6/G7)
+covers the post-NSS candidate set, so G11 on DR4 needs either the pre-NSS set in that query or the same fallback: **that is
+the owner's call on release day, not decided here.** The text below is the draft as written on 2026-11-05, unchanged.
 
 If filed, it supersedes **only one component** of D8 (a) in `OWNER_DECISION_2026-11-05b_DR4_D7_D8.md` (d71a111d1d): how the
 NSS-off entry in σ_sys(b) is measured. It edits no frozen file. These are untouched:
