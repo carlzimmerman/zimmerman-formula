@@ -725,17 +725,23 @@
    }
   },
   "PD2": {
-   "status": "RUNNING",
+   "status": "LANDED",
    "class": "TEST (quarantined; outside idea; owner 'keep swinging with argon')",
    "title": "variant P: single-counted phantom dust (Poisson rho_b + rho_d only; auxiliary flux J sets the equilibrium rho_d = div J/4 pi G with |J| = (nu - 1) g_N,b; dust inherits the khronon's Pi^6 / L* screening) with the amount per halo from 2D sheet capture in the law's 1/r field (R_ta^2 ~ sqrt(M_b)), giving a universal truncation R_trunc = (3/2) Omega_d (H0/H)^2 (v_stiff/H0) ~1.5 Mpc for every isolated galaxy; clusters accrete from nodes and keep ~40 %",
-   "criteria_commit": null,
+   "criteria_commit": "98a5315562",
    "criteria": "closure_2026_11_09/PD2_sheet_captured_phantom_dust/FROZEN_CRITERIA.md (the lane commits it alone first)",
    "opened": "2026-11-09",
    "owner_word": "keep swinging with argon bro",
    "folds_into": "PAPER70 next version",
-   "label_can": null,
-   "label_alt": null,
-   "orchestrator_pre_read": "fixes PD1's mass mismatch by construction (both phantom need and sheet capture scale as sqrt(G M_b a0)); form choices f_sheet 0.60, c_ta (H/H0)^2 = pi/2, L_web = v_stiff/H0; expected kills: KiDS points beyond 1.5 Mpc (record's 59 reach ~3 Mpc), groups, cluster 40 % vs TR1, P7 (does the J-equilibrium follow or is it a closure), screening inheritance"
+   "label_can": "FAIL",
+   "label_alt": "FAIL",
+   "orchestrator_pre_read": "fixes PD1's mass mismatch by construction (both phantom need and sheet capture scale as sqrt(G M_b a0)); form choices f_sheet 0.60, c_ta (H/H0)^2 = pi/2, L_web = v_stiff/H0; expected kills: KiDS points beyond 1.5 Mpc (record's 59 reach ~3 Mpc), groups, cluster 40 % vs TR1, P7 (does the J-equilibrium follow or is it a closure), screening inheritance",
+   "result_commit": "1d5e158e6e",
+   "result": "closure_2026_11_09/PD2_sheet_captured_phantom_dust/RESULT.md",
+   "reading": "first failing gate KiDS. The sqrt(M_b) cancellation is verified (universal R_trunc across 1e8-1e12) but the source's formulas give R_trunc 0.301/0.326 Mpc (24.6 M_b at 1e11), not 1.48 Mpc / 143 M_b; the claimed closed form needs c_ta H^2 = 0.3 H0^2, not pi/2. KiDS 0.96/0.93 (23/59 over). Bracket at the claimed 1.57/1.71 Mpc: KiDS still fails (0.25/0.22, the 1.6-3 Mpc points) and conservation fails at z 0.5 (q 1.08/1.28). Clusters at 0.40 under-fill (X-COP +0.21; f_miss 0.60/0.48/0.40); groups 0/1; Bullet galaxy-traced fails (Z -3.3/-4.6). Q1 conservation (0.36/0.43) and SPARC pass; Cassini carried (screening 2e-23 at Saturn). P7: varying J reproduces the law only if F'(x) = x^2/(1-x); the source's y/(y+1) gives |J|/a0 = y/(1-y) (0.005 vs 0.067 at y 0.01): P is a closure.",
+   "mutate_note": "KA-Q1 missed its frozen 2 % at 1e11 (2.0 %; exact r_M/2 offset, 0.2 % with it); KA-Q3 missed 1e-10 by float cancellation (7e-13 stable form); both disclosed with a post-run check script",
+   "repair_needs": "R_trunc beyond 3 Mpc for every isolated lens while the population phantom stays below the dust at z 0.5 (a z-dependent capture law), and a cluster rule filling X-COP and groups together",
+   "landed": "2026-11-09"
   }
  },
  "deposit": {
