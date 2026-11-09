@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PAPER70 audit (v1.8): each quoted number appears in the TeX and, as the literal given, in the committed file named
+"""PAPER70 audit (v1.9): each quoted number appears in the TeX and, as the literal given, in the committed file named
 beside it; naming rules; no local paths; no pending placeholder. Run: python3 PAPER70_audit.py (exit 0 only if all pass).
 --mutate changes one digit of each source literal; exit 0 only if every mutated literal then fails.
 kappa = 1/2 FITTED; not theory closed; nothing here says the data favour the framework."""
@@ -49,7 +49,7 @@ L = [
  ("largest time-mean on any rung 0.147 of the line", CF, "Largest time-mean on any rung 0.147 of the line"),
  ("$\\le0.33$ / $0.19$", NOGO, "<= 0.33 / 0.19"), ("$\\sim4.2$ / $3.8$", NOGO, "~4.2 / 3.8"),
  ("1.2--3.5 / 0.9--2.9", NOGO, "1.2-3.5 / 0.9-2.9"), ("$\\sim0.9$ / $0.8$", NOGO, "~0.9 / 0.8"),
- ("$\\sim1.7$ / $1.3$", NOGO, "~1.7 / 1.3"), ("Coma UDGs & $\\sim80$", NOGO, "| Coma UDGs | ~80 |"),
+ ("$\\sim1.7$ / $1.3$", NOGO, "~1.7 / 1.3"), ("Coma UDGs (NOT A TEST, UA1) & $\\sim80$", NOGO, "| Coma UDGs | ~80 |"),
  ("($w\\le0.01$), lensing $\\chi^2\\le18.5$", NOGO, "(w <= 0.01), and lensing chi^2 <= 18.5"),
  ("$\\mu_K\\ge8.9\\times10^6$", NOGO, "mu_K >= 8.9e6"), ("galaxies allow at most 79", NOGO, "galaxies need <= 0.1-79"),
 ]
@@ -560,6 +560,57 @@ L += [
  ("M3 ($10\\times$ the best $\\alpha$) does not bite as frozen", BG1, "**NO BITE**"),
  ("the label does not rest on it", BG1, "The label does not rest on M3"),
 ]
+HX1 = "rebuild_2026_10_22/HX1_hot_ladder/README.md"; HG2 = "rebuild_2026_10_22/HG2_kids_lowg_hot_gas/README.md"
+GA1 = "rebuild_2026_10_22/GA1_group_gas_audit/README.md"; GA1O = "rebuild_2026_10_22/GA1_group_gas_audit/ga1_group_gas_audit.out"
+L += [
+ ("deposited as DOI 10.5281/zenodo.24058756", Z70, '"doi": "10.5281/zenodo.24058756"'),
+ ("Coma UDGs (NOT A TEST, UA1)", UA1, "NOT A TEST"),
+ ("sub-linear response at the UDGs' internal acceleration on top of a base that already carries Coma's external field (GB1, Disclosed 3)", GB1, "UDG predictions apply the isolated algebraic Delta at the internal x, on top of a base that already includes"),
+ ("$+1.121$ / $+1.078$\\,dex", GB1, "FAIL +1.121 (+4.28) / FAIL +1.078 (+4.11)"),
+ ("the Lovisari+2015 X-ray masses", UA1, "Lovisari+2015 masses are X-ray hydrostatic"),
+ ("median 1.18, $\\log B=+0.07\\pm0.08$ (alt 1.08, $+0.03\\pm0.08$)", HX1, "| Tian groups (144) | 1.18, +0.07 +- 0.08 | 1.08, +0.03 +- 0.08 |"),
+ ("$D=-0.294$ [$-0.511$, $-0.076$]\\,dex, UNDERPOWERED", HG2, "| D (primary) | **−0.294 dex, 95% [−0.511, −0.076]**"),
+ ("(power 0.45)", HG2, "RESULT: UNDERPOWERED by the frozen rule (power 0.45 < 0.50)"),
+ ("$-0.362$ [$-0.605$, $-0.139$] (power 0.36)", GA1O, "measured D -0.3623  95% [-0.6047, -0.1394]  power 0.364"),
+ ("all groups on the law would give $+0.173$", GA1, "| **−0.362 [−0.605, −0.139]** | **+0.306 / +0.282** | +0.173 |"),
+ ("GA1 re-grades HG2's sample", GA1, "Step 0's random-number order to HG2's"),
+ ("KX1's frozen label is NO VERDICT", KX1, "## Label (frozen rule): NO VERDICT on both footings."),
+ ("(log $M_\\star$ 9.4, 122--285\\,kpc)", KX1, "| 1 (9.4, 122-285) |"),
+ ("frozen extrapolation of the log $M_\\star$ 10.0 kSZ gas row", KX1, "**Bin 1 (log M* 9.4) uses CW6's log M* 10.0 gas row**, a frozen extrapolation."),
+ ("without that bin canonical C4 would read SOFTENS", KX1, "C4 canonical would read SOFTENS"),
+ ("(Rf $=1.000$ at every $z<1$ bin)", CE2, "Rf = 1.000 at every z < 1 bin"),
+]
+FS1R = "closure_2026_11_06/FS1_fold_shock_capturing/README.md"; FS2R = "closure_2026_11_06/FS2_fold_viscosity_free/README.md"
+AC10R = "action_search_2026_11_05/AC10_nonlinear_clock/README.md"; SV3R = "action_search_2026_11_05/SV3_fold_implicit/README.md"
+AS3R = "rebuild_2026_10_22/AS3_ppn_and_khronon_scalar/README.md"; AC11R = "action_search_2026_11_05/AC11_moving_sun/README.md"
+MS3R = "closure_2026_11_06/MS3_moving_sun_light/README.md"; X35R = "rebuild_2026_10_22/X35_a0_tracks_ede/README.md"
+CT3R = "complete_theory_2026_11_04/CT3_cosmology/CT3_REPORT.md"; C689 = "campaign_fresh_gravity/CFG689_native_ruler_bao/README.md"
+CT1R = "complete_theory_2026_11_04/CT1_action/CT1_REPORT.md"; CK3R = "closure_2026_11_07/CK3_groups_kicked_carrier/RESULT.md"
+V3XR = "rebuild_2026_10_22/V3X_v3s_close_undecided/README.md"; AZ31 = "astra_goal_2026_11_05/AZ31_w2_graded_radius/README.md"
+AZ32 = "astra_goal_2026_11_05/AZ32_solar_spectrum/README.md"
+L += [
+ ("5.3\\,\\% at $J_{\\rm thr}$ (FS1)", FS2R, "at J_thr, FS1 saw 5.3 %"),
+ ("1.2\\,\\% at $J_{\\rm reg}$ (FS2)", FS2R, "That shock reaches J_reg 1.2 % before v3s's dust collapse"),
+ ("FS1 and FS2 read the clock-only AC2q folds EARLIER", FS1R, "**DIFF-TIME, EARLIER**"),
+ ("at the same time to 0.3\\,\\% (1.0752--1.0782 against 1.0718--1.0773\\,$\\tau_f$)", AC10R, "AC2q's fold time is 1.0752-1.0782 tau_f against v3s's 1.0718-1.0773"),
+ ("delays clock-only folds by about 0.1--0.3\\,\\%", SV3R, "AC2q's extra s^2 pressure only delays clock-only folds by about 0.1-0.3 %"),
+ ("AS3 finds $\\alpha_1=\\alpha_2=0$ exactly for a source moving through the aether", AS3R, "For a source moving through the aether, the exact solution of v9's linear system is linear GR with G = G~: alpha_1 = alpha_2 = 0"),
+ ("AC11 lists the metric response that would give $\\alpha_1$ and $\\alpha_2$ as still open", AC11R, "the metric response that would give alpha_1 and alpha_2"),
+ ("no PPN $\\alpha_1$ or $\\alpha_2$ is claimed", MS3R, "No PPN alpha_1 or alpha_2 is claimed."),
+ ("CFG689's native band is 0.91 [0.33, 1.21]", C689, "| 2.33 | 0.91 [0.33, 1.21] |"),
+ ("moves the native $\\sqrt X$ from 1.00 to 1.49", X35R, "moves the native sqrtX from 1.00 to **1.49 at z 2.33**"),
+ ("$a_0(2.33)/a_0(0)\\approx0.85$", CT3R, "a₀(2.33)/a₀(0) ≈ 0.85"),
+ ("0.084\\,dex at $z^*$ 2.33 for $3\\sigma$ (CFG689)", C689, "3σ needs a0 to 0.055 / 0.072 / 0.074 / 0.084 dex at z 1.0 / 1.2 / 1.5 / 2.33"),
+ ("set at 0.10\\,dex by CT1", CT1R, "a0(z) at z ≈ 2.5 to 0.10 dex"),
+ ("L388's masses are in $M_\\odot/h$", CK3R, "L388's masses are in Msun/h"),
+ ("FAIL as frozen, NOT ROBUST", CK3R, "FAIL as frozen (slope), both footings, every kick; NOT ROBUST"),
+ ("($M\\times0.6736$) reads PASS in every cell", CK3R, "**every cell reads PASS, both footings**"),
+ ("from prediction error, not agreement", CK3R, "That PASS comes from **prediction error, not agreement**"),
+ ("CK3 reports the record-level fix and does not make it", CK3R, "Correcting it is a record-level fix that this lane reports and does not"),
+ ("V3X is UNDECIDED under its frozen rule on W2 and W4c, with a physics reading of PASS", V3XR, "Under the frozen rule the label is UNDECIDED. The physics reading is a PASS."),
+ ("AZ31 passes W2 at the graded radius as a new test", AZ31, "This is a new radius-specific test, not an amendment of V3X."),
+ ("AZ32 keeps the full W4c UNDECIDED", AZ32, "# UNDECIDED full W4c"),
+]
 def mutate(lit):
     m = re.search(r"\d", lit)
     return lit if not m else lit[:m.start()] + str((int(m.group()) + 1) % 10) + lit[m.end():]
@@ -582,10 +633,11 @@ rules = [
  ("no 'cold dark matter'", "cold dark matter" not in TEX.lower()),
  ("no pending placeholder", "\\pend{" not in body),
  ("no LCDM input claimed", "No $\\Lambda$CDM inputs were used" in TEX),
- ("version v1.8 stated, no draft marker", "v1.8, 2026-11-08" in TEX and "draft v0" not in TEX),
+ ("version v1.9 stated, no draft marker", "v1.9, 2026-11-08" in TEX and "draft v0" not in TEX),
  ("owner decision carried, nothing pending", "re-stated (owner 2026-11-07)" in TEX and "pending owner" not in TEX and "the frozen RESULT files are not edited" in TEX),
  ("unification quote verbatim", UQ_OK),
  ("seed abstract verbatim", "The next lane must find one covariant quantity that sets that amplitude (not just a switch) in today's hot systems and is non-zero in the early universe, or show the two failures need separate causes." in ws(TEX)),
+ ("UDG linear-response f derived", abs(10**1.121-1-12.2)<0.05 and abs(10**1.078-1-11.0)<0.05 and "$f=10^{1.121}-1=12.2$ / $10^{1.078}-1=11.0$" in TEX),
  ("erratum stated", "erratum on PAPER68's printed form only; no number changes" in TEX),
 ]
 if not MUT:
