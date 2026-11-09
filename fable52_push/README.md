@@ -22,8 +22,12 @@ whatever share was swept there. Three choices remain.
 | Exit | What grades it | Verdict | Lanes |
 |---|---|---|---|
 | A. Law on over KiDS's whole range | needs a filling of 0.29; CMB lensing allows 0.0231 (0.0265 / 0.0259 with external fields; 0.0197 at 2 sigma with growth); and the wall never gets there (0.43-0.63 of the range at best) | FAIL: lensing, dynamics | SWT1, EMV1, GAL1, SNP1 |
-| B. Wall inside the allowance, the record's share outside | KiDS's host-free outer bins exclude it at 5.3 to 5.6 sigma, calibration-free | FAIL: KiDS | KO1 |
-| C. Wall inside the allowance, a heavy share outside | KiDS needs at least 28 / 33 M_b; clearing fails above 2.8 to 4.0 shares (16 to 22 M_b); such a shell outweighs the wall force by at least 5.6 / 7.1; with three shares bound, 8.6 to 19.0 M_b stay inside 200 kpc | FAIL: clearing | KO1, SWT1, SNP1 |
+| B. Wall inside the allowance, the record's share outside | KiDS's host-free outer bins exclude it at more than 5 sigma, calibration-free, with the lens's catalogued neighbours counted (5.2 to 5.4) | FAIL: KiDS | KO1 |
+| C. Wall inside the allowance, a heavy share outside | KiDS needs at least 23 / 27 M_b per galaxy (4.1 / 4.9 shares); the energetic gate clears at most 2.8 to 4.0 shares; with three shares bound, 8.6 to 19.0 M_b stay inside 200 kpc; such a shell outweighs the wall force by at least 3.8 / 4.9 | FAIL: clearing | KO1, SWT1, SNP1 |
+
+Lighter neighbours are counted (KO1 E8): with the record's share each they add a hundredth of the law's level to a
+host-free lens's outer bins. The margin of exit C against the energetic gate alone is thin at the frozen veto radius (4.1
+shares needed against 3.8 cleared, canonical); against the dynamics it is not.
 
 ## 2. The lanes
 
@@ -45,7 +49,8 @@ whatever share was swept there. Three choices remain.
   0.81 +- 0.13 once the veto's own edge effect is moved out of the way. The law's floor is 0.98; a heavy exterior gives
   0.78 / 0.66. KiDS does not separate those two.
 - **What KiDS does settle.** The record's share outside a wall (5.56 M_b) is excluded at more than 5 sigma on every
-  reading. The outer bins need 41 to 56 / 48 to 66 M_b there.
+  reading. With every galaxy carrying the same share, the outer bins need 33 to 47 / 40 to 56 M_b per galaxy there
+  (2 sigma: at least 23 / 27).
 - **Hosts are not the story I expected.** Before the freeze I estimated that leaked hosts carry 30 to 50 % of the outer
   signal. The difference is 4.9 sigma at the frozen radius but falls to +0.31 +- 0.21 when the veto is widened, so most of
   it is the veto's edge.
