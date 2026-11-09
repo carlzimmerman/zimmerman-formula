@@ -1,0 +1,252 @@
+SNP1 run (criteria 9ff5f59a72). R = OD/OB = 5.5619; rho_d0 2.2461e-27 kg/m^3; rho_b0 4.0384e-28; line 0.0354; F2 line 0.9 M_b inside 200 kpc; g_K 1.38e-15
+
+PART A. Statics of a wall-supported shell.
+A.2 fixed-mass shell m = 1 R = 5.562 M_b, k = m (1 + m/2) = 21.029: exact R_eq = 31.916 r_M; deep closed form (3/2) k = 31.544; Lean bracket (21.523, 42.555); unstable (A2c)
+A.2 fixed-mass shell m = 3 R = 16.686 M_b, k = m (1 + m/2) = 155.891: exact R_eq = 234.212 r_M; deep closed form (3/2) k = 233.837; Lean bracket (156.391, 312.282); unstable (A2c)
+[canonical] log M_b 9.4: r_M 1.93 kpc, v_f 74.7 km/s; R_eq (share) 62 kpc, (3 x share) 453 kpc; swept balance today 0.729 Mpc (0.687 with IGM baryons; deep limits 2.50 / 0.742); R_K 0.504 Mpc -> balance / R_K 1.447 (1.364); stable True
+[canonical] log M_b 10.45: r_M 6.48 kpc, v_f 136.8 km/s; R_eq (share) 207 kpc, (3 x share) 1517 kpc; swept balance today 1.498 Mpc (1.412 with IGM baryons; deep limits 4.57 / 1.533); R_K 1.687 Mpc -> balance / R_K 0.888 (0.837); stable True
+[canonical] log M_b 10.7: r_M 8.64 kpc, v_f 158.0 km/s; R_eq (share) 276 kpc, (3 x share) 2023 kpc; swept balance today 1.778 Mpc (1.676 with IGM baryons; deep limits 5.27 / 1.822); R_K 2.250 Mpc -> balance / R_K 0.790 (0.745); stable True
+[canonical] log M_b 10.9: r_M 10.88 kpc, v_f 177.2 km/s; R_eq (share) 347 kpc, (3 x share) 2547 kpc; swept balance today 2.038 Mpc (1.923 with IGM baryons; deep limits 5.92 / 2.092); R_K 2.833 Mpc -> balance / R_K 0.720 (0.679); stable True
+[alt] log M_b 9.4: r_M 1.76 kpc, v_f 78.4 km/s; R_eq (share) 56 kpc, (3 x share) 412 kpc; swept balance today 0.744 Mpc (0.701 with IGM baryons; deep limits 2.62 / 0.756); R_K 0.504 Mpc -> balance / R_K 1.476 (1.391); stable True
+[alt] log M_b 10.45: r_M 5.89 kpc, v_f 143.4 km/s; R_eq (share) 188 kpc, (3 x share) 1380 kpc; swept balance today 1.528 Mpc (1.441 with IGM baryons; deep limits 4.79 / 1.562); R_K 1.687 Mpc -> balance / R_K 0.906 (0.854); stable True
+[alt] log M_b 10.7: r_M 7.86 kpc, v_f 165.6 km/s; R_eq (share) 251 kpc, (3 x share) 1841 kpc; swept balance today 1.814 Mpc (1.710 with IGM baryons; deep limits 5.53 / 1.857); R_K 2.250 Mpc -> balance / R_K 0.806 (0.760); stable True
+[alt] log M_b 10.9: r_M 9.89 kpc, v_f 185.8 km/s; R_eq (share) 316 kpc, (3 x share) 2317 kpc; swept balance today 2.080 Mpc (1.962 with IGM baryons; deep limits 6.21 / 2.132); R_K 2.833 Mpc -> balance / R_K 0.735 (0.693); stable True
+
+KNOWN ANSWERS
+KA-1 F_w vs 4 pi R^2 swt1.p_wall: max rel 4.44e-16 (1e-12); vs quadrature: 1.47e-10 (1e-8) -> PASS
+KA-2 my ln-a integrator (absolute gravity, wall off) vs swt1.r_ta: 9.4 a 1.0: 0.23655 vs 0.23655 (2.5e-07); 9.4 a 0.5: 0.15231 vs 0.15231 (1.0e-06); 10.45 a 1.0: 0.52957 vs 0.52957 (9.7e-07); 10.45 a 0.5: 0.34098 vs 0.34098 (3.5e-07); 10.9 a 1.0: 0.74804 vs 0.74804 (4.6e-07); 10.9 a 0.5: 0.48164 vs 0.48164 (4.9e-08) -> PASS
+KA-3 statics: R_eq inside the Lean bracket for all k True; k 1e4 vs (3/2) k: 2.5e-05; shell (share) from rest at 0.99 R_eq moves -7.990e-04, at 1.01 R_eq +7.517e-04 -> PASS
+KA-4 snowplow vs analytic (static medium, no gravity): max rel R 8.1e-13 (1e-6), momentum 0.0e+00 (1e-8) -> PASS
+KA-5 elastic front: speed rel 0.0e+00, ejecta 2 V_f rel 4.4e-16, KE / work rel 1.5e-08 (234 layers) -> PASS
+KA-6 compensated on NC at z 1: 0.0180 / 0.0182 (SWT1 0.0180 / 0.0182); KiDS points 59 -> PASS
+known answers: ALL PASS (2 s)
+
+PART B. Building the record's flow fields (160 labels per mass and X) and R_h,n ...
+   done (52 s)
+R_h,n (the record's NC radius at nucleation, kpc): z_n 6.0: 46, 103, 125, 146; z_n 3.0: 80, 180, 218, 254; z_n 1.5: 125, 281, 340, 396
+
+STICKY SNOWPLOW (graded at X = 1). R_w at z 2 / 1 / 0.5 / 0 in kpc; cold inside 200 kpc at z 0.
+[canonical] X 1 z_n 6.0 log M 9.4: R_w 14 / 14 / 14 / 14 kpc; final S, M_s 1.76 M_b; cold<200 kpc 7.863 M_b; R_w/R_K 0.028; break-out z None, stalls 1, collapse z None
+[canonical] X 1 z_n 6.0 log M 10.45: R_w 6 / 6 / 6 / 6 kpc; final S, M_s 0.35 M_b; cold<200 kpc 7.459 M_b; R_w/R_K 0.004; break-out z None, stalls 1, collapse z None
+[canonical] X 1 z_n 6.0 log M 10.7: R_w 9 / 9 / 9 / 9 kpc; final S, M_s 0.38 M_b; cold<200 kpc 7.442 M_b; R_w/R_K 0.004; break-out z None, stalls 1, collapse z None
+[canonical] X 1 z_n 6.0 log M 10.9: R_w 0 / 0 / 0 / 0 kpc; final collapsed, M_s 0.42 M_b; cold<200 kpc 7.434 M_b; R_w/R_K 0.000; break-out z None, stalls 0, collapse z 5.357
+[canonical] X 1 z_n 6.0: G-F2 FAIL; G-K FAIL (KiDS points outside the wall 58 of 59); G-L z 1 q 0.0000 filling 0.0000 PASS (z 0 0.0000, z 0.5 0.0000, z 2 0.0000) -> fails G_F2, G_K
+[canonical] X 1 z_n 3.0 log M 9.4: R_w 46 / 63 / 63 / 63 kpc; final S, M_s 5.25 M_b; cold<200 kpc 7.809 M_b; R_w/R_K 0.125; break-out z None, stalls 1, collapse z None
+[canonical] X 1 z_n 3.0 log M 10.45: R_w 68 / 81 / 81 / 81 kpc; final S, M_s 2.68 M_b; cold<200 kpc 7.406 M_b; R_w/R_K 0.048; break-out z None, stalls 1, collapse z None
+[canonical] X 1 z_n 3.0 log M 10.7: R_w 69 / 79 / 79 / 79 kpc; final S, M_s 2.10 M_b; cold<200 kpc 6.528 M_b; R_w/R_K 0.035; break-out z None, stalls 1, collapse z None
+[canonical] X 1 z_n 3.0 log M 10.9: R_w 66 / 72 / 72 / 72 kpc; final S, M_s 1.63 M_b; cold<200 kpc 5.277 M_b; R_w/R_K 0.026; break-out z None, stalls 1, collapse z None
+[canonical] X 1 z_n 3.0: G-F2 FAIL; G-K FAIL (KiDS points outside the wall 44 of 59); G-L z 1 q 0.0002 filling 0.0001 PASS (z 0 0.0000, z 0.5 0.0001, z 2 0.0003) -> fails G_F2, G_K
+[canonical] X 1 z_n 1.5 log M 9.4: R_w 0 / 80 / 131 / 207 kpc; final U, M_s 8.08 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.411; break-out z 0.567, stalls 0, collapse z None
+[canonical] X 1 z_n 1.5 log M 10.45: R_w 0 / 140 / 225 / 236 kpc; final S, M_s 5.69 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.140; break-out z None, stalls 1, collapse z None
+[canonical] X 1 z_n 1.5 log M 10.7: R_w 0 / 157 / 251 / 260 kpc; final S, M_s 5.01 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.115; break-out z None, stalls 1, collapse z None
+[canonical] X 1 z_n 1.5 log M 10.9: R_w 0 / 172 / 271 / 278 kpc; final S, M_s 4.48 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.098; break-out z None, stalls 1, collapse z None
+[canonical] X 1 z_n 1.5: G-F2 PASS; G-K FAIL (KiDS points outside the wall 28 of 59); G-L z 1 q 0.0010 filling 0.0007 PASS (z 0 0.0009, z 0.5 0.0018, z 2 0.0000) -> fails G_K
+   [canonical] sticky done (52 s)
+[canonical] X 0 z_n 6.0 log M 9.4: R_w 113 / 213 / 320 / 540 kpc; final U, M_s 12.16 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 1.072; break-out z 4.131, stalls 0, collapse z None
+[canonical] X 0 z_n 6.0 log M 10.45: R_w 203 / 388 / 592 / 1018 kpc; final U, M_s 8.44 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.603; break-out z 3.766, stalls 0, collapse z None
+[canonical] X 0 z_n 6.0 log M 10.7: R_w 231 / 442 / 678 / 1174 kpc; final U, M_s 7.67 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.522; break-out z 3.663, stalls 0, collapse z None
+[canonical] X 0 z_n 6.0 log M 10.9: R_w 255 / 487 / 753 / 1312 kpc; final U, M_s 7.07 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.463; break-out z 3.573, stalls 0, collapse z None
+[canonical] X 0 z_n 6.0: G-F2 PASS; G-K FAIL (KiDS points outside the wall 8 of 59); G-L z 1 q 0.0229 filling 0.0156 PASS (z 0 0.0570, z 0.5 0.0359, z 2 0.0106) -> fails G_K
+[canonical] X 0 z_n 3.0 log M 9.4: R_w 89 / 189 / 298 / 519 kpc; final U, M_s 10.25 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 1.031; break-out z 2.156, stalls 0, collapse z None
+[canonical] X 0 z_n 3.0 log M 10.45: R_w 180 / 360 / 571 / 1006 kpc; final U, M_s 7.44 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.596; break-out z 1.999, stalls 0, collapse z None
+[canonical] X 0 z_n 3.0 log M 10.7: R_w 213 / 418 / 663 / 1172 kpc; final U, M_s 6.87 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.521; break-out z 1.957, stalls 0, collapse z None
+[canonical] X 0 z_n 3.0 log M 10.9: R_w 244 / 471 / 746 / 1323 kpc; final U, M_s 6.44 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.467; break-out z 1.922, stalls 0, collapse z None
+[canonical] X 0 z_n 3.0: G-F2 PASS; G-K FAIL (KiDS points outside the wall 8 of 59); G-L z 1 q 0.0193 filling 0.0132 PASS (z 0 0.0567, z 0.5 0.0334, z 2 0.0079) -> fails G_K
+[canonical] X 0 z_n 1.5 log M 9.4: R_w 0 / 136 / 248 / 470 kpc; final U, M_s 7.36 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.933; break-out z 1.07, stalls 0, collapse z None
+[canonical] X 0 z_n 1.5 log M 10.45: R_w 0 / 278 / 484 / 923 kpc; final U, M_s 5.48 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.547; break-out z 0.988, stalls 0, collapse z None
+[canonical] X 0 z_n 1.5 log M 10.7: R_w 0 / 329 / 566 / 1080 kpc; final U, M_s 5.10 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.480; break-out z 0.967, stalls 0, collapse z None
+[canonical] X 0 z_n 1.5 log M 10.9: R_w 0 / 378 / 642 / 1224 kpc; final U, M_s 4.82 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.432; break-out z 0.949, stalls 0, collapse z None
+[canonical] X 0 z_n 1.5: G-F2 PASS; G-K FAIL (KiDS points outside the wall 10 of 59); G-L z 1 q 0.0091 filling 0.0064 PASS (z 0 0.0439, z 0.5 0.0204, z 2 0.0000) -> fails G_K
+   [canonical] sticky done (53 s)
+[canonical] X 3 z_n 6.0 log M 9.4: R_w 0 / 0 / 0 / 0 kpc; final collapsed, M_s 0.70 M_b; cold<200 kpc 18.986 M_b; R_w/R_K 0.000; break-out z None, stalls 0, collapse z 5.849
+[canonical] X 3 z_n 6.0 log M 10.45: R_w 0 / 0 / 0 / 0 kpc; final collapsed, M_s 1.05 M_b; cold<200 kpc 18.583 M_b; R_w/R_K 0.000; break-out z None, stalls 0, collapse z 5.774
+[canonical] X 3 z_n 6.0 log M 10.7: R_w 0 / 0 / 0 / 0 kpc; final collapsed, M_s 1.15 M_b; cold<200 kpc 18.566 M_b; R_w/R_K 0.000; break-out z None, stalls 0, collapse z 5.749
+[canonical] X 3 z_n 6.0 log M 10.9: R_w 0 / 0 / 0 / 0 kpc; final collapsed, M_s 1.24 M_b; cold<200 kpc 18.558 M_b; R_w/R_K 0.000; break-out z None, stalls 0, collapse z 5.728
+[canonical] X 3 z_n 6.0: G-F2 FAIL; G-K FAIL (KiDS points outside the wall 59 of 59); G-L z 1 q 0.0000 filling 0.0000 PASS (z 0 0.0000, z 0.5 0.0000, z 2 0.0000) -> fails G_F2, G_K
+[canonical] X 3 z_n 3.0 log M 9.4: R_w 0 / 0 / 0 / 0 kpc; final collapsed, M_s 0.40 M_b; cold<200 kpc 18.933 M_b; R_w/R_K 0.000; break-out z None, stalls 0, collapse z 2.911
+[canonical] X 3 z_n 3.0 log M 10.45: R_w 0 / 0 / 0 / 0 kpc; final collapsed, M_s 0.60 M_b; cold<200 kpc 18.529 M_b; R_w/R_K 0.000; break-out z None, stalls 0, collapse z 2.923
+[canonical] X 3 z_n 3.0 log M 10.7: R_w 0 / 0 / 0 / 0 kpc; final collapsed, M_s 0.66 M_b; cold<200 kpc 16.745 M_b; R_w/R_K 0.000; break-out z None, stalls 0, collapse z 2.917
+[canonical] X 3 z_n 3.0 log M 10.9: R_w 0 / 0 / 0 / 0 kpc; final collapsed, M_s 0.71 M_b; cold<200 kpc 14.040 M_b; R_w/R_K 0.000; break-out z None, stalls 0, collapse z 2.912
+[canonical] X 3 z_n 3.0: G-F2 FAIL; G-K FAIL (KiDS points outside the wall 59 of 59); G-L z 1 q 0.0000 filling 0.0000 PASS (z 0 0.0000, z 0.5 0.0000, z 2 0.0000) -> fails G_F2, G_K
+[canonical] X 3 z_n 1.5 log M 9.4: R_w 0 / 9 / 9 / 9 kpc; final S, M_s 1.18 M_b; cold<200 kpc 18.724 M_b; R_w/R_K 0.018; break-out z None, stalls 1, collapse z None
+[canonical] X 3 z_n 1.5 log M 10.45: R_w 0 / 6 / 6 / 6 kpc; final S, M_s 0.39 M_b; cold<200 kpc 12.505 M_b; R_w/R_K 0.004; break-out z None, stalls 1, collapse z None
+[canonical] X 3 z_n 1.5 log M 10.7: R_w 0 / 0 / 0 / 0 kpc; final collapsed, M_s 0.42 M_b; cold<200 kpc 10.160 M_b; R_w/R_K 0.000; break-out z None, stalls 0, collapse z 1.453
+[canonical] X 3 z_n 1.5 log M 10.9: R_w 0 / 0 / 0 / 0 kpc; final collapsed, M_s 0.46 M_b; cold<200 kpc 8.635 M_b; R_w/R_K 0.000; break-out z None, stalls 0, collapse z 1.456
+[canonical] X 3 z_n 1.5: G-F2 FAIL; G-K FAIL (KiDS points outside the wall 59 of 59); G-L z 1 q 0.0000 filling 0.0000 PASS (z 0 0.0000, z 0.5 0.0000, z 2 0.0000) -> fails G_F2, G_K
+   [canonical] sticky done (54 s)
+[alt] X 1 z_n 6.0 log M 9.4: R_w 18 / 18 / 18 / 18 kpc; final S, M_s 2.33 M_b; cold<200 kpc 7.863 M_b; R_w/R_K 0.036; break-out z None, stalls 1, collapse z None
+[alt] X 1 z_n 6.0 log M 10.45: R_w 6 / 6 / 6 / 6 kpc; final S, M_s 0.32 M_b; cold<200 kpc 7.459 M_b; R_w/R_K 0.003; break-out z None, stalls 1, collapse z None
+[alt] X 1 z_n 6.0 log M 10.7: R_w 8 / 8 / 8 / 8 kpc; final S, M_s 0.35 M_b; cold<200 kpc 7.442 M_b; R_w/R_K 0.003; break-out z None, stalls 1, collapse z None
+[alt] X 1 z_n 6.0 log M 10.9: R_w 10 / 10 / 10 / 10 kpc; final S, M_s 0.38 M_b; cold<200 kpc 7.434 M_b; R_w/R_K 0.003; break-out z None, stalls 1, collapse z None
+[alt] X 1 z_n 6.0: G-F2 FAIL; G-K FAIL (KiDS points outside the wall 57 of 59); G-L z 1 q 0.0000 filling 0.0000 PASS (z 0 0.0000, z 0.5 0.0000, z 2 0.0000) -> fails G_F2, G_K
+[alt] X 1 z_n 3.0 log M 9.4: R_w 50 / 69 / 69 / 69 kpc; final S, M_s 5.91 M_b; cold<200 kpc 7.809 M_b; R_w/R_K 0.136; break-out z None, stalls 1, collapse z None
+[alt] X 1 z_n 3.0 log M 10.45: R_w 77 / 96 / 96 / 96 kpc; final S, M_s 3.26 M_b; cold<200 kpc 7.406 M_b; R_w/R_K 0.057; break-out z None, stalls 1, collapse z None
+[alt] X 1 z_n 3.0 log M 10.7: R_w 82 / 98 / 98 / 98 kpc; final S, M_s 2.67 M_b; cold<200 kpc 6.528 M_b; R_w/R_K 0.044; break-out z None, stalls 1, collapse z None
+[alt] X 1 z_n 3.0 log M 10.9: R_w 84 / 96 / 96 / 96 kpc; final S, M_s 2.21 M_b; cold<200 kpc 5.277 M_b; R_w/R_K 0.034; break-out z None, stalls 1, collapse z None
+[alt] X 1 z_n 3.0: G-F2 FAIL; G-K FAIL (KiDS points outside the wall 43 of 59); G-L z 1 q 0.0003 filling 0.0002 PASS (z 0 0.0000, z 0.5 0.0001, z 2 0.0005) -> fails G_F2, G_K
+[alt] X 1 z_n 1.5 log M 9.4: R_w 0 / 84 / 140 / 235 kpc; final U, M_s 8.52 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.467; break-out z 0.633, stalls 0, collapse z None
+[alt] X 1 z_n 1.5 log M 10.45: R_w 0 / 149 / 242 / 257 kpc; final S, M_s 6.40 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.152; break-out z None, stalls 1, collapse z None
+[alt] X 1 z_n 1.5 log M 10.7: R_w 0 / 169 / 272 / 286 kpc; final S, M_s 5.68 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.127; break-out z None, stalls 1, collapse z None
+[alt] X 1 z_n 1.5 log M 10.9: R_w 0 / 186 / 297 / 309 kpc; final S, M_s 5.13 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.109; break-out z None, stalls 1, collapse z None
+[alt] X 1 z_n 1.5: G-F2 PASS; G-K FAIL (KiDS points outside the wall 26 of 59); G-L z 1 q 0.0012 filling 0.0009 PASS (z 0 0.0014, z 0.5 0.0023, z 2 0.0000) -> fails G_K
+   [alt] sticky done (54 s)
+[alt] X 0 z_n 6.0 log M 9.4: R_w 118 / 222 / 332 / 559 kpc; final U, M_s 13.16 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 1.110; break-out z 4.206, stalls 0, collapse z None
+[alt] X 0 z_n 6.0 log M 10.45: R_w 215 / 410 / 622 / 1065 kpc; final U, M_s 9.25 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.631; break-out z 3.86, stalls 0, collapse z None
+[alt] X 0 z_n 6.0 log M 10.7: R_w 246 / 470 / 717 / 1233 kpc; final U, M_s 8.43 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.548; break-out z 3.765, stalls 0, collapse z None
+[alt] X 0 z_n 6.0 log M 10.9: R_w 273 / 521 / 800 / 1382 kpc; final U, M_s 7.81 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.488; break-out z 3.683, stalls 0, collapse z None
+[alt] X 0 z_n 6.0: G-F2 PASS; G-K FAIL (KiDS points outside the wall 8 of 59); G-L z 1 q 0.0277 filling 0.0187 PASS (z 0 0.0667, z 0.5 0.0427, z 2 0.0129) -> fails G_K
+[alt] X 0 z_n 3.0 log M 9.4: R_w 91 / 196 / 308 / 536 kpc; final U, M_s 11.01 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 1.064; break-out z 2.189, stalls 0, collapse z None
+[alt] X 0 z_n 3.0 log M 10.45: R_w 184 / 375 / 594 / 1043 kpc; final U, M_s 8.04 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.618; break-out z 2.038, stalls 0, collapse z None
+[alt] X 0 z_n 3.0 log M 10.7: R_w 218 / 436 / 691 / 1218 kpc; final U, M_s 7.44 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.541; break-out z 1.998, stalls 0, collapse z None
+[alt] X 0 z_n 3.0 log M 10.9: R_w 249 / 492 / 779 / 1377 kpc; final U, M_s 6.98 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.486; break-out z 1.965, stalls 0, collapse z None
+[alt] X 0 z_n 3.0: G-F2 PASS; G-K FAIL (KiDS points outside the wall 8 of 59); G-L z 1 q 0.0221 filling 0.0150 PASS (z 0 0.0642, z 0.5 0.0381, z 2 0.0086) -> fails G_K
+[alt] X 0 z_n 1.5 log M 9.4: R_w 0 / 139 / 255 / 484 kpc; final U, M_s 7.87 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.960; break-out z 1.087, stalls 0, collapse z None
+[alt] X 0 z_n 1.5 log M 10.45: R_w 0 / 283 / 500 / 953 kpc; final U, M_s 5.88 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.565; break-out z 1.009, stalls 0, collapse z None
+[alt] X 0 z_n 1.5 log M 10.7: R_w 0 / 336 / 586 / 1117 kpc; final U, M_s 5.48 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.497; break-out z 0.988, stalls 0, collapse z None
+[alt] X 0 z_n 1.5 log M 10.9: R_w 0 / 386 / 664 / 1268 kpc; final U, M_s 5.17 M_b; cold<200 kpc 0.000 M_b; R_w/R_K 0.448; break-out z 0.971, stalls 0, collapse z None
+[alt] X 0 z_n 1.5: G-F2 PASS; G-K FAIL (KiDS points outside the wall 10 of 59); G-L z 1 q 0.0097 filling 0.0068 PASS (z 0 0.0489, z 0.5 0.0228, z 2 0.0000) -> fails G_K
+   [alt] sticky done (55 s)
+[alt] X 3 z_n 6.0 log M 9.4: R_w 0 / 0 / 0 / 0 kpc; final collapsed, M_s 0.64 M_b; cold<200 kpc 18.986 M_b; R_w/R_K 0.000; break-out z None, stalls 0, collapse z 5.861
+[alt] X 3 z_n 6.0 log M 10.45: R_w 0 / 0 / 0 / 0 kpc; final collapsed, M_s 0.95 M_b; cold<200 kpc 18.583 M_b; R_w/R_K 0.000; break-out z None, stalls 0, collapse z 5.796
+[alt] X 3 z_n 6.0 log M 10.7: R_w 0 / 0 / 0 / 0 kpc; final collapsed, M_s 1.05 M_b; cold<200 kpc 18.566 M_b; R_w/R_K 0.000; break-out z None, stalls 0, collapse z 5.774
+[alt] X 3 z_n 6.0 log M 10.9: R_w 0 / 0 / 0 / 0 kpc; final collapsed, M_s 1.13 M_b; cold<200 kpc 18.558 M_b; R_w/R_K 0.000; break-out z None, stalls 0, collapse z 5.754
+[alt] X 3 z_n 6.0: G-F2 FAIL; G-K FAIL (KiDS points outside the wall 59 of 59); G-L z 1 q 0.0000 filling 0.0000 PASS (z 0 0.0000, z 0.5 0.0000, z 2 0.0000) -> fails G_F2, G_K
+[alt] X 3 z_n 3.0 log M 9.4: R_w 2 / 2 / 2 / 2 kpc; final S, M_s 0.37 M_b; cold<200 kpc 18.933 M_b; R_w/R_K 0.003; break-out z None, stalls 1, collapse z None
+[alt] X 3 z_n 3.0 log M 10.45: R_w 0 / 0 / 0 / 0 kpc; final collapsed, M_s 0.55 M_b; cold<200 kpc 18.529 M_b; R_w/R_K 0.000; break-out z None, stalls 0, collapse z 2.928
+[alt] X 3 z_n 3.0 log M 10.7: R_w 0 / 0 / 0 / 0 kpc; final collapsed, M_s 0.60 M_b; cold<200 kpc 16.745 M_b; R_w/R_K 0.000; break-out z None, stalls 0, collapse z 2.923
+[alt] X 3 z_n 3.0 log M 10.9: R_w 0 / 0 / 0 / 0 kpc; final collapsed, M_s 0.65 M_b; cold<200 kpc 14.040 M_b; R_w/R_K 0.000; break-out z None, stalls 0, collapse z 2.919
+[alt] X 3 z_n 3.0: G-F2 FAIL; G-K FAIL (KiDS points outside the wall 59 of 59); G-L z 1 q 0.0000 filling 0.0000 PASS (z 0 0.0000, z 0.5 0.0000, z 2 0.0000) -> fails G_F2, G_K
+[alt] X 3 z_n 1.5 log M 9.4: R_w 0 / 14 / 14 / 14 kpc; final S, M_s 1.87 M_b; cold<200 kpc 18.724 M_b; R_w/R_K 0.028; break-out z None, stalls 1, collapse z None
+[alt] X 3 z_n 1.5 log M 10.45: R_w 0 / 6 / 6 / 6 kpc; final S, M_s 0.35 M_b; cold<200 kpc 12.505 M_b; R_w/R_K 0.003; break-out z None, stalls 1, collapse z None
+[alt] X 3 z_n 1.5 log M 10.7: R_w 0 / 8 / 8 / 8 kpc; final S, M_s 0.39 M_b; cold<200 kpc 10.160 M_b; R_w/R_K 0.003; break-out z None, stalls 1, collapse z None
+[alt] X 3 z_n 1.5 log M 10.9: R_w 0 / 0 / 0 / 0 kpc; final collapsed, M_s 0.42 M_b; cold<200 kpc 8.635 M_b; R_w/R_K 0.000; break-out z None, stalls 0, collapse z 1.451
+[alt] X 3 z_n 1.5: G-F2 FAIL; G-K FAIL (KiDS points outside the wall 58 of 59); G-L z 1 q 0.0000 filling 0.0000 PASS (z 0 0.0000, z 0.5 0.0000, z 2 0.0000) -> fails G_F2, G_K
+   [alt] sticky done (55 s)
+reported [canonical] z_n 6.0 R0_0.3rM: R_w(0) 1, 0, 0, 0 kpc; cold<200 7.86, 7.46, 7.44, 7.43 M_b
+reported [canonical] z_n 6.0 R0_3rM: R_w(0) 12, 19, 0, 0 kpc; cold<200 7.86, 7.46, 7.44, 7.43 M_b
+reported [canonical] z_n 6.0 pB_off: R_w(0) 0, 0, 0, 0 kpc; cold<200 7.86, 7.46, 7.44, 7.43 M_b
+reported [canonical] z_n 3.0 R0_0.3rM: R_w(0) 63, 2, 3, 0 kpc; cold<200 7.81, 7.41, 6.53, 5.28 M_b
+reported [canonical] z_n 3.0 R0_3rM: R_w(0) 61, 73, 68, 58 kpc; cold<200 7.81, 7.41, 6.53, 5.28 M_b
+reported [canonical] z_n 3.0 pB_off: R_w(0) 207, 0, 0, 0 kpc; cold<200 0.00, 7.44, 6.53, 5.68 M_b
+reported [canonical] z_n 1.5 R0_0.3rM: R_w(0) 208, 237, 261, 279 kpc; cold<200 0.00, 0.00, 0.00, 0.00 M_b
+reported [canonical] z_n 1.5 R0_3rM: R_w(0) 201, 230, 251, 267 kpc; cold<200 0.00, 0.00, 0.00, 0.00 M_b
+reported [canonical] z_n 1.5 pB_off: R_w(0) 275, 446, 493, 533 kpc; cold<200 0.00, 0.00, 0.00, 0.00 M_b
+reported [alt] z_n 6.0 R0_0.3rM: R_w(0) 1, 0, 0, 0 kpc; cold<200 7.86, 7.46, 7.44, 7.43 M_b
+reported [alt] z_n 6.0 R0_3rM: R_w(0) 16, 18, 24, 0 kpc; cold<200 7.86, 7.46, 7.44, 7.43 M_b
+reported [alt] z_n 6.0 pB_off: R_w(0) 0, 0, 0, 0 kpc; cold<200 7.86, 7.46, 7.44, 7.43 M_b
+reported [alt] z_n 3.0 R0_0.3rM: R_w(0) 69, 2, 2, 3 kpc; cold<200 7.81, 7.41, 6.53, 5.28 M_b
+reported [alt] z_n 3.0 R0_3rM: R_w(0) 67, 89, 89, 84 kpc; cold<200 7.81, 7.41, 6.53, 5.28 M_b
+reported [alt] z_n 3.0 pB_off: R_w(0) 244, 0, 0, 0 kpc; cold<200 0.00, 7.94, 7.39, 6.60 M_b
+reported [alt] z_n 1.5 R0_0.3rM: R_w(0) 236, 258, 287, 310 kpc; cold<200 0.00, 0.00, 0.00, 0.00 M_b
+reported [alt] z_n 1.5 R0_3rM: R_w(0) 230, 252, 279, 299 kpc; cold<200 0.00, 0.00, 0.00, 0.00 M_b
+reported [alt] z_n 1.5 pB_off: R_w(0) 293, 484, 538, 583 kpc; cold<200 0.00, 0.00, 0.00, 0.00 M_b
+
+ENERGY-CONSERVING BRACKET (elastic front, free layers). Timing one run first (contingency: every other GSMF mass if > 30 min).
+   one run 0.1 s (2391 steps); projected 0.5 min for the full grid -> full GSMF grid
+[canonical] E X 1 z_n 6.0 log M 9.4: R_w 21 / 25 / 25 / 25 kpc (front 25, B); cold<200 kpc 7.644 M_b; R_w/R_K 0.049; layers 73, central 0.000 M_b, steps 1801
+[canonical] E X 1 z_n 6.0 log M 10.45: R_w 32 / 38 / 38 / 38 kpc (front 38, B); cold<200 kpc 7.151 M_b; R_w/R_K 0.022; layers 56, central 0.000 M_b, steps 2391
+[canonical] E X 1 z_n 6.0 log M 10.7: R_w 38 / 40 / 40 / 41 kpc (front 41, B); cold<200 kpc 7.151 M_b; R_w/R_K 0.018; layers 52, central 0.385 M_b, steps 2568
+[canonical] E X 1 z_n 6.0 log M 10.9: R_w 42 / 43 / 43 / 43 kpc (front 43, B); cold<200 kpc 7.047 M_b; R_w/R_K 0.015; layers 48, central 0.415 M_b, steps 2862
+[canonical] E X 1 z_n 6.0: G-F2 FAIL; G-K FAIL (55 of 59 outside); G-L z 1 q 0.0000 PASS (z 0 0.0000) -> fails G_F2, G_K
+[canonical] E X 1 z_n 3.0 log M 9.4: R_w 34 / 61 / 62 / 62 kpc (front 62, B); cold<200 kpc 6.194 M_b; R_w/R_K 0.123; layers 90, central 0.000 M_b, steps 892
+[canonical] E X 1 z_n 3.0 log M 10.45: R_w 62 / 108 / 75 / 109 kpc (front 109, B); cold<200 kpc 6.510 M_b; R_w/R_K 0.064; layers 40, central 2.680 M_b, steps 3350
+[canonical] E X 1 z_n 3.0 log M 10.7: R_w 70 / 122 / 46 / 123 kpc (front 123, B); cold<200 kpc 6.234 M_b; R_w/R_K 0.055; layers 15, central 3.034 M_b, steps 4138
+[canonical] E X 1 z_n 3.0 log M 10.9: R_w 77 / 129 / 129 / 127 kpc (front 135, B); cold<200 kpc 4.535 M_b; R_w/R_K 0.045; layers 73, central 0.000 M_b, steps 945
+[canonical] E X 1 z_n 3.0: G-F2 FAIL; G-K FAIL (40 of 59 outside); G-L z 1 q 0.0004 PASS (z 0 0.0001) -> fails G_F2, G_K
+[canonical] E X 1 z_n 1.5 log M 9.4: R_w 0 / 52 / 95 / 124 kpc (front 124, B); cold<200 kpc 2.877 M_b; R_w/R_K 0.246; layers 103, central 0.000 M_b, steps 705
+[canonical] E X 1 z_n 1.5 log M 10.45: R_w 0 / 99 / 181 / 227 kpc (front 227, B); cold<200 kpc 0.000 M_b; R_w/R_K 0.135; layers 92, central 0.000 M_b, steps 660
+[canonical] E X 1 z_n 1.5 log M 10.7: R_w 0 / 115 / 210 / 261 kpc (front 261, B); cold<200 kpc 0.000 M_b; R_w/R_K 0.116; layers 90, central 0.000 M_b, steps 650
+[canonical] E X 1 z_n 1.5 log M 10.9: R_w 0 / 128 / 236 / 291 kpc (front 291, B); cold<200 kpc 0.000 M_b; R_w/R_K 0.103; layers 88, central 0.000 M_b, steps 641
+[canonical] E X 1 z_n 1.5: G-F2 FAIL; G-K FAIL (30 of 59 outside); G-L z 1 q 0.0003 PASS (z 0 0.0006) -> fails G_F2, G_K
+   [canonical] E-bracket done (60 s)
+[canonical] E X 0 z_n 6.0 log M 9.4: R_w 85 / 170 / 261 / 452 kpc (front 467, U); cold<200 kpc 0.000 M_b; R_w/R_K 0.898; layers 110, central 0.000 M_b, steps 1184
+[canonical] E X 0 z_n 6.0 log M 10.45: R_w 145 / 305 / 482 / 856 kpc (front 884, U); cold<200 kpc 0.000 M_b; R_w/R_K 0.507; layers 101, central 0.000 M_b, steps 1123
+[canonical] E X 0 z_n 6.0 log M 10.7: R_w 158 / 342 / 550 / 987 kpc (front 1020, U); cold<200 kpc 0.000 M_b; R_w/R_K 0.439; layers 99, central 0.000 M_b, steps 1108
+[canonical] E X 0 z_n 6.0 log M 10.9: R_w 170 / 373 / 604 / 1091 kpc (front 1128, U); cold<200 kpc 0.000 M_b; R_w/R_K 0.385; layers 96, central 0.000 M_b, steps 1097
+[canonical] E X 0 z_n 6.0: G-F2 PASS; G-K FAIL (11 of 59 outside); G-L z 1 q 0.0093 PASS (z 0 0.0265) -> fails G_K
+[canonical] E X 0 z_n 3.0 log M 9.4: R_w 64 / 140 / 232 / 419 kpc (front 433, U); cold<200 kpc 0.000 M_b; R_w/R_K 0.831; layers 101, central 0.000 M_b, steps 989
+[canonical] E X 0 z_n 3.0 log M 10.45: R_w 132 / 261 / 442 / 815 kpc (front 843, U); cold<200 kpc 0.000 M_b; R_w/R_K 0.483; layers 94, central 0.000 M_b, steps 927
+[canonical] E X 0 z_n 3.0 log M 10.7: R_w 157 / 299 / 513 / 951 kpc (front 984, U); cold<200 kpc 0.000 M_b; R_w/R_K 0.423; layers 91, central 0.000 M_b, steps 912
+[canonical] E X 0 z_n 3.0 log M 10.9: R_w 180 / 333 / 576 / 1074 kpc (front 1111, U); cold<200 kpc 0.000 M_b; R_w/R_K 0.379; layers 90, central 0.000 M_b, steps 901
+[canonical] E X 0 z_n 3.0: G-F2 PASS; G-K FAIL (12 of 59 outside); G-L z 1 q 0.0069 PASS (z 0 0.0294) -> fails G_K
+[canonical] E X 0 z_n 1.5 log M 9.4: R_w 0 / 97 / 177 / 363 kpc (front 376, U); cold<200 kpc 0.000 M_b; R_w/R_K 0.720; layers 85, central 0.000 M_b, steps 823
+[canonical] E X 0 z_n 1.5 log M 10.45: R_w 0 / 201 / 336 / 711 kpc (front 739, U); cold<200 kpc 0.000 M_b; R_w/R_K 0.422; layers 81, central 0.000 M_b, steps 761
+[canonical] E X 0 z_n 1.5 log M 10.7: R_w 0 / 239 / 388 / 830 kpc (front 863, U); cold<200 kpc 0.000 M_b; R_w/R_K 0.369; layers 80, central 0.000 M_b, steps 747
+[canonical] E X 0 z_n 1.5 log M 10.9: R_w 0 / 274 / 436 / 941 kpc (front 978, U); cold<200 kpc 0.000 M_b; R_w/R_K 0.332; layers 78, central 0.000 M_b, steps 735
+[canonical] E X 0 z_n 1.5: G-F2 PASS; G-K FAIL (14 of 59 outside); G-L z 1 q 0.0033 PASS (z 0 0.0196) -> fails G_K
+   [canonical] E-bracket done (62 s)
+[canonical] E X 3 z_n 6.0 log M 9.4: R_w 2 / 2 / 2 / 2 kpc (front 2, B); cold<200 kpc 19.020 M_b; R_w/R_K 0.004; layers 0, central 0.700 M_b, steps 1078
+[canonical] E X 3 z_n 6.0 log M 10.45: R_w 6 / 6 / 6 / 6 kpc (front 6, B); cold<200 kpc 18.586 M_b; R_w/R_K 0.004; layers 0, central 1.047 M_b, steps 1073
+[canonical] E X 3 z_n 6.0 log M 10.7: R_w 9 / 9 / 9 / 9 kpc (front 9, B); cold<200 kpc 18.567 M_b; R_w/R_K 0.004; layers 0, central 1.153 M_b, steps 1072
+[canonical] E X 3 z_n 6.0 log M 10.9: R_w 11 / 11 / 11 / 11 kpc (front 11, B); cold<200 kpc 18.558 M_b; R_w/R_K 0.004; layers 0, central 1.245 M_b, steps 1070
+[canonical] E X 3 z_n 6.0: G-F2 FAIL; G-K FAIL (59 of 59 outside); G-L z 1 q 0.0000 PASS (z 0 0.0000) -> fails G_F2, G_K
+[canonical] E X 3 z_n 3.0 log M 9.4: R_w 9 / 10 / 10 / 10 kpc (front 10, B); cold<200 kpc 18.941 M_b; R_w/R_K 0.020; layers 54, central 0.402 M_b, steps 4424
+[canonical] E X 3 z_n 3.0 log M 10.45: R_w 6 / 6 / 6 / 6 kpc (front 6, B); cold<200 kpc 18.530 M_b; R_w/R_K 0.004; layers 0, central 0.601 M_b, steps 799
+[canonical] E X 3 z_n 3.0 log M 10.7: R_w 9 / 9 / 9 / 9 kpc (front 9, B); cold<200 kpc 16.745 M_b; R_w/R_K 0.004; layers 0, central 0.662 M_b, steps 798
+[canonical] E X 3 z_n 3.0 log M 10.9: R_w 11 / 11 / 11 / 11 kpc (front 11, B); cold<200 kpc 14.040 M_b; R_w/R_K 0.004; layers 0, central 0.715 M_b, steps 798
+[canonical] E X 3 z_n 3.0: G-F2 FAIL; G-K FAIL (59 of 59 outside); G-L z 1 q 0.0000 PASS (z 0 0.0000) -> fails G_F2, G_K
+[canonical] E X 3 z_n 1.5 log M 9.4: R_w 0 / 23 / 27 / 29 kpc (front 30, B); cold<200 kpc 18.635 M_b; R_w/R_K 0.058; layers 78, central 0.000 M_b, steps 1269
+[canonical] E X 3 z_n 1.5 log M 10.45: R_w 0 / 30 / 37 / 37 kpc (front 37, B); cold<200 kpc 12.314 M_b; R_w/R_K 0.022; layers 58, central 0.385 M_b, steps 1918
+[canonical] E X 3 z_n 1.5 log M 10.7: R_w 0 / 32 / 38 / 38 kpc (front 38, B); cold<200 kpc 10.079 M_b; R_w/R_K 0.017; layers 51, central 0.424 M_b, steps 2145
+[canonical] E X 3 z_n 1.5 log M 10.9: R_w 0 / 33 / 38 / 38 kpc (front 38, B); cold<200 kpc 8.432 M_b; R_w/R_K 0.013; layers 44, central 0.458 M_b, steps 2438
+[canonical] E X 3 z_n 1.5: G-F2 FAIL; G-K FAIL (55 of 59 outside); G-L z 1 q 0.0000 PASS (z 0 0.0000) -> fails G_F2, G_K
+   [canonical] E-bracket done (66 s)
+[alt] E X 1 z_n 6.0 log M 9.4: R_w 22 / 27 / 27 / 27 kpc (front 27, B); cold<200 kpc 7.596 M_b; R_w/R_K 0.053; layers 14, central 3.170 M_b, steps 4801
+[alt] E X 1 z_n 6.0 log M 10.45: R_w 38 / 42 / 42 / 42 kpc (front 42, B); cold<200 kpc 6.990 M_b; R_w/R_K 0.025; layers 61, central 0.000 M_b, steps 2207
+[alt] E X 1 z_n 6.0 log M 10.7: R_w 40 / 45 / 46 / 46 kpc (front 46, B); cold<200 kpc 6.956 M_b; R_w/R_K 0.020; layers 57, central 0.000 M_b, steps 2433
+[alt] E X 1 z_n 6.0 log M 10.9: R_w 40 / 48 / 47 / 48 kpc (front 49, B); cold<200 kpc 7.086 M_b; R_w/R_K 0.017; layers 53, central 0.000 M_b, steps 2661
+[alt] E X 1 z_n 6.0: G-F2 FAIL; G-K FAIL (54 of 59 outside); G-L z 1 q 0.0000 PASS (z 0 0.0000) -> fails G_F2, G_K
+[alt] E X 1 z_n 3.0 log M 9.4: R_w 36 / 63 / 65 / 65 kpc (front 65, B); cold<200 kpc 5.695 M_b; R_w/R_K 0.130; layers 93, central 0.000 M_b, steps 903
+[alt] E X 1 z_n 3.0 log M 10.45: R_w 66 / 114 / 103 / 116 kpc (front 116, B); cold<200 kpc 5.853 M_b; R_w/R_K 0.069; layers 82, central 0.000 M_b, steps 990
+[alt] E X 1 z_n 3.0 log M 10.7: R_w 75 / 130 / 91 / 131 kpc (front 132, B); cold<200 kpc 5.447 M_b; R_w/R_K 0.058; layers 43, central 2.441 M_b, steps 2915
+[alt] E X 1 z_n 3.0 log M 10.9: R_w 83 / 144 / 48 / 145 kpc (front 145, B); cold<200 kpc 4.933 M_b; R_w/R_K 0.051; layers 11, central 3.168 M_b, steps 4269
+[alt] E X 1 z_n 3.0: G-F2 FAIL; G-K FAIL (40 of 59 outside); G-L z 1 q 0.0005 PASS (z 0 0.0001) -> fails G_F2, G_K
+[alt] E X 1 z_n 1.5 log M 9.4: R_w 0 / 54 / 99 / 172 kpc (front 184, U); cold<200 kpc 2.274 M_b; R_w/R_K 0.342; layers 104, central 0.000 M_b, steps 716
+[alt] E X 1 z_n 1.5 log M 10.45: R_w 0 / 104 / 189 / 239 kpc (front 239, B); cold<200 kpc 0.000 M_b; R_w/R_K 0.142; layers 94, central 0.000 M_b, steps 670
+[alt] E X 1 z_n 1.5 log M 10.7: R_w 0 / 120 / 219 / 275 kpc (front 275, B); cold<200 kpc 0.000 M_b; R_w/R_K 0.122; layers 92, central 0.000 M_b, steps 660
+[alt] E X 1 z_n 1.5 log M 10.9: R_w 0 / 135 / 247 / 308 kpc (front 308, B); cold<200 kpc 0.000 M_b; R_w/R_K 0.109; layers 90, central 0.000 M_b, steps 652
+[alt] E X 1 z_n 1.5: G-F2 FAIL; G-K FAIL (27 of 59 outside); G-L z 1 q 0.0004 PASS (z 0 0.0008) -> fails G_F2, G_K
+   [alt] E-bracket done (70 s)
+[alt] E X 0 z_n 6.0 log M 9.4: R_w 89 / 177 / 271 / 467 kpc (front 482, U); cold<200 kpc 0.000 M_b; R_w/R_K 0.927; layers 112, central 0.000 M_b, steps 1198
+[alt] E X 0 z_n 6.0 log M 10.45: R_w 157 / 325 / 507 / 894 kpc (front 924, U); cold<200 kpc 0.000 M_b; R_w/R_K 0.530; layers 103, central 0.000 M_b, steps 1137
+[alt] E X 0 z_n 6.0 log M 10.7: R_w 174 / 368 / 582 / 1036 kpc (front 1070, U); cold<200 kpc 0.000 M_b; R_w/R_K 0.461; layers 101, central 0.000 M_b, steps 1122
+[alt] E X 0 z_n 6.0 log M 10.9: R_w 189 / 405 / 648 / 1160 kpc (front 1199, U); cold<200 kpc 0.000 M_b; R_w/R_K 0.409; layers 99, central 0.000 M_b, steps 1111
+[alt] E X 0 z_n 6.0: G-F2 PASS; G-K FAIL (11 of 59 outside); G-L z 1 q 0.0127 PASS (z 0 0.0361) -> fails G_K
+[alt] E X 0 z_n 3.0 log M 9.4: R_w 66 / 146 / 239 / 431 kpc (front 446, U); cold<200 kpc 0.000 M_b; R_w/R_K 0.856; layers 101, central 0.000 M_b, steps 1004
+[alt] E X 0 z_n 3.0 log M 10.45: R_w 135 / 275 / 462 / 846 kpc (front 875, U); cold<200 kpc 0.000 M_b; R_w/R_K 0.501; layers 96, central 0.000 M_b, steps 942
+[alt] E X 0 z_n 3.0 log M 10.7: R_w 160 / 315 / 535 / 987 kpc (front 1021, U); cold<200 kpc 0.000 M_b; R_w/R_K 0.439; layers 94, central 0.000 M_b, steps 927
+[alt] E X 0 z_n 3.0 log M 10.9: R_w 184 / 353 / 604 / 1118 kpc (front 1157, U); cold<200 kpc 0.000 M_b; R_w/R_K 0.395; layers 92, central 0.000 M_b, steps 915
+[alt] E X 0 z_n 3.0: G-F2 PASS; G-K FAIL (11 of 59 outside); G-L z 1 q 0.0081 PASS (z 0 0.0332) -> fails G_K
+[alt] E X 0 z_n 1.5 log M 9.4: R_w 0 / 100 / 184 / 374 kpc (front 388, U); cold<200 kpc 0.000 M_b; R_w/R_K 0.742; layers 88, central 0.000 M_b, steps 838
+[alt] E X 0 z_n 1.5 log M 10.45: R_w 0 / 205 / 350 / 735 kpc (front 763, U); cold<200 kpc 0.000 M_b; R_w/R_K 0.436; layers 81, central 0.000 M_b, steps 776
+[alt] E X 0 z_n 1.5 log M 10.7: R_w 0 / 243 / 407 / 862 kpc (front 895, U); cold<200 kpc 0.000 M_b; R_w/R_K 0.383; layers 81, central 0.000 M_b, steps 761
+[alt] E X 0 z_n 1.5 log M 10.9: R_w 0 / 279 / 457 / 976 kpc (front 1013, U); cold<200 kpc 0.000 M_b; R_w/R_K 0.344; layers 80, central 0.000 M_b, steps 749
+[alt] E X 0 z_n 1.5: G-F2 PASS; G-K FAIL (13 of 59 outside); G-L z 1 q 0.0036 PASS (z 0 0.0219) -> fails G_K
+   [alt] E-bracket done (72 s)
+[alt] E X 3 z_n 6.0 log M 9.4: R_w 2 / 2 / 2 / 2 kpc (front 2, B); cold<200 kpc 19.020 M_b; R_w/R_K 0.003; layers 0, central 0.636 M_b, steps 1078
+[alt] E X 3 z_n 6.0 log M 10.45: R_w 6 / 6 / 6 / 6 kpc (front 6, B); cold<200 kpc 18.586 M_b; R_w/R_K 0.003; layers 0, central 0.952 M_b, steps 1075
+[alt] E X 3 z_n 6.0 log M 10.7: R_w 8 / 8 / 8 / 8 kpc (front 8, B); cold<200 kpc 18.567 M_b; R_w/R_K 0.003; layers 0, central 1.048 M_b, steps 1073
+[alt] E X 3 z_n 6.0 log M 10.9: R_w 10 / 10 / 10 / 10 kpc (front 10, B); cold<200 kpc 18.558 M_b; R_w/R_K 0.003; layers 0, central 1.132 M_b, steps 1072
+[alt] E X 3 z_n 6.0: G-F2 FAIL; G-K FAIL (59 of 59 outside); G-L z 1 q 0.0000 PASS (z 0 0.0000) -> fails G_F2, G_K
+[alt] E X 3 z_n 3.0 log M 9.4: R_w 8 / 11 / 11 / 12 kpc (front 12, B); cold<200 kpc 18.795 M_b; R_w/R_K 0.023; layers 61, central 0.000 M_b, steps 4037
+[alt] E X 3 z_n 3.0 log M 10.45: R_w 10 / 11 / 11 / 11 kpc (front 11, B); cold<200 kpc 18.504 M_b; R_w/R_K 0.006; layers 20, central 0.547 M_b, steps 8103
+[alt] E X 3 z_n 3.0 log M 10.7: R_w 8 / 8 / 8 / 8 kpc (front 8, B); cold<200 kpc 16.745 M_b; R_w/R_K 0.003; layers 0, central 0.602 M_b, steps 799
+[alt] E X 3 z_n 3.0 log M 10.9: R_w 10 / 10 / 10 / 10 kpc (front 10, B); cold<200 kpc 14.040 M_b; R_w/R_K 0.003; layers 0, central 0.650 M_b, steps 798
+[alt] E X 3 z_n 3.0: G-F2 FAIL; G-K FAIL (59 of 59 outside); G-L z 1 q 0.0000 PASS (z 0 0.0000) -> fails G_F2, G_K
+[alt] E X 3 z_n 1.5 log M 9.4: R_w 0 / 27 / 29 / 32 kpc (front 33, B); cold<200 kpc 18.628 M_b; R_w/R_K 0.064; layers 83, central 0.000 M_b, steps 1258
+[alt] E X 3 z_n 1.5 log M 10.45: R_w 0 / 29 / 39 / 43 kpc (front 43, B); cold<200 kpc 12.440 M_b; R_w/R_K 0.026; layers 63, central 0.000 M_b, steps 1757
+[alt] E X 3 z_n 1.5 log M 10.7: R_w 0 / 36 / 44 / 44 kpc (front 45, B); cold<200 kpc 10.019 M_b; R_w/R_K 0.020; layers 58, central 0.386 M_b, steps 1923
+[alt] E X 3 z_n 1.5 log M 10.9: R_w 0 / 38 / 44 / 46 kpc (front 46, B); cold<200 kpc 8.531 M_b; R_w/R_K 0.016; layers 52, central 0.416 M_b, steps 2079
+[alt] E X 3 z_n 1.5: G-F2 FAIL; G-K FAIL (52 of 59 outside); G-L z 1 q 0.0000 PASS (z 0 0.0000) -> fails G_F2, G_K
+   [alt] E-bracket done (77 s)
+
+LABEL [canonical]: SNP1 FAILS (z_n 6.0: G_F2, G_K; z_n 3.0: G_F2, G_K; z_n 1.5: G_K); SAME UNDER THE ENERGY-CONSERVING BRACKET (differs: z_n 1.5 G_F2)
+   energy bracket X 1: FAILS (z_n 6.0: G_F2, G_K; z_n 3.0: G_F2, G_K; z_n 1.5: G_F2, G_K)
+   brackets (sticky): X 0 FAILS (z_n 6.0: G_K; z_n 3.0: G_K; z_n 1.5: G_K); X 3 FAILS (z_n 6.0: G_F2, G_K; z_n 3.0: G_F2, G_K; z_n 1.5: G_F2, G_K)
+   brackets (energy): X 0 FAILS (z_n 6.0: G_K; z_n 3.0: G_K; z_n 1.5: G_K); X 3 FAILS (z_n 6.0: G_F2, G_K; z_n 3.0: G_F2, G_K; z_n 1.5: G_F2, G_K)
+LABEL [alt]: SNP1 FAILS (z_n 6.0: G_F2, G_K; z_n 3.0: G_F2, G_K; z_n 1.5: G_K); SAME UNDER THE ENERGY-CONSERVING BRACKET (differs: z_n 1.5 G_F2)
+   energy bracket X 1: FAILS (z_n 6.0: G_F2, G_K; z_n 3.0: G_F2, G_K; z_n 1.5: G_F2, G_K)
+   brackets (sticky): X 0 FAILS (z_n 6.0: G_K; z_n 3.0: G_K; z_n 1.5: G_K); X 3 FAILS (z_n 6.0: G_F2, G_K; z_n 3.0: G_F2, G_K; z_n 1.5: G_F2, G_K)
+   brackets (energy): X 0 FAILS (z_n 6.0: G_K; z_n 3.0: G_K; z_n 1.5: G_K); X 3 FAILS (z_n 6.0: G_F2, G_K; z_n 3.0: G_F2, G_K; z_n 1.5: G_F2, G_K)
+runtime 77 s. kappa = 1/2 FITTED; not theory closed. Adopts nothing.
+kappa = 1/2 FITTED; not theory closed. Adopts nothing.

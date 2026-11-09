@@ -1,0 +1,87 @@
+SNP1_MUTATE.lean:310:43: warning: Variable name `hk` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hk
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+SNP1_MUTATE.lean:374:40: warning: Variable name `hk` is not explicitly referenced.
+
+Hint: The binding can be removed (if unused) or named `_` (if used implicitly). Alternatively, prefix the name with `_` to silence this warning:
+  [apply] _hk
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+SNP1_MUTATE.lean:515:2: error: linarith failed to find a contradiction
+u : ℝ
+hu : 0 < u
+hmono : StrictMonoOn (fun v => W v - v ^ 3 / (2 * (1 + v) ^ 2)) (Set.Ici 0)
+h0 : W 0 - 0 ^ 3 / (2 * (1 + 0) ^ 2) = 0
+this : W 0 - 0 ^ 3 / (2 * (1 + 0) ^ 2) < W u - u ^ 3 / (2 * (1 + u) ^ 2)
+a✝ : u ^ 3 / (2 * (1 + u) ^ 2) ≤ W u
+⊢ False
+failed
+SNP1_MUTATE.lean:525:2: error: linarith failed to find a contradiction
+u : ℝ
+hu : 0 < u
+h : W u ≤ u ^ 2 / (1 + u)
+h1 : 0 < 1 + u
+h2 : 0 < u ^ 2
+h3 : W u * (1 + u) ≤ u ^ 2 / (1 + u) * (1 + u)
+e : u ^ 2 / (1 + u) * (1 + u) = u ^ 2
+a✝ : 1 / 2 * u ^ 2 < W u * (1 + u)
+⊢ False
+failed
+SNP1_MUTATE.lean:539:21: error: Application type mismatch: The argument
+  hB
+has type
+  x ^ 3 / (2 * (1 + x) ^ 2) - W x < 0
+but is expected to have type
+  0 < x ^ 3 / (2 * (1 + x) ^ 2) - W x
+in the application
+  mul_pos hA hB
+SNP1_MUTATE.lean:559:2: error: linarith failed to find a contradiction
+u k : ℝ
+hu : 0 < u
+hk : 0 < k
+h : Psi u = k
+hlow : u ^ 3 / (2 * (1 + u) ^ 2) < W u
+hp : 0 < 1 + u
+hu4 : 0 < u ^ 4
+hu3 : 0 < u ^ 3
+hP : W u * (1 + u) ^ 2 = k * u ^ 4
+hd : 0 < 2 * (1 + u) ^ 2
+hl : u ^ 3 < W u * (2 * (1 + u) ^ 2)
+e1 : W u * (2 * (1 + u) ^ 2) = 2 * (k * u ^ 4)
+h3 : u ^ 3 < 2 * (k * u ^ 4)
+hc : 1 ≤ 2 * k * u
+h5 : u ^ 3 * 1 ≤ u ^ 3 * (2 * k * u)
+e : u ^ 3 * (2 * k * u) = 2 * (k * u ^ 4)
+⊢ False
+failed
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+SNP1_MUTATE.lean:563:52: error: unsolved goals
+M m V v : ℝ
+hM : 0 < M
+hm : 0 < m
+h : M + m ≠ 0
+⊢ -(M * V * m * v * 2) + M * V ^ 2 * m + M * m * v ^ 2 = M * V * m * v * 2 - M * V ^ 2 * m - M * m * v ^ 2
+SNP1_MUTATE.lean:574:4: error: ring failed, ring expressions not equal
+s k : ℝ
+hs : 0 < s
+hk : 0 < k
+h : 2 / 3 * s = k * s ^ 2
+h2 : s * (k * s) = s * (2 / 3)
+h1 : k * s = 2 / 3
+⊢ k * s * (1 / 2) = 0
+SNP1_MUTATE.lean:577:4: error: ring failed, ring expressions not equal
+s k : ℝ
+hs : 0 < s
+hk : 0 < k
+h : 1 = k * s
+⊢ s ^ 2 * k * (-1 / 3) = 0
+exit 1
+kappa = 1/2 FITTED; not theory closed. Adopts nothing.
