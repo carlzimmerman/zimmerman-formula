@@ -60,7 +60,7 @@ VAR = os.environ.get("SS1V", "G")
 OPT = os.environ.get("SS1V_OPT", "")
 FCEN = float(os.environ.get("SS1V_FCEN", "0.6"))        # F bracket value for groups / clusters (0.3 reported as a second run)
 def vpar(V, f):
-    F = footing(f); base = "G" if V.startswith("MG") else ("H" if V.startswith("MH") else V[:1])
+    F = footing(f); base = "G" if V.startswith("MG") else ("H" if (V.startswith("MH") or V.startswith("MI") or V.startswith("I")) else V[:1])
     if base in ("B", "C", "D", "E"): p = dict(z_dec=0.55, alpha=3.80, kick={"B": 355.0, "C": 220.0}.get(base, 1150.0))
     else: p = dict(z_dec=F["z_q0"], alpha=F["alpha_G"], kick=4 * F["v_stiff"])
     p.update(base=base, v_stiff=F["v_stiff"], F=F)
@@ -73,7 +73,16 @@ def vpar(V, f):
         if p["hfull"]: p["kick"] = 2 * F["v_stiff"]
         if V == "MH1": p["v_stiff"] = 0.0
         if V == "MH2": p["kick"] = 0.0
+        p["iform"] = V.startswith("I") or V.startswith("MI")                   # A5: variant I
+        if p["iform"]:
+            p["kick"] = 0.0 if V == "MI2" else F["v_stiff"]; p["ceil"] = 1.0 if V == "MI1" else 1 / math.sqrt(3.0)
+            p["gform"] = "isrc" if V == "Isrc" else "halo"; p["nobound"] = (V == "Inob"); p["R_FS"] = r_fs(F, p["z_dec"], p["kick"])
     return p
+def r_fs(F, z_dec, kick):
+    """comoving streaming length today of a daughter kicked at onset: integral of kick (a_dec/a) / a dt (A5)."""
+    zz = np.linspace(0, z_dec, 4001); Or = 2.469e-5 * (1 + 0.2271 * 3.046) / F["h"] ** 2
+    H = 100 * F["h"] * np.sqrt(F["Om"] * (1 + zz) ** 3 + Or * (1 + zz) ** 4 + F["Ode"]); a = 1 / (1 + zz); a_dec = 1 / (1 + z_dec)
+    dt_dz = 977.792 / (H * (1 + zz)); return float(np.trapz(kick * (a_dec / a) / a * dt_dz, zz) * KMS_GYR_MPC)
 
 # ================================================================== variant H (AMENDMENT_A4): per-radius escape retention + bound daughters
 def h_profile(p, H, tau):
@@ -91,15 +100,27 @@ def h_profile(p, H, tau):
         sig2 = np.interp(rg / rs, xg, cum / rho); Phi = -(G_KPC * A) * np.log1p(rg / rs) / rg
     g = sig2 / v ** 2
     if p.get("gform") == "src": u = rg / R5; g = u / (0.08 + u) / (1 + 2.5 * u ** 1.5)
-    f = np.exp(-(tau / math.pi) * (p["v_stiff"] / v) ** 2 / np.maximum(g, 1e-30)) if tau > 0 else np.ones_like(rg)
+    if p.get("gform") == "isrc": u = rg / R5; g = np.maximum((u / (0.07 + u)) * (1 - 0.45 * u), 0.0)
+    if p.get("iform"):
+        ea = math.exp(-p["alpha"]); ftoday = ea + (p["ceil"] - ea) * np.exp(-3 * (p["v_stiff"] / v) ** 2 / np.maximum(g, 1e-30))
+        f = 1 - (1 - ftoday) * (tau / p["alpha"]) if (tau > 0 and p["alpha"] > 0) else np.ones_like(rg)
+    else:
+        f = np.exp(-(tau / math.pi) * (p["v_stiff"] / v) ** 2 / np.maximum(g, 1e-30)) if tau > 0 else np.ones_like(rg)
     bound = (0.5 * (3 * sig2 + p["kick"] ** 2) + Phi) < 0
+    if p.get("nobound"): bound = np.zeros_like(bound)
     return rg, dM, f, bound, v
 def h_puffed(p, H): return p.get("hfull") and math.sqrt(G_KPC * H["M500"] / H["R500"]) < p["v_stiff"] / 2
 def h_enc(p, H, r, tau=None):
     tau = p["alpha"] if tau is None else tau; r = np.asarray(r, float)
     if h_puffed(p, H): return H["Mchi0"] * r ** 3 / (r * r + 180.0 ** 2) ** 1.5
     rg, dM, f, b, v = h_profile(p, H, tau); Mc = np.cumsum(dM * (f + (1 - f) * b))
-    return np.interp(r, rg, Mc, left=0.0, right=Mc[-1])
+    out = np.interp(r, rg, Mc, left=0.0, right=Mc[-1])
+    if p.get("iform"):                                              # A5: unbound daughters in a Gaussian shell, mean R_FS, sigma 0.3 R_FS
+        b_true = h_profile(dict(p, nobound=False), H, tau)[3] if p.get("nobound") else b
+        esc = float(np.sum(dM * (1 - f) * (~b_true)))                 # I-nob: bound daughters are removed, only the unbound go to the shell
+        R0 = 1000.0 * p["R_FS"]; rs = np.linspace(1.0, 4 * R0, 4000); w = rs ** 2 * np.exp(-0.5 * ((rs - R0) / (0.3 * R0)) ** 2); cw = np.cumsum(w); cw /= cw[-1]
+        out = out + esc * np.interp(r, rs, cw, left=0.0, right=1.0)
+    return out
 def h_escaped(p, H, tau):
     if h_puffed(p, H): return 0.0
     rg, dM, f, b, v = h_profile(p, H, tau); return float(np.sum(dM * (1 - f) * (~b)) / np.sum(dM))
@@ -243,7 +264,7 @@ def run_local(V):
         F = footing("canonical"); M5 = 500 * C.rho_crit(0.05, F["h"], F["Om"]) * 4 / 3 * math.pi * R5 ** 3
         OBS[(round(z["Mb_last"][0], -3), "xcop")] = math.sqrt(G_KPC * M5 / R5)
     S.Comp = VComp; S.RES = {}; S.SUFFIX = f"_V{V}" + (f"_{OPT}" if OPT else "") + (f"_fcen{FCEN}" if VAR == "F" and FCEN != 0.6 else "")
-    if V.startswith("MG") or V.startswith("MH") or OPT: S.MUT = "primary-only"
+    if V.startswith("MG") or V.startswith("MH") or V.startswith("MI") or V in ("Isrc", "Inob") or OPT: S.MUT = "primary-only"
     S.run_local()
     # gate 5b, Ursa Major (EV1 W1): members' pointwise shift minus the field's, primary halos
     out = {}
