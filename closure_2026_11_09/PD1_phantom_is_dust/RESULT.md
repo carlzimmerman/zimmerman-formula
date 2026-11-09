@@ -1,4 +1,58 @@
-# PD1 RESULT: FAIL / FAIL (criteria 0dc7929421; A1 08b9797be3), first failing gate P2 KiDS
+# PD1 RESULT: FAIL / FAIL (criteria 0dc7929421; A1 08b9797be3; A2 ee9325c612), first failing gate P2 KiDS
+
+## A2 update: the source's round-19 answers (added after the results; disclosed in AMENDMENT_A2.md)
+
+**Label under A2: FAIL / FAIL, first failing gate P2 KiDS (unchanged).**
+
+| gate | canonical | alt |
+|---|---|---|
+| P1 (basin share 5.41 x 2.0 M_b,gal, 0.85 Mpc neighbour cap) | PASS: q 0.088 at z 0.5 / 1 / 2 (uncapped 0.39) | PASS 0.088 |
+| **P2 KiDS** (basin share, isolated lenses) | **FAIL 1.34** (44/59 over) | **FAIL 1.39** |
+| P2 SPARC | PASS rms 0.0569 | PASS 0.0556 |
+| P3 groups (5.41 M_b,sys, prefactor 1/2) | FAIL 0/6 | FAIL 0/7 |
+| P3 X-COP | FAIL +0.16; f_miss 0.51 / 0.54 / 0.63, rising outward (TR1 0.71 / 0.66 / 0.58) | FAIL +0.15 |
+| **P5 Bullet** (galaxy-traced, Newtonian) | **FAIL**: class TENSION; the peaks sit on the galaxies (d_gal 14 / 22 kpc, d_gas 197 / 136 kpc); M300 Z +0.49 / **-2.58** | same |
+
+**KiDS.**
+- A basin share of 10.8 M_b truncates the phantom at a few hundred kpc for the lens bins, so KiDS falls 1.3-1.4 dex short at
+  1-3 Mpc.
+- The source's R_trunc of 1.4-1.8 Mpc would need 123-156 M_b (see the original result).
+- f_basin brackets: 1.8 gives 1.39 / 1.43; 2.2 gives 1.31 / 1.35. All fail.
+
+**Bullet.**
+- The galaxy-traced Newtonian reading fixes the offset the source pointed to: the lensing peaks land within 14-22 kpc of the
+  galaxies (source: about 8).
+- The subcluster's mass inside 300 kpc is 2.6 sigma low.
+- KA-A2: the child reproduces DB1's law row exactly (Z -4.548, -4.540). The Newtonian baryons-only row reads Z -5.87 / -5.98.
+- The source's mass comparison: here the subcluster's galaxies + dark inside R200 are 1.5e14, against stripped gas of 2.3e13.
+
+**Brackets (reported).**
+- Cluster prefactor 1 (the full Jeans-subtracted share in the core):
+  - **X-COP PASSES** on both footings (+0.019 / +0.010; f_miss 0.93 / 0.84 / 0.75 against TR1's 0.71 / 0.66 / 0.58: falling,
+    about 1.3x).
+  - Groups fail (0/9, 0/8). The gas-locked Bullet fails.
+  - KiDS is unaffected and still fails.
+- Gas-locked Bullet with prefactor 1/2: FAIL.
+
+**P7, recorded.** The source concedes that the phantom profile needs a constitutive assumption: the field's dispersion locked to
+sigma^2 = (1/2) sqrt(G M_b a0), equivalently div Pi^ij = -rho (nu - 1) g_N,b^i. N is a phenomenological closure with that named
+assumption, not an action-derived result.
+
+**Reading.**
+- Every share convention tried fails KiDS:
+  - the Lagrangian share of 59.5 M_b: -0.64 dex;
+  - the basin share of 10.8 M_b: -1.34 dex;
+  - the cosmic share of 5.41 M_b: -1.61 dex.
+  The light lenses need more dust than any of them provides out to 3 Mpc.
+- The cluster side can be tuned (prefactor 1 passes X-COP), but groups fail in every reading, and the Bullet's subcluster amount
+  fails even where its offset is right.
+
+Files: `AMENDMENT_A2.md`, `pd1_a2.py` -> `pd1_a2.json` / `.out`; `pd1_a1.py` readings `pd1_a1_share{10.82, 9.738, 11.902, 5.41}`,
+`pd1_a1_share5.41_fcpre1.0` (`.json` / `.out`); `run_a2_chain.sh`; logs `run_pd1_a1_share*.txt`, `run_pd1_a2.txt`.
+
+---
+
+# A1 and original results
 
 ## A1 update: the source's cluster rule for N (added after the first result; disclosed in AMENDMENT_A1.md)
 

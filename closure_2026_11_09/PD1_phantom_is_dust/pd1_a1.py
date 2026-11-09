@@ -14,12 +14,12 @@ LE, GALS, PRE, XC, GR, R500X, Q8, TR1, G_KPC = ns["LE"], ns["GALS"], ns["PRE"], 
 from scipy.optimize import brentq
 A1 = "08b9797be3"; VST = {"canonical": 265.8, "alt": 288.1}; CS_IGM = 15.0; L = []
 def P(s): print(s, flush=True); L.append(str(s))
-def system(B, f, tab, Msys, z=0.0):
+def system(B, f, tab, Msys, z=0.0):   # A2 bracket: core prefactor via env PD1_FCPRE (default 0.5)
     """budgets for a system of baryon mass Msys (Msun): share, R_ms, v_vir, f_core, W, NFW core (M(<r) callable, Msun), E, R_trunc, remainder."""
     a0 = A0[f]; m = math.log10(Msys); share = interp(tab, "share_over_Mb", m) * Msys; rms = interp(tab, "R_ms_Mpc", m) * MPC
     if os.environ.get("PD1_SHARE"): share = float(os.environ["PD1_SHARE"]) * Msys          # post-A1 reported reading (cosmic-ratio share), never graded
     H = C.halo(Msys, B.R, B.h, B.Om, kind="NFW", M200=Msys + share, Mchi=share, z=z); v = math.sqrt(G_KPC * H["M200"] / H["R200"])
-    fc = 0.5 * (1 - (VST[f] / v) ** 2) if v > VST[f] else 0.0; W = 1.5 * v * v / (1.5 * v * v + CS_IGM ** 2)
+    fc = float(os.environ.get("PD1_FCPRE", "0.5")) * (1 - (VST[f] / v) ** 2) if v > VST[f] else 0.0; W = 1.5 * v * v / (1.5 * v * v + CS_IGM ** 2)
     c = H["c200"]; rs = H["R200"] / c; mu = lambda x: np.log1p(x) - x / (1 + x)
     core = lambda r_kpc: fc * share * float(mu(min(r_kpc, H["R200"]) / rs) / mu(c))
     E = (1 - fc) * share; mph_ms = W * Mph(rms, Msys * MS, a0) / MS
@@ -108,4 +108,4 @@ for f in FOOTS:
                              "P3 X-COP": RES[f]["P3_XCOP"]["status"], "P4 cosmology (carried)": "PASS", "P5 Bullet": RES[f]["P5_Bullet"]["status"]}
     fails = [k for k, v in st.items() if v != "PASS"]; RES[f]["label"] = dict(status=st, label="PASS" if not fails else "FAIL", first_fail=fails[0] if fails else None)
     P(f"[{f}] PD1 under A1: LABEL {RES[f]['label']['label']}; first failing gate {RES[f]['label']['first_fail']}; " + ", ".join(f"{k} {v}" for k, v in st.items()))
-json.dump(RES, open(os.path.join(HERE, "pd1_a1" + ("_share" + os.environ["PD1_SHARE"] if os.environ.get("PD1_SHARE") else "") + ".json"), "w"), indent=1, default=float); open(os.path.join(HERE, "pd1_a1" + ("_share" + os.environ["PD1_SHARE"] if os.environ.get("PD1_SHARE") else "") + ".out"), "w").write("\n".join(L) + "\n")
+json.dump(RES, open(os.path.join(HERE, "pd1_a1" + ("_share" + os.environ["PD1_SHARE"] if os.environ.get("PD1_SHARE") else "") + ("_fcpre" + os.environ["PD1_FCPRE"] if os.environ.get("PD1_FCPRE") else "") + ".json"), "w"), indent=1, default=float); open(os.path.join(HERE, "pd1_a1" + ("_share" + os.environ["PD1_SHARE"] if os.environ.get("PD1_SHARE") else "") + ("_fcpre" + os.environ["PD1_FCPRE"] if os.environ.get("PD1_FCPRE") else "") + ".out"), "w").write("\n".join(L) + "\n")
