@@ -2,8 +2,9 @@
 
 Given in the orchestrator session ("Theory completion") on 2026-11-08 after PAPER70 v1.7 (DOI 10.5281/zenodo.24056963)
 was deposited. The orchestrator reported that every local key is non-monotone across the three regimes (forest web needs
-the component, galaxy halos forbid it, cluster cores need it again), that the time key is killed by late growth against
-clean z 0.2-0.5 lenses (QX7 iter_4, QX27, CK1), and that the one key the record has not run, conversion of the cold
+the component, galaxy halos forbid it, cluster cores need it again), that the time key is killed by the clean z 0.2-0.5 lenses
+(KX1), by X-COP, the groups and the Bullet under late heating (CE2) and by the escape speeds (CK1); the growth gates pass
+every late-heated cell (CE2 Rf 1.000), so growth is NOT the killer (fix-forward 2026-11-08 of the orchestrator's first wording), and that the one key the record has not run, conversion of the cold
 component where baryons are cold and dense, fails at the brief stage on Coma UDGs and on the two dwarf-spheroidal samples
 and adds an interaction not derived from the action. Owner's words: "Launch it anyway", then "we have to keep trying".
 
