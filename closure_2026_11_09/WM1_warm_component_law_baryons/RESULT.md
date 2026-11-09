@@ -1,4 +1,85 @@
-# WM1 RESULT: FAIL / FAIL (criteria 6e40130dfa, amendment A1 5cba17a249)
+# WM1 RESULT: FAIL AT SEEDING / FAIL AT SEEDING (criteria 6e40130dfa, A1 5cba17a249, A2 c830b470e0)
+
+## A2 update: gate 0, seeding (graded first; added after the first result, disclosed in AMENDMENT_A2.md)
+
+**Label: FAIL at seeding on canonical and alt.** Every gate below keeps its status and numbers. The first result (d45cfa36da) read
+FAIL / FAIL with first failing gate 2, groups.
+
+**What gate 0 tests.**
+- CLASS transfers at z 1000 / 950 set the start: Silk-damped, drag-released baryons, and the relic's own cut.
+- They run through the two-fluid ODE with the law on (A1's nu), Newton beside.
+- Press-Schechter n(> M) with the sharp-k filter (c 2.5) is graded against 0.5 x the cold reference (a disclosed line).
+
+**Known answers.**
+- KA-S2: cold Newton ODE vs CLASS = 1.014 flat at k 0.5-5 h/Mpc: PASS.
+- KA-S1 for W: 1.016 / 1.024 / 1.051 at k 0.5 / 1 / 2 h/Mpc: PASS.
+- KA-S1 fails for the lighter MW1 and the source's relic (+20-30 % at k 2). The ODE omits free streaming after z 1000, so it
+  over-states their small-scale power. That bias favours formation, so their FAILs are conservative.
+- KA-S3: sharp-k / top-hat 0.94 at 1e12.
+
+**Seeds at z 1000** (relative to the cold total matter, W):
+
+| quantity | k 0.5 | k 1 | k 2 | k 5 h/Mpc |
+|---|---|---|---|---|
+| delta_b | 0.0115 | 0.0088 | 0.0030 | -0.0002 |
+| delta_chi | 1.46 | 1.18 | 0.40 | -0.02 |
+
+**Power relative to the cold reference, W, canonical:**
+
+| z | quantity | k 0.5 | k 1 | k 2 | k 5 h/Mpc |
+|---|---|---|---|---|---|
+| 3 | P_m, law on | 5.1 | 5.1 | 0.99 | 0.0036 |
+| 3 | P_m, Newton | 0.93 | 0.60 | 0.064 | 7.6e-5 |
+| 3 | P_b, law on | 46 | 57 | 14 | 0.066 |
+| 0 | P_m, law on | 25 | 34 | 10 | 0.076 |
+| 0 | P_b, law on | 397 | 641 | 222 | 2.0 |
+
+- The law amplifies the residual seed: at k 2 it turns a 0.064 Newtonian deficit into a 10x excess at z 0.
+- Above about 3 h/Mpc the seed is too small to amplify. At k 5, P_m stays at 0.004 (z 3) and 0.08 (z 0).
+
+**Halo abundance n(> M) / reference** (sharp-k; law on, Newton in brackets). Canonical; alt agrees to 10 %:
+
+| relic | M | z 2 | z 0 |
+|---|---|---|---|
+| W 188.7 eV | 1e10 | 0.014 (0.003) | 0.010 (0.011) |
+| W | 1e11 | 0.13 (0.024) | 0.061 (0.073) |
+| W | 1e12 (reported) | 1.06 | 0.28 |
+| MW2 376.7 eV | 1e10 / 1e11 | 0.12 / 0.67 | 0.065 / 0.23 |
+| MW1 94.5 eV | 1e10 / 1e11 | 0.0015 / 0.013 | 0.0019 / 0.011 |
+| source 107.5 eV | 1e10 / 1e11 | 0.0023 / 0.021 | 0.0025 / 0.015 |
+
+The line is 0.5. Every relic fails at 1e10 and 1e11, at both z, on both footings, including MW2 at 377 eV.
+- Galaxy-scale halos form at 1-13 % of the reference abundance.
+- The law does not repair this. It raises the 1e12 and larger halos and drains mass from the smaller ones: n(> 1e10) at z 0 is
+  0.010 with the law and 0.011 with Newton.
+- The seeding wall that the source and the orchestrator foresaw holds. The law amplifies what exists; it cannot put back what
+  free streaming removed above about 3 h/Mpc.
+- **Disclosed approximation:** PS with delta_c 1.686 on law-boosted linear power is generous to formation.
+
+**Nonlinear response (not computed).** The linear system cannot couple modes.
+- In standard WDM simulations, structure below the cut forms top-down by fragmentation of larger collapsed structures, not as
+  independent halos.
+- Under the law, nu varies with the large-scale field. That multiplies the existing g_N and generates harmonics of the large modes
+  as they collapse, i.e. power at higher k.
+- Whether that yields 1e10-1e11 halos in the observed numbers needs an N-body or sheet run with the law (SS5's 1D sheet is the
+  nearest tool, in another lane). Not claimed here.
+
+**The source's round-16 numbers, checked (never adopted).**
+
+| item | source | this lane |
+|---|---|---|
+| M_hm at 107.5 eV | 2.0e13 (its 1.19e10 (m / keV)^-3.33) | Viel half-mode 3.23e13 (the source's formula runs 0.62x Viel at every m; at 188.7 eV 3.07e12 vs 4.97e12) |
+| k_hm at 107.5 eV | 0.43-0.44 h/Mpc | CLASS 0.81 h/Mpc. The source's k is about half; its free-streaming effects are overstated |
+| capture f, its form and its M_hm: lenses at M* 10^10.5 / 11 / 11.3 / 11.5 | 1.1 / 3.3 / 6.8 / 11.2 % | 0.9 / 3.2 / 6.5 / 10.2 % (reproduced) |
+| capture f, groups raw | (34 / 48 / 62 % with its asserted core) | 52 / 68 / 84 %. The core is not modelled |
+| capture f at W's M_hm (lenses / groups) | | 4 / 13 / 23 / 31 % / 78 / 87 / 94 %. Under the source's form, W's heavy lens bins would exceed option (c)'s 0.05 |
+| primary TT at 107.5 eV | < 0.15 % at l < 800; -1.2 % at l 2500 | max 0.51 % at l < 800; -0.48 / -0.56 % at l 2500 |
+| C_L^phiphi warm / cold at L 100 / 300 / 1000 | -0.3 / -3.2 / -42 % | -0.2 / -1.3 / -11 % |
+| lensing at L 1000 with the law's phantom | -12 to -22 % | **wrong sign.** On the record's law-on-web reading the law multiplies C_L^phiphi (S_B 4.3 at L 400, the last saved L; B_m >= 3 at every k), so it cannot suppress |
+
+---
+
+# Earlier result (d45cfa36da): FAIL / FAIL, first failing gate 2 groups (criteria 6e40130dfa, amendment A1 5cba17a249)
 
 The lane grades a warm thermal relic (omega_chi = 5.41 omega_b) plus baryons that obey the a0 law. TEST lane, quarantined; the
 no-particle rule is lifted for this lane only. Adopts nothing. kappa = 1/2 FITTED; not theory closed. Footings never pooled.

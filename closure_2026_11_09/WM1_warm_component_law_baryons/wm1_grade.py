@@ -5,8 +5,8 @@ reported) -> wm1_MUTATE.json / wm1_MUTATE.out. Label order 1, 2, 3, 5, 5b, 6, 7a
 kappa = 1/2 FITTED; not theory closed; adopts nothing."""
 import os, json
 HERE = os.path.dirname(os.path.abspath(__file__)); PA = os.path.join(HERE, "parts")
-CRIT = "6e40130dfa"; A1 = "5cba17a249"; FOOTS = ("canonical", "alt")
-ORDER = ["1 KiDS", "2 groups", "3 X-COP", "5 SPARC", "5b UMa", "6 BAO+SN", "7a CMB primary", "7b-N lensing cutoff", "7b-L lensing law-on-web", "8 forest+fsigma8", "CS S8", "9 Bullet", "10 Cassini"]
+CRIT = "6e40130dfa"; A1 = "5cba17a249"; A2 = "c830b470e0"; FOOTS = ("canonical", "alt")
+ORDER = ["0 seeding", "1 KiDS", "2 groups", "3 X-COP", "5 SPARC", "5b UMa", "6 BAO+SN", "7a CMB primary", "7b-N lensing cutoff", "7b-L lensing law-on-web", "8 forest+fsigma8", "CS S8", "9 Bullet", "10 Cassini"]
 def J(n):
     p = os.path.join(PA, n); return json.load(open(p)) if os.path.exists(p) else None
 def table(V, local_only=False):
@@ -14,13 +14,13 @@ def table(V, local_only=False):
     out = {}
     for f in FOOTS:
         s = loc[f]["sets"]["primary_SIS"]; co = J(f"cosmo_{V}_{f}.json"); cm = J(f"cmb7a_{f}.json")
-        st = {"1 KiDS": s["G1"]["status"], "2 groups": s["G2"]["status"], "3 X-COP": s["G3"]["status"], "5 SPARC": s["G5"]["status"], "5b UMa": uma[f]["status"],
+        sd = J(f"seed_{f}.json"); st = {"0 seeding": (sd[V]["gate0"] if (sd and V in sd) else "NOT RUN"), "1 KiDS": s["G1"]["status"], "2 groups": s["G2"]["status"], "3 X-COP": s["G3"]["status"], "5 SPARC": s["G5"]["status"], "5b UMa": uma[f]["status"],
               "6 BAO+SN": co["G6"]["status"] if co else "MISSING", "7a CMB primary": (cm[V]["status"] if (cm and V in cm) else "MISSING"),
               "7b-N lensing cutoff": g9["status"] if g9 else "MISSING", "7b-L lensing law-on-web": co["G7bL"]["status"] if co else "MISSING",
               "8 forest+fsigma8": co["G8"]["status"] if co else "MISSING", "CS S8": co["CS"]["status"] if co else "MISSING",
               "9 Bullet": bul[f]["status"] if bul else "MISSING", "10 Cassini": s["G10"]["status"]}
-        if local_only: st = {k: v for k, v in st.items() if k in ("1 KiDS", "2 groups", "3 X-COP", "5 SPARC", "5b UMa", "10 Cassini", "9 Bullet")}
-        fails = [k for k in ORDER if k in st and st[k] != "PASS"]
+        if local_only: st = {k: v for k, v in st.items() if k in ("0 seeding", "1 KiDS", "2 groups", "3 X-COP", "5 SPARC", "5b UMa", "10 Cassini", "9 Bullet")}
+        fails = [k for k in ORDER if k in st and st[k] not in ("PASS", "NOT RUN")]
         num = dict(KiDS_max=s["G1"]["max_abs_shift"], KiDS_n_over=s["G1"]["n_fail"], groups=[s["G2"]["fst0"]["n_pass"], s["G2"]["fst1"]["n_pass"]], groups_median=[s["G2"]["fst0"]["median_res"], s["G2"]["fst1"]["median_res"]],
                    xcop_mean=s["G3"]["mean"], xcop_rms=s["G3"]["rms"], xcop_bins=[b["mean"] for b in s["G3"]["bins"]], xcop_retained_over_Mdyn=[b["retained_over_Mdyn_median"] for b in s["G3"]["bins"]],
                    TR1=[b["TR1_D_canonical"] for b in s["G3"]["bins"]], TR1_shape=s["G3"]["TR1_shape_reported"], UDG_reported=dict(mean=s["G4"]["mean"], z=s["G4"]["z"], law_only=s["G4"]["law_only_mean"]),
@@ -38,15 +38,16 @@ def table(V, local_only=False):
 L = []
 def P(s=""): print(s); L.append(s)
 main = table("W"); co = {f: J(f"cosmo_W_{f}.json") for f in FOOTS}
-P(f"WM1 RESULT TABLE (criteria {CRIT}, A1 {A1}). TEST lane; adopts nothing. kappa = 1/2 FITTED; not theory closed.")
+P(f"WM1 RESULT TABLE (criteria {CRIT}, A1 {A1}, A2 {A2}: gate 0 seeding graded first). TEST lane; adopts nothing. kappa = 1/2 FITTED; not theory closed.")
 for f in FOOTS:
     t = main[f]; P(f"[{f}] LABEL {t['label']}; first failing gate {t['first_fail']}; all failing: {', '.join(t['fails'])}")
     for k in ORDER: P(f"    {k:26s} {t['status'][k]}")
 ka = dict(KA_W1=J("g9_hc1.json")["KA_W1"], KA_W2={f: co[f]["KA_W2"] for f in FOOTS if co[f] and "KA_W2" in co[f]}, KA_W3={f: co[f]["KA_W3"] for f in FOOTS if co[f]},
           KA_W4={f: J("local_VW.json")[f]["KA3"]["pass_"] for f in FOOTS})
-kok = ka["KA_W1"]["pass_"] and all(v["pass_"] for v in ka["KA_W2"].values()) and all(v["omega_pass"] for v in ka["KA_W3"].values()) and all(ka["KA_W4"].values())
+ka["KA_S"] = {f: dict(S2=J(f"seed_{f}.json")["KA_S2"]["pass_"], S1_W=J(f"seed_{f}.json")["W"]["KA_S1_pass"]) for f in FOOTS}
+kok = all(v["S2"] and v["S1_W"] for v in ka["KA_S"].values()) and ka["KA_W1"]["pass_"] and all(v["pass_"] for v in ka["KA_W2"].values()) and all(v["omega_pass"] for v in ka["KA_W3"].values()) and all(ka["KA_W4"].values())
 P(f"Known answers: KA-W1 {ka['KA_W1']['pass_']}; KA-W2 " + ", ".join(f"{f} {v['pass_']} ({v['max_rel_dev']:.1e})" for f, v in ka["KA_W2"].items()) + "; KA-W3 " + ", ".join(f"{f} omega {v['omega_pass']} k_hm ratio {v['k_hm_ratio']:.3f}" for f, v in ka["KA_W3"].items()) + f"; KA-W4 {ka['KA_W4']} -> {'ALL PASS' if kok else 'A KNOWN ANSWER FAILED: NO VERDICT'}")
-json.dump(dict(criteria=CRIT, amendment=A1, main=main, known_answers=ka, known_answers_pass=kok, note="TEST lane; adopts nothing; kappa = 1/2 FITTED; not theory closed"), open(os.path.join(HERE, "wm1.json"), "w"), indent=1, default=float)
+json.dump(dict(criteria=CRIT, amendment=A1, amendment2=A2, main=main, known_answers=ka, known_answers_pass=kok, note="TEST lane; adopts nothing; kappa = 1/2 FITTED; not theory closed"), open(os.path.join(HERE, "wm1.json"), "w"), indent=1, default=float)
 open(os.path.join(HERE, "wm1.out"), "w").write("\n".join(L) + "\n")
 # ---------------- MUTATE and brackets
 L.clear(); mut = {}
@@ -54,7 +55,7 @@ P(f"WM1 MUTATE + brackets (criteria {CRIT}). kappa = 1/2 FITTED; not theory clos
 for V in ("MW1", "MW2", "W3", "Wthird"):
     t = table(V); mut[V] = t
     for f in FOOTS:
-        moved = [k for k in ORDER if t[f]["status"][k] != main[f]["status"][k]]; t[f]["moved_vs_main"] = moved
+        moved = [k for k in ORDER if t[f]["status"][k] != main[f]["status"][k] and "NOT RUN" not in (t[f]["status"][k], main[f]["status"][k])]; t[f]["moved_vs_main"] = moved
         P(f"[{f}] {V}: label {t[f]['label']} (first {t[f]['first_fail']}); gates that moved vs W: {moved or 'none'}")
     if V.startswith("MW"):
         t["bites"] = bool(any(t[f]["moved_vs_main"] for f in FOOTS)); P(f"    {V} {'BITES' if t['bites'] else 'NO BITE'}")
