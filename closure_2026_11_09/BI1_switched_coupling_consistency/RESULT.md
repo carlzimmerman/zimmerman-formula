@@ -1,4 +1,41 @@
-# BI1 RESULT: FAIL at B0 / FAIL at B0 (criteria 91e81dcd76)
+# BI1 RESULT: FAIL at B0 / FAIL at B0 (criteria 91e81dcd76; A1 f661cc7517), all three carriers
+
+## A1 update: carrier (iii), bimetric (added after the first result; disclosed in AMENDMENT_A1.md)
+
+**Setup (sympy).** K^-1 = [[1, f], [f, 1]] gives lap Phi = 4 pi G (rho_b + f rho_chi) and lap Phi_chi = 4 pi G (rho_chi + f rho_b).
+Self-gravity stays standard; the cross weight is symmetric, so Newton's third law holds.
+
+**(a) Ghost and conservation.**
+- The eigenvalues of K are 1/(1 - f) and 1/(1 + f): **ghost-free iff |f| < 1**. f -> 1 is the single-metric limit.
+- With f = f(Xi(x)), the field stress has d_j T^ij = -(dL/df) d_i f, with dL/df = g_Phi g_Phi_chi / (4 pi G) at f = 0.
+- That is conserved only if Xi is a dynamical local field carrying it. The unswitched bimetric class (constant f; AX1's grading)
+  has no such term: the switch adds a new scalar coupled at gravitational strength.
+- The record's Xi, a Yukawa-smoothed dispersion functional, is not a field.
+
+**(b) Size of the switch force.** a_switch = |grad Phi| |grad Phi_chi| |grad f| / (4 pi G rho_chi) for an L* galaxy (SS1 primary
+halo; R_W 1.5 Mpc):
+
+| r (Mpc) | 0.1 | 0.3 | 1 | 3 |
+|---|---|---|---|---|
+| a_switch (m/s^2) | 7.4e-14 | 7.2e-13 | 8.3e-15 | 9.0e-16 |
+| / law g (canonical) | 0.0069 | **0.21** | 0.008 | 0.0026 |
+
+Alt: 0.0063 / 0.19 / 0.0073 / 0.0024. It exceeds the 1e-3 line at every radius: **B0(iii) FAIL**. The force is largest where the
+component leaves its halo for the mean-density field (rho_chi drops while both gradients are still large).
+
+**(c)** No carrier passes B0, so the usual gates do not run.
+
+**Label: FAIL at B0 on all three carriers, both footings.**
+- (i): a fifth force of 1e5-1e6 x g.
+- (ii): broken momentum conservation (0.63 Mpc self-displacement) and a Bianchi violation of 5-47 % of g.
+- (iii): ghost-free, but conserved only with a new local Xi field, and that field's force on the component is 0.3-21 % of the
+  law's g.
+
+Files: `AMENDMENT_A1.md`, `bi1_a1.py` -> `bi1_a1.json` / `.out`.
+
+---
+
+# Original result (carriers (i) and (ii))
 
 Variant R: the cold component's coupling to the metric felt by baryons and photons is switched by f_clus(Xi). TEST lane,
 quarantined. Adopts nothing. kappa = 1/2 FITTED; not theory closed. Both carriers fail covariant consistency, so no later gate
