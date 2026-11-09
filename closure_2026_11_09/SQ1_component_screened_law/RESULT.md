@@ -1,5 +1,49 @@
 # SQ1 RESULT: FAIL / FAIL (criteria 7e8fa69c63), first failing gate Q1 depletion dynamics
 
+## A1 / A2 update: the source's round-23 numbers, checked (reported; the label is unchanged)
+
+Amendments A1 (3f30b2a08e) and A2 (de4b69bca4) were committed alone before these numbers. Script `sq1_a1.py` -> `sq1_a1.json` / `.out`.
+
+**1. U_Q / rho_screen.**
+- The source's own formula, (G M_b)^(3/2) a0^(1/2) / (8 pi G rho_screen r^3) at M_b 1e11 and 1 Mpc, gives **5,838 / 5,311 (km/s)^2**
+  (canonical / alt), not the claimed 170. Checked by hand: U_Q = 9.5e-18 J/m^3 and rho_screen = 1.63e-27 kg/m^3.
+- The frozen F's 4/3 gives 7,783.
+- The source's figures sit a constant factor of about 34 low throughout; the UMa 15 kpc value is low by the same factor.
+- At the source's 35 km/s threshold, R_dep = 2.12 / 2.05 Mpc at 1e11 (claim 0.652). The scaling R_dep proportional to M_b^(1/2)
+  holds.
+
+**2. GSMF.**
+- Driver 2022 as in the record: n(M* > 1e10) = 0.0054 (footing h) / 0.0058 (h 0.7), against the claimed 0.0086.
+- n(M* > 10^10.5) = 0.0025 / 0.0026, against 0.0041.
+- The depletion volume filling with the correct U_Q is **8.3 / 7.6 %**, not 0.68 %. Still far below 1: volume filling is not a
+  wall, as Q2 found.
+
+**3. KiDS with the source's environment (C').** Depleted to 0.2 rho_screen inside R_dep (and 0.8 Mpc), with the claimed ambient
+0.35 rho_screen to 3 Mpc.
+- **FAIL 0.110 / 0.101** (14/59 points, mean -0.03). The deficit relative to the cosmic mean pulls the outer points below the law.
+- Against the claim: the record's spherical collapse puts 6-27 rho_screen inside 3 Mpc around an isolated seed of 1e10-1e11, not
+  0.35.
+
+**4. Tinker 2008 budget and P(k) / sigma8 claims.** NOT EVALUATED: the record has no halo-model machinery.
+
+**5. Ursa Major and the Local Group** (source form; frozen 4/3 beside).
+- sqrt(U_Q / rho_screen) at 15 kpc for M_b 2e10 is 12,400 / 11,900 km/s (claim 2,120), far above sigma_UMa 148.
+- R_dep for the UMa group is 4.65 / 4.50 Mpc (claim 1.43). The MW + M31 R_dep sum is 3.8 / 3.6 Mpc against the 0.77 Mpc separation.
+- At thresholds 17.5 / 35 / 52.5 km/s: UMa R_dep 7.4 / 4.6 / 3.5 Mpc, and the Local Group is "cleared" in every case.
+- These are energetic comparisons only. Q1's dynamics (the stated Lagrangian's attractive sign, and a < 0.1 % effect against
+  gravitational collapse with either sign) is what decides, and it is unchanged.
+
+**6. a0_eff(z).** The source's 0.98 / 0.92 / 0.68 at z 0.5 / 1 / 2 is recorded as its frozen prediction. It is NOT EVALUABLE
+against the record's a0(z) cells (AT2: every on-disk high-z cell blocked by common modes).
+
+**Reading.** The round-23 numbers are internally consistent with one another, but they are about 34x too small relative to their
+own stated formula. Corrected, depletion radii are 3x larger and the filling is about 8 % (still small). Neither change reaches
+Q1: the energetics favour clearing, the dynamics do not deliver it.
+
+---
+
+# Original result
+
 Variant Q: a cold component, with the law's phantom screened by S = 1 / (1 + (rho_chi / rho_screen)^2). TEST lane, quarantined.
 Adopts nothing. kappa = 1/2 FITTED; not theory closed. Footings never pooled. Reading G (dynamics-consistent) is graded; reading C
 (the source's assumed depletion) is reported.
