@@ -1,0 +1,117 @@
+% PAPER71 v1.0 (2026-11-09). Every quoted number is checked by PAPER71_audit.py against the committed lane file named there.
+\documentclass[10pt]{article}
+\usepackage[margin=0.85in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{booktabs,array,longtable}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Switching the a0 Law Off Where the Cold Component Sits: Theorems, a KiDS Test, and a Closed Class}}
+\setlist{nosep,leftmargin=1.3em}
+\setlength{\parskip}{3pt}\setlength{\parindent}{0pt}
+\newcommand{\pend}[1]{\textcolor{red}{[PENDING: #1]}}
+\sloppy
+\begin{document}
+\begin{center}
+{\Large\bfseries Switching the $a_0$ Law Off Where the Cold Component Sits:\\ Theorems, a KiDS Test, and a Closed Class}\\[6pt]
+{\small Working note (PAPER71), version 1.0, 2026-11-09. AI-assisted research programme; not peer reviewed; not reproduced by any outside group.
+Companions: PAPER69 (DOI 10.5281/zenodo.24025170, the closure record) and PAPER70 (v2.1, DOI 10.5281/zenodo.24092073, field equations and the record since).
+$\kappa=\tfrac12$ is fitted. The theory is not closed. Nothing here says the data favour this framework.}
+\end{center}
+
+\begin{abstract}\noindent
+This note does not complete the theory. It closes one class of completion.
+The record needs three things at once: a cold clustering component at the CMB, none of it in galaxies beyond the phantom of the law $g_N=g^2/(g+a_0)$, and its presence in clusters.
+One reading would give all three: the law acts only inside regions around galaxies that have been cleared of the component, and the component, with ordinary gravity, is everywhere else.
+We ask whether any action can deliver that reading.
+For every switch that multiplies the law's Lagrangian we show, with the algebra certified in Lean, that a spherical law-on region shows only its baryons from outside, that such regions boost large-scale gravity in proportion to the volume they fill, and that the force on whatever carries the switch has an exact closed form bounded by $a_0M_b$.
+Six lanes then grade the class, each with criteria frozen before any number, known answers, and a mutation twin that must fail.
+Two independent lanes confirm that CMB lensing lets law-on regions fill about 2\,\% of space.
+A test on 181,477 KiDS lenses, whose primary statistic a second session re-derived blind, shows in a calibration-free form that what lies outside the wall must weigh at least 23 baryon masses per galaxy, four times the share the record assigns.
+The wall's force cannot clear or carry that much, statically or dynamically.
+Every exit of the class therefore has a failing verdict.
+We also report what the KiDS test does not decide, three wrong pre-freeze estimates of our own, and two corrections to earlier lanes.
+\end{abstract}
+
+\section{The question}
+PAPER69 and PAPER70 record that the CMB needs a cold clustering component of about 5.4 times the baryons, that galaxies hold none of it beyond the law's phantom, and that clusters hold it. Removal of the component from galaxies has a failing verdict on every route tried: kicks, heating, conversion, and switches graded one at a time.
+Here the switches are graded as a class. ``Closed'' means the class carries a verdict fixed by frozen criteria, not that a gate passes. Two footings, canonical $a_0=9.3603\times10^{-11}$ and alt $1.1312\times10^{-10}$\,m\,s$^{-2}$, are carried throughout and never pooled; pairs of numbers are canonical/alt.
+
+\section{The class and its exact statements}
+The class is every action of the form
+$\mathcal L=-|\nabla\Phi|^2/8\pi G+S\,J(|\nabla\Phi|)-\rho\Phi$, with $J=(a_0^2/4\pi G)[u-\ln(1+u)]$, $u=|\nabla\Phi|/a_0$, and a switch $0\le S\le1$ carried by any field. $S=1$ is the law; $S=0$ is Newton. Lane SWT1 proves (19 theorems):
+\begin{itemize}
+\item \textbf{T1, compensation.} A spherical law-on region shows $M_b\,\nu(y)$ inside its wall and exactly $M_b$ outside. The wall carries a layer of $-M_b(\nu-1)$.
+\item \textbf{T2, filling.} Law-on regions answer long-wavelength fields as inclusions with the law's incremental permittivity; their polarizability is $-0.43$ to $-0.50$. Large-scale gravity is boosted by $q_C\le\tfrac32 f/(1-f)$ for a volume filling $f$.
+\item \textbf{T3, wall pressure.} The outward force per unit area on whatever carries the switch is $p=(a_0^2/4\pi G)\,W(u)$, $W(u)=u-\ln(1+u)-u^2/2(1+u)^2$, with $u$ the law's field just inside the wall, $0\le W\le y$ and $W\le\tfrac23y^{3/2}$. The law's sign pushes the carrier out of strong fields.
+\item \textbf{T4, crossover.} $\nu(y)=1+R$ exactly when $y=1/R(R+1)$.
+\end{itemize}
+Lane SNP1 adds (28 theorems): the total wall force obeys $\tfrac12a_0M_b\,\mu<F_w<a_0M_b\,\mu$ with $\mu=u/(1+u)$; a settled shell of $mM_b$ has one equilibrium radius, $R_{\rm eq}\to\tfrac32\,m(1+m/2)\,r_M$ in the deep regime ($r_M=\sqrt{GM_b/a_0}$), and it is unstable; a shell that sweeps up the mean background has one stable balance. Lane KO1 adds (12 theorems): the exterior of a two-phase lens against the law is $c/\nu(y)$ with $c=(4/\pi)(1+X)$ for a swept share $XM_b$; the law's response to an enclosed-mass factor $k\ge1$ lies between $\sqrt k$ and $k$; a shell of $XM_b$ cannot rest on the wall inside $\tfrac32X(1+X/2)\,r_M$. Lane EMV1 adds 13 theorems on the inclusion problem. Every file compiles with the standard axioms only and has a twin of false statements that fails. The Lean files certify the algebra and the inequalities, not the physical modelling; the modelling is what the lanes below test.
+
+\section{How much of space the law may fill}
+With WL1's CMB-lensing line 0.0354, T2 gives $f\le0.0231$ (SWT1). Keeping the law on down to KiDS's lowest tabulated $g_{\rm bar}$ needs a filling of 0.29, which is 12.6 times the allowance; the allowance reaches 0.43 of that radius. WL1's own reading still fails on the corrected statistic (0.303/0.361); its self-consistent reading passes (0.0180/0.0182).
+Two lanes test the allowance itself.
+\begin{itemize}
+\item \textbf{EMV1, T2 HOLDS on both footings.} A direct nonlinear solve of one bubble in a uniform external field, over every external-field level the record has used for KiDS lenses, moves the allowance to 0.0265/0.0259 at the top of that range; at the measured catalogue field the readings move by at most 0.001. No reading changes side.
+\item \textbf{GAL1, ALLOWANCE CONFIRMED on both footings.} With the boost acting on growth as well as on the lensing potential, the $2\sigma$ allowance is $f\le0.0197$ for regions that exist from $z=3$, and 0.0134 if they exist from $z=6$. Growth and $S_8$ are looser (0.12 and 0.075).
+\end{itemize}
+
+\section{What KiDS's outer points allow}
+\textbf{The test (KO1).} The 16 KiDS points below $g_{\rm bar}=7.5\times10^{-15}$\,m\,s$^{-2}$ lie outside any allowed wall. The record's ``isolated'' lenses are isolated only within a 10\,Mpc photometric window against a pair scatter near 115\,Mpc, so their outer signal may belong to neighbours. Using the record's staged per-lens sums (181,477 lenses; the shear catalogue was not re-read), we removed every lens that has a galaxy at least 0.3\,dex more massive inside its own measured range over a 230\,Mpc window. The cut was chosen from weights alone; 40,667 lenses remain.
+
+\textbf{Frozen gate: LAW LEVEL HOLDS on both footings.} The host-free outer amplitude is $1.098\pm0.154$/$0.999\pm0.141$ of the law (line 0.891), above the two-phase exterior at the largest share the record has used (0.463/0.422). The cross-shear null passes. An independent session re-derived the statistic from the frozen criteria alone, with its own code, before opening any file of the lane. It finds $1.0822\pm0.1583$/$0.9847\pm0.1440$ and reads NOT SEPARATED on the canonical footing: 518 lenses have a neighbour exactly 0.3\,dex heavier in a catalogue with quantized masses, and counting them as hosts moves the corrected error across the frozen power line. With the lane's tie rule the second code reproduces the lane to $2\times10^{-15}$. The alt label is the same on both readings; the canonical label sits on a knife edge.
+
+\textbf{What the label rests on.} Three checks, declared in amendments before they were computed, limit it.
+\begin{itemize}
+\item \emph{Calibration.} The stack sits 1.6 to 1.8 times above the law at inner radii as well (the record's known stellar-mass lever, or real mass). An outer amplitude of 1 therefore says little. The ratio of outer to inner amplitude, $R_s$, cancels the calibration; the law's floor for it is 0.98, because enclosed mass cannot fall outward.
+\item \emph{The veto has an edge.} Removing lenses with extended hosts leaves a tapered hole that lowers the outermost bin. Widening the veto radius moves the edge out of the graded range: $R_s$ is $0.61\pm0.09$ at the frozen radius, $0.71\pm0.12$ at 1.3 times it and $0.81\pm0.13$ at 1.6 times it.
+\item \emph{Neighbours of comparable mass remain}, so every host-free amplitude is an upper bound on a lens's own field.
+\end{itemize}
+
+\textbf{What is robust.} In the calibration-free form the two-phase exterior with the record's share (5.56\,$M_b$) is excluded at 5.3 to 5.6$\sigma$ at every veto radius. Counting the lens's catalogued neighbours as points carrying the same share changes nothing: they add 0.012/0.011 of the law's level, and the exclusion is 5.2 to 5.4$\sigma$. With every galaxy carrying the same share, the outer bins need 33 to 47\,$M_b$ per galaxy at the wall (2$\sigma$: at least 23) on the canonical footing and 40 to 56 (at least 27) on alt, at least 4.1/4.9 times the record's share. These comparisons were added after the edge test had been seen, so they are post hoc; the frozen gate excludes the record's share as well (0.056/0.051 against the amplitude above). The neighbour count is a lower bound, because the catalogue is flux-limited.
+
+\textbf{What is not decided.} The law as the lens's own field (floor 0.98) and a heavy exterior at the census cap (0.78/0.66) both fit $0.81\pm0.13$.
+
+\textbf{Reported beside the gate.} B21's published isolated sample gives 1.50 $\pm$ 0.08 at its four lowest points; its spectroscopically isolated GAMA sample gives 0.97 $\pm$ 0.28; with B21's own hot-gas estimate in $g_{\rm bar}$ the same points sit at $0.47\pm0.04$. The gas mass at Mpc radii is the largest uncertainty in reading these bins. Host-free late types show no outer signal ($-0.19\pm0.39$; $0.13\pm0.68$ with the widest veto) while early types sit at $1.34\pm0.18$. That split was seen after the freeze and shares the edge effect; it is a lead, not a result.
+
+\section{Can the wall clear and carry the component?}
+\textbf{Energetics (SWT1).} Against the record's share spread to its turnaround radius, the wall pressure exceeds the share's pressure by 3 to 20 times around galaxies and falls short by 4 to 40 times in groups and clusters. That ordering needs no new constant. Clearing fails above 2.8 to 4.0 times the share.
+
+\textbf{Dynamics (SNP1): FAILS on both footings.} A thin-shell integration in the record's expanding background, with the share bound at nucleation, fails the galaxy gate when the wall nucleates at $z=6$ or 3 (at $z=6$: 7.86 / 7.46 / 7.44 / 7.43 $M_b$ left inside 200\,kpc against a line of 0.9) and passes it only for nucleation at $z=1.5$, with walls at 207 / 236 / 260 / 278 kpc. With no bound share the wall reaches 0.43--0.63 of KiDS's outermost radius for the three heavier bins. With three shares bound, 8.6--19.0 $M_b$ stay inside 200\,kpc. An energy-conserving bracket gives the same verdict. The lensing gate, graded at $z=1$, passes in every run because the walls stay small.
+
+\textbf{The heavy exterior cannot be held.} By the shell theorem, a shell of 23/27\,$M_b$ at the allowance radius outweighs the wall force by 3.8/4.9; at the best-fit shares by 8.0/10.2. The margin against the energetic gate alone is thin (at least 4.1/4.9 shares needed, at most 3.8/4.0 cleared); against the dynamics it is not, since three bound shares are already not cleared.
+
+\section{Verdict: every exit of the class is closed}
+By T1 a truly isolated two-phase lens shows, outside its wall, its baryons and whatever share was swept there. Three choices remain.
+\begin{center}\small
+\begin{tabular}{@{}p{4.9cm}p{8.4cm}p{2.6cm}@{}}\toprule
+Exit & What grades it & Verdict\\\midrule
+A. Law on over KiDS's whole range & needs a filling of 0.29; CMB lensing allows 0.0231, 0.0265/0.0259 with external fields, 0.0197 with growth; and the wall does not get there (0.43--0.63 at best) & FAIL (lensing; dynamics)\\
+B. Wall inside the allowance; the record's share outside & KiDS's host-free outer bins: excluded at more than 5$\sigma$, neighbours counted & FAIL (KiDS)\\
+C. Wall inside the allowance; a heavy share outside & needs at least 23/27\,$M_b$ per galaxy; the energetic gate clears at most 2.8 to 4.0 shares; three bound shares are not cleared; the shell outweighs the wall by at least 3.8/4.9 & FAIL (clearing)\\\bottomrule
+\end{tabular}\end{center}
+The amount KiDS asks for outside the wall is close to the largest share the record has used for a galaxy's whole catchment (53.64\,$M_b$). Such an amount around a galaxy can be neither pushed out nor held out by the law's own field stress. So the two-phase reading does not deliver itself, and no member of the class passes the record's gates.
+
+\section{What stays open}
+\begin{itemize}
+\item \textbf{The law as a lens's own field out to 3\,Mpc} is not excluded by KiDS. It is the reading that needs a filling of 0.29, so it fails CMB lensing as a member of this class; outside the class it returns to the record's other verdicts.
+\item \textbf{Gas.} If the gas within a few Mpc of isolated galaxies is near B21's estimate, the law over-predicts the outer points by a factor of two. Nothing on disk measures it.
+\item \textbf{A clean isolation test} needs spectroscopic redshifts, a veto radius well beyond the measured range, and a frozen shape gate. Late types would be its first target.
+\item Switches that do not come from an action are outside the class. They have no conserved stress, so nothing here bounds them. The record graded several one at a time (WL1, SQ1, BI1, TS1); none passed.
+\end{itemize}
+
+\section{Corrections}
+\begin{itemize}
+\item \textbf{WL1.} Its FAIL stands on the reading it graded. Its scope sentence, that the kill holds for any key because it depends only on the retained phantom, does not hold: a variational switch is compensated, and the statistic that matters is the filling.
+\item \textbf{SQ1.} It graded an attractive coupling. The law's own term has the opposite sign, which is the bracket SQ1 reported.
+\item \textbf{This note's own estimates, each recorded before the number that refuted it.} (i) That the wall pressure would be a no-go against the record's share: it wins by 3 to 20 times. (ii) That hosts carry 30 to 50\,\% of KiDS's outer signal: the difference between the full stack and the host-free lenses falls to $+0.31\pm0.21$ once the veto's edge is moved out. (iii) That a cold carrier would be swept beyond KiDS's range and overfill space: the walls stop at 0.43--0.63 of that range.
+\end{itemize}
+
+\section*{Method}
+Each lane froze its criteria in a commit before any script ran; amendments were committed alone and say when they are post hoc. Each has known answers that must pass and a mutation twin that must fail. KO1 was regraded by a session that saw only its criteria. The lanes are SWT1, EMV1, GAL1, KO1, KO1R and SNP1 under \texttt{fable52\_push/}; none is registered in the closure record and none relabels an earlier lane. Distances for the KiDS lenses use the record's fiducial flat background ($\Omega_m$ 0.3, $H_0$ 70), as in the staged sums; GAL1 uses the record's reference background with its cold component. No halo model and no simulation was used. The supplement holds every lane file and the four Lean files with their twins.
+
+\end{document}
