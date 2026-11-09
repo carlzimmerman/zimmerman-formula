@@ -659,6 +659,34 @@ L += [
  ("the dynamic bracket passes no gate the as-written fails", WD1, "passes no gate the as-written fails"),
  ("MUTATE M1--M3 bite. Adopts nothing & WD1", WD1, "-> **BITES** (KA4 replay)"),
 ]
+XF1 = "closure_2026_11_08/XF1_moving_host_field/RESULT.md"
+L += [
+ ("& FAIL / FAIL: the sweep acts, and against the theory", XF1, "Label: FAIL (canonical) / FAIL (alt), by C3 and C1."),
+ ("With $W$ live the full screened system has no Bernoulli integral", XF1, "no Bernoulli integral survives while W is live"),
+ ("the frame streams through the member ballistically", XF1, "the frame streams through ballistically"),
+ ("99.86--100\\,\\% of it leaves the readout sphere in every run", XF1, "loses 99.86-100.01 % of its phantom inside the readout sphere by t_end in every row"),
+ ("the moving member is Newtonian to $2\\times10^{-3}$\\,dex", XF1, "So g_dyn = g_N to 2e-3 dex"),
+ ("($-0.401$ to $-0.229$ canonical, $-0.453$ to $-0.266$ alt)", XF1, "(canonical -0.401 to -0.229, median -0.274; alt -0.453 to -0.266, median -0.315)"),
+ ("($-0.906$ to $-0.577$ / $-0.936$ to $-0.610$)", XF1, "-0.906 ... -0.577 (median -0.792), ALL NEGATIVE"),
+ ("($-0.906$ to $-0.577$ / $-0.936$ to $-0.610$)", XF1, "-0.936 ... -0.610 (median -0.822), ALL NEGATIVE"),
+ ("($-0.646$ to $-0.287$ / $-0.748$ to $-0.333$ on the UDGs; FAIL line 0.3)", XF1, "(canonical -0.646 to -0.287; alt -0.748 to -0.333), under the FAIL line 0.3"),
+ ("grows from $+1.121$ to $+1.412$\\,dex ($+1.076$ to $+1.409$ alt)", XF1, "to +1.412 [1.064, 1.768] dex canonical, and from +1.076 [0.722, 1.431] to +1.409 [1.055, 1.765] alt"),
+ ("the MW classical dSphs go from $+0.356$ to $+1.208$", XF1, "+0.356 [0.000, 0.935] -> +1.208 [0.700, 1.757] canonical"),
+ ("the bright M31 dSphs from $+0.633$ to $+1.555$ (canonical)", XF1, "M31 +0.633 [0.350, 0.887] -> +1.555 [1.287, 1.794] canonical"),
+ ("Host rows (X-COP, groups) unchanged", XF1, "the member sweep cannot by itself change the host's own hydrostatic/lensing need"),
+ ("(worst 0.215 of the Mars line)", XF1, "worst 0.215 of the Mars line"),
+ ("MUTATE-1 and MUTATE-2 bite", XF1, "MUTATE-2 (g_ext -> 0, the body keeps its own khronon, g_dyn = g_iso): F = 1.0000"),
+ ("C2 has no power at a 0.5\\,dex plant", XF1, "NO POWER at a 0.5 dex plant"),
+ ("the linear kernel is extrapolated for four dSphs", XF1, "extrapolated for Fornax, Leo I, Leo II, Sculptor"),
+ ("perpendicular $g_{\\rm ext}$ not run", XF1, "Perpendicular g_ext NOT RUN"),
+ ("the Coma UDG shortfall grows to $+1.412$ / $+1.409$\\,dex on SE2's path", XF1, "to +1.412 [1.064, 1.768] dex canonical"),
+ ("Every hosted row above was graded with a static external-field state", XF1, "Every hosted row of the record was graded with a STATIC external-field state"),
+ ("AC15 and MS3 found that a moving Sun sweeps its static hedgehog away", XF1, "found that a hypersonic body sweeps its static hedgehog away"),
+ ("where the record grades discs with a static khronon", XF1, "where the record grades discs with a static khronon"),
+ ("only marginally at Milky Way mass, and not at all for dwarfs (XF1)", XF1, "marginal at MW mass"),
+ ("only marginally at Milky Way mass, and not at all for dwarfs (XF1)", XF1, "impossible for dwarfs"),
+]
+
 def mutate(lit):
     m = re.search(r"\d", lit)
     return lit if not m else lit[:m.start()] + str((int(m.group()) + 1) % 10) + lit[m.end():]
@@ -682,6 +710,8 @@ rules = [
  ("no pending placeholder", "\\pend{" not in body),
  ("no LCDM input claimed", "No $\\Lambda$CDM inputs were used" in TEX),
  ("version v1.9 stated, no draft marker", "v1.9, 2026-11-08" in TEX and "draft v0" not in TEX),
+ ("v1.9 header deposit-ready (XF1 in, no not-yet-deposited marker)", "not yet deposited" not in TEX and "the quarantined test lanes PJ1, WD1 and XF1" in TEX),
+ ("dSph widening about 0.9 dex", all(abs(d-0.9)<0.1 for d in (1.208-0.356, 1.555-0.633, 1.203-0.321, 1.555-0.600))),
  ("owner decision carried, nothing pending", "re-stated (owner 2026-11-07)" in TEX and "pending owner" not in TEX and "the frozen RESULT files are not edited" in TEX),
  ("unification quote verbatim", UQ_OK),
  ("seed abstract verbatim", "The next lane must find one covariant quantity that sets that amplitude (not just a switch) in today's hot systems and is non-zero in the early universe, or show the two failures need separate causes." in ws(TEX)),
