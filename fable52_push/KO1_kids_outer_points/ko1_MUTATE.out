@@ -1,0 +1,47 @@
+KO1 MUTATE run.  lenses 181,477; W20 93,020; W30 57,265; bins 15; outer bins O = [0, 1, 2, 3], edges 1.000e-15 to 9.692e-15 m/s^2
+
+KA1: per-lens sums against cfg96_stack (patch x type x bin)
+  [PASS] KA1 per-lens sums reproduce cfg96_stack (W10, W20, W30) to 1e-9: max relative deviation 6.42e-14
+  [PASS] numerics: 24-node quadrature against the closed form of the two-phase cell: max relative difference 3.8e-15
+  [PASS] coverage: no cell holds pairs outside its modelled annulus: 0 cells with weight and no model
+
+KA3: amplitude machinery
+  [PASS] KA3 WG x 1.3 -> A x 1.3; WG = WW x law -> A = 1; WG = WW x two-phase -> A = A_II: scale exact True; |A - 1| 4.4e-16; |A - A_II| 5.6e-17
+
+KA4: jackknife calibration on 200 random halvings of W10 (seed 52)
+  [PASS] KA4 std of z over random halvings in [0.8, 1.2]: std 1.018, mean -0.031
+
+catalogue scans read from the cache (17 arrays)
+
+loading the bright sample
+  1,239,422 objects  [8 s]
+
+M4: the isolation rebuild with the mass threshold changed to log M* - 0.5
+  [PASS] M4 the mutated isolation must FAIL KA2: isolated 208,250 (record 181,477); rows equal False; f20 equal False; f30 equal False
+
+the cut (weights only; WW holds no shear)
+  Delta 0.3 dex, W 230 Mpc: host-free 40,667 lenses, outer-weight share f_w 0.2896
+  Delta 0.3 dex, W 115 Mpc: host-free 71,420 lenses, outer-weight share f_w 0.4722
+  Delta 0.5 dex, W 230 Mpc: host-free 94,530 lenses, outer-weight share f_w 0.6409
+  Delta 0.5 dex, W 115 Mpc: host-free 121,183 lenses, outer-weight share f_w 0.7717
+  chosen by the frozen rule: Delta 0.3, W 230  (f_w 0.2896, 40,667 lenses)
+  mass-scatter slope b = d ln P(host-free) / d log M*: terciles [1.12, 6.12, 5.2], outer-weight shares [0.045, 0.269, 0.686], effective 5.26 per dex -> e = 0.210 dex at sigma_M 0.2, factor 1.274 (sigma_M 0.1: 1.062)
+
+MUTATE variants
+  [PASS] cfg116 near + far weights equal the cfg110 weights (so WX shares WW): max relative deviation 3.1e-15
+
+================ footing canonical (a0 9.3603e-11)
+  [PASS] M1 permuted host-free flags: hosted - host-free inside 2 sigma (canonical): permuted +0.376 +- 0.194 (+1.94 sigma); true +0.912 +- 0.186 (+4.91 sigma)
+  [PASS] M2 host-free signal x 0.4 -> BELOW THE LAW (canonical): A_hf 0.439 +- 0.062; label BELOW THE LAW, TWO-PHASE WINDOW
+  [PASS] M3 host-free signal = the law -> LAW LEVEL HOLDS (canonical): A_hf 1.000000 +- 1.3e-15; label LAW LEVEL HOLDS
+
+================ footing alt (a0 1.1312e-10)
+  [PASS] M1 permuted host-free flags: hosted - host-free inside 2 sigma (alt): permuted +0.342 +- 0.176 (+1.94 sigma); true +0.830 +- 0.169 (+4.91 sigma)
+  [PASS] M2 host-free signal x 0.4 -> BELOW THE LAW (alt): A_hf 0.400 +- 0.056; label BELOW THE LAW, TWO-PHASE WINDOW
+  [PASS] M3 host-free signal = the law -> LAW LEVEL HOLDS (alt): A_hf 1.000000 +- 9.8e-16; label LAW LEVEL HOLDS
+
+================ result
+  MUTATE checks: 13 of 13 behave as required
+  runtime 14.2 s
+
+kappa = 1/2 FITTED; not theory closed. Adopts nothing.
