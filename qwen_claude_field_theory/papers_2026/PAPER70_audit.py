@@ -784,6 +784,37 @@ L += [
  ("recorded as frozen predictions (no lens-redshift split on disk)", SSB, "Frozen predictions (no lens-redshift split is on disk, so not graded)"),
 ]
 
+SSH = "closure_2026_11_09/SS1_self_shielded_conversion/RESULT_H.md"
+SS2 = "closure_2026_11_09/SS2_virial_gated_conversion/RESULT.md"
+L += [
+ ("H-core fails first at the groups (7/20 and 3/20;", SSH, "**FAIL** 7/20 (f* 0), 3/20 (f* 1)"),
+ ("small groups drain below their need while larger ones over-fill", SSH, "Small groups now fall below their need while the rest still over-fill"),
+ ("growth fails (69\\,\\% of the component escapes; $\\sigma_8$ 0.640 / 0.624)", SSH, "FAIL: 69 % of the component escapes (58 % of matter); sigma8 0.640"),
+ ("growth fails (69\\,\\% of the component escapes; $\\sigma_8$ 0.640 / 0.624)", SSH, "FAIL: sigma8 0.624"),
+ ("The H-full bracket rescues growth ($S_8$ 0.807 / 0.802)", SSH, "S8 0.807 / 0.802"),
+ ("keeping the small halos' share in a 180\\,kpc core, which fails KiDS by $+0.27$ to $+0.35$\\,dex", SSH, "**KiDS FAILS** at +0.27 to +0.35 dex"),
+ ("galaxies cannot shed their share without either leaving the small-scale matter field", SSH, "Galaxies must lose their share without it either leaving the small-scale matter field (growth) or sitting at 0.2-1.5 Mpc"),
+ ("clusters must keep only about half, which a daughter bound by the escape speed cannot give", SSH, "Clusters must keep only about half of their share, which a v_esc-bound daughter cannot give"),
+ ("an $f\\sigma_8$ derivative artefact across the onset kink was fixed", SSH, "rang across the onset kink"),
+ ("(D's growth gate flips to PASS, and D still fails first at KiDS)", SSH, "D's growth gate flips FAIL -> PASS (BGS 0.53, LRG1 0.97), but D still fails first at KiDS"),
+ ("with no label changed (D's growth gate", SSH, "**Effect on the labels.** No B-G or SS2 label changes."),
+ ("with criteria frozen knowing SS1's grade of it (not blind; quarantined test lane)", SS2, "**Not blind.** SS1 had already graded G"),
+ ("it reproduces SS1's G to the last printed digit", SS2, "SS2 equals SS1's G to the last printed digit"),
+ ("the mass-kept daughter passes BAO + SN, so SS1 A's background failure is gone", SS2, "PASS: mass kept, so the background equals the reference and SS1's BAO failure is gone"),
+ ("1.57 / 0.90 / 0.75 against TR1's 0.71 / 0.66 / 0.58, while TR1's per-bin SHAPE statistic follows (rms 0.075 / 0.071)", SS2, "is 1.57 / 0.90 / 0.75 in TR1's first three bins, against TR1's"),
+ ("1.57 / 0.90 / 0.75 against TR1's 0.71 / 0.66 / 0.58, while TR1's per-bin SHAPE statistic follows (rms 0.075 / 0.071)", SS2, "(RMS 0.075 / 0.071, max 0.089 / 0.093)"),
+ ("the right shape at 1.3--2$\\times$ the amount", SS2, "its amount is about 1.3-2x too large"),
+ ("Growth fails (63\\,\\% converts; $\\sigma_8$ 0.654, $S_8$ 0.670)", SS2, "FAIL: 63 % of the component converts; sigma8 0.654 (ref 0.808), S8 0.670"),
+ ("a valid test needs a time-switched species inside CLASS", SS2, "A valid test needs a time-switched species"),
+ ("G's reading of 8.48 against the line of 18.48 is reported only", SS2, "The reading of 8.48 for G"),
+ ("G's reading of 8.48 against the line of 18.48 is reported only", SSA, "chi^2 <= 18.48"),
+ ("($z_{\\rm dec}$ 0.642, $\\alpha$ 4.39, $v_{\\rm stiff}$ 286\\,km/s) give the same label", SS2, "Under the source's own constants (z_dec 0.642, alpha 4.39, v_stiff 286, bracket G-source) the label is the same"),
+ ("$+0.365$ / $+0.340$ / $+0.180$ / $+0.061$\\,dex at $z_{\\rm lens}$ 0.8 / 0.6 / 0.4 / 0.2 (primary halos)", SS2, "| lane, primary halos | +0.365 / +0.340 / +0.180 / +0.061"),
+ ("$v_{\\rm stiff}\\times1.25$ and $/1.25$ flip no gate; M3--M5 bite", SS2, "**M1 / M2 (v_stiff x 1.25 and / 1.25): NO BITE.**"),
+ ("$v_{\\rm stiff}\\times1.25$ and $/1.25$ flip no gate; M3--M5 bite", SS2, "**M5 (onset z 2): BITES.**"),
+ ("the separation bounds at $\\alpha$ 4.39 compile with standard axioms", SS2, "the separation bounds at alpha 4.39"),
+]
+
 def mutate(lit):
     m = re.search(r"\d", lit)
     return lit if not m else lit[:m.start()] + str((int(m.group()) + 1) % 10) + lit[m.end():]
@@ -807,7 +838,7 @@ rules = [
  ("no pending placeholder", "\\pend{" not in body),
  ("no LCDM input claimed", "No $\\Lambda$CDM inputs were used" in TEX),
  ("version v2.1 stated, no draft marker", "v2.1, 2026-11-09" in TEX and "draft v0" not in TEX),
- ("v2.0 DOI recorded in header", "deposited as DOI 10.5281/zenodo.24086157; this version adds the quarantined self-shielded conversion test lane SS1" in TEX),
+ ("v2.0 DOI recorded in header", "deposited as DOI 10.5281/zenodo.24086157; this version adds the quarantined late-conversion test lanes SS1 (variants A--H) and SS2" in TEX),
  ("v1.9 DOI recorded in header", "deposited as DOI 10.5281/zenodo.24082193; v2.0, which added the closing statement" in TEX),
  ("closing statement present, three parts", "\\section{Closing statement}" in TEX and all(s in TEX for s in ("\\textbf{Domain.}", "\\textbf{Boundary, as a statement about the record.}", "\\textbf{What such a component must be, from the record's own numbers.}"))),
  ("header has no not-yet-deposited marker", "not yet deposited" not in TEX and "the quarantined test lanes PJ1, WD1 and XF1" in TEX),
