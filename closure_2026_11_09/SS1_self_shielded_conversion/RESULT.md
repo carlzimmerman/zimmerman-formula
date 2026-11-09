@@ -1,5 +1,7 @@
 # SS1 RESULT: FAIL / FAIL (criteria b5adc7a90b, amendment A1 9aeeb48503)
 
+This file covers variant A, the round-3 construction. Variants B-G (AMENDMENT_A2 / A3) are graded in RESULT_B_G.md: every one is FAIL / FAIL.
+
 Self-shielded late conversion, graded under ONE gate rule (self-consistent radial peeling of the component's own column).
 TEST lane, quarantined (owner decision `../OWNER_DECISION_2026-11-09_SS1_LAUNCH.md`). Adopts nothing; no particle adopted (the
 component is the record's test object). kappa = 1/2 FITTED; not theory closed. Footings canonical (a0 9.3603e-11) and alt
