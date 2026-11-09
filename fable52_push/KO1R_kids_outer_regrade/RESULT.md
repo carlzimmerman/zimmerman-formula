@@ -133,4 +133,60 @@ label, KA1/KA2, the host flags, A(W10), A(hosted) and their difference.
 - **C15, neighbour pool.** masked takes only the values 0 and 1, so "masked 0 or 1" keeps all objects. The pool holds 888,795
   objects (161,217 masked). The lens is excluded by its catalogue row.
 
+## Comparison with KO1
+
+This section was added after the KO1R commit (local bbb94635d0, origin 990bfd5450). Only then were KO1's files opened. KO1's
+`RESULT.md` does not exist yet. The comparison uses KO1's working-tree `ko1.json`, which was uncommitted at the time of reading
+(sha256 prefixes: `ko1.json` f51c383aa28e55a0, `ko1.py` 326dbd240d1ad46d). That run follows criteria b1b91fae33
+and KO1's post-hoc amendment A1 (ae28af31fa, which changes KA5 and R4 only). The right-hand column is this lane's own code rerun with
+`--tie0`, mass ties by plain float comparison (`ko1r_tie0.json`, `.out`, `_MUTATE.json`, not graded).
+
+| quantity (canonical / alt) | KO1 | KO1R (graded) | KO1R `--tie0` |
+|---|---|---|---|
+| host-free n, f_w at (0.3, 230) | 40,667, 0.28959 | 40,149, 0.28505 | 40,667, 0.28959 |
+| host-free n, f_w at (0.3, 115) | 71,420, 0.47217 | 70,955, 0.46828 | 71,420, 0.47217 |
+| host-free n at (0.5, 230) / (0.5, 115) | 94,530 / 121,183 | 94,530 / 121,183 | 94,530 / 121,183 |
+| selected setting | (0.3, 230) | (0.3, 230) | (0.3, 230) |
+| b per tercile | 1.121 / 6.122 / 5.196 | 1.127 / 6.305 / 5.342 | 1.121 / 6.122 / 5.196 |
+| factor 10^(e/2) at sigma_M 0.2 (0.1) | 1.27417 (1.06245) | 1.28276 (1.06423) | 1.27417 (1.06245) |
+| A_hf +- s | 1.0978 +- 0.1544 / 0.9989 +- 0.1405 | 1.0822 +- 0.1583 / 0.9847 +- 0.1440 | 1.0978 +- 0.1544 / 0.9989 +- 0.1405 |
+| A_II at X share | 0.05564 / 0.05062 (X 5.561889) | 0.05538 / 0.05039 (X 5.562) | 0.05564 / 0.05062 (X 5.562) |
+| A_II at X 53.64 | 0.4633 / 0.4215 | 0.4611 / 0.4196 | 0.4633 / 0.4215 |
+| A_hf^c +- s^c | 1.3988 +- 0.1968 / 1.2728 +- 0.1790 | 1.3882 +- 0.2031 / 1.2632 +- 0.1848 | 1.3988 +- 0.1968 / 1.2728 +- 0.1790 |
+| cross-shear A_x (own jackknife error) | +0.1177 (0.1754) / +0.1071 (0.1596) | +0.1449 (0.1790) / +0.1318 (0.1629) | +0.1177 (0.1754) / +0.1071 (0.1596) |
+| A, W10 stack | 1.7069 +- 0.0860 / 1.5531 +- 0.0783 | same | same |
+| A(hosted) | 2.0095 +- 0.1072 / 1.8284 +- 0.0976 | 2.0091 +- 0.1052 / 1.8281 +- 0.0958 | 2.0095 +- 0.1072 / 1.8284 +- 0.0976 |
+| A(hosted) - A_hf, joint jackknife | +0.9117 +- 0.1858 / +0.8295 +- 0.1691 | +0.9269 +- 0.1873 / +0.8434 +- 0.1704 | +0.9117 +- 0.1858 / +0.8295 +- 0.1691 |
+| R1 shells W10 not W20 / W20 not W30 / W30 | 1.977 / 2.210 / 0.939 (canonical) | same | same |
+| KA1 to KA5, null | all pass | all pass | all pass |
+| **label** | **LAW LEVEL HOLDS / LAW LEVEL HOLDS** | **NOT SEPARATED / LAW LEVEL HOLDS** | **LAW LEVEL HOLDS / LAW LEVEL HOLDS** |
+
+**The one traced cause of every difference: mass ties (reading choice C3).** KO1 tests log M*_j >= log M*_l + Delta as a plain float
+comparison. KO1R counts a decimal tie as a host. MASS_MED carries 5 or 6 significant digits, so a neighbour exactly 0.3 dex heavier
+is common, and float rounding decides each such tie at random. At (0.3, 230), 518 lenses have only tied hosts. KO1 keeps them as
+host-free and KO1R removes them. The ties also enter the +-0.1 dex shifted scans, which is why b and the factor differ.
+
+The `--tie0` column comes from KO1R's own code, with nothing taken from KO1, and it reproduces KO1. Every quantity in the table
+agrees to within 2e-15 relative. The one exception is A_II at the share X, which differs by 1.7e-5 relative because KO1 computes
+X = OD/OB = 5.561889 and KO1R uses the printed 5.562. That difference moves no label.
+
+**Why the labels differ.** KO1's label code applies the same corrected-label rule as KO1R (C8): NO POWER is tested on s^c, and
+unequal raw and corrected labels give NOT SEPARATED. So the canonical difference comes from the host-free set alone. On KO1's
+40,667 lenses, s^c = 0.1968, under the line. On KO1R's 40,149 lenses, s^c = 0.2031, over it.
+
+**Differences that move no number or label.**
+- The null: KO1 compares |A_x| with 2.5 times the null's own jackknife error, and KO1R uses 2.5 times the primary s (C6).
+  Both pass on both footings in all three runs.
+- The gate line: KO1 uses 10^-0.05 = 0.89125, and KO1R the printed 0.891 (C7).
+- KA5: KO1's frozen KA5 failed its first run because of cross-talk between planted objects. Its amendment A1 replaced the
+  expectation with a brute-force evaluation of the definition. KO1R chose the same reading independently, before seeing A1 (C9).
+
+**What the two runs agree on.** They agree on every part of the measurement that does not turn on a tie at exactly 0.3 dex.
+The record's W10 outer stack is 1.7 (canonical) times the law. The lenses with a more massive host sit at 2.0. The host-free
+lenses sit at the law's level (1.08 to 1.10 canonical, 0.98 to 1.00 alt), 4.9 s below the hosted ones and about 4 s above the
+two-phase exterior at the census cap. The alt label is LAW LEVEL HOLDS in both. The canonical label flips between LAW LEVEL HOLDS
+and NOT SEPARATED depending on how 518 tied lenses are counted. It flips the same way on the reading choices C5 and C8 (see
+"How firm the canonical label is"). Neither run has a bug on this point. The frozen criteria did not anticipate the catalogue's
+mass quantization. Which reading governs is the owner's call, and this lane relabels nothing.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
