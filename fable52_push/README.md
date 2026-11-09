@@ -83,7 +83,8 @@ form above, and its fate is set by item 1.
 
 ## Files
 
-- SWT1_switch_theorems/: FROZEN_CRITERIA.md (4d86f4d107), AMENDMENT_A1.md (4af87eb9c0), RESULT.md, swt1.py and outputs,
+- SWT1_switch_theorems/: FROZEN_CRITERIA.md (4d86f4d107; origin c892bac851), AMENDMENT_A1.md (4af87eb9c0; origin 6997214890),
+  RESULT.md (origin cbf83986f3), swt1.py and outputs,
   swt1_extra.py and outputs (reported only), SWT1.lean, SWT1_MUTATE.lean, compile.txt, compile_MUTATE.txt.
 
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
