@@ -86,3 +86,27 @@ Hand estimates (HIT/MISS in RESULT.md): HE-a Delta_bar canonical in [-0.005, +0.
 Outputs: dp7_seed_mean.py, dp7_grade.py, dp7.json, dp7.out, dp7_MUTATE1.out, dp7_MUTATE2.out, parts/ (per-k json),
 RESULT.md, the one-option diff of dp3_sigma_sys.py with its D6 replay output `dp3_d6_replay.out`. Commit with explicit
 paths; push via a temp detached worktree of origin/main. Logs (*.log) git-ignored.
+
+## AMENDMENT_A1 (2026-11-08, committed alone before the graded sweep; orchestrator's decision "AMEND, do not fail" after K1 and K2 passed)
+
+Found at the first graded build (k = 0, cones-literal): the NSS-off RUNG has 10,370 pairs reaching cut 13 against the registered
+10,231; the 139 extra are exactly the NSS-flagged pairs the registered NSS screen removes before cut 13, and the DR3 cones files
+(`q1_full_neighbours.fits` + `q1_delta_neighbours.fits`) were fetched for the registered set only. No other on-disk file covers
+them; `cones_cut13` refuses an uncovered pair by design ("never treated as 'no third star'"). Fetching cones is an archive query
+the owner decision excludes for this lane. The set is seed-independent (the stage-G seed enters only the vtilde-error cut, after
+cut 13), so the same 139 are missing at every k.
+
+1. The cones-literal RUNG uses the driver's own documented option `--missing-cones extract-fallback` (the frozen builder's
+   third-star function on the extract) for the pairs reaching cut 13 that have no DR3 cone on disk. The BASE stays strict
+   cones-literal, so K3 is untouched. The graded invocation becomes
+   `--cut13 cones-literal --fit-path pipeline --K 50 --rung-missing-cones extract-fallback`; M1 and M2 carry the same flag.
+2. Why: the gap is DR3 cone coverage of the pre-NSS candidate set, not the quantity under test (stage-G seed noise).
+3. Bias bound, printed in dp7.out: the fallback flags 0 of the 139 where the cones would flag about 0.1 (the cones' rate is
+   7 of 10,231), so the rung is at most ~0.1 pair heavy. Control C1 quantifies it: flag one randomly chosen pair of the 139
+   (numpy default_rng seed 1103) and refit the k = 0 rung on both footings by the registered path; the change in gamma_hat must be
+   below 1e-3, else the bound is reported as the measured change and the label still stands with that number beside it.
+4. DR4 implication, written into RESULT.md under its own heading "Release-day item for the owner": runbook G11's Q1 cones query
+   must cover the PRE-NSS candidate set (the set before cut 12), or the DR4 rung hits the same gap. That is an archive-query
+   scope change only the owner can approve on release day; neither DP7 nor the orchestrator decides it.
+
+Nothing else in sections 1-6 changes. NON-SCORING; kappa = 1/2 FITTED; footings never pooled; not theory closed.
