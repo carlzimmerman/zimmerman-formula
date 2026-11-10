@@ -1,0 +1,67 @@
+KO2 run (stage kernels).  lenses 181,477; bins 0-12; edges 1.000e-15 .. 1.606e-12; window 230 (bracket 115) Mpc; reach R_h + 2.0 Mpc; shuffles 5
+own columns done  [4 s]
+kernel tables 801 x 561 x 8 ready  [4 s]
+
+KA-2: neighbour kernels
+  [PASS] KA-2a centre point kernel against KO1 E8's closed form to 1e-9: max deviation 9.5e-16 of the largest value, 20,000 cases x 2 footings
+  [FAIL] KA-2b tables against the band as 200,000 point masses (300 configurations per footing): can inner: 2 outside, max |diff| 4.4e-03 of band max; can middle: 0 outside, max |diff| 2.7e-03 of band max; can outer: 3 outside, max |diff| 5.0e-03 of band max; can far: 7 outside, max |diff| 1.9e-01 of band max; alt inner: 2 outside, max |diff| 4.4e-03 of band max; alt middle: 0 outside, max |diff| 2.7e-03 of band max; alt outer: 3 outside, max |diff| 5.0e-03 of band max; alt far: 7 outside, max |diff| 1.9e-01 of band max
+  [PASS] KA-2c a uniform sheet of bands or points gives zero mean shear (within 3 Monte Carlo errors): centre r 0.05: -1.61 se; centre r 0.2: +0.79 se; centre r 0.6: +0.15 se; centre r 1.5: -0.80 se; inner r 0.05: -0.29 se; inner r 0.2: -0.04 se; inner r 0.6: -0.15 se; inner r 1.5: +0.43 se; middle r 0.05: +1.05 se; middle r 0.2: +1.21 se; middle r 0.6: +1.15 se; middle r 1.5: -1.28 se; outer r 0.05: -0.22 se; outer r 0.2: +0.10 se; outer r 0.6: -0.18 se; outer r 1.5: -0.63 se
+  [FAIL] KA-2d separation 1e-3 l against the concentric closed form to 0.5 %: max relative deviation 5.75e-01
+  [6 s]
+stage 'kernels' ends here (model-only checks).
+
+--- appended: per-configuration detail behind the KA-2b and KA-2d failures (same code, debug lines) ---
+band 1 max 5.197473591892176e-12
+   rlo 0.0381 rhi 0.0506 delta 0.1255  table 1.1601e-13 brute 1.3465e-13  rel -3.587e-03
+   rlo 0.0272 rhi 0.0362 delta 0.0822  table -7.9683e-14 brute -1.0275e-13  rel +4.439e-03
+band 3 max 5.216717038603097e-13
+   rlo 0.2437 rhi 0.3237 delta 0.0024  table -3.5589e-14 brute -3.3485e-14  rel -4.033e-03
+   rlo 0.2377 rhi 0.3157 delta 0.0071  table -5.6985e-15 brute -3.0960e-15  rel -4.989e-03
+   rlo 0.2897 rhi 0.3848 delta 0.9912  table -6.2847e-15 brute -4.1273e-15  rel -4.136e-03
+band 4 max 1.8396179007948098e-13
+   rlo 0.0869 rhi 0.1154 delta 1.5017  table -1.0540e-16 brute -1.5168e-15  rel +7.672e-03
+   rlo 0.0690 rhi 0.0916 delta 1.1980  table -1.3074e-16 brute -1.1991e-15  rel +5.807e-03
+   rlo 0.0892 rhi 0.1185 delta 1.2723  table -1.9024e-16 brute -1.5881e-14  rel +8.530e-02
+   rlo 0.1454 rhi 0.1932 delta 3.0078  table -3.4804e-17 brute -1.3161e-15  rel +6.965e-03
+   rlo 0.0657 rhi 0.0873 delta 2.7956  table -3.5471e-18 brute -3.4230e-14  rel +1.861e-01
+   rlo 0.2224 rhi 0.2955 delta 4.2727  table -2.9138e-17 brute 1.2677e-15  rel -7.050e-03
+   rlo 0.0596 rhi 0.0791 delta 3.0380  table -3.4087e-19 brute -1.6300e-14  rel +8.860e-02
+1 0 conc +0.25703 table +0.25703 brute +0.25703
+1 1 conc +0.34120 table +0.34120 brute +0.34120
+1 2 conc +0.45285 table +0.45285 brute +0.45285
+1 3 conc +0.60087 table +0.60087 brute +0.60087
+1 4 conc +0.79699 table +0.79699 brute +0.79699
+1 5 conc +1.05662 table +1.05662 brute +1.05662
+1 6 conc +1.39995 table +1.39033 brute +1.39294
+1 7 conc +0.57364 table +0.58603 brute +0.58221
+1 8 conc +0.43621 table +0.43612 brute +0.43734
+1 9 conc +0.25557 table +0.25549 brute +0.25474
+1 10 conc +0.01898 table +0.01873 brute +0.01837
+1 11 conc -0.28945 table -0.28992 brute -0.28965
+1 12 conc -0.68900 table -0.65109 brute -0.65147
+2 0 conc +0.42228 table +0.42228 brute +0.42228
+2 1 conc +0.56058 table +0.56058 brute +0.56058
+2 2 conc +0.74401 table +0.74401 brute +0.74401
+2 3 conc +0.98720 table +0.97855 brute +0.98407
+2 4 conc +0.01966 table +0.03096 brute +0.02383
+2 5 conc -0.29970 table -0.29974 brute -0.29971
+2 6 conc -0.72201 table -0.71235 brute -0.71518
+2 7 conc +0.00000 table -0.01238 brute -0.00908
+2 8 conc +0.00000 table +0.00000 brute +0.00000
+2 9 conc +0.00000 table +0.00000 brute +0.00000
+2 10 conc +0.00000 table +0.00000 brute +0.00000
+2 11 conc +0.00000 table +0.00000 brute +0.00000
+2 12 conc +0.00000 table +0.00000 brute +0.00000
+3 0 conc +0.26156 table +0.27285 brute +0.26156
+3 1 conc +0.01973 table +0.01984 brute +0.01969
+3 2 conc -0.30104 table -0.30108 brute -0.30100
+3 3 conc -0.72630 table -0.71760 brute -0.72369
+3 4 conc +0.00000 table -0.01122 brute -0.00347
+3 5 conc +0.00000 table +0.00000 brute +0.00000
+3 6 conc +0.00000 table +0.00000 brute +0.00000
+3 7 conc +0.00000 table +0.00000 brute +0.00000
+3 8 conc +0.00000 table +0.00000 brute +0.00000
+3 9 conc +0.00000 table +0.00000 brute +0.00000
+3 10 conc +0.00000 table +0.00000 brute +0.00000
+3 11 conc +0.00000 table +0.00000 brute +0.00000
+3 12 conc +0.00000 table +0.00000 brute +0.00000
