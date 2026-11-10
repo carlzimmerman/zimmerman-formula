@@ -1,0 +1,111 @@
+REL1 step 1 (criteria e495153acf). MUTATE = M2. kappa = 1/2 FITTED; not theory closed.
+KA1 Legendre max_P[P y - W(K P)] - (a0^2/K)[u - ln(1+u)] = 0  -> PASS
+KA2 static spherical balance mu(g/a0) g = g_N  <=>  g^2 = g_N (g + a0): residual 0 -> PASS  (record certificate: Lean QX1.balance_iff_lawS)
+KA3 dust-only (P = 0): P.A_rel = 0; W(0) = 0; F(0) = 0 -> GR + clock dust + baryons: PASS
+
+K1 limits of D: A_rel = h . n.nabla(u_b/gamma), and D': A_rel = A - h . a_b
+  clock acceleration A (static clock, exact) = [0, Derivative(N(x, y), x)/(B(x, y)**2*N(x, y)), Derivative(N(x, y), y)/(B(x, y)**2*N(x, y))]
+  (i)  u_b = n (comoving):                   D - A = [0, 0, 0]
+  (ii) static clock, ANY steady baryon flow: D - A = [0, 0, 0]
+  D' with baryons held at rest beside a static clock: A - h.a_b = [0, 0, 0]  (the law is OFF in any held medium)
+  (iii) clock moving with velocity e V(T,x,y), baryons at rest, Phi = e^2 phi:
+        D^i to O(e^2) minus e^2 d_i phi = [0, 0]
+        D' = A - h.a_b: (h.a_b)^i to O(e^2) minus e^2 d_i phi = [0, 0]  (free-falling clock, A = 0: D' = -grad Phi)
+  (d) flat space, static clock, baryon flow e vb(T,x,y) along x: D^x = e**2*Derivative(vb(T, x, y), T)  (exact: d_t of the flow)
+  K1: (i) True, (ii) True, (iii) D True, (iii) D' True, flat d_t True -> PASS
+
+K2 matter kinetic structure. About a background with A_rel = y0 (u = |y0|/a0) and baryons at rest, a uniform
+   displacement xi(t) changes A_rel by xi'' (K1(d); D' likewise through a_b). P has no time derivative in (A),
+   so at gamma_L = 0 P is eliminated: L_matter = rho xi'^2/2 + J(|y0 + c xi''|) - k xi^2/2 (c = 1; M2: c = 0).
+  Hessian of J in xi'' : along A_rel 0 ; across A_rel 0 ; off-diagonal 0
+  linearized Euler-Lagrange: -k*xi(t) - rho*Derivative(xi(t), (t, 2)) = 0
+  characteristic polynomial in s (xi ~ e^(s t)): -k - rho*s**2;  s^2 roots: [-k/rho]
+  Ostrogradsky Hamiltonian (q1 = xi, q2 = xi', p2 = H xi''): H_O = k*q1**2/2 + q2**2*rho/2;  d^2 H_O/dp1^2 = 0  -> linear in p1, unbounded below when the H xi''^2 term is present (H != 0)
+
+  runaway rates s = sqrt(rho / H) (k = 0), SI, K = 4 pi G:
+  [canonical] u = 0 (free-falling compact body under D; any body at A_rel = 0)
+      water                   no real runaway root (H <= 0 or degenerate)
+      rock                    no real runaway root (H <= 0 or degenerate)
+      Earth (mean)            no real runaway root (H <= 0 or degenerate)
+      platinum                no real runaway root (H <= 0 or degenerate)
+      titanium                no real runaway root (H <= 0 or degenerate)
+      ISM gas 1 cm^-3         no real runaway root (H <= 0 or degenerate)
+      halo gas 1e-4 cm^-3     no real runaway root (H <= 0 or degenerate)
+      mean baryon density     no real runaway root (H <= 0 or degenerate)
+  [canonical] lab mass at rest on Earth under D (u = 9.81/a0)
+      water                   no real runaway root (H <= 0 or degenerate)
+      rock                    no real runaway root (H <= 0 or degenerate)
+      Earth (mean)            no real runaway root (H <= 0 or degenerate)
+      platinum                no real runaway root (H <= 0 or degenerate)
+      titanium                no real runaway root (H <= 0 or degenerate)
+      ISM gas 1 cm^-3         no real runaway root (H <= 0 or degenerate)
+      halo gas 1e-4 cm^-3     no real runaway root (H <= 0 or degenerate)
+      mean baryon density     no real runaway root (H <= 0 or degenerate)
+  [canonical] test mass in Earth orbit r = 7081 km under D' (u = g/a0)
+      water                   no real runaway root (H <= 0 or degenerate)
+      rock                    no real runaway root (H <= 0 or degenerate)
+      Earth (mean)            no real runaway root (H <= 0 or degenerate)
+      platinum                no real runaway root (H <= 0 or degenerate)
+      titanium                no real runaway root (H <= 0 or degenerate)
+      ISM gas 1 cm^-3         no real runaway root (H <= 0 or degenerate)
+      halo gas 1e-4 cm^-3     no real runaway root (H <= 0 or degenerate)
+      mean baryon density     no real runaway root (H <= 0 or degenerate)
+  [alt] u = 0 (free-falling compact body under D; any body at A_rel = 0)
+      water                   no real runaway root (H <= 0 or degenerate)
+      rock                    no real runaway root (H <= 0 or degenerate)
+      Earth (mean)            no real runaway root (H <= 0 or degenerate)
+      platinum                no real runaway root (H <= 0 or degenerate)
+      titanium                no real runaway root (H <= 0 or degenerate)
+      ISM gas 1 cm^-3         no real runaway root (H <= 0 or degenerate)
+      halo gas 1e-4 cm^-3     no real runaway root (H <= 0 or degenerate)
+      mean baryon density     no real runaway root (H <= 0 or degenerate)
+  [alt] lab mass at rest on Earth under D (u = 9.81/a0)
+      water                   no real runaway root (H <= 0 or degenerate)
+      rock                    no real runaway root (H <= 0 or degenerate)
+      Earth (mean)            no real runaway root (H <= 0 or degenerate)
+      platinum                no real runaway root (H <= 0 or degenerate)
+      titanium                no real runaway root (H <= 0 or degenerate)
+      ISM gas 1 cm^-3         no real runaway root (H <= 0 or degenerate)
+      halo gas 1e-4 cm^-3     no real runaway root (H <= 0 or degenerate)
+      mean baryon density     no real runaway root (H <= 0 or degenerate)
+  [alt] test mass in Earth orbit r = 7081 km under D' (u = g/a0)
+      water                   no real runaway root (H <= 0 or degenerate)
+      rock                    no real runaway root (H <= 0 or degenerate)
+      Earth (mean)            no real runaway root (H <= 0 or degenerate)
+      platinum                no real runaway root (H <= 0 or degenerate)
+      titanium                no real runaway root (H <= 0 or degenerate)
+      ISM gas 1 cm^-3         no real runaway root (H <= 0 or degenerate)
+      halo gas 1e-4 cm^-3     no real runaway root (H <= 0 or degenerate)
+      mean baryon density     no real runaway root (H <= 0 or degenerate)
+  K2: Hessian non-degenerate False; real runaway root False; S1 (Ostrogradsky) FAILS: False
+
+K3 gamma_L > 0. Maximizing -dP.M.dP/2 + dP.b - (gamma/2)(k.dP)^2 over dP (M = W'' > 0, b = (1+gamma Pi) dA_rel)
+   gives b.(M + gamma k k^T)^-1.b. Sherman-Morrison and Cauchy-Schwarz: >= 0, = 0 only for b parallel to k.
+  b.(M + gamma k k^T)^-1.b = (bx**2*gamma*ky**2 + bx**2*m2 - 2*bx*by*gamma*kx*ky + by**2*gamma*kx**2 + by**2*m1)/(gamma*kx**2*m2 + gamma*ky**2*m1 + m1*m2)
+  transverse b = (ky, -kx), isotropic M = m1: (kx**2 + ky**2)/m1  (gamma drops out: stiffness does not act)
+  K3: transverse displacement patterns keep H = 1/M (gamma_L free) -> the runaway survives the stiffness
+
+K4 nonlinear 1D: L = xdot^2/2 - g x + J(xddot + g) (units rho = K = a0 = 1). EL: xddot + g = d^2 J'(y)/dt^2,
+   so q = J'(y) = y/(1+|y|) obeys q'' = y(q) = q/(1 - |q|): q reaches 1 (y infinite) in finite time.
+  blow-up time from eps = 1e-12: T = None (units 1/sqrt(K rho)); ln(1/eps) = 27.631
+  KA4 small-amplitude growth rate 0.162410 (expect 1) -> FAIL
+  Ostrogradsky energy relative drift 1.19e-15 (A1: per time, over the largest of its terms; line 1e-8) -> PASS
+
+K5 the other exit: u_b a prescribed background (not varied). Then the baryons stay geodesic (div T_b = 0) while
+   the P sector's Lagrangian J(|A_rel(t)|) depends explicitly on the prescribed flow; its energy changes at
+   dE/dt = -dL/dt|explicit. In the reduced system with x_b(t) prescribed:
+   the source the baryons would have felt (dL/dx_b'' = J'(y)) = a0*(g0 + Derivative(x_b(t), (t, 2)))/(K*(a0 + g0 + Derivative(x_b(t), (t, 2)))); nonzero unless y = 0, so the non-GR stress
+   is not conserved and the Einstein equation's divergence (Bianchi: identically zero) cannot be matched: inconsistent.
+
+K6 WEP.
+   D: a compact free-falling body has A_rel = xddot + grad Phi = 0 inside it, so J'(0) = 0: no first-order force;
+      but the free fall itself runs away at s = sqrt(4 pi G rho), a rate set by the body's density (K2):
+      platinum: e-fold 235.8 s
+      titanium: e-fold 514.3 s
+   D' [canonical]: order-reduced force (1/rho) d^2(J' yhat)/dt^2 on a test mass in Earth orbit, unscreened
+      P = a0/K = 0.1116 kg/m^2: Ti - Pt differ by 2.20e-11 m/s^2, eta = 2.76e-12 = 2.8e+03 x MICROSCOPE's 1e-15 (argued; screening not modelled)
+   D' [alt]: order-reduced force (1/rho) d^2(J' yhat)/dt^2 on a test mass in Earth orbit, unscreened
+      P = a0/K = 0.1349 kg/m^2: Ti - Pt differ by 2.65e-11 m/s^2, eta = 3.34e-12 = 3.3e+03 x MICROSCOPE's 1e-15 (argued; screening not modelled)
+
+MUTATE M2: K1 pass True; Hessian non-degenerate False; s^2 roots ['-k/rho']; runaway (S1 fails) False; K4 T_blowup None, rate 0.16241037301628258
+runtime 2.2 s. kappa = 1/2 FITTED; not theory closed. Adopts nothing.
