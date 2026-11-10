@@ -96,7 +96,7 @@ def main():
             ev['core'] = bool(ev['r_kpc'] < 3.0)
         if a.mode == 'hubble':
             ev['z'] = 1 / cos.a_of_t(ev['t']) - 1
-    res = {'name': name, 'args': vars(a), 'X': md.X.tolist() if a.J <= 1300 else None, 'steps': steps,
+    res = {'name': name, 'args': {k: v for k, v in vars(a).items() if k != 'snapdir'}, 'X': md.X.tolist() if a.J <= 1300 else None, 'steps': steps,
            'newton_solves': md.nsolve, 'newton_iterations': md.newton_its, 'wall_s': time.time() - T,
            't_start_gyr': ti * L.TU, 't_end_gyr': t * L.TU, 'event': ev, 'reads': R,
            'note': 'Adopts nothing. kappa = 1/2 FITTED; not theory closed.'}
