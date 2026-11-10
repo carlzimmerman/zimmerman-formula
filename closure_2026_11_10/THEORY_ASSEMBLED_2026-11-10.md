@@ -37,11 +37,12 @@ hot branch. Nothing else enters a prediction below.
 | Rich clusters | full share, collisionless (rule 5) | at the ceiling: 0.96 to 1.06 of a full share at R500 depending on the mass model, 1.10 at the last radius; one-sided gate, never a pass | RB1 |
 | Groups | full share fell in; 40 % of the baryons now outside R500 | not falsified, one-sided | RB1 |
 | Bullet cluster | the charge is collisionless, so it leads the gas | offset right; amount turns on the stripped gas | RB1 |
-| Weak-lensing amplitude | dust spectrum, neutrino floor, gas where measured | fits the current KiDS release and DES Y3 (p 0.10 to 0.16) under a post hoc amendment, NO VERDICT as frozen; still 2.1 / 2.3 widths high; KiDS-1000 TENSION | KL1 (re-run, blind regrade and a second pass running) |
+| Weak-lensing amplitude | dust spectrum, neutrino floor, gas where measured, the reference box's draw corrected | KiDS-Legacy: consistent, gap 1.71 / 1.88 of its widths, and it survives the survey's own alignment model (1.57 / 1.83). DES Y3: gap stays, 2.18 / 2.23. KiDS-1000: 3.7 / 3.9. As frozen every part reads NO VERDICT (MUTATE arms that could not bite); these readings rest on post hoc amendments. The limiting item is now our own reference run's realisation noise | KL1 Parts A to C; Parts A and B re-run and blind-regraded (KL1R); BX1 running |
 | Hosted dwarfs | the isolated law with no external field (rule 5) | the two FAILS do not survive the record's systematics budget; medians stay +0.55 and +0.30 dex high. Counting lost gas brings every class to zero with no free number, but fails the per-galaxy test | RB2, DG1 (re-run) |
 | DF2, DF4, young tidal dwarfs | debris that brought no charge: Newton (rule 5) | within 1.1 sigma, but the "debris" label comes from outside the theory | CFG655, CFG441 |
 | Lensing around galaxies | law until the share is used up | FAILS on pooled isolated lenses (1.34 / 1.39, 44 of 59 points over); passes host-free lenses at the widest veto, where the law alone passes too; NO VERDICT by galaxy type | PD1 P2, ONE1, KO2 |
-| A disc in an external field | not settled | NO VERDICT | SCS2 (SCS3 running) |
+| The cold component's shape, from raw data | the law's shape, and no second halo beside it | rotation curves follow it in every bin; KiDS isolated lenses have the shape at 1.40 / 1.28 times the law with stars only and below it with hot gas counted; a separate 59.5 M_b halo on top of the law is excluded | SHP1 |
+| A disc in an external field | not settled | NO VERDICT; by the rule alone unstable on most backgrounds tried | SCS2, SCS3 |
 
 ## 3. What fails or is missing, stated once
 
@@ -69,10 +70,19 @@ Any completion has to do all of these at once. Each line is a landed verdict, no
 5. It reaches at least the cap radius by today, not 0.52 of the turnaround radius (FLD1).
 6. It keeps matter's equations second order (REL1).
 
-Alive on 2026-11-10, both untested as results: a dust stiffness keyed on the clock's expansion, which is 3H in the
-background and 0 in a standing halo (TK1, running; its own first check found a fold in the expanding solution), and one
-kinetic function with a narrow interval of changed compressibility (DT2: an engineered counterexample to MK1's breadth,
-with nonlinear reachability open).
+**Updated the same evening.** A dust stiffness keyed on the clock's expansion is dead: TK1, BREAKS AT TURNAROUND. A
+collapsing region passes through zero expansion while its clock is still falling, and there short waves grow without
+bound and the region never turns around. That adds a seventh condition:
+
+7. It cannot key on the expansion alone (TK1).
+
+Of the clock's first-order invariants that leaves the acceleration, which is zero for a falling clock anywhere and equals
+the local field for a standing one. Alive, both untested as results: one kinetic function with a narrow interval of
+changed compressibility (DT2: an engineered counterexample to MK1's breadth, with nonlinear reachability open), and a
+dust stiffness keyed on the clock's acceleration (AK1, started 2026-11-10; nothing computed yet).
+
+A second assembly written independently the same day, `fable52_push/SHP1_cold_component_shape/THEORY.md`, states the
+same theory and the same missing piece.
 
 ## 5. What would kill it, from outside
 
