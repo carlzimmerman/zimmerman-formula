@@ -17,6 +17,9 @@ P69 = P + "PAPER69_closure_by_verdict_2026.zenodo.json"; P70 = P + "PAPER70_fiel
 L = [
  ("DOI 10.5281/zenodo.24025170", P69, "10.5281/zenodo.24025170"),
  ("DOI 10.5281/zenodo.24092073", P70, "10.5281/zenodo.24092073"),
+ ("(v1.0: DOI 10.5281/zenodo.24094860)", F + "README.md", "DOI 10.5281/zenodo.24094860"),
+ ("pressure divided by 100 has no power once the gate clears", SW, "as frozen (pressure / 100) it has no power once the gate clears"),
+ ("GAL1's sign arm", GA, "M-SIGN does not bite as frozen"),
  # the class
  ("Lane SWT1 proves (19 theorems)", SW, "19 theorems"),
  ("$-0.43$ to $-0.50$", SW, "-0.43 to -0.50"),
@@ -132,6 +135,8 @@ rules = [
  ("the regrade's different label is stated", "NOT SEPARATED on the canonical footing" in TEX),
  ("own wrong estimates are listed", "This note's own estimates" in TEX),
  ("lanes are not registered", "none is registered in the closure record" in TEX),
+ ("mutation arms that did not bite are disclosed", "Two mutation arms did not bite as frozen" in TEX),
+ ("version line names v1.0's DOI", "version 1.1, 2026-11-09 (v1.0: DOI 10.5281/zenodo.24094860)" in TEX),
 ]
 if not MUT:
     for name, good in rules:
