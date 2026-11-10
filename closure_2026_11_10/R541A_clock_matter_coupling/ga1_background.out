@@ -1,0 +1,134 @@
+# R541A GA1 background + GA5 constraint check
+## KA (alpha = 0): record first integral and density
+  tau cyclic: True ; p_tau = mu_K**2*(Derivative(tau(t), t) - 1)*a(t)**3/K
+  rho_K(alpha=0) on shell = C**2*K/(2*mu_K**2*a(t)**6) + C/a(t)**3   (record: C/a^3 + K C^2/(2 mu_K^2 a^6))  -> True
+
+## First integrals with the couplings (shift symmetry tau -> tau + c survives: L depends on taudot only)
+  (i-a) f=Q-1: tau cyclic True; a^3 G'(Q) = p_tau = (-K*alpha*rho_b0 + mu_K**2*(q - 1)*a(t)**3)/K = C (C an integration constant)
+  (i-b) f=(Q-1)^2: tau cyclic True; a^3 G'(Q) = p_tau = -(q - 1)*(2*K*alpha*rho_b0 - mu_K**2*a(t)**3)/K = C (C an integration constant)
+  (i-c) f=ln Q: tau cyclic True; a^3 G'(Q) = p_tau = (-K*alpha*rho_b0 + mu_K**2*q*(q - 1)*a(t)**3)/(K*q) = C (C an integration constant)
+
+## Energy density (Hamiltonian constraint): rho_tot = Q dG/dQ - G (checked against -dL/dN / a^3)
+  (i-a) f=Q-1: rho_tot = (2*K*rho_b*(1 - alpha) + mu_K**2*q**2 - mu_K**2)/(2*K)   (residual vs dL/dN: 0)
+  (i-b) f=(Q-1)^2: rho_tot = (2*K*rho_b*(-alpha*q**2 + alpha + 1) + mu_K**2*q**2 - mu_K**2)/(2*K)   (residual vs dL/dN: 0)
+  (i-c) f=ln Q: rho_tot = (2*K*rho_b*(alpha*log(q) - alpha + 1) + mu_K**2*q**2 - mu_K**2)/(2*K)   (residual vs dL/dN: 0)
+
+## GA5: Friedmann constraint preserved by the equations (N = 1 gauge), alpha generic, f = Q-1 and ln Q
+  (i-a) f=Q-1: H constraint at the point = 2.22E-16; d/dt(constraint) on shell = 1.11022E-15
+    KA alpha = 0 (GR + dust + khronon): d/dt(constraint) = 4.44089E-16
+  (i-c) f=ln Q: H constraint at the point = 0; d/dt(constraint) on shell = 6.66134E-16
+    KA alpha = 0 (GR + dust + khronon): d/dt(constraint) = 0
+
+## Numbers. I0 = 4.037e-8 Mpc^-2 = 2 K rho_d0 (MK1 row 1); K rho_b0 = I0 / (2 R)
+
+### footing canonical: R target 5.41, K rho_b0 = 3.7311e-09 Mpc^-2
+  f=Q-1 / (ii), Z_can, NAIVE background split clock-own/baryon = alpha/(1-alpha) -> alpha = 0.84399
+  mu_K = 198 /Mpc:
+    (i-a) f=Q-1: a | Q-1 | clock-own/rho_b | interaction/rho_b | extra total/rho_b | locked E/rho_b | R_cold
+      1e-09 | 8.032e+13 | 3.39e+13 | -0.844 | 3.39e+13 | 0.844 | 0
+      1e-06 | 8.032e+04 | 3.39e+04 | -0.844 | 3.39e+04 | 0.844 | 0
+      0.001 | 8.032e-05 | 0.844 | -0.844 | 3.39e-05 | 0.844 | 0
+      1 | 8.032e-14 | 0.844 | -0.844 | 3.397e-14 | 0.844 | 0
+    (i-b) f=(Q-1)^2: a | Q-1 | clock-own/rho_b | interaction/rho_b | extra total/rho_b | locked E/rho_b | R_cold
+      1e-09 | 0 | 0 | -0 | 0 | 0 | 0
+      1e-06 | 0 | 0 | -0 | 0 | 0 | 0
+      0.001 | 0 | 0 | -0 | 0 | 0 | 0
+      1 | 0 | 0 | -0 | 0 | 0 | 0
+    (i-c) f=ln Q: a | Q-1 | clock-own/rho_b | interaction/rho_b | extra total/rho_b | locked E/rho_b | R_cold
+      1e-09 | 8.962e+06 | 0.422 | 12.67 | 13.09 | 9.417e-08 | 0
+      1e-06 | 282.9 | 0.4235 | 3.923 | 4.347 | 0.002973 | 0
+      0.001 | 8.032e-05 | 0.844 | -0.8439 | 3.389e-05 | 0.8439 | 0
+      1 | 8.032e-14 | 0.844 | -0.844 | 3.375e-14 | 0.844 | 0
+    (i-b) M0 - 2 alpha rho_b changes sign at a = 5.436e-05 (alpha 0.844): clock kinetic coefficient negative earlier
+  mu_K = 25100 /Mpc:
+    (i-a) f=Q-1: a | Q-1 | clock-own/rho_b | interaction/rho_b | extra total/rho_b | locked E/rho_b | R_cold
+      1e-09 | 4.998e+09 | 2.109e+09 | -0.844 | 2.109e+09 | 0.844 | 0
+      1e-06 | 4.998 | 2.953 | -0.844 | 2.109 | 0.844 | 0
+      0.001 | 4.998e-09 | 0.844 | -0.844 | 2.109e-09 | 0.844 | 0
+      1 | 4.998e-18 | 0.844 | -0.844 | 1.11e-16 | 0.844 | 0
+    (i-b) f=(Q-1)^2: a | Q-1 | clock-own/rho_b | interaction/rho_b | extra total/rho_b | locked E/rho_b | R_cold
+      1e-09 | 0 | 0 | -0 | 0 | 0 | 0
+      1e-06 | 0 | 0 | -0 | 0 | 0 | 0
+      0.001 | 0 | 0 | -0 | 0 | 0 | 0
+      1 | 0 | 0 | -0 | 0 | 0 | 0
+    (i-c) f=ln Q: a | Q-1 | clock-own/rho_b | interaction/rho_b | extra total/rho_b | locked E/rho_b | R_cold
+      1e-09 | 7.07e+04 | 0.422 | 8.58 | 9.002 | 1.194e-05 | 0
+      1e-06 | 1.791 | 0.5732 | 0.02226 | 0.5955 | 0.3024 | 0
+      0.001 | 4.998e-09 | 0.844 | -0.844 | 2.109e-09 | 0.844 | 0
+      1 | 4.998e-18 | 0.844 | -0.844 | 1.11e-16 | 0.844 | 0
+    (i-b) M0 - 2 alpha rho_b changes sign at a = 2.154e-06 (alpha 0.844): clock kinetic coefficient negative earlier
+  mu_K = 8.9e+06 /Mpc:
+    (i-a) f=Q-1: a | Q-1 | clock-own/rho_b | interaction/rho_b | extra total/rho_b | locked E/rho_b | R_cold
+      1e-09 | 3.975e+04 | 1.678e+04 | -0.844 | 1.678e+04 | 0.844 | 0
+      1e-06 | 3.975e-05 | 0.844 | -0.844 | 1.678e-05 | 0.844 | 0
+      0.001 | 3.975e-14 | 0.844 | -0.844 | 1.688e-14 | 0.844 | 0
+      1 | 3.975e-23 | 0.844 | -0.844 | 0 | 0.844 | 0
+    (i-b) f=(Q-1)^2: a | Q-1 | clock-own/rho_b | interaction/rho_b | extra total/rho_b | locked E/rho_b | R_cold
+      1e-09 | 0 | 0 | -0 | 0 | 0 | 0
+      1e-06 | 0 | 0 | -0 | 0 | 0 | 0
+      0.001 | 0 | 0 | -0 | 0 | 0 | 0
+      1 | 0 | 0 | -0 | 0 | 0 | 0
+    (i-c) f=ln Q: a | Q-1 | clock-own/rho_b | interaction/rho_b | extra total/rho_b | locked E/rho_b | R_cold
+      1e-09 | 198.9 | 0.4241 | 3.627 | 4.051 | 0.004222 | 0
+      1e-06 | 3.975e-05 | 0.844 | -0.844 | 1.678e-05 | 0.844 | 0
+      0.001 | 3.975e-14 | 0.844 | -0.844 | 1.699e-14 | 0.844 | 0
+      1 | 3.975e-23 | 0.844 | -0.844 | 0 | 0.844 | 0
+    (i-b) M0 - 2 alpha rho_b changes sign at a = 4.300e-08 (alpha 0.844): clock kinetic coefficient negative earlier
+  Z_K reading (clock-own charge a^3 M0 (Q-1) = 0 -> Q = 1): f=Q-1 and ln Q: canonical charge C = -alpha rho_b0 f'(1); free charge sigma = C = -alpha rho_b0 -> R_cold = -alpha < 0; (Q-1)^2: sigma = 0 -> R_cold = 0
+  MU (free reading C = 5.41 rho_b0, alpha = 0 and alpha = 0.844): late R = C/rho_b0 = 5.41 for both alpha (alpha enters only at O(alpha rho_b/M0) and through the locked part)
+
+### footing alt: R target 5.412, K rho_b0 = 3.7297e-09 Mpc^-2
+  f=Q-1 / (ii), Z_can, NAIVE background split clock-own/baryon = alpha/(1-alpha) -> alpha = 0.84404
+  mu_K = 198 /Mpc:
+    (i-a) f=Q-1: a | Q-1 | clock-own/rho_b | interaction/rho_b | extra total/rho_b | locked E/rho_b | R_cold
+      1e-09 | 8.03e+13 | 3.389e+13 | -0.844 | 3.389e+13 | 0.844 | 0
+      1e-06 | 8.03e+04 | 3.389e+04 | -0.844 | 3.389e+04 | 0.844 | 0
+      0.001 | 8.03e-05 | 0.8441 | -0.844 | 3.389e-05 | 0.844 | 0
+      1 | 8.03e-14 | 0.844 | -0.844 | 3.397e-14 | 0.844 | 0
+    (i-b) f=(Q-1)^2: a | Q-1 | clock-own/rho_b | interaction/rho_b | extra total/rho_b | locked E/rho_b | R_cold
+      1e-09 | 0 | 0 | -0 | 0 | 0 | 0
+      1e-06 | 0 | 0 | -0 | 0 | 0 | 0
+      0.001 | 0 | 0 | -0 | 0 | 0 | 0
+      1 | 0 | 0 | -0 | 0 | 0 | 0
+    (i-c) f=ln Q: a | Q-1 | clock-own/rho_b | interaction/rho_b | extra total/rho_b | locked E/rho_b | R_cold
+      1e-09 | 8.961e+06 | 0.422 | 12.67 | 13.09 | 9.419e-08 | 0
+      1e-06 | 282.9 | 0.4235 | 3.924 | 4.347 | 0.002973 | 0
+      0.001 | 8.029e-05 | 0.844 | -0.844 | 3.388e-05 | 0.844 | 0
+      1 | 8.03e-14 | 0.844 | -0.844 | 3.386e-14 | 0.844 | 0
+    (i-b) M0 - 2 alpha rho_b changes sign at a = 5.436e-05 (alpha 0.844): clock kinetic coefficient negative earlier
+  mu_K = 25100 /Mpc:
+    (i-a) f=Q-1: a | Q-1 | clock-own/rho_b | interaction/rho_b | extra total/rho_b | locked E/rho_b | R_cold
+      1e-09 | 4.997e+09 | 2.109e+09 | -0.844 | 2.109e+09 | 0.844 | 0
+      1e-06 | 4.997 | 2.953 | -0.844 | 2.109 | 0.844 | 0
+      0.001 | 4.997e-09 | 0.844 | -0.844 | 2.109e-09 | 0.844 | 0
+      1 | 4.997e-18 | 0.844 | -0.844 | 0 | 0.844 | 0
+    (i-b) f=(Q-1)^2: a | Q-1 | clock-own/rho_b | interaction/rho_b | extra total/rho_b | locked E/rho_b | R_cold
+      1e-09 | 0 | 0 | -0 | 0 | 0 | 0
+      1e-06 | 0 | 0 | -0 | 0 | 0 | 0
+      0.001 | 0 | 0 | -0 | 0 | 0 | 0
+      1 | 0 | 0 | -0 | 0 | 0 | 0
+    (i-c) f=ln Q: a | Q-1 | clock-own/rho_b | interaction/rho_b | extra total/rho_b | locked E/rho_b | R_cold
+      1e-09 | 7.069e+04 | 0.422 | 8.581 | 9.003 | 1.194e-05 | 0
+      1e-06 | 1.791 | 0.5733 | 0.02216 | 0.5954 | 0.3025 | 0
+      0.001 | 4.997e-09 | 0.844 | -0.844 | 2.109e-09 | 0.844 | 0
+      1 | 4.997e-18 | 0.844 | -0.844 | 0 | 0.844 | 0
+    (i-b) M0 - 2 alpha rho_b changes sign at a = 2.154e-06 (alpha 0.844): clock kinetic coefficient negative earlier
+  mu_K = 8.9e+06 /Mpc:
+    (i-a) f=Q-1: a | Q-1 | clock-own/rho_b | interaction/rho_b | extra total/rho_b | locked E/rho_b | R_cold
+      1e-09 | 3.974e+04 | 1.677e+04 | -0.844 | 1.677e+04 | 0.844 | 0
+      1e-06 | 3.974e-05 | 0.8441 | -0.844 | 1.677e-05 | 0.844 | 0
+      0.001 | 3.974e-14 | 0.844 | -0.844 | 1.665e-14 | 0.844 | 0
+      1 | 3.974e-23 | 0.844 | -0.844 | 0 | 0.844 | 0
+    (i-b) f=(Q-1)^2: a | Q-1 | clock-own/rho_b | interaction/rho_b | extra total/rho_b | locked E/rho_b | R_cold
+      1e-09 | 0 | 0 | -0 | 0 | 0 | 0
+      1e-06 | 0 | 0 | -0 | 0 | 0 | 0
+      0.001 | 0 | 0 | -0 | 0 | 0 | 0
+      1 | 0 | 0 | -0 | 0 | 0 | 0
+    (i-c) f=ln Q: a | Q-1 | clock-own/rho_b | interaction/rho_b | extra total/rho_b | locked E/rho_b | R_cold
+      1e-09 | 198.9 | 0.4241 | 3.627 | 4.051 | 0.004223 | 0
+      1e-06 | 3.974e-05 | 0.844 | -0.844 | 1.677e-05 | 0.844 | 0
+      0.001 | 3.974e-14 | 0.844 | -0.844 | 1.665e-14 | 0.844 | 0
+      1 | 3.974e-23 | 0.844 | -0.844 | 0 | 0.844 | 0
+    (i-b) M0 - 2 alpha rho_b changes sign at a = 4.300e-08 (alpha 0.844): clock kinetic coefficient negative earlier
+  Z_K reading (clock-own charge a^3 M0 (Q-1) = 0 -> Q = 1): f=Q-1 and ln Q: canonical charge C = -alpha rho_b0 f'(1); free charge sigma = C = -alpha rho_b0 -> R_cold = -alpha < 0; (Q-1)^2: sigma = 0 -> R_cold = 0
+  MU (free reading C = 5.412 rho_b0, alpha = 0 and alpha = 0.844): late R = C/rho_b0 = 5.412 for both alpha (alpha enters only at O(alpha rho_b/M0) and through the locked part)
