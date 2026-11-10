@@ -1,5 +1,8 @@
 # TPA1 RESULT (criteria b81c28d00c)
 
+Commit ids: the hashes quoted in this folder are the shared checkout's (criteria b81c28d00c, result 528d6d8a1c). On origin the
+same commits are cdb9419a00 (criteria) and 347967f64f (result).
+
 **TPA1: EQUATIONS COMPLETE. Health: UNHEALTHY** — a gradient instability, with no ghost, in the law-on phase.
 
 **Health first, as the criteria require.** A static clock in the S = 1 phase is gradient-unstable wherever its own dust
