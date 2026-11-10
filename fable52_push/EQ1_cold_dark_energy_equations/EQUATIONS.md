@@ -115,6 +115,7 @@ from the SHAPE_search route D note).
 | Clusters and groups | a static clock gives the law plus -mu_K^2 Phi / K, which leaves X-COP short | QX2, MK1 |
 | The share X_s | an input rule (PD1's 59.5 M_b), not an output | PD1, ONE1 |
 | The number kappa = 1/2 | fitted | the record's kappa ledger |
+| The amount, 5.41 times the baryons | free: in the background n_d a^3 is an unconstrained constant of (E3), an initial condition | note `closure_2026_11_10/R541_why_the_cold_share/NOTE.md` (another session; a note, not a lane) |
 | Why J has this form between its two ends | not derived (four attempts) | SHAPE_search |
 | A disc in an external field | reads slowly unstable; no verdict | SCS2, SCS3 |
 
