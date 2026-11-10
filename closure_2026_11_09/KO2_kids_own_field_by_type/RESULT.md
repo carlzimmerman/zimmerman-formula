@@ -14,8 +14,10 @@
 types sit low and do not differ: early minus late is +0.21 +- 0.19. Untied, late types sit at the law's level and early types
 below it.
 
-Commit ids: local 59e3c9ee9a (criteria), e5fca3518f (A1), 014cef99b8 (A2), ece364d804 (A3), e84e2c9328 (A4), RESULT_COMMIT_LOCAL
-(result); on origin ORIGIN_IDS.
+Commit ids: local 59e3c9ee9a (criteria), e5fca3518f (A1), 014cef99b8 (A2), ece364d804 (A3), e84e2c9328 (A4), 3e740c9e64
+(result); on origin a1032f8e00, 6e89e08366, e43eac361f, 047c3ec669, d67f49a934, 9b23ffab26. A4 reached origin first (d67f49a934):
+another session's lane push carried it before this lane pushed. So origin lists A4 before the criteria. The local history and
+the author dates (criteria 20:54, A1 21:07, A2 21:11, A3 21:34, A4 21:51) keep the true order.
 
 TEST lane, quarantined. Adopts nothing, relabels nothing, not registered. Footings never pooled. kappa = 1/2 FITTED; not theory
 closed. A1 to A4 are post hoc and say so. A3 was committed before any fitted amplitude was opened. A4 and everything after
