@@ -113,6 +113,25 @@ Together with DT1's trade-off (a dust term that keeps galaxies empty is warm at 
 completions with a warm cold component: galaxies stay clean, and nothing then builds late structure. Neither lane was
 re-run by the lead; the labels are quoted from their RESULT.md files.
 
+## Added 2026-11-10 late: three lanes from another session, one of which corrects a line above
+
+Quoted from their RESULT.md headers; that session re-ran each; the lead did not.
+
+- **LFS1** (`closure_2026_11_10/LFS1_leafwise_flux_supply/RESULT.md`, origin 0168c8c040): ILL-POSED on both footings.
+  **It answers, with no, the question this file left open under "The amount"** ("whether the action's leafwise flux
+  can supply it has not been computed"). In action (A) the leafwise flux is the normal equation's own bookkeeping and
+  adds no charge: the polarization flux through a sphere is carried with the clock's flow, and for a static clock it is
+  frozen. The halo's charge changes only by a fraction of order |Phi| / c^2, about 1e-6; everything else it holds is
+  charge the clock carried in. So a static halo cannot grow, and the reading in which the halo is polarization that
+  needs no advected dust is closed.
+- **CLS1** (`closure_2026_11_10/CLS1_cluster_state_in_action/RESULT.md`, origin 0dba08ca7f): at form B's own mu_K (at
+  least 198 per Mpc) NO STATE / NO STATE, proven on all seven X-COP clusters: the clock's own pressure is too weak by a
+  factor of 396 to 2,192. As frozen the label is STATE EXISTS-PARTIAL, which the lane says means only that a window in
+  mu_K is not excluded; no state was built in it.
+- **DCN1** (`DCN1_disc_centre_null/RESULT.md`): SCS3's unbounded rate at a disc-centre null reads ARTEFACT only under
+  the last of six post hoc readings, two of them written after the outcome was seen; every earlier reading is NO
+  VERDICT. So that item has no verdict.
+
 ## What is not claimed
 
 No completion exists. No lane here says the data favour the framework. The exponential dust term is a hand-level
