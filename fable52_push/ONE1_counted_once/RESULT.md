@@ -11,7 +11,8 @@ daac8502e2, 65311c51d9, 888e2d2c3d.
 ## Label
 
 **KiDS host-free: PASSES / PASSES** (canonical / alt), for PD1's own share (X = 59.49 / 59.50 M_b), by the frozen gate at
-the 1.6 R_h veto. All 19 known answers pass. All three MUTATE arms bite.
+the 1.6 R_h veto. All 19 known answers pass. All three MUTATE arms bite. This label covers the KiDS host-free row only
+(AMENDMENT A2). The other gates of form B are graded in RB1 and RB2, which are the lanes of record for them.
 
 **Read this before the label.**
 
@@ -21,38 +22,13 @@ the 1.6 R_h veto. All 19 known answers pass. All three MUTATE arms bite.
    and late types by -2.9; on alt it misses late types by -2.6. KO1's A2 showed those bins carry the veto's tapered edge,
    which is why the gate sits at 1.6 R_h. The rule was frozen before any number, but this is the reading nearest the
    pass line.
-3. **The narrowing to KiDS came after I had computed every other row** (A2 says so). Before the cut, this lane also
-   graded rows 3 to 6 with PD1's last cluster rule. They read **FAIL** on both footings: X-COP (prefactor 1/2), groups,
-   the Bullet subcluster's mass, and the dwarf spheroidals (bright M31). Coma's diffuse galaxies read PASS. Under the
-   brief's original label rule, ONE1 would read **FAILS / FAILS** (X-COP, groups, Bullet, dSphs). Those rows are now
-   graded in RB1 and RB2 (quoted below). Their numbers from here stay in the folder.
+3. **Late types sit low at every veto.** One share for both types passes the frozen line everywhere. But at the graded
+   veto the late-type error (0.42) is too large to test them (details below).
+4. **Before the scope cut reached me, this lane also graded X-COP, groups, the Bullet and the dwarfs, and four of those
+   rows read FAIL.** Those numbers are kept in their own section below, titled as computed before the scope cut. RB1 and
+   RB2 supersede them for the paper, and they do not set this label.
 
-## The table (canonical / alt)
-
-| Row | canonical | alt | here |
-|---|---|---|---|
-| 0 conservation (M2's line only) | q = 0.484 against <= 1: PASS | 0.484: PASS | reported |
-| 1 SPARC | carried: PD1 P2 PASS, rms 0.0563 against 0.0660, reproduced exactly (KA1). With this reading's end radius: rms 0.0560, identical to the law alone; 0 of 175 halos end inside the last point (closest 5.7 R_last) | 0.0558 against 0.0658, reproduced exactly; 0.0558; closest 5.1 R_last | carried |
-| **2 KiDS host-free, 1.6 R_h** | **PASS.** R_s data / model: all 0.811 +- 0.134 / 1.003 (-1.14 sigma); late 0.084 +- 0.421 / 0.792 (-1.46); early 0.882 +- 0.145 / 0.999 (-0.65); profile chi^2 1.9 (line 9.49); early minus late +1.13 sigma | **PASS.** all 0.809 / 0.847 (-0.23); late 0.083 / 0.663 (-1.23); early 0.880 / 0.843 (+0.21); chi^2 0.9; +1.21 sigma | **graded** |
-| 3 X-COP | graded in RB1. Before the cut here: FAIL, mean +0.162, rms 0.175 (lines 0.05 / 0.10) | RB1. Here: FAIL +0.147 / 0.161 | not graded |
-| 4 groups | RB1. Here: FAIL 0 and 6 of 20 (line 16) | RB1. Here: FAIL 0 and 7 | not graded |
-| 5 the Bullet | RB1. Here: FAIL. Class TENSION: peaks on the galaxies (14 / 22 kpc), but the subcluster's M300 is at Z -2.58 | same | not graded |
-| 6 Coma UDGs, dSphs | RB2. Here: UDGs PASS +0.325 dex (line 0.524); dSphs FAIL (bright M31 +0.199 [+0.079, +0.393]) | RB2. Here: +0.285 PASS; bright M31 +0.188 [+0.068, +0.382] FAIL | not graded |
-| 7 CMB, growth, CMB lensing | carried from the record's cold reference (PD1 P4); SWT1 T2's filling line is met, q_C = 0, by construction; the 1-halo redistribution is NOT EVALUATED | same | carried |
-| 8 Solar System | Newtonian: the local halo's pull is 3.0e-5 of the tightest planetary bound; Cassini gamma - 1 = 0 | 3.4e-5 | carried |
-| 8 wide binaries | NOT EVALUABLE until Gaia DR4; the reading predicts gamma_v = 1.000 | same | stated |
-
-RB1 and RB2, as their RESULT.md files read when I finished:
-- RB1 (`closure_2026_11_09/RB1_form_b_hot_systems/`): **NOT FALSIFIED (ONE-SIDED) / NOT FALSIFIED (ONE-SIDED)**. Its
-  own words: "Never a pass ... the two-sided amount gate stays FAIL as PD1 graded it."
-- RB2 (`closure_2026_11_09/RB2_form_b_hosted_rows/`): **B FAILS ON THE HOSTED ROWS** (both footings). MW ultra-faints and
-  bright M31 fail high; Coma UDGs and MW classicals read consistent.
-- KO2 (`closure_2026_11_09/KO2_kids_own_field_by_type/`): **NO VERDICT / NO VERDICT** for both types (KA-3b failed).
-  It found no reading that supports a disc / elliptical split in the own field. So the lead's blind prediction for KO2
-  (late R_ext at most about 0.5, not PRESENT) has no graded label to meet. KO2's late types read ABSENT in its primary
-  and PRESENT with the amplitudes untied.
-
-## Row 2 in full
+## Row 2 (KiDS host-free) in full
 
 **How the model is built.** Each galaxy's own halo is the law's phantom of its baryons, with enclosed mass nu(1 / x^2) M_b,
 ending where nu = 1 + X (x_t^2 = X (X + 1)). The halo is projected exactly. Every catalogued neighbour carries the same
@@ -104,6 +80,40 @@ widest veto are the errors large enough to cover the gap.
 the census cap through PD1's 59.5 and rejects 80 on canonical. It rejects the basin and cosmic shares at more than
 4 sigma. The law with no end (R_s 0.98) also passes at 1.6 R_h (-1.26 / -1.32) and fails at 1.0 R_h (-3.99 / -4.08).
 
+## The other rows (canonical / alt)
+
+| Row | canonical | alt | status here |
+|---|---|---|---|
+| 0 conservation (M2's line only) | q = 0.484 against <= 1: PASS | 0.484: PASS | reported |
+| 1 SPARC | carried: PD1 P2 PASS, rms 0.0563 against 0.0660, reproduced exactly (KA1). With this reading's end radius: rms 0.0560, identical to the law alone; 0 of 175 halos end inside the last point (closest 5.7 R_last) | 0.0558 against 0.0658, reproduced exactly; 0.0558; closest 5.1 R_last | carried |
+| 3 X-COP, 4 groups, 5 the Bullet | **RB1** (`closure_2026_11_09/RB1_form_b_hot_systems/`): NOT FALSIFIED (ONE-SIDED). In its own words: "Never a pass ... the two-sided amount gate stays FAIL as PD1 graded it" | same | lane of record: RB1 |
+| 6 Coma UDGs, dwarf spheroidals | **RB2** (`closure_2026_11_09/RB2_form_b_hosted_rows/`): B FAILS ON THE HOSTED ROWS. MW ultra-faints and bright M31 fail high; Coma UDGs and MW classicals read consistent | same | lane of record: RB2 |
+| 7 CMB, growth, CMB lensing | carried from the record's cold reference (PD1 P4); SWT1 T2's filling line is met, q_C = 0, by construction; the 1-halo redistribution is NOT EVALUATED | same | carried |
+| 8 Solar System | Newtonian: the local halo's pull is 3.0e-5 of the tightest planetary bound; Cassini gamma - 1 = 0 | 3.4e-5 | carried |
+| 8 wide binaries | NOT EVALUABLE until Gaia DR4; the reading predicts gamma_v = 1.000 | same | stated |
+
+KO2 (`closure_2026_11_09/KO2_kids_own_field_by_type/`) reads **NO VERDICT / NO VERDICT** for both types (KA-3b failed).
+It found no reading that supports a disc / elliptical split in the own field. So the lead's blind prediction for KO2 (late
+R_ext at most about 0.5, not PRESENT) has no graded label to meet. KO2's late types read ABSENT in its primary and
+PRESENT with the amplitudes untied.
+
+## Computed here before the scope cut (RB1 and RB2 supersede these for the paper; they do not set this label)
+
+Graded with PD1's last stated cluster rule (5.41 M_b,sys, core prefactor 1/2; the Bullet galaxy-traced and Newtonian),
+before AMENDMENT A2 reached me. Outputs: `one1.json` / `.out`, `one1_coma.json` / `.out`.
+
+| Row | canonical | alt |
+|---|---|---|
+| X-COP | FAIL: mean +0.162, rms 0.175 (lines 0.05 / 0.10); under-filled, f_miss 0.51 / 0.54 / 0.63 against TR1's 0.71 / 0.66 / 0.58 | FAIL +0.147 / 0.161 |
+| groups | FAIL: 0 and 6 of 20 (line 16 each) | FAIL: 0 and 7 |
+| the Bullet | FAIL, class TENSION: the peaks sit on the galaxies (14 / 22 kpc), but the subcluster's M300 is at Z -2.58 | same |
+| Coma UDGs (no external field) | PASS: +0.325 dex against 2 sigma_U = 0.524 | PASS +0.285 |
+| dwarf spheroidals (plain isolated law, GB1 G6) | FAIL: bright M31 +0.199 [+0.079, +0.393] excludes 0 | FAIL +0.188 [+0.068, +0.382] |
+
+Brackets, computed then: prefactor 1 passes X-COP (+0.019 / +0.010); groups (0/9, 0/8) and the Bullet still fail. PD1's
+Lagrangian share at cluster scale over-fills every row (X-COP -0.145, Bullet Z +37). Under the brief's original label rule
+these rows would have made ONE1 read FAILS / FAILS. The scope cut replaced that rule.
+
 ## Known answers (19 of 19 PASS for row 2; KA1 35 of 35; KA8 PASS)
 
 - KA1: PD1's published rows reproduced to 1e-6 relative or exactly: SPARC rms; X-COP mean and rms and groups under all
@@ -146,6 +156,21 @@ the census cap through PD1's 59.5 and rejects 80 on canonical. It rejects the ba
   files; nothing downloaded) into that project's git-ignored `.lake` folder (about 7 GB). I then ran `lake env lean`
   from that folder. Two lemma names had changed in this Mathlib (`div_lt_div_iff`, `div_le_div_iff`), so those proofs
   were rewritten with other lemmas before the passing compile. Home paths are stripped from both compile outputs.
+- **Disclosed: the lead had not approved this rebuild.** The lead's instruction (no download, no build, without the
+  owner's yes) reached me after it was done. Nothing was downloaded. The step built Mathlib's small `cache` tool (27
+  modules) and unpacked local archives into an ignored folder. Whether this compile counts is the lead's and the owner's
+  call. If it does not, the checks of record are the numeric ones below, and no theorem here counts as Lean-certified.
+- **Numeric checks of record** (`one1_closed_forms.py` -> `one1_closed_forms.out`, mpmath at 50 digits; each true
+  statement is paired with a false twin that must fail): **7 of 7 PASS.**
+  - The end radius: nu = 1 + X at x^2 = X (X + 1), to 2e-50; the twin (x = X) misses by 0.29.
+  - Continuity at x_t, to 1e-40; the twin (outer mass X) misses by 1.
+  - The far-field ratio 4 (1 + X) / (pi u), to 3e-49; the twin (2 (1 + X) / (pi u)) misses.
+  - The untruncated halo tends to the isothermal 1 / (4 u), within 2e-3 at u = 300 and 2000; the 1 / (2 u) twin misses
+    by 0.5.
+  - A thin shell outside R lowers DeltaSigma at R, for c in (0, 1); the twin (it raises it) fails.
+  - The enclosed mass rises with X and is the law's inside x_t; the twin (it falls) fails.
+  - The stack's shape ratio is monotone in X for X <= 300; the global twin fails, because R_s peaks near X = 300 and
+    falls back to 1.
 
 ## What the reading does not derive (section 9)
 
@@ -209,7 +234,7 @@ FROZEN_CRITERIA.md, AMENDMENT_A1.md, AMENDMENT_A2.md; `one1.py` -> one1.json / o
 1, 3-5, 7, 8 and KA1; rows 3-5 computed before the cut); `one1_coma.py` -> one1_coma.json / .out (row 6, computed before
 the cut; KA8); `one1_kids.py` -> one1_kids.json / .out, one1_kids_MUTATE.json / .out (row 2, KA2-KA7, M1-M3);
 `one1_kids_brackets.py` -> one1_kids_brackets.json / .out (X 10.82, 5.41; A2); `one1_nbcheck.py` -> one1_nbcheck.out
-(post hoc); logs run_one1.txt, run_one1_kids.txt, run_one1_kids_firstrun_KA7fail.txt, run_one1_kids_brackets.txt,
+(post hoc); `one1_closed_forms.py` -> one1_closed_forms.out (numeric checks of record, at the lead's request); logs run_one1.txt, run_one1_kids.txt, run_one1_kids_firstrun_KA7fail.txt, run_one1_kids_brackets.txt,
 run_one1_nbcheck.txt; ONE1.lean, ONE1_MUTATE.lean, compile.txt, compile_MUTATE.txt. The pre-freeze note, its script and
 its output are the lead's and are unchanged.
 
