@@ -1,0 +1,165 @@
+NSW1 run. Criteria 052f87daad. Production grid 96 x 0.03, refinement 144 x 0.02. rho_d0 2.2461e-27 kg / m^3. Units r_M, a0, M_b.
+Reference spheres: reach / radius from 0.850 (R_s 0.63) to 0.653 (R_s 794); table monotone: True
+KA6 oblique planar wall, 5 x 5 (d, e_t) from 1e-3 to 1e2: closed form vs quadrature of J dS 1.56e-13 (line 1e-8); vs the slab Lagrangian 3.23e-14 (line 1e-5): PASS
+KA1 sphere at swt1.json's six KA_W1 values of y: interior nu(y) 2.75e-13 (line 1e-6); wall pressure (surface route, in a0^2 / 4 pi G, the quantity 'closed' holds) 2.96e-10 (line 1e-8); exterior mass - 1 1.74e-12; volume route w -> 0 at y 1e-3, 0.1, 1: 7.92e-05 (line 2e-4): PASS (b, c; part a is taken over every solve at the end)
+KA2 SWT1's alpha_law (transcribed) vs EMV1 RESULT's eight printed values: 8.4e-05 (printed to 1e-4 from g_wall printed to three digits; line 1.5e-4); m = 0 and m = 1 responses of a sphere vs alpha_law at y_w 1e-4 .. 1: 5.72e-04 relative (line 1e-3): PASS
+KA3 Newtonian limit (y >= 1e5 inside), eight shapes: |g| r^2 - 1 at most 1.00e-05 (line 1e-4); F_n / (a0 M_b Gamma_w) - 1 at most 1.10e-04 (line 2e-3): PASS
+KA4 Kuzmin disc of scale r_M, law everywhere, |g| against nu(g_N) g_N at radii 0.5-20 r_M and heights >= 0.3 r_M: 3.01e-03 (M 96), 2.22e-03 (M 128), 1.52e-03 (M 192) (line 2e-3 on the finest; the error falls as 1 / M: a razor-thin sheet between two rows of cells): PASS
+KA5 linear spheroids (mu 0.1, 0.5, 2; q 0.2, 0.5, 2) against the depolarization closed forms: 3.29e-04 on the grid 256 x 0.012 (line 1e-3); on the production grid 96 x 0.03 the same check reads 2.49e-03: PASS
+   KA7 q 0.5 a 3.0: F_n surface 0.302423 volume 0.302365 (+1.9e-04); dilation moment 0.539402 / 0.539310 (+1.7e-04); virtual work 0.535040 vs volume at w 0.02 0.535223 (-3.4e-04)
+   KA7 q 2.0 a 3.0: F_n surface 0.188280 volume 0.188305 (-1.3e-04); dilation moment 0.587206 / 0.587291 (-1.5e-04); virtual work 0.581317 vs volume at w 0.02 0.581631 (-5.4e-04)
+   KA7 q 0.5 a 10.0: F_n surface 0.109353 volume 0.109308 (+4.1e-04); dilation moment 0.613988 / 0.613738 (+4.1e-04); virtual work 0.607753 vs volume at w 0.02 0.607631 (+2.0e-04)
+   KA7 q 2.0 a 10.0: F_n surface 0.062184 volume 0.062204 (-3.2e-04); dilation moment 0.639529 / 0.639745 (-3.4e-04); virtual work 0.632538 vs volume at w 0.02 0.632930 (-6.2e-04)
+KA7 two routes to the force on oblique walls (line 1e-3) and virtual work (line 1e-2): PASS
+KA9 scale symmetry (log M_b 10 and 11, both footings, a = 10 r_M, q = 0.5, R_d = 0.3 r_M entered in kpc): ratios agree to 0.0e+00 (line 1e-6): PASS
+KA10 the chain on a sphere (a = 10, 30, 100 r_M): signal vs closed form at R <= 0.8 a 9.5e-04, 1.2e-03, 1.3e-03 (line 2e-3); Gamma_F 1.0002, 1.0000, 0.9985; Gamma_C 1.0008, 1.0001, 0.9953 (line 1 +- 1e-2); reach / a 0.6742, 0.6575, 0.6542: PASS
+[71 s] known answers before the graded run: KA6 PASS, KA1bc PASS, KA2 PASS, KA3 PASS, KA4 PASS, KA5 PASS, KA7 PASS, KA9 PASS, KA10 PASS
+case P_q0.2_a3.0      adm False plane dev 0.630 | F_n 0.63666 Gw 2.037 col 0.6454 | V|a| 6.073 | R_len 1.12 R_sph 1.46 | Gamma_F 1.796 Gamma_C 0.264 (fine 1.785 0.256) | M_ext-1 -3.3e-16
+case P_q0.35_a3.0     adm False plane dev 0.463 | F_n 0.40855 Gw 1.577 col 0.4876 | V|a| 9.094 | R_len 1.05 R_sph 1.35 | Gamma_F 1.084 Gamma_C 0.126 (fine 1.083 0.126) | M_ext-1 +6.7e-16
+case P_q0.5_a3.0      adm False plane dev 0.298 | F_n 0.30242 Gw 1.291 col 0.3871 | V|a| 12.25 | R_len 1.39 R_sph 1.86 | Gamma_F 1.031 Gamma_C 0.343 (fine 1.031 0.344) | M_ext-1 +1.1e-15
+case P_q0.7_a3.0      adm False plane dev 0.137 | F_n 0.23348 Gw 1.083 col 0.2937 | V|a| 17 | R_len 1.80 R_sph 2.48 | Gamma_F 1.009 Gamma_C 0.740 (fine 1.009 0.741) | M_ext-1 -1.9e-15
+case P_q1.0_a3.0      adm False plane dev 0.000 | F_n 0.19629 Gw 1.000 col 0.1963 | V|a| 25.49 | R_len 2.14 R_sph 2.99 | Gamma_F 0.998 Gamma_C 0.993 (fine 0.999 0.997) | M_ext-1 +2.2e-14
+case P_q1.4_a3.0      adm False plane dev 0.083 | F_n 0.18715 Gw 1.064 col 0.2086 | V|a| 39.36 | R_len 2.28 R_sph 3.22 | Gamma_F 1.014 Gamma_C 0.834 (fine 1.014 0.834) | M_ext-1 -1.9e-15
+case P_q2.0_a3.0      adm False plane dev 0.130 | F_n 0.18828 Gw 1.210 col 0.2153 | V|a| 64.79 | R_len 2.35 R_sph 3.31 | Gamma_F 1.045 Gamma_C 0.560 (fine 1.045 0.561) | M_ext-1 -6.7e-16
+case P_q3.0_a3.0      adm False plane dev 0.155 | F_n 0.19058 Gw 1.365 col 0.2185 | V|a| 115.3 | R_len 2.38 R_sph 3.34 | Gamma_F 1.067 Gamma_C 0.326 (fine 1.067 0.327) | M_ext-1 -2.2e-16
+case P_q0.2_a10.0     adm False plane dev 0.835 | F_n 0.25623 Gw 2.337 col 0.3295 | V|a| 424.5 | R_len 1.89 R_sph 2.61 | Gamma_F 1.157 Gamma_C 0.036 (fine 1.158 0.036) | M_ext-1 +8.9e-16
+case P_q0.35_a10.0    adm False plane dev 0.632 | F_n 0.15520 Gw 1.814 col 0.2192 | V|a| 609.4 | R_len 3.08 R_sph 4.44 | Gamma_F 1.125 Gamma_C 0.170 (fine 1.125 0.170) | M_ext-1 -3.3e-16
+case P_q0.5_a10.0     adm False plane dev 0.403 | F_n 0.10935 Gw 1.438 col 0.1600 | V|a| 809 | R_len 4.28 R_sph 6.26 | Gamma_F 1.091 Gamma_C 0.417 (fine 1.091 0.417) | M_ext-1 +8.9e-16
+case P_q0.7_a10.0     adm False plane dev 0.178 | F_n 0.07937 Gw 1.129 col 0.1103 | V|a| 1101 | R_len 5.58 R_sph 8.27 | Gamma_F 1.030 Gamma_C 0.774 (fine 1.030 0.774) | M_ext-1 -1.7e-15
+case P_q1.0_a10.0     adm True  plane dev 0.000 | F_n 0.06422 Gw 1.000 col 0.0642 | V|a| 1590 | R_len 6.74 R_sph 10.00 | Gamma_F 1.000 Gamma_C 1.001 (fine 1.000 1.000) | M_ext-1 -7.6e-14
+case P_q1.4_a10.0     adm False plane dev 0.094 | F_n 0.06147 Gw 1.088 col 0.0711 | V|a| 2321 | R_len 7.16 R_sph 10.70 | Gamma_F 1.022 Gamma_C 0.853 (fine 1.022 0.853) | M_ext-1 -1.4e-15
+case P_q2.0_a10.0     adm False plane dev 0.141 | F_n 0.06218 Gw 1.260 col 0.0746 | V|a| 3526 | R_len 7.35 R_sph 10.95 | Gamma_F 1.057 Gamma_C 0.606 (fine 1.057 0.606) | M_ext-1 -1.4e-15
+case P_q3.0_a10.0     adm False plane dev 0.163 | F_n 0.06294 Gw 1.423 col 0.0762 | V|a| 5691 | R_len 7.42 R_sph 11.06 | Gamma_F 1.080 Gamma_C 0.387 (fine 1.080 0.387) | M_ext-1 +2.2e-16
+case P_q0.2_a30.0     adm False plane dev 0.369 | F_n 0.09845 Gw 2.524 col 0.1448 | V|a| 1.407e+04 | R_len 5.31 R_sph 7.83 | Gamma_F 1.213 Gamma_C 0.051 (fine 1.215 0.051) | M_ext-1 +8.9e-16
+case P_q0.35_a30.0    adm False plane dev 0.165 | F_n 0.05728 Gw 1.946 col 0.0889 | V|a| 2.01e+04 | R_len 8.90 R_sph 13.37 | Gamma_F 1.182 Gamma_C 0.202 (fine 1.182 0.202) | M_ext-1 -1.1e-16
+case P_q0.5_a30.0     adm False plane dev 0.083 | F_n 0.03930 Gw 1.521 col 0.0616 | V|a| 2.664e+04 | R_len 12.37 R_sph 18.70 | Gamma_F 1.125 Gamma_C 0.441 (fine 1.125 0.442) | M_ext-1 +1.3e-15
+case P_q0.7_a30.0     adm True  plane dev 0.032 | F_n 0.02764 Gw 1.155 col 0.0403 | V|a| 3.604e+04 | R_len 16.41 R_sph 24.78 | Gamma_F 1.043 Gamma_C 0.787 (fine 1.043 0.788) | M_ext-1 +2.2e-16
+case P_q1.0_a30.0     adm True  plane dev 0.000 | F_n 0.02195 Gw 1.000 col 0.0219 | V|a| 5.132e+04 | R_len 19.72 R_sph 30.00 | Gamma_F 1.000 Gamma_C 1.000 (fine 0.999 0.998) | M_ext-1 -2.6e-14
+case P_q1.4_a30.0     adm True  plane dev 0.014 | F_n 0.02108 Gw 1.099 col 0.0248 | V|a| 7.33e+04 | R_len 21.21 R_sph 32.17 | Gamma_F 1.029 Gamma_C 0.869 (fine 1.029 0.869) | M_ext-1 +6.7e-16
+case P_q2.0_a30.0     adm True  plane dev 0.020 | F_n 0.02138 Gw 1.281 col 0.0261 | V|a| 1.083e+05 | R_len 21.55 R_sph 32.75 | Gamma_F 1.062 Gamma_C 0.622 (fine 1.062 0.622) | M_ext-1 -4.4e-16
+case P_q3.0_a30.0     adm True  plane dev 0.022 | F_n 0.02164 Gw 1.445 col 0.0267 | V|a| 1.692e+05 | R_len 21.69 R_sph 32.99 | Gamma_F 1.083 Gamma_C 0.407 (fine 1.083 0.407) | M_ext-1 +1.3e-15
+case P_q0.2_a100.0    adm False plane dev 0.063 | F_n 0.03166 Gw 2.624 col 0.0502 | V|a| 5.642e+05 | R_len 16.97 R_sph 25.67 | Gamma_F 1.237 Gamma_C 0.056 (fine 1.239 0.056) | M_ext-1 -2.1e-15
+case P_q0.35_a100.0   adm True  plane dev 0.023 | F_n 0.01797 Gw 2.008 col 0.0293 | V|a| 8.045e+05 | R_len 29.29 R_sph 44.50 | Gamma_F 1.210 Gamma_C 0.215 (fine 1.210 0.215) | M_ext-1 -2.3e-15
+case P_q0.5_a100.0    adm True  plane dev 0.011 | F_n 0.01216 Gw 1.560 col 0.0197 | V|a| 1.065e+06 | R_len 40.84 R_sph 62.25 | Gamma_F 1.143 Gamma_C 0.452 (fine 1.143 0.453) | M_ext-1 -3.2e-15
+case P_q0.7_a100.0    adm True  plane dev 0.004 | F_n 0.00843 Gw 1.167 col 0.0126 | V|a| 1.436e+06 | R_len 54.09 R_sph 82.71 | Gamma_F 1.051 Gamma_C 0.796 (fine 1.051 0.796) | M_ext-1 +2.7e-15
+case P_q1.0_a100.0    adm True  plane dev 0.000 | F_n 0.00664 Gw 1.000 col 0.0066 | V|a| 2.033e+06 | R_len 65.42 R_sph 99.85 | Gamma_F 0.998 Gamma_C 0.995 (fine 1.000 0.999) | M_ext-1 +7.5e-14
+case P_q1.4_a100.0    adm True  plane dev 0.002 | F_n 0.00639 Gw 1.103 col 0.0076 | V|a| 2.879e+06 | R_len 69.69 R_sph 106.73 | Gamma_F 1.026 Gamma_C 0.860 (fine 1.026 0.860) | M_ext-1 -1.7e-15
+case P_q2.0_a100.0    adm True  plane dev 0.003 | F_n 0.00649 Gw 1.289 col 0.0080 | V|a| 4.208e+06 | R_len 71.12 R_sph 108.79 | Gamma_F 1.062 Gamma_C 0.623 (fine 1.062 0.624) | M_ext-1 +1.8e-15
+case P_q3.0_a100.0    adm True  plane dev 0.003 | F_n 0.00657 Gw 1.454 col 0.0082 | V|a| 6.499e+06 | R_len 71.70 R_sph 109.62 | Gamma_F 1.084 Gamma_C 0.413 (fine 1.084 0.413) | M_ext-1 -4.4e-16
+case E0.1_q0.2_a3.0   adm False plane dev 0.628 | F_n 0.61236 Gw 2.002 col 0.6174 | V|a| 6.007 | R_len 1.13 R_sph 1.47 | Gamma_F 1.735 Gamma_C 0.274 (fine 1.728 0.267) | M_ext-1 +1.3e-15
+case E0.1_q0.35_a3.0  adm False plane dev 0.460 | F_n 0.40156 Gw 1.562 col 0.4761 | V|a| 9.027 | R_len 1.05 R_sph 1.35 | Gamma_F 1.068 Gamma_C 0.130 (fine 1.067 0.129) | M_ext-1 -2.3e-15
+case E0.1_q0.5_a3.0   adm False plane dev 0.295 | F_n 0.29950 Gw 1.283 col 0.3810 | V|a| 12.2 | R_len 1.39 R_sph 1.87 | Gamma_F 1.022 Gamma_C 0.347 (fine 1.022 0.347) | M_ext-1 -2.0e-15
+case E0.1_q0.7_a3.0   adm False plane dev 0.135 | F_n 0.23248 Gw 1.080 col 0.2904 | V|a| 16.97 | R_len 1.80 R_sph 2.48 | Gamma_F 1.005 Gamma_C 0.744 (fine 1.005 0.744) | M_ext-1 -7.8e-16
+case E0.1_q1.0_a3.0   adm False plane dev 0.002 | F_n 0.19629 Gw 1.000 col 0.1972 | V|a| 25.5 | R_len 2.15 R_sph 3.00 | Gamma_F 0.999 Gamma_C 0.997 (fine 0.999 0.997) | M_ext-1 -1.1e-16
+case E0.1_q1.4_a3.0   adm False plane dev 0.085 | F_n 0.18753 Gw 1.066 col 0.2094 | V|a| 39.42 | R_len 2.28 R_sph 3.22 | Gamma_F 1.016 Gamma_C 0.832 (fine 1.016 0.832) | M_ext-1 -2.2e-16
+case E0.1_q2.0_a3.0   adm False plane dev 0.131 | F_n 0.18878 Gw 1.212 col 0.2161 | V|a| 64.9 | R_len 2.35 R_sph 3.31 | Gamma_F 1.048 Gamma_C 0.559 (fine 1.048 0.559) | M_ext-1 -4.4e-16
+case E0.1_q3.0_a3.0   adm False plane dev 0.156 | F_n 0.19111 Gw 1.367 col 0.2193 | V|a| 115.4 | R_len 2.38 R_sph 3.34 | Gamma_F 1.070 Gamma_C 0.326 (fine 1.070 0.326) | M_ext-1 -2.2e-16
+case E0.1_q0.2_a10.0  adm False plane dev 0.835 | F_n 0.25452 Gw 2.331 col 0.3262 | V|a| 424 | R_len 1.89 R_sph 2.62 | Gamma_F 1.151 Gamma_C 0.036 (fine 1.152 0.036) | M_ext-1 -1.1e-16
+case E0.1_q0.35_a10.0 adm False plane dev 0.632 | F_n 0.15477 Gw 1.811 col 0.2183 | V|a| 609 | R_len 3.08 R_sph 4.44 | Gamma_F 1.122 Gamma_C 0.170 (fine 1.122 0.171) | M_ext-1 +2.2e-16
+case E0.1_q0.5_a10.0  adm False plane dev 0.402 | F_n 0.10918 Gw 1.436 col 0.1595 | V|a| 808.7 | R_len 4.28 R_sph 6.27 | Gamma_F 1.089 Gamma_C 0.418 (fine 1.089 0.418) | M_ext-1 +4.4e-16
+case E0.1_q0.7_a10.0  adm False plane dev 0.178 | F_n 0.07931 Gw 1.128 col 0.1101 | V|a| 1100 | R_len 5.58 R_sph 8.27 | Gamma_F 1.029 Gamma_C 0.775 (fine 1.029 0.775) | M_ext-1 -3.3e-16
+case E0.1_q1.0_a10.0  adm True  plane dev 0.000 | F_n 0.06422 Gw 1.000 col 0.0643 | V|a| 1590 | R_len 6.74 R_sph 10.00 | Gamma_F 1.000 Gamma_C 1.000 (fine 1.000 1.000) | M_ext-1 -2.2e-16
+case E0.1_q1.4_a10.0  adm False plane dev 0.094 | F_n 0.06149 Gw 1.088 col 0.0712 | V|a| 2321 | R_len 7.17 R_sph 10.70 | Gamma_F 1.022 Gamma_C 0.853 (fine 1.022 0.853) | M_ext-1 +0.0e+00
+case E0.1_q2.0_a10.0  adm False plane dev 0.141 | F_n 0.06221 Gw 1.260 col 0.0746 | V|a| 3527 | R_len 7.35 R_sph 10.95 | Gamma_F 1.058 Gamma_C 0.606 (fine 1.058 0.606) | M_ext-1 +1.6e-15
+case E0.1_q3.0_a10.0  adm False plane dev 0.163 | F_n 0.06296 Gw 1.423 col 0.0762 | V|a| 5692 | R_len 7.43 R_sph 11.06 | Gamma_F 1.081 Gamma_C 0.387 (fine 1.080 0.387) | M_ext-1 -2.2e-16
+case E0.1_q0.2_a30.0  adm False plane dev 0.368 | F_n 0.09833 Gw 2.523 col 0.1446 | V|a| 1.407e+04 | R_len 5.31 R_sph 7.84 | Gamma_F 1.212 Gamma_C 0.051 (fine 1.214 0.051) | M_ext-1 -2.1e-15
+case E0.1_q0.35_a30.0 adm False plane dev 0.164 | F_n 0.05725 Gw 1.945 col 0.0888 | V|a| 2.01e+04 | R_len 8.90 R_sph 13.37 | Gamma_F 1.181 Gamma_C 0.202 (fine 1.182 0.202) | M_ext-1 -2.7e-15
+case E0.1_q0.5_a30.0  adm False plane dev 0.083 | F_n 0.03929 Gw 1.521 col 0.0616 | V|a| 2.664e+04 | R_len 12.38 R_sph 18.71 | Gamma_F 1.125 Gamma_C 0.442 (fine 1.125 0.442) | M_ext-1 -2.2e-16
+case E0.1_q0.7_a30.0  adm True  plane dev 0.032 | F_n 0.02763 Gw 1.155 col 0.0403 | V|a| 3.604e+04 | R_len 16.41 R_sph 24.79 | Gamma_F 1.043 Gamma_C 0.788 (fine 1.043 0.788) | M_ext-1 -4.4e-16
+case E0.1_q1.0_a30.0  adm True  plane dev 0.000 | F_n 0.02195 Gw 1.000 col 0.0219 | V|a| 5.132e+04 | R_len 19.71 R_sph 29.98 | Gamma_F 0.999 Gamma_C 0.998 (fine 0.999 0.998) | M_ext-1 -4.4e-16
+case E0.1_q1.4_a30.0  adm True  plane dev 0.014 | F_n 0.02108 Gw 1.099 col 0.0248 | V|a| 7.33e+04 | R_len 21.22 R_sph 32.17 | Gamma_F 1.029 Gamma_C 0.869 (fine 1.029 0.869) | M_ext-1 +2.7e-15
+case E0.1_q2.0_a30.0  adm True  plane dev 0.020 | F_n 0.02138 Gw 1.281 col 0.0261 | V|a| 1.083e+05 | R_len 21.56 R_sph 32.75 | Gamma_F 1.062 Gamma_C 0.622 (fine 1.062 0.622) | M_ext-1 -2.4e-15
+case E0.1_q3.0_a30.0  adm True  plane dev 0.022 | F_n 0.02164 Gw 1.445 col 0.0268 | V|a| 1.692e+05 | R_len 21.69 R_sph 32.98 | Gamma_F 1.083 Gamma_C 0.407 (fine 1.083 0.407) | M_ext-1 -1.7e-15
+case E0.1_q0.2_a100.0 adm False plane dev 0.063 | F_n 0.03165 Gw 2.624 col 0.0502 | V|a| 5.642e+05 | R_len 16.97 R_sph 25.67 | Gamma_F 1.237 Gamma_C 0.056 (fine 1.239 0.056) | M_ext-1 +0.0e+00
+case E0.1_q0.35_a100.0 adm True  plane dev 0.023 | F_n 0.01797 Gw 2.008 col 0.0293 | V|a| 8.045e+05 | R_len 29.29 R_sph 44.50 | Gamma_F 1.209 Gamma_C 0.215 (fine 1.210 0.215) | M_ext-1 -5.6e-16
+case E0.1_q0.5_a100.0 adm True  plane dev 0.011 | F_n 0.01216 Gw 1.560 col 0.0197 | V|a| 1.065e+06 | R_len 40.86 R_sph 62.26 | Gamma_F 1.143 Gamma_C 0.453 (fine 1.143 0.453) | M_ext-1 +8.7e-15
+case E0.1_q0.7_a100.0 adm True  plane dev 0.004 | F_n 0.00843 Gw 1.167 col 0.0126 | V|a| 1.436e+06 | R_len 54.10 R_sph 82.72 | Gamma_F 1.051 Gamma_C 0.796 (fine 1.051 0.796) | M_ext-1 -7.1e-15
+case E0.1_q1.0_a100.0 adm True  plane dev 0.000 | F_n 0.00664 Gw 1.000 col 0.0066 | V|a| 2.033e+06 | R_len 65.54 R_sph 100.02 | Gamma_F 1.000 Gamma_C 1.001 (fine 1.000 1.000) | M_ext-1 -3.1e-15
+case E0.1_q1.4_a100.0 adm True  plane dev 0.002 | F_n 0.00639 Gw 1.103 col 0.0076 | V|a| 2.879e+06 | R_len 69.71 R_sph 106.75 | Gamma_F 1.026 Gamma_C 0.861 (fine 1.026 0.861) | M_ext-1 +1.8e-15
+case E0.1_q2.0_a100.0 adm True  plane dev 0.003 | F_n 0.00649 Gw 1.289 col 0.0080 | V|a| 4.208e+06 | R_len 71.15 R_sph 108.82 | Gamma_F 1.062 Gamma_C 0.624 (fine 1.062 0.624) | M_ext-1 -9.1e-15
+case E0.1_q3.0_a100.0 adm True  plane dev 0.003 | F_n 0.00657 Gw 1.454 col 0.0082 | V|a| 6.499e+06 | R_len 71.71 R_sph 109.63 | Gamma_F 1.084 Gamma_C 0.413 (fine 1.084 0.413) | M_ext-1 -6.7e-15
+case E0.3_q0.2_a3.0   adm False plane dev 0.600 | F_n 0.50678 Gw 1.818 col 0.5305 | V|a| 5.596 | R_len 1.12 R_sph 1.46 | Gamma_F 1.426 Gamma_C 0.283 (fine 1.416 0.269) | M_ext-1 -1.1e-15
+case E0.3_q0.35_a3.0  adm False plane dev 1.337 | F_n 0.36247 Gw 1.466 col 0.4290 | V|a| 8.7 | R_len 1.03 R_sph 1.33 | Gamma_F 0.951 Gamma_C 0.124 (fine 0.950 0.124) | M_ext-1 -1.0e-15
+case E0.3_q0.5_a3.0   adm False plane dev 0.261 | F_n 0.28178 Gw 1.227 col 0.3518 | V|a| 12 | R_len 1.39 R_sph 1.86 | Gamma_F 0.961 Gamma_C 0.352 (fine 0.961 0.352) | M_ext-1 -2.2e-16
+case E0.3_q0.7_a3.0   adm False plane dev 0.108 | F_n 0.22639 Gw 1.056 col 0.2728 | V|a| 16.95 | R_len 1.80 R_sph 2.48 | Gamma_F 0.980 Gamma_C 0.747 (fine 0.980 0.747) | M_ext-1 -2.2e-16
+case E0.3_q1.0_a3.0   adm False plane dev 0.020 | F_n 0.19674 Gw 1.002 col 0.2056 | V|a| 25.75 | R_len 2.14 R_sph 2.99 | Gamma_F 1.000 Gamma_C 0.980 (fine 1.000 0.980) | M_ext-1 +0.0e+00
+case E0.3_q1.4_a3.0   adm False plane dev 0.097 | F_n 0.19047 Gw 1.080 col 0.2171 | V|a| 39.99 | R_len 2.27 R_sph 3.20 | Gamma_F 1.028 Gamma_C 0.808 (fine 1.028 0.808) | M_ext-1 +2.2e-16
+case E0.3_q2.0_a3.0   adm False plane dev 0.141 | F_n 0.19248 Gw 1.230 col 0.2233 | V|a| 65.84 | R_len 2.34 R_sph 3.29 | Gamma_F 1.063 Gamma_C 0.540 (fine 1.063 0.540) | M_ext-1 -6.7e-16
+case E0.3_q3.0_a3.0   adm False plane dev 0.164 | F_n 0.19506 Gw 1.385 col 0.2260 | V|a| 116.7 | R_len 2.37 R_sph 3.33 | Gamma_F 1.089 Gamma_C 0.318 (fine 1.089 0.318) | M_ext-1 -5.6e-16
+case E0.3_q0.2_a10.0  adm False plane dev 0.833 | F_n 0.24363 Gw 2.294 col 0.3091 | V|a| 420.7 | R_len 1.90 R_sph 2.64 | Gamma_F 1.109 Gamma_C 0.038 (fine 1.109 0.037) | M_ext-1 +8.9e-16
+case E0.3_q0.35_a10.0 adm False plane dev 0.628 | F_n 0.15188 Gw 1.794 col 0.2124 | V|a| 606.6 | R_len 3.09 R_sph 4.45 | Gamma_F 1.104 Gamma_C 0.173 (fine 1.104 0.173) | M_ext-1 +6.7e-16
+case E0.3_q0.5_a10.0  adm False plane dev 0.398 | F_n 0.10802 Gw 1.426 col 0.1568 | V|a| 807 | R_len 4.28 R_sph 6.27 | Gamma_F 1.079 Gamma_C 0.420 (fine 1.079 0.420) | M_ext-1 -2.2e-16
+case E0.3_q0.7_a10.0  adm False plane dev 0.174 | F_n 0.07892 Gw 1.123 col 0.1088 | V|a| 1100 | R_len 5.59 R_sph 8.27 | Gamma_F 1.025 Gamma_C 0.777 (fine 1.025 0.777) | M_ext-1 +0.0e+00
+case E0.3_q1.0_a10.0  adm True  plane dev 0.002 | F_n 0.06422 Gw 1.000 col 0.0646 | V|a| 1590 | R_len 6.74 R_sph 10.00 | Gamma_F 1.000 Gamma_C 1.000 (fine 1.000 1.000) | M_ext-1 +4.4e-16
+case E0.3_q1.4_a10.0  adm False plane dev 0.095 | F_n 0.06162 Gw 1.090 col 0.0715 | V|a| 2322 | R_len 7.16 R_sph 10.70 | Gamma_F 1.024 Gamma_C 0.852 (fine 1.024 0.852) | M_ext-1 -1.1e-16
+case E0.3_q2.0_a10.0  adm False plane dev 0.142 | F_n 0.06237 Gw 1.263 col 0.0749 | V|a| 3529 | R_len 7.35 R_sph 10.95 | Gamma_F 1.060 Gamma_C 0.605 (fine 1.060 0.605) | M_ext-1 +1.1e-15
+case E0.3_q3.0_a10.0  adm False plane dev 0.164 | F_n 0.06314 Gw 1.425 col 0.0765 | V|a| 5695 | R_len 7.42 R_sph 11.05 | Gamma_F 1.083 Gamma_C 0.386 (fine 1.083 0.386) | M_ext-1 +8.9e-16
+case E0.3_q0.2_a30.0  adm False plane dev 0.367 | F_n 0.09751 Gw 2.516 col 0.1428 | V|a| 1.406e+04 | R_len 5.31 R_sph 7.84 | Gamma_F 1.203 Gamma_C 0.051 (fine 1.205 0.051) | M_ext-1 -6.7e-16
+case E0.3_q0.35_a30.0 adm False plane dev 0.164 | F_n 0.05706 Gw 1.942 col 0.0884 | V|a| 2.009e+04 | R_len 8.90 R_sph 13.38 | Gamma_F 1.178 Gamma_C 0.202 (fine 1.178 0.202) | M_ext-1 +2.2e-16
+case E0.3_q0.5_a30.0  adm False plane dev 0.083 | F_n 0.03922 Gw 1.519 col 0.0614 | V|a| 2.664e+04 | R_len 12.38 R_sph 18.71 | Gamma_F 1.123 Gamma_C 0.442 (fine 1.123 0.442) | M_ext-1 +1.6e-15
+case E0.3_q0.7_a30.0  adm True  plane dev 0.032 | F_n 0.02761 Gw 1.154 col 0.0402 | V|a| 3.604e+04 | R_len 16.41 R_sph 24.79 | Gamma_F 1.042 Gamma_C 0.788 (fine 1.042 0.788) | M_ext-1 +0.0e+00
+case E0.3_q1.0_a30.0  adm True  plane dev 0.000 | F_n 0.02195 Gw 1.000 col 0.0220 | V|a| 5.132e+04 | R_len 19.71 R_sph 29.98 | Gamma_F 0.999 Gamma_C 0.998 (fine 0.999 0.998) | M_ext-1 -1.1e-15
+case E0.3_q1.4_a30.0  adm True  plane dev 0.014 | F_n 0.02108 Gw 1.099 col 0.0248 | V|a| 7.33e+04 | R_len 21.22 R_sph 32.17 | Gamma_F 1.029 Gamma_C 0.869 (fine 1.029 0.869) | M_ext-1 +0.0e+00
+case E0.3_q2.0_a30.0  adm True  plane dev 0.020 | F_n 0.02139 Gw 1.281 col 0.0262 | V|a| 1.083e+05 | R_len 21.55 R_sph 32.75 | Gamma_F 1.063 Gamma_C 0.621 (fine 1.063 0.622) | M_ext-1 -1.2e-15
+case E0.3_q3.0_a30.0  adm True  plane dev 0.022 | F_n 0.02165 Gw 1.446 col 0.0268 | V|a| 1.692e+05 | R_len 21.69 R_sph 32.98 | Gamma_F 1.084 Gamma_C 0.407 (fine 1.084 0.407) | M_ext-1 +2.2e-16
+case E0.3_q0.2_a100.0 adm False plane dev 0.063 | F_n 0.03162 Gw 2.623 col 0.0501 | V|a| 5.642e+05 | R_len 16.97 R_sph 25.67 | Gamma_F 1.236 Gamma_C 0.056 (fine 1.238 0.056) | M_ext-1 +0.0e+00
+case E0.3_q0.35_a100.0 adm True  plane dev 0.023 | F_n 0.01796 Gw 2.008 col 0.0292 | V|a| 8.045e+05 | R_len 29.29 R_sph 44.50 | Gamma_F 1.209 Gamma_C 0.215 (fine 1.210 0.215) | M_ext-1 +1.8e-15
+case E0.3_q0.5_a100.0 adm True  plane dev 0.011 | F_n 0.01216 Gw 1.560 col 0.0197 | V|a| 1.065e+06 | R_len 40.86 R_sph 62.27 | Gamma_F 1.143 Gamma_C 0.453 (fine 1.143 0.453) | M_ext-1 +1.3e-15
+case E0.3_q0.7_a100.0 adm True  plane dev 0.004 | F_n 0.00843 Gw 1.167 col 0.0126 | V|a| 1.436e+06 | R_len 54.10 R_sph 82.72 | Gamma_F 1.051 Gamma_C 0.796 (fine 1.051 0.796) | M_ext-1 -3.6e-15
+case E0.3_q1.0_a100.0 adm True  plane dev 0.000 | F_n 0.00664 Gw 1.000 col 0.0066 | V|a| 2.033e+06 | R_len 65.53 R_sph 100.00 | Gamma_F 1.000 Gamma_C 1.000 (fine 1.000 1.000) | M_ext-1 -4.4e-15
+case E0.3_q1.4_a100.0 adm True  plane dev 0.002 | F_n 0.00639 Gw 1.103 col 0.0076 | V|a| 2.879e+06 | R_len 69.70 R_sph 106.75 | Gamma_F 1.027 Gamma_C 0.861 (fine 1.027 0.861) | M_ext-1 -8.9e-16
+case E0.3_q2.0_a100.0 adm True  plane dev 0.003 | F_n 0.00649 Gw 1.289 col 0.0080 | V|a| 4.208e+06 | R_len 71.14 R_sph 108.82 | Gamma_F 1.062 Gamma_C 0.624 (fine 1.062 0.624) | M_ext-1 +2.2e-16
+case E0.3_q3.0_a100.0 adm True  plane dev 0.003 | F_n 0.00657 Gw 1.454 col 0.0082 | V|a| 6.499e+06 | R_len 71.71 R_sph 109.64 | Gamma_F 1.084 Gamma_C 0.413 (fine 1.084 0.413) | M_ext-1 +7.3e-15
+case E1.0_q0.2_a10.0  adm False plane dev 2.220 | F_n 0.18503 Gw 2.031 col 0.2416 | V|a| 393.2 | R_len 1.82 R_sph 2.51 | Gamma_F 0.807 Gamma_C 0.033 (fine 0.305 0.000) | M_ext-1 +1.1e-15
+case E1.0_q0.35_a10.0 adm False plane dev 3.037 | F_n 0.13149 Gw 1.651 col 0.1817 | V|a| 591.6 | R_len 3.09 R_sph 4.46 | Gamma_F 0.956 Gamma_C 0.177 (fine 0.956 0.177) | M_ext-1 +1.6e-15
+case E1.0_q0.5_a10.0  adm False plane dev 1.222 | F_n 0.09904 Gw 1.338 col 0.1397 | V|a| 799.8 | R_len 4.30 R_sph 6.29 | Gamma_F 0.992 Gamma_C 0.429 (fine 0.992 0.429) | M_ext-1 -4.4e-16
+case E1.0_q0.7_a10.0  adm False plane dev 0.575 | F_n 0.07592 Gw 1.084 col 0.0996 | V|a| 1101 | R_len 5.60 R_sph 8.29 | Gamma_F 0.988 Gamma_C 0.782 (fine 0.988 0.782) | M_ext-1 -1.1e-15
+case E1.0_q1.0_a10.0  adm True  plane dev 0.022 | F_n 0.06443 Gw 1.003 col 0.0685 | V|a| 1601 | R_len 6.72 R_sph 9.98 | Gamma_F 1.001 Gamma_C 0.985 (fine 1.001 0.985) | M_ext-1 +0.0e+00
+case E1.0_q1.4_a10.0  adm False plane dev 0.106 | F_n 0.06289 Gw 1.111 col 0.0750 | V|a| 2341 | R_len 7.12 R_sph 10.63 | Gamma_F 1.039 Gamma_C 0.829 (fine 1.039 0.829) | M_ext-1 -3.3e-16
+case E1.0_q2.0_a10.0  adm False plane dev 0.148 | F_n 0.06389 Gw 1.287 col 0.0782 | V|a| 3556 | R_len 7.29 R_sph 10.87 | Gamma_F 1.078 Gamma_C 0.586 (fine 1.078 0.586) | M_ext-1 -1.1e-16
+case E1.0_q3.0_a10.0  adm False plane dev 0.168 | F_n 0.06474 Gw 1.448 col 0.0795 | V|a| 5729 | R_len 7.36 R_sph 10.97 | Gamma_F 1.102 Gamma_C 0.375 (fine 1.102 0.374) | M_ext-1 +2.2e-16
+case E1.0_q0.2_a30.0  adm False plane dev 10.215 | F_n 0.09097 Gw 2.453 col 0.1313 | V|a| 1.397e+04 | R_len 5.34 R_sph 7.88 | Gamma_F 1.128 Gamma_C 0.052 (fine 0.150 0.000) | M_ext-1 -4.4e-16
+case E1.0_q0.35_a30.0 adm False plane dev 0.175 | F_n 0.05544 Gw 1.915 col 0.0848 | V|a| 2.004e+04 | R_len 8.94 R_sph 13.44 | Gamma_F 1.149 Gamma_C 0.206 (fine 1.149 0.206) | M_ext-1 +4.4e-16
+case E1.0_q0.5_a30.0  adm False plane dev 0.269 | F_n 0.03859 Gw 1.504 col 0.0598 | V|a| 2.661e+04 | R_len 12.40 R_sph 18.76 | Gamma_F 1.108 Gamma_C 0.446 (fine 1.108 0.446) | M_ext-1 +0.0e+00
+case E1.0_q0.7_a30.0  adm False plane dev 0.189 | F_n 0.02741 Gw 1.147 col 0.0395 | V|a| 3.603e+04 | R_len 16.43 R_sph 24.82 | Gamma_F 1.036 Gamma_C 0.791 (fine 1.036 0.791) | M_ext-1 -4.4e-16
+case E1.0_q1.0_a30.0  adm True  plane dev 0.000 | F_n 0.02195 Gw 1.000 col 0.0221 | V|a| 5.134e+04 | R_len 19.71 R_sph 29.98 | Gamma_F 0.999 Gamma_C 0.998 (fine 0.999 0.998) | M_ext-1 -2.2e-16
+case E1.0_q1.4_a30.0  adm True  plane dev 0.014 | F_n 0.02115 Gw 1.102 col 0.0249 | V|a| 7.333e+04 | R_len 21.21 R_sph 32.16 | Gamma_F 1.032 Gamma_C 0.868 (fine 1.032 0.868) | M_ext-1 +1.3e-15
+case E1.0_q2.0_a30.0  adm True  plane dev 0.019 | F_n 0.02146 Gw 1.285 col 0.0263 | V|a| 1.083e+05 | R_len 21.55 R_sph 32.73 | Gamma_F 1.066 Gamma_C 0.620 (fine 1.066 0.620) | M_ext-1 +1.3e-15
+case E1.0_q3.0_a30.0  adm True  plane dev 0.021 | F_n 0.02173 Gw 1.449 col 0.0269 | V|a| 1.693e+05 | R_len 21.68 R_sph 32.97 | Gamma_F 1.087 Gamma_C 0.406 (fine 1.087 0.406) | M_ext-1 -6.7e-16
+case E1.0_q0.2_a100.0 adm False plane dev 0.093 | F_n 0.03129 Gw 2.613 col 0.0494 | V|a| 5.64e+05 | R_len 16.99 R_sph 25.70 | Gamma_F 1.224 Gamma_C 0.056 (fine 1.227 0.056) | M_ext-1 +3.1e-15
+case E1.0_q0.35_a100.0 adm False plane dev 0.101 | F_n 0.01789 Gw 2.004 col 0.0291 | V|a| 8.044e+05 | R_len 29.31 R_sph 44.52 | Gamma_F 1.205 Gamma_C 0.215 (fine 1.206 0.215) | M_ext-1 +2.7e-15
+case E1.0_q0.5_a100.0 adm True  plane dev 0.033 | F_n 0.01214 Gw 1.558 col 0.0196 | V|a| 1.065e+06 | R_len 40.87 R_sph 62.28 | Gamma_F 1.141 Gamma_C 0.453 (fine 1.141 0.453) | M_ext-1 +6.7e-16
+case E1.0_q0.7_a100.0 adm True  plane dev 0.015 | F_n 0.00842 Gw 1.166 col 0.0125 | V|a| 1.436e+06 | R_len 54.10 R_sph 82.73 | Gamma_F 1.050 Gamma_C 0.797 (fine 1.050 0.797) | M_ext-1 +4.4e-16
+case E1.0_q1.0_a100.0 adm True  plane dev 0.000 | F_n 0.00664 Gw 1.000 col 0.0066 | V|a| 2.033e+06 | R_len 65.53 R_sph 99.99 | Gamma_F 1.000 Gamma_C 1.000 (fine 1.000 1.000) | M_ext-1 -4.4e-16
+case E1.0_q1.4_a100.0 adm True  plane dev 0.002 | F_n 0.00639 Gw 1.104 col 0.0076 | V|a| 2.879e+06 | R_len 69.70 R_sph 106.74 | Gamma_F 1.027 Gamma_C 0.861 (fine 1.027 0.861) | M_ext-1 -7.8e-16
+case E1.0_q2.0_a100.0 adm True  plane dev 0.002 | F_n 0.00649 Gw 1.289 col 0.0080 | V|a| 4.209e+06 | R_len 71.14 R_sph 108.81 | Gamma_F 1.063 Gamma_C 0.624 (fine 1.063 0.624) | M_ext-1 -6.2e-15
+case E1.0_q3.0_a100.0 adm True  plane dev 0.003 | F_n 0.00657 Gw 1.455 col 0.0082 | V|a| 6.499e+06 | R_len 71.71 R_sph 109.63 | Gamma_F 1.084 Gamma_C 0.413 (fine 1.084 0.413) | M_ext-1 -8.0e-15
+B3 [canonical] sigma 17.5 km/s, R_d 0.1 r_M: sphere 216.2 r_M (418, 1401, 1868, 2351 kpc); 1 solve(s), |p / p_ext - 1| <= 2.3e-05 (flat True); shape dev 0.00e+00, pole / equator 1.00000, volume / sphere 1.00000; adm True (plane dev 0.000); Gamma_F 0.998 Gamma_C 0.994 (fine 0.998 0.994)
+B3 [canonical] sigma 17.5 km/s, R_d 0.3 r_M: sphere 216.2 r_M (418, 1401, 1868, 2351 kpc); 1 solve(s), |p / p_ext - 1| <= 1.9e-04 (flat True); shape dev 0.00e+00, pole / equator 1.00000, volume / sphere 1.00000; adm True (plane dev 0.000); Gamma_F 0.998 Gamma_C 0.994 (fine 0.998 0.994)
+B3 [canonical] sigma 17.5 km/s, R_d 1.0 r_M: sphere 216.2 r_M (418, 1401, 1868, 2351 kpc); 12 solve(s), |p / p_ext - 1| <= 8.2e-01 (flat False); shape dev 9.81e-02, pole / equator 0.92163, volume / sphere 1.01956; adm True (plane dev 0.000); Gamma_F 1.017 Gamma_C 0.939 (fine 1.022 0.937)
+B3 [canonical] sigma 35.0 km/s, R_d 0.1 r_M: sphere 136.2 r_M (263, 882, 1176, 1481 kpc); 1 solve(s), |p / p_ext - 1| <= 5.2e-05 (flat True); shape dev 0.00e+00, pole / equator 1.00000, volume / sphere 1.00000; adm True (plane dev 0.000); Gamma_F 0.998 Gamma_C 0.994 (fine 0.998 0.994)
+B3 [canonical] sigma 35.0 km/s, R_d 0.3 r_M: sphere 136.2 r_M (263, 882, 1176, 1481 kpc); 1 solve(s), |p / p_ext - 1| <= 4.1e-04 (flat True); shape dev 0.00e+00, pole / equator 1.00000, volume / sphere 1.00000; adm True (plane dev 0.000); Gamma_F 0.998 Gamma_C 0.994 (fine 0.998 0.994)
+B3 [canonical] sigma 35.0 km/s, R_d 1.0 r_M: sphere 136.2 r_M (263, 882, 1176, 1481 kpc); 11 solve(s), |p / p_ext - 1| <= 1.4e+00 (flat False); shape dev 8.59e-02, pole / equator 1.07478, volume / sphere 1.02916; adm True (plane dev 0.001); Gamma_F 1.028 Gamma_C 0.914 (fine 1.027 0.915)
+B3 [canonical] sigma 52.5 km/s, R_d 0.1 r_M: sphere 103.9 r_M (201, 673, 897, 1130 kpc); 1 solve(s), |p / p_ext - 1| <= 8.3e-05 (flat True); shape dev 0.00e+00, pole / equator 1.00000, volume / sphere 1.00000; adm True (plane dev 0.000); Gamma_F 1.001 Gamma_C 1.004 (fine 1.001 1.005)
+B3 [canonical] sigma 52.5 km/s, R_d 0.3 r_M: sphere 103.9 r_M (201, 673, 897, 1130 kpc); 1 solve(s), |p / p_ext - 1| <= 6.6e-04 (flat True); shape dev 0.00e+00, pole / equator 1.00000, volume / sphere 1.00000; adm True (plane dev 0.000); Gamma_F 1.001 Gamma_C 1.004 (fine 1.001 1.005)
+nsw1.py:108: RuntimeWarning: invalid value encountered in sqrt
+  A3b_margin=float(np.min(wq["gout"] - wq["p"])), sqrt_d_flux=float(np.sum(np.sqrt(wq["d"]) * wq["d"] * b.cout["Sarea"] * b.w)
+B3 [canonical] sigma 52.5 km/s, R_d 1.0 r_M: sphere 103.9 r_M (201, 673, 897, 1130 kpc); 11 solve(s), |p / p_ext - 1| <= 4.9e+07 (flat False); shape dev 1.79e-01, pole / equator 1.06507, volume / sphere 1.10033; adm True (plane dev 0.024); Gamma_F 7411376.140 Gamma_C 0.251 (fine 1.022 0.949)
+B3 [alt] sigma 17.5 km/s, R_d 0.1 r_M: sphere 245.3 r_M (432, 1446, 1928, 2427 kpc); 1 solve(s), |p / p_ext - 1| <= 1.9e-05 (flat True); shape dev 0.00e+00, pole / equator 1.00000, volume / sphere 1.00000; adm True (plane dev 0.000); Gamma_F 0.998 Gamma_C 0.994 (fine 0.998 0.994)
+B3 [alt] sigma 17.5 km/s, R_d 0.3 r_M: sphere 245.3 r_M (432, 1446, 1928, 2427 kpc); 1 solve(s), |p / p_ext - 1| <= 1.5e-04 (flat True); shape dev 0.00e+00, pole / equator 1.00000, volume / sphere 1.00000; adm True (plane dev 0.000); Gamma_F 0.998 Gamma_C 0.994 (fine 0.998 0.994)
+B3 [alt] sigma 17.5 km/s, R_d 1.0 r_M: sphere 245.3 r_M (432, 1446, 1928, 2427 kpc); 13 solve(s), |p / p_ext - 1| <= 1.0e+06 (flat False); shape dev 1.76e-01, pole / equator 1.32908, volume / sphere 1.05857; adm True (plane dev 0.004); Gamma_F 17152.169 Gamma_C 0.491 (fine 1.007 0.963)
+B3 [alt] sigma 35.0 km/s, R_d 0.1 r_M: sphere 154.5 r_M (272, 910, 1214, 1528 kpc); 1 solve(s), |p / p_ext - 1| <= 4.2e-05 (flat True); shape dev 0.00e+00, pole / equator 1.00000, volume / sphere 1.00000; adm True (plane dev 0.000); Gamma_F 0.998 Gamma_C 0.994 (fine 0.998 0.994)
+B3 [alt] sigma 35.0 km/s, R_d 0.3 r_M: sphere 154.5 r_M (272, 910, 1214, 1528 kpc); 1 solve(s), |p / p_ext - 1| <= 3.3e-04 (flat True); shape dev 0.00e+00, pole / equator 1.00000, volume / sphere 1.00000; adm True (plane dev 0.000); Gamma_F 0.998 Gamma_C 0.994 (fine 0.998 0.994)
+B3 [alt] sigma 35.0 km/s, R_d 1.0 r_M: sphere 154.5 r_M (272, 910, 1214, 1528 kpc); 11 solve(s), |p / p_ext - 1| <= 9.6e-01 (flat False); shape dev 6.67e-02, pole / equator 1.06967, volume / sphere 1.01702; adm True (plane dev 0.000); Gamma_F 1.013 Gamma_C 0.947 (fine 1.013 0.948)
+B3 [alt] sigma 52.5 km/s, R_d 0.1 r_M: sphere 117.9 r_M (207, 695, 926, 1166 kpc); 1 solve(s), |p / p_ext - 1| <= 6.7e-05 (flat True); shape dev 0.00e+00, pole / equator 1.00000, volume / sphere 1.00000; adm True (plane dev 0.000); Gamma_F 1.000 Gamma_C 1.001 (fine 1.000 1.001)
+B3 [alt] sigma 52.5 km/s, R_d 0.3 r_M: sphere 117.9 r_M (207, 695, 926, 1166 kpc); 1 solve(s), |p / p_ext - 1| <= 5.3e-04 (flat True); shape dev 0.00e+00, pole / equator 1.00000, volume / sphere 1.00000; adm True (plane dev 0.000); Gamma_F 1.000 Gamma_C 1.001 (fine 1.000 1.001)
+B3 [alt] sigma 52.5 km/s, R_d 1.0 r_M: sphere 117.9 r_M (207, 695, 926, 1166 kpc); 11 solve(s), |p / p_ext - 1| <= 4.3e+00 (flat False); shape dev 1.21e-01, pole / equator 1.07834, volume / sphere 1.05566; adm True (plane dev 0.001); Gamma_F 1.190 Gamma_C 0.857 (fine 1.011 0.969)
+KA1(a) exterior effective mass - 1 over every solved case and both grids: at most 1.51e-06 (line 1e-6): FAIL
+KA8 convergence: Gamma_F and Gamma_C of the 68 admissible cases move by at most 2.78e+00 between 96 x 0.03 and 144 x 0.02 (line 2e-2): FAIL; cases whose admissibility differs between the grids: 2
+Every Newton solve converged: False. B3 walls flat to 1e-3: False
+Part A, numerical: A3(b) |g_out| - W_g >= 6.06e-07 at every wall node of every case; A4 F_n - Gamma_w <= -8.037e-01 (a0 M_b); largest column 0.8990 of a0 / (4 pi G) = 48.0 / 58.1 M_sun / pc^2 (bound 53.4 / 64.6)
+A6, numerical (point baryons, 28 non-spherical walls): d >= y(r_min) at the nearest points in 28, d <= y(r_max) at the farthest in 28; F_n / [(2/3) flux-weighted sqrt(d)] at a = 100: 1.017, 1.008, 1.002, 0.998, 0.997, 0.998, 0.999; deep bracket holds in 28
+LABEL [canonical] (before the Lean check of A2): NO VERDICT. Admissible 59 of 129. Largest Gamma_F 7411376.140 (B3_sig52.5_Rd1.0; line 3.8), largest Gamma_C 1.004 (B3_sig52.5_Rd0.3; line 10.9).
+LABEL [alt] (before the Lean check of A2): NO VERDICT. Admissible 59 of 129. Largest Gamma_F 17152.169 (B3_sig17.5_Rd1.0; line 4.9), largest Gamma_C 1.001 (B3_sig52.5_Rd0.1; line 11.2).
+[3831 s] done.
+exit 0
