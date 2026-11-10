@@ -392,7 +392,9 @@ class Model:
             try:
                 acc = self.accel(tn, self.r, vh)
             except HSolveError as e:
-                event = {'kind': 'E2', 'reason': str(e), 't': tn}
+                gap = np.diff(self.r); ref = self.gap_ref(tn); i = int(np.argmin(gap / ref))
+                event = {'kind': 'E2', 'reason': str(e), 't': tn, 'r_kpc': float(0.5 * (self.r[i] + self.r[i + 1])),
+                         'gap_index': i, 'min_gap_over_ref': float(gap[i] / ref[i]), 'r_innermost_kpc': float(self.r[1])}
                 break
             self.v = vh + 0.5 * dt * acc
             if self.rout_fn is not None:

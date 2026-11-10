@@ -81,14 +81,14 @@ def main():
         md, ti, tend, cos = S.rest_model(a.mu, a.footing, a.logMb, a.J, KD1, lawkind=a.law, Xout=a.xout, visc=a.visc)
     if a.tmax_gyr:
         tend = min(tend, ti + a.tmax_gyr / L.TU)
-    R, S = [], {'t': [], 'r': [], 'v': [], 'h': []}
+    R, SN = [], {'t': [], 'r': [], 'v': [], 'h': []}
 
     def snap(m, t, acc, final=False):
         try:
             R.append(reads(m, t, acc, cos, a.mode, ti))
         except Exception as ex:      # e.g. after shells crossed
             R.append({'t_gyr': t * L.TU, 'error': str(ex)})
-        S['t'].append(t); S['r'].append(m.r.copy()); S['v'].append(m.v.copy()); S['h'].append(m.h.copy())
+        SN['t'].append(t); SN['r'].append(m.r.copy()); SN['v'].append(m.v.copy()); SN['h'].append(m.h.copy())
     t, steps, ev = md.run(ti, tend, 1e-3, 0.25 / L.TU, on_snap=snap, dt_floor=DT_FLOOR)
     if ev and 't' in ev:
         ev['t_gyr'] = ev['t'] * L.TU; ev['t_since_start_gyr'] = (ev['t'] - ti) * L.TU
@@ -101,8 +101,8 @@ def main():
            't_start_gyr': ti * L.TU, 't_end_gyr': t * L.TU, 'event': ev, 'reads': R,
            'note': 'Adopts nothing. kappa = 1/2 FITTED; not theory closed.'}
     json.dump(res, open(os.path.join(HERE, 'runs', name + '.json'), 'w'), indent=1, default=float)
-    np.savez_compressed(os.path.join(a.snapdir, name + '.npz'), t=np.array(S['t']), r=np.array(S['r']),
-                        v=np.array(S['v']), h=np.array(S['h']), X=md.X, m=md.m, Mlag=md.Mlag)
+    np.savez_compressed(os.path.join(a.snapdir, name + '.npz'), t=np.array(SN['t']), r=np.array(SN['r']),
+                        v=np.array(SN['v']), h=np.array(SN['h']), X=md.X, m=md.m, Mlag=md.Mlag)
     e = ev or {'kind': 'none'}
     last = next((x['radii'] for x in reversed(R) if 'radii' in x), {})
     print(f'{name}: steps {steps}, wall {time.time() - T:.1f}s, end t {(t - ti) * L.TU:.4f} Gyr after start; event {e.get("kind")} '

@@ -27,8 +27,7 @@ G, K, PI, TU = L.G, L.K, L.PI, L.TU
 _TG, _TW = np.polynomial.legendre.leggauss(24)
 
 
-class HSolveError(RuntimeError):
-    pass
+HSolveError = L.HSolveError          # one exception class, so the driver records E2
 
 
 def recursive_faces(r):
@@ -94,6 +93,18 @@ class Law2:
         out[cap] = np.inf * np.sign(c[cap])
         return out
 
+    def dI(self, c, a, b):
+        """d/dc Int_a^b U(c/r^2) dr = Int_{1/b}^{1/a} U'(c t^2) dt (Gauss-Legendre in t); U'(y) = a0^2/(a0 - |y|)^2."""
+        if self.kind == 'lin':
+            return (1 / a - 1 / b)
+        ta, tb = 1 / a, 1 / b
+        tq = 0.5 * (ta + tb)[:, None] + 0.5 * (ta - tb)[:, None] * _TG[None, :]
+        wq = 0.5 * (ta - tb)[:, None] * _TW[None, :]
+        y = np.abs(c)[:, None] * tq * tq
+        with np.errstate(divide='ignore', invalid='ignore'):
+            up = np.where(y < self.a0, self.a0 ** 2 / (self.a0 - y) ** 2, np.inf)
+        return (wq * up).sum(axis=1)
+
     def EW(self, c, a, b):
         """Int_a^b W(|c|/r^2) 4 pi r^2 dr by Gauss-Legendre in t = 1/r."""
         ta, tb = 1 / a, 1 / b
@@ -135,6 +146,9 @@ def qsolve(r, m, hb, mu2K, law, alpha, Q0, tol=1e-11, maxit=80):
         return Q, h, np.zeros(J + 1), 0, 0.0
     sgn = law.sgn
     Q = Q0.copy(); Q[0] = 0.0
+    if law.kind != 'lin':                          # warm start projected inside the flux cap at the new positions
+        qcap = 0.999 * law.a0 * a * a / G
+        Q[1:] = np.clip(Q[1:], -qcap, qcap)
     k = 1.0 / (mu2K * V)                           # dh_k/dd_k
 
     def hvals(Q):
@@ -163,10 +177,7 @@ def qsolve(r, m, hb, mu2K, law, alpha, Q0, tol=1e-11, maxit=80):
         if it > 3 and err < 1e-6 and err >= 0.5 * prev:
             return Q, h, d, it, err
         prev = err
-        dq = 1e-7 * np.maximum(np.abs(Q[1:]), 1e-3 * np.abs(m[1:J]).max() + 1e-300)
-        dI = (law.I(G * (Q[1:] + dq), a, b) - law.I(G * (Q[1:] - dq), a, b)) / (2 * dq)
-        if not np.all(np.isfinite(dI)):
-            dI = (law.I(G * Q[1:], a, b) - law.I(G * (Q[1:] - dq), a, b)) / dq
+        dI = G * law.dI(G * Q[1:], a, b)
         # d(h_j - h_{j+1})/dQ: h_k = (m_k - sgn (Q_k - Q_{k-1})) k_k
         kk = k[1:J + 1].copy(); kk[-1] = 0.0           # h_J fixed
         diag = dI + sgn * k[1:J] + sgn * kk[1:]
