@@ -92,6 +92,8 @@ against 0.0354). No share at any outer radius passes the disc, filling, stabilit
 | SCS2 | is that state stable around discs? | Isolated discs STABLE / STABLE; discs in an external field NO VERDICT / NO VERDICT (reading: unstable in regions; e-folding 0.9 to 2.4 Gyr at 0.1 a0, 27 to 75 Gyr at 0.01 a0) |
 | MK1 | is there one dust constant for the CMB, clusters and galaxies? | NO VALUE / NO VALUE (does not turn on the cap; X-COP passes at no value) |
 | COL1 | does a clock that starts as infalling dust reach the static state? | BREAKS DOWN / BREAKS DOWN (a caustic at the centre; a reported diagnostic puts the charge that arrives at 1 to 4 % of the law's halo) |
+| FLD1 | does the folded region reach as far as the law is seen? | DOES NOT / DOES NOT (covers every rotation curve; 1.3 to 5.4 times short of KiDS's windows) |
+| REL1 | can the law respond to the clock's acceleration relative to the baryons? | NOT WELL-DEFINED / NOT WELL-DEFINED (matter's motion becomes fourth order and runs away) |
 | HE1 | can the share sit outside the wall as a pressure-supported envelope? | FAILS / FAILS (KiDS late-type stacks; the clusters-and-groups gate also fails as frozen, on two clusters near R500 only, and the label does not rest on it) |
 
 ## 3. What KO1 found, in plain words
