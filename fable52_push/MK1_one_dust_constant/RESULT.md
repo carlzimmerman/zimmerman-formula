@@ -4,6 +4,9 @@ Criteria b1fbded1e2 (committed alone before any script or number). AMENDMENT A1 
 committed alone before any graded number). TEST lane, quarantined. Adopts nothing, relabels nothing, registers nothing.
 Footings never pooled. kappa = 1/2 FITTED; not theory closed.
 
+Commit ids: in the shared checkout, criteria b1fbded1e2, A1 916f4e0e22, result 0ca085a0af. On origin, criteria
+11f43f9490, A1 b076803437, result 204ef24ac1.
+
 ## Label
 
 **NO VALUE / NO VALUE.** With the quadratic K(Q) of action (A), read as form B, no single mu_K is allowed by the CMB,
