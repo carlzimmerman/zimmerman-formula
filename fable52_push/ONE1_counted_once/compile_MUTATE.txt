@@ -1,0 +1,72 @@
+/fable52_push/ONE1_counted_once/ONE1_MUTATE.lean:27:4: error: linarith failed to find a contradiction
+case h2
+X x : ℝ
+hX : 0 ≤ X
+_hx : 0 ≤ x
+hs : 0 ≤ 1 / 4 + x ^ 2
+h : m x = 1 + X
+h1 : √(1 / 4 + x ^ 2) = X + 1 / 2
+h2 : (X + 1 / 2) ^ 2 = 1 / 4 + x ^ 2
+a✝ : X ^ 2 < x ^ 2
+⊢ False
+failed
+/fable52_push/ONE1_counted_once/ONE1_MUTATE.lean:30:52: error: linarith failed to find a contradiction
+case h1
+X x : ℝ
+hX : 0 ≤ X
+_hx : 0 ≤ x
+hs : 0 ≤ 1 / 4 + x ^ 2
+h : x ^ 2 = X ^ 2
+a✝ : 1 / 4 + x ^ 2 < (X + 1 / 2) ^ 2
+⊢ False
+failed
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+/fable52_push/ONE1_counted_once/ONE1_MUTATE.lean:34:83: error: unsolved goals
+X : ℝ
+hX : 0 ≤ X
+hp : 0 ≤ X * (X + 1)
+h3 : 1 / 4 + X * (X + 1) = (X + 1 / 2) ^ 2
+⊢ 1 + X = X
+/fable52_push/ONE1_counted_once/ONE1_MUTATE.lean:43:83: error: unsolved goals
+X u : ℝ
+hu : 0 < u
+hpi : 0 < Real.pi
+⊢ (1 + X) * 4 = (1 + X) * 2
+/fable52_push/ONE1_counted_once/ONE1_MUTATE.lean:57:2: error: linarith failed to find a contradiction
+X x : ℝ
+hX : 0 ≤ X
+hx : 0 ≤ x
+hin : x ≤ √(X * (X + 1))
+h1 : m x ≤ m √(X * (X + 1))
+a✝ : m x < 1 + X
+⊢ False
+failed
+/fable52_push/ONE1_counted_once/ONE1_MUTATE.lean:66:2: error: linarith failed to find a contradiction
+c : ℝ
+hc0 : 0 < c
+hc1 : c < 1
+h1 : 0 < 1 - c ^ 2
+h2 : (1 - c) / (1 - c ^ 2) = 1 / (1 + c)
+h3 : 1 / (1 + c) < 1 / (2 * c)
+a✝ : 1 / (1 + c) - 1 / (2 * c) ≤ 0
+⊢ False
+failed
+/fable52_push/ONE1_counted_once/ONE1_MUTATE.lean:75:2: error: linarith failed to find a contradiction
+aX aY bX bY : ℝ
+ha : 0 ≤ aX
+hab : aX ≤ aY
+hb : bY ≤ bX
+hbY : 0 < bY
+hbX : 0 < bX
+hd : aY / bY - aX / bX = (aY * bX - aX * bY) / (bX * bY)
+hn : 0 ≤ aY * bX - aX * bY
+hq : 0 ≤ (aY * bX - aX * bY) / (bX * bY)
+a✝ : aX / bX < aY / bY
+⊢ False
+failed
+exit 1
