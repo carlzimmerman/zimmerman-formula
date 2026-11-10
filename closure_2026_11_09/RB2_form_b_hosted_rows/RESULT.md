@@ -111,6 +111,10 @@ the bright M31 dwarfs. It also loses the low-dispersion rows that an external fi
 - rb2.py, the script. rb2_d10_copy.py is a verbatim copy of D10's solver (commit 3ac0573063) with a provenance header.
 - rb2.out and rb2.json, the main run. rb2_MUTATE.out and rb2_MUTATE.json, the twins.
 - Run commands: `OMP_NUM_THREADS=1 python3 rb2.py` and `OMP_NUM_THREADS=1 python3 rb2.py --mutate`.
-- Criteria commit: 3d752864ef (local), recorded with the origin ids below.
+- Commits, local main / origin main (local main has diverged from origin, so they were cherry-picked through a sparse
+  worktree of origin/main and pushed without force):
+  - criteria: 3d752864ef / 43988fd6a6;
+  - script, outputs and this file: 814021b340 / e62ab03ebb;
+  - this ids line: a follow-up commit, ids in its own message.
 
 kappa = 1/2 FITTED; not theory closed. Relabels nothing.
