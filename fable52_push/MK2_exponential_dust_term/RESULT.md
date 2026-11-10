@@ -8,6 +8,9 @@ Criteria 3b4f515ff8 (committed alone before any script or number). Amendments, e
 TEST lane, quarantined. Adopts nothing, relabels nothing, registers nothing. Footings never pooled. kappa = 1/2
 FITTED; not theory closed.
 
+Commit ids: in the shared checkout, criteria 3b4f515ff8, A1 5f2304176e, A2 0fe15b8cbf, A3 19f958a654, A4 9754a17af7,
+result 618c1c5aa9. On origin, 3f889227f0, 4f672f239e, 904ca798c6, 8c7d3f711b, e138a4b122, 6bbfd8697b.
+
 ## Label
 
 **NO VALUE / NO VALUE.** With L_K(Q) = (n_* x_T/K) exp((Q - 1)/x_T) in action (A), no sound speed c_s is allowed by all
