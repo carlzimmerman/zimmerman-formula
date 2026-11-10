@@ -164,8 +164,8 @@ A completion has to move a gate or bring physics from outside the catalogue.
 
 - `SCS1_static_clock_coupled_stability/` (origin c9355f4d9d, c88d6cc8dc, b3b863cb75, c54811ca3f, 0bacbb61f5,
   c025eee599; re-run by the lead: route 1, the covariant WKB script, reproduces with only timing lines differing, and
-  `SCS1.lean` recompiles with exit 0, 13 theorems, twin failing; route 2, the radial solve, takes about 2.7 hours and
-  its re-run was still going when this was written)
+  `SCS1.lean` recompiles with exit 0, 13 theorems, twin failing; route 2, the radial solve, re-run in about an hour:
+  every label identical and every eigenvalue equal to better than one part in a million; the stiffness output identical)
 
 Lean: the Mathlib build these files were first compiled with (in a copy of the repository) was removed from the machine
 on the evening of 2026-11-09. A build has been inside the repository's own `fable_independent_2026/lean_2026` since
