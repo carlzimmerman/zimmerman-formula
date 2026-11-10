@@ -158,6 +158,26 @@ validated against.
 
 The frozen reading (NO VERDICT) leads the Part C label.
 
+### Part C commits
+
+| commit | local `main` | origin/main |
+|---|---|---|
+| FROZEN_CRITERIA_PARTC.md, alone | 190161a7f7 | db48ac5e6b |
+| AMENDMENT_C1.md, alone (post hoc) | fe976ca7d3 | 79da5ce150 |
+| AMENDMENT_C2.md, alone (post hoc) | 2fd0710da0 | c72f10e008 |
+| AMENDMENT_C3.md, alone (post hoc) | a5d8d7f322 | ce79195762 |
+| Part C scripts, outputs, this section | a7d9eb7aaa | 2d946750eb |
+| this table | the commit that adds it | its replay, the last KL1 commit on origin |
+
+**Part C files**
+- `kl1c_gas.py`: C1's conversion and layouts, C2, KC3, KC4, MC1, MC2.
+- `kl1c_ia.py`: C3's prior from the chain; run with `python3 -I`.
+- `kl1c.py <footing> <legacy|deskids> <release>`: the rows; run with `python3 -I`.
+- `kl1c_mc1b.py`
+- `kl1c_kc1diag.py`
+- `kl1c_polish.py <footing>`
+- `kl1c_grade.py`: writes `kl1c.json` and `kl1c.out`.
+
 ### Part C limits
 
 - **C1** rests on one stack bin and a halo choice that dominates it.
