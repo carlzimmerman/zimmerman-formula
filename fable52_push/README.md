@@ -189,7 +189,9 @@ A completion has to move a gate or bring physics from outside the catalogue.
   lead: the label re-derived from the run outputs is BREAKS DOWN in every row, `COL1.lean` recompiles with exit 0, 13
   theorems, twin failing; the evolution runs themselves were not re-run)
 - `DT1_dust_term_design/` (a design note, not a lane, hand-level: what any dust term must do and an exponential
-  candidate; origin 136f7cc8c2; to be graded by MK2)
+  candidate; origin 136f7cc8c2; to be graded by MK2. `ACTION.md` there writes out one full candidate action: action (A)
+  with the exponential dust term, the constant Lambda replaced by a field chi, and a0 = kappa sqrt(G V(chi)). It is a
+  candidate only: no gate passed, equations by hand)
 
 Lean: the Mathlib build these files were first compiled with (in a copy of the repository) was removed from the machine
 on the evening of 2026-11-09. A build has been inside the repository's own `fable_independent_2026/lean_2026` since
