@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build PAPER72's supplement: every committed file of the lanes the paper cites (KO2, RB1, RB2, CO1, PD1, PD2, the owner's decision and the re-run record
+"""Build PAPER72's supplement: every committed file of the lanes the paper cites (KO2, RB1, RB2, CO1, CO2, PD1, PD2, the owner's decision and the re-run record
 under closure_2026_11_09/; HE1, ONE1, TPA1, FB1, KO3F under fable52_push/), as one zip, with a manifest.
 The shared checkout has diverged from origin (PD1 and PD2 are committed on origin only), so each lane path is taken from whichever
 of HEAD and origin/main last committed to it; the manifest records the ref and commit for each. Untracked files are not included
@@ -17,6 +17,7 @@ PATHS = [
  "closure_2026_11_09/PD1_phantom_is_dust",
  "closure_2026_11_09/PD2_sheet_captured_phantom_dust",
  "closure_2026_11_09/CO1_form_b_cosmology_computed",
+ "closure_2026_11_09/CO2_form_b_amplitude_pinned",
  "closure_2026_11_09/OWNER_DECISION_2026-11-09_FINAL_FORM_B.md",
  "closure_2026_11_09/RERUNS_2026-11-09.md",
  "fable52_push/HE1_held_out_envelope",
