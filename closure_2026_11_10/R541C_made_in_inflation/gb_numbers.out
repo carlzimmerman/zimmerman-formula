@@ -1,0 +1,106 @@
+=== GC0 dilution (no source) ===
+  N_e =  0: physical charge density x exp(-3 N_e) = 1.000e+00   (KA6: no dilution)
+  N_e = 50: physical charge density x exp(-3 N_e) = 7.175e-66
+  N_e = 60: physical charge density x exp(-3 N_e) = 6.714e-79
+  N_e = 70: physical charge density x exp(-3 N_e) = 6.283e-92
+
+=== GC1 numerical check of the identity through inflation -> radiation -> matter (H_I = 1, a_end = 1) ===
+  ln a =  -60: a^3 n/gamma =  0.000000e+00   identity 8[(aH)^3 - (aH)^3_start] =  0.000000e+00   n/(8 gamma H^3) =  0.000000
+  ln a =  -30: a^3 n/gamma =  6.555210e-39   identity 8[(aH)^3 - (aH)^3_start] =  6.555210e-39   n/(8 gamma H^3) =  1.000000
+  ln a =   -5: a^3 n/gamma =  2.447219e-06   identity 8[(aH)^3 - (aH)^3_start] =  2.447219e-06   n/(8 gamma H^3) =  1.000000
+  ln a =    0: a^3 n/gamma =  2.828431e+00   identity 8[(aH)^3 - (aH)^3_start] =  2.828431e+00   n/(8 gamma H^3) =  1.000000
+  ln a =    2: a^3 n/gamma =  1.982026e-02   identity 8[(aH)^3 - (aH)^3_start] =  1.982026e-02   n/(8 gamma H^3) =  1.000000
+  ln a =    5: a^3 n/gamma =  2.447739e-06   identity 8[(aH)^3 - (aH)^3_start] =  2.447763e-06   n/(8 gamma H^3) =  0.999990
+  ln a =   10: a^3 n/gamma = -2.365117e-11   identity 8[(aH)^3 - (aH)^3_start] =  7.734794e-13   n/(8 gamma H^3) = -30.577633
+  ln a =   14: a^3 n/gamma = -2.442463e-11   identity 8[(aH)^3 - (aH)^3_start] =  1.503580e-17   n/(8 gamma H^3) = -1624432.173533
+  ln a =   20: a^3 n/gamma = -2.442465e-11   identity 8[(aH)^3 - (aH)^3_start] =  7.509255e-22   n/(8 gamma H^3) = -32526059107.114185
+  ln a =   25: a^3 n/gamma = -2.442465e-11   identity 8[(aH)^3 - (aH)^3_start] =  4.140530e-25   n/(8 gamma H^3) = -58989179250302.570312
+  late a^3 n/gamma at ln a = 25: -2.442e-11 = -8.64e-12 of the peak 8 (aH)^3_end = 2.8284; identity says  4.141e-25
+    rtol 1e-08: late value  5.977e-12 (sign and size move with the tolerance and stay ~1e-12 of the peak: integration error, not a lasting charge)
+    rtol 1e-12: late value -3.335e-12 (sign and size move with the tolerance and stay ~1e-12 of the peak: integration error, not a lasting charge)
+  => the lasting comoving charge made by the term is zero to the integrator's accuracy; the only lasting piece is the pre-inflation offset C = a_i^3 (n_i - 8 gamma H_I^3), diluted by e^(-3 N_e)
+  MU1b switched coupling (off at a_end): lasting a^3 n/gamma = 2.7632  (8 (aH)^3 at a_end = 2.8284 in this smooth history: the gate moves; a lasting charge appears only with a switch, a new ingredient)
+
+=== GC1 Arm I: what R the plain term gives, and what it would need ===
+ [canonical] H0 = 2.1843e-18 /s, Omega_d = 0.2661, R target 5.41
+   lasting dust from the term = 0 + (pre-inflation offset) x e^(-3 N_e): R_term = 0 for every gamma, H_I, T_reh; R stays the free constant C / rho_b0 (one constant, as before; gamma adds none to dust)
+   most generous reading 8 gamma H0^3 = rho_d0 -> ell_A = 3 Omega_d/(16 H0) = 2.2845e+16 s = 222.0 Mpc
+ GC3 cold at ell_A: the term's density n_GB = 8 gamma H^3; w_eff = -1 - dlnH/dlna
+   w_eff at z 3400 = 0.749 vs line <= 0.01 -> factor 75; matter era w = 1/2, radiation w = 1; MU3: an a^-3 component gives w = 0.0
+   net Friedmann contribution of the term = -16 gamma H^3 = -2 x rho_d0 today at ell_A: NEGATIVE energy
+ GC5 tensor speed: c_T^2 = (1 + 16 ell Qdot)/(1 + 16 ell H Q), Q ~ 1, Qdot ~ 0
+   ell_A          : c_T - 1 = -2.5432e-01
+   ell_A/2 (MU4)  : c_T - 1 = -1.5461e-01
+   ell -> 0 (MU4) : c_T - 1 =  0.0000e+00
+   at ell_A: |c_T - 1| / |bound -3e-15| = 8.48e+13
+   GW170817 allows ell <= 1.717e+02 s = 5.147e+10 m (ell > 0) and |ell| <= 1.201e+10 m (ell < 0)
+ GC2 local: flux F = int 4 pi r^2 gamma G_GB dr = 16 ell G M^2 / (c r_min^3) [kg/s]; mass inside r >= F r / c
+   at ell_A = 6.849e+24 m:
+     Sun                    r_min 6.957e+08 m: charge made per Gyr = 4.548e+27 Msun (4.548e+27 M)
+     neutron star 1.4 Msun  r_min 1.200e+04 m: charge made per Gyr = 1.737e+42 Msun (1.241e+42 M)
+     10 Msun black hole     r_min 2.954e+04 m: charge made per Gyr = 5.940e+42 Msun (5.940e+41 M)
+     Sgr A* 4.3e6 Msun      r_min 1.270e+10 m: charge made per Gyr = 1.381e+37 Msun (3.213e+30 M)
+     Sun: charge inside Saturn's orbit >= 6.889e+14 Msun vs ephemeris 1e-10 -> factor 6.89e+24
+   at ell_GW = 5.147e+10 m:
+     Sun                    r_min 6.957e+08 m: charge made per Gyr = 3.417e+13 Msun (3.417e+13 M)
+     neutron star 1.4 Msun  r_min 1.200e+04 m: charge made per Gyr = 1.305e+28 Msun (9.323e+27 M)
+     10 Msun black hole     r_min 2.954e+04 m: charge made per Gyr = 4.464e+28 Msun (4.464e+27 M)
+     Sgr A* 4.3e6 Msun      r_min 1.270e+10 m: charge made per Gyr = 1.038e+23 Msun (2.414e+16 M)
+     Sun: charge inside Saturn's orbit >= 5.177e+00 Msun vs ephemeris 1e-10 -> factor 5.18e+10
+   at ell_A/2 (MU2) = 3.424e+24 m:
+     Sun                    r_min 6.957e+08 m: charge made per Gyr = 2.274e+27 Msun (2.274e+27 M)
+     neutron star 1.4 Msun  r_min 1.200e+04 m: charge made per Gyr = 8.684e+41 Msun (6.203e+41 M)
+     10 Msun black hole     r_min 2.954e+04 m: charge made per Gyr = 2.970e+42 Msun (2.970e+41 M)
+     Sgr A* 4.3e6 Msun      r_min 1.270e+10 m: charge made per Gyr = 6.907e+36 Msun (1.606e+30 M)
+     Sun: charge inside Saturn's orbit >= 3.444e+14 Msun vs ephemeris 1e-10 -> factor 3.44e+24
+   MU2: doubling r_min divides the Sun's flux by 8.0 (expect 8)
+   ephemeris bound on |ell| (Sun, crude): <= 9.942e-01 m
+   density at 1 AU (outflow at c) at that ell: 7.290e+03 Msun/pc^3 vs local 0.01 (indicative)
+ GC5 reported: the net term vs radiation at BBN (T = 1 MeV) and its size in inflation, at the GW-allowed ell
+   H(1 MeV) = 0.677 /s; |net term|/rho_tot = (32/3) ell H = 1.240e+03 (indicative line 0.05) -> BBN bound |ell| <= 2.075e+06 m
+ Reported only: switched coupling (MU1b-type) R = 8 gamma H_I^3 (a_end/a_0)^3 / rho_b0, instant reheating
+   H_I 1e+13 GeV (T_reh 2.67e+15 GeV): ell_switch = 8.148e-55 m; constants: gamma, H_I, T_reh, switch -> at least 2 fitted beyond the history; no natural value
+   H_I 1e+10 GeV (T_reh 8.44e+13 GeV): ell_switch = 2.577e-50 m; constants: gamma, H_I, T_reh, switch -> at least 2 fitted beyond the history; no natural value
+   H_I 1e+05 GeV (T_reh 2.67e+11 GeV): ell_switch = 8.148e-43 m; constants: gamma, H_I, T_reh, switch -> at least 2 fitted beyond the history; no natural value
+ [alt] H0 = 2.1843e-18 /s, Omega_d = 0.2661, R target 5.412
+   lasting dust from the term = 0 + (pre-inflation offset) x e^(-3 N_e): R_term = 0 for every gamma, H_I, T_reh; R stays the free constant C / rho_b0 (one constant, as before; gamma adds none to dust)
+   most generous reading 8 gamma H0^3 = rho_d0 -> ell_A = 3 Omega_d/(16 H0) = 2.2845e+16 s = 222.0 Mpc
+ GC3 cold at ell_A: the term's density n_GB = 8 gamma H^3; w_eff = -1 - dlnH/dlna
+   w_eff at z 3400 = 0.749 vs line <= 0.01 -> factor 75; matter era w = 1/2, radiation w = 1; MU3: an a^-3 component gives w = 0.0
+   net Friedmann contribution of the term = -16 gamma H^3 = -2 x rho_d0 today at ell_A: NEGATIVE energy
+ GC5 tensor speed: c_T^2 = (1 + 16 ell Qdot)/(1 + 16 ell H Q), Q ~ 1, Qdot ~ 0
+   ell_A          : c_T - 1 = -2.5432e-01
+   ell_A/2 (MU4)  : c_T - 1 = -1.5461e-01
+   ell -> 0 (MU4) : c_T - 1 =  0.0000e+00
+   at ell_A: |c_T - 1| / |bound -3e-15| = 8.48e+13
+   GW170817 allows ell <= 1.717e+02 s = 5.147e+10 m (ell > 0) and |ell| <= 1.201e+10 m (ell < 0)
+ GC2 local: flux F = int 4 pi r^2 gamma G_GB dr = 16 ell G M^2 / (c r_min^3) [kg/s]; mass inside r >= F r / c
+   at ell_A = 6.849e+24 m:
+     Sun                    r_min 6.957e+08 m: charge made per Gyr = 4.548e+27 Msun (4.548e+27 M)
+     neutron star 1.4 Msun  r_min 1.200e+04 m: charge made per Gyr = 1.737e+42 Msun (1.241e+42 M)
+     10 Msun black hole     r_min 2.954e+04 m: charge made per Gyr = 5.940e+42 Msun (5.940e+41 M)
+     Sgr A* 4.3e6 Msun      r_min 1.270e+10 m: charge made per Gyr = 1.381e+37 Msun (3.213e+30 M)
+     Sun: charge inside Saturn's orbit >= 6.889e+14 Msun vs ephemeris 1e-10 -> factor 6.89e+24
+   at ell_GW = 5.147e+10 m:
+     Sun                    r_min 6.957e+08 m: charge made per Gyr = 3.417e+13 Msun (3.417e+13 M)
+     neutron star 1.4 Msun  r_min 1.200e+04 m: charge made per Gyr = 1.305e+28 Msun (9.323e+27 M)
+     10 Msun black hole     r_min 2.954e+04 m: charge made per Gyr = 4.464e+28 Msun (4.464e+27 M)
+     Sgr A* 4.3e6 Msun      r_min 1.270e+10 m: charge made per Gyr = 1.038e+23 Msun (2.414e+16 M)
+     Sun: charge inside Saturn's orbit >= 5.177e+00 Msun vs ephemeris 1e-10 -> factor 5.18e+10
+   at ell_A/2 (MU2) = 3.424e+24 m:
+     Sun                    r_min 6.957e+08 m: charge made per Gyr = 2.274e+27 Msun (2.274e+27 M)
+     neutron star 1.4 Msun  r_min 1.200e+04 m: charge made per Gyr = 8.684e+41 Msun (6.203e+41 M)
+     10 Msun black hole     r_min 2.954e+04 m: charge made per Gyr = 2.970e+42 Msun (2.970e+41 M)
+     Sgr A* 4.3e6 Msun      r_min 1.270e+10 m: charge made per Gyr = 6.907e+36 Msun (1.606e+30 M)
+     Sun: charge inside Saturn's orbit >= 3.444e+14 Msun vs ephemeris 1e-10 -> factor 3.44e+24
+   MU2: doubling r_min divides the Sun's flux by 8.0 (expect 8)
+   ephemeris bound on |ell| (Sun, crude): <= 9.942e-01 m
+   density at 1 AU (outflow at c) at that ell: 7.290e+03 Msun/pc^3 vs local 0.01 (indicative)
+ GC5 reported: the net term vs radiation at BBN (T = 1 MeV) and its size in inflation, at the GW-allowed ell
+   H(1 MeV) = 0.677 /s; |net term|/rho_tot = (32/3) ell H = 1.240e+03 (indicative line 0.05) -> BBN bound |ell| <= 2.075e+06 m
+ Reported only: switched coupling (MU1b-type) R = 8 gamma H_I^3 (a_end/a_0)^3 / rho_b0, instant reheating
+   H_I 1e+13 GeV (T_reh 2.67e+15 GeV): ell_switch = 8.144e-55 m; constants: gamma, H_I, T_reh, switch -> at least 2 fitted beyond the history; no natural value
+   H_I 1e+10 GeV (T_reh 8.44e+13 GeV): ell_switch = 2.575e-50 m; constants: gamma, H_I, T_reh, switch -> at least 2 fitted beyond the history; no natural value
+   H_I 1e+05 GeV (T_reh 2.67e+11 GeV): ell_switch = 8.144e-43 m; constants: gamma, H_I, T_reh, switch -> at least 2 fitted beyond the history; no natural value
+
+written gb_numbers.json
