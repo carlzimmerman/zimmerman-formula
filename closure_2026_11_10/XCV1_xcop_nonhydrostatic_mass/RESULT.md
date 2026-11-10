@@ -146,8 +146,8 @@ Nothing was downloaded. The Sohn+2020 and Serra+2011 texts were read by WebFetch
 
 | commit | local `main` | origin/main (replayed with merge-tree + commit-tree) |
 |---|---|---|
-| FROZEN_CRITERIA.md, alone | 88ad74dd17 | (filled in below) |
-| AMENDMENT_A1.md, alone (post hoc) | 4010867a6f | |
-| xcv1.py, outputs, RESULT.md | | |
+| FROZEN_CRITERIA.md, alone | 88ad74dd17 | 4743be685f |
+| AMENDMENT_A1.md, alone (post hoc) | 4010867a6f | b38d112dd1 |
+| xcv1.py, outputs, RESULT.md | c4c2567692 | f31aa2b717 |
 
 kappa = 1/2 FITTED; not theory closed. Adopts nothing. Relabels nothing.
