@@ -1,9 +1,9 @@
 # fable52_push: one swing at completion (2026-11-09)
 
 Adopts nothing. kappa = 1/2 FITTED; not theory closed. Nothing here is registered in the closure record.
-Paper: PAPER71 v1.0, deposited 2026-11-09, DOI 10.5281/zenodo.24094860
-(`qwen_claude_field_theory/papers_2026/PAPER71_switch_theorems_kids_outer_points_2026.pdf`; the deposit's supplement zip holds
-this folder at c6689541ee).
+Paper: PAPER71. v1.0 deposited 2026-11-09, DOI 10.5281/zenodo.24094860; v1.1 adds one disclosure sentence
+(`qwen_claude_field_theory/papers_2026/PAPER71_switch_theorems_kids_outer_points_2026.pdf`; each deposit's supplement zip
+holds this folder at the commit its manifest names).
 
 ## Answer first
 
@@ -92,7 +92,7 @@ A completion has to move a gate or bring physics from outside the catalogue.
 - Two mutation arms did not bite as frozen; both are disclosed in their lanes and neither label uses them. SWT1's M-WP
   (pressure / 100) has no power once the gate clears, and a x100 arm was added. GAL1's M-SIGN required growth to drop in
   bins that lie before one history's switch-on, where no boost exists. PAPER71 v1.0 says each lane has a mutation twin that
-  must fail and does not list these two; a v1.1 should carry the sentence.
+  must fail and does not list these two; v1.1 carries the sentence.
 
 ## Files
 
