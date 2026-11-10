@@ -33,8 +33,8 @@ TEST lane, quarantined. Adopts nothing, relabels nothing, registers nothing. Foo
 cold dark energy (clock dust plus the law's halo), never a particle. Per the frozen stop rule, A3 (turnaround), A5
 (MK1's rows) and Part B were not graded. A2, the A4 weight W, A6 and the brackets are reported.
 
-Commits (local / origin): criteria d88d310eb1 / ORIGIN_CRITERIA (alone, before any script or number); result
-LOCAL_RESULT / ORIGIN_RESULT.
+Commits (local / origin): criteria d88d310eb1 / 512e4e1f7f (alone, before any script or number); result
+4b63dfc169 / 622bd80344.
 
 ## Table (canonical / alt where they differ; primary values unless a bracket is named)
 
