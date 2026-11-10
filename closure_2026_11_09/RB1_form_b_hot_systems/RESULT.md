@@ -143,6 +143,11 @@ from below. f_ret < 1 is read as baryons lost, and nothing on disk measures wher
 thread, 45 s, peak RSS 1.4 GB. Other lanes' code is copied, not imported: PD1's machinery, SS1's halo, HL3's X-COP builder, HG1's
 KT2017 builder and UX6's Bullet model with DB1's placement.
 
-Commit ids are recorded below after the push.
+| commit | local `main` (diverged from origin; not pushed) | origin/main (replayed in a sparse temporary worktree) |
+|---|---|---|
+| FROZEN_CRITERIA.md, alone | ef53f5512f | c56c36eaa5 |
+| AMENDMENT_A1.md, alone (post hoc) | 12504fe611 | 41cfd366fb |
+| rb1.py, outputs, RESULT.md | aef9c01bbe | 975f29f002 |
+| this table | the commit that adds it | its replay, the last RB1 commit on origin |
 
 kappa = 1/2 FITTED; not theory closed. Relabels nothing.
