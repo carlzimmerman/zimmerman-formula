@@ -5,6 +5,11 @@ Nothing below was derived by a certified variation; the equations marked "hand" 
 the owner's request for one action that is meant to explain the CMB, structure growth, and the a0 relation with a
 dynamical dark energy. Read `DESIGN.md` first for the dust term and `../CLOSURE.md` for why action (A) cannot be completed.
 
+**Added 2026-11-10 evening: the dust term of this action has been graded and fails.** MK2
+(`../MK2_exponential_dust_term/RESULT.md`, origin 6bbfd8697b): NO VALUE / NO VALUE; clusters and groups pass at no sound
+speed. So this action, as written, fails on clusters. The dark-energy field and a0(chi) below were not graded by MK2.
+The text is left as written.
+
 ## 1. The action
 
 Units c = 1, K = 4 pi G, signature and symbols as in QX17 (`closure_2026_11_06/QX17_covariant_field_equations/RESULT.md`):
