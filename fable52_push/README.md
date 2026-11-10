@@ -13,9 +13,10 @@ they are frozen.
 
 **What this folder does close: one whole class of completion.** Every switch on the law that comes from an action (the
 "two-phase" reading: law inside cleared regions around galaxies, cold component elsewhere) now has a failing verdict on
-each of its exits. Six lanes carry it: SWT1 (theorems), EMV1 and GAL1 (the lensing allowance, checked twice), KO1 with its
-blind regrade KO1R (KiDS's outer points), and SNP1 (clearing dynamics). The Lean files hold 72 theorems, standard axioms
-only, each file with a twin of false statements that fails.
+each of its exits. Seven lanes carry it: SWT1 (theorems), EMV1 and GAL1 (the lensing allowance, checked twice), KO1 with
+its blind regrade KO1R (KiDS's outer points), SNP1 (clearing dynamics), and HE1 (the one static construction the theorems
+left room for). The Lean files hold 92 theorems, standard axioms only, each file with a twin of false statements that
+fails.
 
 **Owner decision, 2026-11-09 (21:33): the record closes on form B**, the a0 law with cold dark energy counted once (the
 law is how the component sits around galaxies, not a second force). It is chosen as a form, not as a pass, and changes no
@@ -28,6 +29,16 @@ label here. The decision, its gate table and its eight open items are in
   The look is not a verdict: with PD1's share of 59.5 M_b the host-free shape ratio is 1.0 to 2.1 sigma from KO1's
   (canonical), the law as the lens's own field is 1.4 to 4.2 sigma away, and one share does not fit late and early
   types together.
+- `FB1_form_b_from_the_action/` is a note, not a lane. In the adopted action the law's halo is already the khronon
+  sector's own gravitating density on one conserved current, and for a static clock the law sector's stress holds it in
+  the law's shape (the action's static force balance; it holds for any law of this type, so it is not evidence for this
+  one). The theory is still not complete: no single dust term serves the CMB and galaxies, the collapse to the static
+  state is not computed, and clusters cannot be a static-clock state.
+- Form B's regrade lanes run in another session under `closure_2026_11_09/`, quoted here as their result files write
+  them. RB1 (groups, X-COP, the Bullet): NOT FALSIFIED (ONE-SIDED) on both footings, never a pass. RB2 (hosted dwarfs):
+  B FAILS ON THE HOSTED ROWS on both footings (Milky Way ultra-faints and bright M31 dwarfs sit high; Coma's diffuse
+  galaxies and the Milky Way classical dwarfs are consistent). KO2 (own lensing field by type): NO VERDICT / NO VERDICT
+  as frozen when this was written.
 
 ## 1. The class and its exits
 
@@ -44,6 +55,13 @@ Lighter neighbours are counted (KO1 E8): with the record's share each they add a
 host-free lens's outer bins. The margin of exit C against the energetic gate alone is thin at the frozen veto radius (4.1
 shares needed against 3.8 cleared, canonical); against the dynamics it is not.
 
+HE1 built the static version of exits B and C exactly: the share held outside the wall as an isothermal envelope in
+pressure balance with it. The envelope exists for every mass and share in the record, is stable, leaves discs alone and
+fills 0.2 % of space or less. It fails KiDS's late-type stacks. They sit near 1.5 of the law at 0.16 to 0.38 of the
+measured range, so the wall would have to reach about 0.38 of the range for every lens, and any outer radius that does
+that for the heavier lenses pushes the low-mass walls past the whole range and breaks the filling line (0.18 to 0.66
+against 0.0354). No share at any outer radius passes the disc, filling, stability and KiDS gates together.
+
 ## 2. The lanes
 
 | Lane | Question | Label (canonical / alt) |
@@ -54,6 +72,7 @@ shares needed against 3.8 cleared, canonical); against the dynamics it is not.
 | KO1 | are KiDS's outer points the lens's own field? | LAW LEVEL HOLDS / LAW LEVEL HOLDS by the frozen gate |
 | KO1R | blind regrade of KO1 from its criteria alone | NOT SEPARATED / LAW LEVEL HOLDS (518 tied lenses; knife edge) |
 | SNP1 | can the wall pressure clear the component and keep it out? | FAILS / FAILS |
+| HE1 | can the share sit outside the wall as a pressure-supported envelope? | FAILS / FAILS (KiDS late-type stacks; the groups gate also fails as frozen, and the label does not rest on it) |
 
 ## 3. What KO1 found, in plain words
 
@@ -120,7 +139,13 @@ A completion has to move a gate or bring physics from outside the catalogue.
 - `SNP1_snowplow_clearing/` (origin 25b134be31, 8466e3da4a, 93e2340522)
 - `KO3F_spec_veto_power_forecast/` (a forecast, not a lane: no criteria, no label; origin a0b26945fa)
 - `ONE1_counted_once/` (pre-freeze note on origin 8f6dca9ec1; the lane itself is running in another session)
-- `HE1_held_out_envelope/` and `TPA1_two_phase_action/`: lanes still running in other sessions; no verified result yet.
+- `HE1_held_out_envelope/` (origin 91d343f150, ab52b18eda, d6c99b61de, 5137d5e374; re-run by the lead: both labels and
+  every number in `he1.json` reproduce, only timing lines differ)
+- `FB1_form_b_from_the_action/` (a note with one check; origin 2ddd61d529, bae0096600)
+- `TPA1_two_phase_action/`: still running in another session; no verified result yet.
+
+Lean: the Mathlib build these files were compiled with was removed from the machine at about 21:50 on 2026-11-09. Every
+compile output listed above was made before that. A Lean file written after it is marked as not compiled in its lane.
 
 Each folder has FROZEN_CRITERIA.md, any amendments, the scripts with their outputs and MUTATE outputs, RESULT.md, and (except
 GAL1 and KO1R) a Lean file with its compile output and a mutate twin.
