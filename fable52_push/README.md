@@ -199,8 +199,13 @@ A completion has to move a gate or bring physics from outside the catalogue.
   with exit 0, 10 theorems, twin failing; no row was re-run)
 - `FLD1_fold_reach/` (origin bce6d61451) and `REL1_relative_acceleration/` (origin 6db345c60e): result files read by
   the lead, not re-run
-- `SHAPE_search/`: uncommitted notes from read-only attempts to derive the law's shape for the cold component; none is
-  a result
+- `SHAPE_search/` (origin aaab11ddf2): notes from four read-only attempts to derive the law's shape for the cold
+  component. None is a derivation; none is a lane
+- `SHP1_cold_component_shape/` (origin 0ec459706c, 5f5b23f92a, cb73805783; a measurement lane run from another session;
+  result file read by the lead, not re-run): THE LAW'S SHAPE ON ROTATION CURVES, LENSING ABOVE; NOT ONE SHAPE. Everything
+  that is not baryons follows X(x) = (sqrt(1 + 4x^2) - 1)/2 on SPARC within 0.057 / 0.021 dex in every bin; KiDS's
+  published isolated lenses sit 1.40 / 1.28 times the law (below it if B21's hot gas is counted as baryons); KiDS's
+  lowest-mass bin sits apart. Its `THEORY.md` is a note, not a result
 
 Lean: the Mathlib build these files were first compiled with (in a copy of the repository) was removed from the machine
 on the evening of 2026-11-09. A build has been inside the repository's own `fable_independent_2026/lean_2026` since
