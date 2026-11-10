@@ -70,7 +70,10 @@ What any such equation must do, as the record measured it:
 
 Where each part is being worked:
 
-- **TK1** (θ-keyed dust, running in the Carbon chat) takes requirements 1-2.
+- **TK1** (dust keyed on the clock's expansion theta) landed while this note was written (origin 87fd33a27b):
+  **BREAKS AT TURNAROUND.** It meets requirement 1, with a margin of 1.19 on the Jeans line. But every collapsing region
+  passes through small theta, and there short waves grow without bound and the region never turns around: no bound
+  structure forms. Any key on theta alone has to pass the same point.
 - **MK2's sound speed** gets requirement 3 above about 500 km/s, but fails clusters and groups.
 - Requirement 4 has no lane.
 

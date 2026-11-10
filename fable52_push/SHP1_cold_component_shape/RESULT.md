@@ -160,7 +160,9 @@ calibration) than as a separate cold halo. With hot gas, nothing of the law's sh
 
 ## Commit ids
 
-Shared checkout: criteria db5f7da07b; result: see `git log -- fable52_push/SHP1_cold_component_shape`. Origin: filled
-in after the push.
+| | shared checkout | origin |
+|---|---|---|
+| criteria | db5f7da07b | 0ec459706c |
+| result | dbd2fcff27 | 5f5b23f92a |
 
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
