@@ -37,8 +37,8 @@ cluster.
 TEST lane, quarantined. Adopts nothing, relabels nothing, registers nothing. Footings never pooled. The share
 (dust / M_b) of any profile is reported, never graded (that is XCV1's row).
 
-Commits (local / origin): criteria 0a30eac556 / CRIT_ORIGIN (alone, before any script or number); result
-RESULT_LOCAL / RESULT_ORIGIN. No amendment.
+Commits (local / origin): criteria 0a30eac556 / 6a37042af2 (alone, before any script or number); result
+9368f3fe1c / 0dba08ca7f. No amendment.
 
 ## Table (two-error HSE envelope; canonical || alt; mu_K per Mpc, physical)
 
