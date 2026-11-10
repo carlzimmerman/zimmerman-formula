@@ -99,3 +99,4 @@ def zindex(zarr, z):
     j = int(np.argmin(np.abs(zarr - z))); assert abs(zarr[j] - z) < 1e-6, (z, zarr[j]); return j
 
 kappa_note = "kappa = 1/2 FITTED; not theory closed. Adopts nothing."
+# kappa = 1/2 FITTED; not theory closed. Adopts nothing.
