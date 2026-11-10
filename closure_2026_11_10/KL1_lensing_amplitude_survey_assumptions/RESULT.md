@@ -22,6 +22,150 @@ S0 box; inherited halo list. TEST lane: relabels nothing, adopts nothing, not re
 closed.** Cold dark energy, never a particle. Footings never pooled; they agree to a few hundredths of a width everywhere.
 CO2's label is unchanged.
 
+## Part C (2026-11-10): the remaining gap
+
+### Part C label (canonical / alt)
+
+- **As frozen: NO VERDICT / NO VERDICT.** The MUTATE arm MC1 does not bite. Moving the stack's gas with f = 0.2 changes R_tot at
+  k 1 by only -0.002, against a line of 0.02. On alt, KC1 also fails on DES Y3: the replay is 64.598 against Part A's 64.703.
+- **Under AMENDMENTS C1 + C2 + C3 (post hoc): GAP STAYS / GAP STAYS, driven by DES Y3.** Every survey's fit is acceptable.
+
+| survey | gap (widths) | p | reading |
+|---|---|---|---|
+| KiDS-Legacy | **1.71 / 1.88** (2.06 / 2.23 with ln det) | 0.26 / 0.24 | **CONSISTENT** |
+| DES Y3, polished scan | **2.18 / 2.23** | 0.28 | **GAP STAYS** |
+| DES Y3, frozen scan | 2.89 / 2.82 | 0.28 | GAP STAYS |
+| KiDS-1000 (reported) | 3.72 / 3.85 | 0.059 / 0.057 | GAP STAYS |
+
+- **C3 does not take Legacy's reading away.** With Legacy's own mass-dependent alignment under its own prior (C3b), Legacy reads
+  gap 1.57 / 1.83, p 0.25 / 0.24: CONSISTENT.
+- **The gate:** C0 (the box's draw corrected, R1) + C2 (the cold component's slow-loss response) on Part A / B's ALL settings,
+  with the covariance at the model.
+- **C1 (gas from the kSZ stack) is a BRACKET** by the frozen rule, and it barely moves anything.
+- **The remaining gap is now the size of our own model's realisation noise.** The two independent 200 Mpc/h runs, spliced in
+  below k 0.5 (C0's edges R2 and R2b), put DES at 1.31 / 1.27 against 3.49 / 3.43 widths, and Legacy at 1.17 / 1.36 against
+  1.92 / 2.09. The single box is now the limiting assumption, not the surveys'.
+
+Every Part C reading carries: for form B with the neutrino floor, RB1's gas with the cold component's slow-loss response, the box's
+draw corrected (R1), and the covariance at the model; gravity-only S0 box; inherited halo list. Parts A and B are not relabelled.
+kappa = 1/2 FITTED; not theory closed.
+
+### What each piece did (gap in each survey's widths, canonical / alt)
+
+| step | KiDS-Legacy | DES Y3 | KiDS-1000 |
+|---|---|---|---|
+| base (Part B BALL / Part A ALL) | 2.13 / 2.30 | 2.83 / 3.02 (polished: 2.81 / 2.85) | 3.95 / 4.06 |
+| **C0** box's draw, R1 | 1.93 / 2.10 (chi^2 -10.4: p 0.11 -> 0.24) | 2.85 / 1.81 (width unstable, see C3) | 3.90 / 4.02 |
+| C0 edges R1b; R2; R2b | 1.94 / 2.11; 1.40 / 1.61; 2.14 / 2.31 | 2.85 / 1.92; 1.32 / 1.14; 3.52 / 3.52 | 3.90 / 4.02; 3.58 / 3.71; 3.98 / 4.10 |
+| **C2** slow-loss response alone | 1.91 / 2.08 | 2.81 / 3.81 (unstable) | 3.78 / 3.90 |
+| **GATE = C0 + C2** | **1.71 / 1.88** | 2.89 / 2.82; **polished 2.18 / 2.23** | **3.72 / 3.85** |
+| gate edges R2; R2b | 1.17 / 1.36; 1.92 / 2.09 | 1.31 / 1.27; 3.49 / 3.43 | 3.37 / 3.53; 3.81 / 3.93 |
+| gate, covariance rest gamma 0; gamma 3 (p, each canonical / alt) | 0.254 / 0.238; 0.254 / 0.238 | 0.271 / 0.273; 0.286 / 0.288 | 0.052 / 0.049; 0.057 / 0.055 |
+| BRACKET C1a (stack, layout's SHMR) | 1.63 / 1.79 | 2.87 / 2.87 | 3.65 / 3.77 |
+| BRACKET C1b (stack, Zhang's R_vir) | 1.66 / 1.82 | 2.87 / 2.84 | 3.68 / 3.80 |
+| C3a alignment held at Legacy's prior mean | 1.76 / 1.97 | | |
+| **C3b Legacy's own alignment, own prior** | **1.57 / 1.83** | | |
+| C3c held at the chain's posterior mean (context) | 1.83 / 2.04 | | |
+
+**C0, the box's draw.**
+- Correcting the S0 run's high draw at k 0.2 mainly fixes the *shape*. Legacy's chi^2 falls by 10.4 at the target, but its
+  preferred sigma8 moves only +0.0025.
+- The two independent long-mode splices disagree with each other more than any piece of this lane moves the gap.
+
+**C2, the response.**
+- When gas leaves slowly, every cold shell keeping r M(<r) expands, which roughly doubles A3's suppression:
+  - R_tot at k 1: 0.982 -> 0.972;
+  - R_tot at k 5: 0.941 -> 0.901.
+- It is worth about 0.2 widths on Legacy.
+
+**C1, gas from the stellar-mass-selected stack: a BRACKET.**
+- *Input:* GH11's miscentring-corrected A(1.8) = 0.54 +- 0.12 against Zhang's profile, at log M_star 10.97.
+- *Conversion.* The measured baryons inside 513 kpc are 3.6e11 Msun. Against a fair share they read:
+  - (a) f = 0.228 +- 0.039 with the layout's own SHMR (M200c 9.0e12 Msun);
+  - (b) f = 0.659 +- 0.112 with Zhang's R_vir as R200c (2.4e12 Msun).
+  - The halo choice moves the answer by 0.43, about four times its own error, so the conversion is choice-dominated.
+- *Effect.* Either edge moves Legacy by only 0.05 to 0.09 widths. The stack's halos (log M_star 10.0 to 11) act at k of a few
+  h/Mpc, where the kept points carry little weight. A strong gas loss in Milky-Way-to-group halos would not close this gap.
+- *Caveats carried.* The stack holds all galaxies (satellite fraction 0.28). Two-halo signal is unsubtracted. The points inherit the
+  paper's velocity reconstruction.
+- *Fig. 8 of the paper* (kSZ over CMB lensing) divides by an HOD-emulator fit, so it is context only and in no row.
+- *The tSZ lanes GH3 to GH5* add no retained fraction: NOT DECIDED twice, and a non-detection with an upper limit.
+
+**C3, the alignment (against form B).**
+- *The prior, recovered.* Legacy's mass-dependent model's prior was recovered from the release's own chain: the decorrelated-to-
+  physical map reproduces all 127,091 finite samples to 1.9e-13.
+- *Amplitudes.* At the prior mean the per-bin amplitudes are 0.145, 0.395, 0.560, 0.835, 0.780, 0.112. Fitted under the prior
+  (C3b) they are 0.17 / 0.49 / 0.70 / 1.05 / 0.98 / 0.14, about 25 % above the prior mean and inside it.
+- *Effect.* The gap is slightly *smaller* than with our one-amplitude fit (1.57 against 1.71 canonical). Held at the survey's own
+  posterior mean (context only, a survey posterior), alt reaches 2.04.
+- **Frozen rule:** C3b would have taken the label away only by putting Legacy outside 2 widths or below p 0.05. It does neither.
+
+**DES's width.**
+- DES's 10-parameter fit stops up to about 0.1 in chi^2 short of its minimum: SciPy's L-BFGS-B exits on an abnormal line search
+  (AMENDMENT C2's diagnostic: Part A's stored alt point evaluates to 64.596 but returns 64.703).
+- Near the minimum, neighbouring grid points differ by only about 0.25, so the five-point parabola wobbles. That is why the frozen
+  DES widths differ between footings (C0: 0.019 against 0.028).
+- The polished scan (AMENDMENT C3: restarts to below 1e-4, two sweeps) gives width 0.0235 / 0.0230 and gap 2.18 / 2.23, the same
+  on both footings.
+- The polished KC1 base (2.81 / 2.85) matches Part A's ALL, so Part A's DES rows stand. Alt's 3.02 carried about 0.17 of
+  optimiser floor.
+
+**Legacy's own fiducial statistic** (COSEBIs, band powers) is not graded. The filters' roots and norms (and the band-power
+apodisation) are not on disk, and recomputing them would need a convention recovered from the very published E_n they should be
+validated against.
+
+### Hand estimates against the outcome (Part C)
+
+| item | my estimate (FROZEN_CRITERIA_PARTC.md section 7) | outcome | verdict on the estimate |
+|---|---|---|---|
+| C0, Legacy widths | 0.2 to 0.4 | 0.20 / 0.20 | low end |
+| C2, Legacy widths | 0.15 to 0.25 | 0.22 / 0.22 | right |
+| C1 bracket or row | almost surely a BRACKET | BRACKET | right |
+| C1 strong edge | 0.8 to 1.5 widths | 0.08 | wrong by an order of magnitude |
+| Gate, Legacy | 1.6 to 1.9 | 1.71 / 1.88 | right |
+| Gate, DES | 2.4 to 2.7 | 2.18 / 2.23 polished (2.82 / 2.89 frozen) | |
+| Overall | GAP STAYS 60 % | GAP STAYS under the amendments | right |
+| C3b | widens the gap by 0.3 to 1 | narrows it by 0.14 / 0.05 | wrong |
+
+**The closure chat's guess.**
+- C0 about 0.3: it was 0.20.
+- C1 0.5 to 1: it was 0.05 to 0.09, and only a bracket.
+- C2 a third more on C1: C2 alone was 0.22.
+- 1 to 1.5 widths left on Legacy: 1.71 / 1.88 are left.
+- About 2 on DES: 2.18 / 2.23 polished. Right.
+
+### Known answers and MUTATE (Part C)
+
+**Known answers.**
+- KC1: the base replays Part B's BALL and Part A's ALL. Legacy 198.331 / 199.491, KiDS-1000 135.599 / 136.063 and DES canonical
+  64.623 pass. DES alt fails as frozen (64.598 against 64.703) and passes under AMENDMENT C2 (tolerance 0.2, the floor shown).
+- KC2: CO2's post hoc best sigma8 reproduced exactly (R1 0.7391 / 0.7373, R2 0.7454 / 0.7435).
+- KC3: the AD response with nothing moved is 4e-16; mass is kept to 5e-16; the point-mass test passes to 6e-8.
+- KC4: C1 with f = 1 against CO1's R_tot, 2e-7.
+- KC5: the map to 1.9e-13; equal per-bin amplitudes against CFG592's C_ell, 3e-16.
+
+**MUTATE.**
+- MC0 bites: R1 moves KiDS-1000's best +0.0033, the wrong-way correction -0.0070.
+- **MC1 does not bite** (k 1, -0.002). MC1b (k 5, AMENDMENT C1) bites: -0.038 / -0.042.
+- MC2 bites: AD against NR, -0.050.
+- MP5 bites: sigma8 0.90, p 1.2e-4 / 6.0e-5.
+
+### Part C amendments (all post hoc, each committed alone before the numbers it governs)
+
+- **C1** (fe976ca7d3): MC1's scale; the gate read with the arms that guard its pieces; MC1b.
+- **C2** (2fd0710da0): KC1 on DES alt; the refit diagnostic.
+- **C3** (a5d8d7f322): DES's polished gate scan, committed before DES's gate row was seen.
+
+The frozen reading (NO VERDICT) leads the Part C label.
+
+### Part C limits
+
+- **C1** rests on one stack bin and a halo choice that dominates it.
+- **C2's AD** is one edge. A fast (impulsive) loss would expand the cold component more.
+- **C3** uses CFG592's NLA kernel with Legacy's per-bin amplitudes, not Legacy's full alignment module.
+- **Polish** was applied only to DES's gate row (and its base).
+- **R2 / R2b** use the 200 Mpc/h runs, whose resolution is suspect above k 0.5. They are spliced only below it.
+
 ## The answer in plain words
 
 **What carried the gap.** CO2's gap was 0.091 in sigma8, 5.6 / 5.8 KiDS-1000 widths. It came apart into these pieces.
