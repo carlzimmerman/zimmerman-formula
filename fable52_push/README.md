@@ -43,8 +43,9 @@ label here. The decision, its gate table and its eight open items are in
   one). The theory is still not complete: no single dust term serves the CMB and galaxies, the collapse to the static
   state is not computed, and clusters cannot be a static-clock state. On stability: TPA1 found the static state
   unstable with gravity frozen, in a planar background; SCS1, with gravity coupled around a point mass, finds it STABLE on
-  both footings and traces TPA1's growth to the planar background. Discs, where the law's halo density can be negative
-  in places, are not settled.
+  both footings and traces TPA1's growth to the planar background. SCS2 finds it STABLE around isolated discs too: the
+  law's halo density is positive in every cell of every disc solved. It goes negative only with an external field, and
+  that case reads unstable in regions but is NO VERDICT (magnitudes not converged between grids).
 - Form B's regrade lanes run in another session under `closure_2026_11_09/`, quoted here as their result files write
   them. RB1 (groups, X-COP, the Bullet): NOT FALSIFIED (ONE-SIDED) on both footings, never a pass. RB2 (hosted dwarfs):
   B FAILS ON THE HOSTED ROWS on both footings (Milky Way ultra-faints and bright M31 dwarfs sit high; Coma's diffuse
@@ -86,6 +87,7 @@ against 0.0354). No share at any outer radius passes the disc, filling, stabilit
 | ONE1 | does form B fit KO1's host-free lenses, neighbours included? | KiDS host-free: PASSES / PASSES at the 1.6 R_h veto (the law with no end also passes; misses at the original veto) |
 | TPA1 | what are the two-phase action's field equations, and is it healthy? | EQUATIONS COMPLETE; health UNHEALTHY (a gradient instability, no ghost, in the law-on phase of a static clock with little dust; the wall and the dust phase are healthy; decoupling limit, planar background; SCS1 finds the instability does not hold around a point mass) |
 | SCS1 | is the action's static law-on state stable with gravity coupled? | STABLE / STABLE around a point mass (nothing grows at any wavenumber; JEANS-ONLY at the dust constant the CMB needs; discs not analysed) |
+| SCS2 | is that state stable around discs? | Isolated discs STABLE / STABLE; discs in an external field NO VERDICT / NO VERDICT (reading: unstable in regions; e-folding 0.9 to 2.4 Gyr at 0.1 a0, 27 to 75 Gyr at 0.01 a0) |
 | HE1 | can the share sit outside the wall as a pressure-supported envelope? | FAILS / FAILS (KiDS late-type stacks; the clusters-and-groups gate also fails as frozen, on two clusters near R500 only, and the label does not rest on it) |
 
 ## 3. What KO1 found, in plain words
@@ -167,11 +169,17 @@ A completion has to move a gate or bring physics from outside the catalogue.
   `SCS1.lean` recompiles with exit 0, 13 theorems, twin failing; route 2, the radial solve, re-run in about an hour:
   every label identical and every eigenvalue equal to better than one part in a million; the stiffness output identical)
 
+- `SCS2_static_clock_stability_discs/` (origin 7cf3530715, 448daec699, 7d303c169b, d323cc7025, 152fb45c7a, 55e47026a4,
+  72f6198ede; checked by the lead: all 88 backgrounds re-solved from scratch and the maps reproduce exactly apart from
+  timing and memory entries, with zero negative cells in the 40 isolated ones; the labels re-derived from the outputs
+  are the same; `SCS2.lean` recompiles with exit 0, 13 theorems, twin failing. The two stability routes themselves, about
+  an hour and up to 3 GB, were not re-run by the lead)
+
 Lean: the Mathlib build these files were first compiled with (in a copy of the repository) was removed from the machine
 on the evening of 2026-11-09. A build has been inside the repository's own `fable_independent_2026/lean_2026` since
 22:17 the same evening. The ONE1 session made it by unpacking the machine's own Mathlib cache; nothing was downloaded.
-The lead re-compiled `KO1.lean` (exit 0, 12 theorems) and its twin (exit 1) with it. With TPA1's 14, ONE1's 10 and SCS1's
-13 the Lean files here hold 129 theorems.
+The lead re-compiled `KO1.lean` (exit 0, 12 theorems) and its twin (exit 1) with it. With TPA1's 14, ONE1's 10, SCS1's 13
+and SCS2's 13 the Lean files here hold 142 theorems.
 
 Each folder has FROZEN_CRITERIA.md, any amendments, the scripts with their outputs and MUTATE outputs, RESULT.md, and (except
 GAL1 and KO1R) a Lean file with its compile output and a mutate twin.

@@ -9,7 +9,7 @@ and asked for a complete theory.
 **The theory is not complete.** One part of what the decision file lists as open is already answered by the record's own
 action; three parts are not, and none of them is solved here. A fourth, the stability of the static state, was added
 when TPA1 landed and is corrected below: SCS1 finds the state stable around a point mass with gravity coupled, and
-leaves discs open.
+SCS2 finds it stable around isolated discs. A disc in an external field is not settled.
 
 ## 1. What the action already gives (certified in QX17; one identity re-checked here)
 
@@ -78,6 +78,15 @@ the solution that gets there.**
    and there SCS1's own closed form gives growth (bounded without the stiffness, rising with wavenumber with it). Discs
    were not analysed. At the dust constant the CMB needs, the static state clumps at the free-fall rate (JEANS-ONLY),
    which is item 1 again, not a new flaw.
+
+   **Corrected again when SCS2 landed (2026-11-10).** "Around a disc the phantom density can be negative in places"
+   is not what the law does for an isolated disc. SCS2
+   (`fable52_push/SCS2_static_clock_stability_discs/RESULT.md`, origin 55e47026a4) solved razor-thin exponential,
+   Kuzmin, thick and bulge discs at four masses: the phantom density is positive in every cell of all 40 isolated
+   backgrounds per footing, and no mode grows on either route: STABLE / STABLE. Negative phantom density appears only
+   with a uniform external field (a far-field band and the field's null on the axis); those brackets read unstable in
+   regions on both routes but are NO VERDICT, because their magnitudes are not converged between grids. So the open
+   stability item is discs in an external field, in the linear sense, not discs.
 
 ## 3. What would make it complete
 
