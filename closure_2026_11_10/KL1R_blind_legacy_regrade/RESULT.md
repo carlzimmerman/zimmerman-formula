@@ -103,6 +103,56 @@ together give 2.13. The alignment-off bracket and MB2's missing teeth are the op
 - Files: `kl1r_nu.py` (refit), `kl1r_gas.py` (gas), `kl1r_lib.py`, `kl1r_known.py`, `kl1r_grade.py`, `kl1r_label.py`,
   `kl1r_check_data.py`, with outputs in `parts/`, `kl1r.out` and `kl1r.json`. All Python reading the release ran with `-I`.
 
-## Comparison with KL1
+## Comparison with KL1 (added after this file's numbers were committed in 157e77fa69; nothing above was edited)
 
-(Added after this file is committed; see below.)
+KL1's `RESULT.md` was opened only after commit 157e77fa69. **The labels agree:** frozen NO VERDICT / NO VERDICT, for the same
+reason (MA2 cannot bite on DES); under A1, AMPLITUDE CONSISTENT WITH RAW LENSING / the same.
+
+| quantity | KL1 | KL1R | agree? |
+|---|---|---|---|
+| Neutrino-floor refit sigma8; CMB cost | 0.8121 / 0.8120; -1.18 / -1.31 | 0.8121 / 0.8120; -1.18 / -1.31 | yes |
+| MA1 drop | 0.096 | 0.0958 / 0.0958 | yes |
+| KB1, KB2 | pass; 157.890 / 159.355 | pass; 157.890 / 159.355 | yes |
+| B0 chi^2, p, best, gap | 215.56 / 218.01, 0.025 / 0.020, 0.7767 / 0.7748, 4.40 / 4.60 | identical | yes |
+| B1 | 204.42 / 206.18, 0.067 / 0.057, gap 3.09 / 3.27 | identical | yes |
+| B2 | 200.24 / 201.75, 0.096 / 0.084, 0.7835 / 0.7814, 2.49 / 2.66 | identical | yes |
+| B3 | 202.17 / 203.54, p 0.081 / 0.072, 0.7808 / 0.7788, 2.68 / 2.86 | 202.17 / 203.54, p 0.080 / 0.072, same best and gap | yes (p rounding) |
+| **BALL** | **198.33 / 199.49, p 0.111 / 0.101, 0.7875 / 0.7855 +- 0.0116, gap 2.13 / 2.30** | **identical** | **yes** |
+| BALL with ln det: gap | 2.50 / 2.70 | best 0.7833 / 0.7813, which gives 2.50 / 2.72 | yes |
+| BALL with alignment off | 207.48 / 209.37, p 0.052 / 0.044, gap 3.27 / 3.46 | 207.48 / 209.37, 0.052 / 0.044, 3.26 / 3.46 | yes |
+| BALL with A5a (CFG411) | 186.20 / 186.09, p 0.251 / 0.253 | identical | yes (KL1 calls A5a unreliable; I did not test that) |
+| KB3 area; (i); (ii) median | 853 / 852 deg^2; 0.94 to 1.05; 1.04 | 852.6 / 851.7; 0.944 to 1.053; 1.040 / 1.044 | yes |
+| KB4 (release shift) | +0.041 | +0.041 | yes |
+| MB1 | p 8e-6 / 4e-6 | 8.2e-6 / 3.9e-6 | yes |
+| **MB2 move** | **+0.47 / +0.46 widths** | **-0.09 / -0.09 widths** | **NO: sign and size differ; both are under 0.5, so neither bites** |
+| MA2 on DES, signal points under halving | 3 / 4 | 4 / 4 | **small difference**; both below 5, so NOT EVALUABLE either way |
+| DES KA2 area; (i); (ii) | 3478; 0.97 to 1.03; median 1.23 | 3477; 0.973 to 1.026; 1.229 | yes |
+| DES A0, A1, A3 | 74.69 / 74.67; 69.04 / 68.97; 68.95 / 68.89 | 74.69 / 74.67; 69.04 / 68.97; 69.08 / 68.89 | yes (A3 canonical +0.13) |
+| DES A2 chi^2; best | 64.69 / 64.63; 0.7409 / 0.7367 | 64.63 / 64.66; 0.7426 / 0.7361 | **within 0.06 in chi^2, 0.0017 in sigma8** |
+| **DES ALL** chi^2; p; best +- width; gap | 64.62 / 64.70; 0.159 / 0.157; 0.7401 / 0.7397 +- 0.025; 2.83 / 3.02 | 64.71 / 64.58; 0.157 / 0.161; 0.7401 / 0.7428 +- 0.026 / 0.022; 2.81 / 3.12 | **within 0.12 in chi^2 and 0.004 in p**; alt best sigma8 differs by 0.003 and its width by 0.003 |
+| MA3 | R at k 1 moves 0.081; chi^2 moves 7.0 / 8.0 on KiDS-1000 | R moves -0.079 / -0.081; chi^2 moves -4.97 / -6.39 on Legacy | R agrees; the chi^2 parts were read on different surveys (my criteria section 2.4); both bite |
+
+**Findings from the comparison.**
+1. **MB2 disagrees.** KL1 moves the Legacy best sigma8 by +0.47 widths and I move it by -0.09. Neither bites, so no label changes.
+   PB1 item 8 does not say what a Legacy bin gets when no KiDS-1000 bin lands on it, or when two land on the same one. I froze mine
+   (section 2.7: the mean of the two; an unmatched bin keeps its own shift). KL1's rule for these cases is in code I have not read.
+   The likely cause is this unfrozen detail, but I have not tested it. **The arm's result depends on that detail, so "the redshift
+   prior means have no teeth here" holds in both lanes, but not the size of the move.**
+2. **DES differs at the 0.1-in-chi^2 level** in the rows that use the covariance at the model and in the fits. Possible causes are
+   my own Gaussian covariance and the 10-parameter DES optimiser; this has not been tested. The DES label and p (0.16) are not
+   affected.
+3. **What this regrade checks, and what it does not.** My Legacy rows agree with KL1's to 0.01 in chi^2 because both lanes run
+   the same shared machinery unchanged: CFG592's library, CO2's S0 x R model and response, and CO1's halo model. This lane is an
+   independent check of the Part B-specific pieces: the Legacy loader and 6-bin fit, the neutrino refit, the covariance at the
+   model, the gas move, and the arms. Those agree. It is **not** an independent check of the shared machinery or of the model
+   itself (one gravity-only 100 Mpc/h box, the response, the one-amplitude alignment). A pass of form B by lensing still rests on
+   the post-hoc A1 reading, and it still carries a Legacy gap above 2 widths and an alignment-off reading on the line (p 0.052 /
+   0.044).
+
+## Commits
+
+| commit | local `main` | origin/main |
+|---|---|---|
+| FROZEN_CRITERIA.md, alone | 1792bd07ea | (see the push note below) |
+| scripts, outputs, RESULT.md (label and numbers) | 157e77fa69 | (see the push note below) |
+| this comparison section | the commit that adds it | (see the push note below) |
