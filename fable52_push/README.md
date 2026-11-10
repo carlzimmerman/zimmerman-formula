@@ -92,6 +92,8 @@ against 0.0354). No share at any outer radius passes the disc, filling, stabilit
 | SCS2 | is that state stable around discs? | Isolated discs STABLE / STABLE; discs in an external field NO VERDICT / NO VERDICT (reading: unstable in regions; e-folding 0.9 to 2.4 Gyr at 0.1 a0, 27 to 75 Gyr at 0.01 a0) |
 | MK1 | is there one dust constant for the CMB, clusters and galaxies? | NO VALUE / NO VALUE (does not turn on the cap; X-COP passes at no value) |
 | COL1 | does a clock that starts as infalling dust reach the static state? | BREAKS DOWN / BREAKS DOWN (a caustic at the centre; a reported diagnostic puts the charge that arrives at 1 to 4 % of the law's halo) |
+| KDE1 | can the law's clock be the dark-energy field itself? | ALREADY IN THE RECORD AS AC2s / the same (and the record shows such a clock still falls in and folds) |
+| GRW1 | can baryons and the law build late structure if the cold component is warm? | FALLS SHORT / FALLS SHORT under the action's linear theory; FALLS SHORT AND OVERSHOOTS with the static law; as frozen NO VERDICT / NO VERDICT |
 | MK2 | does an exponential dust term (one sound speed) pass MK1's rows? | NO VALUE / NO VALUE (as frozen NO VALUE / NO VERDICT; clusters and groups pass at no value; galaxies clean and the clock static there above about 500 km/s) |
 | FLD1 | does the folded region reach as far as the law is seen? | DOES NOT / DOES NOT (covers every rotation curve; 1.3 to 5.4 times short of KiDS's windows) |
 | REL1 | can the law respond to the clock's acceleration relative to the baryons? | NOT WELL-DEFINED / NOT WELL-DEFINED (matter's motion becomes fourth order and runs away) |
@@ -201,6 +203,9 @@ A completion has to move a gate or bring physics from outside the catalogue.
   the lead, not re-run
 - `SHAPE_search/` (origin aaab11ddf2): notes from four read-only attempts to derive the law's shape for the cold
   component. None is a derivation; none is a lane
+- `KDE1_clock_is_dark_energy/` (origin edfb117414, c26db8802f, 3480d33e9a) and `GRW1_late_growth_baryons_and_law/`
+  (origin 660b4a1171, 40adf2ef0e, 27173fe895, b54941f573): the lead's own two lanes; result files read by the lead, not
+  re-run
 - `EQ1_cold_dark_energy_equations/EQUATIONS.md`: a reference sheet, not a lane. Every equation the record has for the
   cold component under form B, each tagged certified, hand-checked or measured, and a table of what the equations do
   not give
