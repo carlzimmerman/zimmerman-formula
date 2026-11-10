@@ -7,8 +7,9 @@ and asked for a complete theory.
 ## Answer first
 
 **The theory is not complete.** One part of what the decision file lists as open is already answered by the record's own
-action, for force balance only; four parts are not (the fourth, stability, was added when TPA1 landed), and none of the
-four is solved here.
+action; three parts are not, and none of them is solved here. A fourth, the stability of the static state, was added
+when TPA1 landed and is corrected below: SCS1 finds the state stable around a point mass with gravity coupled, and
+leaves discs open.
 
 ## 1. What the action already gives (certified in QX17; one identity re-checked here)
 
@@ -66,6 +67,17 @@ the solution that gets there.**
    in the decoupling limit (metric frozen); it argues by hand that coupling to gravity does not change the sign and says
    the coupled analysis has not been done. Until it is, "the action holds the halo in the law's shape" means force
    balance only.
+
+   **Corrected when SCS1 landed (2026-11-10).** The paragraph above is wrong for a point mass. SCS1
+   (`fable52_push/SCS1_static_clock_coupled_stability/RESULT.md`, origin 0bacbb61f5) did the coupled analysis: STABLE /
+   STABLE. The clock's gradient coefficient is its own charge density n_d + D.P. Around a point mass on the law D.P is
+   the phantom density, p' + 2p/r, which is positive, so nothing grows at any wavenumber. TPA1's instability came from
+   its planar background, where D.P = p' is negative; SCS1 reproduces TPA1's numbers in that background and loses them
+   in three dimensions. The n_crit threshold quoted above does not exist wherever the phantom density is positive.
+   What stays open on stability: flattened baryons. Around a disc the law's phantom density can be negative in places,
+   and there SCS1's own closed form gives growth (bounded without the stiffness, rising with wavenumber with it). Discs
+   were not analysed. At the dust constant the CMB needs, the static state clumps at the free-fall rate (JEANS-ONLY),
+   which is item 1 again, not a new flaw.
 
 ## 3. What would make it complete
 
