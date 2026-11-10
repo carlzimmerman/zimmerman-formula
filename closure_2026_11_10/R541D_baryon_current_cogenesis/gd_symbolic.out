@@ -1,0 +1,33 @@
+
+== GD1: tau equation with eps * Jt^m d_m tau, general 1+1 metric g(t,x), arbitrary current density Jt^m(t,x)
+EL(tau) + d_m[sqrt(-g)(mu^2/K)(Q-1)n^m + eps Jt^m] = 0
+GD1 conserved current: J_tot^m = (mu^2/K)(Q-1) n^m + eps J_B^m  -> PASS (residual 0)
+with d_m Jt^m = 0 identically, the term's contribution to the tau equation = 0 -> total derivative
+
+== GD1/KA1 FRW minisuperspace: N = 1 after variation; X = a^3 n_B (comoving baryon number, a variable)
+p_tau = (K*epsilon*N(t)*X(t) + mu_K**2*(-N(t) + Derivative(tau(t), t))*a(t)**3)/(K*N(t))
+KA1 eps = 0: p_tau = mu_K**2*(-N(t) + Derivative(tau(t), t))*a(t)**3/(K*N(t))  (R541 part B: a^3 mu^2 (Q-1)/K)  -> PASS
+tau cyclic: True -> d/dt{a^3[(mu^2/K)(Q-1) + eps n_B]} = 0 exactly
+rho_K(p0) = K*epsilon**2*n_B**2/(2*mu_K**2) - K*epsilon*n_B*p0/(a**3*mu_K**2) + K*p0**2/(2*a**6*mu_K**2) - epsilon*n_B + p0/a**3
+neutral (p0 = 0): rho_K = epsilon*n_B*(K*epsilon*n_B - 2*mu_K**2)/(2*mu_K**2) ; leading term -eps n_B, correction K eps^2 n_B^2/(2 mu^2)
+energy per unit charge f = rho_K / [(mu^2/K)(Q-1)] = q/2 + 1/2 -> 1 as Q -> 1
+p0 != 0: rho_K gains p0/a^3 + ... : a free constant again (nothing gained without a neutral start)
+MU1 sign flip eps -> -eps: rho_K(p0=0) leading = epsilon*n_B (sign flips)
+
+== GD4 Hamiltonian of the clock sector with X as a parameter (N = 1)
+tau-dot(p, X) = (A3*mu_K**2 - K*X*epsilon + K*p)/(A3*mu_K**2)
+H(p, X) = (-X*epsilon + p)*(2*A3*mu_K**2 - K*X*epsilon + K*p)/(2*A3*mu_K**2)
+H - [u + K u^2/(2 a^3 mu^2)], u = p - eps X : 0
+H equals the gravitating clock energy a^3 rho_K : True
+dH/dX at fixed p = epsilon*(-A3*mu_K**2 + K*X*epsilon - K*p)/(A3*mu_K**2)  = -eps * Q  (energy put into the clock per baryon created)
+check dH/dX + eps * taudot(p, X) = 0
+=> effective baryon chemical potential in thermal equilibrium: mu_B = eps * Q (equilibrium sets dF/dX = 0)
+kinetic matrix d2L/dtaudot2 = A3*mu_K**2/K  (eps term is linear in tau-dot: adds nothing to it)
+equilibrium: n_B = chi*eps*Q, chi>0  ->  rho_K ~ -eps n_B = -chi*epsilon**2*q  : NEGATIVE for either sign of eps
+
+== GD5 rephasing psi = exp(i*alpha*tau) chi removes eps J.dtau (flat, then arbitrary vierbein + spin connection)
+flat: L[psi; eps] - L[chi; eps - alpha] = 0 -> alpha = eps removes the term
+curved (vierbein e_a^m(x), spin connection Omega_m(x) generic): residual = 0
+GD5/KA6 removable in any gravitational field: PASS
+KA6 non-gradient a_m = (0, x0, 0, 0): curl d0 a1 - d1 a0 = 1 (nonzero -> not removable; a pure gradient has curl 0 identically)
+B-violating operators (Delta B != 0) pick up exp(i*eps*DeltaB*tau): energy shift eps*Q*DeltaB per process
