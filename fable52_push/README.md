@@ -201,6 +201,9 @@ A completion has to move a gate or bring physics from outside the catalogue.
   the lead, not re-run
 - `SHAPE_search/` (origin aaab11ddf2): notes from four read-only attempts to derive the law's shape for the cold
   component. None is a derivation; none is a lane
+- `EQ1_cold_dark_energy_equations/EQUATIONS.md`: a reference sheet, not a lane. Every equation the record has for the
+  cold component under form B, each tagged certified, hand-checked or measured, and a table of what the equations do
+  not give
 - `SCS3_external_field_stability/` (run from another session; origin criteria d97f24e76a, result e6a6dc2cf2, ids
   c06145c6ad; result file's header read by the lead, not re-run): NO VERDICT / NO VERDICT on every family and reading
   (a known answer fails as frozen; under its last amendment 11 of 32 axial backgrounds do not converge). Its own summary:
