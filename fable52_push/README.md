@@ -89,6 +89,10 @@ A completion has to move a gate or bring physics from outside the catalogue.
 - My hand estimate for SNP1 (walls swept beyond KiDS's range, filling too large) was the reverse of what the runs show.
 - WL1's FAIL stands, but its "any key" scope sentence does not hold for a compensated switch. SQ1 graded the opposite sign
   to the law's own term.
+- Two mutation arms did not bite as frozen; both are disclosed in their lanes and neither label uses them. SWT1's M-WP
+  (pressure / 100) has no power once the gate clears, and a x100 arm was added. GAL1's M-SIGN required growth to drop in
+  bins that lie before one history's switch-on, where no boost exists. PAPER71 v1.0 says each lane has a mutation twin that
+  must fail and does not list these two; a v1.1 should carry the sentence.
 
 ## Files
 
