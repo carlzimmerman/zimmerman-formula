@@ -1,0 +1,277 @@
+DG1 dwarf data side and gas history under form B MAIN. kappa = 1/2 FITTED; not theory closed; footings never pooled.
+rows: 89 measured (RB2's sample), 11 upper-limit-only: Aquarius III (MW ultra-faint, UL 3.5), Draco II (MW ultra-faint, UL 2.6), Grus II (MW ultra-faint, UL 2.0), Hydra II (MW ultra-faint, UL 4.11), Phoenix II (MW ultra-faint, UL 21.2), Reticulum III (MW ultra-faint, UL 8.3), Segue 2 (MW ultra-faint, UL 2.06), Triangulum II (MW ultra-faint, UL 3.5), Tucana III (MW ultra-faint, UL 1.5), Andromeda XII (M31 others, UL 4.0), Andromeda XXIV (bright M31, UL 7.3)
+
+=== KNOWN ANSWERS ===
+KA1 PASS  RB2 per-system Delta[prim], sd reproduced over 178 rows: max |d| 0.0e+00; C2 class medians max |d| 0.0e+00 (line 1e-9)
+KA2 PASS  P1's L_MDF (central, 2-sigma-low, upper edge) reproduced by the copied lmdf: 93 values, max rel 0.0e+00 (line 1e-6); missing []
+KA3 PASS  SE2's stored a_c and m_c per class reproduced (copied width block on X1's CSV): max |d| 0.0e+00 (line 1e-9)
+KA4 PASS  history: L=1 -> P 9.6e-17 (NR) / 0.0e+00 (AD); deep limit vs (1/2) log L 9.9e-05 (line 1e-3); AD r M(<r) kept to 1.3e-15 (line 1e-9), shells ordered True; P rises with L True
+KA5 PASS  KM median = median (odd 0.0e+00, even 0.0e+00); bounds above all -> unchanged 0.0e+00; km_boot = boot_median 0.0e+00; censored ML with none censored 2.9e-10
+
+================ [canonical] a0 9.3603e-11
+coverage (rows with an L from P1's copied code): MW ultra-faint 26/31 (+4 imputed width, reported); bright M31 10/25 (+9 imputed width, reported); MW classical 8/8 (+0 imputed width, reported); LG field 12/13 (+0 imputed width, reported)
+KA6[canonical] PASS  Part A on RB2's stream with no censoring (arm a0, measured only) = RB2's C2 class medians: max |d| 0.0e+00 (line 1e-9); the paired a0 rebuild (own seed) differs from A1 by up to 0.002 dex (seed noise, reported)
+--- Part A (data side) ---
+  A1 censored KM MW ultra-faint : N 40 (9 upper limits) median +0.543 [+0.340, +0.771] (measured only +0.634 [+0.433, +0.865]); ML mu +0.567 [+0.424, +0.704] tau 0.324
+     bounds (dex, true residual at or below): Aquarius III +0.91, Draco II +0.99, Grus II +0.08, Hydra II +0.52, Phoenix II +2.45, Reticulum III +1.50, Segue 2 +0.56, Triangulum II +1.15, Tucana III +0.41
+  A1 censored KM bright M31     : N 26 (1 upper limits) median +0.267 [+0.084, +0.469] (measured only +0.273 [+0.085, +0.473]); ML mu +0.302 [+0.160, +0.441] tau 0.271
+     bounds (dex, true residual at or below): Andromeda XXIV +0.52
+  A1 censored KM MW classical   : N 8 (0 upper limits) median +0.281 [-0.015, +0.573] (measured only +0.281 [-0.015, +0.573]); ML mu +0.278 [+0.073, +0.486] tau 0.253
+  A1 censored KM M31 others     : N 6 (1 upper limits) median +0.526 [-0.303, +1.039] (measured only +0.681 [+0.026, +1.142]); ML mu +0.475 [-0.055, +0.962] tau 0.364
+     bounds (dex, true residual at or below): Andromeda XII +0.20
+  A2 arm a0   : MW ultra-faint +0.541 [+0.341, +0.768] (9 cens) | bright M31 +0.265 [+0.085, +0.467] (1 cens) | MW classical +0.280 [-0.016, +0.573] (0 cens)
+  A2 arm a+   : MW ultra-faint +0.687 [+0.489, +0.913] (9 cens) | bright M31 +0.273 [+0.087, +0.481] (1 cens) | MW classical +0.280 [-0.016, +0.573] (0 cens)
+  A2 arm af07 : MW ultra-faint +0.470 [+0.262, +0.699] (9 cens) | bright M31 +0.258 [+0.082, +0.447] (1 cens) | MW classical +0.280 [-0.016, +0.573] (0 cens)
+  A2 arm alow : MW ultra-faint +0.542 [+0.327, +0.765] (9 cens) | bright M31 +0.265 [+0.085, +0.467] (1 cens) | MW classical +0.280 [-0.016, +0.573] (0 cens)
+  A2 arm afl  : MW ultra-faint +0.499 [+0.274, +0.745] (10 cens) | bright M31 +0.264 [+0.083, +0.469] (1 cens) | MW classical +0.280 [-0.016, +0.573] (0 cens)
+  A2 arm adown: MW ultra-faint +0.429 [+0.156, +0.670] (10 cens) | bright M31 +0.257 [+0.080, +0.447] (1 cens) | MW classical +0.280 [-0.016, +0.573] (0 cens)
+  A3 MW ultra-faint  (a_c 0.089, m_c 0.119): budget +0.645 [+0.006, +1.276] N 30 | SE2 verbatim +0.606 [+0.002, +1.219] | A-full (censored + budget) +0.550 [-0.090, +1.175] N 39 (9 cens); excluded ['Bootes III']
+     A-full on the adown arm: +0.433 [-0.230, +1.069]
+  A3 bright M31      (a_c 0.116, m_c 0.045): budget +0.307 [-0.187, +0.790] N 21 | SE2 verbatim +0.251 [-0.191, +0.708] | A-full (censored + budget) +0.299 [-0.181, +0.774] N 22 (1 cens); excluded ['Andromeda I', 'Andromeda XVII', 'Andromeda XIX', 'Andromeda XXV']
+     A-full on the adown arm: +0.286 [-0.186, +0.759]
+  A3 MW classical    (a_c 0.107, m_c 0.014): budget +0.286 [-0.205, +0.771] N 8 | SE2 verbatim +0.282 [-0.180, +0.764] | A-full (censored + budget) +0.286 [-0.205, +0.771] N 8 (0 cens); excluded []
+  PART A OUTCOME: MW ultra-faint: DOES NOT SURVIVE; bright M31: DOES NOT SURVIVE
+--- Part B (history) ---
+  system             class                L flag       D_B    sd   P_NR   P_AD    R_NR    R_AD  P_ext  logM*
+  IC 1613            LG field          1.00 UNDER   -0.537 0.078 +0.047 +0.047  -0.583  -0.583 +0.047   8.28
+  NGC 6822           LG field          1.00 UNDER   +0.002 0.045 +0.084 +0.084  -0.082  -0.082 +0.084   8.51
+  WLM                LG field          1.00 UNDER   +0.016 0.104 +0.097 +0.097  -0.081  -0.081 +0.097   7.98
+  Leo A              LG field          1.15 OK      -0.093 0.073 +0.142 +0.124  -0.235  -0.217 +0.123   7.08
+  Aquarius           LG field          1.00 UNDER   +0.130 0.155 +0.145 +0.145  -0.015  -0.015 +0.145   6.42
+  UGC 4879           LG field          3.93 OK      -0.079 0.114 +0.211 +0.014  -0.291  -0.094 +0.111   7.13
+  Tucana             LG field          3.51 OK      +0.112 0.213 +0.232 +0.141  -0.119  -0.027 +0.113   6.05
+  Pegasus dIrr       LG field          2.42 ABOVE   +0.186 0.082 +0.242 +0.163  -0.055  +0.025 +0.142   7.09
+  Phoenix            LG field          4.25 OK      +0.395 0.073 +0.285 +0.172  +0.110  +0.222 +0.152   6.18
+  Sagittarius dIrr   LG field          3.01 OK      -0.006 0.121 +0.327 +0.119  -0.333  -0.126 +0.238   6.95
+  Cetus              LG field          5.85 OK      +0.036 0.108 +0.339 +0.228  -0.303  -0.192 +0.185   6.71
+  Leo T              LG field          2.79 ABOVE   +0.411 0.137 +0.399 +0.313  +0.014  +0.105 +0.275   5.43
+  Fornax             MW classical      1.00 UNDER   -0.095 0.017 +0.000 +0.000  -0.095  -0.095 +0.000   7.59
+  Leo I              MW classical      1.76 OK      -0.028 0.029 +0.081 +0.015  -0.109  -0.043 +0.032   6.96
+  Carina             MW classical      2.31 OK      +0.203 0.155 +0.161 +0.117  +0.041  +0.086 +0.070   6.01
+  Sculptor           MW classical      6.27 OK      +0.195 0.106 +0.304 +0.076  -0.109  +0.119 +0.170   6.54
+  Leo II             MW classical      5.89 OK      +0.283 0.046 +0.307 +0.118  -0.025  +0.166 +0.169   6.03
+  Draco              MW classical      5.77 OK      +0.626 0.025 +0.336 +0.224  +0.290  +0.403 +0.183   5.78
+  Ursa Minor         MW classical      6.69 OK      +0.566 0.033 +0.374 +0.277  +0.192  +0.290 +0.210   5.78
+  Sextans            MW classical      8.17 OK      +0.503 0.145 +0.435 +0.382  +0.067  +0.120 +0.254   5.72
+  Leo VI             MW ultra-faint    5.66 OK      +0.489 0.607 +0.368 +0.346  +0.124  +0.151 +0.199   3.66
+  Carina II          MW ultra-faint    8.46 OK      +0.455 0.255 +0.443 +0.392  +0.013  +0.067 +0.260   4.06
+  Leo V              MW ultra-faint   10.87 OK      +0.595 0.356 +0.472 +0.347  +0.135  +0.282 +0.290   3.99
+  Horologium I       MW ultra-faint   10.61 OK      +1.020 0.279 +0.481 +0.396  +0.540  +0.628 +0.294   3.59
+  Ursa Major II      MW ultra-faint   10.65 OK      +1.035 0.141 +0.496 +0.450  +0.540  +0.587 +0.302   4.00
+  Coma Berenices     MW ultra-faint   11.68 OK      +0.500 0.140 +0.504 +0.425  -0.003  +0.076 +0.313   3.95
+  Bootes I           MW ultra-faint   13.15 OK      +0.318 0.077 +0.536 +0.472  -0.217  -0.153 +0.338   4.64
+  Ursa Major I       MW ultra-faint   13.19 OK      +0.998 0.143 +0.543 +0.498  +0.456  +0.500 +0.342   4.29
+  Willman 1          MW ultra-faint   15.69 OK      +1.221 0.287 +0.556 +0.439  +0.663  +0.782 +0.361   3.25
+  Leo IV             MW ultra-faint   17.72 OK      +0.162 0.204 +0.598 +0.524  -0.434  -0.357 +0.393   4.21
+  Bootes III         MW ultra-faint   17.24 OK      -0.239 0.665 +0.610 +0.587  -0.848  -0.826 +0.398   4.57
+  Eridanus IV        MW ultra-faint   18.86 OK      +1.182 0.153 +0.612 +0.540  +0.571  +0.645 +0.406   3.65
+  Hercules           MW ultra-faint   19.88 OK      -0.139 0.298 +0.613 +0.511  -0.752  -0.650 +0.410   4.56
+  Pegasus III        MW ultra-faint   20.82 OK      +0.376 0.419 +0.634 +0.564  -0.257  -0.183 +0.426   3.90
+  Reticulum II       MW ultra-faint   21.80 OK      +0.629 0.206 +0.634 +0.535  -0.005  +0.102 +0.429   3.47
+  Bootes II          MW ultra-faint   28.28 OK      +0.298 0.360 +0.685 +0.563  -0.385  -0.260 +0.478   3.41
+  Eridanus II        MW ultra-faint   31.45 OK      +0.570 0.129 +0.695 +0.527  -0.125  +0.044 +0.491   5.08
+  Centaurus I        MW ultra-faint   32.47 OK      +0.493 0.113 +0.695 +0.505  -0.200  -0.003 +0.494   4.37
+  Pegasus IV         MW ultra-faint   33.57 OK      +0.502 0.273 +0.699 +0.496  -0.195  +0.020 +0.499   3.93
+  Hydrus I           MW ultra-faint   33.57 OK      +0.249 0.155 +0.700 +0.501  -0.450  -0.245 +0.499   4.12
+  Aquarius II        MW ultra-faint   29.26 OK      +0.789 0.285 +0.712 +0.651  +0.077  +0.141 +0.496   3.98
+  Canes Venatici II  MW ultra-faint   39.36 OK      +0.716 0.183 +0.717 +0.451  +0.004  +0.287 +0.522   4.30
+  Pisces II          MW ultra-faint   38.31 OK      +0.608 0.488 +0.740 +0.577  -0.132  +0.031 +0.533   3.95
+  Columba I          MW ultra-faint   41.62 ABOVE   +1.024 0.355 +0.780 +0.692  +0.244  +0.335 +0.563   3.91
+  Segue 1            MW ultra-faint   58.79 ABOVE   +1.253 0.219 +0.840 +0.697  +0.415  +0.565 +0.626   2.75
+  Tucana V           MW ultra-faint   77.10 OK      +0.255 0.700 +0.903 +0.772  -0.645  -0.500 +0.686   2.67
+  Andromeda XIX      bright M31        1.00 UNDER   +0.300 0.215 +0.000 +0.000  +0.300  +0.300 +0.000   6.25
+  Andromeda VII      bright M31        1.87 OK      +0.098 0.069 +0.113 +0.068  -0.014  +0.030 +0.046   7.35
+  Andromeda I        bright M31        2.32 OK      +0.193 0.169 +0.165 +0.129  +0.028  +0.064 +0.071   6.77
+  Andromeda XVIII    bright M31        3.78 OK      +0.600 0.094 +0.257 +0.185  +0.344  +0.419 +0.127   5.90
+  Andromeda III      bright M31        6.27 OK      +0.476 0.134 +0.353 +0.237  +0.125  +0.243 +0.196   6.03
+  Andromeda V        bright M31        7.02 OK      +0.631 0.092 +0.383 +0.281  +0.249  +0.352 +0.217   5.95
+  Andromeda XVI      bright M31        9.88 OK      -0.023 0.836 +0.448 +0.313  -0.468  -0.330 +0.271   5.22
+  Andromeda XXVIII   bright M31       12.28 ABOVE   +0.114 0.344 +0.494 +0.352  -0.380  -0.236 +0.310   5.64
+  Andromeda XXIX     bright M31       14.10 ABOVE   +0.325 0.189 +0.531 +0.409  -0.205  -0.081 +0.340   5.50
+  Andromeda X        bright M31       24.41 OK      +0.467 0.209 +0.641 +0.482  -0.166  -0.001 +0.441   5.15
+  Crater II          indiv:Crater II    5.27 OK      -0.443 0.134 +0.355 +0.341  -0.798  -0.784 +0.189   5.51
+  [edge NR] state FAILS: G1 PASS, G2 FAIL, G3m FAIL, G3r FAIL, G4a FAIL, G4b PASS, G5 PASS
+     G1 MW ultra-faint  N 26: after history -0.045 [-0.242, +0.218] PASS (before, same rows +0.584 [+0.380, +0.841])
+     G1 bright M31      N 10: after history +0.037 [-0.219, +0.257] PASS (before, same rows +0.367 [+0.115, +0.584])
+     G1 MW classical    N  8: after history -0.010 [-0.104, +0.202] PASS (before, same rows +0.281 [-0.015, +0.573])
+     G2 S +0.223 p(one) 0.0789 slope +0.33 [-0.25, +0.90] per class rho MW ultra-faint +0.06, bright M31 +0.12, MW classical +0.88 -> FAIL
+     G3m S -0.035 p(one) 0.5850; rho(P, control) MW ultra-faint -0.16, bright M31 -0.89, MW classical -0.90 -> FAIL
+     G3r S +0.141 p(one) 0.1930; rho(P, control) MW ultra-faint -0.18, bright M31 -0.81, MW classical -0.10 -> FAIL
+     power (plants): tau 0.281; G2 0.69, G3m 0.50, G3r 0.56
+     G4a LG field N 12: after HI + history -0.144 [-0.302, -0.016] FAIL LOW (stars only +0.039)
+     G4b least-loss third (P <= 0.383, N 14): +0.077 [-0.071, +0.248] -> PASS
+     G5 MW ultra-faint : median L need 14.31 vs upper 199.21 (central 20.35); 4/26 exceed, 0 beyond the edge's ceiling -> ok
+     G5 bright M31     : median L need 4.55 vs upper 26.44 (central 6.65); 2/10 exceed, 0 beyond the edge's ceiling -> ok
+     G5 MW classical   : median L need 4.15 vs upper 27.89 (central 5.83); 1/8 exceed, 0 beyond the edge's ceiling -> ok
+     A1 check: NR L_need unchanged from run 2's root finder, max rel 5.4e-07 (line 1e-4)
+  [edge AD] state FAILS: G1 PASS, G2 FAIL, G3m NO POWER, G3r NO POWER, G4a PASS, G4b PASS, G5 FAIL
+     G1 MW ultra-faint  N 26: after history +0.089 [-0.115, +0.346] PASS (before, same rows +0.584 [+0.380, +0.841])
+     G1 bright M31      N 10: after history +0.126 [-0.108, +0.342] PASS (before, same rows +0.367 [+0.115, +0.584])
+     G1 MW classical    N  8: after history +0.133 [-0.055, +0.294] PASS (before, same rows +0.281 [-0.015, +0.573])
+     G2 S +0.161 p(one) 0.1578 slope +0.41 [-0.39, +1.13] per class rho MW ultra-faint -0.05, bright M31 +0.12, MW classical +0.90 -> FAIL
+     G3m S +0.003 p(one) 0.4935; rho(P, control) MW ultra-faint -0.19, bright M31 -0.89, MW classical -0.95 -> NO POWER
+     G3r S +0.159 p(one) 0.1653; rho(P, control) MW ultra-faint +0.08, bright M31 -0.81, MW classical -0.05 -> NO POWER
+     power (plants): tau 0.296; G2 0.50, G3m 0.37, G3r 0.43
+     G4a LG field N 12: after HI + history -0.080 [-0.196, +0.049] PASS (stars only +0.039)
+     G4b least-loss third (P <= 0.313, N 14): +0.172 [-0.002, +0.330] -> PASS
+     G5 MW ultra-faint : median L need 42.63 vs upper 199.21 (central 20.35); 9/26 exceed, 9 beyond the edge's ceiling -> ok
+     G5 bright M31     : median L need 5.89 vs upper 26.44 (central 6.65); 4/10 exceed, 3 beyond the edge's ceiling -> ok
+     G5 MW classical   : median L need inf vs upper 27.89 (central 5.83); 4/8 exceed, 4 beyond the edge's ceiling -> FAIL
+     AD ceilings (max_L P at central values, L at the ceiling; D_B): Aquarius II +0.96@473 (+0.79); Bootes I +0.74@178 (+0.32); Bootes II +0.67@126 (+0.30); Bootes III +1.24@1778 (-0.24); Canes Venatici II +0.45@45 (+0.72); Carina II +0.71@158 (+0.46); Centaurus I +0.53@67 (+0.49); Columba I +0.89@355 (+1.02); Coma Berenices +0.62@100 (+0.50); Eridanus II +0.57@79 (+0.57); Eridanus IV +0.78@211 (+1.18); Hercules +0.65@119 (-0.14); Horologium I +0.57@79 (+1.02); Hydrus I +0.52@63 (+0.25); Leo IV +0.75@188 (+0.16); Leo V +0.42@38 (+0.60); Leo VI +0.96@501 (+0.49); Pegasus III +0.82@251 (+0.38); Pegasus IV +0.52@63 (+0.50); Pisces II +0.63@106 (+0.61); Reticulum II +0.68@133 (+0.63); Segue 1 +0.77@200 (+1.25); Tucana V +0.88@335 (+0.25); Ursa Major I +0.89@355 (+1.00); Ursa Major II +0.82@251 (+1.04); Willman 1 +0.54@67 (+1.22); Andromeda I +0.37@28 (+0.19); Andromeda III +0.30@20 (+0.48); Andromeda V +0.38@32 (+0.63); Andromeda VII +0.15@8 (+0.10); Andromeda X +0.53@67 (+0.47); Andromeda XVI +0.37@30 (-0.02); Andromeda XVIII +0.31@21 (+0.60); Andromeda XIX +1.06@794 (+0.30); Andromeda XXVIII +0.41@35 (+0.11); Andromeda XXIX +0.50@56 (+0.33); Carina +0.28@19 (+0.20); Draco +0.29@19 (+0.63); Fornax +0.07@4 (-0.09); Leo I +0.02@2 (-0.03); Leo II +0.12@6 (+0.28); Sculptor +0.08@5 (+0.20); Sextans +0.68@133 (+0.50); Ursa Minor +0.38@32 (+0.57)
+  reported [L lower edge, NR]: G1 MW ultra-faint +0.248 [-0.031, +0.542] PASS; bright M31 +0.072 [-0.141, +0.284] PASS; MW classical +0.019 [-0.094, +0.229] PASS | G4a -0.132 FAIL LOW | G5 PASS | G2 S +0.116 p 0.218
+  reported [L lower edge, AD]: G1 MW ultra-faint +0.307 [+0.049, +0.584] FAIL HIGH; bright M31 +0.150 [-0.058, +0.362] PASS; MW classical +0.143 [-0.049, +0.311] PASS | G4a -0.079 PASS | G5 FAIL | G2 S +0.094 p 0.267
+  reported [L upper edge, NR]: G1 MW ultra-faint -0.434 [-0.611, -0.194] FAIL LOW; bright M31 -0.217 [-0.478, -0.020] FAIL LOW; MW classical -0.242 [-0.322, -0.086] FAIL LOW | G4a -0.392 FAIL LOW | G5 PASS | G2 S +0.268 p 0.044
+  reported [L upper edge, AD]: G1 MW ultra-faint -0.005 [-0.256, +0.215] PASS; bright M31 +0.022 [-0.212, +0.239] PASS; MW classical +0.123 [-0.116, +0.304] PASS | G4a -0.060 PASS | G5 FAIL | G2 S +0.130 p 0.210
+  reported [HI q 0, NR]: G1 MW ultra-faint -0.045 [-0.242, +0.218] PASS; bright M31 +0.037 [-0.219, +0.257] PASS; MW classical -0.010 [-0.104, +0.202] PASS | G4a -0.084 PASS | G5 PASS | G2 S +0.223 p 0.073
+  reported [HI q 0, AD]: G1 MW ultra-faint +0.089 [-0.115, +0.346] PASS; bright M31 +0.126 [-0.108, +0.342] PASS; MW classical +0.133 [-0.055, +0.294] PASS | G4a -0.009 PASS | G5 FAIL | G2 S +0.161 p 0.153
+  reported [HI q 0.5, NR]: G1 MW ultra-faint -0.045 [-0.242, +0.218] PASS; bright M31 +0.037 [-0.219, +0.257] PASS; MW classical -0.010 [-0.104, +0.202] PASS | G4a -0.189 FAIL LOW | G5 PASS | G2 S +0.223 p 0.073
+  reported [HI q 0.5, AD]: G1 MW ultra-faint +0.089 [-0.115, +0.346] PASS; bright M31 +0.126 [-0.108, +0.342] PASS; MW classical +0.133 [-0.055, +0.294] PASS | G4a -0.129 PASS | G5 FAIL | G2 S +0.161 p 0.153
+  reported [imputed class-median width, never graded]: Grus I L 23.2 D +0.27 P +0.66; Pictor II L 54.3 D +0.87 P +0.82; Tucana II L 32.8 D +0.74 P +0.74; Tucana IV L 17.2 D +0.99 P +0.61; Andromeda II L 3.1 D -0.11 P +0.23; Andromeda IX L 11.4 D +0.79 P +0.50; Andromeda XIV L 18.1 D +0.17 P +0.58; Andromeda XV L 2.9 D -0.01 P +0.21; Andromeda XXI L 5.3 D +0.24 P +0.35; Andromeda XXV L 8.5 D -0.23 P +0.44; Cassiopeia III L 5.3 D -0.19 P +0.32; Lacerta I L 10.6 D +0.22 P +0.44; Perseus I L 10.6 D -0.05 P +0.47
+  reported: bright M31 G1 (NR) with the imputed rows, N 19: -0.122 [-0.361, +0.103]
+  reported [lost gas as a Plummer of 2a, NR]: median after-history residual MW ultra-faint +0.192, bright M31 +0.087, MW classical +0.123
+  LABEL [canonical]: HISTORY DOES NOT CLOSE THEM (L-sensitive: NR: L upper edge; AD: L lower edge) | Part A: MW ultra-faint DOES NOT SURVIVE; bright M31 DOES NOT SURVIVE
+--- Part C (history on the LOW rows) --- IC 1613: D_B -0.537, L 1.00, P +0.047, after history -0.583; Crater II: D_B -0.443, L 5.27, P +0.355, after history -0.798; NGC 147: D_B -0.560, no L on disk; Cassiopeia III: D_B -0.189, no L on disk
+  peak RSS 0.492 GB, 376 s
+
+================ [alt] a0 1.1312e-10
+coverage (rows with an L from P1's copied code): MW ultra-faint 26/31 (+4 imputed width, reported); bright M31 10/25 (+9 imputed width, reported); MW classical 8/8 (+0 imputed width, reported); LG field 12/13 (+0 imputed width, reported)
+KA6[alt] PASS  Part A on RB2's stream with no censoring (arm a0, measured only) = RB2's C2 class medians: max |d| 0.0e+00 (line 1e-9); the paired a0 rebuild (own seed) differs from A1 by up to 0.001 dex (seed noise, reported)
+--- Part A (data side) ---
+  A1 censored KM MW ultra-faint : N 40 (9 upper limits) median +0.502 [+0.303, +0.729] (measured only +0.592 [+0.391, +0.822]); ML mu +0.524 [+0.381, +0.660] tau 0.324
+     bounds (dex, true residual at or below): Aquarius III +0.87, Draco II +0.95, Grus II +0.04, Hydra II +0.48, Phoenix II +2.41, Reticulum III +1.45, Segue 2 +0.52, Triangulum II +1.11, Tucana III +0.37
+  A1 censored KM bright M31     : N 26 (1 upper limits) median +0.226 [+0.043, +0.428] (measured only +0.231 [+0.046, +0.429]); ML mu +0.258 [+0.118, +0.396] tau 0.266
+     bounds (dex, true residual at or below): Andromeda XXIV +0.48
+  A1 censored KM MW classical   : N 8 (0 upper limits) median +0.241 [-0.052, +0.536] (measured only +0.241 [-0.052, +0.536]); ML mu +0.240 [+0.033, +0.448] tau 0.253
+  A1 censored KM M31 others     : N 6 (1 upper limits) median +0.472 [-0.363, +0.998] (measured only +0.632 [-0.040, +1.111]); ML mu +0.421 [-0.116, +0.918] tau 0.364
+     bounds (dex, true residual at or below): Andromeda XII +0.16
+  A2 arm a0   : MW ultra-faint +0.501 [+0.302, +0.728] (9 cens) | bright M31 +0.225 [+0.044, +0.430] (1 cens) | MW classical +0.241 [-0.052, +0.533] (0 cens)
+  A2 arm a+   : MW ultra-faint +0.646 [+0.450, +0.874] (9 cens) | bright M31 +0.233 [+0.047, +0.439] (1 cens) | MW classical +0.241 [-0.052, +0.533] (0 cens)
+  A2 arm af07 : MW ultra-faint +0.430 [+0.224, +0.657] (9 cens) | bright M31 +0.219 [+0.042, +0.409] (1 cens) | MW classical +0.241 [-0.052, +0.533] (0 cens)
+  A2 arm alow : MW ultra-faint +0.502 [+0.286, +0.720] (9 cens) | bright M31 +0.225 [+0.044, +0.430] (1 cens) | MW classical +0.241 [-0.052, +0.533] (0 cens)
+  A2 arm afl  : MW ultra-faint +0.462 [+0.236, +0.703] (10 cens) | bright M31 +0.224 [+0.043, +0.430] (1 cens) | MW classical +0.241 [-0.052, +0.533] (0 cens)
+  A2 arm adown: MW ultra-faint +0.390 [+0.114, +0.628] (10 cens) | bright M31 +0.218 [+0.040, +0.408] (1 cens) | MW classical +0.241 [-0.052, +0.533] (0 cens)
+  A3 MW ultra-faint  (a_c 0.087, m_c 0.119): budget +0.603 [-0.033, +1.230] N 30 | SE2 verbatim +0.566 [-0.035, +1.171] | A-full (censored + budget) +0.509 [-0.110, +1.141] N 39 (9 cens); excluded ['Bootes III']
+     A-full on the adown arm: +0.396 [-0.247, +1.038]
+  A3 bright M31      (a_c 0.116, m_c 0.045): budget +0.267 [-0.228, +0.758] N 21 | SE2 verbatim +0.217 [-0.231, +0.672] | A-full (censored + budget) +0.258 [-0.237, +0.747] N 22 (1 cens); excluded ['Andromeda I', 'Andromeda XVII', 'Andromeda XIX', 'Andromeda XXV']
+     A-full on the adown arm: +0.247 [-0.243, +0.735]
+  A3 MW classical    (a_c 0.107, m_c 0.014): budget +0.248 [-0.245, +0.733] N 8 | SE2 verbatim +0.243 [-0.224, +0.715] | A-full (censored + budget) +0.248 [-0.245, +0.733] N 8 (0 cens); excluded []
+  PART A OUTCOME: MW ultra-faint: DOES NOT SURVIVE; bright M31: DOES NOT SURVIVE
+--- Part B (history) ---
+  system             class                L flag       D_B    sd   P_NR   P_AD    R_NR    R_AD  P_ext  logM*
+  IC 1613            LG field          1.00 UNDER   -0.577 0.076 +0.046 +0.046  -0.623  -0.623 +0.046   8.28
+  NGC 6822           LG field          1.00 UNDER   -0.037 0.046 +0.083 +0.083  -0.120  -0.120 +0.083   8.51
+  WLM                LG field          1.00 UNDER   -0.018 0.103 +0.096 +0.096  -0.114  -0.114 +0.096   7.98
+  Leo A              LG field          1.15 OK      -0.129 0.071 +0.142 +0.125  -0.271  -0.255 +0.123   7.08
+  Aquarius           LG field          1.00 UNDER   +0.091 0.160 +0.144 +0.144  -0.053  -0.053 +0.144   6.42
+  UGC 4879           LG field          3.93 OK      -0.114 0.114 +0.219 +0.032  -0.333  -0.146 +0.115   7.13
+  Tucana             LG field          3.51 OK      +0.069 0.210 +0.236 +0.153  -0.165  -0.079 +0.114   6.05
+  Pegasus dIrr       LG field          2.42 ABOVE   +0.146 0.083 +0.245 +0.171  -0.099  -0.026 +0.144   7.09
+  Phoenix            LG field          4.25 OK      +0.355 0.075 +0.289 +0.186  +0.066  +0.170 +0.154   6.18
+  Sagittarius dIrr   LG field          3.01 OK      -0.044 0.120 +0.332 +0.130  -0.376  -0.176 +0.240   6.95
+  Cetus              LG field          5.85 OK      +0.007 0.106 +0.343 +0.241  -0.336  -0.233 +0.187   6.71
+  Leo T              LG field          2.79 ABOVE   +0.373 0.141 +0.402 +0.322  -0.029  +0.052 +0.276   5.43
+  Fornax             MW classical      1.00 UNDER   -0.132 0.017 +0.000 +0.000  -0.132  -0.132 +0.000   7.59
+  Leo I              MW classical      1.76 OK      -0.064 0.030 +0.084 +0.021  -0.147  -0.084 +0.034   6.96
+  Carina             MW classical      2.31 OK      +0.154 0.167 +0.163 +0.122  -0.009  +0.032 +0.070   6.01
+  Sculptor           MW classical      6.27 OK      +0.156 0.107 +0.312 +0.099  -0.156  +0.055 +0.174   6.54
+  Leo II             MW classical      5.89 OK      +0.243 0.045 +0.314 +0.139  -0.070  +0.105 +0.173   6.03
+  Draco              MW classical      5.77 OK      +0.587 0.025 +0.340 +0.237  +0.247  +0.349 +0.185   5.78
+  Ursa Minor         MW classical      6.69 OK      +0.528 0.033 +0.378 +0.289  +0.151  +0.239 +0.212   5.78
+  Sextans            MW classical      8.17 OK      +0.470 0.149 +0.437 +0.389  +0.033  +0.082 +0.255   5.72
+  Leo VI             MW ultra-faint    5.66 OK      +0.486 0.601 +0.368 +0.349  +0.121  +0.146 +0.199   3.66
+  Carina II          MW ultra-faint    8.46 OK      +0.436 0.249 +0.445 +0.399  -0.009  +0.039 +0.261   4.06
+  Leo V              MW ultra-faint   10.87 OK      +0.538 0.383 +0.477 +0.365  +0.077  +0.212 +0.293   3.99
+  Horologium I       MW ultra-faint   10.61 OK      +0.976 0.274 +0.484 +0.407  +0.491  +0.572 +0.295   3.59
+  Ursa Major II      MW ultra-faint   10.65 OK      +0.998 0.146 +0.497 +0.456  +0.501  +0.542 +0.303   4.00
+  Coma Berenices     MW ultra-faint   11.68 OK      +0.462 0.135 +0.507 +0.436  -0.045  +0.026 +0.314   3.95
+  Bootes I           MW ultra-faint   13.15 OK      +0.281 0.078 +0.538 +0.481  -0.257  -0.200 +0.339   4.64
+  Ursa Major I       MW ultra-faint   13.19 OK      +0.962 0.143 +0.545 +0.504  +0.418  +0.459 +0.343   4.29
+  Willman 1          MW ultra-faint   15.69 OK      +1.158 0.299 +0.559 +0.451  +0.599  +0.712 +0.363   3.25
+  Leo IV             MW ultra-faint   17.72 OK      +0.119 0.202 +0.600 +0.533  -0.481  -0.413 +0.395   4.21
+  Bootes III         MW ultra-faint   17.24 OK      -0.305 0.660 +0.610 +0.590  -0.915  -0.895 +0.399   4.57
+  Eridanus IV        MW ultra-faint   18.86 OK      +1.134 0.155 +0.614 +0.548  +0.520  +0.588 +0.407   3.65
+  Hercules           MW ultra-faint   19.88 OK      -0.180 0.266 +0.616 +0.523  -0.796  -0.701 +0.412   4.56
+  Pegasus III        MW ultra-faint   20.82 OK      +0.332 0.367 +0.637 +0.574  -0.305  -0.238 +0.427   3.90
+  Reticulum II       MW ultra-faint   21.80 OK      +0.591 0.206 +0.638 +0.547  -0.045  +0.054 +0.431   3.47
+  Bootes II          MW ultra-faint   28.28 OK      +0.267 0.340 +0.689 +0.579  -0.420  -0.309 +0.480   3.41
+  Eridanus II        MW ultra-faint   31.45 OK      +0.533 0.130 +0.700 +0.549  -0.167  -0.016 +0.494   5.08
+  Centaurus I        MW ultra-faint   32.47 OK      +0.452 0.116 +0.700 +0.527  -0.246  -0.066 +0.497   4.37
+  Pegasus IV         MW ultra-faint   33.57 OK      +0.462 0.277 +0.705 +0.521  -0.242  -0.046 +0.502   3.93
+  Hydrus I           MW ultra-faint   33.57 OK      +0.215 0.154 +0.706 +0.526  -0.489  -0.308 +0.503   4.12
+  Aquarius II        MW ultra-faint   29.26 OK      +0.750 0.284 +0.714 +0.659  +0.038  +0.097 +0.497   3.98
+  Canes Venatici II  MW ultra-faint   39.36 OK      +0.686 0.181 +0.724 +0.485  -0.035  +0.219 +0.526   4.30
+  Pisces II          MW ultra-faint   38.31 OK      +0.565 0.483 +0.745 +0.599  -0.180  -0.033 +0.536   3.95
+  Columba I          MW ultra-faint   41.62 ABOVE   +0.987 0.356 +0.783 +0.703  +0.206  +0.287 +0.565   3.91
+  Segue 1            MW ultra-faint   58.79 ABOVE   +1.210 0.212 +0.843 +0.714  +0.367  +0.500 +0.629   2.75
+  Tucana V           MW ultra-faint   77.10 OK      +0.237 0.668 +0.907 +0.791  -0.667  -0.536 +0.688   2.67
+  Andromeda XIX      bright M31        1.00 UNDER   +0.232 0.206 +0.000 +0.000  +0.232  +0.232 +0.000   6.25
+  Andromeda VII      bright M31        1.87 OK      +0.060 0.068 +0.115 +0.073  -0.055  -0.013 +0.047   7.35
+  Andromeda I        bright M31        2.32 OK      +0.158 0.171 +0.167 +0.134  -0.008  +0.025 +0.072   6.77
+  Andromeda XVIII    bright M31        3.78 OK      +0.556 0.094 +0.260 +0.193  +0.298  +0.364 +0.128   5.90
+  Andromeda III      bright M31        6.27 OK      +0.444 0.134 +0.357 +0.252  +0.088  +0.194 +0.198   6.03
+  Andromeda V        bright M31        7.02 OK      +0.582 0.093 +0.387 +0.294  +0.196  +0.290 +0.219   5.95
+  Andromeda XVI      bright M31        9.88 OK      -0.091 0.891 +0.452 +0.329  -0.544  -0.425 +0.273   5.22
+  Andromeda XXVIII   bright M31       12.28 ABOVE   +0.085 0.361 +0.499 +0.371  -0.413  -0.286 +0.312   5.64
+  Andromeda XXIX     bright M31       14.10 ABOVE   +0.292 0.198 +0.535 +0.424  -0.245  -0.132 +0.342   5.50
+  Andromeda X        bright M31       24.41 OK      +0.415 0.204 +0.645 +0.499  -0.226  -0.067 +0.443   5.15
+  Crater II          indiv:Crater II    5.27 OK      -0.483 0.132 +0.355 +0.343  -0.838  -0.826 +0.189   5.51
+  [edge NR] state FAILS: G1 PASS, G2 FAIL, G3m FAIL, G3r FAIL, G4a FAIL, G4b PASS, G5 PASS
+     G1 MW ultra-faint  N 26: after history -0.087 [-0.285, +0.171] PASS (before, same rows +0.546 [+0.343, +0.799])
+     G1 bright M31      N 10: after history -0.003 [-0.263, +0.210] PASS (before, same rows +0.325 [+0.073, +0.540])
+     G1 MW classical    N  8: after history -0.055 [-0.145, +0.162] PASS (before, same rows +0.241 [-0.052, +0.536])
+     G2 S +0.206 p(one) 0.0948 slope +0.33 [-0.23, +0.89] per class rho MW ultra-faint +0.03, bright M31 +0.12, MW classical +0.90 -> FAIL
+     G3m S -0.023 p(one) 0.5551; rho(P, control) MW ultra-faint -0.16, bright M31 -0.89, MW classical -0.90 -> FAIL
+     G3r S +0.130 p(one) 0.2142; rho(P, control) MW ultra-faint -0.18, bright M31 -0.81, MW classical -0.10 -> FAIL
+     power (plants): tau 0.277; G2 0.70, G3m 0.53, G3r 0.59
+     G4a LG field N 12: after HI + history -0.184 [-0.339, -0.057] FAIL LOW (stars only +0.002)
+     G4b least-loss third (P <= 0.387, N 14): +0.035 [-0.112, +0.203] -> PASS
+     G5 MW ultra-faint : median L need 11.68 vs upper 199.21 (central 20.35); 3/26 exceed, 0 beyond the edge's ceiling -> ok
+     G5 bright M31     : median L need 3.58 vs upper 26.44 (central 6.65); 0/10 exceed, 0 beyond the edge's ceiling -> ok
+     G5 MW classical   : median L need 3.20 vs upper 27.89 (central 5.83); 0/8 exceed, 0 beyond the edge's ceiling -> ok
+     A1 check: NR L_need unchanged from run 2's root finder, max rel 5.6e-07 (line 1e-4)
+  [edge AD] state FAILS: G1 PASS, G2 FAIL, G3m NO POWER, G3r NO POWER, G4a PASS, G4b PASS, G5 FAIL
+     G1 MW ultra-faint  N 26: after history +0.034 [-0.174, +0.289] PASS (before, same rows +0.546 [+0.343, +0.799])
+     G1 bright M31      N 10: after history +0.076 [-0.161, +0.287] PASS (before, same rows +0.325 [+0.073, +0.540])
+     G1 MW classical    N  8: after history +0.078 [-0.099, +0.246] PASS (before, same rows +0.241 [-0.052, +0.536])
+     G2 S +0.149 p(one) 0.1723 slope +0.41 [-0.36, +1.11] per class rho MW ultra-faint -0.06, bright M31 +0.12, MW classical +0.88 -> FAIL
+     G3m S +0.031 p(one) 0.4225; rho(P, control) MW ultra-faint -0.19, bright M31 -0.89, MW classical -0.95 -> NO POWER
+     G3r S +0.127 p(one) 0.2227; rho(P, control) MW ultra-faint +0.05, bright M31 -0.81, MW classical -0.05 -> NO POWER
+     power (plants): tau 0.291; G2 0.53, G3m 0.37, G3r 0.44
+     G4a LG field N 12: after HI + history -0.124 [-0.241, +0.002] PASS (stars only +0.002)
+     G4b least-loss third (P <= 0.329, N 14): +0.116 [-0.052, +0.274] -> PASS
+     G5 MW ultra-faint : median L need 22.54 vs upper 199.21 (central 20.35); 9/26 exceed, 9 beyond the edge's ceiling -> ok
+     G5 bright M31     : median L need 4.34 vs upper 26.44 (central 6.65); 3/10 exceed, 3 beyond the edge's ceiling -> ok
+     G5 MW classical   : median L need inf vs upper 27.89 (central 5.83); 4/8 exceed, 4 beyond the edge's ceiling -> FAIL
+     AD ceilings (max_L P at central values, L at the ceiling; D_B): Aquarius II +1.00@596 (+0.75); Bootes I +0.78@211 (+0.28); Bootes II +0.71@158 (+0.27); Bootes III +1.28@2113 (-0.30); Canes Venatici II +0.49@53 (+0.69); Carina II +0.75@188 (+0.44); Centaurus I +0.57@79 (+0.45); Columba I +0.93@422 (+0.99); Coma Berenices +0.66@126 (+0.46); Eridanus II +0.61@100 (+0.53); Eridanus IV +0.82@251 (+1.13); Hercules +0.69@141 (-0.18); Horologium I +0.61@94 (+0.98); Hydrus I +0.56@75 (+0.21); Leo IV +0.80@224 (+0.12); Leo V +0.46@47 (+0.54); Leo VI +1.00@596 (+0.49); Pegasus III +0.86@316 (+0.33); Pegasus IV +0.56@75 (+0.46); Pisces II +0.67@133 (+0.57); Reticulum II +0.72@168 (+0.59); Segue 1 +0.81@251 (+1.21); Tucana V +0.92@398 (+0.24); Ursa Major I +0.93@422 (+0.96); Ursa Major II +0.86@316 (+1.00); Willman 1 +0.58@84 (+1.16); Andromeda I +0.40@35 (+0.16); Andromeda III +0.34@25 (+0.44); Andromeda V +0.42@38 (+0.58); Andromeda VII +0.18@10 (+0.06); Andromeda X +0.57@79 (+0.41); Andromeda XVI +0.40@35 (-0.09); Andromeda XVIII +0.34@25 (+0.56); Andromeda XIX +1.10@944 (+0.23); Andromeda XXVIII +0.45@42 (+0.09); Andromeda XXIX +0.54@67 (+0.29); Carina +0.32@22 (+0.15); Draco +0.32@22 (+0.59); Fornax +0.08@5 (-0.13); Leo I +0.02@2 (-0.06); Leo II +0.14@7 (+0.24); Sculptor +0.10@6 (+0.16); Sextans +0.72@168 (+0.47); Ursa Minor +0.42@38 (+0.53)
+  reported [L lower edge, NR]: G1 MW ultra-faint +0.207 [-0.072, +0.501] PASS; bright M31 +0.030 [-0.189, +0.237] PASS; MW classical -0.025 [-0.134, +0.190] PASS | G4a -0.171 FAIL LOW | G5 PASS | G2 S +0.100 p 0.243
+  reported [L lower edge, AD]: G1 MW ultra-faint +0.261 [+0.000, +0.538] FAIL HIGH; bright M31 +0.101 [-0.107, +0.308] PASS; MW classical +0.091 [-0.093, +0.263] PASS | G4a -0.122 PASS | G5 FAIL | G2 S +0.079 p 0.289
+  reported [L upper edge, NR]: G1 MW ultra-faint -0.483 [-0.661, -0.248] FAIL LOW; bright M31 -0.262 [-0.525, -0.071] FAIL LOW; MW classical -0.288 [-0.373, -0.129] FAIL LOW | G4a -0.442 FAIL LOW | G5 PASS | G2 S +0.263 p 0.047
+  reported [L upper edge, AD]: G1 MW ultra-faint -0.093 [-0.338, +0.129] PASS; bright M31 -0.046 [-0.279, +0.164] PASS; MW classical +0.054 [-0.174, +0.221] PASS | G4a -0.123 PASS | G5 FAIL | G2 S +0.153 p 0.171
+  reported [HI q 0, NR]: G1 MW ultra-faint -0.087 [-0.285, +0.171] PASS; bright M31 -0.003 [-0.263, +0.210] PASS; MW classical -0.055 [-0.145, +0.162] PASS | G4a -0.126 FAIL LOW | G5 PASS | G2 S +0.206 p 0.085
+  reported [HI q 0, AD]: G1 MW ultra-faint +0.034 [-0.174, +0.289] PASS; bright M31 +0.076 [-0.161, +0.287] PASS; MW classical +0.078 [-0.099, +0.246] PASS | G4a -0.055 PASS | G5 FAIL | G2 S +0.149 p 0.160
+  reported [HI q 0.5, NR]: G1 MW ultra-faint -0.087 [-0.285, +0.171] PASS; bright M31 -0.003 [-0.263, +0.210] PASS; MW classical -0.055 [-0.145, +0.162] PASS | G4a -0.228 FAIL LOW | G5 PASS | G2 S +0.206 p 0.085
+  reported [HI q 0.5, AD]: G1 MW ultra-faint +0.034 [-0.174, +0.289] PASS; bright M31 +0.076 [-0.161, +0.287] PASS; MW classical +0.078 [-0.099, +0.246] PASS | G4a -0.172 FAIL LOW | G5 FAIL | G2 S +0.149 p 0.160
+  reported [imputed class-median width, never graded]: Grus I L 23.2 D +0.24 P +0.67; Pictor II L 54.3 D +0.84 P +0.82; Tucana II L 32.8 D +0.69 P +0.75; Tucana IV L 17.2 D +0.95 P +0.61; Andromeda II L 3.1 D -0.15 P +0.23; Andromeda IX L 11.4 D +0.75 P +0.50; Andromeda XIV L 18.1 D +0.13 P +0.58; Andromeda XV L 2.9 D -0.07 P +0.21; Andromeda XXI L 5.3 D +0.19 P +0.35; Andromeda XXV L 8.5 D -0.27 P +0.44; Cassiopeia III L 5.3 D -0.23 P +0.32; Lacerta I L 10.6 D +0.18 P +0.45; Perseus I L 10.6 D -0.08 P +0.47
+  reported: bright M31 G1 (NR) with the imputed rows, N 19: -0.168 [-0.409, +0.052]
+  reported [lost gas as a Plummer of 2a, NR]: median after-history residual MW ultra-faint +0.155, bright M31 +0.049, MW classical +0.077
+  LABEL [alt]: HISTORY DOES NOT CLOSE THEM (L-sensitive: NR: L upper edge; AD: L lower edge) | Part A: MW ultra-faint DOES NOT SURVIVE; bright M31 DOES NOT SURVIVE
+--- Part C (history on the LOW rows) --- IC 1613: D_B -0.577, L 1.00, P +0.046, after history -0.623; Crater II: D_B -0.483, L 5.27, P +0.355, after history -0.838; NGC 147: D_B -0.590, no L on disk; Cassiopeia III: D_B -0.230, no L on disk
+  peak RSS 0.517 GB, 745 s
+
+=== PART D (Weisz 2014 tau90 on disk; reported, not in the label) ===
+[canonical] overlap: MW ultra-faint 3; bright M31 7; MW classical 7; LG field 10. D1 (Delta_B on tau90, within class, classes with >= 3): S +0.240 p(one) 0.1263 N 27 | D2 (after history on tau90): S +0.047 p(two) 0.8429 N 24
+    MW ultra-faint: Hercules tau90 12.6 Gyr* D -0.14, Leo IV tau90 11.2 Gyr D +0.16, Canes Venatici II tau90 8.3 Gyr D +0.72
+    bright M31: Andromeda VII tau90 12.6 Gyr* D +0.10, Andromeda V tau90 7.3 Gyr D +0.63, Andromeda I tau90 7.1 Gyr D +0.19, Andromeda II tau90 5.6 Gyr D -0.11, Andromeda III tau90 5.1 Gyr D +0.48, Andromeda VI tau90 3.9 Gyr D +0.41, LGS 3 tau90 3.7 Gyr D +0.32
+    MW classical: Sculptor tau90 10.6 Gyr D +0.20, Draco tau90 10.1 Gyr D +0.63, Ursa Minor tau90 9.1 Gyr D +0.57, Leo II tau90 6.4 Gyr D +0.28, Carina tau90 2.8 Gyr D +0.20, Fornax tau90 2.2 Gyr D -0.09, Leo I tau90 1.7 Gyr D -0.03
+    LG field: Tucana tau90 6.5 Gyr D +0.11, Cetus tau90 4.7 Gyr D +0.04, Phoenix tau90 2.6 Gyr D +0.40, Pegasus dIrr tau90 1.7 Gyr D +0.19, IC 1613 tau90 1.6 Gyr D -0.54, Leo T tau90 1.6 Gyr D +0.41, NGC 6822 tau90 1.0 Gyr D +0.00, Sagittarius dIrr tau90 0.7 Gyr D -0.01, WLM tau90 0.7 Gyr D +0.02, Leo A tau90 0.5 Gyr D -0.09
+[alt] overlap: MW ultra-faint 3; bright M31 7; MW classical 7; LG field 10. D1 (Delta_B on tau90, within class, classes with >= 3): S +0.277 p(one) 0.0936 N 27 | D2 (after history on tau90): S -0.016 p(two) 0.9453 N 24
+    MW ultra-faint: Hercules tau90 12.6 Gyr* D -0.18, Leo IV tau90 11.2 Gyr D +0.12, Canes Venatici II tau90 8.3 Gyr D +0.69
+    bright M31: Andromeda VII tau90 12.6 Gyr* D +0.06, Andromeda V tau90 7.3 Gyr D +0.58, Andromeda I tau90 7.1 Gyr D +0.16, Andromeda II tau90 5.6 Gyr D -0.15, Andromeda III tau90 5.1 Gyr D +0.44, Andromeda VI tau90 3.9 Gyr D +0.37, LGS 3 tau90 3.7 Gyr D +0.30
+    MW classical: Sculptor tau90 10.6 Gyr D +0.16, Draco tau90 10.1 Gyr D +0.59, Ursa Minor tau90 9.1 Gyr D +0.53, Leo II tau90 6.4 Gyr D +0.24, Carina tau90 2.8 Gyr D +0.15, Fornax tau90 2.2 Gyr D -0.13, Leo I tau90 1.7 Gyr D -0.06
+    LG field: Tucana tau90 6.5 Gyr D +0.07, Cetus tau90 4.7 Gyr D +0.01, Phoenix tau90 2.6 Gyr D +0.35, Pegasus dIrr tau90 1.7 Gyr D +0.15, IC 1613 tau90 1.6 Gyr D -0.58, Leo T tau90 1.6 Gyr D +0.37, NGC 6822 tau90 1.0 Gyr D -0.04, Sagittarius dIrr tau90 0.7 Gyr D -0.04, WLM tau90 0.7 Gyr D -0.02, Leo A tau90 0.5 Gyr D -0.13
+
+=== LABELS ===
+  canonical: HISTORY DOES NOT CLOSE THEM (L-sensitive: NR: L upper edge; AD: L lower edge); edges {'NR': 'FAILS', 'AD': 'FAILS'}; Part A: MW ultra-faint DOES NOT SURVIVE; bright M31 DOES NOT SURVIVE
+  alt: HISTORY DOES NOT CLOSE THEM (L-sensitive: NR: L upper edge; AD: L lower edge); edges {'NR': 'FAILS', 'AD': 'FAILS'}; Part A: MW ultra-faint DOES NOT SURVIVE; bright M31 DOES NOT SURVIVE
+
+runtime 745 s, peak RSS 0.517 GB. kappa = 1/2 FITTED; not theory closed. Relabels nothing.
