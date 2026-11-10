@@ -1,0 +1,104 @@
+HZ1: gate T3 (UV completion of action (A)).  MUTATE = False
+M_Pl = 1.22089e+28 eV, Mbar_P = 2.43532e+27 eV, hbar c = 1.973270e-07 eV m
+  footing canonical: a0 = 9.36030e-11 m/s^2 -> E_a0 = hbar a0/c = 2.05511e-34 eV
+  footing alt: a0 = 1.13120e-10 m/s^2 -> E_a0 = hbar a0/c = 2.48362e-34 eV
+
+=== KNOWN ANSWERS ===
+KA1 [1/kappa^2] = d - z: z=1 -> 2 (M_P^2), z=3 -> 0 (marginal); projectable z=3 potential couplings all >= 0: True; non-projectable additions (incl. V(N)) all >= 0: True  -> PASS
+    (note: the criteria file prints the formula as 'z - d'; the values it names, 0 at z = 3 and 2 at z = 1, are d - z, which is what is checked)
+KA2 R^(3) of exp(-2psi) delta = exp(2psi)(4 Lap psi - 2|grad psi|^2): residual 0; static weak field with alpha a^2: G_N/G = -2/(alpha - 2) (BPS: 1/(1 - alpha/2)); FRW: lambda = [1]  -> PASS
+KA3 mu from GR + (a0^2/K) J(u): A/(A + a0)  -> PASS
+(A) as Horava: lambda = 1, beta = 0 (c_T = 1), xi = 1; alpha(u) = 4*(u - log(u + 1))/u**2, alpha_par = 2/(u + 1)**2, alpha_perp = 2/(u + 1); at A = 0: [2, 2, 2]
+    khronon speed^2 (khronometric form, Jacobson 1310.5115, PROVISIONAL) at (alpha 2, beta 0, lambda 1): 0.0; quadratic lapse-gradient coefficient 1 - alpha_par(0)/2 = 0
+KA4a 3-d: Int m^2/(k^2+m^2) / (pi m/2) - 1 = 0.0e+00; V3 non-analytic coefficient -0.0265258238 vs -1/(12 pi) = -0.0265258238 -> PASS
+KA4b thermal: y^(3/2) coefficient of J_B at y = 1e-4, 4e-4, 1e-3: [-0.523599, -0.523599, -0.523599] vs -pi/6 = -0.523599 (rel 1.4e-08 at the smallest y) -> PASS
+KA4c Cl(6) 8x8: anticommutator error 0.0e+00; det D/(k^2+g^2A^2)^4 - 1 max 1.6e-15 -> PASS
+KNOWN ANSWERS ALL PASS: True
+
+=== (i) J AS A UV TERM ===
+J1/J2 on J(u) = u - ln(1+u): odd orders [3, 5, 7, 9]..., orders >= 7 [7, 8, 9]..., terminates False -> admissible as a z = 3 UV term: False
+   Legendre form W(p) = -p - ln(1-p): odd [3, 5, 7]..., >= 7 [7, 8]..., radius 1 (the flux cap) -> admissible: False
+   stiffness F = max(Pi,0)^2/2: F'' jumps by 1 at Pi = 0 (non-analytic switch)
+
+=== (i) GENERATION CANDIDATES (one-loop determinants) ===
+G1 leaf scalar: [L_ind = +nu g^3 |A|^3/(12 pi)]
+   sign (|A|^3 coefficient in L must be < 0): FAIL (sign +1); best fit params [0.1319, 0.0]: max|dmu| 0.9242, deep slope -0.0000 (law 0.9901), Q 9.901 -> shape FAIL; best band alone 0.4901
+   canonical: log10 R_c = 55.48  (nu g^3 needed 7.253e+89 eV vs ceiling 2.423e+34 eV)  -> coefficient FAIL
+   alt: log10 R_c = 55.39  (nu g^3 needed 6.002e+89 eV vs ceiling 2.423e+34 eV)  -> coefficient FAIL
+   power counting {'g_B^2': 0, 'm0^2': 2, 'g_F': 0, 'g^2 (bulk, z=3)': 4} -> ok;  candidate fails (i)
+G2 leaf Cl(6) fermion: [L_ind = -8 nu g^3 |A|^3/(12 pi)]
+   sign (|A|^3 coefficient in L must be < 0): ok (sign -1); best fit params [1.9989, 0.0058]: max|dmu| 0.7527, deep slope 0.2374 (law 0.9901), Q 7.527 -> shape FAIL; best band alone 0.4006
+   canonical: log10 R_c = 54.57  (nu g^3 needed 9.066e+88 eV vs ceiling 2.423e+34 eV)  -> coefficient FAIL
+   alt: log10 R_c = 54.49  (nu g^3 needed 7.502e+88 eV vs ceiling 2.423e+34 eV)  -> coefficient FAIL
+   power counting {'g_B^2': 0, 'm0^2': 2, 'g_F': 0, 'g^2 (bulk, z=3)': 4} -> ok;  candidate fails (i)
+G3 leaf boson-fermion pair: [L_ind |A|^3 part = -nu g_B^3 |A|^3/(12 pi)]
+   sign (|A|^3 coefficient in L must be < 0): ok (sign -1); best fit params [0.0596, 0.9699, -0.0989]: max|dmu| 0.0260, deep slope 0.9641 (law 0.9901), Q 0.260 -> shape ok; best band alone 0.0210
+   canonical: log10 R_c = 55.36  (nu g_B^3 needed 5.603e+89 eV vs ceiling N nu g^3 = 2.423e+34 eV)  -> coefficient FAIL
+   alt: log10 R_c = 55.28  (nu g_B^3 needed 4.636e+89 eV vs ceiling N nu g^3 = 2.423e+34 eV)  -> coefficient FAIL
+   power counting {'g_B^2': 0, 'm0^2': 2, 'g_F': 0, 'g^2 (bulk, z=3)': 4} -> ok;  candidate fails (i)
+G4 thermal boson: [L_ind = +T g^3|A|^3/(12 pi)]
+   sign (|A|^3 coefficient in L must be < 0): FAIL (sign +1); best fit params [2.1985, 1.3349, -1.5582]: max|dmu| 0.9888, deep slope 0.0013 (law 0.9901), Q 9.888 -> shape FAIL; best band alone 0.4901
+   canonical: log10 R_c = 28.26  (g needed 2.306e+29 (T = 1.714e-03 eV) for a unit bump)  -> coefficient FAIL
+   alt: log10 R_c = 28.22  (g needed 2.098e+29 (T = 1.884e-03 eV) for a unit bump)  -> coefficient FAIL
+   power counting {'g_B^2': 0, 'm0^2': 2, 'g_F': 0, 'g^2 (bulk, z=3)': 4} -> ok;  candidate fails (i)
+G4' thermal fermion: [no zero mode: no |A|^3]
+   sign (|A|^3 coefficient in L must be < 0): FAIL (sign +0); best fit params [6.0288, 4.9991, -2.8259]: max|dmu| 0.9901, deep slope 0.0000 (law 0.9901), Q 9.901 -> shape FAIL; best band alone 0.4901
+   canonical: log10 R_c = 27.77  (g needed 7.456e+28 (T = 1.026e-02 eV) for a unit bump)  -> coefficient FAIL
+   alt: log10 R_c = 27.73  (g needed 6.782e+28 (T = 1.128e-02 eV) for a unit bump)  -> coefficient FAIL
+   power counting {'g_B^2': 0, 'm0^2': 2, 'g_F': 0, 'g^2 (bulk, z=3)': 4} -> ok;  candidate fails (i)
+G5 4-d CW boson: [A^4 ln A: no |A|^3]
+   sign (|A|^3 coefficient in L must be < 0): FAIL (sign +0); best fit params [0.0155, 0.0, 1.7055]: max|dmu| 0.9824, deep slope -0.0000 (law 0.9901), Q 9.901 -> shape FAIL; best band alone 0.4551
+   canonical: log10 R_c = 29.31  (g needed 2.581e+30 for |B5| = 1)  -> coefficient FAIL
+   alt: log10 R_c = 29.27  (g needed 2.347e+30 for |B5| = 1)  -> coefficient FAIL
+   power counting {'g_B^2': 0, 'm0^2': 2, 'g_F': 0, 'g^2 (bulk, z=3)': 4} -> ok;  candidate fails (i)
+G5' 4-d CW fermion: [A^4 ln A: no |A|^3]
+   sign (|A|^3 coefficient in L must be < 0): FAIL (sign +0); best fit params [2.0, 0.0005, 1.7936]: max|dmu| 0.7650, deep slope 0.2251 (law 0.9901), Q 7.650 -> shape FAIL; best band alone 0.3992
+   canonical: log10 R_c = 29.31  (g needed 2.581e+30 for |B5| = 1)  -> coefficient FAIL
+   alt: log10 R_c = 29.27  (g needed 2.347e+30 for |B5| = 1)  -> coefficient FAIL
+   power counting {'g_B^2': 0, 'm0^2': 2, 'g_F': 0, 'g^2 (bulk, z=3)': 4} -> ok;  candidate fails (i)
+(i) LABEL: FAIL  (J admissible as UV term: False; any candidate passing all four tests: False)
+
+=== (ii) PERCOLATION and (iii) WINDOW ===
+bounds (KR v19 S2/S3, PROVISIONAL): photon kappa_tr 1.00e-20, electron c_TT 1.00e-21, proton c_TT 1.00e-22, neutron via boost (c_Z/beta^2) 6.57e-24
+M_lo: short-range gravity hbar c/38.6 um = 5.112e-03 eV; GW z=3 dispersion at 100 Hz -> 1.308e-05 eV; M_lo = 5.112e-03 eV
+[canonical] u_Earth 1.048e+11 (alpha_perp 1.91e-11), u_Gal 2.292 (alpha_perp 0.607, enhanced 0.335)
+   C=0.001 | A=0 (graded)               M_hi = 1.754e+09 GeV (binding: neutron via boost (c_Z/beta^2)), M_lo = 5.11e-03 eV, window NON-EMPTY, 20.5 decades
+   C=0.001 | Earth alpha_perp           M_hi = 5.678e+14 GeV (binding: neutron via boost (c_Z/beta^2)), M_lo = 5.11e-03 eV, window NON-EMPTY, 26.0 decades
+   C=0.001 | Galaxy alpha_perp          M_hi = 3.183e+09 GeV (binding: neutron via boost (c_Z/beta^2)), M_lo = 5.11e-03 eV, window NON-EMPTY, 20.8 decades
+   C=0.001 | Galaxy enhanced            M_hi = 4.289e+09 GeV (binding: neutron via boost (c_Z/beta^2)), M_lo = 5.11e-03 eV, window NON-EMPTY, 20.9 decades
+   C=1 | A=0 (graded)                   M_hi = 5.547e+07 GeV (binding: neutron via boost (c_Z/beta^2)), M_lo = 5.11e-03 eV, window NON-EMPTY, 19.0 decades
+   C=1 | Earth alpha_perp               M_hi = 1.796e+13 GeV (binding: neutron via boost (c_Z/beta^2)), M_lo = 5.11e-03 eV, window NON-EMPTY, 24.5 decades
+   C=1 | Galaxy alpha_perp              M_hi = 1.007e+08 GeV (binding: neutron via boost (c_Z/beta^2)), M_lo = 5.11e-03 eV, window NON-EMPTY, 19.3 decades
+   C=1 | Galaxy enhanced                M_hi = 1.356e+08 GeV (binding: neutron via boost (c_Z/beta^2)), M_lo = 5.11e-03 eV, window NON-EMPTY, 19.4 decades
+   C=1000 | A=0 (graded)                M_hi = 1.754e+06 GeV (binding: neutron via boost (c_Z/beta^2)), M_lo = 5.11e-03 eV, window NON-EMPTY, 17.5 decades
+      caps at C=1e3, alpha 2 (GeV): photon kappa_tr 6.84e+07, electron c_TT 2.16e+07, proton c_TT 6.84e+06, neutron via boost (c_Z/beta^2) 1.75e+06, c_T (GW170817) 2.16e+10, PPN alpha_2 (pulsar) 2.74e+13, lambda-1 (L350) 1.68e+16
+   C=1000 | Earth alpha_perp            M_hi = 5.678e+11 GeV (binding: neutron via boost (c_Z/beta^2)), M_lo = 5.11e-03 eV, window NON-EMPTY, 23.0 decades
+   C=1000 | Galaxy alpha_perp           M_hi = 3.183e+06 GeV (binding: neutron via boost (c_Z/beta^2)), M_lo = 5.11e-03 eV, window NON-EMPTY, 17.8 decades
+   C=1000 | Galaxy enhanced             M_hi = 4.289e+06 GeV (binding: neutron via boost (c_Z/beta^2)), M_lo = 5.11e-03 eV, window NON-EMPTY, 17.9 decades
+[alt] u_Earth 8.669e+10 (alpha_perp 2.31e-11), u_Gal 1.897 (alpha_perp 0.690, enhanced 0.392)
+   C=0.001 | A=0 (graded)               M_hi = 1.754e+09 GeV (binding: neutron via boost (c_Z/beta^2)), M_lo = 5.11e-03 eV, window NON-EMPTY, 20.5 decades
+   C=0.001 | Earth alpha_perp           M_hi = 5.165e+14 GeV (binding: neutron via boost (c_Z/beta^2)), M_lo = 5.11e-03 eV, window NON-EMPTY, 26.0 decades
+   C=0.001 | Galaxy alpha_perp          M_hi = 2.986e+09 GeV (binding: neutron via boost (c_Z/beta^2)), M_lo = 5.11e-03 eV, window NON-EMPTY, 20.8 decades
+   C=0.001 | Galaxy enhanced            M_hi = 3.963e+09 GeV (binding: neutron via boost (c_Z/beta^2)), M_lo = 5.11e-03 eV, window NON-EMPTY, 20.9 decades
+   C=1 | A=0 (graded)                   M_hi = 5.547e+07 GeV (binding: neutron via boost (c_Z/beta^2)), M_lo = 5.11e-03 eV, window NON-EMPTY, 19.0 decades
+   C=1 | Earth alpha_perp               M_hi = 1.633e+13 GeV (binding: neutron via boost (c_Z/beta^2)), M_lo = 5.11e-03 eV, window NON-EMPTY, 24.5 decades
+   C=1 | Galaxy alpha_perp              M_hi = 9.441e+07 GeV (binding: neutron via boost (c_Z/beta^2)), M_lo = 5.11e-03 eV, window NON-EMPTY, 19.3 decades
+   C=1 | Galaxy enhanced                M_hi = 1.253e+08 GeV (binding: neutron via boost (c_Z/beta^2)), M_lo = 5.11e-03 eV, window NON-EMPTY, 19.4 decades
+   C=1000 | A=0 (graded)                M_hi = 1.754e+06 GeV (binding: neutron via boost (c_Z/beta^2)), M_lo = 5.11e-03 eV, window NON-EMPTY, 17.5 decades
+      caps at C=1e3, alpha 2 (GeV): photon kappa_tr 6.84e+07, electron c_TT 2.16e+07, proton c_TT 6.84e+06, neutron via boost (c_Z/beta^2) 1.75e+06, c_T (GW170817) 2.16e+10, PPN alpha_2 (pulsar) 2.74e+13, lambda-1 (L350) 1.68e+16
+   C=1000 | Earth alpha_perp            M_hi = 5.165e+11 GeV (binding: neutron via boost (c_Z/beta^2)), M_lo = 5.11e-03 eV, window NON-EMPTY, 23.0 decades
+   C=1000 | Galaxy alpha_perp           M_hi = 2.986e+06 GeV (binding: neutron via boost (c_Z/beta^2)), M_lo = 5.11e-03 eV, window NON-EMPTY, 17.8 decades
+   C=1000 | Galaxy enhanced             M_hi = 3.963e+06 GeV (binding: neutron via boost (c_Z/beta^2)), M_lo = 5.11e-03 eV, window NON-EMPTY, 17.9 decades
+(ii) LABEL: PASS;  (iii) LABEL: PASS
+reported: matter keeps z = 1; its one-loop dimension-6 LV scale ~ 4 pi Mbar/sqrt(C) = 9.68e+17-9.68e+20 GeV (Fermi GRB 090510 quadratic bound ~1.3e11 GeV, PROVISIONAL)
+reported, T2's ground: with alpha = 2 at A = 0 the lapse's k^2 term vanishes; if only the z = 3 term is left the exchange is strong below ~M_*^2/Mbar_P = 1.26e-03 GeV at the window top (C = 1, canonical); estimate only, not graded
+
+T3 LABEL: FAIL   [(i) FAIL, (ii) PASS, (iii) PASS]
+
+=== REPORTED ===
+R1 kappa in G3: a0 = m0/(c g_B), rho_DE = Lambda/(8 pi G), kappa = 2*sqrt(2)*sqrt(pi)*m0/(sqrt(Lambda)*c*g_B); d kappa/d(Lambda, m0, g_B) = ['-sqrt(2)*sqrt(pi)*m0/(Lambda**(3/2)*c*g_B)', '2*sqrt(2)*sqrt(pi)/(sqrt(Lambda)*c*g_B)', '-2*sqrt(2)*sqrt(pi)*m0/(sqrt(Lambda)*c*g_B**2)'] (none zero; Lambda and m0 are independent relevant couplings, the tuning Eq(K*g_B**2*m0*nu/(4*pi), 1) fixes nu, not Lambda) -> kappa NOT fixed. 5.41: integration constant of (E3) -> NOT fixed.
+R2 [canonical, v = 100 km/s] z=3 dispersion length ell = (hbar c/M_*) sqrt(c/v): 2.11e-03 m at M_lo, 1.95e-22 m at M_hi(C=1); COL1 fold scale 1e-5 kpc = 3.09e+14 m; log10 ratio -17.2 to -36.2
+R2 [canonical, v = 300 km/s] z=3 dispersion length ell = (hbar c/M_*) sqrt(c/v): 1.22e-03 m at M_lo, 1.12e-22 m at M_hi(C=1); COL1 fold scale 1e-5 kpc = 3.09e+14 m; log10 ratio -17.4 to -36.4
+R2 [alt, v = 100 km/s] z=3 dispersion length ell = (hbar c/M_*) sqrt(c/v): 2.11e-03 m at M_lo, 1.95e-22 m at M_hi(C=1); COL1 fold scale 1e-5 kpc = 3.09e+14 m; log10 ratio -17.2 to -36.2
+R2 [alt, v = 300 km/s] z=3 dispersion length ell = (hbar c/M_*) sqrt(c/v): 1.22e-03 m at M_lo, 1.12e-22 m at M_hi(C=1); COL1 fold scale 1e-5 kpc = 3.09e+14 m; log10 ratio -17.4 to -36.4
+R2 the z = 3 terms are terms of an action: they conserve the clock's energy and remove none of its infall energy; they turn the fold into a dispersive (wave) caustic at ell, not a standing clock. COL1's 1-4 % charge deficit is set on kpc scales and does not depend on the caustic's microphysics.
