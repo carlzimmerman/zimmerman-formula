@@ -1,0 +1,47 @@
+<repo>/fable_independent_2026/lean_2026/MK2_MUTATE.lean:34:2: error: linarith failed to find a contradiction
+n n' : ℝ → ℝ
+xa xb k : ℝ
+hab : xa ≤ xb
+hd : ∀ x ∈ Set.Icc xa xb, HasDerivAt n (n' x) x
+hk : ∀ x ∈ Set.Icc xa xb, k ^ 2 ≤ n' x
+hcont : ContinuousOn n (Set.Icc xa xb)
+hdiff : DifferentiableOn ℝ n (interior (Set.Icc xa xb))
+hle : ∀ x ∈ interior (Set.Icc xa xb), k ^ 2 ≤ deriv n x
+this : k ^ 2 * (xb - xa) ≤ n xb - n xa
+a✝ : k ^ 2 * (xb - xa) < n xb - n xa
+⊢ False
+failed
+<repo>/fable_independent_2026/lean_2026/MK2_MUTATE.lean:37:2: error: linarith failed to find a contradiction
+n : ℝ → ℝ
+x0 φ xb : ℝ
+h : xb ≤ x0 + φ
+a✝ : n (x0 + φ) < n xb
+⊢ False
+failed
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+<repo>/fable_independent_2026/lean_2026/MK2_MUTATE.lean:43:59: error: unsolved goals
+c G r : ℝ
+hG : G ≠ 0
+hr : r ≠ 0
+hc : c ≠ 0
+h : HasDerivAt (fun y => 2 * c ^ 2 * y / G) (2 * c ^ 2 * 1 / G) r
+hpi : π ≠ 0
+⊢ 1 = 2
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+<repo>/fable_independent_2026/lean_2026/MK2_MUTATE.lean:53:42: error: unsolved goals
+n x xT : ℝ
+hden : n * (1 + x - xT) ≠ 0
+hn : n ≠ 0
+⊢ xT * (1 - xT + x)⁻¹ = xT
+exit 1
+kappa = 1/2 FITTED; not theory closed. Adopts nothing.
