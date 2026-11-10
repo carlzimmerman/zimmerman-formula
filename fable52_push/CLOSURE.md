@@ -78,6 +78,16 @@ once: make the clock static behind the fold, and make the dust inert there.
   free-falling rock). Its argument is general: by the equivalence principle a free-falling clock can only carry a law
   through the baryons' acceleration. Its later steps were not graded.
 
+- **MK2** (`MK2_exponential_dust_term/RESULT.md`, origin 6bbfd8697b): NO VALUE / NO VALUE (as frozen NO VALUE / NO
+  VERDICT: one known answer failed on alt by 0.0026 and was fixed post hoc). The exponential dust term of the DT1 note
+  has no sound speed that passes all graded rows. Clusters and groups have none at all: above about 1000 km/s the dust
+  does not pool and X-COP stays +0.45 / +0.42 dex short; below it each cluster's static state stops existing, with the
+  dust at 24 to 79 % of the baryons at its last state. What the term does do: above about 300 km/s it leaves SPARC,
+  KiDS and the Solar System untouched, and above about 500 km/s the clock around a galaxy is static out to form B's
+  cap (a static and timescale argument, not an evolution run), so COL1's and FLD1's failures do not apply to it there.
+  It cannot carry CMB lensing, growth or the forest. MK2 also corrects three statements in the DT1 note; the note
+  carries the corrections.
+
 So the statement above tightens: in this family of actions the law exists only where the clock is static, the clock is
 not static where lensing sees the law, and the one change that would lift that requirement is not a consistent theory.
 Neither lane's long runs were re-run by the lead; the labels are quoted from their RESULT.md files.

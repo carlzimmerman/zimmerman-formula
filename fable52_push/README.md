@@ -92,6 +92,7 @@ against 0.0354). No share at any outer radius passes the disc, filling, stabilit
 | SCS2 | is that state stable around discs? | Isolated discs STABLE / STABLE; discs in an external field NO VERDICT / NO VERDICT (reading: unstable in regions; e-folding 0.9 to 2.4 Gyr at 0.1 a0, 27 to 75 Gyr at 0.01 a0) |
 | MK1 | is there one dust constant for the CMB, clusters and galaxies? | NO VALUE / NO VALUE (does not turn on the cap; X-COP passes at no value) |
 | COL1 | does a clock that starts as infalling dust reach the static state? | BREAKS DOWN / BREAKS DOWN (a caustic at the centre; a reported diagnostic puts the charge that arrives at 1 to 4 % of the law's halo) |
+| MK2 | does an exponential dust term (one sound speed) pass MK1's rows? | NO VALUE / NO VALUE (as frozen NO VALUE / NO VERDICT; clusters and groups pass at no value; galaxies clean and the clock static there above about 500 km/s) |
 | FLD1 | does the folded region reach as far as the law is seen? | DOES NOT / DOES NOT (covers every rotation curve; 1.3 to 5.4 times short of KiDS's windows) |
 | REL1 | can the law respond to the clock's acceleration relative to the baryons? | NOT WELL-DEFINED / NOT WELL-DEFINED (matter's motion becomes fourth order and runs away) |
 | HE1 | can the share sit outside the wall as a pressure-supported envelope? | FAILS / FAILS (KiDS late-type stacks; the clusters-and-groups gate also fails as frozen, on two clusters near R500 only, and the label does not rest on it) |
@@ -189,9 +190,17 @@ A completion has to move a gate or bring physics from outside the catalogue.
   lead: the label re-derived from the run outputs is BREAKS DOWN in every row, `COL1.lean` recompiles with exit 0, 13
   theorems, twin failing; the evolution runs themselves were not re-run)
 - `DT1_dust_term_design/` (a design note, not a lane, hand-level: what any dust term must do and an exponential
-  candidate; origin 136f7cc8c2; to be graded by MK2. `ACTION.md` there writes out one full candidate action: action (A)
+  candidate; origin 136f7cc8c2; graded by MK2: NO VALUE, with three of the note's statements corrected. `ACTION.md` there writes out one full candidate action: action (A)
   with the exponential dust term, the constant Lambda replaced by a field chi, and a0 = kappa sqrt(G V(chi)). It is a
   candidate only: no gate passed, equations by hand)
+
+- `MK2_exponential_dust_term/` (origin 3f889227f0, 4f672f239e, 904ca798c6, 8c7d3f711b, e138a4b122, 6bbfd8697b,
+  4b44bc62b1; checked by the lead: the result file is complete and on origin, `MK2.lean` (in the Lean folder) recompiles
+  with exit 0, 10 theorems, twin failing; no row was re-run)
+- `FLD1_fold_reach/` (origin bce6d61451) and `REL1_relative_acceleration/` (origin 6db345c60e): result files read by
+  the lead, not re-run
+- `SHAPE_search/`: uncommitted notes from read-only attempts to derive the law's shape for the cold component; none is
+  a result
 
 Lean: the Mathlib build these files were first compiled with (in a copy of the repository) was removed from the machine
 on the evening of 2026-11-09. A build has been inside the repository's own `fable_independent_2026/lean_2026` since

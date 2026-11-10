@@ -5,6 +5,23 @@ label, and every number in it is hand-level arithmetic** (`dt1_design.py` -> `dt
 instruction ("do the new design work") while lane MK1 was still running; MK1's interim rows already showed that the
 quadratic dust term has no single constant. The candidate below has passed no gate. It is to be graded by a lane (MK2).
 
+## Graded since (added 2026-11-10 evening): the candidate fails
+
+MK2 (`../MK2_exponential_dust_term/RESULT.md`, origin 6bbfd8697b) graded the exponential term: **NO VALUE / NO VALUE.**
+Clusters and groups pass at no sound speed. It also found this note wrong in three places and incomplete in one:
+
+- Section 3's "wells much deeper than x_T fill without limit; conservation caps them at their share" does not survive
+  self-gravity with the cap: each cluster's static state stops existing first (between 1000 and 750 km/s), with dust at
+  24 to 79 % of the baryons.
+- The "570 km/s" match to QX2's cluster amount and the group number beside it are moot: there is no static state there.
+- The "ordering" QX2 named was the onset radius of an oscillation, not the pooled amount.
+- Section 2's "Jeans length of at least 17 Mpc for z < 2" holds only at some epoch of that stretch (a mean-value
+  statement). The trade-off itself holds under conditions this note did not write: n monotone, the threshold measured
+  from today's offset, weak field.
+
+What MK2 confirmed: galaxies stay clean above about 300 km/s, and above about 500 km/s the clock around a galaxy is
+static out to form B's cap. The text below is left as written.
+
 ## Answer first
 
 1. **One requirement cannot be met by any dust term, and it is the one the quadratic was being pushed towards.** A dust
