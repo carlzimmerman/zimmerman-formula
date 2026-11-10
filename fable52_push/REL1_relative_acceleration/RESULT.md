@@ -7,8 +7,8 @@ inside a strictly convex function. That turns the baryons' equation of motion fr
 resting on a lab bench e-folds in about 2 ms. The stiffness (gamma_L) does not remove it. Not varying u_b instead breaks
 the Bianchi identity. Steps 2-7 were not graded (the criteria stop at the first structural failure).
 
-TEST lane, quarantined. Criteria e495153acf (committed alone); AMENDMENT A1 96c0968d9e (post hoc, committed alone,
-the energy-check normalization only). Adopts nothing. kappa = 1/2 FITTED; not theory closed. Not registered.
+TEST lane, quarantined. Criteria e495153acf (committed alone; origin 76f0cdddf1); AMENDMENT A1 96c0968d9e (post hoc,
+committed alone, the energy-check normalization only; origin a900f9f5bd); result a4e86fc8b0 (origin 6db345c60e). Adopts nothing. kappa = 1/2 FITTED; not theory closed. Not registered.
 
 ## Table
 
