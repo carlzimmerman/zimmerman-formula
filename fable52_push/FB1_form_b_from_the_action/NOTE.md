@@ -7,7 +7,8 @@ and asked for a complete theory.
 ## Answer first
 
 **The theory is not complete.** One part of what the decision file lists as open is already answered by the record's own
-action; three parts are not, and none of the three is solved here.
+action, for force balance only; four parts are not (the fourth, stability, was added when TPA1 landed), and none of the
+four is solved here.
 
 ## 1. What the action already gives (certified in QX17; one identity re-checked here)
 
@@ -54,6 +55,17 @@ the solution that gets there.**
    that: +0.4675 / +0.4345 dex short on X-COP with the plain law, and the K(Q) dust needs mu_K 1.78 / 1.74 per Mpc
    to close it, 17 to 18 times the galaxy bound. So in this action a cluster's cold mass cannot be a static-clock state,
    and no other state has been solved. Groups and the Bullet's amount stay as the decision file lists them.
+
+4. **Stability of the static state (added after TPA1 landed, 2026-11-09 late).** Section 1 shows the static state is in
+   force balance. It does not show it is stable, and TPA1 says it is not, in the limit it checked. TPA1's law-on phase is
+   this same action (QX17's), and its health item finds a static clock there gradient-unstable, with no ghost, wherever
+   the clock's own dust density is below n_crit = -dp/dx: 0.08 to 0.9 of the law's phantom density for a point mass,
+   with e-folding times of 5.0 Myr to 0.62 Gyr on its frozen grid (`fable52_push/TPA1_two_phase_action/RESULT.md`,
+   origin 347967f64f). The static state of section 1 has almost no dust of its own (mu_K = 0 in galaxies), so it sits
+   in that unstable range; carrying dust above n_crit would add mass of the order of the halo itself. TPA1's analysis is
+   in the decoupling limit (metric frozen); it argues by hand that coupling to gravity does not change the sign and says
+   the coupled analysis has not been done. Until it is, "the action holds the halo in the law's shape" means force
+   balance only.
 
 ## 3. What would make it complete
 

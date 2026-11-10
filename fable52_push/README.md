@@ -33,7 +33,8 @@ label here. The decision, its gate table and its eight open items are in
   sector's own gravitating density on one conserved current, and for a static clock the law sector's stress holds it in
   the law's shape (the action's static force balance; it holds for any law of this type, so it is not evidence for this
   one). The theory is still not complete: no single dust term serves the CMB and galaxies, the collapse to the static
-  state is not computed, and clusters cannot be a static-clock state.
+  state is not computed, clusters cannot be a static-clock state, and TPA1 finds the static state itself gradient-unstable
+  in the decoupling limit when it carries little dust of its own (the coupled analysis has not been done).
 - Form B's regrade lanes run in another session under `closure_2026_11_09/`, quoted here as their result files write
   them. RB1 (groups, X-COP, the Bullet): NOT FALSIFIED (ONE-SIDED) on both footings, never a pass. RB2 (hosted dwarfs):
   B FAILS ON THE HOSTED ROWS on both footings (Milky Way ultra-faints and bright M31 dwarfs sit high; Coma's diffuse
@@ -72,6 +73,7 @@ against 0.0354). No share at any outer radius passes the disc, filling, stabilit
 | KO1 | are KiDS's outer points the lens's own field? | LAW LEVEL HOLDS / LAW LEVEL HOLDS by the frozen gate |
 | KO1R | blind regrade of KO1 from its criteria alone | NOT SEPARATED / LAW LEVEL HOLDS (518 tied lenses; knife edge) |
 | SNP1 | can the wall pressure clear the component and keep it out? | FAILS / FAILS |
+| TPA1 | what are the two-phase action's field equations, and is it healthy? | EQUATIONS COMPLETE; health UNHEALTHY (a gradient instability, no ghost, in the law-on phase of a static clock with little dust; the wall and the dust phase are healthy; decoupling limit only) |
 | HE1 | can the share sit outside the wall as a pressure-supported envelope? | FAILS / FAILS (KiDS late-type stacks; the clusters-and-groups gate also fails as frozen, on two clusters near R500 only, and the label does not rest on it) |
 
 ## 3. What KO1 found, in plain words
@@ -142,10 +144,14 @@ A completion has to move a gate or bring physics from outside the catalogue.
 - `HE1_held_out_envelope/` (origin 91d343f150, ab52b18eda, d6c99b61de, 5137d5e374; re-run by the lead: both labels and
   every number in `he1.json` reproduce, only timing lines differ)
 - `FB1_form_b_from_the_action/` (a note with one check; origin 2ddd61d529, bae0096600)
-- `TPA1_two_phase_action/`: still running in another session; no verified result yet.
+- `TPA1_two_phase_action/` (origin cdb9419a00, 347967f64f, 061f52e737; re-run by the lead: the three main scripts
+  reproduce with only timing and memory lines differing, `TPA1.lean` recompiles with exit 0, 14 theorems, standard axioms,
+  and its twin fails with 6 errors)
 
-Lean: the Mathlib build these files were compiled with was removed from the machine at about 21:50 on 2026-11-09. Every
-compile output listed above was made before that. A Lean file written after it is marked as not compiled in its lane.
+Lean: the Mathlib build these files were first compiled with (in a copy of the repository) was removed from the machine
+on the evening of 2026-11-09. A build has been inside the repository's own `fable_independent_2026/lean_2026` since
+22:17 the same evening; the lead re-compiled `KO1.lean` (exit 0, 12 theorems) and its twin (exit 1) with it. With TPA1's
+14 the Lean files here hold 106 theorems.
 
 Each folder has FROZEN_CRITERIA.md, any amendments, the scripts with their outputs and MUTATE outputs, RESULT.md, and (except
 GAL1 and KO1R) a Lean file with its compile output and a mutate twin.
