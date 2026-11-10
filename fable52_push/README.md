@@ -78,7 +78,10 @@ A completion has to move a gate or bring physics from outside the catalogue.
 1. **A measured gas mass at Mpc radii around isolated galaxies.** It decides whether the law over-predicts KiDS's outer
    bins (B21's estimate says by a factor of two).
 2. **A clean isolation test**: spectroscopic redshifts, a veto radius well beyond the measured range, a frozen shape gate,
-   late types first.
+   late types first. Forecast done (KO3F, no signal read): with the DESI DR1 redshifts on disk a veto test has no power.
+   The late-type error at the widest veto goes from 0.68 / 0.62 to 0.57 / 0.52 of the law, and a 3 sigma call needs about
+   0.47. So no veto lane was frozen. The route with power models the neighbours and keeps every lens (KO2, another
+   session's lane); more shear on the DESI area would also do it (DES Y3 is 312 GB, HSC Y3 needs an account).
 3. **The baryon census in groups.** Unchanged from the first version of this file.
 
 ## 6. Corrections (mine and the record's)
@@ -103,6 +106,8 @@ A completion has to move a gate or bring physics from outside the catalogue.
 - `KO1_kids_outer_points/` (origin a8c30d93c3, b64341eb9f, 66df609b0c, 9813a4adfb)
 - `KO1R_kids_outer_regrade/` (origin 990bfd5450, 859e3f99fe)
 - `SNP1_snowplow_clearing/` (origin 25b134be31, 8466e3da4a, 93e2340522)
+- `KO3F_spec_veto_power_forecast/` (a forecast, not a lane: no criteria, no label; local 96a66cb01b)
+- `HE1_held_out_envelope/` and `TPA1_two_phase_action/`: lanes still running in other sessions; no result yet.
 
 Each folder has FROZEN_CRITERIA.md, any amendments, the scripts with their outputs and MUTATE outputs, RESULT.md, and (except
 GAL1 and KO1R) a Lean file with its compile output and a mutate twin.
