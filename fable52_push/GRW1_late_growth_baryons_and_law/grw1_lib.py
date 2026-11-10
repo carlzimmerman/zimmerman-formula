@@ -196,3 +196,4 @@ def lens_delta(out, tr, a0=None, bg=None):
 def muavg2(arr):
     """mu-average of |arr|^2 over axis 1 (arr: k, mu, z)."""
     return np.einsum("m,kmz->kz", WMU, arr ** 2)
+# kappa = 1/2 FITTED; not theory closed. Adopts nothing.

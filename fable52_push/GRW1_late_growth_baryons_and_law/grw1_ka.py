@@ -164,3 +164,4 @@ P(f"Known answers all pass under A1: {allok}   ({time.time() - T0:.0f} s)")
 P(GO.kappa_note)
 json.dump(RES, open(os.path.join(HERE, "grw1_ka.json"), "w"), indent=1, default=float)
 open(os.path.join(HERE, "grw1_ka.out"), "w").write("\n".join(OUT) + "\n")
+# kappa = 1/2 FITTED; not theory closed. Adopts nothing.
