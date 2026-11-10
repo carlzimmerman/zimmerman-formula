@@ -4,6 +4,9 @@ Criteria 11c19a2c5f (committed alone before any script or number). Amendment A1 
 committed alone before any graded number). TEST lane, quarantined. Adopts nothing, relabels nothing, registers nothing.
 Footings never pooled (canonical / alt). kappa = 1/2 FITTED; not theory closed.
 
+Commit ids: in the shared checkout, criteria 11c19a2c5f, A1 4dfa022e34, engine and known answers 60678cadaa, result
+7b5fbd8172. On origin, 660b4a1171, 40adf2ef0e, 27173fe895, b54941f573.
+
 ## Label
 
 **No treatment of the law builds it, on either footing, at any sound speed tried (350 to 4481 km/s).** The direction of
