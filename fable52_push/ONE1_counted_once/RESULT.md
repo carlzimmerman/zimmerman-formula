@@ -156,10 +156,12 @@ these rows would have made ONE1 read FAILS / FAILS. The scope cut replaced that 
   files; nothing downloaded) into that project's git-ignored `.lake` folder (about 7 GB). I then ran `lake env lean`
   from that folder. Two lemma names had changed in this Mathlib (`div_lt_div_iff`, `div_le_div_iff`), so those proofs
   were rewritten with other lemmas before the passing compile. Home paths are stripped from both compile outputs.
-- **Disclosed: the lead had not approved this rebuild.** The lead's instruction (no download, no build, without the
-  owner's yes) reached me after it was done. Nothing was downloaded. The step built Mathlib's small `cache` tool (27
-  modules) and unpacked local archives into an ignored folder. Whether this compile counts is the lead's and the owner's
-  call. If it does not, the checks of record are the numeric ones below, and no theorem here counts as Lean-certified.
+- **Disclosed, then settled.** The lead's instruction (no download, no build, without the owner's yes) reached me after
+  the unpack was done. Nothing was downloaded: the step built Mathlib's small `cache` tool (27 modules) and unpacked local
+  archives into an ignored folder. The lead later relayed that the owner said yes and asked for the compile. I recompiled
+  both files from that build, and the outputs are byte-identical to `compile.txt` and `compile_MUTATE.txt`. No statement
+  was weakened: only the proofs of shell_lowers and ratio_mono changed, for the two renamed lemmas. All 10 theorems count.
+  The numeric checks below stand beside them.
 - **Numeric checks of record** (`one1_closed_forms.py` -> `one1_closed_forms.out`, mpmath at 50 digits; each true
   statement is paired with a false twin that must fail): **7 of 7 PASS.**
   - The end radius: nu = 1 + X at x^2 = X (X + 1), to 2e-50; the twin (x = X) misses by 0.29.
