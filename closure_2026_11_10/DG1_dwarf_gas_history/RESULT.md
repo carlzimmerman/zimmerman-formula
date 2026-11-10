@@ -331,9 +331,9 @@ Weisz et al. 2014 is already on disk and needs no fetch.
 - One thread; peak RSS 0.52 GB (main), 0.39 GB (MUTATE); 745 s main, 580 s MUTATE.
 - Commits, local main / origin main (local main has diverged from origin, so the lane commits were cherry-picked through a
   sparse worktree of origin/main and pushed without force):
-  - criteria: 3719fe178d / (origin id in the follow-up);
-  - A1: 443fedfd84 / (origin id in the follow-up);
-  - script, outputs and this file: this commit / (origin id in the follow-up);
-  - ids: recorded here by a follow-up commit.
+  - criteria: 3719fe178d / 812288cf7d;
+  - A1: 443fedfd84 / 7f5000c05f;
+  - script, outputs and this file: 77cd0b2e0b / 952fbe4c51;
+  - this ids line: a follow-up commit, ids in its own message.
 
 kappa = 1/2 FITTED; not theory closed. Relabels nothing.
