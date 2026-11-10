@@ -144,7 +144,7 @@ Runtime: about 2 s per identity run, under 1 s for D1. One thread, 70 MB peak (i
 - `kde1_record_rate.py` -> `kde1_record_rate.out` / `.json` (D1, reported).
 - `KDE1.lean`, `KDE1_MUTATE.lean`, `compile.txt`, `compile_MUTATE.txt`.
 
-Commit ids: criteria 592b8291d1 (local); result: see the commit that adds this file. Origin ids are in the lane's push
-note.
+Commit ids (local / origin): criteria 592b8291d1 / edfb117414 (the criteria commit reached origin through another
+session's push before this lane's; same file, checked identical); result 071c34a515 / c26db8802f.
 
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
