@@ -258,6 +258,17 @@ Read with its scope: the law-dominated limit (mu_K r << 1), so mu_K = 0.1 per Mp
 - Focusing check: `col1_focus_check.py` -> `.out`.
 - A4 diagnostic: `col1_outer.py` -> `.out` / `.json`.
 
-[ORIGIN_IDS]
+## Commit ids
+
+| commit | local | origin |
+|---|---|---|
+| criteria | d84a0d88ba | d56a3a2b78 |
+| A1 | 08ae05efd7 | 89f3fdc101 |
+| A2 | ddacb4c383 | 5dbbab085c |
+| A3 | ba3212d8f0 | b9c96ff3ca |
+| Part 0, Part 1, Lean, solver | 5482cc491a + a9bc86cdab (path fix) | a5f487c149 (one commit) |
+| solver fixes before the grid | d39d7cf1a7 | 728be8295b |
+| A4 | bf7fe43b6b | 4470e2c389 |
+| result | 899241a0f8 | 918545cf2b |
 
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
