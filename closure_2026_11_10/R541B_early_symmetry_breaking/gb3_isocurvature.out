@@ -1,0 +1,26 @@
+GB3 line |S| <= 9.0e-06  (= sqrt(0.04) x 4.6e-5)
+KA7 sharp step: dlnC per +1e-3 t_s offset = -1.50054e-03, analytic -(3/2)(1e-3) = -1.50000e-03, ratio 1.0004  PASS
+
+family | mu_K line | z_s | dlnC/d(tau_i/tau_s) | required |delta tau_rel|/tau_s for |S| <= line | offset at 50% generation / initial offset
+exp | Jeans | 1e+05 | -1.0012 | 8.99e-06 | 1.0031 (NOT damped)
+tanh{'D': 0.1} | Jeans | 1e+05 | -1.5004 | 6.00e-06 | 1.0056 (NOT damped)
+power{'n': 3} | Jeans | 1e+05 | -1.4912 | 6.04e-06 | 0.9965 (NOT damped)
+exp | Jeans | 1e+06 | -0.1794 | 5.02e-05 | 0.1478 (NOT damped)
+tanh{'D': 0.1} | Jeans | 1e+06 | -1.6583 | 5.43e-06 | 2.9766 (NOT damped)
+power{'n': 3} | Jeans | 1e+06 | +0.0482 | 1.87e-04 | -0.4627 (damped)
+exp | BBN | 1e+05 | -1.0057 | 8.95e-06 | 1.0074 (NOT damped)
+tanh{'D': 0.1} | BBN | 1e+05 | -1.5002 | 6.00e-06 | 1.0003 (NOT damped)
+power{'n': 3} | BBN | 1e+05 | -1.5010 | 6.00e-06 | 1.0051 (NOT damped)
+exp | BBN | 1e+06 | -1.0005 | 9.00e-06 | 1.0007 (NOT damped)
+tanh{'D': 0.1} | BBN | 1e+06 | -1.4945 | 6.02e-06 | 1.0001 (NOT damped)
+power{'n': 3} | BBN | 1e+06 | -1.5000 | 6.00e-06 | 1.0004 (NOT damped)
+
+MU5 offset delta tau_rel = 1e-3 tau_s, exponential: |S| = 1e-3 x |dlnC/d(tau_i/tau_s)| ~ 1e-3 >> 9e-6 -> GB3 FAIL (bites)
+
+(iv) crude: delta pi = H_inf / (2 pi sqrt2 M_pl mu_K) (canonical field phi = sqrt2 M_pl mu_K pi, c_s = 1).
+Largest H_inf [GeV] allowed by |S| = |dlnC/d(tau_i/tau_s)| delta pi / tau_s <= 9e-6, exponential family:
+  mu_K Jeans (2.512e+04/Mpc), z_s 1e+05 (tau_s 2.387e+09 s): H_inf <= 1.133e+14 GeV
+  mu_K Jeans (2.512e+04/Mpc), z_s 1e+06 (tau_s 2.387e+07 s): H_inf <= 6.325e+12 GeV
+  mu_K BBN (8.890e+06/Mpc), z_s 1e+05 (tau_s 2.387e+09 s): H_inf <= 3.992e+16 GeV
+  mu_K BBN (8.890e+06/Mpc), z_s 1e+06 (tau_s 2.387e+07 s): H_inf <= 4.013e+14 GeV
+  (for comparison, the tensor bound r < 0.036 allows H_inf up to about 5e13 GeV: PROVISIONAL, from memory)
