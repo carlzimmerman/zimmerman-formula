@@ -17,6 +17,18 @@ each of its exits. Six lanes carry it: SWT1 (theorems), EMV1 and GAL1 (the lensi
 blind regrade KO1R (KiDS's outer points), and SNP1 (clearing dynamics). The Lean files hold 72 theorems, standard axioms
 only, each file with a twin of false statements that fails.
 
+**Owner decision, 2026-11-09 (21:33): the record closes on form B**, the a0 law with cold dark energy counted once (the
+law is how the component sits around galaxies, not a second force). It is chosen as a form, not as a pass, and changes no
+label here. The decision, its gate table and its eight open items are in
+`closure_2026_11_09/OWNER_DECISION_2026-11-09_FINAL_FORM_B.md`. What this folder adds to it:
+
+- The lanes below are what closed the alternative ("law near galaxies, cold component elsewhere") on every exit.
+- `ONE1_counted_once/` takes the decision's open item 4: form B on KO1's host-free KiDS lenses. Its pre-freeze note
+  (pushed before the decision and before KO2 had a lensing number) holds a post hoc look and a blind prediction for KO2.
+  The look is not a verdict: with PD1's share of 59.5 M_b the host-free shape ratio is 1.0 to 2.1 sigma from KO1's
+  (canonical), the law as the lens's own field is 1.4 to 4.2 sigma away, and one share does not fit late and early
+  types together.
+
 ## 1. The class and its exits
 
 By SWT1 T1 a law-on region shows only its baryons from outside. So outside its wall a truly isolated lens shows M_b plus
@@ -106,8 +118,9 @@ A completion has to move a gate or bring physics from outside the catalogue.
 - `KO1_kids_outer_points/` (origin a8c30d93c3, b64341eb9f, 66df609b0c, 9813a4adfb)
 - `KO1R_kids_outer_regrade/` (origin 990bfd5450, 859e3f99fe)
 - `SNP1_snowplow_clearing/` (origin 25b134be31, 8466e3da4a, 93e2340522)
-- `KO3F_spec_veto_power_forecast/` (a forecast, not a lane: no criteria, no label; local 96a66cb01b)
-- `HE1_held_out_envelope/` and `TPA1_two_phase_action/`: lanes still running in other sessions; no result yet.
+- `KO3F_spec_veto_power_forecast/` (a forecast, not a lane: no criteria, no label; origin a0b26945fa)
+- `ONE1_counted_once/` (pre-freeze note on origin 8f6dca9ec1; the lane itself is running in another session)
+- `HE1_held_out_envelope/` and `TPA1_two_phase_action/`: lanes still running in other sessions; no verified result yet.
 
 Each folder has FROZEN_CRITERIA.md, any amendments, the scripts with their outputs and MUTATE outputs, RESULT.md, and (except
 GAL1 and KO1R) a Lean file with its compile output and a mutate twin.
