@@ -1,0 +1,40 @@
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+fable52_push/FLD1_fold_reach/FLD1_MUTATE.lean:9:108: error: unsolved goals
+X : ℝ
+hX : 0 ≤ X
+h : 1 + 4 * (X * (X + 1)) = (2 * X + 1) ^ 2
+⊢ X = 1 + X
+fable52_push/FLD1_fold_reach/FLD1_MUTATE.lean:17:2: error: Tactic `apply` failed: could not unify the conclusion of `Real.sqrt_lt_sqrt (div_nonneg (LT.lt.le hGM) (LT.lt.le hg2))`
+  √(GM / g2) < √?m.38
+with the goal
+  √(GM / g1) < √(GM / g2)
+
+Note: The full type of `Real.sqrt_lt_sqrt (div_nonneg (LT.lt.le hGM) (LT.lt.le hg2))` is
+  GM / g2 < ?m.38 → √(GM / g2) < √?m.38
+
+GM g1 g2 : ℝ
+hGM : 0 < GM
+h1 : 0 < g1
+h12 : g1 < g2
+hg2 : 0 < g2
+⊢ √(GM / g1) < √(GM / g2)
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+fable52_push/FLD1_fold_reach/FLD1_MUTATE.lean:22:103: error: unsolved goals
+G M q c s : ℝ
+hGM : G * M ≠ 0
+hq : q ≠ 0
+hc : 1 + c ≠ 0
+hs : s ^ 2 = 1 - c ^ 2
+h1 : 1 - c ^ 2 = (1 - c) * (1 + c)
+⊢ -(G * M * 8) - G * M * c * 8 = -(G * M * 4) - G * M * c * 4
+exit 1
