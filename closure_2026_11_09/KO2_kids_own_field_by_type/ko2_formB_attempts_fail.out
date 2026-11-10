@@ -1,0 +1,15 @@
+KO2 form-B kernel checks: the two failed attempts before the final ko2_formB.py run (kept for the record; reported in RESULT.md).
+
+--- attempt 1: the neighbour's unresolved centre (inside x13) was resolved in the form-B tables, unlike the law's main columns ---
+  [PASS] KA-B1 transcribed share tables equal pd1.json's z = 0 tables (share, R_ms, R_trunc, leftover) to 1e-6: max relative deviation 0.0e+00
+  [PASS] KA-B1b vectorised halo_of equals PD1's halo_of at 1,000 masses: max deviation 0.0e+00
+  [FAIL] KA-B2b truncation off: the form-B table equals the law's whole profile from the main tables (300 configurations): canonical: 26 outside, max 9.1e-01 of max; alt: 26 outside, max 9.2e-01 of max
+  [FAIL] KA-B3 form-B kernels (node-interpolated in mass) against direct quadrature about the lens (300 configurations, masses 10^8-10^12.3): canonical: 14 outside, max 1.9e-01 of max; alt: 14 outside, max 1.9e-01 of max
+  [PASS] KA-B2a truncation off: own form-B cells equal the law's own cells to 1e-6: max relative deviation 6.4e-16
+
+--- attempt 2: centre as one point of all mass inside x13, but the point was tabulated (J jumps at r = delta; no table can follow a jump); KA-B3 masses above the last node ---
+  [FAIL] KA-B2b truncation off: the form-B table equals the law's whole profile from the main tables (300 configurations): canonical: 1 outside, max 3.3e-01 of max; alt: 1 outside, max 3.3e-01 of max
+  [FAIL] KA-B3 form-B kernels (node-interpolated in mass) against direct quadrature about the lens (300 configurations, masses 10^8-10^12.3): canonical: 5 outside, max 2.9e-01 of max; alt: 5 outside, max 2.9e-01 of max
+  failing configurations: giants (log M_b 11.8-12.3) with the lens cell inside the giant's centre (r, delta < x13); four of five above the last mass node (11.95)
+
+--- final: extended part tabulated, each object's centre point analytic, nodes to log M_b 12.4: KA-B1..B5 all pass (ko2_formB.out) ---
