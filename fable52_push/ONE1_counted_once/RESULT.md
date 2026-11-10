@@ -5,6 +5,9 @@ kernel, post hoc); AMENDMENT A2 1e39b56e01 (scope cut from the lead, post hoc, w
 TEST lane, quarantined. Adopts nothing, relabels nothing, not registered. Footings never pooled. kappa = 1/2 FITTED;
 not theory closed.
 
+Commit ids: local a967a38851 (criteria), 14b25fdd71 (A1), 1e39b56e01 (A2), 54436f524d (result); on origin 64b5bb5336,
+daac8502e2, 65311c51d9, 888e2d2c3d.
+
 ## Label
 
 **KiDS host-free: PASSES / PASSES** (canonical / alt), for PD1's own share (X = 59.49 / 59.50 M_b), by the frozen gate at
