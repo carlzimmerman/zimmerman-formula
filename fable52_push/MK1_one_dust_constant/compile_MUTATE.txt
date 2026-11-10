@@ -1,0 +1,68 @@
+<repo>/fable_independent_2026/lean_2026/MK1_MUTATE.lean:31:2: error: linarith failed to find a contradiction
+I0 a : ℝ
+hI : 0 < I0
+ha : 0 < a
+μ1 μ2 : ℝ
+h1 : 0 < μ1
+h12 : μ1 < μ2
+a✝ : I0 / (4 * μ2 ^ 2) * (I0 / (4 * μ1 ^ 2) + a ^ 3) ≤ I0 / (4 * μ1 ^ 2) * (I0 / (4 * μ2 ^ 2) + a ^ 3)
+⊢ False
+failed
+<repo>/fable_independent_2026/lean_2026/MK1_MUTATE.lean:34:73: error: unsolved goals
+⊢ False
+<repo>/fable_independent_2026/lean_2026/MK1_MUTATE.lean:44:45: error: Application type mismatch: The argument
+  hs1
+has type
+  0 < √(1 + κ1)
+but is expected to have type
+  0 < √(1 + κ2)
+in the application
+  div_lt_div_of_pos_left ?m.83 hs1
+<repo>/fable_independent_2026/lean_2026/MK1_MUTATE.lean:46:66: error: unsolved goals
+⊢ False
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+<repo>/fable_independent_2026/lean_2026/MK1_MUTATE.lean:53:81: error: unsolved goals
+Pc s rc r : ℝ
+hr : 0 < r
+hl : HasDerivAt log r⁻¹ r
+h3 : HasDerivAt (fun x => x ^ 3) (3 * r ^ 2) r
+hA : HasDerivAt (fun x => Pc * x ^ 3 / 3) (Pc * (3 * r ^ 2) / 3) r
+hB :
+  HasDerivAt ((fun x => x ^ 3 / 3) * ((fun x => log rc) - log))
+    (3 * r ^ 2 / 3 * ((fun x => log rc) - log) r + r ^ 3 / 3 * (0 - r⁻¹)) r
+key :
+  HasDerivAt (fun x => Pc * x ^ 3 / 3 + s * (x ^ 3 / 3 * (log rc - log x)))
+    (Pc * (3 * r ^ 2) / 3 + s * (3 * r ^ 2 / 3 * (log rc - log r) + r ^ 3 / 3 * (0 - r⁻¹))) r
+hF : Fw Pc s rc = fun x => Pc * x ^ 3 / 3 + s * (x ^ 3 / 3 * (log rc - log x))
+hr0 : r ≠ 0
+⊢ Pc * 3 + s * log rc * 3 - s * log r * 3 = Pc * 3 - s + s * log rc * 3 - s * log r * 3
+<repo>/fable_independent_2026/lean_2026/MK1_MUTATE.lean:71:2: error: linarith failed to find a contradiction
+A B μ1 μ2 : ℝ
+hAB : 0 < A + B
+h1 : 0 ≤ μ1
+h12 : μ1 < μ2
+this : μ1 ^ 2 < μ2 ^ 2
+a✝ : μ1 ^ 2 * (A + B) ≤ μ2 ^ 2 * (A + B)
+⊢ False
+failed
+<repo>/fable_independent_2026/lean_2026/MK1_MUTATE.lean:82:2: error: linarith failed to find a contradiction
+case h2
+ms x X : ℝ
+hX : 0 < X
+hx : 0 < x
+hms : 0 < ms
+h : ms / 2 + √(ms ^ 2 / 4 + ms * x ^ 2) = 1 + X
+hs : √(ms ^ 2 / 4 + ms * x ^ 2) = 1 + X - ms / 2
+hnn : 0 ≤ ms ^ 2 / 4 + ms * x ^ 2
+hsq : (1 + X - ms / 2) ^ 2 = ms ^ 2 / 4 + ms * x ^ 2
+hden : 0 < x ^ 2 + 1 + X
+a✝ : 1 + X < ms * (x ^ 2 + 1 + X)
+⊢ False
+failed
+exit 1
+kappa = 1/2 FITTED; not theory closed. Adopts nothing.
