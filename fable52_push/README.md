@@ -24,11 +24,19 @@ label here. The decision, its gate table and its eight open items are in
 `closure_2026_11_09/OWNER_DECISION_2026-11-09_FINAL_FORM_B.md`. What this folder adds to it:
 
 - The lanes below are what closed the alternative ("law near galaxies, cold component elsewhere") on every exit.
-- `ONE1_counted_once/` takes the decision's open item 4: form B on KO1's host-free KiDS lenses. Its pre-freeze note
-  (pushed before the decision and before KO2 had a lensing number) holds a post hoc look and a blind prediction for KO2.
-  The look is not a verdict: with PD1's share of 59.5 M_b the host-free shape ratio is 1.0 to 2.1 sigma from KO1's
-  (canonical), the law as the lens's own field is 1.4 to 4.2 sigma away, and one share does not fit late and early
-  types together.
+- `ONE1_counted_once/` takes the decision's open item 4: form B on KO1's host-free KiDS lenses, with every neighbour
+  carrying the same share. **KiDS host-free: PASSES / PASSES** for PD1's own share (59.5 M_b) by the frozen gate at the
+  1.6 R_h veto: shape ratio 0.811 +- 0.134 against a model of 1.003 (1.1 sigma; alt 0.2 sigma). The pass does not
+  separate form B from the law with no end, which gives 0.98 and also passes. At the original veto radius (reported;
+  it carries the veto's edge) the model misses by 2.7 sigma (canonical). Late types sit low at every veto, and their
+  error at the graded veto is too large to test them. The label covers this row only.
+- The lead's pre-freeze note in that folder is superseded on three points, as ONE1's result records. It ended each halo
+  at the catalogued mass, while the same lenses' inner signal asks for 2 to 3 times that mass; with the calibration
+  fitted, form B reads 0.86 / 0.73 without neighbours and 1.00 / 0.85 with them, not the note's 0.525 / 0.477. Its
+  "late below, early above" holds only without the calibration; the frozen type-difference line passes at every veto.
+  Its "about 0.1" for the neighbours is right in size at the widest veto, not by the note's route. Its blind prediction
+  for KO2 (late-type ratio at most about 0.5) is met by KO2's tied design (0.277 +- 0.183) and not by its untied one
+  (1.071 +- 0.199), so it is not confirmed.
 - `FB1_form_b_from_the_action/` is a note, not a lane. In the adopted action the law's halo is already the khronon
   sector's own gravitating density on one conserved current, and for a static clock the law sector's stress holds it in
   the law's shape (the action's static force balance; it holds for any law of this type, so it is not evidence for this
@@ -73,6 +81,7 @@ against 0.0354). No share at any outer radius passes the disc, filling, stabilit
 | KO1 | are KiDS's outer points the lens's own field? | LAW LEVEL HOLDS / LAW LEVEL HOLDS by the frozen gate |
 | KO1R | blind regrade of KO1 from its criteria alone | NOT SEPARATED / LAW LEVEL HOLDS (518 tied lenses; knife edge) |
 | SNP1 | can the wall pressure clear the component and keep it out? | FAILS / FAILS |
+| ONE1 | does form B fit KO1's host-free lenses, neighbours included? | KiDS host-free: PASSES / PASSES at the 1.6 R_h veto (the law with no end also passes; misses at the original veto) |
 | TPA1 | what are the two-phase action's field equations, and is it healthy? | EQUATIONS COMPLETE; health UNHEALTHY (a gradient instability, no ghost, in the law-on phase of a static clock with little dust; the wall and the dust phase are healthy; decoupling limit only) |
 | HE1 | can the share sit outside the wall as a pressure-supported envelope? | FAILS / FAILS (KiDS late-type stacks; the clusters-and-groups gate also fails as frozen, on two clusters near R500 only, and the label does not rest on it) |
 
@@ -140,7 +149,9 @@ A completion has to move a gate or bring physics from outside the catalogue.
 - `KO1R_kids_outer_regrade/` (origin 990bfd5450, 859e3f99fe)
 - `SNP1_snowplow_clearing/` (origin 25b134be31, 8466e3da4a, 93e2340522)
 - `KO3F_spec_veto_power_forecast/` (a forecast, not a lane: no criteria, no label; origin a0b26945fa)
-- `ONE1_counted_once/` (pre-freeze note on origin 8f6dca9ec1; the lane itself is running in another session)
+- `ONE1_counted_once/` (pre-freeze note origin 8f6dca9ec1; lane origin 64b5bb5336, daac8502e2, 65311c51d9, 888e2d2c3d,
+  467e94427b, 34259ac803, 6536ef5cdf; re-run by the lead: the KiDS script's label and every graded number reproduce, with
+  only timing lines and one status flag differing; `ONE1.lean` recompiles with exit 0, 10 theorems, and its twin fails)
 - `HE1_held_out_envelope/` (origin 91d343f150, ab52b18eda, d6c99b61de, 5137d5e374; re-run by the lead: both labels and
   every number in `he1.json` reproduce, only timing lines differ)
 - `FB1_form_b_from_the_action/` (a note with one check; origin 2ddd61d529, bae0096600)
@@ -150,8 +161,9 @@ A completion has to move a gate or bring physics from outside the catalogue.
 
 Lean: the Mathlib build these files were first compiled with (in a copy of the repository) was removed from the machine
 on the evening of 2026-11-09. A build has been inside the repository's own `fable_independent_2026/lean_2026` since
-22:17 the same evening; the lead re-compiled `KO1.lean` (exit 0, 12 theorems) and its twin (exit 1) with it. With TPA1's
-14 the Lean files here hold 106 theorems.
+22:17 the same evening. The ONE1 session made it by unpacking the machine's own Mathlib cache; nothing was downloaded.
+The lead re-compiled `KO1.lean` (exit 0, 12 theorems) and its twin (exit 1) with it. With TPA1's 14 and ONE1's 10 the
+Lean files here hold 116 theorems.
 
 Each folder has FROZEN_CRITERIA.md, any amendments, the scripts with their outputs and MUTATE outputs, RESULT.md, and (except
 GAL1 and KO1R) a Lean file with its compile output and a mutate twin.
