@@ -1,0 +1,342 @@
+{
+ "lane": "TPA1",
+ "items": "2-5, D2",
+ "criteria": "b81c28d00c",
+ "mutate_arm": "M1",
+ "checks": {
+  "K0_legendre_with_S": {
+   "pass_": true,
+   "stationary_KP": "A*a0/(A + a0)",
+   "value_residual": "0",
+   "S_on_PA_only_gives": "A*S*a0/(A*S + a0)"
+  },
+  "ITEM2_FRW": {
+   "pass_": true,
+   "Wprime_zero_only_at": "[0]",
+   "Lam_law_at_P0": "0",
+   "rho_bar": "I**2*K/(2*mu_K**2*a(t)**6) + I/a(t)**3",
+   "S_in_background": "False",
+   "note": "background independent of S at every order; change at S = epsilon is exactly zero"
+  },
+  "ITEM3_quadratic_action": {
+   "pass_": true,
+   "S_prime_terms_at_second_order": "False",
+   "law_L2": "(abar**2*(-K*(p_1**2 + p_2**2 + p_3**2) + 2*alpha_1*p_1 + 2*alpha_2*p_2 + 2*alpha_3*p_3) - f2*gamma_L*(dp_1 + dp_2 + dp_3)**2)*S(mu_K**2*(Qbar - 1)/K)/(2*abar)",
+   "dust_alpha2_coeff": "Qbar**2*abar**3*mu_K**2/(2*K)",
+   "alpha2_total_times_2K_over_a3": "(Qbar**2*abar**2*mu_K**2 + k**2*S(mu_K**2*(Qbar - 1)/K))/abar**2",
+   "note": "Sbar = 0: the law drops out at second order; Sbar = eps: mu^2 Qbar^2 -> mu^2 Qbar^2 + eps k^2/a^2"
+  },
+  "ITEM3_dispersion": {
+   "pass_": true,
+   "route1": "omega^2 = -K nbar [1 - k^2/(mu_K^2 + eps k^2)] (first order in nbar)",
+   "nbar": 1e-08,
+   "max_rel": 5.835461579486044e-07,
+   "KA_eps1_RK04": true,
+   "KA_eps0_isolated_fluid": true
+  },
+  "ITEM4b_routeA_noether_force": {
+   "pass_": true,
+   "held_residual": "0",
+   "slaved_residual": "0",
+   "note": "held: nabla^m T^L_mx = Lam_law dS/dx exactly on the P shell; slaved (S = S(Q)): = 0 exactly"
+  },
+  "ITEM4b_leaf_stress": {
+   "pass_": true,
+   "Txx_plus_SW_on_shell": "0"
+  },
+  "ITEM4b_wall_identity_symbolic": {
+   "pass_": true,
+   "jump_minus_W": "0",
+   "dPi_dS_fixed_D_minus_J": "0"
+  },
+  "M1_wall_pressure_flips": {
+   "pass_": true,
+   "routeB_signs": "['in', 'in', 'in', 'in', 'in', 'in']"
+  },
+  "ITEM4a_static_reduction": {
+   "pass_": true,
+   "held_routes_agree": true,
+   "held_equals_SWT1_class_plus_muK": true,
+   "slaved_routes_agree": true,
+   "slaved_equals_SWT1_operator_plus_layer": true,
+   "slaved_route2_equals_target": true,
+   "slaved_extra_term": "mu_K^2 S'(n_d) J(|grad Phi|) on the source side, n_d = -mu_K^2 Phi / K (a layer where S varies)"
+  },
+  "ITEM5_phases": {
+   "pass_": true,
+   "S1_spherical_law": true,
+   "S0_a0_absent": true,
+   "static_clock_dS_dN_over_Sprime": "-Q_inf*mu_K**2/(K*N**2)"
+  },
+  "D2_P_equation": {
+   "pass_": true,
+   "P_equation": "S(N_2) (A - K W'(K|P|)) = d/dx [ S'(N_2) (P A - W) ]; the Legendre map is broken where S' != 0 and P obeys a 2nd-order equation in space"
+  }
+ },
+ "dispersion_rows": [
+  {
+   "eps": "0",
+   "k": "1/10",
+   "omega2_route2": -4.897962041858733e-09,
+   "omega2_route1": -4.897959183673469e-09,
+   "rel": 5.835461579486044e-07,
+   "omega_degree": 2,
+   "all_nonzero_omega2": [
+    -4.897962041858733e-09
+   ],
+   "rel_at_half_nbar": 2.9177301907897615e-07,
+   "ratio": 2.0000004105611016
+  },
+  {
+   "eps": "0",
+   "k": "1",
+   "omega2_route2": 5.204081146386924e-09,
+   "omega2_route1": 5.2040816326530616e-09,
+   "rel": 9.343937542309761e-08,
+   "omega_degree": 2,
+   "all_nonzero_omega2": [
+    5.204081146386924e-09
+   ],
+   "rel_at_half_nbar": 4.671968779334943e-08,
+   "ratio": 1.9999999964982376
+  },
+  {
+   "eps": "0",
+   "k": "10",
+   "omega2_route2": 1.0154081524955852e-06,
+   "omega2_route1": 1.015408163265306e-06,
+   "rel": 1.0606297385712283e-08,
+   "omega_degree": 2,
+   "all_nonzero_omega2": [
+    1.0154081524955852e-06
+   ],
+   "rel_at_half_nbar": 5.303148719017022e-09,
+   "ratio": 1.999999990133831
+  },
+  {
+   "eps": "3/10",
+   "k": "1/10",
+   "omega2_route2": -4.89858297739903e-09,
+   "omega2_route1": -4.898580121703854e-09,
+   "rel": 5.829638600312677e-07,
+   "omega_degree": 2,
+   "all_nonzero_omega2": [
+    -4.89858297739903e-09
+   ],
+   "rel_at_half_nbar": 2.914818700654805e-07,
+   "ratio": 2.000000411347391
+  },
+  {
+   "eps": "3/10",
+   "k": "1",
+   "omega2_route2": 1.3291136323236901e-09,
+   "omega2_route1": 1.329113924050633e-09,
+   "rel": 2.1948979502679804e-07,
+   "omega_degree": 2,
+   "all_nonzero_omega2": [
+    1.3291136323236901e-09
+   ],
+   "rel_at_half_nbar": 1.0974489773629135e-07,
+   "ratio": 1.999999995937992
+  },
+  {
+   "eps": "3/10",
+   "k": "10",
+   "omega2_route2": 1.139881916188747e-08,
+   "omega2_route1": 1.139881928501148e-08,
+   "rel": 1.0801470388743177e-08,
+   "omega_degree": 2,
+   "all_nonzero_omega2": [
+    1.139881916188747e-08
+   ],
+   "rel_at_half_nbar": 5.40073522157694e-09,
+   "ratio": 1.9999999899253156
+  },
+  {
+   "eps": "1",
+   "k": "1/10",
+   "omega2_route2": -4.900002850001177e-09,
+   "omega2_route1": -4.9e-09,
+   "rel": 5.816328933632766e-07,
+   "omega_degree": 2,
+   "all_nonzero_omega2": [
+    -4.900002850001177e-09
+   ],
+   "rel_at_half_nbar": 2.9081638660611346e-07,
+   "ratio": 2.0000004131508926
+  },
+  {
+   "eps": "1",
+   "k": "1",
+   "omega2_route2": -1.6442954444630873e-09,
+   "omega2_route1": -1.644295302013423e-09,
+   "rel": 8.663265301563032e-08,
+   "omega_degree": 2,
+   "all_nonzero_omega2": [
+    -1.6442954444630873e-09
+   ],
+   "rel_at_half_nbar": 4.33163265192137e-08,
+   "ratio": 1.999999999473707
+  },
+  {
+   "eps": "1",
+   "k": "10",
+   "omega2_route2": -2.43805373681212e-11,
+   "omega2_route1": -2.4380535376654394e-11,
+   "rel": 8.168265285551404e-08,
+   "omega_degree": 2,
+   "all_nonzero_omega2": [
+    -2.43805373681212e-11
+   ],
+   "rel_at_half_nbar": 4.084132647918463e-08,
+   "ratio": 1.9999999974815896
+  }
+ ],
+ "gal1_bound": {
+  "canonical": {
+   "mu_K_Mpc": 8890000.0,
+   "q_max": 0.030112616288558835,
+   "first_correction_at_eps1_kmax1": 1.6010059875244382e-28,
+   "eps_bound": 1.880855944525266e+26,
+   "vacuous": true,
+   "mu_K_below_which_eps1_bites_Mpc": 2.4005617256240277
+  },
+  "alt": {
+   "mu_K_Mpc": 8889000.0,
+   "q_max": 0.030112616288558835,
+   "first_correction_at_eps1_kmax1": 1.6017265527957494e-28,
+   "eps_bound": 1.8800098079162432e+26,
+   "vacuous": true,
+   "mu_K_below_which_eps1_bites_Mpc": 2.4005617256240277
+  }
+ },
+ "wall_KA_W1": [
+  {
+   "y": 1e-06,
+   "swt1_closed": 6.664167165684736e-10,
+   "routeA": 6.664167166666506e-10,
+   "routeB": -6.664167166667047e-10,
+   "relA": 1.473206001634253e-10,
+   "relB": 2.000000000147402,
+   "outward_B": false
+  },
+  {
+   "y": 0.001,
+   "swt1_closed": 2.0833432136042386e-05,
+   "routeA": 2.0833432136039563e-05,
+   "routeB": -2.0833432136039567e-05,
+   "relA": 1.354472090042691e-13,
+   "relB": 1.9999999999998646,
+   "outward_B": false
+  },
+  {
+   "y": 0.1,
+   "swt1_closed": 0.01873926586137667,
+   "routeA": 0.018739265861376683,
+   "routeB": -0.018739265861376683,
+   "relA": 6.661338147750939e-16,
+   "relB": 2.000000000000001,
+   "outward_B": false
+  },
+  {
+   "y": 1.0,
+   "swt1_closed": 0.4646273330056354,
+   "routeA": 0.46462733300563536,
+   "routeB": -0.46462733300563536,
+   "relA": 1.1102230246251565e-16,
+   "relB": 2.0,
+   "outward_B": false
+  },
+  {
+   "y": 10.0,
+   "swt1_closed": 8.01858996830922,
+   "routeA": 8.018589968309222,
+   "routeB": -8.01858996830922,
+   "relA": 2.220446049250313e-16,
+   "relB": 2.0,
+   "outward_B": false
+  },
+  {
+   "y": 10000.0,
+   "swt1_closed": 9991.289459653019,
+   "routeA": 9991.289459653019,
+   "routeB": -9991.289459653019,
+   "relA": 0.0,
+   "relB": 2.0,
+   "outward_B": false
+  }
+ ],
+ "wall_KA_W3": [
+  {
+   "R_kpc": 5.0,
+   "swt1_closed_canonical": 7.87762664784348e+30,
+   "routeA_canonical": 7.877626647843479e+30,
+   "routeB_canonical": -7.87762664784348e+30,
+   "relA": 1.1102230246251565e-16,
+   "relB": 2.0,
+   "alt_closed": 9.113117660126322e+30,
+   "routeA_alt": 9.113117660126325e+30,
+   "routeB_alt": -9.113117660126322e+30,
+   "relA_alt": 2.220446049250313e-16,
+   "relB_alt": 2.0
+  },
+  {
+   "R_kpc": 20.0,
+   "swt1_closed_canonical": 5.772328131522616e+30,
+   "routeA_canonical": 5.772328131522616e+30,
+   "routeB_canonical": -5.772328131522617e+30,
+   "relA": 0.0,
+   "relB": 2.0,
+   "alt_closed": 6.470739673525724e+30,
+   "routeA_alt": 6.470739673525726e+30,
+   "routeB_alt": -6.470739673525724e+30,
+   "relA_alt": 4.440892098500626e-16,
+   "relB_alt": 2.0
+  },
+  {
+   "R_kpc": 100.0,
+   "swt1_closed_canonical": 1.4437217622899864e+30,
+   "routeA_canonical": 1.4437217622899904e+30,
+   "routeB_canonical": -1.44372176228999e+30,
+   "relA": 2.6645352591003757e-15,
+   "relB": 2.0000000000000027,
+   "alt_closed": 1.5936590668280118e+30,
+   "routeA_alt": 1.5936590668280058e+30,
+   "routeB_alt": -1.5936590668280042e+30,
+   "relA_alt": 3.6637359812630166e-15,
+   "relB_alt": 1.9999999999999951
+  },
+  {
+   "R_kpc": 500.0,
+   "swt1_closed_canonical": 3.0005850174339708e+29,
+   "routeA_canonical": 3.0005850174342582e+29,
+   "routeB_canonical": -3.0005850174342544e+29,
+   "relA": 9.57012247226885e-14,
+   "relB": 2.0000000000000946,
+   "alt_closed": 3.301335248683632e+29,
+   "routeA_alt": 3.3013352486835594e+29,
+   "routeB_alt": -3.301335248683563e+29,
+   "relA_alt": 2.19824158875781e-14,
+   "relB_alt": 1.9999999999999791
+  }
+ ],
+ "static_clock_phase_width": {
+  "rho_mean_kg_m3": 2.2717130950271815e-27,
+  "dPhi_over_c2_max": {
+   "canonical": {
+    "1x": 2.5540255162142983e-22,
+    "1000x": 2.5540255162142983e-19,
+    "1e+06x": 2.5540255162142984e-16
+   },
+   "alt": {
+    "1x": 2.5546001970959166e-22,
+    "1000x": 2.5546001970959163e-19,
+    "1e+06x": 2.554600197095916e-16
+   }
+  },
+  "note": "a static clock stays at n_d <= n_1 only across a potential difference K n_1/mu_K^2 (units c^2)"
+ },
+ "seconds": 19.3,
+ "peak_rss_GB": 0.141,
+ "footer": "kappa = 1/2 FITTED; not theory closed. Adopts nothing."
+}
