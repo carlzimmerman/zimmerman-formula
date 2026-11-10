@@ -188,4 +188,14 @@ The pre-run choice of 1e-60 was too weak by the lane's own formula.
 Every literature number here (Kostelecky-Russell sensitivities, Pospelov-Shang scaling, GW170817, Eöt-Wash, the pulsar
 alpha_2, the khronometric speed formula) is PROVISIONAL. Changing any of them by a factor of 1000 moves no label.
 
+## Commit ids (local / origin)
+
+| commit | local | origin |
+|---|---|---|
+| criteria | c1bc0c0977 | 7a9ade7b2e |
+| amendment A1 | fb95bfc882 | 89ea6abae7 |
+| result (script, outputs, this file) | 2cb36884de | 551bc67dcd |
+
+Pushed by replay onto origin/main (a0710b479c..551bc67dcd). This id table is one more commit, pushed the same way.
+
 kappa = 1/2 FITTED; not theory closed.
