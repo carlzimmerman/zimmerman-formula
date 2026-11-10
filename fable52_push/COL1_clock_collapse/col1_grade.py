@@ -123,6 +123,8 @@ def main():
                 if not (r1 and r2):
                     continue
                 lab, why, info = label_pair(r1, r2, a.snapdir)
+                if tag == 'mu 198' and not kas.get('KA3', False):
+                    lab, why = 'NO VERDICT (KA3: pressure-dominated)', 'KA3 failed; ' + why
                 lr1, lr2 = lastread(r1) or {}, lastread(r2) or {}
                 ratios = {k: v.get('M_N_over_M_ph') for k, v in lr1.get('radii', {}).items()}
                 res['brackets'][f'{tag}|{f}|{mu}'] = {'reading': lab, 'why': why, 'info': info, 'last_read_J1200': lr1,
@@ -144,7 +146,8 @@ def main():
         bites = dt_rel >= 0.1 or (dm_rel is not None and dm_rel >= 0.1)
         same = (r['event'] == base['event']) and (json.dumps(lm, sort_keys=True) == json.dumps(lb, sort_keys=True))
         res['mutate'][law] = {'event': r['event'], 'event_time_rel_change': dt_rel, 'M_N100_rel_change': dm_rel,
-                              'bites': bites, 'identical_to_primary': same}
+                              'bites': bites, 'identical_to_primary': same,
+                              'note': 'law off: bites through the KA3 failure mode (NO VERDICT)' if law == 'off' else ''}
         P(f'MUTATE {law}: event {(r["event"] or {}).get("kind")} at {tm:.4f} Gyr (primary {tb:.4f}); dt/t {dt_rel:.3g};'
           f' M_N(<100) change {dm_rel if dm_rel is None else f"{dm_rel:.3g}"}; bites {bites}; bit-identical to primary {same}')
     json.dump(res, open(os.path.join(HERE, 'col1_grade.json'), 'w'), indent=1, default=str)
