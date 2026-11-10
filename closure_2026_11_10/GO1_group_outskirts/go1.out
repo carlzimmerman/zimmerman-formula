@@ -1,0 +1,61 @@
+GO1 Part A. groups selected 220, kept 102; dropped: {'sources': 93, 'empty bin': 19, 'y mask': 6, 'randoms': 0}
+median z 0.143; weighted mean M500 9.987e+13, Mgas500 5.362e+12, R500 0.662 Mpc, T500 1.94 keV; median theta500 4.23'; randoms per group 3.93
+
+## Known answers
+KA2 (A1 method) analytic NFW + r^-2 excess, M_rec/M_true at x 1, 2.83, 8: 1.0233, 1.0285, 1.0436 (5 %) -> PASS
+KA2b 200 noisy mocks at the data's relative errors: bias/sd [0.14, 0.19, 0.16], rel sd [0.21, 0.22, 0.36] (|bias| <= 0.3 sd) -> PASS
+KA3 beta-model template, beam-corrected by the gNFW correction, recovered/true pressure in shells x 1-1.41-2-2.83-4: [0.997, 0.984, 0.986, 0.992] -> PASS
+     gNFW beam correction per shell x>=1: [0.939, 0.956, 0.972, 0.983, 0.99, 0.995, 0.997, 0.999]
+KA4 f_ret identity with no excess: PASS
+
+## Primary (z 0.05-0.30, R 5.41, delta_ta 5.55, lens tail x^-2, y truncated, beam-corrected, T = T500 x^-0.6)
+gas500 5.362e+12, stars500 1.670e+12 (s = M*/M500 0.0167)
+| x | M_exc (lensing) | y gas 1..x (primary T) | M_b | M_tot | delta/rho_m | f_ret | f_ret_lo (isothermal) |
+|---|---|---|---|---|---|---|---|
+| 1.00 | 7.935e+13 ± 1.77e+13 | 0.000e+00 ± 0.00e+00 | 7.033e+12 | 7.943e+13 | 1032.95 ± 235.63 | 0.526 ± 0.137 | 0.526 ± 0.137 |
+| 1.41 | 1.305e+14 ± 2.91e+13 | 3.662e+12 ± 1.41e+12 | 1.157e+13 | 1.307e+14 | 600.99 ± 125.75 | 0.525 ± 0.138 | 0.504 ± 0.127 |
+| 2.00 | 7.420e+13 ± 4.30e+13 | 6.282e+12 ± 2.92e+12 | 1.331e+13 | 7.481e+13 | 121.62 ± 68.21 | 1.171 ± 0.810 | 1.049 ± 0.698 |
+| 2.83 | 2.204e+14 ± 4.02e+13 | 1.255e+13 ± 6.88e+12 | 2.221e+13 | 2.222e+14 | 127.69 ± 21.15 | 0.601 ± 0.174 | 0.489 ± 0.101 |
+| 4.00 | 3.253e+14 ± 6.79e+13 | 2.206e+13 ± 1.65e+13 | 3.396e+13 | 3.302e+14 | 67.10 ± 13.22 | 0.620 ± 0.346 | 0.447 ± 0.167 |
+| 5.66 | 6.040e+14 ± 1.36e+14 | 5.992e+12 ± 2.56e+13 | 2.396e+13 | 6.179e+14 | 44.39 ± 10.44 | 0.218 ± 0.247 | 0.229 ± 0.102 |
+| 8.00 | 6.880e+14 ± 2.00e+14 | -4.383e+12 ± 5.09e+13 | 1.896e+13 | 7.274e+14 | 18.48 ± 5.16 | 0.145 ± 0.380 | 0.210 ± 0.113 |
+| 11.31 | 1.735e+15 ± 6.74e+14 | 7.695e+13 ± 7.54e+13 | 1.290e+14 | 1.847e+15 | 16.58 ± 6.21 | 0.406 ± 0.277 | 0.234 ± 0.078 |
+| 16.00 | 4.937e+15 ± 2.40e+15 | -6.731e+14 ± 3.36e+14 | -5.357e+14 | 5.252e+15 | 16.68 ± 7.83 | -0.501 ± 0.407 | 0.007 ± 0.089 |
+primary: r_ta = NOT REACHED
+lower bound: r_ta = NOT REACHED
+  x = 1: f_ret 0.526 ± 0.137, lower bound 0.526 ± 0.137, excess-only 0.525
+  x = 2: f_ret 1.171 ± 0.810, lower bound 1.049 ± 0.698, excess-only 1.172
+  x = 3: f_ret 0.604 ± 0.169, lower bound 0.482 ± 0.097, excess-only 0.601
+  x = 5: f_ret 0.361 ± 0.203, lower bound 0.306 ± 0.096, excess-only 0.349
+T_mw(0.5-1 R500) / T500 from y over the eRASS1 beta-model gas: 1.00 (reported check on the T500 scale)
+
+## Nulls
+N1 cross shear M_exc: Mexc@1 2.01e+13 ± 1.27e+13 (z +1.58); Mexc@3 3.47e+12 ± 4.01e+13 (z +0.09); Mexc@8 -1.98e+14 ± 1.24e+14 (z -1.60) -> PASS
+N2 random-minus-random: Mexc@3 -7.40e+13 ± 3.65e+13 (z -2.03); Mexc@8 3.77e+13 ± 1.43e+14 (z +0.26); Gy@3 3.81e+12 ± 5.93e+12 (z +0.64); Gy@8 -3.86e+12 ± 5.24e+13 (z -0.07) -> PASS
+
+## Brackets (label per bracket)
+  lens tail x^-1.5: r_ta NOT REACHED; f_ret(3 R500) 0.598 ± 0.167 -> NOT EVALUABLE [r_ta NOT REACHED]
+  lens tail x^-3: r_ta NOT REACHED; f_ret(3 R500) 0.612 ± 0.171 -> NOT EVALUABLE [r_ta NOT REACHED]
+  lens no tail: r_ta NOT REACHED; f_ret(3 R500) 0.639 ± 0.179 -> NOT EVALUABLE [r_ta NOT REACHED]
+  y tail x^-3: r_ta NOT REACHED; f_ret(3 R500) 0.610 ± 0.169 -> NOT EVALUABLE [r_ta NOT REACHED]
+  no beam correction: r_ta NOT REACHED; f_ret(3 R500) 0.620 ± 0.175 -> NOT EVALUABLE [r_ta NOT REACHED]
+  CIB-deprojected y: r_ta NOT REACHED; f_ret(3 R500) 0.442 ± 0.249 -> NOT EVALUABLE [r_ta NOT REACHED]
+  Mgas500 x 0.8: r_ta NOT REACHED; f_ret(3 R500) 0.574 ± 0.167 -> NOT EVALUABLE [r_ta NOT REACHED]
+  no stars beyond R500: r_ta NOT REACHED; f_ret(3 R500) 0.532 ± 0.163 -> NOT EVALUABLE [r_ta NOT REACHED]
+  stars x 1.5: r_ta NOT REACHED; f_ret(3 R500) 0.665 ± 0.173 -> NOT EVALUABLE [r_ta NOT REACHED]
+  R 5.562: r_ta NOT REACHED; f_ret(3 R500) 0.621 ± 0.174 -> NOT EVALUABLE [r_ta NOT REACHED]
+  delta_ta 11: r_ta NOT REACHED; f_ret(3 R500) 0.604 ± 0.169 -> NOT EVALUABLE [r_ta NOT REACHED]
+  lambda_n 2.5e-7: r_ta NOT REACHED; f_ret(3 R500) 0.604 ± 0.169 -> NOT EVALUABLE [r_ta NOT REACHED]
+  lambda_n 2.5e-3: r_ta NOT REACHED; f_ret(3 R500) 0.628 ± 0.177 -> NOT EVALUABLE [r_ta NOT REACHED]
+  z 0.05-0.20: r_ta NOT REACHED; f_ret(3 R500) 0.661 ± 0.227 -> NOT EVALUABLE [r_ta NOT REACHED]
+
+## Footings and the law row (reported; a0 enters only here)
+  canonical (a0 9.3603e-11): f_ret(<r_ta) None; x 1.00: M_law/M_tot 0.618 (g_N/a0 0.024); x 3.00: M_law/M_tot 1.104 (g_N/a0 0.009)
+  alt (a0 1.1312e-10): f_ret(<r_ta) None; x 1.00: M_law/M_tot 0.675 (g_N/a0 0.020); x 3.00: M_law/M_tot 1.208 (g_N/a0 0.008)
+KA5 footings give identical f_ret: PASS
+
+KA1 (estimator copy vs CFG686 esd): see go1_ka1.out
+
+# LABEL (both footings): NOT EVALUABLE [r_ta NOT REACHED]
+#   canonical: NOT EVALUABLE [r_ta NOT REACHED]
+#   alt: NOT EVALUABLE [r_ta NOT REACHED]
