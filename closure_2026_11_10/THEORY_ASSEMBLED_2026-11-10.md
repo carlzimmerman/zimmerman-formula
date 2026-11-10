@@ -76,10 +76,17 @@ bound and the region never turns around. That adds a seventh condition:
 
 7. It cannot key on the expansion alone (TK1).
 
-Of the clock's first-order invariants that leaves the acceleration, which is zero for a falling clock anywhere and equals
-the local field for a standing one. Alive, both untested as results: one kinetic function with a narrow interval of
-changed compressibility (DT2: an engineered counterexample to MK1's breadth, with nonlinear reachability open), and a
-dust stiffness keyed on the clock's acceleration (AK1, started 2026-11-10; nothing computed yet).
+Of the clock's first-order invariants that left the acceleration, which is zero for a falling clock anywhere and equals
+the local field for a standing one. It was tested the same evening and is dead too: AKD1, BREAKS AT A1. A stiffness that
+falls with the clock's acceleration is a negative copy of the law's own term. Around the expanding background it gives
+the clock negative inertia on every sub-horizon scale at z 3400 and 1100, and a shape that is flat at zero acceleration
+has the same sign problem in the outskirts of static wells. That adds an eighth condition:
+
+8. It cannot be a dust stiffness that falls with the clock's acceleration (AKD1).
+
+So no dust term built from the clock's own first-order kinematics, its offset, its expansion or its acceleration, joins
+the two states. Still alive and untested as a result: one kinetic function with a narrow interval of changed
+compressibility (DT2: an engineered counterexample to MK1's breadth, with nonlinear reachability open).
 
 A second assembly written independently the same day, `fable52_push/SHP1_cold_component_shape/THEORY.md`, states the
 same theory and the same missing piece.
