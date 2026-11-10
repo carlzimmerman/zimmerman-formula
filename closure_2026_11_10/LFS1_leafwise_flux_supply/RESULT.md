@@ -28,8 +28,8 @@ Two more failures do not depend on A1:
 TEST lane, quarantined. Adopts nothing, relabels nothing, registers nothing. Footings never pooled. Part B (stability of
 the supply flow, SPARC rows) was **not graded**: the criteria grade it only under SUPPLIES or SUPPLIES-SHORT.
 
-Commits (local / origin): criteria 8ddf81950c / see below (alone, before any script or number); result: see the
-commit-id record at the end.
+Commits (local / origin): criteria 8ddf81950c / 197ce93b80 (alone, before any script or number); result
+80c8d51c7c / 0168c8c040.
 
 ## Table (canonical; alt in brackets where it differs)
 
