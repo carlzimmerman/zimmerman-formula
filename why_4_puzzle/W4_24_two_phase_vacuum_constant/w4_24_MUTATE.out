@@ -1,0 +1,45 @@
+W4-24 the vacuum constant in the two-phase action  [MUTATE: MU1, MU2, MU3 one at a time]
+kappa = 1/2 FITTED; not theory closed. Audit lane: no kappa is output.
+
+  y = 0.0001   quadrature 6.6417166664435e-7   closed W(u1) 6.6417166664435e-7   rel 1.06e-27
+  y = 0.01     quadrature 0.00064216644366912  closed W(u1) 0.00064216644366912  rel 1.05e-30
+  y = 0.333333 quadrature 0.10368353685908     closed W(u1) 0.10368353685908     rel 4.76e-31
+  y = 1        quadrature 0.46462733300564     closed W(u1) 0.46462733300564     rel 0.0
+  y = 3        quadrature 1.9114203817224      closed W(u1) 1.9114203817224      rel 1.03e-31
+  y = 100      quadrature 95.875075249775      closed W(u1) 95.875075249775      rel 0.0
+  y = 10000    quadrature 9991.289459653       closed W(u1) 9991.289459653       rel 1.62e-31
+[PASS] K1a identity by quadrature: integral_0^1 J(u(S,y)) dS = W(u1) at seven y, worst relative 1.06e-27 (line 1e-8)
+  swt1.json y = 1e-06    closed 6.664167165684736e-10    here 6.664167166666644e-10  rel 1.47e-10  rel to its quad 3.52e-16  (A1 lines)
+  swt1.json y = 0.001    closed 2.0833432136042386e-05   here 2.083343213603959e-5   rel 1.34e-13  rel to its quad 2.27e-17  
+  swt1.json y = 0.1      closed 0.01873926586137667      here 0.01873926586137668    rel 7.63e-16  rel to its quad 6.92e-17  
+  swt1.json y = 1        closed 0.4646273330056354       here 0.4646273330056354     rel 4.88e-17  rel to its quad 1.66e-16  
+  swt1.json y = 10       closed 8.01858996830922         here 8.018589968309221      rel 1.56e-16  rel to its quad 9.35e-17  
+  swt1.json y = 10000    closed 9991.289459653019        here 9991.289459653019      rel 1.52e-17  rel to its quad 2.61e-14  
+[PASS] K1b against swt1.json: closed form equals KA_W1 at its six y: 1e-10 against 'closed' for y >= 1e-3; at y = 1e-6, 1e-9 against 'closed' and 1e-12 against 'quad' (AMENDMENT A1)
+[PASS] K1c the constant is a pressure step: integral_0^1 [J - V_in] dS = Integral(-V_in + J(S), (S, 0, 1))  (= p_wall - V_in)
+
+Xi = V_in / (a0^2 / 4 pi G) = 4*pi*eta/kappa**2
+[PASS] K2 Xi symbolic: with a0 = kappa c sqrt(G rho) and V_in = eta rho c^2, Xi = 4 pi eta / kappa^2
+[PASS] I3 scaling: Xi unchanged under G -> lambda G, rho -> mu rho, c -> nu c
+
+Xi = (4*pi) eta / kappa^2.  kappa_min(y) = sqrt(|Xi kappa^2| / W(u1(y)))
+  G-M: y = 1, u1 = 1.61803399, W = 0.464627; kappa_min: eta=+1 5.2006, eta=+1/f 34.217, eta=-1 5.2006
+  G-D: y = 0.01, u1 = 0.10512492, W = 0.000642166; kappa_min: eta=+1 139.8882, eta=+1/f 920.397, eta=-1 139.8882
+[PASS] K3 bounds, eta = +1: W = 0.4646 and 6.421e-4, kappa_min = 5.20 and 139.9 at G-M and G-D, each within 1 % of the hand value
+  eta = -1: a wall stops only where rho_d / rho_DE >= (c/sigma)^2 = 8.988e+06 at sigma = 100 km/s
+  eta = -1: a wall stops only where rho_d / rho_DE >= (c/sigma)^2 = 9.986e+05 at sigma = 300 km/s
+  eta = -1: a wall stops only where rho_d / rho_DE >= (c/sigma)^2 = 8.988e+04 at sigma = 1000 km/s
+[PASS] K4 eta = -1, kappa-independent: stop densities 8.99e6, 9.99e5, 8.99e4 rho_DE at 100, 300, 1000 km/s within 1 %; the K3 bound applies unchanged for the step not to exceed the law's own wall pressure
+[PASS] K5 eta = +1/f: kappa_min rises by 1/sqrt(f) = 6.5795: 34.2 (G-M) and 920 (G-D) within 1 %
+[PASS] K6 the frozen action has eta = 0: J(0) = 0 (SWT1), W(0) = 0 (TPA1); Lambda sits outside the switch in TPA1's frozen Lagrangian (read, criteria line 19)
+[PASS] I1 forbidden constants: hits []
+I2 symbolic: kappa_min = 2*sqrt(pi)*sqrt(Abs(eta))/sqrt(W); it depends on eta (free unless H1 sets |eta| = 1: TRADE when continuous), on the gate y through W, and on f in the mean-matched branch. No kappa is output.
+[PASS] I8 pi-weight: kappa_min^2 W / |eta| = 4*pi = (4) pi: one pi over a transcendental W; a bound, not a value
+I4 no law kappa read upstream (the fitted value appears only in the last reported line).  I5 no Friedmann.  I6 footing rho_DE.  I7 classical, hbar-free.
+
+MUTATE arms, one at a time (normal values: G-M 5.2006, G-D 139.8882)
+  MU1 Poisson 4 pi G -> 8 pi G: kappa_min G-M 7.3547, G-D 197.8318; moved by x1.4142 as stated: True; K3 hand check fails: True; verdict rule gives EXCLUDED; bites: True
+  MU2 pressure step x 0.9: kappa_min G-M 4.9337, G-D 132.7096; moved by x0.9487 as stated: True; K3 hand check fails: True; verdict rule gives EXCLUDED; bites: True
+  MU3 constant outside the switch: kappa_min G-M 0.0000, G-D 0.0000; moved by x0.0000 as stated: True; K3 hand check fails: True; verdict rule gives BOUND REACHES THE WINDOW; bites: True
+
+VERDICT: CONTROLS BITE (3 of 3)
