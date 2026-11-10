@@ -41,7 +41,9 @@ label here. The decision, its gate table and its eight open items are in
   sector's own gravitating density on one conserved current, and for a static clock the law sector's stress holds it in
   the law's shape (the action's static force balance; it holds for any law of this type, so it is not evidence for this
   one). The theory is still not complete: no single dust term serves the CMB and galaxies, the collapse to the static
-  state is not computed, and clusters cannot be a static-clock state. On stability: TPA1 found the static state
+  state BREAKS DOWN when computed (COL1: the infalling clock folds at the centre within 0.06 to 0.15 Gyr and the
+  equations give no answer beyond), and clusters cannot be a static-clock state. MK1 confirms there is no single dust
+  constant (NO VALUE: the record's CMB lines need at least 198 and 2.5e4 per Mpc; host-free KiDS allows about 1). On stability: TPA1 found the static state
   unstable with gravity frozen, in a planar background; SCS1, with gravity coupled around a point mass, finds it STABLE on
   both footings and traces TPA1's growth to the planar background. SCS2 finds it STABLE around isolated discs too: the
   law's halo density is positive in every cell of every disc solved. It goes negative only with an external field, and
@@ -88,6 +90,8 @@ against 0.0354). No share at any outer radius passes the disc, filling, stabilit
 | TPA1 | what are the two-phase action's field equations, and is it healthy? | EQUATIONS COMPLETE; health UNHEALTHY (a gradient instability, no ghost, in the law-on phase of a static clock with little dust; the wall and the dust phase are healthy; decoupling limit, planar background; SCS1 finds the instability does not hold around a point mass) |
 | SCS1 | is the action's static law-on state stable with gravity coupled? | STABLE / STABLE around a point mass (nothing grows at any wavenumber; JEANS-ONLY at the dust constant the CMB needs; discs not analysed) |
 | SCS2 | is that state stable around discs? | Isolated discs STABLE / STABLE; discs in an external field NO VERDICT / NO VERDICT (reading: unstable in regions; e-folding 0.9 to 2.4 Gyr at 0.1 a0, 27 to 75 Gyr at 0.01 a0) |
+| MK1 | is there one dust constant for the CMB, clusters and galaxies? | NO VALUE / NO VALUE (does not turn on the cap; X-COP passes at no value) |
+| COL1 | does a clock that starts as infalling dust reach the static state? | BREAKS DOWN / BREAKS DOWN (a caustic at the centre; a reported diagnostic puts the charge that arrives at 1 to 4 % of the law's halo) |
 | HE1 | can the share sit outside the wall as a pressure-supported envelope? | FAILS / FAILS (KiDS late-type stacks; the clusters-and-groups gate also fails as frozen, on two clusters near R500 only, and the label does not rest on it) |
 
 ## 3. What KO1 found, in plain words
@@ -175,11 +179,21 @@ A completion has to move a gate or bring physics from outside the catalogue.
   are the same; `SCS2.lean` recompiles with exit 0, 13 theorems, twin failing. The two stability routes themselves, about
   an hour and up to 3 GB, were not re-run by the lead)
 
+- `MK1_one_dust_constant/` (origin 11f43f9490, b076803437, 204ef24ac1, 21a9e0ca67; checked by the lead: the rows script
+  re-run gives an identical file, the label re-derived from the outputs is NO VALUE on both footings, `MK1.lean`
+  recompiles with exit 0, 14 theorems, twin failing; the SPARC and KiDS rows, about 5 and 20 minutes, were not re-run.
+  Its Lean files sit in `fable_independent_2026/lean_2026/`)
+- `COL1_clock_collapse/` (origin d56a3a2b78, 89f3fdc101, 5dbbab085c, b9c96ff3ca, 918545cf2b, dd69892991; checked by the
+  lead: the label re-derived from the run outputs is BREAKS DOWN in every row, `COL1.lean` recompiles with exit 0, 13
+  theorems, twin failing; the evolution runs themselves were not re-run)
+- `DT1_dust_term_design/` (a design note, not a lane, hand-level: what any dust term must do and an exponential
+  candidate; origin 136f7cc8c2; to be graded by MK2)
+
 Lean: the Mathlib build these files were first compiled with (in a copy of the repository) was removed from the machine
 on the evening of 2026-11-09. A build has been inside the repository's own `fable_independent_2026/lean_2026` since
 22:17 the same evening. The ONE1 session made it by unpacking the machine's own Mathlib cache; nothing was downloaded.
 The lead re-compiled `KO1.lean` (exit 0, 12 theorems) and its twin (exit 1) with it. With TPA1's 14, ONE1's 10, SCS1's 13
-and SCS2's 13 the Lean files here hold 142 theorems.
+and SCS2's 13 and COL1's 13 the Lean files here hold 155 theorems; MK1's 14 are in the Lean folder itself.
 
 Each folder has FROZEN_CRITERIA.md, any amendments, the scripts with their outputs and MUTATE outputs, RESULT.md, and (except
 GAL1 and KO1R) a Lean file with its compile output and a mutate twin.

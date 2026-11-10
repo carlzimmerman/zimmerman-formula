@@ -88,6 +88,22 @@ the solution that gets there.**
    regions on both routes but are NO VERDICT, because their magnitudes are not converged between grids. So the open
    stability item is discs in an external field, in the linear sense, not discs.
 
+**Corrections to items 1 and 2 after MK1 and COL1 landed (2026-11-10).**
+
+- *Item 1, the arithmetic.* "A few per Mpc" is wrong. MK1 (`fable52_push/MK1_one_dust_constant/RESULT.md`, origin
+  204ef24ac1) and COL1 both show it: at 3.71 per Mpc w is 0.49 at recombination. Being cold by z 3400 needs 198 per Mpc
+  (the record's own line, KD1 B1a), and the record's CMB-lensing Jeans line needs 2.5e4.
+- *Item 1, the verdict.* MK1: NO VALUE / NO VALUE. No single mu_K is allowed by the CMB, clusters and galaxies, and the
+  answer does not turn on the cap: the Jeans line sits 2.5e4 / 3.3e4 times above what host-free KiDS allows (1.00 /
+  0.77 per Mpc with the cap), and X-COP passes at no value. MK1 states the requirement: the dust term cannot depend on
+  the clock offset alone.
+- *Item 2, the collapse.* COL1 (`fable52_push/COL1_clock_collapse/RESULT.md`, origin 918545cf2b) computed it: BREAKS
+  DOWN / BREAKS DOWN at 3.71, 1.78 / 1.74 and 0.1 per Mpc, all four masses. A clock that starts as cold dust falls onto
+  the baryons like test particles and folds at the centre 0.06 to 0.15 Gyr after the mass appears; the equations give
+  no answer beyond that. A reported diagnostic (no label) finds the clock charge inside 10 to 300 kpc at 1 to 4 % of the
+  law's halo by z = 0. So the static state of section 1 is stable (SCS1, SCS2) and is not reached.
+- *Section 3 below* said the record's QX17C solver could run the collapse. QX17C is a static solver; COL1 wrote its own.
+
 ## 3. What would make it complete
 
 - A K(Q) (or its replacement) that is dust-like at early times and leaves less than the lensing bound in galaxy wells,
