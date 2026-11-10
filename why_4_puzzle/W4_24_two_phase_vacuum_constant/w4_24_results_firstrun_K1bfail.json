@@ -1,0 +1,183 @@
+{
+ "K1a": [
+  {
+   "y": 0.0001,
+   "quad": 6.641716666443454e-07,
+   "closed": 6.641716666443454e-07,
+   "rel": 1.0575298823751971e-27
+  },
+  {
+   "y": 0.01,
+   "quad": 0.0006421664436691178,
+   "closed": 0.0006421664436691178,
+   "rel": 1.0496896671898605e-30
+  },
+  {
+   "y": 0.3333333333333333,
+   "quad": 0.10368353685908308,
+   "closed": 0.10368353685908308,
+   "rel": 4.755220362835648e-31
+  },
+  {
+   "y": 1.0,
+   "quad": 0.46462733300563536,
+   "closed": 0.46462733300563536,
+   "rel": 0.0
+  },
+  {
+   "y": 3.0,
+   "quad": 1.911420381722389,
+   "closed": 1.911420381722389,
+   "rel": 1.031773168221328e-31
+  },
+  {
+   "y": 100.0,
+   "quad": 95.87507524977475,
+   "closed": 95.87507524977475,
+   "rel": 0.0
+  },
+  {
+   "y": 10000.0,
+   "quad": 9991.289459653019,
+   "closed": 9991.289459653019,
+   "rel": 1.616995624455403e-31
+  }
+ ],
+ "K1b": [
+  {
+   "y": 1e-06,
+   "swt1_closed": 6.664167165684736e-10,
+   "here": 6.664167166666644e-10,
+   "rel": 1.4734149379560155e-10
+  },
+  {
+   "y": 0.001,
+   "swt1_closed": 2.0833432136042386e-05,
+   "here": 2.0833432136039587e-05,
+   "rel": 1.343740959331278e-13
+  },
+  {
+   "y": 0.1,
+   "swt1_closed": 0.01873926586137667,
+   "here": 0.018739265861376683,
+   "rel": 7.629556096675752e-16
+  },
+  {
+   "y": 1.0,
+   "swt1_closed": 0.4646273330056354,
+   "here": 0.46462733300563536,
+   "rel": 4.883190454709025e-17
+  },
+  {
+   "y": 10.0,
+   "swt1_closed": 8.01858996830922,
+   "here": 8.018589968309222,
+   "rel": 1.5596133783456072e-16
+  },
+  {
+   "y": 10000.0,
+   "swt1_closed": 9991.289459653019,
+   "here": 9991.289459653019,
+   "rel": 1.517792053281766e-17
+  }
+ ],
+ "bounds": {
+  "cxi": "4*pi",
+  "G-M": {
+   "y": 1.0,
+   "u1": 1.618033988749895,
+   "W": 0.46462733300563536,
+   "plus1": 5.200589258140182,
+   "plus1_over_f": 34.217365171829,
+   "minus1": 5.200589258140182
+  },
+  "G-D": {
+   "y": 0.01,
+   "u1": 0.10512492197250393,
+   "W": 0.0006421664436691178,
+   "plus1": 139.88821486229332,
+   "plus1_over_f": 920.3968807354224,
+   "minus1": 139.88821486229332
+  }
+ },
+ "K4": [
+  {
+   "sigma_kms": 100,
+   "rho_d_over_rho_DE_min": 8987551.787368177
+  },
+  {
+   "sigma_kms": 300,
+   "rho_d_over_rho_DE_min": 998616.8652631307
+  },
+  {
+   "sigma_kms": 1000,
+   "rho_d_over_rho_DE_min": 89875.51787368176
+  }
+ ],
+ "reported": {
+  "eta_max_G-M": 0.013622984827693887,
+  "eta_max_G-D": 1.88284741286463e-05,
+  "ystar_at_0.227": 248.89489778761583,
+  "ystar_at_0.607": 37.27643339460579,
+  "Xi_at_fitted": 50.26548245743669,
+  "ystar_at_fitted": 53.78686010606303
+ },
+ "checks": [
+  {
+   "name": "K1a identity by quadrature",
+   "detail": "integral_0^1 J(u(S,y)) dS = W(u1) at seven y, worst relative 1.06e-27 (line 1e-8)",
+   "pass": true
+  },
+  {
+   "name": "K1b against swt1.json",
+   "detail": "closed form equals KA_W1 'closed' at its six y, worst relative 1.47e-10 (line 1e-10)",
+   "pass": false
+  },
+  {
+   "name": "K1c the constant is a pressure step",
+   "detail": "integral_0^1 [J - V_in] dS = Integral(-V_in + J(S), (S, 0, 1))  (= p_wall - V_in)",
+   "pass": true
+  },
+  {
+   "name": "K2 Xi symbolic",
+   "detail": "with a0 = kappa c sqrt(G rho) and V_in = eta rho c^2, Xi = 4 pi eta / kappa^2",
+   "pass": true
+  },
+  {
+   "name": "I3 scaling",
+   "detail": "Xi unchanged under G -> lambda G, rho -> mu rho, c -> nu c",
+   "pass": true
+  },
+  {
+   "name": "K3 bounds, eta = +1",
+   "detail": "W = 0.4646 and 6.421e-4, kappa_min = 5.20 and 139.9 at G-M and G-D, each within 1 % of the hand value",
+   "pass": true
+  },
+  {
+   "name": "K4 eta = -1, kappa-independent",
+   "detail": "stop densities 8.99e6, 9.99e5, 8.99e4 rho_DE at 100, 300, 1000 km/s within 1 %; the K3 bound applies unchanged for the step not to exceed the law's own wall pressure",
+   "pass": true
+  },
+  {
+   "name": "K5 eta = +1/f",
+   "detail": "kappa_min rises by 1/sqrt(f) = 6.5795: 34.2 (G-M) and 920 (G-D) within 1 %",
+   "pass": true
+  },
+  {
+   "name": "K6 the frozen action has eta = 0",
+   "detail": "J(0) = 0 (SWT1), W(0) = 0 (TPA1); Lambda sits outside the switch in TPA1's frozen Lagrangian (read, criteria line 19)",
+   "pass": true
+  },
+  {
+   "name": "I1 forbidden constants",
+   "detail": "hits []",
+   "pass": true
+  },
+  {
+   "name": "I8 pi-weight",
+   "detail": "kappa_min^2 W / |eta| = 4*pi = (4) pi: one pi over a transcendental W; a bound, not a value",
+   "pass": true
+  }
+ ],
+ "verdict": "CHECK FAILED"
+}
