@@ -31,6 +31,9 @@ equations (E1)-(E5) and its limits table.
    mass the isotropic form reads P = J(g). That is PD1's P7 relation ("dispersion locked to sigma^2 = (1/2) sqrt(G M_b
    a0)", "div Pi = -rho (nu - 1) g_N"): in the deep field J = g^2 / (2K), which is the pressure of an isothermal halo
    with that dispersion. In the action it is a consequence of the static equations, not an assumption.
+   **Caution (added after an independent check from the closure session):** the identity holds for any J(g) with
+   P = dJ/dg and a curl-free field. It shows that the action's static state balances itself. It is not evidence that
+   this J is the right one.
 
 So the decision file's open item 1 ("no equation of motion makes the cold component take the law's shape around a disc")
 needs a narrower wording: **for a static clock the action's own equations give that shape and hold it; what is missing is
