@@ -153,6 +153,9 @@ reason (MA2 cannot bite on DES); under A1, AMPLITUDE CONSISTENT WITH RAW LENSING
 
 | commit | local `main` | origin/main |
 |---|---|---|
-| FROZEN_CRITERIA.md, alone | 1792bd07ea | (see the push note below) |
-| scripts, outputs, RESULT.md (label and numbers) | 157e77fa69 | (see the push note below) |
-| this comparison section | the commit that adds it | (see the push note below) |
+| FROZEN_CRITERIA.md, alone | 1792bd07ea | d69c97ad58 |
+| scripts, outputs, RESULT.md (label and numbers) | 157e77fa69 | 88e2e524d1 |
+| this comparison section | 9b947507a7 | 9c27c3984a |
+| this table | the commit that adds it | its replay |
+
+Each local commit was replayed onto origin/main with merge-tree and commit-tree (no worktree) and pushed.
