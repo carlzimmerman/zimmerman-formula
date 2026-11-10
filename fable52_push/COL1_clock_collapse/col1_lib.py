@@ -382,7 +382,7 @@ class Model:
             tn = t + dt
             if self.rout_fn is not None:
                 rn[-1] = self.rout_fn(tn)
-                vh[-1] = 0.0
+                vh[-1] = (self.cosmo.H_of_a(self.cosmo.a_of_t(tn)) * rn[-1]) if self.mode == 'hubble' else 0.0
             rn[0] = 0.0
             if np.any(np.diff(rn) <= 0):
                 self.r = rn
@@ -398,7 +398,7 @@ class Model:
                 break
             self.v = vh + 0.5 * dt * acc
             if self.rout_fn is not None:
-                self.v[-1] = (self.rout_fn(tn + 1e-6) - self.rout_fn(tn - 1e-6)) / 2e-6 if self.mode == 'hubble' else 0.0
+                self.v[-1] = (self.cosmo.H_of_a(self.cosmo.a_of_t(tn)) * self.r[-1]) if self.mode == 'hubble' else 0.0
             self.v[0] = 0.0
             t = tn
             steps += 1
