@@ -1,0 +1,119 @@
+REL1 step 1 (criteria e495153acf). MUTATE = none. kappa = 1/2 FITTED; not theory closed.
+KA1 Legendre max_P[P y - W(K P)] - (a0^2/K)[u - ln(1+u)] = 0  -> PASS
+KA2 static spherical balance mu(g/a0) g = g_N  <=>  g^2 = g_N (g + a0): residual 0 -> PASS  (record certificate: Lean QX1.balance_iff_lawS)
+KA3 dust-only (P = 0): P.A_rel = 0; W(0) = 0; F(0) = 0 -> GR + clock dust + baryons: PASS
+
+K1 limits of D: A_rel = h . n.nabla(u_b/gamma), and D': A_rel = A - h . a_b
+  clock acceleration A (static clock, exact) = [0, Derivative(N(x, y), x)/(B(x, y)**2*N(x, y)), Derivative(N(x, y), y)/(B(x, y)**2*N(x, y))]
+  (i)  u_b = n (comoving):                   D - A = [0, 0, 0]
+  (ii) static clock, ANY steady baryon flow: D - A = [0, 0, 0]
+  D' with baryons held at rest beside a static clock: A - h.a_b = [0, 0, 0]  (the law is OFF in any held medium)
+  (iii) clock moving with velocity e V(T,x,y), baryons at rest, Phi = e^2 phi:
+        D^i to O(e^2) minus e^2 d_i phi = [0, 0]
+        D' = A - h.a_b: (h.a_b)^i to O(e^2) minus e^2 d_i phi = [0, 0]  (free-falling clock, A = 0: D' = -grad Phi)
+  (d) flat space, static clock, baryon flow e vb(T,x,y) along x: D^x = e**2*Derivative(vb(T, x, y), T)  (exact: d_t of the flow)
+  K1: (i) True, (ii) True, (iii) D True, (iii) D' True, flat d_t True -> PASS
+
+K2 matter kinetic structure. About a background with A_rel = y0 (u = |y0|/a0) and baryons at rest, a uniform
+   displacement xi(t) changes A_rel by xi'' (K1(d); D' likewise through a_b). P has no time derivative in (A),
+   so at gamma_L = 0 P is eliminated: L_matter = rho xi'^2/2 + J(|y0 + c xi''|) - k xi^2/2 (c = 1; M2: c = 0).
+  Hessian of J in xi'' : along A_rel 1/(K*(u + 1)**2) ; across A_rel 1/(K*(u + 1)) ; off-diagonal 0
+  linearized Euler-Lagrange: -k*xi(t) - rho*Derivative(xi(t), (t, 2)) + Derivative(xi(t), (t, 4))/K = 0
+  characteristic polynomial in s (xi ~ e^(s t)): (-K*k - K*rho*s**2 + s**4)/K;  s^2 roots: [-sqrt(K)*sqrt(K*rho**2 + 4*k)/2 + K*rho/2, sqrt(K)*sqrt(K*rho**2 + 4*k)/2 + K*rho/2]
+  Ostrogradsky Hamiltonian (q1 = xi, q2 = xi', p2 = H xi''): H_O = K*p2**2/2 + k*q1**2/2 + p1*q2 - q2**2*rho/2;  d^2 H_O/dp1^2 = 0  -> linear in p1, unbounded below when the H xi''^2 term is present (H != 0)
+
+  runaway rates s = sqrt(rho / H) (k = 0), SI, K = 4 pi G:
+  [canonical] u = 0 (free-falling compact body under D; any body at A_rel = 0)
+      water                   e-fold along 1.092e+03 s ; across 1.092e+03 s  (3.460e-05 yr); faster than the age: True
+      rock                    e-fold along 6.304e+02 s ; across 6.304e+02 s  (1.998e-05 yr); faster than the age: True
+      Earth (mean)            e-fold along 4.650e+02 s ; across 4.650e+02 s  (1.474e-05 yr); faster than the age: True
+      platinum                e-fold along 2.358e+02 s ; across 2.358e+02 s  (7.471e-06 yr); faster than the age: True
+      titanium                e-fold along 5.143e+02 s ; across 5.143e+02 s  (1.630e-05 yr); faster than the age: True
+      ISM gas 1 cm^-3         e-fold along 8.443e+14 s ; across 8.443e+14 s  (2.675e+07 yr); faster than the age: True
+      halo gas 1e-4 cm^-3     e-fold along 8.443e+16 s ; across 8.443e+16 s  (2.675e+09 yr); faster than the age: True
+      mean baryon density     e-fold along 1.683e+18 s ; across 1.683e+18 s  (5.333e+10 yr); faster than the age: False
+  [canonical] lab mass at rest on Earth under D (u = 9.81/a0)
+      water                   e-fold along 1.042e-08 s ; across 3.373e-03 s  (1.069e-10 yr); faster than the age: True
+      rock                    e-fold along 6.015e-09 s ; across 1.947e-03 s  (6.171e-11 yr); faster than the age: True
+      Earth (mean)            e-fold along 4.437e-09 s ; across 1.436e-03 s  (4.552e-11 yr); faster than the age: True
+      platinum                e-fold along 2.250e-09 s ; across 7.283e-04 s  (2.308e-11 yr); faster than the age: True
+      titanium                e-fold along 4.908e-09 s ; across 1.589e-03 s  (5.035e-11 yr); faster than the age: True
+      ISM gas 1 cm^-3         e-fold along 8.056e+03 s ; across 2.608e+09 s  (8.264e+01 yr); faster than the age: True
+      halo gas 1e-4 cm^-3     e-fold along 8.056e+05 s ; across 2.608e+11 s  (8.264e+03 yr); faster than the age: True
+      mean baryon density     e-fold along 1.606e+07 s ; across 5.198e+12 s  (1.647e+05 yr); faster than the age: True
+  [canonical] test mass in Earth orbit r = 7081 km under D' (u = g/a0)
+      water                   e-fold along 1.286e-08 s ; across 3.747e-03 s  (1.187e-10 yr); faster than the age: True
+      rock                    e-fold along 7.423e-09 s ; across 2.163e-03 s  (6.855e-11 yr); faster than the age: True
+      Earth (mean)            e-fold along 5.475e-09 s ; across 1.596e-03 s  (5.056e-11 yr); faster than the age: True
+      platinum                e-fold along 2.776e-09 s ; across 8.090e-04 s  (2.564e-11 yr); faster than the age: True
+      titanium                e-fold along 6.056e-09 s ; across 1.765e-03 s  (5.593e-11 yr); faster than the age: True
+      ISM gas 1 cm^-3         e-fold along 9.941e+03 s ; across 2.897e+09 s  (9.181e+01 yr); faster than the age: True
+      halo gas 1e-4 cm^-3     e-fold along 9.941e+05 s ; across 2.897e+11 s  (9.181e+03 yr); faster than the age: True
+      mean baryon density     e-fold along 1.982e+07 s ; across 5.775e+12 s  (1.830e+05 yr); faster than the age: True
+  [alt] u = 0 (free-falling compact body under D; any body at A_rel = 0)
+      water                   e-fold along 1.092e+03 s ; across 1.092e+03 s  (3.460e-05 yr); faster than the age: True
+      rock                    e-fold along 6.304e+02 s ; across 6.304e+02 s  (1.998e-05 yr); faster than the age: True
+      Earth (mean)            e-fold along 4.650e+02 s ; across 4.650e+02 s  (1.474e-05 yr); faster than the age: True
+      platinum                e-fold along 2.358e+02 s ; across 2.358e+02 s  (7.471e-06 yr); faster than the age: True
+      titanium                e-fold along 5.143e+02 s ; across 5.143e+02 s  (1.630e-05 yr); faster than the age: True
+      ISM gas 1 cm^-3         e-fold along 8.443e+14 s ; across 8.443e+14 s  (2.675e+07 yr); faster than the age: True
+      halo gas 1e-4 cm^-3     e-fold along 8.443e+16 s ; across 8.443e+16 s  (2.675e+09 yr); faster than the age: True
+      mean baryon density     e-fold along 1.683e+18 s ; across 1.683e+18 s  (5.333e+10 yr); faster than the age: False
+  [alt] lab mass at rest on Earth under D (u = 9.81/a0)
+      water                   e-fold along 1.259e-08 s ; across 3.708e-03 s  (1.175e-10 yr); faster than the age: True
+      rock                    e-fold along 7.270e-09 s ; across 2.141e-03 s  (6.784e-11 yr); faster than the age: True
+      Earth (mean)            e-fold along 5.362e-09 s ; across 1.579e-03 s  (5.004e-11 yr); faster than the age: True
+      platinum                e-fold along 2.719e-09 s ; across 8.006e-04 s  (2.537e-11 yr); faster than the age: True
+      titanium                e-fold along 5.931e-09 s ; across 1.747e-03 s  (5.535e-11 yr); faster than the age: True
+      ISM gas 1 cm^-3         e-fold along 9.736e+03 s ; across 2.867e+09 s  (9.085e+01 yr); faster than the age: True
+      halo gas 1e-4 cm^-3     e-fold along 9.736e+05 s ; across 2.867e+11 s  (9.085e+03 yr); faster than the age: True
+      mean baryon density     e-fold along 1.941e+07 s ; across 5.715e+12 s  (1.811e+05 yr); faster than the age: True
+  [alt] test mass in Earth orbit r = 7081 km under D' (u = g/a0)
+      water                   e-fold along 1.554e-08 s ; across 4.119e-03 s  (1.305e-10 yr); faster than the age: True
+      rock                    e-fold along 8.971e-09 s ; across 2.378e-03 s  (7.536e-11 yr); faster than the age: True
+      Earth (mean)            e-fold along 6.617e-09 s ; across 1.754e-03 s  (5.559e-11 yr); faster than the age: True
+      platinum                e-fold along 3.355e-09 s ; across 8.894e-04 s  (2.818e-11 yr); faster than the age: True
+      titanium                e-fold along 7.319e-09 s ; across 1.940e-03 s  (6.148e-11 yr); faster than the age: True
+      ISM gas 1 cm^-3         e-fold along 1.201e+04 s ; across 3.185e+09 s  (1.009e+02 yr); faster than the age: True
+      halo gas 1e-4 cm^-3     e-fold along 1.201e+06 s ; across 3.185e+11 s  (1.009e+04 yr); faster than the age: True
+      mean baryon density     e-fold along 2.395e+07 s ; across 6.348e+12 s  (2.012e+05 yr); faster than the age: True
+  K2: Hessian non-degenerate True; real runaway root True; S1 (Ostrogradsky) FAILS: True
+
+K3 gamma_L > 0. Maximizing -dP.M.dP/2 + dP.b - (gamma/2)(k.dP)^2 over dP (M = W'' > 0, b = (1+gamma Pi) dA_rel)
+   gives b.(M + gamma k k^T)^-1.b. Sherman-Morrison and Cauchy-Schwarz: >= 0, = 0 only for b parallel to k.
+  b.(M + gamma k k^T)^-1.b = (bx**2*gamma*ky**2 + bx**2*m2 - 2*bx*by*gamma*kx*ky + by**2*gamma*kx**2 + by**2*m1)/(gamma*kx**2*m2 + gamma*ky**2*m1 + m1*m2)
+  transverse b = (ky, -kx), isotropic M = m1: (kx**2 + ky**2)/m1  (gamma drops out: stiffness does not act)
+  K3: transverse displacement patterns keep H = 1/M (gamma_L free) -> the runaway survives the stiffness
+
+K4 nonlinear 1D: L = xdot^2/2 - g x + J(xddot + g) (units rho = K = a0 = 1). EL: xddot + g = d^2 J'(y)/dt^2,
+   so q = J'(y) = y/(1+|y|) obeys q'' = y(q) = q/(1 - |q|): q reaches 1 (y infinite) in finite time.
+  blow-up time from eps = 1e-12: T = 27.219095080393867 (units 1/sqrt(K rho)); ln(1/eps) = 27.631
+  KA4 small-amplitude growth rate 1.000000 (expect 1) -> PASS
+  Ostrogradsky energy relative drift 2.31e-14 (A1: per time, over the largest of its terms; line 1e-8) -> PASS
+      water                  blow-up after 2.972e+04 s = 8.256e+00 h = 9.418e-04 yr
+      rock                   blow-up after 1.716e+04 s = 4.767e+00 h = 5.438e-04 yr
+      Earth (mean)           blow-up after 1.266e+04 s = 3.516e+00 h = 4.011e-04 yr
+      platinum               blow-up after 6.417e+03 s = 1.783e+00 h = 2.034e-04 yr
+      titanium               blow-up after 1.400e+04 s = 3.889e+00 h = 4.436e-04 yr
+      ISM gas 1 cm^-3        blow-up after 2.298e+16 s = 6.384e+12 h = 7.282e+08 yr
+      halo gas 1e-4 cm^-3    blow-up after 2.298e+18 s = 6.384e+14 h = 7.282e+10 yr
+      mean baryon density    blow-up after 4.581e+19 s = 1.272e+16 h = 1.452e+12 yr
+
+K5 the other exit: u_b a prescribed background (not varied). Then the baryons stay geodesic (div T_b = 0) while
+   the P sector's Lagrangian J(|A_rel(t)|) depends explicitly on the prescribed flow; its energy changes at
+   dE/dt = -dL/dt|explicit. In the reduced system with x_b(t) prescribed:
+   the source the baryons would have felt (dL/dx_b'' = J'(y)) = a0*(g0 + Derivative(x_b(t), (t, 2)))/(K*(a0 + g0 + Derivative(x_b(t), (t, 2)))); nonzero unless y = 0, so the non-GR stress
+   is not conserved and the Einstein equation's divergence (Bianchi: identically zero) cannot be matched: inconsistent.
+
+K6 WEP.
+   D: a compact free-falling body has A_rel = xddot + grad Phi = 0 inside it, so J'(0) = 0: no first-order force;
+      but the free fall itself runs away at s = sqrt(4 pi G rho), a rate set by the body's density (K2):
+      platinum: e-fold 235.8 s
+      titanium: e-fold 514.3 s
+   D' [canonical]: order-reduced force (1/rho) d^2(J' yhat)/dt^2 on a test mass in Earth orbit, unscreened
+      P = a0/K = 0.1116 kg/m^2: Ti - Pt differ by 2.20e-11 m/s^2, eta = 2.76e-12 = 2.8e+03 x MICROSCOPE's 1e-15 (argued; screening not modelled)
+   D' [alt]: order-reduced force (1/rho) d^2(J' yhat)/dt^2 on a test mass in Earth orbit, unscreened
+      P = a0/K = 0.1349 kg/m^2: Ti - Pt differ by 2.65e-11 m/s^2, eta = 3.34e-12 = 3.3e+03 x MICROSCOPE's 1e-15 (argued; screening not modelled)
+
+LABEL (canonical and alt, step 1): NOT WELL-DEFINED (Ostrogradsky runaway of ordinary matter; S1)
+runtime 2.3 s. kappa = 1/2 FITTED; not theory closed. Adopts nothing.
