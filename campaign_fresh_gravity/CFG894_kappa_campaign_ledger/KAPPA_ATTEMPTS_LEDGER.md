@@ -17,7 +17,7 @@ mechanism in another file were merged into one; pure re-runs are marked `audit`.
 Rows marked `untracked` are files on disk that are not committed (31 sol61 Oct-14/15 directories, the p62/p63 scripts, the
 10-20 KAPPA_LOGIC Lean file, and the gated brute-force verdict, which `.gitignore` hides through its `*brute*` pattern).
 
-## Totals (846 rows)
+## Totals (847 rows)
 
 - **550 derivation or selection attempts.** That excludes observational, audit, Lean and κ-blind rows.
 - **None derives κ = ½.**
@@ -144,7 +144,7 @@ fact.
 |---|---|---|---|---|---|---|
 | HT Horizon / thermodynamic (Unruh, Gibbons-Hawking, KMS, surface gravity) | 56 | 13 | 14 | 29 | 0 | 0 |
 | HE Holographic / entropic (BH entropy, CKN seesaw, Verlinde, entanglement, Jacobson) | 42 | 9 | 14 | 19 | 0 | 0 |
-| VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 64 | 4 | 10 | 50 | 0 | 0 |
+| VM Vacuum-energy matching (the a0 sector's vacuum = rho_DE; kernel tails, BIMOND/QUMOND) | 65 | 4 | 10 | 50 | 0 | 0 |
 | FN Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field) | 154 | 9 | 12 | 128 | 5 | 0 |
 | PS 16pi / 32pi / pi-counting and geometric structures (Gauss-Bonnet, SdS/Nariai, membranes, Tolman/Komar) | 58 | 9 | 12 | 36 | 0 | 0 |
 | GB Graviton bath / mode counting | 15 | 2 | 3 | 10 | 0 | 0 |
@@ -336,6 +336,7 @@ Class key: `odd` determinate, a-and-H-only (kappa^2 in Q*pi^odd; cannot give 1/2
 | K655 | W4-08/R1b | `why_4_puzzle/W4_08_positive_mond_amplitudes` | equal-weight split boson-fermion bands with critical quadratic cancellation and positive same-band energy | - | free | TRADE: R(d)=(8/27)f/b^3 with physical d=Delta/L free; common factors cancel; reciprocal minimum wrong target; sheet stress not vacuum; no gap selection | 4131def0e |
 | K658 | W4-08/R3FI | `why_4_puzzle/W4_08_positive_mond_amplitudes` | generate positive vacuum energy from same auxiliary using linear J deformation | - | free | CLOSURE for this branch: vacuum moves to y0>0 and IR becomes quadratic; nominal target ratio uses obsolete cubic and removes intermediate cubic window; no operational MOND amplitude | 4131def0e |
 | K674 | W4-08/R1scale | `why_4_puzzle/W4_08_positive_mond_amplitudes/formal` | common dynamical scale and physical gap with running effective potential | - | free | CLOSURE for single-log positive vacuum minimum: negative radial curvature; strict quadratic stability needs running curvature above the Schur bound; added stabilizer changes total amplitude and leaves normalization unselected | f77a0cd8d |
+| K847 | W4-24 | `why_4_puzzle/W4_24_two_phase_vacuum_constant/w4_24.py` | vacuum constant in the two-phase action: L contains -V_out - S V_in; dark energy as the switched part, V_in = eta rho_DE c^2, net wall pressure (a0^2/4 pi G)[W(u1) - 4 pi eta/kappa^2] | - | audit | CLOSURE: switched vacuum excluded, the zero mode stays outside the switch, kappa free; eta=+1 needs kappa >= 5.20 (law on at the MOND radius) / 139.9 (wall at 10 r_M) vs window top 0.607; eta=+1/f 34.2 / 920; eta=-1 fails for every kappa (walls stop only where rho_d >= rho_DE (c/sigma)^2); /eta/ <= 1.88e-5 at the disc gate; first run failed K1b (stored double rounding, AMENDMENT A1); MUTATE 3/3 bite | 767d9a9b6e |
 
 ## FN: Field-theory normalisation of W(u) / action coefficients (four-form, spectral, heat kernel, a0-as-field)
 
