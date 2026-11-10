@@ -206,6 +206,8 @@ A completion has to move a gate or bring physics from outside the catalogue.
 - `KDE1_clock_is_dark_energy/` (origin edfb117414, c26db8802f, 3480d33e9a) and `GRW1_late_growth_baryons_and_law/`
   (origin 660b4a1171, 40adf2ef0e, 27173fe895, b54941f573): the lead's own two lanes; result files read by the lead, not
   re-run
+- `DCN1_disc_centre_null/` (run from another session; header read by the lead, not re-run): ARTEFACT / ARTEFACT only
+  under the last of six post hoc readings; NO VERDICT under every reading frozen before the outcome was seen
 - `EQ1_cold_dark_energy_equations/EQUATIONS.md`: a reference sheet, not a lane. Every equation the record has for the
   cold component under form B, each tagged certified, hand-checked or measured, and a table of what the equations do
   not give
