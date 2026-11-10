@@ -126,7 +126,9 @@ below every need. Both dwarfs stay LOW at all three distances.
   - `campaign_fresh_gravity/CFG393_group_catalogue_rar/data/kt2017_table{2,3}.tsv`;
   - RB2's needs (closure_2026_11_09/RB2_form_b_hosted_rows).
 - Commits, local / origin:
-  - criteria: 7d6ec1b5e7 / see the ids commit;
-  - script, outputs and this file: see the ids commit.
+  - criteria: 7d6ec1b5e7 / 67a8b35d87;
+  - script, outputs and this file: 6a54620345 / d67b51c885;
+  - this ids line: a follow-up commit, ids in its own message.
+- Pushed by replaying the commits onto origin/main with merge-tree + commit-tree (no worktree, no force).
 
 Adopts nothing. kappa = 1/2 FITTED; not theory closed.
