@@ -72,7 +72,7 @@ against 0.0354). No share at any outer radius passes the disc, filling, stabilit
 | KO1 | are KiDS's outer points the lens's own field? | LAW LEVEL HOLDS / LAW LEVEL HOLDS by the frozen gate |
 | KO1R | blind regrade of KO1 from its criteria alone | NOT SEPARATED / LAW LEVEL HOLDS (518 tied lenses; knife edge) |
 | SNP1 | can the wall pressure clear the component and keep it out? | FAILS / FAILS |
-| HE1 | can the share sit outside the wall as a pressure-supported envelope? | FAILS / FAILS (KiDS late-type stacks; the groups gate also fails as frozen, and the label does not rest on it) |
+| HE1 | can the share sit outside the wall as a pressure-supported envelope? | FAILS / FAILS (KiDS late-type stacks; the clusters-and-groups gate also fails as frozen, on two clusters near R500 only, and the label does not rest on it) |
 
 ## 3. What KO1 found, in plain words
 
