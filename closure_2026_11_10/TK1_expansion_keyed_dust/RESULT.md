@@ -18,8 +18,8 @@ TEST lane, quarantined. Adopts nothing, relabels nothing, registers nothing. Foo
 and A5; A1-A3 use the same inputs on both footings and are printed twice). Part B (the theta_c barrier) was **not
 graded**: the criteria grade it only if Part A is not structurally dead.
 
-Commits: criteria 98f2ab2b6e (alone, before any script or number); AMENDMENT A1 813946cec9 (post hoc, alone, before the
-graded A3 runs); result: see the end of this file.
+Commits (local / origin): criteria 98f2ab2b6e / a1ea8af5d1 (alone, before any script or number); AMENDMENT A1
+813946cec9 / 175bea03be (post hoc, alone, before the graded A3 runs); result 6279d7f0c2 / 87fd33a27b.
 
 ## Table (canonical / alt where they differ; primary values unless a bracket is named)
 
