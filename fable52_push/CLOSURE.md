@@ -64,6 +64,24 @@ once: make the clock static behind the fold, and make the dust inert there.
   the polarization of a static clock needs no advected dust; whether the action's leafwise flux can supply it has not
   been computed.
 
+## Added the same day: both tests ran, and the nearest repair failed
+
+- **FLD1** (`FLD1_fold_reach/RESULT.md`, origin bce6d61451): DOES NOT / DOES NOT. The folded region covers every SPARC
+  last radius (175 of 175) and every high-redshift rotation curve on disk (100 of 100), and stops 1.3 to 2.3 times short
+  of KiDS's inner window and 3.1 to 5.4 times short of its middle window; form B's own cap lies 1.1 to 4.2 times beyond
+  it. So a completion that puts the law only behind the fold cannot give the law where lensing sees it. FLD1 also says
+  COL1's side numbers on the charge that arrives (the "1 to 4 %" quoted above) came from a wall-reflection artefact;
+  read FLD1 for the corrected ones. COL1's label does not rest on them.
+- **REL1** (`REL1_relative_acceleration/RESULT.md`, origin 6db345c60e): NOT WELL-DEFINED on both footings. Letting the
+  law respond to the clock's acceleration relative to the baryons puts the baryons' own acceleration inside a convex
+  Lagrangian, which makes matter's equation of motion fourth order and unstable (e-folding about 10 minutes for a
+  free-falling rock). Its argument is general: by the equivalence principle a free-falling clock can only carry a law
+  through the baryons' acceleration. Its later steps were not graded.
+
+So the statement above tightens: in this family of actions the law exists only where the clock is static, the clock is
+not static where lensing sees the law, and the one change that would lift that requirement is not a consistent theory.
+Neither lane's long runs were re-run by the lead; the labels are quoted from their RESULT.md files.
+
 ## What is not claimed
 
 No completion exists. No lane here says the data favour the framework. The exponential dust term is a hand-level
