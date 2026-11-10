@@ -189,8 +189,9 @@ Main script for a re-run: from this folder, with DCN1_CACHE set to a scratch dir
 
 The KA1 / KA2 / P2G / P2R modes are optional checks.
 
-Commit ids, local / origin: criteria d603f1703c / -, A1 0a6e46fb52 / -, A2 15f6f993e4 / -, A3 f5e101ba9a / -,
-A4 d08610695e / -, A5 00d6869022 / -, A6 830aeed427 / -, result (this commit) / - (origin ids recorded in the next commit).
+Commit ids, local / origin: criteria d603f1703c / 3dc7280ad2, A1 0a6e46fb52 / 36db811619, A2 15f6f993e4 / 30784ec245,
+A3 f5e101ba9a / 92dc51d30a, A4 d08610695e / 02b562fd32, A5 00d6869022 / cc53be123f, A6 830aeed427 / 6423c30696,
+result f9a726eebe / 03cac93d41.
 
 Not registered. Does not edit fable52_push/README.md, CLOSURE.md, SCS1 / SCS2 / SCS3's files, the register, the decision
 files or any paper.
