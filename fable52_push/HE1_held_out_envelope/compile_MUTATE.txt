@@ -1,0 +1,107 @@
+lake env lean HE1_MUTATE.lean   (run from fable_independent_2026/lean_2026 in the copy that has its Mathlib build)
+HE1_MUTATE.lean:423:2: error: ring failed, ring expressions not equal
+G a0 M rM σ R : ℝ
+hG : 0 < G
+ha : 0 < a0
+hrM : 0 < rM
+hσ : 0 < σ
+hR : 0 < R
+hm : G * M = a0 * rM ^ 2
+hπ : 0 < Real.pi
+hG0 : G ≠ 0
+hR0 : R ≠ 0
+hπ0 : Real.pi ≠ 0
+hL : σ ^ 4 / (2 * Real.pi * G * R ^ 2) * (6 * Real.pi * G * R ^ 3) = 3 * σ ^ 4 * R
+hRr : a0 ^ 2 / (4 * Real.pi * G) * (2 / 3 * (rM / R) ^ 3) * (6 * Real.pi * G * R ^ 3) = a0 ^ 2 * rM ^ 3
+hs4 : 4 * σ ^ 4 ≠ 0
+h : σ ^ 4 / (2 * Real.pi * G * R ^ 2) = a0 ^ 2 / (4 * Real.pi * G) * (2 / 3 * (rM / R) ^ 3)
+key : 3 * σ ^ 4 * R = a0 ^ 2 * rM ^ 3
+⊢ R * σ ^ 4 = 0
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+HE1_MUTATE.lean:427:95: error: unsolved goals
+rM vf2 σ : ℝ
+hrM : 0 < rM
+hv : 0 < vf2
+hσ : 0 < σ
+⊢ vf2 * 2 = σ ^ 2 * 4
+HE1_MUTATE.lean:452:2: error: linarith failed to find a contradiction
+u : ℝ
+hu : 0 ≤ u
+hmono : MonotoneOn (fun v => W v - 2 / 3 * (v ^ 3 / (1 + v) ^ 2)) (Set.Ici 0)
+h0 : W 0 - 2 / 3 * (0 ^ 3 / (1 + 0) ^ 2) = 0
+this : W 0 - 2 / 3 * (0 ^ 3 / (1 + 0) ^ 2) ≤ W u - 2 / 3 * (u ^ 3 / (1 + u) ^ 2)
+a✝ : W u < u ^ 3 / (1 + u) ^ 2
+⊢ False
+failed
+HE1_MUTATE.lean:461:2: error: linarith failed to find a contradiction
+u : ℝ
+hu : 0 < u
+hW : W u < u ^ 3 / (1 + u) ^ 2
+hL : 2 / 3 * (u ^ 3 / (1 + u) ^ 2) ≤ W u
+hc : 0 < u ^ 3 / (1 + u) ^ 2
+hWpos : 0 < W u
+a✝ : 2 * W u < 2 * (u ^ 3 / (1 + u) ^ 2)
+⊢ False
+failed
+HE1_MUTATE.lean:473:33: error: Application type mismatch: The argument
+  hs2
+has type
+  0 < 3 * s ^ 2
+but is expected to have type
+  0 < q
+in the application
+  one_div_le_one_div_of_le hs2
+HE1_MUTATE.lean:481:2: error: linarith failed to find a contradiction
+pw n x pwall : ℝ
+hpw : 0 < pw
+hn : n < 3
+hx : 0 < x
+hx1 : x < 1
+hw : pwall ≤ pw * x ^ 2
+h : x ^ 3 < x ^ n
+this : pw * x ^ 3 < pw * x ^ n
+a✝ : 0 ≤ pwall - pw * x ^ n
+⊢ False
+failed
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+HE1_MUTATE.lean:486:32: error: unsolved goals
+G M rM vf2 A s2 R : ℝ
+_hG : 0 < G
+hrM : 0 < rM
+hv : 0 < vf2
+hA : 0 < A
+hvr : vf2 * rM = G * M
+hR : R = 4 / 3 * rM / A ^ 2
+hs : s2 = A * vf2 / 2
+⊢ 3 = 4
+'HE1M.hasDerivAt_W' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HE1M.W_le_deep' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HE1M.W_upper' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HE1M.deep_balance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HE1M.amplitude_form' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HE1M.sis_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HE1M.hasDerivAt_Dlow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HE1M.W_lower3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HE1M.dW_dy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HE1M.slope_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HE1M.slope_bracket' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HE1M.W_le_deep_q' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HE1M.cubic_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HE1M.W_lower_q' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HE1M.exact_vs_deep' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HE1M.stable_frozen' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HE1M.deep_sis_stable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HE1M.swept_restoring' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HE1M.jeans_wall_slope' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HE1M.deep_stable_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+exit 1
