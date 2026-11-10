@@ -278,11 +278,15 @@ KiDS-1000's published mean-redshift shifts at its maximum posterior to 6.6e-8. T
 
 | commit | local `main` | origin/main |
 |---|---|---|
-| FROZEN_CRITERIA.md, alone | 99a42c78ef | (filled at push) |
-| FROZEN_CRITERIA_PARTB.md, alone | d26939ed4f | |
-| AMENDMENT_PB1.md, alone | 7787483300 | |
-| FETCH_LOG_PARTB.md | 0965901c16 | |
-| AMENDMENT_A1.md, alone (post hoc) | e01d1b9a35 | |
-| scripts, outputs, RESULT.md | (this commit) | |
+| FROZEN_CRITERIA.md, alone | 99a42c78ef | 8f3dfb63f7 |
+| FROZEN_CRITERIA_PARTB.md, alone | d26939ed4f | 575f31c511 |
+| AMENDMENT_PB1.md, alone | 7787483300 | 224b5a0f76 |
+| FETCH_LOG_PARTB.md | 0965901c16 | 85e7ff3f73 |
+| AMENDMENT_A1.md, alone (post hoc) | e01d1b9a35 | e7d02f9f3d |
+| scripts, outputs, RESULT.md | ab253e1051 | 14ce1b35e1 |
+| this table | the commit that adds it | its replay, the last KL1 commit on origin |
+
+Local `main` has diverged from origin. Each commit was replayed onto origin/main in a sparse temporary worktree, which was then
+removed.
 
 kappa = 1/2 FITTED; not theory closed. Relabels nothing.
