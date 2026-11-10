@@ -92,6 +92,27 @@ So the statement above tightens: in this family of actions the law exists only w
 not static where lensing sees the law, and the one change that would lift that requirement is not a consistent theory.
 Neither lane's long runs were re-run by the lead; the labels are quoted from their RESULT.md files.
 
+## Added 2026-11-10 night: four derivation attempts and the lead's two own lanes
+
+- **SHAPE_search** (notes, origin aaab11ddf2): four independent attempts to derive why the cold component's pull is
+  a0 g / (g + a0). None is a derivation and none fixes kappa. One statement worth keeping: for one conserved scalar
+  medium coupled by gravity only, the unique Lagrangian that gives the law is the Newtonian limit of action (A).
+- **KDE1** (`KDE1_clock_is_dark_energy/RESULT.md`, origin c26db8802f): ALREADY IN THE RECORD AS AC2s on both footings.
+  Making the law's clock a stiff dark-energy field was the record's AC2 family of 2026-11-05. The record also answers
+  the hope behind it: such a clock does not stay cosmological around a galaxy. The law's term gives it an inertia that
+  swamps its stiffness below the Hubble scale, so it falls in with the baryons and folds at the same time as the
+  dust-carrying clock (the record's AC10). The lead's premise for the lane was wrong.
+- **GRW1** (`GRW1_late_growth_baryons_and_law/RESULT.md`, origin b54941f573): baryons under the law do not build late
+  structure when the cold component is warm. Under the action's own linear theory every graded line falls short at
+  every sound speed in MK2's band (S8 at 0.59 of the required value, the forest at 1e-4), and a bound on that treatment
+  is still short. With the static law and the total field as external field, large scales overshoot by about 300 in
+  CMB-lensing amplitude and the forest is still short. As frozen the lane is NO VERDICT, because two of its
+  known-answer checks were written wrong and were fixed post hoc; the labels are under that amendment.
+
+Together with DT1's trade-off (a dust term that keeps galaxies empty is warm at late times) GRW1 closes the family of
+completions with a warm cold component: galaxies stay clean, and nothing then builds late structure. Neither lane was
+re-run by the lead; the labels are quoted from their RESULT.md files.
+
 ## What is not claimed
 
 No completion exists. No lane here says the data favour the framework. The exponential dust term is a hand-level
