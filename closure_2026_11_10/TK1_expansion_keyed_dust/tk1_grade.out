@@ -1,0 +1,72 @@
+Known answers:
+  KA1 covariant current (max rel residual)                               6.226725934768087e-40  PASS
+  KA2 charge identity / Friedmann form                                   ('0', '0')  PASS
+  KA3 rho_K form (symbolic)                                              0  PASS
+  KA3 mu_B1a -> w(3400) = 0.01 (canonical, alt rel)                      (-2.220446049250313e-16, -2.220446049250313e-16)  PASS
+  KA4 lambda-term G_cosmo                                                0  PASS
+  KA5 K4 key off: c_s^2 = (Q-1)/Q (max |rel|, tk1_ka5.json)              2.4780211791560695e-16  PASS
+  KA6 EdS delta_lin at collapse                                          1.6864825672787833  PASS
+  KA7 sqrt(Msun a0/G) per kpc                                            25914.307766996102  PASS
+  KA-K4 A_z numerator proportional to the Hessian trace (factor a^5)     a(t)**5  PASS
+MUTATE:
+  MU1 KA2 Friedmann-form residual nonzero: True
+  MU3 KA-K4 ratio no longer a^5: True ( a(t)**5/(3*K*Fthth(t) - 1) )
+  MU2 canonical z_ta 5: REGULAR, t_coll 2.1234 vs GR 2.1228 (rel 2.7e-04)
+  MU2 canonical z_ta 2: REGULAR, t_coll 5.9383 vs GR 5.9377 (rel 1.1e-04)
+  MU2 canonical z_ta 1: REGULAR, t_coll 10.6425 vs GR 10.6376 (rel 4.6e-04)
+  MU2 canonical z_ta 0.5: STALLS, t_coll 15.6674 vs GR 15.6649 (rel 1.6e-04) [GR itself after t0 = 13.79]
+  MU2 alt z_ta 5: REGULAR, t_coll 2.1236 vs GR 2.1230 (rel 2.7e-04)
+  MU2 alt z_ta 2: REGULAR, t_coll 5.8682 vs GR 5.8666 (rel 2.7e-04)
+  MU2 alt z_ta 1: REGULAR, t_coll 10.6430 vs GR 10.6382 (rel 4.6e-04)
+  MU2 alt z_ta 0.5: STALLS, t_coll 15.6286 vs GR 15.6267 (rel 1.2e-04) [GR itself after t0 = 13.79]
+
+=== canonical
+A1 around FRW (primary): WELL-POSED; max |G_cosmo/G_N - 1| 1.98e-19; lambda_eff(z 0) 1.33e-20
+    bracket theta0_9H0 A_z <= 0 at z 0.19-1.8; g4/A_z < 0 at z 0-1.8
+    bracket p4         A_z <= 0 at z none; g4/A_z < 0 at z none
+    bracket floor_off  A_z <= 0 at z none; g4/A_z < 0 at z none
+A2: w(3400) 4.41e-07 (line 0.01); mu_eff min 2.997e+04 per Mpc at z 0 vs mu_J 2.512e+04 (ratio 1.193): PASS
+A3 z_ta 5   primary    frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -2.43 Myr (theta 0.0981 H0, wl 4.1 kpc) | s2 -0.0192 Myr (theta 0.00534 H0, wl 7.65e+03 kpc) | fold after 9.4e+05 Gyr | at t0: a/a_ta 1.000158 H 1.45e-04 H0 Q-1 7.5e-05 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 5   theta0_9H0 frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -216 Myr (theta 8.78 H0, wl 0.28 kpc) | s2 -1.74 Myr (theta 0.107 H0, wl 3.42e+04 kpc) | fold after 1.04e+04 Gyr | at t0: a/a_ta 1.005957 H 5.25e-03 H0 Q-1 2.8e-03 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 5   p4         frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -3.78 Myr (theta 0.151 H0, wl 3.29 kpc) | s2 -0.365 Myr (theta 0.0202 H0, wl 1.08e+04 kpc) | fold after 1.95e+04 Gyr | at t0: a/a_ta 1.001778 H 1.75e-03 H0 Q-1 4.7e-04 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 5   floor_off  frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -2.4 Myr (theta 0.0981 H0, wl 4.1 kpc) | s2 +0.00658 Myr (theta 0.00534 H0, wl 7.65e+03 kpc) | fold none | at t0: a/a_ta 1.000158 H 1.45e-04 H0 Q-1 7.5e-05 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 2   primary    frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -19.5 Myr (theta 0.0986 H0, wl 2.23 kpc) | s2 -0.141 Myr (theta 0.00271 H0, wl 2.52e+04 kpc) | fold after 5.93e+05 Gyr | at t0: a/a_ta 1.000094 H 9.99e-05 H0 Q-1 4.4e-05 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 2   theta0_9H0 frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -1.44e+03 Myr (theta 9 H0, wl 0.00339 kpc) | s2 -7.04 Myr (theta 0.0544 H0, wl 1.13e+05 kpc) | fold after 6.59e+03 Gyr | at t0: a/a_ta 1.003350 H 3.67e-03 H0 Q-1 1.5e-03 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 2   p4         frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -30.2 Myr (theta 0.152 H0, wl 1.61 kpc) | s2 -2.03 Myr (theta 0.0133 H0, wl 4.09e+04 kpc) | fold after 1.22e+04 Gyr | at t0: a/a_ta 1.001189 H 1.43e-03 H0 Q-1 3.1e-04 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 2   floor_off  frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -19.5 Myr (theta 0.0986 H0, wl 2.23 kpc) | s2 -0.0591 Myr (theta 0.00271 H0, wl 2.52e+04 kpc) | fold none | at t0: a/a_ta 1.000094 H 9.99e-05 H0 Q-1 4.4e-05 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 1   primary    frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -64.9 Myr (theta 0.1 H0, wl 0.486 kpc) | s2 -0.447 Myr (theta 0.00187 H0, wl 4.89e+04 kpc) | fold after 4.06e+05 Gyr | at t0: a/a_ta 1.000060 H 8.60e-05 H0 Q-1 2.6e-05 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 1   theta0_9H0 frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -3.57e+03 Myr (theta 8.94 H0, wl 0.0451 kpc) | s2 -15.9 Myr (theta 0.0374 H0, wl 2.19e+05 kpc) | fold after 4.52e+03 Gyr | at t0: a/a_ta 1.002239 H 3.12e-03 H0 Q-1 9.7e-04 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 1   p4         frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -97.3 Myr (theta 0.15 H0, wl 1.77 kpc) | s2 -5.52 Myr (theta 0.0107 H0, wl 8.47e+04 kpc) | fold after 8.57e+03 Gyr | at t0: a/a_ta 1.000841 H 1.31e-03 H0 Q-1 2.0e-04 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 1   floor_off  frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -64.8 Myr (theta 0.1 H0, wl 0.486 kpc) | s2 -0.297 Myr (theta 0.00187 H0, wl 4.89e+04 kpc) | fold none | at t0: a/a_ta 1.000060 H 8.60e-05 H0 Q-1 2.6e-05 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 0.5 primary    frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -141 Myr (theta 0.0974 H0, wl 1.71 kpc) | s2 -0.85 Myr (theta 0.00147 H0, wl 7.53e+04 kpc) | fold after 3.11e+05 Gyr | at t0: a/a_ta 1.000038 H 8.30e-05 H0 Q-1 1.5e-05 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 0.5 theta0_9H0 frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -6.11e+03 Myr (theta 8.96 H0, wl 0.034 kpc) | s2 -28.1 Myr (theta 0.0296 H0, wl 3.35e+05 kpc) | fold after 3.46e+03 Gyr | at t0: a/a_ta 1.001413 H 3.01e-03 H0 Q-1 5.6e-04 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 0.5 p4         frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -218 Myr (theta 0.15 H0, wl 1.41 kpc) | s2 -10.8 Myr (theta 0.00926 H0, wl 1.36e+05 kpc) | fold after 6.75e+03 Gyr | at t0: a/a_ta 1.000531 H 1.29e-03 H0 Q-1 1.2e-04 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 0.5 floor_off  frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -141 Myr (theta 0.0974 H0, wl 1.71 kpc) | s2 -0.585 Myr (theta 0.00147 H0, wl 7.53e+04 kpc) | fold none | at t0: a/a_ta 1.000038 H 8.30e-05 H0 Q-1 1.5e-05 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A4 (reported): short of 5.41 M_b at 8 of 8; cap holds at 7 of 8
+A5 (reported): failing rows ['3 X-COP', '4 groups']
+LANE LABEL canonical: frozen BREAKS AT TURNAROUND | under A1 BREAKS AT TURNAROUND
+=== alt
+A1 around FRW (primary): WELL-POSED; max |G_cosmo/G_N - 1| 1.98e-19; lambda_eff(z 0) 1.33e-20
+    bracket theta0_9H0 A_z <= 0 at z 0.19-1.8; g4/A_z < 0 at z 0-1.8
+    bracket p4         A_z <= 0 at z none; g4/A_z < 0 at z none
+    bracket floor_off  A_z <= 0 at z none; g4/A_z < 0 at z none
+A2: w(3400) 4.41e-07 (line 0.01); mu_eff min 2.997e+04 per Mpc at z 0 vs mu_J 2.512e+04 (ratio 1.193): PASS
+A3 z_ta 5   primary    frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -2.43 Myr (theta 0.0981 H0, wl 4.11 kpc) | s2 -0.0192 Myr (theta 0.00534 H0, wl 7.65e+03 kpc) | fold after 9.4e+05 Gyr | at t0: a/a_ta 1.000158 H 1.45e-04 H0 Q-1 7.5e-05 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 5   theta0_9H0 frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -216 Myr (theta 8.78 H0, wl 0.281 kpc) | s2 -1.74 Myr (theta 0.107 H0, wl 3.42e+04 kpc) | fold after 1.04e+04 Gyr | at t0: a/a_ta 1.005957 H 5.25e-03 H0 Q-1 2.8e-03 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 5   p4         frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -3.78 Myr (theta 0.151 H0, wl 3.29 kpc) | s2 -0.366 Myr (theta 0.0202 H0, wl 1.08e+04 kpc) | fold after 1.95e+04 Gyr | at t0: a/a_ta 1.001778 H 1.75e-03 H0 Q-1 4.7e-04 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 5   floor_off  frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -2.4 Myr (theta 0.0981 H0, wl 4.11 kpc) | s2 +0.00659 Myr (theta 0.00534 H0, wl 7.65e+03 kpc) | fold none | at t0: a/a_ta 1.000158 H 1.45e-04 H0 Q-1 7.5e-05 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 2   primary    frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -19.3 Myr (theta 0.0998 H0, wl 1.22 kpc) | s2 -0.153 Myr (theta 0.00273 H0, wl 2.49e+04 kpc) | fold after 5.97e+05 Gyr | at t0: a/a_ta 1.000094 H 1.00e-04 H0 Q-1 4.4e-05 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 2   theta0_9H0 frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -1.4e+03 Myr (theta 8.9 H0, wl 0.083 kpc) | s2 -6.95 Myr (theta 0.0549 H0, wl 1.11e+05 kpc) | fold after 6.64e+03 Gyr | at t0: a/a_ta 1.003548 H 3.64e-03 H0 Q-1 1.6e-03 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 2   p4         frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -29 Myr (theta 0.149 H0, wl 2.44 kpc) | s2 -2.02 Myr (theta 0.0134 H0, wl 4e+04 kpc) | fold after 1.23e+04 Gyr | at t0: a/a_ta 1.001189 H 1.44e-03 H0 Q-1 3.1e-04 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 2   floor_off  frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -19.2 Myr (theta 0.0998 H0, wl 1.22 kpc) | s2 -0.0627 Myr (theta 0.00273 H0, wl 2.49e+04 kpc) | fold none | at t0: a/a_ta 1.000094 H 1.00e-04 H0 Q-1 4.4e-05 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 1   primary    frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -64.9 Myr (theta 0.1 H0, wl 0.515 kpc) | s2 -0.447 Myr (theta 0.00187 H0, wl 4.89e+04 kpc) | fold after 4.06e+05 Gyr | at t0: a/a_ta 1.000060 H 8.60e-05 H0 Q-1 2.6e-05 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 1   theta0_9H0 frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -3.57e+03 Myr (theta 8.94 H0, wl 0.0453 kpc) | s2 -15.9 Myr (theta 0.0374 H0, wl 2.19e+05 kpc) | fold after 4.52e+03 Gyr | at t0: a/a_ta 1.002239 H 3.12e-03 H0 Q-1 9.7e-04 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 1   p4         frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -97.3 Myr (theta 0.15 H0, wl 1.77 kpc) | s2 -5.52 Myr (theta 0.0107 H0, wl 8.47e+04 kpc) | fold after 8.57e+03 Gyr | at t0: a/a_ta 1.000841 H 1.31e-03 H0 Q-1 2.0e-04 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 1   floor_off  frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -64.8 Myr (theta 0.1 H0, wl 0.515 kpc) | s2 -0.297 Myr (theta 0.00187 H0, wl 4.89e+04 kpc) | fold none | at t0: a/a_ta 1.000060 H 8.60e-05 H0 Q-1 2.6e-05 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 0.5 primary    frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -141 Myr (theta 0.0976 H0, wl 1.65 kpc) | s2 -0.83 Myr (theta 0.00147 H0, wl 7.5e+04 kpc) | fold after 3.11e+05 Gyr | at t0: a/a_ta 1.000038 H 8.31e-05 H0 Q-1 1.5e-05 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 0.5 theta0_9H0 frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -6.1e+03 Myr (theta 8.97 H0, wl 0.0304 kpc) | s2 -28 Myr (theta 0.0297 H0, wl 3.34e+05 kpc) | fold after 3.47e+03 Gyr | at t0: a/a_ta 1.001413 H 3.01e-03 H0 Q-1 5.6e-04 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 0.5 p4         frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -217 Myr (theta 0.15 H0, wl 1.35 kpc) | s2 -10.8 Myr (theta 0.00927 H0, wl 1.35e+05 kpc) | fold after 6.76e+03 Gyr | at t0: a/a_ta 1.000531 H 1.29e-03 H0 Q-1 1.2e-04 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A3 z_ta 0.5 floor_off  frozen SINGULAR (s3_grad)     A1 SINGULAR (s3_grad)     | lam<0 -141 Myr (theta 0.0976 H0, wl 1.65 kpc) | s2 -0.585 Myr (theta 0.00147 H0, wl 7.5e+04 kpc) | fold none | at t0: a/a_ta 1.000038 H 8.31e-05 H0 Q-1 1.5e-05 | if s3 set aside: frozen SINGULAR (s2), A1 STALLS
+A4 (reported): short of 5.41 M_b at 8 of 8; cap holds at 7 of 8
+A5 (reported): failing rows ['3 X-COP', '4 groups']
+LANE LABEL alt: frozen BREAKS AT TURNAROUND | under A1 BREAKS AT TURNAROUND
