@@ -1,7 +1,9 @@
 # fable52_push: one swing at completion (2026-11-09)
 
 Adopts nothing. kappa = 1/2 FITTED; not theory closed. Nothing here is registered in the closure record.
-Paper: PAPER71, `qwen_claude_field_theory/papers_2026/PAPER71_switch_theorems_kids_outer_points_2026.pdf`.
+Paper: PAPER71 v1.0, deposited 2026-11-09, DOI 10.5281/zenodo.24094860
+(`qwen_claude_field_theory/papers_2026/PAPER71_switch_theorems_kids_outer_points_2026.pdf`; the deposit's supplement zip holds
+this folder at c6689541ee).
 
 ## Answer first
 
