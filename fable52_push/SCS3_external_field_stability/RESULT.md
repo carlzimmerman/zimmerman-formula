@@ -247,6 +247,9 @@ SCS3_MUTATE.lean holds seven false versions, proved with the true proofs; all fa
 - **Labels:** scs3_labels.py -> scs3_labels.json / .out.
 - **Lean:** SCS3.lean, SCS3_MUTATE.lean, compile.txt, compile_MUTATE.txt.
 
+Commit ids, local / origin: criteria eff0ae1861 / d97f24e76a, A1 f51866c8d4 / 0f4107cfdb, A2 63ed365df0 / 7cfa977159,
+A3 fe9811fe03 / b081c03274, A4 b34295ebcd / 6f5297950b, result a17bd693d8 / e6a6dc2cf2.
+
 Not registered. Does not edit fable52_push/README.md, any PAPER72 file, the register, the decision files, or SCS1's / SCS2's
 files.
 
