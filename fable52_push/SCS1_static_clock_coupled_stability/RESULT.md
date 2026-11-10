@@ -1,5 +1,8 @@
 # SCS1 RESULT (criteria 5d2870617c; amendments A1 da298a4a52, A2 e079e4b631, A3 1d386d1892)
 
+Commit ids: the hashes in this folder are the shared checkout's (result d157012eae). On origin the same commits are criteria
+c9355f4d9d, A1 c88d6cc8dc, A2 b3b863cb75, A3 c54811ca3f and result 0bacbb61f5.
+
 **SCS1: STABLE / STABLE (canonical / alt).** With gravity coupled, the static clock of action (A) is linearly stable. That
 is form B's static state: mu_K = 0, no dust of its own, the law's halo around a point baryon mass, gamma_L = 0. Two
 independent routes find no growing mode, at any wavenumber, on either footing.
