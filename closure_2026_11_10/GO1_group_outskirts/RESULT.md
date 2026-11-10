@@ -126,8 +126,9 @@ turn pressure into mass agrees with the X-ray gas where both are measured.
 
 | commit | local `main` | origin/main (replayed by merge-tree + commit-tree) |
 |---|---|---|
-| FROZEN_CRITERIA.md, alone | c1a9527ebf | see the id table commit |
-| AMENDMENT_A1.md, alone (post hoc) | 05f48b8a6d | see the id table commit |
-| scripts, outputs, DATA_PLAN.md, RESULT.md | the commit that adds this file | its replay |
+| FROZEN_CRITERIA.md, alone | c1a9527ebf | 7c3bfd513a |
+| AMENDMENT_A1.md, alone (post hoc) | 05f48b8a6d | a9fefb6365 |
+| scripts, outputs, DATA_PLAN.md, RESULT.md | c07fbc9052 | e643ea014d |
+| this id table | the commit that adds it | its replay, the last GO1 commit on origin |
 
 Adopts nothing. kappa = 1/2 FITTED; not theory closed.
