@@ -1,5 +1,8 @@
 # HE1 RESULT (criteria 0e67f3c64a; amendments A1 22e1d5a6ba, A2 9163ca4fe6)
 
+Commit ids: the hashes in this folder are the shared checkout's. On origin the same commits are 91d343f150 (criteria),
+ab52b18eda (A1), d6c99b61de (A2) and 5137d5e374 (result).
+
 **HE1: FAILS / FAILS** (canonical / alt).
 
 At the primary R_out (the turnaround radius of (1 + X) M_b), every X of the stated set fails:
