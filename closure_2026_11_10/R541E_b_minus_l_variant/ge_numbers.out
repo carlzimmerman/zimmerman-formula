@@ -1,0 +1,142 @@
+== inputs
+m_bar = 0.937146 GeV ; K = 4 pi G = 8.4306e-38 GeV^-2 ; 1 Mpc^-1 = 6.3949e-39 GeV ; H100 = 2.1331e-42 GeV
+KA2 no bias, B-L = 1: B = 0.354430 (28/79 = 0.354430), L = -0.645570 (-51/79 = -0.645570) -> PASS
+
+== GE1 sphaleron response to a bias, B-L conserved (fixed), Y = 0, mu = 1 (units T^2/6)
+   bias on B  (nu_R out): induced B = +2.734177e+00, L = +2.734177e+00, B-L = -2.22e-16 ; n_B/s per (eps/T) = +9.731736e-03
+   bias on B  (nu_R in): induced B = +3.000000e+00, L = +3.000000e+00, B-L = +0.00e+00 ; n_B/s per (eps/T) = +1.017735e-02
+   bias on BL (nu_R out): induced B = +4.996004e-16, L = -6.661338e-16, B-L = +1.17e-15 ; n_B/s per (eps/T) = +1.778224e-18
+   bias on BL (nu_R in): induced B = +0.000000e+00, L = +0.000000e+00, B-L = +0.00e+00 ; n_B/s per (eps/T) = +0.000000e+00
+   bias on L  (nu_R out): induced B = +2.734177e+00, L = +2.734177e+00, B-L = -3.33e-16 ; n_B/s per (eps/T) = +9.731736e-03
+   bias on L  (nu_R in): induced B = +3.000000e+00, L = +3.000000e+00, B-L = +0.00e+00 ; n_B/s per (eps/T) = +1.017735e-02
+   with B-L = 1 and a B-L bias mu = 3.7: B = 0.354430 (unchanged 28/79: True)
+   MU1 B-L violated in equilibrium (only Y conserved), bias on B-L: B = +2.545455e+00 (nonzero: the gate can fail)
+GE3 coefficient (B-L violated in eq., nu_R out): n_(B-L)/s = +2.556219e-02 * mu/T (B +9.0600e-03, sign of n_(B-L) = sign of mu)
+GE3 coefficient (B-L violated in eq., nu_R in): n_(B-L)/s = +3.454131e-02 * mu/T (B +8.6353e-03, sign of n_(B-L) = sign of mu)
+
+KA3 coherent Dirac pair rate / [n_phi Gamma(phi->ffbar)] = 1.00000001 -> PASS
+    Majorana rotating mass, massless limit: Gamma/V / [m^2 omega^2/(16 pi)] = 1.00000000
+
+================ footing canonical
+observed n_B/s = 8.6955e-11 ; (B-L)/s = (79/28) n_B/s = 2.4534e-10
+KA6 X = B: eps = -5.06996 GeV (R541D: -5.0700 / -5.0718) -> PASS
+GE2 main (X = B-L), neutral start: rho_K = -eps n_(B-L) = -eps (79/28) n_B  =>  R = -eps (79/28)/m_bar
+   eps = -1.79695 GeV (m_p bracket -1.79911); eps < 0 for rho_K > 0
+   broken-phase ratio 12/37 instead: eps = -1.64431 GeV (MU2: moves by 0.9151 = (12/37)/(28/79) 0.9151)
+   MU2 R x 2 -> eps = -3.59389 (x2.000)
+GE2 variant (X = L): L = -(51/28) B => R = +eps (51/28)/m_bar ; eps_L = +2.78351 GeV (positive)
+   native list (79 energies) vs main |eps| = 1.7969: within 1.2 %: []; nearest 0.5 * M_Pl^2/5 * rho_DE^(3/5)/4 = 2.207 (ratio 1.228); M_Pl_reduced^2/5 * rho_DE^(3/5)/4 = 2.316 (ratio 1.289)
+   native list (79 energies) vs 12/37 |eps| = 1.6443: within 1.2 %: []; nearest 0.5 * M_Pl^2/5 * rho_DE^(3/5)/4 = 2.207 (ratio 1.342); M_Pl_reduced^2/5 * rho_DE^(3/5)/4 = 2.316 (ratio 1.409)
+   native list (79 energies) vs variant |eps_L| = 2.7835: within 1.2 %: []; nearest M_Pl_reduced^2/5 * rho_DE^(3/5)/4 = 2.316 (ratio 0.832); 0.5 * M_Pl^2/5 * rho_DE^(3/5)/4 = 2.207 (ratio 0.793)
+GE1 bias-induced n_B/s at T_sph (B-L conserved):
+   KA1 X = B, eps -5.0700: n_B/s = -3.7464e-04 (R541D -3.7464e-4 canonical) -> PASS
+   main X = B-L, eps -1.7969, T 129.4: n_B/s = -2.469e-20 -> 2.84e-10 of observed
+   main X = B-L, eps -1.7969, T 131.7: n_B/s = -2.426e-20 -> 2.79e-10 of observed
+   main X = B-L, eps -1.7969, T 134.0: n_B/s = -2.385e-20 -> 2.74e-10 of observed
+   GE1 main: PASS (bias absorbed by the B-L Lagrange multiplier; exact zero)
+   variant X = L, eps_L +2.7835: n_B/s = +2.0568e-04 -> X = 2.365e+06 (baryons); T_sph +- 2.3: 2.325e+06 .. 2.407e+06 -> GE1 variant FAIL
+   (variant: L = B - (B-L), so the L bias is a B bias of the same eps: response ratio 1.000000)
+GE3 equilibrium B-L the bias drives to while B-L violation is in equilibrium (Q = 1), line 10 % of (B-L)_obs/s:
+   nu_R out: n_(B-L)^eq/s = -4.5934e-02 GeV / T  (sign negative: rho_K = -eps n_(B-L) < 0) ; minimum T_f for the line: 1.872e+09 GeV
+   nu_R in: n_(B-L)^eq/s = -6.2069e-02 GeV / T  (sign negative: rho_K = -eps n_(B-L) < 0) ; minimum T_f for the line: 2.530e+09 GeV
+   (a) Weinberg op (Majorana), T_W: T_f = 1.597e+13 GeV -> |n^eq/s| / (B-L)_obs/s = 1.172e-05 -> passes the 10 % line
+   (b) thermal leptogenesis M1 = 1e9, z_f 10: T_f = 1.000e+08 GeV -> |n^eq/s| / (B-L)_obs/s = 1.872e+00 -> FAILS the 10 % line
+   (b) thermal leptogenesis M1 = 1e10, z_f 10: T_f = 1.000e+09 GeV -> |n^eq/s| / (B-L)_obs/s = 1.872e-01 -> FAILS the 10 % line
+   MU3 T_f 1e8 -> 1e5 GeV: ratio 1000.0 x
+   (c) Dirac-compatible generic sector: passes iff T_f >= 2.530e+09 GeV (free parameter)
+GE4 vacuum today (Q = 1): omega = 2|eps|
+   m = 0.05 eV: Gamma/V = 6.424e-22 GeV^4 ; n0 = 1.197e+20 GeV^3 = 1.558e+61 cm^-3 ; rho0 = 3.426e+20 GeV^4 = 9.316e+66 rho_c
+   m = 0.005 eV: Gamma/V = 6.424e-24 GeV^4 ; n0 = 1.197e+18 GeV^3 = 1.558e+59 cm^-3 ; rho0 = 3.426e+18 GeV^4 = 9.316e+64 rho_c
+   MU4 m/10 -> rho0 x 0.0100 ; eps x 2 -> x 8.000
+   1 % line: m_max = 1.638e-45 GeV = 1.638e-36 eV ; vs 0.05 eV: factor 3.052e+34 too large
+   occupation of the produced shell today: f(0.05 eV) ~ 3.040e+21 (Pauli-blocked), f(m_max) ~ 3.263e-48
+   Pauli cap (one helicity, filled to |eps|): n = 1.275e+40 cm^-3, rho = 1.321e-01 GeV^4 = 3.591e+45 rho_c
+   drain: the clock gives up 2|eps| per pair; today's rho_K = 9.793e-48 GeV^4 is used up in 8.848e-59 yr at m = 0.05 eV
+   => Majorana neutrinos EXCLUDED for this coupling (m_max 1.6e-36 eV << 0.05 eV); main case requires Dirac
+   nucleon dim-7 Delta(B-L)=2: delta bound from p -> nu pi+ > 3.5e32 yr [P]: 3.239e-33 GeV; vacuum -> pbar e-, nbar nu: Gamma/V = 9.360e-66, n0 = 2.270e+17 cm^-3, rho0 = 1.704e+23 rho_c ; delta must sit 4.128e+12 x below the bound
+   n-nbar: delta_nn <= 1.400e-33 GeV (tau > 4.7e8 s [P]); vacuum -> nbar nbar (beta 0.852): rho0 = 5.684e+21 rho_c ; delta_nn must sit 7.539e+11 x below the bound
+   (phase-space formula check n = 2: 0.039789 vs 1/(8 pi) 0.039789)
+   Delta(B-L)=4 remnant (nu_R)^4/Lambda^2, omega = 4|eps|: 1 % line needs Lambda >= 1.839e+22 GeV (1.51e+03 M_Pl) for an O(1) coefficient
+GE5 back-reaction under action (A), neutral start: Q - 1 = -K eps n_(B-L)/mu_K^2 = I0/(2 mu_K^2 a^3)
+   KA4 Q-1 at T_sph, mu_K 8.89e6: 1.2293e+24 (R541D 1.229e24) -> PASS
+   lowest passing T_f (GE3) T = 2.530e+09: mu_K 1/Mpc: Q-1 = 6.891e+59 (I0 form 6.887e+59, ratio 1.0006); bias |eps| Q = 1.238e+60 GeV vs T 2.53e+09
+   lowest passing T_f (GE3) T = 2.530e+09: mu_K 198.2/Mpc: Q-1 = 1.753e+55 (I0 form 1.752e+55, ratio 1.0006); bias |eps| Q = 3.151e+55 GeV vs T 2.53e+09
+   lowest passing T_f (GE3) T = 2.530e+09: mu_K 2.512e+04/Mpc: Q-1 = 1.092e+51 (I0 form 1.091e+51, ratio 1.0006); bias |eps| Q = 1.962e+51 GeV vs T 2.53e+09
+   lowest passing T_f (GE3) T = 2.530e+09: mu_K 8.89e+06/Mpc: Q-1 = 8.720e+45 (I0 form 8.715e+45, ratio 1.0006); bias |eps| Q = 1.567e+46 GeV vs T 2.53e+09
+      Q-1 <= 0.01 needs mu_K >= 8.299e+30 /Mpc (record max 8.89e6; galaxies <= 7)
+      mu_K 8.89e6: equilibrium n_(B-L) with the clock's quadratic energy = -2.133e-26 GeV^3 (bare -1.377e+19; needed +1.860e+20); stiff clock energy / radiation after generation = 1.013e+27
+      MU5 mu_K/10: Q-1 x 100.0
+   T_sph T = 1.317e+02: mu_K 1/Mpc: Q-1 = 9.721e+37 (I0 form 9.716e+37, ratio 1.0006); bias |eps| Q = 1.747e+38 GeV vs T 1.32e+02
+   T_sph T = 1.317e+02: mu_K 198.2/Mpc: Q-1 = 2.473e+33 (I0 form 2.472e+33, ratio 1.0006); bias |eps| Q = 4.445e+33 GeV vs T 1.32e+02
+   T_sph T = 1.317e+02: mu_K 2.512e+04/Mpc: Q-1 = 1.541e+29 (I0 form 1.540e+29, ratio 1.0006); bias |eps| Q = 2.768e+29 GeV vs T 1.32e+02
+   T_sph T = 1.317e+02: mu_K 8.89e+06/Mpc: Q-1 = 1.230e+24 (I0 form 1.229e+24, ratio 1.0006); bias |eps| Q = 2.210e+24 GeV vs T 1.32e+02
+      Q-1 <= 0.01 needs mu_K >= 9.857e+19 /Mpc (record max 8.89e6; galaxies <= 7)
+      mu_K 8.89e6: equilibrium n_(B-L) with the clock's quadratic energy = -2.133e-26 GeV^3 (bare -3.731e+04; needed +2.624e-02); stiff clock energy / radiation after generation = 2.745e+12
+   at (a) Weinberg op (Majorana), T_W (T 1.60e+13): Q-1 (mu_K 8.89e6) = 2.192e+57
+   at (b) thermal leptogenesis M1 = 1e9, z_f 10 (T 1.00e+08): Q-1 (mu_K 8.89e6) = 5.382e+41
+   at (b) thermal leptogenesis M1 = 1e10, z_f 10 (T 1.00e+09): Q-1 (mu_K 8.89e6) = 5.382e+44
+   pressureless dust (Q = 1 at all epochs): bias = eps, energy per unit B-L |eps| << T_f: GE5 passes in that reading
+
+================ footing alt
+observed n_B/s = 8.6877e-11 ; (B-L)/s = (79/28) n_B/s = 2.4512e-10
+KA6 X = B: eps = -5.07183 GeV (R541D: -5.0700 / -5.0718) -> PASS
+GE2 main (X = B-L), neutral start: rho_K = -eps n_(B-L) = -eps (79/28) n_B  =>  R = -eps (79/28)/m_bar
+   eps = -1.79761 GeV (m_p bracket -1.79977); eps < 0 for rho_K > 0
+   broken-phase ratio 12/37 instead: eps = -1.64492 GeV (MU2: moves by 0.9151 = (12/37)/(28/79) 0.9151)
+   MU2 R x 2 -> eps = -3.59522 (x2.000)
+GE2 variant (X = L): L = -(51/28) B => R = +eps (51/28)/m_bar ; eps_L = +2.78454 GeV (positive)
+   native list (79 energies) vs main |eps| = 1.7976: within 1.2 %: []; nearest 0.5 * M_Pl^2/5 * rho_DE^(3/5)/4 = 2.207 (ratio 1.228); M_Pl_reduced^2/5 * rho_DE^(3/5)/4 = 2.316 (ratio 1.288)
+   native list (79 energies) vs 12/37 |eps| = 1.6449: within 1.2 %: []; nearest 0.5 * M_Pl^2/5 * rho_DE^(3/5)/4 = 2.207 (ratio 1.342); M_Pl_reduced^2/5 * rho_DE^(3/5)/4 = 2.316 (ratio 1.408)
+   native list (79 energies) vs variant |eps_L| = 2.7845: within 1.2 %: []; nearest M_Pl_reduced^2/5 * rho_DE^(3/5)/4 = 2.316 (ratio 0.832); 0.5 * M_Pl^2/5 * rho_DE^(3/5)/4 = 2.207 (ratio 0.793)
+GE1 bias-induced n_B/s at T_sph (B-L conserved):
+   KA1 X = B, eps -5.0718: n_B/s = -3.7477e-04 (R541D -3.7464e-4 canonical) -> PASS
+   main X = B-L, eps -1.7976, T 129.4: n_B/s = -2.470e-20 -> 2.84e-10 of observed
+   main X = B-L, eps -1.7976, T 131.7: n_B/s = -2.427e-20 -> 2.79e-10 of observed
+   main X = B-L, eps -1.7976, T 134.0: n_B/s = -2.385e-20 -> 2.75e-10 of observed
+   GE1 main: PASS (bias absorbed by the B-L Lagrange multiplier; exact zero)
+   variant X = L, eps_L +2.7845: n_B/s = +2.0576e-04 -> X = 2.368e+06 (baryons); T_sph +- 2.3: 2.328e+06 .. 2.410e+06 -> GE1 variant FAIL
+   (variant: L = B - (B-L), so the L bias is a B bias of the same eps: response ratio 1.000000)
+GE3 equilibrium B-L the bias drives to while B-L violation is in equilibrium (Q = 1), line 10 % of (B-L)_obs/s:
+   nu_R out: n_(B-L)^eq/s = -4.5951e-02 GeV / T  (sign negative: rho_K = -eps n_(B-L) < 0) ; minimum T_f for the line: 1.875e+09 GeV
+   nu_R in: n_(B-L)^eq/s = -6.2092e-02 GeV / T  (sign negative: rho_K = -eps n_(B-L) < 0) ; minimum T_f for the line: 2.533e+09 GeV
+   (a) Weinberg op (Majorana), T_W: T_f = 1.597e+13 GeV -> |n^eq/s| / (B-L)_obs/s = 1.174e-05 -> passes the 10 % line
+   (b) thermal leptogenesis M1 = 1e9, z_f 10: T_f = 1.000e+08 GeV -> |n^eq/s| / (B-L)_obs/s = 1.875e+00 -> FAILS the 10 % line
+   (b) thermal leptogenesis M1 = 1e10, z_f 10: T_f = 1.000e+09 GeV -> |n^eq/s| / (B-L)_obs/s = 1.875e-01 -> FAILS the 10 % line
+   MU3 T_f 1e8 -> 1e5 GeV: ratio 1000.0 x
+   (c) Dirac-compatible generic sector: passes iff T_f >= 2.533e+09 GeV (free parameter)
+GE4 vacuum today (Q = 1): omega = 2|eps|
+   m = 0.05 eV: Gamma/V = 6.429e-22 GeV^4 ; n0 = 1.198e+20 GeV^3 = 1.559e+61 cm^-3 ; rho0 = 3.430e+20 GeV^4 = 9.327e+66 rho_c
+   m = 0.005 eV: Gamma/V = 6.429e-24 GeV^4 ; n0 = 1.198e+18 GeV^3 = 1.559e+59 cm^-3 ; rho0 = 3.430e+18 GeV^4 = 9.327e+64 rho_c
+   MU4 m/10 -> rho0 x 0.0100 ; eps x 2 -> x 8.000
+   1 % line: m_max = 1.637e-45 GeV = 1.637e-36 eV ; vs 0.05 eV: factor 3.054e+34 too large
+   occupation of the produced shell today: f(0.05 eV) ~ 3.039e+21 (Pauli-blocked), f(m_max) ~ 3.258e-48
+   Pauli cap (one helicity, filled to |eps|): n = 1.277e+40 cm^-3, rho = 1.322e-01 GeV^4 = 3.596e+45 rho_c
+   drain: the clock gives up 2|eps| per pair; today's rho_K = 9.788e-48 GeV^4 is used up in 8.833e-59 yr at m = 0.05 eV
+   => Majorana neutrinos EXCLUDED for this coupling (m_max 1.6e-36 eV << 0.05 eV); main case requires Dirac
+   nucleon dim-7 Delta(B-L)=2: delta bound from p -> nu pi+ > 3.5e32 yr [P]: 3.239e-33 GeV; vacuum -> pbar e-, nbar nu: Gamma/V = 9.368e-66, n0 = 2.272e+17 cm^-3, rho0 = 1.707e+23 rho_c ; delta must sit 4.131e+12 x below the bound
+   n-nbar: delta_nn <= 1.400e-33 GeV (tau > 4.7e8 s [P]); vacuum -> nbar nbar (beta 0.853): rho0 = 5.692e+21 rho_c ; delta_nn must sit 7.545e+11 x below the bound
+   (phase-space formula check n = 2: 0.039789 vs 1/(8 pi) 0.039789)
+   Delta(B-L)=4 remnant (nu_R)^4/Lambda^2, omega = 4|eps|: 1 % line needs Lambda >= 1.841e+22 GeV (1.51e+03 M_Pl) for an O(1) coefficient
+GE5 back-reaction under action (A), neutral start: Q - 1 = -K eps n_(B-L)/mu_K^2 = I0/(2 mu_K^2 a^3)
+   KA4 Q-1 at T_sph, mu_K 8.89e6: 1.2293e+24 (R541D 1.229e24) -> PASS
+   lowest passing T_f (GE3) T = 2.533e+09: mu_K 1/Mpc: Q-1 = 6.914e+59 (I0 form 6.914e+59, ratio 1.0000); bias |eps| Q = 1.243e+60 GeV vs T 2.53e+09
+   lowest passing T_f (GE3) T = 2.533e+09: mu_K 198.2/Mpc: Q-1 = 1.759e+55 (I0 form 1.759e+55, ratio 1.0000); bias |eps| Q = 3.162e+55 GeV vs T 2.53e+09
+   lowest passing T_f (GE3) T = 2.533e+09: mu_K 2.512e+04/Mpc: Q-1 = 1.096e+51 (I0 form 1.096e+51, ratio 1.0000); bias |eps| Q = 1.970e+51 GeV vs T 2.53e+09
+   lowest passing T_f (GE3) T = 2.533e+09: mu_K 8.89e+06/Mpc: Q-1 = 8.748e+45 (I0 form 8.748e+45, ratio 1.0000); bias |eps| Q = 1.573e+46 GeV vs T 2.53e+09
+      Q-1 <= 0.01 needs mu_K >= 8.315e+30 /Mpc (record max 8.89e6; galaxies <= 7)
+      mu_K 8.89e6: equilibrium n_(B-L) with the clock's quadratic energy = -2.133e-26 GeV^3 (bare -1.381e+19; needed +1.866e+20); stiff clock energy / radiation after generation = 1.014e+27
+      MU5 mu_K/10: Q-1 x 100.0
+   T_sph T = 1.317e+02: mu_K 1/Mpc: Q-1 = 9.716e+37 (I0 form 9.716e+37, ratio 1.0000); bias |eps| Q = 1.747e+38 GeV vs T 1.32e+02
+   T_sph T = 1.317e+02: mu_K 198.2/Mpc: Q-1 = 2.472e+33 (I0 form 2.472e+33, ratio 1.0000); bias |eps| Q = 4.444e+33 GeV vs T 1.32e+02
+   T_sph T = 1.317e+02: mu_K 2.512e+04/Mpc: Q-1 = 1.540e+29 (I0 form 1.540e+29, ratio 1.0000); bias |eps| Q = 2.768e+29 GeV vs T 1.32e+02
+   T_sph T = 1.317e+02: mu_K 8.89e+06/Mpc: Q-1 = 1.229e+24 (I0 form 1.229e+24, ratio 1.0000); bias |eps| Q = 2.210e+24 GeV vs T 1.32e+02
+      Q-1 <= 0.01 needs mu_K >= 9.857e+19 /Mpc (record max 8.89e6; galaxies <= 7)
+      mu_K 8.89e6: equilibrium n_(B-L) with the clock's quadratic energy = -2.133e-26 GeV^3 (bare -3.732e+04; needed +2.622e-02); stiff clock energy / radiation after generation = 2.742e+12
+   at (a) Weinberg op (Majorana), T_W (T 1.60e+13): Q-1 (mu_K 8.89e6) = 2.192e+57
+   at (b) thermal leptogenesis M1 = 1e9, z_f 10 (T 1.00e+08): Q-1 (mu_K 8.89e6) = 5.382e+41
+   at (b) thermal leptogenesis M1 = 1e10, z_f 10 (T 1.00e+09): Q-1 (mu_K 8.89e6) = 5.382e+44
+   pressureless dust (Q = 1 at all epochs): bias = eps, energy per unit B-L |eps| << T_f: GE5 passes in that reading
+
+== summary (footings not pooled)
+canonical: eps(B-L) = -1.7969 GeV ; variant eps_L = +2.7835 GeV, sphaleron X = 2.365e+06 ; GE3 T_f >= 2.530e+09 GeV ; GE4 m_max(Majorana) = 1.64e-36 eV ; GE5 Q-1 at T_f (mu_K 8.89e6) = 8.715e+45, needs mu_K >= 8.30e+30/Mpc
+alt: eps(B-L) = -1.7976 GeV ; variant eps_L = +2.7845 GeV, sphaleron X = 2.368e+06 ; GE3 T_f >= 2.533e+09 GeV ; GE4 m_max(Majorana) = 1.64e-36 eV ; GE5 Q-1 at T_f (mu_K 8.89e6) = 8.748e+45, needs mu_K >= 8.31e+30/Mpc
