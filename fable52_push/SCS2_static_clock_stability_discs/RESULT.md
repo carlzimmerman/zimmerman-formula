@@ -301,4 +301,7 @@ the recompiles of the whole files.
 Not registered. Does not edit fable52_push/README.md, any PAPER72 file, the register, the decision files, or SCS1's,
 TPA1's or FB1's files.
 
+Commit ids, local / origin: criteria 158c4cf770 / 7cf3530715, A1 847f24db0b / 448daec699, A2 cb6ac0fe9a / 7d303c169b,
+A3 ac13205c89 / d323cc7025, A4 3cf66462aa / 152fb45c7a, result 759095b685 / 55e47026a4.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
