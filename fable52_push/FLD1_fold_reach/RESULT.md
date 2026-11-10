@@ -162,6 +162,12 @@ on when the mass appeared. The start-redshift brackets show the same: z_i 20 and
 - Grader: `fld1_compare.py` -> `fld1_compare.out` / `.json`.
 - Lean: `FLD1.lean`, `FLD1_MUTATE.lean`, `compile.txt`, `compile_MUTATE.txt`.
 
-[ORIGIN_IDS]
+## Commit ids
+
+| commit | local | origin |
+|---|---|---|
+| criteria | 992c992ade | fd7761a074 |
+| A1 | ea324cde77 | b49788bca5 |
+| result | 0d9227c7d5 | bce6d61451 |
 
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
