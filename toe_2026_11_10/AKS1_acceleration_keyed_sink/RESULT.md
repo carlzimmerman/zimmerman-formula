@@ -173,6 +173,10 @@ M_b 9 while the 10.5 core already drains.
 - `AKS1.lean`, `AKS1_MUTATE.lean`, `compile.txt`, `compile_MUTATE.txt`.
 - Snapshots stay outside the repo (`AKS1_SNAP`).
 
-Commits (local / origin): IDS_TABLE
+Commits (local / origin):
+- criteria 5b35674191 / b4deefbc0c (alone, before any script);
+- amendment A1 9ad1d5a121 / 26b9de54a0 (alone, before any A1 row);
+- result b3f18eca2d / 06c837db4f;
+- this id record: one more commit, pushed the same way.
 
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
