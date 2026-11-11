@@ -1,0 +1,43 @@
+SMF1 smf1_sym.py  [MUTATE MU1]
+Grading form (radial, r^2 measure): frame h, Psi Madelung (rho, theta), alignment alpha, stiffness lambda_s,
+exchange -g_x rho sin^2 chi, chi = (m/hbar)(theta - phi_f), gravity Phi; J generic in E1 and KA1.
+E1 frame EL == r^2 [d_t N + div F_f - S_f]   residual: 0
+E1 Psi EL   == r^2 [d_t rho + div F_Psi + S_f] residual: 0
+E1 dL_x/dphi_f + dL_x/dtheta (diagonal symmetry => 0): 0   so d_t(N + rho) + div(F_f + F_Psi) = 0
+   S_f = g_x*m*rho(t, r)*sin(2*m*(phi_f(t, r) - theta(t, r))/hbar)/hbar
+KA1 (L_x = L_al = 0, mu_K = 0, zero shift): frame EL - d_r d_t Y, residual: 0 => d_t Y = f(t); regular centre => Y frozen
+KA1 (L_x on): frame EL - d_r d_t Y + r^2 S_f, residual: 0 => d_t Y(R) = Int_0^R S_f r^2 dr
+S0a static Phi equation vs d_r[r^2 mu(Phi_r/a0) Phi_r]/K = r^2 (rho_b + rho_Psi) + r^2 mu_K^2 (c0 - Phi)/K;
+    residual: 0 (sign convention +1)
+    i.e. div[mu grad Phi] + mu_K^2 (Phi - c0) = K (rho_b + rho_Psi): rho = rho_b + rho_Psi. The alignment and
+    exchange energies do not depend on Phi in the grading form (they are O(v^2/c^2) of rho_Psi c^2), so they do
+    not source Phi at Newtonian order. (A)'s law with rho = rho_b (counted once) iff rho_Psi = 0 in V_s.
+S0a static frame EL (zero shift, static Psi): -g_x*m*r**2*rhos(r)*sin(2*m*t*(E - c0)/hbar)/hbar
+    => stationary only if rho_Psi = 0 or the phase is locked (c0 = E and sin 2 chi = 0).
+S0b Int_0^R r^2 d_t N dr, polarization part = Int_0^R d_r d_t W dr = -Derivative(W(t, 0), t) + Derivative(W(t, R), t)
+    with a regular centre: Derivative(W(t, R), t)
+S0b integrated frame continuity: Int_0^R S_f r^2 dr = d/dt Int_0^R (mu_K^2 h/K) r^2 dr + d/dt W(t,R) + V_F(t,R)
+MU1 boundary kept static (A = g at R): net transfer into polarization = d/dt W(t,R) = R*sqrt(a0)*Derivative(M_b(t), t)/(4*sqrt(pi)*sqrt(K)*sqrt(M_b(t)))
+S0b 3D check (no symmetry): Int_cube div P for a P vanishing on the faces = 0
+S0b reading: in net the exchange changes only the frame's dust part (mu_K^2 h/K) and the boundary fluxes; the
+    polarization charge of V is zero at every time, for every exchange rate, alignment and ell (Gauss).
+S0c S_f = g_x*m*rho(t, r)*sin(2*m*(phi_f(t, r) - theta(t, r))/hbar)/hbar ;  at rho_Psi = 0: 0
+KA2 frame-only omega^2 branches: [-K*mu_K**2*n_d/(k**2 + mu_K**2)] ; vs T-SCR -K n_d mu_K^2/(mu_K^2 + k^2), residuals: [0]
+S1-FRW determinant = A w^4 + B w^2 + C (odd powers zero: True )
+   A = k**2*(k**2 + mu_K**2)/K**2
+   C = -k**2*(4*K*m**2*rhobar + hbar**2*k**2*mu_K**2)*(K*alpha*hbar**2*k**2*n_d + K*alpha*hbar**2*k**2*rhobar + 2*K*g_x*m**2*n_d + 2*K*g_x*m**2*rhobar + K*hbar**2*k**2*n_d + alpha*hbar**2*k**4*lambda_s + 2*g_x*k**2*lambda_s*m**2 + hbar**2*k**4*lambda_s)/(4*K**2*hbar**2*m**2)
+S1 large k: (product of roots)/k^4 -> (-alpha*hbar**4*lambda_s*mu_K**2 - hbar**4*lambda_s*mu_K**2)/(4*hbar**2*m**2) ;  (sum)/k^4 -> (alpha*hbar**4 + hbar**4)/(4*hbar**2*m**2) ;  small root ~ product/sum -> (-alpha*hbar**4*lambda_s*mu_K**2 - hbar**4*lambda_s*mu_K**2)/(alpha*hbar**4 + hbar**4)
+S1 k -> 0: det/k^2 at omega^2 = -K (n_d + rhobar): 0 ;  roots: [-K*(n_d + rhobar), 2*K*g_x*m**2*rhobar/(hbar**2*mu_K**2)]
+S1 growing root to k^2: c1 = -(-K*hbar**2*n_d**2 + 2*g_x*lambda_s*m**2*rhobar + hbar**2*lambda_s*mu_K**2*n_d + hbar**2*lambda_s*mu_K**2*rhobar)/(2*g_x*m**2*rhobar + hbar**2*mu_K**2*n_d + hbar**2*mu_K**2*rhobar)
+   c1 - [-lambda_s + K hbar^2 n_d^2/(2 g_x m^2 rhobar + hbar^2 mu_K^2 (n_d + rhobar))], residual: 0
+   (the frame stiffness enters the growing mode with a NEGATIVE sound speed squared; reported, see smf1_num.out)
+S1 numeric sweep (K = rho = 1, n_d = 0.01, mu_K = 1e-3, hbar/m = 1e-4, alpha = 1, lambda_s = 1e-6, g_x = 1e-2;
+    k from 1e-4 to 1e6): all roots real: True; min omega^2 = -1.01 (Jeans -K(n_d + rho) = -1.01);
+    growing root / Jeans at k = 1e-4, 1, 1e2, 1e4: [1.0001, 1.0, 0.8078, 0.0]
+S1 gradient instability (a root unbounded below as k grows, or complex roots): False
+S1 unmixed kinetic and energy coefficients positive (QG1 method): True
+S1-static: lowest order of a psi-frame cross term in L_x around psi = 0: 3 (>= 3: decoupled at linear order;
+    the alignment term rho |grad phi_f - grad theta|^2 is likewise quadratic in psi times the frame background)
+GW: the member adds no K_ij K^ij, curvature or beta term (L_st is the khronometric lambda term); c_T^2 = 1/(1 - beta) = 1.
+runtime 1.5 s
+Adopts nothing. kappa = 1/2 FITTED; not theory closed.
