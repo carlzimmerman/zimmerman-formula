@@ -92,6 +92,7 @@ against 0.0354). No share at any outer radius passes the disc, filling, stabilit
 | SCS2 | is that state stable around discs? | Isolated discs STABLE / STABLE; discs in an external field NO VERDICT / NO VERDICT (reading: unstable in regions; e-folding 0.9 to 2.4 Gyr at 0.1 a0, 27 to 75 Gyr at 0.01 a0) |
 | MK1 | is there one dust constant for the CMB, clusters and galaxies? | NO VALUE / NO VALUE (does not turn on the cap; X-COP passes at no value) |
 | COL1 | does a clock that starts as infalling dust reach the static state? | BREAKS DOWN / BREAKS DOWN (a caustic at the centre; a reported diagnostic puts the charge that arrives at 1 to 4 % of the law's halo) |
+| HIS1 | do the systems off the law sit only where a history allows (amount set by the law at formation, then conserved)? | HOLDS EXCEPT H3 (fails), H5 (no power) / the same; the law-as-a-force reading scores 1 of 5 on the same tests |
 | DD1 | with no theory assumed, does the non-baryonic mass follow one rule across every class on disk? | NO RULE AMONG THE CANDIDATES / the same (16 classes, 626 systems; the law holds on SPARC; six classes break every candidate, in both directions) |
 | KDE1 | can the law's clock be the dark-energy field itself? | ALREADY IN THE RECORD AS AC2s / the same (and the record shows such a clock still falls in and folds) |
 | GRW1 | can baryons and the law build late structure if the cold component is warm? | FALLS SHORT / FALLS SHORT under the action's linear theory; FALLS SHORT AND OVERSHOOTS with the static law; as frozen NO VERDICT / NO VERDICT |
@@ -207,8 +208,8 @@ A completion has to move a gate or bring physics from outside the catalogue.
 - `KDE1_clock_is_dark_energy/` (origin edfb117414, c26db8802f, 3480d33e9a) and `GRW1_late_growth_baryons_and_law/`
   (origin 660b4a1171, 40adf2ef0e, 27173fe895, b54941f573): the lead's own two lanes; result files read by the lead, not
   re-run
-- `DD1_deduce_from_data/` (origin 91c159b746, ids 45a9fafdc2; result file read by the lead, not re-run, no blind
-  regrade)
+- `DD1_deduce_from_data/` (origin 91c159b746, ids 45a9fafdc2) and `HIS1_history_reading/` (origin c4f8cd2bb3, ids
+  353bc1852e): result files read by the lead, not re-run, no blind regrade
 - `DCN1_disc_centre_null/` (run from another session; header read by the lead, not re-run): ARTEFACT / ARTEFACT only
   under the last of six post hoc readings; NO VERDICT under every reading frozen before the outcome was seen
 - `EQ1_cold_dark_energy_equations/EQUATIONS.md`: a reference sheet, not a lane. Every equation the record has for the
