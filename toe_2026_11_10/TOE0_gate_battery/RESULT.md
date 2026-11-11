@@ -80,3 +80,14 @@ Action (A) + the Standard Model as S_m, with rules 3 to 5 of `closure_2026_11_10
 - T1 is read at this cutoff; GRW1 and DT2 may move the record later, not this battery's labels.
 
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
+
+## Commit ids (local / origin)
+
+| commit | local | origin |
+|---|---|---|
+| criteria | 8a99cb7c34 | 0d2da52d92 |
+| amendment A1 | 12225b6050 | 7ebad3abdb |
+| TOE0-S / TOE0-P script and outputs | e747c101dd | 8cd7740092 |
+| result, blind regrade | 9d39e0c81a | 267aa957e7 |
+
+Pushed by replay onto origin/main (527155db0e..267aa957e7). This id table is one more commit, pushed the same way.
