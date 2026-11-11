@@ -94,6 +94,7 @@ against 0.0354). No share at any outer radius passes the disc, filling, stabilit
 | COL1 | does a clock that starts as infalling dust reach the static state? | BREAKS DOWN / BREAKS DOWN (a caustic at the centre; a reported diagnostic puts the charge that arrives at 1 to 4 % of the law's halo) |
 | HIS1 | do the systems off the law sit only where a history allows (amount set by the law at formation, then conserved)? | HOLDS EXCEPT H3 (fails), H5 (no power) / the same; the law-as-a-force reading scores 1 of 5 on the same tests |
 | DD1 | with no theory assumed, does the non-baryonic mass follow one rule across every class on disk? | NO RULE AMONG THE CANDIDATES / the same (16 classes, 626 systems; the law holds on SPARC; six classes break every candidate, in both directions) |
+| NBC1 | can a0 be a contact strength: cold dark energy exchanging momentum with neutral gas at an opacity of order G/a0? | KILLED (K2 PROVISIONAL) / the same (gas in the law's own halo loses its angular momentum in 0.58/k orbits at any mass; G/a0 is 87 x above the 50-orbit bound; a co-rotating halo settles into 65 to 85 Msun/pc^2 at the Sun against a budget of 21 +- 5; recombination not decided by hand at k = 1) |
 | KDE1 | can the law's clock be the dark-energy field itself? | ALREADY IN THE RECORD AS AC2s / the same (and the record shows such a clock still falls in and folds) |
 | GRW1 | can baryons and the law build late structure if the cold component is warm? | FALLS SHORT / FALLS SHORT under the action's linear theory; FALLS SHORT AND OVERSHOOTS with the static law; as frozen NO VERDICT / NO VERDICT |
 | MK2 | does an exponential dust term (one sound speed) pass MK1's rows? | NO VALUE / NO VALUE (as frozen NO VALUE / NO VERDICT; clusters and groups pass at no value; galaxies clean and the clock static there above about 500 km/s) |
@@ -212,6 +213,9 @@ A completion has to move a gate or bring physics from outside the catalogue.
   353bc1852e): result files read by the lead, not re-run
 - `HIS1R_history_regrade/` (origin fefd1d3437, 882d9fa389, 88d306d2b1): regrade of HIS1 with separate code; same label
   on both footings, AGREES WITH DIFFERENCES THAT DO NOT MOVE A LABEL; not fully blind (disclosed)
+- `NBC1_neutral_baryon_contact/` (origin criteria 472bc26182, result 31a392831d): the lead's own lane, run in the
+  coordinating chat on the owner's go. KILLED (K2 PROVISIONAL) on both footings; K1 is closed form and uses no
+  outside data; K2's local inputs are from memory; no Boltzmann run; no Lean file
 - `DCN1_disc_centre_null/` (run from another session; header read by the lead, not re-run): ARTEFACT / ARTEFACT only
   under the last of six post hoc readings; NO VERDICT under every reading frozen before the outcome was seen
 - `EQ1_cold_dark_energy_equations/EQUATIONS.md`: a reference sheet, not a lane. Every equation the record has for the
