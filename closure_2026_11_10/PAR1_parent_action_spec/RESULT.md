@@ -210,6 +210,6 @@ No member was written as a full action and graded here, so the lane label is NO 
   `cd fable_independent_2026/lean_2026 && lake env lean <file>`.
 
 Commits (local / origin): criteria 51522963e0 / b90f959699; A1 427bc818f6 / 351a4d37eb; result c8d1463e35 /
-6be0bf30d1; ids c47bb6b245 / a0f6f32f3a; A2 a7cac068bf / ORIGIN_A2; A2 result A2_RESULT_LOCAL / ORIGIN_A2_RESULT.
+6be0bf30d1; ids c47bb6b245 / a0f6f32f3a; A2 a7cac068bf / 8c13e5adcb; A2 result f667d68b43 / a238fb0fba.
 
 Adopts nothing. kappa = 1/2 FITTED; not theory closed.
