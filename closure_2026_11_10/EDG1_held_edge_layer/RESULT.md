@@ -101,6 +101,9 @@ above. Label FAILS AT E1 / FAILS AT E1 (reported). E2 and E3 rows under U move b
 (about 1 s); mutations: `EDG1_MUTATE=MU1|MU2|MU3|MU4 python3 edg1.py && python3 edg1_grade.py _MUTATE_MU<n>`.
 Reads LFS1 `lfs1_num.json` read-only.
 
-Commits: criteria f57da1f35c (alone, before any script or number); result: this commit.
+Commits (local / origin): criteria f57da1f35c / 79704cbee3 (alone, before any script or number); result 0a7fa7d6b5 /
+7e335c1727. Re-run by the lead from a copy at the same folder depth (the main run and the four mutations, each with its
+grading): all 20 output files equal the committed ones byte for byte. The lead did not check the PROVISIONAL spin
+values against their source. Pushed by replay; no history rewritten.
 
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
