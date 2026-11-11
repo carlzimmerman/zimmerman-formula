@@ -355,4 +355,11 @@ kappa = 1/2 FITTED; not theory closed. Adopts nothing.
 | commit | local | origin |
 |---|---|---|
 | criteria | 1bc74e543d | 700e0c9c1c |
-| result (script, outputs, Lean, this file) | (filled by the id-table commit) | |
+| result (script, outputs, Lean, this file) | 41064fa98d | 5b9602af5b |
+
+Pushed by replay onto origin/main (406c5f6084..700e0c9c1c for the criteria, 21350b497d..5b9602af5b for the result).
+This table is one more commit, pushed the same way.
+
+Re-run (about 95 s each, peak 3.5 GB): `cd toe_2026_11_10/LSF1_lifshitz_fermion_superfluid && python3 lsf1.py` (graded;
+prints the label last) and `LSF1_MUTATE=1 python3 lsf1.py` (twins; "ALL TWINS BITE: True"). Lean:
+`cd fable_independent_2026/lean_2026 && lake env lean <abs>/LSF1.lean` (exit 0); `LSF1_MUTATE.lean` gives 3 errors.
