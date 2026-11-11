@@ -128,7 +128,8 @@ Delta chi^2 0.5 to 30 with even odds of a hold; x 0.5 holds; x 2 more likely fai
 
 ## Files
 
-- `FROZEN_CRITERIA.md` (local 73defd766f; origin id below).
+- `FROZEN_CRITERIA.md`. Commits (local / origin): criteria 73defd766f / 1b686f5871 (alone, before any script or number);
+  result 4d7b24c2a1 / 52696df066. Pushed by replay; no history rewritten.
 - `fzs1_hm.py` -> `fzs1_hm.json` / `.out`, `fzs1_hm_MUTATE.json` (532 s, one thread). Executes FRZ1's
   `frz1_hm.py` up to its run marker, read-only, from its own path. Reads FLD1's `runs/*.json`.
 - `fzs1_forest.py` -> `fzs1_forest_<footing>.json` / `.out`, `fzs1_forest_<footing>_MUTATE.json` (about
