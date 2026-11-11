@@ -164,6 +164,20 @@ break every rule break it in both directions.
   subjects were in its session context from the start, so the agreement is of arithmetic from separate code, not an
   independent judgement.
 
+## Added 2026-11-10 late night: a0 as a contact strength, tested and killed
+
+- **NBC1** (`NBC1_neutral_baryon_contact/RESULT.md`, origin criteria 472bc26182, result 31a392831d): the lead's own
+  hypothesis, worked through its kill tests on the owner's go. Reading a0 as an opacity G/a0 (7.13 / 5.90 cm^2/g)
+  between cold dark energy and neutral gas is KILLED (K2 PROVISIONAL) on both footings. In the law's own halo
+  rho_c r = a0 / (2 pi G sqrt(1 + 4 x^2)), so gas on a circular orbit gives its angular momentum to a non-rotating halo
+  in 0.58 / k orbits at every radius inside r_M and for every baryon mass; the largest coupling that lets a gas disc
+  live 50 orbits is 0.0115 G/a0. A halo that turns with the gas escapes that, and then settles into a layer of 65 to 85
+  Msun/pc^2 at the Sun where the budget is 21 +- 5 (local inputs from memory). At recombination the neutral-only
+  coupling is 0.2 to 0.7 of the expansion rate (not decided by hand) and above 1 at the largest value tried.
+  The coincidence that started it (the law's column times G/a0 is 1/(2 pi)) is the law's own column restated.
+  With MEDIUM_DESIGN's table and its section 3 (`closure_2026_11_10/`), every medium class the record can name now has
+  a failing verdict; this lane closes the neutral-contact one. It is not a statement about a field-mediated force.
+
 ## What is not claimed
 
 No completion exists. No lane here says the data favour the framework. The exponential dust term is a hand-level
