@@ -268,8 +268,8 @@ Two notes on the inputs:
 
 | | shared checkout | origin |
 |---|---|---|
-| criteria | 2a3f76f295 | (pending push) |
-| table | 441824e854 | (pending push) |
-| result | (this commit) | (pending push) |
+| criteria | 2a3f76f295 | 850c91839f |
+| table | 441824e854 | f86496a251 |
+| result | c8df8e2859 | 91c159b746 |
 
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
