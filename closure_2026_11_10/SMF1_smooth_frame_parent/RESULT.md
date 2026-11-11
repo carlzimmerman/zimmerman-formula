@@ -10,6 +10,13 @@
   and S3 pass as frozen. S4 was not run, because S0 leaves no counted-once state to reach (only its known answer KA3 was
   run). S5 was not graded.
 
+**Wave-specific or not (AMENDMENT A1, post hoc, section 5).** Neither failing gate is wave-specific. S0b (Gauss) and S0c
+(starvation) do not depend on the carrier being a wave. A **collisionless** (kinetic, multi-stream, non-wave) carrier in
+the same B-Tm-smooth structure does not escape either one: S0b's identity contains no carrier variable, and a kinetic
+loss term is zero where the carrier's density is zero (C1, C2, Lean). So this result also decides the collisionless
+member at S0. The reported stiffness band is not wave-specific either: its quantum cutoff is, and a cold collisionless
+carrier loses it (section 5).
+
 Every known answer passes (KA1 LFS1's frozen Y; KA2 T-SCR; KA3 COL1's fold time, reproduced to relative difference 0).
 Every MUTATE arm bites. `SMF1.lean` compiles (9 theorems, standard axioms) and all 6 of its false twins fail.
 
@@ -97,8 +104,8 @@ law with rho = rho_b (counted once) holds iff rho_Psi = 0 there.
 | MU3 flipped alpha, g_x | bites | bites | negative energies; gradient instability |
 | Lean `SMF1.lean` / `SMF1_MUTATE.lean` | exit 0, 9 theorems, standard axioms / exit 1, 6 of 6 false statements fail | | |
 | **S0a** reduction, rho = rho_b + rho_Psi | PASS | PASS | residual 0 |
-| **S0b** net fill of the polarization charge | **FAIL** | **FAIL** | identically 0 (Gauss) |
-| **S0c** fill where counted once holds | **FAIL** | **FAIL** | S_f = 0 at rho_Psi = 0 |
+| **S0b** net fill of the polarization charge | **FAIL** | **FAIL** | identically 0 (Gauss); NOT wave-specific, collisionless does not escape (A1 C1) |
+| **S0c** fill where counted once holds | **FAIL** | **FAIL** | S_f = 0 at rho_Psi = 0; NOT wave-specific, collisionless does not escape (A1 C2) |
 | S0c trade (reported) | | | delta = rho_Psi/rho_ph for the law's growth (LFS1 A1: 0.025-0.028 per Gyr at z 0, 0.24 at z 2): locked Psi 2e-6 to 1.4e-4; unlocked, band-averaged, needs sqrt(g_x) >= 14-24 km/s (z 0) and 24-41 km/s (z 2) for delta <= 0.093 (SHP1); alt within 4 % |
 | S0d detuning (reported) | | | in the graded wells (120-364 km/s), chi runs with a period of 0.04-8 Myr, which is 5e3 to 1.6e6 cycles per fill time; lock band g_x/depth = 6e-4 to 0.006 at g_x = cbar^2 and 0.07 to 0.7 at (100 km/s)^2. Locked Psi is single-valued (PAR1's B-Ts) |
 | S0e edge (reported) | | | real charge needed in the edge layer at R_ta: 61.5 / 40.9 / 37.1 / 34.3 M_b (alt 67.7 / 45.0 / 40.9 / 37.7; LFS1 A2, read); frame dust at mu_K = 1 per Mpc covers 0.6-9 %; a rotation-held shell needs spin 0.71 against about 0.035 (20 x short, PROVISIONAL) |
@@ -135,12 +142,46 @@ law with rho = rho_b (counted once) holds iff rho_Psi = 0 there.
   W, as COL1 did. The PPN row is not computed: with Psi absent the Solar System is (A) plus v3s (C6 / C6P, read).
 - **KA3** imports COL1's solver read-only and writes nothing in COL1's folder.
 
+## 5. AMENDMENT A1 (post hoc): which gates are wave-specific, and does a collisionless carrier escape?
+
+A1 was requested by the coordinating session after the result and committed alone (local cfa91d3feb) before its checks
+were written or run. It changes no criterion, gate or label. Here "wave-specific" means failing because the carrier is
+a wave: nodes, interference fringes, the de Broglie core against the law's a0/(2 pi G r), quantum pressure, phase
+locking, or the ultralight mass window. Checks: `smf1_a1_collisionless.py` -> `.out` / `.json` (under 1 s) and
+`SMF1_A1.lean` (3 theorems, exit 0, standard axioms; its false twin `SMF1_A1_MUTATE.lean` fails on 3 of 3, exit 1).
+
+| item | status | wave-specific? | would a collisionless carrier in the same structure escape? |
+|---|---|---|---|
+| **S0b** net fill (Gauss) | FAIL | **NOT** | **No.** C1: with a kinetic carrier the frame's source is the loss term Int gamma f dv. The balance contains no carrier variable, and the net transfer into the polarization charge with a free-falling boundary is exactly 0 |
+| **S0c** starvation | FAIL | **NOT** | **No.** C2: S = n Int gamma g dv = n/2 for the test shape, so S = 0 at n = 0. Lean `kinetic_starvation`: f_i >= 0 and Sum f_i = 0 give Sum gamma_i f_i = 0 for any rates. MA1 bites: a sign-indefinite f with zero density loses sqrt(pi)/2. For point particles a local action cannot change their number at all |
+| S0a, rho = rho_b + rho_carrier | PASS | NOT | the same reduction |
+| S0d detuning and lock (reported) | reported | **WAVE-SPECIFIC** | does not apply: there is no phase |
+| S0c trade (reported) | reported | its rate model (lock, band average) is WAVE-SPECIFIC | a kinetic loss rate gamma gives delta >= (d ln C/dt)/gamma (stated, not graded) |
+| S0e held edge layer (reported) | reported | NOT (empty-core Jeans step, accreted-spin shortfall, frame depth-dust). The "irrotational exchange product" item is wave-specific | a kinetic source could deposit carrier with a velocity spread, but the empty-core and spin items still apply |
+| S1 stiffness band (reported) | reported | the -lambda_s term is NOT; its quantum cutoff is | **Escapes only if warm enough.** C3 is a fluid stand-in (g_x = 0, isothermal sigma^2). It gives c1 = sigma^2 rho/(n_d + rho) - lambda_s + K n_d^2/(mu_K^2 (n_d + rho)) (residual 0; Lean `c1_collisionless`). The growing branch saturates at omega^2 = -lambda_s (K rho + mu_K^2 sigma^2)/sigma^2 (residual 0), which is about sqrt(lambda_s)/sigma times the Jeans rate. A cold carrier (sigma -> 0) has an unbounded band. At sigma = 9.2 km/s (the forest line) the band is removed only for ell <= 0.67 kpc (alpha = 1); at ell = 1 kpc the saturated rate is 1.49 x Jeans |
+| S2(d) m window | PASS | **WAVE-SPECIFIC** | does not apply |
+
+**In one line:** the S0 failure is structural (Gauss plus positivity), not a wave artefact, so a collisionless member
+of B-Tm-smooth fails S0 the same way. Such a member would also need a velocity dispersion near the forest line, with
+ell <= 0.67 kpc, to keep the frame's smoothing stiffness from driving growth faster than Jeans.
+
+A1 disclosures:
+- In the first run of `smf1_a1_collisionless.py`, C3's comparison target left out the weight rho/(n_d + rho) on
+  sigma^2, giving a residual of -n_d sigma^2/(n_d + rho).
+- Its printed large-k sentence ("a gradient instability with no cutoff") was written before the limits were computed.
+  The computed limit is a bounded saturation for sigma > 0.
+- Both were corrected before this section was written. The exact c1 expression the script derives did not change.
+- C3 is a fluid stand-in for a kinetic carrier, not a Vlasov computation.
+- Compute: every A1 job ran single-thread at nice 19, one at a time, while BX1's run was live.
+
 ## Files and re-run
 
 `FROZEN_CRITERIA.md` (alone, first). Run in order: `python3 smf1_sym.py`;
 `SMF1_MUTATE=MU1|MU2|MU3 python3 smf1_sym.py`; `python3 smf1_num.py`; `python3 smf1_ka3.py`; `python3 smf1_grade.py`.
 Each takes a few seconds and well under 1 GB. Lean: `cd fable_independent_2026/lean_2026 && lake env lean
-../../closure_2026_11_10/SMF1_smooth_frame_parent/SMF1.lean` (logs in `compile.txt`, `compile_MUTATE.txt`).
+../../closure_2026_11_10/SMF1_smooth_frame_parent/SMF1.lean` (logs in `compile.txt`, `compile_MUTATE.txt`). A1:
+`AMENDMENT_A1.md` (alone, post hoc); `nice -n 19 python3 smf1_a1_collisionless.py`; `SMF1_A1.lean`, `SMF1_A1_MUTATE.lean`
+(logs `compile_A1.txt`, `compile_A1_MUTATE.txt`).
 
 Commits (local / origin): criteria 9586b716e6 / b3879c6cad; result 8339a435fe / 884ddfb854.
 
