@@ -110,12 +110,15 @@ fixed seeds, no large arrays on disk. Temporary diagnostic script in the system 
 - DF2 / DF4 and the four individual MW rows were not regraded. No screening (L* = 0).
 - The graded labels exist only under a post-freeze amendment. The frozen reading has no label.
 
-## Files and commits (local main; not pushed)
+## Files and commits (local / origin)
 
-- FROZEN_CRITERIA.md: 2c7beb7b92 (alone).
-- dsb1.py, dsb1.out / .json, RESULT_BLIND.md (frozen reading, stopped): 8e189b5326.
-- AMENDMENT_2026-11-10_KA_c.md: 18ac23bd5a (alone).
-- dsb1.py (amended mode), dsb1_amended.*, dsb1_MUTATE.*, RESULT_BLIND_AMENDED.md: edf326295c.
-- This file: the commit after edf326295c (id in its message).
+- FROZEN_CRITERIA.md: 2c7beb7b92 / 3d00c557e9 (alone).
+- dsb1.py, dsb1.out / .json, RESULT_BLIND.md (frozen reading, stopped): 8e189b5326 / 613636eb82.
+- AMENDMENT_2026-11-10_KA_c.md: 18ac23bd5a / b34491d0bf (alone).
+- dsb1.py (amended mode), dsb1_amended.*, dsb1_MUTATE.*, RESULT_BLIND_AMENDED.md: edf326295c / e1b6ba7ccb.
+- This file (comparison): 33a6eb4c30 / d66d9f3421.
+- Re-run by the lead from a copy of dsb1.py at the same folder depth, all three modes (1.5 s, 38 s, 5 s): every .out and
+  .json equals the committed one except the run-time lines. The lead did not check the budget's looked-up widths against
+  their sources. Pushed by replay; no history rewritten.
 
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
