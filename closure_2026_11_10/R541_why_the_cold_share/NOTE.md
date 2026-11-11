@@ -23,6 +23,9 @@ So the framework has two fitted numbers, 1/2 and 5.41, and 5.41 is an initial co
 the standard cosmological model stands with the same ratio. A value for it needs a new ingredient (section 7), and
 none has been tested.
 
+**Dated addition, 2026-11-10 evening.** The ingredients of section 7 were then tested in five lanes with frozen
+criteria (section 8): four are EXCLUDED and one only TRADES 5.41 for more fitted constants. None fixes the number.
+
 ## 1. Where the number comes from (part A, quotes re-read by the lead)
 
 - Source: `closure_2026_11_07/F1A_primary_cmb_audit/RESULT.md:22`: "R = omega_d / omega_b at the B2 best fit |
@@ -167,6 +170,38 @@ shows the same number in a second place; it does not explain it.
 - Making the dust during inflation (the 2026 mimetic route): one new coupling; no link to baryons.
 
 Each is a new mechanism and would be a lane of its own, on the owner's go.
+
+## 8. The tests (dated addition, 2026-11-10 evening; owner: "Yes, test both")
+
+Five lanes, each with criteria committed alone before any gate number, each run on both footings, each re-run by the
+lead from a copy with every output identical. Labels: FIXES (R follows with no new fitted constant), TRADES (R only
+by fitting new constants), EXCLUDED (reproducing R breaks a gate). Commit ids are origin ids (criteria, result).
+
+| lane | way tested | label (canonical / alt) | why, in one line | origin |
+|---|---|---|---|---|
+| `../R541A_clock_matter_coupling/` | alpha rho_b f(Q) and beta (Q - 1) T | EXCLUDED / EXCLUDED | the amount stays a free constant; what the coupling induces rides with the baryons (not a separate cold component); Eotvos parameter 6.6e11 times the MICROSCOPE line; effective a0 falls to 0.156 | 49323aad87, 4e2624c3f9 |
+| `../R541B_early_symmetry_breaking/` | a potential V(tau) that switches off | TRADES / TRADES | R = V0 a_s^3 / rho_b0: the number moves into V's height; two or three new constants and two required initial conditions; no V built from the framework's constants works; no attractor | cdd7c9cfb8, 9ca2112a8a |
+| `../R541C_made_in_inflation/` | gamma tau G_GB | EXCLUDED / EXCLUDED | sqrt(-g) G_GB is an exact time derivative in FRW, so the made charge is 8 gamma H^3 and is handed back as H falls: nothing lasting; forcing it breaks the gravitational-wave speed bound by 8.5e13 | 575fc17022, 711f8e7891 |
+| `../R541D_baryon_current_cogenesis/` | eps (d tau) . J_B | EXCLUDED / EXCLUDED | ties the charge to baryon number after a neutral start (eps = -5.07 GeV, a new constant), but is a constant chemical potential: sphalerons make antibaryons, 4.3e6 times too many; alone it can only make negative density | d9a9696f58, 843dccc842 |
+| `../R541E_b_minus_l_variant/` | eps (d tau) . J_(B-L), the escape from R541D | EXCLUDED / EXCLUDED | passes the sphalerons; fails on action (A)'s own quadratic dust term (Q - 1 = 8.7e45 at the epoch needed); needs Dirac neutrinos | 10c4d912f1, 982fe96555 |
+
+What the tests add to the answer:
+
+- **Nothing tested fixes 5.41.** The one survivor (R541B) is a net loss: one fitted number becomes one fitted
+  combination plus new constants plus two initial conditions. Its passing gates were not re-graded by a second,
+  blind party, and it had no Boltzmann run; it is not a mechanism the record adopts.
+- **Inflation and "initial condition" do not sit together** (R541C, GC0). Sixty e-folds dilute any earlier charge by
+  about 1e-78. If the universe inflated, the amount has to be made afterwards. The record does not adopt inflation.
+- **Action (A)'s quadratic dust term is again the limit.** It decides R541E, and it caps R541B's switch-off (the made
+  charge is stiff, not dust, if made before about z 4e5 at the Jeans line for mu_K). This is MK1's failure seen from
+  another side.
+- **Reported only, not a label:** if the dust term were pressureless at all epochs, R541E would be a weak TRADES
+  needing four new items (the coupling 1.80 GeV, Dirac neutrinos, an unbuilt sector making the asymmetry above
+  2.5e9 GeV, a neutral start). Its kill test would be any observation of neutrinoless double beta decay.
+
+External bounds in these lanes (MICROSCOPE, Cassini, GW170817, isocurvature, nucleosynthesis, double beta decay) are
+quoted from memory or look-ups and marked PROVISIONAL in each lane; every exclusion exceeds its line by many orders,
+so none rests on the exact value. R541A's perturbation gate is a Newtonian toy, not a Boltzmann run.
 
 ## Checks by the lead
 
