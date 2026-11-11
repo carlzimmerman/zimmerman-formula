@@ -170,7 +170,7 @@ No member was written as a full action and graded here, so the lane label is NO 
 - `PAR1.lean`, `PAR1_MUTATE.lean`, `compile.txt`, `compile_MUTATE.txt`. Compile with
   `cd fable_independent_2026/lean_2026 && lake env lean <file>`.
 
-Commits (local / origin): criteria 51522963e0 / ORIGIN_CRIT; A1 427bc818f6 / ORIGIN_A1; result RESULT_LOCAL /
-ORIGIN_RESULT.
+Commits (local / origin): criteria 51522963e0 / b90f959699; A1 427bc818f6 / 351a4d37eb; result c8d1463e35 /
+6be0bf30d1.
 
 Adopts nothing. kappa = 1/2 FITTED; not theory closed.
