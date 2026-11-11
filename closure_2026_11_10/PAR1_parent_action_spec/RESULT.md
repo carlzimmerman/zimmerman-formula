@@ -1,8 +1,17 @@
 # PAR1 RESULT: the parent action as an inverse problem (2026-11-10)
 
-**Label, canonical and alt: NO VERDICT / NO VERDICT**, as frozen and under AMENDMENT A1 (post hoc). Every known answer
-passes, every MUTATE arm bites, and the Lean file compiles. The label is NO VERDICT because two branches stay open and
-no member of them was written and graded here.
+**Label, canonical and alt: NO VERDICT / NO VERDICT**, as frozen, under AMENDMENT A1 and under AMENDMENT A2 (both
+post hoc). Every known answer passes, every MUTATE arm bites, and the Lean file compiles. The label is NO VERDICT because
+two branches stay open and no member of them was written and graded here.
+
+**A2 (added after the result landed, at the coordinating session's request):**
+- The medium-design note (`MEDIUM_DESIGN_2026-11-10.md`) and the theorems it quotes are now spec conditions C16 to C20:
+  M5, Z1's six local-selector theorems, T-O2, AKD1, and the baryon-contact medium.
+- One of the note's numbers is reproduced independently in SI: the opacity pi G/a0 = 22.40 / 18.54 cm^2/g, the mean free
+  path at z 1100 = 25.8 / 31.1 pc, and the drag at 30 km/s = 0.73 / 0.61 of the expansion rate. The MUTATE arm (pi
+  dropped) misses every line.
+- No branch label moves. T-O2 is an independent second closure of B0. M5 and Theorem G are conditions the two open
+  branches must evade; whether their hypotheses cover those branches is not established.
 
 **Answer.** No parent action built from one single-valued carrier exists. That is a theorem (branch B-Ts, EMPTY under
 A1), and with branches B0 and B-L it closes every parent whose cold dark energy is a single-valued field. Any parent that
@@ -57,6 +66,16 @@ compiled algebraic core (`PAR1.lean`); "read" means quoted from the lane, not re
 | C14 | Data: KiDS-Legacy consistent at 1.71 / 1.88 widths (KL1, post hoc). X-COP at the ceiling (XCV1, post hoc). Hosted dwarfs high, but the FAILS do not survive the budget (RB2, DG1) | those lanes | read |
 | C15 | **T-GR (new, estimate).** Take a wave carrier with the law keyed on its fine-grained frame. In multi-stream regions the frame's acceleration fluctuates by about sigma^2/lambda_dB. In an isotropic Gaussian model the mean polarization along g halves at s = 1.04 a0 (g = 0.1 a0), 1.38 a0 (0.3) and 2.55 a0 (1). So the law holds only where lambda_dB >= sigma^2/(s_half a0): 0.9 to 5.2 kpc. That needs m <= 2.45e-22 / 4.00e-23 / 2.60e-23 / 1.84e-23 eV (canonical; alt 2.57e-22 to 1.93e-23). The record's forest line asks only m >= 4.20e-24 eV | new | numbers (10^6 samples, seed 1); MU4 bites (no fluctuation: R = 1) |
 
+Added under A2 (cited from their lanes, not re-derived; `AMENDMENT_A2.md` quotes each statement):
+
+| # | condition | source | status |
+|---|---|---|---|
+| C16 | **M5.** For a local, momentum-conserving medium that couples by gravity only, "the law is its equilibrium for every baryon profile" and "it self-gravitates normally" exclude each other. Exactly one local stress makes the law the equilibrium; it is density-blind. As the medium's dynamics it is ill-posed or, with stiffness, not an attractor (ln A median 59 / 67). In the deep regime it cancels the medium's nonlinear self-gravity (delta_c 13.6 against 1.686) | M5 | read |
+| C17 | **Z1 family 6.** Every local selector is closed: Theorem G (gates in theta and u force a vacuum offset 15 to 25 times what slip allows), Theorem S (label-free tethers hover), D-T' (any local hold cancels the felt self-gravity), the mu-pincer, J1 (potential depth), V1 (density) | Z1; LEDGER CFG944 / 945 / 946 | read |
+| C18 | **T-O2.** With dust cold energy, local second-order universal sectors, a profile-independent deep BTFR and no EFE, the deep extra force must be the dust's own mass: cold energy IS the phantom (counted once is forced, not chosen). L-G: any field that supplies the deep law has an EFE. N-L: such a field has no linear regime about FRW | CFG946 | read |
+| C19 | **AKD1.** Dust keyed on the clock's acceleration breaks at A1 (already in C12) | AKD1 | read |
+| C20 | **Baryon-contact medium.** A cold medium in thermal contact with baryons above a0 needs opacity pi G/a0. It is then dragged by the plasma at recombination and by a cluster's gas (against the Bullet). Outside Pi1 (contact coupling) | MEDIUM_DESIGN section 3 | **known answer reproduced** in SI (`par1_medium_ka.out`): 22.40 / 18.54 cm^2/g, 25.77 / 31.14 pc, 0.734 / 0.607 H; MU5 bites |
+
 Lemma 0 (exact): on FRW the leaves carry no gradient, so P = 0 and the charge is P'(h) alone. Under counted once and
 cosmology, the 5.41 is a dust state of the carrier that becomes phantom in galaxies. So the law has to be keyed on the
 carrier's state.
@@ -71,7 +90,7 @@ The class Pi has four conditions:
 
 | branch | what it is | label (A1; frozen in brackets where it differs) | the conflicting pair |
 |---|---|---|---|
-| B0 | the law is not keyed on the carrier's state (sourced by matter or by an independent field) | **EMPTY** | Lemma 0 (the FRW phantom is zero, so the 5.41 must turn into phantom) x Pi3 with route C's uniqueness (SHAPE_search: one conserved medium coupled by gravity only has (A)'s Lagrangian; contact coupling gives a phonon force that does not lens, i.e. counted twice) |
+| B0 | the law is not keyed on the carrier's state (sourced by matter or by an independent field) | **EMPTY** | Lemma 0 (the FRW phantom is zero, so the 5.41 must turn into phantom) x Pi3 with route C's uniqueness (SHAPE_search: one conserved medium coupled by gravity only has (A)'s Lagrangian; contact coupling gives a phonon force that does not lens, i.e. counted twice). Under A2 also closed independently by C18 (T-O2: a law from a separate sector with dust kept double-counts) |
 | B-L | the law region is set by a fixed length (mass term, sound horizon, Jeans length) | **EMPTY** | C2: KiDS hosts x the lensing web (factor 159). The mass-term case is EW2's; the others are argued |
 | B-Ts | a cold, single-valued, barotropic carrier, i.e. (A) plus any dust term: route C's class | **EMPTY** [frozen: OPEN, because C8's frozen sign line fails] | late-time coldness (C9) x a static state reached by a classical solution: C7 forces a convex point; crossing it ends in a jump with an energy defect (C8) or, where the law screens pressure (C5), in a fold (C3, C10) |
 | B-Tm-fine | a multi-valued wave carrier with the law on its own phase frame | **OPEN** | not closed: C15 leaves m in [4.2e-24, 1.84e-23] eV. It closes only under published forest bounds (PROVISIONAL) |
@@ -109,6 +128,13 @@ From the spec, any parent that survives needs all of the following.
    is infalling Psi. KO1 does not separate that from the law. Any member must pass this as a data row; it is not graded
    here.
 
+Under A2, any member of either open branch must also show it evades:
+- **M5's non-attractor and self-gravity-cancelling rows (C16).** M5's stress is a function of the medium's density and
+  grad Phi. Here the hold switches on only where the carrier's frame is static, so M5's coverage is not established.
+- **Theorem G's vacuum-offset bound and D-T' (C17).** The alignment coupling needs no gate, and the frame is geodesic at
+  linear order on the web, so whether Theorem G's hypothesis ("a tether off in the linear universe") is met is not
+  settled.
+
 No member was written as a full action and graded here, so the lane label is NO VERDICT.
 
 **WV1** (another session, read-only; its criteria 174870d2fe and A1 589c2738df were read, not its results):
@@ -136,8 +162,11 @@ No member was written as a full action and graded here, so the lane label is NO 
 | C9 line, depth at 10 kpc > cbar^2/2 at every mass | PASS (min ratio 340) | PASS (372) |
 | C9 bracket, GRW1's 300 km/s edge (reported) | deeper at 10.45 to 10.9, not at 9.4 | same |
 | C15 | m window [4.20e-24, 1.84e-23] eV, OPEN | [4.20e-24, 1.93e-23], OPEN |
+| KA-MD (A2): MEDIUM_DESIGN section 3 recomputed in SI | PASS (22.40 cm^2/g, 25.77 pc, 0.734 H) | PASS (18.54, 31.14, 0.607) |
+| MU5 (A2: pi dropped from the opacity) | bites (every line missed) | bites |
 | Label as frozen | NO VERDICT (B0, B-L EMPTY; B-Ts, B-Tm OPEN) | same |
 | Label under A1 (post hoc) | **NO VERDICT** (B0, B-L, B-Ts EMPTY; B-Tm-fine, B-Tm-smooth OPEN) | same |
+| Label under A2 (post hoc) | **NO VERDICT** (unchanged; B0 gains a second closure, C18) | same |
 
 ## 5. Disclosures
 
@@ -159,6 +188,14 @@ No member was written as a full action and graded here, so the lane label is NO 
 - **Cosmology constants** (h 0.674, omega_b 0.02237, share 5.41) enter only cbar and m_min. The margins (340 times;
   the window's width) do not turn on them.
 - **R_ta** comes from FLD1's canonical z 0 table and is used on both footings, as LFS1 did (alt within 0.5 %).
+- **AMENDMENT A2 (post hoc, committed alone after the result and before its check).**
+  - Written at the coordinating session's request.
+  - It adds the medium-design note's cited theorems as conditions C16 to C20, with their source lanes, and re-derives
+    none of them.
+  - Its reading of each theorem against each branch was fixed before the known-answer script ran.
+  - J1 and V1 are quoted from Z1's own summary; their source file (TD:96, TD:114) was not located or re-read.
+  - The known-answer script was written without running or importing the note's script, but uses the note's stated
+    inputs.
 
 ## Files and re-run
 
@@ -166,11 +203,13 @@ No member was written as a full action and graded here, so the lane label is NO 
 - `par1_spec.py` -> `par1_spec.out/.json` (C1 to C8, C12's root, Lemma 0; about 1 s). MUTATE:
   `PAR1_MUTATE=MU1|MU2|MU3 python3 par1_spec.py`.
 - `par1_numbers.py` -> `par1_numbers.out/.json` (C9, C15; about 2 s). MUTATE: `PAR1_MUTATE=MU4`.
-- `par1_grade.py` -> `par1_grade.out/.json`.
+- `par1_medium_ka.py` -> `par1_medium_ka.out/.json` (A2's KA-MD). MUTATE: `PAR1_MUTATE=MU5`.
+- `par1_grade.py` -> `par1_grade.out/.json` (frozen, A1 and A2 readings).
+- `AMENDMENT_A2.md` (alone, post hoc).
 - `PAR1.lean`, `PAR1_MUTATE.lean`, `compile.txt`, `compile_MUTATE.txt`. Compile with
   `cd fable_independent_2026/lean_2026 && lake env lean <file>`.
 
 Commits (local / origin): criteria 51522963e0 / b90f959699; A1 427bc818f6 / 351a4d37eb; result c8d1463e35 /
-6be0bf30d1.
+6be0bf30d1; ids c47bb6b245 / a0f6f32f3a; A2 a7cac068bf / ORIGIN_A2; A2 result A2_RESULT_LOCAL / ORIGIN_A2_RESULT.
 
 Adopts nothing. kappa = 1/2 FITTED; not theory closed.
