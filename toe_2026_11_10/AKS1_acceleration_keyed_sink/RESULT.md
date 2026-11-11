@@ -45,6 +45,14 @@ because it is route E's class, retired on 2026-11-01. Its label stands as record
 Part T files: `FROZEN_CRITERIA_T.md`, `aks1_t.py` -> `aks1_t.out` / `aks1_t.json` (seconds, sympy and numbers). No Part N
 collapse is owed under the frozen rule.
 
+**Note, 2026-11-11 (pointer only; relabels nothing): T7 has been computed and does not hold.** VSH1
+(`closure_2026_11_10/VSH1_viscous_shock_settling/`, origin result 4358613eaf; NO VERDICT as frozen, SETTLES BY SHOCK
+under its post hoc A1) ran FLD1's shells with gamma 5/3 pressure (heat kept), shear viscosity nu = nu_F and shock
+capture. At log M_b 9 / 10.5 / 11.5 on both footings the clock is at rest inside r_e*, because a folding flow settles
+behind a shock rather than by diffusion. So nu_S = r_e*^2/t0 is not a bound, and D-V(h) does not close on T7. VSH1
+reports (not graded) that the settled charge is 1.4 M_b at every mass, 1.1-3.5 % of the law's halo there: short by 28-95
+times in FLD1's infall model. Whether D-V(h) is closed on that amount is the lead's call. Limits are in VSH1.
+
 ---
 
 ## The landed run (now the control): action (A) without W and P, plus an A-keyed drag
