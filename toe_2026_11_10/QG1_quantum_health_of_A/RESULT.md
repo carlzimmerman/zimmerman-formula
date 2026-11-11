@@ -166,6 +166,12 @@ Cutoff Lambda_c = min(Lambda_s, M_Pl), as T2 sets it.
 
 ## 10. Commits
 
-Local: criteria 9f78e93383, A1 ec1f4dc6ba, result (this file's commit). Origin ids are recorded in the next commit.
+| commit | shared checkout (local) | origin (replayed with merge-tree + commit-tree) |
+|---|---|---|
+| criteria | 9f78e93383 | 97ff779d5b |
+| AMENDMENT A1 | ec1f4dc6ba | cb2851f3c2 |
+| result | 83793fbbc7 | 504c609936 |
+
+This id table is one further commit, pushed the same way.
 
 Adopts nothing. kappa = 1/2 FITTED; not theory closed.
