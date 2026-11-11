@@ -113,6 +113,102 @@ law's own phantom exceeds Psi's density), so S3(c) is reported, not decisive; M5
 140 x lower) BITES. Lean: `WV1.lean` 9 theorems, exit 0, standard axioms only (`compile.txt`); `WV1_MUTATE.lean` fails
 on all 8 false statements (`compile_MUTATE.txt`, 9 errors, exit 1).
 
+## Added after landing: the coordinator's four requests (post hoc, reported; no label moves)
+
+Requested by the coordinating session after the result landed. It pointed at three inputs: `MEDIUM_DESIGN_2026-11-10.md`
+(origin c39b1272f1), SHP1 (`fable52_push/SHP1_cold_component_shape/`) and PAR1
+(`closure_2026_11_10/PAR1_parent_action_spec/`, origin 6be0bf30d1). All three were read only. Per the coordinator's
+scope note, no member of PAR1's branch B-Tm-smooth is built or graded here; that branch is lane SMF1's.
+
+### P1. SHP1's shape measurement against a cored Psi halo (`wv1_shp1_row.py`, `.out`, `.json`)
+
+The question: is a cored Psi halo at R_TF = 0.15-0.26 r_ta, holding the share, excluded by SHP1, or within it?
+- **Method.** SHP1's own data and statistics, loaded through its own script (its SPARC loader copied with r kept; the
+  copy reproduces SHP1's 2700 points exactly).
+- **The rows.** SPARC is SHP1's R1 (bin medians, line 0.10 dex). KiDS is SHP1's R2 (B21's isolated lenses, full
+  covariance; lens radii at log M_b 10.45, as SHP1's R4).
+- **The halo.** All of S M_b inside R_TF, either uniform (the least centrally concentrated core) or the n = 1
+  Thomas-Fermi shape.
+- **Psi inside the law** is WV1's coupling in both variants (S0). **Psi outside the law** is QX28's coupling, run for
+  contrast.
+
+| share, R_TF, shape | SPARC worst bin, Psi inside the law (canonical / alt; line 0.10) | KiDS published chi^2 / 15, inside the law (law alone: 194 / 133) | same, outside the law (QX28's coupling) | KiDS hot-gas chi^2 / 15, inside (law alone: 346 / 395) |
+|---|---|---|---|---|
+| 5.41, 0.15 r_ta, uniform | 0.132 / 0.212 **FAIL** | 1292 / 1835 | 176 / 163 | 5133 / 6657 |
+| 5.41, 0.15 r_ta, TF n = 1 | 0.247 / 0.330 **FAIL** | 1430 / 2000 | 216 / 208 | 5273 / 6825 |
+| 5.41, 0.26 r_ta, uniform | 0.031 / 0.080 within | 861 / 1289 | 116 / 85 | 4657 / 6056 |
+| 5.41, 0.26 r_ta, TF n = 1 | 0.076 / 0.158 within / **FAIL** | 1016 / 1493 | 130 / 106 | 4832 / 6284 |
+
+The share 5.562 (QX28's R) moves every number by at most 0.005 dex and under 7 % in chi^2 (`.out`).
+
+**Reading.**
+- **With Psi inside the law, as WV1's action puts it, the cored halo is excluded by SHP1's KiDS measurement on both
+  footings and at both radii.** At KiDS radii the whole share is enclosed, and the law multiplies it. The prediction
+  sits 1.25 to 2.9 times the law of the baryons, against the measured 1.40 +- 0.03 (published) and 0.91 (hot gas).
+- At 0.15 r_ta it is also excluded by SPARC's shape. At 0.26 r_ta, SPARC alone allows the uniform core on both footings
+  and the Thomas-Fermi core on canonical only.
+- **QX28's pass does not carry over.** QX28 kept the condensate outside the law, a Newtonian add-on. In that coupling
+  SHP1's data allow it: KiDS published chi^2 85-216, against 194 / 133 for the law alone. That matches SHP1's R4, which
+  allows the record's own share of 5.56 M_b as a separate halo.
+- **V1's only way out is counting.** Its unconverted remainder S_rem sits inside the law and lifts the deep ratio to
+  sqrt(1 + S_rem). SHP1's mean + 2 sigma allows S_rem <= 1.16 / 0.80 (published) and none with hot gas. So at least
+  79 % / 85 % of the 5.41 (all of it, with hot gas) must have turned into the law's phantom. That is form B, not a
+  second halo beside the law.
+- The MEDIUM_DESIGN property "no second halo beside the law" therefore holds against WV1's coupling. It says nothing
+  against QX28's coupling, where SHP1's R4 leaves room.
+
+### P2. V1 against PAR1's branch B-Tm-fine and its C15
+
+PAR1 puts V1 in B-Tm-fine and leaves that branch open for m in [4.20e-24, 1.84e-23] eV (canonical; alt up to 1.93e-23).
+- **Its lower edge uses only the record's forest line at z = 3.** WV1's frozen S2 applies the record's line at all four
+  of QX28's frozen redshifts, 3, 10, 100 and 1089 (G6c and G6a). The binding one is z = 1089:
+  - m c^2 >= 7.556e-23 / 7.554e-23 eV.
+  - That is 4.1 / 3.9 times above PAR1's upper edge, so on WV1's frozen line set the window is empty with no published
+    forest bound needed.
+  - Caveat: G6a's z = 1089 line (0.42/h Mpc) is stricter than the acoustic-peak scale. With k <= 0.3/Mpc alone at
+    z = 1089, the bound would fall to about 7e-26 eV.
+  - WV1's z = 3 value alone is 4.58e-24 eV, against PAR1's 4.20e-24 eV. The 8 % difference is a definition: WV1 uses
+    the wave's own Jeans wavenumber, PAR1 converts through a sound speed.
+- **WV1 computed what PAR1's C15 estimates.** In the collapse runs at log M_b 9.4, at m = 4.72e-24 eV (inside PAR1's
+  window) and at 1.89e-23 eV (inside alt's window, just above canonical's):
+  - The static-frame radius is R_s = 0 at every last-Gyr output, law off and bracket, both footings.
+  - Inside r_ta the frame's acceleration has median |A| = 2.4 / 8.8 times g (law off), while |A| = 0.003 to 0.011 a0.
+  - C15 at log M_b 9.4 allows m up to 2.45e-22 eV, so this closes what C15 leaves open there. At log M_b 10.45 to 10.9
+    WV1's S2 bound already exceeds C15's ceilings (4.0e-23 to 1.84e-23).
+- **What binds is not C15's mechanism.** C15 has the fine-grained noise halve the mean polarization once it reaches
+  about a0. In the runs the noise stays well below a0, where the law is linear in A, so it averages out of the mean.
+  - What fails instead is local positivity. In V1, m|psi|^2 = C - D.P has to stay >= 0 in every cell.
+  - The noise's phantom charge D.P exceeds Psi's density on 74-76 % of Psi's mass inside r_ta (S3(c) at those nu), and
+    on 70 % at nu_max.
+  - C15's mean-field estimate does not test this condition. It is X14's C5 objection, made quantitative.
+
+### P3. V2 against PAR1's branch B0
+
+**Agreed: V2 is in PAR1's closed branch B0, and WV1's results reproduce both of PAR1's grounds.**
+- **Counted twice (Lemma 0 x Pi3).** V2's phantom is the frame's own polarization charge. Psi's dust is a separate
+  conserved mass that the law sources: S0, exact; S1b's V2 identity. P1 shows the data cost of that double count:
+  KiDS chi^2 861-2097 / 15.
+- **C1: neutral halo, frozen.** S1b (exact) and S3(b) give the same statement in its dynamic form: the frame's charge
+  is advected from zero, so it never polarizes.
+- **What WV1 adds to B0.** The health failure on FRW: QG1's own code gives Lambda_s = 0 with the frame uncharged. That
+  is PAR1's section 3, item 3 ("the frame must also carry charge on FRW") as a graded row.
+- **Constants and structure.** V2 adds one constant beyond (A) (nu = hbar/m; it drops mu_K). It has none of
+  B-Tm-smooth's structure: no charge exchange, no alignment to Psi's current, no length ell. So it is not a member of
+  that branch, and it is not counted against PAR1's at least two new constants. Per the scope note, no B-Tm-smooth
+  member was built here.
+
+### P4. M5 (MEDIUM_DESIGN section 2; PAR1's C16)
+
+**M5 does not apply to WV1.** Its hypothesis is a local, momentum-conserving medium whose own equilibrium is the law,
+for every baryon profile. In WV1 the law is not Psi's equilibrium:
+- The law is the P sector's response to the frame's acceleration.
+- Psi's own static states are Schrodinger states, for example the soliton.
+- In V1, Psi's flow obeys the plain Madelung-Euler equation in the total potential (S1b, exact). So nothing makes Psi
+  settle into the law's shape.
+
+That is exactly why V1 fails: Psi is not static where the law is seen, so it is not M5's mechanism. V2 fails on the
+frame's charge, not on M5.
+
 ## Corrections and disclosures
 
 - Two solver bugs were found and fixed in development, before any production run: the KA5 integral used a left Riemann
@@ -127,7 +223,7 @@ on all 8 false statements (`compile_MUTATE.txt`, 9 errors, exit 1).
 
 `FROZEN_CRITERIA.md`; `AMENDMENT_A1.md`; `AMENDMENT_A2.md`; `wv1_sym.py` (S0, S1b, S1e, dispersions, KA1, KA2, KA6;
 MUTATE M1); `wv1_s1s2.py` (S1c, S1d, S2, KA3, M2); `wv1_sp_lib.py` (solver); `wv1_ka.py` (KA4, KA5, M5); `wv1_s3.py`
-(one collapse run, preemptible); `wv1_partial.py` (A2); `wv1_s3_grade.py` (S3, M3, M4, labels) with outputs `*.out` and
+(one collapse run, preemptible); `wv1_partial.py` (A2); `wv1_shp1_row.py` (post hoc row P1); `wv1_s3_grade.py` (S3, M3, M4, labels) with outputs `*.out` and
 `*.json`; `runs/` (one JSON and one compressed profile file per run); `WV1.lean`, `WV1_MUTATE.lean`, `compile*.txt`.
 Re-run: `python3 wv1_sym.py; python3 wv1_s1s2.py; python3 wv1_ka.py; python3 wv1_s3.py --mass M --fac F --footing FO
 [--law]` (about 5 min at log M_b 9.4, nu_max; one to several hours at 10.7, nu_max); `python3 wv1_s3_grade.py`.
