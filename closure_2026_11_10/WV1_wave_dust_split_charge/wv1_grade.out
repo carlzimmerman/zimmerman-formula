@@ -21,8 +21,8 @@ S1: V1 PASS, V2 FAIL
 S3 scan (law off | law bracket): R_s = static-frame radius, min over the last-Gyr set (kpc); r_ta, r_c at z 0 (kpc);
 S3(c) = max over the last-Gyr set of Psi's mass fraction inside r_ta(z 0) with D.P > m n; M4 = same with A -> dPhi/dr
   log M_b 10.7 (KiDS inner edge 362 kpc, SPARC R_last 71 kpc):
-    nu       nan: off [missing] | law [missing]
-    nu       nan: off [missing] | law [missing]
+    nu     25.37: off [R_s 0, r_ta 390.3, r_c 0.0707, S3(c) 0.618, M4 0.332, narrow 6] | law [missing]
+    nu     101.5: off [R_s 0, r_ta 399.7, r_c 0.353, S3(c) 0.654, M4 0.332, narrow 0] | law [R_s 0, r_ta 1916, r_c 0.141, S3(c) 0.583, M4 0.915, narrow 220]
     nu       nan: off [missing] | law [missing]
     nu       nan: off [missing] | law [missing]
     nu       nan: off [missing] | law [missing]
@@ -37,17 +37,17 @@ S3(c) = max over the last-Gyr set of Psi's mass fraction inside r_ta(z 0) with D
     nu 2.598e+04: off [R_s 0, r_ta 0, r_c nan, S3(c) 1.000, M4 0.000, narrow 0] | law [R_s 0, r_ta 1100, r_c 271, S3(c) 0.636, M4 0.748, narrow 0]
     nu 1.039e+05: off [R_s 0, r_ta 0, r_c nan, S3(c) 0.000, M4 1.000, narrow 0] | law [R_s 0, r_ta 221.6, r_c 2.17e+03, S3(c) 1.000, M4 1.000, narrow 0]
 
-V1 S3(a) fold-free: narrow maxima at nu_max (law off) {'10.7': None, '9.4': 0} [bracket, reported: {'10.7': None, '9.4': None}]; convergence (dx/2 to z 2) None -> PENDING
+V1 S3(a) fold-free: narrow maxima at nu_max (law off) {'10.7': 6, '9.4': 0} [bracket, reported: {'10.7': None, '9.4': None}]; convergence (dx/2 to z 2) {'peak_full': 23441677.880204696, 'peak_half': 23980705.803775866, 'z2_full': 1797689.3419796922, 'z2_half': 22016525.49843072, 'peak_rel': 0.022994425839557797, 'z2_rel': 11.247124675159494, 'ok': False} -> FAIL
 V1 S3(b) [A1] static-frame reach at nu_max: R_s = 10.7: pending, 9.4: pending (needs >= KiDS inner edge and SPARC R_last at both masses) -> PENDING; nu_min over the scan: none; window [nu_min, nu_max] pending; M3 (static forced everywhere) PASS -> BITES
-V1 S3(b) [A1A2] static-frame reach at nu_max: R_s = 10.7: pending, 9.4: 0 kpc (needs >= KiDS inner edge and SPARC R_last at both masses) -> FAIL; nu_min over the scan: none (every scanned nu fails at a mass); window [nu_min, nu_max] EMPTY; M3 (static forced everywhere) PASS -> BITES
-V1 S3(c) wave multi-streaming in V1: bad mass fraction {10.7: None, 9.4: 0.6996461303868046} (line 0.01) -> FAIL; median |A|/a0 inside r_ta at z 0 {10.7: None, 9.4: 0.07080991000670955}, |A|/g {10.7: None, 9.4: 47.252323145693296}; M4 (A -> dPhi/dr): {10.7: None, 9.4: 0.2724328607043112} -> does NOT bite (the smooth law phantom also exceeds the local Psi density)
-S3(d) reported at nu_max (law off): {10.7: None, 9.4: {'r_c': 0.3174603174603175, 'r_ta': 155.69986708640985, 'r_c_over_r_ta': 0.002038924781381697}} (QX28's diffuse core: r_c/r_ta 0.15-0.26)
+V1 S3(b) [A1A2] static-frame reach at nu_max: R_s = 10.7: 0 kpc, 9.4: 0 kpc (needs >= KiDS inner edge and SPARC R_last at both masses) -> FAIL; nu_min over the scan: none (every scanned nu fails at a mass); window [nu_min, nu_max] EMPTY; M3 (static forced everywhere) PASS -> BITES
+V1 S3(c) wave multi-streaming in V1: bad mass fraction {10.7: 0.6181287312696008, 9.4: 0.6996461303868046} (line 0.01) -> FAIL; median |A|/a0 inside r_ta at z 0 {10.7: 2.079901161172972, 9.4: 0.07080991000670955}, |A|/g {10.7: 471.6873697851292, 9.4: 47.252323145693296}; M4 (A -> dPhi/dr): {10.7: 0.3317476844442309, 9.4: 0.2724328607043112} -> does NOT bite (the smooth law phantom also exceeds the local Psi density)
+S3(d) reported at nu_max (law off): {10.7: {'r_c': 0.07067762169802988, 'r_ta': 390.3462404209747, 'r_c_over_r_ta': 0.0001810639232026586}, 9.4: {'r_c': 0.3174603174603175, 'r_ta': 155.69986708640985, 'r_c_over_r_ta': 0.002038924781381697}} (QX28's diffuse core: r_c/r_ta 0.15-0.26)
 
 LABEL V1 / canonical: as frozen NO VERDICT (known answer KA4(ii) fails as frozen); also failing, not decisive (its MUTATE did not bite): S3(c)
-                 under A1 NO VERDICT (S3(b): the law-bracket runs at nu_max do not finish); also failing, not decisive (its MUTATE did not bite): S3(c)
-                 under A1 + A2 STRUCTURE FAILS (S3(b), window); also failing, not decisive (its MUTATE did not bite): S3(c); still running: S3(a)
+                 under A1 STRUCTURE FAILS (S3(a)); also failing, not decisive (its MUTATE did not bite): S3(c); not graded under A1 (the nu_max law brackets did not finish): S3(b), window
+                 under A1 + A2 STRUCTURE FAILS (S3(a), S3(b), window); also failing, not decisive (its MUTATE did not bite): S3(c)
 LABEL V2 / canonical: STRUCTURE FAILS (S1(c) FRW, S3(a) frame focuses, S3(b) law never appears)
-  (missing runs: ['10.7/1/off', '10.7/1/law', '10.7/4/off', '10.7/4/law', '10.7/16/off', '10.7/16/law', '10.7/64/off', '10.7/64/law', '10.7/256/off', '10.7/256/law', '10.7/1024/off', '10.7/1024/law', '10.7/4096/off', '10.7/4096/law', '9.4/1/law'])
+  (missing runs: ['10.7/1/law', '10.7/16/off', '10.7/16/law', '10.7/64/off', '10.7/64/law', '10.7/256/off', '10.7/256/law', '10.7/1024/off', '10.7/1024/law', '10.7/4096/off', '10.7/4096/law', '9.4/1/law'])
 
 ================ footing alt ================
 S2: nu_max = 25.38 kpc km/s (m c^2 >= 7.554e-23 eV)
@@ -56,8 +56,8 @@ S1: V1 PASS, V2 FAIL
 S3 scan (law off | law bracket): R_s = static-frame radius, min over the last-Gyr set (kpc); r_ta, r_c at z 0 (kpc);
 S3(c) = max over the last-Gyr set of Psi's mass fraction inside r_ta(z 0) with D.P > m n; M4 = same with A -> dPhi/dr
   log M_b 10.7 (KiDS inner edge 362 kpc, SPARC R_last 71 kpc):
-    nu       nan: off [missing] | law [missing]
-    nu       nan: off [missing] | law [missing]
+    nu     25.38: off [R_s 0, r_ta 390.3, r_c 0.0709, S3(c) 0.617, M4 0.323, narrow 3] | law [missing]
+    nu     101.5: off [R_s 0, r_ta 399.7, r_c 0.283, S3(c) 0.655, M4 0.323, narrow 0] | law [missing]
     nu       nan: off [missing] | law [missing]
     nu       nan: off [missing] | law [missing]
     nu       nan: off [missing] | law [missing]
@@ -72,17 +72,17 @@ S3(c) = max over the last-Gyr set of Psi's mass fraction inside r_ta(z 0) with D
     nu 2.598e+04: off [R_s 0, r_ta 0, r_c nan, S3(c) 1.000, M4 0.000, narrow 0] | law [R_s 0, r_ta 1159, r_c 271, S3(c) 0.764, M4 0.765, narrow 0]
     nu 1.039e+05: off [R_s 0, r_ta 0, r_c nan, S3(c) 0.000, M4 1.000, narrow 0] | law [R_s 0, r_ta 221.6, r_c 1.95e+03, S3(c) 1.000, M4 1.000, narrow 0]
 
-V1 S3(a) fold-free: narrow maxima at nu_max (law off) {'10.7': None, '9.4': 0} [bracket, reported: {'10.7': None, '9.4': None}]; convergence (dx/2 to z 2) None -> PENDING
+V1 S3(a) fold-free: narrow maxima at nu_max (law off) {'10.7': 3, '9.4': 0} [bracket, reported: {'10.7': None, '9.4': None}]; convergence (dx/2 to z 2) {'peak_full': 29694522.675301645, 'peak_half': 30324378.116689347, 'z2_full': 4132411.4814112815, 'z2_half': 15258615.927752543, 'peak_rel': 0.02121116571816728, 'z2_rel': 2.6924241442048973, 'ok': False} -> FAIL
 V1 S3(b) [A1] static-frame reach at nu_max: R_s = 10.7: pending, 9.4: pending (needs >= KiDS inner edge and SPARC R_last at both masses) -> PENDING; nu_min over the scan: none; window [nu_min, nu_max] pending; M3 (static forced everywhere) PASS -> BITES
-V1 S3(b) [A1A2] static-frame reach at nu_max: R_s = 10.7: pending, 9.4: 0 kpc (needs >= KiDS inner edge and SPARC R_last at both masses) -> FAIL; nu_min over the scan: none (every scanned nu fails at a mass); window [nu_min, nu_max] EMPTY; M3 (static forced everywhere) PASS -> BITES
-V1 S3(c) wave multi-streaming in V1: bad mass fraction {10.7: None, 9.4: 0.6973045576872862} (line 0.01) -> FAIL; median |A|/a0 inside r_ta at z 0 {10.7: None, 9.4: 0.05989478153559773}, |A|/g {10.7: None, 9.4: 47.19369765294856}; M4 (A -> dPhi/dr): {10.7: None, 9.4: 0.26417700652973347} -> does NOT bite (the smooth law phantom also exceeds the local Psi density)
-S3(d) reported at nu_max (law off): {10.7: None, 9.4: {'r_c': 0.31887755102040816, 'r_ta': 155.69986708640985, 'r_c_over_r_ta': 0.002048027124155722}} (QX28's diffuse core: r_c/r_ta 0.15-0.26)
+V1 S3(b) [A1A2] static-frame reach at nu_max: R_s = 10.7: 0 kpc, 9.4: 0 kpc (needs >= KiDS inner edge and SPARC R_last at both masses) -> FAIL; nu_min over the scan: none (every scanned nu fails at a mass); window [nu_min, nu_max] EMPTY; M3 (static forced everywhere) PASS -> BITES
+V1 S3(c) wave multi-streaming in V1: bad mass fraction {10.7: 0.6171483780251276, 9.4: 0.6973045576872862} (line 0.01) -> FAIL; median |A|/a0 inside r_ta at z 0 {10.7: 1.6992125308595065, 9.4: 0.05989478153559773}, |A|/g {10.7: 447.32515282683937, 9.4: 47.19369765294856}; M4 (A -> dPhi/dr): {10.7: 0.32252828211219375, 9.4: 0.26417700652973347} -> does NOT bite (the smooth law phantom also exceeds the local Psi density)
+S3(d) reported at nu_max (law off): {10.7: {'r_c': 0.07086167800453515, 'r_ta': 390.3462404209747, 'r_c_over_r_ta': 0.00018153544383599883}, 9.4: {'r_c': 0.31887755102040816, 'r_ta': 155.69986708640985, 'r_c_over_r_ta': 0.002048027124155722}} (QX28's diffuse core: r_c/r_ta 0.15-0.26)
 
 LABEL V1 / alt: as frozen NO VERDICT (known answer KA4(ii) fails as frozen); also failing, not decisive (its MUTATE did not bite): S3(c)
-                 under A1 NO VERDICT (S3(b): the law-bracket runs at nu_max do not finish); also failing, not decisive (its MUTATE did not bite): S3(c)
-                 under A1 + A2 STRUCTURE FAILS (S3(b), window); also failing, not decisive (its MUTATE did not bite): S3(c); still running: S3(a)
+                 under A1 STRUCTURE FAILS (S3(a)); also failing, not decisive (its MUTATE did not bite): S3(c); not graded under A1 (the nu_max law brackets did not finish): S3(b), window
+                 under A1 + A2 STRUCTURE FAILS (S3(a), S3(b), window); also failing, not decisive (its MUTATE did not bite): S3(c)
 LABEL V2 / alt: STRUCTURE FAILS (S1(c) FRW, S3(a) frame focuses, S3(b) law never appears)
-  (missing runs: ['10.7/1/off', '10.7/1/law', '10.7/4/off', '10.7/4/law', '10.7/16/off', '10.7/16/law', '10.7/64/off', '10.7/64/law', '10.7/256/off', '10.7/256/law', '10.7/1024/off', '10.7/1024/law', '10.7/4096/off', '10.7/4096/law', '9.4/1/law'])
+  (missing runs: ['10.7/1/law', '10.7/4/law', '10.7/16/off', '10.7/16/law', '10.7/64/off', '10.7/64/law', '10.7/256/off', '10.7/256/law', '10.7/1024/off', '10.7/1024/law', '10.7/4096/off', '10.7/4096/law', '9.4/1/law'])
 
 S4: NOT GRADED for either variant (S0-S3 do not all pass).
 MUTATE: M1 True, M2 True, M3 per footing [True, True], M4 per footing [False, False], M5 True, Lean twin True

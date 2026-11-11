@@ -5,18 +5,29 @@
 | Variant | canonical | alt |
 |---|---|---|
 | **V2** (separate frame, no dust term; Psi falls through it) | **STRUCTURE FAILS** (S1(c) FRW; S3(a) the frame focuses; S3(b) the law never appears) | **STRUCTURE FAILS** (same) |
-| **V1** (frame = phase of Psi), under A1 + A2 | **STRUCTURE FAILS** (S3(b); the window [nu_min, nu_max] is empty) | **STRUCTURE FAILS** (same) |
+| **V1** (frame = phase of Psi), under A1 + A2 | **STRUCTURE FAILS** (S3(b); the window [nu_min, nu_max] is empty; S3(a) at log M_b 10.7) | **STRUCTURE FAILS** (same) |
 | V1 as frozen | NO VERDICT (known answer KA4(ii) fails as frozen) | NO VERDICT |
-| V1 under A1 only | NO VERDICT (the law-bracket runs at nu_max do not finish) | NO VERDICT |
+| V1 under A1 only | STRUCTURE FAILS (S3(a) only; S3(b) and the window not graded: the nu_max brackets do not finish). **Changed 11-11** from NO VERDICT when the 10.7 runs landed | same |
 
 S4 (static rows) is NOT GRADED for either variant. V2's label rests on neither amendment. Both of V1's amendments are
 post hoc, each committed alone: A1 replaces a known answer whose observable was wrong, A2 grades four runs that cannot
 finish on the outputs they reached. Under every reading, V1 also fails S3(c), but S3(c) does not decide the label,
-because its MUTATE arm M4 did not bite (see the table). **The log M_b 10.7 runs are not part of this result.** The
-coordinating session paused them with SIGSTOP (state intact) so that BX1's live box run could have the cores. That
-leaves S3(a) at log M_b 10.7, its dx/2 convergence check, S3(c) at 10.7 and the 10.7 scan unevaluated. No label rests on
-them: S3(b) and the empty window are decided at log M_b 9.4 alone, and these items could only add failing parts. As
-landed, V1's S3(a) therefore reads NOT EVALUATED at 10.7 (no unresolved maxima at 9.4).
+because its MUTATE arm M4 did not bite (see the table).
+
+**The log M_b 10.7 rows, added 2026-11-11, change one reading.** The runs had been paused for BX1's box run (see the
+disclosures); they finished on 11-11. At 10.7 they confirm S3(b) (R_s = 0) and S3(c). They also make **S3(a) fail as
+frozen** at log M_b 10.7, which adds a failing part to V1:
+- 6 (canonical) and 3 (alt) density maxima at nu_max are narrower than 4 cells.
+- The half-spacing run reproduces the peak central density to 2.3 % / 2.1 %. It misses the z = 2 central density by
+  12x / 3.7x (line 20 %).
+- **What it means.** S3(a)'s test is "finite and resolved". Psi has no fold (SP has none, and KA4(ii') shows the focus
+  regularized at the de Broglie scale). What failed is the resolution of the nu_max core, 0.07 kpc, about 4 cells, whose
+  instantaneous central density is not converged. The frozen rule maps any S3 failure to STRUCTURE FAILS, so:
+  - Under A1 + A2 the label is unchanged in kind and gains S3(a) as a failing part.
+  - **Under A1 alone it moves from NO VERDICT to STRUCTURE FAILS, on S3(a) alone.** That reading rests on a resolution
+    failure, not on physics. Under A1, S3(b) and the window stay ungraded.
+  - As frozen, NO VERDICT is unchanged.
+- V2's label does not move.
 
 TEST lane, quarantined. Adopts nothing, relabels nothing, registers nothing. Footings never pooled. The cold component is
 cold dark energy, a field (Psi), never a particle.
@@ -94,13 +105,13 @@ A = grad(Phi + nu theta_t + nu^2 |grad theta|^2/2) in V1 and A = grad(Phi - chi_
 | S1(d) static galaxy | PASS (both variants, both footings) | QG1's point-mass rows re-run through its code: Lambda_s L 1.09e12 / 3.14e12 / 1.40e13 (alt 1.12e12 / 3.24e12 / 1.44e13) |
 | S1(e) V1's psi equation | exact | i nu psi_t = H psi - (i nu/2)(S/|psi|^2) psi, with S = d_t(div P) + div((div P) v) |
 | S2 nu_max | 25.37 [25.38] kpc km/s | by redshift: z 3: 418.8, z 10: 252.6, z 100: 83.35, z 1089: **25.37**; m c^2 >= 7.556e-23 [7.554e-23] eV; k_J(z 1089) = 10.1/Mpc (acoustic peaks, k <= 0.3/Mpc, kept off); k_J today 57.9/Mpc |
-| S3(a) V1 fold-free | log M_b 9.4: no unresolved maxima; 10.7: **not evaluated** (runs paused) | Psi's Lagrangian radii follow COL1's dust to 3.1e-3 up to 0.9 t_f, and the focus is regularized at the de Broglie scale; at nu_max (law off) 0 narrow maxima at log M_b 9.4; the 10.7 runs and the dx/2 convergence run were paused before finishing |
+| S3(a) V1 fold-free | log M_b 9.4: no unresolved maxima; **10.7: FAIL as frozen (resolution)** | Psi's Lagrangian radii follow COL1's dust to 3.1e-3 up to 0.9 t_f, and the focus is regularized at the de Broglie scale. At nu_max (law off): 0 narrow maxima at log M_b 9.4; 6 [3] at 10.7. Convergence at 10.7 (dx/2 to z 2): peak central density 2.34e7 vs 2.40e7 x mean (2.3 %) [2.97e7 vs 3.03e7, 2.1 %], but z = 2 central density 1.80e6 vs 2.20e7 [4.13e6 vs 1.53e7]: FAIL. The core (r_c 0.07 kpc) is about 4 cells |
 | S3(a) V2 | **FAIL** | the zero-charge frame is mimetic and focuses at COL1's time: 0.07116 / 0.15333 Gyr after z 10 (log M_b 10.7 / 9.4) |
 | S3(b) V2 | **FAIL** | reach 0 (exact identity + Lean `advected_zero`, `regular_centre_zero`) |
-| **S3(b) V1** (A1 + A2) | **FAIL** | log M_b 9.4: R_s = 0 kpc (needs >= 81 and >= 23) at nu_max, law off over the last-Gyr set and the bracket at z 2, 1, 0.5 (A2) |
+| **S3(b) V1** (A1 + A2) | **FAIL** | R_s = 0 kpc at nu_max at both masses: log M_b 9.4 (needs >= 81 and >= 23) and 10.7 (needs >= 362 and >= 71). Law off over the last-Gyr set; bracket at z 2, 1, 0.5 (9.4) and z 2 (10.7) under A2. At nu_max x 4, log M_b 10.7: R_s = 0 law off (both footings) and bracket (canonical) |
 | **window [nu_min, nu_max]** | **EMPTY** | R_s = 0 at log M_b 9.4 at every scanned nu (25.4, 101.5, 406, 1624, 6495, 2.60e4, 1.04e5 kpc km/s), law off and bracket, both footings: nu_min does not exist |
-| S3(c) V1 | FAIL, **not decisive** (M4 did not bite) | fraction of Psi's mass inside r_ta with D.P > m n: 0.700 [0.697] at nu_max, log M_b 9.4; median |A|/g inside r_ta = 47; M4 (A -> dPhi/dr): 0.272 [0.264] |
-| S3(d) reported | - | nu_max, log M_b 9.4, law off: r_ta(z 0) = 155.7 kpc, r_c = 0.32 kpc, r_c/r_ta = 0.002 (QX28 needs 0.15-0.26). Larger nu: r_c 1.3 / 8.4 kpc at x4 / x16; from x64 up, Psi no longer collapses without the law. With the bracket: r_ta 0.2 to 1.2 Mpc and r_c 0.4 to 2200 kpc, never static |
+| S3(c) V1 | FAIL, **not decisive** (M4 did not bite) | fraction of Psi's mass inside r_ta with D.P > m n at nu_max: 0.700 [0.697] at log M_b 9.4, 0.618 [0.617] at 10.7. Median |A| inside r_ta: 47 g, 0.07 a0 at 9.4; 470 [450] g, 2.1 [1.7] a0 at 10.7. M4 (A -> dPhi/dr): 0.272 [0.264] at 9.4, 0.332 [0.323] at 10.7 |
+| S3(d) reported | - | nu_max, law off: r_ta(z 0) = 155.7 kpc, r_c = 0.32 kpc, r_c/r_ta = 0.002 at log M_b 9.4; r_ta = 390.3 kpc, r_c = 0.071 kpc, r_c/r_ta = 1.8e-4 at 10.7 (QX28 needs 0.15-0.26). Larger nu: r_c 1.3 / 8.4 kpc at x4 / x16; from x64 up, Psi no longer collapses without the law. With the bracket: r_ta 0.2 to 1.2 Mpc and r_c 0.4 to 2200 kpc, never static |
 | S4 | NOT GRADED | - |
 
 Known answers: KA1 (X14's C5: omega^2 = nu^2 k^4/4 - 4 pi G rho) PASS; KA2 (QX17's static law) PASS; KA3 (QG1 re-run
@@ -179,7 +190,8 @@ PAR1 puts V1 in B-Tm-fine and leaves that branch open for m in [4.20e-24, 1.84e-
   - C15 at log M_b 9.4 allows m up to 2.45e-22 eV, so this closes what C15 leaves open there. At log M_b 10.45 to 10.9
     WV1's S2 bound already exceeds C15's ceilings (4.0e-23 to 1.84e-23).
 - **What binds is not C15's mechanism.** C15 has the fine-grained noise halve the mean polarization once it reaches
-  about a0. In the runs the noise stays well below a0, where the law is linear in A, so it averages out of the mean.
+  about a0. At log M_b 9.4 the noise stays well below a0, where the law is linear in A, so it averages out of the mean.
+  (At log M_b 10.7, nu_max, the median |A| is 1.7-2.1 a0, inside C15's regime: there both mechanisms act.)
   - What fails instead is local positivity. In V1, m|psi|^2 = C - D.P has to stay >= 0 in every cell.
   - The noise's phantom charge D.P exceeds Psi's density on 74-76 % of Psi's mass inside r_ta (S3(c) at those nu), and
     on 70 % at nu_max.
@@ -221,14 +233,18 @@ frame's charge, not on M5.
 - The four production runs at log M_b 10.7, nu_max were stopped once by the lead (SIGTERM, checkpointed) so that they
   record the central-density history the S3(a) convergence check needs. They resumed from their checkpoints.
 - QG1's script was executed unmodified in a temporary directory. Its output files went there, not into QG1's folder.
-- **The log M_b 10.7 runs were paused, not finished.** The coordinating session suspended all seven running
-  `wv1_s3.py --mass 10.7` processes with SIGSTOP (11-10, about 21:00): the four at nu_max (two law off, two at dx/2 to
-  z 2) and three at nu_max x 4. It did so because BX1's 512^3 box run, PAPER72 v1.1's last pending row, was starved of
-  cores, and the owner's rule is no heavy compute beside a live box run. Nothing was killed. The runs checkpoint by wall
-  time only, so a pause cannot change their results. They may be resumed (`kill -CONT`) once the box run has exited, and
-  their rows added in a later commit. Every 10.7 number in this file comes from outputs finished before the pause: the
-  two A2 bracket partials and the z = 2 output of the law-off runs, taken from their checkpoints: R_s = 0,
-  r_ta = 140.6 kpc and no unresolved maxima (0 of 5697), on both footings.
+- **The log M_b 10.7 runs were paused, then finished.**
+  - **Suspended.** The coordinating session suspended the seven running `wv1_s3.py --mass 10.7` processes with SIGSTOP
+    on 11-10 at about 21:00: the four at nu_max (two law off, two at dx/2 to z 2) and three at nu_max x 4. BX1's box
+    runs were starved of cores, and the owner's rule is no heavy compute beside a live box run.
+  - **Re-paused.** The lead resumed them at 21:28 when the first box run exited, then paused them again within about
+    10 s because a second box run had started.
+  - **Resumed and finished.** The coordinating session resumed them on 11-11 at 06:59; all seven exited by 09:23.
+  - **Effect.** Nothing was killed, and the runs checkpoint by wall time only, so the pauses cannot change a number.
+    But the `wall_s` field in the 10.7 run JSONs includes about 9.5 h of suspension and is not a run time.
+  - **Not run.** The rest of the 10.7 scan (nu_max x 16 to x 4096, and alt's x 4 bracket). At the coordinator's
+    request no new runs were started, and the queue that would have launched them was stopped. Those rows are reported
+    as not run. No label needs them: the window is already empty at log M_b 9.4.
 
 ## Files
 

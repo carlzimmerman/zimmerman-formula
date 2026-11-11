@@ -217,7 +217,10 @@ for fo in ("canonical", "alt"):
         else:
             lab = "STRUCTURE FAILS (" + ", ".join(decisive) + ")"
         if nd: lab += f"; also failing, not decisive (its MUTATE did not bite): {', '.join(nd)}"
-        if pending and lab.startswith("STRUCTURE"): lab += f"; still running: {', '.join(pending)}"
+        stopped = rd == "A1" and any(RUNS.get(tag(fo, m, 1, True) + "_partial") for m in MASSES)
+        if pending and lab.startswith("STRUCTURE"):
+            lab += (f"; not graded under A1 (the nu_max law brackets did not finish): {', '.join(pending)}" if stopped
+                    else f"; still running: {', '.join(pending)}")
         return lab, fails, pending, decisive
     lf = v1_label(solver_ok_frozen, W["A1"], "frozen")
     la = v1_label(solver_ok_A1, W["A1"], "A1")
