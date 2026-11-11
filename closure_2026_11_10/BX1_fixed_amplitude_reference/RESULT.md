@@ -150,9 +150,12 @@ k 0.47, at every z. Gap shift from A256 to pair A: Legacy +0.06, DES +0.10 / -0.
 
 | what | local | origin |
 |---|---|---|
-| FROZEN_CRITERIA.md (alone) | 21e1c07e9a | (filled after push) |
-| AMENDMENT_A1.md (alone, post hoc) | 4af7a4b905 | (filled after push) |
-| landing: scripts, outputs, this RESULT | (filled after commit) | (filled after push) |
+| FROZEN_CRITERIA.md (alone) | 21e1c07e9a | 4a32dcc3d2 |
+| AMENDMENT_A1.md (alone, post hoc) | 4af7a4b905 | f541b5929f |
+| landing: scripts, outputs, this RESULT | 3e646a40e5 | 2d7637d959 |
+| this id record | (this commit) | (pushed alongside) |
+
+Pushed by replaying the commits onto origin/main in a temporary sparse worktree (local main has diverged from origin).
 
 ## 9. Files
 
