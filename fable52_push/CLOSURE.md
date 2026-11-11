@@ -132,6 +132,21 @@ Quoted from their RESULT.md headers; that session re-ran each; the lead did not.
   the last of six post hoc readings, two of them written after the outcome was seen; every earlier reading is NO
   VERDICT. So that item has no verdict.
 
+## Added 2026-11-10 night: asking the data directly
+
+- **DD1** (`DD1_deduce_from_data/RESULT.md`, origin 91c159b746): NO RULE AMONG THE CANDIDATES on both footings. One
+  frozen table of 16 classes and 626 systems, the statistic X = g_obs / g_bar - 1, candidate variables fixed before any
+  fit, held-out and leave-one-class-out scoring, no theory assumed. No candidate holds even the two half-splits; every
+  candidate that covers all classes fails at least 11 of them; six classes fail every candidate. Under the law itself
+  SPARC passes (offsets 0.00 to +0.02 dex), KiDS is within its errors, groups sit +0.16 high, X-COP and CLASH clusters
+  +0.5 to +0.6 at 15 to 24 standard errors, the Milky Way's ultra-faints +0.5 to +0.6, and tidal dwarfs and DF2 / DF4
+  0.6 to 0.9 low. The best candidate, a function of g_bar and the system's depth, has held-out scatter 0.219 dex and
+  still fails 12 classes. The conservation reading (a fixed total at the last measured point) is the worst. Not re-run
+  by the lead; no blind regrade.
+
+So the data, asked without a theory, return the law for rotation curves and no single rule beyond them. The classes that
+break every rule break it in both directions.
+
 ## What is not claimed
 
 No completion exists. No lane here says the data favour the framework. The exponential dust term is a hand-level
