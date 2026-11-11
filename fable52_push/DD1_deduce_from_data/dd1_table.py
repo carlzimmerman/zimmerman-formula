@@ -341,3 +341,4 @@ for c in sorted({r["cls"] for r in main}, key=lambda c: min(i for i, r in enumer
 json.dump(COUNTS, open(os.path.join(HERE, "dd1_table_counts.json"), "w"), indent=1)
 P(f"runtime {time.time() - T0:.1f} s"); P("kappa = 1/2 FITTED; not theory closed. Adopts nothing.")
 open(os.path.join(HERE, "dd1_table.out"), "w").write("\n".join(OUT) + "\n")
+# kappa = 1/2 FITTED; not theory closed. Adopts nothing.
