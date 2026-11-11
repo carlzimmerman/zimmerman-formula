@@ -142,6 +142,6 @@ law with rho = rho_b (counted once) holds iff rho_Psi = 0 there.
 Each takes a few seconds and well under 1 GB. Lean: `cd fable_independent_2026/lean_2026 && lake env lean
 ../../closure_2026_11_10/SMF1_smooth_frame_parent/SMF1.lean` (logs in `compile.txt`, `compile_MUTATE.txt`).
 
-Commits (local / origin): criteria 9586b716e6 / (pending); result (pending).
+Commits (local / origin): criteria 9586b716e6 / b3879c6cad; result 8339a435fe / 884ddfb854.
 
 Adopts nothing. kappa = 1/2 FITTED; not theory closed.
