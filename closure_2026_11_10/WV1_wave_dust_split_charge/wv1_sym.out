@@ -1,0 +1,40 @@
+WV1 symbolic part. TEST lane; adopts nothing. kappa = 1/2 FITTED; not theory closed.
+arm: none (main run)
+
+=== S1b (V1): Noether current of theta (the frame's shift symmetry) ===
+[PASS] S1b_V1_charge: EL(theta) = +nu [d_t C + div(C v)] with C = rho + div P, v = nu grad theta: residual 0  (the law's phantom density is part of Psi's U(1) charge)
+   (for comparison) EL(theta) + nu[d_t rho + div(rho v)] = nonzero
+[PASS] S1b_V1_bernoulli: EL(rho) with the P sector minus without: 0  (Psi's flow obeys plain Madelung-Euler in the total Phi; so the frame's proper acceleration is A = -grad Q_qu)
+[PASS] S0_poisson: EL(Phi): lap Phi = 4 pi G (rho_b + m|psi|^2 + div P): residual 0 (Psi's dust IS in the source)
+[PASS] S0_P_equation: EL(P_i) = A_i - dW/dP_i + gamma d_i F'(div P): (A)'s leaf equation E2 at weak field with Pi_+ -> F'(Pi) (the P sector is (A)'s verbatim)
+
+=== S0 (V1): static galaxy, Psi stationary psi = f(x) e^{-i e t/nu} ===
+[PASS] S0_V1_phase_identity: EL(theta) in the stationary state = 0 (satisfied identically)
+[PASS] S0_V1_schrodinger: f * EL(rho) = +-[-(nu^2/2) lap f + Phi f - e f]: the stationary Schrodinger equation in the total Phi
+[PASS] S0_V1_frame_static: A = grad Phi in the stationary state (frame static, the law's input)
+
+=== S0 / KA2: the law, spherical static, gamma = 0, W = (a0^2/K)[-p/a0 - ln(1 - p/a0)], p = K|P| ===
+[PASS] KA2_constitutive: K|P| = a0 x/(1+x), x = g/a0 (QX17 E2 Legendre map): [a0*g/(a0 + g)]
+[PASS] S0_law: Poisson + P equation  <=>  div[mu(|grad Phi|/a0) grad Phi] = 4 pi G (rho_b + m f^2), mu = x/(1+x): residual 0 (exact; (A)'s static row at mu_K = 0 with rho_b -> rho_b + m|psi|^2)
+
+=== S1b (V2) and KA6: the separate frame's charge ===
+[PASS] S1b_V2_charge: V2 (no dust): EL(chi) = -+[d_t C + div(C u_f)], u_f = -grad chi, C = div P: residual 0
+[PASS] S1b_V2_psi_separate: V2: Psi's own charge is m|psi|^2 alone, carried with Psi (residual 0)
+[PASS] KA6_LFS1_COL1_charge: KA6 (with dust term mu^2 H^2/(2K), COL1's reduced form): EL(chi) = -+[d_t C + div(C u_f)], u_f = -grad chi, C = div P - mu^2 H/K  (= COL1 N = mu^2 h/K + div P, h = -H): residual 0
+   V2 consequence (exact, with LFS1 S1(d)): on FRW P_bar = 0 by isotropy, so the frame's charge per volume element is 0
+   and stays 0 along the frame's regular flow; spherically, div P = 0 with a regular centre forces P_r = 0, so A = 0:
+   the frame never polarizes (the law never appears) and it moves as zero-charge (mimetic) dust.
+
+=== V1: the psi equation (S1e) ===
+[PASS] S1e_V1_psi_singular: with d_t(m n) + div(m n v) = -S, S = d_t(div P) + div((div P) v): i nu psi_t = H psi - (i nu/2)(S/|psi|^2) psi exactly -> a term that diverges at |psi| = 0 wherever S != 0 (X14's C5 objection in V1's form)
+
+=== Linear dispersion around a uniform medium (Jeans swindle), 1D, plane waves ===
+[PASS] KA1_C5_dispersion: plain Psi: omega^2 = [-4*pi*G*rhobar + k**4*nu**2/4]  (X14 C5: n = 4, coefficient nu^2/4)
+[PASS] S1c_V1_dispersion: V1: omega^2 = (nu^2 k^4/4)/(1 + cY q^4) - 4 pi G rhobar, q = k/k_J, cY = 1/(1 + Lstar^2 k^2/2): sympy root [2*pi*G*rhobar*(-16*pi*G*Lstar**2*k**2*rhobar - 32*pi*G*rhobar + Lstar**2*k**6*nu**2)/(8*pi*G*Lstar**2*k**2*rhobar + 16*pi*G*rhobar + k**4*nu**2)]
+[PASS] S1c_V1_equals_QG1_form: equals QG1's omega^2 = G k^2 (b - a)/(a b) at zero background acceleration with G = rhobar and the dust stiffness mu^2/K replaced by Psi's mu_eff^2/K, mu_eff^2 = k_J^4/k^2 (residual 0)
+[PASS] S1c_V1_offbranch: V1 off branch (no screening): omega^2 = -4 pi G rhobar/(1 + q^4) < 0 at every k: [-64*pi**2*G**2*rhobar**2/(16*pi*G*rhobar + k**4*nu**2)] (the alpha = 2 P sector cancels the quantum pressure; no Jeans scale, growth rate falls as 1/q^2)
+   V1 off branch: growth rate^2 / (4 pi G rhobar) at k = k_J = 1/2 (half); plain Psi: 0
+[PASS] S1c_V1_mu_eff: integrating out drho gives 2*h**2*rhobar/(k**2*nu**2) = (mu_eff^2/K) h^2/2 with mu_eff^2 = k_J^4/k^2
+
+all checks PASS; runtime 3.4 s
+kappa = 1/2 FITTED; not theory closed. Adopts nothing.

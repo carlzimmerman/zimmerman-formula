@@ -1,0 +1,49 @@
+WV1 numeric part 1 (S1c, S1d, S2). TEST lane; adopts nothing. kappa = 1/2 FITTED; not theory closed.
+
+QG1 re-executed unmodified in a temp dir: exit 0, 155 lines of its own output
+
+=== KA3: QG1's rows reproduced through its own functions ===
+[PASS] KA3_QG1_machinery: FRW1100/canonical Lambda_s L 334 (printed 334, committed json 333.959); FRW1100/alt Lambda_s L 316.5 (printed 316, committed json 316.459); FRW1/canonical Lambda_s L 1.838e+05 (printed 1.84e+05, committed json 183844); FRW1/alt Lambda_s L 1.742e+05 (printed 1.74e+05, committed json 174211); PM-2/canonical PASS (Lambda_s L 1.09e+12); PM-2/alt PASS (Lambda_s L 1.12e+12); PM0/canonical PASS (Lambda_s L 3.14e+12); PM0/alt PASS (Lambda_s L 3.24e+12); PM2/canonical PASS (Lambda_s L 1.4e+13); PM2/alt PASS (Lambda_s L 1.44e+13); other reading (mu_K = 0) FRW Lambda_s L: FRW1100/canonical 0, FRW1100/alt 0, FRW1/canonical 0, FRW1/alt 0
+
+=== S2: Psi's Jeans scale against the record's line (comoving 2 pi/k_J <= 0.42/h Mpc at z 3, 10, 100, 1089) ===
+[canonical] h 0.67408, omega_d 0.12094, rho_Psi0 3.3565e+10 Msun/Mpc^3; line k_J >= 10.084/Mpc comoving
+    nu_max by redshift (kpc km/s): z 3: 418.8, z 10: 252.6, z 100: 83.35, z 1089: 25.37
+    nu_max = 25.37 kpc km/s (binding z = 1089); m c^2 >= 7.556e-23 eV; k_J(comoving) at z 1089 = 10.1/Mpc (acoustic peaks need dust at k <= 0.3/Mpc: kept off); k_J today = 57.9/Mpc
+[alt] h 0.67400, omega_d 0.12093, rho_Psi0 3.3562e+10 Msun/Mpc^3; line k_J >= 10.083/Mpc comoving
+    nu_max by redshift (kpc km/s): z 3: 418.9, z 10: 252.6, z 100: 83.37, z 1089: 25.38
+    nu_max = 25.38 kpc km/s (binding z = 1089); m c^2 >= 7.554e-23 eV; k_J(comoving) at z 1089 = 10.1/Mpc (acoustic peaks need dust at k <= 0.3/Mpc: kept off); k_J today = 57.9/Mpc
+    V1: the P sector halves the growth rate at k_J (wv1_sym: rate^2/(4 pi G rho) = 1/2 there, off branch); V2: plain Psi, omega^2 = 0 at k_J. The same k_J is graded for both (criteria S2).
+
+=== S1c: the frame scalar on QG1's FRW backgrounds ===
+[V2 / canonical / FRW1100] frame charge G = 0: omega^2 = 0 at every k on both branches: True; QG1 grade_row: Lambda_s L = 0.0 (strong at k_IR) -> FAIL
+[V1 / canonical / FRW1100] nu = nu_max = 25.37 kpc km/s (m c^2 7.556e-23 eV): omega^2 = 0 everywhere: False; ghost (a <= 0): False; max growth rate / sqrt(4 pi G rho) = 1.000000000000; rate rising at large k: False -> PASS
+    V1 at nu_max x {1, 4, ..., 4096}: all PASS
+[V2 / canonical / FRW1] frame charge G = 0: omega^2 = 0 at every k on both branches: True; QG1 grade_row: Lambda_s L = 0.0 (strong at k_IR) -> FAIL
+[V1 / canonical / FRW1] nu = nu_max = 25.37 kpc km/s (m c^2 7.556e-23 eV): omega^2 = 0 everywhere: False; ghost (a <= 0): False; max growth rate / sqrt(4 pi G rho) = 1.000000000000; rate rising at large k: False -> PASS
+    V1 at nu_max x {1, 4, ..., 4096}: all PASS
+[M2 / canonical] V2's frame given QG1's dust charge (mu_K*, G = rho_c): FRW1100 Lambda_s L 333.959, FRW1 183844.0 -> PASS: the V2 FAIL flips (BITES)
+[V2 / alt / FRW1100] frame charge G = 0: omega^2 = 0 at every k on both branches: True; QG1 grade_row: Lambda_s L = 0.0 (strong at k_IR) -> FAIL
+[V1 / alt / FRW1100] nu = nu_max = 25.38 kpc km/s (m c^2 7.554e-23 eV): omega^2 = 0 everywhere: False; ghost (a <= 0): False; max growth rate / sqrt(4 pi G rho) = 1.000000000000; rate rising at large k: False -> PASS
+    V1 at nu_max x {1, 4, ..., 4096}: all PASS
+[V2 / alt / FRW1] frame charge G = 0: omega^2 = 0 at every k on both branches: True; QG1 grade_row: Lambda_s L = 0.0 (strong at k_IR) -> FAIL
+[V1 / alt / FRW1] nu = nu_max = 25.38 kpc km/s (m c^2 7.554e-23 eV): omega^2 = 0 everywhere: False; ghost (a <= 0): False; max growth rate / sqrt(4 pi G rho) = 1.000000000000; rate rising at large k: False -> PASS
+    V1 at nu_max x {1, 4, ..., 4096}: all PASS
+[M2 / alt] V2's frame given QG1's dust charge (mu_K*, G = rho_c): FRW1100 Lambda_s L 316.459, FRW1 174211.0 -> PASS: the V2 FAIL flips (BITES)
+
+=== S1d: static galaxy (QG1's point-mass rows; Psi absent; V1 with Psi stationary adds m f^2 >= 0 to G) ===
+[canonical / PM-2] QG1 label PASS (Lambda_s L 1.08816e+12)
+[canonical / PM0] QG1 label PASS (Lambda_s L 3.1358e+12)
+[canonical / PM2] QG1 label PASS (Lambda_s L 1.39774e+13)
+[alt / PM-2] QG1 label PASS (Lambda_s L 1.12476e+12)
+[alt / PM0] QG1 label PASS (Lambda_s L 3.24127e+12)
+[alt / PM2] QG1 label PASS (Lambda_s L 1.44475e+13)
+
+=== S1 labels (S1c on both FRW rows and S1d on all PM rows) ===
+S1 V1 canonical: PASS
+S1 V1 alt: PASS
+S1 V2 canonical: FAIL
+S1 V2 alt: FAIL
+MUTATE M2: BITES (V2 FRW FAIL -> PASS once the frame carries QG1's dust)
+
+known answers all pass; runtime 20.4 s
+kappa = 1/2 FITTED; not theory closed. Adopts nothing.
