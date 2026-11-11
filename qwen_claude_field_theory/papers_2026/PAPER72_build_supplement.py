@@ -81,6 +81,11 @@ PATHS = [
  "closure_2026_11_10/R541C_made_in_inflation",
  "closure_2026_11_10/R541D_baryon_current_cogenesis",
  "closure_2026_11_10/R541E_b_minus_l_variant",
+ "closure_2026_11_10/BX1_fixed_amplitude_reference",
+ "closure_2026_11_10/DSB1_dwarf_systematics_blind",
+ "closure_2026_11_10/PAR1_parent_action_spec",
+ "closure_2026_11_10/WV1_wave_dust_split_charge",
+ "closure_2026_11_10/SMF1_smooth_frame_parent",
  "rebuild_2026_10_22/X38_a0_surface_density_halos/README.md",
 ]
 REFS = ("HEAD", "origin/main")
