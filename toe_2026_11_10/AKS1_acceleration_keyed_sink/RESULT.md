@@ -1,4 +1,53 @@
-# AKS1 RESULT: an acceleration-keyed energy sink for the joint (2026-11-10)
+# AKS1 RESULT: an acceleration-keyed energy sink for the joint (2026-11-10, Part T 2026-11-11)
+
+**Part T (the lead's corrected candidate: (A) kept whole plus local dissipation of the clock): CLOSED, ONE BRANCH ON AN
+ESTIMATE / CLOSED, ONE BRANCH ON AN ESTIMATE (canonical / alt). No local dissipation of (A)'s clock (acceleration-keyed
+rate, or frame-free bulk/shear viscosity, with the heat removed or kept as entropy) settles the cold dark energy into
+the law's halo with an edge at an acceleration by today. So dissipation does not close the joint, and the TOE's T1 stays
+OPEN.** Three branches close on exact items. The fourth (frame-free viscosity with the heat kept) closes on an estimate
+with margin 8.2 / 6.8, and it escapes only with a new threshold constant.
+
+Part T is post hoc. The lead's correction arrived after the run below had landed. Its criteria (`FROZEN_CRITERIA_T.md`,
+local d44203c715) were committed alone before `aks1_t.py`. The run below (action (A) WITHOUT W and P) is now the control,
+because it is route E's class, retired on 2026-11-01. Its label stands as recorded.
+
+| branch | closes on | numbers (canonical / alt) |
+|---|---|---|
+| D-A(o), D-A(h): rate keyed on \|A\| | **T1 (exact):** static means A = grad Phi, which with the Legendre map is the law. On first infall A = U(G Q_ex/r^2), the law's self-field of the clock's excess charge; it has no baryon term (d/dM_b = 0). An A-key reads the field only on a clock already held. **T3 (exact in CFG461's energy model):** contraction by today <= exp(2 F a0 t0/c) | a0 t0/c = 0.1359 / 0.1642. Bound 1.312 / 1.389 at F = 1, and 1.051 / 1.062 with f = x at the edge (total field there 0.1846 a0). CFG461 needs 3.50 / 1.97 / 1.34 (alt 3.85 / 2.16 / 1.47). Below at every mass |
+| D-V(o): viscosity, heat removed | **T4 Gauss (exact; SMF1 S0b):** the net polarization charge in any free-fall-bounded ball is 0 at all times, whatever the momentum equation. **T5 T-DEP (exact):** the static dust is one function of depth | static (A) at the CMB mu_K over-captures: 3.6-8.4 times the halo at SPARC radii at 198 per Mpc (COL1 Part 0), and 1.6e4 times more at mu_J. Counted twice |
+| D-V(h): viscosity, heat kept as entropy | evades T-DEP (T5: n_d(depth, s)). A hot, static (A) clock with charge equal to the phantom is counted once. **T7 (estimate):** a uniform viscosity that spares the record's forest line (nu <= nu_F) cannot settle massive haloes to CFG461's edge by today | nu_F = 141.9 / 142.0 kpc km/s. nu_S = r_e*^2/t0 = 3.7 / 116 / 1160 (alt 3.0 / 96 / 961). **Margin 0.03 / 0.82 / 8.17 (alt 0.02 / 0.68 / 6.77)**, against a line of 3. Form B's cap needs margins of 2.7 to 847 |
+
+**What each part of the lead's correction gets:**
+- **The W/P-less candidate** is now the control. Its run below stands as recorded.
+- **"Relative to the clock's rest frame" is undefined.** Agreed; it was F2 below. Frame-free dissipation is viscosity of
+  the clock congruence, graded as D-V.
+- **The EP point** is T1. An A-key cannot act on infalling dust (in (A) kept whole it sees only the law's self-field of
+  the excess charge), and it reads the baryons' field only on a held clock. The bootstrap therefore presupposes the hold.
+  CFG461's edge needs a total field of 0.185 a0, which only a held clock reads.
+- **Is Gamma <= a0/c fatal by itself? Yes** (T3). Even F = 1 from the start allows a contraction of 1.31 / 1.39 by today.
+- **T-DEP with entropy:** evaded in form (T5h). The escape is then bounded by T7.
+- **Hypotheses used:**
+  - locality: coefficients are functions of the clock's own scalars (theta, sigma^2, A.A, Q, N) and of G, c, a0, mu_K;
+  - the equivalence principle (gravity enters only through the metric);
+  - (A)'s Legendre map is unchanged;
+  - the clock's charge is conserved;
+  - CFG461's energy model (T3);
+  - the record's forest line, converted to a viscous damping length with (4/3) nu k^2 = H. This conversion is an
+    estimate, so T7 is an estimate.
+- **The two ways out, named, not graded:**
+  - a keyed viscosity, which is off on the z = 3 forest and on in z = 0 haloes. T7's threshold list shows that none
+    of G, c, a0 and mu_K supplies the threshold: the densities a0^2/(G c^2) = 21.6 and mu^2 c^2/K >= 6.5e13 Msun/kpc^3
+    bracket the forest (2.5e3) and the haloes (7e4-1.7e6) only from outside. So a new constant is needed;
+  - non-local dissipation, which is FA3's class.
+- **PAR1 C8's door.** Dissipation is the continuation of T-SHK's energy defect. Part T shows that continuing it does not
+  reach a counted-once halo by today without a new constant.
+
+Part T files: `FROZEN_CRITERIA_T.md`, `aks1_t.py` -> `aks1_t.out` / `aks1_t.json` (seconds, sympy and numbers). No Part N
+collapse is owed under the frozen rule.
+
+---
+
+## The landed run (now the control): action (A) without W and P, plus an A-keyed drag
 
 **RELAXES, NOT SETTLED / RELAXES, NOT SETTLED (canonical / alt): the sink is healthy but does nothing. A falling clock has no
 acceleration, so the sink is off where infall happens. Even keyed as if the clock already stood, its rate is c/v too
