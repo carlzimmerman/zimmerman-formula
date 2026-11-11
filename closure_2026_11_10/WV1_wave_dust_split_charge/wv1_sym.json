@@ -1,0 +1,95 @@
+{
+ "arm": "none",
+ "checks": {
+  "S1b_V1_charge": {
+   "ok": true,
+   "msg": "EL(theta) = +nu [d_t C + div(C v)] with C = rho + div P, v = nu grad theta: residual 0  (the law's phantom density is part of Psi's U(1) charge)"
+  },
+  "S1b_V1_bernoulli": {
+   "ok": true,
+   "msg": "EL(rho) with the P sector minus without: 0  (Psi's flow obeys plain Madelung-Euler in the total Phi; so the frame's proper acceleration is A = -grad Q_qu)"
+  },
+  "S0_poisson": {
+   "ok": true,
+   "msg": "EL(Phi): lap Phi = 4 pi G (rho_b + m|psi|^2 + div P): residual 0 (Psi's dust IS in the source)"
+  },
+  "S0_P_equation": {
+   "ok": true,
+   "msg": "EL(P_i) = A_i - dW/dP_i + gamma d_i F'(div P): (A)'s leaf equation E2 at weak field with Pi_+ -> F'(Pi) (the P sector is (A)'s verbatim)"
+  },
+  "S0_V1_phase_identity": {
+   "ok": true,
+   "msg": "EL(theta) in the stationary state = 0 (satisfied identically)"
+  },
+  "S0_V1_schrodinger": {
+   "ok": true,
+   "msg": "f * EL(rho) = +-[-(nu^2/2) lap f + Phi f - e f]: the stationary Schrodinger equation in the total Phi"
+  },
+  "S0_V1_frame_static": {
+   "ok": true,
+   "msg": "A = grad Phi in the stationary state (frame static, the law's input)"
+  },
+  "KA2_constitutive": {
+   "ok": true,
+   "msg": "K|P| = a0 x/(1+x), x = g/a0 (QX17 E2 Legendre map): [a0*g/(a0 + g)]"
+  },
+  "S0_law": {
+   "ok": true,
+   "msg": "Poisson + P equation  <=>  div[mu(|grad Phi|/a0) grad Phi] = 4 pi G (rho_b + m f^2), mu = x/(1+x): residual 0 (exact; (A)'s static row at mu_K = 0 with rho_b -> rho_b + m|psi|^2)"
+  },
+  "S1b_V2_charge": {
+   "ok": true,
+   "msg": "V2 (no dust): EL(chi) = -+[d_t C + div(C u_f)], u_f = -grad chi, C = div P: residual 0"
+  },
+  "S1b_V2_psi_separate": {
+   "ok": true,
+   "msg": "V2: Psi's own charge is m|psi|^2 alone, carried with Psi (residual 0)"
+  },
+  "KA6_LFS1_COL1_charge": {
+   "ok": true,
+   "msg": "KA6 (with dust term mu^2 H^2/(2K), COL1's reduced form): EL(chi) = -+[d_t C + div(C u_f)], u_f = -grad chi, C = div P - mu^2 H/K  (= COL1 N = mu^2 h/K + div P, h = -H): residual 0"
+  },
+  "S1e_V1_psi_singular": {
+   "ok": true,
+   "msg": "with d_t(m n) + div(m n v) = -S, S = d_t(div P) + div((div P) v): i nu psi_t = H psi - (i nu/2)(S/|psi|^2) psi exactly -> a term that diverges at |psi| = 0 wherever S != 0 (X14's C5 objection in V1's form)"
+  },
+  "KA1_C5_dispersion": {
+   "ok": true,
+   "msg": "plain Psi: omega^2 = [-4*pi*G*rhobar + k**4*nu**2/4]  (X14 C5: n = 4, coefficient nu^2/4)"
+  },
+  "S1c_V1_dispersion": {
+   "ok": true,
+   "msg": "V1: omega^2 = (nu^2 k^4/4)/(1 + cY q^4) - 4 pi G rhobar, q = k/k_J, cY = 1/(1 + Lstar^2 k^2/2): sympy root [2*pi*G*rhobar*(-16*pi*G*Lstar**2*k**2*rhobar - 32*pi*G*rhobar + Lstar**2*k**6*nu**2)/(8*pi*G*Lstar**2*k**2*rhobar + 16*pi*G*rhobar + k**4*nu**2)]"
+  },
+  "S1c_V1_equals_QG1_form": {
+   "ok": true,
+   "msg": "equals QG1's omega^2 = G k^2 (b - a)/(a b) at zero background acceleration with G = rhobar and the dust stiffness mu^2/K replaced by Psi's mu_eff^2/K, mu_eff^2 = k_J^4/k^2 (residual 0)"
+  },
+  "S1c_V1_offbranch": {
+   "ok": true,
+   "msg": "V1 off branch (no screening): omega^2 = -4 pi G rhobar/(1 + q^4) < 0 at every k: [-64*pi**2*G**2*rhobar**2/(16*pi*G*rhobar + k**4*nu**2)] (the alpha = 2 P sector cancels the quantum pressure; no Jeans scale, growth rate falls as 1/q^2)"
+  },
+  "S1c_V1_mu_eff": {
+   "ok": true,
+   "msg": "integrating out drho gives 2*h**2*rhobar/(k**2*nu**2) = (mu_eff^2/K) h^2/2 with mu_eff^2 = k_J^4/k^2"
+  }
+ },
+ "S1b_V1": {
+  "charge": "C = m|psi|^2 + div P",
+  "flux": "C v",
+  "exact": true
+ },
+ "S1b_V2": {
+  "charge": "div P (no dust)",
+  "carried_by": "the frame's flow u_f",
+  "FRW_value": 0
+ },
+ "dispersion": {
+  "plain": "-4*pi*G*rhobar + k**4*nu**2/4",
+  "V1": "-4*pi*G*rhobar + k**4*nu**2/(4*(1 + k**4*nu**2/(16*pi*G*rhobar*(Lstar**2*k**2/2 + 1))))",
+  "V1_off": "-4*pi*G*rhobar/(1 + k**4*nu**2/(16*pi*G*rhobar))",
+  "rate2_at_kJ_over_4piGrho_V1off": "1/2"
+ },
+ "runtime_s": 3.4,
+ "all_ok": true
+}
