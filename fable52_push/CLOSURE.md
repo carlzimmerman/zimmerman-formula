@@ -147,6 +147,17 @@ Quoted from their RESULT.md headers; that session re-ran each; the lead did not.
 So the data, asked without a theory, return the law for rotation curves and no single rule beyond them. The classes that
 break every rule break it in both directions.
 
+- **HIS1** (`HIS1_history_reading/RESULT.md`, origin c4f8cd2bb3): on DD1's frozen table, the reading "the non-baryonic
+  mass is real and conserved, its amount set by the law when a system formed" HOLDS EXCEPT H3 (fails), H5 (no power),
+  on both footings. Four of its five frozen statements are met: the tidal dwarfs sit at Newton (0.6 standard errors
+  from none, 6 below the law); no system of 626 reads below zero non-baryonic mass beyond its errors; X-COP's edge
+  holds 4.94 [4.30, 6.11] against 5.41 with groups on the other side; hosted and gas-poor classes sit at or above the
+  law. It fails on one class: the isolated faint gas-rich rotators sit about 0.3 dex below the law (3.5 / 3.9 standard
+  errors; 2.3 / 2.7 if every distance were 20 % smaller). Inside a class nothing tracks a measured sign of history
+  (no power). **The reading "the law is a force that every system obeys now" scores 1 of 5 on the same tests.** One
+  mutation arm did not bite as frozen (disclosed); the early types' hold rests on a Chabrier-like mass-to-light ratio.
+  Not re-run by the lead; no blind regrade. It tests consistency with a history, not a mechanism.
+
 ## What is not claimed
 
 No completion exists. No lane here says the data favour the framework. The exponential dust term is a hand-level
