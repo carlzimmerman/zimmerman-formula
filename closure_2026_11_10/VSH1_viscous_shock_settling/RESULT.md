@@ -49,10 +49,27 @@ rest. So at the two lower masses the settling is partly diffusive, as AKS1's sma
 shock. The viscosity also changes the outer flow: R_ta is 57.9 / 259.6 / 565.0 kpc against 87.7 / - / 597.0 with every
 fluid term off. The graded statement uses only the region inside r_e*, where S is 1e-4 or less in every run.
 
-First run, shock capture only (nu = 0), stopped at the old cap before z = 0 (`first_run/vsh1_scan.out`): the hot region
-ended at 0.47 / 0.41 / 0.36 of R_ta, and had passed r_e* at z 3.45 and 2.22 for log M_b 9 and 10.5. The amended scan
-(nu = 0 and 0.1 nu_F to z = 0, 10 nu_F and gamma = 4/3 at 11.5) was still running when this was written and will be added
-in a later commit. It is reported only.
+## The scan (reported, not graded; canonical; `vsh1_scan.out`)
+
+| viscosity | log M_b | status | shock past r_e* at z | S inside r_e* | R_sh / R_ta | R_ta (kpc) | charge inside R_sh / law's halo there |
+|---|---|---|---|---|---|---|---|
+| 0 (shock capture only) | 9 | SETTLED | 3.45 | 4.1e-5 | 0.511 | 87.7 | 0.911 / 36.7 M_b = 0.025 |
+| 0 | 10.5 | SETTLED | 2.22 | 1.2e-4 | 0.511 | 276.9 | 0.911 / 20.6 = 0.044 |
+| 0 | 11.5 | stopped at the cap at z 0.02 | 1.43 | 3.2e-4 | 0.556 | 557.0 | 0.911 / 14.3 = 0.064 |
+| 0.1 nu_F | 9 | SETTLED | 4.72 | 5.1e-6 | 1.58 | 82.2 | 1.41 / 106 = 0.013 |
+| 0.1 nu_F | 10.5 | SETTLED | 2.21 | 5.2e-5 | 1.49 | 259.8 | 1.37 / 56.4 = 0.024 |
+| 0.1 nu_F | 11.5 | SETTLED | 1.43 | 2.8e-4 | 0.512 | 597.6 | 0.911 / 14.1 = 0.065 |
+| 10 nu_F | 11.5 | SETTLED | 3.20 | 7.6e-5 | 1.75 | 535.0 | 1.45 / 43.1 = 0.034 |
+| nu_F, gamma 4/3 | 11.5 | SETTLED | 0.615 | 0.013 | 1.48 | 562.8 | 1.37 / 38.5 = 0.036 |
+
+- **The settling does not depend on the viscosity.** At log M_b 11.5 the shock passes r_e* at z 1.43 with no physical
+  viscosity at all, at z 1.43 with 0.1 nu_F and at z 1.46 with nu_F. Only 10 nu_F moves it (z 3.20).
+- **With shock capture only the shock sits at 0.51 of the turnaround radius** (0.56 at 11.5, at z 0.02), which is where
+  FLD1 puts the collisionless fold (0.52). The outer flow is then FLD1's: R_ta 87.7 and 276.9 kpc.
+- The nu = 0 run at 11.5 stopped at the step cap at z = 0.02 (6e7 steps), so by the frozen rule it reads not settled; its
+  interior had been settled since z 1.43.
+- The charge inside the shock is 0.911 M_b at every mass with nu = 0, which is 2.5 to 6.4 % of the law's halo mass there.
+- gamma = 4/3 settles later (z 0.615) and less tightly (S 0.013), still inside the 0.10 line.
 
 ## Known answers and MUTATE (`vsh1_ka.out`, `vsh1_MUTATE.out`)
 
@@ -81,7 +98,10 @@ in a later commit. It is reported only.
 ## Files
 
 `FROZEN_CRITERIA.md`, `AMENDMENT_A1.md`, `vsh1.py` (modes ka, grade, mutate, scan; about 35 min for the two 11.5 runs),
-`vsh1_ka.*`, `vsh1_grade.*`, `vsh1_MUTATE.*`, `first_run/` (the first run's outputs, as frozen), this file.
+`vsh1_ka.*`, `vsh1_grade.*`, `vsh1_MUTATE.*`, `vsh1_scan.*`, `first_run/` (the first run's outputs, as frozen), this file.
 Re-run: `python3 vsh1.py ka && python3 vsh1.py grade && python3 vsh1.py mutate` from this folder.
+
+Commits (local / origin): criteria b619f308af / 72cf56cca2; A1 fce5461b1c / 3c37f22fb7; result 75d310cba7 / 4358613eaf; the
+scan in the commit that carries this line.
 
 Adopts nothing. kappa = 1/2 FITTED; not theory closed.
