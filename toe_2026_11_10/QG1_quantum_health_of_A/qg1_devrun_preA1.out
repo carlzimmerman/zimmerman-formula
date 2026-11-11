@@ -1,0 +1,140 @@
+QG1 - quantum health of action (A), gate T2 of TOE0. TEST lane; adopts nothing. kappa = 1/2 FITTED; not theory closed.
+arm: none (main run);  M_Pl(reduced) = 2.43532e+27 eV;  K = 1/(2 M^2) = 8.43057e-56 eV^-2
+
+=== Known answers ===
+KA1 GR graviton: PASS  EL[sqrt(-g)R at eps^2] - EL[(1/2)(h_t^2 - h_z^2)] = 0 (EL of target: -Derivative(h(t, z), (t, 2)) + Derivative(h(t, z), (z, 2))); omega^2 = k^2, kinetic +1/2
+KA2 BPS khronon speed: PASS  det(omega) = -2*M**6*k**6*(-alpha_a*beta**2*omega**2 + alpha_a*beta*k**2 - 3*alpha_a*beta*lambda*omega**2 - alpha_a*beta*omega**2 + alpha_a*k**2*lambda + 3*alpha_a*lambda*omega**2 + 2*alpha_a*omega**2 - 2*beta*k**2 - 2*k**2*lambda); nonzero omega^2 roots [k**2*(alpha_a*beta + alpha_a*lambda - 2*beta - 2*lambda)/(alpha_a*(beta**2 + 3*beta*lambda + beta - 3*lambda - 2))]; residual vs (beta+lambda)(2-alpha)/[alpha(1-beta)(2+beta+3lambda)] k^2 = [0]
+C-MINK (A) in unitary gauge on Minkowski (beta = lambda = 0, any alpha_a, any mu): det = -4*M**6*k**4*omega**2*(alpha_a*k**2 + 2*mu**2); every root omega = 0: True
+KA3 Legendre: PASS  max rel |J - (a0^2/K)[u - ln(1+u)]| = 6.06e-36; K J''(0) = 1 (alpha_a = 2 at A = 0)
+KA4 SCS1 closed form: PASS  omega^2 = G*K*(-K*k**2*m + k**2 - mu**2)/(K*k**2*m + mu**2); minus SCS1 closed form (Qbar = 1): 0; tilt IBP residual 0
+KA5 pure dust: PASS  pure dust: omega^2 - (K n/mu^2)(k^2 - mu^2) = 0; Jeans rate^2 at k -> 0 = G*K (= K G = 4 pi G rho)
+KA6 |grad phi|^3/a0 strong coupling: PASS  ratio method vs Lambda_3 = sqrt(12 M a0) x^(3/4): max rel 4.46e-15 (x 1e-2, 1, 1e2; both footings); at x = 1 canonical Lambda_3 = 2.451 meV = 1/(0.08052 mm)
+KA7 zero-point integrator: PASS  max rel 2.3e-41
+KA8 growth ODE: PASS  EdS f = 1.0; flat Omega_m 0.3: f(0) = 0.512796 vs Omega_m^0.55 = 0.515723 (rel -0.00568)
+C0 unit chain: PASS  K*rho(eV^4) / (free-fall rate in eV)^2 - 1 = -4.59e-41
+Known answers all pass: True
+
+=== Graded rows (record's mu_K reading per row: FRW mu_K*, static rows mu_K = 0) ===
+[MINK / canonical] Minkowski, L = 1 mm
+   (i) FAIL: {'Hessian_min_eig_over_K': '-2.0777e+9', 'tensor_correction_over_k2_at_1_over_L': '0.0', 'min_Z0_over_k2_by_K': '7.0995e-57', 'gradient_instability': False, 'jeans': '', 'pass_a_b_c_d_e': [False, True, True, True, True]}
+   (ii) Lambda_s = 0.0 eV (1/inf m); Lambda_s L = 0.0 -> FAIL; set by strong at k_IR
+   (iii) NOT EVALUABLE (Lambda_s = 0: no loop expansion)
+   omega: {'k_IR': {'k_eV': '1.973e-7', 'omega2_eV2': '0.0', 'Z0_over_k2_by_K': '4.461e-36'}, 'k_top': {'k_eV': '0.004946', 'omega2_eV2': '0.0', 'Z0_over_k2_by_K': '7.1e-45'}}
+   ROW LABEL: FAIL
+[FRW1100 / canonical] FRW z = 1100, L = 10 Mpc comoving
+   (i) FAIL: {'Hessian_min_eig_over_K': '1.0', 'tensor_correction_over_k2_at_1_over_L': '0.00444', 'min_Z0_over_k2_by_K': '1.0377e-5', 'gradient_instability': False, 'jeans': 'FRW growth rate f = dlnD/dlna = 0.73712 (< 1 needed); local free-fall rate / H = 0.97879', 'pass_a_b_c_d_e': [True, False, True, True, True]}
+   (ii) Lambda_s = 2.35134e-25 eV (1/8.392e+17 m); Lambda_s L = 333.959 -> PASS; set by switch (branch on, theta 0.0 deg)
+   (iii) PASS: Lambda_c 2.35134e-25 eV, eps cutoff 7.143e-105, eps SM 3.483e-32; worst |dmu|/mu = 3.483e-30 at x = 0.01 (khronon 5.932e-101, eps 3.449e-32); |Delta a0/a0| = 3.483e-30
+   omega: {'k_IR': {'k_eV': '3.391e-29', 'omega2_eV2': '-1.102e-57', 'Z0_over_k2_by_K': '2.811e+12'}, 'k_top': {'k_eV': '1.765e-26', 'omega2_eV2': '-1.102e-57', 'Z0_over_k2_by_K': '1.038e+7'}}
+   ROW LABEL: FAIL
+[FRW1 / canonical] FRW z = 1, L = 10 Mpc comoving
+   (i) FAIL: {'Hessian_min_eig_over_K': '1.0', 'tensor_correction_over_k2_at_1_over_L': '8.07e-6', 'min_Z0_over_k2_by_K': '3.1448', 'gradient_instability': False, 'jeans': 'FRW growth rate f = dlnD/dlna = 0.87661 (< 1 needed); local free-fall rate / H = 0.99767', 'pass_a_b_c_d_e': [True, False, True, True, True]}
+   (ii) Lambda_s = 2.35134e-25 eV (1/8.392e+17 m); Lambda_s L = 183844.0 -> PASS; set by switch (branch on, theta 0.0 deg)
+   (iii) PASS: Lambda_c 2.35134e-25 eV, eps cutoff 7.143e-105, eps SM 3.483e-32; worst |dmu|/mu = 3.483e-30 at x = 0.01 (khronon 4.584e-105, eps 3.449e-32); |Delta a0/a0| = 3.483e-30
+   omega: {'k_IR': {'k_eV': '2.576e-33', 'omega2_eV2': '-6.604e-66', 'Z0_over_k2_by_K': '4.871e+20'}, 'k_top': {'k_eV': '3.206e-29', 'omega2_eV2': '-6.604e-66', 'Z0_over_k2_by_K': '3.145e+12'}}
+   ROW LABEL: FAIL
+[PM-2 / canonical] point mass 6e10 Msun, x_N = 0.01 (r = 94.52 kpc, x = g/a0 = 0.1051), L = 1 kpc
+   (i) PASS: {'Hessian_min_eig_over_K': '1.1051', 'tensor_correction_over_k2_at_1_over_L': '3.4e-11', 'min_Z0_over_k2_by_K': '6.7598e-12', 'gradient_instability': False, 'jeans': '', 'pass_a_b_c_d_e': [True, True, True, True, True]}
+   (ii) Lambda_s = 6.95869e-15 eV (1/2.836e+7 m); Lambda_s L = 1.08816e+12 -> PASS; set by switch (branch on, theta 90.0 deg)
+   (iii) PASS: Lambda_c 6.95869e-15 eV, eps cutoff 6.256e-84, eps SM 3.483e-32; worst |dmu|/mu = 3.483e-30 at x = 0.01 (khronon 1.271e-72, eps 3.449e-32); |Delta a0/a0| = 3.483e-30
+   omega: {'k_IR': {'k_eV': '6.765e-29', 'omega2_eV2': '3.073e-64', 'Z0_over_k2_by_K': '0.8188'}, 'k_top': {'k_eV': '1.603e-25', 'omega2_eV2': '5.127e-64', 'Z0_over_k2_by_K': '0.7303'}}
+   ROW LABEL: PASS
+[PM0 / canonical] point mass 6e10 Msun, x_N = 1.0 (r = 9.452 kpc, x = g/a0 = 1.618), L = 1 kpc
+   (i) PASS: {'Hessian_min_eig_over_K': '2.618', 'tensor_correction_over_k2_at_1_over_L': '3.04e-9', 'min_Z0_over_k2_by_K': '6.7598e-12', 'gradient_instability': False, 'jeans': '', 'pass_a_b_c_d_e': [True, True, True, True, True]}
+   (ii) Lambda_s = 2.00532e-14 eV (1/9.84e+6 m); Lambda_s L = 3.1358e+12 -> PASS; set by switch (branch on, theta 90.0 deg)
+   (iii) PASS: Lambda_c 2.00532e-14 eV, eps cutoff 5.195e-83, eps SM 3.483e-32; worst |dmu|/mu = 3.483e-30 at x = 0.01 (khronon 9.99e-71, eps 3.449e-32); |Delta a0/a0| = 3.483e-30
+   omega: {'k_IR': {'k_eV': '6.765e-28', 'omega2_eV2': '7.28e-61', 'Z0_over_k2_by_K': '0.1459'}, 'k_top': {'k_eV': '1.603e-25', 'omega2_eV2': '7.464e-61', 'Z0_over_k2_by_K': '0.1428'}}
+   ROW LABEL: PASS
+[PM2 / canonical] point mass 6e10 Msun, x_N = 1.0e+2 (r = 0.9452 kpc, x = g/a0 = 101.0), L = 1 kpc
+   (i) PASS: {'Hessian_min_eig_over_K': '101.99', 'tensor_correction_over_k2_at_1_over_L': '6.67e-8', 'min_Z0_over_k2_by_K': '6.7597e-12', 'gradient_instability': False, 'jeans': '', 'pass_a_b_c_d_e': [True, True, True, True, True]}
+   (ii) Lambda_s = 8.93845e-14 eV (1/2.208e+6 m); Lambda_s L = 1.39774e+13 -> PASS; set by switch (branch on, theta 90.0 deg)
+   (iii) PASS: Lambda_c 8.93845e-14 eV, eps cutoff 1.032e-81, eps SM 3.483e-32; worst |dmu|/mu = 3.483e-30 at x = 0.01 (khronon 9.294e-69, eps 3.449e-32); |Delta a0/a0| = 3.483e-30
+   omega: {'k_IR': {'k_eV': '6.765e-27', 'omega2_eV2': '2.836e-56', 'Z0_over_k2_by_K': '9.614e-5'}, 'k_top': {'k_eV': '1.603e-25', 'omega2_eV2': '2.836e-56', 'Z0_over_k2_by_K': '9.613e-5'}}
+   ROW LABEL: PASS
+[SUN / canonical] Sun at 1 AU (x = 6.34e+7), hedgehog g* = 2.96e-16 m/s^2, L = 1 AU
+   (i) PASS: {'Hessian_min_eig_over_K': '1.0', 'tensor_correction_over_k2_at_1_over_L': '9.85e-22', 'min_Z0_over_k2_by_K': '1.5888e-28', 'gradient_instability': False, 'jeans': '', 'pass_a_b_c_d_e': [True, True, True, True, True]}
+   (ii) Lambda_s = 9.41545e-14 eV (1/2.096e+6 m); Lambda_s L = 71380.6 -> PASS; set by switch (branch on, theta 90.0 deg)
+   (iii) PASS: Lambda_c 9.41545e-14 eV, eps cutoff 1.145e-81, eps SM 3.483e-32; worst |dmu|/mu = 3.483e-30 at x = 0.01 (khronon 2.586e-67, eps 3.449e-32); |Delta a0/a0| = 3.483e-30
+   omega: {'k_IR': {'k_eV': '1.319e-18', 'omega2_eV2': '1.717e-44', 'Z0_over_k2_by_K': '9.983e-14'}, 'k_top': {'k_eV': '3.306e-17', 'omega2_eV2': '1.079e-41', 'Z0_over_k2_by_K': '1.589e-16'}}
+   ROW LABEL: PASS
+[MINK / alt] Minkowski, L = 1 mm
+   (i) FAIL: {'Hessian_min_eig_over_K': '-1.0389e+9', 'tensor_correction_over_k2_at_1_over_L': '0.0', 'min_Z0_over_k2_by_K': '6.375e-57', 'gradient_instability': False, 'jeans': '', 'pass_a_b_c_d_e': [False, True, True, True, True]}
+   (ii) Lambda_s = 0.0 eV (1/inf m); Lambda_s L = 0.0 -> FAIL; set by strong at k_IR
+   (iii) NOT EVALUABLE (Lambda_s = 0: no loop expansion)
+   omega: {'k_IR': {'k_eV': '1.973e-7', 'omega2_eV2': '0.0', 'Z0_over_k2_by_K': '4.006e-36'}, 'k_top': {'k_eV': '0.004946', 'omega2_eV2': '0.0', 'Z0_over_k2_by_K': '6.375e-45'}}
+   ROW LABEL: FAIL
+[FRW1100 / alt] FRW z = 1100, L = 10 Mpc comoving
+   (i) FAIL: {'Hessian_min_eig_over_K': '1.0', 'tensor_correction_over_k2_at_1_over_L': '0.00444', 'min_Z0_over_k2_by_K': '1.0375e-5', 'gradient_instability': False, 'jeans': 'FRW growth rate f = dlnD/dlna = 0.73712 (< 1 needed); local free-fall rate / H = 0.97879', 'pass_a_b_c_d_e': [True, False, True, True, True]}
+   (ii) Lambda_s = 2.22813e-25 eV (1/8.856e+17 m); Lambda_s L = 316.459 -> PASS; set by switch (branch on, theta 0.0 deg)
+   (iii) PASS: Lambda_c 2.22813e-25 eV, eps cutoff 6.414e-105, eps SM 3.483e-32; worst |dmu|/mu = 3.483e-30 at x = 0.01 (khronon 2.788e-101, eps 3.449e-32); |Delta a0/a0| = 3.483e-30
+   omega: {'k_IR': {'k_eV': '3.391e-29', 'omega2_eV2': '-1.102e-57', 'Z0_over_k2_by_K': '2.81e+12'}, 'k_top': {'k_eV': '1.765e-26', 'omega2_eV2': '-1.102e-57', 'Z0_over_k2_by_K': '1.037e+7'}}
+   ROW LABEL: FAIL
+[FRW1 / alt] FRW z = 1, L = 10 Mpc comoving
+   (i) FAIL: {'Hessian_min_eig_over_K': '1.0', 'tensor_correction_over_k2_at_1_over_L': '8.07e-6', 'min_Z0_over_k2_by_K': '3.144', 'gradient_instability': False, 'jeans': 'FRW growth rate f = dlnD/dlna = 0.8326 (< 1 needed); local free-fall rate / H = 0.95201', 'pass_a_b_c_d_e': [True, False, True, True, True]}
+   (ii) Lambda_s = 2.22813e-25 eV (1/8.856e+17 m); Lambda_s L = 174211.0 -> PASS; set by switch (branch on, theta 0.0 deg)
+   (iii) PASS: Lambda_c 2.22813e-25 eV, eps cutoff 6.414e-105, eps SM 3.483e-32; worst |dmu|/mu = 3.483e-30 at x = 0.01 (khronon 2.155e-105, eps 3.449e-32); |Delta a0/a0| = 3.483e-30
+   omega: {'k_IR': {'k_eV': '2.699e-33', 'omega2_eV2': '-6.604e-66', 'Z0_over_k2_by_K': '4.435e+20'}, 'k_top': {'k_eV': '3.206e-29', 'omega2_eV2': '-6.604e-66', 'Z0_over_k2_by_K': '3.144e+12'}}
+   ROW LABEL: FAIL
+[PM-2 / alt] point mass 6e10 Msun, x_N = 0.01 (r = 85.98 kpc, x = g/a0 = 0.1051), L = 1 kpc
+   (i) PASS: {'Hessian_min_eig_over_K': '1.1051', 'tensor_correction_over_k2_at_1_over_L': '4.51e-11', 'min_Z0_over_k2_by_K': '6.0699e-12', 'gradient_instability': False, 'jeans': '', 'pass_a_b_c_d_e': [True, True, True, True, True]}
+   (ii) Lambda_s = 7.19274e-15 eV (1/2.743e+7 m); Lambda_s L = 1.12476e+12 -> PASS; set by switch (branch on, theta 90.0 deg)
+   (iii) PASS: Lambda_c 7.19274e-15 eV, eps cutoff 6.684e-84, eps SM 3.483e-32; worst |dmu|/mu = 3.483e-30 at x = 0.01 (khronon 1.016e-72, eps 3.449e-32); |Delta a0/a0| = 3.483e-30
+   omega: {'k_IR': {'k_eV': '7.437e-29', 'omega2_eV2': '4.083e-64', 'Z0_over_k2_by_K': '0.8188'}, 'k_top': {'k_eV': '1.603e-25', 'omega2_eV2': '7.122e-64', 'Z0_over_k2_by_K': '0.7215'}}
+   ROW LABEL: PASS
+[PM0 / alt] point mass 6e10 Msun, x_N = 1.0 (r = 8.598 kpc, x = g/a0 = 1.618), L = 1 kpc
+   (i) PASS: {'Hessian_min_eig_over_K': '2.618', 'tensor_correction_over_k2_at_1_over_L': '4.04e-9', 'min_Z0_over_k2_by_K': '6.0699e-12', 'gradient_instability': False, 'jeans': '', 'pass_a_b_c_d_e': [True, True, True, True, True]}
+   (ii) Lambda_s = 2.07277e-14 eV (1/9.52e+6 m); Lambda_s L = 3.24127e+12 -> PASS; set by switch (branch on, theta 90.0 deg)
+   (iii) PASS: Lambda_c 2.07277e-14 eV, eps cutoff 5.551e-83, eps SM 3.483e-32; worst |dmu|/mu = 3.483e-30 at x = 0.01 (khronon 7.982e-71, eps 3.449e-32); |Delta a0/a0| = 3.483e-30
+   omega: {'k_IR': {'k_eV': '7.437e-28', 'omega2_eV2': '9.672e-61', 'Z0_over_k2_by_K': '0.1459'}, 'k_top': {'k_eV': '1.603e-25', 'omega2_eV2': '9.944e-61', 'Z0_over_k2_by_K': '0.1425'}}
+   ROW LABEL: PASS
+[PM2 / alt] point mass 6e10 Msun, x_N = 1.0e+2 (r = 0.8598 kpc, x = g/a0 = 101.0), L = 1 kpc
+   (i) PASS: {'Hessian_min_eig_over_K': '101.99', 'tensor_correction_over_k2_at_1_over_L': '8.86e-8', 'min_Z0_over_k2_by_K': '6.0699e-12', 'gradient_instability': False, 'jeans': '', 'pass_a_b_c_d_e': [True, True, True, True, True]}
+   (ii) Lambda_s = 9.23908e-14 eV (1/2.136e+6 m); Lambda_s L = 1.44475e+13 -> PASS; set by switch (branch on, theta 90.0 deg)
+   (iii) PASS: Lambda_c 9.23908e-14 eV, eps cutoff 1.103e-81, eps SM 3.483e-32; worst |dmu|/mu = 3.483e-30 at x = 0.01 (khronon 7.426e-69, eps 3.449e-32); |Delta a0/a0| = 3.483e-30
+   omega: {'k_IR': {'k_eV': '7.437e-27', 'omega2_eV2': '3.768e-56', 'Z0_over_k2_by_K': '9.614e-5'}, 'k_top': {'k_eV': '1.603e-25', 'omega2_eV2': '3.768e-56', 'Z0_over_k2_by_K': '9.613e-5'}}
+   ROW LABEL: PASS
+[SUN / alt] Sun at 1 AU (x = 5.24e+7), hedgehog g* = 2.66e-16 m/s^2, L = 1 AU
+   (i) PASS: {'Hessian_min_eig_over_K': '1.0', 'tensor_correction_over_k2_at_1_over_L': '8.85e-22', 'min_Z0_over_k2_by_K': '1.4267e-28', 'gradient_instability': False, 'jeans': '', 'pass_a_b_c_d_e': [True, True, True, True, True]}
+   (ii) Lambda_s = 9.04293e-14 eV (1/2.182e+6 m); Lambda_s L = 68556.5 -> PASS; set by switch (branch on, theta 90.0 deg)
+   (iii) PASS: Lambda_c 9.04293e-14 eV, eps cutoff 1.057e-81, eps SM 3.483e-32; worst |dmu|/mu = 3.483e-30 at x = 0.01 (khronon 1.467e-67, eps 3.449e-32); |Delta a0/a0| = 3.483e-30
+   omega: {'k_IR': {'k_eV': '1.319e-18', 'omega2_eV2': '1.717e-44', 'Z0_over_k2_by_K': '8.964e-14'}, 'k_top': {'k_eV': '3.306e-17', 'omega2_eV2': '1.079e-41', 'Z0_over_k2_by_K': '1.427e-16'}}
+   ROW LABEL: PASS
+
+=== Other mu_K reading (reported, not graded) ===
+[MINK / canonical / other mu] (i) FAIL ; Lambda_s L = 0.0 (strong at k_IR)
+[FRW1100 / canonical / other mu] (i) PASS FRW growth rate f = dlnD/dlna = 0.73712 (< 1 needed); local free-fall rate / H = 0.97879; Lambda_s L = 0.0 (strong at k_IR)
+[FRW1 / canonical / other mu] (i) PASS FRW growth rate f = dlnD/dlna = 0.87661 (< 1 needed); local free-fall rate / H = 0.99767; Lambda_s L = 0.0 (strong at k_IR)
+[PM-2 / canonical / other mu] (i) PASS bounded growth on a static background, max rate 5.66e-17 s^-1 (reported); Lambda_s L = 6.87459e+12 (switch (branch on, theta 90.0 deg))
+[PM0 / canonical / other mu] (i) PASS bounded growth on a static background, max rate 5.36e-16 s^-1 (reported); Lambda_s L = 1.98116e+13 (switch (branch on, theta 90.0 deg))
+[PM2 / canonical / other mu] (i) PASS bounded growth on a static background, max rate 2.51e-15 s^-1 (reported); Lambda_s L = 8.83076e+13 (switch (branch on, theta 90.0 deg))
+[SUN / canonical / other mu] (i) PASS ; Lambda_s L = 450975.0 (switch (branch on, theta 90.0 deg))
+[MINK / alt / other mu] (i) FAIL ; Lambda_s L = 0.0 (strong at k_IR)
+[FRW1100 / alt / other mu] (i) PASS FRW growth rate f = dlnD/dlna = 0.73712 (< 1 needed); local free-fall rate / H = 0.97879; Lambda_s L = 0.0 (strong at k_IR)
+[FRW1 / alt / other mu] (i) PASS FRW growth rate f = dlnD/dlna = 0.8326 (< 1 needed); local free-fall rate / H = 0.95201; Lambda_s L = 0.0 (strong at k_IR)
+[PM-2 / alt / other mu] (i) PASS bounded growth on a static background, max rate 6.53e-17 s^-1 (reported); Lambda_s L = 7.25045e+12 (switch (branch on, theta 90.0 deg))
+[PM0 / alt / other mu] (i) PASS bounded growth on a static background, max rate 6.18e-16 s^-1 (reported); Lambda_s L = 2.08946e+13 (switch (branch on, theta 90.0 deg))
+[PM2 / alt / other mu] (i) PASS bounded growth on a static background, max rate 2.89e-15 s^-1 (reported); Lambda_s L = 9.31348e+13 (switch (branch on, theta 90.0 deg))
+[SUN / alt / other mu] (i) PASS ; Lambda_s L = 441944.0 (switch (branch on, theta 90.0 deg))
+
+=== Null points and the Earth laboratory (reported, not graded) ===
+[canonical] point-mass profile to x_N = 1e-8: x_N 0.001 (r 298.9 kpc): Lambda_s L 6.948e+11; x_N 0.0001 (r 945.2 kpc): Lambda_s L 4.488e+11; x_N 1.0e-5 (r 2989.0 kpc): Lambda_s L 2.909e+11; x_N 1.0e-6 (r 9452.0 kpc): Lambda_s L 1.888e+11; x_N 1.0e-7 (r 2.989e+4 kpc): Lambda_s L 1.226e+11; x_N 1.0e-8 (r 9.452e+4 kpc): Lambda_s L 7.961e+10
+[canonical] generic null (field a0 s/l, l = 10 kpc, G = a0/(K l)): (ii) fails for u < 0.0, i.e. within 0.0 pc of the null (Lambda_s L >= 10 down to u = 1e-30; Lambda_s L at u = 1e-30: 2.491e+12)
+[canonical] Earth-surface lab (charge 5.05e-18 kg/m^3 from the hedgehogs): Lambda_s = 1/(2.069e+6 m), Lambda_s x 1 mm = 4.8329e-10 (switch (branch on, theta 90.0 deg))
+[alt] point-mass profile to x_N = 1e-8: x_N 0.001 (r 271.9 kpc): Lambda_s L 7.182e+11; x_N 0.0001 (r 859.8 kpc): Lambda_s L 4.639e+11; x_N 1.0e-5 (r 2719.0 kpc): Lambda_s L 3.007e+11; x_N 1.0e-6 (r 8598.0 kpc): Lambda_s L 1.952e+11; x_N 1.0e-7 (r 2.719e+4 kpc): Lambda_s L 1.267e+11; x_N 1.0e-8 (r 8.598e+4 kpc): Lambda_s L 8.228e+10
+[alt] generic null (field a0 s/l, l = 10 kpc, G = a0/(K l)): (ii) fails for u < 0.0, i.e. within 0.0 pc of the null (Lambda_s L >= 10 down to u = 1e-30; Lambda_s L at u = 1e-30: 2.529e+12)
+[alt] Earth-surface lab (charge 4.54e-18 kg/m^3 from the hedgehogs): Lambda_s = 1/(2.154e+6 m), Lambda_s x 1 mm = 4.6416e-10 (switch (branch on, theta 90.0 deg))
+
+=== T4 report: do matter loops break Lambda = 32 pi a0^2/c^4? ===
+[canonical] rho_DE = 2.518e-11 eV^4; |Delta rho_vac| (dim reg, one log) / rho_DE = 6.267e+53; electron alone 1.715e+31, top alone 6.709e+53; with T2's cutoff per row: {'FRW1100': '9.301e-89', 'FRW1': '9.301e-89', 'PM-2': '7.135e-47', 'PM0': '4.921e-45', 'PM2': '1.942e-42', 'SUN': '2.391e-42'}; a0 shift from matter 0; T4 relation: BREAKS. eps reaches 1e-3 (mu(0.01) moved 10 %) only for a matter cutoff 8.798e+16 GeV
+[alt] rho_DE = 3.678e-11 eV^4; |Delta rho_vac| (dim reg, one log) / rho_DE = 4.291e+53; electron alone 1.174e+31, top alone 4.594e+53; with T2's cutoff per row: {'FRW1100': '5.135e-89', 'FRW1': '5.135e-89', 'PM-2': '5.576e-47', 'PM0': '3.846e-45', 'PM2': '1.518e-42', 'SUN': '1.393e-42'}; a0 shift from matter 0; T4 relation: BREAKS. eps reaches 1e-3 (mu(0.01) moved 10 %) only for a matter cutoff 8.798e+16 GeV
+
+=== Labels ===
+MINK     canonical FAIL  alt FAIL
+FRW1100  canonical FAIL  alt FAIL
+FRW1     canonical FAIL  alt FAIL
+PM-2     canonical PASS  alt PASS
+PM0      canonical PASS  alt PASS
+PM2      canonical PASS  alt PASS
+SUN      canonical PASS  alt PASS
+T2 (QG1) = FAIL  (known answers all pass; MUTATE twins: separate runs)
+runtime 11.3 s
