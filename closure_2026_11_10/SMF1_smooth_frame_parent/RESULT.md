@@ -183,6 +183,7 @@ Each takes a few seconds and well under 1 GB. Lean: `cd fable_independent_2026/l
 `AMENDMENT_A1.md` (alone, post hoc); `nice -n 19 python3 smf1_a1_collisionless.py`; `SMF1_A1.lean`, `SMF1_A1_MUTATE.lean`
 (logs `compile_A1.txt`, `compile_A1_MUTATE.txt`).
 
-Commits (local / origin): criteria 9586b716e6 / b3879c6cad; result 8339a435fe / 884ddfb854.
+Commits (local / origin): criteria 9586b716e6 / b3879c6cad; result 8339a435fe / 884ddfb854; ids d52635e2a4 / 92a8ce5f0e;
+A1 cfa91d3feb / 10e7d72ac3 (alone); A1 result d074525445 / 92a0855574.
 
 Adopts nothing. kappa = 1/2 FITTED; not theory closed.
