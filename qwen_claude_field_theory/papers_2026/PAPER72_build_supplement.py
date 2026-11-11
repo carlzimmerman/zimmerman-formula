@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 """Build PAPER72's supplement: every committed file of the lanes the paper cites (KO2, RB1, RB2, CO1, CO2, PD1, PD2, the owner's decision and the re-run record
 under closure_2026_11_09/; HE1, ONE1, TPA1, SCS1, FB1, KO3F under fable52_push/), as one zip, with a manifest.
+Version 1.1 adds the lanes of 2026-11-10: SCS2, SCS3, MK1, MK2, COL1, FLD1, REL1, SHP1 under fable52_push/ (with MK1's and MK2's Lean
+files, which sit in fable_independent_2026/lean_2026/) and the fable52_push/ README that records what its lead checked; TK1, AKD1, LFS1,
+CLS1, KL1, KL1R, DG1, NH2, XCV1, GO1 under closure_2026_11_10/, beside the notes THEORY_ASSEMBLED_2026-11-10.md and
+MEDIUM_DESIGN_2026-11-10.md (with MEDIUM_DESIGN_check.py and its output) and the re-run record RERUNS_2026-11-10.md; and the single
+result file of each older lane that Section 7's survey of media quotes (M5, PH1, IJ1, HF1, TM1 under rebuild_2026_10_22/; QX28, FA3,
+WM1) with the owner's retirement record of 2026-11-01; DCN1 (the disc-centre null) under fable52_push/; the note R541 (why 5.41;
+not a graded lane) and its lanes R541A to R541E under closure_2026_11_10/; and X38's README, which states route E. BX1, which has not
+landed, is not included.
 The shared checkout has diverged from origin (PD1 and PD2 are committed on origin only), so each lane path is taken from whichever
 of HEAD and origin/main last committed to it; the manifest records the ref and commit for each. Untracked files are not included
 and are listed (unless the same path is committed on the chosen ref); a tracked file modified in the working tree stops the build. Deterministic for given commits (fixed entry dates).
@@ -26,6 +34,54 @@ PATHS = [
  "fable52_push/SCS1_static_clock_coupled_stability",
  "fable52_push/FB1_form_b_from_the_action",
  "fable52_push/KO3F_spec_veto_power_forecast",
+ # version 1.1
+ "fable52_push/README.md",
+ "fable52_push/SCS2_static_clock_stability_discs",
+ "fable52_push/SCS3_external_field_stability",
+ "fable52_push/MK1_one_dust_constant",
+ "fable52_push/MK2_exponential_dust_term",
+ "fable52_push/COL1_clock_collapse",
+ "fable52_push/FLD1_fold_reach",
+ "fable52_push/REL1_relative_acceleration",
+ "fable52_push/SHP1_cold_component_shape",
+ "fable_independent_2026/lean_2026/MK1.lean",
+ "fable_independent_2026/lean_2026/MK1_MUTATE.lean",
+ "fable_independent_2026/lean_2026/MK2.lean",
+ "fable_independent_2026/lean_2026/MK2_MUTATE.lean",
+ "closure_2026_11_10/TK1_expansion_keyed_dust",
+ "closure_2026_11_10/AKD1_acceleration_keyed_dust",
+ "closure_2026_11_10/LFS1_leafwise_flux_supply",
+ "closure_2026_11_10/CLS1_cluster_state_in_action",
+ "closure_2026_11_10/KL1_lensing_amplitude_survey_assumptions",
+ "closure_2026_11_10/KL1R_blind_legacy_regrade",
+ "closure_2026_11_10/DG1_dwarf_gas_history",
+ "closure_2026_11_10/NH2_ngc1052_host_mass",
+ "closure_2026_11_10/XCV1_xcop_nonhydrostatic_mass",
+ "closure_2026_11_10/GO1_group_outskirts",
+ "closure_2026_11_10/THEORY_ASSEMBLED_2026-11-10.md",
+ "closure_2026_11_10/MEDIUM_DESIGN_2026-11-10.md",
+ "closure_2026_11_10/MEDIUM_DESIGN_check.py",
+ "closure_2026_11_10/MEDIUM_DESIGN_check.out",
+ "closure_2026_11_10/RERUNS_2026-11-10.md",
+ # version 1.1: the older lanes quoted by Section 7's survey of media (their result files only) and the owner's retirement record
+ "rebuild_2026_10_22/M5_equilibrium_law/README.md",
+ "rebuild_2026_10_22/PH1_two_phase_cold_energy/README.md",
+ "rebuild_2026_10_22/IJ1_isothermal_jeans_halos/README.md",
+ "rebuild_2026_10_22/HF1_hybrid_fermion/README.md",
+ "rebuild_2026_10_22/TM1_tethered_medium/README.md",
+ "closure_2026_11_06/QX28_superfluid_two_phase/README.md",
+ "closure_2026_11_07/FA3_nonlocal_action_search/RESULT.md",
+ "closure_2026_11_09/WM1_warm_component_law_baryons/RESULT.md",
+ "rebuild_2026_10_22/OWNER_DECISION_2026-11-01_RETIRE_COLD_SECTOR.md",
+ # version 1.1, round 2: the disc-centre lane, the note on the 5.41 and its five lanes, and X38's statement of route E
+ "fable52_push/DCN1_disc_centre_null",
+ "closure_2026_11_10/R541_why_the_cold_share",
+ "closure_2026_11_10/R541A_clock_matter_coupling",
+ "closure_2026_11_10/R541B_early_symmetry_breaking",
+ "closure_2026_11_10/R541C_made_in_inflation",
+ "closure_2026_11_10/R541D_baryon_current_cogenesis",
+ "closure_2026_11_10/R541E_b_minus_l_variant",
+ "rebuild_2026_10_22/X38_a0_surface_density_halos/README.md",
 ]
 REFS = ("HEAD", "origin/main")
 def git(*a, check=True):
