@@ -209,7 +209,9 @@ A completion has to move a gate or bring physics from outside the catalogue.
   (origin 660b4a1171, 40adf2ef0e, 27173fe895, b54941f573): the lead's own two lanes; result files read by the lead, not
   re-run
 - `DD1_deduce_from_data/` (origin 91c159b746, ids 45a9fafdc2) and `HIS1_history_reading/` (origin c4f8cd2bb3, ids
-  353bc1852e): result files read by the lead, not re-run, no blind regrade
+  353bc1852e): result files read by the lead, not re-run
+- `HIS1R_history_regrade/` (origin fefd1d3437, 882d9fa389, 88d306d2b1): regrade of HIS1 with separate code; same label
+  on both footings, AGREES WITH DIFFERENCES THAT DO NOT MOVE A LABEL; not fully blind (disclosed)
 - `DCN1_disc_centre_null/` (run from another session; header read by the lead, not re-run): ARTEFACT / ARTEFACT only
   under the last of six post hoc readings; NO VERDICT under every reading frozen before the outcome was seen
 - `EQ1_cold_dark_energy_equations/EQUATIONS.md`: a reference sheet, not a lane. Every equation the record has for the

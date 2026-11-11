@@ -156,7 +156,13 @@ break every rule break it in both directions.
   errors; 2.3 / 2.7 if every distance were 20 % smaller). Inside a class nothing tracks a measured sign of history
   (no power). **The reading "the law is a force that every system obeys now" scores 1 of 5 on the same tests.** One
   mutation arm did not bite as frozen (disclosed); the early types' hold rests on a Chabrier-like mass-to-light ratio.
-  Not re-run by the lead; no blind regrade. It tests consistency with a history, not a mechanism.
+  Not re-run by the lead. It tests consistency with a history, not a mechanism.
+- **HIS1R** (`HIS1R_history_regrade/`, origin fefd1d3437, 882d9fa389, 88d306d2b1): a regrade from the frozen criteria
+  and the frozen table with its own code, label committed before HIS1's result was opened. Same label on both footings;
+  all five test outcomes and the force score agree; 145 of 148 compared numbers agree to 5e-12; the three that differ
+  (one standard error and one control count) move no label. It discloses that it was not fully blind: HIS1's commit
+  subjects were in its session context from the start, so the agreement is of arithmetic from separate code, not an
+  independent judgement.
 
 ## What is not claimed
 
