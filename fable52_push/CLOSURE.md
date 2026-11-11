@@ -178,6 +178,32 @@ break every rule break it in both directions.
   With MEDIUM_DESIGN's table and its section 3 (`closure_2026_11_10/`), every medium class the record can name now has
   a failing verdict; this lane closes the neutral-contact one. It is not a statement about a field-mediated force.
 
+## Added 2026-11-10 late night: three parent-action lanes from other sessions
+
+Quoted from each lane's own RESULT.md (headers read by the lead, not re-run by the lead; the sending session re-ran
+PAR1 and SMF1). All three are under `closure_2026_11_10/`.
+
+- **PAR1** (`PAR1_parent_action_spec/`, origin 6be0bf30d1): NO VERDICT / NO VERDICT as frozen and under both of its
+  post hoc amendments, because two branches stay open and no member of them was graded there. Its answer: "No parent
+  action built from one single-valued carrier exists" (branch B-Ts, EMPTY under its post hoc A1; with B0 and B-L that
+  closes every parent whose cold dark energy is a single-valued field). Left open: a multi-valued (wave) carrier with
+  the law keyed on the wave's own phase frame (wave mass 4.2e-24 to 1.84e-23 eV canonical, to 1.93e-23 alt), or with
+  the law on a separate smooth frame.
+- **WV1** (`WV1_wave_dust_split_charge/`, origin fb421c3adb, addendum 21350b497d): the separate uncoupled frame (V2)
+  STRUCTURE FAILS / STRUCTURE FAILS as frozen. The frame as the wave's phase (V1) STRUCTURE FAILS only under its post
+  hoc A1 + A2; as frozen it is NO VERDICT. Its plain words: "The split cannot be made in an action", because the law
+  reads the frame's acceleration, so D.P enters the frame field's own current. Its log M_b 10.7 runs were paused and
+  are not part of the result.
+- **SMF1** (`SMF1_smooth_frame_parent/`, origin 884ddfb854, post hoc A1 result 92a0855574): PAR1's smooth-frame branch,
+  written as a full action, STRUCTURE FAILS / STRUCTURE FAILS at its first part S0. By Gauss, the frame's polarization
+  charge is zero in any region whose boundary lies where the frame free-falls, for every exchange rate; and where the
+  halo is counted once the exchange source is zero. Neither gate is wave-specific (post hoc A1), so a collisionless
+  carrier in the same structure fails the same way. Not graded there: "a re-specified branch, with the halo as the
+  image of a held edge layer of real cold charge"; its member has nothing that can hold such a layer.
+
+So the two branches PAR1 left open each have a failing member, one of them only under post hoc readings. The one
+re-specified branch SMF1 names is ungraded.
+
 ## What is not claimed
 
 No completion exists. No lane here says the data favour the framework. The exponential dust term is a hand-level
