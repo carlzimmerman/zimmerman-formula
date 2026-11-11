@@ -159,6 +159,6 @@ negative-density test and the line, and Hernquist fails the line at log M_b 9.4 
 - `python3 set1_a1_num.py`; `SET1_MUTATE=M1|M3 python3 set1_a1_num.py` (exit 1 each).
 - Outputs: `.out` / `.json`, with `_MUTATE_<arm>` for the MUTATE runs.
 
-Commits (local / origin): criteria d6ebdb40dd / 459ba348fb.
+Commits (local / origin): criteria d6ebdb40dd / 459ba348fb (alone, first); result 842683909c / 23f959cc5d.
 
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
