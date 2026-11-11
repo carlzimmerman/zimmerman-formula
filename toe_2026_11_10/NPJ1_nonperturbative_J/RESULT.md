@@ -239,5 +239,8 @@ kappa = 1/2 FITTED; not theory closed. Adopts nothing.
 |---|---|---|
 | criteria | 249f297cd0 | 99714627b2 |
 | result (script, outputs, Lean, this file) | 7c01849364 | f3e403091b |
+| id table | c370df7044 | 246192a524 |
+| R6 reported item (`npj1_r6.*`, RESULT section) | da42c54c2f | 08af44c4c6 |
 
-Pushed by replay onto origin/main (d8f379755d..f3e403091b). This id table is one more commit, pushed the same way.
+Pushed by replay onto origin/main (d8f379755d..f3e403091b, then ..246192a524, then ..08af44c4c6). This table update is
+one more commit, pushed the same way.
