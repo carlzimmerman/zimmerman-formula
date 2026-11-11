@@ -202,4 +202,9 @@ kappa = 1/2 FITTED; not theory closed. Adopts nothing.
 
 ## Commit ids (local / origin)
 
-(filled in by the next commit)
+| commit | local | origin |
+|---|---|---|
+| criteria | 249f297cd0 | 99714627b2 |
+| result (script, outputs, Lean, this file) | 7c01849364 | f3e403091b |
+
+Pushed by replay onto origin/main (d8f379755d..f3e403091b). This id table is one more commit, pushed the same way.
