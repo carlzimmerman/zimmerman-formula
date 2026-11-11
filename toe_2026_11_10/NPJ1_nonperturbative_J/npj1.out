@@ -1,0 +1,107 @@
+NPJ1: a non-perturbative origin for J (T3(i)).  MUTATE = False
+M_Pl = 1.22089e+28 eV, hbar c = 1.973270e-07 eV m, hbar c/kpc = 6.3949e-27 eV, hbar c/AU = 1.3190e-18 eV
+  [canonical] a0 = 9.36030e-11 m/s^2: E_a0 = 2.05511e-34 eV; rho_DE (tie) = 5.84241e-27 kg/m^3; hbar H_Lambda = 1.18966e-33 eV (H/a0 ratio 5.78881 = sqrt(32 pi/3) 5.78881); S_dS = 3.3087e+122; v_f(6e10) = 165.23 km/s
+  [alt] a0 = 1.13120e-10 m/s^2: E_a0 = 2.48362e-34 eV; rho_DE (tie) = 8.53280e-27 kg/m^3; hbar H_Lambda = 1.43772e-33 eV (H/a0 ratio 5.78881 = sqrt(32 pi/3) 5.78881); S_dS = 2.2655e+122; v_f(6e10) = 173.24 km/s
+
+=== KNOWN ANSWERS ===
+KA1 3-d determinant non-analytic part at m = 1.3: -0.0582772350 vs -m^3/(12 pi) = -0.0582772350 (rel 2.4e-19) -> PASS
+KA2 Bose-Einstein: sum p^n = 1/(1 - p), nbar = -p/(p - 1), g_1 series ok True; ideal-gas critical density (m = T = 1) 0.165869209313 vs zeta(3/2)(1/2pi)^(3/2) (rel 0.0e+00) -> PASS
+KA3 LHY: I = 0.754247233266 vs 8 sqrt2/15 = 0.754247233266 (rel 5.5e-30); implied coefficient 4.81441778 vs 128/(15 sqrt pi) = 4.81441778 -> PASS
+KA4 Legendre: p* = u/(u + 1), max_p[pu - W] = u - log(u + 1); mu from GR + (a0^2/K)J = A/(A + a0) -> PASS
+KA5a O(N) large N: gap eq lambda*m/(8*pi) + m**2 - r = 0 (True); dV/dr at saddle = -m/(8*pi) (True); d ln m/d ln r = 0.500000 (lambda -> 0, free 1/2) and 1.000000 (lambda -> inf, large-N nu = 1)
+KA5b GN: Cl(7) anticommutator error 0.0e+00, det D/(k^2+g^2A^2+sigma^2)^4 - 1 max 1.6e-15; closed-form V_min vs numerical minimum, max error 1.1e-16 -> PASS
+KA6 BK: Euler-Lagrange = 8 pi Lambda [d/dr(r^2 theta'^2) - alpha rho r^2/(2 M_Pl)] (residual 0); a_theta^2/a_N = Lambda**2*alpha**3/(8*pi*M_Pl) -> a = a_N + sqrt(a0' a_N) -> PASS
+KA7 3-d bubble at p = 0.7: 0.1785714286 vs 1/(8p) = 0.1785714286 (rel 6.4e-18) -> PASS
+KNOWN ANSWERS ALL PASS: True
+
+=== U DETECTOR (HZ1's J1/J2, re-implemented) AND THE BOSE-EINSTEIN IDENTITIES ===
+detector on W(p) = -p - ln(1-p): {'odd_orders': [3, 5, 7, 9, 11], 'orders_ge_7': [7, 8, 9, 10], 'terminates': False, 'admissible': False}; k-body coefficients of eps(n) (k = 2..8): [1/2, 1/3, 1/4, 1/5, 1/6, 1/7, 1/8]
+detector on J(u): {'odd_orders': [3, 5, 7, 9, 11], 'orders_ge_7': [7, 8, 9, 10], 'terminates': False, 'admissible': False}
+identity (i) W = ln Z_BE(p) - p and W'(p) = nbar_BE(p) = p/(1-p): True; inverse map x = p/(1-p) -> x/(1+x) = p: True
+identity (ii) x/(1+x) = Fermi-Dirac / Langmuir occupation at fugacity x: True  (same map, other statistics)
+identity (iii) Legendre of ln Z_BE in ln z: n ln z - ln Z = log((n/(n + 1))**n/(n + 1))  = -S_BE(n): True  (not W)
+
+=== CANDIDATES: mu(x) DERIVED FROM EACH SECTOR'S FREE ENERGY (sympy), THEN FITTED ===
+a2: mu = (-A*alpha_t/2 + A - B*a0 - a0*alpha_t/2 + a0)/(A + a0)
+a3: mu = 5*sqrt(A)*B*beta/(2*sqrt(a0)) - B - alpha_t/2 + 1
+b1: mu (gA < M) = 2*K*M*N*g_B**2*nu/pi - alpha_t/2 + 1;  mu (gA > M) = 2*A*K*N*g_B**3*nu/pi - alpha_t/2 + 1;  = 1 - alpha_t/2 + B' max(1, gA/M): True
+b2: mu = (K*N*g_B**2*nu*(A*g_B - m(A)) + 2*pi*(2 - alpha_t))/(4*pi);  reduced form 1 - alpha_t/2 - B (mhat - s): True
+c1: mu = (A*(2 - alpha_t)*(exp(epsilon/T_s) - exp(A*lambda_A/T_s))/2 - K*lambda_A*n_s*exp(A*lambda_A/T_s))/(A*(exp(epsilon/T_s) - exp(A*lambda_A/T_s)));  = 1 - alpha_t/2 - B nbar(y)/y: True
+c2: mu = (-A**2*K*N - H**2*K*N + 180*pi**2*(2 - alpha_t))/(360*pi**2);  = 1 - alpha_t/2 - B(1 + A^2/H^2), B = K N H^2/(360 pi^2): True
+c3: mu = (A*K*N*g_B**3*nu - K*N*g_B**2*nu*sqrt(A**2*g_B**2 + m0**2) + 2*pi*(2 - alpha_t))/(4*pi);  = 1 - alpha_t/2 - B(sqrt(1+s^2) - s): True
+c4: E = M_Pl**2*r_h, F = M_Pl**2*r_h/2, f(A) = 3*M_Pl**2*(A**2 + H**2)/(8*pi); mu = 4 - alpha_t/2 (A-independent: shift 3)
+  a1 BK superfluid                                 S PASS: max dmu 0.0946, deep slope 0.9558 (law 0.9901), params [-0.3743]  [alt identical: True]
+  a2 exact-Legendre condensate                     S PASS: max dmu 0.0000, deep slope 0.9901 (law 0.9901), params [-0.0, 1.0]  [alt identical: True]
+  a3 GP + LHY condensate                           S FAIL: max dmu 0.5014, deep slope 0.4887 (law 0.9901), params [-3.0332, 2.5162, -1.6252]  [alt identical: True]
+  b1 large-N GNY, dynamical mass                   S FAIL: max dmu 0.5311, deep slope 0.0000 (law 0.9901), params [6.0751, 2.494, -1.9556]  [alt identical: True]
+  b2 interacting leaf pair (large-N O(N) + Cl(6))  S PASS: max dmu 0.0260, deep slope 0.9641 (law 0.9901), params [0.0599, 0.9698, -0.0988, -3.6526]  [alt identical: True]
+  c1 Bose mode, thermodynamic pairing              S FAIL: max dmu 0.4397, deep slope 1.4298 (law 0.9901), params [0.8992, -5.7836, -3.0773, 0.6692]  [alt identical: True]
+  c2 bath at dS-Unruh T(A)                         S FAIL: max dmu 0.8928, deep slope 0.0000 (law 0.9901), params [0.1946, 0.0]  [alt identical: True]
+  c3 holographic leaf pair (G3 fields)             S PASS: max dmu 0.0260, deep slope 0.9641 (law 0.9901), params [0.0596, 0.9699, -0.0989]  [alt identical: True]
+  c4 horizon dof                                   S FAIL: max dmu 0.9723, deep slope 0.0000 (law 0.9901), params [7.9644]  [alt identical: True]
+
+=== C: SIZE (C-amp, C-loc) UNDER RULE H AND RULE W (W = holographic count + species; ASSUMPTION) ===
+[canonical] C-loc for A-gapped sectors: c_g >= c^2/v_f^2/sqrt(1.01) = 3.2757e+06 vs 4 pi -> log10 R_loc = 5.42; condensate microscopic mass >= 6.73e-30 eV vs M_Pl -> log10 -57.3
+  [canonical] a1 BK superfluid                                 C-amp log10 R: H -32.02, W -32.02; C-loc -57.26 -> C_H PASS, C_W PASS
+      a0'/a0 0.4223; Lambda needed 1.159e-04 eV (alpha 4 pi), 5.161e-03 eV (alpha 1); rho_DE^(1/4) = 2.240e-03 eV
+  [canonical] a2 exact-Legendre condensate                     C-amp log10 R: H -20.96, W -20.96; C-loc -57.26 -> C_H PASS, C_W PASS
+  [canonical] a3 GP + LHY condensate                           C-amp log10 R: H n/a, W n/a; C-loc -57.26 -> C_H FAIL, C_W FAIL
+  [canonical] b1 large-N GNY, dynamical mass                   C-amp log10 R: H 53.01, W 1.73; C-loc 5.42 -> C_H FAIL, C_W FAIL
+  [canonical] b2 interacting leaf pair (large-N O(N) + Cl(6))  C-amp log10 R: H 55.36, W 4.08; C-loc 5.42 -> C_H FAIL, C_W FAIL
+      nu N g_B^3 needed 5.603e+89 eV; at g_B = 4 pi: nu N = 2.823e+86 eV (H ceiling 1.22e+31; W-count bound pi M_Pl^2/H = 3.94e+89; W-species bound M_Pl^2 kpc = 2.33e+82); N_dof = 2.37e+119 vs S_dS 3.31e+122; Lambda_sp = 5.28e-31 eV vs hbar c/kpc 6.39e-27; W-count alone (W0): PASS (amplitude only)
+  [canonical] c1 Bose mode, thermodynamic pairing              C-amp log10 R: H n/a, W n/a; C-loc n/a -> C_H FAIL, C_W FAIL
+  [canonical] c2 bath at dS-Unruh T(A)                         C-amp log10 R: H 114.44, W 4.44; C-loc 7.31 -> C_H FAIL, C_W FAIL
+  [canonical] c3 holographic leaf pair (G3 fields)             C-amp log10 R: H 55.36, W 4.08; C-loc 5.42 -> C_H FAIL, C_W FAIL
+      nu N g_B^3 needed 5.603e+89 eV; at g_B = 4 pi: nu N = 2.823e+86 eV (H ceiling 1.22e+31; W-count bound pi M_Pl^2/H = 3.94e+89; W-species bound M_Pl^2 kpc = 2.33e+82); N_dof = 2.37e+119 vs S_dS 3.31e+122; Lambda_sp = 5.28e-31 eV vs hbar c/kpc 6.39e-27; W-count alone (W0): PASS (amplitude only)
+  [canonical] c4 horizon dof                                   C-amp log10 R: H 0.00, W 0.00; C-loc 6.52 -> C_H FAIL, C_W FAIL
+[alt] C-loc for A-gapped sectors: c_g >= c^2/v_f^2/sqrt(1.01) = 2.9797e+06 vs 4 pi -> log10 R_loc = 5.37; condensate microscopic mass >= 7.40e-30 eV vs M_Pl -> log10 -57.2
+  [alt] a1 BK superfluid                                 C-amp log10 R: H -31.98, W -31.98; C-loc -57.22 -> C_H PASS, C_W PASS
+      a0'/a0 0.4223; Lambda needed 1.274e-04 eV (alpha 4 pi), 5.673e-03 eV (alpha 1); rho_DE^(1/4) = 2.463e-03 eV
+  [alt] a2 exact-Legendre condensate                     C-amp log10 R: H -20.93, W -20.93; C-loc -57.22 -> C_H PASS, C_W PASS
+  [alt] a3 GP + LHY condensate                           C-amp log10 R: H n/a, W n/a; C-loc -57.22 -> C_H FAIL, C_W FAIL
+  [alt] b1 large-N GNY, dynamical mass                   C-amp log10 R: H 52.93, W 1.65; C-loc 5.37 -> C_H FAIL, C_W FAIL
+  [alt] b2 interacting leaf pair (large-N O(N) + Cl(6))  C-amp log10 R: H 55.28, W 4.00; C-loc 5.37 -> C_H FAIL, C_W FAIL
+      nu N g_B^3 needed 4.636e+89 eV; at g_B = 4 pi: nu N = 2.336e+86 eV (H ceiling 1.22e+31; W-count bound pi M_Pl^2/H = 3.26e+89; W-species bound M_Pl^2 kpc = 2.33e+82); N_dof = 1.62e+119 vs S_dS 2.27e+122; Lambda_sp = 6.38e-31 eV vs hbar c/kpc 6.39e-27; W-count alone (W0): PASS (amplitude only)
+  [alt] c1 Bose mode, thermodynamic pairing              C-amp log10 R: H n/a, W n/a; C-loc n/a -> C_H FAIL, C_W FAIL
+  [alt] c2 bath at dS-Unruh T(A)                         C-amp log10 R: H 114.27, W 4.35; C-loc 7.27 -> C_H FAIL, C_W FAIL
+  [alt] c3 holographic leaf pair (G3 fields)             C-amp log10 R: H 55.28, W 4.00; C-loc 5.37 -> C_H FAIL, C_W FAIL
+      nu N g_B^3 needed 4.636e+89 eV; at g_B = 4 pi: nu N = 2.336e+86 eV (H ceiling 1.22e+31; W-count bound pi M_Pl^2/H = 3.26e+89; W-species bound M_Pl^2 kpc = 2.33e+82); N_dof = 1.62e+119 vs S_dS 2.27e+122; Lambda_sp = 6.38e-31 eV vs hbar c/kpc 6.39e-27; W-count alone (W0): PASS (amplitude only)
+  [alt] c4 horizon dof                                   C-amp log10 R: H 0.00, W 0.00; C-loc 6.47 -> C_H FAIL, C_W FAIL
+
+=== U: UV ACTION (power counting + detector on anything inserted) ===
+  a1 BK superfluid                                 U FAIL: three-body contact |psi|^6, z = 2, d = 3: coupling dimension 5 - 6*3/2 = -4; and the inserted |grad theta|^3: {'odd_orders': [3], 'orders_ge_7': [], 'terminates': True, 'admissible': False}
+  a2 exact-Legendre condensate                     U FAIL: EOS W inserted: {'odd_orders': [3, 5, 7, 9, 11], 'orders_ge_7': [7, 8, 9, 10], 'terminates': False, 'admissible': False}; k-body tower g_k = 1/k for all k
+  a3 GP + LHY condensate                           U FAIL: UV |phi|^4 (z = 1) renormalizable and LHY generated, but the coupling mu = mu0 |A|/a0 inserted: {'odd_orders': [1], 'orders_ge_7': [], 'terminates': True, 'admissible': False}
+  b1 large-N GNY, dynamical mass                   U PASS: leaf z = 3, [3-d Lagrangian] = 3: [psi] = 1, [sigma] = 1/2, Yukawa [y] = 1/2, [mu_sigma^2] = 2, A coupling g A_i psibar Gamma^i psi [g] = 0; all >= 0; nothing non-polynomial inserted
+  b2 interacting leaf pair (large-N O(N) + Cl(6))  U PASS: [lambda] = 1, [m0^2] = 2, [g_B^2] = 0, [g_F] = 0 (HZ1's counting); m^2 polynomial in A
+  c1 Bose mode, thermodynamic pairing              U FAIL: chemical potential lambda_A |A| inserted: {'odd_orders': [1], 'orders_ge_7': [], 'terminates': True, 'admissible': False}
+  c2 bath at dS-Unruh T(A)                         U PASS: free 4-d bosons (z = 1); inserted P(T(A)) polynomial in A^2: {'odd_orders': [], 'orders_ge_7': [], 'terminates': True, 'admissible': True}; the thermal state at T(A) is assumed
+  c3 holographic leaf pair (G3 fields)             U PASS: HZ1 (i-p): all couplings >= 0 at z = 3
+  c4 horizon dof                                   U FAIL: no local action (horizon entropy counted, not a field theory)
+c2 analyticity: P ~ T^4 at H > 0: odd orders []; a 3-d bath P ~ T^3 at H > 0: odd orders [] (no |A|^3 for any bath with T >= H/2pi > 0)
+
+=== LABELS (worse footing; lane = best candidate) ===
+  a1 BK superfluid                                 S PASS/PASS, C_H PASS/PASS, C_W PASS/PASS, U FAIL -> SHAPE ONLY
+  a2 exact-Legendre condensate                     S PASS/PASS, C_H PASS/PASS, C_W PASS/PASS, U FAIL -> SHAPE ONLY
+  a3 GP + LHY condensate                           S FAIL/FAIL, C_H FAIL/FAIL, C_W FAIL/FAIL, U FAIL -> NONE
+  b1 large-N GNY, dynamical mass                   S FAIL/FAIL, C_H FAIL/FAIL, C_W FAIL/FAIL, U PASS -> NONE
+  b2 interacting leaf pair (large-N O(N) + Cl(6))  S PASS/PASS, C_H FAIL/FAIL, C_W FAIL/FAIL, U PASS -> SHAPE ONLY
+  c1 Bose mode, thermodynamic pairing              S FAIL/FAIL, C_H FAIL/FAIL, C_W FAIL/FAIL, U FAIL -> NONE
+  c2 bath at dS-Unruh T(A)                         S FAIL/FAIL, C_H FAIL/FAIL, C_W FAIL/FAIL, U PASS -> NONE
+  c3 holographic leaf pair (G3 fields)             S PASS/PASS, C_H FAIL/FAIL, C_W FAIL/FAIL, U PASS -> SHAPE ONLY
+  c4 horizon dof                                   S FAIL/FAIL, C_H FAIL/FAIL, C_W FAIL/FAIL, U FAIL -> NONE
+
+NPJ1 LANE LABEL: SHAPE ONLY   (best: a1 BK superfluid, a2 exact-Legendre condensate, b2 interacting leaf pair (large-N O(N) + Cl(6)), c3 holographic leaf pair (G3 fields))
+W0 (count alone; reported, not a label): {'b2 interacting leaf pair (large-N O(N) + Cl(6))': {'canonical': {'amp_count_only': 'PASS', 'loc': 'FAIL'}, 'alt': {'amp_count_only': 'PASS', 'loc': 'FAIL'}}, 'c3 holographic leaf pair (G3 fields)': {'canonical': {'amp_count_only': 'PASS', 'loc': 'FAIL'}, 'alt': {'amp_count_only': 'PASS', 'loc': 'FAIL'}}}
+
+=== REPORTED (not graded) ===
+R2 [canonical] c3's leaf fermion (g_B = 4 pi): momentum-dependent stiffness / GR's = 3.18e+05 at the MOND radius (9.45 kpc), 6.20e+14 at 1 AU; its Compton length at A = a0 is c^2/(g_F a0) = 31.1 Gpc/g_F
+   dwarf (1e8 Msun): C-loc needs c_g >= 8.024e+07
+R2 [alt] c3's leaf fermion (g_B = 4 pi): momentum-dependent stiffness / GR's = 2.89e+05 at the MOND radius (8.60 kpc), 5.13e+14 at 1 AU; its Compton length at A = a0 is c^2/(g_F a0) = 25.7 Gpc/g_F
+   dwarf (1e8 Msun): C-loc needs c_g >= 7.299e+07
+R3 [canonical] (2) a0^2/(4 pi G) = 1.0446e-11 J/m^3 = 0.019894 rho_DE c^2 (1/(16 pi) = 0.019894); (3) log10 M_Pl/H = 61.01, log10 M_Pl/E_a0 = 61.77; c3 needed / H ceiling = 10^55.36; needed / holographic (pi M_Pl^2/H)(4pi)^3 = 10^-3.14; T with a0 = T^2/M_Pl: 1.584 meV
+R3 [alt] (2) a0^2/(4 pi G) = 1.5257e-11 J/m^3 = 0.019894 rho_DE c^2 (1/(16 pi) = 0.019894); (3) log10 M_Pl/H = 60.93, log10 M_Pl/E_a0 = 61.69; c3 needed / H ceiling = 10^55.28; needed / holographic (pi M_Pl^2/H)(4pi)^3 = 10^-3.14; T with a0 = T^2/M_Pl: 1.741 meV
+R1 kappa: a1 a0' = alpha^3 Lambda^2/(8 pi M_Pl), Lambda free (not tied to rho_DE); b2/c3 a0 = c m_b0/g_B with m_b0 and Lambda_cc independent; a2 restates (A). No candidate fixes kappa; 5.41 untouched.
+
+runtime 15.4 s, peak memory 0.12 GB
+Adopts nothing. kappa = 1/2 FITTED; not theory closed.
