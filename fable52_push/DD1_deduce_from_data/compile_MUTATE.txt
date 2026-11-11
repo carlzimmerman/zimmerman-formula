@@ -1,0 +1,54 @@
+DD1_MUTATE.lean:15:61: error: unsolved goals
+gobs gb r G : ℝ
+hgb : 0 < gb
+hr : 0 < r
+hG : 0 < G
+hr2 : 0 < r ^ 2
+⊢ gobs - gb = gobs
+DD1_MUTATE.lean:27:2: error: linarith failed to find a contradiction
+case h1
+gb a : ℝ
+hgb : 0 < gb
+ha : 0 < a
+s : ℝ := √(1 + 4 * a / gb)
+hs : s = √(1 + 4 * a / gb)
+h0 : 0 ≤ 1 + 4 * a / gb
+hsq : s ^ 2 = 1 + 4 * a / gb
+key : gb * s ^ 2 = gb + 4 * a
+a✝ : gb * (gb * (1 + (s - 1) / 2) + a) < (gb * (1 + (s - 1) / 2)) ^ 2 + a
+⊢ False
+failed
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+DD1_MUTATE.lean:31:27: error: unsolved goals
+g gb a : ℝ
+hg : 0 < g
+ha : 0 < a
+hlaw : gb = g ^ 2 / (g + a)
+hga : 0 < g + a
+hgb : 0 < gb
+⊢ g * a = g * a + a ^ 2
+DD1_MUTATE.lean:39:92: error: unsolved goals
+case e_a.e_a
+gb a : ℝ
+hgb : 0 < gb
+ha : 0 < a
+⊢ √((gb + 4 * a) / gb) = √((a * gb + 4) / (a * gb))
+DD1_MUTATE.lean:52:2: error: linarith failed to find a contradiction
+gb a b : ℝ
+hgb : 0 < gb
+ha : 0 < a
+hab : a < b
+h1 : 4 * a / gb < 4 * b / gb
+h2 : 1 + 4 * a / gb < 1 + 4 * b / gb
+h0 : 0 ≤ 1 + 4 * a / gb
+this : √(1 + 4 * a / gb) < √(1 + 4 * b / gb)
+a✝ : (√(1 + 4 * a / gb) - 1) / 2 ≤ (√(1 + 4 * b / gb) - 1) / 2
+⊢ False
+failed
+exit 1
+kappa = 1/2 FITTED; not theory closed. Adopts nothing.
