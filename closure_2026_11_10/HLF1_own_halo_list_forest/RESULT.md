@@ -155,6 +155,12 @@ Cold dark energy is a gravitating field component; no particle is added. Nothing
 ## Files
 
 - `FROZEN_CRITERIA.md` (123947b9dc), `AMENDMENT_A1_2026-11-11.md` (657e245086).
+- Commits (local / origin): criteria 123947b9dc / 5c289500cf (alone); amendment A1 657e245086 / 98ae045a64 (alone);
+  result 7d34a142f4 / b1abfae050. Re-run by the lead from a copy at the same folder depth, every step in order (finder,
+  its mutations, the three lists through the halo model, linear rows, shear and grading, KA-A3, the forest on both
+  footings with its mutations): all 31 JSON files equal the committed ones byte for byte, and the 11 logs differ only
+  in run-time and memory stamps. A re-run reproduces the arithmetic and is not an independent re-grade: Part A's
+  amended reading still needs one. Pushed by replay; no history rewritten.
 - `hlf1_halos.py` -> `hlf1_halos.json/.out` (7 s); `_MUTATE` (MA1 as frozen, MA2; 10 s); `hlf1_ma1_check.py` ->
   `hlf1_ma1_check.json/.out` (MA1 restated; 10 s).
 - `hlf1_hm.py`, `hlf1_linear.py`, `hlf1_shear.py`, `hlf1_grade.py`: copies of CO1's scripts. `HLF1_LIST` is
