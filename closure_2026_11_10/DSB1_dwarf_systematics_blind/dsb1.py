@@ -15,7 +15,8 @@ import numpy as np
 
 HERE = os.path.dirname(os.path.abspath(__file__)); CL = os.path.dirname(HERE); REPO = os.path.dirname(CL)
 MUT = "--mutate" in sys.argv
-TAG = "dsb1_MUTATE" if MUT else "dsb1"
+AMEND = "--amend" in sys.argv   # amendment 2026-11-10 (18ac23bd5a): KA-c' differential recovery gates grading
+TAG = "dsb1_MUTATE" if MUT else ("dsb1_amended" if AMEND else "dsb1")
 T0 = time.time(); OUT = []
 def P(s=""):
     print(s, flush=True); OUT.append(str(s))
@@ -343,7 +344,7 @@ def coma_smem(a0):
     m = lambda smp: float(np.mean([coma_resid(c["Ms"], c["Re"], np.array([c["sig"]]), np.array([c["dmean"]]), a0, 3.0)[0] for c in smp]))
     return abs(m(COMA) - m(ADM))
 
-def run_class(cls, f, reading, N=4000, seed=0, off=(), only=None, a0=None, cens_mode="draw", drop_flag=False, mock=None):
+def run_class(cls, f, reading, N=4000, seed=0, off=(), only=None, a0=None, cens_mode="draw", drop_flag=False, mock=None, t8log=False):
     """Monte Carlo over the frozen budget + bootstrap over systems; returns the N class statistics.
     off: terms switched off; only: if given, every term not in it is off (measurement terms T5/T7/T8 included);
     mock: dict name -> sigma (planted mock dispersions, censored rows dropped)."""
@@ -364,7 +365,9 @@ def run_class(cls, f, reading, N=4000, seed=0, off=(), only=None, a0=None, cens_
         fD = rep(1.05 ** rng.normal(0, 1, N)) if on("T6") else 1.0
         Ms = Ms * fD ** 2; Re = Re * fD; dproj = dproj * fD; dmean = dmean * fD
         if on("T7"): Re = Re * 10 ** rng.normal(0, 0.04, L)
-        if on("T8"): sig = np.abs(sig + rng.normal(0, 1, L) * esig)
+        if on("T8"):
+            sig = (10 ** (np.log10(sig) + rng.normal(0, 1, L) * esig / (sig * math.log(10))) if t8log
+                   else np.abs(sig + rng.normal(0, 1, L) * esig))
         if on("T9"):
             w = rep(rng.normal(0, 90.0, N)); sig = np.sqrt(np.maximum(sig * sig - w, 0.01 * sig * sig))
         if on("T17"): sig = sig * rep(1.15 ** rng.normal(0, 1, N))
@@ -522,17 +525,25 @@ def known_answers():
     yv = np.geomspace(1e-6, 1e3, 50)
     l1 = float(np.max(np.abs(gB(R12, yv, np.inf) - gl(gNp(R12, yv))))); l2 = float(np.max(np.abs(np.log10(gB(R12, yv, 1e-30) / gNp(R12, yv)))))
     l3 = abs(vir_B(1e-9, np.inf) / ((2.0 / 9.0) * math.sqrt(1e-9)) - 1)
-    rec = {}; off_err = 0.0; ok_rec = True
+    rec = {}; rec0 = {}; off_err = 0.0; ok_rec = True; ok_diff = True
     for f in FOOTS:
         for cls in GRADED:
             mock = mock_sigmas(cls, f, 0.40)
             off_err = max(off_err, mock["_check"])
             st = summ(run_class(cls, f, "prim", N=1000, seed=seed_of(cls, f, "prim", 7), mock=mock))
             rec[f"{f}|{cls}"] = st["median"]; ok_rec &= abs(st["median"] - 0.40) <= 0.10
+            if AMEND:
+                st0 = summ(run_class(cls, f, "prim", N=1000, seed=seed_of(cls, f, "prim", 7), mock=mock_sigmas(cls, f, 0.0)))
+                rec0[f"{f}|{cls}"] = st0["median"]; ok_diff &= abs(st["median"] - st0["median"] - 0.40) <= 0.10
     ok_c = l1 == 0.0 and l2 < 1e-12 and l3 < 1e-3 and off_err <= 1e-6 and ok_rec
     check("KA-c", ok_c, f"limits: r_J inf -> iso {l1:.1e}, r_J 0 -> Newton {l2:.1e}, deep virial {l3:.1e}; planted +0.40: budget off max |d| {off_err:.1e} "
           f"(line 1e-6); full budget recovered " + ", ".join(f"{k} {v:+.3f}" for k, v in rec.items()) + " (line 0.10)")
     RES["KA"]["KA-c"] = dict(limits=[l1, l2, l3], budget_off_err=off_err, recovered=rec)
+    if AMEND:
+        okp = l1 == 0.0 and l2 < 1e-12 and l3 < 1e-3 and off_err <= 1e-6 and ok_diff
+        check("KA-c'", okp, "amended differential recovery rec(+0.40) - rec(0): " + ", ".join(f"{k} {rec[k]-rec0[k]:+.3f} (null {rec0[k]:+.3f})" for k in rec) + " (line |d - 0.40| <= 0.10)")
+        RES["KA"]["KA-c'"] = dict(rec0=rec0, diff={k: rec[k] - rec0[k] for k in rec})
+        return all(CHK[k]["ok"] for k in ("KA-a", "KA-b", "KA-c'")), DS
     return all(CHK[k]["ok"] for k in ("KA-a", "KA-b", "KA-c")), DS
 
 def mock_sigmas(cls, f, delta):
@@ -613,6 +624,9 @@ if not MUT:
                             st = run_class(cls, f, "prim", seed=seed_of(cls, f, "prim", 2), cens_mode="drop")
                         V["censored_" + cm] = summ(st)
                 st = run_class(cls, f, "prim", seed=seed_of(cls, f, "prim", 3), drop_flag=True); V["flagged_dropped"] = summ(st)
+                if cls == "Coma UDGs":
+                    st = run_class(cls, f, "prim", seed=seed_of(cls, f, "prim"), t8log=True); S = summ(st); md = mdo(st)
+                    V["T8_log_symmetric"] = dict(S, MDO=md, label=label_of(S, md))
                 P(f"[{f[:3]}] {cls:15s} prim {C['prim']['median']:+.3f} [{C['prim']['ci95'][0]:+.3f}, {C['prim']['ci95'][1]:+.3f}] "
                   f"MDO {C['prim']['MDO']} -> {lab} | weak {C.get('weak', {}).get('median', float('nan')):+.3f} {C.get('weak', {}).get('label', '-')} "
                   f"| strong {C.get('strong', {}).get('median', float('nan')):+.3f} [{C.get('strong', {}).get('ci95', [float('nan')]*2)[0]:+.3f}, "
@@ -624,6 +638,18 @@ if not MUT:
         ll, det = lane_label(LAB); RES["lane_label"] = ll; RES["lane_detail"] = det
         P(f"\nLANE LABEL: {ll} {det}")
         P("class labels: " + "; ".join(f"{c}: {v}" for c, v in cl.items()))
+        if AMEND:
+            P("\n=== NULL SHIFT rec(0) of the budget (mock at B, delta 0; per-term alone shifts > 0.005) ===")
+            NS = RES["null_shift"] = {}
+            for f in FOOTS:
+                NS[f] = {}
+                for cls in GRADED:
+                    mk = mock_sigmas(cls, f, 0.0); sd = seed_of(cls, f, "prim", 7)
+                    full = summ(run_class(cls, f, "prim", N=1000, seed=sd, mock=mk))["median"]
+                    nil = summ(run_class(cls, f, "prim", N=1000, seed=sd, mock=mk, only=()))["median"]
+                    al = {t: summ(run_class(cls, f, "prim", N=1000, seed=sd, mock=mk, only=(t,)))["median"] - nil for t in TERMS}
+                    NS[f][cls] = dict(full=full, none=nil, alone=al)
+                    P(f"[{f[:3]}] {cls:15s} null {full:+.3f} | " + ", ".join(f"{t} {v:+.3f}" for t, v in al.items() if abs(v) > 0.005))
         # budget off, RB2 convention
         P("\n=== BUDGET OFF (RB2 convention, reported) ===")
         BO = budget_off_rb2(DS); RES["budget_off_rb2_convention"] = BO
