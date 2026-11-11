@@ -137,6 +137,12 @@ size was wrong because I scaled the law's radius but not the turnaround reach of
 ## Files
 
 - `FROZEN_CRITERIA.md` (1835d8fb7d).
+- Commits (local / origin): criteria 1835d8fb7d / 47fc86b0bc (alone); result d1494aa68c / c5c5080978. Re-run by the lead
+  from a copy at the same folder depth (the halo model, then the forest on both footings with its mutation): all 7 JSON
+  files and 4 of the 5 logs equal the committed ones byte for byte; `frz1_hm.out` differs only in its timing stamps. A
+  re-run reproduces the arithmetic and is not an independent re-grade; this fail has not had one. The lead did not
+  check the PROVISIONAL mass-function and concentration scalings against their sources. Pushed by replay; no history
+  rewritten.
 - `frz1_hm.py` -> `frz1_hm.json/.out` (790 s, one thread; checkpointed) and `frz1_hm_MUTATE.json/.out` (MZ2, MZ3).
   Copies CO1's layout; executes CFG556's library read-only.
 - `frz1_forest.py` -> `frz1_forest_<footing>.json/.out` and `_MUTATE` (MZ1); about 30 s each. Copies HLF1 Part B's
