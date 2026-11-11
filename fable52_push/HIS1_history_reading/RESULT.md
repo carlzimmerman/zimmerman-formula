@@ -188,7 +188,7 @@ and the faint rotators' failure falls inside 3 se under a 20 % distance cut.
 
 | | shared checkout | origin |
 |---|---|---|
-| criteria | 152ecaf5c4 | (pending push) |
-| result | (this commit) | (pending push) |
+| criteria | 152ecaf5c4 | 0b9421ca2b |
+| result | 2ef2d349b3 | c4f8cd2bb3 |
 
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
