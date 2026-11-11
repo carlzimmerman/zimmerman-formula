@@ -54,7 +54,7 @@ reads the frame's acceleration, so D.P enters the frame field's own shift-symmet
   - The P sector does not change Psi's Bernoulli equation (exact). So the frame's proper acceleration is A = -grad Q_qu:
     the law turns on only where quantum pressure holds Psi still.
   - The record's Jeans line (0.42/h Mpc at z = 1089) allows nu <= nu_max = 25.4 kpc km/s (m c^2 >= 7.6e-23 eV).
-  - In the radial Schrodinger-Poisson collapses, Psi folds nowhere: its Lagrangian radii follow COL1's dust to 0.3 % up
+  - In the radial Schrodinger-Poisson collapses, Psi folds nowhere: its Lagrangian radii follow COL1's dust to 1.1 % up
     to 0.9 of the fold time, then the wave interferes. But Psi never becomes static. At log M_b 9.4 the static-frame radius is
     R_s = 0 at every scanned nu from 25 to 1.0e5 kpc km/s, in the primary run and in the law bracket, against 23 kpc
     (SPARC) and 81 kpc (KiDS) needed.
@@ -105,7 +105,7 @@ A = grad(Phi + nu theta_t + nu^2 |grad theta|^2/2) in V1 and A = grad(Phi - chi_
 | S1(d) static galaxy | PASS (both variants, both footings) | QG1's point-mass rows re-run through its code: Lambda_s L 1.09e12 / 3.14e12 / 1.40e13 (alt 1.12e12 / 3.24e12 / 1.44e13) |
 | S1(e) V1's psi equation | exact | i nu psi_t = H psi - (i nu/2)(S/|psi|^2) psi, with S = d_t(div P) + div((div P) v) |
 | S2 nu_max | 25.37 [25.38] kpc km/s | by redshift: z 3: 418.8, z 10: 252.6, z 100: 83.35, z 1089: **25.37**; m c^2 >= 7.556e-23 [7.554e-23] eV; k_J(z 1089) = 10.1/Mpc (acoustic peaks, k <= 0.3/Mpc, kept off); k_J today 57.9/Mpc |
-| S3(a) V1 fold-free | log M_b 9.4: no unresolved maxima; **10.7: FAIL as frozen (resolution)** | Psi's Lagrangian radii follow COL1's dust to 3.1e-3 up to 0.9 t_f, and the focus is regularized at the de Broglie scale. At nu_max (law off): 0 narrow maxima at log M_b 9.4; 6 [3] at 10.7. Convergence at 10.7 (dx/2 to z 2): peak central density 2.34e7 vs 2.40e7 x mean (2.3 %) [2.97e7 vs 3.03e7, 2.1 %], but z = 2 central density 1.80e6 vs 2.20e7 [4.13e6 vs 1.53e7]: FAIL. The core (r_c 0.07 kpc) is about 4 cells |
+| S3(a) V1 fold-free | log M_b 9.4: no unresolved maxima; **10.7: FAIL as frozen (resolution)** | Psi's Lagrangian radii follow COL1's dust to 1.1e-2 up to 0.9 t_f, and the focus is regularized at the de Broglie scale. At nu_max (law off): 0 narrow maxima at log M_b 9.4; 6 [3] at 10.7. Convergence at 10.7 (dx/2 to z 2): peak central density 2.34e7 vs 2.40e7 x mean (2.3 %) [2.97e7 vs 3.03e7, 2.1 %], but z = 2 central density 1.80e6 vs 2.20e7 [4.13e6 vs 1.53e7]: FAIL. The core (r_c 0.07 kpc) is about 4 cells |
 | S3(a) V2 | **FAIL** | the zero-charge frame is mimetic and focuses at COL1's time: 0.07116 / 0.15333 Gyr after z 10 (log M_b 10.7 / 9.4) |
 | S3(b) V2 | **FAIL** | reach 0 (exact identity + Lean `advected_zero`, `regular_centre_zero`) |
 | **S3(b) V1** (A1 + A2) | **FAIL** | R_s = 0 kpc at nu_max at both masses: log M_b 9.4 (needs >= 81 and >= 23) and 10.7 (needs >= 362 and >= 71). Law off over the last-Gyr set; bracket at z 2, 1, 0.5 (9.4) and z 2 (10.7) under A2. At nu_max x 4, log M_b 10.7: R_s = 0 law off (both footings) and bracket (canonical) |
@@ -117,14 +117,14 @@ A = grad(Phi + nu theta_t + nu^2 |grad theta|^2/2) in V1 and A = grad(Phi - chi_
 Known answers: KA1 (X14's C5: omega^2 = nu^2 k^4/4 - 4 pi G rho) PASS; KA2 (QX17's static law) PASS; KA3 (QG1 re-run
 through its own functions: FRW1100 334.0 / 316.5, FRW1 1.838e5 / 1.742e5, PM rows PASS, mu_K = 0 FRW Lambda_s = 0) PASS;
 KA4(i) (COL1's focus time 0.0712 / 0.1533 Gyr reproduced: 0.07116 / 0.15333) PASS; **KA4(ii) FAILS as frozen** (the
-central-density maximum sits at the run's end, 0.118 Gyr, +66 %, because shells from outside the core keep arriving;
-AMENDMENT_A1); KA4(ii') under A1 PASS (worst 3.1e-3); KA5 (soliton G M r_1/2 / nu^2 = 3.920 against 3.925) PASS; KA6
+central-density maximum sits at the run's end, 0.120 Gyr, +68.5 %, because shells from outside the core keep arriving;
+AMENDMENT_A1); KA4(ii') under A1 PASS (worst 1.09e-2, the innermost shell x0 = 2 kpc at 0.9 t_f; every other point <= 4e-4); KA5 (soliton G M r_1/2 / nu^2 = 3.920 against 3.925) PASS; KA6
 (LFS1 / COL1 charge N = mu^2 h/K + div P reproduced with a dust term) PASS; KA7 (QX28's SPARC) not run (S4 not graded).
 
 MUTATE: M1 (frame decoupled from Psi's phase: charge m|psi|^2 alone) BITES; M2 (V2's frame given QG1's dust) BITES;
 M3 (static forced everywhere) BITES; **M4 (A -> dPhi/dr) DOES NOT BITE** (0.264-0.272 > 0.01 at nu_max: the smooth
 law's own phantom exceeds Psi's density), so S3(c) is reported, not decisive; M5 (nu x 10 on KA4's run: peak central density
-140 x lower) BITES. Lean: `WV1.lean` 9 theorems, exit 0, standard axioms only (`compile.txt`); `WV1_MUTATE.lean` fails
+114 x lower) BITES. Lean: `WV1.lean` 9 theorems, exit 0, standard axioms only (`compile.txt`); `WV1_MUTATE.lean` fails
 on all 8 false statements (`compile_MUTATE.txt`, 9 errors, exit 1).
 
 ## Added after landing: the coordinator's four requests (post hoc, reported; no label moves)
@@ -233,6 +233,23 @@ frame's charge, not on M5.
 - The four production runs at log M_b 10.7, nu_max were stopped once by the lead (SIGTERM, checkpointed) so that they
   record the central-density history the S3(a) convergence check needs. They resumed from their checkpoints.
 - QG1's script was executed unmodified in a temporary directory. Its output files went there, not into QG1's folder.
+- **`wv1_ka.out` / `.json` were regenerated on 11-11** with the solver every production run used. The first committed
+  version (88f3ccbe4b) had been written before two later changes to `wv1_sp_lib.py`: the 5-smooth grid size (N 6510 ->
+  6533) and the potential-gauge fix (V = 0 at the outer boundary). Both changes came before any production run. Every
+  mark is unchanged. The numbers moved:
+  - KA4(ii) as frozen: 0.118 -> 0.120 Gyr (+66 -> +68.5 %, still FAIL).
+  - KA4(ii'): worst 3.08e-3 -> 1.09e-2 (still PASS, line 5 %).
+  - M5: 140 -> 114 x (still bites).
+  - KA4(i) and KA5: identical.
+  AMENDMENT_A1's "within 0.3 %" quotes the earlier diagnostic and stays as committed. The coordinating session found the
+  difference by re-running the script.
+- **What each script reads (no known answer reads `runs/`):**
+  - `wv1_sym.py` reads nothing.
+  - `wv1_s1s2.py` reads QG1's `qg1.py` (executed in a temp directory), QG1's committed `qg1.json` (KA3) and KD1's
+    `kd1.json` (S2).
+  - `wv1_ka.py` reads KD1's `kd1.json` and COL1's `col1_lib.py`, through `wv1_sp_lib.py`. KA4(i) re-integrates COL1's
+    test-shell equation; KA4(ii)/(ii') and M5 run the solver fresh; KA5 runs its own grid.
+  - Only `wv1_s3_grade.py` reads `runs/*.json` and `runs/*.npz`; `wv1_shp1_row.py` reads SHP1's data.
 - **The log M_b 10.7 runs were paused, then finished.**
   - **Suspended.** The coordinating session suspended the seven running `wv1_s3.py --mass 10.7` processes with SIGSTOP
     on 11-10 at about 21:00: the four at nu_max (two law off, two at dx/2 to z 2) and three at nu_max x 4. BX1's box
