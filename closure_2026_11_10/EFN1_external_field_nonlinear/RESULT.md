@@ -159,4 +159,25 @@ They need an independent re-grade before anyone leans on them.
   - efn1_route_d_{main,ka,kab2,ext,frozen,frozenlin}.{out,json} and efn1_route_d_MUTATE.{out,json};
   - efn1_labels.{out,json} (efn1_driver.log is git-ignored, kept locally).
 
+## Commits and the lead's re-run (added by the lead; no number or label changed)
+
+Commits (local / origin): criteria 98364c8d20 / faf4075dcc (alone); A1 c3e466efbf / 3a2031cb9c; A2 a55fd19bd0 / b420584790; A3 94c54483a9 /
+c6ddbe5f4f; A4 04278f7abe / b7438c009f; result 7cb5e604e7 / 131cac78b0.
+
+Re-run by the lead from a copy at the same folder depth, one thread, every batch in order (route W R2 and R3; route D
+main, ka, kab2, mutate, ext, frozen, frozenlin; the sympy check in 1, 2 and 3 dimensions; the labels script), about
+four hours:
+- `efn1_labels.out` / `.json`, the 3-D and 2-D sympy outputs and route W's MUTATE outputs equal the committed files
+  byte for byte. So every label reproduces.
+- The seven route D JSON files differ only in their memory stamp (`peak_rss_GB`); their logs differ only in timings.
+- `efn1_route_w.json`: every value present in both files is equal apart from timings, but the committed script now
+  writes one more field per row (`sigma_over_Gref2`, 24 keys) than the committed file holds. The committed file was
+  made by an earlier state of the script.
+- `efn1_sympy_dim1.out` / `.json` as committed (written 2026-11-10 23:31) show an unsimplified non-zero expression
+  for item (ii) in one dimension. The committed script re-run gives 0 for it. That pair is stale; it is not graded
+  (KA-a is graded in three dimensions, which reproduces exactly).
+- The re-run's console shows the same ARPACK non-convergence the lane reports for the isolated-twin eigenvalue.
+
+A re-run reproduces the arithmetic and is not an independent re-grade. Pushed by replay; no history rewritten.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
