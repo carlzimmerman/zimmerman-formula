@@ -1,0 +1,101 @@
+KA1 net polarization charge of a ball with P(R_s) = 0: 0  -> PASS
+E0 inside M_enc = M_b + C(r) (independent of Q: True); outside = M_b + Q; layer net = -C_R + Q; layer density = (-C_R + Q)/(4*pi*R_s**2*w); >= 0 iff Q >= C_R; g jump at R_s for Q = C_R: 0  -> PASS
+E2(a) hydrostatics: d ln rho / dD = 1/c2(r) (residual vs 1/c_s^2: 0): a layer thinning with depth needs c_s^2 < 0
+E2(a) plain fluid omega^2 = c2*k**2 - 2.6696e-10*pi*rho: negative at every k for c_s^2 < 0 (rate |c_s| k, unbounded). C5 continued to chi = -q/K: omega^2 = K*n*q/(k**2 - q) -> -inf as k^2 -> q from below
+KA3 empty core: p_n = -Sum(a[i], (i, 0, n - 1)) with a_i = rho g dr >= 0 -> p_n <= 0; 200 random trials all p <= 0: True -> PASS
+KA4 rotation-held shell at R_vir: lambda' = j/(sqrt2 R V) with j = R V -> 0.7071; / 0.035 = 20.2 -> PASS
+E2(d) radial centrifugal support on a sphere = Omega**2*R_s*sin(theta)**2; at the pole = 0; Omega needed [-sqrt(g)/(sqrt(R_s)*sin(theta)), sqrt(g)/(sqrt(R_s)*sin(theta))] depends on theta -> no rotation-held spherical shell
+
+===== canonical: a0 = 9.3603e-11, X = 59.486 =====
+log M_b 9.4: R_ta 120, R_cap 116.0 kpc; KA2 q(R_ta) -61.55 (LFS1 -61.55, printed -61.5), q(R_cap) -59.49 -> ok
+  [R5] R_s 116.0 kpc: E1 Q_min 59.49 M_b vs X 59.486 (f 1.000; 11.0 x 5.41) -> pass
+       E2(a) needs c_s^2 = -563 (km/s)^2; C5 pole at k R_s = 9.9; plain-fluid growth at k = 10/R_s: 2.95 /Gyr
+       E2(c) v_c 75.1 km/s; in-shell s^2 = 0.967 (unstable l: []); kappa^2/Omega^2 = 1.992; f_min = 0.9480; T_orb 9.5 Gyr = 0.69 t0; fixed-j r_c ~ M^-0.253
+       E3 lambda' needed 0.670 (R_vir = R_s) / 1.291 (R_vir = R_ta/2); short x: F1 0.035 0.9/0.9, F3 0.1 0.95/0.95 -> pass
+       E4 R_s / KiDS inner 1.43; 3D mass at the inner edge / law 1.000
+  [U] R_s 120.0 kpc: E1 Q_min 61.55 M_b vs X 59.486 (f 1.035; 11.4 x 5.41) -> FAIL
+       E2(a) needs c_s^2 = -563 (km/s)^2; C5 pole at k R_s = 9.9; plain-fluid growth at k = 10/R_s: 2.85 /Gyr
+       E2(c) v_c 75.0 km/s; in-shell s^2 = 0.968 (unstable l: []); kappa^2/Omega^2 = 1.992; f_min = 0.9480; T_orb 9.8 Gyr = 0.71 t0; fixed-j r_c ~ M^-0.253
+       E3 lambda' needed 0.670 (R_vir = R_s) / 1.335 (R_vir = R_ta/2); short x: F1 0.035 0.9/0.9, F3 0.1 0.95/0.95 -> pass
+       E4 R_s / KiDS inner 1.48; 3D mass at the inner edge / law 1.000
+log M_b 10.45: R_ta 268, R_cap 388.6 kpc; KA2 q(R_ta) -40.87 (LFS1 -40.87, printed -40.9), q(R_cap) -59.49 -> ok
+  [R5] R_s 268.0 kpc: E1 Q_min 40.87 M_b vs X 59.486 (f 0.687; 7.6 x 5.41) -> pass
+       E2(a) needs c_s^2 = -1894 (km/s)^2; C5 pole at k R_s = 9.9; plain-fluid growth at k = 10/R_s: 2.33 /Gyr
+       E2(c) v_c 137.6 km/s; in-shell s^2 = 0.953 (unstable l: []); kappa^2/Omega^2 = 1.988; f_min = 0.9481; T_orb 12.0 Gyr = 0.87 t0; fixed-j r_c ~ M^-0.255
+       E3 lambda' needed 0.670 (R_vir = R_s) / 1.333 (R_vir = R_ta/2); short x: F1 0.035 0.9/0.9, F3 0.1 0.95/0.95 -> pass
+       E4 R_s / KiDS inner 0.99; 3D mass at the inner edge / law 0.985
+  [U] R_s 268.0 kpc: E1 Q_min 40.87 M_b vs X 59.486 (f 0.687; 7.6 x 5.41) -> pass
+       E2(a) needs c_s^2 = -1894 (km/s)^2; C5 pole at k R_s = 9.9; plain-fluid growth at k = 10/R_s: 2.33 /Gyr
+       E2(c) v_c 137.6 km/s; in-shell s^2 = 0.953 (unstable l: []); kappa^2/Omega^2 = 1.988; f_min = 0.9481; T_orb 12.0 Gyr = 0.87 t0; fixed-j r_c ~ M^-0.255
+       E3 lambda' needed 0.670 (R_vir = R_s) / 1.333 (R_vir = R_ta/2); short x: F1 0.035 0.9/0.9, F3 0.1 0.95/0.95 -> pass
+       E4 R_s / KiDS inner 0.99; 3D mass at the inner edge / law 0.985
+log M_b 10.7: R_ta 325, R_cap 518.2 kpc; KA2 q(R_ta) -37.12 (LFS1 -37.12, printed -37.1), q(R_cap) -59.49 -> ok
+  [R5] R_s 325.0 kpc: E1 Q_min 37.12 M_b vs X 59.486 (f 0.624; 6.9 x 5.41) -> pass
+       E2(a) needs c_s^2 = -2529 (km/s)^2; C5 pole at k R_s = 9.9; plain-fluid growth at k = 10/R_s: 2.22 /Gyr
+       E2(c) v_c 159.0 km/s; in-shell s^2 = 0.948 (unstable l: []); kappa^2/Omega^2 = 1.987; f_min = 0.9482; T_orb 12.6 Gyr = 0.91 t0; fixed-j r_c ~ M^-0.255
+       E3 lambda' needed 0.670 (R_vir = R_s) / 1.332 (R_vir = R_ta/2); short x: F1 0.035 0.9/0.9, F3 0.1 0.95/0.95 -> pass
+       E4 R_s / KiDS inner 0.90; 3D mass at the inner edge / law 0.899
+  [U] R_s 325.0 kpc: E1 Q_min 37.12 M_b vs X 59.486 (f 0.624; 6.9 x 5.41) -> pass
+       E2(a) needs c_s^2 = -2529 (km/s)^2; C5 pole at k R_s = 9.9; plain-fluid growth at k = 10/R_s: 2.22 /Gyr
+       E2(c) v_c 159.0 km/s; in-shell s^2 = 0.948 (unstable l: []); kappa^2/Omega^2 = 1.987; f_min = 0.9482; T_orb 12.6 Gyr = 0.91 t0; fixed-j r_c ~ M^-0.255
+       E3 lambda' needed 0.670 (R_vir = R_s) / 1.332 (R_vir = R_ta/2); short x: F1 0.035 0.9/0.9, F3 0.1 0.95/0.95 -> pass
+       E4 R_s / KiDS inner 0.90; 3D mass at the inner edge / law 0.899
+log M_b 10.9: R_ta 378, R_cap 652.4 kpc; KA2 q(R_ta) -34.26 (LFS1 -34.26, printed -34.3), q(R_cap) -59.49 -> ok
+  [R5] R_s 378.0 kpc: E1 Q_min 34.26 M_b vs X 59.486 (f 0.576; 6.3 x 5.41) -> pass
+       E2(a) needs c_s^2 = -3187 (km/s)^2; C5 pole at k R_s = 9.9; plain-fluid growth at k = 10/R_s: 2.14 /Gyr
+       E2(c) v_c 178.5 km/s; in-shell s^2 = 0.944 (unstable l: []); kappa^2/Omega^2 = 1.986; f_min = 0.9482; T_orb 13.0 Gyr = 0.94 t0; fixed-j r_c ~ M^-0.256
+       E3 lambda' needed 0.670 (R_vir = R_s) / 1.331 (R_vir = R_ta/2); short x: F1 0.035 0.9/0.9, F3 0.1 0.95/0.95 -> pass
+       E4 R_s / KiDS inner 0.83; 3D mass at the inner edge / law 0.831
+  [U] R_s 378.0 kpc: E1 Q_min 34.26 M_b vs X 59.486 (f 0.576; 6.3 x 5.41) -> pass
+       E2(a) needs c_s^2 = -3187 (km/s)^2; C5 pole at k R_s = 9.9; plain-fluid growth at k = 10/R_s: 2.14 /Gyr
+       E2(c) v_c 178.5 km/s; in-shell s^2 = 0.944 (unstable l: []); kappa^2/Omega^2 = 1.986; f_min = 0.9482; T_orb 13.0 Gyr = 0.94 t0; fixed-j r_c ~ M^-0.256
+       E3 lambda' needed 0.670 (R_vir = R_s) / 1.331 (R_vir = R_ta/2); short x: F1 0.035 0.9/0.9, F3 0.1 0.95/0.95 -> pass
+       E4 R_s / KiDS inner 0.83; 3D mass at the inner edge / law 0.831
+
+===== alt: a0 = 1.1312e-10, X = 59.503 =====
+log M_b 9.4: R_ta 120, R_cap 105.6 kpc; KA2 q(R_ta) -67.71 (LFS1 -67.71, printed -67.7), q(R_cap) -59.50 -> ok
+  [R5] R_s 105.6 kpc: E1 Q_min 59.50 M_b vs X 59.503 (f 1.000; 11.0 x 5.41) -> pass
+       E2(a) needs c_s^2 = -619 (km/s)^2; C5 pole at k R_s = 9.9; plain-fluid growth at k = 10/R_s: 3.40 /Gyr
+       E2(c) v_c 78.7 km/s; in-shell s^2 = 0.967 (unstable l: []); kappa^2/Omega^2 = 1.992; f_min = 0.9480; T_orb 8.2 Gyr = 0.60 t0; fixed-j r_c ~ M^-0.253
+       E3 lambda' needed 0.670 (R_vir = R_s) / 1.176 (R_vir = R_ta/2); short x: F1 0.035 0.9/0.9, F3 0.1 0.95/0.95 -> pass
+       E4 R_s / KiDS inner 1.30; 3D mass at the inner edge / law 1.000
+  [U] R_s 120.0 kpc: E1 Q_min 67.71 M_b vs X 59.503 (f 1.138; 12.5 x 5.41) -> FAIL
+       E2(a) needs c_s^2 = -619 (km/s)^2; C5 pole at k R_s = 9.9; plain-fluid growth at k = 10/R_s: 2.99 /Gyr
+       E2(c) v_c 78.7 km/s; in-shell s^2 = 0.971 (unstable l: []); kappa^2/Omega^2 = 1.993; f_min = 0.9480; T_orb 9.4 Gyr = 0.68 t0; fixed-j r_c ~ M^-0.253
+       E3 lambda' needed 0.670 (R_vir = R_s) / 1.336 (R_vir = R_ta/2); short x: F1 0.035 0.9/0.9, F3 0.1 0.95/0.95 -> pass
+       E4 R_s / KiDS inner 1.48; 3D mass at the inner edge / law 1.000
+log M_b 10.45: R_ta 268, R_cap 353.6 kpc; KA2 q(R_ta) -44.98 (LFS1 -44.98, printed -45.0), q(R_cap) -59.50 -> ok
+  [R5] R_s 268.0 kpc: E1 Q_min 44.98 M_b vs X 59.503 (f 0.756; 8.3 x 5.41) -> pass
+       E2(a) needs c_s^2 = -2080 (km/s)^2; C5 pole at k R_s = 9.9; plain-fluid growth at k = 10/R_s: 2.45 /Gyr
+       E2(c) v_c 144.2 km/s; in-shell s^2 = 0.957 (unstable l: []); kappa^2/Omega^2 = 1.989; f_min = 0.9481; T_orb 11.4 Gyr = 0.83 t0; fixed-j r_c ~ M^-0.254
+       E3 lambda' needed 0.670 (R_vir = R_s) / 1.333 (R_vir = R_ta/2); short x: F1 0.035 0.9/0.9, F3 0.1 0.95/0.95 -> pass
+       E4 R_s / KiDS inner 0.99; 3D mass at the inner edge / law 0.985
+  [U] R_s 268.0 kpc: E1 Q_min 44.98 M_b vs X 59.503 (f 0.756; 8.3 x 5.41) -> pass
+       E2(a) needs c_s^2 = -2080 (km/s)^2; C5 pole at k R_s = 9.9; plain-fluid growth at k = 10/R_s: 2.45 /Gyr
+       E2(c) v_c 144.2 km/s; in-shell s^2 = 0.957 (unstable l: []); kappa^2/Omega^2 = 1.989; f_min = 0.9481; T_orb 11.4 Gyr = 0.83 t0; fixed-j r_c ~ M^-0.254
+       E3 lambda' needed 0.670 (R_vir = R_s) / 1.333 (R_vir = R_ta/2); short x: F1 0.035 0.9/0.9, F3 0.1 0.95/0.95 -> pass
+       E4 R_s / KiDS inner 0.99; 3D mass at the inner edge / law 0.985
+log M_b 10.7: R_ta 325, R_cap 471.5 kpc; KA2 q(R_ta) -40.86 (LFS1 -40.86, printed -40.9), q(R_cap) -59.50 -> ok
+  [R5] R_s 325.0 kpc: E1 Q_min 40.86 M_b vs X 59.503 (f 0.687; 7.6 x 5.41) -> pass
+       E2(a) needs c_s^2 = -2776 (km/s)^2; C5 pole at k R_s = 9.9; plain-fluid growth at k = 10/R_s: 2.33 /Gyr
+       E2(c) v_c 166.6 km/s; in-shell s^2 = 0.953 (unstable l: []); kappa^2/Omega^2 = 1.988; f_min = 0.9481; T_orb 12.0 Gyr = 0.87 t0; fixed-j r_c ~ M^-0.255
+       E3 lambda' needed 0.670 (R_vir = R_s) / 1.333 (R_vir = R_ta/2); short x: F1 0.035 0.9/0.9, F3 0.1 0.95/0.95 -> pass
+       E4 R_s / KiDS inner 0.90; 3D mass at the inner edge / law 0.899
+  [U] R_s 325.0 kpc: E1 Q_min 40.86 M_b vs X 59.503 (f 0.687; 7.6 x 5.41) -> pass
+       E2(a) needs c_s^2 = -2776 (km/s)^2; C5 pole at k R_s = 9.9; plain-fluid growth at k = 10/R_s: 2.33 /Gyr
+       E2(c) v_c 166.6 km/s; in-shell s^2 = 0.953 (unstable l: []); kappa^2/Omega^2 = 1.988; f_min = 0.9481; T_orb 12.0 Gyr = 0.87 t0; fixed-j r_c ~ M^-0.255
+       E3 lambda' needed 0.670 (R_vir = R_s) / 1.333 (R_vir = R_ta/2); short x: F1 0.035 0.9/0.9, F3 0.1 0.95/0.95 -> pass
+       E4 R_s / KiDS inner 0.90; 3D mass at the inner edge / law 0.899
+log M_b 10.9: R_ta 378, R_cap 593.6 kpc; KA2 q(R_ta) -37.71 (LFS1 -37.71, printed -37.7), q(R_cap) -59.50 -> ok
+  [R5] R_s 378.0 kpc: E1 Q_min 37.71 M_b vs X 59.503 (f 0.634; 7.0 x 5.41) -> pass
+       E2(a) needs c_s^2 = -3499 (km/s)^2; C5 pole at k R_s = 9.9; plain-fluid growth at k = 10/R_s: 2.25 /Gyr
+       E2(c) v_c 187.0 km/s; in-shell s^2 = 0.949 (unstable l: []); kappa^2/Omega^2 = 1.987; f_min = 0.9481; T_orb 12.4 Gyr = 0.90 t0; fixed-j r_c ~ M^-0.255
+       E3 lambda' needed 0.670 (R_vir = R_s) / 1.332 (R_vir = R_ta/2); short x: F1 0.035 0.9/0.9, F3 0.1 0.95/0.95 -> pass
+       E4 R_s / KiDS inner 0.83; 3D mass at the inner edge / law 0.831
+  [U] R_s 378.0 kpc: E1 Q_min 37.71 M_b vs X 59.503 (f 0.634; 7.0 x 5.41) -> pass
+       E2(a) needs c_s^2 = -3499 (km/s)^2; C5 pole at k R_s = 9.9; plain-fluid growth at k = 10/R_s: 2.25 /Gyr
+       E2(c) v_c 187.0 km/s; in-shell s^2 = 0.949 (unstable l: []); kappa^2/Omega^2 = 1.987; f_min = 0.9481; T_orb 12.4 Gyr = 0.90 t0; fixed-j r_c ~ M^-0.255
+       E3 lambda' needed 0.670 (R_vir = R_s) / 1.332 (R_vir = R_ta/2); short x: F1 0.035 0.9/0.9, F3 0.1 0.95/0.95 -> pass
+       E4 R_s / KiDS inner 0.83; 3D mass at the inner edge / law 0.831
+
+KA2 LFS1 A2 edge charges reproduced on both footings: PASS
