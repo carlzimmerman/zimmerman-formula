@@ -49,4 +49,10 @@ record's forest gate, with an inherited halo list.
 
 READING 5daab3b12c; halo model 1eca4476b1; gate e0f3058204; RESULT_BLIND 6912e86274; this file follows.
 
+Commits (local / origin): READING 5daab3b12c / 7acf921a84 (alone); halo model 1eca4476b1 / e7cefe6a51; gate e0f3058204 / 54a68ed614;
+RESULT_BLIND 6912e86274 / ede594b395; RESULT 5e9d006d8a / 30d3db902e. Re-run by the lead from a copy at the same folder depth
+(frz1r_hm.py and frz1r_forest.py on both footings; the two frz1r_hm .out files are captured console output):
+8 of 8 JSON and .out files equal the committed ones byte for byte, all four JSON files among them. Pushed by
+replay; no history rewritten.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
