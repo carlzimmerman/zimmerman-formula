@@ -6,7 +6,8 @@ strongly coupled leaf, and thermal or horizon sectors computed here.
 
 Criteria: `FROZEN_CRITERIA.md` (local 249f297cd0, committed alone before any script). Script `npj1.py`; output `npj1.out` /
 `npj1.json`; twins `NPJ1_MUTATE=1` -> `npj1_MUTATE.out` / `npj1_MUTATE.json`; Lean `NPJ1.lean` (`compile.txt`), false twin
-`NPJ1_MUTATE.lean` (`compile_MUTATE.txt`). Runtime 15 s, 0.12 GB. TEST lane, quarantined: adopts nothing, relabels
+`NPJ1_MUTATE.lean` (`compile_MUTATE.txt`). Runtime 15 s, 0.12 GB. Reported item R6 (added after the result, at the
+lead's request): `npj1_r6.py` -> `npj1_r6.out` / `npj1_r6.json`. TEST lane, quarantined: adopts nothing, relabels
 nothing, registers nothing. Footings never pooled. No amendment. Origin ids are at the end.
 
 ## The deciding number
@@ -46,8 +47,9 @@ Lane label = best = SHAPE ONLY (a1, a2, b2, c3), on both footings.
 
 **1. The shape is easy; size and action are not.** Four routes give the shape:
 - the law restated (a2);
-- HZ1's boson-fermion pair (c3; b2, whose fit drives the O(N) coupling to lambda_hat = 10^-3.65, i.e. back to the free
-  pair: strong coupling does not improve the shape);
+- HZ1's boson-fermion pair (c3; and b2, which gives exactly the same shape at every O(N) coupling, by an identity found
+  after the result, R6: the fit's lambda_hat = 10^-3.65 is one point on a flat direction, and strong coupling neither
+  helps nor hurts);
 - BK's additive force law a = a_N + sqrt(a0' a_N) (a1).
 
 BK's pass is narrow: 0.0946 at x = 9.8, dense grid the same, with a0'/a0 = 0.42. Its deep-MOND scale is 0.42 of the
@@ -82,7 +84,8 @@ length is c^2/(c_g a0) = 31 Gpc/c_g (alt 26 Gpc/c_g): Hubble-sized for any natur
   The dynamical mass M reverses the needed structure: V is analytic (-M^3/(3 pi) + (M/pi) g^2 A^2) for gA < M and
   (2/(3 pi)) g^3 |A|^3 above. So mu is constant, then grows linearly without bound (slope 0, max dmu 0.53).
 - **b2, large-N O(N) boson** (exact gap equation, nu = 1 at strong coupling, KA5). It changes neither the |A|^3
-  coefficient nor the amplitude: the fermions carry both. At leading large N the free energy scales with N, so the
+  coefficient nor the amplitude: the fermions carry both. Nor does it change the shape: R6's identity maps it exactly
+  onto the free pair, with the crossover moved from m_b0 to m_b0 + lambda/(16 pi). At leading large N the free energy scales with N, so the
   coefficient problem is the same.
 
 **5. Condensates.**
@@ -143,9 +146,39 @@ one bosonic mode minus its fugacity, is the same function as the lattice-gas exc
   - W3: BK's Lambda sits at the meV end; the leaf pairs need masses about a0, i.e. about H.
   - W4 (kappa free): stands.
   - W1, W2: no matter-content claim made.
-  - sqrt(pi): not reached, since no kappa comes out.
+  - sqrt(pi): the leaf pair's normalization does run through 8 pi G (R6), but no kappa comes out, so no prediction
+    meets the wall.
 - **Aside (HZ1, reported only).** HZ1's R1 line writes a0 = m0/(c g_B), but its fit convention (s = g_B A/m0 = c x)
   gives a0 = c m0/g_B. Its R1 conclusion (kappa not fixed) and every graded number are unaffected.
+
+## R6 (reported, not graded; the lead's request after the result, from the ROOT note d4f8ac1563)
+
+Script `npj1_r6.py` (reads `npj1.json`), output `npj1_r6.out` / `npj1_r6.json`. Criteria unchanged; no label moves.
+
+**Q1: does the best candidate have a fixed point whose universal amplitude ratio fixes kappa without a fit? No.**
+- **The fixed point.** For the A-native candidates (c3, b2) the A -> 0 fixed point is the free massless Cl(6) leaf
+  fermion. It is Gaussian, and its one universal number is the |A|^3 coefficient 8/(12 pi) g_F^3 = 0.2122 g_F^3 per
+  leaf and flavor. The needed amplitude is set by the leaf density (the tuning below), not by it.
+- **kappa is not a fixed-point number.** kappa = a0/sqrt(G rho_DE) = c* m_b0/(g_B sqrt(G rho_DE)), with c* = 0.7964
+  (the shape fit). It needs a relevant mass m_b0 and a marginal source coupling g_B; the fixed point fixes neither.
+- **With the horizon as the infrared cutoff** (an ASSUMPTION: m_b0 = zeta H), kappa = 2 sqrt(6) sqrt(pi) c* zeta/(3 g_B).
+  The fitted 1/2 becomes a fitted g_B:
+  - g_B = 6.52 for zeta = sqrt 2 (4-d conformal coupling in de Sitter, m^2 = R/6);
+  - g_B = 3.99 for zeta = sqrt3/2 (3-d conformal coupling on a leaf S^3 of radius 1/H).
+- **That g_B also contradicts C-loc.** Locality needs g_B = 2 g_F >= 6.6e6 (alt 6.0e6), which gives
+  kappa = 5.0e-7 / 3.0e-7 (alt 5.5e-7 / 3.4e-7).
+- **The interacting point does not help.** The large-N O(N) boson's interacting (Wilson-Fisher) point gives exactly
+  the free pair's shape at every coupling (sympy, exact): mhat - s = -l/2 + (1 + l/2)[sqrt(1 + s'^2) - s'], with
+  s' = s/(1 + l/2). The mapped parameters reproduce c3's mu to 1.2e-14 or better at lambda_hat = 1e-4 ... 1e5. At the
+  critical point the crossover is lambda/(16 pi g_B), set by the dimensionful lambda.
+- **a1, BK.** kappa = alpha^3 Lambda^2/(8 pi c_BK sqrt(rho_DE)). With Lambda^4 = rho_DE assumed, kappa = 1/2 needs
+  alpha = 1.744: a chosen coupling. P proportional to X|X|^(1/2) is a three-body equation of state, not a fixed point.
+
+**Q2: does the normalization run through 8 pi G? Yes.**
+- The leaf pair is normalized against GR's gradient term: the alpha = 2 tuning reads nu N g_B^2 m_b0 = 1/G.
+- A horizon-set crossover brings sqrt(8 pi/3), and kappa/sqrt(pi) = 2 sqrt(6) c* zeta/(3 g_B) has no pi left. So the
+  record's sqrt(pi) wall binds unless g_B carries 1/sqrt(pi).
+- BK's normalization runs through its 1/M_Pl baryon coupling.
 
 ## Known answers (all PASS, read before any graded line)
 
