@@ -223,6 +223,7 @@ Brouwer et al. 2021's isolated-lens mass bins, all types pooled, 59 points, the 
 - `srh1_grade.py` -> `srh1_grade.json` / `.out` (window and labels).
 - The console logs `run_*.log` stay local; every number in them is in the `.out` / `.json` files. Nothing was downloaded.
   Nothing was written outside this folder.
-- Commits (local / origin): RESULT_IDS
+- Commits (local / origin): criteria 5ed8a37ec6 / 20a7258e0a; A1 68969e177e / d10a712a4d; result bcb50d3c1f / f64f8b0b2b. Pushed
+  by replay; no history rewritten.
 
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
