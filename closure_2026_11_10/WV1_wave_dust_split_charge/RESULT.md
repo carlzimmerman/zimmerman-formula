@@ -136,7 +136,7 @@ Re-run: `python3 wv1_sym.py; python3 wv1_s1s2.py; python3 wv1_ka.py; python3 wv1
 
 - criteria 174870d2fe / 3fc79b5800 (alone, before any script or number)
 - A1 589c2738df / 90ebdb2e5c (alone, post hoc)
-- A2 022897766a / (this push)
-- result: (this push)
+- A2 022897766a / 45a1c9776d (alone, post hoc)
+- result 88f3ccbe4b / fb421c3adb
 
 Adopts nothing. kappa = 1/2 FITTED; not theory closed.
