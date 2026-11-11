@@ -54,4 +54,9 @@ any fit of n; a0(z) at z = 0 is unchanged in every case, so CO1's z = 0 rows are
 
 Files: frz2_hm.py, frz2_forest.py, frz2_check.py, run_all.sh; outputs hm/, frz2_forest_*.json/.out, frz2_summary.*.
 
+Commits (local / origin): criteria 15b54906a0 / 7e2c798318 (alone); result 6ad0217440 / 3b968504d3. Re-run by the lead from a copy at
+the same folder depth (run_all.sh, then frz2_check.py): all 34 JSON and .out files equal the committed ones byte for
+byte. A re-run reproduces the arithmetic and is not an independent re-grade; FRZ1, which this lane extends, has not
+had one either. Pushed by replay; no history rewritten.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
