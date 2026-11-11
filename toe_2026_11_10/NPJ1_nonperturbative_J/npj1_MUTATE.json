@@ -1,0 +1,808 @@
+{
+ "constants": {
+  "M_Pl_eV": 1.2208901282098642e+28,
+  "E_kpc_eV": 6.3949319112927066e-27,
+  "footings": {
+   "canonical": {
+    "E_a0": 2.0551088636367802e-34,
+    "rho_de": 5.842414940514416e-27,
+    "H": 1.8074170026096527e-18,
+    "E_H": 1.1896634815851117e-33,
+    "S_dS": 3.3086800742212864e+122,
+    "vf": 165229.7185794591,
+    "vf_dw": 33384.92082231522
+   },
+   "alt": {
+    "E_a0": 2.483616066307624e-34,
+    "rho_de": 8.532801736469525e-27,
+    "H": 2.1842784027777307e-18,
+    "E_H": 1.4377181611370132e-33,
+    "S_dS": 2.265455415000761e+122,
+    "vf": 173240.95543582592,
+    "vf_dw": 35003.60365030782
+   }
+  }
+ },
+ "known_answers": {
+  "KA1": {
+   "value": -0.05827723499548234,
+   "target": -0.05827723499548234,
+   "rel": 2.3519984100277354e-19,
+   "pass": true
+  },
+  "KA2": {
+   "Z": "1/(1 - p)",
+   "nbar": "-p/(p - 1)",
+   "g1_series_ok": true,
+   "crit_rel": 0.0,
+   "pass": true
+  },
+  "KA3": {
+   "I": 0.7542472332656507,
+   "target": 0.7542472332656507,
+   "rel": 5.5405152640132e-30,
+   "LHY_coefficient": 4.8144177796075205,
+   "target_coef": 4.8144177796075205,
+   "pass": true
+  },
+  "KA4": {
+   "p_star": "u/(u + 1)",
+   "J_from_W": "u - log(u + 1)",
+   "mu": "A/(A + a0)",
+   "pass": true
+  },
+  "KA5": {
+   "gap_eq": "lambda*m/(8*pi) + m**2 - r",
+   "gap_ok": true,
+   "envelope_dV_dr": "-m/(8*pi)",
+   "env_ok": true,
+   "exponent_lambda_small": 0.5000000009535643,
+   "exponent_lambda_large": 0.9999999992515995,
+   "Cl7_anticomm": 0.0,
+   "Cl7_det_rel": 1.5813957289622975e-15,
+   "GN_min_err": 1.1102230246251565e-16,
+   "pass": true
+  },
+  "KA6": {
+   "EL": "4*pi*Lambda*r*(4*M_Pl*(r*Derivative(theta(r), (r, 2)) + Derivative(theta(r), r))*Derivative(theta(r), r) - alpha*r*rho(r))/M_Pl",
+   "a0_BK": "Lambda**2*alpha**3/(8*pi*M_Pl)",
+   "pass": true
+  },
+  "KA7": {
+   "bubble": 0.17857142857142858,
+   "target": 0.17857142857142858,
+   "rel": 6.3541542323771394e-18,
+   "pass": true
+  }
+ },
+ "detector": {
+  "W(p)": {
+   "odd_orders": [
+    3,
+    5,
+    7,
+    9,
+    11
+   ],
+   "orders_ge_7": [
+    7,
+    8,
+    9,
+    10
+   ],
+   "terminates": false,
+   "admissible": false
+  },
+  "J(u)": {
+   "odd_orders": [
+    3,
+    5,
+    7,
+    9,
+    11
+   ],
+   "orders_ge_7": [
+    7,
+    8,
+    9,
+    10
+   ],
+   "terminates": false,
+   "admissible": false
+  }
+ },
+ "kbody": [
+  "1/2",
+  "1/3",
+  "1/4",
+  "1/5",
+  "1/6",
+  "1/7",
+  "1/8"
+ ],
+ "identities": {
+  "W_is_lnZBE_minus_p": true,
+  "inverse_map": true,
+  "FD_reading": true,
+  "legendre_in_lnz_is_minus_S": true,
+  "legendre_value": "log((n/(n + 1))**n/(n + 1))"
+ },
+ "derived_mu": {
+  "a2": "(-A*alpha_t/2 + A - B*a0 - a0*alpha_t/2 + a0)/(A + a0)",
+  "a3": "5*sqrt(A)*B*beta/(2*sqrt(a0)) - B - alpha_t/2 + 1",
+  "b1": {
+   "gA<M": "2*K*M*N*g_B**2*nu/pi - alpha_t/2 + 1",
+   "gA>M": "2*A*K*N*g_B**3*nu/pi - alpha_t/2 + 1"
+  },
+  "b2": "(K*N*g_B**2*nu*(A*g_B - m(A)) + 2*pi*(2 - alpha_t))/(4*pi)",
+  "c1": "(A*(2 - alpha_t)*(exp(epsilon/T_s) - exp(A*lambda_A/T_s))/2 - K*lambda_A*n_s*exp(A*lambda_A/T_s))/(A*(exp(epsilon/T_s) - exp(A*lambda_A/T_s)))",
+  "c2": "(-A**2*K*N - H**2*K*N + 180*pi**2*(2 - alpha_t))/(360*pi**2)",
+  "c3": "(A*K*N*g_B**3*nu - K*N*g_B**2*nu*sqrt(A**2*g_B**2 + m0**2) + 2*pi*(2 - alpha_t))/(4*pi)",
+  "c4": {
+   "E": "M_Pl**2*r_h",
+   "F": "M_Pl**2*r_h/2",
+   "f(A)": "3*M_Pl**2*(A**2 + H**2)/(8*pi)",
+   "mu": "4 - alpha_t/2"
+  }
+ },
+ "reductions_ok": {
+  "b1": true,
+  "b2": true,
+  "c1": true,
+  "c2": true,
+  "c3": true
+ },
+ "fits": {
+  "canonical": {
+   "a1 BK superfluid": {
+    "params": [
+     -0.37432793313918333
+    ],
+    "max_dmu": 0.09456700679839902,
+    "deep_slope": 0.9557642889923557,
+    "Q": 0.9456700679839902,
+    "S": "PASS"
+   },
+   "a2 exact-Legendre condensate": {
+    "params": [
+     -9.57012247226885e-13,
+     1.0000000000003166
+    ],
+    "max_dmu": 4.75397499144492e-13,
+    "deep_slope": 0.9900990098987705,
+    "Q": 2.219557870830613e-11,
+    "S": "PASS"
+   },
+   "a3 GP + LHY condensate": {
+    "params": [
+     -3.0331832353927126,
+     2.516247543447295,
+     -1.6251775483660609
+    ],
+    "max_dmu": 0.501376150548253,
+    "deep_slope": 0.488722859359747,
+    "Q": 5.01376150548253,
+    "S": "FAIL"
+   },
+   "b1 large-N GNY, dynamical mass": {
+    "params": [
+     6.075055506850786,
+     2.4939598739446893,
+     -1.9556044988599202
+    ],
+    "max_dmu": 0.5311351442262613,
+    "deep_slope": 0.0,
+    "Q": 9.900990099009901,
+    "S": "FAIL"
+   },
+   "b2 interacting leaf pair (large-N O(N) + Cl(6))": {
+    "params": [
+     0.059860469551592445,
+     0.9698150792866436,
+     -0.09880884621664031,
+     -3.6526415994200088
+    ],
+    "max_dmu": 0.026010364261857738,
+    "deep_slope": 0.964088645707406,
+    "Q": 0.2601036426185774,
+    "S": "PASS"
+   },
+   "c1 Bose mode, thermodynamic pairing": {
+    "params": [
+     0.8991692144510299,
+     -5.783558989734621,
+     -3.077278779701481,
+     0.6692226007672424
+    ],
+    "max_dmu": 0.4397247471906211,
+    "deep_slope": 1.4298237239351863,
+    "Q": 4.397247471906211,
+    "S": "FAIL"
+   },
+   "c2 bath at dS-Unruh T(A)": {
+    "params": [
+     0.19455127800101613,
+     9.159681724213442e-08
+    ],
+    "max_dmu": 0.8928232793033914,
+    "deep_slope": 0.0,
+    "Q": 9.900990099009901,
+    "S": "FAIL"
+   },
+   "c3 holographic leaf pair (G3 fields)": {
+    "params": [
+     0.0596446715933673,
+     0.9699229782692323,
+     -0.09885716194311009
+    ],
+    "max_dmu": 0.02601036426291492,
+    "deep_slope": 0.9640886461159681,
+    "Q": 0.2601036426291492,
+    "S": "PASS"
+   },
+   "c4 horizon dof": {
+    "params": [
+     7.964447656394427
+    ],
+    "max_dmu": 0.9723228380982034,
+    "deep_slope": 0.0,
+    "Q": 9.900990099009901,
+    "S": "FAIL"
+   },
+   "M1 twin: mu = x^2/(1+x^2)": {
+    "params": [],
+    "max_dmu": 0.14934398244295133,
+    "deep_slope": 1.9998000199983323,
+    "Q": 10.097010100973423,
+    "S": "FAIL"
+   },
+   "M1 control: the law": {
+    "params": [],
+    "max_dmu": 0.0,
+    "deep_slope": 0.9900990098854479,
+    "Q": 1.5542234166332491e-10,
+    "S": "PASS"
+   }
+  },
+  "alt": {
+   "a1 BK superfluid": {
+    "params": [
+     -0.37432793313918333
+    ],
+    "max_dmu": 0.09456700679839902,
+    "deep_slope": 0.9557642889923557,
+    "Q": 0.9456700679839902,
+    "S": "PASS"
+   },
+   "a2 exact-Legendre condensate": {
+    "params": [
+     -9.57012247226885e-13,
+     1.0000000000003166
+    ],
+    "max_dmu": 4.75397499144492e-13,
+    "deep_slope": 0.9900990098987705,
+    "Q": 2.219557870830613e-11,
+    "S": "PASS"
+   },
+   "a3 GP + LHY condensate": {
+    "params": [
+     -3.0331832353927126,
+     2.516247543447295,
+     -1.6251775483660609
+    ],
+    "max_dmu": 0.501376150548253,
+    "deep_slope": 0.488722859359747,
+    "Q": 5.01376150548253,
+    "S": "FAIL"
+   },
+   "b1 large-N GNY, dynamical mass": {
+    "params": [
+     6.075055506850786,
+     2.4939598739446893,
+     -1.9556044988599202
+    ],
+    "max_dmu": 0.5311351442262613,
+    "deep_slope": 0.0,
+    "Q": 9.900990099009901,
+    "S": "FAIL"
+   },
+   "b2 interacting leaf pair (large-N O(N) + Cl(6))": {
+    "params": [
+     0.059860469551592445,
+     0.9698150792866436,
+     -0.09880884621664031,
+     -3.6526415994200088
+    ],
+    "max_dmu": 0.026010364261857738,
+    "deep_slope": 0.964088645707406,
+    "Q": 0.2601036426185774,
+    "S": "PASS"
+   },
+   "c1 Bose mode, thermodynamic pairing": {
+    "params": [
+     0.8991692144510299,
+     -5.783558989734621,
+     -3.077278779701481,
+     0.6692226007672424
+    ],
+    "max_dmu": 0.4397247471906211,
+    "deep_slope": 1.4298237239351863,
+    "Q": 4.397247471906211,
+    "S": "FAIL"
+   },
+   "c2 bath at dS-Unruh T(A)": {
+    "params": [
+     0.19455127800101613,
+     9.159681724213442e-08
+    ],
+    "max_dmu": 0.8928232793033914,
+    "deep_slope": 0.0,
+    "Q": 9.900990099009901,
+    "S": "FAIL"
+   },
+   "c3 holographic leaf pair (G3 fields)": {
+    "params": [
+     0.0596446715933673,
+     0.9699229782692323,
+     -0.09885716194311009
+    ],
+    "max_dmu": 0.02601036426291492,
+    "deep_slope": 0.9640886461159681,
+    "Q": 0.2601036426291492,
+    "S": "PASS"
+   },
+   "c4 horizon dof": {
+    "params": [
+     7.964447656394427
+    ],
+    "max_dmu": 0.9723228380982034,
+    "deep_slope": 0.0,
+    "Q": 9.900990099009901,
+    "S": "FAIL"
+   },
+   "M1 twin: mu = x^2/(1+x^2)": {
+    "params": [],
+    "max_dmu": 0.14934398244295133,
+    "deep_slope": 1.9998000199983323,
+    "Q": 10.097010100973423,
+    "S": "FAIL"
+   },
+   "M1 control: the law": {
+    "params": [],
+    "max_dmu": 0.0,
+    "deep_slope": 0.9900990098854479,
+    "Q": 1.5542234166332491e-10,
+    "S": "PASS"
+   }
+  }
+ },
+ "C": {
+  "canonical": {
+   "a1 BK superfluid": {
+    "a0prime_over_a0": 0.42234958021432756,
+    "Lambda_min_eV": 0.00011585022310621143,
+    "Lambda_alpha1_eV": 0.005160736326092133,
+    "rho_DE_quarter_eV": 0.0022401170165912035,
+    "log10R_amp_H": -32.02277970766206,
+    "log10R_amp_W": -32.02277970766206,
+    "log10R_loc": -57.258537357175676,
+    "C_H": "PASS",
+    "C_W": "PASS"
+   },
+   "a2 exact-Legendre condensate": {
+    "eps0_quarter_eV": 0.0008413045568761251,
+    "nmax_third_eV": 13458377.655828265,
+    "log10R_amp_H": -20.95768387127561,
+    "log10R_amp_W": -20.95768387127561,
+    "log10R_loc": -57.258537357175676,
+    "note": "inputs are (A)'s own constants: a restatement, not an origin",
+    "C_H": "PASS",
+    "C_W": "PASS"
+   },
+   "a3 GP + LHY condensate": {
+    "log10R_amp_H": NaN,
+    "log10R_amp_W": NaN,
+    "log10R_loc": -57.258537357175676,
+    "note": "S fails; C not needed for the label",
+    "C_H": "FAIL",
+    "C_W": "FAIL"
+   },
+   "b1 large-N GNY, dynamical mass": {
+    "X_eV": 2.5044554331915625e+87,
+    "log10R_amp_H": 53.01440713359342,
+    "log10R_amp_W": 1.7335664762124352,
+    "log10R_loc": 5.416094528606962,
+    "C_H": "FAIL",
+    "C_W": "FAIL"
+   },
+   "b2 interacting leaf pair (large-N O(N) + Cl(6))": {
+    "X_eV": 5.602713542312494e+89,
+    "nuN_min_eV": 2.8233766988944454e+86,
+    "log10R_H": 55.3640922440339,
+    "log10R_W_count": -3.1443100803177773,
+    "log10R_W_species": 4.083251586652914,
+    "log10R_W": 4.083251586652914,
+    "Lambda_sp_eV": 5.279397204574101e-31,
+    "N_dof": 2.3732565911265668e+119,
+    "log10R_amp_H": 55.3640922440339,
+    "log10R_amp_W": 4.083251586652914,
+    "log10R_loc": 5.416094528606962,
+    "C_H": "FAIL",
+    "C_W": "FAIL",
+    "C_W0_count_only_amp": "PASS"
+   },
+   "c1 Bose mode, thermodynamic pairing": {
+    "log10R_amp_H": NaN,
+    "log10R_amp_W": NaN,
+    "log10R_loc": NaN,
+    "note": "S fails; C not needed for the label",
+    "C_H": "FAIL",
+    "C_W": "FAIL"
+   },
+   "c2 bath at dS-Unruh T(A)": {
+    "N_needed": 2.72758107664025e+117,
+    "log10R_amp_H": 114.43577766874311,
+    "log10R_amp_W": 4.43704817699057,
+    "log10R_loc": 7.313484260987173,
+    "C_H": "FAIL",
+    "C_W": "FAIL"
+   },
+   "c3 holographic leaf pair (G3 fields)": {
+    "X_eV": 5.602713542393415e+89,
+    "nuN_min_eV": 2.8233766989352236e+86,
+    "log10R_H": 55.36409224404017,
+    "log10R_W_count": -3.1443100803115045,
+    "log10R_W_species": 4.083251586659187,
+    "log10R_W": 4.083251586659187,
+    "Lambda_sp_eV": 5.27939720449785e-31,
+    "N_dof": 2.373256591160844e+119,
+    "log10R_amp_H": 55.36409224404017,
+    "log10R_amp_W": 4.083251586659187,
+    "log10R_loc": 5.416094528606962,
+    "C_H": "FAIL",
+    "C_W": "FAIL",
+    "C_W0_count_only_amp": "PASS"
+   },
+   "c4 horizon dof": {
+    "log10R_amp_H": 0.0,
+    "log10R_amp_W": 0.0,
+    "log10R_loc": 6.515304392629059,
+    "note": "no free input; the horizon's gap is sqrt(A^2+H^2) (c_g = 1)",
+    "C_H": "FAIL",
+    "C_W": "FAIL"
+   }
+  },
+  "alt": {
+   "a1 BK superfluid": {
+    "a0prime_over_a0": 0.42234958021432756,
+    "Lambda_min_eV": 0.00012735666812109493,
+    "Lambda_alpha1_eV": 0.005673309605455177,
+    "rho_DE_quarter_eV": 0.0024626093224944935,
+    "log10R_amp_H": -31.981654893540636,
+    "log10R_amp_W": -31.981654893540636,
+    "log10R_loc": -57.217412543054245,
+    "C_H": "PASS",
+    "C_W": "PASS"
+   },
+   "a2 exact-Legendre condensate": {
+    "eps0_quarter_eV": 0.0009248643840815597,
+    "nmax_third_eV": 14335381.451947536,
+    "log10R_amp_H": -20.930267328527993,
+    "log10R_amp_W": -20.930267328527993,
+    "log10R_loc": -57.217412543054245,
+    "note": "inputs are (A)'s own constants: a restatement, not an origin",
+    "C_H": "PASS",
+    "C_W": "PASS"
+   },
+   "a3 GP + LHY condensate": {
+    "log10R_amp_H": NaN,
+    "log10R_amp_W": NaN,
+    "log10R_loc": -57.217412543054245,
+    "note": "S fails; C not needed for the label",
+    "C_H": "FAIL",
+    "C_W": "FAIL"
+   },
+   "b1 large-N GNY, dynamical mass": {
+    "X_eV": 2.072352739683786e+87,
+    "log10R_amp_H": 52.93215750535057,
+    "log10R_amp_W": 1.651316847969582,
+    "log10R_loc": 5.374969714485535,
+    "C_H": "FAIL",
+    "C_W": "FAIL"
+   },
+   "b2 interacting leaf pair (large-N O(N) + Cl(6))": {
+    "X_eV": 4.636057246296645e+89,
+    "nuN_min_eV": 2.3362493736440666e+86,
+    "log10R_H": 55.28184261579105,
+    "log10R_W_count": -3.144310080317777,
+    "log10R_W_species": 4.001001958410061,
+    "log10R_W": 4.001001958410061,
+    "Lambda_sp_eV": 6.380195205083407e-31,
+    "N_dof": 1.6249703431418392e+119,
+    "log10R_amp_H": 55.28184261579105,
+    "log10R_amp_W": 4.001001958410061,
+    "log10R_loc": 5.374969714485535,
+    "C_H": "FAIL",
+    "C_W": "FAIL",
+    "C_W0_count_only_amp": "PASS"
+   },
+   "c1 Bose mode, thermodynamic pairing": {
+    "log10R_amp_H": NaN,
+    "log10R_amp_W": NaN,
+    "log10R_loc": NaN,
+    "note": "S fails; C not needed for the label",
+    "C_H": "FAIL",
+    "C_W": "FAIL"
+   },
+   "c2 bath at dS-Unruh T(A)": {
+    "N_needed": 1.8675765505622569e+117,
+    "log10R_amp_H": 114.2712784122574,
+    "log10R_amp_W": 4.354798548747716,
+    "log10R_loc": 7.272359446865747,
+    "C_H": "FAIL",
+    "C_W": "FAIL"
+   },
+   "c3 holographic leaf pair (G3 fields)": {
+    "X_eV": 4.636057246363604e+89,
+    "nuN_min_eV": 2.3362493736778093e+86,
+    "log10R_H": 55.281842615797316,
+    "log10R_W_count": -3.1443100803115045,
+    "log10R_W_species": 4.001001958416333,
+    "log10R_W": 4.001001958416333,
+    "Lambda_sp_eV": 6.380195204991258e-31,
+    "N_dof": 1.624970343165309e+119,
+    "log10R_amp_H": 55.281842615797316,
+    "log10R_amp_W": 4.001001958416333,
+    "log10R_loc": 5.374969714485535,
+    "C_H": "FAIL",
+    "C_W": "FAIL",
+    "C_W0_count_only_amp": "PASS"
+   },
+   "c4 horizon dof": {
+    "log10R_amp_H": 0.0,
+    "log10R_amp_W": 0.0,
+    "log10R_loc": 6.4741795785076315,
+    "note": "no free input; the horizon's gap is sqrt(A^2+H^2) (c_g = 1)",
+    "C_H": "FAIL",
+    "C_W": "FAIL"
+   }
+  }
+ },
+ "C_loc_A_gapped": {
+  "canonical": {
+   "c_g_needed": 3275702.050968912,
+   "log10R_loc": 5.416094528606962,
+   "dwarf_c_g_needed": 80237985.74262169
+  },
+  "alt": {
+   "c_g_needed": 2979748.2851340794,
+   "log10R_loc": 5.374969714485535,
+   "dwarf_c_g_needed": 72988628.60511693
+  }
+ },
+ "U": {
+  "a1 BK superfluid": {
+   "U": "FAIL",
+   "why": "three-body contact |psi|^6, z = 2, d = 3: coupling dimension 5 - 6*3/2 = -4; and the inserted |grad theta|^3: {'odd_orders': [3], 'orders_ge_7': [], 'terminates': True, 'admissible': False}"
+  },
+  "a2 exact-Legendre condensate": {
+   "U": "FAIL",
+   "why": "EOS W inserted: {'odd_orders': [3, 5, 7, 9, 11], 'orders_ge_7': [7, 8, 9, 10], 'terminates': False, 'admissible': False}; k-body tower g_k = 1/k for all k"
+  },
+  "a3 GP + LHY condensate": {
+   "U": "FAIL",
+   "why": "UV |phi|^4 (z = 1) renormalizable and LHY generated, but the coupling mu = mu0 |A|/a0 inserted: {'odd_orders': [1], 'orders_ge_7': [], 'terminates': True, 'admissible': False}"
+  },
+  "b1 large-N GNY, dynamical mass": {
+   "U": "PASS",
+   "why": "leaf z = 3, [3-d Lagrangian] = 3: [psi] = 1, [sigma] = 1/2, Yukawa [y] = 1/2, [mu_sigma^2] = 2, A coupling g A_i psibar Gamma^i psi [g] = 0; all >= 0; nothing non-polynomial inserted"
+  },
+  "b2 interacting leaf pair (large-N O(N) + Cl(6))": {
+   "U": "PASS",
+   "why": "[lambda] = 1, [m0^2] = 2, [g_B^2] = 0, [g_F] = 0 (HZ1's counting); m^2 polynomial in A"
+  },
+  "c1 Bose mode, thermodynamic pairing": {
+   "U": "FAIL",
+   "why": "chemical potential lambda_A |A| inserted: {'odd_orders': [1], 'orders_ge_7': [], 'terminates': True, 'admissible': False}"
+  },
+  "c2 bath at dS-Unruh T(A)": {
+   "U": "PASS",
+   "why": "free 4-d bosons (z = 1); inserted P(T(A)) polynomial in A^2: {'odd_orders': [], 'orders_ge_7': [], 'terminates': True, 'admissible': True}; the thermal state at T(A) is assumed"
+  },
+  "c3 holographic leaf pair (G3 fields)": {
+   "U": "PASS",
+   "why": "HZ1 (i-p): all couplings >= 0 at z = 3"
+  },
+  "c4 horizon dof": {
+   "U": "FAIL",
+   "why": "no local action (horizon entropy counted, not a field theory)"
+  }
+ },
+ "c2_analyticity": {
+  "T4": {
+   "odd_orders": [],
+   "orders_ge_7": [],
+   "terminates": true,
+   "admissible": true
+  },
+  "T3": {
+   "odd_orders": [],
+   "orders_ge_7": [
+    8,
+    10,
+    12
+   ],
+   "terminates": false,
+   "admissible": false
+  }
+ },
+ "labels": {
+  "a1 BK superfluid": {
+   "per_footing": {
+    "canonical": "SHAPE ONLY",
+    "alt": "SHAPE ONLY"
+   },
+   "label": "SHAPE ONLY"
+  },
+  "a2 exact-Legendre condensate": {
+   "per_footing": {
+    "canonical": "SHAPE ONLY",
+    "alt": "SHAPE ONLY"
+   },
+   "label": "SHAPE ONLY"
+  },
+  "a3 GP + LHY condensate": {
+   "per_footing": {
+    "canonical": "NONE",
+    "alt": "NONE"
+   },
+   "label": "NONE"
+  },
+  "b1 large-N GNY, dynamical mass": {
+   "per_footing": {
+    "canonical": "NONE",
+    "alt": "NONE"
+   },
+   "label": "NONE"
+  },
+  "b2 interacting leaf pair (large-N O(N) + Cl(6))": {
+   "per_footing": {
+    "canonical": "SHAPE ONLY",
+    "alt": "SHAPE ONLY"
+   },
+   "label": "SHAPE ONLY"
+  },
+  "c1 Bose mode, thermodynamic pairing": {
+   "per_footing": {
+    "canonical": "NONE",
+    "alt": "NONE"
+   },
+   "label": "NONE"
+  },
+  "c2 bath at dS-Unruh T(A)": {
+   "per_footing": {
+    "canonical": "NONE",
+    "alt": "NONE"
+   },
+   "label": "NONE"
+  },
+  "c3 holographic leaf pair (G3 fields)": {
+   "per_footing": {
+    "canonical": "SHAPE ONLY",
+    "alt": "SHAPE ONLY"
+   },
+   "label": "SHAPE ONLY"
+  },
+  "c4 horizon dof": {
+   "per_footing": {
+    "canonical": "NONE",
+    "alt": "NONE"
+   },
+   "label": "NONE"
+  }
+ },
+ "lane_label": "SHAPE ONLY",
+ "W0_reported": {
+  "b2 interacting leaf pair (large-N O(N) + Cl(6))": {
+   "canonical": {
+    "amp_count_only": "PASS",
+    "loc": "FAIL"
+   },
+   "alt": {
+    "amp_count_only": "PASS",
+    "loc": "FAIL"
+   }
+  },
+  "c3 holographic leaf pair (G3 fields)": {
+   "canonical": {
+    "amp_count_only": "PASS",
+    "loc": "FAIL"
+   },
+   "alt": {
+    "amp_count_only": "PASS",
+    "loc": "FAIL"
+   }
+  }
+ },
+ "reported": {
+  "R2_canonical": {
+   "r_MOND_kpc": 9.452267700172932,
+   "ratio_at_r_MOND": 317874.1258129117,
+   "ratio_at_1AU": 619749699568243.8,
+   "fermion_compton_at_a0_Gpc_over_gF": 31.117241643228816
+  },
+  "R2_alt": {
+   "r_MOND_kpc": 8.598272380080349,
+   "ratio_at_r_MOND": 289154.7724859021,
+   "ratio_at_1AU": 512822057361088.5,
+   "fermion_compton_at_a0_Gpc_over_gF": 25.748472149320605
+  },
+  "R3_canonical": {
+   "J_scale_J_per_m3": 1.044633499452232e-11,
+   "rho_DE_c2_J_per_m3": 5.250900684116688e-10,
+   "ratio": 0.019894367886486915,
+   "one_over_16pi": 0.019894367886486918,
+   "log10_MPl_over_H": 61.01125245165754,
+   "log10_MPl_over_Ea0": 61.77384174980473,
+   "log10_needed_over_H_ceiling": 55.36409224404017,
+   "log10_needed_over_holo_nu_g3": -3.1443100803115045,
+   "T_for_a0_eq_T2_over_MPl_meV": 1.5840019330830177
+  },
+  "R3_alt": {
+   "J_scale_J_per_m3": 1.5256791290684e-11,
+   "rho_DE_c2_J_per_m3": 7.668899749786496e-10,
+   "ratio": 0.019894367886486918,
+   "one_over_16pi": 0.019894367886486918,
+   "log10_MPl_over_H": 60.92900282341469,
+   "log10_MPl_over_Ea0": 61.691592121561875,
+   "log10_needed_over_H_ceiling": 55.281842615797316,
+   "log10_needed_over_holo_nu_g3": -3.1443100803115045,
+   "T_for_a0_eq_T2_over_MPl_meV": 1.741327751349066
+  },
+  "R1": "kappa: a1 a0' = alpha^3 Lambda^2/(8 pi M_Pl), Lambda free (not tied to rho_DE); b2/c3 a0 = c m_b0/g_B with m_b0 and Lambda_cc independent; a2 restates (A). No candidate fixes kappa; 5.41 untouched."
+ },
+ "MUTATE": {
+  "M1": {
+   "twin_S": "FAIL",
+   "control_S": "PASS",
+   "bites": true
+  },
+  "M2": {
+   "log10R_H": -6.40974950576456,
+   "bites": true
+  },
+  "M3": {
+   "c_g_needed": 8.955334711889902,
+   "bites": true
+  },
+  "M4": {
+   "det": {
+    "odd_orders": [],
+    "orders_ge_7": [],
+    "terminates": true,
+    "admissible": true
+   },
+   "bites": true
+  },
+  "M5": {
+   "det": {
+    "odd_orders": [
+     3
+    ],
+    "orders_ge_7": [],
+    "terminates": true,
+    "admissible": false
+   },
+   "bites": true
+  },
+  "M6": {
+   "Lambda_sp_eV": 1.2208901282098642e+25,
+   "bites": true
+  },
+  "M7": {
+   "max_dmu": 1.1613063835222426e-08,
+   "bites": true
+  }
+ },
+ "runtime_s": 15.3
+}
