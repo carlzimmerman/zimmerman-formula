@@ -12,8 +12,11 @@
 S4 (static rows) is NOT GRADED for either variant. V2's label rests on neither amendment. Both of V1's amendments are
 post hoc, each committed alone: A1 replaces a known answer whose observable was wrong, A2 grades four runs that cannot
 finish on the outputs they reached. Under every reading, V1 also fails S3(c), but S3(c) does not decide the label,
-because its MUTATE arm M4 did not bite (see the table). S3(a) at log M_b 10.7 and the 10.7 scan were still running
-when this file was written; they can add failing parts, not remove them.
+because its MUTATE arm M4 did not bite (see the table). **The log M_b 10.7 runs are not part of this result.** The
+coordinating session paused them with SIGSTOP (state intact) so that BX1's live box run could have the cores. That
+leaves S3(a) at log M_b 10.7, its dx/2 convergence check, S3(c) at 10.7 and the 10.7 scan unevaluated. No label rests on
+them: S3(b) and the empty window are decided at log M_b 9.4 alone, and these items could only add failing parts. As
+landed, V1's S3(a) therefore reads NOT EVALUATED at 10.7 (no unresolved maxima at 9.4).
 
 TEST lane, quarantined. Adopts nothing, relabels nothing, registers nothing. Footings never pooled. The cold component is
 cold dark energy, a field (Psi), never a particle.
@@ -91,7 +94,7 @@ A = grad(Phi + nu theta_t + nu^2 |grad theta|^2/2) in V1 and A = grad(Phi - chi_
 | S1(d) static galaxy | PASS (both variants, both footings) | QG1's point-mass rows re-run through its code: Lambda_s L 1.09e12 / 3.14e12 / 1.40e13 (alt 1.12e12 / 3.24e12 / 1.44e13) |
 | S1(e) V1's psi equation | exact | i nu psi_t = H psi - (i nu/2)(S/|psi|^2) psi, with S = d_t(div P) + div((div P) v) |
 | S2 nu_max | 25.37 [25.38] kpc km/s | by redshift: z 3: 418.8, z 10: 252.6, z 100: 83.35, z 1089: **25.37**; m c^2 >= 7.556e-23 [7.554e-23] eV; k_J(z 1089) = 10.1/Mpc (acoustic peaks, k <= 0.3/Mpc, kept off); k_J today 57.9/Mpc |
-| S3(a) V1 fold-free | log M_b 9.4: no unresolved maxima; 10.7: **running** | Psi's Lagrangian radii follow COL1's dust to 3.1e-3 up to 0.9 t_f, and the focus is regularized at the de Broglie scale; at nu_max (law off) 0 narrow maxima at log M_b 9.4; the 10.7 runs and the dx/2 convergence run were still running |
+| S3(a) V1 fold-free | log M_b 9.4: no unresolved maxima; 10.7: **not evaluated** (runs paused) | Psi's Lagrangian radii follow COL1's dust to 3.1e-3 up to 0.9 t_f, and the focus is regularized at the de Broglie scale; at nu_max (law off) 0 narrow maxima at log M_b 9.4; the 10.7 runs and the dx/2 convergence run were paused before finishing |
 | S3(a) V2 | **FAIL** | the zero-charge frame is mimetic and focuses at COL1's time: 0.07116 / 0.15333 Gyr after z 10 (log M_b 10.7 / 9.4) |
 | S3(b) V2 | **FAIL** | reach 0 (exact identity + Lean `advected_zero`, `regular_centre_zero`) |
 | **S3(b) V1** (A1 + A2) | **FAIL** | log M_b 9.4: R_s = 0 kpc (needs >= 81 and >= 23) at nu_max, law off over the last-Gyr set and the bracket at z 2, 1, 0.5 (A2) |
@@ -218,6 +221,14 @@ frame's charge, not on M5.
 - The four production runs at log M_b 10.7, nu_max were stopped once by the lead (SIGTERM, checkpointed) so that they
   record the central-density history the S3(a) convergence check needs. They resumed from their checkpoints.
 - QG1's script was executed unmodified in a temporary directory. Its output files went there, not into QG1's folder.
+- **The log M_b 10.7 runs were paused, not finished.** The coordinating session suspended all seven running
+  `wv1_s3.py --mass 10.7` processes with SIGSTOP (11-10, about 21:00): the four at nu_max (two law off, two at dx/2 to
+  z 2) and three at nu_max x 4. It did so because BX1's 512^3 box run, PAPER72 v1.1's last pending row, was starved of
+  cores, and the owner's rule is no heavy compute beside a live box run. Nothing was killed. The runs checkpoint by wall
+  time only, so a pause cannot change their results. They may be resumed (`kill -CONT`) once the box run has exited, and
+  their rows added in a later commit. Every 10.7 number in this file comes from outputs finished before the pause: the
+  two A2 bracket partials and the z = 2 output of the law-off runs, taken from their checkpoints: R_s = 0,
+  r_ta = 140.6 kpc and no unresolved maxima (0 of 5697), on both footings.
 
 ## Files
 
