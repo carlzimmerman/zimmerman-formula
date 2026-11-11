@@ -1,0 +1,491 @@
+{
+ "arm": "M4",
+ "known_answers": {
+  "KA1 GR graviton": {
+   "pass": true,
+   "detail": "EL[sqrt(-g)R at eps^2] - EL[(1/2)(h_t^2 - h_z^2)] = 0 (EL of target: -Derivative(h(t, z), (t, 2)) + Derivative(h(t, z), (z, 2))); omega^2 = k^2, kinetic +1/2"
+  },
+  "KA2 BPS khronon speed": {
+   "pass": true,
+   "detail": "det(omega) = -2*M**6*k**6*(-alpha_a*beta**2*omega**2 + alpha_a*beta*k**2 - 3*alpha_a*beta*lambda*omega**2 - alpha_a*beta*omega**2 + alpha_a*k**2*lambda + 3*alpha_a*lambda*omega**2 + 2*alpha_a*omega**2 - 2*beta*k**2 - 2*k**2*lambda); nonzero omega^2 roots [k**2*(alpha_a*beta + alpha_a*lambda - 2*beta - 2*lambda)/(alpha_a*(beta**2 + 3*beta*lambda + beta - 3*lambda - 2))]; residual vs (beta+lambda)(2-alpha)/[alpha(1-beta)(2+beta+3lambda)] k^2 = [0]"
+  },
+  "KA3 Legendre": {
+   "pass": true,
+   "detail": "max rel |J - (a0^2/K)[u - ln(1+u)]| = 6.06e-36; K J''(0) = 1 (alpha_a = 2 at A = 0)"
+  },
+  "KA4 SCS1 closed form": {
+   "pass": true,
+   "detail": "omega^2 = G*K*(-K*k**2*m + k**2 - mu**2)/(K*k**2*m + mu**2); minus SCS1 closed form (Qbar = 1): 0; tilt IBP residual 0"
+  },
+  "KA5 pure dust": {
+   "pass": true,
+   "detail": "pure dust: omega^2 - (K n/mu^2)(k^2 - mu^2) = 0; Jeans rate^2 at k -> 0 = G*K (= K G = 4 pi G rho)"
+  },
+  "KA6 |grad phi|^3/a0 strong coupling": {
+   "pass": true,
+   "detail": "ratio method vs Lambda_3 = sqrt(12 M a0) x^(3/4): max rel 4.46e-15 (x 1e-2, 1, 1e2; both footings); at x = 1 canonical Lambda_3 = 2.451 meV = 1/(0.08052 mm)"
+  },
+  "KA7 zero-point integrator": {
+   "pass": true,
+   "detail": "max rel 2.3e-41"
+  },
+  "KA8 growth ODE": {
+   "pass": true,
+   "detail": "EdS f = 1.0; flat Omega_m 0.3: f(0) = 0.512796 vs Omega_m^0.55 = 0.515723 (rel -0.00568)"
+  },
+  "C2 Gaussian crossing factor (A1)": {
+   "pass": true,
+   "detail": "max |quadrature - closed form| = 5.74e-42 at c = 0, 0.5, 1, 3; value at c = 0: 1.0"
+  },
+  "C0 unit chain": {
+   "pass": true,
+   "detail": "K*rho(eV^4) / (free-fall rate in eV)^2 - 1 = -4.59e-41"
+  }
+ },
+ "rows": {
+  "PM0": {
+   "canonical": {
+    "primary": {
+     "desc": "point mass 6e10 Msun, x_N = 1.0 (r = 9.452 kpc, x = g/a0 = 1.618), L = 1 kpc",
+     "label": "PASS",
+     "i": true,
+     "i_detail": {
+      "Hessian_min_eig_over_K": "2.618",
+      "tensor_correction_over_k2_at_1_over_L": "8.75e-15",
+      "min_Z0_over_k2_by_K": "6.7598e-12",
+      "gradient_instability": false,
+      "jeans": "",
+      "pass_a_b_c_d_e": [
+       true,
+       true,
+       true,
+       true,
+       true
+      ]
+     },
+     "Lambda_s_eV": "2.00532e-14",
+     "Lambda_s_length_m": "9.84e+6",
+     "Lambda_s_L": "3.1358e+12",
+     "ii": true,
+     "ii_dominant": "switch (branch on, theta 90.0 deg)",
+     "Lambda_s_is_lower_bound": false,
+     "iii": true,
+     "iii_detail": {
+      "Lambda_c_eV": "2.00532e-14",
+      "eps_cutoff": "5.195e-83",
+      "eps_SM_dimreg": "3.483e-32",
+      "eps_total": "3.483e-32",
+      "dmu_rows": [
+       {
+        "x": "0.01",
+        "dmu_khronon": "9.99e-71",
+        "dmu_eps": "3.449e-32",
+        "dmu_over_mu": "3.483e-30"
+       },
+       {
+        "x": "0.03162",
+        "dmu_khronon": "3.179e-71",
+        "dmu_eps": "3.376e-32",
+        "dmu_over_mu": "1.101e-30"
+       },
+       {
+        "x": "0.1",
+        "dmu_khronon": "1.025e-71",
+        "dmu_eps": "3.166e-32",
+        "dmu_over_mu": "3.483e-31"
+       },
+       {
+        "x": "0.3162",
+        "dmu_khronon": "3.414e-72",
+        "dmu_eps": "2.646e-32",
+        "dmu_over_mu": "1.101e-31"
+       },
+       {
+        "x": "1.0",
+        "dmu_khronon": "1.213e-72",
+        "dmu_eps": "1.742e-32",
+        "dmu_over_mu": "3.483e-32"
+       },
+       {
+        "x": "3.162",
+        "dmu_khronon": "4.606e-73",
+        "dmu_eps": "8.368e-33",
+        "dmu_over_mu": "1.101e-32"
+       },
+       {
+        "x": "10.0",
+        "dmu_khronon": "1.76e-73",
+        "dmu_eps": "3.166e-33",
+        "dmu_over_mu": "3.483e-33"
+       },
+       {
+        "x": "31.62",
+        "dmu_khronon": "6.198e-74",
+        "dmu_eps": "1.068e-33",
+        "dmu_over_mu": "1.101e-33"
+       },
+       {
+        "x": "100.0",
+        "dmu_khronon": "2.019e-74",
+        "dmu_eps": "3.449e-34",
+        "dmu_over_mu": "3.483e-34"
+       }
+      ],
+      "Delta_a0_over_a0": "3.483e-30"
+     },
+     "omega": {
+      "k_IR": {
+       "k_eV": "6.765e-28",
+       "omega2_eV2": "7.28e-61",
+       "Z0_over_k2_by_K": "0.1459"
+      },
+      "k_top": {
+       "k_eV": "1.603e-25",
+       "omega2_eV2": "7.464e-61",
+       "Z0_over_k2_by_K": "0.1428"
+      }
+     },
+     "G_eV4": "1.475e-6",
+     "uP": "1.618",
+     "A1_gauss_switch_Lambda_s_eV": "0.000289516",
+     "A1_gauss_switch_Lambda_s_L": "4.52727e+22",
+     "A1_gauss_switch_set_by": "switch (branch on, theta 90.0 deg)",
+     "A1_gauss_switch_lower_bound": false
+    },
+    "mutated": {
+     "desc": "point mass 6e10 Msun, x_N = 1.0 (r = 9.452 kpc, x = g/a0 = 1.618), L = 1 kpc",
+     "label": "FAIL",
+     "i": true,
+     "i_detail": {
+      "Hessian_min_eig_over_K": "2.618",
+      "tensor_correction_over_k2_at_1_over_L": "8.75e-15",
+      "min_Z0_over_k2_by_K": "6.7598e-12",
+      "gradient_instability": false,
+      "jeans": "",
+      "pass_a_b_c_d_e": [
+       true,
+       true,
+       true,
+       true,
+       true
+      ]
+     },
+     "Lambda_s_eV": "2.00532e-14",
+     "Lambda_s_length_m": "9.84e+6",
+     "Lambda_s_L": "3.1358e+12",
+     "ii": true,
+     "ii_dominant": "switch (branch on, theta 90.0 deg)",
+     "Lambda_s_is_lower_bound": false,
+     "iii": false,
+     "iii_detail": {
+      "Lambda_c_eV": "2.00532e-14",
+      "eps_cutoff": "5.195e-83",
+      "eps_SM_dimreg": "3.483e-32",
+      "eps_total": "0.01",
+      "dmu_rows": [
+       {
+        "x": "0.01",
+        "dmu_khronon": "9.99e-71",
+        "dmu_eps": "0.009803",
+        "dmu_over_mu": "0.9901"
+       },
+       {
+        "x": "0.03162",
+        "dmu_khronon": "3.179e-71",
+        "dmu_eps": "0.009597",
+        "dmu_over_mu": "0.3131"
+       },
+       {
+        "x": "0.1",
+        "dmu_khronon": "1.025e-71",
+        "dmu_eps": "0.009001",
+        "dmu_over_mu": "0.09901"
+       },
+       {
+        "x": "0.3162",
+        "dmu_khronon": "3.414e-72",
+        "dmu_eps": "0.007522",
+        "dmu_over_mu": "0.03131"
+       },
+       {
+        "x": "1.0",
+        "dmu_khronon": "1.213e-72",
+        "dmu_eps": "0.00495",
+        "dmu_over_mu": "0.009901"
+       },
+       {
+        "x": "3.162",
+        "dmu_khronon": "4.606e-73",
+        "dmu_eps": "0.002379",
+        "dmu_over_mu": "0.003131"
+       },
+       {
+        "x": "10.0",
+        "dmu_khronon": "1.76e-73",
+        "dmu_eps": "0.0009001",
+        "dmu_over_mu": "0.0009901"
+       },
+       {
+        "x": "31.62",
+        "dmu_khronon": "6.198e-74",
+        "dmu_eps": "0.0003035",
+        "dmu_over_mu": "0.0003131"
+       },
+       {
+        "x": "100.0",
+        "dmu_khronon": "2.019e-74",
+        "dmu_eps": "9.803e-5",
+        "dmu_over_mu": "9.901e-5"
+       }
+      ],
+      "Delta_a0_over_a0": "0.9901"
+     },
+     "omega": {
+      "k_IR": {
+       "k_eV": "6.765e-28",
+       "omega2_eV2": "7.28e-61",
+       "Z0_over_k2_by_K": "0.1459"
+      },
+      "k_top": {
+       "k_eV": "1.603e-25",
+       "omega2_eV2": "7.464e-61",
+       "Z0_over_k2_by_K": "0.1428"
+      }
+     },
+     "G_eV4": "1.475e-6",
+     "uP": "1.618",
+     "A1_gauss_switch_Lambda_s_eV": "0.000289516",
+     "A1_gauss_switch_Lambda_s_L": "4.52727e+22",
+     "A1_gauss_switch_set_by": "switch (branch on, theta 90.0 deg)",
+     "A1_gauss_switch_lower_bound": false
+    },
+    "bites": true
+   },
+   "alt": {
+    "primary": {
+     "desc": "point mass 6e10 Msun, x_N = 1.0 (r = 8.598 kpc, x = g/a0 = 1.618), L = 1 kpc",
+     "label": "PASS",
+     "i": true,
+     "i_detail": {
+      "Hessian_min_eig_over_K": "2.618",
+      "tensor_correction_over_k2_at_1_over_L": "1.28e-14",
+      "min_Z0_over_k2_by_K": "6.0699e-12",
+      "gradient_instability": false,
+      "jeans": "",
+      "pass_a_b_c_d_e": [
+       true,
+       true,
+       true,
+       true,
+       true
+      ]
+     },
+     "Lambda_s_eV": "2.07277e-14",
+     "Lambda_s_length_m": "9.52e+6",
+     "Lambda_s_L": "3.24127e+12",
+     "ii": true,
+     "ii_dominant": "switch (branch on, theta 90.0 deg)",
+     "Lambda_s_is_lower_bound": false,
+     "iii": true,
+     "iii_detail": {
+      "Lambda_c_eV": "2.07277e-14",
+      "eps_cutoff": "5.551e-83",
+      "eps_SM_dimreg": "3.483e-32",
+      "eps_total": "3.483e-32",
+      "dmu_rows": [
+       {
+        "x": "0.01",
+        "dmu_khronon": "7.982e-71",
+        "dmu_eps": "3.449e-32",
+        "dmu_over_mu": "3.483e-30"
+       },
+       {
+        "x": "0.03162",
+        "dmu_khronon": "2.54e-71",
+        "dmu_eps": "3.376e-32",
+        "dmu_over_mu": "1.101e-30"
+       },
+       {
+        "x": "0.1",
+        "dmu_khronon": "8.187e-72",
+        "dmu_eps": "3.166e-32",
+        "dmu_over_mu": "3.483e-31"
+       },
+       {
+        "x": "0.3162",
+        "dmu_khronon": "2.728e-72",
+        "dmu_eps": "2.646e-32",
+        "dmu_over_mu": "1.101e-31"
+       },
+       {
+        "x": "1.0",
+        "dmu_khronon": "9.688e-73",
+        "dmu_eps": "1.742e-32",
+        "dmu_over_mu": "3.483e-32"
+       },
+       {
+        "x": "3.162",
+        "dmu_khronon": "3.68e-73",
+        "dmu_eps": "8.368e-33",
+        "dmu_over_mu": "1.101e-32"
+       },
+       {
+        "x": "10.0",
+        "dmu_khronon": "1.406e-73",
+        "dmu_eps": "3.166e-33",
+        "dmu_over_mu": "3.483e-33"
+       },
+       {
+        "x": "31.62",
+        "dmu_khronon": "4.953e-74",
+        "dmu_eps": "1.068e-33",
+        "dmu_over_mu": "1.101e-33"
+       },
+       {
+        "x": "100.0",
+        "dmu_khronon": "1.614e-74",
+        "dmu_eps": "3.449e-34",
+        "dmu_over_mu": "3.483e-34"
+       }
+      ],
+      "Delta_a0_over_a0": "3.483e-30"
+     },
+     "omega": {
+      "k_IR": {
+       "k_eV": "7.437e-28",
+       "omega2_eV2": "9.672e-61",
+       "Z0_over_k2_by_K": "0.1459"
+      },
+      "k_top": {
+       "k_eV": "1.603e-25",
+       "omega2_eV2": "9.944e-61",
+       "Z0_over_k2_by_K": "0.1425"
+      }
+     },
+     "G_eV4": "1.96e-6",
+     "uP": "1.618",
+     "A1_gauss_switch_Lambda_s_eV": "0.000326112",
+     "A1_gauss_switch_Lambda_s_L": "5.09953e+22",
+     "A1_gauss_switch_set_by": "switch (branch on, theta 90.0 deg)",
+     "A1_gauss_switch_lower_bound": false
+    },
+    "mutated": {
+     "desc": "point mass 6e10 Msun, x_N = 1.0 (r = 8.598 kpc, x = g/a0 = 1.618), L = 1 kpc",
+     "label": "FAIL",
+     "i": true,
+     "i_detail": {
+      "Hessian_min_eig_over_K": "2.618",
+      "tensor_correction_over_k2_at_1_over_L": "1.28e-14",
+      "min_Z0_over_k2_by_K": "6.0699e-12",
+      "gradient_instability": false,
+      "jeans": "",
+      "pass_a_b_c_d_e": [
+       true,
+       true,
+       true,
+       true,
+       true
+      ]
+     },
+     "Lambda_s_eV": "2.07277e-14",
+     "Lambda_s_length_m": "9.52e+6",
+     "Lambda_s_L": "3.24127e+12",
+     "ii": true,
+     "ii_dominant": "switch (branch on, theta 90.0 deg)",
+     "Lambda_s_is_lower_bound": false,
+     "iii": false,
+     "iii_detail": {
+      "Lambda_c_eV": "2.07277e-14",
+      "eps_cutoff": "5.551e-83",
+      "eps_SM_dimreg": "3.483e-32",
+      "eps_total": "0.01",
+      "dmu_rows": [
+       {
+        "x": "0.01",
+        "dmu_khronon": "7.982e-71",
+        "dmu_eps": "0.009803",
+        "dmu_over_mu": "0.9901"
+       },
+       {
+        "x": "0.03162",
+        "dmu_khronon": "2.54e-71",
+        "dmu_eps": "0.009597",
+        "dmu_over_mu": "0.3131"
+       },
+       {
+        "x": "0.1",
+        "dmu_khronon": "8.187e-72",
+        "dmu_eps": "0.009001",
+        "dmu_over_mu": "0.09901"
+       },
+       {
+        "x": "0.3162",
+        "dmu_khronon": "2.728e-72",
+        "dmu_eps": "0.007522",
+        "dmu_over_mu": "0.03131"
+       },
+       {
+        "x": "1.0",
+        "dmu_khronon": "9.688e-73",
+        "dmu_eps": "0.00495",
+        "dmu_over_mu": "0.009901"
+       },
+       {
+        "x": "3.162",
+        "dmu_khronon": "3.68e-73",
+        "dmu_eps": "0.002379",
+        "dmu_over_mu": "0.003131"
+       },
+       {
+        "x": "10.0",
+        "dmu_khronon": "1.406e-73",
+        "dmu_eps": "0.0009001",
+        "dmu_over_mu": "0.0009901"
+       },
+       {
+        "x": "31.62",
+        "dmu_khronon": "4.953e-74",
+        "dmu_eps": "0.0003035",
+        "dmu_over_mu": "0.0003131"
+       },
+       {
+        "x": "100.0",
+        "dmu_khronon": "1.614e-74",
+        "dmu_eps": "9.803e-5",
+        "dmu_over_mu": "9.901e-5"
+       }
+      ],
+      "Delta_a0_over_a0": "0.9901"
+     },
+     "omega": {
+      "k_IR": {
+       "k_eV": "7.437e-28",
+       "omega2_eV2": "9.672e-61",
+       "Z0_over_k2_by_K": "0.1459"
+      },
+      "k_top": {
+       "k_eV": "1.603e-25",
+       "omega2_eV2": "9.944e-61",
+       "Z0_over_k2_by_K": "0.1425"
+      }
+     },
+     "G_eV4": "1.96e-6",
+     "uP": "1.618",
+     "A1_gauss_switch_Lambda_s_eV": "0.000326112",
+     "A1_gauss_switch_Lambda_s_L": "5.09953e+22",
+     "A1_gauss_switch_set_by": "switch (branch on, theta 90.0 deg)",
+     "A1_gauss_switch_lower_bound": false
+    },
+    "bites": true
+   }
+  }
+ },
+ "reports": {
+  "C_MINK_unitary": {
+   "det_beta_lambda_0": "-4*M**6*k**4*omega**2*(alpha_a*k**2 + 2*mu**2)",
+   "only_omega_zero": true
+  }
+ },
+ "bites": true,
+ "runtime_s": 4.9
+}
