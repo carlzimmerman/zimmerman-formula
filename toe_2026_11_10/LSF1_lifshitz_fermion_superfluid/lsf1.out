@@ -1,0 +1,177 @@
+LSF1: a Lifshitz fermion superfluid as the law's microscopic origin.  MUTATE = False
+M_Pl = 1.22089e+28 eV;  hbar c = 1.973270e-07 eV m
+
+=== KNOWN ANSWERS ===
+KA1 3-d Galilean free gas, per spin state: quadrature 2.156052987026e-02 vs (2m)^1.5 mu^2.5/(15 pi^2) 2.156052987026e-02 (rel 9.9e-32) -> PASS; two spin states give twice this (= KA2 at z = 2)
+KA2 eps = c k^z (two spins): rel err by z {2: 0.0, 6: 0.0, 4: 0.0}; z = 6 coefficient 2/(9 pi^2) exact; d ln P/d ln mu at z = 6: 1.5000000000; KA2b 1-d Galilean (4/(3 pi)) sqrt(2m) mu^1.5 rel 0.0e+00 -> PASS
+KA3 BK: EL residual outside the source 0; a_theta^2/a_N = Lambda**2*alpha**3/(8*pi*M_Pl); P(X = -(grad theta)^2/2m) = -2*Lambda*g_theta**3/3 -> PASS
+KA4 contact dimensions z + d - n d: {'(3,2) 2-body': -1, '(3,2) 3-body': -4, '(3,6) 2-body': 3, '(3,6) 3-body': 0, '(1,2) 2-body': 1, '(1,2) 3-body': 0}; Int d^3k/eps over [1, 1e2], [1, 1e3]: z = 6 [0.016886847053525687, 0.016886863923502766] (converges), z = 2 [5.01539859029572, 50.609931229347715] (linear) -> PASS
+KA5 BCS gap Delta/eps_F, mean field vs (8/e^2) exp(-pi/(2 k_F|a|)): {-2: {'mean_field': 0.046813475866878694, 'asymptotic': 0.046786942943931584, 'ratio': 1.000567101017455}, -3: {'mean_field': 0.009726378375906144, 'asymptotic': 0.009726049877931766, 'ratio': 1.000033775065777}} -> PASS
+KA8 pair-kinetic inequality: {'D1': {'eps_S - eps(k) - eps(q)': '0', 'manifestly_nonneg': True}, 'D2': {'eps_S - eps(k) - eps(q)': '3*k**2*q**2*(k**2 + q**2)*(4*u**2 + 1)', 'manifestly_nonneg': True}, 'D3': {'eps_S - eps(k) - eps(q)': '3*k**2*q**2*(k**2 + q**2)*(4*u**2 + 1)', 'manifestly_nonneg': True}} -> PASS
+KA9 k^6 two-body integral: d ln chi0/d ln E_b = -0.500000 (-0.5: bound state for any attraction); closed form 1/(12 pi sqrt(2 E_b)) ratio 1.000000000000 -> PASS
+KA10 convexity: free gas P'' = c mu^(p-2) x p*(p - 1) (> 0 for p > 1); BK P''(X < 0) = -3/(4*sqrt(Xn)) (< 0: negative compressibility) -> PASS
+
+=== KA6 / KA7: the Fulde-Ferrell machinery ===
+KA6 D1 (Delta 0.102844, q 0.005): Omega_FF(mu, q) = -1.364231339385e-02, Omega_BCS(mu - q^2) = -1.364231451289e-02, rel 8.20e-08; no depaired quasiparticles: True -> PASS
+KA7 Delta = 0 at q > 0 equals the normal state: D2 q 0.5: -2.25158186e-02 vs -P0 -2.25158186e-02 (rel 6.2e-10); D1 q 0.3: -1.35094913e-02 vs -P0 -1.35094912e-02 (rel 1.4e-08); D3 q 0.4: -9.22683793e-03 vs -P0 -9.22683807e-03 (rel 1.6e-08) -> PASS
+KNOWN ANSWERS ALL PASS: True
+
+=== COUPLINGS (weak: Delta(q = 0) = 0.05 at mu_eff = 1 above the vacuum threshold; strong: E_b = 10) ===
+  D1: weak: inva -1.5, mu_vac 0, E_b 0; strong: inva 1.5, mu_vac -2.25, E_b 4.5
+  D2: weak: inv_g 0.0428384, mu_vac -0.0958542, E_b 0.191708; strong: inv_g 0.00593135, mu_vac -5, E_b 10
+  D3: weak: inv_g 0.0397576, mu_vac -0, E_b 0; strong: inv_g 0.00533875, mu_vac -5, E_b 10
+  D4: weak: inv_g 0.808465, mu_vac -0.0916533, E_b 0.183307; strong: inv_g 0.111759, mu_vac -5, E_b 10
+  D5: weak: inv_g 0.807485, mu_vac -0.0958542, E_b 0.191708; strong: inv_g 0.111803, mu_vac -5, E_b 10
+
+=== G0 (graded): MICROSCOPIC free energy of the paired gas in the gradient-dominated window ===
+    window: 16 log-spaced q in [q_a, 10 q_a], E_{q_a} = 10 |mu_eff|; Delta L = L(mu, q) - L(mu, 0); PASS iff cost sign, growing, slope in [2.9, 3.1]
+  D1 weak,mu_eff+1      Delta(q=0) 0.1028; window q 3.16-31.6; condensate certified absent True (min margin 1.796e-01); Delta L -1.3368e-04 -> -1.3368e-04; slope 0.0000 -> FAIL
+  D1 weak,mu_eff-1      Delta(q=0) 0; window q 3.16-31.6; condensate certified absent True (min margin 1.925e-01); Delta L 0.0000e+00 -> 0.0000e+00; slope n/a (Delta L = 0) -> FAIL
+  D1 strong,mu_eff+1    Delta(q=0) 4.718; window q 3.16-31.6; condensate certified absent True (min margin 7.467e-02); Delta L -1.3044e-01 -> -1.3044e-01; slope 0.0000 -> FAIL
+  D1 strong,mu_eff-1    Delta(q=0) 0; window q 3.16-31.6; condensate certified absent True (min margin 8.638e-02); Delta L 0.0000e+00 -> 0.0000e+00; slope n/a (Delta L = 0) -> FAIL
+      D1 weak,mu_eff+1 direct minimization at q 3.16: Delta_min 0.0, min over Delta > 0 of deltaOmega = 1.909e-09 (> 0)
+      D1 weak,mu_eff+1 direct minimization at q 10.8: Delta_min 0.0, min over Delta > 0 of deltaOmega = 5.197e-09 (> 0)
+      D1 weak,mu_eff+1 direct minimization at q 31.6: Delta_min 0.0, min over Delta > 0 of deltaOmega = 1.492e-08 (> 0)
+      D1 weak,mu_eff-1 direct minimization at q 3.16: Delta_min 0.0, min over Delta > 0 of deltaOmega = 4.813e-10 (> 0)
+      D1 weak,mu_eff-1 direct minimization at q 10.8: Delta_min 0.0, min over Delta > 0 of deltaOmega = 1.244e-09 (> 0)
+      D1 weak,mu_eff-1 direct minimization at q 31.6: Delta_min 0.0, min over Delta > 0 of deltaOmega = 4.046e-09 (> 0)
+      D1 strong,mu_eff+1 direct minimization at q 3.16: Delta_min 0.0, min over Delta > 0 of deltaOmega = 1.662e-06 (> 0)
+      D1 strong,mu_eff+1 direct minimization at q 10.8: Delta_min 0.0, min over Delta > 0 of deltaOmega = 8.379e-06 (> 0)
+      D1 strong,mu_eff+1 direct minimization at q 31.6: Delta_min 0.0, min over Delta > 0 of deltaOmega = 2.701e-05 (> 0)
+      D1 strong,mu_eff-1 direct minimization at q 3.16: Delta_min 0.0, min over Delta > 0 of deltaOmega = 3.455e-07 (> 0)
+      D1 strong,mu_eff-1 direct minimization at q 10.8: Delta_min 0.0, min over Delta > 0 of deltaOmega = 1.521e-06 (> 0)
+      D1 strong,mu_eff-1 direct minimization at q 31.6: Delta_min 0.0, min over Delta > 0 of deltaOmega = 4.860e-06 (> 0)
+  D2 weak,mu_eff+1      Delta(q=0) 0.05794; window q 1.47-14.7; condensate certified absent True (min margin 4.177e-02); Delta L -1.4947e-05 -> -1.4947e-05; slope 0.0000 -> FAIL
+  D2 weak,mu_eff-1      Delta(q=0) 0; window q 1.47-14.7; condensate certified absent True (min margin 4.180e-02); Delta L 0.0000e+00 -> 0.0000e+00; slope n/a (Delta L = 0) -> FAIL
+  D2 strong,mu_eff+1    Delta(q=0) 3.545; window q 1.47-14.7; condensate certified absent True (min margin 4.940e-03); Delta L -3.9320e-03 -> -3.9320e-03; slope 0.0000 -> FAIL
+  D2 strong,mu_eff-1    Delta(q=0) 0; window q 1.47-14.7; condensate certified absent True (min margin 4.965e-03); Delta L 0.0000e+00 -> 0.0000e+00; slope n/a (Delta L = 0) -> FAIL
+      D2 weak,mu_eff+1 direct minimization at q 1.47: Delta_min 0.0, min over Delta > 0 of deltaOmega = 1.407e-10 (> 0)
+      D2 weak,mu_eff+1 direct minimization at q 5.01: Delta_min 0.0, min over Delta > 0 of deltaOmega = 1.438e-10 (> 0)
+      D2 weak,mu_eff+1 direct minimization at q 14.7: Delta_min 0.0, min over Delta > 0 of deltaOmega = 1.438e-10 (> 0)
+      D2 weak,mu_eff-1 direct minimization at q 1.47: Delta_min 0.0, min over Delta > 0 of deltaOmega = 1.047e-10 (> 0)
+      D2 weak,mu_eff-1 direct minimization at q 5.01: Delta_min 0.0, min over Delta > 0 of deltaOmega = 1.071e-10 (> 0)
+      D2 weak,mu_eff-1 direct minimization at q 14.7: Delta_min 0.0, min over Delta > 0 of deltaOmega = 1.071e-10 (> 0)
+      D2 strong,mu_eff+1 direct minimization at q 1.47: Delta_min 0.0, min over Delta > 0 of deltaOmega = 6.207e-08 (> 0)
+      D2 strong,mu_eff+1 direct minimization at q 5.01: Delta_min 0.0, min over Delta > 0 of deltaOmega = 7.430e-08 (> 0)
+      D2 strong,mu_eff+1 direct minimization at q 14.7: Delta_min 0.0, min over Delta > 0 of deltaOmega = 7.453e-08 (> 0)
+      D2 strong,mu_eff-1 direct minimization at q 1.47: Delta_min 0.0, min over Delta > 0 of deltaOmega = 1.986e-08 (> 0)
+      D2 strong,mu_eff-1 direct minimization at q 5.01: Delta_min 0.0, min over Delta > 0 of deltaOmega = 2.365e-08 (> 0)
+      D2 strong,mu_eff-1 direct minimization at q 14.7: Delta_min 0.0, min over Delta > 0 of deltaOmega = 2.372e-08 (> 0)
+  D3 weak,mu_eff+1      Delta(q=0) 0.04995; window q 1.41-14.1; condensate certified absent True (min margin 3.862e-02); Delta L -1.0912e-05 -> -1.0912e-05; slope 0.0000 -> FAIL
+  D3 weak,mu_eff-1      Delta(q=0) 0; window q 1.41-14.1; condensate certified absent True (min margin 3.866e-02); Delta L 0.0000e+00 -> 0.0000e+00; slope n/a (Delta L = 0) -> FAIL
+  D3 strong,mu_eff+1    Delta(q=0) 3.756; window q 1.41-14.1; condensate certified absent True (min margin 4.293e-03); Delta L -3.4247e-03 -> -3.4247e-03; slope 0.0000 -> FAIL
+  D3 strong,mu_eff-1    Delta(q=0) 0; window q 1.41-14.1; condensate certified absent True (min margin 4.321e-03); Delta L 0.0000e+00 -> 0.0000e+00; slope n/a (Delta L = 0) -> FAIL
+      D3 weak,mu_eff+1 direct minimization at q 1.41: Delta_min 0.0, min over Delta > 0 of deltaOmega = 9.686e-11 (> 0)
+      D3 weak,mu_eff+1 direct minimization at q 4.83: Delta_min 0.0, min over Delta > 0 of deltaOmega = 9.939e-11 (> 0)
+      D3 weak,mu_eff+1 direct minimization at q 14.1: Delta_min 0.0, min over Delta > 0 of deltaOmega = 9.939e-11 (> 0)
+      D3 weak,mu_eff-1 direct minimization at q 1.41: Delta_min 0.0, min over Delta > 0 of deltaOmega = 9.684e-11 (> 0)
+      D3 weak,mu_eff-1 direct minimization at q 4.83: Delta_min 0.0, min over Delta > 0 of deltaOmega = 9.939e-11 (> 0)
+      D3 weak,mu_eff-1 direct minimization at q 14.1: Delta_min 0.0, min over Delta > 0 of deltaOmega = 9.939e-11 (> 0)
+      D3 strong,mu_eff+1 direct minimization at q 1.41: Delta_min 0.0, min over Delta > 0 of deltaOmega = 6.056e-08 (> 0)
+      D3 strong,mu_eff+1 direct minimization at q 4.83: Delta_min 0.0, min over Delta > 0 of deltaOmega = 7.501e-08 (> 0)
+      D3 strong,mu_eff+1 direct minimization at q 14.1: Delta_min 0.0, min over Delta > 0 of deltaOmega = 7.531e-08 (> 0)
+      D3 strong,mu_eff-1 direct minimization at q 1.41: Delta_min 0.0, min over Delta > 0 of deltaOmega = 1.728e-08 (> 0)
+      D3 strong,mu_eff-1 direct minimization at q 4.83: Delta_min 0.0, min over Delta > 0 of deltaOmega = 2.127e-08 (> 0)
+      D3 strong,mu_eff-1 direct minimization at q 14.1: Delta_min 0.0, min over Delta > 0 of deltaOmega = 2.135e-08 (> 0)
+  D4 weak,mu_eff+1      Delta(q=0) 0.05757; window q 3.16-31.6; condensate certified absent True (min margin 7.255e-01); Delta L -2.7796e-04 -> -2.7796e-04; slope 0.0000 -> FAIL
+  D4 weak,mu_eff-1      Delta(q=0) 0; window q 3.16-31.6; condensate certified absent True (min margin 7.332e-01); Delta L 0.0000e+00 -> 0.0000e+00; slope n/a (Delta L = 0) -> FAIL
+  D4 strong,mu_eff+1    Delta(q=0) 3.62; window q 3.16-31.6; condensate certified absent True (min margin 4.466e-02); Delta L -7.9258e-02 -> -7.9258e-02; slope -0.0000 -> FAIL
+  D4 strong,mu_eff-1    Delta(q=0) 0; window q 3.16-31.6; condensate certified absent True (min margin 4.894e-02); Delta L 0.0000e+00 -> 0.0000e+00; slope n/a (Delta L = 0) -> FAIL
+  D5 weak,mu_eff+1      Delta(q=0) 0.05792; window q 3.16-31.6; condensate certified absent True (min margin 7.264e-01); Delta L -2.7965e-04 -> -2.8125e-04; slope 0.0023 -> FAIL
+  D5 weak,mu_eff-1      Delta(q=0) 0; window q 3.16-31.6; condensate certified absent True (min margin 7.333e-01); Delta L 0.0000e+00 -> 0.0000e+00; slope n/a (Delta L = 0) -> FAIL
+  D5 strong,mu_eff+1    Delta(q=0) 3.619; window q 3.16-31.6; condensate certified absent True (min margin 4.571e-02); Delta L -6.5600e-02 -> -7.7910e-02; slope 0.0689 -> FAIL
+  D5 strong,mu_eff-1    Delta(q=0) 0; window q 3.16-31.6; condensate certified absent True (min margin 4.963e-02); Delta L 0.0000e+00 -> 0.0000e+00; slope n/a (Delta L = 0) -> FAIL
+  D4 twist along y: E_q = 2t(1 - cos q) <= 4t = 4.0e-03 < 10 |mu_eff| = 10: no gradient-dominated window along y -> FAIL (isotropy clause)
+G0 by branch: {'D1': False, 'D2': False, 'D3': False, 'D4': False, 'D5': False}
+
+--- reported: the full curve Delta L(q) at mu_eff = +1, weak pairing (stiffness, depairing, saturation) ---
+  D2: E_cond 1.4947e-05; small-q stiffness d2L/dq2 = -1.7904e-01 (|Delta L| = rho q^2/2, analytic in q^2); Delta first zero at q = 0.020142971958938008; |Delta L| <= E_cond everywhere: True; max local log-slope below the window 2.024
+      q 9.8335e-04: Delta 5.7957e-02, Delta L -8.65347e-08
+      q 2.6906e-03: Delta 5.7954e-02, Delta L -6.54023e-07
+      q 7.3618e-03: Delta 5.7934e-02, Delta L -4.89406e-06
+      q 2.0143e-02: Delta 0.0000e+00, Delta L -1.49467e-05
+      q 5.5114e-02: Delta 0.0000e+00, Delta L -1.49467e-05
+      q 1.5080e-01: Delta 0.0000e+00, Delta L -1.49467e-05
+      q 1.4678e+00: Delta 0.0000e+00, Delta L -1.49467e-05
+      q 1.4678e+01: Delta 0.0000e+00, Delta L -1.49467e-05
+      q 6.8129e+00: Delta 0.0000e+00, Delta L -1.49467e-05
+      q 1.4678e+01: Delta 0.0000e+00, Delta L -1.49467e-05
+  D1: E_cond 1.3368e-04; small-q stiffness d2L/dq2 = -6.8530e-02 (|Delta L| = rho q^2/2, analytic in q^2); Delta first zero at q = 0.07839153973822091; |Delta L| <= E_cond everywhere: True; max local log-slope below the window 1.999
+      q 1.0000e-03: Delta 1.0282e-01, Delta L -3.58206e-08
+      q 2.7361e-03: Delta 1.0284e-01, Delta L -2.58918e-07
+      q 7.4865e-03: Delta 1.0282e-01, Delta L -1.93040e-06
+      q 2.0484e-02: Delta 1.0275e-01, Delta L -1.44405e-05
+      q 5.6047e-02: Delta 9.7353e-02, Delta L -1.07022e-04
+      q 1.5335e-01: Delta 0.0000e+00, Delta L -1.33684e-04
+      q 3.1623e+00: Delta 0.0000e+00, Delta L -1.33684e-04
+      q 3.1623e+01: Delta 0.0000e+00, Delta L -1.33684e-04
+      q 1.4678e+01: Delta 0.0000e+00, Delta L -1.33684e-04
+      q 3.1623e+01: Delta 0.0000e+00, Delta L -1.33684e-04
+
+=== READING F (BK's formal odd continuation of each branch's EOS; reported, never the lane label) ===
+  D1: mu_eff+1: slope 5.0895, cost True; mu_eff-1: slope 4.9168, cost True -> FAIL
+  D2: mu_eff+1: slope 9.0274, cost True; mu_eff-1: slope 8.9737, cost True -> FAIL
+  D3 crossover: formal slopes over mu_eff 1e-3..1e3 (both signs) range 5.212 - 9.027 -> FAIL
+  D4: mu_eff+1: slope 3.0439, cost True; mu_eff-1: slope 2.9584, cost True -> FAIL
+  D5: mu_eff+1: slope 3.0662, cost True; mu_eff-1: slope 2.9286, cost True -> PASS
+  D4 along y: the formal L saturates at -2.539e-03 (bounded by the transverse band): anisotropic
+  dimensional rule: gradient-dominated L ~ c q^(d+z); q^3 and P_0 ~ mu^(3/2) [(d+z)/z = 3/2] solve to [{d: 1, z: 2}]
+
+=== S: shape of the point-mass force law a = a_N + a_theta, a_theta = (a_*^(p-2) a_N)^(1/(p-1)) ===
+  micro (no gradient energy: a_theta = 0)    max |dmu| 0.9901, deep slope 0.0000 -> S FAIL
+  p = 3                                      max |dmu| 0.0946, deep slope 0.9558, a_*/a0 0.4223 -> S PASS
+  p = 5                                      max |dmu| 0.7039, deep slope 1.6940, a_*/a0 0.0145 -> S FAIL
+  p = 9                                      max |dmu| 0.7955, deep slope 1.7856, a_*/a0 0.0085 -> S FAIL
+
+=== C: size and locality (rule H; the reading-F survivor D5, tangle) ===
+  tangle, gradient-dominated (formal): L = -gt**3*nu_s/(48*pi*m_f)  =>  BK's Lambda_eff = nu_s/(32*pi*m_f)
+  [canonical] alpha 4 pi: Lambda 1.159e-04 eV; |grad theta| at x = 1 8.138e-04 eV; m_f >= 3.691e-01 eV (superflow <= 2 v_f); nu_s = 32 pi m_f Lambda = 4.299e-03 eV^2 (spacing 3.010e-06 m); C-amp log10 R 0.00, C-loc -23.30 -> C_H PASS; string tension <= (7.654e-05 eV)^2 for nu_s T_s <= rho_DE
+  [canonical] alpha 1: Lambda 5.161e-03 eV; |grad theta| at x = 1 2.296e-04 eV; m_f >= 1.041e-01 eV (superflow <= 2 v_f); nu_s = 32 pi m_f Lambda = 5.402e-02 eV^2 (spacing 8.490e-07 m); C-amp log10 R -1.10, C-loc -22.75 -> C_H PASS; string tension <= (2.159e-05 eV)^2 for nu_s T_s <= rho_DE
+  [alt] alpha 4 pi: Lambda 1.274e-04 eV; |grad theta| at x = 1 8.946e-04 eV; m_f >= 3.870e-01 eV (superflow <= 2 v_f); nu_s = 32 pi m_f Lambda = 4.955e-03 eV^2 (spacing 2.803e-06 m); C-amp log10 R 0.00, C-loc -23.30 -> C_H PASS; string tension <= (8.615e-05 eV)^2 for nu_s T_s <= rho_DE
+  [alt] alpha 1: Lambda 5.673e-03 eV; |grad theta| at x = 1 2.524e-04 eV; m_f >= 1.092e-01 eV (superflow <= 2 v_f); nu_s = 32 pi m_f Lambda = 6.227e-02 eV^2 (spacing 7.908e-07 m); C-amp log10 R -1.10, C-loc -22.75 -> C_H PASS; string tension <= (2.430e-05 eV)^2 for nu_s T_s <= rho_DE
+  R3 k^6 scale for BK's EOS amplitude at QX28's (m, Lambda): c_6 = 1/(576*pi**4*Lambda_B**2*m_B**3); [canonical] M_6 = c_6^(-1/5) = 1.659e-01 eV; [alt] M_6 = c_6^(-1/5) = 1.838e-01 eV
+
+=== U: action ===
+  D1 (d, z) = (3, 2): 2-body -1, 3-body -4 -> U1 FAIL; U2 FAIL -> U FAIL
+  D2 (d, z) = (3, 6): 2-body +3, 3-body +0 -> U1 PASS; U2 FAIL -> U FAIL
+  D3 (d, z) = (3, 6): 2-body +3, 3-body +0 -> U1 PASS; U2 FAIL -> U FAIL
+  D4 (d, z) = (1, 2): 2-body +1, 3-body +0 -> U1 PASS; U2 FAIL -> U FAIL
+  D5 (d, z) = (1, 2): 2-body +1, 3-body +0 -> U1 PASS; U2 FAIL -> U FAIL
+  U2: theta = atan2(Im, Re) of the pair field is polynomial: False; BK source dL/dtheta = -Lambda*alpha*n_B/M_Pl; the polynomial alternative -lambda n_B (psi psi + h.c.) has dimension 3 at z = 6 and source 2*A*lambda*n_B*sin(theta)
+
+=== E: equivalence principle and fifth force (inputs PROVISIONAL, the record's CFG122 values) ===
+  [canonical] F (unscreened): a_theta(1 AU) 4.842e-07 m/s^2; |gamma-1| 1.633e-04 (7.1 x Cassini); eta(Ti-Pt, baryon number) 2.019e-09 (2.02e+06 x MICROSCOPE); anomaly 5.17e+03 a0 (4.07e+08 x ceiling) -> E FAIL
+  [canonical] micro (depaired): a_theta(1 AU) 0.000e+00 m/s^2; |gamma-1| 0.000e+00 (0 x Cassini); eta(Ti-Pt, baryon number) 0.000e+00 (0 x MICROSCOPE); anomaly 0 a0 (0 x ceiling) -> E PASS
+  [alt] F (unscreened): a_theta(1 AU) 5.323e-07 m/s^2; |gamma-1| 1.795e-04 (7.8 x Cassini); eta(Ti-Pt, baryon number) 2.219e-09 (2.22e+06 x MICROSCOPE); anomaly 4.71e+03 a0 (3.71e+08 x ceiling) -> E FAIL
+  [alt] micro (depaired): a_theta(1 AU) 0.000e+00 m/s^2; |gamma-1| 0.000e+00 (0 x Cassini); eta(Ti-Pt, baryon number) 0.000e+00 (0 x MICROSCOPE); anomaly 0 a0 (0 x ceiling) -> E PASS
+  Delta(B/mu) Ti-Pt = 9.0516e-04 (recalled isotope masses, PROVISIONAL); a coupling to mass instead gives eta = 0 at MICROSCOPE but leaves Cassini and the ephemeris unchanged
+
+=== D: the particle's own bounds (reported items) ===
+  [canonical] D4 P = K rho^3, K = QX28's K_min: w(1089) = 3.340e+04, kinetic/radiation at 1089 4.435e+04, at BBN 4.033e+32; largest share of 5.41 rho_b with kinetic <= 0.1 radiation: 1.311e-02 (1089), 6.282e-12 (BBN) -> must sit beside: True
+  [alt] D4 P = K rho^3, K = QX28's K_min: w(1089) = 2.107e+04, kinetic/radiation at 1089 2.798e+04, at BBN 2.545e+32; largest share of 5.41 rho_b with kinetic <= 0.1 radiation: 1.529e-02 (1089), 7.325e-12 (BBN) -> must sit beside: True
+  [canonical] D1 alpha 4 pi: m_f >= 3.691e-01 eV (superflow and channel Fermi speed <= escape speed); excluded: False
+  [canonical] D1 alpha 1: m_f >= 1.041e-01 eV (superflow and channel Fermi speed <= escape speed); excluded: False
+  [alt] D1 alpha 4 pi: m_f >= 3.870e-01 eV (superflow and channel Fermi speed <= escape speed); excluded: False
+  [alt] D1 alpha 1: m_f >= 1.092e-01 eV (superflow and channel Fermi speed <= escape speed); excluded: False
+  D2: record: undecided on raw forest data; a 1-D proxy against a LCDM yardstick falls 1000-5000x short (FOREST_KILL_AUDIT); no flag
+  D3: QX28 (BK class, normal phase in clusters): G4, G5 FAIL on both footings -> excluded (inherited) for BK-class branches
+
+=== LABELS ===
+  [canonical] D1 3-d Galilean eps = k^2 (control)                     G0 FAIL -> KILLED AT G0   | reading F: G0F FAIL -> KILLED AT G0
+  [canonical] D2 3-d Lifshitz eps = k^6 (candidate)                   G0 FAIL -> KILLED AT G0   | reading F: G0F FAIL -> KILLED AT G0
+  [canonical] D3 3-d crossover eps = k^2 + k^6                        G0 FAIL -> KILLED AT G0   | reading F: G0F FAIL -> KILLED AT G0
+  [canonical] D4 quasi-1-d k_x^2 + 2t(2 - cos k_y - cos k_z), t = 1e-3 G0 FAIL -> KILLED AT G0   | reading F: G0F FAIL -> KILLED AT G0
+  [canonical] D5 isotropic tangle of 1-d Galilean channels            G0 FAIL -> KILLED AT G0   | reading F: G0F PASS -> SHAPE ONLY
+  [alt] D1 3-d Galilean eps = k^2 (control)                     G0 FAIL -> KILLED AT G0   | reading F: G0F FAIL -> KILLED AT G0
+  [alt] D2 3-d Lifshitz eps = k^6 (candidate)                   G0 FAIL -> KILLED AT G0   | reading F: G0F FAIL -> KILLED AT G0
+  [alt] D3 3-d crossover eps = k^2 + k^6                        G0 FAIL -> KILLED AT G0   | reading F: G0F FAIL -> KILLED AT G0
+  [alt] D4 quasi-1-d k_x^2 + 2t(2 - cos k_y - cos k_z), t = 1e-3 G0 FAIL -> KILLED AT G0   | reading F: G0F FAIL -> KILLED AT G0
+  [alt] D5 isotropic tangle of 1-d Galilean channels            G0 FAIL -> KILLED AT G0   | reading F: G0F PASS -> SHAPE ONLY
+LSF1 LANE LABEL: KILLED AT G0   (by footing {'canonical': 'KILLED AT G0', 'alt': 'KILLED AT G0'}; reading F, reported only: {'canonical': 'SHAPE ONLY', 'alt': 'SHAPE ONLY'})
+
+=== REPORTED (not graded) ===
+  R1: BK's Solar-System argument (flow above a critical velocity near the Sun, condensate loses coherence) uses the same criterion G0 computes: once E_q > mu_eff the pair band at twist q lies above the chemical potential (KA8) and no condensate exists at any coupling. That is the gradient-dominated condition itself, so it holds wherever BK's MOND regime is used, not only near the Sun.
+  R4: kappa: a0' = alpha^3 Lambda^2/(8 pi M_Pl) with Lambda_eff = nu_s/(32 pi m_f) (tangle) or c_6 (k^6): every branch carries a free dimensionful input, not tied to rho_DE. The 5.41 is untouched.
+  R5 strong pairing (BEC side, E_b = 10): d ln P/d ln mu_eff = D2 1.994, D5 1.902 (a Bose gas of pairs, not the Fermi sea's 3/2)
+
+runtime 94.2 s; max RSS 3.46 GB
