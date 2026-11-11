@@ -72,8 +72,18 @@ for reading, s8 in (("frozen", S8_frozen), ("A1", S8_A1)):
     out[reading] = br
     L.append(f"[{reading}] canonical: {br['canonical']['label']} {br['canonical']['branches']}")
     L.append(f"[{reading}] alt:       {br['alt']['label']} {br['alt']['branches']}")
+# AMENDMENT A2 (a7cac068bf): cited conditions C16-C20; KA-MD; no branch label moves by A2's frozen reading
+md = J("par1_medium_ka.json"); md5 = J("par1_medium_ka_MUTATE_MU5.json")
+chk("KA_MD_MEDIUM_DESIGN_s3", md["KA_MD_PASS"], "opacity, mean free path, drag at z 1100, both footings")
+chk("MU5_bites", md5["KA_MD_PASS"] is False, "pi dropped: every line missed")
+out["A2"] = {f: {"branches": dict(out["A1"][f]["branches"]),
+                 "label": out["A1"][f]["label"] if (KA and MUT_OK and G["MU5_bites"]) else "NO VERDICT"}
+             for f in ("canonical", "alt")}
+L.append(f"[A2] canonical: {out['A2']['canonical']['label']} {out['A2']['canonical']['branches']}")
+L.append(f"[A2] alt:       {out['A2']['alt']['label']} {out['A2']['alt']['branches']}")
+out["checks"] = G
 json.dump(out, open("par1_grade.json", "w"), indent=1)
-open("par1_grade.out", "w").write("PAR1 grade (criteria 51522963e0, A1 427bc818f6)\n" + "\n".join(L) +
+open("par1_grade.out", "w").write("PAR1 grade (criteria 51522963e0, A1 427bc818f6, A2 a7cac068bf)\n" + "\n".join(L) +
                                   "\nAdopts nothing. kappa = 1/2 FITTED; not theory closed.\n")
 print("\n".join(L))
 
