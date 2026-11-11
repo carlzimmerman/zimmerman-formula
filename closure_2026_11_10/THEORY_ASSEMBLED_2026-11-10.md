@@ -56,6 +56,20 @@ hot branch. Nothing else enters a prediction below.
 - **Closed exits:** a wall between a law region and a dust region (HE1 and the switch class); the law on the clock's
   acceleration relative to the baryons (REL1: NOT WELL-DEFINED, the baryons' equation becomes fourth order).
 
+**Landed later the same day** (another session's lanes; first lines of their RESULT.md, not re-run here):
+
+- **CLS1, a cluster state in action (A):** STATE EXISTS-PARTIAL as frozen, with 0 of 7 clusters holding a state; at
+  form B's own dust constant (198 per Mpc and above) NO STATE, proven on all seven. The clock's own pressure is too weak
+  there, so the cold dark energy cannot sit in a cluster as a static core.
+- **LFS1, can the clock's leafwise flux supply the law's halo:** ILL-POSED; the answer is no. The flux is the normal
+  equation's own bookkeeping and adds no charge; with a standing clock the polarization flux through a sphere is frozen.
+- **NH2, NGC 1052's measured mass against what tides need:** NO VERDICT as frozen (two known answers fail); under its
+  post hoc reading, DF4 TIDES CANNOT REACH and DF2 NOT DECIDED. So DF4 still rests on the outside "debris" label.
+- **XCV1, X-COP with a mass that does not assume hydrostatic equilibrium:** NO VERDICT as frozen; under its post hoc
+  reading AT THE CEILING with the central value above it. Not against form B, and not a relief.
+- **GO1, the baryon census in group outskirts:** NOT EVALUABLE; the turnaround radius is not reached by the lensing on
+  disk. Nothing is decided.
+
 ## 4. What the record forces on the joint
 
 Any completion has to do all of these at once. Each line is a landed verdict, not a wish.
