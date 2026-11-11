@@ -1,0 +1,251 @@
+{
+ "arm": "M1",
+ "known_answers": {
+  "KA1 GR graviton": {
+   "pass": true,
+   "detail": "EL[sqrt(-g)R at eps^2] - EL[(1/2)(h_t^2 - h_z^2)] = 0 (EL of target: -Derivative(h(t, z), (t, 2)) + Derivative(h(t, z), (z, 2))); omega^2 = k^2, kinetic +1/2"
+  },
+  "KA2 BPS khronon speed": {
+   "pass": true,
+   "detail": "det(omega) = -2*M**6*k**6*(-alpha_a*beta**2*omega**2 + alpha_a*beta*k**2 - 3*alpha_a*beta*lambda*omega**2 - alpha_a*beta*omega**2 + alpha_a*k**2*lambda + 3*alpha_a*lambda*omega**2 + 2*alpha_a*omega**2 - 2*beta*k**2 - 2*k**2*lambda); nonzero omega^2 roots [k**2*(alpha_a*beta + alpha_a*lambda - 2*beta - 2*lambda)/(alpha_a*(beta**2 + 3*beta*lambda + beta - 3*lambda - 2))]; residual vs (beta+lambda)(2-alpha)/[alpha(1-beta)(2+beta+3lambda)] k^2 = [0]"
+  },
+  "KA3 Legendre": {
+   "pass": true,
+   "detail": "max rel |J - (a0^2/K)[u - ln(1+u)]| = 6.06e-36; K J''(0) = 1 (alpha_a = 2 at A = 0)"
+  },
+  "KA4 SCS1 closed form": {
+   "pass": true,
+   "detail": "omega^2 = G*K*(-K*k**2*m + k**2 - mu**2)/(K*k**2*m + mu**2); minus SCS1 closed form (Qbar = 1): 0; tilt IBP residual 0"
+  },
+  "KA5 pure dust": {
+   "pass": true,
+   "detail": "pure dust: omega^2 - (K n/mu^2)(k^2 - mu^2) = 0; Jeans rate^2 at k -> 0 = G*K (= K G = 4 pi G rho)"
+  },
+  "KA6 |grad phi|^3/a0 strong coupling": {
+   "pass": true,
+   "detail": "ratio method vs Lambda_3 = sqrt(12 M a0) x^(3/4): max rel 4.46e-15 (x 1e-2, 1, 1e2; both footings); at x = 1 canonical Lambda_3 = 2.451 meV = 1/(0.08052 mm)"
+  },
+  "KA7 zero-point integrator": {
+   "pass": true,
+   "detail": "max rel 2.3e-41"
+  },
+  "KA8 growth ODE": {
+   "pass": true,
+   "detail": "EdS f = 1.0; flat Omega_m 0.3: f(0) = 0.512796 vs Omega_m^0.55 = 0.515723 (rel -0.00568)"
+  },
+  "C2 Gaussian crossing factor (A1)": {
+   "pass": true,
+   "detail": "max |quadrature - closed form| = 5.74e-42 at c = 0, 0.5, 1, 3; value at c = 0: 1.0"
+  },
+  "C0 unit chain": {
+   "pass": true,
+   "detail": "K*rho(eV^4) / (free-fall rate in eV)^2 - 1 = -4.59e-41"
+  }
+ },
+ "rows": {
+  "FRW1": {
+   "canonical": {
+    "primary": {
+     "desc": "FRW z = 1, L = 10 Mpc comoving",
+     "label": "OPEN",
+     "i": true,
+     "i_detail": {
+      "Hessian_min_eig_over_K": "1.0",
+      "tensor_correction_over_k2_at_1_over_L": "0.0",
+      "min_Z0_over_k2_by_K": "3.1448",
+      "gradient_instability": false,
+      "jeans": "FRW growth rate f = dlnD/dlna = 0.87661 (< 1 needed); local free-fall rate / H = 0.99767",
+      "pass_a_b_c_d_e": [
+       true,
+       true,
+       true,
+       true,
+       true
+      ]
+     },
+     "Lambda_s_eV": "2.35134e-25",
+     "Lambda_s_length_m": "8.392e+17",
+     "Lambda_s_L": "183844.0",
+     "ii": true,
+     "ii_dominant": "switch (branch on, theta 0.0 deg)",
+     "Lambda_s_is_lower_bound": false,
+     "iii": null,
+     "iii_detail": {
+      "status": "not run in this arm"
+     },
+     "omega": {
+      "k_IR": {
+       "k_eV": "2.576e-33",
+       "omega2_eV2": "-6.604e-66",
+       "Z0_over_k2_by_K": "4.871e+20"
+      },
+      "k_top": {
+       "k_eV": "3.206e-29",
+       "omega2_eV2": "-6.604e-66",
+       "Z0_over_k2_by_K": "3.145e+12"
+      }
+     },
+     "G_eV4": "7.833e-11",
+     "uP": "0.0",
+     "A1_gauss_switch_Lambda_s_eV": "2.35134e-25",
+     "A1_gauss_switch_Lambda_s_L": "183844.0",
+     "A1_gauss_switch_set_by": "switch (branch on, theta 0.0 deg)",
+     "A1_gauss_switch_lower_bound": false
+    },
+    "mutated": {
+     "desc": "FRW z = 1, L = 10 Mpc comoving",
+     "label": "FAIL",
+     "i": false,
+     "i_detail": {
+      "Hessian_min_eig_over_K": "1.0",
+      "tensor_correction_over_k2_at_1_over_L": "0.0",
+      "min_Z0_over_k2_by_K": "-4.8715e+20",
+      "gradient_instability": true,
+      "jeans": "FRW growth rate f = dlnD/dlna = 0.87661 (< 1 needed); local free-fall rate / H = 0.99767",
+      "pass_a_b_c_d_e": [
+       true,
+       true,
+       false,
+       false,
+       true
+      ]
+     },
+     "Lambda_s_eV": "2.35134e-25",
+     "Lambda_s_length_m": "8.392e+17",
+     "Lambda_s_L": "183844.0",
+     "ii": true,
+     "ii_dominant": "switch (branch on, theta 0.0 deg)",
+     "Lambda_s_is_lower_bound": false,
+     "iii": null,
+     "iii_detail": {
+      "status": "not run in this arm"
+     },
+     "omega": {
+      "k_IR": {
+       "k_eV": "2.576e-33",
+       "omega2_eV2": "-6.604e-66",
+       "Z0_over_k2_by_K": "-4.871e+20"
+      },
+      "k_top": {
+       "k_eV": "3.206e-29",
+       "omega2_eV2": "-6.604e-66",
+       "Z0_over_k2_by_K": "-3.145e+12"
+      }
+     },
+     "G_eV4": "7.833e-11",
+     "uP": "0.0",
+     "A1_gauss_switch_Lambda_s_eV": "2.35134e-25",
+     "A1_gauss_switch_Lambda_s_L": "183844.0",
+     "A1_gauss_switch_set_by": "switch (branch on, theta 0.0 deg)",
+     "A1_gauss_switch_lower_bound": false
+    },
+    "bites": true
+   },
+   "alt": {
+    "primary": {
+     "desc": "FRW z = 1, L = 10 Mpc comoving",
+     "label": "OPEN",
+     "i": true,
+     "i_detail": {
+      "Hessian_min_eig_over_K": "1.0",
+      "tensor_correction_over_k2_at_1_over_L": "0.0",
+      "min_Z0_over_k2_by_K": "3.144",
+      "gradient_instability": false,
+      "jeans": "FRW growth rate f = dlnD/dlna = 0.8326 (< 1 needed); local free-fall rate / H = 0.95201",
+      "pass_a_b_c_d_e": [
+       true,
+       true,
+       true,
+       true,
+       true
+      ]
+     },
+     "Lambda_s_eV": "2.22813e-25",
+     "Lambda_s_length_m": "8.856e+17",
+     "Lambda_s_L": "174211.0",
+     "ii": true,
+     "ii_dominant": "switch (branch on, theta 0.0 deg)",
+     "Lambda_s_is_lower_bound": false,
+     "iii": null,
+     "iii_detail": {
+      "status": "not run in this arm"
+     },
+     "omega": {
+      "k_IR": {
+       "k_eV": "2.699e-33",
+       "omega2_eV2": "-6.604e-66",
+       "Z0_over_k2_by_K": "4.435e+20"
+      },
+      "k_top": {
+       "k_eV": "3.206e-29",
+       "omega2_eV2": "-6.604e-66",
+       "Z0_over_k2_by_K": "3.144e+12"
+      }
+     },
+     "G_eV4": "7.833e-11",
+     "uP": "0.0",
+     "A1_gauss_switch_Lambda_s_eV": "2.22813e-25",
+     "A1_gauss_switch_Lambda_s_L": "174211.0",
+     "A1_gauss_switch_set_by": "switch (branch on, theta 0.0 deg)",
+     "A1_gauss_switch_lower_bound": false
+    },
+    "mutated": {
+     "desc": "FRW z = 1, L = 10 Mpc comoving",
+     "label": "FAIL",
+     "i": false,
+     "i_detail": {
+      "Hessian_min_eig_over_K": "1.0",
+      "tensor_correction_over_k2_at_1_over_L": "0.0",
+      "min_Z0_over_k2_by_K": "-4.4347e+20",
+      "gradient_instability": true,
+      "jeans": "FRW growth rate f = dlnD/dlna = 0.8326 (< 1 needed); local free-fall rate / H = 0.95201",
+      "pass_a_b_c_d_e": [
+       true,
+       true,
+       false,
+       false,
+       true
+      ]
+     },
+     "Lambda_s_eV": "2.22813e-25",
+     "Lambda_s_length_m": "8.856e+17",
+     "Lambda_s_L": "174211.0",
+     "ii": true,
+     "ii_dominant": "switch (branch on, theta 0.0 deg)",
+     "Lambda_s_is_lower_bound": false,
+     "iii": null,
+     "iii_detail": {
+      "status": "not run in this arm"
+     },
+     "omega": {
+      "k_IR": {
+       "k_eV": "2.699e-33",
+       "omega2_eV2": "-6.604e-66",
+       "Z0_over_k2_by_K": "-4.435e+20"
+      },
+      "k_top": {
+       "k_eV": "3.206e-29",
+       "omega2_eV2": "-6.604e-66",
+       "Z0_over_k2_by_K": "-3.144e+12"
+      }
+     },
+     "G_eV4": "7.833e-11",
+     "uP": "0.0",
+     "A1_gauss_switch_Lambda_s_eV": "2.22813e-25",
+     "A1_gauss_switch_Lambda_s_L": "174211.0",
+     "A1_gauss_switch_set_by": "switch (branch on, theta 0.0 deg)",
+     "A1_gauss_switch_lower_bound": false
+    },
+    "bites": true
+   }
+  }
+ },
+ "reports": {
+  "C_MINK_unitary": {
+   "det_beta_lambda_0": "-4*M**6*k**4*omega**2*(alpha_a*k**2 + 2*mu**2)",
+   "only_omega_zero": true
+  }
+ },
+ "bites": true,
+ "runtime_s": 2.6
+}
