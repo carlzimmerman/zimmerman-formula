@@ -226,6 +226,9 @@ Commits (local / origin):
 - criteria 5b35674191 / b4deefbc0c (alone, before any script);
 - amendment A1 9ad1d5a121 / 26b9de54a0 (alone, before any A1 row);
 - result b3f18eca2d / 06c837db4f;
-- this id record: one more commit, pushed the same way.
+- id record 1f8ccebb7e / 3c10ec65cc;
+- Part T criteria d44203c715 / b0d0cbefa1 (alone, before aks1_t.py);
+- Part T result c53108334a / b1425a9820;
+- this Part T id record: one more commit, pushed the same way.
 
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
