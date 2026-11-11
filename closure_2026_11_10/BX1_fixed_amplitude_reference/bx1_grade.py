@@ -27,7 +27,8 @@ def overall(ls):
     if all(x == "CONSISTENT" for x in ls): return "AMPLITUDE CONSISTENT"
     bad = sorted({x for x in ls if ORDER[x] == 2}); return " and ".join(bad) if bad else "POOR FIT"
 def ok(d, k): return bool(d.get(k, {}).get("pass_", False))
-sim = dict(KA1=ok(KA_, "KA1"), KA2=ok(KA_, "KA2"), KA2_pA=ok(KA_, "KA2_pA"), KA2_pAi=ok(KA_, "KA2_pAi"))
+sim = dict(KA1=ok(KA_, "KA1"), KA2=ok(KA_, "KA2"), KA2_pA=ok(KA_, "KA2_pA"), KA2_pAi=ok(KA_, "KA2_pAi"),
+           **{k: ok(KA_, k) for k in ("KA2_pB", "KA2_pBi") if k in KA_})        # A1: KA2 on every 512^3 run used
 RES = dict(lane="BX1", criteria="21e1c07e9a", amendment_A1="4af7a4b905 (post hoc)", note="kappa = 1/2 FITTED; not theory closed; adopts nothing", labels={}, rows={}, KA={}, MUTATE={})
 for ft in FOOTS:
     L, D, Q = part(ft, "legacy"), part(ft, "deskids"), part(ft, "polish")

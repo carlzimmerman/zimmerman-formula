@@ -169,3 +169,71 @@ Pushed by replaying the commits onto origin/main in a temporary sparse worktree 
 - `parts/run_*.log` are not committed (they carry machine paths in warnings).
 
 kappa = 1/2 FITTED; not theory closed.
+
+---
+
+## ADDENDUM 1 (2026-11-11): 512^3 pair B finished; AMENDMENT A1's graded label
+
+The text above is the landing of 2026-11-10 and is left as it was. Pair B (seed 7102 and its inverted twin, 512^3) finished at
+01:00, and the extra 256^3 runs (fixed pairs C and D, random R6..R10) finished at 02:08. No rule was changed.
+
+**AS FROZEN: NO VERDICT / NO VERDICT (unchanged).** KA3 fails and MB2 does not bite.
+
+**UNDER AMENDMENT A1 (post hoc), graded on the mean of the 512^3 pairs A and B: AMPLITUDE CONSISTENT (canonical) / AMPLITUDE
+CONSISTENT (alt).** KiDS-Legacy and DES Y3 read CONSISTENT on both footings. DES Y3 alt is tagged [INSIDE SPLICE NOISE].
+KiDS-1000 (reported) reads GAP STAYS.
+
+**No survey crosses the two-width line relative to the interim.** Every gap moved down by 0.05 to 0.07 widths:
+
+| survey (canonical / alt) | interim, pair A | **A1 graded, mean A + B** | pair B alone | sigma_g (A1) | p at target |
+|---|---|---|---|---|---|
+| KiDS-Legacy | +1.51 / +1.72 | **+1.46 / +1.67** | +1.41 / +1.61 | 0.05 / 0.06 | 0.26 / 0.25 |
+| DES Y3 (polished) | +1.85 / +1.83 | **+1.78 / +1.76** | +1.76 / +1.65 | 0.05 / 0.14 | 0.31 / 0.31 |
+| KiDS-1000 (reported) | +3.59 / +3.72 | **+3.56 / +3.69** | +3.52 / +3.65 | 0.04 / 0.03 | 0.070 / 0.067 |
+
+- sigma_g follows A1 as written: max(|g_A - g_B| / 2 at 512^3, |g_A256 - g_B256| / 2).
+- The tag is set because DES alt sits 0.24 under the line, which is less than 2 x 0.14 = 0.28.
+- C3b: Legacy reads CONSISTENT, so the C3b re-read is not triggered (frozen rule). It was not run on the A + B splice.
+- DES on KL1's frozen scan (reported): A + B gives +1.63 / +1.81, pair B alone +1.65 / +1.59.
+- ln det gaps on the A + B splice (frozen scans, reported, not graded): Legacy +1.83 / +2.01, DES +2.07 / +2.15, KiDS-1000
+  +3.96 / +4.09. **With the ln det term, DES stays above 2 on both footings, and alt Legacy is at 2.01.**
+
+**Measured noise: pair A against pair B at 512^3**
+
+| | Legacy | DES Y3 polished | KiDS-1000 |
+|---|---|---|---|
+| \|g_A - g_B\| (canonical / alt) | 0.10 / 0.11 | 0.09 / 0.18 | 0.07 / 0.07 |
+| one pair (difference / sqrt 2) | 0.07 / 0.08 | 0.06 / 0.13 | 0.05 / 0.05 |
+| mean of A + B (difference / 2) | 0.05 / 0.06 | 0.05 / 0.09 | 0.04 / 0.04 |
+
+- These agree with the landing's estimate (one pair: about 0.1 width Legacy, 0.2 width DES), at the low end for DES.
+- DES Y3 sits 0.22 / 0.24 widths under 2 on the A + B mean, which is about 2.7 to 4.9 times the 512^3 noise of the mean.
+- On the alt footing it is inside A1's sigma_g, which is set by the larger 256^3 difference.
+
+**Known answers.**
+- KA2 passes on pB and pBi: z_i max |r / r_bin - 1| 0.0063 / 0.0055, rms 0.0027 / 0.0028.
+- Every other KA and MUTATE result is as landed: KA1, KA2, KA4 and KA5 PASS; KA3 frozen FAIL; KA3 (a') PASS; MB1 and MB2' bite;
+  MB2 frozen does not bite.
+- KA3 (a') on the extended set (reported; four 256^3 fixed pairs against ten random runs): t +0.90 / +1.08 / +1.38 at z 1 / 0.5 /
+  0, band differences +1.5 / +2.1 / +3.2 %. The fixed-versus-random offset shrinks with more runs and stays insignificant.
+- Pairs C and D were not used as splices: A1 section 5 reports them through KA3 (a') only.
+
+**Hand estimate (A1 section 6) against this.**
+
+| item | estimate | outcome |
+|---|---|---|
+| sigma_g of the A + B mean, Legacy | 0.1 to 0.3 | 0.05 / 0.06 (below) |
+| sigma_g of the A + B mean, DES | 0.2 to 0.6 | 0.05 / 0.14 (below) |
+| KA3 (a') at z 0 | \|t\| 1 to 2.5 | +1.88; +1.38 extended |
+| DES Y3 | GAP STAYS most likely | not reached |
+
+The limits stated above (section 5) are unchanged.
+
+**Files.** The re-run updated these outputs:
+- `bx1_ka.json` / `.out`, `bx1_compare.json` / `.out` (errors now from 512^3 pair B), `bx1.json` / `.out`;
+- `parts/bx1_*_*.json` / `.out` (REP_B and REP_AB rows added; earlier rows unchanged);
+- the splice files `bx1_splice_pairB_N512.json` and `bx1_splice_pairsAB_N512.json`. Pair A's splice is byte-identical
+  (md5 14f4a3b3...).
+- `bx1_grade.py` now also checks KA2 on pB and pBi, as A1 requires for every 512^3 run used. No rule changed.
+
+kappa = 1/2 FITTED; not theory closed.
