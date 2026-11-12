@@ -84,7 +84,7 @@ not distinguishable from 1/2 until a0 is known to about 4 %.
 
 ## 5. Hygiene
 
-Home paths (`/Users/...`) in committed files: FINAL-10 `build1.out`, FINAL-13 `audit_lean.py`,
+Home-directory paths in committed files: FINAL-10 `build1.out`, FINAL-13 `audit_lean.py`,
 `delta.py`, FINAL-14 `RESULT.md`, `final14_result.json`, FINAL-17 `compile.txt`, FINAL-20
 `AUDIT.md`, `compile_ax_FINAL16_head.out`, `run_compiles.sh`, OUT-2 `compile_MUTATE.txt`.
 "cold dark matter" / "CDM-like" for the component: none found. "Data favour the framework": none found.

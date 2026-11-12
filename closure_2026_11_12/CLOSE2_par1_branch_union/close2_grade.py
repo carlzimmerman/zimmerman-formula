@@ -9,7 +9,8 @@ import json
 import os
 import re
 
-ROOT = "/Users/carlzimmerman/new_physics/zimmerman-formula"
+# 2026-11-12: ROOT was an absolute path; it now resolves from this file, to the same folder.
+ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
 C10 = os.path.join(ROOT, "closure_2026_11_10")
 HERE = os.path.join(ROOT, "closure_2026_11_12", "CLOSE2_par1_branch_union")
 

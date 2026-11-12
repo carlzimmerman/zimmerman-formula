@@ -74,7 +74,7 @@ not care what the galaxy is. Three consequences drive the choice:
 ## 2. The instrument (named, with provenance)
 
 **Primary — ACT DR6.02 needlet-ILC Compton-y map (LAMBDA), already on disk.**
-- `/Users/carlzimmerman/new_physics/_external_data/act_dr6_nilc/strip_ComptonY.f32be` (829,785,600 B)
+- `<repo>/../_external_data/act_dr6_nilc/strip_ComptonY.f32be` (829,785,600 B)
 - `strip_ComptonY_deproj_cib_1.0_10.7.f32be` (the same strip, CIB-deprojected)
 - `header_ComptonY.fits`, `header_ComptonY_deproj_cib_1.0_10.7.fits`, `strip_geometry.txt`
 - Grid 43200 x 10320 CAR, CDELT = 0.0083333 deg = **0.5 arcmin/pix**; strip = rows 3239-8040,

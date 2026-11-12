@@ -11,8 +11,8 @@ zero warnings, zero `sorry`, zero `sorryAx`.**
 ## Reproduce
 
 ```sh
-cd /Users/carlzimmerman/new_physics/zimmerman-formula/fable_independent_2026/lean_2026
-lake env lean /Users/carlzimmerman/new_physics/zimmerman-formula/hy4_preview_push/FINAL-14_lean_amount/FINAL14_lean_amount.lean
+cd <repo>/fable_independent_2026/lean_2026
+lake env lean <repo>/hy4_preview_push/FINAL-14_lean_amount/FINAL14_lean_amount.lean
 echo "exit=$?"
 ```
 

@@ -23,11 +23,14 @@ A0_ALT = 1.1312e-10
 KPC = 3.0856775814913673e19
 C = 2.99792458e8
 
-TABLE = ("/Users/carlzimmerman/new_physics/zimmerman-formula/"
+import os
+_REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
+# 2026-11-12: the three paths below were absolute; they now resolve from this file, to the same files.
+TABLE = (_REPO + "/"
          "fable52_push/DD1_deduce_from_data/dd1_table.csv")
-PRED = ("/Users/carlzimmerman/new_physics/zimmerman-formula/"
+PRED = (_REPO + "/"
         "closure_2026_11_11/FINAL2_epoch/predictions_frozen.csv")
-OUT = ("/Users/carlzimmerman/new_physics/zimmerman-formula/"
+OUT = (_REPO + "/"
        "closure_2026_11_11/FINAL2_epoch/final2_measured.json")
 
 
