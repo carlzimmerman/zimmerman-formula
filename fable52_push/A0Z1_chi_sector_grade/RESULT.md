@@ -1,10 +1,10 @@
 # A0Z1 RESULT: the chi sector and a0(chi) of DT1's action
 
 **LABEL: EOM CERTIFIED; a0(chi) FAILS / a0(chi) FAILS** (canonical / alt).
-Criteria d9adb0feaa (committed alone, before any script or number). Script `a0z1.py`; output `a0z1.out` / `a0z1.json`;
-pipeline copies `a0z1_hm.py`, `a0z1_forest.py` (FRZ2's, one edit: `fz`). TEST lane, quarantined. Adopts nothing,
-relabels nothing, registers nothing. Footings graded separately, never pooled. kappa = 1/2 FITTED; not theory closed.
-Not pushed; record the local id only.
+Criteria **d9adb0feaa** (committed alone, before any script or number); result **0a20697a60**. Script `a0z1.py`;
+output `a0z1.out` / `a0z1.json`; pipeline copies `a0z1_hm.py`, `a0z1_forest.py` (FRZ2's, one edit: `fz`).
+TEST lane, quarantined. Adopts nothing, relabels nothing, registers nothing. Footings graded separately, never
+pooled. kappa = 1/2 FITTED; not theory closed. Not pushed, so no origin id is recorded.
 
 ## The one-line summary
 
