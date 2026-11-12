@@ -39,6 +39,12 @@ SCOPE LIMITS STATED UP FRONT, none of them used to excuse a miss
        a profile as different from NFW as a framework plateau is not guaranteed to transfer.
   (ii) The Table 4 errors are correlated (all 13 points come from smooth joint fits); the chi2 below
        treats them as diagonal, which OVERSTATES the information in the shape comparison.
+  (iv) SUPERSEDED IN PART by deepseek_push/G239_proper_efe/ (2026-11-11): the external field below is
+       treated scalar-additively, nu((g_bar + e_N a0)/a0), which is the maximum-suppression case.  The
+       exact QUMOND angle average is 16 per cent (canonical) / 13 per cent (alt) higher at 80 kpc, so
+       the EFE rows here (-4.11 / -3.70 sigma) become -2.77 / -2.50 and the "the EFE spoils the shape"
+       line is withdrawn.  This file's own numbers are unchanged and remain the record of the
+       approximation; G239 is the operative calculation.
   (iii) M200c is not a framework quantity. The framework has a plateau, not a virial mass; DW1e tests
        the paper's extrapolation against that plateau and labels it as such.
 """
