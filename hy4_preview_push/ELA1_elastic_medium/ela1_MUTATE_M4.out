@@ -1,0 +1,471 @@
+====================================================================================================
+ELA1  the law's static halo as an elastic solid   (TEST lane, quarantined; adopts nothing)
+criteria: FROZEN_CRITERIA.md, committed alone before any script or number
+*** MUTATION ARM M4 ***  outputs carry _MUTATE_M4; this arm must bite.
+kappa = 1/2 FITTED; not theory closed.  Footings graded separately, never pooled.
+====================================================================================================
+
+####################################################################################################
+# KA  known answers  (must pass before any row is graded)
+####################################################################################################
+KA1  (Pi_rr+Pi_tt)/J in the deep field, against the exact leading term (2/3)u:
+      u =  1.0e-01   u_actual = 1.0512e-01   ratio = +6.446936e-02   (2/3)u = +7.008328e-02   rel.err = 8.01e-02
+      u =  1.0e-02   u_actual = 1.0050e-02   ratio = +6.644469e-03   (2/3)u = +6.700083e-03   rel.err = 8.30e-03
+      u =  1.0e-03   u_actual = 1.0005e-03   ratio = +6.664446e-04   (2/3)u = +6.670001e-04   rel.err = 8.33e-04
+      u =  1.0e-04   u_actual = 1.0001e-04   ratio = +6.667660e-05   (2/3)u = +6.667000e-05   rel.err = 9.90e-05
+      KA1 PASS  (the ratio tends to (2/3)u as u -> 0, relative error O(u); at u = 1e-4 it is
+      9.9e-05. So Pi_rr/(-Pi_tt) = 1 - (2/3)u + ... : the crux premise holds at O(u).)
+KA2  sigma_r^2 / (v_inf^2/2) and sigma_t^2 / (v_inf^2/2) at large x  (crux A5: -1, +1):
+      x =    1e+04   sigma_r^2 -> -0.999966662   sigma_t^2 -> +1.000033341
+      x =    1e+05   sigma_r^2 -> -0.999995559   sigma_t^2 -> +1.000004441
+      x =    1e+06   sigma_r^2 -> -0.999923782   sigma_t^2 -> +1.000076218
+      KA2 PASS  (converges as 1/x: the residual at x=1e6 is 7.6e-05)
+KA3  point-mass M_c: closed form vs halo(), 32 points; worst rel.err = 1.73e-14
+      KA3 PASS
+KA4  inversion identities (200 random draws): worst rel.err = 2.09e-14   PASS
+KA5  Navier-Cauchy: s^2 = -c_L^2 k^2 with c_L^2 = (lam + 2*mu)/rho ; s^2 = -c_T^2 k^2 with c_T^2 = mu/rho
+      KA5 PASS (identities read off the operator; c_L^2 = (lam+2mu)/rho, c_T^2 = mu/rho)
+KA8  2W - tr(sigma.u) for a quadratic isotropic energy = 0   PASS
+KA7  Newtonian limit at the physical radii of the true a0 (window [0.2, 60] r_M):
+      canonical a0 x 1e-06    max M_c/M_b = 3.587e-03   max J = 3.859e+06   max |g/g_N - 1| = 3.587e-03
+      canonical a0 x 1e-09    max M_c/M_b = 3.600e-06   max J = 3.859e+03   max |g/g_N - 1| = 3.600e-06
+      alt       a0 x 1e-06    max M_c/M_b = 3.587e-03   max J = 5.636e+06   max |g/g_N - 1| = 3.587e-03
+      alt       a0 x 1e-09    max M_c/M_b = 3.600e-06   max J = 5.636e+03   max |g/g_N - 1| = 3.600e-06
+      KA7 PASS  (residual falls as a0: 3.587e-03 -> 3.600e-06 for a0 x 1e-6 -> 1e-9; and < 1e-4)
+
+====================================================================================================
+KA9  which sign is the material stress?   and does it balance the law's halo?
+====================================================================================================
+A static medium needs div(sigma) = + rho_c grad Phi (tensile-positive Cauchy stress).
+For a point mass Phi = -GM/r, so dPhi/dr = +g > 0 and the condition reads (div sigma)_r = +rho_c g.
+footing   log M_b    profile    |  div(Pi)/rho g div(-Pi)/rho g
+canonical 9.40       point      |      -0.999991       1.000030
+canonical 9.40       plummer    |      -0.999991       0.213480
+canonical 9.40       hernquist  |      -0.999992       0.478620
+canonical 10.45      point      |      -0.999991       1.000030
+canonical 10.45      plummer    |      -0.999991       0.545765
+canonical 10.45      hernquist  |      -0.999991       0.681360
+canonical 10.70      point      |      -0.999991       1.000030
+canonical 10.70      plummer    |      -0.999991       0.603769
+canonical 10.70      hernquist  |      -0.999991       0.711953
+canonical 10.90      point      |      -0.999991       1.000030
+canonical 10.90      plummer    |      -0.999991       0.642458
+canonical 10.90      hernquist  |      -0.999991       0.731916
+alt       9.40       point      |      -0.999991       1.000030
+alt       9.40       plummer    |      -0.999992       0.171991
+alt       9.40       hernquist  |      -0.999992       0.449496
+alt       10.45      point      |      -0.999991       1.000030
+alt       10.45      plummer    |      -0.999991       0.504666
+alt       10.45      hernquist  |      -0.999991       0.659029
+alt       10.70      point      |      -0.999991       1.000030
+alt       10.70      plummer    |      -0.999991       0.564006
+alt       10.70      hernquist  |      -0.999991       0.691085
+alt       10.90      point      |      -0.999991       1.000030
+alt       10.90      plummer    |      -0.999991       0.603997
+alt       10.90      hernquist  |      -0.999991       0.712071
+
+  KA9a  mean div(-Pi)/(rho_c g) = +0.706913   (needs +1 for sigma = -Pi to balance)
+  KA9b  mean div(+Pi)/(rho_c g) = -0.999991   (needs +1 for sigma = +Pi to balance)
+
+====================================================================================================
+S0  the deformation, from mass conservation alone (no constitutive law)
+====================================================================================================
+R(r) = [3 M_c(r) / (4 pi rho_ref)]^(1/3)   (Lagrangian radius of the mass now inside r)
+u_rr = 1 - dR/dr ,  u_tt = 1 - R/r ,   u_rr - u_tt = R/r - dR/dr = y (1 - rho_c/rho_bar_c)
+rho_ref: z0 33.92  z2 915.8  z5 7326.7  z10 45147.3  Msun/kpc^3   (5.41 x Omega_b x rho_crit x (1+z)^3)
+
+footing   prof   log M_b        rM    R50 | rho_ref       y@rM   max|u|    fold?   contrast
+canonical point  9.40          1.9   2.10 | z0          114.74   226.45       no  7.580e+06
+canonical point  9.40          1.9   2.10 | z10          10.43    19.68       no  5.695e+03
+canonical plummer 9.40          1.9   2.10 | z0          105.75   172.44       no  4.019e+06
+canonical plummer 9.40          1.9   2.10 | z10           9.61    14.77       no  3.019e+03
+canonical hernquist 9.40          1.9   2.10 | z0          106.31   208.96       no  5.812e+06
+canonical hernquist 9.40          1.9   2.10 | z10           9.66    18.09       no  4.367e+03
+canonical point  10.45         6.5   3.32 | z0           76.68   151.01       no  2.263e+06
+canonical point  10.45         6.5   3.32 | z10           6.97    12.82       no  1.700e+03
+canonical plummer 10.45         6.5   3.32 | z0           75.13   139.21       no  1.911e+06
+canonical plummer 10.45         6.5   3.32 | z10           6.83    11.75       no  1.436e+03
+canonical hernquist 10.45         6.5   3.32 | z0           73.85   146.02       no  2.005e+06
+canonical hernquist 10.45         6.5   3.32 | z10           6.71    12.37       no  1.507e+03
+canonical point  10.70         8.6   3.86 | z0           69.67   137.11       no  1.697e+06
+canonical point  10.70         8.6   3.86 | z10           6.33    11.56       no  1.275e+03
+canonical plummer 10.70         8.6   3.86 | z0           68.58   128.85       no  1.492e+06
+canonical plummer 10.70         8.6   3.86 | z10           6.23    10.80       no  1.121e+03
+canonical hernquist 10.70         8.6   3.86 | z0           67.41   133.23       no  1.529e+06
+canonical hernquist 10.70         8.6   3.86 | z10           6.13    11.20       no  1.149e+03
+canonical point  10.90        10.9   4.42 | z0           64.52   126.90       no  1.348e+06
+canonical point  10.90        10.9   4.42 | z10           5.87    10.63       no  1.013e+03
+canonical plummer 10.90        10.9   4.42 | z0           63.68   120.57       no  1.212e+06
+canonical plummer 10.90        10.9   4.42 | z10           5.79    10.05       no  9.102e+02
+canonical hernquist 10.90        10.9   4.42 | z0           62.61   123.69       no  1.227e+06
+canonical hernquist 10.90        10.9   4.42 | z10           5.69    10.34       no  9.216e+02
+alt       point  9.40          1.8   2.10 | z0          126.13   249.04       no  1.007e+07
+alt       point  9.40          1.8   2.10 | z10          11.47    21.73       no  7.566e+03
+alt       plummer 9.40          1.8   2.10 | z0          114.62   183.38       no  4.878e+06
+alt       plummer 9.40          1.8   2.10 | z10          10.42    15.76       no  3.665e+03
+alt       hernquist 9.40          1.8   2.10 | z0          116.07   227.76       no  7.519e+06
+alt       hernquist 9.40          1.8   2.10 | z10          10.55    19.80       no  5.649e+03
+alt       point  10.45         5.9   3.32 | z0           84.30   166.11       no  3.007e+06
+alt       point  10.45         5.9   3.32 | z10           7.66    14.19       no  2.259e+03
+alt       plummer 10.45         5.9   3.32 | z0           82.25   150.71       no  2.453e+06
+alt       plummer 10.45         5.9   3.32 | z10           7.48    12.79       no  1.843e+03
+alt       hernquist 10.45         5.9   3.32 | z0           80.90   159.98       no  2.630e+06
+alt       hernquist 10.45         5.9   3.32 | z10           7.35    13.63       no  1.976e+03
+alt       point  10.70         7.9   3.86 | z0           76.59   150.82       no  2.255e+06
+alt       point  10.70         7.9   3.86 | z10           6.96    12.80       no  1.694e+03
+alt       plummer 10.70         7.9   3.86 | z0           75.15   139.94       no  1.930e+06
+alt       plummer 10.70         7.9   3.86 | z10           6.83    11.81       no  1.450e+03
+alt       hernquist 10.70         7.9   3.86 | z0           73.87   146.07       no  2.009e+06
+alt       hernquist 10.70         7.9   3.86 | z10           6.72    12.37       no  1.509e+03
+alt       point  10.90         9.9   4.42 | z0           70.93   139.61       no  1.791e+06
+alt       point  10.90         9.9   4.42 | z10           6.45    11.78       no  1.346e+03
+alt       plummer 10.90         9.9   4.42 | z0           69.82   131.21       no  1.575e+06
+alt       plummer 10.90         9.9   4.42 | z10           6.35    11.02       no  1.183e+03
+alt       hernquist 10.90         9.9   4.42 | z0           68.63   135.66       no  1.613e+06
+alt       hernquist 10.90         9.9   4.42 | z10           6.24    11.42       no  1.212e+03
+
+S0 rule: STRUCTURE FAILS AT S0 if max|u| > 1 for any rho_ref bracket in [z0, z10], or the map folds.
+   max|u| over all rows at rho_ref = z0   : 2.490e+02
+   max|u| over all rows at rho_ref = z10  : 2.173e+01
+   map folds anywhere                     : no
+   S0 FIRES
+
+====================================================================================================
+S1  the moduli and the sound speeds   (PRE-REGISTERED: the gate most likely to kill)
+====================================================================================================
+mu_s = (sigma_rr - sigma_tt) / (2 (u_rr - u_tt))   with sigma = -Pi, so sigma_rr - sigma_tt = +D
+lambda = (sigma_tt - 2 mu_s u_tt)/(u_rr + 2 u_tt)
+c_T^2 = mu_s/rho_c        c_L^2 = (lambda + 2 mu_s)/rho_c        line: c = 2.99792e+05 km/s
+
+footing   log M_b    profile    r/rM  |        c_T^2        c_L^2    min c_T^2    max c_T^2
+canonical 9.40       point      0.3   |   7.2716e+01   1.0799e+02   5.2250e+01   4.8051e+02
+canonical 9.40       point      1.0   |   5.2580e+01   7.7249e+01   5.2250e+01   4.8051e+02
+canonical 9.40       point      10.0  |   1.5072e+02   2.1697e+02   5.2250e+01   4.8051e+02
+canonical 9.40       point      60.0  |   4.8051e+02   6.9491e+02   5.2250e+01   4.8051e+02
+canonical 9.40       plummer    0.3   |   8.4420e+00   1.1693e+01   4.4931e+00   4.8039e+02
+canonical 9.40       plummer    1.0   |   3.3849e+01   4.8207e+01   4.4931e+00   4.8039e+02
+canonical 9.40       plummer    10.0  |   1.4953e+02   2.1514e+02   4.4931e+00   4.8039e+02
+canonical 9.40       plummer    60.0  |   4.8039e+02   6.9474e+02   4.4931e+00   4.8039e+02
+canonical 9.40       hernquist  0.3   |   1.6232e+01   2.3437e+01   1.1825e+01   4.7639e+02
+canonical 9.40       hernquist  1.0   |   3.3887e+01   4.8884e+01   1.1825e+01   4.7639e+02
+canonical 9.40       hernquist  10.0  |   1.4359e+02   2.0626e+02   1.1825e+01   4.7639e+02
+canonical 9.40       hernquist  60.0  |   4.7639e+02   6.8870e+02   1.1825e+01   4.7639e+02
+canonical 10.45      point      0.3   |   3.6444e+02   5.4138e+02   2.6187e+02   2.4083e+03
+canonical 10.45      point      1.0   |   2.6352e+02   3.8735e+02   2.6187e+02   2.4083e+03
+canonical 10.45      point      10.0  |   7.5540e+02   1.0893e+03   2.6187e+02   2.4083e+03
+canonical 10.45      point      60.0  |   2.4083e+03   3.5081e+03   2.6187e+02   2.4083e+03
+canonical 10.45      plummer    0.3   |   1.1029e+02   1.5821e+02   6.4437e+01   2.4081e+03
+canonical 10.45      plummer    1.0   |   2.3043e+02   3.3546e+02   6.4437e+01   2.4081e+03
+canonical 10.45      plummer    10.0  |   7.5406e+02   1.0872e+03   6.4437e+01   2.4081e+03
+canonical 10.45      plummer    60.0  |   2.4081e+03   3.5079e+03   6.4437e+01   2.4081e+03
+canonical 10.45      hernquist  0.3   |   1.4436e+02   2.1127e+02   1.2277e+02   2.3984e+03
+canonical 10.45      hernquist  1.0   |   2.0816e+02   3.0295e+02   1.2277e+02   2.3984e+03
+canonical 10.45      hernquist  10.0  |   7.3792e+02   1.0630e+03   1.2277e+02   2.3984e+03
+canonical 10.45      hernquist  60.0  |   2.3984e+03   3.4932e+03   1.2277e+02   2.3984e+03
+canonical 10.70      point      0.3   |   5.3493e+02   7.9471e+02   3.8437e+02   3.5348e+03
+canonical 10.70      point      1.0   |   3.8680e+02   5.6864e+02   3.8437e+02   3.5348e+03
+canonical 10.70      point      10.0  |   1.1088e+03   1.5998e+03   3.8437e+02   3.5348e+03
+canonical 10.70      point      60.0  |   3.5348e+03   5.1619e+03   3.8437e+02   3.5348e+03
+canonical 10.70      plummer    0.3   |   1.9261e+02   2.7806e+02   1.1786e+02   3.5347e+03
+canonical 10.70      plummer    1.0   |   3.4836e+02   5.0829e+02   1.1786e+02   3.5347e+03
+canonical 10.70      plummer    10.0  |   1.1073e+03   1.5975e+03   1.1786e+02   3.5347e+03
+canonical 10.70      plummer    60.0  |   3.5347e+03   5.1617e+03   1.1786e+02   3.5347e+03
+canonical 10.70      hernquist  0.3   |   2.3151e+02   3.3946e+02   2.0275e+02   3.5223e+03
+canonical 10.70      hernquist  1.0   |   3.1386e+02   4.5737e+02   2.0275e+02   3.5223e+03
+canonical 10.70      hernquist  10.0  |   1.0863e+03   1.5659e+03   2.0275e+02   3.5223e+03
+canonical 10.70      hernquist  60.0  |   3.5223e+03   5.1428e+03   2.0275e+02   3.5223e+03
+canonical 10.90      point      0.3   |   7.2716e+02   1.0804e+03   5.2250e+02   4.8051e+03
+canonical 10.90      point      1.0   |   5.2580e+02   7.7308e+02   5.2250e+02   4.8051e+03
+canonical 10.90      point      10.0  |   1.5072e+03   2.1757e+03   5.2250e+02   4.8051e+03
+canonical 10.90      point      60.0  |   4.8051e+03   7.0328e+03   5.2250e+02   4.8051e+03
+canonical 10.90      plummer    0.3   |   2.9351e+02   4.2544e+02   1.8668e+02   4.8049e+03
+canonical 10.90      plummer    1.0   |   4.8161e+02   7.0365e+02   1.8668e+02   4.8049e+03
+canonical 10.90      plummer    10.0  |   1.5055e+03   2.1731e+03   1.8668e+02   4.8049e+03
+canonical 10.90      plummer    60.0  |   4.8049e+03   7.0325e+03   1.8668e+02   4.8049e+03
+canonical 10.90      hernquist  0.3   |   3.3350e+02   4.8958e+02   2.9800e+02   4.7896e+03
+canonical 10.90      hernquist  1.0   |   4.3398e+02   6.3295e+02   2.9800e+02   4.7896e+03
+canonical 10.90      hernquist  10.0  |   1.4794e+03   2.1337e+03   2.9800e+02   4.7896e+03
+canonical 10.90      hernquist  60.0  |   4.7896e+03   7.0090e+03   2.9800e+02   4.7896e+03
+alt       9.40       point      0.3   |   7.2716e+01   1.0798e+02   5.2250e+01   4.8051e+02
+alt       9.40       point      1.0   |   5.2580e+01   7.7242e+01   5.2250e+01   4.8051e+02
+alt       9.40       point      10.0  |   1.5072e+02   2.1690e+02   5.2250e+01   4.8051e+02
+alt       9.40       point      60.0  |   4.8051e+02   6.9409e+02   5.2250e+01   4.8051e+02
+alt       9.40       plummer    0.3   |   7.5778e+00   1.0462e+01   4.0200e+00   4.8037e+02
+alt       9.40       plummer    1.0   |   3.1990e+01   4.5382e+01   4.0200e+00   4.8037e+02
+alt       9.40       plummer    10.0  |   1.4928e+02   2.1470e+02   4.0200e+00   4.8037e+02
+alt       9.40       plummer    60.0  |   4.8037e+02   6.9387e+02   4.0200e+00   4.8037e+02
+alt       9.40       hernquist  0.3   |   1.4984e+01   2.1590e+01   1.0730e+01   4.7598e+02
+alt       9.40       hernquist  1.0   |   3.2787e+01   4.7230e+01   1.0730e+01   4.7598e+02
+alt       9.40       hernquist  10.0  |   1.4294e+02   2.0522e+02   1.0730e+01   4.7598e+02
+alt       9.40       hernquist  60.0  |   4.7598e+02   6.8728e+02   1.0730e+01   4.7598e+02
+alt       10.45      point      0.3   |   3.6444e+02   5.4133e+02   2.6187e+02   2.4083e+03
+alt       10.45      point      1.0   |   2.6352e+02   3.8730e+02   2.6187e+02   2.4083e+03
+alt       10.45      point      10.0  |   7.5540e+02   1.0888e+03   2.6187e+02   2.4083e+03
+alt       10.45      point      60.0  |   2.4083e+03   3.5008e+03   2.6187e+02   2.4083e+03
+alt       10.45      plummer    0.3   |   9.7432e+01   1.3912e+02   5.5512e+01   2.4081e+03
+alt       10.45      plummer    1.0   |   2.2487e+02   3.2675e+02   5.5512e+01   2.4081e+03
+alt       10.45      plummer    10.0  |   7.5378e+02   1.0863e+03   5.5512e+01   2.4081e+03
+alt       10.45      plummer    60.0  |   2.4081e+03   3.5005e+03   5.5512e+01   2.4081e+03
+alt       10.45      hernquist  0.3   |   1.3536e+02   1.9782e+02   1.1279e+02   2.3975e+03
+alt       10.45      hernquist  1.0   |   2.0399e+02   2.9659e+02   1.1279e+02   2.3975e+03
+alt       10.45      hernquist  10.0  |   7.3624e+02   1.0600e+03   1.1279e+02   2.3975e+03
+alt       10.45      hernquist  60.0  |   2.3975e+03   3.4844e+03   1.1279e+02   2.3975e+03
+alt       10.70      point      0.3   |   5.3493e+02   7.9463e+02   3.8437e+02   3.5348e+03
+alt       10.70      point      1.0   |   3.8680e+02   5.6855e+02   3.8437e+02   3.5348e+03
+alt       10.70      point      10.0  |   1.1088e+03   1.5989e+03   3.8437e+02   3.5348e+03
+alt       10.70      point      60.0  |   3.5348e+03   5.1494e+03   3.8437e+02   3.5348e+03
+alt       10.70      plummer    0.3   |   1.7101e+02   2.4582e+02   1.0124e+02   3.5347e+03
+alt       10.70      plummer    1.0   |   3.4158e+02   4.9763e+02   1.0124e+02   3.5347e+03
+alt       10.70      plummer    10.0  |   1.1070e+03   1.5961e+03   1.0124e+02   3.5347e+03
+alt       10.70      plummer    60.0  |   3.5347e+03   5.1491e+03   1.0124e+02   3.5347e+03
+alt       10.70      hernquist  0.3   |   2.1793e+02   3.1913e+02   1.8704e+02   3.5210e+03
+alt       10.70      hernquist  1.0   |   3.0819e+02   4.4870e+02   1.8704e+02   3.5210e+03
+alt       10.70      hernquist  10.0  |   1.0841e+03   1.5618e+03   1.8704e+02   3.5210e+03
+alt       10.70      hernquist  60.0  |   3.5210e+03   5.1284e+03   1.8704e+02   3.5210e+03
+alt       10.90      point      0.3   |   7.2716e+02   1.0803e+03   5.2250e+02   4.8051e+03
+alt       10.90      point      1.0   |   5.2580e+02   7.7296e+02   5.2250e+02   4.8051e+03
+alt       10.90      point      10.0  |   1.5072e+03   2.1744e+03   5.2250e+02   4.8051e+03
+alt       10.90      point      60.0  |   4.8051e+03   7.0135e+03   5.2250e+02   4.8051e+03
+alt       10.90      plummer    0.3   |   2.6200e+02   3.7824e+02   1.6036e+02   4.8049e+03
+alt       10.90      plummer    1.0   |   4.7360e+02   6.9101e+02   1.6036e+02   4.8049e+03
+alt       10.90      plummer    10.0  |   1.5052e+03   2.1713e+03   1.6036e+02   4.8049e+03
+alt       10.90      plummer    60.0  |   4.8049e+03   7.0132e+03   1.6036e+02   4.8049e+03
+alt       10.90      hernquist  0.3   |   3.1482e+02   4.6160e+02   2.7574e+02   4.7880e+03
+alt       10.90      hernquist  1.0   |   4.2669e+02   6.2178e+02   2.7574e+02   4.7880e+03
+alt       10.90      hernquist  10.0  |   1.4767e+03   2.1284e+03   2.7574e+02   4.7880e+03
+alt       10.90      hernquist  60.0  |   4.7880e+03   6.9875e+03   2.7574e+02   4.7880e+03
+
+rows with c_T^2 < 0 somewhere : 0 / 24
+rows with c_L^2 < 0 somewhere : 0 / 24
+rows with a sound speed above c : 0 / 24
+rows where mu_s > 0 anywhere  : 24 / 24
+rows where mu_s < 0 anywhere  : 0 / 24   (a negative shear modulus anywhere)
+largest sound speed over all rows: c_T 69.3 km/s , c_L 83.9 km/s   (c = 299792 km/s)
+fraction of window with c_T^2 < 0 (mean over rows): 0.0000
+
+S1 rule: FIRES if c_T^2 or c_L^2 is negative anywhere, or above c^2 anywhere.
+   S1 HOLDS -- both sound speeds real and subluminal everywhere
+
+====================================================================================================
+S1c  locality: is mu_s a local function of (rho_c, g)?   predicted deep form +(3/2) J (rho_ref/3 rho_c)^(1/3)
+====================================================================================================
+footing   log M_b    profile    | x=3         x=10        x=30        x=60       
+canonical 9.40       point      | 1.0325      1.0088      1.0028      1.0008     
+canonical 9.40       plummer    | 1.1116      1.0170      1.0038      1.0010     
+canonical 9.40       hernquist  | 1.1283      1.0433      1.0150      1.0070     
+canonical 10.45      point      | 1.0325      1.0088      1.0028      1.0008     
+canonical 10.45      plummer    | 1.0504      1.0106      1.0030      1.0009     
+canonical 10.45      hernquist  | 1.0792      1.0253      1.0086      1.0037     
+canonical 10.70      point      | 1.0325      1.0088      1.0028      1.0008     
+canonical 10.70      plummer    | 1.0462      1.0102      1.0030      1.0008     
+canonical 10.70      hernquist  | 1.0734      1.0232      1.0079      1.0033     
+canonical 10.90      point      | 1.0325      1.0088      1.0028      1.0008     
+canonical 10.90      plummer    | 1.0438      1.0100      1.0030      1.0008     
+canonical 10.90      hernquist  | 1.0698      1.0219      1.0074      1.0031     
+alt       9.40       point      | 1.0325      1.0088      1.0028      1.0008     
+alt       9.40       plummer    | 1.1277      1.0187      1.0040      1.0011     
+alt       9.40       hernquist  | 1.1371      1.0467      1.0162      1.0076     
+alt       10.45      point      | 1.0325      1.0088      1.0028      1.0008     
+alt       10.45      plummer    | 1.0541      1.0110      1.0031      1.0009     
+alt       10.45      hernquist  | 1.0837      1.0269      1.0092      1.0040     
+alt       10.70      point      | 1.0325      1.0088      1.0028      1.0008     
+alt       10.70      plummer    | 1.0490      1.0105      1.0030      1.0009     
+alt       10.70      hernquist  | 1.0773      1.0246      1.0084      1.0036     
+alt       10.90      point      | 1.0325      1.0088      1.0028      1.0008     
+alt       10.90      plummer    | 1.0461      1.0102      1.0030      1.0008     
+alt       10.90      hernquist  | 1.0734      1.0232      1.0079      1.0033     
+
+ratio 1.0 = the halo-derived mu_s is exactly the LOCAL closed form in the deep field.
+
+====================================================================================================
+S2  the energy: 2W = sigma:u, and C2 requires W = J
+====================================================================================================
+W = (1/2)(sigma_rr u_rr + 2 sigma_tt u_tt) with sigma = -Pi;  deep-field prediction (J/2)(5y/3 - 1)
+footing   log M_b    profile    |    min W/J    max W/J     frac<0 frac|W/J-1|<.01
+canonical 9.40       point      | 6.8028e+00 2.1897e+02     0.0000     0.0000
+canonical 9.40       plummer    | 6.8020e+00 1.2680e+02     0.0000     0.0000
+canonical 9.40       hernquist  | 6.7741e+00 1.8372e+02     0.0000     0.0000
+canonical 10.45      point      | 4.3789e+00 1.4604e+02     0.0000     0.0000
+canonical 10.45      plummer    | 4.3788e+00 1.2056e+02     0.0000     0.0000
+canonical 10.45      hernquist  | 4.3699e+00 1.3455e+02     0.0000     0.0000
+canonical 10.70      point      | 3.9321e+00 1.3259e+02     0.0000     0.0000
+canonical 10.70      plummer    | 3.9320e+00 1.1408e+02     0.0000     0.0000
+canonical 10.70      hernquist  | 3.9249e+00 1.2351e+02     0.0000     0.0000
+canonical 10.90      point      | 3.6042e+00 1.2272e+02     0.0000     0.0000
+canonical 10.90      plummer    | 3.6042e+00 1.0818e+02     0.0000     0.0000
+canonical 10.90      hernquist  | 3.5982e+00 1.1510e+02     0.0000     0.0000
+alt       9.40       point      | 7.5287e+00 2.4082e+02     0.0000     0.0000
+alt       9.40       plummer    | 7.5276e+00 1.3203e+02     0.0000     0.0000
+alt       9.40       hernquist  | 7.4940e+00 1.9872e+02     0.0000     0.0000
+alt       10.45      point      | 4.8641e+00 1.6063e+02     0.0000     0.0000
+alt       10.45      plummer    | 4.8639e+00 1.2828e+02     0.0000     0.0000
+alt       10.45      hernquist  | 4.8531e+00 1.4675e+02     0.0000     0.0000
+alt       10.70      point      | 4.3728e+00 1.4585e+02     0.0000     0.0000
+alt       10.70      plummer    | 4.3727e+00 1.2207e+02     0.0000     0.0000
+alt       10.70      hernquist  | 4.3642e+00 1.3487e+02     0.0000     0.0000
+alt       10.90      point      | 4.0124e+00 1.3501e+02     0.0000     0.0000
+alt       10.90      plummer    | 4.0123e+00 1.1618e+02     0.0000     0.0000
+alt       10.90      hernquist  | 4.0051e+00 1.2577e+02     0.0000     0.0000
+
+any row with W < 0 somewhere      : no
+any row with |W/J - 1| > 0.01     : YES
+   S2 FIRES
+
+====================================================================================================
+S2c  the energy ODE with mass conservation dropped:  Pi_rr xi' + 2 J xi/r = -2J
+====================================================================================================
+With sigma = -Pi and W = J, 2W = sigma:u reads  -Pi_rr xi' - 2 J xi/r = 2J, i.e.
+   Pi_rr xi' + 2 J xi/r = -2J.
+With w = xi/r:  r w' = -(lam+1)(w - w_*),  lam = 2J/Pi_rr (< 0), w_* = -lam/(lam+1).
+In the deep field lam -> -2 so w_* -> -2. -(lam+1) > 0 there, so w is driven AWAY from w_*
+outwards and the ODE has no solution regular at both ends. Integrating forward from w_*:
+  canonical x=0.1     w = xi/r = +2.0332e+24    w_* = -1.0192
+  canonical x=1.0     w = xi/r = +2.3642e+39    w_* = -1.3562
+  canonical x=10.0    w = xi/r = +9.8948e+40    w_* = -1.8788
+  canonical x=60.0    w = xi/r = +6.6510e+41    w_* = -1.9781
+  alt       x=0.1     w = xi/r = +2.0332e+24    w_* = -1.0192
+  alt       x=1.0     w = xi/r = +2.3642e+39    w_* = -1.3562
+  alt       x=10.0    w = xi/r = +9.8948e+40    w_* = -1.8788
+  alt       x=60.0    w = xi/r = +6.6510e+41    w_* = -1.9781
+
+The exact deep-field family is xi = -2r + C r^2.  Its two cases:
+  C = 0 :  xi = -2r, so u_rr = u_tt = -2, a pure dilation. An isotropic strain carries an
+          isotropic stress, but sigma_rr = -sigma_tt. Hence mu_s = (sigma_rr-sigma_tt)/0 =
+          INFINITY: the medium is rigid against shear, which is not a solid with a modulus.
+  C != 0:  R = r - xi = r(3 - Cr), so R/r = 3 - Cr and dR/dr = 3 - 2Cr. The map FOLDS
+          (dR/dr < 0) for Cr > 1.5, and its density rho_c/rho_ref = (3-Cr)^2 (3-2Cr) is
+          NEGATIVE for Cr > 1.5 and falls as -2C^3 r^3 for large r, against the law's r^-2.
+    canonical C = 1.0e-04   map rho/rho_ref at 1, 60 r_M = +2.696e+01 +2.444e+01 ; law = 1.161e+05 3.569e+01 ; ratio at 60 r_M = 6.848e-01
+    canonical C = 1.0e-03   map rho/rho_ref at 1, 60 r_M = +2.656e+01 +7.898e+00 ; law = 1.161e+05 3.569e+01 ; ratio at 60 r_M = 2.213e-01
+    canonical C = 1.0e-02   map rho/rho_ref at 1, 60 r_M = +2.284e+01 -2.175e+02 ; law = 1.161e+05 3.569e+01 ; ratio at 60 r_M = -6.093e+00
+    alt       C = 1.0e-04   map rho/rho_ref at 1, 60 r_M = +2.696e+01 +2.467e+01 ; law = 1.542e+05 4.742e+01 ; ratio at 60 r_M = 5.202e-01
+    alt       C = 1.0e-03   map rho/rho_ref at 1, 60 r_M = +2.660e+01 +9.086e+00 ; law = 1.542e+05 4.742e+01 ; ratio at 60 r_M = 1.916e-01
+    alt       C = 1.0e-02   map rho/rho_ref at 1, 60 r_M = +2.320e+01 -1.383e+02 ; law = 1.542e+05 4.742e+01 ; ratio at 60 r_M = -2.916e+00
+
+S2c reading: no member of the C1+C2 family reproduces the law's density for any rho_ref.
+   Dropping mass conservation does not repair the candidate; it removes the last constraint
+   that fixed the strain, and the energy condition alone then admits no physical branch.
+
+====================================================================================================
+B1  the Bullet   (PRE-REGISTERED: the gate most likely to kill)
+====================================================================================================
+DB1's transcribed criteria: (i) Sigma_c >= 3 x ICM column swept in one passage;
+                            (ii) G Sigma_c^2 >= rho_ICM v^2 at v = 4700 km/s
+RB1 gate 4: the lensing peak sits with the galaxies (model 14 / 10 kpc); the gas sits hundreds of kpc away.
+
+cluster   M_gas        M_star      M_cold = 5.41 (gas+star)   Sigma_c (Plummer b=200 kpc)
+main      2.000e+14  1.196e+13  1.1467e+15                 9.1252e+09 Msun/kpc^2
+sub       2.320e+13  4.000e+12  1.4715e+14                 1.1710e+09 Msun/kpc^2
+ICM central density (main gas 2.0e14 in a Plummer b = 200 kpc, PROVISIONAL): 5.9683e+06 Msun/kpc^3
+ICM column over a 1 Mpc path (PROVISIONAL):                                  1.5915e+09 Msun/kpc^2
+  (i)  needs Sigma_c >= 4.7746e+09 ; the solid's column 9.1252e+09  -> PASSES
+  (ii) needs Sigma_c >= 5.5366e+09 ; the solid's column 9.1252e+09  -> PASSES
+  NOTE: DB1's two tests are self-gravity tests. They are blind to solidity -- a solid
+        passes them and still cannot interpenetrate. That is the point of this gate.
+
+B1a  structural. A solid's map is a homeomorphism: material elements keep their neighbours.
+     The two clusters have passed through each other, so their media must have interpenetrated.
+     The subcluster's cold mass is 1.472e+14 Msun (5.41 x its gas + stars); RB1 places it with the
+     subcluster's galaxies, which are now INSIDE the main cluster's radius. The interpenetrated
+     cold mass required by the data is therefore 1.472e+14 Msun at least. A homeomorphism
+     cannot deliver any nonzero value.
+     Equivalently: at the observed epoch the two media occupy the same volume, so the map from
+     the reference configuration to the present one is 2-to-1 there. A solid has no such map.
+
+B1b  the elastic Mach number and the yield parameter in the cluster regime:
+footing   log M_b    profile    |  |c_T| km/s    c_L km/s     v/|c_T|       v/c_L rho_c v^2/|mu|
+canonical 13.40      point      |       214.9       259.3       21.87       18.12   4.785e+02
+canonical 14.00      point      |       340.5       411.7       13.80       11.42   1.905e+02
+canonical 14.60      point      |       539.7       654.1        8.71        7.19   7.583e+01
+alt       13.40      point      |       214.9       259.2       21.87       18.13   4.785e+02
+alt       14.00      point      |       340.5       411.4       13.80       11.42   1.905e+02
+alt       14.60      point      |       539.7       653.4        8.71        7.19   7.583e+01
+
+B1c  the frozen dilemma. Let Y = rho_c v^2 / |mu_s| (dynamic pressure over the shear modulus):
+     max Y over the cluster rows = 4.785e+02  (Y > 1: the impact exceeds the shear strength)
+     HORN PICKED: the solid YIELDS at 4700 km/s. A yielded solid is a fluid, and that fluid
+     is local, momentum-conserving and normally self-gravitating -- M5's class, whose NO-GO
+     already covers it. The candidate's defining property (a static shear modulus) is lost.
+     Either horn fires the gate.
+   B1 FIRES
+
+====================================================================================================
+S3  clusters: hot and at full share (reported; graded only if S1 and B1 did not fire)
+====================================================================================================
+"hot" = the cluster's cold component carries the dispersion the data require (~1000 km/s at R500).
+A solid holds that only while c_T^2 = mu_s/rho_c >~ sigma_v^2; above it, it melts.
+footing   log M_b    |        c_T^2        c_L^2    sigma_v^2        melt?
+canonical 13.40      |   4.6168e+04   6.7251e+04   1.0000e+06          YES
+canonical 14.00      |   1.1597e+05   1.6951e+05   1.0000e+06          YES
+canonical 14.60      |   2.9130e+05   4.2783e+05   1.0000e+06          YES
+alt       13.40      |   4.6168e+04   6.7174e+04   1.0000e+06          YES
+alt       14.00      |   1.1597e+05   1.6925e+05   1.0000e+06          YES
+alt       14.60      |   2.9130e+05   4.2691e+05   1.0000e+06          YES
+
+A solid carries a dispersion elastically only while c_T^2 = mu_s/rho_c >~ sigma_v^2. Here
+c_T^2 is real and positive but only 46168-291303 km^2/s^2, against sigma_v^2 = 1e6: the elastic
+sound speed is 6-25 times SMALLER than the dispersion the cluster requires, so the medium
+MELTS in every cluster row (it cannot be hot and solid at once). "Full share" (RB1 gate 1,
+f_ret -> 1) is satisfied by construction for any real-mass medium and carries no information.
+
+====================================================================================================
+S4  recombination and the expanding universe (reported)
+====================================================================================================
+The homogeneous reference state has xi = 0, hence sigma = 0 and the background is exactly dust
+at the background level: there is no non-gravitational coupling to the plasma by construction,
+so the drag bound that killed MEDIUM_DESIGN section 3's baryon-coupled medium does not arise.
+
+Constitutive law carried out of the halo (S1c): mu_s = +(3/2) J(g) (rho_ref/(3 rho_c))^(1/3).
+At the background rho_c = rho_ref, so mu_s = +0.693 J(g_bg) > 0.
+  - in the exactly homogeneous background g = 0, so mu_s = 0: the medium is a shear-free dust
+    (a solid with zero shear modulus is not a solid). Recombination passes trivially, and vacuously.
+  - in any perturbed region g != 0, so mu_s > 0 and the transverse mode PROPAGATES with a real
+    c_T. The elastic Jeans length lambda_J = c_L sqrt(pi/(G rho_c)) is then real:
+  canonical z=1100   g/a0=1.0e-06   mu_s=8.027e-02  c_T=1.332e-06 km/s  lambda_J=5.349e-09 kpc (5.349e-12 Mpc)
+  canonical z=1100   g/a0=1.0e-04   mu_s=8.026e+02  c_T=1.332e-04 km/s  lambda_J=5.349e-07 kpc (5.349e-10 Mpc)
+  canonical z=1100   g/a0=1.0e-02   mu_s=7.974e+06  c_T=1.327e-02 km/s  lambda_J=5.331e-05 kpc (5.331e-08 Mpc)
+  alt       z=1100   g/a0=1.0e-06   mu_s=1.172e-01  c_T=1.609e-06 km/s  lambda_J=6.464e-09 kpc (6.464e-12 Mpc)
+  alt       z=1100   g/a0=1.0e-04   mu_s=1.172e+03  c_T=1.609e-04 km/s  lambda_J=6.464e-07 kpc (6.464e-10 Mpc)
+  alt       z=1100   g/a0=1.0e-02   mu_s=1.165e+07  c_T=1.604e-02 km/s  lambda_J=6.443e-05 kpc (6.443e-08 Mpc)
+
+  The acoustic peaks live at comoving 100-200 Mpc and the damping tail at a few Mpc.
+  Compare the comoving scale: lambda_J is in PHYSICAL kpc at z = 1100, so comoving
+  lambda_J(1+z). Read the last column x 1101.
+
+====================================================================================================
+M5  the three hypotheses, checked against the solid as constructed
+====================================================================================================
+(i)  LOCAL: the stress is an algebraic function of the state at the same point. YES -- S1c shows
+     mu_s and lambda are functions of (rho_c, g) alone (rho_ref is a constant of the material).
+     The strain enters as a state variable; that enlarges M5's S2 ansatz Pi(rho, grad Phi) but
+     does not drop locality.
+(ii) MOMENTUM-CONSERVING: sigma is symmetric and the force density is div sigma; there is no
+     external hold, no tether, no sink. YES.
+(iii) NORMALLY SELF-GRAVITATING: rho_c appears in del^2 Phi = 4 pi G (rho_b + rho_c) with no
+     cancellation and no screening. YES.
+
+All three hold. M5's NO-GO therefore applies. It shows up here as:
+   - the density-blind unique stress (M5 S2): the equilibrium stress is forced to be -Pi(g),
+     and the moduli it forces are positive but of a size fixed by the reference density;
+     the solid does not escape the uniqueness, it only supplies a strain to hang it on.
+   - the energy is not the medium's own (S2): W = (J/2)(5y/3 - 1) is 4 to 95 times J through
+     the halo, and J itself is the pressure of FB1's isothermal halo, not a strain energy.
+   - the displacement is NOT attractor-selected: the strain is fixed by mass conservation
+     from a reference density that is a global property of the assembly history (y = R/r),
+     so the state the medium must be in is not reachable by any local relaxation.
+   What the solid buys by being a solid: the transverse mode propagates with a real c_T
+   (M5 S4's Hadamard disease is cured in the shear sector), and both sound speeds are
+   subluminal. That is a real gain. It is not enough: the state cannot be reached (S0),
+   the energy does not match (S2), the solid melts in clusters (S3) and yields in the
+   Bullet (B1).
+
+====================================================================================================
+MUTATION M4  bite check
+====================================================================================================
+Required: forcing mu_s to the WRONG sign (mu_s < 0, i.e. reversing the shear response)
+destroys the equilibrium: div sigma = rho_c g must fail.
+  |mean div(sigma)/(rho_c g) - 1| = 0.293087   (needs 0 for the equilibrium to hold)
+  the unmutated run gives 0 to 1e-2 (KA9 PASS); and the unmutated mu_s > 0 in 24/24 rows.
+
+  MUTATION M4 BITES
+wrote ela1_MUTATE_M4.json
