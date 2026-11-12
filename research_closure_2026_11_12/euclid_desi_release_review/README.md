@@ -31,9 +31,11 @@ Already identified:
 
 ## Results and live research
 
+Start with [the strongest surviving research lead](DISCOVERY_ROUTES.md): an angular acceleration–distance observable and a conditional joint BAO test, with explicit counterexamples and prior overlap.
+
 - [Full release/repository comparison](REPORT.md): all 26 papers, DESI versions, existing predictions and model gates.
 - [Paper-by-paper review](PAPER_REVIEW.md) and [source hashes](paper_inventory.json).
-- [Twenty prior prediction lanes](prior_lane_inventory.json), with checked paths and hashes.
+- [Prior prediction lanes and inverse-theory records](prior_lane_inventory.json), with checked paths and hashes.
 - [Blinded catalogue audit](sample_access_audit.md): 39 deflector-redshift candidates; the clean both-redshift count remains unknown. This is a metadata audit, not a sealed preregistration.
 - [Research contract and active routes](RESEARCH_STATUS.md): lensing, radial dynamics, slitless spectra, double-source-plane geometry, and a candidate dimensionless Euclid–DESI closure test. These are being independently checked; no new observational pass is claimed.
 

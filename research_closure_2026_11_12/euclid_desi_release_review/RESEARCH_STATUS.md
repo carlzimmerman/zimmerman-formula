@@ -10,15 +10,15 @@ Success standard: an independently checked mathematical consequence or observati
 
 | Route | Central move | First uncertain implication | Discriminating check | Current state |
 |---|---|---|---|---|
-| R1 lensing–dynamics | Cancel mass normalization using deflection and global dispersion | Does cancellation survive finite aperture, transition regime and source/tracer differences? | Derive virial relation; change tracer mass profile as counterexample | Conditional deep-limit relation; generic universal claim fails |
-| R2 redshift/dynamics | Infer D_A a₀ from resolved radial shape rather than stellar normalization | Is the transition observable identifiable with unknown radial baryons/inclination? | Rank calculation and exact radial-M/L counterexample | Conditional cancellation derived; nuisance/identifiability audit in progress |
-| R3 slitless spectroscopy | Use opposite dispersions to separate spatial and spectral displacement | Can same-line features and matched weighting be recovered from released exposures? | Double-difference identity; zero-velocity line-blend counterexample | Algebraic route; exposure and line-deblending gates unresolved |
+| R1 lensing–dynamics | Cancel mass normalization using deflection and global dispersion | Does cancellation survive finite aperture, transition regime and source/tracer differences? | Derive virial relation; change tracer mass profile as counterexample | Conditional deep-limit relation derived; generic universal claim fails |
+| R2 redshift/dynamics | Infer D_A a₀ from resolved radial shape rather than stellar normalization | Is the transition observable identifiable with unknown radial baryons/inclination? | Rank calculation and exact radial-M/L counterexample | Conditional cancellation and counterexample audited; 42 development-data Fisher scenarios completed |
+| R3 slitless spectroscopy | Use opposite dispersions to separate spatial and spectral displacement | Can same-line features and matched weighting be recovered from released exposures? | Double-difference identity; zero-velocity line-blend counterexample | 225 exact centroid cases checked; line-blend counterexample; actual exposure/deblending gates unresolved |
 | R4 double-source-plane lenses | Use external geometry to convert two source scales into a deflection-shape constraint | Do multiple planes/line-of-sight sheets remove the purported cancellation? | Power-law identity and sheet/multiplane counterexample | Known-method connection; no unique a₀ normalization |
-| R5 joint dimensionless closure | Combine D_A a₀ and BAO ratios in the Friedmann equation | Is κ identifiable without a ruler/early-density prior, and is FRW closure justified? | Independent algebra, rank and nuisance audit | Candidate under independent review |
+| R5 joint dimensionless closure | Combine D_A a₀ and BAO ratios in the Friedmann equation | Is κ identifiable without a ruler/early-density prior, and is FRW closure justified? | Independent algebra, rank and nuisance audit | Algebra independently reconstructed; coupling and identifiability restrictions required |
 
 The first three route owners are separate agents. Root owns R4 and R5 synthesis. Route files are disjoint; only the coordinator edits this live index. Numerical toy examples use synthetic inputs, not the released galaxy residuals. No candidate is selected by agreement with the theory.
 
-## Current strongest candidate, pending audit
+## Current strongest candidate, conditionally audited
 
 Let T(z)=D_A(z)a₀(z) be inferred from resolved dynamical shape under a specified kernel and baryonic geometry, d_M=D_M/r_d and d_H=D_H/r_d be BAO observables. Define
 
@@ -26,16 +26,24 @@ Let T(z)=D_A(z)a₀(z) be inferred from resolved dynamical shape under a specifi
 q=\frac{(1+z)T}{c^2d_M}=\frac{a_0r_d}{c^2},\qquad h=\frac1{d_H}=\frac{Hr_d}{c}.
 \]
 
-With the standard Friedmann equation, conserved matter and radiation, specified curvature and a₀²=κ²c²Gρ_DE,
+With a Friedmann equation, conserved matter and radiation, specified curvature, constant g_G=G_cosm/G_N and a₀²=κ²c²G_Nρ_DE,
 
 \[
-h^2=A(1+z)^3+B(1+z)^4+K(1+z)^2+\frac{8\pi}{3\kappa^2}q^2.
+h^2=A(1+z)^3+B(1+z)^4+K(1+z)^2+\frac{8\pi g_G}{3\kappa^2}q^2.
 \]
 
-The hypothesized κ=1/2 corresponds to coefficient 32π/3. The absolute sound horizon and Hubble constant do not appear. This uses an independent dynamical observable; constructing T from the same assumed cosmology/formula would make the test circular. It is conditional on Friedmann closure and the dynamical extraction, not a derivation of that closure from the bare scale relation.
+The joint hypothesis κ=1/2 and g_G=1 corresponds to coefficient 32π/3; otherwise the measurement identifies κ/√g_G. The September inverse-cosmology work already records this distinction and related background relations. The absolute sound horizon and Hubble constant do not appear. This uses an independent dynamical observable; constructing T from the same assumed cosmology/formula would make the test circular. It is conditional on Friedmann closure and the dynamical extraction, not a derivation of that closure from the bare scale relation.
 
 Rank, radial stellar-population gradients, gas, inclination, correlated BAO errors and selection can still block this measurement. The research task is to establish exactly what survives these tests, not to declare all nuisances cancelled.
 
 ## Preservation
 
 Historical SP1/SP2 seals and contradictory criterion directions are unchanged. No old result is regraded here. The 39-object lens metadata pool remains distinct from the rotation-curve population needed by R2/R5. Publication of the literature audit does not imply those observational experiments were run.
+
+## Audited synthesis
+
+[DISCOVERY_ROUTES.md](DISCOVERY_ROUTES.md) records the strongest result, independent derivations, counterexamples and prior overlap. The upstream T inference is conditional on constrained baryonic shape and geometry. A bounded development-data preflight completed 42 Fisher scenarios on 3 existing SPARC galaxies. It found useful conditional transition-region information and exact free-inclination degeneracy. This is local sensitivity evidence, not a new Euclid observation. See route_redshift.md section 12 and the independent preflight review.
+
+## Phase checkpoint and open continuations
+
+The release review and bounded five-route exploration have completed their recorded checks. No fundamental-theory or new-data breakthrough is claimed. R1/R4 require independent spectroscopy and flexible lens-image/LOS models; R2/R5 require a constrained full dynamical inverse problem; R3 requires matched multi-orientation, same-line extraction and blend validation. These routes remain open, not exhausted. A repeat of the same toy algebra would not resolve those observational/model inputs. The historical failed gates remain in force.

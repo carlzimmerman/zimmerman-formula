@@ -4,7 +4,7 @@
 
 ## Finding
 
-The strongest immediate connection is between the new Euclid light-profile measurements and the repository's existing A80/A85 strong-lensing work. A80 identified unmeasured Sérsic shape as a major degeneracy; A85 obtained conditional mean lensing-to-dynamics agreement after calibrating a stellar normalization per lens. Euclid can provide independent morphology and a much larger candidate population. It does not yet provide all the independent redshifts, stellar dynamics and calibrated model errors needed to turn that connection into a passed test.
+The strongest immediate connection is between the new Euclid light-profile measurements and the repository's existing A80/A85 strong-lensing work. A80 identified unmeasured Sérsic shape as a major degeneracy; A85 obtained conditional mean lensing-to-dynamics agreement after calibrating a stellar normalization per lens. Euclid can provide photometric morphology without tuning it to gravity residuals, alongside a much larger candidate population. Lens-source deblending still introduces modelling dependence. It does not yet provide all the independent redshifts, stellar dynamics and calibrated model errors needed to turn that connection into a passed test.
 
 The more ambitious opportunity is to construct observables that cancel nuisance normalizations, then ask whether their remaining shape or redshift dependence differs between specified theories. The user explicitly requested that research step. It is being pursued separately from this release audit; candidate algebra is not an empirical breakthrough.
 
@@ -20,7 +20,7 @@ Important distinctions for a gravity test:
 |---|---|---|
 | MER morphology | Sérsic index, radius, axis ratio, segmentation and fit flags | A universal inclination, baryonic density profile, or calibrated shear |
 | PHZ physical properties | Stellar-population mass/SFR estimates and uncertainty products | Gas mass, total baryonic mass, or a cosmology/IMF-free mass |
-| SPE spectra | Ranked redshift solutions and line measurements | A rotation curve or independent stellar dispersion from an arbitrary line width |
+| SIR spectra + SPE redshifts/lines | Ranked redshift solutions and line measurements | A rotation curve or independent stellar dispersion from an arbitrary line width |
 | ECLIPSE lens models | Candidate configurations and image-model starting points | A free density slope: C fixes an isothermal model; an SIE velocity scale is not measured dynamics |
 | ECLIPSE physical properties | Lens redshifts and light/mass metadata | Source redshifts for every lens, or an externally calibrated total mass-error budget |
 | GELSA demonstration | A possible custom spatial/spectral separation route | A validated survey velocity catalogue or a measured flat outer speed |
@@ -81,7 +81,7 @@ At g_b=a₀ they differ in g by about 14.4%. A SPARC fit with one cannot validat
 
 ## 4. Existing predictions and results: do not reset the evidence
 
-The bounded search covered **48,432 Markdown/Python files**, excluding archived/snapshot copies, environments, duplicate evidence inputs and this review. We inspected 20 prediction-bearing records with 48 source references. [prior_lane_inventory.json](prior_lane_inventory.json) gives paths, line spans, hashes, qualifications and statuses; [search scope](prior_lane_search_scope.json) preserves terms and matched paths. This is broad coverage, not a proof that no undiscovered lane exists. A no-match for case-sensitive “ECLIPSE” or slitless velocity terms is not a literature novelty result.
+The bounded search covered **48,432 Markdown/Python files**, excluding archived/snapshot copies, environments, duplicate evidence inputs and this review. We inspected 20 prediction-bearing records with 48 source references in the initial scan; the derivation follow-up added two September inverse-cosmology records (22 total). [prior_lane_inventory.json](prior_lane_inventory.json) gives paths, line spans, hashes, qualifications and statuses; [search scope](prior_lane_search_scope.json) preserves terms and matched paths. This is broad coverage, not a proof that no undiscovered lane exists. A no-match for case-sensitive “ECLIPSE” or slitless velocity terms is not a literature novelty result.
 
 | Prior lane | Recorded result/prediction | What carries into Euclid |
 |---|---|---|

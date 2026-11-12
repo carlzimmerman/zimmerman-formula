@@ -126,7 +126,7 @@ The ECLIPSE object release contains 6,073 grade-A and 8,999 grade-B candidates, 
 
 [Manuscript](https://pubs.euclid-ec.org/public/dr1/holloway.pdf) — reviewed Targeted full-text scientific review: main discovery methods/results and selection/completeness in pp. 1–10; Appendix B simulation description and Appendix E completeness derivation, pp. 18–23. No independent figure-image QA.
 
-ECLIPSE discovery combines automated searches, volunteers and expert grading. Reported completeness is conditional on the inspected population and detection pipeline. A count or abundance test requires forward selection modelling and a theory for galaxy populations; the bare acceleration relation supplies neither.
+ECLIPSE discovery combines automated searches, volunteers and expert grading. Reported completeness is conditional on the catalogue-eligible parent population, expert labels and detection pipeline. A count or abundance test requires forward selection modelling and a theory for galaxy populations; the bare acceleration relation supplies neither.
 
 ## 22. Nightingale et al. (Euclid Collaboration): Euclid Data Release 1 (DR1). Euclid Lens Identification Pipeline and Scientific Exploration (ECLIPSE) C: Lens modelling pipeline overview
 

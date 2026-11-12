@@ -1,0 +1,151 @@
+{
+  "schema_version": 2,
+  "claim_id": "REDSHIFT_ML_DISTANCE_RATIO",
+  "repository": {
+    "commit": "unavailable",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "route_redshift_check.py",
+    "route_redshift_run01"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Algebraic reduction for simple-mu and quadratic laws, global-normalization/ruler cancellation, finite108syntheticrecoveries, informationrank, positive-density nuisance counterexample.",
+    "coefficient_domain": "Positive real parameters; exact symbolic identities via SymPy and deterministic IEEE64 checks.",
+    "conventions": "U is dimensionless stellar mass-to-light normalization; b is reference Newtonian acceleration; w=v_c^2/theta; D=angular-diameter distance; T=D*a0.",
+    "inputs": [
+      "Two specified algebraic gravity laws",
+      "Four source files hashed for scope; no astronomical measurement fitted"
+    ],
+    "bounds": {
+      "D": [
+        0.5,
+        1,
+        2
+      ],
+      "U": [
+        0.3,
+        1,
+        4
+      ],
+      "a0": [
+        0.3,
+        1,
+        3
+      ],
+      "laws": 2,
+      "synthetic_cases": 108,
+      "radial_b": [
+        0.01,
+        0.2,
+        3,
+        30
+      ]
+    },
+    "non_claims": [
+      "No real-data likelihood or forecast",
+      "No nonlinear disk solution",
+      "No gas or IMF-gradient cancellation",
+      "No healthy action or novelty theorem"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-12T16:34:27.627321+00:00",
+    "runtime_seconds": 0.40771,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 50000,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 25,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "route_redshift_run01/results.json"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "route_redshift_check.py",
+    "route_redshift_repository_inputs.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "route_redshift_check.py",
+      "sha256": "741d481ed80bc06922d282bc00e1cee2a6e1b4d3015bbdc15ca0a1c07423e934",
+      "sha256_after": "741d481ed80bc06922d282bc00e1cee2a6e1b4d3015bbdc15ca0a1c07423e934"
+    },
+    {
+      "path": "route_redshift_repository_inputs.json",
+      "sha256": "632dedb27c5fdd67a5a74179210f44c04445d1f2e5640a97ad8cf2f9697905e5",
+      "sha256_after": "632dedb27c5fdd67a5a74179210f44c04445d1f2e5640a97ad8cf2f9697905e5"
+    }
+  ],
+  "output_directory": "route_redshift_run01",
+  "declared_results": [
+    "route_redshift_run01/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "route_redshift_run01/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "route_redshift_run01/stderr.txt",
+      "sha256": "b415810260472dd51523451bd4039a6efb857e8f1fb2d887b1944644ef21341f",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget.",
+    "Declared results were not produced: route_redshift_run01/results.json"
+  ]
+}

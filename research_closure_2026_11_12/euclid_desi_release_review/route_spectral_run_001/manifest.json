@@ -1,0 +1,145 @@
+{
+  "schema_version": 2,
+  "claim_id": "EUCLID_SPECTRAL_CENTROID_IDENTIFIABILITY",
+  "repository": {
+    "commit": "unavailable",
+    "dirty": true
+  },
+  "command": [
+    "python",
+    "route_spectral_check.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python standard library",
+        "version": "3.13.9"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "225 exact rational matched-clump centroid cancellation identities, two-model second-moment nonidentifiability, and a stationary blended-line false-gradient example; illustrative first-order sensitivity calculations.",
+    "coefficient_domain": "Exact rational arithmetic for identities and blend example; IEEE binary64 for instrument-scale sensitivity illustrations.",
+    "conventions": "Sky centroid in arcsec, wavelength in nm, velocity in km/s; positive dispersion vector for increasing observed wavelength; matched same-line clumps have identical flux weights across exposures.",
+    "inputs": [
+      "Toy velocities {-250,-100,0,100,250} km/s; three sky offsets and three global exposure translations; approximate vacuum Halpha/[NII] wavelengths; nominal blue dispersion and PSF in Gabarra/Fumana."
+    ],
+    "bounds": {
+      "exact_cases": 225,
+      "real_galaxies_scored": 0
+    },
+    "non_claims": [
+      "Not a real-data velocity recovery or a0 test.",
+      "Does not establish actual exposure coverage, blending calibration or centroid errors.",
+      "Does not recover inclination, gas mass or outer flat speed."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-12T16:36:15.308409+00:00",
+    "runtime_seconds": 0.094514,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 10,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "route_spectral_check.py",
+    "route_spectral_inputs.json",
+    "gabarra.pdf",
+    "dunn.pdf",
+    "fumana.pdf",
+    "dasilva.pdf"
+  ],
+  "input_artifacts": [
+    {
+      "path": "route_spectral_check.py",
+      "sha256": "e5c28aa8afb5b32a1910dbaa85226a9212bc8eb18d817378800d38e0c138fae4",
+      "sha256_after": "e5c28aa8afb5b32a1910dbaa85226a9212bc8eb18d817378800d38e0c138fae4"
+    },
+    {
+      "path": "route_spectral_inputs.json",
+      "sha256": "c65aac082fba937145c21e910e78bdcefcfd5d646d379d823165d43b17364e48",
+      "sha256_after": "c65aac082fba937145c21e910e78bdcefcfd5d646d379d823165d43b17364e48"
+    },
+    {
+      "path": "gabarra.pdf",
+      "sha256": "a79d8dd75a74441842f948c08e0aeae70096a14fea2abc082965b4accace2508",
+      "sha256_after": "a79d8dd75a74441842f948c08e0aeae70096a14fea2abc082965b4accace2508"
+    },
+    {
+      "path": "dunn.pdf",
+      "sha256": "b3caa991d467137d1cd43979db5cbd304afd8d333f11e659c3bcb11a71cebae7",
+      "sha256_after": "b3caa991d467137d1cd43979db5cbd304afd8d333f11e659c3bcb11a71cebae7"
+    },
+    {
+      "path": "fumana.pdf",
+      "sha256": "1e37c597c47f31ebb6bddbd6115e83c5214ada0981ab353dd4465865cb7c5d92",
+      "sha256_after": "1e37c597c47f31ebb6bddbd6115e83c5214ada0981ab353dd4465865cb7c5d92"
+    },
+    {
+      "path": "dasilva.pdf",
+      "sha256": "a835d7f308517f308d91cf9ed6846724a9fb3441d99eb05dd50adc5fcfdde517",
+      "sha256_after": "a835d7f308517f308d91cf9ed6846724a9fb3441d99eb05dd50adc5fcfdde517"
+    }
+  ],
+  "output_directory": "route_spectral_run_001",
+  "declared_results": [
+    "route_spectral_run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "route_spectral_run_001/stdout.txt",
+      "sha256": "046c447a43bdeed149b7cd52b3e9cb52af723000df2de5610cadc59f7edb255a",
+      "kind": "log"
+    },
+    {
+      "path": "route_spectral_run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "route_spectral_run_001/results.json",
+      "sha256": "046c447a43bdeed149b7cd52b3e9cb52af723000df2de5610cadc59f7edb255a",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
