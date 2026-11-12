@@ -9,7 +9,8 @@ result file of each older lane that Section 7's survey of media quotes (M5, PH1,
 WM1) with the owner's retirement record of 2026-11-01; DCN1 (the disc-centre null) under fable52_push/; the note R541 (why 5.41;
 not a graded lane) and its lanes R541A to R541E under closure_2026_11_10/; and X38's README, which states route E. BX1 is included.
 Version 1.2 adds every lane folded into its Section 8 (closure_2026_11_10/ to closure_2026_11_12/, fable52_push/, hy4_preview_push/,
-hy4_push/, toe_2026_11_10/) and the audit files A1 to A4 of reviews/hy4_codex_audit_2026_11_12/.
+hy4_push/, toe_2026_11_10/) the audit files A1 to A4 of reviews/hy4_codex_audit_2026_11_12/, the corrections audit
+reviews/codex_corrections_audit_2026_11_12/ and the two owner decisions of 2026-11-12 on the Milky Way (revision 2).
 The shared checkout has diverged from origin (PD1 and PD2 are committed on origin only), so each lane path is taken from whichever
 of HEAD and origin/main last committed to it; the manifest records the ref and commit for each. Untracked files are not included
 and are listed (unless the same path is committed on the chosen ref); a tracked file modified in the working tree stops the build. Deterministic for given commits (fixed entry dates).
@@ -160,6 +161,23 @@ PATHS = [
  "reviews/hy4_codex_audit_2026_11_12/A2_medium_and_joint.md",
  "reviews/hy4_codex_audit_2026_11_12/A3_data_and_repairs.md",
  "reviews/hy4_codex_audit_2026_11_12/A4_paper_ledger_lean.md",
+ # version 1.2, revision 2: thirteen further lanes, the audit of the correction notices and the two owner decisions of 2026-11-12
+ "closure_2026_11_12/EFC1_external_field_convention",
+ "closure_2026_11_12/EUC3_nisp_source_redshifts",
+ "closure_2026_11_12/EUC6_wide_lens_environment",
+ "closure_2026_11_12/EUC7_slow_tail_kernel_lens_gates",
+ "closure_2026_11_12/HG2_hot_gas_profiles",
+ "closure_2026_11_12/LIT1_milky_way_prior_art",
+ "closure_2026_11_12/MWI1_inner_baryons",
+ "closure_2026_11_12/NIM2_curves_three_radii",
+ "closure_2026_11_12/RCF1_rotation_curve_refit",
+ "closure_2026_11_12/RG1_independent_regrade",
+ "closure_2026_11_12/SAT1_satellite_directions",
+ "closure_2026_11_12/SLK1_slow_tail_rar",
+ "closure_2026_11_12/STM1_stellar_mass_inventories",
+ "reviews/codex_corrections_audit_2026_11_12",
+ "campaign_fresh_gravity/OWNER_DECISION_2026-11-12_EXTERNAL_FIELD_READING.md",
+ "campaign_fresh_gravity/OWNER_DECISION_2026-11-12b_ROW32_KILL.md",
 ]
 REFS = ("HEAD", "origin/main")
 def git(*a, check=True):
