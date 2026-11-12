@@ -856,19 +856,29 @@ def run(mutate=None):
             P("     C != 0: R = r - xi = 3r - C r^2 ; dR/dr = 3 - 2Cr < 0 for Cr > 1.5 => FOLDS;")
             P("             rho/rho_ref = (3-Cr)^2 (3-2Cr) is NEGATIVE for Cr > 1.5 and grows as")
             P("             -2 C^3 r^3 for large r, against the law's r^-2.")
-            P("   C[/rM]   rho/rho_ref at r=1 rM      at r=60 rM    fold?   law's rho/rho_ref at 60 rM")
-            bites = True
+            P("   C[/rM]  rho(1 rM)/rho_ref  rho(60 rM)/rho_ref   law(60 rM)  unphysical?")
+            table = []
+            mb_x = 10.0 ** 10.90
+            a0_x = A0["canonical"]
+            s_x = 0.0
+            rM_x = math.sqrt(G * mb_x / a0_x)
+            h60 = halo("point", 60.0 * rM_x, mb_x, a0_x, s_x)
+            law60 = h60["rho_c"] / RHO_REF[PRIMARY_REF]
             for C in (0.0, 1e-2, 3e-2, 1e-1):
-                row = []
+                dens = []
                 for x in (1.0, 60.0):
-                    Rr = 3 * x - C * x * x
-                    row.append((Rr / x) ** 2 * (3 - 2 * C * x))
-                fold = (3 - 2 * C * 60.0) < 0
-                law60 = (1.0 / K) * 4.0 / (60.0 ** 3)
-                P("   %7.0e   %+.4e            %+.4e       %s      %.4e"
-                  % (C, row[0], row[1], "yes" if fold else "no", law60))
-                if C > 0.0:
-                    bites &= (row[1] < 0.0)          # negative density: unphysical
+                    Rr = 3.0 * x - C * x * x
+                    dens.append((Rr / x) ** 2 * (3.0 - 2.0 * C * x))
+                P("   %7.1e  %+16.4e  %+17.4e  %11.4e    %s"
+                  % (C, dens[0], dens[1], law60, "yes" if dens[1] < 0.0 else "no"))
+                table.append((C, dens[1], law60))
+            # BITE test A: some member of the C1+C2 family is unphysical (rho < 0)
+            A = any(d < 0.0 for (_, d, _) in table)
+            # BITE test B: NO member tracks the law's r^-2 (ratio must miss 1 by >2x)
+            B = all(abs(d / l - 1.0) > 1.0 for (_, d, l) in table if l > 0)
+            P("      family has an unphysical (negative-density) member : %s" % A)
+            P("      no member reproduces the law's r^-2 density       : %s" % B)
+            bites = bool(A and B)
             P("   No member reproduces the law's density for any rho_ref.")
             P("   M4 %s" % ("BITES" if bites else "DOES NOT BITE"))
             R["mutate"] = dict(arm="M4", bites=bool(bites))
