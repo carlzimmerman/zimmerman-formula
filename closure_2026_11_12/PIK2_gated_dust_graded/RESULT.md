@@ -137,4 +137,14 @@ Neither is a pressure ceiling on mu_K, so I neither confirm nor dispute 450.
 - C1's a0-saturation regime;
 - any Lean.
 
+**Commit ids and the lead's re-run (added 2026-11-12, after landing; no number or label changes).** Local / origin:
+criteria 95edd35e0b / 30437ca36e; scripts and runs ccc4f4fc92 / 4958e06600; RESULT_BLIND 6652b8a845 / c1987ded02; RESULT
+50b150708e / 4c424c9275. Pushed. The lead session re-ran all seven jobs from a copy at the same folder depth, one
+thread, in sequence (`pik2_row0.py`, `pik2_row2.py` and `pik2_static.py`, each also with `--mutate`, then
+`pik2_grade.py`): the seven JSON outputs are equal in content to the committed ones (the four large ones compared after
+unpacking), `pik2_grade.out` is equal byte for byte, and the six other logs differ only in their runtime line. The lead
+also confirmed in git that the criteria commit holds that one file. That is a reproduction of this lane's own code, not
+an independent re-grade. A CMB-ONLY label is not a window, so no re-grade is owed for a hit; the items listed above as
+not computed stay not computed.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
