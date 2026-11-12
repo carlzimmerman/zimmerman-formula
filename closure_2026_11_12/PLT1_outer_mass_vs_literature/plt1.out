@@ -1,0 +1,136 @@
+
+======================================================================================================================
+PLT1  the framework's enclosed mass at >= 100 kpc vs the Figure 13 literature compilation   (criteria e51543aa5e)
+======================================================================================================================
+     TEST lane. kappa = 1/2 FITTED; not theory closed. Adopts nothing.
+
+======================================================================================================================
+KNOWN-ANSWER CHECKS
+======================================================================================================================
+  [PASS] KA1 the file is the one named in the criteria
+         (md5 5b0cc3aa9947286eb9348e947d01182d)
+  [PASS] KA2 fig13's joint file reproduces Table 4's All column (13 values, each within 0.011e11)
+         (largest difference 0.0050 e11; masses in the file are in Msun)
+  [PASS] KA3 the baryon model as ported (total 6.681e10 within 0.1 %; M_sph/M_b 0.9777 at 30, 0.9972 at 80, within 0.0005)
+         (M_b = 6.6814e+10; M_sph/M_b = 0.9777, 0.9972)
+  [PASS] KA4 the line reproduces the record (E0 at 80; E1 at 80, 150, 200, 300; within 0.5 %) and the closed-form plateau
+         (worst vs record 0.011%; closed form 5.276 e11, worst at 2000 kpc 0.052%)
+  [PASS] KA5 the statistic on synthetic rows (on the line: z = 0, PASSES; three sigma above: z = -3, FAILS LOW; median of -4,-1,0,1,4 is 0)
+         (on-line pulls [0.0, 0.0, 0.0]; three-sigma pulls [-3.0, -3.0, -3.0] -> FAILS LOW)
+
+======================================================================================================================
+MUTATIONS
+======================================================================================================================
+  written to plt1_mut.out: class H: both bite; class S: both bite
+
+======================================================================================================================
+THE ROWS  (every row of the two files with r >= 100 kpc; masses in 1e11 Msun; z = pull with the 20 per cent floor)
+======================================================================================================================
+  excluded for an unusable error: H 0, S 0
+  class  r     M      +hi    -lo    tracer            method               label                             z: E1can  E1alt  E0can  E0alt
+  H     100    5.75   0.23   0.28   rrl               DF                   Hattori21                          -0.55  -0.52  +1.08  +1.56
+  H     100    6.07   1.50   1.50   kgiant            DF                   Deason21                           -0.47  -0.45  +0.51  +0.83
+  H     100    6.90   0.50   0.40   kgiant            DF                   Shen22                             -1.49  -1.46  +0.09  +0.55
+  H     100    8.10   5.50   2.90   bhb               Jeans                Nesti13                            -0.93  -0.92  -0.30  -0.11
+  H     120    5.40   2.00   1.40   bhb+rgb           Jeans                Battaglia05                        -0.09  -0.09  +1.20  +1.45
+  H     150    7.50   2.50   2.50   bhb               Jeans                Deason12b                          -0.80  -0.80  +0.95  +1.22
+  H     200    6.80   4.10   4.10   bhb+kgiant        Jeans                Bhattacharjee14                    -0.27  -0.27  +1.39  +1.57
+  H     200    8.11   0.41   0.50   rrl               DF                   Hattori21                          -2.24  -2.24  +2.78  +3.27
+  S     100    5.30   2.10   1.20   gc                DF                   Eadie19                            -0.07  -0.05  +0.74  +0.98
+  S     100    5.60   0.40   0.40   stream            stream               Vasiliev21                         -0.39  -0.37  +1.17  +1.63
+  S     100    7.30   0.90   0.80   gc+satellites     DF                   CorreaMagnus22                     -1.59  -1.56  -0.18  +0.24
+  S     100    7.80   2.00   1.70   satellites        GME                  Slizewski22                        -1.34  -1.32  -0.34  -0.05
+  S     100    8.50   3.30   2.00   gc                DF                   Vasiliev19                         -1.53  -1.51  -0.59  -0.31
+  S     100    9.00   1.30   1.30   gc+satellites     DF                   Li25                               -2.30  -2.28  -1.03  -0.66
+  S     200   11.00   2.70   2.20   gc+satellites     DF                   CorreaMagnus22                     -2.56  -2.56  +0.77  +1.10
+  S     200   14.90   4.00   4.00   gc+satellites     DF                   Li25                               -2.88  -2.87  -0.23  +0.03
+  S     240    7.90   2.30   2.30   satellites        TME                  Makarov25                          -1.04  -1.04  +2.33  +2.62
+  S     273   14.30   3.50   3.20   satellites        TME                  Fritz20                            -3.20  -3.20  +0.92  +1.25
+
+  the line at selected radii [1e11 Msun]:   r     E1 can   E1 alt   E0 can   E0 alt
+                                            100     5.18     5.21     7.03     7.69
+                                            125     5.23     5.24     8.70     9.53
+                                            150     5.25     5.26    10.37    11.37
+                                            200     5.26     5.27    13.72    15.04
+                                            250     5.27     5.27    17.07    18.72
+                                            300     5.27     5.27    20.42    22.40
+
+======================================================================================================================
+THE GATE   class median pull, |z_med| <= 2 passes.  Negative = line below the published masses
+======================================================================================================================
+
+  E1 canonical:
+     class H: n = 8, z_med = -0.68, range [-2.24, -0.09], rows beyond 2 sigma: 1  ->  PASSES
+        variants: r >= 150 only: PASSES; symmetric errors: PASSES; 10 per cent floor: PASSES; 30 per cent floor: PASSES; any single row dropped: all PASSES
+        reported, published errors only: z_med = -0.94 -> PASSES
+     class S: n = 10, z_med = -1.56, range [-3.20, -0.07], rows beyond 2 sigma: 4  ->  PASSES, FRAGILE
+        variants: r >= 150 only: FAILS LOW; symmetric errors: PASSES; 10 per cent floor: FAILS LOW; 30 per cent floor: PASSES; any single row dropped: all PASSES
+        reported, published errors only: z_med = -2.40 -> FAILS LOW
+     CASE LABEL: H: PASSES / S: PASSES, FRAGILE     HEADLINE: PASSES, FRAGILE
+
+  E1 alt:
+     class H: n = 8, z_med = -0.66, range [-2.24, -0.09], rows beyond 2 sigma: 1  ->  PASSES
+        variants: r >= 150 only: PASSES; symmetric errors: PASSES; 10 per cent floor: PASSES; 30 per cent floor: PASSES; any single row dropped: all PASSES
+        reported, published errors only: z_med = -0.94 -> PASSES
+     class S: n = 10, z_med = -1.54, range [-3.20, -0.05], rows beyond 2 sigma: 4  ->  PASSES, FRAGILE
+        variants: r >= 150 only: FAILS LOW; symmetric errors: PASSES; 10 per cent floor: PASSES; 30 per cent floor: PASSES; any single row dropped: all PASSES
+        reported, published errors only: z_med = -2.37 -> FAILS LOW
+     CASE LABEL: H: PASSES / S: PASSES, FRAGILE     HEADLINE: PASSES, FRAGILE
+
+  E0 canonical:
+     class H: n = 8, z_med = +1.01, range [-0.30, +2.78], rows beyond 2 sigma: 1  ->  PASSES
+        variants: r >= 150 only: PASSES; symmetric errors: PASSES; 10 per cent floor: PASSES; 30 per cent floor: PASSES; any single row dropped: all PASSES
+        reported, published errors only: z_med = +1.26 -> PASSES
+     class S: n = 10, z_med = +0.28, range [-1.03, +2.33], rows beyond 2 sigma: 1  ->  PASSES
+        variants: r >= 150 only: PASSES; symmetric errors: PASSES; 10 per cent floor: PASSES; 30 per cent floor: PASSES; any single row dropped: all PASSES
+        reported, published errors only: z_med = +0.29 -> PASSES
+     CASE LABEL: H: PASSES / S: PASSES     HEADLINE: PASSES
+
+  E0 alt:
+     class H: n = 8, z_med = +1.34, range [-0.11, +3.27], rows beyond 2 sigma: 1  ->  PASSES
+        variants: r >= 150 only: PASSES; symmetric errors: PASSES; 10 per cent floor: PASSES; 30 per cent floor: PASSES; any single row dropped: all PASSES
+        reported, published errors only: z_med = +1.61 -> PASSES
+     class S: n = 10, z_med = +0.61, range [-0.66, +2.62], rows beyond 2 sigma: 1  ->  PASSES
+        variants: r >= 150 only: PASSES; symmetric errors: PASSES; 10 per cent floor: PASSES; 30 per cent floor: PASSES; any single row dropped: all PASSES
+        reported, published errors only: z_med = +0.78 -> PASSES
+     CASE LABEL: H: PASSES / S: PASSES     HEADLINE: PASSES
+
+======================================================================================================================
+REPORTED, NOT GRADED
+======================================================================================================================
+  the paper's NFW extrapolation (file range 80 to 250 kpc): 7.53 at 100, 9.65 at 150, 11.27 at 200 kpc
+     class H: n = 8 (of 8), z_med = +0.88, range [-0.15, +1.74] -> PASSES
+     class S: n = 9 (of 10), z_med = +0.09, range [-0.77, +1.52] -> PASSES
+
+  field window: e_N in [0, 0.05] for which a class passes (step 0.0005); record 0.01273; rotation curve [0, 0.008]
+     canonical: H passes for [0.0000, 0.0405];  S passes for [0.0000, 0.0165];  both for [0.0000, 0.0165]
+     alt      : H passes for [0.0000, 0.0405];  S passes for [0.0000, 0.0165];  both for [0.0000, 0.0165]
+
+  baryon amplitude A that centres a class under E1 (z_med = 0):
+     canonical: class H: A = 1.34; class S: A = 1.65
+     alt      : class H: A = 1.32; class S: A = 1.59
+
+  matched-field value of today's correction lane (4.94 / 4.95 e11 at 200 kpc) against rows at r >= 150 kpc:
+     canonical class H: n = 3, pulls -0.94, -0.34, -2.57; median -0.94
+     canonical class S: n = 4, pulls -2.78, -3.05, -1.21, -3.41; median -2.91
+     alt       class H: n = 3, pulls -0.93, -0.34, -2.55; median -0.93
+     alt       class S: n = 4, pulls -2.77, -3.04, -1.20, -3.40; median -2.91
+
+  row 32's kill as first registered (a measured M(<200 kpc) >= 1.0e12), on the rows at r >= 150 kpc:
+     class H r = 150 kpc: 7.50 (-2.50) e11  ->  central value < 1.0e12;  at two published sigma not >= 1.0e12
+     class H r = 200 kpc: 6.80 (-4.10) e11  ->  central value < 1.0e12;  at two published sigma not >= 1.0e12
+     class H r = 200 kpc: 8.11 (-0.50) e11  ->  central value < 1.0e12;  at two published sigma not >= 1.0e12
+     class S r = 200 kpc: 11.00 (-2.20) e11  ->  central value >= 1.0e12;  at two published sigma not >= 1.0e12
+     class S r = 200 kpc: 14.90 (-4.00) e11  ->  central value >= 1.0e12;  at two published sigma not >= 1.0e12
+     class S r = 240 kpc: 7.90 (-2.30) e11  ->  central value < 1.0e12;  at two published sigma not >= 1.0e12
+     class S r = 273 kpc: 14.30 (-3.20) e11  ->  central value >= 1.0e12;  at two published sigma not >= 1.0e12
+
+======================================================================================================================
+LABELS
+======================================================================================================================
+  E1 canonical: H: PASSES / S: PASSES, FRAGILE   ->  PASSES, FRAGILE
+  E1 alt      : H: PASSES / S: PASSES, FRAGILE   ->  PASSES, FRAGILE
+  E0 canonical: H: PASSES / S: PASSES   ->  PASSES
+  E0 alt      : H: PASSES / S: PASSES   ->  PASSES
+
+PLT1 COMPLETE. kappa = 1/2 FITTED; not theory closed. Adopts nothing.
