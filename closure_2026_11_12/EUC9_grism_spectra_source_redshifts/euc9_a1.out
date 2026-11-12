@@ -1,0 +1,124 @@
+EUC9 (GRISM SPECTRA SOURCE REDSHIFTS)   *** POST HOC AMENDMENT A1: re-co-added dither spectra, dither test required ***
+footings (m/s^2): canonical 9.3603e-11, alt 1.1320e-10
+
+[data]
+  systems: S 6173 (P 3192), X 2580, truth lens EUCL-DR1-L015763;  targets 3184;  spectra read 3184
+  P  N = 3192, evaluable 1164 (0.365); median noise rescale 1.08, median good-pixel fraction 0.95; not evaluable: {'no spectrum passing the quality prerequisites': 1992, 'no lens object': 36}
+  S  N = 6173, evaluable 2260 (0.366); median noise rescale 1.08, median good-pixel fraction 0.95; not evaluable: {'no spectrum passing the quality prerequisites': 3808, 'no lens object': 105}
+  X  N = 2580, evaluable  923 (0.358); median noise rescale 1.08, median good-pixel fraction 0.95; not evaluable: {'no spectrum passing the quality prerequisites': 1433, 'no lens object': 90, 'no redshift interval': 134}
+  coverage gate (>= 30 % of S and of X evaluable): PASS
+
+[instrument checks]
+  PASS K1  EUC1 reproduced: N(P) = 3192, source-free b_med law S = -0.019 / -0.044 to 0.001 : N = 3192, -0.0185 / -0.0439
+  PASS K2  EUC2 anchor L015763 at z_l(DESI), z_s = 1.3657: b = +0.231 / +0.215 to 0.002 : +0.2314 / +0.2149
+  PASS K5  fetch complete; 20 objects read again identical; range route equals the service : targets with neither a spectrum nor a recorded reason: 0; no spectrum (reason recorded): 0; read again identical: 20 of 20; field objects identical to the per-object service: 31 of 31
+  PASS I1  injected pairs (S/N 12) returned within 13.4 A in >= 70 % : 236 / 300 = 0.787
+  PASS I2  injected single centred lines (S/N 12) returned as SECURE-A1 in <= 5 % : 0 / 300 = 0.000
+  PASS I3  injected mirrored pairs pass the dither test in >= 60 % : 231 / 300 = 0.770   [gates the -D rungs only]
+  PASS I4  injected true doublets pass the dither test in <= 5 % : 6 / 300 = 0.020   [gates the -D rungs only]
+
+[rung A1-TA: each component S/N >= 3.5, combined >= 6, pair over single dchi2 >= 9; and the dither test]
+  P  evaluable 1164: SECURE  17 (rate 0.0146 [0.0085, 0.0233]) {'HA2': 1, 'O3': 3, 'HA1': 13}; AMBIGUOUS-OWN 90; any pair before guards 144; sign-flipped SECURE 2
+  S  evaluable 2260: SECURE  28 (rate 0.0124 [0.0082, 0.0179]) {'HA2': 1, 'O3': 5, 'HA1': 22}; AMBIGUOUS-OWN 121; any pair before guards 209; sign-flipped SECURE 4
+  X  evaluable  923: SECURE   6 (rate 0.0065 [0.0024, 0.0141]) {'HA1': 6}; AMBIGUOUS-OWN 10; any pair before guards 40; sign-flipped SECURE 5
+  H2  purity null: grade-X SECURE = 6 against a limit of 2.3 -> FAIL;  expected false among P / S: 7.6 / 14.7 (of 17 / 28)
+  H2b signal-free null: sign-flipped SECURE in S = 4 against a limit of 5.6 -> PASS
+  H4  truth EUCL-DR1-L015763 (z_s = 1.3657): RECOVERED  [midpoint 15531.4 A, z = 1.3659 as HA1, half-split 67.0 A = 1.50 arcsec (theta_E 1.51), sigma 12, S/N 40.6 + 34.8, ratio 1.15, dchi2 1210.9, support [], dither test D = -6.4 (passes; dithers 1 + 1)]
+
+[rung A1-TB: each component S/N >= 5.0, combined >= 8, pair over single dchi2 >= 16; and the dither test]
+  P  evaluable 1164: SECURE  12 (rate 0.0103 [0.0053, 0.0179]) {'HA2': 1, 'HA1': 8, 'O3': 3}; AMBIGUOUS-OWN 47; any pair before guards 80; sign-flipped SECURE 0
+  S  evaluable 2260: SECURE  18 (rate 0.0080 [0.0047, 0.0126]) {'HA2': 1, 'HA1': 12, 'O3': 5}; AMBIGUOUS-OWN 64; any pair before guards 108; sign-flipped SECURE 1
+  X  evaluable  923: SECURE   3 (rate 0.0033 [0.0007, 0.0095]) {'HA1': 3}; AMBIGUOUS-OWN 3; any pair before guards 11; sign-flipped SECURE 3
+  H2  purity null: grade-X SECURE = 3 against a limit of 1.5 -> FAIL;  expected false among P / S: 3.8 / 7.3 (of 12 / 18)
+  H2b signal-free null: sign-flipped SECURE in S = 1 against a limit of 3.6 -> PASS
+  H4  truth EUCL-DR1-L015763 (z_s = 1.3657): RECOVERED  [midpoint 15531.4 A, z = 1.3659 as HA1, half-split 67.0 A = 1.50 arcsec (theta_E 1.51), sigma 12, S/N 40.6 + 34.8, ratio 1.15, dchi2 1210.9, support [], dither test D = -6.4 (passes; dithers 1 + 1)]
+
+[every pair passing the frozen rule at TA, with its dither test: grade X listed, lenses summarised]
+  X EUCL-DR1-L009321 z = 1.0689 (HA1) midpoint 13582 A, half-split 60.3 A, S/N 8.6, ratio 1.53, dchi2 10.3 | interval [0.26, 0.30], theta_E given 1.29 | support [] | TB: none | dither test: D = -6.1 PASSES
+  X EUCL-DR1-L009615 z = 1.8012 (HA1) midpoint 18389 A, half-split 30.2 A, S/N 8.9, ratio 1.77, dchi2 14.6 | interval [0.16, 0.31], theta_E given 0.79 | support [] | TB: none | dither test: D = -2.4 fails
+  X EUCL-DR1-L010317 z = 1.7298 (HA1) midpoint 17920 A, half-split 70.4 A, S/N 16.9, ratio 1.26, dchi2 78.0 | interval [0.08, 0.10], theta_E given 1.15 | support [] | TB: SECURE | dither test: D = -0.3 fails
+  X EUCL-DR1-L010702 z = 0.9311 (HA1) midpoint 12677 A, half-split 33.5 A, S/N 7.9, ratio 1.09, dchi2 22.7 | interval [0.68, 0.73], theta_E given 0.82 | support [] | TB: none | dither test: D = +0.8 fails
+  X EUCL-DR1-L011884 z = 1.2593 (HA1) midpoint 14831 A, half-split 30.2 A, S/N 9.4, ratio 0.90, dchi2 13.7 | interval [0.59, 0.70], theta_E given 0.99 | support [] | TB: none | dither test: D = +2.4 fails
+  X EUCL-DR1-L019145 z = 1.6027 (HA1) midpoint 17086 A, half-split 53.6 A, S/N 7.8, ratio 0.59, dchi2 16.9 | interval [0.83, 0.93], theta_E given 0.76 | support [] | TB: none | dither test: D = -1.6 fails
+  X EUCL-DR1-L019162 z = 1.4134 (HA2) midpoint 15843 A, half-split 57.0 A, S/N 6.8, ratio 1.31, dchi2 12.5 | interval [0.81, 0.93], theta_E given 0.82 | support ['SII 3.6'] | TB: none | dither test: D = -2.8 fails
+  X EUCL-DR1-L019330 z = 1.8456 (HA1) midpoint 18680 A, half-split 53.6 A, S/N 7.7, ratio 0.82, dchi2 27.3 | interval [0.55, 0.62], theta_E given 1.21 | support [] | TB: none | dither test: D = +1.1 fails
+  X EUCL-DR1-L020451 z = 1.2567 (HA1) midpoint 14815 A, half-split 40.2 A, S/N 9.6, ratio 0.76, dchi2 12.4 | interval [0.66, 0.72], theta_E given 0.97 | support [] | TB: none | dither test: D = +1.1 fails
+  X EUCL-DR1-L020898 z = 1.1358 (HA1) midpoint 14021 A, half-split 57.0 A, S/N 8.8, ratio 0.97, dchi2 25.8 | interval [0.50, 0.54], theta_E given 0.84 | support [] | TB: SECURE | dither test: D = +3.5 PASSES
+  X EUCL-DR1-L021432 z = 1.7237 (HA1) midpoint 17880 A, half-split 63.6 A, S/N 8.5, ratio 1.49, dchi2 9.5 | interval [0.19, 0.22], theta_E given 0.95 | support [] | TB: none | dither test: D = -2.2 fails
+  X EUCL-DR1-L021559 z = 1.1307 (HA1) midpoint 13987 A, half-split 50.2 A, S/N 8.0, ratio 0.97, dchi2 15.0 | interval [0.72, 0.77], theta_E given 0.68 | support [] | TB: none | dither test: D = +0.2 fails
+  X EUCL-DR1-L021865 z = 1.3205 (HA1) midpoint 15233 A, half-split 70.4 A, S/N 15.9, ratio 1.00, dchi2 102.3 | interval [0.66, 0.74], theta_E given 1.29 | support [] | TB: SECURE | dither test: D = +0.8 fails
+  X EUCL-DR1-L022173 z = 1.2292 (HA1) midpoint 14634 A, half-split 67.0 A, S/N 15.6, ratio 0.46, dchi2 15.0 | interval [0.74, 0.83], theta_E given 1.05 | support [] | TB: none | dither test: D = -1.7 fails
+  X EUCL-DR1-L024683 z = 1.0944 (HA1) midpoint 13749 A, half-split 53.6 A, S/N 6.9, ratio 1.29, dchi2 14.4 | interval [0.38, 0.41], theta_E given 0.82 | support [] | TB: none | dither test: D = +3.9 PASSES
+  X EUCL-DR1-L024791 z = 1.5364 (HA1) midpoint 16650 A, half-split 33.5 A, S/N 7.1, ratio 1.56, dchi2 13.3 | interval [0.32, 0.40], theta_E given 0.79 | support [] | TB: none | dither test: D = +1.8 fails
+  X EUCL-DR1-L025983 z = 1.2486 (HA1) midpoint 14761 A, half-split 46.9 A, S/N 10.9, ratio 1.64, dchi2 18.2 | interval [0.84, 0.96], theta_E given 0.68 | support [] | TB: SECURE | dither test: D = +5.4 PASSES
+  X EUCL-DR1-L026009 z = 1.2531 (HA1) midpoint 14791 A, half-split 30.2 A, S/N 23.2, ratio 0.51, dchi2 28.7 | interval [0.62, 0.72], theta_E given 0.72 | support [] | TB: SECURE | dither test: D = +17.0 PASSES
+  X EUCL-DR1-L026109 z = 1.6017 (HA1) midpoint 17079 A, half-split 60.3 A, S/N 9.4, ratio 1.34, dchi2 31.3 | interval [0.86, 1.07], theta_E given 0.86 | support [] | TB: SECURE | dither test: D = +0.3 fails
+  X EUCL-DR1-L026498 z = 1.6435 (HA1) midpoint 17354 A, half-split 40.2 A, S/N 12.0, ratio 0.48, dchi2 18.1 | interval [0.50, 0.57], theta_E given 1.15 | support [] | TB: none | dither test: D = +3.0 fails
+  X EUCL-DR1-L026522 z = 1.8227 (HA1) midpoint 18530 A, half-split 30.2 A, S/N 11.7, ratio 0.47, dchi2 17.7 | interval [0.38, 0.43], theta_E given 0.70 | support [] | TB: none | dither test: D = -10.7 PASSES
+  X EUCL-DR1-L026575 z = 1.0449 (HA1) midpoint 13424 A, half-split 63.6 A, S/N 6.0, ratio 0.82, dchi2 9.3 | interval [0.32, 0.39], theta_E given 0.93 | support [] | TB: none | dither test: D = -0.6 fails
+  S: 72 pairs; dither test possible 64; passes 28; median |D| 2.5
+  X: 22 pairs; dither test possible 22; passes 6; median |D| 2.0
+
+[ladder]
+  A1-TA H2 FAIL, H2b PASS, H4 PASS, I3/I4 PASS
+  A1-TB H2 FAIL, H2b PASS, H4 PASS, I3/I4 PASS
+  -> no rung passes: NOT EVALUABLE
+
+[readings on rung A1-TA, POST HOC (A1): not the frozen gates' verdicts, VOID (the search is not evaluable)]
+  P                              law S canonical N =  17  b_med = +0.264 [+0.151, +0.342]   source-free -0.183   n(b > 0.25) = 10
+  P                              law S alt       N =  17  b_med = +0.252 [+0.134, +0.328]   source-free -0.210   n(b > 0.25) = 9
+  S, theta_E below 1.0           law S canonical N =  20  b_med = +0.191 [+0.099, +0.335]   source-free -0.217   n(b > 0.25) = 9
+  S, theta_E below 1.0           law S alt       N =  20  b_med = +0.177 [+0.082, +0.323]   source-free -0.244   n(b > 0.25) = 9
+  S, theta_E 1.0 to 1.3          law S canonical N =   4  b_med = +0.400 [+0.026, +0.722]   source-free +0.053   n(b > 0.25) = 3
+  S, theta_E 1.0 to 1.3          law S alt       N =   4  b_med = +0.385 [+0.009, +0.709]   source-free +0.029   n(b > 0.25) = 2
+  S, theta_E 1.3 and above       law S canonical N =   4  b_med = +0.383 [+0.135, +0.512]   source-free +0.167   n(b > 0.25) = 3
+  S, theta_E 1.3 and above       law S alt       N =   4  b_med = +0.367 [+0.117, +0.492]   source-free +0.144   n(b > 0.25) = 3
+  S                              law S canonical N =  28  b_med = +0.258 [+0.146, +0.345]   source-free -0.174   n(b > 0.25) = 15
+  S                              law S alt       N =  28  b_med = +0.243 [+0.133, +0.332]   source-free -0.198   n(b > 0.25) = 14
+  P                              law B canonical N =  17  b_med = +0.292 [+0.188, +0.374]
+  P                              law B alt       N =  17  b_med = +0.282 [+0.176, +0.364]
+  line identity: with the HA1 lenses read at the [O III] redshift the words are THE SAME
+  secure sample of S: N = 28 ({'HA1': 22, 'HA2': 1, 'O3': 5}); median theta_E 0.78 arcsec (sample P: 0.90); median z_s 1.40
+
+[robustness, law S; reported]
+  1 P, HA1 at the [O III] redshift law S canonical N =  17  b_med = +0.136 [+0.025, +0.173]   source-free -0.183   n(b > 0.25) = 4
+  1 P, HA1 at the [O III] redshift law S alt       N =  17  b_med = +0.119 [+0.008, +0.157]   source-free -0.210   n(b > 0.25) = 3
+  2 P, two-line classes only     law S canonical N =   4  b_med = +0.162 [+0.137, +0.253]   source-free -0.188   n(b > 0.25) = 1
+  2 P, two-line classes only     law S alt       N =   4  b_med = +0.145 [+0.121, +0.234]   source-free -0.214   n(b > 0.25) = 0
+  3 P, tier TB only              law S canonical N =  12  b_med = +0.231 [+0.144, +0.323]   source-free -0.174   n(b > 0.25) = 6
+  3 P, tier TB only              law S alt       N =  12  b_med = +0.215 [+0.128, +0.309]   source-free -0.199   n(b > 0.25) = 5
+  4 P, + AMBIGUOUS-OWN           law S canonical N = 107  b_med = +0.279 [+0.242, +0.321]   source-free +0.023   n(b > 0.25) = 60
+  4 P, + AMBIGUOUS-OWN           law S alt       N = 107  b_med = +0.263 [+0.225, +0.302]   source-free -0.003   n(b > 0.25) = 56
+  5 P, DESI deflector z          law S canonical N =  17  b_med = +0.264 [+0.151, +0.342]   source-free -0.192   n(b > 0.25) = 10
+  5 P, DESI deflector z          law S alt       N =  17  b_med = +0.252 [+0.134, +0.328]   source-free -0.218   n(b > 0.25) = 9
+  6 P, dither-confirmed only     law S canonical N =  17  b_med = +0.264 [+0.151, +0.342]   source-free -0.183   n(b > 0.25) = 10
+  6 P, dither-confirmed only     law S alt       N =  17  b_med = +0.252 [+0.134, +0.328]   source-free -0.210   n(b > 0.25) = 9
+  7 S, dither-confirmed only     law S canonical N =  28  b_med = +0.258 [+0.146, +0.345]   source-free -0.174   n(b > 0.25) = 15
+  7 S, dither-confirmed only     law S alt       N =  28  b_med = +0.243 [+0.133, +0.332]   source-free -0.198   n(b > 0.25) = 14
+
+  per-system table: euc9_a1_sources.csv (226 systems with a TA class before the dither test; grade X rows included and marked)
+  figures: figs_a1/ta_*.png (95 pairs passing the rule at TA: truth lens, S, then grade X)
+  sample P per lens (law S): id, z_l, z_s, line, half-split arcsec, theta_E, S/N, support, b canonical / alt (source-free alt)
+    EUCL-DR1-L015348 0.300 1.0807 HA1 0.67 0.98  26.0 -                      +0.009 / -0.009  (-0.188)
+    EUCL-DR1-L013489 0.630 1.0919 HA1 2.17 1.68  22.1 -                      +0.303 / +0.290  (-0.182)
+    EUCL-DR1-L016733 0.840 1.1735 HA1 0.67 0.60  11.1 -                      +0.457 / +0.447  (-0.236)
+    EUCL-DR1-L010584 0.680 1.1899 HA1 0.67 0.70  23.3 -                      +0.210 / +0.196  (-0.275)
+    EUCL-DR1-L016242 0.700 1.2491 HA1 0.67 0.70  10.7 -                      +0.342 / +0.328  (-0.134)
+    EUCL-DR1-L002118 0.630 1.2654 HA1 0.67 0.67  18.7 -                      +0.027 / +0.011  (-0.379)
+    EUCL-DR1-L017336 0.950 1.3409 HA1 0.67 0.80   9.2 -                      +0.328 / +0.317  (-0.356)
+    EUCL-DR1-L004690 0.890 1.3914 HA1 1.05 1.02   6.5 -                      +0.722 / +0.709  (+0.135)
+    EUCL-DR1-L012745 0.350 1.3996 HA1 1.65 2.13   6.8 -                      +0.462 / +0.444  (+0.282)
+    EUCL-DR1-L017201 1.030 1.5644 HA1 1.42 0.96  21.1 -                      +0.264 / +0.252  (-0.351)
+    EUCL-DR1-L017254 1.110 1.6389 HA1 0.67 0.75   6.5 -                      +0.348 / +0.337  (-0.302)
+    EUCL-DR1-L011509 0.790 1.6537 O3  0.67 0.68  20.4 OIII4960 5.9           +0.173 / +0.157  (-0.218)
+    EUCL-DR1-L017181 0.840 1.7072 O3  0.67 0.76  13.5 OIII4960 4.0           +0.137 / +0.121  (-0.271)
+    EUCL-DR1-L001874 0.340 1.7706 HA2 0.97 1.15  11.0 OIII5008 4.9           +0.253 / +0.234  (+0.112)
+    EUCL-DR1-L004527 0.280 1.7925 HA1 1.20 0.70   8.8 -                      +0.312 / +0.294  (+0.197)
+    EUCL-DR1-L016344 0.320 1.8324 HA1 1.50 1.61   8.8 -                      +0.135 / +0.117  (+0.007)
+    EUCL-DR1-L001971 1.060 2.4671 O3  0.67 0.59  22.9 OIII4960 5.5           +0.151 / +0.134  (-0.210)
+
+[summary]
+  instrument checks: all pass;  coverage: pass;  reading rung: none
+  EUC1-F: not graded.  EUC5-F: not graded.  (N(P) with a pair passing the rule: 17; void)
+  A1 WORD (canonical / alt): NOT EVALUABLE / NOT EVALUABLE
+  kappa = 1/2 FITTED. No outcome favours the framework.  (138 s)

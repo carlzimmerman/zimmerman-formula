@@ -5,6 +5,9 @@ Frozen criteria: FROZEN_CRITERIA.md (commit bea4eacfa8), section 3.  The search 
 written and tested on 31 field spectra (none from ECLIPSE) before the criteria were frozen and is unchanged since.
 `dither_test` and `inject_dithers` implement AMENDMENT_A0.md (82cf65da28) A0.2; they were written after that
 amendment was committed and before any lens or grade-X spectrum was opened.
+`recoadd` and the `nd_min` argument of `search` implement AMENDMENT_A1.md (25d7f82cc2, post hoc); the default
+`nd_min` is the frozen value, so the frozen search is unchanged.  `partner_joint` and the `joint` argument of
+`identify` implement the A1 addendum (8bc1675a42); the default is the frozen identity step.
 """
 import math
 import numpy as np
@@ -70,7 +73,7 @@ def prepare(d):
     e2 = np.where(good, e * k, np.inf)
     return dict(r=r, e=e2, good=good, nd=nd, k=k, cont=np.where(good, cont, 0.0))
 
-def search(p, theta_E, sign=1.0, single_only=False):
+def search(p, theta_E, sign=1.0, single_only=False, nd_min=NDITH_MIN):
     """best mirrored pair per tier (or None).  sign = -1 searches the sign-flipped residual (signal-free null)."""
     r = sign * p["r"]; iv = np.where(p["good"], 1.0 / p["e"] ** 2, 0.0); riv = r * iv
     gd = p["good"].astype(float)
@@ -83,7 +86,7 @@ def search(p, theta_E, sign=1.0, single_only=False):
         up = d2 > M1; M1 = np.where(up, d2, M1); S1 = np.where(up, s, S1); A1 = np.where(up, T / np.where(N > 0, N, 1.0), A1)
     if single_only:
         cov = (G1[16.0] @ gd) * DW
-        ok = (cov >= COVER_MIN) & (ndc >= NDITH_MIN) & (S1 <= 40.0)
+        ok = (cov >= COVER_MIN) & (ndc >= nd_min) & (S1 <= 40.0)
         out = {}
         for tn, each, comb, dchi in TIERS:
             j = int(np.argmax(np.where(ok, M1, 0.0)))
@@ -93,7 +96,7 @@ def search(p, theta_E, sign=1.0, single_only=False):
     best = {tn: None for tn, _, _, _ in TIERS}
     for sig in SIG_PAIR:
         T = G[sig] @ riv; N = G2[sig] @ iv; cov = (G[sig] @ gd) * DW
-        okc = (cov >= COVER_MIN) & (ndc >= NDITH_MIN) & (N > 0)
+        okc = (cov >= COVER_MIN) & (ndc >= nd_min) & (N > 0)
         for k in range(kmin, min(kmax, KMAX) + 1):
             # blue centre j, red centre j + k; half-split s = k * GSTEP / 2
             C = cross(sig, k) @ iv
@@ -133,9 +136,27 @@ def partner(p, pair, lam_mid, sign=1.0):
     a = float(np.sum(sign * p["r"] * t * iv)) / N
     return dict(flux=a, sn=a * math.sqrt(N))
 
-def identify(p, pair, sign=1.0):
+def partner_joint(p, pair, lam_mid, sign=1.0):
+    """A1.6: the partner pair fitted jointly with the main pair's two components; None if it cannot be separated"""
+    if lam_mid - pair["s"] < WL[4] or lam_mid + pair["s"] > WL[-5]: return None
+    iv = np.where(p["good"], 1.0 / p["e"] ** 2, 0.0)
+    fb = pair["ratio"] / (1.0 + pair["ratio"])
+    tp = fb * template(lam_mid - pair["s"], pair["sig"])[0] + (1.0 - fb) * template(lam_mid + pair["s"], pair["sig"])[0]
+    if float(np.sum(tp * p["good"]) * DW) < COVER_MIN: return None
+    M = np.vstack([template(pair["lam0"] - pair["s"], pair["sig"])[0], template(pair["lam0"] + pair["s"], pair["sig"])[0], tp])
+    N = (M * iv) @ M.T; T = (M * iv) @ (sign * p["r"])
+    if np.linalg.cond(N) > 1.0e8: return None
+    cov = np.linalg.inv(N); a = cov @ T
+    if cov[2, 2] <= 0: return None
+    return dict(flux=float(a[2]), sn=float(a[2] / math.sqrt(cov[2, 2])))
+
+def identify(p, pair, sign=1.0, joint=False):
     """which line the primary pair is: O3 ([O III] 5008 with its 4960 partner), HA2 (H-alpha with a second line), HA1"""
     tot = pair["flux_b"] + pair["flux_r"]
+    if joint:
+        def partner(p_, pair_, lam_, sign_): return partner_joint(p_, pair_, lam_, sign_)
+    else:
+        partner = globals()["partner"]
     q = partner(p, pair, pair["lam0"] * O3A / O3B, sign)
     if q is not None and q["sn"] >= PARTNER_SN and 0.15 <= q["flux"] / tot <= 0.6:
         return "O3", pair["lam0"] / O3B - 1.0, ["OIII4960 %.1f" % q["sn"]]
@@ -197,3 +218,22 @@ def inject_dithers(raw, lam0, s, sig, flux, mirrored=True):
         else: DS[i] += 0.5 * flux * (tb + tr)
     out["DS"] = DS
     return out
+
+# ------------------------------------------------------------------ AMENDMENT A1.1: re-co-addition without rejection
+def recoadd(raw):
+    """inverse-variance mean of the prepared dither residuals; `nd` = number of grism positions with a good dither"""
+    num = np.zeros(NPIX); den = np.zeros(NPIX); cover = {g: np.zeros(NPIX, bool) for g in POS}; used = {g: 0 for g in POS}
+    for i in range(len(raw["DS"])):
+        g = str(raw["dpos"][i]).strip()
+        if g not in cover: continue
+        p = prepare(dict(WAVELENGTH=raw["WAVELENGTH"], SIGNAL=raw["DS"][i], UNCERTAINTY=np.sqrt(np.clip(np.asarray(raw["DV"][i], float), 0, None)),
+                         MASK=raw["DM"][i], NDITH=np.ones(NPIX, int)))
+        if p is None: continue
+        w = np.where(p["good"], 1.0 / p["e"] ** 2, 0.0); num += p["r"] * w; den += w; cover[g] |= p["good"]; used[g] += 1
+    if used[POS[0]] == 0 or used[POS[1]] == 0: return None
+    good = den > 0
+    if good.sum() < 100: return None
+    r = np.where(good, num / np.where(good, den, 1.0), 0.0); e = np.where(good, 1.0 / np.sqrt(np.where(good, den, 1.0)), np.inf)
+    x = r[good] / e[good]
+    k = max(1.0, 1.4826 * float(np.median(np.abs(x - np.median(x)))))
+    return dict(r=r, e=np.where(good, e * k, np.inf), good=good, nd=cover[POS[0]].astype(int) + cover[POS[1]].astype(int), k=k, cont=np.zeros(NPIX))
