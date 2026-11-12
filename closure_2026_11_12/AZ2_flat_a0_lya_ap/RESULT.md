@@ -61,4 +61,16 @@ BAO systematics beyond its quoted errors; other expansion models (CPL, curvature
 duality (unaffected, not re-run); profile resolution finer than 0.05 near the best fit and 0.5 elsewhere; DESI's own Lya-only
 AP numbers (Eq. 24-25, not used).
 
+Commits (local / origin): criteria 8c95369a28 / 09c322c86b (alone); amendment A1 a3d9e9bf28 / 506abaffbb (alone); amendment A2
+fbf7814e5d / 57839167bb (alone); scripts, outputs and RESULT 8818d5b397 / c189f1791f.
+
+Re-run by the lead from a copy at the same folder depth, one thread, all ten modes (KA1, KA2, both footings as frozen,
+under A2, and their mutations). It does NOT reproduce byte for byte: the fits land at slightly different floating-point
+values. Every label line (HEADLINE, KA, MUTATE) is identical in all ten outputs. The largest numeric difference is
+1.1e-4 in the graded files and 7.5e-4 in the mutation files (a node of the Om 0.35 cell); the headline sqrt X(2.33)
+agrees to better than 5e-5. In the two MUTATE_A2 JSON files some grid keys differ in name (515 keys in each).
+`az2_canonical_A1_partial_stopped.out` was not regenerated. A re-run reproduces the arithmetic and is not an
+independent re-grade; the amended reading has not had one, and the lead did not check the PROVISIONAL published
+values against the paper. Pushed by replay; no history rewritten.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
