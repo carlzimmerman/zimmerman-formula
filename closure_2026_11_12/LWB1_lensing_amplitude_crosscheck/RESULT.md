@@ -87,4 +87,11 @@ reads above the target. The lenses, the lens-source geometry and the wp bias cal
   fiducial-distance difference (Planck18 data, Omega_m 0.310 against form B's 0.315); the realisation noise of BX1 pair A
   (N(k) used as is). Footings agree to <= 0.03 widths and are never pooled.
 
+Commits (local / origin): criteria f4b3128cc1 / 318735a111 (alone); amendment A1 3f7cfa2127 / b887d6ea5f (alone); results
+913b50d1ed / 05bc2008e0; RESULT trim 49e7ccd6f5 / cffd84f609. Re-run by the lead from a copy at the same folder depth (the main
+run, the three mutations and the grading): of 10 regenerated files, 8 equal the committed ones byte for byte and
+2 differ only in timing stamps; the two `lwb1_asfrozen_run1` files (the first run, before A1's corrected check) were
+not regenerated. A re-run reproduces the arithmetic and is not an independent re-grade; the amended reading has not
+had one. Pushed by replay; no history rewritten.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
