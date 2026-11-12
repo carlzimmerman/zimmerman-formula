@@ -61,4 +61,13 @@ projection over the lens n(z); the realisation noise of BX1 pair A; whether `bli
 Commits: READING 55b7a264a6; code and run 434df4e462; graded rows ee6f51a542; RESULT_BLIND 449a97c992; this file next.
 Not pushed.
 
+**Commit ids and the lead's re-run (added 2026-11-12, after landing; no number or label changes).** Local / origin:
+READING 55b7a264a6 / 7935a29f23; code and run 434df4e462 / fc4974c2e4; graded rows ee6f51a542 / 788e32ee3b; RESULT_BLIND
+449a97c992 / 72994e6bcc; RESULT 0d189314b2 / 36fe734361. Pushed. The lead session re-ran `lwb1r.py`, `lwb1r.py --mutate MU1`
+and `lwb1r_grade.py` from a copy at the same folder depth: `lwb1r_grade.json` and `lwb1r_grade.out` are equal byte for
+byte; `lwb1r.json` and `lwb1r_MUTATE_MU1.json` differ only in `runtime_s`; the two `.out` logs differ only in the timing
+line and the appended exit line. That is a reproduction of this lane's own code, not a further independent re-grade, and
+it shares everything this file lists as shared with LWB1 (the DESI DR1 vectors and covariances, BX1's splice, CO1's
+R_tot, KL1's targets). The PROVISIONAL reference value 0.794 was not checked against its source.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
