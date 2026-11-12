@@ -75,3 +75,18 @@ On SLACS, 1 % / 3 % of lenses would need stars lighter than Chabrier: the kernel
 
 `euc7.py`, `euc7.out`, `euc7_results.json`, `euc7_MUTATE_newton.out` / `_results.json` (exit 1). Imports EUC1's and
 EUC5's code. Kernel source: `research_closure_2026_11_12/euclid_desi_phase2/theory/THEORY_CHECKPOINT.md` §4.
+
+
+## Dated note (2026-11-12, evening): the Euclid dynamics row (T5) was one lens short
+
+T5 reads EUC5's amended per-lens file, which held 55 lenses; one DESI spectrum (EUCL-DR1-L016656) arrived after that
+file was made (see EUC5 RESULT.md §3e). Re-run in a copy of the lane folders with the 56-lens file in place
+(`euc7_final56.out`):
+
+| T5, slow-tail kernel, sample S | 55 lenses (above) | 56 lenses |
+|---|---|---|
+| canonical | +0.085 [+0.009, +0.147] | +0.076 [+0.008, +0.147] |
+| alt | +0.076 [+0.003, +0.138] | +0.067 [+0.001, +0.131] |
+
+The reading keeps its label (AT AN EDGE). T1–T4 and the lane word (SLACS lensing, INSIDE THE WINDOW / INSIDE THE
+WINDOW) do not use that file and are identical in the re-run.
