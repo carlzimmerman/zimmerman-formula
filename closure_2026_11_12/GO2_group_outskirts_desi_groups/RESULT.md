@@ -78,7 +78,6 @@ holds no a0 and both footings give identical numbers. Cold dark energy is a grav
   changes T500 and the stars but not the measured unit.
 
 ## Not checked
-
 The M_HALO mass definition (not stated in the docs); the DESI group randoms (not fetched; footprint approximated from 0.25 deg
 galaxy cells); neighbour completeness at z > 0.2; the local y offset behind M3; any temperature outside R500 (y sees pressure
 only); DES or HSC shear (not on disk).
@@ -96,6 +95,6 @@ only); DES or HSC shear (not on disk).
 
 Files: `FROZEN_CRITERIA.md`; `go2_scout.py` -> `go2_scout.out` (pre-freeze counts); `go2_measure.py` -> `go2_ka1a.out`,
 `go2_measure_log.txt`; `go2.py` -> `go2.out`, `go2.json`, `go2_MUTATE.out`. Commits: criteria df55a3237c (alone); scripts,
-outputs and this RESULT in the next commit. Not pushed.
+outputs and RESULT 57afae3555; this id line in the commit after. Not pushed.
 
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
