@@ -127,6 +127,20 @@ fibre do not feel: an extended component. The bands are wide because 16 to 25 no
 their honest size. The two subsamples are different lenses (DESI footprint against grism detections), compared class
 by class. `euc5_a2_scale.json` holds the numbers; its sha256 is in the commit message.
 
+### 3d. Status of EUC5-F after EUC3 (dated addition, 2026-11-12 evening)
+
+**EUC5-F: NOT GRADED.** EUC3 landed NOT EVALUABLE / NOT EVALUABLE (local 7f8650cc35, origin 089271db7f): its purity
+null fails at both frozen tiers (12 of 934 grade-X non-lenses pass the source rule against a limit of 2.9), so its
+catalogue redshifts are not lensed-source redshifts and its printed reading is void. No Einstein-radius class has 10
+lenses with a valid source redshift, so the reading rule above has nothing to act on. EUC3's files were checked against
+its report (gates, counts and both mutation twins as stated).
+
+The bands above stand exactly as sealed and are not moved. EUC3's void numbers have been seen by this lane's author
+(sample P, 18 systems: +0.251 / +0.236; sample S, 35: +0.292 / +0.277); they were not split by class here and are not
+compared with the bands, because by EUC3's own null most of them are wrong pairings. The forecast is to be graded on
+the first set of source redshifts that passes its own purity gate and gives at least 10 lenses in a class: follow-up
+spectroscopy of the ECLIPSE lenses, or a lane on the extracted grism spectra.
+
 ## 4. What this says
 
 1. **No gate.** The raw readings span +0.05 (SDSS pipeline, 16 lenses) to +0.25 (DESI fits with the mock correction).
