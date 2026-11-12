@@ -3,9 +3,12 @@
 2026-11-12. Criteria 364e9d08c9 (alone, before any script or lens spectrum). Amendment A1 a24ffd2dc2 (post hoc,
 disclosed, before the amended code).
 
-**Status: INTERIM.** The 382 public DESI DR1 spectra of the 369 flagged lenses are searched. The paced position search
-of the 6,104 extension lenses is still running (the service rate-limits; about 1.4 s per position). The final run on
-the full set will replace the numbers below; the words are not expected to move, for the reasons in §3.
+**Status: FINAL.** The paced search of all 6,104 extension positions finished. It added one spectrum on one lens: the
+catalogue's `desi_deflector_specz` flag already marked essentially every Euclid lens DESI DR1 observed. Final set: 383
+spectra on 370 lenses. Both searches were rerun on it and give the same detections and the same failed nulls as the
+first pass (sections 1 and 2; the first-pass outputs are kept under `firstpass/`). The frozen mutation twin
+(`EUC2_MUTATE=fakesep`) exits 2, not 1: the wrong-separation search finds 11 "doublets", 27 % of the real search's 41,
+above its 20 % line. That is the same purity defect H2 reports, seen from the other side.
 
 ## Verdict: NOT EVALUABLE as frozen. NOT EVALUABLE under A1. EUC1-F stays open.
 
@@ -97,8 +100,14 @@ gate and not a population statement. It does sit where EUC1's map put its class 
 
 ## 5. Files
 
-`euc2_fetch.py` (paced, obeys the service's rate limit), `euc2.py` (frozen search and reading), `euc2_a1.py`
-(amended search), `firstpass/` (outputs, match table and plots of the flagged-spectra pass, preserved as seen).
+`euc2_fetch.py` (paced, obeys the service's rate limit), `euc2_matches.csv` (383 spectra), `euc2.py` (frozen search and
+reading) with `euc2.out`, `euc2_results.json`, `euc2_sources.csv`, `euc2_MUTATE_fakesep.*` (exit 2), `figs/`;
+`euc2_a1.py` (amended search) with `euc2_a1.out`, `euc2_a1_results.json`, `euc2_a1_sources.csv`, `figs_a1/`;
+`firstpass/` (outputs, match table and plots of the flagged-spectra pass, preserved as seen). On the final set A1's
+injection recovery at S = 10 is 131 / 200 (137 / 200 on the first pass; the random draws differ).
+
+**Follow-on lanes.** EUC3 (Euclid's own grism redshifts) was started on these four pairs as its truth set. EUC5 fitted
+stellar velocity dispersions to the same DESI spectra.
 Spectra are outside git (`_external_data/euclid_dr1_eclipse/desi_spectra/`, NOIRLab SPARCL, DESI-DR1, anonymous).
 
 One code fix between the first pass and any later run: the plot overlay of the fitted doublet (no number affected).
