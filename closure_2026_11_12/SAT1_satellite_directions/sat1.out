@@ -1,0 +1,99 @@
+SAT1  satellites' actual directions vs the external field, G239's QUMOND formula. kappa = 1/2 FITTED.
+Known-answer checks first; labels only if all pass.
+  [PASS] KA1 isotropic directions reproduce G239's angle average at 200 kpc (5.264e11, 0.5 per cent) and the quadrature  (isotropic mean 5.2678e11 +- 0.0041 (MC s.e., 2e7 draws), quadrature 5.2642e11)
+  [PASS] KA2 G239 anisotropy at 80 kpc: parallel +0.58 and perpendicular +0.01, each to 1 percentage point  (parallel +0.5761, perpendicular +0.0137, M_avg(80) 4.9766e11)
+  [PASS] KA3 geometry, coordinates and sign convention  (r(Sun-GC) 0.0208, r(180,0,10) 18.1220, NGP b 90.0000, SgrA* (0.000,-0.000); along field mu -1 M -28.581; opposite mu +1 M 35.210; avg 5.264)
+  [PASS] KA4 SI hand check of M_avg(200 kpc) canonical with scipy quad  (SI 5.26421e11 vs script 5.26421e11; M_b(<200) 6.6721e+10 Msun)
+  [PASS] KA5 data: LMC 45-55 kpc helio, Leo I 240-270 kpc Galactocentric, >= 20 primary rows in 50-300 kpc  (69 rows read; LMC d 49.59; Leo I r 262.0; primary n 35)
+  [PASS] KA6 the scaled line at F gives median class-S plateau pull -2 to 1e-3  (canonical: F 1.2584 (median at F=1 -2.716, at F -2.0000); canonical HOT: F 0.8205 (median at F=1 -1.340, at F -2.0000); alt: F 1.1519 (median at F=1 -2.441, at F -2.0000); alt HOT: F 0.7511 (median at F=1 -1.045, at F -2.0000))
+
+SAMPLE (primary: host mw, confirmed galaxy, 50 <= r <= 300 kpc; mu = -cos psi, field to (268.5, +33.0))
+  name                        l       b       d_helio  r_GC    cos(psi)
+  Grus II                     351.13  -51.94     55.2    50.7  -0.391
+  Tucana V                    316.31  -51.90     55.0    51.8  -0.082
+  Tucana II                   328.09  -52.32     56.2    52.5  -0.180
+  Bootes I                    358.11  +69.64     66.4    64.0  +0.534
+  Ursa Minor                  104.98  +44.81     70.1    72.1  -0.179
+  Eridanus IV                 209.50  -27.79     69.8    76.2  +0.120
+  Draco                        86.37  +34.71     81.5    81.5  -0.376
+  Sculptor                    287.70  -83.15     83.9    84.0  -0.444
+  Leo Minor I                 202.23  +64.75     81.7    85.2  +0.612
+  Aquarius III                 87.92  -62.03     85.5    85.7  -0.870
+  Sextans                     243.51  +42.27     85.9    88.9  +0.899
+  Pegasus IV                   80.80  -21.40     89.9    89.1  -0.980
+  Reticulum III               273.88  -45.65     91.6    91.6  +0.196
+  Bootes V                     55.67  +70.92    101.9   100.7  +0.289
+  Ursa Major I                159.36  +54.43     97.3   101.9  +0.272
+  Carina IV                   273.62  -23.53    104.7   104.5  +0.551
+  Aquarius II                  55.11  -53.01    107.6   105.1  -0.875
+  Carina                      260.11  -22.22    105.6   107.2  +0.556
+  Leo VI                      214.60  +70.32    111.2   113.7  +0.666
+  Centaurus I                 300.27  +21.90    117.7   114.1  +0.893
+  Crater II                   282.91  +42.03    116.6   115.5  +0.979
+  Grus I                      338.68  -58.24    126.5   122.7  -0.322
+  Hercules                     28.73  +36.86    130.6   125.1  -0.010
+  Antlia II                   264.80  +11.25    124.2   125.2  +0.921
+  Fornax                      237.25  -65.66    142.6   144.6  -0.197
+  Hydra II                    295.62  +30.48    151.4   148.5  +0.938
+  Leo IV                      265.46  +56.51    151.4   151.9  +0.914
+  Canes Venatici II           113.57  +82.70    160.0   160.6  +0.443
+  Leo V                       261.86  +58.53    169.0   169.9  +0.896
+  Pisces II                    79.22  -47.11    182.8   181.9  -0.966
+  Columba I                   231.63  -28.89    182.8   187.3  +0.318
+  Canes Venatici I             74.30  +79.83    210.9   210.7  +0.394
+  Leo II                      220.16  +67.23    208.9   211.5  +0.710
+  Pegasus III                  69.86  -41.83    214.8   212.8  -0.963
+  Leo I                       225.98  +49.11    258.2   262.0  +0.805
+
+GRADED (headline = census, primary sample) and variants
+  canonical census primary G239 B1 n=13: mean M_app 1.165 vs mean M_avg 5.218 -> R_mean 0.223 [LOO 0.065-0.440; boot16-84 -0.143-0.563]; median 1.536 vs 5.219 -> R_med 0.294; median per-sat ratio 0.296; negative 5; <mu> -0.359, <mu^2> 0.431  => LOWERS
+  canonical census primary G239 B2 n= 9: mean M_app -3.952 vs mean M_avg 5.262 -> R_mean -0.751 [LOO -1.755-0.099; boot16-84 -2.198-0.766]; median -7.955 vs 5.262 -> R_med -1.512; median per-sat ratio -1.511; negative 7; <mu> -0.283, <mu^2> 0.567  => ANISOTROPY LOWERS IT, NOT ENOUGH  (F = 1.258)
+  alt       census primary G239 B1 n=13: mean M_app 1.271 vs mean M_avg 5.700 -> R_mean 0.223 [LOO 0.065-0.440; boot16-84 -0.143-0.563]; median 1.682 vs 5.701 -> R_med 0.295; median per-sat ratio 0.296; negative 5; <mu> -0.359, <mu^2> 0.431  => LOWERS
+  alt       census primary G239 B2 n= 9: mean M_app -4.326 vs mean M_avg 5.748 -> R_mean -0.752 [LOO -1.757-0.098; boot16-84 -2.201-0.765]; median -8.693 vs 5.749 -> R_med -1.512; median per-sat ratio -1.511; negative 7; <mu> -0.283, <mu^2> 0.567  => ANISOTROPY LOWERS IT, NOT ENOUGH  (F = 1.152)
+  canonical census primary REL B1 n=13: mean M_app 5.345 vs mean M_avg 5.218 -> R_mean 1.024 [LOO 1.008-1.056; boot16-84 0.970-1.078]; median 5.701 vs 5.219 -> R_med 1.092; median per-sat ratio 1.086; negative 0; <mu> -0.359, <mu^2> 0.431  => RAISES, FRAGILE
+  canonical census primary REL B2 n= 9: mean M_app 4.811 vs mean M_avg 5.262 -> R_mean 0.914 [LOO 0.882-0.950; boot16-84 0.846-0.982]; median 4.539 vs 5.262 -> R_med 0.863; median per-sat ratio 0.862; negative 0; <mu> -0.283, <mu^2> 0.567  => ANISOTROPY LOWERS IT, NOT ENOUGH  (F = 1.258)
+  alt       census primary REL B1 n=13: mean M_app 5.839 vs mean M_avg 5.700 -> R_mean 1.024 [LOO 1.008-1.057; boot16-84 0.970-1.078]; median 6.231 vs 5.701 -> R_med 1.093; median per-sat ratio 1.087; negative 0; <mu> -0.359, <mu^2> 0.431  => RAISES, FRAGILE
+  alt       census primary REL B2 n= 9: mean M_app 5.253 vs mean M_avg 5.748 -> R_mean 0.914 [LOO 0.881-0.950; boot16-84 0.845-0.982]; median 4.954 vs 5.749 -> R_med 0.862; median per-sat ratio 0.861; negative 0; <mu> -0.283, <mu^2> 0.567  => ANISOTROPY LOWERS IT, NOT ENOUGH  (F = 1.152)
+  canonical census V-ALL   G239 B1 n=15: mean M_app 0.738 vs mean M_avg 5.219 -> R_mean 0.141 [LOO 0.000-0.322; boot16-84 -0.189-0.463]; median 1.536 vs 5.221 -> R_med 0.294; median per-sat ratio 0.296; negative 6; <mu> -0.389, <mu^2> 0.434  => LOWERS
+  canonical census V-ALL   G239 B2 n=11: mean M_app -3.459 vs mean M_avg 5.261 -> R_mean -0.657 [LOO -1.452-0.032; boot16-84 -1.755-0.566]; median -7.955 vs 5.262 -> R_med -1.512; median per-sat ratio -1.511; negative 8; <mu> -0.303, <mu^2> 0.526  => ANISOTROPY LOWERS IT, NOT ENOUGH  (F = 1.258)
+  alt       census V-ALL   G239 B1 n=15: mean M_app 0.804 vs mean M_avg 5.702 -> R_mean 0.141 [LOO -0.000-0.321; boot16-84 -0.190-0.463]; median 1.682 vs 5.704 -> R_med 0.295; median per-sat ratio 0.296; negative 6; <mu> -0.389, <mu^2> 0.434  => LOWERS
+  alt       census V-ALL   G239 B2 n=11: mean M_app -3.786 vs mean M_avg 5.748 -> R_mean -0.659 [LOO -1.453-0.032; boot16-84 -1.756-0.566]; median -8.693 vs 5.749 -> R_med -1.512; median per-sat ratio -1.511; negative 8; <mu> -0.303, <mu^2> 0.526  => ANISOTROPY LOWERS IT, NOT ENOUGH  (F = 1.152)
+  canonical census V-ALL   REL B1 n=15: mean M_app 5.358 vs mean M_avg 5.219 -> R_mean 1.027 [LOO 1.012-1.054; boot16-84 0.981-1.076]; median 5.701 vs 5.221 -> R_med 1.092; median per-sat ratio 1.086; negative 0; <mu> -0.389, <mu^2> 0.434  => RAISES, FRAGILE
+  canonical census V-ALL   REL B2 n=11: mean M_app 4.946 vs mean M_avg 5.261 -> R_mean 0.940 [LOO 0.916-0.971; boot16-84 0.880-1.002]; median 4.936 vs 5.262 -> R_med 0.938; median per-sat ratio 0.940; negative 0; <mu> -0.303, <mu^2> 0.526  => ANISOTROPY LOWERS IT, NOT ENOUGH  (F = 1.258)
+  alt       census V-ALL   REL B1 n=15: mean M_app 5.854 vs mean M_avg 5.702 -> R_mean 1.027 [LOO 1.013-1.055; boot16-84 0.981-1.076]; median 6.231 vs 5.704 -> R_med 1.092; median per-sat ratio 1.087; negative 0; <mu> -0.389, <mu^2> 0.434  => RAISES, FRAGILE
+  alt       census V-ALL   REL B2 n=11: mean M_app 5.401 vs mean M_avg 5.748 -> R_mean 0.940 [LOO 0.916-0.971; boot16-84 0.880-1.002]; median 5.390 vs 5.749 -> R_med 0.938; median per-sat ratio 0.939; negative 0; <mu> -0.303, <mu^2> 0.526  => ANISOTROPY LOWERS IT, NOT ENOUGH  (F = 1.152)
+  canonical census V-PM    G239 B1 n=13: mean M_app 1.165 vs mean M_avg 5.218 -> R_mean 0.223 [LOO 0.065-0.440; boot16-84 -0.143-0.563]; median 1.536 vs 5.219 -> R_med 0.294; median per-sat ratio 0.296; negative 5; <mu> -0.359, <mu^2> 0.431  => LOWERS
+  canonical census V-PM    G239 B2 n= 9: mean M_app -3.952 vs mean M_avg 5.262 -> R_mean -0.751 [LOO -1.755-0.099; boot16-84 -2.198-0.766]; median -7.955 vs 5.262 -> R_med -1.512; median per-sat ratio -1.511; negative 7; <mu> -0.283, <mu^2> 0.567  => ANISOTROPY LOWERS IT, NOT ENOUGH  (F = 1.258)
+  alt       census V-PM    G239 B1 n=13: mean M_app 1.271 vs mean M_avg 5.700 -> R_mean 0.223 [LOO 0.065-0.440; boot16-84 -0.143-0.563]; median 1.682 vs 5.701 -> R_med 0.295; median per-sat ratio 0.296; negative 5; <mu> -0.359, <mu^2> 0.431  => LOWERS
+  alt       census V-PM    G239 B2 n= 9: mean M_app -4.326 vs mean M_avg 5.748 -> R_mean -0.752 [LOO -1.757-0.098; boot16-84 -2.201-0.765]; median -8.693 vs 5.749 -> R_med -1.512; median per-sat ratio -1.511; negative 7; <mu> -0.283, <mu^2> 0.567  => ANISOTROPY LOWERS IT, NOT ENOUGH  (F = 1.152)
+  canonical census V-PM    REL B1 n=13: mean M_app 5.345 vs mean M_avg 5.218 -> R_mean 1.024 [LOO 1.008-1.056; boot16-84 0.970-1.078]; median 5.701 vs 5.219 -> R_med 1.092; median per-sat ratio 1.086; negative 0; <mu> -0.359, <mu^2> 0.431  => RAISES, FRAGILE
+  canonical census V-PM    REL B2 n= 9: mean M_app 4.811 vs mean M_avg 5.262 -> R_mean 0.914 [LOO 0.882-0.950; boot16-84 0.846-0.982]; median 4.539 vs 5.262 -> R_med 0.863; median per-sat ratio 0.862; negative 0; <mu> -0.283, <mu^2> 0.567  => ANISOTROPY LOWERS IT, NOT ENOUGH  (F = 1.258)
+  alt       census V-PM    REL B1 n=13: mean M_app 5.839 vs mean M_avg 5.700 -> R_mean 1.024 [LOO 1.008-1.057; boot16-84 0.970-1.078]; median 6.231 vs 5.701 -> R_med 1.093; median per-sat ratio 1.087; negative 0; <mu> -0.359, <mu^2> 0.431  => RAISES, FRAGILE
+  alt       census V-PM    REL B2 n= 9: mean M_app 5.253 vs mean M_avg 5.748 -> R_mean 0.914 [LOO 0.881-0.950; boot16-84 0.845-0.982]; median 4.954 vs 5.749 -> R_med 0.862; median per-sat ratio 0.861; negative 0; <mu> -0.283, <mu^2> 0.567  => ANISOTROPY LOWERS IT, NOT ENOUGH  (F = 1.152)
+  canonical HOT    primary G239 B1 n=13: mean M_app 2.350 vs mean M_avg 6.284 -> R_mean 0.374 [LOO 0.251-0.553; boot16-84 0.080-0.650]; median 2.665 vs 6.231 -> R_med 0.428; median per-sat ratio 0.439; negative 4; <mu> -0.359, <mu^2> 0.431  => LOWERS
+  canonical HOT    primary G239 B2 n= 9: mean M_app -1.668 vs mean M_avg 7.600 -> R_mean -0.219 [LOO -0.908-0.359; boot16-84 -1.184-0.798]; median -4.792 vs 7.454 -> R_med -0.643; median per-sat ratio -0.608; negative 7; <mu> -0.283, <mu^2> 0.567  => ANISOTROPY LOWERS IT, NOT ENOUGH  (F = 0.821)
+  alt       HOT    primary G239 B1 n=13: mean M_app 2.566 vs mean M_avg 6.864 -> R_mean 0.374 [LOO 0.251-0.553; boot16-84 0.079-0.650]; median 2.918 vs 6.806 -> R_med 0.429; median per-sat ratio 0.440; negative 4; <mu> -0.359, <mu^2> 0.431  => LOWERS
+  alt       HOT    primary G239 B2 n= 9: mean M_app -1.831 vs mean M_avg 8.303 -> R_mean -0.221 [LOO -0.909-0.358; boot16-84 -1.186-0.797]; median -5.234 vs 8.143 -> R_med -0.643; median per-sat ratio -0.608; negative 7; <mu> -0.283, <mu^2> 0.567  => ANISOTROPY LOWERS IT, NOT ENOUGH  (F = 0.751)
+  canonical HOT    primary REL B1 n=13: mean M_app 6.529 vs mean M_avg 6.284 -> R_mean 1.039 [LOO 1.023-1.072; boot16-84 0.989-1.089]; median 6.996 vs 6.231 -> R_med 1.123; median per-sat ratio 1.080; negative 0; <mu> -0.359, <mu^2> 0.431  => RAISES
+  canonical HOT    primary REL B2 n= 9: mean M_app 7.095 vs mean M_avg 7.600 -> R_mean 0.934 [LOO 0.902-0.974; boot16-84 0.863-1.003]; median 7.940 vs 7.454 -> R_med 1.065; median per-sat ratio 0.891; negative 0; <mu> -0.283, <mu^2> 0.567  => ANISOTROPY LOWERS IT, STILL ENOUGH  (F = 0.821)
+  alt       HOT    primary REL B1 n=13: mean M_app 7.134 vs mean M_avg 6.864 -> R_mean 1.039 [LOO 1.024-1.073; boot16-84 0.989-1.089]; median 7.648 vs 6.806 -> R_med 1.124; median per-sat ratio 1.081; negative 0; <mu> -0.359, <mu^2> 0.431  => RAISES
+  alt       HOT    primary REL B2 n= 9: mean M_app 7.748 vs mean M_avg 8.303 -> R_mean 0.933 [LOO 0.902-0.974; boot16-84 0.862-1.003]; median 8.668 vs 8.143 -> R_med 1.064; median per-sat ratio 0.891; negative 0; <mu> -0.283, <mu^2> 0.567  => ANISOTROPY LOWERS IT, STILL ENOUGH  (F = 0.751)
+  canonical HOT    V-ALL   G239 B1 n=15: mean M_app 1.945 vs mean M_avg 6.295 -> R_mean 0.309 [LOO 0.200-0.457; boot16-84 0.044-0.573]; median 2.665 vs 6.253 -> R_med 0.426; median per-sat ratio 0.439; negative 5; <mu> -0.389, <mu^2> 0.434  => LOWERS
+  canonical HOT    V-ALL   G239 B2 n=11: mean M_app -1.159 vs mean M_avg 7.550 -> R_mean -0.154 [LOO -0.701-0.318; boot16-84 -0.908-0.691]; median -4.792 vs 7.454 -> R_med -0.643; median per-sat ratio -0.608; negative 8; <mu> -0.303, <mu^2> 0.526  => ANISOTROPY LOWERS IT, NOT ENOUGH  (F = 0.821)
+  alt       HOT    V-ALL   G239 B1 n=15: mean M_app 2.124 vs mean M_avg 6.876 -> R_mean 0.309 [LOO 0.200-0.457; boot16-84 0.043-0.573]; median 2.918 vs 6.831 -> R_med 0.427; median per-sat ratio 0.440; negative 5; <mu> -0.389, <mu^2> 0.434  => LOWERS
+  alt       HOT    V-ALL   G239 B2 n=11: mean M_app -1.274 vs mean M_avg 8.248 -> R_mean -0.154 [LOO -0.702-0.318; boot16-84 -0.909-0.691]; median -5.234 vs 8.143 -> R_med -0.643; median per-sat ratio -0.608; negative 8; <mu> -0.303, <mu^2> 0.526  => ANISOTROPY LOWERS IT, NOT ENOUGH  (F = 0.751)
+  canonical HOT    V-ALL   REL B1 n=15: mean M_app 6.565 vs mean M_avg 6.295 -> R_mean 1.043 [LOO 1.030-1.072; boot16-84 1.001-1.088]; median 6.996 vs 6.253 -> R_med 1.119; median per-sat ratio 1.080; negative 0; <mu> -0.389, <mu^2> 0.434  => RAISES
+  canonical HOT    V-ALL   REL B2 n=11: mean M_app 7.246 vs mean M_avg 7.550 -> R_mean 0.960 [LOO 0.937-0.995; boot16-84 0.899-1.021]; median 7.940 vs 7.454 -> R_med 1.065; median per-sat ratio 0.993; negative 0; <mu> -0.303, <mu^2> 0.526  => ANISOTROPY LOWERS IT, STILL ENOUGH, FRAGILE  (F = 0.821)
+  alt       HOT    V-ALL   REL B1 n=15: mean M_app 7.174 vs mean M_avg 6.876 -> R_mean 1.043 [LOO 1.030-1.072; boot16-84 1.001-1.089]; median 7.648 vs 6.831 -> R_med 1.120; median per-sat ratio 1.081; negative 0; <mu> -0.389, <mu^2> 0.434  => RAISES
+  alt       HOT    V-ALL   REL B2 n=11: mean M_app 7.914 vs mean M_avg 8.248 -> R_mean 0.959 [LOO 0.937-0.995; boot16-84 0.898-1.022]; median 8.668 vs 8.143 -> R_med 1.064; median per-sat ratio 0.993; negative 0; <mu> -0.303, <mu^2> 0.526  => ANISOTROPY LOWERS IT, STILL ENOUGH, FRAGILE  (F = 0.751)
+  canonical HOT    V-PM    G239 B1 n=13: mean M_app 2.350 vs mean M_avg 6.284 -> R_mean 0.374 [LOO 0.251-0.553; boot16-84 0.080-0.650]; median 2.665 vs 6.231 -> R_med 0.428; median per-sat ratio 0.439; negative 4; <mu> -0.359, <mu^2> 0.431  => LOWERS
+  canonical HOT    V-PM    G239 B2 n= 9: mean M_app -1.668 vs mean M_avg 7.600 -> R_mean -0.219 [LOO -0.908-0.359; boot16-84 -1.184-0.798]; median -4.792 vs 7.454 -> R_med -0.643; median per-sat ratio -0.608; negative 7; <mu> -0.283, <mu^2> 0.567  => ANISOTROPY LOWERS IT, NOT ENOUGH  (F = 0.821)
+  alt       HOT    V-PM    G239 B1 n=13: mean M_app 2.566 vs mean M_avg 6.864 -> R_mean 0.374 [LOO 0.251-0.553; boot16-84 0.079-0.650]; median 2.918 vs 6.806 -> R_med 0.429; median per-sat ratio 0.440; negative 4; <mu> -0.359, <mu^2> 0.431  => LOWERS
+  alt       HOT    V-PM    G239 B2 n= 9: mean M_app -1.831 vs mean M_avg 8.303 -> R_mean -0.221 [LOO -0.909-0.358; boot16-84 -1.186-0.797]; median -5.234 vs 8.143 -> R_med -0.643; median per-sat ratio -0.608; negative 7; <mu> -0.283, <mu^2> 0.567  => ANISOTROPY LOWERS IT, NOT ENOUGH  (F = 0.751)
+  canonical HOT    V-PM    REL B1 n=13: mean M_app 6.529 vs mean M_avg 6.284 -> R_mean 1.039 [LOO 1.023-1.072; boot16-84 0.989-1.089]; median 6.996 vs 6.231 -> R_med 1.123; median per-sat ratio 1.080; negative 0; <mu> -0.359, <mu^2> 0.431  => RAISES
+  canonical HOT    V-PM    REL B2 n= 9: mean M_app 7.095 vs mean M_avg 7.600 -> R_mean 0.934 [LOO 0.902-0.974; boot16-84 0.863-1.003]; median 7.940 vs 7.454 -> R_med 1.065; median per-sat ratio 0.891; negative 0; <mu> -0.283, <mu^2> 0.567  => ANISOTROPY LOWERS IT, STILL ENOUGH  (F = 0.821)
+  alt       HOT    V-PM    REL B1 n=13: mean M_app 7.134 vs mean M_avg 6.864 -> R_mean 1.039 [LOO 1.024-1.073; boot16-84 0.989-1.089]; median 7.648 vs 6.806 -> R_med 1.124; median per-sat ratio 1.081; negative 0; <mu> -0.359, <mu^2> 0.431  => RAISES
+  alt       HOT    V-PM    REL B2 n= 9: mean M_app 7.748 vs mean M_avg 8.303 -> R_mean 0.933 [LOO 0.902-0.974; boot16-84 0.862-1.003]; median 8.668 vs 8.143 -> R_med 1.064; median per-sat ratio 0.891; negative 0; <mu> -0.283, <mu^2> 0.567  => ANISOTROPY LOWERS IT, STILL ENOUGH  (F = 0.751)
+
+Mutations: M1 bites, M2 bites, M3 passes (sat1_mut.out)
+kappa = 1/2 FITTED; not theory closed. Adopts nothing.
