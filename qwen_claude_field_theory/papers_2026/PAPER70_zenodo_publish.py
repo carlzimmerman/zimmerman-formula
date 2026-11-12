@@ -41,25 +41,27 @@ def register_gate():
     print(f"register gate passed: {len(reg['lanes'])} lanes, none open")
 
 def supplement_gate():
-    """Rebuild the supplement now and refuse unless its sha256 equals the committed manifest."""
-    import hashlib
+    """Rebuild the supplement now and refuse unless every file's sha256 equals the committed manifest (HEAD).
+    The zip embeds its own MANIFEST.json (with git_head), so the archive hash is not stable across commits;
+    the per-file hashes are, and those are what the deposit vouches for."""
     r = subprocess.run([sys.executable, SUPP_BUILD], capture_output=True, text=True)
     if r.returncode != 0:
         sys.exit(f"REFUSING TO PUBLISH: supplement build failed: {r.stderr[-300:]}")
-    # compare against the COMMITTED manifest (HEAD), not the one the builder just rewrote on disk
     rel = os.path.relpath(SUPP_MAN, ROOT)
     c = subprocess.run(["git", "-C", ROOT, "show", "HEAD:" + rel], capture_output=True, text=True)
     if c.returncode != 0:
         sys.exit("REFUSING TO PUBLISH: no committed supplement manifest at HEAD -- build, commit the manifest, rerun")
-    man = json.loads(c.stdout)
-    head = subprocess.check_output(["git", "-C", ROOT, "rev-parse", "HEAD"], text=True).strip()
-    got = hashlib.sha256(open(SUPP, "rb").read()).hexdigest()
-    if got != man.get("zip_sha256") or man.get("git_head") != head:
-        sys.exit(f"REFUSING TO PUBLISH: supplement zip (sha {got[:12]}, HEAD {head[:10]}) differs from the committed manifest (sha {str(man.get('zip_sha256'))[:12]}, git_head {str(man.get('git_head'))[:10]}) -- rebuild at HEAD, commit the manifest, rerun")
-    dirty = subprocess.run(["git", "-C", ROOT, "status", "--porcelain", "--", rel], capture_output=True, text=True).stdout.strip()
-    if dirty:
-        sys.exit("REFUSING TO PUBLISH: the on-disk manifest differs from HEAD (builder rewrote it) -- commit it or reset it, rerun")
-    print(f"supplement gate passed: {man['count']} files, {man['zip_bytes']/1e6:.1f} MB, git {man['git_head'][:10]}")
+    committed = json.loads(c.stdout)
+    rebuilt = json.load(open(SUPP_MAN))
+    if rebuilt["files"] != committed["files"]:
+        a, b = set(rebuilt["files"]), set(committed["files"])
+        diff = sorted((a ^ b) | {k for k in a & b if rebuilt["files"][k] != committed["files"][k]})
+        sys.exit(f"REFUSING TO PUBLISH: supplement content differs from the committed manifest in {len(diff)} file(s): {diff[:6]} -- rebuild at HEAD, commit the manifest, rerun")
+    # restore the committed manifest on disk so the tree stays clean; the zip just built is what gets uploaded
+    subprocess.run(["git", "-C", ROOT, "checkout", "--", rel], check=True)
+    import hashlib
+    zsha = hashlib.sha256(open(SUPP, "rb").read()).hexdigest()
+    print(f"supplement gate passed: {committed['count']} files match the committed manifest (git_head {committed['git_head'][:10]}); zip to upload sha256 {zsha[:16]}")
 
 def pending_gate():
     """Refuse to publish a draft that still carries a pending-lane placeholder."""

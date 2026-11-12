@@ -2,6 +2,32 @@
 
 **One claim: the galactic acceleration scale is set by the dark-energy density.**
 
+**Start here (8 November 2026): the theory as the record stands, with closure.** The relation a₀ = ½ c √(G ρ_DE) (κ = ½ FITTED),
+carried by the screened Khronon action v3s (Legendre form, Π⁶/Π² stiffness blend adopted 2026-11-07), with its field equations
+certified in Lean. One page: [`closure_2026_11_07/FINAL_THEORY_2026_11_07.md`](closure_2026_11_07/FINAL_THEORY_2026_11_07.md).
+Paper of record: **PAPER70**, "The a₀ Galaxy Law and its Screened Khronon Action: Field Equations, Lean Certificates, Closure Record",
+concept DOI [10.5281/zenodo.24040312](https://doi.org/10.5281/zenodo.24040312) (always the latest version); v1.5 DOI
+[10.5281/zenodo.24053083](https://doi.org/10.5281/zenodo.24053083) (2026-11-08); v1.6 DOI [10.5281/zenodo.24053740](https://doi.org/10.5281/zenodo.24053740) (2026-11-08; CMB3 audit, HY1); v1.7 DOI [10.5281/zenodo.24056963](https://doi.org/10.5281/zenodo.24056963) (2026-11-08; KR1 + KR2: the dust sector K(Q) closed at the level of its functional form); v1.8 DOI [10.5281/zenodo.24058756](https://doi.org/10.5281/zenodo.24058756) (2026-11-08; BG1: the baryon-state key also fails; no local variable and no clock carries the boundary); v1.9 DOI [10.5281/zenodo.24082193](https://doi.org/10.5281/zenodo.24082193) (2026-11-09; HL3: the cluster residual has the same shape on the lensing leg; PJ1, WD1, XF1 quarantined test lanes all fail; the action's own moving-body state leaves hosted members Newtonian, so the static grading was generous); v2.0 DOI [10.5281/zenodo.24086157](https://doi.org/10.5281/zenodo.24086157) (2026-11-09; closing statement: SK1 closes the selector catalog, TR1 pins the cluster missing mass as a universal falling fraction of the dynamical mass; within the catalog graded, no baryon-keyed completion of the law exists). **v2.1 DOI [10.5281/zenodo.24092073](https://doi.org/10.5281/zenodo.24092073)** (2026-11-09; the outside-AI exchange's test lanes, all failing; the law's phantom cannot be entirely conserved dark mass, and no local switch completes it).
+PDF + Lean/record supplement: [`qwen_claude_field_theory/papers_2026/`](qwen_claude_field_theory/papers_2026/); lane register:
+[`closure_2026_11_07/CLOSURE_REGISTER.json`](closure_2026_11_07/CLOSURE_REGISTER.json) (no lane open).
+- **What it is a complete theory of:** galaxy dynamics and the solar system. Passes SPARC and the radial-acceleration relation,
+  lensing = dynamics, Cassini/PPN/c_T through the screen, the moving Sun (MS3, scoped).
+- **Where it stops, by its own measurements (three facts, each independently confirmed):** F1 the primary CMB needs a cold clustering
+  component of 5.41 × baryons at z ≈ 1100 (F1A; CMB1 anatomy: ⅘ of the requirement is a matter-like expansion, ⅕ is the peak heights
+  that need still wells; CMB2: nothing in the action but clustering dust supplies them; CMB3: the inference holds under every assumption
+  tested, only the identification with rotation-curve mass breaks). F2 galaxies hold almost none of it (SPARC, KiDS with kSZ gas, cluster
+  members). F3 clusters hold it (X-COP, cored 50–100 kpc; Bullet collisionless).
+- **Theorem of exhaustion** ([`closure_2026_11_07/DEDUCTION_2026_11_07.md`](closure_2026_11_07/DEDUCTION_2026_11_07.md)): every static
+  sector, switch, action family (local and nonlocal), AeST, hot fermions, PBHs, compact objects, kicks, late heating, born-clumped starts,
+  settling age, vacuum-response identity for κ, early dark energy, and the quarantined hybrid (law + universal cold component, HY1, owner's
+  rule lift for that lane only) is a closed cell on both footings. The boundary is a proven contradiction, not a gap.
+- **Frozen kill tests** ([`closure_2026_11_07/PREDICTIONS_2026_11_07.md`](closure_2026_11_07/PREDICTIONS_2026_11_07.md)): Gaia DR4 wide
+  binaries Newtonian; a₀(z) flat with ρ_DE; lensing = dynamics in galaxies.
+- **Erratum (accepted 2026-11-07):** the CMB-lensing Limber kernel used before 2026-11-07 omitted k⁻⁴; corrected-kernel labels stand.
+- Route E's cold sector (the 25–31 October flagship below) is **retired** (owner, 2026-11-01); it is kept as record.
+- κ = ½ FITTED; the theory is not closed; nothing here says the data favour the framework.
+
+
 **Owner decision 2026-10-31: the a₀ floor is removed from route E's core rule.** Working rule: S_cold = f_c η Σ_coll with native η, no floor; a₀ no longer enters the halos. Native N passes the SPARC line, and falls short on LITTLE THINGS. See [`OWNER_DECISION_2026-10-31_NO_FLOOR.md`](rebuild_2026_10_22/OWNER_DECISION_2026-10-31_NO_FLOOR.md). Text below that states the floor predates this.
 
 **Checkpoint 2026-10-29 (route E, the owner's 25 October flagship: the a₀ law plus the cold dark energy core law).** This is not a new verdict on v3s, which stays frozen.

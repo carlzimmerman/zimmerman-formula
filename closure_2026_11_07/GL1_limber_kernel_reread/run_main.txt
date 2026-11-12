@@ -1,0 +1,56 @@
+KA0 function: patched n = 0 vs original limber_ratio on a test R: max rel 0.0e+00 -> PASS
+shape n = 0: Limber C_L^pp / CLASS pp (norm. L 100) at L (20, 50, 100, 200, 300, 400): 0.045 0.239 1.000 5.256 15.049 33.025
+shape n = 2: Limber C_L^pp / CLASS pp (norm. L 100) at L (20, 50, 100, 200, 300, 400): 0.299 0.494 1.000 2.563 4.635 7.216
+shape n = 4: Limber C_L^pp / CLASS pp (norm. L 100) at L (20, 50, 100, 200, 300, 400): 1.005 1.006 1.000 0.991 0.984 0.980
+KA4 n = 4 within 3 % of CLASS: True; n = 0 off: True -> PASS
+L2 corner [0.0215, 65.0, 0.95]: mu_min record 2.512e+04, n0 2.512e+04, n4 631; dchi2(n4) at mu 1 +1277.219, at mu 10 +1158.104
+L2 corner [0.0215, 65.0, 0.98]: mu_min record 2.512e+04, n0 2.512e+04, n4 631; dchi2(n4) at mu 1 +1082.057, at mu 10 +1145.925
+L2 corner [0.0215, 75.0, 0.95]: mu_min record 3.981e+04, n0 3.981e+04, n4 631; dchi2(n4) at mu 1 +1194.388, at mu 10 +1163.994
+L2 corner [0.0215, 75.0, 0.98]: mu_min record 2.512e+04, n0 2.512e+04, n4 631; dchi2(n4) at mu 1 +1205.999, at mu 10 +1151.351
+L2 corner [0.023, 65.0, 0.95]: mu_min record 2.512e+04, n0 2.512e+04, n4 631; dchi2(n4) at mu 1 +1271.976, at mu 10 +1152.175
+L2 corner [0.023, 65.0, 0.98]: mu_min record 2.512e+04, n0 2.512e+04, n4 631; dchi2(n4) at mu 1 +1119.547, at mu 10 +1138.936
+L2 corner [0.023, 75.0, 0.95]: mu_min record 3.981e+04, n0 3.981e+04, n4 631; dchi2(n4) at mu 1 +1201.016, at mu 10 +1158.422
+L2 corner [0.023, 75.0, 0.98]: mu_min record 3.981e+04, n0 3.981e+04, n4 631; dchi2(n4) at mu 1 +1210.187, at mu 10 +1144.980
+L2 QX3 iter2: mu_min_worst record 3.981e+04 -> n4 630.9573444801937; mu_max 79.43: STANDS; KA0 max |d| 0.0e+00
+L3 QX3 iter3: 35 cells; best dchi2 record 92.59 -> n4 2.780; pass at n4 1/35; KA0 max |d| 0.0e+00
+L4 QX7 iter_3: 31 cells; best record 17.87 -> n4 -0.054; window at n4 31/31; KA0 max |d| 0.0e+00
+L5 QX7 iter_4: 857 cells (300 s); window record 270 -> n4 857 (+587); lambda_0 in window: 23 values; cluster pass both footings at none; KA0 max |d| 0.0e+00
+L7 CE2: C1 record 0.311 n4 +0.000; C2 record 0.134 n4 +0.000; C3 record 3.118 n4 +0.000; C4 record 0.272 n4 +0.000; M3 record dchi2 265.4 -> n4 chi2 8.57 dchi2 +0.00 (GF record PASS) -> M3 NO BITE
+L8 CK4 (quoted): M1 frozen dchi2 +2.98, n4 +0.62 -> STANDS: GL NO VERDICT (M1 does not bite at n 0 or n 4)
+L6 KD1 [canonical]: mu_J record 2.512e+04 -> n4 630.9573444801937; mu_B 8.89e+06; mu* 8.89e+06 -> 8.89e+06; converse G9a dchi2 at mu 0.1 312.3 -> +667.46, at 79.43 857.5 -> +309.03
+L6 KD1 [alt]: mu_J record 2.512e+04 -> n4 630.9573444801937; mu_B 8.889e+06; mu* 8.889e+06 -> 8.889e+06; converse G9a dchi2 at mu 0.1 314.7 -> +667.34, at 79.43 857.6 -> +308.97
+L6 KD1: FAIL STANDS (mu_K* = mu_B, BBN, kernel-free); KA0 max |d| 0.0e+00
+L9 QX10 iter_1 J1: C1 record 4.302 (FAIL) -> n4 0.0000 (PASS), max|1-S| 0.124 -> 0.0000; C2 record 1.054 (FAIL) -> n4 0.0000 (PASS), max|1-S| 0.061 -> 0.0000; C3 record 77.198 (FAIL) -> n4 0.0000 (PASS), max|1-S| 0.525 -> 0.0000; C4 record 3.470 (FAIL) -> n4 0.0000 (PASS), max|1-S| 0.111 -> 0.0000; KA0 max |d| 0.0e+00
+
+SUMMARY (held until GL2 CONFIRMED):
+  L2_QX3_iter2: STANDS
+  L3_QX3_iter3: WOULD MOVE: 1/35 cells pass G2'
+  L4_QX7_iter3: WOULD MOVE: G2' window 31/31 (the other gates are analytic and already passed)
+  L5_QX7_iter4: STANDS: FAIL (clusters) [0/857 both footings]
+  L7_CE2: WOULD MOVE: CE2 GL -> NO VERDICT (M3 no longer bites through GL; GF passes); CE2 overall FAIL (GX, GG, GB) is kernel-free and stays
+  L8_CK4: STANDS: GL NO VERDICT (M1 does not bite at n 0 or n 4)
+  L6_KD1: FAIL STANDS (mu_K* = mu_B, BBN, kernel-free)
+  L10_SE1_arm_a: FAIL STANDS (mu_K* = mu_B, BBN, kernel-free)
+  L9_QX10_iter1_J1: WOULD MOVE: J1 changes at ['C1', 'C2', 'C3', 'C4']
+  L1_QX3_iter1: STANDS (kernel-free: (k_J/k)^2 on (L, z), no Limber weight)
+KA: KA0_function PASS; KA4_shape PASS; KA0_L2 PASS; KA0_L3 PASS; KA0_L4 PASS; KA0_L5 PASS; KA0_L7 PASS; KA0_L6 PASS; KA0_L9 PASS
+peak RSS 616 MB; 452 s. kappa = 1/2 FITTED; not theory closed.
+      452.12 real       385.43 user         5.86 sys
+           615563264  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+               44445  page reclaims
+                  39  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                1409  voluntary context switches
+              954497  involuntary context switches
+       7723553439394  instructions retired
+       1474412049753  cycles elapsed
+           256591120  peak memory footprint
+EXIT 0

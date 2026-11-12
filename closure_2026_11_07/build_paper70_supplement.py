@@ -16,10 +16,10 @@ files += glob.glob(os.path.join(LEAN, "*.lean")) + glob.glob(os.path.join(LEAN, 
 for name in ("lakefile.lean", "lakefile.toml", "lake-manifest.json", "lean-toolchain", "README.md"):
     q = os.path.join(LEAN, name)
     if os.path.exists(q): files.append(q)
-for d in ("closure_2026_11_05", "closure_2026_11_06", "closure_2026_11_07", "action_search_2026_11_05"):
+for d in ("closure_2026_11_05", "closure_2026_11_06", "closure_2026_11_07", "closure_2026_11_08", "closure_2026_11_09", "action_search_2026_11_05"):
     base = os.path.join(ROOT, d)
     files += glob.glob(os.path.join(base, "*.md")) + glob.glob(os.path.join(base, "*.json"))
-    for pat in ("*/FROZEN_CRITERIA.md", "*/CRITERIA.md", "*/README.md", "*/RESULT.md", "*/ANALYSIS.md", "*/*.lean",
+    for pat in ("*/FROZEN_CRITERIA.md", "*/CRITERIA.md", "*/README.md", "*/RESULT.md", "*/REDUCTION.md", "*/ANALYSIS.md", "*/*.lean",
                 "*/iter_*/FROZEN_CRITERIA.md", "*/iter_*/README.md", "*/iter_*/RESULT.md"):
         files += glob.glob(os.path.join(base, pat))
 files += [os.path.join(ROOT, "closure_2026_11_07", "predictions_check.py"),
