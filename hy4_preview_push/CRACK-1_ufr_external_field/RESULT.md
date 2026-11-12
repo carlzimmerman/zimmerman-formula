@@ -216,5 +216,15 @@ direction the pair leaves open, and it is a statement about the assembly path, n
 |---|---|---|
 | criteria (committed alone, before any script or number) | 16bc0102de | - |
 | amendment A1 | 52d62227df | - |
+| script, outputs, Lean | 0f9b164d78 | - |
+| result (this file, before the ids were filled in) | 2f5168716d | - |
+| the whole lane, pushed from a temporary sparse worktree | - | e079ba54e6 |
+
+The freeze requirement — the criteria committed alone, before any CRACK-1 script exists or any CRACK-1 number is
+computed — is met on the shared checkout, and the id order there is the record of it. **Collision note:** another
+lane working in this repository at the same time swept this folder's in-progress files into an unrelated commit
+(089d304ecb, "CRACK-1: external-field reading of the UFR residual...", which carries FINAL7F's files as well as
+this lane's). The content it captured was this lane's own and is unchanged; nothing of this lane was lost or
+overwritten, and the lane's four commits above are the authoritative record.
 
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
