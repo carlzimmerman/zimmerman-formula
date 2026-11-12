@@ -33,7 +33,6 @@ correction in FINAL5's RESULT.md (uncommitted).
 8. ONE1 rejects X = 5.41 at +4.85 / +4.93: MATCH, ONE1 RESULT l.66.
 9. FINAL5 17,335 lenses, 0.0101: MATCH, FINAL5 RESULT l.17, l.34. The number traces, but the lane now carries a superseding correction.
 10. FINAL-15 label, FINAL-2 label, CLS2, VCC1, LFS1 ILL-POSED: MATCH (each RESULT l.1-5). PIK1 NO VALUE: MATCH on the committed bytes, but the working-tree head now says "universal NO VALUE is not established".
-
 Result: 10/10 numbers trace. The faults are in what the paper leaves out and how it frames the numbers.
 
 **Newer failing rows.** The paper does **not** state that the Lyman-alpha forest row FAILS. FRZ1 appears only as
@@ -48,7 +47,6 @@ is untracked (it prints "working tree only"), so the gate passes on a file that 
 that each literal is present, not what the claim says, so all the overclaims above pass it.
 
 **Deposit:** NOT deposited. There is no PAPER74 `.zenodo.json` and no publish script. I ran nothing that deposits.
-
 **Naming:** no violation. "cold dark matter" appears once, as "it is never cold dark matter" (l.30). There is no "CDM-like".
 
 **Grade: OVERSTATED.** The numbers are accurate. The framing claims derivation, completeness and a forced kappa where
