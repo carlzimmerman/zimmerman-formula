@@ -80,4 +80,46 @@ So the test has power on the outer layout (MU2) and none on f (MU3) or on the sh
 - My model for the data is 4 G DeltaSigma itself. SRH1 and ONE1 use the law's value times a projected ratio, a k fitted
   on the inner window, and a shape ratio. These are different statistics; see the comparison below.
 
+## Unblinded comparison (added after the verdict above was committed, local d74922437a; the label is unchanged)
+
+Only now were SRH1's `RESULT.md` and `srh1_lens.out` opened.
+
+| | SRH1 G4 | SRH1R (this lane) |
+|---|---|---|
+| statistic | ONE1's shape ratio R_s = outer (bins 0-3) / inner (bins 7-12), 2 sigma line per sample, plus a 4-bin profile chi^2 | full-profile T on bins 0-12, 12 degrees of freedom, p >= 0.0167 per sample |
+| k | fitted on the inner window: 1.39 / 1.37 | fitted on all graded bins: 1.38 / 1.38 |
+| model for the data | the law's value times a projected ratio | 4 G DeltaSigma itself |
+| neighbours | ONE1's counted-once halos, not re-laid out | the same settled layout as the lens |
+| tie rule | KO1's plain comparison (17,335 lenses) | KO1R's (16,846 lenses) |
+| f = 0.50, all / late / early | z +1.90 / -0.78 / +2.19 (canonical), +1.92 / -0.77 / +2.22 (alt) | T 7.75 / 5.37 / 8.04, p 0.80 / 0.94 / 0.78 (both) |
+| gate in the window | FAIL at every f (one line: early types, 0.16 to 0.22 sigma over) | PASS at every f |
+| f = 0 against the window | identical to three decimals for f <= 0.55 | T differs by 0.02 at f 0.50 |
+| reference outside removed | R_s 0.545 -> 0.295, FAIL | T 7.75 -> 73.8, FAIL |
+| label | WINDOW EMPTY / WINDOW EMPTY | NO VERDICT / NO VERDICT |
+
+**Where we agree.**
+- The fitted mass factor (1.38 to 1.39).
+- Inside the forest's range lensing does not see f. Both lanes find the window identical to the reference everywhere.
+- The direction of the misfit. My per-bin table shows the data above the model in bins 1 to 3 and below it in bins 11
+  and 12: the reference's layout is more concentrated than the data, which is SRH1's finding.
+- Removing the reference outside R_set fails in both.
+
+**Where we differ, and why.**
+- **The statistic.** SRH1's ratio is a directed test of exactly that tilt, one number per sample. Mine spreads the same
+  tilt over 12 degrees of freedom, where a 2 sigma tilt costs about 4 units of T and stays far inside the line. My gate is
+  the weaker test of this particular misfit. That is a property of the choice I froze, not evidence that the tilt is absent.
+- **A directed reading on my own model (post hoc, `srh1r_posthoc.py`, reported, never graded).** k fitted on bins 7-12,
+  outer amplitude on bins 0-3: all 1.405 +- 0.266 (+1.52 sigma), early 1.504 +- 0.284 (+1.77 sigma), late 0.35 +- 0.98
+  (-0.66 sigma), the same on both footings and at f 0.40 to 0.70. SRH1 reads +1.90 and +2.19. So with the same kind of
+  statistic my model shows the same excess, about 0.4 sigma smaller, and under a 2 sigma line it would pass.
+- **What the 0.4 sigma is made of** (not separated here): the tie rule (SRH1 reports +1.7 sigma for all lenses under
+  KO1R's rule, against its +1.9), neighbours re-laid out as NFW-outside halos, and the model convention.
+- **SRH1's lower limit f >= 1.25** (first PASS) lies outside the range this lane was asked to grade. I did not test it.
+- For the law's halo to x_t (ONE1's layout) my directed reading is -1.31 / -0.42 sigma; SRH1's is -1.15 / -0.23.
+
+**Reading both together.** SRH1's lensing fail in the window is a 2.2 sigma excess on one sub-sample against a 2 sigma
+line. An independent model and stack reproduce its direction at 1.5 to 1.8 sigma, and an omnibus test does not register
+it. Neither lane shows that lensing prefers any f in 0.40 to 0.70 over f = 0. SRH1's frozen label stands as frozen; this
+lane's label is NO VERDICT, and it does not relabel SRH1.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
