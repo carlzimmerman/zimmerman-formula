@@ -1,0 +1,1 @@
+../../fable_independent_2026/lean_2026/Fin19KappaColumn.lean

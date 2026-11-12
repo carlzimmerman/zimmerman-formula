@@ -374,9 +374,12 @@ for d in data:
     conv[d["tag"]] = dict(
         spherical_beta2=d["R"],
         slab_isotropic=d["R_slab"],
+        # the column the equilibrium actually pins outside the transition radius is
+        # a0/(4 pi G) = Sigma_c / 2, i.e. R is doubled:
+        deep_field_column_outside_rM=2 * d["R"],
     )
-for key in ("spherical_beta2", "slab_isotropic"):
-    P("      %-25s %18.3f %15.3f" % (key, conv["canonical"][key], conv["alt"][key]))
+for key in ("spherical_beta2", "slab_isotropic", "deep_field_column_outside_rM"):
+    P("      %-30s %15.3f %15.3f" % (key, conv["canonical"][key], conv["alt"][key]))
 rmin = min(min(v.values()) for v in conv.values())
 P("      min R over conventions = %.3f" % rmin)
 gate("G5  min R over column conventions (must be >= 2)", rmin, lo=mp.mpf(2))
