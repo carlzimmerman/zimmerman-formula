@@ -141,3 +141,14 @@ density), `euc8_per_lens.csv` (55 lenses: predicted dispersions per family and s
 (hashes frozen in EUC1), `../EUC5_dynamical_boost/euc5_a1_dispersions.csv` and `euc5_a2_scale.json`, the SLACS table.
 
     python3 -I euc8.py --data-dir <dir with the two ECLIPSE csv files>
+
+
+## Dated note (2026-11-12, evening): the dispersion input was one lens short
+
+This lane read EUC5's 72-row dispersion file (55 lenses). One DESI spectrum (EUCL-DR1-L016656, θ_E below 1.0″) arrived
+after that file was made (EUC5 RESULT.md §3e). Re-run in a copy of the lane folders with the 73-row file in place
+(`euc8_final56.out`): all six checks pass; sample D is the same 25 lenses; every family row, every family word, the
+lane word (SLOPE NOT CONSTRAINED / SLOPE NOT CONSTRAINED) and every γ̂ of classes at 1.0″ and above are identical.
+Only the reported row for θ_E below 1.0″ changes: 17 lenses instead of 16, still below zero in every source case
+(median d of the star-tracking family −0.031 / −0.046 / −0.085 against −0.030 / −0.041 / −0.085). Part A does not use
+dispersions.
