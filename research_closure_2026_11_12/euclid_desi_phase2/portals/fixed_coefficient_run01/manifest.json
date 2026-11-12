@@ -1,0 +1,125 @@
+{
+  "schema_version": 2,
+  "claim_id": "FIXED_COEFFICIENT_DENSITY_POTENTIAL_OVERLAP",
+  "repository": {
+    "commit": "unavailable",
+    "dirty": true
+  },
+  "command": [
+    "python",
+    "fixed_coefficient_checks.py",
+    "fixed_coefficient_run01"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "Python",
+        "version": "3.13.9"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.13.1"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit-Mach-O"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact symbolic same-C density/potential counterexample with positive canonical kinetic and differing matter splits; pressure incompatibility and evolving equations of state.",
+    "coefficient_domain": "u,P,R,C positive; A_density>=C R for nonnegative A_potential.",
+    "conventions": "Flat late GR-FRW, constant equal portal coupling coefficient C; X dimensionless dark density; Y=-p density units; Z=potential density units.",
+    "inputs": [
+      "Analytic family Q=P+R u^3,F=A_density u^3+C Q"
+    ],
+    "bounds": {
+      "symbolic_families": 1,
+      "conditional_parameters": [
+        "u>0",
+        "P>0",
+        "R>0",
+        "C>0",
+        "A_density>=C R"
+      ]
+    },
+    "non_claims": [
+      "No observational fit",
+      "No complete scalar-gravity action",
+      "No likelihood or global novelty claim"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-12T17:25:51.670064+00:00",
+    "runtime_seconds": 0.449703,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "fixed_coefficient_checks.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "fixed_coefficient_checks.py",
+      "sha256": "838ebd61f22f5e2a7a35e237bc773329ed09594c54e2fde8ec81915de043f3a0",
+      "sha256_after": "838ebd61f22f5e2a7a35e237bc773329ed09594c54e2fde8ec81915de043f3a0"
+    }
+  ],
+  "output_directory": "fixed_coefficient_run01",
+  "declared_results": [
+    "fixed_coefficient_run01/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "fixed_coefficient_run01/stdout.txt",
+      "sha256": "165fb071ee559d1a4c979b4dd7cea4276e06ad12bcdf61f4415381da58c92a0a",
+      "kind": "log"
+    },
+    {
+      "path": "fixed_coefficient_run01/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "fixed_coefficient_run01/results.json",
+      "sha256": "68d5bd2a6869c59a23b92a62e9c5c76f56a0202605cca779347bb8f397092cbf",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

@@ -1,0 +1,32 @@
+import json,sys,pathlib
+import sympy as s
+u,P,R,C,A=s.symbols('u P R C A',positive=True)
+Q=P+R*u**3;F=A*u**3+C*Q;Av=A-C*R
+L3=lambda f:s.simplify(f-u*s.diff(f,u)/3)
+L6=lambda f:s.simplify(f-u*s.diff(f,u)/6)
+Xd=s.expand(F-A*u**3);Xv=s.expand(F-Av*u**3);Yd=L3(Xd);Yv=L3(Xv);Zv=L6(Xv);Kv=s.simplify(Xv-Zv)
+checks={}
+def zero(k,v):checks[k]=bool(s.simplify(v)==0)
+zero('same_C_density',Xd-C*Q)
+zero('same_C_potential',Zv-C*Q)
+zero('potential_dark_density',Xv-C*P-2*C*R*u**3)
+zero('potential_kinetic',Kv-C*R*u**3)
+zero('density_tension',Yd-C*P)
+zero('potential_tension',Yv-C*P)
+zero('background_lambda_dust',F-C*P-(A+C*R)*u**3)
+zero('matter_split',A-Av-C*R)
+wd=s.simplify(-Yd/Xd);wv=s.simplify(-Yv/Xv)
+zero('density_w',wd+P/(P+R*u**3))
+zero('potential_w',wv+P/(P+2*R*u**3))
+checks['density_w_evolves']=bool(s.diff(wd,u).is_positive)
+checks['potential_w_evolves']=bool(s.diff(wv,u).is_positive)
+checks['potential_and_kinetic_positive']=bool(Zv.is_positive and Kv.is_positive)
+checks['both_densities_positive']=bool(Xd.is_positive and Xv.is_positive)
+checks['both_tensions_positive']=bool(Yd.is_positive and Yv.is_positive)
+ratio=s.simplify(L3(F)/Q)
+checks['pressure_ratio_not_constant']=bool(s.diff(ratio,u).is_negative)
+zero('pressure_same_C_failure',L3(F)-C*Q+C*R*u**3)
+assert all(checks.values()),checks
+out=pathlib.Path(sys.argv[1]);out.mkdir(exist_ok=True)
+(out/'results.json').write_text(json.dumps({'check_count':len(checks),'all_checks_pass':all(checks.values()),'checks':checks,'expressions':{k:str(v) for k,v in dict(Q=Q,F=F,A_potential=Av,X_density=Xd,X_potential=Xv,kinetic_potential=Kv,w_density=wd,w_potential=wv,pressure_ratio=ratio).items()},'scope':'Exact analytic family; Av>=0 additionally requires A>=CR; no observations'},indent=2))
+print(len(checks),'checks passed')
