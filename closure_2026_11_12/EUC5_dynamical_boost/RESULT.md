@@ -9,8 +9,10 @@ any fit).
 - **Under A1 (dispersions fitted to the DESI spectra on disk):** the sample is there (55 lenses, 32 in P), but the fit
   fails its recovery gate F1: on mock spectra at DESI's noise it reads 250 and 350 km/s dispersions 6 % and 9 % low.
 
-What is left are readings. Two hold regardless of the dispersion scale and are stated in §4. The scale itself is
-uncertain by about ±7 %, which is ±0.08 dex in `b`, so the absolute level cannot be placed against the 0.15 / 0.25 lines.
+What is left are readings. Two hold regardless of the dispersion scale and are stated in §4. A post hoc calibration
+on real spectra (§3b) then puts the DESI fits on the scale of the published SLACS dispersions: on that scale Euclid's
+spectroscopic lens galaxies read `b_dyn` = +0.14 [+0.05, +0.21] ± 0.07 (scale), against SLACS's +0.085. §3c seals what
+that implies for EUC3 before EUC3 lands.
 
 κ = ½ FITTED. Footings never pooled. No outcome favours the framework.
 
@@ -76,10 +78,60 @@ difference 0.02. Spearman correlation of `b_dyn` with θ_E: 0.31, p = 0.023, N =
 **Dynamics against the lensing bound (S, N = 55):** median `b_dyn − b∞` = +0.103 [+0.011, +0.136] canonical, +0.119
 [+0.029, +0.152] alt (raw); +0.17 to +0.19 corrected. Positive, as one potential requires.
 
+## 3b. Post hoc scale calibration on real spectra (`euc5_a2_scale.py`; not a gate)
+
+F1 used mock spectra. The same question was put to real ones: the 30 SLACS SDSS spectra of F4 were refitted after
+noise was added to bring them down to DESI's signal-to-noise, ten realisations each.
+
+| Quantity | Value |
+|---|---|
+| σ(noisy) / σ(as observed), real spectra | median 0.997 [0.975, 1.029] (0.973 above 290 km/s, 1.025 below 240) |
+| method offset, fitted / published (F4) | 1.068 [1.031, 1.122] |
+| DESI-fit scale relative to the published SLACS scale | 1.064 [1.016, 1.141], i.e. ±0.066 dex in `b` |
+
+The 6–9 % low bias of the mocks does not appear on real spectra; the mocks were the harsher case. A1 stays NOT
+EVALUABLE: its gate was F1 as frozen, and it failed.
+
+`b_dyn` with every DESI dispersion divided by 1.064 (law S, canonical / alt; statistical interval, then ±0.066 scale):
+
+| Sample | N | `b_dyn` |
+|---|---|---|
+| P | 32 | +0.138 [+0.051, +0.213] / +0.133 [+0.044, +0.215] |
+| S | 55 | +0.135 [+0.059, +0.200] / +0.128 [+0.054, +0.193] |
+| θ_E below 1.0″ | 16 | −0.009 [−0.121, +0.156] / −0.015 [−0.128, +0.147] |
+| 1.0–1.3″ | 14 | +0.117 [+0.018, +0.233] / +0.112 [+0.005, +0.272] |
+| 1.3″ and above | 25 | +0.200 [+0.100, +0.249] / +0.193 [+0.093, +0.245] |
+
+SLACS on its own published dispersions: +0.085. So on one common scale the Euclid lens galaxies with spectra need
+about 1.37 × Salpeter under law S and SLACS needs 1.22 ×; the difference, +0.05 dex, is inside the errors. The
+small-separation lenses need no boost at all.
+
+## 3c. Sealed forecast for EUC3 (EUC5-F; committed before any EUC3 result exists)
+
+Under the framework light and stars see one potential, so for each lens the boost from lensing at the true source
+redshift equals the boost from dynamics. EUC3 (`../EUC3_nisp_source_redshifts/`, criteria bf72d787a8, no result yet) is
+measuring source redshifts. If "law plus stars, one potential" holds, EUC3's median lensing boost `b` (law S, true source
+redshift) for lenses of sample S, in each Einstein-radius class, must fall inside the dynamical band below (statistical
+95 % interval widened by the scale uncertainty):
+
+| θ_E class | band, canonical | band, alt |
+|---|---|---|
+| below 1.0″ | −0.19 to +0.22 | −0.19 to +0.21 |
+| 1.0–1.3″ | −0.05 to +0.30 | −0.06 to +0.34 |
+| 1.3″ and above | +0.03 to +0.32 | +0.03 to +0.31 |
+
+Reading rule, per class with at least 10 EUC3 lenses: **LENSING EQUALS DYNAMICS** if EUC3's 95 % interval on the class
+median overlaps the band; **LENSING EXCEEDS DYNAMICS** if its lower bound lies above the band; **LENSING BELOW
+DYNAMICS** if its upper bound lies below. "Exceeds" would mean mass along the line of sight that the stars inside the
+fibre do not feel: an extended component. The bands are wide because 16 to 25 noisy dispersions set them; that is
+their honest size. The two subsamples are different lenses (DESI footprint against grism detections), compared class
+by class. `euc5_a2_scale.json` holds the numbers; its sha256 is in the commit message.
+
 ## 4. What this says
 
-1. **No gate.** The absolute dynamical boost of Euclid's spectroscopic lens galaxies lies somewhere between about +0.05
-   (SDSS pipeline, 16 lenses) and +0.25 (DESI fits, bias-corrected). That range contains both of EUC1-F's lines.
+1. **No gate.** The raw readings span +0.05 (SDSS pipeline, 16 lenses) to +0.25 (DESI fits with the mock correction).
+   The calibration on real spectra (§3b) narrows this to +0.14 [+0.05, +0.21] ± 0.07 on the SLACS scale: close to
+   SLACS's +0.085, at or below EUC1-F's 0.15 line, with 0.25 not excluded once the scale error is added.
 2. **Holds whatever the scale: the boost rises with Einstein radius.** Small-separation lenses read +0.04, wide ones
    +0.25, a difference of 0.21 dex at about two sigma. A common error in the dispersion scale cancels in the difference.
    The stars in wide lenses move faster than the law plus their stellar mass allows, by more than in small lenses. So
@@ -106,4 +158,5 @@ exposure for many.
   `euc5_a1_fit.out` / `.json`, `euc5_a1_dispersions.csv`, the `*_asfrozen.*` copies made before the trials (identical),
   `euc5_a1.py`, `euc5_a1.out`, `euc5_a1_results.json`, `euc5_a1_per_lens.csv`.
 - F4: `euc5_f4_slacs.py`, `.out`, `.json` (SDSS DR17 spectra from NOIRLab SPARCL, kept outside git).
+- Scale calibration and forecast: `euc5_a2_scale.py`, `.out`, `.json`.
 - Spectra and templates are outside git (`_external_data/`). pPXF 9.5.2; E-MILES BaSTI, bimodal IMF 1.30.
