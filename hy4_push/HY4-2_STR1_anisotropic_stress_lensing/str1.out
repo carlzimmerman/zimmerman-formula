@@ -1,0 +1,343 @@
+
+======================================================================================
+A.  The two potentials:  ds^2 = -(1+2Psi/c^2)c^2dt^2 + (1-2Phi/c^2)(dr^2+r^2 dOmega^2)
+======================================================================================
+  linearized Einstein tensor, mixed components, first order in the metric perturbation:
+    G^0_0                 = -2 lap(Phi)/c^2                      [residual 0]
+    G^r_r - G^theta_theta = (1/c^2)[(Phi-Psi)'' - (Phi-Psi)'/r]  [residual 0]
+    G^r_r + 2 G^theta_theta = -(2/c^2) lap(Phi-Psi)              [residual 0]
+  (all three residuals are exactly 0: the identities are certified by sympy)
+
+  Einstein equations  G^mu_nu = (8 pi G/c^4) T^mu_nu  with  T^mu_nu = diag(-rho c^2, p_r, p_t, p_t):
+
+    (i)    lap(Phi)                       = 4 pi G rho                     [Poisson; Phi is the spatial potential]
+    (ii)   (Phi-Psi)'' - (Phi-Psi)'/r     = (8 pi G/c^2)(p_r - p_t)        [traceless / anisotropic part]
+    (iii)  lap(Phi - Psi)                 = -4 pi G (p_r + 2 p_t)/c^2      [trace part]
+
+  adding (i) and (iii):
+
+    (iv)   lap[(Phi+Psi)/2] = 4 pi G [ rho + (p_r + 2 p_t)/(2 c^2) ]   <-- THE LENSING SOURCE
+    (v)    lap(Psi)         = 4 pi G [ rho + (p_r + 2 p_t)/c^2     ]   <-- THE TOLMAN / ACTIVE SOURCE
+
+  A1  the photon.  Null geodesic of the gauge above:  c dt = n dl with
+      n = sqrt((1-2Phi/c^2)/(1+2Psi/c^2)) = 1 - (Phi+Psi)/c^2 + O(c^-4),
+      so the deflection is governed by (Phi+Psi) and
+      kappa = Sigma_eff/Sigma_crit,  Sigma_eff = INT [ rho + (p_r+2p_t)/(2c^2) ] dz.
+  A2  PPN cross-check of the factor 1/2 (independent of the linearized step).
+      GR PPN, static perfect fluid:  -g_00 = 1-2U+2U^2-6 Phi_4 + 2 Phi_2,  g_ij = (1+2U) delta_ij
+      n - 1 = -Phi_2 + 3*Phi_4 + 2*U  +  3*Phi_2**2/2 - 9*Phi_2*Phi_4 - 4*Phi_2*U + 27*Phi_4**2/2 + 12*Phi_4*U + U**2  + O(3)
+      with lap(U) = -4 pi G rho and lap(Phi_4) = -4 pi G p, the pressure enters n-1 as 3 Phi_4
+      against 2U:  fractional correction to the lensing source = 3p/(2 rho c^2).
+      Formula (iv) with p_r = p_t = p gives exactly (p_r+2p_t)/(2 rho c^2) = 3p/(2 rho c^2).  MATCH.
+      (The other 1PN terms, -U^2 and -Phi_2, are of the same order |Phi_N|/c^2 and are NOT
+       anisotropic-stress corrections; they are reported, not claimed, in section D.)
+
+======================================================================================
+B.  The law's halo:  u = (1+sqrt(1+4x^2))/(2x^2),  x = r/r_M,  r_M = sqrt(G M_b/a0)
+======================================================================================
+  B1  KA1 equilibrium (momentum conservation):  dPi_rr/dr + (2/r)(Pi_rr-Pi_tt) + rho_h g
+      in units (a0^2/4 pi G)/r_M, symbolic  =  0
+      -> the stress is EXACTLY in equilibrium with the weight of the phantom halo it holds.
+      -> consequence: given Pi_ij, momentum balance FIXES the density: rho_medium = rho_h.
+         The stress and the mass are not independent knobs.
+  B2  asymptotics at x -> infinity, w = 1/x, units v_inf^2/(4 pi):
+        sigma_t^2 = Pi_tt/rho_h :  2*pi + 2*pi*w/3 + pi*w**2/4 + pi*w**3/30 + O(w**4)
+        sigma_r^2 = Pi_rr/rho_h :  -2*pi + 2*pi*w/3 - pi*w**2/4 + pi*w**3/30 + O(w**4)
+        (Pi_rr+Pi_tt)/Pi_tt     :  2*w/3 - 2*w**2/9 + O(w**3)
+      deep field (x -> infinity):
+        sigma_t^2 -> +v_inf^2/2   [+2 pi in the units above]
+        sigma_r^2 -> -v_inf^2/2   [-2 pi in the units above]
+        (Pi_rr+Pi_tt)/Pi_tt -> 0 as 2/(3x) - 2/(9x^2) + ...  (6.64e-03 at x = 100)
+      exact limits:  sigma_t^2/(v_inf^2/2) -> 1 ,  sigma_r^2/(v_inf^2/2) -> -1
+      with v_inf^4 = G M_b a0.  The radial "dispersion" is NEGATIVE: no kinetic gas can do it.
+
+======================================================================================
+C.  Profiles (log M_b = 11, point-mass baryons).  Footings never pooled.
+======================================================================================
+
+  canonical  a0 = 9.3603e-11 m/s^2   r_M = 12.20 kpc   v_inf = 187.8 km/s   v_inf^2/(2c^2) = 1.9611e-07
+    x=r/r_M   rho_h[Msun/pc^3]   sigma_r^2/c^2   sigma_t^2/c^2   (Pirr+Pitt)/Pitt   eq.resid
+       0.1       8.5850e-02     -7.2690e-08     +1.9272e-06   +9.623e-01    3.4e-15
+       1.0       3.9153e-03     -1.5102e-07     +2.8749e-07   +4.747e-01    4.6e-13
+       3.0       4.7977e-04     -1.7690e-07     +2.2072e-07   +1.985e-01    1.3e-12
+      10.0       4.3720e-05     -1.8981e-07     +2.0289e-07   +6.447e-02    1.7e-12
+      30.0       4.8632e-06     -1.9396e-07     +1.9831e-07   +2.198e-02    1.9e-12
+     100.0       4.3774e-07     -1.9546e-07     +1.9676e-07   +6.644e-03    2.0e-12
+
+  alt        a0 = 1.1312e-10 m/s^2   r_M = 11.10 kpc   v_inf = 196.9 km/s   v_inf^2/(2c^2) = 2.1559e-07
+    x=r/r_M   rho_h[Msun/pc^3]   sigma_r^2/c^2   sigma_t^2/c^2   (Pirr+Pitt)/Pitt   eq.resid
+       0.1       1.1405e-01     -7.9910e-08     +2.1186e-06   +9.623e-01    3.4e-15
+       1.0       5.2017e-03     -1.6602e-07     +3.1605e-07   +4.747e-01    4.6e-13
+       3.0       6.3739e-04     -1.9447e-07     +2.4264e-07   +1.985e-01    1.3e-12
+      10.0       5.8084e-05     -2.0866e-07     +2.2304e-07   +6.447e-02    1.7e-12
+      30.0       6.4610e-06     -2.1322e-07     +2.1801e-07   +2.198e-02    1.9e-12
+     100.0       5.8156e-07     -2.1487e-07     +2.1631e-07   +6.644e-03    2.0e-12
+
+======================================================================================
+D.  THE PRE-REGISTERED KILL:  R(x) = (anisotropic-stress correction to kappa) / (missing mass)
+======================================================================================
+  R(x) = (v_inf^2/2c^2) * Q(x) with Q(x) = I(x)/X(x) a universal function of x alone
+  (exact:  INT (p_r+2p_t) 4 pi r^2 dr = M_b v_inf^2 I(x),  M_c(<r) = M_b X(x)).
+
+  D1  the universal shape Q(x), and the mass factor v_inf^2/(2c^2):
+      x        Q(x)=I/X      log M_b=9        log M_b=11       log M_b=15
+       0.01   1.9993e+02    3.921e-06      3.921e-05      3.921e-03
+       0.03   6.6526e+01    1.305e-06      1.305e-05      1.305e-03
+        0.1   1.9765e+01    3.876e-07      3.876e-06      3.876e-04
+        0.3   6.4988e+00    1.274e-07      1.274e-06      1.274e-04
+        1.0   2.2287e+00    4.371e-08      4.371e-07      4.371e-05
+      1.414   1.7495e+00    3.431e-08      3.431e-07      3.431e-05
+        2.0   1.4159e+00    2.777e-08      2.777e-07      2.777e-05
+        3.0   1.1455e+00    2.246e-08      2.246e-07      2.246e-05
+        5.0   9.2052e-01    1.805e-08      1.805e-07      1.805e-05
+     5.8888   8.6715e-01    1.701e-08      1.701e-07      1.701e-05
+        7.0   8.1824e-01    1.605e-08      1.605e-07      1.605e-05
+       10.0   7.3706e-01    1.445e-08      1.445e-07      1.445e-05
+
+  D2  R(x) on both footings, log M_b = 11, the graded numerator (1/2c^2) and denominator M_c:
+      x        canonical         alt
+       0.01     3.9208e-05     4.3102e-05
+       0.03     1.3046e-05     1.4342e-05
+        0.1     3.8760e-06     4.2610e-06
+        0.3     1.2745e-06     1.4010e-06
+        1.0     4.3707e-07     4.8048e-07
+      1.414     3.4308e-07     3.7716e-07
+        2.0     2.7767e-07     3.0525e-07
+        3.0     2.2464e-07     2.4696e-07
+        5.0     1.8052e-07     1.9845e-07
+     5.8888     1.7005e-07     1.8694e-07
+        7.0     1.6046e-07     1.7640e-07
+       10.0     1.4454e-07     1.5890e-07
+
+  D3  every combination the exit may claim (numerator x denominator), max over 0 < x <= 10,
+      log M_b = 11; the 10 per cent line is 1.0e-01:
+      numerator                       denominator                    canonical      alt
+      A  1/2c^2  (p_r+2p_t)          [lensing] 1  M_c(<r)                                3.9208e-05    4.3102e-05
+      A  1/2c^2  (p_r+2p_t)          [lensing] 2  max(M_c - 5.41 M_b, 0)                 9.4407e-07    1.0378e-06
+      A  1/2c^2  (p_r+2p_t)          [lensing] 3  max(M_c - 1.40 M_b, 0)                 2.6839e-06    2.9505e-06
+      B  1/c^2   (p_r+2p_t)          [Tolman]  1  M_c(<r)                                7.8416e-05    8.6204e-05
+      B  1/c^2   (p_r+2p_t)          [Tolman]  2  max(M_c - 5.41 M_b, 0)                 1.8881e-06    2.0757e-06
+      B  1/c^2   (p_r+2p_t)          [Tolman]  3  max(M_c - 1.40 M_b, 0)                 5.3678e-06    5.9010e-06
+      C  1/c^2   (|p_r|+2|p_t|)      [max]     1  M_c(<r)                                7.8439e-05    8.6230e-05
+      C  1/c^2   (|p_r|+2|p_t|)      [max]     2  max(M_c - 5.41 M_b, 0)                 3.9337e-06    4.3244e-06
+      C  1/c^2   (|p_r|+2|p_t|)      [max]     3  max(M_c - 1.40 M_b, 0)                 8.2634e-06    9.0841e-06
+
+      largest of the nine, any footing :  8.6230e-05
+      the graded one (A x 1), any footing:  4.3102e-05
+      against the pre-registered line    :  1.0000e-01
+
+  D3b THE POINT-MASS INNER ARTEFACT.  For a point baryon mass, g_N ~ 1/r^2 -> infinity at the
+      centre, so Pi_tt ~ g ~ 1/r^2 while rho_h ~ 1/r: sigma_t^2 ~ 1/r and M_c ~ r^2.  The ratio
+      therefore diverges as 1/x as x -> 0, and the grid maximum above (at the smallest grid
+      point) is set by the grid, not by the physics: it is an artefact of putting every baryon
+      at one point, in a region where the halo carries ~x^2 of the mass and the lensing is
+      baryon-dominated anyway.  Two honest cures, both computed:
+        (i)  restrict to x >= 1, where the point-mass profile is physical and the halo is
+             already 62 per cent of the baryons (X(1) = 0.618):
+             A  1/2c^2  (p_r+2p_t)          [lensing] 1  M_c(<r)                               x>=1 max:  4.3707e-07 / 4.8048e-07
+             A  1/2c^2  (p_r+2p_t)          [lensing] 2  max(M_c - 5.41 M_b, 0)                x>=1 max:  9.4407e-07 / 1.0378e-06
+             A  1/2c^2  (p_r+2p_t)          [lensing] 3  max(M_c - 1.40 M_b, 0)                x>=1 max:  2.6839e-06 / 2.9505e-06
+             B  1/c^2   (p_r+2p_t)          [Tolman]  1  M_c(<r)                               x>=1 max:  8.7414e-07 / 9.6096e-07
+             B  1/c^2   (p_r+2p_t)          [Tolman]  2  max(M_c - 5.41 M_b, 0)                x>=1 max:  1.8881e-06 / 2.0757e-06
+             B  1/c^2   (p_r+2p_t)          [Tolman]  3  max(M_c - 1.40 M_b, 0)                x>=1 max:  5.3678e-06 / 5.9010e-06
+             C  1/c^2   (|p_r|+2|p_t|)      [max]     1  M_c(<r)                               x>=1 max:  1.1375e-06 / 1.2505e-06
+             C  1/c^2   (|p_r|+2|p_t|)      [max]     2  max(M_c - 5.41 M_b, 0)                x>=1 max:  3.9337e-06 / 4.3244e-06
+             C  1/c^2   (|p_r|+2|p_t|)      [max]     3  max(M_c - 1.40 M_b, 0)                x>=1 max:  8.2634e-06 / 9.0841e-06
+        (ii) resolve the baryons (D5 below): the ratio is then regular everywhere,
+             -> 0 at the centre, and bounded at the ~1e-6 level over all of 0 < x <= 10.
+
+  D4  what the correction has to cover (the amount, for scale):
+      x        M_c/M_b = X(x)   /5.41 budget    /1.4 delivered
+        1.0          0.618           0.11x           0.44x
+        3.0          2.541           0.47x           1.82x
+     5.8888          5.410           1.00x           3.86x
+       10.0          9.512           1.76x           6.79x
+       30.0         29.504           5.45x          21.07x
+      100.0         99.501          18.39x          71.07x
+      KiDS host-free (ONE1) needs the share X_s = 59.5 M_b  = 11.00x the budget, 42x what falls in.
+      At 30 r_M the law needs 29.50 M_b (5.45x the budget); at 100 r_M, 99.50 M_b (18.4x).
+
+  D4b THE ACTIVE (TOLMAN) MASS, computed.  M_T(<r) = INT [ rho + (p_r + 2 p_t)/c^2 ] dV
+      = M_c(<r) + (1/c^2) INT_0^r (Pi_rr + 2 Pi_tt) 4 pi r'^2 dr'.
+      With p_r = -p_t the correction is (1/c^2) INT Pi_tt dV; the convergence carries half of it.
+      In units of M_b (log M_b = 11; point-mass baryons; haloes are regularised below x = 0.03):
+      x        M_c/M_b        dM_active/M_b (can / alt)     dM_conv/M_b (can / alt)
+       1.0        0.6180     5.402e-07 / 5.939e-07     2.701e-07 / 2.970e-07
+       3.0        2.5414     1.142e-06 / 1.255e-06     5.709e-07 / 6.276e-07
+      10.0        9.5125     2.750e-06 / 3.023e-06     1.375e-06 / 1.512e-06
+      -> at 10 r_M the stress carries 1.38e-06 / 1.51e-06 M_b in the convergence and
+         2.75e-06 / 3.02e-06 M_b in the active mass, against a missing mass of 9.51 M_b:
+         short by a factor 6.9e+06 (convergence) / 3.5e+06 (active), canonical / alt alike.
+
+  D5  THE SAME RATIO WITH THE BARYONS RESOLVED (MUTATE M5, computed here because it is the
+      number the label is read from).  Hernquist baryons, M_b(r) = M_b r^2/(r+a_h)^2, so
+      g_N = G M_b/(r+a_h)^2 is finite at the centre; the law's spherical relation
+      g = g_N(1/2 + sqrt(1/4 + a0/g_N)) then gives M_c(r) = r^2(g-g_N)/G, rho_h = M_c'/(4 pi r^2)
+      and Pi_ij from g.  R(r) = (1/2c^2) INT_0^r (Pi_rr + 2 Pi_tt) 4 pi r'^2 dr'  /  M_c(r),
+      evaluated on 60 log-spaced radii in 1e-3 <= x <= 10.
+      a_h/r_M   log M_b    x at max   max R over 0<x<=10   [canonical / alt]
+        0.02     11       0.03101      2.3054e-06        [canonical]
+        0.02     11       0.03101      2.5344e-06        [alt]
+        0.05     11       0.07912      8.9303e-07        [canonical]
+        0.05     11       0.07912      9.8173e-07        [alt]
+         0.1     11        0.1477      4.2375e-07        [canonical]
+         0.1     11        0.1477      4.6583e-07        [alt]
+         0.2     11        0.3225      1.9925e-07        [canonical]
+         0.2     11        0.3225      2.1904e-07        [alt]
+         0.5     11          10.0      9.7694e-08        [canonical]
+         0.5     11          10.0      1.0740e-07        [alt]
+      -> the point-mass 1/x artefact is gone: R -> 0 as r -> 0, the maximum sits at
+         x = 0.03101 (canonical) / 0.03101 (alt), and it is five to six orders under the 0.10 line.
+      The scan is monotone in a_h: the more concentrated the baryons, the larger the inner
+      peak, and the point mass is the (unphysical, divergent) limit of that sequence.
+      a_h/r_M = 0.02 is a 0.24 kpc Hernquist scale at log M_b 11 -- far more concentrated
+      than any real galaxy (a_h/r_M ~ 0.1 to 0.3); it is reported as the upper bound.
+
+======================================================================================
+E.  What sigma_t^2/c^2 would be needed to carry the amount (dominant energy condition)
+======================================================================================
+  A medium of mass M_med with p_t = rho sigma_t^2 carries, in the convergence,
+  (sigma_t^2/2c^2) M_med.  Carrying F x M_b therefore needs sigma_t^2/c^2 = 2 F M_b/M_med.
+  (The Tolman/active channel, factor 1 not 1/2, halves this; it is still >> 1.)
+
+    what must be carried          M_med = 5.41 M_b      M_med = 1.4 M_b
+    M_c at 10 r_M  =  9.51 M_b             3.52 c^2             13.59 c^2
+    M_c at 30 r_M  = 29.50 M_b            10.91 c^2             42.14 c^2
+    M_c at 100 r_M = 99.50 M_b            36.78 c^2            142.14 c^2
+    KiDS share X_s = 59.50 M_b            22.00 c^2             85.00 c^2
+  A medium with p = rho sigma^2 obeys the dominant energy condition |p| <= rho c^2 only for
+  sigma^2 <= c^2.  The numbers above are all far above 1: carrying 9.51 M_b needs 3.5 c^2,
+  the KiDS share needs 22 c^2 with the whole cosmic budget as the medium and 85 c^2 with
+  the charge that actually falls in.  Those are factors 3.5 to 85 of |p| > rho c^2 -- a
+  superluminal, dominant-energy-condition-violating medium -- not a correction to a galaxy.
+  (Read the other way: with |p| <= rho c^2 the stress can carry AT MOST the mass it belongs
+  to, i.e. at most 1x.  The 5x to 20x is outside the theory, not outside this lane.)
+
+  E1  the actual value, for comparison (log M_b, both footings):
+      log M_b    v_inf [km/s]      sigma_t^2/c^2        lensing correction
+                 can      alt      can        alt       can        alt
+       9            59.4       62.3    1.961e-08  2.156e-08    9.805e-09  1.078e-08
+      10           105.6      110.7    6.201e-08  6.817e-08    3.101e-08  3.409e-08
+      11           187.8      196.9    1.961e-07  2.156e-07    9.805e-08  1.078e-07
+      12           333.9      350.1    6.201e-07  6.817e-07    3.101e-07  3.409e-07
+      13           593.7      622.5    1.961e-06  2.156e-06    9.805e-07  1.078e-06
+      14          1055.8     1107.0    6.201e-06  6.817e-06    3.101e-06  3.409e-06
+      15          1877.5     1968.5    1.961e-05  2.156e-05    9.805e-06  1.078e-05
+      (the lensing column is sigma_t^2/(2c^2) = v_inf^2/(4c^2), the deep-field value;
+       the Tolman/active column is twice it.  At 200 km/s: 2.23e-07 and 1.11e-07.)
+      Task statement "about 1e-6 for a 200 km/s galaxy": the asymptotic value is 2.2e-7;
+       1e-6 is reached in the inner halo (x ~< 0.3, see the profile table) and at
+       log M_b ~ 13. Both are reported; neither is within 5 orders of 10 per cent.
+
+======================================================================================
+F.  What sigma_r^2 < 0 requires of the medium, and the check against M5's three hypotheses
+======================================================================================
+  F1  WHAT IT REQUIRES.  Static, spherically symmetric, T^i_j = diag(p_r, p_t, p_t):
+
+    (a) A KINETIC GAS IS EXCLUDED, EXACTLY.  For any one-particle distribution f >= 0,
+        p_r = INT f v_r^2 d^3v >= 0.  The computed sigma_r^2 = -v_inf^2/2 < 0 is unreachable.
+    (b) A FLUID AT REST IS EXCLUDED, EXACTLY.  A perfect fluid at rest has p_r = p_t.  A viscous
+        fluid's shear stress is proportional to the rate of strain, which vanishes in a static
+        configuration; holding p_r - p_t = -2 rho sigma_t^2 at rest and for ever therefore
+        requires a STATIC SHEAR STRESS: a non-zero shear modulus mu != 0, i.e. AN ELASTIC SOLID.
+    (c) THE STRESS STATE.  p_r = -p_t has mean p_bar = (p_r+2p_t)/3 = +p_t/3 (net pressure) and
+        deviatoric part (2 p_t/3) diag(-2, 1, 1): a uniaxial TENSION along r held against
+        tangential COMPRESSION.  That is a pressure-vessel / tensegrity state: radial cables in
+        tension, tangential hoops in compression -- a NETWORK OF RADIAL FILAMENTS (or a solid
+        with the equivalent anisotropic moduli).  A gas, a liquid and dust are all excluded.
+    (d) HOW SOFT THE SOLID MUST BE (computed below): mu ~ p_t/3 ~ rho_h v_inf^2/6, so the
+        transverse sound speed c_T = sqrt(mu/rho_h) ~ 0.41 v_inf.
+    (e) THE TENSION ITSELF (computed below): the inward force transmitted across a sphere is
+        4 pi r^2 |Pi_rr| -> 0.5000 x M_b a0 in the deep field, a CONSTANT (independent of r),
+        equal to the baryons' own weight M_b g(r) at x = 2.7297 r_M (computed) -- i.e. at
+        r ~ 33 kpc for log M_b = 11.  A cable can only pull: the network therefore has to be
+        anchored at its inner end, and whatever it is anchored to takes a constant inward pull of
+        half a M_b a0.  Anchored on the baryons, that is a new, non-gravitational force on
+        baryons, which the law does not have and which the record's media do not couple
+        through (M5's scope is "media coupling to baryons only through gravity").
+      computed: 4 pi r^2 |Pi_rr| -> 0.5000 M_b a0 in the deep field (a constant), and it
+      equals the baryons' own weight M_b g(r) at x = 2.7297 r_M  (r ~ 33 kpc at log M_b = 11)
+  F2  numbers, canonical footing, log M_b = 11, at x = 10:
+      rho_h = 2.960e-24 kg/m^3   Pi_tt = 5.397e-14 Pa   Pi_rr = -5.049e-14 Pa
+      shear modulus mu ~ Pi_tt/3 = 1.799e-14 Pa   ->  c_T = sqrt(mu/rho_h) = 78.0 km/s = 0.415 v_inf
+      tension force 4 pi r^2 |Pi_rr| = 8.9988e+30 N = 0.4833 x M_b a0   (deep field: M_b a0/2)
+      Jeans: 4 pi G rho_h r^2 = 3.5207e+10 (m/s)^2  vs  c_T^2 = 6.0784e+09  ->  ratio 5.79  (>1: unstable)
+  F2  numbers, alt footing, log M_b = 11, at x = 10:
+      rho_h = 3.932e-24 kg/m^3   Pi_tt = 7.882e-14 Pa   Pi_rr = -7.374e-14 Pa
+      shear modulus mu ~ Pi_tt/3 = 2.627e-14 Pa   ->  c_T = sqrt(mu/rho_h) = 81.7 km/s = 0.415 v_inf
+      tension force 4 pi r^2 |Pi_rr| = 1.0875e+31 N = 0.4833 x M_b a0   (deep field: M_b a0/2)
+      Jeans: 4 pi G rho_h r^2 = 3.8703e+10 (m/s)^2  vs  c_T^2 = 6.6821e+09  ->  ratio 5.79  (>1: unstable)
+  F3  M5's THREE HYPOTHESES, checked against that medium.
+      M5: "any LOCAL, MOMENTUM-CONSERVING, NORMALLY SELF-GRAVITATING medium whose equilibrium is
+      the law"  --  NO-GO, by theorem: the stress that makes the law an equilibrium for every
+      baryon profile is unique (AQUAL's, density-blind), is not an attractor, is ill-posed along
+      the field, and cancels the medium's own nonlinear self-gravity.
+
+      H1 LOCAL ................ HOLDS.  Pi_ij = J(g) delta_ij - g_i g_j/(K(1+u)) is a function of
+          the local field g and of its local direction: a local constitutive law.  (Verified
+          numerically below: two different (M_b, r) pairs with the same g give the same Pi.)
+      H2 MOMENTUM-CONSERVING .. HOLDS.  The equilibrium residual in section C is <= 1e-9 at every
+          radius and the symbolic residual in B1 is exactly 0: dPi_rr/dr + (2/r)(Pi_rr-Pi_tt)
+          = -rho_h g, i.e. nabla_mu T^{mu nu} = 0 with the gravitational field only.
+      H3 NORMALLY SELF-GRAVITATING ... HOLDS.  The halo's density enters lap(Phi) = 4 pi G rho at
+          full strength, with no screening: g(r) = G(M_b + M_c(<r))/r^2 by construction, and
+          INT rho_h 4 pi r^2 dr = M_b X(x) (KA6, checked below).
+
+      ALL THREE HOLD, SO M5 BITES.  The elastic reading is inside the theorem, not outside it.
+      The three ways out, and what the record says about each:
+        - drop LOCALITY               -> FA3; "no candidate survives" (MEDIUM_DESIGN section 2).
+        - drop MOMENTUM CONSERVATION  -> a medium that exchanges momentum with something else;
+          the one class the record had not tried, and it dies on arithmetic (recombination drag
+          0.73/0.61 of H at z 1100; the Bullet's gas column 0.1-0.7 optical depths).
+        - drop NORMAL SELF-GRAVITY    -> TM1's tethered medium: no self-gravity, so no growth;
+          satellites and cluster cores fail.
+      None of the three is a payment of the amount; this lane's numbers say the amount is the
+      whole problem.
+  F4  locality check (H1), numerically:
+      (M_b, r) = (1e11, 20.0 kpc) and (1e12, 63.2 kpc) have the same g = 7.7147e-11 m/s^2
+      Pi_rr: -1.559890e-12 vs -1.559890e-12    Pi_tt: 2.330089e-12 vs 2.330089e-12   -> same stress: the law is local in g.
+  F5  KA6 mass closure (point mass):  INT_0^r rho_h 4 pi r^2 dr = M_b X(x) ?
+      x = 0.1     integral = 0.009901951359   X(x) = 0.009901951359   ratio = 1.000000000000
+      x = 1.0     integral = 0.618033988750   X(x) = 0.618033988750   ratio = 1.000000000000
+      x = 10.0    integral = 9.512492197250   X(x) = 9.512492197250   ratio = 1.000000000000
+
+======================================================================================
+G.  MUTATE  (each must bite, or the number it guards is not load-bearing)
+======================================================================================
+  M1  gas instead of a solid: p_r = +p_t = rho sigma^2 (no tension).  Then
+      p_r + 2 p_t = 3 rho sigma^2 and the lensing correction is 3 sigma^2/(2c^2):
+      at most 3 x the tabulated column, i.e. <= 6.7e-06 at log M_b 11.  The SIGN of p_r
+      is not what carries the verdict: the magnitude is.
+  M2  Tolman factor 1 instead of 1/2: 2x.  M3  |p_r|+2|p_t|: 3x.  Both in D3; both fail.
+  M4  narrower denominators (excess over the budget / over the delivered charge): in D3.
+      The narrowest denominator, over the charge that falls in, is 3.8x the widest at
+      x = 10 and still 5 orders of magnitude short.
+  M5  extended baryons (Hernquist, a_h = 0.05 / 0.2 / 0.5 r_M) instead of a point mass.
+      The point-mass profiles are singular at x -> 0 (rho_h ~ 1/x, sigma_t^2 ~ 1/x) so the
+      ratio at small x is an artefact; the extended runs in D5 bound the true inner value.
+      Result: the artefact is removed, R -> 0 at the centre, and the maximum over the whole
+      of 0 < x <= 10 is 2.3054e-06 (canonical) / 2.5344e-06 (alt) -- the number the label is read from.
+
+======================================================================================
+H.  VERDICT  (labels frozen in FROZEN_CRITERIA.md section 4)
+======================================================================================
+  the graded number (numerator A, denominator 1; baryons resolved; max over 0 < x <= 10):
+      canonical  2.3054e-06   ->  STRESS CANNOT PAY
+      alt        2.5344e-06   ->  STRESS CANNOT PAY
+  point-mass idealisation, same combination, max over the grid (artefact-dominated):
+      canonical  3.9208e-05     alt  4.3102e-05
+  largest of the nine point-mass combinations, any footing:  8.6230e-05
+  every one of these is below 1.0e-01; the largest misses it by 1160x.
+
+  LABEL:  STRESS CANNOT PAY / STRESS CANNOT PAY
+  The 10 per cent line is missed by 1160x to 43376x depending on the combination chosen.
+
+  KA summary:  KA1 equilibrium residual 0 (symbolic) / <=1e-9 (numeric)   PASS
+               KA2 (Pi_rr+Pi_tt)/Pi_tt at x=100: canonical 6.644e-03 (line 1e-2)   PASS
+               KA3 sigma_t^2/(v_inf^2/2) at x=100: 1.003346 (line 1e-2)          PASS
+               KA4 PPN cross-check of the factor 1/2: 3p/(2 rho c^2)         PASS
+               KA5 dust limit and isotropic-Schwarzschild limit              PASS
+               KA6 mass closure ratio 1.000000000000                         PASS
+
+  kappa = 1/2 FITTED; not theory closed. Adopts nothing.
+  [elapsed 65.3 s]

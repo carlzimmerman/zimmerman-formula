@@ -1,3 +1,5 @@
+import Mathlib
+
 /-!
   FINAL-14 (LEAN-AMOUNT) -- amount-budget ARITHMETIC, certified in Lean 4.34.0-rc2 with Mathlib.
 
@@ -41,8 +43,6 @@
       gas_column_canonical_gas1/…_gas1 (G = 6.674e-11); they agree to three decimals and are
       pinned to 6.1627/7.4477 for G_gas1 by a separate tight-bracket theorem.
 -/
-
-import Mathlib
 
 namespace Final14
 
@@ -114,28 +114,40 @@ def gas_column (a0 G R : ℝ) : ℝ := a0 / (Real.pi * G * (x_b R) ^ 2) / msun_p
 def gas_pref (a0 G R : ℝ) : ℝ := a0 / (G * (R * (1 + R))) / msun_pc2
 
 /-- `Sigma` equals its rational prefactor divided by pi -/
-lemma gas_column_as_pref {a0 G R : ℝ} (hG : 0 < G) (hR : 0 < R) :
+lemma gas_column_as_pref {a0 G R : ℝ} (hR : 0 < R) :
     gas_column a0 G R = gas_pref a0 G R / Real.pi := by
   unfold gas_column gas_pref
   have hxb2 : (x_b R) ^ 2 = R * (1 + R) := x_b_sq R hR
   rw [hxb2]
   rw [div_eq_mul_inv, div_eq_mul_inv, div_eq_mul_inv, div_eq_mul_inv, div_eq_mul_inv]
-  simp_rw [mul_inv_rev₀]
+  simp_rw [mul_inv_rev]
   ring
 
-/-- sandwich a `C / pi` quantity using only `3.141592 < pi < 3.141593` -/
+/-- lower rational bound on pi, 3.141592 = 3141592/10^6 -/
+def PI_LO : ℝ := 3.141592
+/-- upper rational bound on pi, 3.141593 = 3141593/10^6 -/
+def PI_HI : ℝ := 3.141593
+
+/-- the certified window for pi (Mathlib's `Real.pi_gt_d6` / `Real.pi_lt_d6`) -/
+lemma pi_window : PI_LO < Real.pi ∧ Real.pi < PI_HI := by
+  exact ⟨Real.pi_gt_d6, Real.pi_lt_d6⟩
+
+lemma PI_LO_pos : 0 < PI_LO := by
+  norm_num [PI_LO]
+
+/-- sandwich a `C / pi` quantity using only `PI_LO < pi < PI_HI`.
+      Monotonicity of `a / b` in the (positive) denominator is all that is used. -/
 lemma one_over_pi_bracket {C lo hi : ℝ} (hC : 0 < C)
-    (hlo : lo < C / (3141593 / 1000000 : ℝ)) (hhi : C / (3141592 / 1000000 : ℝ) < hi) :
+    (hlo : lo < C / PI_HI) (hhi : C / PI_LO < hi) :
     lo < C / Real.pi ∧ C / Real.pi < hi := by
-  have hpi_lo : (3141592 / 1000000 : ℝ) < Real.pi := Real.pi_gt_d6
-  have hpi_hi : Real.pi < (3141593 / 1000000 : ℝ) := Real.pi_lt_d6
-  have hpilo_pos : (0 : ℝ) < 3141592 / 1000000 := by norm_num
+  have hpi_lo : PI_LO < Real.pi := pi_window.1
+  have hpi_hi : Real.pi < PI_HI := pi_window.2
   constructor
-  · have hinv : C / (3141593 / 1000000 : ℝ) < C / Real.pi := by
+  · have hinv : C / PI_HI < C / Real.pi := by
       exact div_lt_div_of_pos_left hC Real.pi_pos hpi_hi
     exact lt_trans hlo hinv
-  · have hinv : C / Real.pi < C / (3141592 / 1000000 : ℝ) := by
-      exact div_lt_div_of_pos_left hC hpilo_pos hpi_lo
+  · have hinv : C / Real.pi < C / PI_LO := by
+      exact div_lt_div_of_pos_left hC PI_LO_pos hpi_lo
     exact lt_trans hinv hhi
 
 /-! ## 3. (1) Monotonicity of X -/
@@ -177,10 +189,10 @@ theorem X_break_value : X (x_b (541 / 100 : ℝ)) = (541 / 100 : ℝ) := by
 theorem X_break_window :
     (58887 / 10000 : ℝ) < x_b (541 / 100 : ℝ) ∧
     x_b (541 / 100 : ℝ) < (58889 / 10000 : ℝ) := by
-  have h := sqrt_sandwich ((346781 : ℝ) / 10000) ((58887 : ℝ) / 10000)
-    ((58889 : ℝ) / 10000) (by norm_num) (by norm_num) (by norm_num) (by norm_num)
+  have h := sqrt_sandwich (((541 : ℝ) / 100) * (1 + (541 : ℝ) / 100))
+    ((58887 : ℝ) / 10000) ((58889 : ℝ) / 10000)
+    (by norm_num) (by norm_num) (by norm_num) (by norm_num)
   unfold x_b
-  norm_num
   exact h
 
 /-- (2) the break theorem: value identity AND the radius window. -/
@@ -299,45 +311,92 @@ lemma msun_pc2_pos : 0 < msun_pc2 := by
 theorem gas_column_canonical :
     (6162 / 1000 : ℝ) < gas_column a0_canon G_N R_b ∧
     gas_column a0_canon G_N R_b < (6163 / 1000 : ℝ) := by
-  rw [gas_column_as_pref (by unfold G_N; norm_num : 0 < G_N) (by unfold R_b; norm_num : 0 < R_b)]
+  rw [gas_column_as_pref (by unfold R_b; norm_num : 0 < R_b)]
   rw [gas_pref_canon_GN]
   apply one_over_pi_bracket
-  · unfold pref_canon_GN; norm_num
-  · unfold pref_canon_GN; norm_num
-  · unfold pref_canon_GN; norm_num
+  · norm_num [pref_canon_GN, PI_HI, PI_LO]
+  · norm_num [pref_canon_GN, PI_HI, PI_LO]
+  · norm_num [pref_canon_GN, PI_HI, PI_LO]
 
 /-- (6) alternative a0, lane G = 6.6743e-11: Sigma in (7.447, 7.448) Msun/pc^2. -/
 theorem gas_column_alternative :
     (7447 / 1000 : ℝ) < gas_column a0_alt G_N R_b ∧
     gas_column a0_alt G_N R_b < (7448 / 1000 : ℝ) := by
-  rw [gas_column_as_pref (by unfold G_N; norm_num : 0 < G_N) (by unfold R_b; norm_num : 0 < R_b)]
+  rw [gas_column_as_pref (by unfold R_b; norm_num : 0 < R_b)]
   rw [gas_pref_alt_GN]
   apply one_over_pi_bracket
-  · unfold pref_alt_GN; norm_num
-  · unfold pref_alt_GN; norm_num
-  · unfold pref_alt_GN; norm_num
+  · norm_num [pref_alt_GN, PI_HI, PI_LO]
+  · norm_num [pref_alt_GN, PI_HI, PI_LO]
+  · norm_num [pref_alt_GN, PI_HI, PI_LO]
 
 /-- (6) canonical a0, repo G = 6.674e-11: Sigma in (6.162, 6.163) Msun/pc^2. -/
 theorem gas_column_canonical_gas1 :
     (6162 / 1000 : ℝ) < gas_column a0_canon G_gas1 R_b ∧
     gas_column a0_canon G_gas1 R_b < (6163 / 1000 : ℝ) := by
-  rw [gas_column_as_pref (by unfold G_gas1; norm_num : 0 < G_gas1) (by unfold R_b; norm_num : 0 < R_b)]
+  rw [gas_column_as_pref (by unfold R_b; norm_num : 0 < R_b)]
   rw [gas_pref_canon_gas1]
   apply one_over_pi_bracket
-  · unfold pref_canon_gas1; norm_num
-  · unfold pref_canon_gas1; norm_num
-  · unfold pref_canon_gas1; norm_num
+  · norm_num [pref_canon_gas1, PI_HI, PI_LO]
+  · norm_num [pref_canon_gas1, PI_HI, PI_LO]
+  · norm_num [pref_canon_gas1, PI_HI, PI_LO]
 
 /-- (6) alternative a0, repo G = 6.674e-11: Sigma in (7.447, 7.448) Msun/pc^2. -/
 theorem gas_column_alternative_gas1 :
     (7447 / 1000 : ℝ) < gas_column a0_alt G_gas1 R_b ∧
     gas_column a0_alt G_gas1 R_b < (7448 / 1000 : ℝ) := by
-  rw [gas_column_as_pref (by unfold G_gas1; norm_num : 0 < G_gas1) (by unfold R_b; norm_num : 0 < R_b)]
+  rw [gas_column_as_pref (by unfold R_b; norm_num : 0 < R_b)]
   rw [gas_pref_alt_gas1]
   apply one_over_pi_bracket
-  · unfold pref_alt_gas1; norm_num
-  · unfold pref_alt_gas1; norm_num
-  · unfold pref_alt_gas1; norm_num
+  · norm_num [pref_alt_gas1, PI_HI, PI_LO]
+  · norm_num [pref_alt_gas1, PI_HI, PI_LO]
+  · norm_num [pref_alt_gas1, PI_HI, PI_LO]
+
+/-! ## 7b. (6) tight 4-decimal brackets: these SEPARATE the two G choices -/
+
+/-- (6t) canonical a0, lane G = 6.6743e-11: Sigma in (6.1624, 6.1625) Msun/pc^2. -/
+theorem gas_column_canonical_tight :
+    (61624 / 10000 : ℝ) < gas_column a0_canon G_N R_b ∧
+    gas_column a0_canon G_N R_b < (61625 / 10000 : ℝ) := by
+  rw [gas_column_as_pref (by unfold R_b; norm_num : 0 < R_b)]
+  rw [gas_pref_canon_GN]
+  apply one_over_pi_bracket
+  · norm_num [pref_canon_GN, PI_LO]
+  · norm_num [pref_canon_GN, PI_HI]
+  · norm_num [pref_canon_GN, PI_LO]
+
+/-- (6t) alternative a0, lane G = 6.6743e-11: Sigma in (7.4473, 7.4474) Msun/pc^2. -/
+theorem gas_column_alternative_tight :
+    (74473 / 10000 : ℝ) < gas_column a0_alt G_N R_b ∧
+    gas_column a0_alt G_N R_b < (74474 / 10000 : ℝ) := by
+  rw [gas_column_as_pref (by unfold R_b; norm_num : 0 < R_b)]
+  rw [gas_pref_alt_GN]
+  apply one_over_pi_bracket
+  · norm_num [pref_alt_GN, PI_LO]
+  · norm_num [pref_alt_GN, PI_HI]
+  · norm_num [pref_alt_GN, PI_LO]
+
+/-- (6t) canonical a0, repo G = 6.674e-11: Sigma in (6.1626, 6.1628), i.e. 6.1627 +/- 1e-4. -/
+theorem gas_column_canonical_gas1_tight :
+    (61626 / 10000 : ℝ) < gas_column a0_canon G_gas1 R_b ∧
+    gas_column a0_canon G_gas1 R_b < (61628 / 10000 : ℝ) := by
+  rw [gas_column_as_pref (by unfold R_b; norm_num : 0 < R_b)]
+  rw [gas_pref_canon_gas1]
+  apply one_over_pi_bracket
+  · norm_num [pref_canon_gas1, PI_LO]
+  · norm_num [pref_canon_gas1, PI_HI]
+  · norm_num [pref_canon_gas1, PI_LO]
+
+/-- (6t) alternative a0, repo G = 6.674e-11: Sigma in (7.4476, 7.4478), i.e. 7.4477 +/- 1e-4. -/
+theorem gas_column_alternative_gas1_tight :
+    (74476 / 10000 : ℝ) < gas_column a0_alt G_gas1 R_b ∧
+    gas_column a0_alt G_gas1 R_b < (74478 / 10000 : ℝ) := by
+  rw [gas_column_as_pref (by unfold R_b; norm_num : 0 < R_b)]
+  rw [gas_pref_alt_gas1]
+  apply one_over_pi_bracket
+  · norm_num [pref_alt_gas1, PI_LO]
+  · norm_num [pref_alt_gas1, PI_HI]
+  · norm_num [pref_alt_gas1, PI_LO]
+
 
 /-! ## 8. Axiom audit -/
 
@@ -365,6 +424,12 @@ theorem gas_column_alternative_gas1 :
 #print axioms gas_pref_canon_gas1
 #print axioms gas_pref_alt_gas1
 #print axioms gas_column_canonical
+#print axioms pi_window
+#print axioms PI_LO_pos
+#print axioms gas_column_canonical_tight
+#print axioms gas_column_alternative_tight
+#print axioms gas_column_canonical_gas1_tight
+#print axioms gas_column_alternative_gas1_tight
 #print axioms gas_column_alternative
 #print axioms gas_column_canonical_gas1
 #print axioms gas_column_alternative_gas1

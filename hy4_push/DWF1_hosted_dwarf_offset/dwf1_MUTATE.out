@@ -1,0 +1,77 @@
+DWF1 hosted-dwarf offset, MUTATE. kappa = 1/2 FITTED; not theory closed; footings never pooled.
+criteria 34a3ee01f0 (committed alone before any number here). X1 rows: 89 systems.
+
+=== KNOWN ANSWERS ===
+KA3 PASS  X1 iso column reproduced through pred_draws(iso0): max |d| 0.0e+00 (line 1e-9)
+KA4 PASS  X1 EFE column reproduced through pred_draws(emb0): max |d| 0.0e+00 (line 1e-9)
+KA1 PASS  RB2's B row reproduced (UF, bright M31, LG field, MW classical; both footings): max |d| 0.0055 dex (line 0.01)
+KA5 PASS  RB2 per-system B vs X1 iso: max |d| 0.0062 dex (line 0.01); law limits r_J->inf and y->inf ok
+
+=== CANDIDATE (a): the host's external field (record's exact AQUAL solve, x_e = g_host(d)/a0, screening off) ===
+  [canonical] MW ultra-faint N 31  before (B, isolated) +0.632 [+0.430,+0.864]  after (a) +1.369 [+1.033,+1.757]  shift +0.737 dex
+  [      alt] MW ultra-faint N 31  before (B, isolated) +0.591 [+0.389,+0.821]  after (a) +1.336 [+1.003,+1.727]  shift +0.745 dex
+             v3 L*floor reading (screening on): shift +0.934 / +0.970 dex (canonical / alt)
+  [canonical] bright M31     N 25  before (B, isolated) +0.267 [+0.085,+0.468]  after (a) +0.606 [+0.331,+0.863]  shift +0.339 dex
+  [      alt] bright M31     N 25  before (B, isolated) +0.228 [+0.044,+0.428]  after (a) +0.567 [+0.289,+0.824]  shift +0.339 dex
+             v3 L*floor reading (screening on): shift +0.365 / +0.373 dex (canonical / alt)
+  [canonical] LG field       N 13  before (B, isolated) +0.053 [-0.068,+0.241]  after (a) +0.054 [-0.068,+0.245]  shift +0.001 dex
+  [      alt] LG field       N 13  before (B, isolated) +0.016 [-0.105,+0.203]  after (a) +0.017 [-0.104,+0.205]  shift +0.001 dex
+             v3 L*floor reading (screening on): shift +0.005 / +0.007 dex (canonical / alt)
+  [canonical] per-system shift (a): smallest Andromeda VI +0.013 | median +0.624 | largest Bootes III +1.382 (graded rows only)
+  [      alt] per-system shift (a): smallest Andromeda VI +0.012 | median +0.631 | largest Bootes III +1.397 (graded rows only)
+
+=== NEW SOLVES (this lane's own; D10 2-D AQUAL with a uniform background, Lam = 0) ===
+  [canonical] 89 systems solved (iso + x_e_mid + 6 rungs, 3 y each): 2136 solves, worst residual 1.0e-10, 428 s
+  [      alt] 89 systems solved (iso + x_e_mid + 6 rungs, 3 y each): 4272 solves, worst residual 1.0e-10, 886 s
+KA2 FAIL  my solves at (y, x_e_mid) vs X1's emb0 table: max |d| 1.12e+00 (line 1e-3); rows over 0.05 dex: 362
+KA6 PASS  logG non-increasing in x_e on the KA6 grid: [True, True, True]
+
+=== CANDIDATE (c): the amount set when the dwarf fell in, at the host's field (ladder d_inf / d_today) ===
+  [canonical] MW ultra-faint d_inf=1x: +0.207  d_inf=1.5x: +0.113  d_inf=2x: +0.067  d_inf=3x: +0.024  d_inf=4x: +0.011  d_inf=8x: +0.001  | no field at infall (x_e=0, kindest): +0.632
+  [      alt] MW ultra-faint d_inf=1x: +0.192  d_inf=1.5x: +0.105  d_inf=2x: +0.061  d_inf=3x: +0.020  d_inf=4x: +0.009  d_inf=8x: +0.001  | no field at infall (x_e=0, kindest): +0.591
+  [canonical] bright M31     d_inf=1x: +0.028  d_inf=1.5x: +0.006  d_inf=2x: +0.002  d_inf=3x: +0.000  d_inf=4x: +0.000  d_inf=8x: +0.000  | no field at infall (x_e=0, kindest): +0.267
+  [      alt] bright M31     d_inf=1x: +0.025  d_inf=1.5x: +0.004  d_inf=2x: +0.002  d_inf=3x: +0.000  d_inf=4x: +0.000  d_inf=8x: +0.000  | no field at infall (x_e=0, kindest): +0.228
+  [canonical] LG field       no-field rung +0.053 | rungs: d_inf=1x: +0.000  d_inf=1.5x: +0.000  d_inf=2x: +0.000  d_inf=3x: +0.000  d_inf=4x: +0.000  d_inf=8x: +0.000
+  [      alt] LG field       no-field rung +0.016 | rungs: d_inf=1x: +0.000  d_inf=1.5x: +0.000  d_inf=2x: +0.000  d_inf=3x: +0.000  d_inf=4x: +0.000  d_inf=8x: +0.000
+  KILL C1 (amount at any x_e <= isolated amount): FIRES (0 violations of 1068 row-rungs)
+  KILL C2 (kindest rung returns B unchanged, |d| < 0.01 dex): FIRES (0 rows off)
+  [canonical] (c) ceiling (y -> 0 at that rung's field) residual, by rung:
+            MW ultra-faint d_inf=1x: +0.596  d_inf=1.5x: +0.292  d_inf=2x: +0.093  d_inf=3x: -0.107  d_inf=4x: -0.201  d_inf=8x: -0.324
+            bright M31     d_inf=1x: -0.382  d_inf=1.5x: -0.523  d_inf=2x: -0.608  d_inf=3x: -0.685  d_inf=4x: -0.712  d_inf=8x: -0.724
+            LG field       d_inf=1x: -0.912  d_inf=1.5x: -0.912  d_inf=2x: -0.912  d_inf=3x: -0.912  d_inf=4x: -0.912  d_inf=8x: -0.912
+            plateau check (deep vs 100x shallower), max |d| 3.0498 dex
+  [canonical] (c) infall size that would close the +0.632 dex gap, median UF row (y0 2.86e-03, d 64 kpc):
+            d_inf=1x: NOT REACHED  d_inf=1.5x: NOT REACHED  d_inf=2x: NOT REACHED  d_inf=3x: 4.5 x r_h(today)  d_inf=4x: 4.4 x r_h(today)  d_inf=8x: 4.3 x r_h(today)
+  [      alt] (c) ceiling (y -> 0 at that rung's field) residual, by rung:
+            MW ultra-faint d_inf=1x: +0.525  d_inf=1.5x: +0.221  d_inf=2x: +0.024  d_inf=3x: -0.166  d_inf=4x: -0.255  d_inf=8x: -0.371
+            bright M31     d_inf=1x: -0.447  d_inf=1.5x: -0.581  d_inf=2x: -0.662  d_inf=3x: -0.732  d_inf=4x: -0.755  d_inf=8x: -0.764
+            LG field       d_inf=1x: -0.954  d_inf=1.5x: -0.954  d_inf=2x: -0.954  d_inf=3x: -0.954  d_inf=4x: -0.954  d_inf=8x: -0.954
+            plateau check (deep vs 100x shallower), max |d| 3.0941 dex
+  [      alt] (c) infall size that would close the +0.591 dex gap, median UF row (y0 2.37e-03, d 64 kpc):
+            d_inf=1x: NOT REACHED  d_inf=1.5x: NOT REACHED  d_inf=2x: 4.7 x r_h(today)  d_inf=3x: 4.0 x r_h(today)  d_inf=4x: 4.0 x r_h(today)  d_inf=8x: 3.9 x r_h(today)
+
+=== CANDIDATE (b): formation-time amount + tidal stripping (RB2's own r_J machinery, read as data) ===
+  [canonical] MW ultra-faint N 31  before (B, primary edge) +0.634 [+0.433,+0.865]  after (b, strong-tide edge) +0.695 [+0.481,+0.933]  shift +0.061 dex
+  [      alt] MW ultra-faint N 31  before (B, primary edge) +0.592 [+0.391,+0.822]  after (b, strong-tide edge) +0.652 [+0.437,+0.889]  shift +0.059 dex
+  [canonical] bright M31     N 25  before (B, primary edge) +0.273 [+0.085,+0.473]  after (b, strong-tide edge) +0.299 [+0.101,+0.510]  shift +0.026 dex
+  [      alt] bright M31     N 25  before (B, primary edge) +0.231 [+0.046,+0.429]  after (b, strong-tide edge) +0.256 [+0.056,+0.466]  shift +0.025 dex
+  [canonical] largest per-system stripping move among the graded rows: Bootes III +1.909 dex
+  [      alt] largest per-system stripping move among the graded rows: Bootes III +1.997 dex
+  formation-time amount half: HY4-5's reading is NOT ON DISK (no HY4-5 output anywhere in the repository) -> that half of the row is left UNGRADED.
+
+=== KILLS ===
+  [canonical] (a) UF shift +0.737 dex: A1 (wrong sign) FIRES, A2 (size < 0.3 dex the right way) FIRES -> KILLED
+  [canonical] (a) bright M31 shift +0.339 dex -> KILLED ; LG field control shift +0.001 dex (inside +-0.05: True)
+  [canonical] (b) stripping: UF shift +0.061 dex (B1 FIRES), bright M31 +0.026 dex -> KILLED
+  [canonical] (c) C1 FIRES, C2 FIRES: best rung +0.632 (unchanged), d_inf = d_today rung +0.839 -> KILLED
+  [      alt] (a) UF shift +0.745 dex: A1 (wrong sign) FIRES, A2 (size < 0.3 dex the right way) FIRES -> KILLED
+  [      alt] (a) bright M31 shift +0.339 dex -> KILLED ; LG field control shift +0.001 dex (inside +-0.05: True)
+  [      alt] (b) stripping: UF shift +0.059 dex (B1 FIRES), bright M31 +0.025 dex -> KILLED
+  [      alt] (c) C1 FIRES, C2 FIRES: best rung +0.591 (unchanged), d_inf = d_today rung +0.783 -> KILLED
+
+=== LABELS ===
+  canonical: NO CANDIDATE MOVES A HOSTED DWARF UP
+  alt      : NO CANDIDATE MOVES A HOSTED DWARF UP
+LANE LABEL: NO CANDIDATE MOVES A HOSTED DWARF UP / NO CANDIDATE MOVES A HOSTED DWARF UP
+
+runtime 1146 s, peak RSS 0.325 GB, 5752 solves. kappa = 1/2 FITTED; not theory closed. Relabels nothing.

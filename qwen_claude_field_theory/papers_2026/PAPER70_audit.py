@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PAPER70 audit (v1.7): each quoted number appears in the TeX and, as the literal given, in the committed file named
+"""PAPER70 audit (v2.1): each quoted number appears in the TeX and, as the literal given, in the committed file named
 beside it; naming rules; no local paths; no pending placeholder. Run: python3 PAPER70_audit.py (exit 0 only if all pass).
 --mutate changes one digit of each source literal; exit 0 only if every mutated literal then fails.
 kappa = 1/2 FITTED; not theory closed; nothing here says the data favour the framework."""
@@ -49,7 +49,7 @@ L = [
  ("largest time-mean on any rung 0.147 of the line", CF, "Largest time-mean on any rung 0.147 of the line"),
  ("$\\le0.33$ / $0.19$", NOGO, "<= 0.33 / 0.19"), ("$\\sim4.2$ / $3.8$", NOGO, "~4.2 / 3.8"),
  ("1.2--3.5 / 0.9--2.9", NOGO, "1.2-3.5 / 0.9-2.9"), ("$\\sim0.9$ / $0.8$", NOGO, "~0.9 / 0.8"),
- ("$\\sim1.7$ / $1.3$", NOGO, "~1.7 / 1.3"), ("Coma UDGs & $\\sim80$", NOGO, "| Coma UDGs | ~80 |"),
+ ("$\\sim1.7$ / $1.3$", NOGO, "~1.7 / 1.3"), ("Coma UDGs (NOT A TEST, UA1) & $\\sim80$", NOGO, "| Coma UDGs | ~80 |"),
  ("($w\\le0.01$), lensing $\\chi^2\\le18.5$", NOGO, "(w <= 0.01), and lensing chi^2 <= 18.5"),
  ("$\\mu_K\\ge8.9\\times10^6$", NOGO, "mu_K >= 8.9e6"), ("galaxies allow at most 79", NOGO, "galaxies need <= 0.1-79"),
 ]
@@ -536,6 +536,363 @@ L += [
  ("the brief's kill fires on both footings", KR1, "it now **FIRES** on both footings"),
  ("the label is unchanged", KR1, "**Label.** Unchanged: FAIL / FAIL."),
 ]
+BG1 = "closure_2026_11_08/BG1_cold_gas_conversion/RESULT.md"; BGD = "closure_2026_11_08/OWNER_DECISION_2026-11-08_BG1_LAUNCH.md"
+L += [
+ ("deposited as DOI 10.5281/zenodo.24056963", Z70, '"doi": "10.5281/zenodo.24056963"'),
+ ("``Launch it anyway''", BGD, 'Owner\'s words: "Launch it anyway"'),
+ ("& FAIL / FAIL: no $\\alpha$ in the scan passes G1--G10", BG1, "No alpha in [1e-3, 1e3] passes G1-G10 on either footing"),
+ ("SPARC rms 0.0626 (line 0.0660)", BG1, "rms 0.0626 (line 0.0660)"),
+ ("(shift $-0.003$\\,dex)", BG1, "-0.003 dex"),
+ ("discs retain 0.4\\,\\% of the dust while quenched hosts keep 17--36\\,\\%", BG1, "(retained 0.4 %) while quenched hosts keep 17-36 % of theirs"),
+ ("converts 97\\,\\% of the component by $z$ 20", BG1, "the converted fraction by z 20 is 97 %"),
+ ("(7\\,$M_\\odot$\\,pc$^{-3}$ at $z$ 1000; its exposure is 1/7 of a disc's)", BG1, "is 1/7 of a SPARC disc's"),
+ ("holds only for $\\alpha\\le2.5$", BG1, "G9 needs alpha <= 2.5"),
+ ("only for $\\alpha\\le6.3$", BG1, "G8 and G10 need alpha <= 6.3"),
+ ("discs need $\\alpha\\ge1000$ (beyond the scan on alt)", BG1, "(alpha >= 1000 canonical, beyond the scan on alt)"),
+ ("disjoint by a factor 400", BG1, "Ratio 400 on canonical"),
+ ("an exposure $\\times10$ replay moves both alike", BG1, "the x10 replay moves both alike"),
+ ("Coma UDGs under-filled by 0.65--0.92\\,dex", BG1, "under-filled by 0.65-0.92 dex"),
+ ("gives $b=6.4$ where they need about 80", BG1, "b = 6.4 where the UDGs need about"),
+ ("groups at most 7/20", BG1, "(G4, at most 7/20 and 6/20)"),
+ ("X-COP over-filled by 0.06--0.10\\,dex at the CMB amount $R=5.41$", BG1, "over-filled by 0.06-0.10 dex at the\n   CMB amount R = 5.41"),
+ ("captured share $R=4.11$", BG1, "f_cap R = 4.11, reported"),
+ ("clusters keep at least 94\\,\\%", BG1, "Clusters keep >= 94 % of their dust"),
+ ("M3 ($10\\times$ the best $\\alpha$) does not bite as frozen", BG1, "**NO BITE**"),
+ ("the label does not rest on it", BG1, "The label does not rest on M3"),
+]
+HX1 = "rebuild_2026_10_22/HX1_hot_ladder/README.md"; HG2 = "rebuild_2026_10_22/HG2_kids_lowg_hot_gas/README.md"
+GA1 = "rebuild_2026_10_22/GA1_group_gas_audit/README.md"; GA1O = "rebuild_2026_10_22/GA1_group_gas_audit/ga1_group_gas_audit.out"
+L += [
+ ("deposited as DOI 10.5281/zenodo.24058756", Z70, '"doi": "10.5281/zenodo.24058756"'),
+ ("Coma UDGs (NOT A TEST, UA1)", UA1, "NOT A TEST"),
+ ("sub-linear response at the UDGs' internal acceleration on top of a base that already carries Coma's external field (GB1, Disclosed 3)", GB1, "UDG predictions apply the isolated algebraic Delta at the internal x, on top of a base that already includes"),
+ ("$+1.121$ / $+1.078$\\,dex", GB1, "FAIL +1.121 (+4.28) / FAIL +1.078 (+4.11)"),
+ ("the Lovisari+2015 X-ray masses", UA1, "Lovisari+2015 masses are X-ray hydrostatic"),
+ ("median 1.18, $\\log B=+0.07\\pm0.08$ (alt 1.08, $+0.03\\pm0.08$)", HX1, "| Tian groups (144) | 1.18, +0.07 +- 0.08 | 1.08, +0.03 +- 0.08 |"),
+ ("$D=-0.294$ [$-0.511$, $-0.076$]\\,dex, UNDERPOWERED", HG2, "| D (primary) | **−0.294 dex, 95% [−0.511, −0.076]**"),
+ ("(power 0.45)", HG2, "RESULT: UNDERPOWERED by the frozen rule (power 0.45 < 0.50)"),
+ ("$-0.362$ [$-0.605$, $-0.139$] (power 0.36)", GA1O, "measured D -0.3623  95% [-0.6047, -0.1394]  power 0.364"),
+ ("all groups on the law would give $+0.173$", GA1, "| **−0.362 [−0.605, −0.139]** | **+0.306 / +0.282** | +0.173 |"),
+ ("GA1 re-grades HG2's sample", GA1, "Step 0's random-number order to HG2's"),
+ ("KX1's frozen label is NO VERDICT", KX1, "## Label (frozen rule): NO VERDICT on both footings."),
+ ("(log $M_\\star$ 9.4, 122--285\\,kpc)", KX1, "| 1 (9.4, 122-285) |"),
+ ("frozen extrapolation of the log $M_\\star$ 10.0 kSZ gas row", KX1, "**Bin 1 (log M* 9.4) uses CW6's log M* 10.0 gas row**, a frozen extrapolation."),
+ ("without that bin canonical C4 would read SOFTENS", KX1, "C4 canonical would read SOFTENS"),
+ ("(Rf $=1.000$ at every $z<1$ bin)", CE2, "Rf = 1.000 at every z < 1 bin"),
+]
+FS1R = "closure_2026_11_06/FS1_fold_shock_capturing/README.md"; FS2R = "closure_2026_11_06/FS2_fold_viscosity_free/README.md"
+AC10R = "action_search_2026_11_05/AC10_nonlinear_clock/README.md"; SV3R = "action_search_2026_11_05/SV3_fold_implicit/README.md"
+AS3R = "rebuild_2026_10_22/AS3_ppn_and_khronon_scalar/README.md"; AC11R = "action_search_2026_11_05/AC11_moving_sun/README.md"
+MS3R = "closure_2026_11_06/MS3_moving_sun_light/README.md"; X35R = "rebuild_2026_10_22/X35_a0_tracks_ede/README.md"
+CT3R = "complete_theory_2026_11_04/CT3_cosmology/CT3_REPORT.md"; C689 = "campaign_fresh_gravity/CFG689_native_ruler_bao/README.md"
+CT1R = "complete_theory_2026_11_04/CT1_action/CT1_REPORT.md"; CK3R = "closure_2026_11_07/CK3_groups_kicked_carrier/RESULT.md"
+V3XR = "rebuild_2026_10_22/V3X_v3s_close_undecided/README.md"; AZ31 = "astra_goal_2026_11_05/AZ31_w2_graded_radius/README.md"
+AZ32 = "astra_goal_2026_11_05/AZ32_solar_spectrum/README.md"
+L += [
+ ("5.3\\,\\% at $J_{\\rm thr}$ (FS1)", FS2R, "at J_thr, FS1 saw 5.3 %"),
+ ("1.2\\,\\% at $J_{\\rm reg}$ (FS2)", FS2R, "That shock reaches J_reg 1.2 % before v3s's dust collapse"),
+ ("FS1 and FS2 read the clock-only AC2q folds EARLIER", FS1R, "**DIFF-TIME, EARLIER**"),
+ ("at the same time to 0.3\\,\\% (1.0752--1.0782 against 1.0718--1.0773\\,$\\tau_f$)", AC10R, "AC2q's fold time is 1.0752-1.0782 tau_f against v3s's 1.0718-1.0773"),
+ ("delays clock-only folds by about 0.1--0.3\\,\\%", SV3R, "AC2q's extra s^2 pressure only delays clock-only folds by about 0.1-0.3 %"),
+ ("AS3 finds $\\alpha_1=\\alpha_2=0$ exactly for a source moving through the aether", AS3R, "For a source moving through the aether, the exact solution of v9's linear system is linear GR with G = G~: alpha_1 = alpha_2 = 0"),
+ ("AC11 lists the metric response that would give $\\alpha_1$ and $\\alpha_2$ as still open", AC11R, "the metric response that would give alpha_1 and alpha_2"),
+ ("no PPN $\\alpha_1$ or $\\alpha_2$ is claimed", MS3R, "No PPN alpha_1 or alpha_2 is claimed."),
+ ("CFG689's native band is 0.91 [0.33, 1.21]", C689, "| 2.33 | 0.91 [0.33, 1.21] |"),
+ ("moves the native $\\sqrt X$ from 1.00 to 1.49", X35R, "moves the native sqrtX from 1.00 to **1.49 at z 2.33**"),
+ ("$a_0(2.33)/a_0(0)\\approx0.85$", CT3R, "a₀(2.33)/a₀(0) ≈ 0.85"),
+ ("0.084\\,dex at $z^*$ 2.33 for $3\\sigma$ (CFG689)", C689, "3σ needs a0 to 0.055 / 0.072 / 0.074 / 0.084 dex at z 1.0 / 1.2 / 1.5 / 2.33"),
+ ("set at 0.10\\,dex by CT1", CT1R, "a0(z) at z ≈ 2.5 to 0.10 dex"),
+ ("L388's masses are in $M_\\odot/h$", CK3R, "L388's masses are in Msun/h"),
+ ("FAIL as frozen, NOT ROBUST", CK3R, "FAIL as frozen (slope), both footings, every kick; NOT ROBUST"),
+ ("($M\\times0.6736$) reads PASS in every cell", CK3R, "**every cell reads PASS, both footings**"),
+ ("from prediction error, not agreement", CK3R, "That PASS comes from **prediction error, not agreement**"),
+ ("CK3 reports the record-level fix and does not make it", CK3R, "Correcting it is a record-level fix that this lane reports and does not"),
+ ("V3X is UNDECIDED under its frozen rule on W2 and W4c, with a physics reading of PASS", V3XR, "Under the frozen rule the label is UNDECIDED. The physics reading is a PASS."),
+ ("AZ31 passes W2 at the graded radius as a new test", AZ31, "This is a new radius-specific test, not an amendment of V3X."),
+ ("AZ32 keeps the full W4c UNDECIDED", AZ32, "# UNDECIDED full W4c"),
+]
+PJ1 = "closure_2026_11_08/PJ1_potential_gated_jeans/RESULT.md"
+L += [
+ ("0 of 756 cells per footing", PJ1, "0 of 756 (252 grid points x 3 ell_theta) on canonical, 0 of 756 on"),
+ ("the as-written point passes only G10 (Cassini)", PJ1, "the as-written point passes only G10 on both footings"),
+ ("from $2.6\\times10^{-5}$ at $k$ 0.01 to $5.9\\times10^{-7}$ at $k$ 0.3", PJ1, "falls from 2.6e-5 at k 0.01 to 2.9e-6 at k 0.1, 1.1e-6 at k 0.2\n   and 5.9e-7 at k 0.3"),
+ ("+619.5 / +613.5 before refit", PJ1, "FAIL +619.5 no refit, +171.7 after the 40-eval refit"),
+ ("+171.7 / +170.9 after", PJ1, "FAIL +613.5 / +170.9"),
+ ("(shift 0.42--0.44\\,dex)", PJ1, "shift 0.42-0.44 dex"),
+ ("(0.209 against 0.202, need 0.267)", PJ1, "0.209 / 0.202 / 0.267 (component no more concentrated than gas)"),
+ ("($R_{J0}$ 2.5\\,Mpc, $\\Phi_*$ $3\\times10^{-7}$, $p$ 2, $\\ell_\\theta$ 0) passes 4 of 11", PJ1, "T | R_J0 2.5 Mpc | Phi_* 3e-7 | p 2 | ell_theta 0: 4 of 11 gates"),
+ ("M3 ($R_{J0}\\times10$) does not bite as frozen", PJ1, "**does NOT bite as frozen**"),
+ ("the label does not rest on it. Disclosed: a mass-conserving", PJ1, "The label does not rest on M3"),
+ ("a mass-conserving divergence-form operator", PJ1, "div(R_J^2 grad f), which conserves mass exactly"),
+ ("the Bullet graded under the record's instantaneous relation", PJ1, "G6 is graded under the record's instantaneous Bullet relation"),
+]
+HL3 = "closure_2026_11_08/HL3_lensing_leg_shape/RESULT.md"
+L += [
+ ("Tian+2020's 84 points, 16 X-ray-selected clusters", HL3, "primary samples: 16 X-ray-selected CLASH clusters; 7 X-COP clusters with measured stars"),
+ ("SAME SHAPE / SAME SHAPE, in every bin the two legs share", HL3, "# HL3 RESULT: SAME SHAPE (canonical) / SAME SHAPE (alt)"),
+ ("$+0.048$ [$-0.026$, $+0.114$]\\,dex at 0--0.25", HL3, "**+0.048 [-0.026, +0.114]**"),
+ ("$+0.053$ [$-0.022$, $+0.140$] at 0.25--0.5", HL3, "**+0.053 [-0.022, +0.140]**"),
+ ("$+0.049$ / $+0.056$ alt", HL3, "**+0.056 [-0.023, +0.140]**"),
+ ("every bracket within 0.04\\,dex", HL3, "sits\nwithin 0.04 dex of the primary value"),
+ ("not a hydrostatic artefact", HL3, "the hot-leg residual shape is NOT a hydrostatic artefact"),
+ ("slightly more missing mass, not less", HL3, "slightly MORE missing mass than the hydrostatic leg, not less"),
+ ("$\\times3.28$ [2.90, 3.90] against X-COP's $\\times2.90$", HL3, "| canonical | x3.28 [2.90, 3.90] | x2.90 [2.74, 3.17] |"),
+ ("ends at 600\\,kpc (0.28--0.59\\,$R_{500}$)", HL3, "The lensing leg stops at 600 kpc (0.28-0.59 R500)"),
+ ("by $+0.05$\\,dex in both shared bins", HL3, "+0.05 dex in both shared bins on both footings"),
+ ("MUTATE M1--M3 bite & HL3", HL3, "## MUTATE (hl3_MUTATE.out): all bite, both footings"),
+]
+WD1 = "closure_2026_11_08/WD1_cvwd_condensate/RESULT.md"
+L += [
+ ("4.40 times the baryons", WD1, "a supplementary component of cosmic amount 4.40 x baryons"),
+ ("a 1.6\\,Mpc Thomas--Fermi core around every collisionless centroid", WD1, "sits in a 1.6 Mpc Thomas-Fermi core around every collisionless baryonic centroid"),
+ ("4 of 11 gates pass on each footing", WD1, "As written, 4 of 11 gates pass on each footing (G1, G1b, G8, G10)"),
+ ("max shift 0.297\\,dex at 1.7\\,Mpc, 15 of 59 points over", WD1, "**FAIL** max 0.297 at 1.7 Mpc; 15 of 59 over"),
+ ("inner bin $-1.132$\\,dex with 4.38\\,$M_b$ inside 100\\,kpc", WD1, "0-0.25 -1.132 (n 14)"),
+ ("(concentration 3.34 against the gas's 0.20, need 0.27)", WD1, "component 3.34 vs gas 0.20, need 0.27; 4.38 M_b inside 100 kpc"),
+ ("Groups 3 / 4 of 20", WD1, "**FAIL** 3 / 4 (N 4 d 400)"),
+ ("Coma UDGs $+1.240$\\,dex (capture $4.9\\times10^{-6}$", WD1, "**FAIL** +1.240 (+4.73 sigma_U); capture median 4.9e-6"),
+ ("raises the host field $\\times1.72$, worse than the law-only $+1.121$", WD1, "raises the host field x1.72"),
+ ("peak 51 / 41\\,kpc from the gas", WD1, "peak 51 / 41 kpc from the gas"),
+ ("+3682.7 before and +1524.8 after a 5-parameter refit", WD1, "**FAIL** +3682.7 before the refit; +1524.8 after the 5-parameter refit"),
+ ("Forest $\\Delta\\chi^2$ 216,405", WD1, "**FAIL** 216,405"),
+ ("does not reproduce its own decoherence values (KA3 FAIL)", WD1, "| KA3 | rebuilt integrator"),
+ ("the dynamic bracket passes no gate the as-written fails", WD1, "passes no gate the as-written fails"),
+ ("MUTATE M1--M3 bite. Adopts nothing & WD1", WD1, "-> **BITES** (KA4 replay)"),
+]
+XF1 = "closure_2026_11_08/XF1_moving_host_field/RESULT.md"
+L += [
+ ("& FAIL / FAIL: the sweep acts, and against the theory", XF1, "Label: FAIL (canonical) / FAIL (alt), by C3 and C1."),
+ ("With $W$ live the full screened system has no Bernoulli integral", XF1, "no Bernoulli integral survives while W is live"),
+ ("the frame streams through the member ballistically", XF1, "the frame streams through ballistically"),
+ ("99.86--100\\,\\% of it leaves the readout sphere in every run", XF1, "loses 99.86-100.01 % of its phantom inside the readout sphere by t_end in every row"),
+ ("the moving member is Newtonian to $2\\times10^{-3}$\\,dex", XF1, "So g_dyn = g_N to 2e-3 dex"),
+ ("($-0.401$ to $-0.229$ canonical, $-0.453$ to $-0.266$ alt)", XF1, "(canonical -0.401 to -0.229, median -0.274; alt -0.453 to -0.266, median -0.315)"),
+ ("($-0.906$ to $-0.577$ / $-0.936$ to $-0.610$)", XF1, "-0.906 ... -0.577 (median -0.792), ALL NEGATIVE"),
+ ("($-0.906$ to $-0.577$ / $-0.936$ to $-0.610$)", XF1, "-0.936 ... -0.610 (median -0.822), ALL NEGATIVE"),
+ ("($-0.646$ to $-0.287$ / $-0.748$ to $-0.333$ on the UDGs; FAIL line 0.3)", XF1, "(canonical -0.646 to -0.287; alt -0.748 to -0.333), under the FAIL line 0.3"),
+ ("grows from $+1.121$ to $+1.412$\\,dex ($+1.076$ to $+1.409$ alt)", XF1, "to +1.412 [1.064, 1.768] dex canonical, and from +1.076 [0.722, 1.431] to +1.409 [1.055, 1.765] alt"),
+ ("the MW classical dSphs go from $+0.356$ to $+1.208$", XF1, "+0.356 [0.000, 0.935] -> +1.208 [0.700, 1.757] canonical"),
+ ("the bright M31 dSphs from $+0.633$ to $+1.555$ (canonical)", XF1, "M31 +0.633 [0.350, 0.887] -> +1.555 [1.287, 1.794] canonical"),
+ ("Host rows (X-COP, groups) unchanged", XF1, "the member sweep cannot by itself change the host's own hydrostatic/lensing need"),
+ ("(worst 0.215 of the Mars line)", XF1, "worst 0.215 of the Mars line"),
+ ("MUTATE-1 and MUTATE-2 bite", XF1, "MUTATE-2 (g_ext -> 0, the body keeps its own khronon, g_dyn = g_iso): F = 1.0000"),
+ ("C2 has no power at a 0.5\\,dex plant", XF1, "NO POWER at a 0.5 dex plant"),
+ ("the linear kernel is extrapolated for four dSphs", XF1, "extrapolated for Fornax, Leo I, Leo II, Sculptor"),
+ ("perpendicular $g_{\\rm ext}$ not run", XF1, "Perpendicular g_ext NOT RUN"),
+ ("the Coma UDG shortfall grows to $+1.412$ / $+1.409$\\,dex on SE2's path", XF1, "to +1.412 [1.064, 1.768] dex canonical"),
+ ("Every hosted row above was graded with a static external-field state", XF1, "Every hosted row of the record was graded with a STATIC external-field state"),
+ ("AC15 and MS3 found that a moving Sun sweeps its static hedgehog away", XF1, "found that a hypersonic body sweeps its static hedgehog away"),
+ ("where the record grades discs with a static khronon", XF1, "where the record grades discs with a static khronon"),
+ ("only marginally at Milky Way mass, and not at all for dwarfs (XF1)", XF1, "marginal at MW mass"),
+ ("only marginally at Milky Way mass, and not at all for dwarfs (XF1)", XF1, "impossible for dwarfs"),
+]
+
+SK1 = "closure_2026_11_09/SK1_spin_key/RESULT.md"
+SK1C = "closure_2026_11_09/SK1_spin_key/FROZEN_CRITERIA.md"
+TR1 = "closure_2026_11_09/TR1_cluster_tracer/RESULT.md"
+KU2 = "rebuild_2026_10_22/KU2_kappa_universality_model_choice/README.md"
+DED = "closure_2026_11_07/DEDUCTION_2026_11_07.md"
+DEC9 = "closure_2026_11_09/OWNER_DECISION_2026-11-09_SK1_TR1_LAUNCH.md"
+FEQ = "FRAMEWORK_EQUATIONS_2026-10-15.md"
+L += [
+ ("$D=+0.0602$ [$+0.0369$, $+0.0811$]\\,dex canonical", SK1, "**+0.0602 [+0.0369, +0.0811]**"),
+ ("$+0.0601$ [$+0.0369$, $+0.0812$] alt", SK1, "**+0.0601 [+0.0369, +0.0812]**"),
+ ("(6,056 galaxies, 536 slow rotators; quarantined test lane) & FAIL / FAIL", SK1, "52 / 6056 / 536 (492)"),
+ ("the whole interval under the $+0.10$ FAIL line", SK1, "**FAIL** (D < +0.10)"),
+ ("a 0.03--0.06\\,dex step confined to $\\lambda_{R_e}<0.2$", SK1, "a small step of 0.03-0.06 dex"),
+ ("(Spearman $-0.486$; a key needs $\\le-0.6$)", SK1, "S = -0.486"),
+ ("(Spearman $-0.486$; a key needs $\\le-0.6$)", SK1, "needs S <= -0.6"),
+ ("it falls to $+0.0096$: dispersion carries it, the key HX1 graded NO LADDER", SK1, "**+0.0096 [-0.003, +0.031]**"),
+ ("it falls to $+0.0096$: dispersion carries it, the key HX1 graded NO LADDER", SK1, "the dispersion key that HX1 already graded NO LADDER"),
+ ("KU2's UNIVERSAL on the same file is recovered", SK1, "KU2's UNIVERSAL, recovered"),
+ ("span $+0.014$ to $+0.198$", SK1, "spans +0.014 to +0.198"),
+ ("a model the data choose for 0.6\\,\\% of galaxies", SK1, "a model the data prefer for 0.6 % of galaxies"),
+ ("(spin shuffled: $+0.012$;", SK1, "+0.0122 [-0.016, +0.031]"),
+ ("a $+0.2$\\,dex plant returns $+0.2000$", SK1, "rise +0.2000"),
+ ("the other mass column keeps the label", SK1, "| M3 elpetro mass column | +0.0675, FAIL"),
+ ("$a_0$ $1.2$ / $1.1\\times10^{-10}$\\,m\\,s$^{-2}$", SK1C, "a0 = 1.2e-10 m s^-2 (canonical) and 1.1e-10 (alt)"),
+ ("at fixed $g_N$ the two agree to $10^{-4}$", SK1, "The two footings agree to 1e-4"),
+ ("& NO TRACER FOLLOWS / NO TRACER FOLLOWS, on both readings", TR1, "**NO TRACER FOLLOWS** (closest tot, inner HIGH)"),
+ ("(FOLLOWS iff rms $\\le0.10$\\,dex and max $|{\\rm SHAPE}_b|\\le0.15$\\,dex)", TR1, "FOLLOWS iff RMS <= 0.10 dex and max |SHAPE_b| <= 0.15 dex"),
+ ("(inner bins $+0.15$ to $+0.48$\\,dex)", TR1, "(inner bins +0.15 to +0.48 dex)"),
+ ("($-0.24$ to $-0.40$\\,dex in the inner bin; $-0.8$\\,dex inside $0.05\\,R_{500}$, reported, not graded)", TR1, "-0.8 dex in the inner 5 % of R500"),
+ ("($-0.24$ to $-0.40$\\,dex in the inner bin; $-0.8$\\,dex inside $0.05\\,R_{500}$, reported, not graded)", TR1, "(-0.24 to -0.40 dex in"),
+ ("(SD$(\\log A)$ 0.05--0.06\\,dex)", TR1, "tot SD 0.047-0.061"),
+ ("(0.71, 0.66, 0.58, 0.46 by bin), and 0.32 in the 1--2\\,$R_{500}$ bin", TR1, "| D canonical | 0.71 | 0.66 | 0.58 | 0.46 | 0.32 |"),
+ ("which is the forward-model hydrostatic mass", TR1, "The 1-2 R500 bin is the forward-model hydrostatic mass"),
+ ("reading S gives 0.60 falling to 0.16", TR1, "(D canonical; S canonical 0.60 to 0.16)"),
+ ("inside $R_{500}$ the total FOLLOWS (rms 0.077 / 0.090)", TR1, "**tot FOLLOWS: RMS 0.077, max 0.116 / RMS 0.090, max 0.138**"),
+ ("an amplitude of 0.71 / 0.69 over its two inner bins, beside X-COP's 0.71 and 0.66 in those bins", TR1, "median A 0.71 / 0.69 on D"),
+ ("an amplitude of 0.71 / 0.69 over its two inner bins, beside X-COP's 0.71 and 0.66 in those bins", TR1, "beside X-COP's 0.71 / 0.66 in its two inner bins"),
+ ("(rms 0.071); the same model's component misses by $-0.39$ and $-0.68$\\,dex", TR1, "mean +0.014, rms 0.071"),
+ ("(rms 0.071); the same model's component misses by $-0.39$ and $-0.68$\\,dex", TR1, "-0.17, -0.39, -0.68 dex by bin"),
+ ("(r4, added after the first run, reported)", TR1, "r4 was added after the first run"),
+ ("about 70\\,\\% inside $0.25\\,R_{500}$ to about 45\\,\\% at $R_{500}$ on TR1's reading D", TR1, "about 70 % inside 0.25 R500 falling to about 45 % at R500 on reading D"),
+ ("Known answers pass; every MUTATE bites. Adopts nothing & TR1", TR1, "all bite, both footings, both readings"),
+ ("KU2 (rebuild\\_2026\\_10\\_22) had already graded slow against fast rotators UNIVERSAL", KU2, "| Label | **UNIVERSAL** | **UNIVERSAL** |"),
+ ("A pre-read of 2026-11-09 listed rotation as the one selector with no verdict", DEC9, "The pre-read above called rotation \"the one selector with no verdict\". That was wrong"),
+ ("comes from the Humphrey 2006 table, not ATLAS3D", SK1, "Humphrey 2006 table, not ATLAS3D"),
+ ("Galaxies hold at most 0.33 / 0.19 of the baryons' mass of it", DED, "SPARC on the exact field allows f <= 0.33 / 0.19"),
+ ("isolated lenses about $0.9\\,M_b$ inside 200\\,kpc (F2)", DED, "about 0.9 M_b inside 200 kpc"),
+ ("still cold through the forest epoch at $z$ 2--4 (DEDUCTION section 1)", DED, "forest epoch, and either gone from galaxies"),
+ ("the switches of DEDUCTION section 1", DED, "Every local switch on the law itself is dead"),
+ ("Gaia DR4 wide binaries (expected 2026-12-02)", FEQ, "Gaia DR4 (2026-12-02)"),
+]
+
+SSA = "closure_2026_11_09/SS1_self_shielded_conversion/RESULT.md"
+SSB = "closure_2026_11_09/SS1_self_shielded_conversion/RESULT_B_G.md"
+L += [
+ ("the CMB-era component ($R=5.4092$ times the baryons)", SSA, "R = 5.4092"),
+ ("a self-similar halo's column grows only as $R_{500}$", SSA, "halo's column grows only as R500"),
+ ("so groups keep 0.21--0.45\\,$M_b$ against the 1.23--3.46 they need", SSA, "or 0.21-0.45 M_b in all"),
+ ("so groups keep 0.21--0.45\\,$M_b$ against the 1.23--3.46 they need", SSA, "KD1's uniform need is 3.46 M_b (f* 0) and 1.23 M_b (f* 1)"),
+ ("(0/20 and 8/20 canonical, 2/20 and 9/20 alt)", SSA, "**FAIL** 0/20 (f* 0), 8/20 (f* 1)"),
+ ("(0/20 and 8/20 canonical, 2/20 and 9/20 alt)", SSA, "**FAIL** 2/20, 9/20"),
+ ("X-COP keeps 0.89--0.94 inside $0.25\\,R_{500}$ but 0.33--0.42 inside $R_{500}$", SSA, "keep 0.89-0.94 of their component, inside R500 only 0.33-0.42"),
+ ("(passing on alt only under the NFW bracket)", SSA, "**G3 P** (+0.019 / 0.098"),
+ ("About 97\\,\\% becomes dark radiation", SSA, "Today 96.9 % of the component has become dark radiation"),
+ ("($\\Delta\\chi^2$ +8.21; $h$ 0.6741 $\\to$ 0.6602; +3.7 with $r_d$ profiled, reported)", SSA, "**FAIL** Delta chi^2 +8.21 (BAO +8.18, SN +0.03); h 0.6741 -> 0.6602"),
+ ("($\\Delta\\chi^2$ +8.21; $h$ 0.6741 $\\to$ 0.6602; +3.7 with $r_d$ profiled, reported)", SSA, "With r_d profiled: +3.7, reported"),
+ ("fail under abundance-matched halos", SSA, "pass under abundance-matched halos"),
+ ("the Coma UDGs worsen to $+1.211$\\,dex (reported)", SSA, "+1.211 (+4.62 sigma_U)"),
+ ("the $\\Sigma_{\\rm gate}$ of A is not reproduced from its stated constants", SSA, "0.042 g/cm^2 is **NOT REPRODUCED**"),
+ ("move the numbers but flip no gate", SSA, "NO BITE by the frozen status-vector rule"),
+ ("move the numbers but flip no gate", SSB, "**NO BITE** by the status-vector rule"),
+ ("while the structural MUTATEs bite", SSB, "**BITES.**"),
+ ("the outside text's Theorems 2 and 4 are false as written", SSA, "**Theorem 2** (retention >= 0.615 at x0 3.2): **false as written.**"),
+ ("the outside text's Theorems 2 and 4 are false as written", SSA, "**Theorem 4** (Gamma0/Gamma_psi = 0.032): **false as written.**"),
+ ("compile with standard axioms. Adopts nothing & SS1", SSB, "Compiles with exit 0 and standard axioms only"),
+ ("CMB lensing is NO VERDICT throughout", SSA, "**NO VERDICT** (KA4b failed)"),
+ ("CMB lensing is NO VERDICT throughout", SSB, "| 7b CMB lensing | NO VERDICT"),
+ ("& FAIL / FAIL for every variant", SSB, "| **G (primary)** | **FAIL at 2 groups** | **FAIL at 2 groups** |"),
+ ("($z_{\\rm dec}$ 0.631, $\\alpha$ 4.367, $v_{\\rm stiff}$ 265.8 / 288.1\\,km/s)", SSB, "z_dec (q = 0): 0.631"),
+ ("($z_{\\rm dec}$ 0.631, $\\alpha$ 4.367, $v_{\\rm stiff}$ 265.8 / 288.1\\,km/s)", SSB, "alpha: 4.367 / 4.366"),
+ ("($z_{\\rm dec}$ 0.631, $\\alpha$ 4.367, $v_{\\rm stiff}$ 265.8 / 288.1\\,km/s)", SSB, "265.8 km/s canonical, 288.1 alt"),
+ ("Ursa Major $-0.001$ against EV1's $-0.024\\pm0.064$", SSB, "vs EV1 -0.024 +- 0.064"),
+ ("every Lovisari group retains $\\ge0.9919$", SSB, "Lovisari groups f >= 0.9919"),
+ ("keeps its whole $4.1\\,M_b$ share", SSB, "its whole pre-conversion share, 4.1 M_b"),
+ ("over-fills (3/20 and 0/20; median $-0.07$ / $-0.28$)", SSB, "**FAIL** 3/20 (f* 0), 0/20 (f* 1); median residual -0.07 / -0.28"),
+ ("X-COP over-fills (mean $-0.214$, inner bin $-0.30$)", SSB, "FAIL mean -0.214, rms 0.241; bins -0.30"),
+ ("turns 41--63\\,\\% of the component into daughters streaming over about 6.7\\,Mpc", SSB, "converts 63 % of the component (41 % if only halos"),
+ ("turns 41--63\\,\\% of the component into daughters streaming over about 6.7\\,Mpc", SSB, "streaming over about 6.7 Mpc"),
+ ("$\\sigma_8$ 0.64--0.71, $S_8$ 0.66--0.72", SSB, "sigma8 0.639, S8 0.656"),
+ ("$\\sigma_8$ 0.64--0.71, $S_8$ 0.66--0.72", SSB, "sigma8 0.706 / 0.695, S8 0.723 / 0.713"),
+ ("(C on its own shelf, 0.355\\,dex)", SSB, "its own shelf FAILS KiDS (max 0.355 dex)"),
+ ("E and F at the groups", SSB, "| E | FAIL at 2 groups"),
+ ("E and F at the groups", SSB, "| F | FAIL at 2 groups"),
+ ("a unit bug in the streaming length was fixed before grading", SSB, "Streaming-length bug, fixed before grading"),
+ ("recorded as frozen predictions (no lens-redshift split on disk)", SSB, "Frozen predictions (no lens-redshift split is on disk, so not graded)"),
+]
+
+SSH = "closure_2026_11_09/SS1_self_shielded_conversion/RESULT_H.md"
+SS2 = "closure_2026_11_09/SS2_virial_gated_conversion/RESULT.md"
+L += [
+ ("H-core fails first at the groups (7/20 and 3/20;", SSH, "**FAIL** 7/20 (f* 0), 3/20 (f* 1)"),
+ ("small groups drain below their need while larger ones over-fill", SSH, "Small groups now fall below their need while the rest still over-fill"),
+ ("growth fails (69\\,\\% of the component escapes; $\\sigma_8$ 0.640 / 0.624)", SSH, "FAIL: 69 % of the component escapes (58 % of matter); sigma8 0.640"),
+ ("growth fails (69\\,\\% of the component escapes; $\\sigma_8$ 0.640 / 0.624)", SSH, "FAIL: sigma8 0.624"),
+ ("The H-full bracket rescues growth ($S_8$ 0.807 / 0.802)", SSH, "S8 0.807 / 0.802"),
+ ("keeping the small halos' share in a 180\\,kpc core, which fails KiDS by $+0.27$ to $+0.35$\\,dex", SSH, "**KiDS FAILS** at +0.27 to +0.35 dex"),
+ ("galaxies cannot shed their share without either leaving the small-scale matter field", SSH, "Galaxies must lose their share without it either leaving the small-scale matter field (growth) or sitting at 0.2-1.5 Mpc"),
+ ("clusters must keep only about half, which a daughter bound by the escape speed cannot give", SSH, "Clusters must keep only about half of their share, which a v_esc-bound daughter cannot give"),
+ ("an $f\\sigma_8$ derivative artefact across the onset kink was fixed", SSH, "rang across the onset kink"),
+ ("(D's growth gate flips to PASS, and D still fails first at KiDS)", SSH, "D's growth gate flips FAIL -> PASS (BGS 0.53, LRG1 0.97), but D still fails first at KiDS"),
+ ("with no label changed (D's growth gate", SSH, "**Effect on the labels.** No B-G or SS2 label changes."),
+ ("with criteria frozen knowing SS1's grade of it (not blind; quarantined test lane)", SS2, "**Not blind.** SS1 had already graded G"),
+ ("it reproduces SS1's G to the last printed digit", SS2, "SS2 equals SS1's G to the last printed digit"),
+ ("the mass-kept daughter passes BAO + SN, so SS1 A's background failure is gone", SS2, "PASS: mass kept, so the background equals the reference and SS1's BAO failure is gone"),
+ ("1.57 / 0.90 / 0.75 against TR1's 0.71 / 0.66 / 0.58, while TR1's per-bin SHAPE statistic follows (rms 0.075 / 0.071)", SS2, "is 1.57 / 0.90 / 0.75 in TR1's first three bins, against TR1's"),
+ ("1.57 / 0.90 / 0.75 against TR1's 0.71 / 0.66 / 0.58, while TR1's per-bin SHAPE statistic follows (rms 0.075 / 0.071)", SS2, "(RMS 0.075 / 0.071, max 0.089 / 0.093)"),
+ ("the right shape at 1.3--2$\\times$ the amount", SS2, "its amount is about 1.3-2x too large"),
+ ("Growth fails (63\\,\\% converts; $\\sigma_8$ 0.654, $S_8$ 0.670)", SS2, "FAIL: 63 % of the component converts; sigma8 0.654 (ref 0.808), S8 0.670"),
+ ("a valid test needs a time-switched species inside CLASS", SS2, "A valid test needs a time-switched species"),
+ ("G's reading of 8.48 against the line of 18.48 is reported only", SS2, "The reading of 8.48 for G"),
+ ("G's reading of 8.48 against the line of 18.48 is reported only", SSA, "chi^2 <= 18.48"),
+ ("($z_{\\rm dec}$ 0.642, $\\alpha$ 4.39, $v_{\\rm stiff}$ 286\\,km/s) give the same label", SS2, "Under the source's own constants (z_dec 0.642, alpha 4.39, v_stiff 286, bracket G-source) the label is the same"),
+ ("$+0.365$ / $+0.340$ / $+0.180$ / $+0.061$\\,dex at $z_{\\rm lens}$ 0.8 / 0.6 / 0.4 / 0.2 (primary halos)", SS2, "| lane, primary halos | +0.365 / +0.340 / +0.180 / +0.061"),
+ ("$v_{\\rm stiff}\\times1.25$ and $/1.25$ flip no gate; M3--M5 bite", SS2, "**M1 / M2 (v_stiff x 1.25 and / 1.25): NO BITE.**"),
+ ("$v_{\\rm stiff}\\times1.25$ and $/1.25$ flip no gate; M3--M5 bite", SS2, "**M5 (onset z 2): BITES.**"),
+ ("the separation bounds at $\\alpha$ 4.39 compile with standard axioms", SS2, "the separation bounds at alpha 4.39"),
+]
+
+SSI = "closure_2026_11_09/SS1_self_shielded_conversion/RESULT_I.md"
+SS3 = "closure_2026_11_09/SS3_vacuum_absorbed_conversion/RESULT.md"
+SS4 = "closure_2026_11_09/SS4_late_pressure_halves/RESULT.md"
+WM1 = "closure_2026_11_09/WM1_warm_component_law_baryons/RESULT.md"
+TS1 = "closure_2026_11_09/TS1_tidal_signature_switch/RESULT.md"
+PD1 = "closure_2026_11_09/PD1_phantom_is_dust/RESULT.md"
+PD2 = "closure_2026_11_09/PD2_sheet_captured_phantom_dust/RESULT.md"
+SQ1 = "closure_2026_11_09/SQ1_component_screened_law/RESULT.md"
+SS5 = "closure_2026_11_09/SS5_baryon_component_segregation/FROZEN_CRITERIA.md"
+L += [
+ ("fails first at KiDS (max 0.350 / 0.342\\,dex)", SSI, "**FAIL** max 0.350 (21/59 over)"),
+ ("fails first at KiDS (max 0.350 / 0.342\\,dex)", SSI, "**FAIL** max 0.342 (19/59)"),
+ ("the ceiling does no work (its MUTATE does not bite)", SSI, "**MI1 (ceiling -> 1): NO BITE.**"),
+ ("85--90\\,\\% of the galaxy share escapes into a shell near $R_{\\rm FS}$ 1.7--1.8\\,Mpc", SSI, "85-90 % of the share escapes with little excess"),
+ ("$+0.18$\\,dex at 1.5\\,Mpc in every massive bin", SSI, "+0.18 dex at\n1.5 Mpc in every massive bin"),
+ ("a daughter with negative energy does not leave its halo", SSI, "A daughter with E < 0 does not leave its halo"),
+ ("first failing gate the groups (0/20 and 2/20; groups keep 3--10\\,\\%)", SS3, "**FAIL** 0/20, 2/20; median +0.31 / +0.11 (under-filled: groups keep 3-10 %)"),
+ ("76\\,\\% of the component converts", SS3, "76 % of the component converts"),
+ ("rises 143\\,\\% / 145\\,\\% from $z_{\\rm dec}$ to today, against the source's 7.45\\,\\%", SS3, "rho_DE rises 143 % from z_dec to 0"),
+ ("rises 143\\,\\% / 145\\,\\% from $z_{\\rm dec}$ to today, against the source's 7.45\\,\\%", SS3, "FAIL: +145 %; chi^2 143"),
+ ("rises 143\\,\\% / 145\\,\\% from $z_{\\rm dec}$ to today, against the source's 7.45\\,\\%", SS3, "| rho_DE rise | +7.45 % |"),
+ ("BAO + SN fail ($\\Delta\\chi^2$ +283 / +287)", SS3, "FAIL Delta chi^2 +283"),
+ ("BAO + SN fail ($\\Delta\\chi^2$ +283 / +287)", SS3, "| FAIL +287 |"),
+ ("($\\chi^2$ 141 against 2.1 for the best constant)", SS3, "chi^2 141 vs best constant 2.1"),
+ ("can absorb only a transfer that is a gradient, $Q_\\nu=-\\partial_\\nu\\rho_{\\rm vac}$", SS3, "So Q_nu = -partial_nu rho_vac: Q must be a gradient."),
+ ("(its curl is $d(\\Gamma\\rho_\\chi)/dr\\neq0$)", SS3, "the curl is\n  partial_t Q_r - partial_r Q_t = d(Gamma rho_chi)/dr, which is non-zero"),
+ ("first failing gate KiDS (max 0.219 / 0.204\\,dex)", SS4, "**FAIL** max 0.219 (11/59 over)"),
+ ("first failing gate KiDS (max 0.219 / 0.204\\,dex)", SS4, "**FAIL** 0.204"),
+ ("(retained over $M_{\\rm dyn}$ 6.59 / 1.60 / 0.69 against TR1's 0.71 / 0.66 / 0.58)", SS4, "retained / M_dyn 6.59 / 1.60 / 0.69"),
+ ("cores of 10--40\\,kpc", SS4, "Half 2 collapses into a 10-40 kpc core"),
+ ("down 82--86\\,\\% at $k$ 3\\,$h$/Mpc by $z$ 0.3", SS4, "82-86 % at k 3 h/Mpc by z 0.3"),
+ ("at its own sound speed (38\\,km/s) in the 6.1\\,Gyr available", SS4, "c_s1 = R_c1 H sqrt(1.5 Omega_m) / pi = 38 km/s"),
+ ("at its own sound speed (38\\,km/s) in the 6.1\\,Gyr available", SS4, "takes 32-65 Gyr against the 6.1 Gyr available"),
+ ("at most 0.050 / 0.055 / 0.065 / 0.093 / 0.200 / 0.292 of its cosmic share", SS4, "| **0.050** | **0.055** | **0.065** | **0.093** | **0.200** | **0.292** |"),
+ ("radius 0.12 / 0.3 / 0.6 / 1.2 / 2.4 / 3.0\\,Mpc", SS4, "| R_c (Mpc) | 0.12 | 0.3 | 0.6 | 1.2 | 2.4 | 3.0 |"),
+ ("188.7\\,eV, its half-mode mass $4.97\\times10^{12}\\,M_\\odot$", WM1, "This gives **M_hm = 4.97e12 Msun**"),
+ ("188.7\\,eV, its half-mode mass $4.97\\times10^{12}\\,M_\\odot$", WM1, "**m = 188.7 eV**"),
+ ("first failing gate seeding", WM1, "**Label: FAIL at seeding on canonical and alt.**"),
+ ("primary $\\Delta\\chi^2$ +0.016; lensing at the cutoff 9.28 against 18.48", WM1, "PASS, +0.016. TT"),
+ ("primary $\\Delta\\chi^2$ +0.016; lensing at the cutoff 9.28 against 18.48", WM1, "PASS, worst 9.28, best 8.34 (line 18.48)"),
+ ("X-COP's inner bin 1.51 of $M_{\\rm dyn}$", WM1, "Retained / M_dyn 1.51 / 0.87 / 0.71"),
+ ("boosts the growth 3--18$\\times$ at $k$ 0.01--3\\,$h$/Mpc", WM1, "linear baryon growth runs 3-18x too fast at k 0.01-3 h/Mpc"),
+ ("$\\sigma_8\\times$3.64 / 4.17, CMB lensing with the law on the web $\\chi^2$ 107.9 / 128.1", WM1, "**FAIL** sigma8 x 3.64, S8 +264 %"),
+ ("$\\sigma_8\\times$3.64 / 4.17, CMB lensing with the law on the web $\\chi^2$ 107.9 / 128.1", WM1, "**FAIL** x 4.17, +317 %"),
+ ("$\\sigma_8\\times$3.64 / 4.17, CMB lensing with the law on the web $\\chi^2$ 107.9 / 128.1", WM1, "**FAIL** chi^2 107.9"),
+ ("$\\sigma_8\\times$3.64 / 4.17, CMB lensing with the law on the web $\\chi^2$ 107.9 / 128.1", WM1, "**FAIL** 128.1"),
+ ("leaves 1--13\\,\\% of the cold reference's abundance", WM1, "Galaxy-scale halos form at 1-13 % of the reference abundance."),
+ ("the 377\\,eV bracket, which still forms more, already fails KiDS", WM1, "**MW2 (M_hm / 10, 377 eV): BITES.** KiDS fails"),
+ ("($n(>10^{10})$ at $z$ 0 is 0.010 with the law and 0.011 with Newton)", WM1, "n(> 1e10) at z 0 is\n  0.010 with the law and 0.011 with Newton"),
+ ("first failing gate SPARC for the switch alone (rms 0.122 / 0.124 against 0.066", TS1, "| M-law rms | 0.122 | 0.124 |"),
+ ("so WL1's population phantom is untouched (FAIL $\\times$26 / $\\times$30)", TS1, "FAIL x26 / x30"),
+ ("the switch is on in half of space and keeps 23\\,\\% of the boost", TS1, "It keeps 23 % of the law's boost."),
+ ("recorded as a phenomenological switch", TS1, "**Recorded as a phenomenological switch.**"),
+ ("the Lagrangian share ($59.5\\,M_b$) falls short by up to 0.64\\,dex", PD1, "the Lagrangian share of 59.5 M_b: -0.64 dex"),
+ ("the basin share ($10.8\\,M_b$) by 1.34, the cosmic share ($5.41\\,M_b$) by 1.61", PD1, "the basin share of 10.8 M_b: -1.34 dex"),
+ ("the basin share ($10.8\\,M_b$) by 1.34, the cosmic share ($5.41\\,M_b$) by 1.61", PD1, "the cosmic share of 5.41 M_b: -1.61 dex"),
+ ("is 3.41 at $M_b=10^8\\,M_\\odot$ and 0.33 at $10^{14}\\,M_\\odot$", PD1, "| M_ph(<R_ms) / share | 3.41 | 2.32 | 1.58 | 1.07 | 0.73 | 0.49 | 0.33 |"),
+ ("(0.93 / 0.84 / 0.75 against TR1's 0.71 / 0.66 / 0.58, about 1.3$\\times$)", PD1, "f_miss 0.93 / 0.84 / 0.75 against TR1's 0.71 / 0.66 / 0.58: falling,\n    about 1.3x"),
+ ("its subcluster is 2.6$\\sigma$ light", PD1, "The subcluster's mass inside 300 kpc is 2.6 sigma low."),
+ ("the dispersion locked to $\\sigma^2=\\tfrac12\\sqrt{GM_ba_0}$", PD1, "sigma^2 = (1/2) sqrt(G M_b a0)"),
+ ("but at 0.301 / 0.326\\,Mpc", PD2, "**0.301 / 0.326 Mpc** at every mass"),
+ ("(max 0.959 / 0.926\\,dex)", PD2, "**FAIL** max 0.959 (23/59)"),
+ ("(max 0.959 / 0.926\\,dex)", PD2, "**FAIL** 0.926 (23/59)"),
+ ("the source's 1.48\\,Mpc does not follow from its own formulas", PD2, "**The source's claimed 143 M_b and 1.48 Mpc do not follow from its own formulas.**"),
+ ("At the source's claimed radius, 1.57 / 1.71\\,Mpc", PD2, "(1.57 / 1.71 Mpc)"),
+ ("($q$ 1.08 / 1.28, as WL1 found)", PD2, "q at z 0.5 / 1 / 2 is 1.08 / 0.59 / 0.20 (alt 1.28 / 0.70 / 0.24)"),
+ ("passing KiDS needs a truncation beyond 3\\,Mpc", PD2, "No universal R_trunc below about 3 Mpc can pass KiDS."),
+ ("the stated Lagrangian's force on the component is attractive toward galaxies", SQ1, "Its force is attractive toward luminous galaxies."),
+ ("by less than 0.1\\,\\% against collapse", SQ1, "by less than 0.1 % relative to the force-off run"),
+ ("7--27 / 6--22 times $\\rho_{\\rm screen}$", SQ1, "**FAIL**: 7.2 / 18.3 / 26.7 rho_screen"),
+ ("7--27 / 6--22 times $\\rho_{\\rm screen}$", SQ1, "**FAIL**: 6.0 / 15.2 / 22.1"),
+ ("(KiDS 0.618 / 0.658\\,dex, SPARC rms 0.127)", SQ1, "FAIL max 0.618 (59/59, mean -0.38)"),
+ ("(KiDS 0.618 / 0.658\\,dex, SPARC rms 0.127)", SQ1, "| FAIL 0.658 |"),
+ ("(KiDS 0.618 / 0.658\\,dex, SPARC rms 0.127)", SQ1, "FAIL rms 0.127 (line 0.066)"),
+ ("ran about 34$\\times$ low against its own formula", SQ1, "they are about 34x too small relative to their\nown stated formula"),
+ ("& RUNNING; no label & SS5", SS5, "registered RUNNING by the orchestrator"),
+]
+
 def mutate(lit):
     m = re.search(r"\d", lit)
     return lit if not m else lit[:m.start()] + str((int(m.group()) + 1) % 10) + lit[m.end():]
@@ -558,10 +915,17 @@ rules = [
  ("no 'cold dark matter'", "cold dark matter" not in TEX.lower()),
  ("no pending placeholder", "\\pend{" not in body),
  ("no LCDM input claimed", "No $\\Lambda$CDM inputs were used" in TEX),
- ("version v1.7 stated, no draft marker", "v1.7, 2026-11-08" in TEX and "draft v0" not in TEX),
+ ("version v2.1 stated, no draft marker", "v2.1, 2026-11-09" in TEX and "draft v0" not in TEX),
+ ("v2.0 DOI recorded in header", "deposited as DOI 10.5281/zenodo.24086157; this version adds the quarantined test lanes SS1 (variants A--I), SS2, SS3, SS4, WM1, TS1, PD1, PD2 and SQ1, with SS5 still running" in TEX),
+ ("v1.9 DOI recorded in header", "deposited as DOI 10.5281/zenodo.24082193; v2.0, which added the closing statement" in TEX),
+ ("closing statement present, three parts", "\\section{Closing statement}" in TEX and all(s in TEX for s in ("\\textbf{Domain.}", "\\textbf{Boundary, as a statement about the record.}", "\\textbf{What such a component must be, from the record's own numbers.}"))),
+ ("header has no not-yet-deposited marker", "not yet deposited" not in TEX and "the quarantined test lanes PJ1, WD1 and XF1" in TEX),
+ ("exchange summary in closing statement", "leave four statements about the record" in TEX and "every label rests on the lanes' own solvers" in TEX),
+ ("dSph widening about 0.9 dex", all(abs(d-0.9)<0.1 for d in (1.208-0.356, 1.555-0.633, 1.203-0.321, 1.555-0.600))),
  ("owner decision carried, nothing pending", "re-stated (owner 2026-11-07)" in TEX and "pending owner" not in TEX and "the frozen RESULT files are not edited" in TEX),
  ("unification quote verbatim", UQ_OK),
  ("seed abstract verbatim", "The next lane must find one covariant quantity that sets that amplitude (not just a switch) in today's hot systems and is non-zero in the early universe, or show the two failures need separate causes." in ws(TEX)),
+ ("UDG linear-response f derived", abs(10**1.121-1-12.2)<0.05 and abs(10**1.078-1-11.0)<0.05 and "$f=10^{1.121}-1=12.2$ / $10^{1.078}-1=11.0$" in TEX),
  ("erratum stated", "erratum on PAPER68's printed form only; no number changes" in TEX),
 ]
 if not MUT:

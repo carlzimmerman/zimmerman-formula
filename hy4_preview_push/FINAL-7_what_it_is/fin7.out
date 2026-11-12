@@ -132,8 +132,8 @@ alt       10.90 hernquist |    4.7833e+03        1.4593   4.7850e+03         0.2
     main  M_gas 2.000e+14  M_star 1.196e+13  M_cold = 5.41 x = 1.1467e+15 Msun   Sigma_c = 9.1252e+09 Msun/kpc^2
     sub   M_gas 2.320e+13  M_star 4.000e+12  M_cold = 5.41 x = 1.4715e+14 Msun   Sigma_c = 1.1710e+09 Msun/kpc^2
     ICM central density (main gas, Plummer b = 200 kpc, PROVISIONAL): 5.9683e+06 Msun/kpc^3
-    ICM column over a 1 Mpc path (PROVISIONAL):                     5.9683e+09 Msun/kpc^2
-    DB1 (i)  needs Sigma_c >= 1.7905e+10 ; the solid's column 9.1252e+09 -> FAILS
+    ICM column over a 1 Mpc path (PROVISIONAL):                     1.5915e+09 Msun/kpc^2
+    DB1 (i)  needs Sigma_c >= 4.7746e+09 ; the solid's column 9.1252e+09 -> PASSES
     DB1 (ii) needs Sigma_c >= 5.5366e+09 ; the solid's column 9.1252e+09 -> PASSES
     BLIND SPOT (must be flagged): both DB1 tests are SELF-GRAVITY tests. They are blind to
         solidity. A solid passes both and still cannot interpenetrate.
@@ -163,15 +163,14 @@ alt       14.60  |      393.5      479.1     11.94      9.81      1.427e+02
 # Q2  which hypothesis must break
 ####################################################################################################
 
---- Arm N, hypothesis (i) LOCAL:  sigma = -Pi(g_L) with g_L smoothed on scale L.
-    canonical L =    0.0 kpc : rms dex(implied rho_c / law rho_c) = 0.3634  -> FIRES
-    canonical L =   10.0 kpc : rms dex(implied rho_c / law rho_c) = 0.3163  -> FIRES
-    canonical L =   50.0 kpc : rms dex(implied rho_c / law rho_c) = 0.2501  -> FIRES
-    canonical L =  200.0 kpc : rms dex(implied rho_c / law rho_c) = 0.2035  -> FIRES
-    alt       L =    0.0 kpc : rms dex(implied rho_c / law rho_c) = 0.3634  -> FIRES
-    alt       L =   10.0 kpc : rms dex(implied rho_c / law rho_c) = 0.3131  -> FIRES
-    alt       L =   50.0 kpc : rms dex(implied rho_c / law rho_c) = 0.2460  -> FIRES
-    alt       L =  200.0 kpc : rms dex(implied rho_c / law rho_c) = 0.2019  -> FIRES
+--- Arm N, hypothesis (i) LOCAL:  sigma = -Pi(g_L), g_L = Newtonian field smoothed on L.
+    L[kpc]  |  rms |(div sigma)_r/(rho_c g) - 1| over the 24 rows   (0 = the law IS an equilibrium)
+       0.0  |  4.140575   -> FIRES
+      10.0  |  0.982473   -> FIRES
+      50.0  |  0.999132   -> FIRES
+     200.0  |  0.999946   -> FIRES
+    structural: (2) is a statement about the configuration MAP. Locality never enters it,
+                so dropping (i) cannot repair (2). Arm N FIRES.
 
 --- Arm P, hypothesis (ii) MOMENTUM-CONSERVING (medium alone)
     P1 contact:  opacity needed for the contact to switch on where <a> = a0

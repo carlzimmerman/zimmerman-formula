@@ -1,0 +1,208 @@
+====================================================================================================
+FINAL-16 (KAPPA_REAL): is a_0 = kappa c sqrt(G rho_Lambda) an OUTPUT of the formation reading?
+   MUTATE = True      criteria PREREGISTER.md (committed alone, pre-script)
+====================================================================================================
+
+=== BACKGROUND (Planck 2018; reported, not graded) ===
+  H0 = 67.36 km/s/Mpc = 2.182989e-18 1/s        c H0    = 6.544436e-10 m/s^2
+  Om = 0.3153  OL = 0.6847  Ob = 0.0493  Oc = 0.26445
+  rho_crit,0 = 8.522730e-27 kg/m^3
+  rho_Lambda = 5.835513e-27      rho_m,0 = 2.687217e-27
+  f_cdm = 5.3641    f_b = 0.156359    OL/Om = 2.17158
+  H_Lambda = sqrt(8 pi G rho_L/3) = 1.806349e-18 1/s      c H_L = 5.415298e-10 m/s^2
+  c sqrt(G rho_L) = 1.870954e-10 m/s^2   (= s, the cosmic acceleration unit)
+  z(rho_m = rho_L)  = 0.294967      z(rho_m = 2 rho_L) = 0.631556
+
+=== J0: REAL-kappa -- what is the number, measured? (graded) ===
+  kappa is a_0 measured, divided by c sqrt(G rho_L) measured. Nothing else.
+
+    source                                   a_0 [m/s^2]     rho used        kappa
+    record footing 'can'                     9.3603e-11    rho_L     0.500296
+    record footing 'alt'                     1.1312e-10    rho_c0    0.500295
+    external SPARC (Prov.)                   1.2000e-10    rho_L     0.641384
+
+  the record's own kappa estimates:
+    entry                               kappa   +-1sig   z vs 1/2
+    adopted normalization               0.500    0.000   n/a (input)
+    KAPPA_LEDGER fit (superseded)       0.551    0.043   1.19
+    CFG493 combined                     0.417    0.095   0.87
+    MNRAS v3.1 shape-only               0.580    0.180   0.44
+
+  external kappa = a_0(Sparc 1.20e-10) / (c sqrt(G rho_L)) = 0.6414
+     +- 0.0107 (random)   +- 0.1283 (systematic)
+  record's internal measurement spread (excl. the adopted input): 0.1433 dex
+  full span, adopted input -> external:                          0.1870 dex
+
+  [PASS] J0 -- kappa = 1/2 is a CONVENTION, not a measurement (|kappa_ext - 1/2| = 0.1414 > 0.05)
+        a_0 = 1.20e-10 m/s^2 (external) -> kappa = 0.6414; the value 1/2 is realized only on the record's canonical footing a_0 = 9.3603e-11, i.e. 0.108 dex lower.
+
+=== J1: the scale-covariance no-go (exact, sympy) ===
+  X_L(y;a0) = (sqrt(1 + 4 a0/y) - 1)/2
+  (i)  X_L(lam*y ; lam*a0) - X_L(y;a0) = 0        -> covariance: True
+  (ii) g X (1+X) simplifies to: a0              -> exact: True
+       under lam: (lam g) X' (1+X') / (g X (1+X)) = lam   (weight 1, relation preserved)
+  (iii) F3 (universality: one a_0 for all galaxies/epochs): a_0 -> lam a_0 preserves it.
+  (iv) budget: rho_ph = X rho_b carries no a_0 -- invariant.
+
+  F2 (a_0 = kappa c sqrt(G rho_*)) is the ONLY relation that is not invariant:
+      it DEFINES kappa, so under G_lam:  kappa -> lam * kappa.
+      There is no G_lam-invariant left that could fix kappa: X is fixed, M_b fixed,
+      rho_* fixed, c,G fixed. kappa is the coordinate ALONG the orbit -> a flat direction.
+
+  [PASS] J1 -- NO-GO CONFIRMED: G_lam is an exact symmetry of F1/F3/every formation relation and kappa is its only charged quantity
+        covariance of X_L: True | exact quadratic g X(1+X) = a0: True | weight: lam
+
+  orbit check (numeric): two histories differing only by lam are observationally identical
+    lam      a_0 [m/s^2]    g_b,f [m/s^2]  kappa          X (same)    
+    0.50     4.68015e-11    1.30073e-14    0.250000       59.4861     
+    1.00     9.36030e-11    2.60147e-14    0.500000       59.4861     
+    2.00     1.87206e-10    5.20294e-14    1.000000       59.4861     
+
+=== J2: the routes that break the covariance (frozen list; graded) ===
+  kappa(z_f) = 1 / (2 sqrt(beta)),   beta = rho_m(z_f)/rho_L = (Om/OL)(1+z_f)^3
+
+    id   added condition                                                 z_f        kappa  status
+    C1   freeze-out at matter-Lambda equality                         0.2950      0.50000  chosen epoch
+    C2   freeze-out today (z=0)                                       0.0000      0.73681  chosen epoch
+    C3   freeze-out at acceleration onset                             0.6316      0.35355  chosen epoch
+    C4   freeze-out at binding epoch z=10.83                         10.8300      0.01811  chosen epoch
+    C5   g_b,f = delta_c * c sqrt(G rho_L)                                 -   6066.36658  asserted tie
+    C6   turnaround R_ta^3 = 3 M_tot/(8 pi rho_L), R_set=(1+X) r_M          -      0.05575  derived
+
+  SPREAD TEST (the decisive number):
+    named-epoch menu {today, matter=Lambda, accel onset}:
+        kappa = 0.7368 / 0.5000 / 0.3536     span = 0.3189 dex
+    including the record's own binding epoch z=10.83:
+        kappa = 0.0181 ... 0.7368         span = 1.6095 dex
+    observational allowance (footing spread)          = 0.0411 dex
+    pre-registered pass band for kappa                = +-0.025 (5%%)
+    ratio, span3 / allowance = 7.76   ratio, span4 / allowance = 39.16
+
+  routes inside the 5% band of 1/2: ['C1']
+  ... of which the added condition is DERIVED (not a chosen epoch): none
+
+  [FAIL] J2 -- NO ROUTE PASSES: the only band hit (C1) is an epoch CHOICE, and the menu moves kappa by 0.319 dex against a 0.0411 dex allowance (7.8x too much freedom)
+        band hits=['C1'] | C1 is a restatement of rho_* = rho_L, not a derivation of kappa
+
+  NOTE on C1: kappa = 1/2 <=> beta = 1 <=> z_f = z(matter=Lambda). But the record's
+  canonical footing DEFINES rho_ref := 4 a0^2/(c^2 G) ~ rho_L, so 'freeze-out at
+  equality' and 'kappa = 1/2' are the SAME statement. C1 has zero content as a
+  derivation; it is the definition of which cosmic density is used.
+
+  NOTE on C6: the exact turnaround condition gives a_0 = [(8 pi rho_L/3)(1+X)^2]^{2/3}
+        * G * M_b^{1/3}  -- i.e. a_0 ~ M_b^{1/3}. Universality (F3) excludes it.
+        at M_b = 6e10 Msun: a_0 = 1.0430e-11 m/s^2 (fitted can = 9.3603e-11), ratio -0.9530 dex
+
+=== J3: the GF1/GF2 n = 2 hook (graded) ===
+  certified identity: kappa := a_0/s, s := n a_0  =>  kappa = 1/n; kappa = 1/2 <=> n = 2
+
+  (i)  a_0/(n a_0) - 1/n = 0   -> theorem holds: True
+  (ii) GF1 battery at n = 2 (committed numbers):
+        germ ratio  = 4.000406   (n^2 = 4)          rel = 1.01e-04
+        Z^2         = 33.510322   (32 pi/3 = 33.510322)   rel = 1.08e-08
+        Omega_L     = 0.685
+        S(n=2)      = 3/2 - ln 2 = 0.806853 (committed)
+        -> germ ratio and S are a_0-free; Z^2 is a_0-bearing. n = 2 IS pinned by an
+           a_0-free channel (germ/S).  (ii) = YES
+
+  (iii) kappa = a_0/s fixes the RATIO a_0/s only. Substituting into F2 gives
+          s = a_0/kappa = c sqrt(G rho_*),
+        i.e. the identification s = c sqrt(G rho_Lambda) IS the statement F2 with kappa = 1/n.
+        kappa = 1/n is therefore silent about which rho_* stands under the root; it
+        constrains the shape/normalisation of the RESPONSE, not the cosmic density.
+        -> (iii) = NO.
+
+  [FAIL] J3 -- J3 = RESTATEMENT, not a formation output: kappa = 1/n is a theorem (i) and n = 2 is measured a_0-free (ii), but the rho_Lambda identification is F2 itself (iii)
+        the n = 2 channel transports the EXPONENT/INDEX; it does not select the cosmic density, and it is not formation physics
+
+=== J4: where the formation event actually sits (graded) ===
+  from F1's exact quadratic:  g_b,f = a_0 / [X (1+X)]
+
+    footing  a_0            g_b,f          g/(c H_0)    g/(c H_L)    g / c sqrt(G rho_L)
+    can      9.36030e-11    2.60147e-14    3.975e-05    4.804e-05    1.390e-04   
+    alt      1.13120e-10    3.14214e-14    4.801e-05    5.802e-05    1.679e-04   
+
+  the formation field sits -3.86 dex below c sqrt(G rho_L), -4.40 dex below c H_0.
+  -> the assembly event is NOT cosmological in acceleration units. The gap between the
+     cosmic scale and the formation field is bridged by X ~ 59.49, which is itself the
+     output of the law. Any 'derivation' of a_0 that must supply this gap is circular.
+
+  [PASS] J4 -- the formation field lies >2 dex below every cosmic acceleration (3.86 dex) -- the event is set by the galaxy, not by cosmology
+        g_b,f = 2.6015e-14 m/s^2 vs c sqrt(G rho_L) = 1.8710e-10 m/s^2
+
+=== J5: the epoch-prediction the reading does supply (reported, not graded) ===
+  rho_* = rho_Lambda  =>  a_0(z) = a_0(0) exactly.
+  rho_* = rho_crit(z) =>  a_0(z)/a_0(0) = E(z).
+
+    z      E(z)         a_0(z)/a_0 (Lam) a_0(z)/a_0 (crit)
+    0.30   1.17363      1.00000          1.17363         
+    0.50   1.32244      1.00000          1.32244         
+    1.00   1.79084      1.00000          1.79084         
+    2.00   3.03279      1.00000          3.03279         
+    6.00   10.43229     1.00000          10.43229        
+
+  FINAL2's own bound on a_0(z) stands; this lane does not grade it.
+
+=== KNOWN ANSWERS (each must pass, both footings) ===
+
+  KA-1  Z = c H_Lambda/a_0 with rho_ref = 4 a0^2/(c^2 G);  sqrt(32 pi/3) = 5.788810
+        can  rho_ref = 5.842415e-27   Z = 5.788810   |Z - sqrt(32pi/3)| = 0.00e+00  OK
+        alt  rho_ref = 8.532802e-27   Z = 5.788810   |Z - sqrt(32pi/3)| = 0.00e+00  OK
+  [PASS] KA-1 -- Z = c H_L/a_0 reproduces sqrt(32 pi/3) = 5.78881 to 1e-4 on BOTH footings
+
+  KA-2  footing identity, printed to 6 digits:
+        rho_ref(can)/rho_Lambda = 1.001183     (1.000000 = the Lambda-only density)
+        rho_ref(alt)/rho_crit,0 = 1.001182     (1.000000 = the total/critical density)
+  [PASS] KA-2 -- canonical footing IS the Lambda-only density and alt footing IS the critical density
+        cross-ratios (reported): rho_ref(can)/rho_crit,0 = 0.685510 ; rho_ref(alt)/rho_L = 1.462220
+
+  KA-3  can  g_b,f X(1+X) = 9.360300e-11   vs a_0 = 9.360300e-11   rel = 1.38e-16
+  KA-3  alt  g_b,f X(1+X) = 1.131200e-10   vs a_0 = 1.131200e-10   rel = 0.00e+00
+  [PASS] KA-3 -- F1's exact quadratic g_b,f X(1+X) = a_0 closes on both footings
+
+  KA-4  GF1/GF2 battery at n = 2 (n = 2 <-> kappa = 1/2):
+        germ ratio      = 4.000406  vs n^2 = 4            rel = 1.01e-04
+        Z^2             = 33.510322  vs 32 pi/3 = 33.510322    rel = 1.08e-08
+        A*Lambda        = 3.909911e-32  vs GF1 3.910308e-32       rel = 1.01e-04
+        S(n=2)          = 3/2 - ln 2 = 0.806853
+  [PASS] KA-4 -- GF1/GF2 n = 2 battery reproduces all four targets (|rel| <= 1e-3)
+        => the integer n = 2 IS pinned. It pins kappa = 1/n. It does NOT pin rho_* (see J3 iii).
+
+=== J7: is CONSERVATION load-bearing for kappa? (graded; the brief's own premise) ===
+  F1 has two clauses: (a) formation-set, (b) conserved. Test each for what it does to kappa.
+
+  conservation relation  X(t) = X_L(g_b,f; a_0):
+     G_lam-covariant? True   -> it constrains d X/dt, and kappa is unchanged by it.
+     if g_b,now =   10.0 x g_b,f : X_L(g_b,now) =  18.4752  vs frozen X = 59.4861  (factor 3.22)
+     if g_b,now =  100.0 x g_b,f : X_L(g_b,now) =   5.5192  vs frozen X = 59.4861  (factor 10.78)
+     -> conservation is load-bearing for the AMOUNT (it is what makes X ~ 59 and not ~ 6),
+        and it is silent about the NORMALISATION.
+
+  [PASS] J7 -- CONFIRMED: conservation is G_lam-covariant -- it fixes the amount's history, not kappa
+        the brief's premise is load-bearing for Q1 (universality, epoch-independence) and empty for Q2 (the number 1/2)
+
+=== MUTATE: three false twins, each must be REJECTED by the same machinery ===
+
+  [PASS] M1 -- REJECTED: 'kappa = 1/(2 pi) derived by the formation reading' -- band miss |0.159 - 0.500| = 0.341 >> 0.025
+        Milgrom's q = 0.159 is the T001 closest near-miss; it is 0.341 away, i.e. 13.6x the band
+
+  [PASS] M2 -- REJECTED: 'the z_f = z_L hit derives kappa = 1/2' -- the named-epoch menu spans 0.3189 dex against a 0.0411 dex allowance (7.8x too free)
+        kappa(today) = 0.7368, kappa(equality) = 0.5000, kappa(accel onset) = 0.3536; picking the middle one is a choice, and it is a restatement of rho_* = rho_L
+
+  [PASS] M3 -- REJECTED: 'kappa = 1/2 is a measurement' -- against Planck rho_L the external a_0 gives kappa = 0.6414; 1/2 is realized only by adopting the canonical footing
+        record-internal kappa estimates span 0.187 dex (0.417+-0.095 to 0.641+-0.128): the observation cannot confirm or exclude 1/2 at the 5% level
+
+====================================================================================================
+SUMMARY
+====================================================================================================
+  checks: 13, failing: ['J2', 'J3']
+  J0 kappa(ext, Planck rho_L)          = 0.6414  (adopted 1/2 = convention, not a datum)
+  J1 no-go (G_lam symmetry, kappa flat) = True
+  J2 menu freedom                       = 0.3189 dex vs 0.0411 dex allowance
+  J3 (i) theorem / (ii) n=2 a_0-free / (iii) rho_L tie = YES / YES / NO  -> RESTATEMENT
+  J4 formation field below cosmic scale = -3.86 dex
+  J7 conservation G_lam-covariant       = True (load-bearing for the amount, silent on kappa)
+
+  MUTATE ARM: all three false twins must be rejected: YES
+  MUTATE VERDICT: PASS (machinery discriminates)
+
