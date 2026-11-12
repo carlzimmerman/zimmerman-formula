@@ -4,6 +4,13 @@ TEST lane, quarantined. Adopts nothing, relabels nothing, registers nothing. Foo
 9.3603e-11, alt 1.1312e-10 m/s^2). Committed alone, before any FRM1 script exists or any FRM1 number is computed.
 The id FRM1 was checked free (no `fable52_push/FRM*`, no commit subject naming FRM1 or formation_theory).
 
+**Amendment, committed before any FRM1 number existed.** One derived statement was wrong as first written: it put
+a0/g_b,f = (a0/g_bar)/f_b when g_b,f = g_bar/f_b gives a0/g_b,f = (a0/g_bar) f_b. Corrected, the baryon-loss channel
+saturates and the bound is *stricter*: no baryon loss can raise a system that was on the law at formation by more
+than d_max = log10[(1 + a0/g_bar)/(1 + X_L(g_bar))], which is +0.31 dex at X-COP's field. The graded per-class
+intervals, the pass lines, the labels and the known answers are unchanged; the M3 mutation arm is restated. Nothing
+else was touched.
+
 ## Question
 
 HIS1 (`fable52_push/HIS1_history_reading/`, and its blind regrade HIS1R) found that on DD1's frozen 626-system
@@ -72,7 +79,13 @@ make SPARC and the clusters both right.)
 Two structural consequences, both testable and both pre-registered:
 1. **The floor.** X >= 0 always (both charges are non-negative), so no system can sit below d = -Y_L(g_bar).
 2. **No upward channel but baryon loss.** A system above the law must have lost baryons, and the amount of loss is
-   determined: solve the master equation for f_b at the measured offset. The lane reports that f_b per class.
+   determined: solve the master equation for f_b at the measured offset. The lane reports that f_b per class. The
+   channel **saturates**: with f_C = 1, X = X_L(g_bar/f_b)/f_b increases as f_b falls but tends to a0/g_bar, so no
+   amount of baryon loss can raise a system that was on the law at formation by more than
+
+       d_max(g_bar) = log10[ (1 + a0/g_bar) / (1 + X_L(g_bar)) ] .
+
+   At X-COP's field (a0/g_bar ~ 4.5) d_max = +0.31 dex. This bound is reported per class.
 
 ## Pre-registered predictions (before the table is read)
 
@@ -106,10 +119,11 @@ to count. The same intervals are used on both footings (alt shifts d_L by at mos
   because they lost the most gas), the Coma UDGs at +0.1 to +0.5, and M31 and the bright MW dwarfs at 0 to +0.3.
 
 **The prediction the theory is expected to fail:** the clusters. An unhosted 10^14-10^15 M_sun well whose hot gas is
-measured inside the aperture has no sink for most of its baryons, so f_b cannot be small; at X-COP's field
-(a0/g_bar ~ 4.5) the master equation needs **f_b ~ 0.40** (60 % of the baryons inside R500 expelled) to make +0.5
-dex. The theory predicts X-COP and CLASH in **-0.30 .. +0.30**. If the table puts them at +0.5, the theory is wrong
-there, by the size of the miss, and in the one direction it has no channel for.
+measured inside the aperture has no sink for most of its baryons, so f_b cannot be small. Worse, the channel
+saturates: at X-COP's field the largest offset baryon loss can make is **+0.31 dex**, and at CLASH's about the same.
+So the theory predicts X-COP and CLASH in **-0.30 .. +0.30** and, if the table puts them near +0.5, the theory is
+wrong there in the one direction it has no channel for: **no baryon loss whatever, and no stripping, can make a
+cluster that was on the law at formation sit +0.5 dex above it.**
 
 ## Tests (per footing; each HOLDS / FAILS, F3 three-way, F5 as given)
 
@@ -173,8 +187,8 @@ Beside the label: the count in F3, the misses, and the f_b the misses would need
 - M1 every system put on the law (Y := Y_L at its own g_bar, both footings): F2 must FAIL.
 - M2 class labels shuffled across systems (seed 20261110; the predictions stay with the class names): F3's count must
   fall below 13.
-- M3 the baryon-loss channel applied to the clusters (X-COP and CLASH g_bar x 0.40, their g_obs unchanged): each
-  cluster class's offset must rise by >= +0.25 dex and enter its pre-registered interval.
+- M3 the baryon-loss channel applied to the clusters (X-COP and CLASH g_bar x 0.10, their g_obs unchanged, i.e. 90 %
+  of the baryons gone and the charge kept): each cluster class's offset must rise by >= +0.15 dex.
 - M4 a0 x 2 (both footings): F5 must FAIL.
 
 ## Lean (`FRM1.lean`, with a false twin that must fail to compile)
