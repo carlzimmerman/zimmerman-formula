@@ -1,3 +1,7 @@
+> **Forward correction, 2026-11-12:** The dimension-matrix census does not prove a dynamical no-go or physical gauge redundancy. Scaling acceleration while fixing measured G, baryon mass and radius changes observables; FINAL17 has a forward correction. A dimensionless coefficient can be fixed by equations even when dimensional analysis cannot evaluate it. The specific T-star surface-gravity proposal remains unsupported for the reasons tested here; no general impossibility of deriving kappa follows. See the [correction index](../../research_closure_2026_11_12/combined_route/CORRECTIONS.md). The body below is preserved as the historical record.
+>
+> *Audit note, 2026-11-12 (lead session):* this notice was written by another session and is committed here on the owner's instruction after an independent check, `reviews/codex_corrections_audit_2026_11_12/C3_kappa_and_dt2.md` (grade: CORRECT). The folder `research_closure_2026_11_12/` it links to was not committed with it, so those links may not resolve; the audit file is the checked record. The committed text, labels and outputs below this notice are not edited by this commit.
+
 # OUT-4 (KAPPA WINDOW) RESULT — 2026-11-12
 
 **Label: `KAPPA NOT DERIVED (FITTED) — T* FALSIFIED AS A DERIVATION; WINDOW 9.2x TOO WIDE.`**

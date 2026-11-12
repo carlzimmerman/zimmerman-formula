@@ -1,3 +1,7 @@
+> **Forward correction, 2026-11-12:** This is a historical inventory, not a current exhaustive closure count. CLOSE-1_DT2 did land and now has corrected runs: its growth gate fails, physical present-day settling is unavailable, and its tested band failure does not exclude every band. PIK1 linear invisibility, FINAL5 universal detectability and several kappa/gauge claims are superseded. Do not infer class-level impossibility from the lane counts below. See the [correction index](research_closure_2026_11_12/combined_route/CORRECTIONS.md). The body below is preserved as the historical record.
+>
+> *Audit note, 2026-11-12 (lead session):* this notice was written by another session and is committed here on the owner's instruction after an independent check, `reviews/codex_corrections_audit_2026_11_12/C3_kappa_and_dt2.md` (grade: CORRECT WITH LIMITS). Its PIK1 and FINAL5 items are graded in `reviews/codex_corrections_audit_2026_11_12/C2_pik1_and_frm1.md` and `reviews/codex_corrections_audit_2026_11_12/C4_gas_signal_and_combined_route.md`. The label of CLOSE-1_DT2, FOLDS / FOLDS, stands. The folder `research_closure_2026_11_12/` it links to was not committed with it, so those links may not resolve; the audit file is the checked record. The committed text, labels and outputs below this notice are not edited by this commit.
+
 # DOORS.md — every door fable 5.2 left open (definitive audit, 2026-11-12)
 
 Adopts nothing. **kappa = 1/2 FITTED; not theory closed.** Cold dark energy is a gravitating field

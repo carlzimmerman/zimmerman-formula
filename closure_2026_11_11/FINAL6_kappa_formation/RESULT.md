@@ -1,3 +1,7 @@
+> **Forward correction, 2026-11-12:** Dimensional uniqueness is conditional on the chosen available variables and monomial class. A parameter frozen from rho_m at a fixed reference epoch remains constant even when the instantaneous rho_m evolves, so time independence alone does not select rho_Lambda. The two tested per-galaxy constructions fail as stated; this does not exclude every formation history. Kappa remains fitted, not dynamically derived. See the [correction index](../../research_closure_2026_11_12/combined_route/CORRECTIONS.md). The body below is preserved as the historical record.
+>
+> *Audit note, 2026-11-12 (lead session):* this notice was written by another session and is committed here on the owner's instruction after an independent check, `reviews/codex_corrections_audit_2026_11_12/C3_kappa_and_dt2.md` (grade: CORRECT). The folder `research_closure_2026_11_12/` it links to was not committed with it, so those links may not resolve; the audit file is the checked record. The committed text, labels and outputs below this notice are not edited by this commit.
+
 # FINAL-6 (KAPPA) RESULT: is kappa an OUTPUT of the formation reading? (2026-11-11)
 
 **Label: KAPPA NOT DERIVED (FITTED) + FORMATION REFUTED (per-galaxy).**

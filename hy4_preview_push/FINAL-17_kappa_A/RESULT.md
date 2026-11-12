@@ -1,5 +1,9 @@
 # FINAL-17 (KAPPA_A) RESULT -- 2026-11-11
 
+**SCOPE CORRECTION — 2026-11-12.** The capacity algebra survives; the A4 physical-gauge/no-go interpretation does not. Scaling g_N while fixing G,M_b,r violates g_N=GM_b/r^2, and the separate Poisson check uses a different sqrt(lambda) scaling. The old outputs below are preserved, and the registered script and the Lean file are unchanged; A4 is to be read as algebraic covariance only. Kappa remains an input without an independent scale-setting mechanism. See [correction record](../../research_closure_2026_11_12/combined_route/dt2_corrections/CORRECTIONS.md).
+
+*Audit note, 2026-11-12 (lead session):* this notice was written by another session and is committed here on the owner's instruction after an independent check, `reviews/codex_corrections_audit_2026_11_12/C3_kappa_and_dt2.md` (grade: CORRECT). The folder `research_closure_2026_11_12/` it links to was not committed with it, so those links may not resolve; the audit file is the checked record. The committed text, labels and outputs below this notice are not edited by this commit.
+
 **Label: `KAPPA NOT DERIVED (FITTED) -- CAPACITY DERIVED`.**
 Q1 (capacity) = **DERIVED**. Q2 (kappa = 1/2) = **NO**.
 
