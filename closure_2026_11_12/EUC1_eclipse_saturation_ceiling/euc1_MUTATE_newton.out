@@ -1,0 +1,32 @@
+EUC1 (ECLIPSE SATURATION CEILING)   *** MUTATE = newton ***
+footings (m/s^2): canonical 1.0000e-30, alt 1.0000e-30;  margin b* = 0.25 dex
+
+[data]
+  sha256 eclipse_dr1_catalogue_key_v20261103.csv  65338917534c9c76  matches the frozen hash
+  sha256 ECLIPSE_object_catalogue.csv  8247a4d5f23513b8  matches the frozen hash
+  key catalogue rows joined to the object catalogue: 15072 (object rows 26662)
+  P: grade A + model success + final sample + no large-system warning = 3202; valid inputs = 3192 (removed 10)
+  S: grades A+B, same cuts = 6199; valid inputs = 6173 (removed 26)
+
+[instrument checks]
+  PASS K1   point mass returned to 1e-6; SIS deflection constant to 1e-4 : 1.3e-11 ; 7.6e-06
+  PASS K2   A55 on SLACS: median R_E,pred/R_E,obs = 0.885 +- 0.005 (N = 70) : 0.8852
+  PASS K3   A70 on SLACS: boost that takes the median to 1 = 1.174 +- 0.02 : 1.1738
+       K5 SLACS law S canonical true z_s: N=   70  f25 = 0.071 [0.014, 0.143]  f0 = 0.771 [0.671, 0.871]  b_med = +0.082 [+0.063, +0.106]
+       K5 SLACS law S canonical z_s=inf : N=   70  f25 = 0.000 [0.000, 0.000]  f0 = 0.100 [0.029, 0.171]  b_med = -0.144 [-0.191, -0.114]   (median cost of dropping z_s: 0.202 dex)
+       K5 SLACS law S alt       true z_s: N=   70  f25 = 0.043 [0.000, 0.100]  f0 = 0.757 [0.657, 0.857]  b_med = +0.070 [+0.049, +0.094]
+       K5 SLACS law S alt       z_s=inf : N=   70  f25 = 0.000 [0.000, 0.000]  f0 = 0.086 [0.029, 0.157]  b_med = -0.163 [-0.205, -0.132]   (median cost of dropping z_s: 0.206 dex)
+
+[sample P, descriptive]
+  medians: z_l = 0.660, theta_E = 0.897", theta_e = 0.878", n = 5.34, log M* = 11.422, R_E = 6.22 kpc, R_e = 5.93 kpc
+  medians: Sigma_cr,inf = 1363 Msun/pc^2, mean stellar Sigma(<R_E) = 1056 Msun/pc^2
+  Sigma_cr at z_s = 1100 vs 1e4 / 1e5 (max over P): 1.34e-02 / 1.78e-02
+
+[primary: sample P, source at infinity]
+  law S canonical N= 3192  f25 = 0.332 [0.316, 0.348]  f0 = 0.737 [0.721, 0.752]  b_med = +0.140 [+0.129, +0.149]   -> CEILING BROKEN
+  law S alt       N= 3192  f25 = 0.332 [0.315, 0.349]  f0 = 0.737 [0.721, 0.752]  b_med = +0.140 [+0.130, +0.150]   -> CEILING BROKEN
+  law B canonical N= 3192  f25 = 0.332 [0.315, 0.347]  f0 = 0.737 [0.722, 0.751]  b_med = +0.140 [+0.129, +0.149]   -> CEILING BROKEN
+  law B alt       N= 3192  f25 = 0.332 [0.316, 0.349]  f0 = 0.737 [0.721, 0.752]  b_med = +0.140 [+0.129, +0.149]   -> CEILING BROKEN
+  LANE VERDICT (law S, canonical / alt): CEILING BROKEN / CEILING BROKEN
+
+[MUTATE newton] f25 law S: canonical 0.332 (ref 0.156), alt 0.332 (ref 0.139) -> rose on both footings, as required; exit 1
