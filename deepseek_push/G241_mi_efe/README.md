@@ -1,3 +1,9 @@
+> **CORRECTION — 2026-11-12, independent fix-forward audit.** The general modified-inertia EFE derivation and the inference that lensing uniquely forces AQUAL are not established. Self-comparison and hard-coded premise checks have been removed from the executable replacement; the M200c closure claim is withdrawn.
+>
+> Current replacement: [correction report and reproducible runs](../../research_closure_2026_11_12/combined_route/deepseek_corrections/REPORT.md). Original scripts and outputs are preserved in that lane’s `archive/`; the historical text below is retained as evidence, not the current conclusion. The live script now dispatches to the corrected implementation and writes fresh outputs only in the correction lane.
+
+---
+
 # G241 — which EFE is the framework's? Modified inertia derived
 
 **The question the chain left open.** DW1 → G239 → G240 ended with the Milky Way's virial mass at 5.3×10¹¹

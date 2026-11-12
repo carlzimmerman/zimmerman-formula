@@ -1,3 +1,9 @@
+> **CORRECTION — 2026-11-12, independent fix-forward audit.** The growth calculation opens only a conditional radius-ratio inequality. The identification of the EFE onset with a settled radius, assembly/population mapping, external-field geometry, and both full likelihood tests remain unproved or unrun. No-free-parameter and proxy-artefact closure claims are withdrawn.
+>
+> Current replacement: [correction report and reproducible runs](../../research_closure_2026_11_12/combined_route/deepseek_corrections/REPORT.md). Original scripts and outputs are preserved in that lane’s `archive/`; the historical text below is retained as evidence, not the current conclusion. The live script now dispatches to the corrected implementation and writes fresh outputs only in the correction lane.
+
+---
+
 # G242 — the settled radius IS the external-field radius: SRH1's empty window
 
 **The live failure.** FRZ1/FRZ1R: the z = 2.2–4.4 Lyman-α forest row FAILS by Δχ² ~ 10³ (gate 4). FRZ2: no

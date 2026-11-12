@@ -1,3 +1,9 @@
+> **CORRECTION — 2026-11-12, independent fix-forward audit.** The old calculation mismatched Newtonian and physical external fields, changed the kernel, and used an incorrect Green-function benchmark. The corrected two-grid run uses one simple-mu pair and matched fields; the claimed factor-six onset shift and 1.33e12-Msun rescue are withdrawn.
+>
+> Current replacement: [correction report and reproducible runs](../../research_closure_2026_11_12/combined_route/deepseek_corrections/REPORT.md). Original scripts and outputs are preserved in that lane’s `archive/`; the historical text below is retained as evidence, not the current conclusion. The live script now dispatches to the corrected implementation and writes fresh outputs only in the correction lane.
+
+---
+
 # G240 — the AQUAL completion: where does the external field actually turn on?
 
 **Question inherited from G239:** "this is QUMOND; h34's AQUAL solve finds the algebraic boost ~15% high, so the

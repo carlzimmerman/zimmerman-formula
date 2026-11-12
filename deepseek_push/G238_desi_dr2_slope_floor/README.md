@@ -1,3 +1,9 @@
+> **CORRECTION — 2026-11-12, independent fix-forward audit.** The old local-density slope identity and finite-radius correction are false. The corrected code reports an enclosed-mass fit only, with logarithmic error propagation and no calibrated significance without covariance.
+>
+> Current replacement: [correction report and reproducible runs](../../research_closure_2026_11_12/combined_route/deepseek_corrections/REPORT.md). Original scripts and outputs are preserved in that lane’s `archive/`; the historical text below is retained as evidence, not the current conclusion. The live script now dispatches to the corrected implementation and writes fresh outputs only in the correction lane.
+
+---
+
 # G238 — the slope floor re-read on DESI DR2 III: the decider G157 named has arrived
 
 **Pre-registration:** G157's own (`deepseek_push/G157_slope_floor.py`, committed 2026-09): P-A `γ = −2.00 ± 0.02`

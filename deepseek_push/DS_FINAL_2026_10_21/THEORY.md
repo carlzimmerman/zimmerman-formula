@@ -1,3 +1,5 @@
+> **Forward correction, 2026-11-12:** The five-healthy-mode/first-class-algebra closure statements below are superseded by the existing README erratum dated2026-10-23, section “Erratum — constraint algebra”. It explicitly refutes the eight-first-class/zero-second-class classification for DSF-21/A33 and identifies background dependence; Lean arithmetic did not certify that constraint algebra. This erratum does not cover the separate v3 action. See the [correction index](../../research_closure_2026_11_12/combined_route/CORRECTIONS.md). The body below is preserved as the historical record.
+
 # The theory, complete
 
 **A self-contained statement: five postulates, everything that follows, and the exact residue.**
