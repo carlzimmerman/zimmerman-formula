@@ -88,3 +88,12 @@ dilution; catalogue n up to 10 taken as given; the SLACS published dispersions a
 `READING.md`, `AMENDMENT_F1S.md`, `RESULT_BLIND.md`; `euc5r_model.py` (Jeans, lensing), `euc5r_checks.py` (.out, .json),
 `euc5r_data.py`, `euc5r_fit.py` (stages f1, f1diag, f1s, desi, slacs; outputs `euc5r_f1*`, `euc5r_desi_fits.*`,
 `euc5r_slacs*`), `euc5r.py` (`euc5r.out`, `euc5r_results.json`, `euc5r_per_lens.csv`, `*_MUTATE_newton.*`, exit 1).
+
+## Commit ids and the lead's re-run (dated addition, 2026-11-12; no number or label changes)
+
+Local / origin: READING bef8d940d8 / 7b1a1cabd0; code and runs f7db373fa1 / ab8af23bf1; AMENDMENT F1S 871ab16058 /
+3b3961f6e7; F1S run 10312399b2 / dc6ba2bcd6; RESULT_BLIND 9b2fac6561 / 391a019c0a; RESULT 4d4f81a2d1 / d280e2fd4b.
+Re-run by the lead from a copy of the five scripts, one thread, every stage in order: all seven JSON files, all four
+CSV files and both main outputs equal byte for byte; the mutation twin exits 1; the six stage logs equal except the
+elapsed-seconds stamps in the DESI fit log. A reproduction, not a further independent re-grade. Blindness checked in the
+lane's tool log: the first read of any EUC5 file other than its criteria and A1 came 8 seconds after RESULT_BLIND's commit.
