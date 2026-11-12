@@ -1190,6 +1190,43 @@ L += [
  ("for row 32 of the falsifier matrix, an enclosed-mass profile from 100 to 200\\,kpc with its covariance, which does not yet exist", O32, "an enclosed-mass profile from 100 to 200 kpc with its radius-to-radius covariance.\n  None exists"),
  ("The plateau was a product of the earlier reading of the external field", O32, "The plateau was a product of the earlier reading."),
 ]
+# ---------------- version 1.2, revision 3a: PIK2, EUC5R, EUC6R, EUC8, RAW1 ----------------
+PIK2 = D12 + "PIK2_gated_dust_graded/RESULT.md"; PIK2b = D12 + "PIK2_gated_dust_graded/RESULT_BLIND.md"
+EUC5R = D12 + "EUC5R_blind_dynamical_boost_regrade/RESULT.md"; EUC6R = D12 + "EUC6R_blind_regrade/RESULT.md"
+EUC8 = D12 + "EUC8_wide_lens_residual_profile/RESULT.md"; RAW1 = D12 + "RAW1_halo_stars_direct/RESULT.md"
+L += [
+ ("Lane PIK2 then computed the gated term's rows blind: CMB-ONLY on both footings at $\\mu_K=2.512\\times10^{4}$ per Mpc", PIK2b, "**CMB-ONLY / CMB-ONLY** at mu_K = 2.512e4 per Mpc (primary)."),
+ ("the same at 198.25 and, reported, at $8.89\\times10^{6}$ per Mpc; no gate and threshold opens a window", PIK2b, "The same label holds at 198.25 per Mpc and, reported, at\n8.89e6 per Mpc. No (S, xi) opens a window on either footing."),
+ ("galaxies are passed only by shutting the gate everywhere the law is measured", PIK2b, "**Galaxies are passed only by shutting the gate everywhere the law is measured.**"),
+ ("X-COP passes for no gate, at no threshold and at no $\\mu_K$ (best rms 0.39 against a line of 0.10)", PIK2, "X-COP passes for no gate, at no threshold, at no mu_K. The best rms is 0.39 against the 0.10 line."),
+ ("the gated term is unhealthy there by $10^{13}$ to $10^{18}$, at fixed metric", PIK2, "the gated term is unhealthy on that background by 1e13 to 1e18. That is\n  row 8b, at fixed metric."),
+ ("the gate is visible at linear order about FRW if and only if $S'(0)$ or $S''(0)$ is non-zero, the gates with $S''(0)>0$ failing linear health at every threshold", PIK2, "The gate is VISIBLE at linear order about FRW iff S'(0) or S''(0) is non-zero. The gates with S''(0) > 0 fail linear\n  health at every threshold at 2.512e4 and at 198."),
+ ("Its comparison agrees with the audit on that visibility and with the direction of PIK1's cluster ordering, not with PIK1's mechanism or numbers", PIK2, "**Agree with C2 and CP02, disagree with PIK1 section 4.**"),
+ ("Its comparison agrees with the audit on that visibility and with the direction of PIK1's cluster ordering, not with PIK1's mechanism or numbers", PIK2, "Disagree with its\nmechanism as stated and with its numbers.**"),
+ ("what binds is the KiDS outskirts, where the groups' threshold sits 1.15 to 1.5\\,dex above what the galaxy rows allow", PIK2, "**What binds is the KiDS outskirts.** The threshold at which the groups get their dust always sits 1.15 to 1.5 dex\n  above the highest threshold the galaxy rows allow"),
+ ("It lists as not computed a CMB-lensing likelihood, the coupled-gravity spectrum, SPARC and KiDS through MK1's own graders, the full constrained instability and the $a_0$-saturation regime", PIK2, "- SPARC and KiDS through MK1's own graders;"),
+ ("A re-run by the lead from a copy reproduces it; that is not an independent re-grade", PIK2, "That is a reproduction of this lane's own code, not\nan independent re-grade."),
+ ("computed blind, CMB-ONLY: galaxies pass only with the gate shut, and X-COP passes for no gate", PIK2, "# PIK2 RESULT: the gated dust term graded. CMB-ONLY / CMB-ONLY (canonical / alt), blind label unchanged"),
+ ("RAW1 grades the framework's line directly against DESI DR1's halo stars, by spherical Jeans modelling with no calibration and the adopted external field: FAILS HOT, FRAGILE on both footings, at census baryons and at the rotation-curve stellar mass", RAW1, "| framework line, census baryons | canonical | **FAILS HOT, FRAGILE** | 20-30, 30-40 |"),
+ ("RAW1 grades the framework's line directly against DESI DR1's halo stars, by spherical Jeans modelling with no calibration and the adopted external field", RAW1, "| no external field | dropped per owner note (0.000160 / 0.000110) | none inside 300 kpc |"),
+ ("The failing bin is 30 to 40\\,kpc on every case (and 20 to 30\\,kpc too for census baryons on canonical)", RAW1, "| framework line, stars at rotation-curve mass | alt | **FAILS HOT, FRAGILE** | 30-40 |"),
+ ("The lane says every smooth model fails hot in that bin, DESI's own NFW included, so it reads that bin as a feature of the stars, not of the framework alone", RAW1, "every smooth model fails hot in the same bin, 30-40 kpc"),
+ ("The lane says every smooth model fails hot in that bin, DESI's own NFW included, so it reads that bin as a feature of the stars, not of the framework alone", RAW1, "That is a feature of the stars, not of the\nframework alone."),
+ ("the FRAGILE tag flips only under a two-slope density whose outer slope is unconstrained", RAW1, "the two-slope flip is not informative: in the\nnominal window the outer slope is unconstrained"),
+ ("its two amendments were each written after a failed run and before the run they govern", RAW1, "Two amendments, both written before\nthe run they govern"),
+ ("its two amendments were each written after a failed run and before the run they govern", RAW1, "The failed and buggy runs are kept"),
+ ("its blind re-grade EUC6R gives the same word ($+3.59$, the difference traced to how missing values were counted) and does not relabel it", EUC6R, "## Word: WIDE LENSES SIT IN RICHER ENVIRONMENTS (same as EUC6)"),
+ ("its blind re-grade EUC6R gives the same word ($+3.59$, the difference traced to how missing values were counted) and does not relabel it", EUC6R, "median +3.59 [+2.28, +4.70] galaxies"),
+ ("its blind re-grade EUC6R gives the same word ($+3.59$, the difference traced to how missing values were counted) and does not relabel it", EUC6R, "The archive stores missing values as NaN, not NULL."),
+ ("EUC8 finds that the wide lenses need $3\\times10^{11}\\,M_\\odot$ or more beyond the law on their stars inside 12.6\\,kpc, 45 to 61\\,\\% of the lensing mass", EUC8, "That is 45–61 % of the lensing mass."),
+ ("a compact central mass is TOO CONCENTRATED, every extended profile is allowed, and its word is SLOPE NOT CONSTRAINED", EUC8, "## Verdict: SLOPE NOT CONSTRAINED / SLOPE NOT CONSTRAINED (canonical / alt)"),
+ ("a compact central mass is TOO CONCENTRATED, every extended profile is allowed, and its word is SLOPE NOT CONSTRAINED", EUC8, "**a compact central mass is TOO\nCONCENTRATED**"),
+ ("EUC5's blind re-grade EUC5R also reads NOT EVALUABLE under EUC5's amendment, and its comparison AGREES WITH DIFFERENCES THAT DO NOT MOVE A LABEL", EUC5R, "**A1 as frozen: NOT EVALUABLE / NOT EVALUABLE**"),
+ ("EUC5's blind re-grade EUC5R also reads NOT EVALUABLE under EUC5's amendment, and its comparison AGREES WITH DIFFERENCES THAT DO NOT MOVE A LABEL", EUC5R, "**Comparison: AGREES WITH DIFFERENCES THAT DO NOT MOVE A LABEL.**"),
+ ("it records that commit subjects it had seen before its reading named EUC5's later readings, though no EUC5 number", EUC5R, "They gave\n  no EUC5 number."),
+ ("EUC5R & blind re-grade of EUC5 & A1 as frozen: NOT EVALUABLE (both) & F1S, post hoc", EUC5R, "AMENDMENT F1S 871ab16058 (post hoc, alone)"),
+ ("EUC8 & the wide lenses' residual profile & SLOPE NOT CONSTRAINED / SLOPE NOT CONSTRAINED & C1, before any script", EUC8, "clarification C1 fa59e21652 (check K4\nrestated, before any script existed)"),
+]
 # (fragment in the TeX, JSON file, key path, format, the number as the TeX prints it)
 J = [
  ("0.597$ [0.556, 0.637]", RB1j, ["gate1", "canonical", "classes", "G-H", "median"], ".3f", "0.597"),
