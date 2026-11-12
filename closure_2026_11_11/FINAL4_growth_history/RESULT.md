@@ -1,3 +1,7 @@
+> **Forward correction, 2026-11-12:** The reference reduction delta_b=delta_c=D is exact only after dropping baryon pressure/drag and imposing equal growing-mode initial data. D1 has no explicit k factor; D2 does. R_set=R_fold, psi and the NFW redistribution are modeling assumptions, not derived by those two equations. Imported FRZ1 statistics remain results for their specified prescription, not a first-principles formation derivation. The table ratio 0.87978 at z = 0.295 means 12.02% suppression, inconsistent with the later 3.6% prose. See the [correction index](../../research_closure_2026_11_12/combined_route/CORRECTIONS.md). The body below is preserved as the historical record.
+>
+> *Audit note, 2026-11-12 (lead session):* this notice was written by another session and is committed here on the owner's instruction after an independent check, `reviews/codex_corrections_audit_2026_11_12/C1_dust_and_growth.md` (grade: CORRECT). The folder `research_closure_2026_11_12/` it links to was not committed with it, so those links may not resolve; the audit file is the checked record. The committed text, labels and outputs below this notice are not edited by this commit.
+
 # FINAL4 RESULT: the structure-growth history the formation reading gives, graded
 
 **DERIVED HISTORY EXCLUDED / DERIVED HISTORY EXCLUDED (canonical / alt), carrying TILT POST HOC, NOT EXCLUDED.**

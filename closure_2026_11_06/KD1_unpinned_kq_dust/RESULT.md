@@ -1,5 +1,17 @@
 # KD1: v3s's K(Q) dust with the amplitude unpinned. NO SETTING PASSES ALL GATES
 
+> **Forward correction, 2026-11-12:** G9a's imported likelihood threshold was
+> computed with the polarization response switched off. Its archived result
+> belongs to that operator; the full coupled theory has a different growth
+> equation and does not inherit the numerical threshold unchanged.
+> [CP02's audit](../../research_closure_2026_11_12/closure_push_02/growth_gate_audit/RESULT.md)
+> recomputes controlled growth and the separate B1b background ratio. The B1b
+> value remains conditional on this file's frozen temperature, radiation budget
+> and unchanged conserved-clock history; it is not a fresh BBN likelihood.
+> The original record and criteria are preserved below.
+>
+> *Audit note, 2026-11-12 (lead session):* this notice was written by another session and is committed here on the owner's instruction after an independent check, `reviews/codex_corrections_audit_2026_11_12/C1_dust_and_growth.md` (grade: CORRECT WITH LIMITS). The folder `research_closure_2026_11_12/` it links to was not committed with it, so those links may not resolve; the audit file is the checked record. The committed text, labels and outputs below this notice are not edited by this commit.
+
 Kappa = 1/2 FITTED; not theory closed. Adopts nothing. This is a TEST lane that reopens a cold-dark-energy sector
 (owner 11-04 rule). It is never called dark matter, and there is no particle. Criteria: FROZEN_CRITERIA.md
 (6c7f83ed02), committed alone before any script. Script: kd1.py (one thread, 34 s). Outputs: kd1.json / kd1.out,
