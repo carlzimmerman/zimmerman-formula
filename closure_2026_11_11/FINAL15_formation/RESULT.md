@@ -265,6 +265,17 @@ arms bite, and the Lean twin fails with one error per false statement.
 Re-run: `python3 final15_formation.py` (main) and `python3 final15_formation.py --mutate`, then `sh compile.sh`.
 Runtime about 5 s (main) + Lean compile.
 
+## 10. Commit ids
+
+| | shared checkout | origin |
+|---|---|---|
+| criteria (`PREREGISTER.md` + `predictions_frozen.csv`, committed alone) | 639e7f3b12 | (this line added after the result commit; see below) |
+| result (all artifacts of this lane) | 5420a68c49 | — |
+
+The criteria commit is the one that existed before any number in this lane was computed. `5420a68c49` contains
+the script, the two Lean files, the compile outputs and this file in the state in which the numbers above were
+produced; the id table itself is added in the follow-up commit.
+
 ---
 
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
