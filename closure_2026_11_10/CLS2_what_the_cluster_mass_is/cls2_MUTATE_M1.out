@@ -1,0 +1,108 @@
+CLS2: what IS the cluster non-baryonic mass under form B?  criteria 7630e48454
+mutate: True  flags ['M1']
+
+KA: exact algebra (sympy)
+  KA2_inverse: True
+  KA2_ratio: True
+  KA3_superposition: True
+  KA4_truncation: True
+  KA5_M_dust_pointmass: M_b*R**2*mu**2/6
+  KA5_ratio_closed: sqrt(G)*sqrt(M_b)*R*mu**2/(6*sqrt(a_0))
+  KA5_ratio_is_mu2R2_over_6: True
+
+BASELINE: the bare law, DT2/CLS1 convention (mean over the 35 graded nodes)
+  canonical: mean35 0.46749895  median 0.4571  range 0.4217..0.5502
+    per cluster: A1795 +0.451  A2029 +0.467  A2142 +0.422  A2319 +0.493  A644 +0.550  A85 +0.433  ZW1215 +0.457
+  alt: mean35 0.43452306  median 0.4228  range 0.3894..0.5170
+    per cluster: A1795 +0.418  A2029 +0.435  A2142 +0.389  A2319 +0.460  A644 +0.517  A85 +0.399  ZW1215 +0.423
+  KA1 (DT2/CLS1 0.46749899 / 0.43452310): PASS
+
+KA6/KA7: DD1 frozen table cross-check (read-only)
+  CLASH   alt      : n  84  mean +0.498 dex  median +0.503 dex
+  CLASH   canonical: n  84  mean +0.527 dex  median +0.533 dex
+  X-COP   alt      : n 129  mean +0.434 dex  median +0.471 dex
+  X-COP   canonical: n 129  mean +0.466 dex  median +0.504 dex
+  KA6 (X-COP 0.42-0.55): PASS;   KA7 (CLASH >= 0.30 both footings): PASS
+
+(a) NON-HYDROSTATIC SUPPORT
+  a1 HeCS caustic / hydrostatic at the same R200: n 5, median Q 0.768, every cluster below 1: True
+     A1795 0.776  A2029 0.768  A2142 0.521  A85 0.819  ZW1215 0.736
+  a1 => (a) moves the residual the WRONG WAY, by +0.115 dex
+  a3 CLASH lensing residual (makes no HSE assumption): +0.527 / +0.498 dex
+  (a) verdict: KILLED BY PROOF   kills {'K_A1': True, 'K_A2': True, 'K_A3': True}
+
+(b) THE DUST TERM POOLED IN THE WELL
+  A1795  : R_b(mu=198.25/Mpc) 2.630e+03   mu_fit 3.866/Mpc   growth/iter 4.512e+03   DIVERGES
+  A2029  : R_b(mu=198.25/Mpc) 4.081e+03   mu_fit 3.103/Mpc   growth/iter 6.794e+03   DIVERGES
+  A2142  : R_b(mu=198.25/Mpc) 4.290e+03   mu_fit 3.027/Mpc   growth/iter 6.743e+03   DIVERGES
+  A2319  : R_b(mu=198.25/Mpc) 3.783e+03   mu_fit 3.223/Mpc   growth/iter 6.273e+03   DIVERGES
+  A644   : R_b(mu=198.25/Mpc) 3.010e+03   mu_fit 3.614/Mpc   growth/iter 5.421e+03   DIVERGES
+  A85    : R_b(mu=198.25/Mpc) 3.275e+03   mu_fit 3.464/Mpc   growth/iter 5.111e+03   DIVERGES
+  ZW1215 : R_b(mu=198.25/Mpc) 4.192e+03   mu_fit 3.062/Mpc   growth/iter 6.122e+03   DIVERGES
+  median R_b 3.783e+03  (log10 +3.58 dex, + is over-capture)
+  median mu_fit 3.223/Mpc: below the CMB line 198.25: True; in CLS1 window 2.97-4.43: True
+  the self-consistent pooling iteration DIVERGES on all seven: True
+  at the CMB-lensing line mu_J 25120/Mpc: median R_b 6.073e+07
+  b3 canonical: M_dust / the law's phantom, median 1.706e+04   A1795 1.07e+04  A2029 1.82e+04  A2142 1.73e+04  A2319 1.82e+04  A644 1.71e+04  A85 1.22e+04  ZW1215 1.60e+04
+  b3 alt: M_dust / the law's phantom, median 1.523e+04   A1795 9.57e+03  A2029 1.62e+04  A2142 1.54e+04  A2319 1.62e+04  A644 1.52e+04  A85 1.09e+04  ZW1215 1.43e+04
+  (AKS1 T5 quotes 3.6-8.4 for this ratio at SPARC radii; the point-mass form is (mu R)^2/6 x sqrt(g_N/a0), so at fixed mu it grows as R^2.)
+  (b) verdict: KILLED BY PROOF   kills {'K_B1': True, 'K_B2': True, 'K_B3': True}
+
+(c) THE GAS IS UNDER-COUNTED
+  canonical: median R_gas 5.008   median f_b,req 0.6022 (cosmic share 0.156)   all seven over the cosmic share: True
+    R_gas per cluster:  A1795 5.01  A2029 5.00  A2142 4.39  A2319 5.75  A644 6.90  A85 4.79  ZW1215 5.35
+    f_b,req per cluster:A1795 0.588  A2029 0.634  A2142 0.602  A2319 0.623  A644 0.636  A85 0.568  ZW1215 0.544
+    residual if the gas were multiplied by 1: A1795 +0.451  A2029 +0.467  A2142 +0.422  A2319 +0.493  A644 +0.550  A85 +0.433  ZW1215 +0.457
+  alt: median R_gas 4.657   median f_b,req 0.5572 (cosmic share 0.156)   all seven over the cosmic share: True
+    R_gas per cluster:  A1795 4.64  A2029 4.66  A2142 4.06  A2319 5.35  A644 6.43  A85 4.41  ZW1215 4.90
+    f_b,req per cluster:A1795 0.543  A2029 0.591  A2142 0.557  A2319 0.579  A644 0.593  A85 0.522  ZW1215 0.497
+    residual if the gas were multiplied by 1: A1795 +0.418  A2029 +0.435  A2142 +0.389  A2319 +0.460  A644 +0.517  A85 +0.399  ZW1215 +0.423
+  (c) verdict canonical: FAILS   kills {'K_C1': True, 'K_C2': True}
+  (c) verdict alt: FAILS   kills {'K_C1': True, 'K_C2': True}
+
+(d) SUPERPOSITION OF GALAXY HALOS, ONE PER MEMBER
+  Schechter N_eff (log M* 10.6, alpha -1.1): A1795 188  A2029 363  A2142 320  A2319 285  A644 233  A85 140  ZW1215 190
+  canonical: d-TRUNC median residual +0.337 dex   (bare law +0.457);  d-TRUNC-s +0.442
+    d-TRUNC per cluster: A1795 +0.325  A2029 +0.337  A2142 +0.324  A2319 +0.427  A644 +0.434  A85 +0.335  ZW1215 +0.370
+    d-FREE N_eff required (median 58.3, radial spread max/min median 2.6):
+      A1795   42.8  62.4  55.6  42.8  22.0
+      A2029   45.5  74.1  79.6  58.3  29.5
+      A2142   41.3  56.3  67.6  42.1  28.1
+      A2319   43.6  95.0  93.6  61.8  36.7
+      A644    41.6  96.6  151.3  129.6  42.5
+      A85     62.3  62.9  69.6  55.3  34.8
+      ZW1215  29.6  52.4  52.3  61.1  41.3
+    d-FREE residual at DD1 L2 N_eff = 14.4: +0.166 dex;   at the Schechter N_eff: -0.233 dex
+  alt: d-TRUNC median residual +0.302 dex   (bare law +0.423);  d-TRUNC-s +0.408
+    d-TRUNC per cluster: A1795 +0.289  A2029 +0.302  A2142 +0.290  A2319 +0.393  A644 +0.398  A85 +0.300  ZW1215 +0.335
+    d-FREE N_eff required (median 44.2, radial spread max/min median 2.8):
+      A1795   33.8  48.8  42.8  31.8  15.4
+      A2029   35.9  57.9  61.6  44.2  21.3
+      A2142   32.2  43.2  51.8  31.0  20.0
+      A2319   34.6  75.0  72.9  46.3  26.4
+      A644    33.0  76.2  119.3  101.2  31.6
+      A85     48.8  48.6  52.9  40.7  24.3
+      ZW1215  23.2  40.4  40.0  45.9  30.1
+    d-FREE residual at DD1 L2 N_eff = 14.4: +0.129 dex;   at the Schechter N_eff: -0.273 dex
+  (d) verdict canonical: KILLED BY PROOF   kills {'K_D1': False, 'K_D2': False, 'K_D3': True}
+  (d) verdict alt: KILLED BY PROOF   kills {'K_D1': False, 'K_D2': False, 'K_D3': True}
+
+LABELS (per footing)
+  canonical: NO CANDIDATE; (d)-FREE would need N_eff 58 (0.00 dex by construction) but the cluster field truncates it to N_eff = 1, where (d) reads +0.34 dex
+    verdicts {'a': 'KILLED BY PROOF', 'b': 'KILLED BY PROOF', 'c': 'FAILS', 'd': 'KILLED BY PROOF'}
+    residual in dex against M_FORW (+ = the candidate still falls short): a +0.572  b -3.578  c +0.457  d +0.337
+  alt: NO CANDIDATE; (d)-FREE would need N_eff 44 (0.00 dex by construction) but the cluster field truncates it to N_eff = 1, where (d) reads +0.30 dex
+    verdicts {'a': 'KILLED BY PROOF', 'b': 'KILLED BY PROOF', 'c': 'FAILS', 'd': 'KILLED BY PROOF'}
+    residual in dex against M_FORW (+ = the candidate still falls short): a +0.538  b -3.578  c +0.423  d +0.302
+
+MUTATE: every twin must move a graded number by >= 0.10 dex or flip a verdict
+    flags on: M1
+    number                                change (this twin - main)
+    baseline law mean35 canonical        +0.0000
+    (b) log10 R_b                        +0.0000
+    (b) mu_fit per Mpc                   +0.0000
+    (c) median R_gas canonical           +0.0000
+    (c) median f_b,req canonical         +0.0000
+    (d) d-TRUNC median canonical         -0.1696
+    (d) N_eff required canonical         +0.0000
+    at least one graded number moved by >= 0.1 dex: True  (BITES)
