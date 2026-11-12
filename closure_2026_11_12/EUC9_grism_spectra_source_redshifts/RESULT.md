@@ -116,9 +116,9 @@ read NO VERDICT on both footings. With the single-line lenses read as [O III] in
 passing the rule on the re-co-addition, with its dither statistic; grade X rows marked), `euc9_a1_MUTATE_*`,
 `figs_a1/` (95 pairs: black co-add, blue RGS000, red RGS180; the truth lens is the first panel).
 
-Commits (local): criteria bea4eacfa8; A0 82cf65da28; scripts 410cbe74da; A1 25d7f82cc2; addendum 8bc1675a42; origin
-ids are in the commit that follows this file. Spectra are outside git
-(`_external_data/euclid_dr1_eclipse/nisp_spectra_dith/`).
+Commits (local / origin): criteria bea4eacfa8 / c5ab2ca758; A0 82cf65da28 / 6443431d1f; scripts 410cbe74da /
+dd1e8b830a; A1 25d7f82cc2 / 383219ff97; addendum 8bc1675a42 / 5579702db2; result 3c3ebf2c03 / 1a1207740f. Spectra are
+outside git (`_external_data/euclid_dr1_eclipse/nisp_spectra_dith/`).
 
     python3 -I euc9_fetch.py --data-dir <dir>
     python3 -I euc9.py --data-dir <dir>            (frozen)
