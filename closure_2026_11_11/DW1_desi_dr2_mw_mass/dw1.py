@@ -304,6 +304,41 @@ ck("DW1c the amplitude the mass profile demands is the SAME number the framework
      " A (1.31/1.25 on its 6.16e10), i.e. 1.152-1.208 here.  Each footing is compared with its own item-35 number.")
 
 # ===================================================================================================
+sec("KERNEL DIAGNOSTIC (POST-HOC, not in the frozen criteria) -- the SAME fit on the a0kit / Milgrom kernel")
+say("  a0kit/a0kit.py registers a second kernel, nu(y) = sqrt(1+1/y), which is the a0-line")
+say("  g_obs^2 - g_bar^2 = a0 g_bar and Milgrom (1999).  The frozen criteria did not name a kernel; the lane above")
+say("  runs hunt_lib's Route A (nu = 1/(1-exp(-sqrt y))) because that is the kernel of the predecessor, hunt item 38.")
+say("  This block is post-hoc: it asks whether the two-dataset agreement of DW1c survives the kernel swap.")
+def nu_milgrom(y):
+    y = np.maximum(np.asarray(y, float), 1e-14); return np.sqrt(1+1/y)
+def M_dyn_k(i, a0, A, kern):
+    Mb = A*Msph[i]; g = G*Mb/(R_D[i]*KPC)**2
+    return float(kern(g/a0)*Mb/MSUN/1e11)
+KERN = {"RouteA": nu, "Milgrom": nu_milgrom}
+KMIL = {}
+for foot in A0:
+    grid = np.linspace(0.4, 3.0, 521); c2 = []
+    for A in grid:
+        pr = np.array([M_dyn_k(i, A0[foot], A, nu_milgrom) for i in range(13)])
+        c2.append(float(np.sum(((pr-M_D)/SIG_D)**2)))
+    c2 = np.array(c2); i0 = int(np.argmin(c2)); ok = grid[c2 <= c2[i0]+1]
+    pr = np.array([M_dyn_k(i, A0[foot], grid[i0], nu_milgrom) for i in range(13)])
+    a1 = M_dyn_k(12, A0[foot], 1.0, nu_milgrom)
+    RA = RC_A_BY_FOOT[foot]; hw = (ok.max()-ok.min())/2
+    dist = max(RA[0]-grid[i0], grid[i0]-RA[1], 0.0)
+    KMIL[foot] = dict(A=float(grid[i0]), A68=(float(ok.min()), float(ok.max())),
+                      M80_A1=float(a1), sig80=float((a1-M80_D)/M80_S), rms=float(np.std(pr/M_D-1)),
+                      dist_sigma=float(dist/hw))
+    say(f"  {foot:9} Milgrom: A=1 -> M(80) = {a1:.3f}e11 ({KMIL[foot]['sig80']:+.2f} sigma); A* = {grid[i0]:.3f}"
+        f" [{ok.min():.3f}, {ok.max():.3f}], rms {KMIL[foot]['rms']*100:.1f}%; item-35 interval [{RA[0]:.3f}, {RA[1]:.3f}]"
+        f" -> the profile demands {dist/hw:+.1f} sigma MORE amplitude than the rotation curve does")
+say("  VERDICT OF THE DIAGNOSTIC: the DW1c agreement is KERNEL-SPECIFIC.  Route A reproduces the rotation-curve")
+say("  amplitude to 0.45 sigma (canonical) / 0.23 (alt); the a0kit Milgrom kernel needs 1.59 / 1.35 against")
+say("  1.25-1.31 / 1.15-1.21, i.e. 6.1 / 3.8 sigma more.  The Milky Way therefore DISCRIMINATES the kernels:")
+say("  the two-dataset agreement is a Route A result and is NOT claimed for the a0-line form.  Both kernels")
+say("  still pass the absolute 80 kpc amplitude within 2 sigma, at -1.94 (canonical) / -0.89 (alt) for Milgrom.")
+
+# ===================================================================================================
 sec("DW1d -- SHAPE: the local log-slope of M(<r), 60 -> 80 kpc (the framework's plateau is the signature)")
 def slope(y, a, b):
     return math.log(y[R_D == b][0]/y[R_D == a][0])/math.log(b/a)
@@ -418,6 +453,13 @@ say("     therefore now a measurement with two witnesses rather than a fudge -- 
 say("     is a prediction: M_* ~ 7.3e10 Msun, a Salpeter-side IMF, not McMillan's 5.5e10.  That is falsifiable by")
 say("     the same photometry that would otherwise kill the framework, which is the right shape for a liability.")
 say("")
+say("  3b. AND THE AGREEMENT IS KERNEL-SPECIFIC (post-hoc: the frozen criteria named no kernel).  On a0kit's")
+say(f"     Milgrom kernel nu = sqrt(1+1/y) the same 13 points demand A = {KMIL['canonical']['A']:.2f} / {KMIL['alt']['A']:.2f} against the rotation curve's")
+say(f"     {RC_A_BY_FOOT['canonical'][0]:.2f}-{RC_A_BY_FOOT['canonical'][1]:.2f} / {RC_A_BY_FOOT['alt'][0]:.2f}-{RC_A_BY_FOOT['alt'][1]:.2f}: {KMIL['canonical']['dist_sigma']:.1f} / {KMIL['alt']['dist_sigma']:.1f} sigma too much.  The two-dataset")
+say("     agreement of item 3 is therefore a Route A result, and the Milky Way is now a KERNEL DISCRIMINATOR:")
+say("     Route A passes both lever arms with one amplitude; the a0-line form cannot.  Both kernels still pass")
+say(f"     the absolute 80 kpc mass ({KMIL['canonical']['sig80']:+.2f} / {KMIL['alt']['sig80']:+.2f} sigma for Milgrom).")
+say("")
 say(f"  4. WHAT IT LOSES: M200c.  The paper's 1.19e12 is 1.4x the framework's EFE-saturated plateau at the fitted")
 say(f"     amplitude ({M200_fw['canonical']/10:.2f}e12 canonical, {M200_fw['alt']/10:.2f}e12 alt; "
     f"{(M200_fw['canonical']/10/M200_D-1)*M200_D/M200_S:+.1f} / {(M200_fw['alt']/10/M200_D-1)*M200_D/M200_S:+.1f} sigma, DW1e FAILS).")
@@ -464,6 +506,7 @@ RESULT = dict(lane="DW1", paper="arXiv:2611.05518", date="2026-11-11",
     falsifier=dict(M150_fw_1e11=float(nu(E_N_REPO))*MB/MSUN/1e11, M150_nfw_1e11=M_nfw(150)/1e11,
                    M200_fw_1e11=float(nu(E_N_REPO))*MB/MSUN/1e11, M200_nfw_1e11=M_nfw(200)/1e11),
     rc_amplitude=dict(A=RC_A, Mb=RC_MB),
+    kernel_diagnostic=dict(note="post-hoc, not in the frozen criteria", milgrom=KMIL),
     checks=dict(n=NCHECK[0], fails=FAILS))
 json.dump(RESULT, open("dw1_results.json", "w"), indent=1)
 say("")
