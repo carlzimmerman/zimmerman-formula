@@ -9,7 +9,9 @@ Run here by the lead session, one thread, warnings suppressed; each `.out` is th
 - `dt2_linear.out`: the linear gate K1 reads 0.49076 (FAIL) where the lane's committed output reads 0.5509 (PASS).
 - `dt2_form.out`: first central event at 0.1420 Gyr (canonical) and 0.1401 Gyr (alt), as in the committed output.
 - `dt2_run.out`: every run ends at the central cutoff and the settled radius column reads UNAVAILABLE.
-- `dt2_reach.py` was still running when this folder was first committed; `dt2_reach.out` is present only if it finished.
+- `dt2_reach.out` (added in a second commit; the run took several minutes): turnaround radii today of 1158 to 2758 kpc
+  (canonical) and 1215 to 2876 kpc (alt), where the lane's committed table, made with the uncorrected time map, reads
+  about 1700 to 4230 kpc. The residual column stays far from zero in both.
 
 The lane's label FOLDS / FOLDS is unchanged. Independent check:
 `reviews/codex_corrections_audit_2026_11_12/C3_kappa_and_dt2.md` (grade CORRECT; it adds that the fold gate as frozen
