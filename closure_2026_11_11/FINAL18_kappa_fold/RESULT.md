@@ -169,6 +169,6 @@ supplies the halo's charge, it is not the charge the clock carried in across the
 | commit | local |
 |---|---|
 | criteria | 4144abfc80 |
-| result | (see below) |
+| result | de806392c3 |
 
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
