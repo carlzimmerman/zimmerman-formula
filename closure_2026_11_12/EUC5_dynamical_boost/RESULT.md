@@ -141,6 +141,47 @@ compared with the bands, because by EUC3's own null most of them are wrong pairi
 the first set of source redshifts that passes its own purity gate and gives at least 10 lenses in a class: follow-up
 spectroscopy of the ECLIPSE lenses, or a lane on the extracted grism spectra.
 
+### 3e. Dated corrections (2026-11-12, evening). No word changes.
+
+Two defects were found by the blind re-grade (`../EUC5R_blind_dynamical_boost_regrade/`) and by a same-code re-run in
+another session. Both were checked here and are fixed forward; nothing above is rewritten.
+
+**1. The F1 mock was not built as the amendment says.** AMENDMENT_A1.md specifies "a 10 Gyr solar template".
+`euc5_a1_fit.py` built the mock from a 0.6 / 0.4 mix of two templates (12 Gyr at [M/H] +0.26 and 3 Gyr at −0.35), and
+this file did not say so. F1 as the amendment words it, run now with the single template
+(`euc5_a1_fit_f1literal.py`, `euc5_a1_f1literal.out`): recovery **0.981 / 0.940 / 0.916 at 150 / 250 / 350 km/s:
+FAIL**, against 0.984 / 0.937 / 0.913 for the mix. A1 is NOT EVALUABLE either way.
+
+**2. The amended readings were one lens short.** The A1 fit ran at 14:40 while EUC2's extension search was still
+downloading; at 15:03 that search added a DESI spectrum for EUCL-DR1-L016656 (grade A, θ_E below 1.0″). Re-run on the
+final 383-row match file (same scripts, default settings; outputs under `_final56` names beside the committed ones):
+
+| | Committed (55 lenses) | Final inputs (56 lenses) |
+|---|---|---|
+| Spectra fitted / lenses | 72 / 69 | 73 / 70 |
+| Fits passing the cuts / lenses / in P | 58 / 55 / 32 | 59 / 56 / 33 |
+| F1 recovery (gate) | 0.984 / 0.937 / 0.913, FAIL | identical, FAIL |
+| A1 reading, P, law S, raw (canonical) | +0.196 [+0.110, +0.270] | +0.193 [+0.110, +0.265] |
+| A1 reading, P, corrected (canonical) | +0.250 [+0.177, +0.339] | +0.239 [+0.177, +0.332] |
+| A1 reading, P, raw / corrected (alt) | +0.191 / +0.243 | +0.187 / +0.232 |
+| Dispersion scale (§3b) | 1.064 [1.016, 1.141] | identical |
+| SLACS scale, P (canonical / alt) | +0.138 [+0.051, +0.213] / +0.133 | +0.135 [+0.051, +0.219] / +0.128 |
+| SLACS scale, S | +0.135 [+0.059, +0.200] / +0.128 | +0.127 [+0.055, +0.199] / +0.120 |
+| SLACS scale, θ_E below 1.0″ | N = 16: −0.009 [−0.121, +0.156] / −0.015 | N = 17: −0.067 [−0.169, +0.156] / −0.074 |
+| SLACS scale, 1.0–1.3″ (N = 14) | +0.117 [+0.018, +0.233] / +0.112 | +0.117 [+0.015, +0.275] / +0.112 |
+| SLACS scale, θ_E ≥ 1.3″ (N = 25) | +0.200 [+0.100, +0.249] / +0.193 | +0.200 [+0.100, +0.249] / +0.193 |
+
+The word under A1 stays NOT EVALUABLE. The added lens sits in the small-separation class and lowers that class's
+median by 0.06 dex, so the readings of §4 hold with slightly more room: small lenses need no boost (−0.07), wide ones
++0.20. The two classes that hold the same lenses as before differ only in their bootstrap draws.
+
+**The sealed forecast (§3c) is not touched.** Its bands were sealed on the 55-lens file (hash in the commit) and
+stand as written. For the record only: the 56-lens file would give −0.24 to +0.22 (canonical) and −0.24 to +0.21
+(alt) for the class below 1.0″ instead of −0.19 to +0.22 and −0.19 to +0.21; the class of 1.3″ and above is the same.
+
+**Knock-on.** EUC7's T5 row and EUC8 read the 55-lens file; dated notes are in their RESULT.md files. No word of
+either changes.
+
 ## 4. What this says
 
 1. **No gate.** The raw readings span +0.05 (SDSS pipeline, 16 lenses) to +0.25 (DESI fits with the mock correction).
