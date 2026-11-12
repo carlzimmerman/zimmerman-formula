@@ -391,7 +391,8 @@ def main():
             p("  %-19s %4d %9.4g %9.4g %7.3f %7.3f %6.3f %-11s %7s %7.3f %6.2f"
               % (cls, r["n_sys"], r["med_u"], r["med_X"], r["med_d"],
                  r["se"] if r["se"] is not None else float("nan"),
-                 r["d_max"], "YES" if r["reachable"] else "UNREACHABLE",
+                 r["d_max"],
+                 "reach %.2f" % r["reachable_frac"],
                  ("%.3f" % fbs) if fbs is not None else "   --  ",
                  r["f_C_charge_channel"], r["floor_d_median"]))
         counts = band_counts(stats, BANDS)
