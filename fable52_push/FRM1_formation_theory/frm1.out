@@ -1,0 +1,133 @@
+FRM1 on DD1's frozen table: 3419 points, 626 systems, 16 classes. criteria 462eaa806d+fed1bc94a4, table 441824e854.
+tag frm1
+KA1 DD1 L0 LOCO reproduced [canonical]: max dev 0.00e+00 -> PASS
+KA2 synthetic [canonical]: history: F1 HOLDS F2 HOLDS F3 HOLDS (16/16) ok; force: F1 HOLDS F2 FAILS F3 FAILS (12/16) ok; cluster: F1 HOLDS F2 HOLDS F3 HOLDS (16/16) ok -> PASS
+KA2 note: the synthetic HISTORY TRUTH (the theory's own truth) still fails the frozen F2(a) 3-se clause for the NGC 1052 UDGs: [('NGC 1052 UDGs', 'A->B', -0.8390432252462485, 0.34895454880326426, 'not below 3 se'), ('NGC 1052 UDGs', 'B->A', -0.8708977784098672, 0.3435251618582715, 'not below 3 se')]. With n = 1 system per half, se = e_sys = 0.34 dex, so 3 se = 1.03 dex while the X = 0 floor is 0.84 dex: the clause is UNSATISFIABLE there, for any data. It is void, and the corrected line (0.30 dex in every scoring, 3 se in LOCO) is used for the label. Both labels are reported.
+KA3 HIS1 structure [canonical]: systems below X = 0 beyond 3 e: 0; tidal dwarfs d_L -0.687 +- 0.115 (HIS1 -0.687 +- 0.115) -> PASS
+KA4 master equation [canonical]: planted f_C exact to 3.89e-16; baryon-loss offsets below 0: 0; naive -1/2 log f_b within 0.036 dex on 324 deep points -> PASS
+KA5 X_L bounds [canonical]: min X_L 0.009274, max X_L/sqrt(a0/g_bar) 0.998367 -> PASS
+KA1 DD1 L0 LOCO reproduced [alt]: max dev 0.00e+00 -> PASS
+KA2 synthetic [alt]: history: F1 HOLDS F2 HOLDS F3 HOLDS (16/16) ok; force: F1 HOLDS F2 FAILS F3 FAILS (12/16) ok; cluster: F1 HOLDS F2 HOLDS F3 HOLDS (16/16) ok -> PASS
+KA4 master equation [alt]: planted f_C exact to 3.89e-16; baryon-loss offsets below 0: 0; naive -1/2 log f_b within 0.036 dex on 404 deep points -> PASS
+KA5 X_L bounds [alt]: min X_L 0.01119, max X_L/sqrt(a0/g_bar) 0.998514 -> PASS
+KNOWN ANSWERS: ALL PASS
+
+== [canonical] the formation theory
+  F1 the floor and the stripped:        HOLDS
+  F2 the stripped low / hosted high:    HOLDS   (frozen 3-se line as committed: FAILS)
+  F3 the pre-registered sizes:          HOLDS EXCEPT  (14/16 classes inside their band)
+  F4 the free rule (no theory assumed): FAILS
+  F5 the epoch does not rescale:        HOLDS
+  -> LABEL: HOLDS EXCEPT   (under the frozen line as literally written: FAILS)
+  F1: systems with Y < -3 e: 0 ; classes with median Y < -3 se: none; TDG/DF2/DF4 violating: none
+  F2: stripped exceptions none; hosted exceptions none; hosted with d_L >= 0 in all three: 4/4
+  F2 frozen-line exceptions (the 3-se clause, void where unsatisfiable - see the KA2 note): [('NGC 1052 UDGs', 'A->B', -0.942817637363337, 0.34895454880326426, 'not below 3 se'), ('NGC 1052 UDGs', 'B->A', -0.7425441616057779, 0.3435251618582715, 'not below 3 se')]
+  F3 misses:
+    X-COP              band [-0.30, +0.30]  A->B +0.571 (se 0.025); B->A +0.482 (se 0.022); LOCO +0.496 (se 0.022)
+    CLASH              band [-0.30, +0.30]  A->B +0.553 (se 0.032); B->A +0.551 (se 0.037); LOCO +0.553 (se 0.023)
+  F5 exceptions: none
+  class                    predicted             A->B             B->A             LOCO   in band
+  SPARC                [-0.05,+0.05]   -0.003 (0.018)   +0.018 (0.017)   +0.004 (0.012)   yes
+  faint rotators       [-0.35,+0.00]   -0.274 (0.080)   -0.239 (0.045)   -0.239 (0.045)   yes
+  tidal dwarfs         [-0.95,-0.30]   -0.606 (0.124)   -0.869 (0.192)   -0.687 (0.115)   yes
+  massive spirals      [-0.05,+0.20]   +0.155 (0.084)   +0.019 (0.097)   +0.066 (0.064)   yes
+  ATLAS3D              [+0.00,+0.20]   +0.067 (0.015)   +0.080 (0.014)   +0.070 (0.010)   yes
+  RC100                [+0.00,+0.20]   +0.074 (0.031)   +0.114 (0.031)   +0.088 (0.022)   yes
+  KiDS                 [-0.15,+0.15]   +0.129 (0.156)   +0.138 (0.152)   +0.137 (0.109)   yes
+  groups               [+0.00,+0.30]   +0.161 (0.026)   +0.165 (0.038)   +0.161 (0.023)   yes
+  X-COP                [-0.30,+0.30]   +0.571 (0.025)   +0.482 (0.022)   +0.496 (0.022)   NO
+  CLASH                [-0.30,+0.30]   +0.553 (0.032)   +0.551 (0.037)   +0.553 (0.023)   NO
+  MW bright dwarfs     [+0.00,+0.30]   +0.060 (0.108)   +0.201 (0.201)   +0.065 (0.153)   yes
+  MW ultra-faints      [+0.30,+0.70]   +0.507 (0.106)   +0.597 (0.161)   +0.592 (0.098)   yes
+  M31 dwarfs           [+0.00,+0.30]   +0.013 (0.098)   +0.185 (0.128)   +0.090 (0.088)   yes
+  LG field dwarfs      [-0.20,+0.30]   -0.029 (0.110)   -0.090 (0.065)   -0.090 (0.062)   yes
+  Coma UDGs            [+0.10,+0.50]   +0.365 (0.169)   +0.311 (0.154)   +0.319 (0.114)   yes
+  NGC 1052 UDGs        [-1.05,-0.30]   -0.943 (0.349)   -0.743 (0.344)   -0.843 (0.245)   yes
+  rule                               scatter    ref  pass nfail  worst class (test, offset dex, in se)
+  N0 law alone (force reading's rule)   0.336  0.284    no    14  NGC 1052 UDGs (A->B, -0.943, -2.7)
+  N1 law + free F(system depth)        0.213  0.284    no    10  NGC 1052 UDGs (A->B, -1.303, -3.7)
+  N2 law + free F(redshift)            0.285  0.284    no    15  NGC 1052 UDGs (A->B, -0.981, -2.8)
+  N3 law + free F(depth, redshift)     0.229  0.284    no    11  NGC 1052 UDGs (A->B, -1.281, -3.7)
+  transfer budgets (medians over systems): class                  d_L      f_b      f_C   d_max  g_bf/g_bar     X_L a0/g_bar frac X > a0/g_bar
+                      SPARC                0.026    1.000    1.013   0.277       0.887   1.489    3.706             0.141
+                      faint rotators      -0.239    5.366    0.440   0.588       3.003   3.661   17.080             0.000
+                      tidal dwarfs        -0.687  328.409    0.038   0.687      23.706   4.711   27.160             0.000
+                      massive spirals      0.066    0.583    1.240   0.539       0.739   3.230   13.708             0.000
+                      ATLAS3D              0.070    2.424    1.720   0.023       0.725   0.262    0.330             0.626
+                      RC100                0.088    1.320    1.842   0.049       0.668   0.410    0.579             0.570
+                      KiDS                 0.133    0.509    1.385   1.547       0.542  35.170 1272.126             0.000
+                      groups               0.161    0.386    1.531   0.794       0.476   6.081   43.064             0.000
+                      X-COP                0.504    0.111    4.515   0.320       0.098   1.722    4.686             0.767
+                      CLASH                0.533    0.028    5.779   0.227       0.086   1.239    2.774             0.976
+                      MW bright dwarfs     0.065    0.680    1.191   1.070       0.742  11.673  147.937             0.000
+                      MW ultra-faints      0.592    0.053    4.080   1.541       0.065  34.760 1242.983             0.000
+                      M31 dwarfs           0.090    0.622    1.253   1.223       0.659  16.643  293.639             0.000
+                      LG field dwarfs     -0.090    1.601    0.797   0.940       1.514   8.596   82.480             0.000
+                      Coma UDGs            0.319    0.186    2.186   1.047       0.230  11.060  133.380             0.000
+                      NGC 1052 UDGs       -0.843  400.964    0.009   0.799      48.458   6.166   44.251             0.000
+
+== [alt] the formation theory
+  F1 the floor and the stripped:        HOLDS
+  F2 the stripped low / hosted high:    HOLDS   (frozen 3-se line as committed: FAILS)
+  F3 the pre-registered sizes:          HOLDS EXCEPT  (13/16 classes inside their band)
+  F4 the free rule (no theory assumed): FAILS
+  F5 the epoch does not rescale:        HOLDS
+  -> LABEL: HOLDS EXCEPT   (under the frozen line as literally written: FAILS)
+  F1: systems with Y < -3 e: 0 ; classes with median Y < -3 se: none; TDG/DF2/DF4 violating: none
+  F2: stripped exceptions none; hosted exceptions none; hosted with d_L >= 0 in all three: 3/4
+  F2 frozen-line exceptions (the 3-se clause, void where unsatisfiable - see the KA2 note): [('NGC 1052 UDGs', 'A->B', -0.9808776623885639, 0.34895454880326426, 'not below 3 se'), ('NGC 1052 UDGs', 'B->A', -0.7808366884976726, 0.3435251618582715, 'not below 3 se')]
+  F3 misses:
+    X-COP              band [-0.30, +0.30]  A->B +0.540 (se 0.025); B->A +0.451 (se 0.023); LOCO +0.465 (se 0.023)
+    CLASH              band [-0.30, +0.30]  A->B +0.524 (se 0.031); B->A +0.523 (se 0.036); LOCO +0.524 (se 0.023)
+    M31 dwarfs         band [+0.00, +0.30]  A->B -0.028 (se 0.098)
+  F5 exceptions: none
+  class                    predicted             A->B             B->A             LOCO   in band
+  SPARC                [-0.05,+0.05]   -0.033 (0.018)   -0.018 (0.017)   -0.023 (0.012)   yes
+  faint rotators       [-0.35,+0.00]   -0.309 (0.079)   -0.274 (0.045)   -0.274 (0.044)   yes
+  tidal dwarfs         [-0.95,-0.30]   -0.643 (0.124)   -0.907 (0.192)   -0.725 (0.115)   yes
+  massive spirals      [-0.05,+0.20]   +0.118 (0.084)   -0.016 (0.097)   +0.032 (0.064)   yes
+  ATLAS3D              [+0.00,+0.20]   +0.046 (0.015)   +0.061 (0.013)   +0.052 (0.010)   yes
+  RC100                [+0.00,+0.20]   +0.058 (0.031)   +0.092 (0.031)   +0.066 (0.022)   yes
+  KiDS                 [-0.15,+0.15]   +0.089 (0.156)   +0.098 (0.152)   +0.097 (0.109)   yes
+  groups               [+0.00,+0.30]   +0.123 (0.026)   +0.127 (0.038)   +0.123 (0.023)   yes
+  X-COP                [-0.30,+0.30]   +0.540 (0.025)   +0.451 (0.023)   +0.465 (0.023)   NO
+  CLASH                [-0.30,+0.30]   +0.524 (0.031)   +0.523 (0.036)   +0.524 (0.023)   NO
+  MW bright dwarfs     [+0.00,+0.30]   +0.021 (0.109)   +0.162 (0.200)   +0.027 (0.152)   yes
+  MW ultra-faints      [+0.30,+0.70]   +0.466 (0.106)   +0.557 (0.161)   +0.552 (0.098)   yes
+  M31 dwarfs           [+0.00,+0.30]   -0.028 (0.098)   +0.145 (0.128)   +0.051 (0.085)   NO
+  LG field dwarfs      [-0.20,+0.30]   -0.067 (0.109)   -0.130 (0.065)   -0.130 (0.060)   yes
+  Coma UDGs            [+0.10,+0.50]   +0.325 (0.169)   +0.272 (0.154)   +0.280 (0.114)   yes
+  NGC 1052 UDGs        [-1.05,-0.30]   -0.981 (0.349)   -0.781 (0.344)   -0.881 (0.245)   yes
+  rule                               scatter    ref  pass nfail  worst class (test, offset dex, in se)
+  N0 law alone (force reading's rule)   0.334  0.284    no    14  NGC 1052 UDGs (A->B, -0.981, -2.8)
+  N1 law + free F(system depth)        0.211  0.284    no    10  NGC 1052 UDGs (A->B, -1.301, -3.7)
+  N2 law + free F(redshift)            0.285  0.284    no    15  NGC 1052 UDGs (A->B, -1.004, -2.9)
+  N3 law + free F(depth, redshift)     0.230  0.284    no    11  NGC 1052 UDGs (A->B, -1.278, -3.7)
+  transfer budgets (medians over systems): class                  d_L      f_b      f_C   d_max  g_bf/g_bar     X_L a0/g_bar frac X > a0/g_bar
+                      SPARC               -0.003    1.311    0.906   0.311       1.012   1.674    4.478             0.108
+                      faint rotators      -0.274    6.589    0.396   0.630       3.533   4.069   20.641             0.000
+                      tidal dwarfs        -0.725  397.694    0.034   0.729      28.151   5.224   32.823             0.000
+                      massive spirals      0.032    0.780    1.109   0.581       0.864   3.595   16.566             0.000
+                      ATLAS3D              0.052    1.627    1.496   0.030       0.787   0.306    0.399             0.513
+                      RC100                0.066    1.237    1.585   0.062       0.739   0.474    0.700             0.460
+                      KiDS                 0.093    0.626    1.256   1.588       0.651  38.713 1537.374             0.000
+                      groups               0.123    0.491    1.382   0.836       0.567   6.731   52.043             0.000
+                      X-COP                0.471    0.129    3.973   0.357       0.115   1.932    5.663             0.698
+                      CLASH                0.503    0.053    5.122   0.259       0.099   1.398    3.352             0.964
+                      MW bright dwarfs     0.027    0.854    1.075   1.112       0.883  12.880  178.783             0.000
+                      MW ultra-faints      0.552    0.065    3.702   1.583       0.079  38.261 1502.155             0.000
+                      M31 dwarfs           0.051    0.761    1.136   1.265       0.790  18.344  354.865             0.000
+                      LG field dwarfs     -0.130    1.956    0.722   0.982       1.816   9.496   99.678             0.000
+                      Coma UDGs            0.280    0.234    1.980   1.089       0.276  12.206  161.191             0.000
+                      NGC 1052 UDGs       -0.881  485.174    0.008   0.842      57.772   6.824   53.478             0.000
+
+REPORTED (grades nothing)
+  baryon-loss ceiling d_max: X-COP +0.320 dex, CLASH +0.227 dex, MW ultra-faints +1.541 dex
+  f_C the stripped classes would need: tidal dwarfs 0.038, NGC 1052 UDGs 0.009
+  f_b the hosted classes would need: MW bright dwarfs 0.680, MW ultra-faints 0.053, M31 dwarfs 0.622, Coma UDGs 0.186
+  offsets of the undisturbed classes, in order of observed z: SPARC +0.004, KiDS +0.137, RC100 +0.088, massive spirals +0.066
+  N0 (the law alone) failing classes: ['ATLAS3D', 'CLASH', 'Coma UDGs', 'KiDS', 'M31 dwarfs', 'MW bright dwarfs', 'MW ultra-faints', 'NGC 1052 UDGs', 'RC100', 'X-COP', 'faint rotators', 'groups', 'massive spirals', 'tidal dwarfs']
+  free rules' failing classes: N0: 14; N1: 10; N2: 15; N3: 11
+
+runtime 3.7 s
+kappa = 1/2 FITTED; not theory closed. Adopts nothing.
