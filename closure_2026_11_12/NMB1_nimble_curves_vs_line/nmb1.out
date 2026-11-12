@@ -1,0 +1,126 @@
+
+==============================================================================================================
+NMB1  NIMBLE curves of DESI DR2 Results III vs the framework's zero-parameter line   (criteria 1fd8ca964e)
+==============================================================================================================
+     TEST lane. kappa = 1/2 FITTED; not theory closed. Adopts nothing.
+
+==============================================================================================================
+KNOWN-ANSWER CHECKS
+==============================================================================================================
+  [PASS] KA1 the file is the one named in the criteria
+         (md5 5b0cc3aa9947286eb9348e947d01182d)
+  [PASS] KA2 fig10's joint rows reproduce Table 4's RRL and BHB columns (26 values, each within 0.011e11)
+         (largest difference 0.0049 e11)
+  mocks in the file: 24  (haloes ['16', '21', '23', '24', '27', '6'], views ['120', '210', '30', '300'])
+  [PASS] KA3 mock residuals reproduce Figure 8's median biases (four values, each within 2.5 points)
+         (nimble-b rrl 80: -6.50 vs -6.50; nimble-a bhb 80: -7.54 vs -7.54; nimble-a rrl 30: +5.92 vs +5.91; nimble-b bhb 30: -1.18 vs -1.19)
+  [PASS] KA4 the machinery on all curves at one radius reproduces the paper's joint within one published sigma
+         (30 kpc: 11.4193 +/- 0.0259 from 6 curves, N = 24 (Table 4: 11.423 +/- 0.0220; k = 1.000); 80 kpc: 11.7883 +/- 0.0248 from 8 curves, N = 24 (Table 4: 11.804 +/- 0.0345; k = 1.392))
+  [PASS] KA5 estimator and gate on synthetic data (closed form to 1e-10; mean Q 2.00 +/- 0.05; rejection 0.0455 +/- 0.005)
+         (closed form 3.3e-16, 1.4e-17; mean Q 2.001; rejection 0.0466)
+  [PASS] KA6 the line reproduces the record at 80 kpc (E0 5.691 / 6.219; E1 4.977 / 5.109; each within 0.5 %)
+         (canonical E0 5.691; alt E0 6.219; canonical E1 4.977; alt E1 5.109; worst 0.01%)
+
+==============================================================================================================
+MUTATIONS
+==============================================================================================================
+  M1, M2, M3 written to nmb1_mut.out: all bite
+
+==============================================================================================================
+THE INSTRUMENT
+==============================================================================================================
+  curve            r    M_med [1e11]   16th    84th    log10 M   sigma_stat [dex]
+  nimble-a  rrl    30     2.449      2.334   2.595   11.3890   0.0230
+  nimble-a  bhb    30     2.481      2.370   2.618   11.3946   0.0216
+  nimble-b  rrl    30     2.787      2.589   3.004   11.4451   0.0323
+  nimble-b  bhb    30     2.569      2.374   2.785   11.4097   0.0346
+  nimble-a  rrl    80     6.678      6.030   7.403   11.8246   0.0445
+  nimble-a  bhb    80     5.993      5.112   6.943   11.7777   0.0665
+  nimble-b  rrl    80     6.181      5.525   7.244   11.7911   0.0588
+  nimble-b  bhb    80     6.543      5.752   7.430   11.8158   0.0556
+
+  mocks used N = 24; shrinkage 0.5; error calibration k_30 = 1.000, k_80 = 1.392
+  NIMBLE-only common log10(M/Msun):  30 kpc 11.4059 +/- 0.0270  (2.546 e11)
+                                     80 kpc 11.8047 +/- 0.0567  (6.379 e11)
+  correlation between the two: +0.183;  slope 30 to 80 kpc: 0.936 +/- 0.137
+  internal consistency of the eight numbers about it: chi2 = 1.51 on 6 dof, p = 0.959  (reported)
+  Table 4 joint (all methods) for comparison: 11.423 +/- 0.022 at 30, 11.804 +/- 0.035 at 80
+
+==============================================================================================================
+THE GATE   Q <= 6.180 on 2 dof.  z = (line - data)/sigma; negative = line below the data
+==============================================================================================================
+
+  E1 canonical:  line 2.326 / 4.977 e11 at 30 / 80 kpc
+     Q = 4.89 (p = 0.0868);  z30 = -1.46, z80 = -1.90;  slope line 0.776 vs data 0.936 +/- 0.137, z_s = -1.18
+     LABEL: PASSES, FRAGILE
+       variant NIMBLE-A only            Q =    2.35  z30 -0.73 z80 -1.38 z_s -1.04  pass
+       variant NIMBLE-B only            Q =    3.67  z30 -1.66 z80 -1.38 z_s -0.66  pass
+       variant NIMBLE-A RRL dropped     Q =    4.22  z30 -1.57 z80 -1.52 z_s -0.73  pass
+       variant lambda = 0 (Hartlap)     Q =    3.59  z30 -0.87 z80 -1.80 z_s -1.11  pass
+       variant lambda = 1               Q =    6.90  z30 -1.76 z80 -1.95 z_s -1.10  fail   <- other side
+       variant k = 1                    Q =    7.88  z30 -1.44 z80 -2.63 z_s -1.54  fail   <- other side
+       (unfixed choice) lambda = 0 (Hartlap), graded k  Q =    2.74  pass
+       (unfixed choice) lambda = 1, graded k            Q =    8.43  fail
+       reported: published bands only  Q =   24.22  z30 -2.80 z80 -4.05
+       reported: A* = 1.211 [1.101, 1.334], Q(A*) = 0.87
+
+  E1 alt:  line 2.517 / 5.109 e11 at 30 / 80 kpc
+     Q = 2.91 (p = 0.2338);  z30 = -0.19, z80 = -1.70;  slope line 0.722 vs data 0.936 +/- 0.137, z_s = -1.57
+     LABEL: PASSES
+       variant NIMBLE-A only            Q =    1.72  z30 +0.34 z80 -1.24 z_s -1.31  pass
+       variant NIMBLE-B only            Q =    1.68  z30 -0.71 z80 -1.24 z_s -0.95  pass
+       variant NIMBLE-A RRL dropped     Q =    1.84  z30 -0.42 z80 -1.33 z_s -1.08  pass
+       variant lambda = 0 (Hartlap)     Q =    2.66  z30 +0.04 z80 -1.60 z_s -1.47  pass
+       variant lambda = 1               Q =    3.14  z30 -0.32 z80 -1.74 z_s -1.48  pass
+       variant k = 1                    Q =    5.61  z30 -0.17 z80 -2.35 z_s -2.05  pass
+       (unfixed choice) lambda = 0 (Hartlap), graded k  Q =    1.87  pass
+       (unfixed choice) lambda = 1, graded k            Q =    3.77  pass
+       reported: published bands only  Q =   13.20  z30 -0.18 z80 -3.63
+       reported: A* = 1.094 [0.999, 1.200], Q(A*) = 1.93
+
+  E0 canonical:  line 2.331 / 5.691 e11 at 30 / 80 kpc
+     Q = 2.40 (p = 0.3011);  z30 = -1.42, z80 = -0.87;  slope line 0.910 vs data 0.936 +/- 0.137, z_s = -0.19
+     LABEL: PASSES
+       variant NIMBLE-A only            Q =    0.89  z30 -0.70 z80 -0.67 z_s -0.38  pass
+       variant NIMBLE-B only            Q =    2.71  z30 -1.63 z80 -0.66 z_s +0.06  pass
+       variant NIMBLE-A RRL dropped     Q =    2.51  z30 -1.54 z80 -0.59 z_s +0.13  pass
+       variant lambda = 0 (Hartlap)     Q =    1.13  z30 -0.84 z80 -0.78 z_s -0.21  pass
+       variant lambda = 1               Q =    3.77  z30 -1.72 z80 -0.91 z_s -0.16  pass
+       variant k = 1                    Q =    2.88  z30 -1.40 z80 -1.20 z_s -0.25  pass
+       (unfixed choice) lambda = 0 (Hartlap), graded k  Q =    1.07  pass
+       (unfixed choice) lambda = 1, graded k            Q =    4.67  pass
+       reported: published bands only  Q =   11.05  z30 -2.72 z80 -1.91
+       reported: A* = 1.172 [1.057, 1.298], Q(A*) = 0.06
+
+  E0 alt:  line 2.526 / 6.219 e11 at 30 / 80 kpc
+     Q = 0.05 (p = 0.9770);  z30 = -0.13, z80 = -0.19;  slope line 0.919 vs data 0.936 +/- 0.137, z_s = -0.13
+     LABEL: PASSES
+       variant NIMBLE-A only            Q =    0.20  z30 +0.39 z80 -0.20 z_s -0.34  pass
+       variant NIMBLE-B only            Q =    0.44  z30 -0.66 z80 -0.19 z_s +0.11  pass
+       variant NIMBLE-A RRL dropped     Q =    0.14  z30 -0.37 z80 +0.03 z_s +0.19  pass
+       variant lambda = 0 (Hartlap)     Q =    0.02  z30 +0.08 z80 -0.11 z_s -0.15  pass
+       variant lambda = 1               Q =    0.11  z30 -0.25 z80 -0.22 z_s -0.10  pass
+       variant k = 1                    Q =    0.07  z30 -0.11 z80 -0.26 z_s -0.17  pass
+       (unfixed choice) lambda = 0 (Hartlap), graded k  Q =    0.02  pass
+       (unfixed choice) lambda = 1, graded k            Q =    0.13  pass
+       reported: published bands only  Q =    0.26  z30 -0.07 z80 -0.50
+       reported: A* = 1.018 [0.916, 1.130], Q(A*) = 0.02
+
+==============================================================================================================
+REPORTED, NOT GRADED
+==============================================================================================================
+  the paper's NFW (1.19e12, c = 12): 2.485 / 6.205 e11; Q = 0.17; z30 -0.39, z80 -0.21, z_s -0.03  -> PASSES
+  empdf  rrl at 80 kpc: 6.08 (+2.45, -0.86) e11
+  empdf  bhb at 80 kpc: 6.68 (+2.08, -1.13) e11
+  gme    rrl at 80 kpc: 5.29 (+0.45, -0.49) e11
+  gme    bhb at 80 kpc: 6.36 (+0.49, -0.51) e11
+  matched-field AQUAL value of today's correction lane, canonical: 4.487 e11 at 80 kpc, pull -2.70
+  matched-field AQUAL value of today's correction lane, alt: 4.579 e11 at 80 kpc, pull -2.54
+
+==============================================================================================================
+LABELS
+==============================================================================================================
+  E1 canonical / E1 alt / E0 canonical / E0 alt:
+  PASSES, FRAGILE  /  PASSES  /  PASSES  /  PASSES
+
+NMB1 COMPLETE. kappa = 1/2 FITTED; not theory closed. Adopts nothing.
