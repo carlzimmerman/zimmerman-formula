@@ -1,5 +1,17 @@
 # MK1 RESULT: one dust constant mu_K? NO VALUE / NO VALUE (canonical / alt). The answer does not turn on the cap.
 
+> **Forward correction, 2026-11-12:** the imported `mu_K >= 2.51e4/Mpc`
+> clustering threshold below comes from a polarization-off isolated-polytrope
+> calculation. With the QX17 polarization constraint included, the cold dark
+> energy's self-gravity factor is `mu_K^2/(mu_K^2+k_phys^2)`, not `1-k_phys^2/mu_K^2`.
+> The archived likelihood number cannot be transferred unchanged to that system.
+> [CP02's growth audit](../../research_closure_2026_11_12/closure_push_02/growth_gate_audit/RESULT.md)
+> gives corrected finite growth tests and separately checks the unchanged-FRW
+> early-radiation criterion. This notice does not certify MK1's other rows or
+> replace the old likelihood with a new one; the historical body is preserved.
+>
+> *Audit note, 2026-11-12 (lead session):* this notice was written by another session and is committed here on the owner's instruction after an independent check, `reviews/codex_corrections_audit_2026_11_12/C1_dust_and_growth.md` (grade: CORRECT WITH LIMITS). The audit adds two limits the notice does not state: the corrected factor holds only while the clock's gradient is well below a0, and no replacement likelihood has been run, so the 2.51e4 per Mpc line is unvalidated rather than withdrawn (near that value the two factors agree to first order). MK1's NO VALUE / NO VALUE does not rest on that line. The folder `research_closure_2026_11_12/` it links to was not committed with it, so those links may not resolve; the audit file is the checked record. The committed text, labels and outputs below this notice are not edited by this commit.
+
 Criteria b1fbded1e2 (committed alone before any script or number). AMENDMENT A1 916f4e0e22 (which capped state to use;
 committed alone before any graded number). TEST lane, quarantined. Adopts nothing, relabels nothing, registers nothing.
 Footings never pooled. kappa = 1/2 FITTED; not theory closed.
