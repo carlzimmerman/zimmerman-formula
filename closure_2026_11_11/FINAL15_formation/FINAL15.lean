@@ -1,19 +1,21 @@
 /-
 FINAL-15 (FORMATION), criteria 639e7f3b12: Lean statements for the formation ledger.
 
-They certify the ALGEBRA of the theory in PREREGISTER.md sections 1-3, not the physics.
+They certify the ALGEBRA of the theory written in PREREGISTER.md sections 1-3, not the physics.
+u = a0 / g_bar is the dimensionless inverse field. XL is the law's ratio; led is the ledger
+X = X_L(g_bar / F_b) * F_C / F_b rewritten in u (since g_b,f = g_bar/F_b implies u_f = u F_b).
 
-  XL_pos        X_L(g_bar; a0) > 0: Newton (X = 0) lies strictly below the law at every g_bar
-  XL_quad       X_L (X_L + 1) = a0 / g_bar  (the defining quadratic of the law's static branch)
-  XL_le_sqrt    X_L <= sqrt(a0 / g_bar): the law's excess never exceeds the deep-field value
-  XL_mono       X_L is strictly decreasing in g_bar: the deeper the field, the larger the excess
-  ledger_anchor      F_C = 1 and F_b = 1  =>  X = X_f              (the anchor: on the law)
-  ledger_recycled    F_C = 0              =>  X = 0                     (the floor: Newton)
-  ledger_floor       X >= 0 for any admissible transport (0 <= F_C, 0 < F_b, 0 <= X_f)
-  strip_below        F_C <= 1, F_b = 1    =>  X <= X_f                 (stripping only lowers)
-  loss_above        F_C = 1, F_b <= 1    =>  X_f <= X                  (baryon loss only raises)
-  deep_log          d = log10 F_C - (1/2) log10 F_b in the deep regime (from the quadratic, exact
-                     there): the ledger's sign rule
+  XL_pos        Newton (X = 0) lies strictly below the law at every field
+  XL_quad       X_L (X_L + 1) = u: the defining quadratic of the law's static branch
+  XL_le_sqrt    X_L <= sqrt(u): the excess never exceeds the deep-field value
+  XL_le_ratio   X_L <= u  (i.e. the cold pull never exceeds a0 at the law)
+  XL_antitone   the deeper the field, the larger the excess
+  ledger_anchor   F_C = 1, F_b = 1  =>  X = X_f          : a settled closed system sits ON the law
+  ledger_recycled F_C = 0                 =>  X = 0         : recycled material sits AT the floor
+  ledger_floor    X >= 0 for every admissible transport     : nothing below Newton
+  strip_below     F_C <= 1, F_b = 1   =>  X <= X_f            : stripping can only lower a system
+  loss_above      F_C = 1, F_b <= 1   =>  X_f <= X            : baryon loss can only raise it
+  ceiling        led u 1 Fb <= u                                : the ledger respects g_c <= a0
 -/
 import Mathlib
 
@@ -21,139 +23,93 @@ namespace FINAL15
 
 open Real
 
-noncomputable def XL (gb a : ℝ) : ℝ := (Real.sqrt (1 + 4 * a / gb) - 1) / 2
+/-- the law's cold-to-baryon ratio at dimensionless inverse field u = a0/g_bar -/
+noncomputable def XL (u : ℝ) : ℝ := (Real.sqrt (1 + 4 * u) - 1) / 2
 
-theorem XL_pos (gb a : ℝ) (hgb : 0 < gb) (ha : 0 < a) : 0 < XL gb a := by
+/-- the ledger: the ratio today, after transport (F_C charge retained, F_b baryons retained) -/
+noncomputable def led (u FC Fb : ℝ) : ℝ := XL (u * Fb) * FC / Fb
+
+theorem XL_pos (u : ℝ) (hu : 0 < u) : 0 < XL u := by
   unfold XL
-  have h4 : 0 < 4 * a / gb := by positivity
-  have hlt : (1 : ℝ) < 1 + 4 * a / gb := by linarith
-  have h := Real.sqrt_lt_sqrt (by norm_num : (0 : ℝ) ≤ 1) hlt
-  rw [Real.sqrt_one] at h
+  have hlt : (1 : ℝ) < 1 + 4 * u := by nlinarith
+  have hs := Real.sqrt_lt_sqrt (by norm_num : (0 : ℝ) ≤ 1) hlt
+  rw [Real.sqrt_one] at hs
   linarith
 
-theorem XL_quad (gb a : ℝ) (hgb : 0 < gb) (ha : 0 < a) : XL gb a * XL gb a + XL gb a = a / gb := by
+theorem XL_quad (u : ℝ) (hu : 0 ≤ u) : XL u * XL u + XL u = u := by
   unfold XL
-  set s := Real.sqrt (1 + 4 * a / gb) with hs
-  have hnon : 0 ≤ 1 + 4 * a / gb := by positivity
-  have hs2 : s ^ 2 = 1 + 4 * a / gb := by rw [hs]; exact Real.sq_sqrt hnon
-  have hsg : 0 ≤ s := by rw [hs]; exact Real.sqrt_nonneg _
-  have hs1 : s ≠ -1 := by
-    intro h; have : s = 0 := by
-      have hsq : s ^ 2 = 1 := by nlinarith [hs2]
-      nlinarith
-    nlinarith
+  have hnon : 0 ≤ 1 + 4 * u := by nlinarith
+  have hs2 : (Real.sqrt (1 + 4 * u)) ^ 2 = 1 + 4 * u := Real.sq_sqrt hnon
   nlinarith
 
-theorem XL_le_sqrt (gb a : ℝ) (hgb : 0 < gb) (ha : 0 < a) : XL gb a ≤ Real.sqrt (a / gb) := by
-  have hq := XL_quad gb a hgb ha
-  have hp := le_of_lt (XL_pos gb a hgb ha)
-  have hsq : (XL gb a) ^ 2 ≤ a / gb := by nlinarith
-  have hnon : 0 ≤ a / gb := by positivity
-  have := Real.sq_le_sq.mp hsq
-  rcases this with h | h
-  · linarith
-  · have : -Real.sqrt (a / gb) ≤ 0 := by
-      have := Real.sqrt_nonneg (a / gb); linarith
-    linarith
-
-theorem XL_mono (gb1 gb2 a : ℝ) (h1 : 0 < gb1) (h2 : gb1 < gb2) (ha : 0 < a) :
-    XL gb2 a < XL gb1 a := by
+theorem XL_nonneg (u : ℝ) (hu : 0 ≤ u) : 0 ≤ XL u := by
   unfold XL
-  have hpos1 : 0 < a / gb1 := by positivity
-  have hpos2 : 0 < a / gb2 := by positivity
-  have hlt : a / gb2 < a / gb1 := by
-    have hgb2 : 0 < gb2 := by linarith
-    exact div_lt_div_of_pos_left h2 hgb2 h1
-  have hs := Real.sqrt_lt_sqrt (by positivity : (0 : ℝ) ≤ 1 + 4 * a / gb2) (by linarith : (1 : ℝ) + 4 * a / gb2 < 1 + 4 * a / gb1)
+  have h1 : (1 : ℝ) ≤ 1 + 4 * u := by nlinarith
+  have hs : (1 : ℝ) ≤ Real.sqrt (1 + 4 * u) := by
+    rw [← Real.sqrt_one]
+    exact Real.sqrt_le_sqrt h1
   linarith
 
-/-- The ledger: X = X_L(g_bar / F_b) * F_C / F_b, with X_f = X_L(g_b,f) and g_b,f = g_bar / F_b. -/
-def ledger (gb a FC Fb : ℝ) : ℝ := XL (gb / Fb) a * FC / Fb
+theorem XL_le_sqrt (u : ℝ) (hu : 0 ≤ u) : XL u ≤ Real.sqrt u := by
+  have hp : 0 ≤ XL u := XL_nonneg u hu
+  rw [Real.le_sqrt hp hu]
+  have hq := XL_quad u hu
+  nlinarith
 
-theorem ledger_anchor (gb a : ℝ) : ledger gb a 1 1 = XL gb a := by
-  unfold ledger; ring
+theorem XL_le_ratio (u : ℝ) (hu : 0 ≤ u) : XL u ≤ u := by
+  have hp : 0 ≤ XL u := XL_nonneg u hu
+  have hq := XL_quad u hu
+  nlinarith
 
-theorem ledger_recycled (gb a Fb : ℝ) : ledger gb a 0 Fb = 0 := by
-  unfold ledger; ring
+theorem XL_antitone (u1 u2 : ℝ) (hu1 : 0 < u1) (h : u1 < u2) : XL u2 < XL u1 := by
+  unfold XL
+  have hnon : 0 ≤ 1 + 4 * u1 := by nlinarith [hu1]
+  have hlt : 1 + 4 * u1 < 1 + 4 * u2 := by linarith
+  have hs := Real.sqrt_lt_sqrt hnon hlt
+  linarith
 
-theorem ledger_floor (gb a FC Fb : ℝ) (hgb : 0 < gb) (ha : 0 < a)
-    (hFC : 0 ≤ FC) (hFb : 0 < Fb) : 0 ≤ ledger gb a FC Fb := by
-  unfold ledger
-  have hgbF : 0 < gb / Fb := by positivity
-  have hx : 0 < XL (gb / Fb) a := XL_pos (gb / Fb) a hgbF ha
+theorem ledger_anchor (u : ℝ) : led u 1 1 = XL u := by
+  unfold led; ring_nf
+
+theorem ledger_recycled (u Fb : ℝ) : led u 0 Fb = 0 := by
+  unfold led; ring
+
+theorem ledger_floor (u FC Fb : ℝ) (hu : 0 < u) (hFC : 0 ≤ FC) (hFb : 0 < Fb) :
+    0 ≤ led u FC Fb := by
+  unfold led
+  have hp : 0 < XL (u * Fb) := XL_pos (u * Fb) (mul_pos hu hFb)
   positivity
 
-theorem strip_below (gb a FC : ℝ) (ha : 0 < a) (hFC0 : 0 ≤ FC) (hFC1 : FC ≤ 1) :
-    ledger gb a FC 1 ≤ XL gb a := by
-  unfold ledger
-  have hx : XL (gb / 1) a = XL gb a := by ring_nf
-  rw [hx]
-  have hp : 0 ≤ XL gb a := by
-    by_cases hgb : 0 < gb
-    · exact le_of_lt (XL_pos gb a hgb ha)
-    · unfold XL
-      have : ¬ 0 < gb := hgb
-      have hle : gb ≤ 0 := le_of_not_gt this
-      -- gb <= 0 : a/gb <= 0, sqrt of a non-positive argument is 0 in Lean's Real.sqrt
-      have hq : 1 + 4 * a / gb ≤ 0 := by
-        have : a / gb ≤ 0 := by
-          have hg0 : gb < 0 := by linarith
-          have : a / gb = -(a / (-gb)) := by ring
-          rw [this]
-          have : 0 < a / (-gb) := by positivity
-          linarith
-        nlinarith
-      have hs : Real.sqrt (1 + 4 * a / gb) = 0 := Real.sqrt_eq_zero_of_nonpos hq
-      rw [hs]; norm_num
-  · positivity
-  -- remaining case handled by positivity above
-  exact by
-    have hp := hp
-    nlinarith [hFC0, hFC1, hp]
-
-theorem loss_above (gb a Fb : ℝ) (hgb : 0 < gb) (ha : 0 < a) (hFb0 : 0 < Fb) (hFb1 : Fb ≤ 1) :
-    XL gb a ≤ ledger gb a 1 Fb := by
-  unfold ledger
-  have hgbF : 0 < gb / Fb := by positivity
-  have hx1 : 0 < XL (gb / Fb) a := XL_pos (gb / Fb) a hgbF ha
-  have hx0 : 0 < XL gb a := XL_pos gb a hgb ha
-  have hq1 := XL_quad (gb / Fb) a hgbF ha
-  have hq0 := XL_quad gb a hgb ha
-  have : (a / gb) / Fb ≤ a / (gb / Fb) := by
-    field_simp [hgb.ne', hFb0.ne']
-    nlinarith
+theorem strip_below (u FC : ℝ) (hu : 0 < u) (hFC0 : 0 ≤ FC) (hFC1 : FC ≤ 1) :
+    led u FC 1 ≤ XL u := by
+  unfold led
+  have hp : 0 ≤ XL u := le_of_lt (XL_pos u hu)
+  ring_nf
   nlinarith
 
-/-- The deep-regime sign rule: d = log10 F_C - (1/2) log10 F_b. Stated as the inequality the
-    two channels produce: stripping (F_C < 1 <= F_b) lowers X, baryon loss (F_b < 1 = F_C) raises it. -/
-theorem deep_sign_strip (gb a FC Fb : ℝ) (hgb : 0 < gb) (ha : 0 < a)
-    (hFC0 : 0 ≤ FC) (hFC1 : FC ≤ 1) (hFb : 1 ≤ Fb) :
-    ledger gb a FC Fb ≤ ledger gb a 1 Fb := by
-  unfold ledger
-  have hx : 0 ≤ XL (gb / Fb) a := le_of_lt (XL_pos (gb / Fb) a (by positivity) ha)
-  have hFbpos : 0 < Fb := by linarith
-  have hdiv : 0 ≤ 1 / Fb := by positivity
-  nlinarith
-
-theorem deep_sign_loss (gb a FC Fb : ℝ) (hgb : 0 < gb) (ha : 0 < a)
-    (hFC : 0 ≤ FC) (hFb0 : 0 < Fb) (hFb1 : Fb ≤ 1) :
-    ledger gb a FC 1 ≤ ledger gb a FC Fb := by
-  unfold ledger
-  have hx0 : 0 ≤ XL gb a := le_of_lt (XL_pos gb a hgb ha)
-  have hxF : 0 ≤ XL (gb / Fb) a := le_of_lt (XL_pos (gb / Fb) a (by positivity) ha)
-  have hmono : XL gb a ≤ XL (gb / Fb) a := by
-    have hgbF : gb ≤ gb / Fb := by
-      have : 1 ≤ 1 / Fb := by
-        have := one_le_div (by positivity : (0 : ℝ) < 1) hFb0
-        exact by nlinarith [hFb1, hFb0]
+theorem loss_above (u Fb : ℝ) (hu : 0 < u) (hFb0 : 0 < Fb) (hFb1 : Fb ≤ 1) :
+    XL u ≤ led u 1 Fb := by
+  unfold led
+  have huF : 0 < u * Fb := mul_pos hu hFb0
+  have hmono : XL u ≤ XL (u * Fb) := by
+    have hle : u * Fb ≤ u := by nlinarith [mul_le_mul_of_nonneg_left hFb1 (le_of_lt hu)]
+    by_cases heq : u * Fb = u
+    · rw [heq]
+    · have hlt : u * Fb < u := lt_of_le_of_ne hle heq
+      exact le_of_lt (XL_antitone (u * Fb) u huF hlt)
+  have hx0 : 0 ≤ XL (u * Fb) := le_of_lt (XL_pos (u * Fb) huF)
+  calc
+    XL u ≤ XL (u * Fb) := hmono
+    _ ≤ XL (u * Fb) * 1 / Fb := by
+      rw [le_div_iff₀ hFb0]
       nlinarith
-  -- dividing by F_b <= 1 can only increase the ratio
-  have : XL (gb / Fb) a * FC / Fb = (XL (gb / Fb) a * FC) * (1 / Fb) := by ring
-  rw [this]
-  have hpos1 : 0 ≤ XL (gb / Fb) a * FC := by positivity
-  have hdiv1 : 1 ≤ 1 / Fb := by
-    have := one_le_div₀ hFb0 hFb1
-    exact this
+
+theorem ceiling (u Fb : ℝ) (hu : 0 < u) (hFb : 0 < Fb) :
+    led u 1 Fb ≤ u := by
+  unfold led
+  have hxR : XL (u * Fb) ≤ u * Fb := XL_le_ratio (u * Fb) (mul_nonneg hu.le hFb.le)
+  have hx0 : 0 ≤ XL (u * Fb) := le_of_lt (XL_pos (u * Fb) (mul_pos hu hFb))
+  rw [div_le_iff₀ hFb]
   nlinarith
 
 end FINAL15
@@ -161,11 +117,13 @@ end FINAL15
 #print axioms FINAL15.XL_pos
 #print axioms FINAL15.XL_quad
 #print axioms FINAL15.XL_le_sqrt
-#print axioms FINAL15.XL_mono
+#print axioms FINAL15.XL_le_ratio
+#print axioms FINAL15.XL_antitone
 #print axioms FINAL15.ledger_anchor
 #print axioms FINAL15.ledger_recycled
 #print axioms FINAL15.ledger_floor
-#print axioms FINAL15.deep_sign_strip
-#print axioms FINAL15.deep_sign_loss
+#print axioms FINAL15.strip_below
+#print axioms FINAL15.loss_above
+#print axioms FINAL15.ceiling
 
 -- kappa = 1/2 FITTED; not theory closed. Adopts nothing.
