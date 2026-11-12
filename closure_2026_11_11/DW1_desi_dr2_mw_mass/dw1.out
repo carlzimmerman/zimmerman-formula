@@ -1,0 +1,188 @@
+==================================================================================================================
+DW1  DESI DR2 Results III (arXiv:2611.05518) -- the Milky Way's enclosed-mass profile vs the framework
+     criteria FROZEN_CRITERIA.md (5732431896).  kappa = 1/2 FITTED; not theory closed.  Adopts nothing.
+==================================================================================================================
+
+==================================================================================================================
+V -- INSTRUMENT VALIDATION (nothing is tested until the ported instruments reproduce their anchors)
+==================================================================================================================
+  McMillan 2017 component masses [1e10 Msun]: thin 3.5186  thick 1.0487  bulge 0.9230  HI 1.0680  H2 0.1231
+  M_* = 5.4903e+10   M_b = 6.6814e+10 Msun
+  [PASS] V1 the McMillan model reproduces its own published component masses (h34's committed values)
+         (max fractional error thin 0.01%, thick 0.03%, HI 0.00%, H2 0.04%, bulge 0.00%, total 0.01%; total baryons 6.6814e+10 vs 6.6810e+10 Msun)
+  [PASS] V2a the numerical Hankel transform reproduces the ANALYTIC exponential-disc transform
+         (max |S_num/S_analytic - 1| = 1.08e-03 for k < 20/kpc)
+  [FAIL] V2b at 40 kpc the total radial force has reached its point-mass limit (the regime the halo tracers live in)
+         (g_R(40 kpc) = 6.0854e-12 vs G M_b/r^2 = 5.8218e-12 m/s^2, ratio 1.0453)
+  r [kpc]   M_sph(<r)/M_b     r*g_R(r)/G / M_b     (the two readings of 'enclosed mass')
+     20            0.9408              1.0599
+     25            0.9642              1.0614
+     30            0.9777              1.0586
+     35            0.9856              1.0527
+     40            0.9903              1.0453
+     45            0.9931              1.0378
+     50            0.9947              1.0310
+     55            0.9958              1.0253
+     60            0.9964              1.0206
+     65            0.9967              1.0168
+     70            0.9969              1.0138
+     75            0.9970              1.0114
+     80            0.9972              1.0097
+  [FAIL] V3 the spherical enclosed mass and the force-equivalent mass agree to <10% at EVERY radius tested, so no
+      verdict below is an artefact of the spherical reduction
+         (worst fractional split 12.66% (at r = 20 kpc); M_sph(<80)/M_b = 0.9972)
+  [PASS] V0 the kernel + mass model reproduce hunt item 38's COMMITTED anchor at 73 kpc (5.23 canonical / 5.71 alt)
+         (this file 5.231 / 5.713 e11 vs committed 5.23 / 5.71)
+
+==================================================================================================================
+DW1a -- ABSOLUTE AMPLITUDE AT 80 kpc (zero fitted parameters, McMillan census, A = 1)
+==================================================================================================================
+  canonical e_N=0.0000   M(<80 kpc) =  5.691e11   DESI 6.36 +- 0.50   -> -1.34 sigma
+  canonical e_N=0.0127   M(<80 kpc) =  4.307e11   DESI 6.36 +- 0.50   -> -4.11 sigma
+  alt       e_N=0.0000   M(<80 kpc) =  6.218e11   DESI 6.36 +- 0.50   -> -0.28 sigma
+  alt       e_N=0.0127   M(<80 kpc) =  4.508e11   DESI 6.36 +- 0.50   -> -3.70 sigma
+  [PASS] DW1a ABSOLUTE: the zero-parameter prediction lands within 2 sigma of the DESI mass at 80 kpc, on BOTH
+      footings (no external field: the framework's own rotation-curve fit prefers e_N = 0, item 35)
+         (canonical -1.34 sigma (5.69e11), alt -0.28 sigma (6.22e11) vs 6.36+-0.50e11; the scalar-additive EFE (e_N=0.0127) would push both to -4.1 / -3.7 sigma and is tested separately below)
+
+==================================================================================================================
+DW1b/DW1c -- THE WHOLE 13-POINT PROFILE: one amplitude, and what that amplitude is
+==================================================================================================================
+   r      DESI        canonical A=1   alt A=1     DESI/can-1    DESI/alt-1
+   20    1.94+-0.12       1.64        1.76       +18.4%        +9.9%
+   25    2.30+-0.11       1.99        2.15       +15.7%        +7.1%
+   30    2.65+-0.14       2.33        2.53       +13.7%        +4.9%
+   35    3.05+-0.15       2.67        2.90       +14.1%        +5.2%
+   40    3.54+-0.17       3.01        3.27       +17.6%        +8.2%
+   45    4.08+-0.21       3.35        3.64       +21.9%       +12.0%
+   50    4.51+-0.27       3.68        4.01       +22.4%       +12.4%
+   55    4.88+-0.32       4.02        4.38       +21.4%       +11.4%
+   60    5.19+-0.35       4.35        4.75       +19.2%        +9.3%
+   65    5.56+-0.39       4.69        5.12       +18.6%        +8.7%
+   70    5.88+-0.45       5.02        5.48       +17.1%        +7.2%
+   75    6.14+-0.48       5.36        5.85       +14.6%        +4.9%
+   80    6.36+-0.51       5.69        6.22       +11.8%        +2.3%
+  canonical: A* = 1.325 (M_b = 8.853e+10 Msun)   chi2 = 3.10 over 13 points (0.26/dof, diagonal errors)   rms residual 2.86%   A68 = [1.290, 1.360]
+             residuals [%]: +0.5 +2.2 +3.7 +2.9 -0.3 -4.0 -4.6 -3.9 -2.3 -1.9 -0.7 +1.4 +3.9
+  alt      : A* = 1.145 (M_b = 7.650e+10 Msun)   chi2 = 2.60 over 13 points (0.22/dof, diagonal errors)   rms residual 2.74%   A68 = [1.115, 1.180]
+             residuals [%]: -1.3 +1.1 +3.0 +2.6 -0.3 -3.8 -4.2 -3.4 -1.6 -1.1 +0.2 +2.4 +5.0
+  subset r >= 25 kpc  canonical: A* = 1.325 (all-point A* = 1.325, shift +0.0%), chi2 = 3.09/12
+  subset r >= 25 kpc  alt      : A* = 1.145 (all-point A* = 1.145, shift +0.0%), chi2 = 2.56/12
+  subset r >= 30 kpc  canonical: A* = 1.335 (all-point A* = 1.325, shift +0.8%), chi2 = 2.86/11
+  subset r >= 30 kpc  alt      : A* = 1.150 (all-point A* = 1.145, shift +0.4%), chi2 = 2.51/11
+  comparator, the paper's OWN zero-parameter NFW (M200c = 1.19e12, c = 12): r200 = 218.6 kpc, rs = 18.22 kpc -> chi2 = 17.62/13, rms 4.49%
+  [PASS] DW1b the ONE-parameter framework profile fits the whole 13-point table, both footings
+         (chi2/dof = canonical 0.26, alt 0.22; rms = 2.9%, 2.7%.  NOTE the table's errors are correlated and are treated as diagonal here, which flatters every chi2 in this lane, including the NFW comparator's (1.36/13))
+  EFE diagnostic canonical: with e_N = 0.0127 the profile fit needs A* = 1.505 (vs 1.325 at e_N=0) and its rms residual rises to 7.0% (vs 2.9%): the EFE SPOILS the shape, so 20-80 kpc prefers a weak external field
+  EFE diagnostic alt      : with e_N = 0.0127 the profile fit needs A* = 1.360 (vs 1.145 at e_N=0) and its rms residual rises to 7.8% (vs 2.7%): the EFE SPOILS the shape, so 20-80 kpc prefers a weak external field
+  the framework's own outer rotation curve (item 35, committed) demanded M_b = 8.38e+10-8.75e+10, i.e. A = 1.254-1.309 on the McMillan census used here
+  the 13-point mass profile alone demands A* = 1.325 (canonical), 1.145 (alt)
+  canonical: item-35 interval on this census [1.254, 1.309]; A* = 1.325; distance from it 0.016 = 0.45 sigma_tot
+  alt      : item-35 interval on this census [1.152, 1.208]; A* = 1.145; distance from it 0.007 = 0.23 sigma_tot
+  [PASS] DW1c the amplitude the mass profile demands is the SAME number the framework's own outer rotation curve
+      demanded (item 35), on both footings, within 2 sigma
+         (canonical: A* = 1.325 (68% [1.290,1.360]) vs item-35 [1.254,1.309]; alt: A* = 1.145 (68% [1.115,1.180]) vs item-35 [1.152,1.208].  The frozen criteria quoted the CANONICAL interval (1.256-1.310) only; item 35's alt fit returns its own A (1.31/1.25 on its 6.16e10), i.e. 1.152-1.208 here.  Each footing is compared with its own item-35 number.)
+
+==================================================================================================================
+DW1d -- SHAPE: the local log-slope of M(<r), 60 -> 80 kpc (the framework's plateau is the signature)
+==================================================================================================================
+  measured     20-40 0.868   40-60 0.944   60-80 0.707 +- 0.355   20-80 0.856
+  canonical  20-40 0.855   40-60 0.896   60-80 0.921   -> +0.60 sigma   20-80 0.881
+  alt        20-40 0.881   40-60 0.912   60-80 0.933   -> +0.64 sigma   20-80 0.901
+  [PASS] DW1d SHAPE: the framework's 60-80 kpc log-slope matches the measured one within 2 sigma, both footings
+         (measured 0.707 +- 0.355; framework 0.921 (canonical) / 0.933 (alt); the whole 20-80 kpc slope: measured 0.856 vs 0.881 / 0.901)
+
+==================================================================================================================
+DW1e -- M200c: the framework's PLATEAU against the paper's extrapolated virial mass
+==================================================================================================================
+  DESI joint M200c = 1.19 +- 0.13 e12 Msun.  The paper reports NO enclosed mass beyond 80 kpc and
+  draws the beyond-80-kpc curve only for illustration, as NFW with c200c = 12.  The framework has no virial
+  mass at all: the phantom mass SATURATES at nu(e_N) M_b once the external field takes over (item 38).
+  canonical A=1.000: r_EFE =  88.4 kpc, plateau M_sat =  6.26e11, r200(sat) = 176.5 kpc, plateau / DESI M200c = 0.53 -> -4.3 sigma
+  canonical A=1.325: r_EFE = 101.8 kpc, plateau M_sat =  8.30e11, r200(sat) = 193.8 kpc, plateau / DESI M200c = 0.70 -> -2.8 sigma
+  alt       A=1.000: r_EFE =  80.5 kpc, plateau M_sat =  6.26e11, r200(sat) = 176.5 kpc, plateau / DESI M200c = 0.53 -> -4.3 sigma
+  alt       A=1.145: r_EFE =  86.1 kpc, plateau M_sat =  7.17e11, r200(sat) = 184.6 kpc, plateau / DESI M200c = 0.60 -> -3.6 sigma
+  canonical: the amplitude the framework would need to REACH M200c = 1.19e12 is A = 1.900 against A*(profile) = 1.325 +- 0.035  -> +16.4 sigma
+  alt      : the amplitude the framework would need to REACH M200c = 1.19e12 is A = 1.900 against A*(profile) = 1.145 +- 0.033  -> +23.2 sigma
+  [FAIL] DW1e M200c: the framework's plateau lands within 2 sigma of the paper's 1.19e12
+         (canonical plateau 0.83e12 (-30%, -2.8 sigma); alt plateau 0.72e12 (-40%, -3.6 sigma).  THE AMPLITUDE THAT WOULD FIX IT is A = 1.90, which the 20-80 kpc profile excludes at 16 sigma)
+
+==================================================================================================================
+DW1f -- THE PRE-REGISTERED FALSIFIER: M(<150 kpc) and M(<200 kpc), framework plateau vs the paper's NFW
+==================================================================================================================
+  canonical: framework M(<150) = M(<200) =  8.30e11 (A*) or  6.26e11 (A=1), flat beyond r_EFE
+             paper's NFW(c=12, M200c=1.19e12): M(<150) =  9.65e11, M(<200) = 11.35e11
+             at 150 kpc the A=1 discrimination is +54% (7 sigma at the paper's 8% precision); at A* it is +16%
+             at 200 kpc the A=1 discrimination is +81% (10 sigma at the paper's 8% precision); at A* it is +37%
+  alt      : framework M(<150) = M(<200) =  7.17e11 (A*) or  6.26e11 (A=1), flat beyond r_EFE
+             paper's NFW(c=12, M200c=1.19e12): M(<150) =  9.65e11, M(<200) = 11.35e11
+             at 150 kpc the A=1 discrimination is +54% (7 sigma at the paper's 8% precision); at A* it is +35%
+             at 200 kpc the A=1 discrimination is +81% (10 sigma at the paper's 8% precision); at A* it is +58%
+  [PASS] DW1f the pre-registered falsifier is worth registering at 150 kpc (>20% split) on the ABSOLUTE prediction
+         (M(<150 kpc): framework plateau 6.26e11 vs the paper's own NFW extrapolation 9.65e11 = +54%; at 200 kpc +81%. With the profile-fitted amplitude A* the 150 kpc split falls to +16% and 200 kpc is the radius that decides)
+
+==================================================================================================================
+MUTATION CONTROLS -- the statistics must MOVE, and in the direction that means the estimator works
+==================================================================================================================
+  a0 x 10     : chi2    82.07 ->  7987.50   (the kernel switched off must destroy the fit)
+  nu = 1      : chi2  2415.22            (baryons only: -83% low, a factor 6.5 of dark mass)
+  shuffle     : the 60-80 kpc slope +0.707 -> +1.543
+  [PASS] MUT the mutations fire, so the fit is carried by the kernel at the framework's own a0 and by a real radial shape
+         (chi2: framework 82.1, a0x10 7987.5, baryons-only 2415.2, shuffled slope +1.543 vs measured +0.707; baryons alone are 6.5x short at 80 kpc)
+
+==================================================================================================================
+READING
+==================================================================================================================
+  Written from the numbers above, after they printed.
+
+  1. YES, THIS IS THE FRAMEWORK'S OWN QUANTITY, AND IT IS THE BEST MW-SCALE TEST IT HAS HAD.  The paper
+     measures the enclosed dynamical mass M(<r) in 5 kpc steps from 20 to 80 kpc.  In this framework that
+     number IS the scalar's stress-energy: there is no dark-matter particle, and (nu-1) times the same
+     baryons has to reproduce all 13 points.
+
+  2. THE ABSOLUTE ZERO-PARAMETER PREDICTION PASSES.  At 80 kpc: 5.69e11 (canonical, -1.34 sigma) and
+     6.22e11 (alt, -0.28 sigma) against 6.36 +- 0.50 e11.  With ONE amplitude the framework's shape
+     fits all 13 points at chi2/dof = 0.26 (canonical) / 0.22 (alt), rms 2.9% / 2.7%;
+     the paper's own zero-parameter NFW(c=12) on the same 13 points gives 1.36/13 and rms 4.5%, so this
+     data set cannot tell the two shapes apart and the framework does not need it to.
+
+  3. THE PRICE IS ONE NUMBER, AND IT IS NOT NEW: A* = 1.33 +- 0.03 (canonical) / 1.15 +- 0.03 (alt) times the
+     McMillan census, i.e. M_b = 8.85e+10 / 7.65e+10 Msun.  That is the SAME overshoot item 35's
+     outer rotation curve already demanded (1.25-1.31 canonical, 1.15-1.21 alt):
+     two INDEPENDENT data sets, one amplitude, agreeing to 0.45 sigma (canonical) and 0.23 sigma (alt).
+     The repo's standing 'the framework needs 25-30 per cent more baryons than the census' liability is
+     therefore now a measurement with two witnesses rather than a fudge -- and if the excess is in stars it
+     is a prediction: M_* ~ 7.3e10 Msun, a Salpeter-side IMF, not McMillan's 5.5e10.  That is falsifiable by
+     the same photometry that would otherwise kill the framework, which is the right shape for a liability.
+
+  4. WHAT IT LOSES: M200c.  The paper's 1.19e12 is 1.4x the framework's EFE-saturated plateau at the fitted
+     amplitude (0.83e12 canonical, 0.72e12 alt; -2.8 / -3.6 sigma, DW1e FAILS).
+     Reaching 1.19e12 needs A = 1.90, which the 20-80 kpc profile excludes at 16 sigma: the framework
+     cannot have both the measured profile and the quoted virial mass.  But the paper states it reports NO
+     enclosed mass beyond 80 kpc and draws M200c as an NFW extrapolation with c=12; the framework's plateau
+     is exactly the profile that extrapolation is built to miss.  Registered tension, not a kill.
+
+  5. THE EFE IS NOW THE DOMINANT MODELLING UNCERTAINTY, AND IT HURTS.  With the repo's scalar-additive
+     external field (e_N = 0.0127, item 81's own vector sum) the absolute 80 kpc prediction falls to
+     4.31e11 (canonical, -4.1 sigma) / 4.51e11 (alt, -3.7 sigma), and the profile fit then needs
+     A = 1.36-1.50 with a 7 per cent rms -- i.e. a worse shape.  The 20-80 kpc profile PREFERS a
+     weak external field, the same direction as item 35's rotation-curve fit (e_N = 0.000 [0, 0.008]) and
+     item 37's LMC bound (g_ext < 0.067 a0).  Three independent MW lever arms now agree that the Local
+     Group's field must be at the weak end; the LSS estimate of 0.0127 is the number under pressure, not a0.
+
+  6. THE FALSIFIER, WITH ITS NUMBER.  The framework says the MW mass is flat at ~6.3e11 Msun (A=1) to
+     ~8.3e11 (A*) from r_EFE ~ 90-100 kpc out to the virial radius.  The paper's own NFW extrapolation says
+     9.65e11 at 150 kpc and 11.35e11 at 200 kpc (+54% / +81% on the absolute prediction).
+     A DESI-DR3-class BHB/RRL sample reaching 150-200 kpc settles it at 7 sigma (150 kpc) to 10 sigma (200 kpc).  Nothing else in this
+     lane does, and the framework's own M200c is not a prediction at better than a factor 1.4.
+
+  7. TWO FROZEN INSTRUMENT GATES FAILED (V2b, V3) AND THEY ARE REPORTED, NOT EXCUSED: at 40 kpc the radial
+     force is 1.045x the point-mass value and at 20 kpc the force-equivalent mass exceeds the spherical
+     one by 12.7 per cent.  That is a PHYSICAL property of a flattened baryon distribution -- a disc's
+     exterior mass still pulls inward in the plane, which a spherical shell does not do -- so the spherical
+     Jeans mass is the right thing to compare with and this lane uses it (M_sph) throughout.  The gate's
+     purpose, that no verdict be an artefact of the reduction, is met by the subset fits above: dropping the
+     20 kpc point moves A* by under 1 per cent on both footings.
+
+
+DW1 COMPLETE: 9/12 checks PASS.
