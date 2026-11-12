@@ -18,6 +18,29 @@ dynamical-modeling methods, mock-calibrated; joint `M(r<80 kpc) = 6.36 (+0.53/�
 > from 1.8× to 2.2×. The `.out` is left as the historical record of the approximation; this note is the
 > correction, and the operative numbers are G239's.
 
+> **NOTE 2026-11-12 (DR2REV, NMB1, PLT1; `closure_2026_11_12/`).** Three later readings of the same
+> release change how the sections below should be read. The frozen verdicts stand as frozen.
+>
+> 1. **"13 independent chances to fail" is wrong.** Table 4 is a per-radius combination of four
+>    methods: emPDF is a two-parameter NFW, GME's slope is its prior, only the two NIMBLE branches
+>    measure shape, and no radius-to-radius covariance is published. The chi2/dof of 0.26 / 0.22 shows
+>    compatibility with one amplitude, not a passed shape test (DR2REV, origin 114f008bf4).
+> 2. **DW1a graded the most favourable radius.** Against the same table the A = 1 canonical line is
+>    2.3 to 3.5 sigma low at every radius from 20 to 65 kpc (alt 0.95 to 2.1), diagonal errors, post
+>    hoc. Against the four shape-measuring curves, with the covariance of the paper's own mocks, the
+>    line passes on both footings with and without the field (NMB1, origin 9d17287e7e: Q = 4.89 / 2.91
+>    / 2.40 / 0.05 on two degrees of freedom, gate 6.18; the canonical field case is FRAGILE). That
+>    gate has little power: the paper's NFW passes at 0.17.
+> 3. **The amplitude is not a two-witness measurement at the precision quoted.** The shape-measuring
+>    curves give A* = 1.17 [1.06, 1.30] (canonical) and 1.02 [0.92, 1.13] (alt) with no field, against
+>    1.33 +/- 0.04 and 1.15 +/- 0.03 here. The rotation-curve ranges (1.25 to 1.31 and 1.15 to 1.21)
+>    lie at the upper edge of the first interval and just outside the second.
+> 4. **DW1e's M200c is not a measurement at 200 kpc.** It is an NFW extrapolation with 75 per cent of
+>    its weight on GME; without GME the paper gets 1.52 (+0.35, -0.30) x 10^12. The outer test is
+>    against published masses at r >= 100 kpc (PLT1, origin b6a6f1d4f5): the field reading passes as
+>    frozen but FRAGILE, failing low against the satellite and globular-cluster masses beyond 150 kpc
+>    (median pull -2.72); the no-field reading passes both tracer classes.
+
 ## Why this is the framework's own quantity
 
 The framework has no dark-matter particle. The "dark mass" is the stress–energy of the same scalar whose
