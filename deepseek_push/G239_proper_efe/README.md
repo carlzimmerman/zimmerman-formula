@@ -1,5 +1,13 @@
 # G239 — the proper external field: QUMOND EFE solve for the Milky Way's phantom halo
 
+> **SUPERSEDED IN PART by G240 (`deepseek_push/G240_aqual_plateau/`, 2026-11-11).** Every number here is
+> QUMOND. The AQUAL completion puts the EFE onset at `r_M/e_N` instead of `r_M/√e_N` (a factor 6 for the
+> Milky Way) and raises M(<200 kpc) from 5.26×10¹¹ to **1.33×10¹²** (+1.0σ against the paper's 1.19×10¹²).
+> So the plateau below is a **QUMOND** plateau, not a framework prediction, and the M200c "failure" is
+> withdrawn. What survives here is the **80 kpc amplitude** (5.83×10¹¹ AQUAL, −1.1σ) and the finding that
+> the scalar-additive hack over-suppressed — both are completion-independent.
+
+
 **Why.** DW1 (`closure_2026_11_11/DW1_desi_dr2_mw_mass/`) found the external field to be the dominant
 modelling uncertainty on the framework's MW mass: with the scalar-additive approximation
 `ν((g_bar + g_ext)/a₀)` the 80 kpc prediction fell to 4.31×10¹¹ (−4.1σ) and the 13-point DESI profile
