@@ -1,0 +1,18 @@
+CLOSE-4 R3 -- RULE-GC applied to SCS2's axial external-field family
+SCS2 as landed has R0 and R1 only, so RULE-GC returns NOT EVALUABLE there. The third-and-beyond
+resolutions come from the record: SCS3's AX backgrounds are SCS2's exactly (SCS3 section 1).
+LADDER CHECK (all 32 twins, SCS2's stored fine/coarse against SCS3's R1/R0):
+  min_dp_fine  matches scs3_maps_AX.json 32/32 and scs3_maps_AX_A4.json 32/32
+  frac_fine    matches scs3_maps_AX.json 32/32 and scs3_maps_AX_A4.json  0/32
+SCS3's A4 rerun changed the negative REGION (n_negative_offplane 70 -> 110 on alt_expo_10.45_0.01 R1),
+so the charge fraction is a different number under A4. SCS2's charge fraction is the pre-A4 one.
+GRADED for SCS2: the charge fraction on the pre-A4 ladder (R0-R3), the minimum G on both ladders.
+SCS2's graded KA4 quantities are the negative-cell charge fraction and the minimum G.
+
+  frac_neg_over_pos: {'NOT CONVERGED': 11, 'CONVERGED': 21} -> NO VERDICT
+  min_dp_offplane: {'NOT CONVERGED': 19, 'CONVERGED': 6, 'DIVERGING': 7} -> DIVERGING (RATE UNBOUNDED for a rate quantity)
+  min_dp_offplane__A4_ladder_R0_R6: {'DIVERGING': 7, 'NOT CONVERGED': 20, 'CONVERGED': 5} -> DIVERGING (RATE UNBOUNDED for a rate quantity)
+
+  SCS2 as landed (two resolutions, R0 and R1):
+    frac_neg_over_pos: {'NOT EVALUABLE': 32} -> NO VERDICT (NOT EVALUABLE: fewer than three resolutions)
+    min_dp_offplane: {'NOT EVALUABLE': 32} -> NO VERDICT (NOT EVALUABLE: fewer than three resolutions)
