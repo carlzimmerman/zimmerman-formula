@@ -129,12 +129,15 @@ found.
    Salpeter", which Euclid raises from 1.17 × (SLACS) to 1.3–1.7 × conditional on sources at z_s = 3–2. (b) The
    group-scale residual: the excess grows with Einstein radius and sits in extended, high-n, wide-separation systems.
    There is no step at SP1's switch mass and no excess in discs.
-4. **Euclid's lenses need 0.12 dex more than SLACS on the same source-free footing.** In a theory where lensing mass is
-   a function of the baryons alone, a selection that prefers large Einstein radii cannot raise the lensing mass at
-   fixed stars. Only three things can: a different stellar-mass scale between the two catalogues, selection on
-   stellar-mass errors, or baryons outside the lens galaxy (group gas and neighbours). Prospector masses run high, not
-   low, so the first works against the law. This is the sharpest thing the release says about the law today, and it is
-   an argument, not a measured gate.
+4. **Euclid's lenses read 0.12 dex above SLACS on the same source-free footing, and need more than SLACS at true
+   source redshifts unless their sources typically lie beyond z ≈ 5.** The two samples lose different amounts when the
+   source is dropped: SLACS 0.20 dex (measured), Euclid 0.25 dex if its sources sit near z_s = 2 and 0.09 dex at
+   z_s = 6 (A1). Euclid's median reaches SLACS's +0.082 / +0.070 only at a common z_s ≈ 5.3 / 4.8. In a theory where
+   lensing mass is a function of the baryons alone, a selection that prefers large Einstein radii cannot raise the
+   lensing mass at fixed stars. Only three things can: a different stellar-mass scale between the two catalogues,
+   selection on stellar-mass errors, or baryons outside the lens galaxy (group gas and neighbours). Prospector masses
+   run high, not low, so the first works against the law. This is the sharpest thing the release says about the law
+   today, and it is an argument conditional on the sources, not a measured gate.
 5. **What any extra cold component would have to look like here.** If the group-scale lenses are real and their
    sources are not at extreme redshift, the gravitating density beyond the law's equilibrium must add at least
    +370 to +900 M☉ pc⁻² of mean surface density inside 10–20 kpc for θ_E > 1.3″, rising with aperture, and nothing for
@@ -175,6 +178,9 @@ No registered prediction has been confirmed by DR1-Foundation, and none has been
 
 `euc1.py` (frozen run), `euc1.out`, `euc1_results.json`, `euc1_per_lens.csv` (3,192 lenses),
 `euc1_MUTATE_newton.out` / `_results.json` (exit 1), `euc1_posthoc.py`, `euc1_posthoc.out`, `euc1_posthoc_results.json`.
+
+Commits (local / origin): criteria 898cefb457 / dcc8e51300; artifacts 5926a21305 / 2fb58b62e3; result 3ed302a34c /
+a1f5178885.
 
 Data are not in the repository: ECLIPSE archive, DOI 10.5281/zenodo.19654904; the two CSV files are hash-checked by the
 script on every run.
