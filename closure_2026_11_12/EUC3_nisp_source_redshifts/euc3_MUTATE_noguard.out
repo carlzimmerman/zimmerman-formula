@@ -1,0 +1,236 @@
+EUC3 (NISP SOURCE REDSHIFTS)   *** MUTATE = noguard ***
+footings (m/s^2): canonical 9.3603e-11, alt 1.1320e-10
+
+[data]
+  sha256 eclipse_dr1_catalogue_key_v20261103.csv  65338917534c9c76  matches the frozen hash
+  sha256 ECLIPSE_object_catalogue.csv  8247a4d5f23513b8  matches the frozen hash
+  lens systems searched (grade A/B, theta_E > 0): 14958;  P 3192, S 6173, U 14040;  null systems (grade X): 2580
+  fetched: MER rows for 16639 systems; objects with a quality row 27275, a galaxy solution 16692, line rows 16702, a photo-z 26300
+  pairing: objects with more than one spectrum 0; spectra without a quality row 0; ambiguous pairings 0
+
+[instrument checks]
+  PASS K1  EUC1 reproduced: N(P) = 3192, source-free b_med law S = -0.019 / -0.044 to 0.001 : N = 3192, -0.0185 / -0.0439
+  PASS K2  EUC2 anchor L015763 at z_l(DESI), z_s = 1.3657: b = +0.231 / +0.215 to 0.002 : +0.2314 / +0.2149
+  PASS K3  lens object found by position carries ECLIPSE's MER_object_id in >= 95 % (S; X) : 5812 / 5915 = 0.983 ; 2402 / 2480 = 0.969
+  PASS K4  median association radius of X within 2 % of S's : S 1.565", X 1.567"
+  PASS K5  fetch complete; three id chunks re-queried return identical rows : 17538 systems queried, 27534 MER object ids (27534 in the manifests), 70 chunk files, missing 0; re-queried chunks identical: [True, True, True, True, True, True]
+
+[coverage, like for like]
+  P        N =  3192, evaluable  1177 (0.369); lens-object median H flux 87.7 uJy, median pipeline photo-z 0.650; counted objects per system 1.17; not evaluable: {'no spectrum passing Q1': 1979, 'no lens object': 36}
+  S        N =  6173, evaluable  2282 (0.370); lens-object median H flux 74.4 uJy, median pipeline photo-z 0.680; counted objects per system 1.16; not evaluable: {'no spectrum passing Q1': 3786, 'no lens object': 105}
+  U        N = 14040, evaluable  5120 (0.365); lens-object median H flux 79.6 uJy, median pipeline photo-z 0.680; counted objects per system 1.19; not evaluable: {'no spectrum passing Q1': 8607, 'no lens object': 313}
+  all A/B  N = 14958, evaluable  5253 (0.351); lens-object median H flux 78.9 uJy, median pipeline photo-z 0.680; counted objects per system 1.16; not evaluable: {'no spectrum passing Q1': 8777, 'no lens object': 925, 'no redshift interval': 3}
+  X        N =  2580, evaluable   934 (0.362); lens-object median H flux 38.1 uJy, median pipeline photo-z 0.730; counted objects per system 1.17; not evaluable: {'no spectrum passing Q1': 1422, 'no lens object': 90, 'no redshift interval': 134}
+  coverage gate (>= 30 % of S and of X evaluable): PASS
+  S spectra by first cut failed (T5): {'Q1 spectrum': 2670, 'Q2 solution': 1713, 'Q3 window': 255, 'Q4 quality flag': 253, 'SECURE': 146, 'Q4 flux': 132, 'Q4 S/N': 49, 'Q4 width': 1}
+  X spectra by first cut failed (T5): {'Q1 spectrum': 958, 'Q2 solution': 662, 'Q4 quality flag': 135, 'Q3 window': 91, 'Q4 flux': 72, 'SECURE': 70, 'Q4 S/N': 22}
+
+[tier T5: H-alpha S/N >= 5]
+  P        evaluable  1177: SECURE   81 (rate 0.0688 [0.0550, 0.0848]), CONFLICT 0, AMBIGUOUS-OWN 0
+  S        evaluable  2282: SECURE  144 (rate 0.0631 [0.0535, 0.0739]), CONFLICT 0, AMBIGUOUS-OWN 0
+  U        evaluable  5120: SECURE  358 (rate 0.0699 [0.0631, 0.0773]), CONFLICT 0, AMBIGUOUS-OWN 0
+  all A/B  evaluable  5253: SECURE  374 (rate 0.0712 [0.0644, 0.0785]), CONFLICT 0, AMBIGUOUS-OWN 0
+  X        evaluable   934: SECURE   68 (rate 0.0728 [0.0570, 0.0914]), CONFLICT 0, AMBIGUOUS-OWN 0
+  H2 purity null: grade-X SECURE = 68 against a limit of 11.8 -> FAIL;  expected false among P / S: 85.7 / 166.1 (of 81 / 144)
+  H4 truth EUCL-DR1-L015763 (z_s = 1.3657): not found  [system class none; see spectra]
+       lens object sep 0.00": z0 = 2.1144 prob 1.000 rel 0.139 npix 305 dith 4 | Ha S/N -99.0 flux -9.90e+01 fwhm -99 qual -92 | galaxy | first cut: Q3 window | lower ranks [(1, 1.3768, 0.0), (2, 3.1827, 0.0), (3, 4.5642, 0.0), (4, 2.147, 0.0)]
+  H4 truth EUCL-DR1-L012826 (z_s = 1.1374): not found  [system class none; no lens object]
+  H4 truth EUCL-DR1-L014688 (z_s = 0.9926): not found  [system class none; no lens object]
+  H4 truth gate: 0 of 3 recovered, 0 contradicted -> PASS
+
+[tier T8: H-alpha S/N >= 8]
+  P        evaluable  1177: SECURE   54 (rate 0.0459 [0.0347, 0.0594]), CONFLICT 0, AMBIGUOUS-OWN 0
+  S        evaluable  2282: SECURE   95 (rate 0.0416 [0.0338, 0.0507]), CONFLICT 0, AMBIGUOUS-OWN 0
+  U        evaluable  5120: SECURE  232 (rate 0.0453 [0.0398, 0.0514]), CONFLICT 0, AMBIGUOUS-OWN 0
+  all A/B  evaluable  5253: SECURE  245 (rate 0.0466 [0.0411, 0.0527]), CONFLICT 0, AMBIGUOUS-OWN 0
+  X        evaluable   934: SECURE   47 (rate 0.0503 [0.0372, 0.0664]), CONFLICT 0, AMBIGUOUS-OWN 0
+  H2 purity null: grade-X SECURE = 47 against a limit of 7.8 -> FAIL;  expected false among P / S: 59.2 / 114.8 (of 54 / 95)
+  H4 truth EUCL-DR1-L015763 (z_s = 1.3657): not found  [system class none; see spectra]
+       lens object sep 0.00": z0 = 2.1144 prob 1.000 rel 0.139 npix 305 dith 4 | Ha S/N -99.0 flux -9.90e+01 fwhm -99 qual -92 | galaxy | first cut: Q3 window | lower ranks [(1, 1.3768, 0.0), (2, 3.1827, 0.0), (3, 4.5642, 0.0), (4, 2.147, 0.0)]
+  H4 truth EUCL-DR1-L012826 (z_s = 1.1374): not found  [system class none; no lens object]
+  H4 truth EUCL-DR1-L014688 (z_s = 0.9926): not found  [system class none; no lens object]
+  H4 truth gate: 0 of 3 recovered, 0 contradicted -> PASS
+
+[grade-X null hits, listed (T5)]
+  EUCL-DR1-L003836 SECURE   z = 1.3654 S/N 7.7 flux 4.40e-16 fwhm 97 | lens object sep 0.00" | interval [0.67, 0.73] photo-z 0.72 | class galaxy | second lines: SII6718 | T8: none
+  EUCL-DR1-L006231 SECURE   z = 0.9074 S/N 10.0 flux 2.56e-16 fwhm 36 | lens object sep 0.01" | interval [0.93, 1.04] photo-z 1.00 | class galaxy | second lines: SII6718+SIII9068 | T8: SECURE
+  EUCL-DR1-L007412 SECURE   z = 0.9172 S/N 8.8 flux 3.34e-16 fwhm 41 | lens object sep 0.00" | interval [0.77, 1.48] photo-z 1.00 | class galaxy | second lines: SII6718 | T8: SECURE
+  EUCL-DR1-L008551 SECURE   z = 1.3687 S/N 5.6 flux 2.58e-16 fwhm 51 | lens object sep 0.00" | interval [1.43, 1.61] photo-z 1.48 | class galaxy | second lines: none | T8: none
+  EUCL-DR1-L008733 SECURE   z = 0.9419 S/N 5.5 flux 3.72e-16 fwhm 53 | lens object sep 0.17" | interval [0.86, 1.08] photo-z 1.00 | class galaxy | second lines: none | T8: none
+  EUCL-DR1-L009056 SECURE   z = 1.1478 S/N 16.6 flux 2.90e-16 fwhm 73 | lens object sep 0.00" | interval [1.09, 1.21] photo-z 1.14 | class galaxy | second lines: SII6718 | T8: SECURE
+  EUCL-DR1-L009615 SECURE   z = 1.7970 S/N 15.6 flux 4.17e-16 fwhm 20 | lens object sep 0.00" | interval [0.16, 0.31] photo-z 0.21 | class galaxy | second lines: none | T8: SECURE
+  EUCL-DR1-L009989 SECURE   z = 1.4912 S/N 7.7 flux 2.39e-16 fwhm 38 | neighbour sep 1.22" | interval [0.63, 0.69] photo-z 0.65 | class galaxy | second lines: none | T8: none
+  EUCL-DR1-L011779 SECURE   z = 1.1519 S/N 8.0 flux 2.26e-16 fwhm 59 | lens object sep 0.00" | interval [1.08, 1.16] photo-z 1.13 | class galaxy | second lines: SII6718 | T8: none
+  EUCL-DR1-L013113 SECURE   z = 1.8136 S/N 8.1 flux 2.93e-16 fwhm 58 | neighbour sep 2.15" | interval [0.82, 0.90] photo-z 0.86 | class galaxy | second lines: OIII5008 | T8: SECURE
+  EUCL-DR1-L014085 SECURE   z = 1.3571 S/N 6.9 flux 2.03e-16 fwhm 61 | neighbour sep 1.11" | interval [1.08, 1.31] photo-z 1.12 | class galaxy | second lines: none | T8: none
+  EUCL-DR1-L018341 SECURE   z = 1.3761 S/N 13.9 flux 3.47e-16 fwhm 47 | lens object sep 0.00" | interval [1.29, 1.56] photo-z 1.41 | class galaxy | second lines: none | T8: SECURE
+  EUCL-DR1-L018600 SECURE   z = 1.0386 S/N 14.6 flux 3.61e-16 fwhm 37 | lens object sep 0.00" | interval [0.98, 1.08] photo-z 1.01 | class galaxy | second lines: SII6718 | T8: SECURE
+  EUCL-DR1-L019249 SECURE   z = 1.3543 S/N 9.8 flux 2.70e-16 fwhm 43 | lens object sep 0.00" | interval [1.28, 1.47] photo-z 1.40 | class galaxy | second lines: none | T8: SECURE
+  EUCL-DR1-L019371 SECURE   z = 1.4387 S/N 7.1 flux 2.32e-16 fwhm 49 | lens object sep 0.00" | interval [1.45, 1.64] photo-z 1.54 | class galaxy | second lines: none | T8: none
+  EUCL-DR1-L019453 SECURE   z = 0.9669 S/N 16.5 flux 3.16e-15 fwhm 117 | lens object sep 0.00" | interval [0.88, 1.00] photo-z 0.94 | class galaxy | second lines: SII6718 | T8: SECURE
+  EUCL-DR1-L019466 SECURE   z = 1.1497 S/N 8.4 flux 2.11e-16 fwhm 32 | lens object sep 0.00" | interval [1.08, 1.17] photo-z 1.11 | class galaxy | second lines: none | T8: SECURE
+  EUCL-DR1-L019619 SECURE   z = 0.9928 S/N 20.3 flux 4.87e-16 fwhm 49 | lens object sep 0.00" | interval [0.75, 0.96] photo-z 0.86 | class galaxy | second lines: SII6718 | T8: SECURE
+  EUCL-DR1-L020240 SECURE   z = 1.1465 S/N 11.5 flux 2.19e-16 fwhm 38 | lens object sep 0.00" | interval [1.11, 1.24] photo-z 1.15 | class galaxy | second lines: none | T8: SECURE
+  EUCL-DR1-L020567 SECURE   z = 1.1938 S/N 21.1 flux 4.39e-16 fwhm 52 | lens object sep 0.00" | interval [1.08, 1.21] photo-z 1.12 | class galaxy | second lines: SII6718 | T8: SECURE
+  EUCL-DR1-L021129 SECURE   z = 1.0465 S/N 9.9 flux 3.33e-16 fwhm 44 | lens object sep 0.00" | interval [1.14, 1.23] photo-z 1.17 | class galaxy | second lines: none | T8: SECURE
+  EUCL-DR1-L021157 SECURE   z = 1.3604 S/N 26.5 flux 4.50e-16 fwhm 71 | lens object sep 0.00" | interval [1.28, 1.44] photo-z 1.36 | class galaxy | second lines: SII6718 | T8: SECURE
+  EUCL-DR1-L021276 SECURE   z = 1.4889 S/N 5.9 flux 2.52e-16 fwhm 67 | lens object sep 0.00" | interval [1.29, 1.57] photo-z 1.34 | class galaxy | second lines: OIII5008 | T8: none
+  EUCL-DR1-L021284 SECURE   z = 0.8557 S/N 12.6 flux 3.97e-16 fwhm 29 | lens object sep 0.00" | interval [0.81, 0.92] photo-z 0.87 | class galaxy | second lines: SII6718+SIII9068 | T8: SECURE
+  EUCL-DR1-L021616 SECURE   z = 0.9133 S/N 16.0 flux 7.11e-16 fwhm 54 | lens object sep 0.00" | interval [0.98, 1.17] photo-z 1.10 | class galaxy | second lines: SIII9530 | T8: SECURE
+  EUCL-DR1-L021738 SECURE   z = 0.8616 S/N 11.3 flux 4.36e-16 fwhm 36 | lens object sep 0.00" | interval [0.88, 0.98] photo-z 0.93 | class galaxy | second lines: none | T8: SECURE
+  EUCL-DR1-L021850 SECURE   z = 0.9896 S/N 9.8 flux 2.78e-16 fwhm 38 | neighbour sep 0.81" | interval [0.93, 1.01] photo-z 0.97 | class galaxy | second lines: none | T8: SECURE
+  EUCL-DR1-L022017 SECURE   z = 1.0785 S/N 11.2 flux 5.65e-16 fwhm 76 | lens object sep 0.00" | interval [1.09, 1.17] photo-z 1.14 | class galaxy | second lines: SII6718 | T8: SECURE
+  EUCL-DR1-L022057 SECURE   z = 0.8822 S/N 11.6 flux 5.80e-16 fwhm 59 | lens object sep 0.00" | interval [0.81, 0.90] photo-z 0.86 | class galaxy | second lines: SII6718+SIII9530 | T8: SECURE
+  EUCL-DR1-L022068 SECURE   z = 1.2203 S/N 16.5 flux 5.21e-16 fwhm 48 | lens object sep 0.00" | interval [1.11, 1.25] photo-z 1.16 | class galaxy | second lines: none | T8: SECURE
+  EUCL-DR1-L022116 SECURE   z = 0.9978 S/N 10.2 flux 3.59e-16 fwhm 35 | neighbour sep 1.67" | interval [1.04, 1.49] photo-z 1.16 | class galaxy | second lines: none | T8: SECURE
+  EUCL-DR1-L022173 SECURE   z = 0.8918 S/N 69.2 flux 1.90e-15 fwhm 17 | lens object sep 0.00" | interval [0.74, 0.83] photo-z 0.79 | class galaxy | second lines: none | T8: SECURE
+  EUCL-DR1-L022286 SECURE   z = 1.0929 S/N 13.3 flux 1.06e-15 fwhm 77 | lens object sep 0.00" | interval [1.01, 1.17] photo-z 1.08 | class galaxy | second lines: none | T8: SECURE
+  EUCL-DR1-L022294 SECURE   z = 1.5084 S/N 17.8 flux 4.32e-16 fwhm 31 | lens object sep 0.00" | interval [0.93, 1.02] photo-z 0.97 | class galaxy | second lines: none | T8: SECURE
+  EUCL-DR1-L022322 SECURE   z = 1.3330 S/N 7.1 flux 2.49e-16 fwhm 36 | lens object sep 0.00" | interval [0.53, 0.65] photo-z 0.59 | class galaxy | second lines: none | T8: none
+  EUCL-DR1-L022354 SECURE   z = 1.1478 S/N 22.3 flux 4.67e-16 fwhm 51 | lens object sep 0.00" | interval [1.08, 1.23] photo-z 1.15 | class galaxy | second lines: SII6718 | T8: SECURE
+  EUCL-DR1-L022452 SECURE   z = 1.1692 S/N 11.6 flux 2.62e-16 fwhm 33 | lens object sep 0.00" | interval [1.02, 1.11] photo-z 1.09 | class galaxy | second lines: SII6718 | T8: SECURE
+  EUCL-DR1-L022522 SECURE   z = 1.3297 S/N 13.4 flux 2.89e-16 fwhm 48 | lens object sep 0.00" | interval [1.28, 1.41] photo-z 1.31 | class galaxy | second lines: SII6718 | T8: SECURE
+  EUCL-DR1-L022670 SECURE   z = 1.2950 S/N 12.6 flux 4.57e-16 fwhm 81 | lens object sep 0.00" | interval [0.96, 1.08] photo-z 1.01 | class galaxy | second lines: SII6718 | T8: SECURE
+  EUCL-DR1-L022701 SECURE   z = 1.0814 S/N 6.5 flux 2.53e-16 fwhm 17 | lens object sep 0.00" | interval [1.26, 1.41] photo-z 1.33 | class galaxy | second lines: none | T8: none
+  EUCL-DR1-L022707 SECURE   z = 0.9750 S/N 10.0 flux 2.97e-16 fwhm 60 | lens object sep 0.00" | interval [0.69, 0.89] photo-z 0.82 | class galaxy | second lines: SIII9068 | T8: SECURE
+  EUCL-DR1-L022756 SECURE   z = 1.1690 S/N 10.7 flux 2.14e-16 fwhm 29 | lens object sep 0.00" | interval [1.11, 1.19] photo-z 1.14 | class galaxy | second lines: SII6718 | T8: SECURE
+  EUCL-DR1-L022919 SECURE   z = 1.0927 S/N 18.0 flux 4.33e-16 fwhm 33 | lens object sep 0.00" | interval [0.93, 1.02] photo-z 0.97 | class galaxy | second lines: SII6718 | T8: SECURE
+  EUCL-DR1-L022960 SECURE   z = 1.0371 S/N 6.4 flux 2.65e-16 fwhm 51 | lens object sep 0.00" | interval [0.98, 1.09] photo-z 1.02 | class galaxy | second lines: SII6718 | T8: none
+  EUCL-DR1-L022970 SECURE   z = 1.2659 S/N 20.9 flux 9.72e-16 fwhm 44 | lens object sep 0.00" | interval [0.68, 0.79] photo-z 0.72 | class galaxy | second lines: SII6718 | T8: SECURE
+  EUCL-DR1-L023097 SECURE   z = 1.1476 S/N 8.5 flux 2.27e-16 fwhm 32 | lens object sep 0.00" | interval [1.07, 1.17] photo-z 1.15 | class galaxy | second lines: none | T8: SECURE
+  EUCL-DR1-L023191 SECURE   z = 1.0683 S/N 15.0 flux 3.52e-16 fwhm 41 | lens object sep 0.00" | interval [0.95, 1.23] photo-z 1.13 | class galaxy | second lines: SII6718 | T8: SECURE
+  EUCL-DR1-L023316 SECURE   z = 1.4105 S/N 6.2 flux 2.28e-16 fwhm 47 | lens object sep 0.00" | interval [0.35, 0.44] photo-z 0.41 | class galaxy | second lines: SII6718 | T8: none
+  EUCL-DR1-L024766 SECURE   z = 1.0453 S/N 6.2 flux 2.31e-16 fwhm 56 | lens object sep 0.00" | interval [1.05, 1.15] photo-z 1.11 | class galaxy | second lines: SII6718 | T8: none
+  EUCL-DR1-L024840 SECURE   z = 0.9301 S/N 11.9 flux 4.57e-16 fwhm 35 | lens object sep 0.00" | interval [0.86, 1.00] photo-z 0.92 | class galaxy | second lines: SIII9530 | T8: SECURE
+  EUCL-DR1-L024951 SECURE   z = 1.1679 S/N 10.6 flux 4.02e-16 fwhm 54 | neighbour sep 0.79" | interval [0.85, 0.98] photo-z 0.93 | class galaxy | second lines: none | T8: SECURE
+  EUCL-DR1-L025025 SECURE   z = 0.9099 S/N 9.4 flux 3.37e-16 fwhm 50 | lens object sep 0.00" | interval [0.64, 0.79] photo-z 0.75 | class galaxy | second lines: none | T8: SECURE
+  EUCL-DR1-L025091 SECURE   z = 1.0235 S/N 6.4 flux 3.72e-16 fwhm 51 | lens object sep 0.00" | interval [0.59, 0.65] photo-z 0.61 | class galaxy | second lines: none | T8: none
+  EUCL-DR1-L025914 SECURE   z = 1.0967 S/N 5.1 flux 2.09e-16 fwhm 38 | lens object sep 0.00" | interval [0.34, 0.52] photo-z 0.48 | class galaxy | second lines: none | T8: none
+  EUCL-DR1-L026000 SECURE   z = 1.3409 S/N 5.2 flux 2.95e-16 fwhm 47 | lens object sep 0.00" | interval [0.39, 0.50] photo-z 0.47 | class galaxy | second lines: none | T8: none
+  EUCL-DR1-L026077 SECURE   z = 1.6147 S/N 6.0 flux 3.71e-16 fwhm 70 | lens object sep 0.00" | interval [1.47, 1.65] photo-z 1.57 | class galaxy | second lines: SII6718 | T8: none
+  EUCL-DR1-L026090 SECURE   z = 1.0335 S/N 6.0 flux 2.58e-16 fwhm 20 | neighbour sep 1.15" | interval [0.46, 0.66] photo-z 0.60 | class galaxy | second lines: none | T8: none
+  EUCL-DR1-L026105 SECURE   z = 1.1015 S/N 13.0 flux 3.79e-16 fwhm 63 | lens object sep 0.00" | interval [1.02, 1.18] photo-z 1.10 | class galaxy | second lines: none | T8: SECURE
+  EUCL-DR1-L026162 SECURE   z = 1.2265 S/N 5.3 flux 2.18e-16 fwhm 40 | lens object sep 0.00" | interval [0.52, 0.70] photo-z 0.61 | class galaxy | second lines: SII6718 | T8: none
+  EUCL-DR1-L026313 SECURE   z = 0.9089 S/N 7.0 flux 2.21e-16 fwhm 36 | lens object sep 0.00" | interval [0.89, 0.97] photo-z 0.93 | class galaxy | second lines: SIII9068 | T8: none
+  EUCL-DR1-L026342 SECURE   z = 1.0490 S/N 16.9 flux 4.61e-16 fwhm 56 | lens object sep 0.00" | interval [1.02, 1.22] photo-z 1.14 | class galaxy | second lines: SII6718+SIII9068 | T8: SECURE
+  EUCL-DR1-L026349 SECURE   z = 0.9243 S/N 10.1 flux 2.60e-16 fwhm 60 | lens object sep 0.00" | interval [0.83, 0.96] photo-z 0.88 | class galaxy | second lines: SII6718 | T8: SECURE
+  EUCL-DR1-L026385 SECURE   z = 1.2444 S/N 8.0 flux 3.23e-16 fwhm 53 | lens object sep 0.00" | interval [0.17, 0.28] photo-z 0.22 | class galaxy | second lines: SII6718 | T8: SECURE
+  EUCL-DR1-L026441 SECURE   z = 1.2037 S/N 11.3 flux 2.68e-16 fwhm 43 | lens object sep 0.00" | interval [1.26, 1.47] photo-z 1.38 | class galaxy | second lines: SII6718 | T8: SECURE
+  EUCL-DR1-L026446 SECURE   z = 1.0667 S/N 9.0 flux 3.39e-16 fwhm 54 | lens object sep 0.00" | interval [0.94, 1.04] photo-z 1.00 | class galaxy | second lines: none | T8: SECURE
+  EUCL-DR1-L026556 SECURE   z = 0.9630 S/N 9.3 flux 3.78e-16 fwhm 62 | lens object sep 0.00" | interval [0.91, 1.04] photo-z 1.00 | class galaxy | second lines: SII6718 | T8: SECURE
+  EUCL-DR1-L026567 SECURE   z = 1.0331 S/N 10.9 flux 5.78e-16 fwhm 33 | neighbour sep 1.09" | interval [1.00, 1.14] photo-z 1.07 | class galaxy | second lines: none | T8: SECURE
+  EUCL-DR1-L026670 SECURE   z = 1.0088 S/N 7.2 flux 7.09e-16 fwhm 86 | neighbour sep 0.96" | interval [1.00, 1.09] photo-z 1.02 | class galaxy | second lines: none | T8: none
+
+[tier ladder]
+  T5: H2 FAIL, H4 PASS;  T8: H2 FAIL, H4 PASS  ->  no tier passes: NOT EVALUABLE
+
+[reading at tier T5, VOID (the search is not evaluable): b at the true source redshift]
+  P                      law S canonical N =  74  b_med(true z_s) = +0.217 [+0.140, +0.286]   source-free b_med = -0.086   n(b > 0.25) = 33  (dropped 7)
+  P                      law S alt       N =  74  b_med(true z_s) = +0.202 [+0.124, +0.267]   source-free b_med = -0.112   n(b > 0.25) = 31  (dropped 7)
+  S                      law S canonical N = 115  b_med(true z_s) = +0.253 [+0.187, +0.325]   source-free b_med = -0.086   n(b > 0.25) = 59  (dropped 29)
+  S                      law S alt       N = 115  b_med(true z_s) = +0.237 [+0.169, +0.310]   source-free b_med = -0.112   n(b > 0.25) = 57  (dropped 29)
+  U                      law S canonical N = 270  b_med(true z_s) = +0.353 [+0.314, +0.401]   source-free b_med = +0.000   n(b > 0.25) = 171  (dropped 88)   [not quality-cut]
+  U                      law S alt       N = 270  b_med(true z_s) = +0.337 [+0.299, +0.386]   source-free b_med = -0.023   n(b > 0.25) = 165  (dropped 88)   [not quality-cut]
+  P                      law B canonical N =  74  b_med(true z_s) = +0.249 [+0.174, +0.324]
+  P                      law B alt       N =  74  b_med(true z_s) = +0.239 [+0.163, +0.311]
+
+[robustness, law S; reported, cannot change the word]
+  1 P, DESI deflector z  law S canonical N =  74  b_med(true z_s) = +0.217 [+0.140, +0.286]   source-free b_med = -0.086   n(b > 0.25) = 33  (dropped 7)
+  1 P, DESI deflector z  law S alt       N =  74  b_med(true z_s) = +0.202 [+0.124, +0.267]   source-free b_med = -0.112   n(b > 0.25) = 31  (dropped 7)
+  2 P, tier T8 only      law S canonical N =  50  b_med(true z_s) = +0.181 [+0.106, +0.253]   source-free b_med = -0.161   n(b > 0.25) = 20  (dropped 4)
+  2 P, tier T8 only      law S alt       N =  50  b_med(true z_s) = +0.164 [+0.091, +0.237]   source-free b_med = -0.185   n(b > 0.25) = 18  (dropped 4)
+  3 P, two-line subset   law S canonical N =  43  b_med(true z_s) = +0.207 [+0.098, +0.290]   source-free b_med = -0.086   n(b > 0.25) = 19  (dropped 3)
+  3 P, two-line subset   law S alt       N =  43  b_med(true z_s) = +0.194 [+0.083, +0.271]   source-free b_med = -0.112   n(b > 0.25) = 18  (dropped 3)
+  4 P, [O III] extreme   law S canonical N =  75  b_med(true z_s) = +0.151 [+0.093, +0.224]   source-free b_med = -0.086   n(b > 0.25) = 29  (dropped 6)
+  4 P, [O III] extreme   law S alt       N =  75  b_med(true z_s) = +0.136 [+0.072, +0.203]   source-free b_med = -0.112   n(b > 0.25) = 26  (dropped 6)
+  5 P, + AMBIGUOUS-OWN   law S canonical N =  74  b_med(true z_s) = +0.217 [+0.140, +0.286]   source-free b_med = -0.086   n(b > 0.25) = 33  (dropped 7)
+  5 P, + AMBIGUOUS-OWN   law S alt       N =  74  b_med(true z_s) = +0.202 [+0.124, +0.267]   source-free b_med = -0.112   n(b > 0.25) = 31  (dropped 7)
+  6 P, theta_E <= 2.5    law S canonical N =  74  b_med(true z_s) = +0.217 [+0.140, +0.286]   source-free b_med = -0.086   n(b > 0.25) = 33  (dropped 7)
+  6 P, theta_E <= 2.5    law S alt       N =  74  b_med(true z_s) = +0.202 [+0.124, +0.267]   source-free b_med = -0.112   n(b > 0.25) = 31  (dropped 7)
+  7 S, two-line subset   law S canonical N =  55  b_med(true z_s) = +0.206 [+0.103, +0.290]   source-free b_med = -0.086   n(b > 0.25) = 24  (dropped 12)
+  7 S, two-line subset   law S alt       N =  55  b_med(true z_s) = +0.190 [+0.086, +0.271]   source-free b_med = -0.113   n(b > 0.25) = 23  (dropped 12)
+
+  per-lens table: not written by a twin (374 lens systems with a T5 class)
+  sample P per lens (law S): id, z_l, z_s, Ha S/N, role, theta_E, second lines, b canonical / alt (source-free alt)
+    EUCL-DR1-L002642 0.410 0.8685  10.2 lens object 0.99" -                  +0.321 / +0.307  (-0.040)
+    EUCL-DR1-L020443 0.510 0.8817  11.9 neighbour   1.03" SIII9530           +0.699 / +0.686  (+0.219)
+    EUCL-DR1-L014158 0.200 0.8994  30.4 lens object 1.15" SIII9530           +0.089 / +0.074  (-0.056)
+    EUCL-DR1-L014472 0.240 0.9516   7.6 lens object 0.67" SIII9068           +0.095 / +0.080  (-0.074)
+    EUCL-DR1-L016695 0.310 0.9667   9.9 lens object 1.17" SII6718            +0.473 / +0.457  (+0.248)
+    EUCL-DR1-L014925 0.560 0.9886   8.8 lens object 0.81" -                  +0.250 / +0.237  (-0.218)
+    EUCL-DR1-L002200 0.580 1.0183   5.9 lens object 2.05" -                  +0.610 / +0.596  (+0.131)
+    EUCL-DR1-L018823 0.220 1.0556  21.5 lens object 1.61" SII6718            +0.520 / +0.506  (+0.384)
+    EUCL-DR1-L019325 0.750 1.0665   7.2 lens object 0.76" SII6718            +0.479 / +0.469  (-0.184)
+    EUCL-DR1-L020538 0.890 1.0963   9.6 lens object 1.21" -                  +0.926 / +0.919  (+0.031)
+    EUCL-DR1-L012033 0.310 1.1038  23.1 lens object 0.77" SII6718            +0.913 / +0.894  (+0.708)
+    EUCL-DR1-L005008 0.400 1.1097   8.4 lens object 1.24" -                  +0.437 / +0.421  (+0.173)
+    EUCL-DR1-L014268 0.540 1.1192  10.0 lens object 0.91" -                  +0.094 / +0.080  (-0.283)
+    EUCL-DR1-L010439 0.390 1.1603  17.6 lens object 0.65" SII6718            -0.033 / -0.050  (-0.278)
+    EUCL-DR1-L020472 0.450 1.1709   7.2 lens object 1.48" -                  +0.458 / +0.442  (+0.174)
+    EUCL-DR1-L005337 0.930 1.1737  12.3 lens object 1.41" -                  +1.051 / +1.043  (+0.202)
+    EUCL-DR1-L013608 0.540 1.1781   8.0 lens object 0.66" -                  +0.151 / +0.136  (-0.204)
+    EUCL-DR1-L015273 0.330 1.2095  11.9 lens object 0.84" SII6718            +0.130 / +0.114  (-0.059)
+    EUCL-DR1-L005837 1.010 1.2277   8.9 lens object 0.54" -                  +0.945 / +0.937  (+0.006)
+    EUCL-DR1-L001520 0.970 1.2281  10.0 lens object 0.96" -                  +0.689 / +0.681  (-0.162)
+    EUCL-DR1-L005657 0.330 1.2292   7.6 lens object 0.77" -                  +0.282 / +0.266  (+0.096)
+    EUCL-DR1-L011275 0.360 1.2337  12.3 lens object 0.52" -                  -0.213 / -0.229  (-0.418)
+    EUCL-DR1-L018235 0.410 1.2350   7.2 lens object 1.39" -                  +0.828 / +0.810  (+0.582)
+    EUCL-DR1-L015295 0.990 1.2715  23.1 lens object 0.56" SII6718            +0.427 / +0.418  (-0.399)
+    EUCL-DR1-L014636 0.670 1.2727  17.9 lens object 0.76" -                  -0.021 / -0.036  (-0.457)
+    EUCL-DR1-L015315 0.310 1.2777  14.6 lens object 0.79" SII6718            +0.290 / +0.273  (+0.120)
+    EUCL-DR1-L008052 0.990 1.2815   7.5 lens object 0.65" SII6718            +0.518 / +0.509  (-0.287)
+    EUCL-DR1-L007258 0.660 1.2845   8.7 lens object 0.89" -                  +0.160 / +0.145  (-0.260)
+    EUCL-DR1-L006698 0.330 1.2973  10.9 lens object 0.62" -                  -0.039 / -0.056  (-0.218)
+    EUCL-DR1-L013462 0.470 1.3075  15.1 lens object 0.57" SII6718            +0.051 / +0.033  (-0.219)
+    EUCL-DR1-L017141 0.470 1.3214  39.6 lens object 0.76" SII6718            +0.081 / +0.064  (-0.184)
+    EUCL-DR1-L006918 0.740 1.3332   7.4 lens object 0.68" -                  +0.084 / +0.070  (-0.386)
+    EUCL-DR1-L001036 0.740 1.3372   6.2 lens object 0.63" -                  +0.131 / +0.117  (-0.339)
+    EUCL-DR1-L008680 0.350 1.3475   6.4 lens object 1.12" SII6718            +0.187 / +0.170  (+0.002)
+    EUCL-DR1-L000730 0.450 1.3501   5.0 lens object 2.01" -                  +0.450 / +0.432  (+0.202)
+    EUCL-DR1-L015298 0.510 1.3579   8.3 lens object 0.53" -                  +0.097 / +0.080  (-0.186)
+    EUCL-DR1-L015701 0.350 1.3579   6.5 lens object 1.52" -                  +0.369 / +0.351  (+0.185)
+    EUCL-DR1-L001826 0.690 1.3858  15.6 lens object 0.69" SII6718            +0.116 / +0.099  (-0.299)
+    EUCL-DR1-L015525 0.380 1.3968   7.2 lens object 1.07" -                  +0.237 / +0.219  (+0.042)
+    EUCL-DR1-L014901 0.430 1.4243  25.0 lens object 0.82" SII6718            +0.248 / +0.230  (+0.025)
+    EUCL-DR1-L004527 0.280 1.4862  14.5 lens object 0.70" OIII5008+SII6718   +0.331 / +0.314  (+0.197)
+    EUCL-DR1-L004835 0.720 1.4867   7.8 lens object 0.58" OIII5008+SII6718   +0.283 / +0.267  (-0.113)
+    EUCL-DR1-L009818 0.420 1.4929   6.3 lens object 0.94" SII6718            +0.061 / +0.044  (-0.142)
+    EUCL-DR1-L017263 0.350 1.4972  16.9 lens object 0.84" -                  +0.227 / +0.210  (+0.061)
+    EUCL-DR1-L015857 0.330 1.4999  19.5 lens object 1.55" OIII5008           +0.320 / +0.301  (+0.161)
+    EUCL-DR1-L006510 0.630 1.5062   7.3 lens object 1.08" -                  +0.421 / +0.403  (+0.089)
+    EUCL-DR1-L016396 0.470 1.5117  10.3 lens object 1.28" SII6718            +0.331 / +0.311  (+0.094)
+    EUCL-DR1-L015173 0.610 1.5149  40.2 lens object 0.93" SII6718            +0.244 / +0.225  (-0.079)
+    EUCL-DR1-L015771 0.870 1.5466  41.7 lens object 0.49" Hbeta              -0.065 / -0.080  (-0.555)
+    EUCL-DR1-L017908 0.830 1.5489   8.6 lens object 0.47" Hbeta              +0.066 / +0.051  (-0.391)
+    EUCL-DR1-L018993 0.820 1.5570  28.7 lens object 0.49" OIII5008+Hbeta+SII6718 -0.248 / -0.263  (-0.688)
+    EUCL-DR1-L016241 1.110 1.5637   9.4 lens object 0.46" OIII5008           +0.626 / +0.616  (-0.077)
+    EUCL-DR1-L018353 0.390 1.5665  18.2 lens object 0.52" OIII5008+Hbeta+SII6718 -0.094 / -0.112  (-0.275)
+    EUCL-DR1-L000173 0.440 1.5786   6.7 lens object 1.10" OIII5008           +0.288 / +0.267  (+0.075)
+    EUCL-DR1-L001722 1.040 1.5848   8.3 lens object 0.70" OIII5008           -0.049 / -0.061  (-0.662)
+    EUCL-DR1-L025679 0.790 1.6056  12.4 lens object 0.42" OIII5008           -0.210 / -0.226  (-0.616)
+    EUCL-DR1-L019211 0.770 1.6063   5.6 lens object 0.62" OIII5008+SII6718   +0.098 / +0.082  (-0.293)
+    EUCL-DR1-L014444 0.470 1.6137  18.1 lens object 1.12" Hbeta+SII6718      -0.019 / -0.037  (-0.235)
+    EUCL-DR1-L014936 0.830 1.6192   7.5 lens object 0.87" SII6718            +0.374 / +0.359  (-0.052)
+    EUCL-DR1-L007015 0.430 1.6233   5.9 lens object 1.31" -                  +0.168 / +0.149  (-0.028)
+    EUCL-DR1-L002061 0.840 1.6299   8.7 neighbour   2.18" SII6718            +0.610 / +0.595  (+0.177)
+    EUCL-DR1-L015818 0.790 1.6352  23.7 lens object 1.10" -                  +0.144 / +0.127  (-0.254)
+    EUCL-DR1-L001924 1.040 1.6386  11.0 neighbour   0.80" OIII5008           +0.207 / +0.194  (-0.379)
+    EUCL-DR1-L011509 0.790 1.6497  12.8 lens object 0.68" -                  +0.174 / +0.158  (-0.218)
+    EUCL-DR1-L023414 0.930 1.6946  11.4 lens object 0.96" OIII5008+SII6718   +0.425 / +0.411  (-0.042)
+    EUCL-DR1-L017181 0.840 1.7078  10.3 lens object 0.76" OIII5008           +0.137 / +0.121  (-0.271)
+    EUCL-DR1-L004502 0.300 1.7138  16.7 lens object 1.02" -                  -0.158 / -0.176  (-0.285)
+    EUCL-DR1-L013590 1.040 1.7274  12.6 lens object 0.72" OIII5008           +0.096 / +0.083  (-0.446)
+    EUCL-DR1-L020283 0.660 1.7372   8.2 lens object 1.41" OIII5008+SII6718   +0.187 / +0.169  (-0.112)
+    EUCL-DR1-L001874 0.340 1.7667  14.0 lens object 1.15" Hbeta+SII6718      +0.253 / +0.234  (+0.112)
+    EUCL-DR1-L001612 0.810 1.7872   7.1 lens object 0.66" OIII5008           +0.290 / +0.271  (-0.088)
+    EUCL-DR1-L009534 0.890 1.8152   7.9 lens object 0.40" OIII5008           -0.143 / -0.159  (-0.554)
+    EUCL-DR1-L016325 0.950 1.8291  28.4 lens object 0.79" -                  +0.111 / +0.095  (-0.336)
+    EUCL-DR1-L002011 0.400 1.8305   7.0 lens object 0.83" -                  +0.033 / +0.014  (-0.130)
+
+[summary]
+  instrument checks: all pass;  coverage: pass;  reading tier: none
+  N(P) with a secure source redshift = 74 (EUC1-F needs 10)
+  LANE WORD (canonical / alt): NOT EVALUABLE / NOT EVALUABLE
+  kappa = 1/2 FITTED. One-sided: no outcome favours the framework.  (2 s)
+
+[MUTATE noguard] grade-X SECURE systems (T5): 68 (ref 12); lens S: 144 (ref 35) -> the null count rose, as required; exit 1

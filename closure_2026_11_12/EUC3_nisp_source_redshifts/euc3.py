@@ -418,7 +418,7 @@ def main():
         if rr["N"]:
             for j, i in enumerate(rr["ids"]):
                 bP[i] = {k: v[j] for k, v in rr["b"].items()}
-    with open(os.path.join(HERE, tag + "_sources.csv"), "w", newline="") as f:
+    with open(os.devnull if MUT else os.path.join(HERE, tag + "_sources.csv"), "w", newline="") as f:      # twins write no tables
         w = csv.writer(f)
         w.writerow(["unique_identifier", "grade", "in_P", "in_S", "in_U", "class_T5", "class_T8", "z_l_catalogue", "z_lo", "z_up", "interval_source",
                     "z_s", "Ha_snr", "Ha_flux", "Ha_fwhm_A", "Ha_qual", "z_prob", "z_rel", "mer_object_id", "role", "sep_arcsec", "n_spectra_same_class",
@@ -433,9 +433,9 @@ def main():
                         sp["oid"], sp["role"], "%.2f" % sp["sep"], n, "+".join(sp["second"]), sp["cls"], "%.3f" % key[i]["tE"]] +
                        [("%.4f" % b[c]) if c in b else "" for c in ("S_canonical", "S_alt", "inf_S_canonical", "inf_S_alt")])
             nrow += 1
-    P("\n  per-lens table: %s_sources.csv (%d lens systems with a T5 class)" % (tag, nrow))
+    P("\n  per-lens table: %s (%d lens systems with a T5 class)" % ("not written by a twin" if MUT else tag + "_sources.csv", nrow))
     # per-system table of every evaluable system (lenses and null), for the disclosed post hoc diagnostics; output only
-    with open(os.path.join(HERE, tag + "_systems.csv"), "w", newline="") as f:
+    with open(os.devnull if MUT else os.path.join(HERE, tag + "_systems.csv"), "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["unique_identifier", "grade", "in_P", "in_S", "in_U", "r_a_arcsec", "z_lo", "z_up", "interval_source", "lens_H_flux_uJy",
                     "lens_phz_median", "class_T5", "class_T8", "pass_all_but_snr_z", "pass_all_but_snr_snr", "pass_all_but_snr_role", "pass_all_but_snr_second"])

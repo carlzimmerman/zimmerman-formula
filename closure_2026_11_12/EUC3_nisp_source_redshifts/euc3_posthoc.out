@@ -1,0 +1,46 @@
+EUC3 POST HOC DIAGNOSTICS (after the frozen gates failed; no verdict can come from here)
+evaluable systems: S 2282, P 1177, all grade A/B 5253, grade X 934
+
+[1] rates against the H-alpha S/N threshold (everything else as frozen)
+  S/N >=    5: S  35 / 2282 = 0.0153;  all A/B  96 / 5253 = 0.0183;  X 12 / 934 = 0.0128;  H2 limit 2.9 -> fail
+  S/N >=    8: S  22 / 2282 = 0.0096;  all A/B  62 / 5253 = 0.0118;  X  7 / 934 = 0.0075;  H2 limit 1.8 -> fail
+  S/N >=   12: S   7 / 2282 = 0.0031;  all A/B  26 / 5253 = 0.0049;  X  4 / 934 = 0.0043;  H2 limit 1.0 -> fail
+  S/N >=   20: S   1 / 2282 = 0.0004;  all A/B   9 / 5253 = 0.0017;  X  1 / 934 = 0.0011;  H2 limit 1.0 -> pass
+
+[2] T5 rates by split (S | all A/B | X)
+  z_up < 0.60                          S   9 /  608 = 0.0148 | A/B  21 / 1460 = 0.0144 | X  3 /  269 = 0.0112 | X/S rate ratio 0.75
+  z_up >= 0.60                         S  26 / 1674 = 0.0155 | A/B  75 / 3793 = 0.0198 | X  9 /  665 = 0.0135 | X/S rate ratio 0.87
+  lens H flux >= S median (74.4 uJy)   S  22 / 1141 = 0.0193 | A/B  56 / 2729 = 0.0205 | X  2 /  271 = 0.0074 | X/S rate ratio 0.38
+  lens H flux < S median               S  13 / 1141 = 0.0114 | A/B  40 / 2523 = 0.0159 | X 10 /  663 = 0.0151 | X/S rate ratio 1.32
+  hit on the lens object               S  34 / 2282 = 0.0149 | A/B  85 / 5253 = 0.0162 | X  8 /  934 = 0.0086 | X/S rate ratio 0.57
+  hit on a neighbour                   S   1 / 2282 = 0.0004 | A/B  11 / 5253 = 0.0021 | X  4 /  934 = 0.0043 | X/S rate ratio 9.77
+  hit with a second line               S  11 / 2282 = 0.0048 | A/B  35 / 5253 = 0.0067 | X  6 /  934 = 0.0064 | X/S rate ratio 1.33
+  hit with H-alpha only                S  24 / 2282 = 0.0105 | A/B  61 / 5253 = 0.0116 | X  6 /  934 = 0.0064 | X/S rate ratio 0.61
+
+[3] X reweighted to S's joint distribution in (H-flux tercile x z_up tercile)
+    cell (flux tercile 0, z_up tercile 0): S   16 systems, X  91 systems, X rate 0.0220
+    cell (flux tercile 0, z_up tercile 1): S  167 systems, X 157 systems, X rate 0.0255
+    cell (flux tercile 0, z_up tercile 2): S  578 systems, X 298 systems, X rate 0.0101
+    cell (flux tercile 1, z_up tercile 0): S  160 systems, X 109 systems, X rate 0.0092
+    cell (flux tercile 1, z_up tercile 1): S  426 systems, X  98 systems, X rate 0.0000
+    cell (flux tercile 1, z_up tercile 2): S  174 systems, X  18 systems, X rate 0.0000
+    cell (flux tercile 2, z_up tercile 0): S  599 systems, X 149 systems, X rate 0.0134
+    cell (flux tercile 2, z_up tercile 1): S  156 systems, X  12 systems, X rate 0.0000
+    cell (flux tercile 2, z_up tercile 2): S    6 systems, X   2 systems, X rate 0.0000
+  matched null rate 0.0087 (raw X rate 0.0128; S rate 0.0153): expected false among S's 35 hits = 19.9;  H2 limit as a rate = 0.0031 -> fail
+
+[4] excess rate over the null, T5
+  S        rate 0.0153 - X 0.0128 = +0.0025 [-0.0063, +0.0113];  real sources this allows among its 35 hits: 5.7 [0.0, 25.8]
+  all A/B  rate 0.0183 - X 0.0128 = +0.0054 [-0.0027, +0.0135];  real sources this allows among its 96 hits: 28.5 [0.0, 71.0]
+  P        rate 0.0153 - X 0.0128 = +0.0024 [-0.0076, +0.0125];  real sources this allows among its 18 hits: 2.9 [0.0, 14.7]
+
+[5] margin z_s - z_up of the T5 hits
+  S        N =  35: median 0.45, fraction below 0.40: 0.46, fraction above 0.80: 0.20
+  all A/B  N =  96: median 0.39, fraction below 0.40: 0.53, fraction above 0.80: 0.12
+  X        N =  12: median 0.56, fraction below 0.40: 0.33, fraction above 0.80: 0.42
+
+[6] EUCL-DR1-L015763 at its rank-1 redshift (one lens; not a rule)
+  z_s = 1.3657 (DESI [O II]): b = +0.231 / +0.215
+  z_s = 1.3768 (grism rank 1): b = +0.231 / +0.214
+
+kappa = 1/2 FITTED. Post hoc: none of this is a verdict.

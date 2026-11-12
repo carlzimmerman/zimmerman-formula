@@ -1,0 +1,122 @@
+EUC3 (NISP SOURCE REDSHIFTS)
+footings (m/s^2): canonical 9.3603e-11, alt 1.1320e-10
+
+[data]
+  sha256 eclipse_dr1_catalogue_key_v20261103.csv  65338917534c9c76  matches the frozen hash
+  sha256 ECLIPSE_object_catalogue.csv  8247a4d5f23513b8  matches the frozen hash
+  lens systems searched (grade A/B, theta_E > 0): 14958;  P 3192, S 6173, U 14040;  null systems (grade X): 2580
+  fetched: MER rows for 16639 systems; objects with a quality row 27275, a galaxy solution 16692, line rows 16702, a photo-z 26300
+  pairing: objects with more than one spectrum 0; spectra without a quality row 0; ambiguous pairings 0
+
+[instrument checks]
+  PASS K1  EUC1 reproduced: N(P) = 3192, source-free b_med law S = -0.019 / -0.044 to 0.001 : N = 3192, -0.0185 / -0.0439
+  PASS K2  EUC2 anchor L015763 at z_l(DESI), z_s = 1.3657: b = +0.231 / +0.215 to 0.002 : +0.2314 / +0.2149
+  PASS K3  lens object found by position carries ECLIPSE's MER_object_id in >= 95 % (S; X) : 5812 / 5915 = 0.983 ; 2402 / 2480 = 0.969
+  PASS K4  median association radius of X within 2 % of S's : S 1.565", X 1.567"
+  PASS K5  fetch complete; three id chunks re-queried return identical rows : 17538 systems queried, 27534 MER object ids (27534 in the manifests), 70 chunk files, missing 0; re-queried chunks identical: [True, True, True, True, True, True]
+
+[coverage, like for like]
+  P        N =  3192, evaluable  1177 (0.369); lens-object median H flux 87.7 uJy, median pipeline photo-z 0.650; counted objects per system 1.17; not evaluable: {'no spectrum passing Q1': 1979, 'no lens object': 36}
+  S        N =  6173, evaluable  2282 (0.370); lens-object median H flux 74.4 uJy, median pipeline photo-z 0.680; counted objects per system 1.16; not evaluable: {'no spectrum passing Q1': 3786, 'no lens object': 105}
+  U        N = 14040, evaluable  5120 (0.365); lens-object median H flux 79.6 uJy, median pipeline photo-z 0.680; counted objects per system 1.19; not evaluable: {'no spectrum passing Q1': 8607, 'no lens object': 313}
+  all A/B  N = 14958, evaluable  5253 (0.351); lens-object median H flux 78.9 uJy, median pipeline photo-z 0.680; counted objects per system 1.16; not evaluable: {'no spectrum passing Q1': 8777, 'no lens object': 925, 'no redshift interval': 3}
+  X        N =  2580, evaluable   934 (0.362); lens-object median H flux 38.1 uJy, median pipeline photo-z 0.730; counted objects per system 1.17; not evaluable: {'no spectrum passing Q1': 1422, 'no lens object': 90, 'no redshift interval': 134}
+  coverage gate (>= 30 % of S and of X evaluable): PASS
+  S spectra by first cut failed (T5): {'Q1 spectrum': 2670, 'Q2 solution': 1713, 'Q3 window': 255, 'Q4 quality flag': 253, 'Q4 flux': 132, 'Q4 S/N': 49, 'G2 [S III] 9533': 49, 'G1 not above the lens': 38, 'SECURE': 35, 'G2 He I 10833 / Pa gamma': 19, 'G2 Pa beta': 5, 'Q4 width': 1}
+  X spectra by first cut failed (T5): {'Q1 spectrum': 958, 'Q2 solution': 662, 'Q4 quality flag': 135, 'Q3 window': 91, 'Q4 flux': 72, 'G1 not above the lens': 54, 'Q4 S/N': 22, 'SECURE': 12, 'G2 [S III] 9533': 3, 'G2 He I 10833 / Pa gamma': 1}
+
+[tier T5: H-alpha S/N >= 5]
+  P        evaluable  1177: SECURE   18 (rate 0.0153 [0.0091, 0.0241]), CONFLICT 0, AMBIGUOUS-OWN 52
+  S        evaluable  2282: SECURE   35 (rate 0.0153 [0.0107, 0.0213]), CONFLICT 0, AMBIGUOUS-OWN 73
+  U        evaluable  5120: SECURE   91 (rate 0.0178 [0.0143, 0.0218]), CONFLICT 0, AMBIGUOUS-OWN 148
+  all A/B  evaluable  5253: SECURE   96 (rate 0.0183 [0.0148, 0.0223]), CONFLICT 0, AMBIGUOUS-OWN 149
+  X        evaluable   934: SECURE   12 (rate 0.0128 [0.0067, 0.0223]), CONFLICT 0, AMBIGUOUS-OWN 4
+  H2 purity null: grade-X SECURE = 12 against a limit of 2.9 -> FAIL;  expected false among P / S: 15.1 / 29.3 (of 18 / 35)
+  H4 truth EUCL-DR1-L015763 (z_s = 1.3657): not found  [system class none; see spectra]
+       lens object sep 0.00": z0 = 2.1144 prob 1.000 rel 0.139 npix 305 dith 4 | Ha S/N -99.0 flux -9.90e+01 fwhm -99 qual -92 | galaxy | first cut: Q3 window | lower ranks [(1, 1.3768, 0.0), (2, 3.1827, 0.0), (3, 4.5642, 0.0), (4, 2.147, 0.0)]
+  H4 truth EUCL-DR1-L012826 (z_s = 1.1374): not found  [system class none; no lens object]
+  H4 truth EUCL-DR1-L014688 (z_s = 0.9926): not found  [system class none; no lens object]
+  H4 truth gate: 0 of 3 recovered, 0 contradicted -> PASS
+
+[tier T8: H-alpha S/N >= 8]
+  P        evaluable  1177: SECURE   11 (rate 0.0093 [0.0047, 0.0167]), CONFLICT 0, AMBIGUOUS-OWN 36
+  S        evaluable  2282: SECURE   22 (rate 0.0096 [0.0061, 0.0146]), CONFLICT 0, AMBIGUOUS-OWN 46
+  U        evaluable  5120: SECURE   58 (rate 0.0113 [0.0086, 0.0146]), CONFLICT 0, AMBIGUOUS-OWN 91
+  all A/B  evaluable  5253: SECURE   62 (rate 0.0118 [0.0091, 0.0151]), CONFLICT 0, AMBIGUOUS-OWN 92
+  X        evaluable   934: SECURE    7 (rate 0.0075 [0.0030, 0.0154]), CONFLICT 0, AMBIGUOUS-OWN 0
+  H2 purity null: grade-X SECURE = 7 against a limit of 1.8 -> FAIL;  expected false among P / S: 8.8 / 17.1 (of 11 / 22)
+  H4 truth EUCL-DR1-L015763 (z_s = 1.3657): not found  [system class none; see spectra]
+       lens object sep 0.00": z0 = 2.1144 prob 1.000 rel 0.139 npix 305 dith 4 | Ha S/N -99.0 flux -9.90e+01 fwhm -99 qual -92 | galaxy | first cut: Q3 window | lower ranks [(1, 1.3768, 0.0), (2, 3.1827, 0.0), (3, 4.5642, 0.0), (4, 2.147, 0.0)]
+  H4 truth EUCL-DR1-L012826 (z_s = 1.1374): not found  [system class none; no lens object]
+  H4 truth EUCL-DR1-L014688 (z_s = 0.9926): not found  [system class none; no lens object]
+  H4 truth gate: 0 of 3 recovered, 0 contradicted -> PASS
+
+[grade-X null hits, listed (T5)]
+  EUCL-DR1-L003836 SECURE   z = 1.3654 S/N 7.7 flux 4.40e-16 fwhm 97 | lens object sep 0.00" | interval [0.67, 0.73] photo-z 0.72 | class galaxy | second lines: SII6718 | T8: none
+  EUCL-DR1-L009615 SECURE   z = 1.7970 S/N 15.6 flux 4.17e-16 fwhm 20 | lens object sep 0.00" | interval [0.16, 0.31] photo-z 0.21 | class galaxy | second lines: none | T8: SECURE
+  EUCL-DR1-L009989 SECURE   z = 1.4912 S/N 7.7 flux 2.39e-16 fwhm 38 | neighbour sep 1.22" | interval [0.63, 0.69] photo-z 0.65 | class galaxy | second lines: none | T8: none
+  EUCL-DR1-L013113 SECURE   z = 1.8136 S/N 8.1 flux 2.93e-16 fwhm 58 | neighbour sep 2.15" | interval [0.82, 0.90] photo-z 0.86 | class galaxy | second lines: OIII5008 | T8: SECURE
+  EUCL-DR1-L022294 SECURE   z = 1.5084 S/N 17.8 flux 4.32e-16 fwhm 31 | lens object sep 0.00" | interval [0.93, 1.02] photo-z 0.97 | class galaxy | second lines: none | T8: SECURE
+  EUCL-DR1-L022670 SECURE   z = 1.2950 S/N 12.6 flux 4.57e-16 fwhm 81 | lens object sep 0.00" | interval [0.96, 1.08] photo-z 1.01 | class galaxy | second lines: SII6718 | T8: SECURE
+  EUCL-DR1-L022970 SECURE   z = 1.2659 S/N 20.9 flux 9.72e-16 fwhm 44 | lens object sep 0.00" | interval [0.68, 0.79] photo-z 0.72 | class galaxy | second lines: SII6718 | T8: SECURE
+  EUCL-DR1-L023316 SECURE   z = 1.4105 S/N 6.2 flux 2.28e-16 fwhm 47 | lens object sep 0.00" | interval [0.35, 0.44] photo-z 0.41 | class galaxy | second lines: SII6718 | T8: none
+  EUCL-DR1-L024951 SECURE   z = 1.1679 S/N 10.6 flux 4.02e-16 fwhm 54 | neighbour sep 0.79" | interval [0.85, 0.98] photo-z 0.93 | class galaxy | second lines: none | T8: SECURE
+  EUCL-DR1-L025091 SECURE   z = 1.0235 S/N 6.4 flux 3.72e-16 fwhm 51 | lens object sep 0.00" | interval [0.59, 0.65] photo-z 0.61 | class galaxy | second lines: none | T8: none
+  EUCL-DR1-L026090 SECURE   z = 1.0335 S/N 6.0 flux 2.58e-16 fwhm 20 | neighbour sep 1.15" | interval [0.46, 0.66] photo-z 0.60 | class galaxy | second lines: none | T8: none
+  EUCL-DR1-L026385 SECURE   z = 1.2444 S/N 8.0 flux 3.23e-16 fwhm 53 | lens object sep 0.00" | interval [0.17, 0.28] photo-z 0.22 | class galaxy | second lines: SII6718 | T8: SECURE
+
+[tier ladder]
+  T5: H2 FAIL, H4 PASS;  T8: H2 FAIL, H4 PASS  ->  no tier passes: NOT EVALUABLE
+
+[reading at tier T5, VOID (the search is not evaluable): b at the true source redshift]
+  P                      law S canonical N =  18  b_med(true z_s) = +0.251 [+0.079, +0.421]   source-free b_med = -0.127   n(b > 0.25) = 10
+  P                      law S alt       N =  18  b_med(true z_s) = +0.236 [+0.063, +0.403]   source-free b_med = -0.152   n(b > 0.25) = 8
+  S                      law S canonical N =  35  b_med(true z_s) = +0.292 [+0.206, +0.397]   source-free b_med = -0.119   n(b > 0.25) = 21
+  S                      law S alt       N =  35  b_med(true z_s) = +0.277 [+0.190, +0.384]   source-free b_med = -0.142   n(b > 0.25) = 19
+  U                      law S canonical N =  91  b_med(true z_s) = +0.422 [+0.333, +0.518]   source-free b_med = +0.002   n(b > 0.25) = 68   [not quality-cut]
+  U                      law S alt       N =  91  b_med(true z_s) = +0.408 [+0.319, +0.509]   source-free b_med = -0.022   n(b > 0.25) = 65   [not quality-cut]
+  P                      law B canonical N =  18  b_med(true z_s) = +0.286 [+0.112, +0.459]
+  P                      law B alt       N =  18  b_med(true z_s) = +0.275 [+0.102, +0.446]
+
+[robustness, law S; reported, cannot change the word]
+  1 P, DESI deflector z  law S canonical N =  18  b_med(true z_s) = +0.251 [+0.079, +0.421]   source-free b_med = -0.127   n(b > 0.25) = 10
+  1 P, DESI deflector z  law S alt       N =  18  b_med(true z_s) = +0.236 [+0.063, +0.403]   source-free b_med = -0.152   n(b > 0.25) = 8
+  2 P, tier T8 only      law S canonical N =  11  b_med(true z_s) = +0.250 [-0.021, +0.473]   source-free b_med = -0.193   n(b > 0.25) = 6
+  2 P, tier T8 only      law S alt       N =  11  b_med(true z_s) = +0.234 [-0.036, +0.457]   source-free b_med = -0.218   n(b > 0.25) = 4
+  3 P, two-line subset   law S canonical N =   9  b_med(true z_s) = +0.207 [-0.049, +0.473]   source-free b_med = -0.260   n(b > 0.25) = 4
+  3 P, two-line subset   law S alt       N =   9  b_med(true z_s) = +0.194 [-0.061, +0.457]   source-free b_med = -0.287   n(b > 0.25) = 3
+  4 P, [O III] extreme   law S canonical N =  18  b_med(true z_s) = +0.220 [-0.021, +0.361]   source-free b_med = -0.127   n(b > 0.25) = 8
+  4 P, [O III] extreme   law S alt       N =  18  b_med(true z_s) = +0.198 [-0.036, +0.347]   source-free b_med = -0.152   n(b > 0.25) = 7
+  5 P, + AMBIGUOUS-OWN   law S canonical N =  70  b_med(true z_s) = +0.187 [+0.130, +0.253]   source-free b_med = -0.097   n(b > 0.25) = 29
+  5 P, + AMBIGUOUS-OWN   law S alt       N =  70  b_med(true z_s) = +0.169 [+0.114, +0.237]   source-free b_med = -0.121   n(b > 0.25) = 27
+  6 P, theta_E <= 2.5    law S canonical N =  18  b_med(true z_s) = +0.251 [+0.079, +0.421]   source-free b_med = -0.127   n(b > 0.25) = 10
+  6 P, theta_E <= 2.5    law S alt       N =  18  b_med(true z_s) = +0.236 [+0.063, +0.403]   source-free b_med = -0.152   n(b > 0.25) = 8
+  7 S, two-line subset   law S canonical N =  11  b_med(true z_s) = +0.207 [+0.061, +0.318]   source-free b_med = -0.260   n(b > 0.25) = 5
+  7 S, two-line subset   law S alt       N =  11  b_med(true z_s) = +0.194 [+0.044, +0.308]   source-free b_med = -0.287   n(b > 0.25) = 4
+
+  per-lens table: euc3_sources.csv (245 lens systems with a T5 class)
+  sample P per lens (law S): id, z_l, z_s, Ha S/N, role, theta_E, second lines, b canonical / alt (source-free alt)
+    EUCL-DR1-L002642 0.410 0.8685  10.2 lens object 0.99" -                  +0.321 / +0.307  (-0.040)
+    EUCL-DR1-L016695 0.310 0.9667   9.9 lens object 1.17" SII6718            +0.473 / +0.457  (+0.248)
+    EUCL-DR1-L014925 0.560 0.9886   8.8 lens object 0.81" -                  +0.250 / +0.237  (-0.218)
+    EUCL-DR1-L002200 0.580 1.0183   5.9 lens object 2.05" -                  +0.610 / +0.596  (+0.131)
+    EUCL-DR1-L005337 0.930 1.1737  12.3 lens object 1.41" -                  +1.051 / +1.043  (+0.202)
+    EUCL-DR1-L001520 0.970 1.2281  10.0 lens object 0.96" -                  +0.689 / +0.681  (-0.162)
+    EUCL-DR1-L014636 0.670 1.2727  17.9 lens object 0.76" -                  -0.021 / -0.036  (-0.457)
+    EUCL-DR1-L008052 0.990 1.2815   7.5 lens object 0.65" SII6718            +0.518 / +0.509  (-0.287)
+    EUCL-DR1-L001036 0.740 1.3372   6.2 lens object 0.63" -                  +0.131 / +0.117  (-0.339)
+    EUCL-DR1-L009818 0.420 1.4929   6.3 lens object 0.94" SII6718            +0.061 / +0.044  (-0.142)
+    EUCL-DR1-L006510 0.630 1.5062   7.3 lens object 1.08" -                  +0.421 / +0.403  (+0.089)
+    EUCL-DR1-L015771 0.870 1.5466  41.7 lens object 0.49" Hbeta              -0.065 / -0.080  (-0.555)
+    EUCL-DR1-L000173 0.440 1.5786   6.7 lens object 1.10" OIII5008           +0.288 / +0.267  (+0.075)
+    EUCL-DR1-L001722 1.040 1.5848   8.3 lens object 0.70" OIII5008           -0.049 / -0.061  (-0.662)
+    EUCL-DR1-L001924 1.040 1.6386  11.0 neighbour   0.80" OIII5008           +0.207 / +0.194  (-0.379)
+    EUCL-DR1-L013590 1.040 1.7274  12.6 lens object 0.72" OIII5008           +0.096 / +0.083  (-0.446)
+    EUCL-DR1-L001874 0.340 1.7667  14.0 lens object 1.15" Hbeta+SII6718      +0.253 / +0.234  (+0.112)
+    EUCL-DR1-L002011 0.400 1.8305   7.0 lens object 0.83" -                  +0.033 / +0.014  (-0.130)
+
+[summary]
+  instrument checks: all pass;  coverage: pass;  reading tier: none
+  N(P) with a secure source redshift = 18 (EUC1-F needs 10)
+  LANE WORD (canonical / alt): NOT EVALUABLE / NOT EVALUABLE
+  kappa = 1/2 FITTED. One-sided: no outcome favours the framework.  (2 s)
