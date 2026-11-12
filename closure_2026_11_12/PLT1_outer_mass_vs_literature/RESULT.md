@@ -1,5 +1,12 @@
 # PLT1 RESULT: the framework's enclosed mass at 100 kpc and beyond against the literature compilation of DESI DR2 Results III
 
+> **NOTE 2026-11-12, after this result: owner decision on the external field** (`campaign_fresh_gravity/OWNER_DECISION_2026-11-12_EXTERNAL_FIELD_READING.md`).
+> The owner adopted the actual-field reading of the Milky Way's external field. The field cases in this
+> file use the record's earlier reading (e_N = 0.01273 inside the kernel as a Newtonian source). Under the
+> adopted reading e_N is 0.000160 (canonical) / 0.000110 (alt), the field takes over near 800 kpc, and
+> inside 300 kpc the line is the no-field case. The E0 rows here are then the framework's; the E1 rows and the FRAGILE finding belong to the earlier reading.
+> See `closure_2026_11_12/EFC1_external_field_convention/RESULT.md`. The frozen labels stand as frozen.
+
 2026-11-12. Criteria: `FROZEN_CRITERIA.md`, committed alone (e51543aa5e) before the script existed
 and before any value in the `fig13/` literature files was read. TEST lane. Adopts nothing. Relabels
 no other lane; row 32's status is not changed here. kappa = 1/2 FITTED; not theory closed.
