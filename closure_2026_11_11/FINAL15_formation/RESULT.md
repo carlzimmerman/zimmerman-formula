@@ -179,7 +179,7 @@ ultra-faints (nil above |rho| ~ 0.47). In the three small hosted classes the tes
 
 | check | result |
 |---|---|
-| KA1: reproduce HIS1's full-class offsets | max deviation **0.000 dex** over 8 canonical + 5 alt published numbers: PASS |
+| KA1: reproduce HIS1's full-class offsets | max deviation **0.00048 dex** over 8 canonical + 5 alt published numbers (0.000 to three decimals): PASS |
 | KA2: tidal dwarfs (HIS1 H1 / CFG936 / G2) | median Y **+0.067**, class se **0.115**: PASS |
 | KA3: identities `X_L > 0`, `X_L <= sqrt(a0/g_bar)`, `X_L(X_L+1) = a0/g_bar` | 4001 fields x 2 footings, 0 violations: PASS |
 | prediction file arithmetic vs recomputation | max |frozen pred − recomputed| **0.008 dex**: PASS |
