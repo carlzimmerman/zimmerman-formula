@@ -1,0 +1,43 @@
+==============================================================================
+OUT-5 (BOOTSTRAP CARRIER) -- GRADER   [MUTATE_MU3]
+criteria FROZEN_CRITERIA.md, section 4 (gates) and section 5 (labels).
+kappa = 1/2 FITTED; not theory closed.  Footings never pooled.
+==============================================================================
+
+--- gate table ----------------------------------------------------------
+  G1  : PASS
+  G2  : PASS
+  G3  : PASS   (structural: term 8 is a constraint on a new variable; no factor multiplies T^W+T^P)
+  G4  : PASS   (structural: rho_c is not D.P; the pinning is keyed to g != 0 at a free-fall boundary)
+  G5  : PASS   (carrier ratio 1.0 vs LFS1 A1's [-5e-06, -1e-08])
+  G6  : FAIL
+  G7  : FAIL
+  G8  : FAIL
+  G9  : FAIL   (not load-bearing (section 5 sets labels from G1-G5 and G7/G8/G10))
+  G10 : PASS
+  G11: NOT DERIVED  (flat direction: G2/H4 (exact, residual 0))
+  G12: PASS (reported; Solar System 9.69e-14 Msun against 1e-10)
+
+--- known answers -------------------------------------------------------
+  KA1_canonical    = 25914.5   PASS
+  KA1_alt          = 28488.4   PASS
+  KA2_value        = 198.256   PASS
+  KA (all): PASS
+
+--- label (FROZEN_CRITERIA.md section 5) --------------------------------
+  G1-G5 (the construction): ALL PASS
+  load-bearing gates failing: ['G7', 'G8']
+
+  LABEL: BOOTSTRAP KILLED (FRW/HALO + PAYMENT)
+
+--- the numbers that carry the label ------------------------------------
+  G7  worst |rho_K(mu_K)/rho_pin - 1| = 1.797e+03 at ['canonical', 10.9, 637.0]   (line 0.10)
+      mu_K needed by the CMB          = 99.12 /Mpc
+      mu_K matching the halo profile  = 2.35 to 62.5 /Mpc, radius-dependent
+  G8  local     rho_pin/rho_Lam       = 6.631e+04 (line 0.10)
+      integrated M_c/(rho_Lam V)      = 1.378e+05 (line 0.10)
+      U/(M_c c^2)                     = 1.031e-07
+  G11 kappa: canonical 0.4999, alt 0.6041; measured 0.551 +/- 0.043 (distance-free), 0.465 +/- 0.076 (BTFR)
+      DERIVED: False
+
+wrote out5_grade_MUTATE_MU3.json
