@@ -81,6 +81,9 @@ M200c (DW1e).**
 - `dw1.py` — the lane (both footings, mutation controls, instrument validation, `dw1_results.json`).
 - `dw1.out` / `dw1_results.json` — the committed run.
 
-`DW1 COMPLETE: 9/12 checks PASS.` — the three failures are V2b, V3 (instrument gates whose frozen
+`DW1 COMPLETE: 9/12 checks PASS.`
+
+(Lane id note: this is the DESI Milky Way lane of the 2026-11-11 campaign. `rebuild_2026_10_22/DW1_dwarf_core_flattening`
+and `DW2_disc_wall` are unrelated earlier lanes; ids repeat across campaign folders in this repo.) — the three failures are V2b, V3 (instrument gates whose frozen
 thresholds are mis-specified for a flattened baryon distribution; explained in READING §7, and the gate's
 purpose is met by the subset fits) and DW1e (`M200c`, the registered tension above).
