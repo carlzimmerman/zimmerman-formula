@@ -1,5 +1,22 @@
 # PIK1 RESULT: the two-variable dust term L_K(Q, Pi). **NO VALUE / NO VALUE.**
 
+> **CP02 continuation, 2026-11-12 (wording reconciled by the lead session with the correction file beside this one):**
+> a further calculation by the correcting session reports an instability of the specified unrestricted
+> flat-gate family. That claim has not been independently checked (audits C2 and C4), and
+> `CORRECTION_2026_11_12.md` says the full constrained system is not shown to have a ghost: read it as a
+> reported claim, not an established result. It does not validate this file's original cluster-ordering
+> argument. The imported `2.51e4/Mpc` growth threshold also used a polarization-off equation and is not
+> validated for the coupled system (audit C1). See the [new scoped result](../../research_closure_2026_11_12/closure_push_02/RESULT.md)
+> and [corrected growth audit](../../research_closure_2026_11_12/closure_push_02/growth_gate_audit/RESULT.md).
+
+> **Forward correction, 2026-11-12:** the historical label below is preserved.
+> Its universal linear-invisibility claim is refuted by the quadratic action;
+> universal NO VALUE is not established, and the promised cluster/galaxy scan
+> was never completed. Read [the correction](CORRECTION_2026_11_12.md) and its
+> executed derivation before using this result as a closure dependency.
+>
+> *Audit note, 2026-11-12 (lead session):* this notice was written by another session and is committed here on the owner's instruction after an independent check, `reviews/codex_corrections_audit_2026_11_12/C2_pik1_and_frm1.md` (grade: linear invisibility refuted: CORRECT; NO VALUE not established: CORRECT WITH LIMITS). The audit also found that this lane's criteria, result and scripts were committed together, that `pik1_var.py` does not compile and that no output file exists, so the label below was never computed against its rows. The scripts in this folder are unchanged; the bounded quadratic check is in `correction_2026_11_12/`. The folder `research_closure_2026_11_12/` it links to was not committed with it, so those links may not resolve; the audit file is the checked record. The committed text, labels and outputs below this notice are not edited by this commit.
+
 Criteria `FROZEN_CRITERIA.md` (committed alone, before any number). TEST lane, quarantined.
 Adopts nothing, relabels nothing, registers nothing. Footings never pooled: canonical
 a0 = 9.3603e-11, alt = 1.1312e-10 m/s^2. kappa = 1/2 FITTED; not theory closed.

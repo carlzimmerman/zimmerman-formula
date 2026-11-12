@@ -1,5 +1,14 @@
 # fable52_push: one swing at completion (2026-11-09)
 
+> **Corrections, 2026-11-12:** historical summaries below retain their original
+> scope and dates. [PIK1's quadratic correction](PIK1_pi_gated_dust/CORRECTION_2026_11_12.md)
+> refutes its claimed universal linear invisibility and leaves its universal
+> NO VALUE unestablished. [FRM1's scope correction](FRM1_formation_theory/CORRECTION_2026_11_12.md)
+> restricts the transfer ceiling and identifies the class-band test as retrospective.
+> Neither correction supplies a completed theory; frozen criteria and labels are preserved.
+>
+> *Audit note, 2026-11-12 (lead session):* this notice was written by another session and is committed here on the owner's instruction after an independent check, `reviews/codex_corrections_audit_2026_11_12/C2_pik1_and_frm1.md` (grade: CORRECT). The folder `research_closure_2026_11_12/` it links to was not committed with it, so those links may not resolve; the audit file is the checked record. The committed text, labels and outputs below this notice are not edited by this commit.
+
 Adopts nothing. kappa = 1/2 FITTED; not theory closed. Nothing here is registered in the closure record.
 Paper: PAPER71 v1.1, deposited 2026-11-09, DOI 10.5281/zenodo.24095262 (v1.0: DOI 10.5281/zenodo.24094860; v1.1 adds one
 disclosure sentence)
