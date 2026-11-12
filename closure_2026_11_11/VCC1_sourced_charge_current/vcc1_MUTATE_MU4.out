@@ -1,0 +1,332 @@
+==============================================================================
+VCC1  can the clock sector's charge be SOURCED?   MUTATE = MU4
+criteria c83dfb5a02 (committed alone before any script or number)
+footings never pooled. kappa = 1/2 FITTED; not theory closed. Adopts nothing.
+==============================================================================
+
+[0] constants
+    H0 = 2.184285e-18 /s   rho_crit = 8.533239e-27 kg/m^3 = 126.0801 Msun/kpc^3
+    Omega_b 0.04930  Omega_c 0.266713  Omega_r 9.135e-05  Omega_L 0.683896
+    rho_c0  = 33.6272 Msun/kpc^3   (the 5.41 M_b cosmic cold density)
+    rho_Lam = 86.2256 Msun/kpc^3  (the vacuum that must pay)
+    rho_b0  = 6.2157 Msun/kpc^3   200 rho_crit = 25216.0167 Msun/kpc^3
+    C_dust  = 0.0 M_b primary (VSH1); bracket 1.06 (COL1/FLD1)   [MU4: C_dust = 0]
+
+==============================================================================
+PART A  V1: is the conservation law forced by a symmetry?
+==============================================================================
+
+-- V1a  does L contain a bare tau?  (the whole lock: nabla_m J^m = dL/dtau)
+    d(sqrt(-g)L)/d(tau)  for action (A) as written : 0
+    same + [-sqrt(-g) V(tau)]:  dL/dtau + sqrt(-g) V'(tau)   residual = 0
+    same + [-2 Lambda(tau)/(4K)]: dL/dtau + sqrt(-g) Lambda'(tau)/(2K)  residual = 0
+    -> the source is S = -Lambda'(tau)/(2K) per unit volume, i.e. the vacuum.
+    -> (A) has NO bare tau, so the current is conserved.  One function of tau
+       (a potential, or the vacuum constant) sources it.  [V1a: identity confirmed]
+
+-- V1d  the symmetry: rigid shift tau -> tau + c, or gauge tau -> tau + c(t,x)?
+    sqrt(-g)L at the test point                 = -54390.177191
+    L(tau + 7/3)      - L(tau)  = 0.0   rel 0.0
+    L(tau + c(t,x))   - L(tau)  = 4515.47   rel 0.083
+    -> invariant under the RIGID shift, NOT under a local one: a global internal
+       symmetry (Noether I), accidental to the term list.  Diffeomorphism invariance
+       alone does not force it: any scalar V(tau) is allowed.  [V1d]
+
+-- V1c  the identity nabla_m J^m = dL/dtau  (exact; toy with an explicit tau)
+    [ nabla_m J^m - dL/dtau ] + E_tau/sqrt(-g)   residual: 0
+    -> for ANY L(tau, d tau) the Euler-Lagrange expression is exactly
+       dL/dtau - nabla_m J^m with J^m = (1/sqrt(-g)) d(sqrt(-g)L)/d(d_m tau).
+       The current is conserved if and only if L has no bare tau.
+
+-- V3a  Bianchi identity and total stress-energy with -2 Lambda(tau)
+    nabla^m T^Lambda_mn + d_n Lambda /(2K)   residual (n = t, x): [0, 0]
+    -> T^Lambda_mn = -(Lambda(tau)/(2K)) g_mn has divergence -Lambda'(tau) d_n tau/(2K).
+       The metric equation G_mn + Lambda(tau) g_mn = 2K T^(m+c)_mn with nabla^m G_mn = 0
+       gives nabla^m T^(m+c)_mn = +Lambda'(tau) d_n tau/(2K).  The two cancel:
+       nabla^m ( T^(m+c) + T^Lambda )_mn = 0.  Bianchi intact, vacuum pays.  [V3a PASS]
+
+-- V3b  the FRW ledger: created charge energy = vacuum energy lost  (exact)
+    FRW tau equation  E_tau = (-mu_K**2*(N(t)*Derivative(tau(t), (t, 2)) - Derivative(N(t), t)*Derivative(tau(t), t))*a(t) + 3*mu_K**2*(N(t) - Derivative(tau(t), t))*N(t)*Derivative(a(t), t) - N(t)**3*a(t)*Derivative(Lambda(tau(t)), tau(t))/2)*a(t)**2/(K*N(t)**2)
+    charge per comoving volume C = (1/a^3) dL/d(tau') = mu_K**2*(-N(t) + Derivative(tau(t), t))/(K*N(t))
+    dC/dt - (1/a^3) dL/dtau      = (mu_K**2*N(t)*Derivative(tau(t), (t, 2)) - mu_K**2*Derivative(N(t), t)*Derivative(tau(t), t) + N(t)**3*Derivative(Lambda(tau(t)), tau(t))/2)/(K*N(t)**2)
+    dL/dtau /(a^3)               = -N(t)*Derivative(Lambda(tau(t)), tau(t))/(2*K)
+    -> d(a^3 rho_cre)/dt = -a^3 Lambda'(tau)/(2K), and the vacuum's own ledger gives
+       d(a^3 rho_Lam)/dt = +a^3 Lambda'(tau)/(2K) + 3H a^3 (rho_Lam + p_Lam); the two
+       sum to zero.  The vacuum pays exactly.  [V3b PASS; = R541B's dC/dt = -N a^3 V']
+
+==============================================================================
+PART B  V2: the smallest change, and what sources it
+==============================================================================
+
+    id   change to (A)                        new ingredient      source S=dL/dtau      in FRW      profile in a halo (deep)
+    ---  ----------------------------------   -----------------   -------------------   ---------   ------------------------
+    C-I  -2 Lambda -> -2 Lambda(tau)          1 constant->1 fct   -Lambda'(tau)/(2K)     S(t)        UNIFORM
+    C-II gamma_L -> gamma_L(tau)              1 constant->1 fct   -gamma_L'(tau) F(Pi)   0 (Pi=0)    F=Pi^2/2, Pi ~ r^-2 -> S ~ r^-4
+    C-III (P.A - W) -> (1+eps(tau))(P.A - W)  1 function          eps'(tau) J(g)         0 (P=A=0)   J = g^2/(2K) ~ r^-2   <-- the law's profile
+    C-IV mu_K -> mu_K(tau)                    1 constant->1 fct   (mu mu'/K)(Q-1)^2      ~1e-12      (|Phi|/c^2)^2 ~ 1e-12
+    C-V  add -sqrt(-g) V(tau)                 a new term          -V'(tau)               S(t)        UNIFORM (same physics as C-I)
+    C-VI eps is a dynamical field chi         a new field         paid by T^chi          chi's eqn   chi's profile
+    C-VII coupling to a non-conserved current a new coupling      prop. to nabla.J_mat   0 at z<2    0 at z<2
+
+    SMALLEST = C-I: no new term, no new field; one constant already in (A) becomes
+    a function of tau.  It is the only one the vacuum can pay for (V3a/V3b).
+
+-- deep-regime profiles (exact; x = g/a0 = r_M/r, gamma_L = 0)
+    K|P|      = a0*r_M/(r + r_M)
+    Pi = D.P  = a0*r_M*(r + 2*r_M)/(K*r*(r + r_M)**2)
+    J = P.A-W = a0**2*(r_M - log(((r + r_M)/r)**r))/(K*r)
+    J series at large r : -a0**2*r_M**3/(3*K*r**3) + a0**2*r_M**2/(2*K*r**2) + O(r**(-4), (r, oo))
+    Pi series at large r: a0*r_M/(K*r**2) + O(r**(-4), (r, oo))
+    -> C-III's source is J ~ r^-2 (the law's phantom profile, the one needed);
+       C-II's source is F = Pi^2/2 ~ r^-4 (wrong: it piles the charge at the centre);
+       C-I's source is uniform (wrong: C_cre ~ R^3, the law needs C ~ R).
+
+-- V2b  C-III: the factor eps that makes exactly the law's halo
+    C_cre(R) = int eps J 4 pi r^2 dr = 4*pi*a0**2*eps*(R**2*r_M + R*r_M**2 + log(R**(R**3)*r_M**(r_M**3)*(R + r_M)**(-R**3 - r_M**3)))/(3*K)
+    matching C_cre(R) = M_b R/r_M  gives  eps = K*M_b/(2*pi*a0**2*r_M**3)
+    with K = 4 pi G and G M_b = a0 r_M^2 :  eps = 2/(a0*r_M)
+    -> eps = 2/(a0 r_M) in c=1 units, i.e.  eps = 2 c^2 / v_flat^2  in SI,
+       v_flat^2 = a0 r_M = sqrt(G M_b a0).  One function of cosmic time, all galaxies.
+    C-III's DOUBLE COUNT (the kill that does not need the spread):
+       the factor (1+eps) multiplies the whole (P.A - W) block, so it multiplies the
+       P sector's stress tensor T^W + T^P by (1+eps) too.  With eps = 2c^2/v_flat^2
+       that block carries (1+eps) J = rho_cre + J, i.e. the created mass density ITSELF
+       appears a second time as a source in the metric equation.  The halo then
+       gravitates twice: once as the charge rho_Q = D.P and once as the block's energy.
+       Form B's Pi3 (the phantom IS the cold dark energy, counted ONCE) is broken by
+       exactly a factor ~2 at every radius.  [V3d / Pi3: FAIL]
+
+-- V2c  the source profile the law demands:  S_law(R) = (1/(4 pi R^2)) d_R[ d_t C_law ]
+       S_law(R) at large R = (-3*G*M(t) + 8*R**2*a0)*(1/M(t))**(3/2)*M(t)*Derivative(M(t), t)/(64*pi*sqrt(G)*R**4*sqrt(a0))
+    -> S_law falls as R^-2: the law's source must be as concentrated as the
+       phantom it makes.  A homogeneous vacuum cannot have that profile.
+
+==============================================================================
+PART C  the gates, per footing and mass
+==============================================================================
+
+------------------------------------------------------------------------------
+FOOTING canonical:  a0 = 9.360300e-11 m/s^2
+------------------------------------------------------------------------------
+
+  log M_b = 9.4   M_b = 2.512e+09 Msun   r_M = 1.9340 kpc   v_flat = 74.7 km/s
+    10 kpc       R=    10.0 kpc  x=   5.17  C_law=    4.695 M_b  need=    4.695 M_b   rho_cre needed=  2.8153e+06 Msun/kpc^3   =  3.265e+04 rho_Lam  =  8.372e+04 rho_c0
+    30 kpc       R=    30.0 kpc  x=  15.51  C_law=   15.020 M_b  need=   15.020 M_b   rho_cre needed=  3.3359e+05 Msun/kpc^3   =  3.869e+03 rho_Lam  =  9.920e+03 rho_c0
+    100 kpc      R=   100.0 kpc  x=  51.71  C_law=   51.209 M_b  need=   51.209 M_b   rho_cre needed=  3.0708e+04 Msun/kpc^3   =  3.561e+02 rho_Lam  =  9.132e+02 rho_c0
+    KiDS inner   R=    81.0 kpc  x=  41.88  C_law=   41.385 M_b  need=   41.385 M_b   rho_cre needed=  4.6698e+04 Msun/kpc^3   =  5.416e+02 rho_Lam  =  1.389e+03 rho_c0
+    ONE1 end     R=   116.0 kpc  x=  60.00  C_law=   59.500 M_b  need=   59.500 M_b   rho_cre needed=  2.2837e+04 Msun/kpc^3   =  2.649e+02 rho_Lam  =  6.791e+02 rho_c0
+    KiDS middle  R=   190.0 kpc  x=  98.24  C_law=   97.743 M_b  need=   97.743 M_b   rho_cre needed=  8.5455e+03 Msun/kpc^3   =  9.911e+01 rho_Lam  =  2.541e+02 rho_c0
+    -> smallest uniform density that supplies EVERY graded radius: 2.8153e+06 Msun/kpc^3
+       (spread of the requirement over the radii that need any: 3.2945e+02)
+    -> with rho_cre set at the ONE1 end radius, C_cre/C_law is:
+         10 kpc       R=    10.0 kpc   C_cre/C_law = 8.1118e-03   FAIL
+         30 kpc       R=    30.0 kpc   C_cre/C_law = 6.8459e-02   FAIL
+         100 kpc      R=   100.0 kpc   C_cre/C_law = 7.4368e-01   FAIL
+         KiDS inner   R=    81.0 kpc   C_cre/C_law = 4.8904e-01   FAIL
+         ONE1 end     R=   116.0 kpc   C_cre/C_law = 1.0000e+00   (in [0.9,1.1])
+         KiDS middle  R=   190.0 kpc   C_cre/C_law = 2.6724e+00   FAIL
+    -> C-III's eps required here: 3.2179e+07   (spread over masses below)
+
+  log M_b = 10.45   M_b = 2.818e+10 Msun   r_M = 6.4782 kpc   v_flat = 136.8 km/s
+    10 kpc       R=    10.0 kpc  x=   1.54  C_law=    1.123 M_b  need=    1.123 M_b   rho_cre needed=  7.5532e+06 Msun/kpc^3   =  8.760e+04 rho_Lam  =  2.246e+05 rho_c0
+    30 kpc       R=    30.0 kpc  x=   4.63  C_law=    4.158 M_b  need=    4.158 M_b   rho_cre needed=  1.0361e+06 Msun/kpc^3   =  1.202e+04 rho_Lam  =  3.081e+04 rho_c0
+    100 kpc      R=   100.0 kpc  x=  15.44  C_law=   14.944 M_b  need=   14.944 M_b   rho_cre needed=  1.0055e+05 Msun/kpc^3   =  1.166e+03 rho_Lam  =  2.990e+03 rho_c0
+    KiDS inner   R=   272.0 kpc  x=  41.99  C_law=   41.490 M_b  need=   41.490 M_b   rho_cre needed=  1.3872e+04 Msun/kpc^3   =  1.609e+02 rho_Lam  =  4.125e+02 rho_c0
+    ONE1 end     R=   388.7 kpc  x=  60.00  C_law=   59.500 M_b  need=   59.500 M_b   rho_cre needed=  6.8178e+03 Msun/kpc^3   =  7.907e+01 rho_Lam  =  2.027e+02 rho_c0
+    KiDS middle  R=   637.0 kpc  x=  98.33  C_law=   97.830 M_b  need=   97.830 M_b   rho_cre needed=  2.5466e+03 Msun/kpc^3   =  2.953e+01 rho_Lam  =  7.573e+01 rho_c0
+    -> smallest uniform density that supplies EVERY graded radius: 7.5532e+06 Msun/kpc^3
+       (spread of the requirement over the radii that need any: 2.9660e+03)
+    -> with rho_cre set at the ONE1 end radius, C_cre/C_law is:
+         10 kpc       R=    10.0 kpc   C_cre/C_law = 9.0263e-04   FAIL
+         30 kpc       R=    30.0 kpc   C_cre/C_law = 6.5801e-03   FAIL
+         100 kpc      R=   100.0 kpc   C_cre/C_law = 6.7804e-02   FAIL
+         KiDS inner   R=   272.0 kpc   C_cre/C_law = 4.9147e-01   FAIL
+         ONE1 end     R=   388.7 kpc   C_cre/C_law = 1.0000e+00   (in [0.9,1.1])
+         KiDS middle  R=   637.0 kpc   C_cre/C_law = 2.6772e+00   FAIL
+    -> C-III's eps required here: 9.6067e+06   (spread over masses below)
+
+  log M_b = 10.7   M_b = 5.012e+10 Msun   r_M = 8.6389 kpc   v_flat = 158.0 km/s
+    10 kpc       R=    10.0 kpc  x=   1.16  C_law=    0.761 M_b  need=    0.761 M_b   rho_cre needed=  9.1045e+06 Msun/kpc^3   =  1.056e+05 rho_Lam  =  2.707e+05 rho_c0
+    30 kpc       R=    30.0 kpc  x=   3.47  C_law=    3.008 M_b  need=    3.008 M_b   rho_cre needed=  1.3332e+06 Msun/kpc^3   =  1.546e+04 rho_Lam  =  3.965e+04 rho_c0
+    100 kpc      R=   100.0 kpc  x=  11.58  C_law=   11.086 M_b  need=   11.086 M_b   rho_cre needed=  1.3265e+05 Msun/kpc^3   =  1.538e+03 rho_Lam  =  3.945e+03 rho_c0
+    KiDS inner   R=   362.0 kpc  x=  41.90  C_law=   41.407 M_b  need=   41.407 M_b   rho_cre needed=  1.0444e+04 Msun/kpc^3   =  1.211e+02 rho_Lam  =  3.106e+02 rho_c0
+    ONE1 end     R=   518.3 kpc  x=  60.00  C_law=   59.500 M_b  need=   59.500 M_b   rho_cre needed=  5.1126e+03 Msun/kpc^3   =  5.929e+01 rho_Lam  =  1.520e+02 rho_c0
+    KiDS middle  R=   849.0 kpc  x=  98.28  C_law=   97.778 M_b  need=   97.778 M_b   rho_cre needed=  1.9117e+03 Msun/kpc^3   =  2.217e+01 rho_Lam  =  5.685e+01 rho_c0
+    -> smallest uniform density that supplies EVERY graded radius: 9.1045e+06 Msun/kpc^3
+       (spread of the requirement over the radii that need any: 4.7624e+03)
+    -> with rho_cre set at the ONE1 end radius, C_cre/C_law is:
+         10 kpc       R=    10.0 kpc   C_cre/C_law = 5.6155e-04   FAIL
+         30 kpc       R=    30.0 kpc   C_cre/C_law = 3.8348e-03   FAIL
+         100 kpc      R=   100.0 kpc   C_cre/C_law = 3.8543e-02   FAIL
+         KiDS inner   R=   362.0 kpc   C_cre/C_law = 4.8954e-01   FAIL
+         ONE1 end     R=   518.3 kpc   C_cre/C_law = 1.0000e+00   (in [0.9,1.1])
+         KiDS middle  R=   849.0 kpc   C_cre/C_law = 2.6743e+00   FAIL
+    -> C-III's eps required here: 7.2040e+06   (spread over masses below)
+
+  log M_b = 10.9   M_b = 7.943e+10 Msun   r_M = 10.8757 kpc   v_flat = 177.2 km/s
+    10 kpc       R=    10.0 kpc  x=   0.92  C_law=    0.547 M_b  need=    0.547 M_b   rho_cre needed=  1.0366e+07 Msun/kpc^3   =  1.202e+05 rho_Lam  =  3.083e+05 rho_c0
+    30 kpc       R=    30.0 kpc  x=   2.76  C_law=    2.303 M_b  need=    2.303 M_b   rho_cre needed=  1.6178e+06 Msun/kpc^3   =  1.876e+04 rho_Lam  =  4.811e+04 rho_c0
+    100 kpc      R=   100.0 kpc  x=   9.19  C_law=    8.708 M_b  need=    8.708 M_b   rho_cre needed=  1.6514e+05 Msun/kpc^3   =  1.915e+03 rho_Lam  =  4.911e+03 rho_c0
+    KiDS inner   R=   456.0 kpc  x=  41.93  C_law=   41.431 M_b  need=   41.431 M_b   rho_cre needed=  8.2860e+03 Msun/kpc^3   =  9.610e+01 rho_Lam  =  2.464e+02 rho_c0
+    ONE1 end     R=   652.5 kpc  x=  60.00  C_law=   59.500 M_b  need=   59.500 M_b   rho_cre needed=  4.0611e+03 Msun/kpc^3   =  4.710e+01 rho_Lam  =  1.208e+02 rho_c0
+    KiDS middle  R=  1069.0 kpc  x=  98.29  C_law=   97.794 M_b  need=   97.794 M_b   rho_cre needed=  1.5181e+03 Msun/kpc^3   =  1.761e+01 rho_Lam  =  4.514e+01 rho_c0
+    -> smallest uniform density that supplies EVERY graded radius: 1.0366e+07 Msun/kpc^3
+       (spread of the requirement over the radii that need any: 6.8284e+03)
+    -> with rho_cre set at the ONE1 end radius, C_cre/C_law is:
+         10 kpc       R=    10.0 kpc   C_cre/C_law = 3.9177e-04   FAIL
+         30 kpc       R=    30.0 kpc   C_cre/C_law = 2.5103e-03   FAIL
+         100 kpc      R=   100.0 kpc   C_cre/C_law = 2.4592e-02   FAIL
+         KiDS inner   R=   456.0 kpc   C_cre/C_law = 4.9011e-01   FAIL
+         ONE1 end     R=   652.5 kpc   C_cre/C_law = 1.0000e+00   (in [0.9,1.1])
+         KiDS middle  R=  1069.0 kpc   C_cre/C_law = 2.6752e+00   FAIL
+    -> C-III's eps required here: 5.7223e+06   (spread over masses below)
+
+  V5e universality of eps (one function of cosmic time):
+    eps = ['3.2179e+07', '9.6067e+06', '7.2040e+06', '5.7223e+06']
+    max/min = 5.6234  over the four graded masses
+
+------------------------------------------------------------------------------
+FOOTING alt:  a0 = 1.131200e-10 m/s^2
+------------------------------------------------------------------------------
+
+  log M_b = 9.4   M_b = 2.512e+09 Msun   r_M = 1.7593 kpc   v_flat = 78.4 km/s
+    10 kpc       R=    10.0 kpc  x=   5.68  C_law=    5.206 M_b  need=    5.206 M_b   rho_cre needed=  3.1220e+06 Msun/kpc^3   =  3.621e+04 rho_Lam  =  9.284e+04 rho_c0
+    30 kpc       R=    30.0 kpc  x=  17.05  C_law=   16.560 M_b  need=   16.560 M_b   rho_cre needed=  3.6779e+05 Msun/kpc^3   =  4.265e+03 rho_Lam  =  1.094e+04 rho_c0
+    100 kpc      R=   100.0 kpc  x=  56.84  C_law=   56.344 M_b  need=   56.344 M_b   rho_cre needed=  3.3788e+04 Msun/kpc^3   =  3.919e+02 rho_Lam  =  1.005e+03 rho_c0
+    KiDS inner   R=    81.0 kpc  x=  46.04  C_law=   45.545 M_b  need=   45.545 M_b   rho_cre needed=  5.1392e+04 Msun/kpc^3   =  5.960e+02 rho_Lam  =  1.528e+03 rho_c0
+    ONE1 end     R=   105.6 kpc  x=  60.00  C_law=   59.500 M_b  need=   59.500 M_b   rho_cre needed=  3.0340e+04 Msun/kpc^3   =  3.519e+02 rho_Lam  =  9.022e+02 rho_c0
+    KiDS middle  R=   190.0 kpc  x= 108.00  C_law=  107.501 M_b  need=  107.501 M_b   rho_cre needed=  9.3986e+03 Msun/kpc^3   =  1.090e+02 rho_Lam  =  2.795e+02 rho_c0
+    -> smallest uniform density that supplies EVERY graded radius: 3.1220e+06 Msun/kpc^3
+       (spread of the requirement over the radii that need any: 3.3217e+02)
+    -> with rho_cre set at the ONE1 end radius, C_cre/C_law is:
+         10 kpc       R=    10.0 kpc   C_cre/C_law = 9.7183e-03   FAIL
+         30 kpc       R=    30.0 kpc   C_cre/C_law = 8.2492e-02   FAIL
+         100 kpc      R=   100.0 kpc   C_cre/C_law = 8.9796e-01   FAIL
+         KiDS inner   R=    81.0 kpc   C_cre/C_law = 5.9037e-01   FAIL
+         ONE1 end     R=   105.6 kpc   C_cre/C_law = 1.0000e+00   (in [0.9,1.1])
+         KiDS middle  R=   190.0 kpc   C_cre/C_law = 3.2282e+00   FAIL
+    -> C-III's eps required here: 2.9272e+07   (spread over masses below)
+
+  log M_b = 10.45   M_b = 2.818e+10 Msun   r_M = 5.8929 kpc   v_flat = 143.4 km/s
+    10 kpc       R=    10.0 kpc  x=   1.70  C_law=    1.269 M_b  need=    1.269 M_b   rho_cre needed=  8.5388e+06 Msun/kpc^3   =  9.903e+04 rho_Lam  =  2.539e+05 rho_c0
+    30 kpc       R=    30.0 kpc  x=   5.09  C_law=    4.615 M_b  need=    4.615 M_b   rho_cre needed=  1.1501e+06 Msun/kpc^3   =  1.334e+04 rho_Lam  =  3.420e+04 rho_c0
+    100 kpc      R=   100.0 kpc  x=  16.97  C_law=   16.477 M_b  need=   16.477 M_b   rho_cre needed=  1.1086e+05 Msun/kpc^3   =  1.286e+03 rho_Lam  =  3.297e+03 rho_c0
+    KiDS inner   R=   272.0 kpc  x=  46.16  C_law=   45.660 M_b  need=   45.660 M_b   rho_cre needed=  1.5266e+04 Msun/kpc^3   =  1.771e+02 rho_Lam  =  4.540e+02 rho_c0
+    ONE1 end     R=   353.6 kpc  x=  60.00  C_law=   59.500 M_b  need=   59.500 M_b   rho_cre needed=  9.0577e+03 Msun/kpc^3   =  1.050e+02 rho_Lam  =  2.694e+02 rho_c0
+    KiDS middle  R=   637.0 kpc  x= 108.10  C_law=  107.597 M_b  need=  107.597 M_b   rho_cre needed=  2.8009e+03 Msun/kpc^3   =  3.248e+01 rho_Lam  =  8.329e+01 rho_c0
+    -> smallest uniform density that supplies EVERY graded radius: 8.5388e+06 Msun/kpc^3
+       (spread of the requirement over the radii that need any: 3.0486e+03)
+    -> with rho_cre set at the ONE1 end radius, C_cre/C_law is:
+         10 kpc       R=    10.0 kpc   C_cre/C_law = 1.0608e-03   FAIL
+         30 kpc       R=    30.0 kpc   C_cre/C_law = 7.8753e-03   FAIL
+         100 kpc      R=   100.0 kpc   C_cre/C_law = 8.1702e-02   FAIL
+         KiDS inner   R=   272.0 kpc   C_cre/C_law = 5.9331e-01   FAIL
+         ONE1 end     R=   353.6 kpc   C_cre/C_law = 1.0000e+00   (in [0.9,1.1])
+         KiDS middle  R=   637.0 kpc   C_cre/C_law = 3.2339e+00   FAIL
+    -> C-III's eps required here: 8.7387e+06   (spread over masses below)
+
+  log M_b = 10.7   M_b = 5.012e+10 Msun   r_M = 7.8584 kpc   v_flat = 165.6 km/s
+    10 kpc       R=    10.0 kpc  x=   1.27  C_law=    0.867 M_b  need=    0.867 M_b   rho_cre needed=  1.0376e+07 Msun/kpc^3   =  1.203e+05 rho_Lam  =  3.086e+05 rho_c0
+    30 kpc       R=    30.0 kpc  x=   3.82  C_law=    3.350 M_b  need=    3.350 M_b   rho_cre needed=  1.4846e+06 Msun/kpc^3   =  1.722e+04 rho_Lam  =  4.415e+04 rho_c0
+    100 kpc      R=   100.0 kpc  x=  12.73  C_law=   12.235 M_b  need=   12.235 M_b   rho_cre needed=  1.4639e+05 Msun/kpc^3   =  1.698e+03 rho_Lam  =  4.353e+03 rho_c0
+    KiDS inner   R=   362.0 kpc  x=  46.07  C_law=   45.568 M_b  need=   45.568 M_b   rho_cre needed=  1.1493e+04 Msun/kpc^3   =  1.333e+02 rho_Lam  =  3.418e+02 rho_c0
+    ONE1 end     R=   471.5 kpc  x=  60.00  C_law=   59.500 M_b  need=   59.500 M_b   rho_cre needed=  6.7923e+03 Msun/kpc^3   =  7.877e+01 rho_Lam  =  2.020e+02 rho_c0
+    KiDS middle  R=   849.0 kpc  x= 108.04  C_law=  107.539 M_b  need=  107.539 M_b   rho_cre needed=  2.1026e+03 Msun/kpc^3   =  2.438e+01 rho_Lam  =  6.253e+01 rho_c0
+    -> smallest uniform density that supplies EVERY graded radius: 1.0376e+07 Msun/kpc^3
+       (spread of the requirement over the radii that need any: 4.9351e+03)
+    -> with rho_cre set at the ONE1 end radius, C_cre/C_law is:
+         10 kpc       R=    10.0 kpc   C_cre/C_law = 6.5459e-04   FAIL
+         30 kpc       R=    30.0 kpc   C_cre/C_law = 4.5751e-03   FAIL
+         100 kpc      R=   100.0 kpc   C_cre/C_law = 4.6398e-02   FAIL
+         KiDS inner   R=   362.0 kpc   C_cre/C_law = 5.9097e-01   FAIL
+         ONE1 end     R=   471.5 kpc   C_cre/C_law = 1.0000e+00   (in [0.9,1.1])
+         KiDS middle  R=   849.0 kpc   C_cre/C_law = 3.2305e+00   FAIL
+    -> C-III's eps required here: 6.5531e+06   (spread over masses below)
+
+  log M_b = 10.9   M_b = 7.943e+10 Msun   r_M = 9.8931 kpc   v_flat = 185.8 km/s
+    10 kpc       R=    10.0 kpc  x=   1.01  C_law=    0.628 M_b  need=    0.628 M_b   rho_cre needed=  1.1903e+07 Msun/kpc^3   =  1.380e+05 rho_Lam  =  3.540e+05 rho_c0
+    30 kpc       R=    30.0 kpc  x=   3.03  C_law=    2.573 M_b  need=    2.573 M_b   rho_cre needed=  1.8074e+06 Msun/kpc^3   =  2.096e+04 rho_Lam  =  5.375e+04 rho_c0
+    100 kpc      R=   100.0 kpc  x=  10.11  C_law=    9.620 M_b  need=    9.620 M_b   rho_cre needed=  1.8243e+05 Msun/kpc^3   =  2.116e+03 rho_Lam  =  5.425e+03 rho_c0
+    KiDS inner   R=   456.0 kpc  x=  46.09  C_law=   45.595 M_b  need=   45.595 M_b   rho_cre needed=  9.1188e+03 Msun/kpc^3   =  1.058e+02 rho_Lam  =  2.712e+02 rho_c0
+    ONE1 end     R=   593.6 kpc  x=  60.00  C_law=   59.500 M_b  need=   59.500 M_b   rho_cre needed=  5.3953e+03 Msun/kpc^3   =  6.257e+01 rho_Lam  =  1.604e+02 rho_c0
+    KiDS middle  R=  1069.0 kpc  x= 108.06  C_law=  107.556 M_b  need=  107.556 M_b   rho_cre needed=  1.6696e+03 Msun/kpc^3   =  1.936e+01 rho_Lam  =  4.965e+01 rho_c0
+    -> smallest uniform density that supplies EVERY graded radius: 1.1903e+07 Msun/kpc^3
+       (spread of the requirement over the radii that need any: 7.1294e+03)
+    -> with rho_cre set at the ONE1 end radius, C_cre/C_law is:
+         10 kpc       R=    10.0 kpc   C_cre/C_law = 4.5326e-04   FAIL
+         30 kpc       R=    30.0 kpc   C_cre/C_law = 2.9852e-03   FAIL
+         100 kpc      R=   100.0 kpc   C_cre/C_law = 2.9574e-02   FAIL
+         KiDS inner   R=   456.0 kpc   C_cre/C_law = 5.9167e-01   FAIL
+         ONE1 end     R=   593.6 kpc   C_cre/C_law = 1.0000e+00   (in [0.9,1.1])
+         KiDS middle  R=  1069.0 kpc   C_cre/C_law = 3.2315e+00   FAIL
+    -> C-III's eps required here: 5.2053e+06   (spread over masses below)
+
+  V5e universality of eps (one function of cosmic time):
+    eps = ['2.9272e+07', '8.7387e+06', '6.5531e+06', '5.2053e+06']
+    max/min = 5.6234  over the four graded masses
+
+==============================================================================
+PART D  V4 background, V5c forest, V5d Solar System, V6 Bullet
+==============================================================================
+
+FOOTING canonical
+  rho_cre needed (worst over masses/radii) = 1.0366e+07 Msun/kpc^3
+  rho_cre needed at the ONE1 end radius    = 2.2837e+04 Msun/kpc^3
+  V4a  rho_cre/rho_c0 = 3.0826e+05   (line 0.05)   -> FAIL by 6.165e+06
+       Omega_c/Omega_b would become 1667696.7477 against 5.41; Omega_L drained by 100.0% of itself (x1.202e+05 over the whole vacuum)
+  V4b  |w+1| ~ 4.007e+04  (crude, drain over a Hubble time)  (line 0.05) -> FAIL by 8.014e+05
+  V5d  Solar System (worst rho_cre): created mass inside Saturn's orbit = 4.2422e-15 Msun  (line 1e-10)  -> PASS
+  V5d  Solar System (ONE1-end rho_cre): created mass inside Saturn's orbit = 9.3460e-18 Msun  (line 1e-10)  -> PASS
+  V6   Bullet main R200=1.70 Mpc (worst): M_cre = 2.1333e+17 Msun, 0.10 x M_meas = 5.1893e+13  ratio 4.1109e+03 -> FAIL
+  V6   Bullet sub  R200=1.10 Mpc (worst): M_cre = 5.7793e+16 Msun, 0.10 x M_meas = 1.4059e+13  ratio 4.1109e+03 -> FAIL
+  V6   Bullet main R200=1.70 Mpc (ONE1-end): M_cre = 4.6998e+14 Msun, 0.10 x M_meas = 5.1893e+13  ratio 9.0566e+00 -> FAIL
+  V6   Bullet sub  R200=1.10 Mpc (ONE1-end): M_cre = 1.2732e+14 Msun, 0.10 x M_meas = 1.4059e+13  ratio 9.0566e+00 -> FAIL
+  V5d / V5c / V6 at the two reference densities:
+    (age of the universe here: 13.767 Gyr)
+  V5c  created fraction in place, by redshift:
+         z =  0.5  age =  8.559 Gyr   uniform-in-t from z=6:  0.595   linear ramp z=2 -> 0:  0.505
+         z =  2.2  age =  2.959 Gyr   uniform-in-t from z=6:  0.159   linear ramp z=2 -> 0:  0.000
+         z =  2.8  age =  2.293 Gyr   uniform-in-t from z=6:  0.107   linear ramp z=2 -> 0:  0.000
+         z =  3.4  age =  1.842 Gyr   uniform-in-t from z=6:  0.072   linear ramp z=2 -> 0:  0.000
+         z =  4.4  age =  1.354 Gyr   uniform-in-t from z=6:  0.034   linear ramp z=2 -> 0:  0.000
+         -> any history that leaves >10% in place at z>=2.2 inherits FRZ1's
+            Delta chi^2 = 9916 / 9009 (gate 4): EXCLUDED.  All of it after z=2
+            leaves the halo EMPTY at z=2.2-4.4 (FRZ1 safe), but KiDS measures at
+            z~0.2-0.5, where a linear ramp from z=2 gives only 0.505 of today's
+            halo (line 0.9) -> FAIL by 1.783e+00.
+
+FOOTING alt
+  rho_cre needed (worst over masses/radii) = 1.1903e+07 Msun/kpc^3
+  rho_cre needed at the ONE1 end radius    = 3.0340e+04 Msun/kpc^3
+  V4a  rho_cre/rho_c0 = 3.5398e+05   (line 0.05)   -> FAIL by 7.080e+06
+       Omega_c/Omega_b would become 1915039.1345 against 5.41; Omega_L drained by 100.0% of itself (x1.380e+05 over the whole vacuum)
+  V4b  |w+1| ~ 4.602e+04  (crude, drain over a Hubble time)  (line 0.05) -> FAIL by 9.203e+05
+  V5d  Solar System (worst rho_cre): created mass inside Saturn's orbit = 4.8714e-15 Msun  (line 1e-10)  -> PASS
+  V5d  Solar System (ONE1-end rho_cre): created mass inside Saturn's orbit = 1.2417e-17 Msun  (line 1e-10)  -> PASS
+  V6   Bullet main R200=1.70 Mpc (worst): M_cre = 2.4497e+17 Msun, 0.10 x M_meas = 5.1893e+13  ratio 4.7206e+03 -> FAIL
+  V6   Bullet sub  R200=1.10 Mpc (worst): M_cre = 6.6365e+16 Msun, 0.10 x M_meas = 1.4059e+13  ratio 4.7206e+03 -> FAIL
+  V6   Bullet main R200=1.70 Mpc (ONE1-end): M_cre = 6.2439e+14 Msun, 0.10 x M_meas = 5.1893e+13  ratio 1.2032e+01 -> FAIL
+  V6   Bullet sub  R200=1.10 Mpc (ONE1-end): M_cre = 1.6915e+14 Msun, 0.10 x M_meas = 1.4059e+13  ratio 1.2032e+01 -> FAIL
+  V5d / V5c / V6 at the two reference densities:
+    (age of the universe here: 13.767 Gyr)
+  V5c  created fraction in place, by redshift:
+         z =  0.5  age =  8.559 Gyr   uniform-in-t from z=6:  0.595   linear ramp z=2 -> 0:  0.505
+         z =  2.2  age =  2.959 Gyr   uniform-in-t from z=6:  0.159   linear ramp z=2 -> 0:  0.000
+         z =  2.8  age =  2.293 Gyr   uniform-in-t from z=6:  0.107   linear ramp z=2 -> 0:  0.000
+         z =  3.4  age =  1.842 Gyr   uniform-in-t from z=6:  0.072   linear ramp z=2 -> 0:  0.000
+         z =  4.4  age =  1.354 Gyr   uniform-in-t from z=6:  0.034   linear ramp z=2 -> 0:  0.000
+         -> any history that leaves >10% in place at z>=2.2 inherits FRZ1's
+            Delta chi^2 = 9916 / 9009 (gate 4): EXCLUDED.  All of it after z=2
+            leaves the halo EMPTY at z=2.2-4.4 (FRZ1 safe), but KiDS measures at
+            z~0.2-0.5, where a linear ramp from z=2 gives only 0.505 of today's
+            halo (line 0.9) -> FAIL by 1.783e+00.
+
+==============================================================================
+PART E  MUTATE twins
+==============================================================================
+  MU4: C_dust = 0 (no dust arrival).  Every required rho_cre has risen.
+       The worst rho_cre and the payment ratio rise with it.  BITES.
+
+==============================================================================
+VCC1 done.
+==============================================================================
