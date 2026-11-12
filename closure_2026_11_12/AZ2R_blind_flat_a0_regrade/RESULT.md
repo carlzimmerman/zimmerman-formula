@@ -46,4 +46,12 @@ commit, already quoted its headline numbers (READING.md).
 
 Commits: READING 17552835ff (alone); code + KA1 941d329a4a; runs bf4f890e3c; RESULT_BLIND d1acf1ba7e; this file next.
 
+**Commit ids and the lead's re-run (added 2026-11-12, after landing; no number or label changes).** Local / origin:
+READING 17552835ff / 2ce328e68f; code + KA1 941d329a4a / 504529746c; runs bf4f890e3c / e1ed59b2ad; RESULT_BLIND d1acf1ba7e / 223522ca07;
+RESULT 9a9646843f / 536fbef8e6. Pushed. The lead session re-ran `azr.py` in all five modes (KA1, canonical, alt,
+canonical_MUTATE, alt_MUTATE) from a copy at the same folder depth, one thread, in sequence: all five JSON files and
+all five logs are equal byte for byte. That is a reproduction of this lane's own code, not a further independent
+re-grade; it shares everything this file lists as taken from CFG681 and AZ2, and the PROVISIONAL new pair was not
+checked against its source.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
