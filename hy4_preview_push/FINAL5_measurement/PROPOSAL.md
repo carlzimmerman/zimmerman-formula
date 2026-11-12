@@ -128,7 +128,7 @@ luminosity in an object that X-ray surveys have looked at repeatedly and not see
 
 | field | value | provenance |
 |---|---|---|
-| Files | `/Users/carlzimmerman/new_physics/_external_data/act_dr6_nilc/strip_ComptonY.f32be` (829,785,600 B) and `strip_ComptonY_deproj_cib_1.0_10.7.f32be` | **ON DISK** |
+| Files | `<repo>/../_external_data/act_dr6_nilc/strip_ComptonY.f32be` (829,785,600 B) and `strip_ComptonY_deproj_cib_1.0_10.7.f32be` | **ON DISK** |
 | Headers / geometry | `header_ComptonY.fits`, `header_ComptonY_deproj_cib_1.0_10.7.fits`, `strip_geometry.txt` | **ON DISK** |
 | Grid | 43200 × 10320 CAR, CDELT = 0.0083333 deg = **0.5 arcmin/pixel** | **ON DISK** (FITS header, printed in `final5_signal.out`) |
 | Strip | rows 3239-8040 ⇒ **Dec −36° to +4°** — the KiDS-S footprint; lens catalogue and map overlap by construction | **ON DISK** |
@@ -309,7 +309,7 @@ Everything below uses files that exist on this disk. No new data, no new telesco
 
 **Step 0 — reproduce this lane's numbers (seconds, ~50 MB).**
 
-    cd /Users/carlzimmerman/new_physics/zimmerman-formula/hy4_preview_push/FINAL5_measurement
+    cd <repo>/hy4_preview_push/FINAL5_measurement
     python3 -I final5_signal.py            # -> final5_signal.out / .json
     python3 -I final5_signal.py --mutate   # -> final5_signal_MUTATE.out
 
@@ -326,7 +326,7 @@ verification could fail in this lane: I quote the counts rather than regenerate 
     closure_2026_11_10/GO1_group_outskirts/go1_measure.py   <kids column dir> <checkpoint.npz>
     closure_2026_11_10/GO1_group_outskirts/go1.py               <checkpoint.npz>
 
-    # map: /Users/carlzimmerman/new_physics/_external_data/act_dr6_nilc/strip_ComptonY.f32be
+    # map: <repo>/../_external_data/act_dr6_nilc/strip_ComptonY.f32be
     #      and strip_ComptonY_deproj_cib_1.0_10.7.f32be   (bracket B1)
     # 43200 x 10320 CAR, 0.5 arcmin/pix, 1.6 arcmin beam, rows 3239-8040 = Dec -36..+4 deg
 

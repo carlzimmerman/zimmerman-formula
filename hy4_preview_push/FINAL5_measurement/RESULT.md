@@ -15,7 +15,7 @@ alt, never pooled.
 
 The observation that closes the amount question is **not** a new instrument and **not** a new
 exposure. It is a **stacked thermal Sunyaev-Zel'dovich measurement in the ACT DR6.02 needlet-ILC
-Compton-y map already on this disk** (`/Users/carlzimmerman/new_physics/_external_data/act_dr6_nilc/`),
+Compton-y map already on this disk** (`<repo>/../_external_data/act_dr6_nilc/`),
 centred on the **17,335 KiDS host-free isolated L\* lenses** the record has already built, run
 through **GO1's existing Part A pipeline** which already stacks KiDS shear *and* this y map with
 randoms, jackknife errors, a gNFW beam correction, two CIB treatments and three nulls.

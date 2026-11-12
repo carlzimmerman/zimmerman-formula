@@ -122,7 +122,7 @@ Sitter, homogeneous expansion). Mutations: present (temperature doubling, three 
 pass/fail lane, so frozen gates matter less here. The folders grade constructions, not data.
 
 **(d) Breaches.**
-- Home paths (/Users/...) appear in new run records: combined_route/cosmology_diagnostic/run_commands.txt and central_130/stderr.txt,
+- Home-directory paths appear in new run records: combined_route/cosmology_diagnostic/run_commands.txt and central_130/stderr.txt,
   plus dt2_corrections *.out files and final17_run_001/manifest.json, pik1_corrections/run_legacy/stderr.txt, and h062_run_001/stderr.txt.
   They also appear in the archived originals, which are copies of committed text. These must be scrubbed before commit.
 - "cold dark matter" appears only in archived copies: FINAL4 describing LambdaCDM, and frozen-criteria copies that forbid the term.

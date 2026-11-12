@@ -4,12 +4,13 @@
 #
 # Reads DD1's frozen table only. Criteria PREREGISTER.md (committed alone, before this file).
 # Footings never pooled. kappa = 1/2 FITTED; not theory closed. Adopts nothing.
-import csv, json, math, sys, time
+import csv, json, math, os, sys, time
 import numpy as np
 
 T0 = time.time()
 HERE = __file__.rsplit('/', 1)[0]
-TABLE = '/Users/carlzimmerman/new_physics/zimmerman-formula/fable52_push/DD1_deduce_from_data/dd1_table.csv'
+# 2026-11-12: TABLE was an absolute path; it now resolves from this file, to the same file.
+TABLE = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'fable52_push', 'DD1_deduce_from_data', 'dd1_table.csv'))
 SEED = 20261112
 NPERM = 100000
 NBOOT = 10000
