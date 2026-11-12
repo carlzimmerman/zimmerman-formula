@@ -1,0 +1,351 @@
+{
+  "audit_date_utc": "2026-11-12T16:28:02.892411+00:00",
+  "scope": "Blinded catalogue access and quality audit only. No formula evaluated, no acceleration/model residual computed, no samples selected by agreement. Only the two explicitly authorized small catalogues downloaded; 236-MB model archive and 4-GB image partitions untouched.",
+  "primary_release": "https://doi.org/10.5281/zenodo.19654904",
+  "archives": [
+    {
+      "filename": "ECLIPSE_object_catalogue.zip",
+      "source": "https://zenodo.org/api/records/19654904/files/ECLIPSE_object_catalogue.zip/content",
+      "bytes": 3660518,
+      "md5": "56433fecbdc459046ffe9eca44bb4dcf",
+      "expected_md5": "56433fecbdc459046ffe9eca44bb4dcf",
+      "md5_matches": true,
+      "sha256": "5486e82867a0209767d542478b5375413f68bc8adf033f157da940b4c6f75438",
+      "members": [
+        "ECLIPSE_object_catalogue/",
+        "ECLIPSE_object_catalogue/ECLIPSE_object_catalogue.csv",
+        "ECLIPSE_object_catalogue/README.txt"
+      ]
+    },
+    {
+      "filename": "ECLIPSE_D_dr1_redshifts_and_physical_properties.zip",
+      "source": "https://zenodo.org/api/records/19654904/files/ECLIPSE_D_dr1_redshifts_and_physical_properties.zip/content",
+      "bytes": 26968438,
+      "md5": "cb31dbd65a3586ab13f52cff2df67f6b",
+      "expected_md5": "cb31dbd65a3586ab13f52cff2df67f6b",
+      "md5_matches": true,
+      "sha256": "511b68d3aa00c2289098fe47e251b3e9667fc6ea025083396a9a9ebcda8fb186",
+      "members": [
+        "eclipse_dr1_catalogue_key_v20261103.csv",
+        "eclipse_dr1_catalogue_key_v20261103.fits",
+        "eclipse_dr1_catalogue_v20261103.fits",
+        "README_eclipse_dr1_catalogue_key_v20261103.md",
+        "README_eclipse_dr1_catalogue_v20261103.md"
+      ]
+    }
+  ],
+  "table_shapes": {
+    "object_csv": {
+      "rows": 26662,
+      "columns": 30
+    },
+    "D_key_csv": {
+      "rows": 15072,
+      "columns": 77
+    },
+    "D_full_FITS": {
+      "rows": 15072,
+      "columns": 156
+    }
+  },
+  "join": {
+    "object_key": "Unique_Identifier",
+    "D_key": "unique_identifier",
+    "format": "EUCL-DR1-Lnnnnnn",
+    "object_key_unique": true,
+    "D_key_unique": true,
+    "D_rows_joined": 15072,
+    "D_grade_mismatch_count": 0,
+    "warning": "MER_object_id is missing after some positional refinements; do not use it as the primary join. sed_fitting_id is a processing identifier rather than the stable cross-product lens key."
+  },
+  "raw_counts": {
+    "object_grades": {
+      "A": 6073,
+      "B": 8999,
+      "C": 9010,
+      "X": 2580
+    },
+    "D_model_consensus75": {
+      "Success": 7980,
+      "Failure": 1741,
+      "No Consensus": 4417,
+      "Multi Galaxy Lens": 702,
+      "Unsure If Lens": 130,
+      "Double Source Plane Lens": 19,
+      "N/A": 83
+    },
+    "D_final_sample": 9538,
+    "object_deflector_specz_present": 371,
+    "object_deflector_specz_by_grade": {
+      "A": 107,
+      "B": 151,
+      "C": 113
+    }
+  },
+  "funnel": [
+    {
+      "stage": "all_AB",
+      "expression": "All rows in D",
+      "n": 15072
+    },
+    {
+      "stage": "grade_A",
+      "expression": "Expert_Grade == 'A'",
+      "n": 6073
+    },
+    {
+      "stage": "consensus_success",
+      "expression": "lens_model_success == True and lens_model_consensus_75 == 'Success'",
+      "n": 4098
+    },
+    {
+      "stage": "paper_final_sample",
+      "expression": "final_sample == True (all seven D cuts, including DET_QUALITY_FLAG<4)",
+      "n": 3202
+    },
+    {
+      "stage": "valid_mass_and_light",
+      "expression": "finite and positive surviving stellar mass and four listed light metadata fields; missing sentinel -99 rejected",
+      "n": 3202
+    },
+    {
+      "stage": "no_large_system_warning",
+      "expression": "large_system_warning != True",
+      "n": 3202
+    },
+    {
+      "stage": "positive_vetted_deflector_specz",
+      "expression": "finite desi_deflector_specz > 0 (vetted by Storfer et al. according to README)",
+      "n": 39
+    }
+  ],
+  "valid_light_fields": [
+    "eclipse_effective_radius",
+    "eclipse_sersic_index",
+    "eclipse_luminosity_rband_med",
+    "eclipse_mass_to_light_rband_med"
+  ],
+  "clean_deflector_specz_candidate_ids": [
+    {
+      "unique_identifier": "EUCL-DR1-L000888",
+      "name": "J173831.001+554006.40"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L014694",
+      "name": "J171905.284+555647.30"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L001495",
+      "name": "J171550.883+564021.84"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L017287",
+      "name": "J172702.509+570636.47"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L011912",
+      "name": "J170732.985+580122.32"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L005799",
+      "name": "J183058.854+575509.87"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L005313",
+      "name": "J172504.235+584449.10"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L017910",
+      "name": "J171026.677+590004.36"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L017764",
+      "name": "J183511.629+590437.14"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L008756",
+      "name": "J181211.730+622815.60"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L015781",
+      "name": "J180843.972+630753.58"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L012642",
+      "name": "J181244.147+631047.79"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L001358",
+      "name": "J181303.081+625013.06"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L015230",
+      "name": "J092947.364+633717.15"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L012903",
+      "name": "J091742.630+640142.17"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L015321",
+      "name": "J124906.283+655407.02"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L015237",
+      "name": "J094645.719+663629.91"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L015780",
+      "name": "J100537.754+673027.15"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L016057",
+      "name": "J115715.947+675943.02"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L016255",
+      "name": "J114950.205+691738.14"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L015348",
+      "name": "J124132.034+693741.11"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L001990",
+      "name": "J095209.433+694720.57"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L008609",
+      "name": "J095247.059+695722.87"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L015418",
+      "name": "J100012.279+702424.32"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L015836",
+      "name": "J121702.920+704430.95"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L014942",
+      "name": "J102438.834+710834.29"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L005469",
+      "name": "J101700.247+711518.18"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L014365",
+      "name": "J091730.266+720812.69"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L016695",
+      "name": "J175928.674+715426.73"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L015227",
+      "name": "J123629.447+723615.69"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L015386",
+      "name": "J101414.944+731204.17"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L015368",
+      "name": "J111752.469+741813.28"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L004932",
+      "name": "J102156.991+751836.13"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L015461",
+      "name": "J181605.481+753539.71"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L003890",
+      "name": "J035757.206-304645.08"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L014725",
+      "name": "J141853.196+441002.30"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L011102",
+      "name": "J151235.336+435542.67"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L005359",
+      "name": "J141839.175+421359.40"
+    },
+    {
+      "unique_identifier": "EUCL-DR1-L013413",
+      "name": "J141054.037+441401.07"
+    }
+  ],
+  "both_specz_gold_sample": {
+    "verified_count": null,
+    "status": "Not determinable from inspected catalogue products; do not report as either 39 or zero. The source-redshift column and source-redshift linkage are absent.",
+    "paper_aggregate": {
+      "A_B_C_with_both_redshifts": 20,
+      "A": 12,
+      "B": 5,
+      "C": 3
+    },
+    "aggregate_source": "Lines et al., Sect.5, p.5, https://pubs.euclid-ec.org/public/dr1/lines.pdf",
+    "available_small_catalogue_source_redshift_rows": 0,
+    "meaning_of_zero": "Zero rows with an available source-redshift field in these files; this does not mean zero physical systems with known source redshifts.",
+    "strict_gold_upper_bound_from_reported_DESI_pairs": 12,
+    "reason_upper_bound": "Only 12 grade-A pairs are reported before the independent model/stellar-quality cuts. Their intersection with the 39 clean lens-redshift candidates cannot be determined without their identifiers."
+  },
+  "independently_named_paper_pilot": {
+    "name": "PS1J1821+7130",
+    "object_identifier": "EUCL-DR1-L015763",
+    "position_match_arcsec": 0.1107411515728482,
+    "paper_table": "Bergamini et al., Table1 p.4 and DESI confirmation Sect.5 pp.6–7, https://pubs.euclid-ec.org/public/dr1/bergamini.pdf",
+    "object_deflector_specz": 0.2350421918,
+    "paper_source_specz": 1.366,
+    "paper_source_specz_error": 0.008,
+    "grade": "A",
+    "model_consensus75": "Success",
+    "model_success_votes": "4/4",
+    "number_of_bands": 8,
+    "has_prospector_fit": true,
+    "flag_unreliable": false,
+    "mer_det_quality_flag": 386.0,
+    "failed_cuts": [
+      "cut_i_det_quality"
+    ],
+    "all_required_mass_light_fields_finite_positive": true,
+    "in_strict_clean_sample": false,
+    "interpretation": "Concrete source-redshift-known feasibility target, but not a clean gold target under the quality cuts specified for this metadata audit before any formula scoring. Do not waive DET_QUALITY_FLAG386 after seeing outcomes. Resolve its detection flags/re-extract photometry before any fixed-normalization test."
+  },
+  "unavailable_fields_and_products": [
+    "No source spectroscopic-redshift values, source-redshift errors, source spectroscopic IDs or source/lens pair flag in object CSV, key CSV or full D FITS.",
+    "No observed stellar velocity dispersion or rotation curve in these catalogues. Any SIE-converted velocity scale is model-derived, not independent dynamics.",
+    "The small tables contain global stellar mass, luminosity, mass-to-light and Sersic radius/index summaries, not image-plane light, PSF, masks, noise, full light-axis-ratio/position-angle models or pixel source reconstructions.",
+    "Individual model images/PSFs/noise/masks need a later targeted public-data retrieval; archive metadata supplies per-lens partition manifest through the larger model release. No such large products were downloaded.",
+    "No gas mass/map, independent stellar mass-to-light calibration, line-of-sight convergence or calibrated lens-parameter covariance."
+  ],
+  "quality_definitions": {
+    "lens_model_success": "True iff lens_model_consensus_75 is Success; No Consensus and N/A do not qualify for this strict audit.",
+    "D_final_sample": "All seven published cuts. cut_ii_lens_model alone permits Success, No Consensus and N/A; it is insufficient for a clean sample.",
+    "flag_unreliable": "Prospector ppc p-value<0.01, a band residual>5 sigma, ESS<200, or no fit.",
+    "flag_flat_zpdf": "Phosphoros 70% interval wider than one.",
+    "stellar_mass_column": "eclipse_log_survived_mass_med (log10 solar masses, surviving stars plus remnants); eclipse_logmass is total formed mass and must not substitute.",
+    "sentinel": "-99 numeric fields indicate missing values.",
+    "error_conventions": "Prospector *_low/*_upp are asymmetric errors; lens-model *_lower_1_sigma/*_upper_1_sigma are bounds, not errors."
+  },
+  "paper_release_convention_conflicts": [
+    "D README says SED fits fix redshift to Phosphoros photo-z; paper Sect.4.2 p.7 says use spectroscopic redshift when available. No spec-z-used field exists, so stellar masses should be refitted at verified lens redshifts for a precision lens test.",
+    "D archive includes formal lens-model 1-sigma bounds; C paper p.12 explicitly defers calibration of individual parameter uncertainties and systematic errors. These are not validated total-error budgets.",
+    "D README calls eclipse_effective_radius non-circularized; D paper Sect.3.1 p.5 calls the reported effective radius circularized sqrt(a*b). Resolve definitions from model files before deprojection or aperture-mass calculations."
+  ],
+  "next_exact_join_required": [
+    "Obtain row-level vetted source redshifts (Storfer et al. companion data or original vetted DESI target IDs/sky coordinates), with errors, line identification and a deflector/source distinction.",
+    "Join using EUCL-DR1-L identifiers if provided; otherwise perform a documented position match to RA_obj/DEC_obj with explicit angular separations and ambiguity checks. Do not join by rounded names alone.",
+    "Intersect source-redshift-known rows with the 39-object quality-audit list; require z_source>z_lens and propagate redshift errors. This defines the gold-sample size; no agreement-based selection.",
+    "Retrieve only targeted image/PSF/noise/mask/light products for those systems and independently model stellar baryons at spectroscopic lens redshift before testing a preselected relativistic completion with fixed normalization."
+  ],
+  "selection_provenance": "No separately persisted pre-inspection freeze or preregistration was created. Quality cuts were specified while inspecting catalogue schemas and published quality definitions, then counted without evaluating any formula or acceleration/model-agreement residual. This is a retrospective metadata feasibility audit, not a sealed prospective experiment."
+}
