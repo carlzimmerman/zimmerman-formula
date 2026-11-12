@@ -6,6 +6,18 @@ dynamical-modeling methods, mock-calibrated; joint `M(r<80 kpc) = 6.36 (+0.53/�
 `M200c = 1.19 (+0.14/−0.12)×10¹² M☉`. Table 4 of the paper — the joint enclosed-mass profile at 13 radii,
 20 to 80 kpc in 5 kpc steps — is the instrument here; the single numbers are not.
 
+> **CORRECTION 2026-11-11 (G239, `deepseek_push/G239_proper_efe/`).** The external-field paragraph in the
+> Result section and in "What is genuinely new here" §3 was computed with the **scalar-additive**
+> approximation `ν((g_bar+g_ext)/a₀)`, which is the maximum-suppression case. The exact QUMOND angle
+> average gives **+16% (canonical) / +13% (alt)** at 80 kpc: **−2.77σ / −2.50σ, not −4.11σ / −3.70σ**, and
+> the 13-point profile fits at **3.3% rms (χ²/dof 0.38), not 7.0%**. Two statements are therefore
+> **withdrawn**: that the EFE spoils the profile's shape, and that the 20–80 kpc profile prefers a weak
+> external field (the rotation curve's `e_N = 0.000 [0, 0.008]` and the LMC bound still stand on their own).
+> The M200c comparison and the plateau falsifier are unchanged except that the plateau is now **lower**
+> (5.26×10¹¹ at A = 1, against item 38's naive `ν(e_N)M_b = 6.27×10¹¹`), so the falsifier's split widens
+> from 1.8× to 2.2×. The `.out` is left as the historical record of the approximation; this note is the
+> correction, and the operative numbers are G239's.
+
 ## Why this is the framework's own quantity
 
 The framework has no dark-matter particle. The "dark mass" is the stress–energy of the same scalar whose

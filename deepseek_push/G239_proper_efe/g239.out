@@ -1,0 +1,124 @@
+================================================================================================================
+G239  THE PROPER EXTERNAL FIELD -- QUMOND EFE solve for the Milky Way's phantom halo
+      replaces DW1's scalar-additive nu((g_bar+g_ext)/a0) with the exact angle average
+      <g_r> = (1/2) INT dmu nu(|g_bar r_hat + g_ext z_hat|/a0)(g_bar + g_ext mu)
+      kappa = 1/2 FITTED; not theory closed.  Both footings.
+================================================================================================================
+
+================================================================================================================
+V -- INSTRUMENT (the two limits are exact and are the checks)
+================================================================================================================
+  McMillan 2017: M_b = 6.6814e+10 Msun
+  [PASS] V1 with e_N = 0 the angle average reproduces nu(g_bar/a0) M_b exactly (DW1's law)
+         (canonical 5.690532 vs 5.690532; alt 6.218304 vs 6.218304 (1e-9 relative))
+  [PASS] V2 a CONSTANT kernel returns 2.5 x M_b with no anisotropy and no external-field dependence (the EFE lives entirely in nu, not in the geometry)
+         (constant-kernel angle average 1.6643 = 2.5 x M_sph(60 kpc) = 1.6643)
+  [PASS] V3 the proper average lies BETWEEN the no-EFE value and the scalar-additive (maximum-suppression) value at every footing, field and radius tested
+         (12/12 in order; the scalar-additive is 5-16 per cent below the proper average, so it over-suppresses)
+  r [kpc]  e_N      proper      no-EFE     scalar-add   proper/no-EFE
+     40   0.0080      3.001      3.010      2.853     0.997
+     80   0.0080      5.400      5.691      4.687     0.949
+     40   0.0127      2.987      3.010      2.773     0.992
+     80   0.0127      4.977      5.691      4.307     0.875
+
+================================================================================================================
+G239a -- THE PLATEAU: M_sat = lim r^2<g_r>/G, the number FALSIFIER_MATRIX row 32 tests
+================================================================================================================
+  e_N       footing     M(<80)     M(<150)    M(<200)    M(<300)    plateau(400)
+  0.0080   canonical     5.400      6.504      6.541      6.555      6.558
+  0.0080   alt           5.756      6.520      6.545      6.556      6.558
+  0.0127   canonical     4.977      5.252      5.264      5.270      5.271
+  0.0127   alt           5.109      5.257      5.266      5.270      5.271
+  0.0170   canonical     4.498      4.598      4.604      4.607      4.609
+  0.0170   alt           4.534      4.600      4.605      4.608      4.609
+  0.0200   canonical     4.204      4.268      4.273      4.275      4.276
+  0.0200   alt           4.226      4.270      4.273      4.276      4.276
+  0.0500   canonical     2.825      2.833      2.835      2.836      2.836
+  0.0500   alt           2.827      2.833      2.835      2.836      2.836
+  at the repo's own Local-Group vector sum e_N = 0.01273 (hunt item 81):
+    canonical M(<80) = 4.977e11 (-2.77 sigma), alt 5.109e11 (-2.50 sigma)
+    DW1's scalar-additive gave 4.307 / 4.508e11 (-4.11 / -3.70 sigma): the hack cost +16 / +13 per cent at 80 kpc
+  [PASS] G239a the proper EFE at the repo's own field leaves the absolute 80 kpc mass inside 3 sigma
+         (canonical 4.98e11 (-2.77 sigma), alt 5.11e11 (-2.50 sigma); DW1's hack gave -4.11/-3.70 sigma)
+
+================================================================================================================
+G239b -- THE 13-POINT DESI FIT WITH THE PROPER EFE: was the shape damage the hack?
+================================================================================================================
+  e_N=0.00000 canonical: A* = 1.325 [1.290,1.360]  chi2/12 = 0.26  rms = 2.86%
+  e_N=0.00000 alt      : A* = 1.145 [1.115,1.180]  chi2/12 = 0.22  rms = 2.74%
+  e_N=0.00800 canonical: A* = 1.335 [1.300,1.375]  chi2/12 = 0.28  rms = 2.83%
+  e_N=0.00800 alt      : A* = 1.170 [1.140,1.200]  chi2/12 = 0.23  rms = 2.56%
+  e_N=0.01273 canonical: A* = 1.360 [1.325,1.395]  chi2/12 = 0.38  rms = 3.32%
+  e_N=0.01273 alt      : A* = 1.205 [1.175,1.235]  chi2/12 = 0.49  rms = 3.97%
+  e_N=0.01700 canonical: A* = 1.385 [1.350,1.420]  chi2/12 = 0.60  rms = 4.40%
+  e_N=0.01700 alt      : A* = 1.245 [1.220,1.275]  chi2/12 = 1.09  rms = 6.31%
+  DW1's scalar-additive fit (for comparison): e_N = 0.0127 gave rms 7.0% (canonical) / 7.8% (alt)
+  [PASS] G239b with the PROPER EFE the 13-point profile still fits at chi2/dof < 2 on both footings (the EFE does not damage the shape; the scalar-additive hack did)
+         (canonical: A* = 1.360, rms 3.3% (vs 7.0/7.8% for the hack); alt: A* = 1.205, rms 4.0% (vs 7.0/7.8% for the hack))
+  [PASS] G239c the amplitude the profile demands under the proper EFE is still consistent with item 35's rotation-curve amplitude within 3 sigma
+         (canonical: A* = 1.360 vs item-35 [1.254,1.309]; alt: A* = 1.205 vs item-35 [1.152,1.208])
+
+================================================================================================================
+G239d -- THE ANISOTROPY: what a spherical Jeans analysis sees in an EFE field
+================================================================================================================
+  r [kpc]   M_par (theta=0)   M_perp (theta=90)   M_avg     par/avg    perp/avg
+     40          3.346             2.983          2.987   1.120     0.999
+     60          5.353             4.164          4.178   1.281     0.997
+     80          7.844             5.045          4.977   1.576     1.014
+    150         21.103             6.086          5.252   4.018     1.159
+  [PASS] G239d the ANGLE AVERAGE is the well-posed quantity: it converges past r_EFE while the parallel direction diverges
+         (M_avg(150)/M_avg(80) = 1.055 (plateau); M_par(150)/M_par(80) = 2.69 (diverges: the external field's OWN acceleration is attributed to the Galaxy). par/avg = 1.58 at 80 kpc, 4.02 at 150 kpc; perp/avg = 1.00-1.16)
+
+================================================================================================================
+MUTATION CONTROLS
+================================================================================================================
+  a0 / 10  : M(<80) = 2.045e11 vs 4.977e11 (smaller a0 = larger y = the kernel switched OFF; note a0 x 10 does
+             NOT switch it off in an EFE-dominated regime -- it saturates at nu(e), which is the correct physics)
+  nu = 1   : M(<80) = 0.666e11 (baryons only, a factor 7.5 below the prediction)
+  [PASS] MUT the kernel carries the prediction: a0/10 and nu = 1 both collapse it toward the baryon mass
+         (framework 4.98e11, a0/10 2.04e11, baryons only 0.67e11)
+
+================================================================================================================
+READING
+================================================================================================================
+  Written from the numbers above, after they printed.
+
+  1. THE HACK COST MORE THAN THE PHYSICS DID.  The scalar-additive external field DW1 used is the
+     maximum-suppression case; the exact angle average is +16 per cent higher at 80 kpc
+     (canonical) and +13 per cent (alt).  DW1's -4.11 sigma becomes -2.77 and its
+     -3.70 becomes -2.50.  The EFE tension at 80 kpc is REAL BUT MODEST, and the framework sits
+     inside 3 sigma on both footings once the vector average is done properly.
+
+  2. AND THE SHAPE SURVIVES -- DW1's 'the EFE spoils the shape' IS RETRACTED.  With the proper EFE the
+     13-point profile fits at chi2/dof 0.38 (canonical) / 0.49 (alt), rms 3.3 / 4.0 per cent,
+     against 7.0 / 7.8 per cent for the scalar-additive version.  The degradation was the approximation,
+     not the data: the shape prefers a weak field only because the HACK was strong.
+
+  3. THE AMPLITUDE MOVES UP WITH THE FIELD, AS IT MUST, AND THE TWO-DATASET AGREEMENT SURVIVES:
+     A* = 1.360 canonical / 1.205 alt at e_N = 0.01273, against 1.325 / 1.145 at zero field,
+     and still within 3 sigma of the outer rotation curve's own demand (item 35: 1.254-1.309 / 1.152-1.208).
+     The cost is a larger baryon excess: 21-36 per cent over the census, which
+     remains the framework's one free ledge and its most falsifiable number.
+
+  4. THE PLATEAU -- THE NUMBER ROW 32 TESTS -- IS LOWER THAN THE NAIVE CAP.  At e_N = 0.01273:
+     M(<200 kpc) = 5.26e11 canonical / 5.27e11 alt at A = 1, and 7.16 / 6.35
+     at the fitted amplitude, against the paper's own NFW extrapolation 11.35e11 (a 1.6x
+     to 2.2x split).  Note it is BELOW the nu(e_N) M_b = 6.27e11 that item 38 used as the cap: the
+     angle average of nu over the field's own anisotropy costs a further 16 per cent, so the EFE cap was
+     itself an overestimate.  The registered kill (M(<200 kpc) >= 1.0e12) is unaffected -- at the RC-preferred
+     weak field e_N = 0.008 the plateau is 6.54e11 and still below it.
+
+  5. THE ANISOTROPY IS THE REAL CAVEAT, AND IT IS NOT SMALL AT LARGE RADIUS.  The angle average converges
+     (1.06 from 80 to 150 kpc) while the PARALLEL direction diverges (2.7x):
+     along the field the external acceleration itself is credited to the Galaxy.  A spherical Jeans
+     analysis is therefore unbiased only for an ANGLE-ISOTROPIC tracer sample; at 80 kpc the parallel and
+     perpendicular readings differ by 58 and 1 per cent.  That is a test for DR4
+     (split the halo tracers by angle to the Local Group's field), and it is the same azimuthal channel
+     hunt item 81 priced at 0.3-1.4 per cent on the rotation curve.
+
+  6. HONEST LIMITS.  This is QUMOND (the algebraic kernel); h34's own AQUAL solve finds the algebraic boost
+     ~15 per cent HIGH, so the EFE suppression computed here is, if anything, understated and the plateau
+     correspondingly overstated.  The external field is uniform and static, and the LMC's contribution to it
+     is neglected.  The amplitude A remains a nuisance, not a derivation.  kappa = 1/2 stays FITTED.
+
+G239 COMPLETE: 8/8 checks PASS.
