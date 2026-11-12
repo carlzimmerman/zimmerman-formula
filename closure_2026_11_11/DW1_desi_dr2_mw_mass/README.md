@@ -35,6 +35,12 @@ For comparison, the paper's own zero-parameter NFW (M200c = 1.19×10¹², c = 12
 (rms 4.5%) on the same table: **this data set cannot distinguish the two shapes**, and the framework does
 not need it to.
 
+**Kernel diagnostic (post-hoc; the frozen criteria named no kernel).** The same 13 points on a0kit's
+Milgrom form `ν = √(1+1/y)` demand `A = 1.59` (canonical) / `1.35` (alt) — 6.1σ / 3.8σ *more* amplitude than
+the rotation curve does. So the two-dataset agreement above is a **Route A** result, and the Milky Way is
+now a kernel discriminator: Route A passes both lever arms with one amplitude, the a0-line form cannot.
+Both kernels still pass the absolute 80 kpc mass (−1.94σ / −0.89σ for Milgrom).
+
 **Verdict: PASS on the enclosed mass profile (DW1a–DW1d, DW1f: 5 checks), FAIL on the extrapolated
 M200c (DW1e).**
 
@@ -52,7 +58,11 @@ M200c (DW1e).**
    `A = 1.36–1.50` with 7% rms. The profile therefore prefers a *weak* external field — the same direction
    as the rotation-curve fit (item 35, `e_N = 0.000 [0, 0.008]`) and the LMC bound (item 37,
    `g_ext < 0.067 a₀`). The number under pressure is the large-scale-structure estimate of `g_ext`, not `a₀`.
-4. **The falsifier has a radius and a size.** The framework says the mass is flat at ≈6.3×10¹¹ M☉ (A=1) to
+4. **A kernel discriminator falls out.** The framework's two registered kernels are not degenerate under
+   the MW's two independent lever arms: Route A (ν = 1/(1−e^{−√y})) fits both with one amplitude, the
+   a0kit/Milgrom form needs 30% more baryons for the mass profile than the rotation curve will give it.
+   This is a post-hoc question the frozen criteria did not contain, and it is reported as such.
+5. **The falsifier has a radius and a size.** The framework says the mass is flat at ≈6.3×10¹¹ M☉ (A=1) to
    ≈8.3×10¹¹ (A*) beyond `r_EFE ≈ 90–100 kpc`. The paper's own NFW extrapolation gives 9.65×10¹¹ at 150 kpc
    and 11.35×10¹¹ at 200 kpc: a 54% / 81% split, i.e. 7σ / 10σ at the paper's 8% precision. DESI DR3 or
    4MOST with halo tracers at 150–200 kpc settles it.
