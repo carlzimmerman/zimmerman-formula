@@ -41,6 +41,13 @@ dynamical-modeling methods, mock-calibrated; joint `M(r<80 kpc) = 6.36 (+0.53/âˆ
 >    frozen but FRAGILE, failing low against the satellite and globular-cluster masses beyond 150 kpc
 >    (median pull -2.72); the no-field reading passes both tracer classes.
 
+> **NOTE 2026-11-12, after this result: owner decision on the external field** (`campaign_fresh_gravity/OWNER_DECISION_2026-11-12_EXTERNAL_FIELD_READING.md`).
+> The owner adopted the actual-field reading of the Milky Way's external field. The field cases in this
+> file use the record's earlier reading (e_N = 0.01273 inside the kernel as a Newtonian source). Under the
+> adopted reading e_N is 0.000160 (canonical) / 0.000110 (alt), the field takes over near 800 kpc, and
+> inside 300 kpc the line is the no-field case. The external-field rows, the plateau and the M200c comparison in this README belong to the earlier reading; the no-field rows are the framework's.
+> See `closure_2026_11_12/EFC1_external_field_convention/RESULT.md`. The frozen labels stand as frozen.
+
 ## Why this is the framework's own quantity
 
 The framework has no dark-matter particle. The "dark mass" is the stressâ€“energy of the same scalar whose

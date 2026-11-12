@@ -1,5 +1,12 @@
 # MWJ1 RESULT: one reading of the Milky Way passes every data set at once
 
+> **NOTE 2026-11-12, after this result: owner decision on the external field** (`campaign_fresh_gravity/OWNER_DECISION_2026-11-12_EXTERNAL_FIELD_READING.md`).
+> The owner adopted the actual-field reading of the Milky Way's external field. The field cases in this
+> file use the record's earlier reading (e_N = 0.01273 inside the kernel as a Newtonian source). Under the
+> adopted reading e_N is 0.000160 (canonical) / 0.000110 (alt), the field takes over near 800 kpc, and
+> inside 300 kpc the line is the no-field case. The adopted field (0.00016 / 0.00011) lies inside the window at census baryons; the label's WEAKER FIELD is then the adopted field itself.
+> See `closure_2026_11_12/EFC1_external_field_convention/RESULT.md`. The frozen labels stand as frozen.
+
 2026-11-12. Criteria `FROZEN_CRITERIA.md` (b1235e89cd), committed alone before the script. A post hoc
 consolidation: every input had been seen (NMB1, PLT1, the rotation-curve fit of hunt item 35). TEST
 lane. Adopts nothing. Relabels no other lane. kappa = 1/2 FITTED; not theory closed.

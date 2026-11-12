@@ -218,6 +218,21 @@ existed. The forward items across these files:
 | June 2027 | Euclid calibrated shear (SP1, SP2, lensing RAR) |
 | 2027 | DESI DR3; JUNO |
 
+## Addendum, 2026-11-12, after the owner's decision on the external field
+
+The owner adopted the actual-field reading of the Milky Way's external field
+(`campaign_fresh_gravity/OWNER_DECISION_2026-11-12_EXTERNAL_FIELD_READING.md`; lane EFC1). Rows above
+are left as written; they read differently now:
+
+- **Row 32 (Milky Way mass plateau) and 38b (mass stops at 5.07e11 beyond 71 kpc):** both are numbers
+  of the earlier reading, in which an all-matter acceleration was used as a Newtonian source. Under the
+  adopted reading there is no plateau inside 300 kpc; the line keeps rising (13.7 / 15.0e11 at 200 kpc)
+  and passes the published outer masses with census baryons. As predictions of a plateau they are
+  RETIRED BY THE READING rather than failed or confirmed; row 32's first-registered kill would now fire
+  on the framework's own line.
+- **38a (mass at 73 kpc):** unchanged; it was a no-field number.
+- The count of entries by class above is not revised.
+
 ## Method and limits
 
 - Section 1 was read by the lead. Sections 2 to 5 were read by four parallel readers, each told to
