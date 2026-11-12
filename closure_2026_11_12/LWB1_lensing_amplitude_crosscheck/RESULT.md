@@ -36,7 +36,6 @@ covariance with cross-survey terms) plus 10 wp points (r_p 5.9 and 14.8, jackkni
   value is 0.794 +- 0.023. That passes the frozen wide tolerance (0.088) but is 2.2 of this pipeline's widths low. So
   part of the DES / K+D deficit belongs to the method or the large-scale data (linear bias, R >= 8, no point mass), not to
   form B. Read the DES and K+D TENSION rows with this in mind.
-- **Footings agree** to <= 0.03 widths everywhere. They differ only in the target (0.8121 / 0.8120) and in R_tot.
 
 ## 3. Brackets (reported, not graded; canonical J, alt within 0.04 widths)
 
@@ -57,8 +56,7 @@ primary's consistency depends on the 8-12 h^-1 Mpc bins carrying linear bias wit
 
 ## 4. Known answers (A1 run; all pass)
 
-- **KA1** transforms: wp 0.22 %, Delta Sigma 0.08 % (run 1: wp 1.72 %, FAIL; see AMENDMENT_A1).
-- **KA2** normalisation: sigma8 0.81213 / 0.81197 equals the target.
+- **KA1** transforms: wp 0.22 %, Delta Sigma 0.08 % (run 1: wp 1.72 %, FAIL; AMENDMENT_A1). **KA2** sigma8 normalisation exact.
 - **KA3** cross-component null (fraction of the E-mode template): KiDS +0.056 +- 0.041, DES +0.000 +- 0.040, HSC +0.003 +-
   0.018, J +0.009 +- 0.016. All within 3 sigma.
 - **KA4** blinding-slope check, survey/DES ratio in ln R: KiDS +0.010 +- 0.028, HSC +0.010 +- 0.025. No residual slope
@@ -87,9 +85,6 @@ reads above the target. The lenses, the lens-source geometry and the wp bias cal
 - Not checked: nonlinear or stochastic bias (r_cc = 1 assumed); projection over the lens n(z) (single z_eff); intrinsic
   alignments and the source-redshift trend the paper reports; boost factors; HSC-Y1 and SDSS sources; LRG3; the
   fiducial-distance difference (Planck18 data, Omega_m 0.310 against form B's 0.315); the realisation noise of BX1 pair A
-  (N(k) used as is). Footings never pooled.
-
-Files: FROZEN_CRITERIA.md (f4b3128cc1), AMENDMENT_A1.md (3f7cfa2127), lwb1.py, lwb1_grade.py, lwb1.json/.out,
-lwb1_asfrozen_run1.json/.out, lwb1_MUTATE_MU{1,2,3}.json/.out, lwb1_mutate_grade.json/.out.
+  (N(k) used as is). Footings agree to <= 0.03 widths and are never pooled.
 
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
