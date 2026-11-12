@@ -1,3 +1,7 @@
+> **Forward correction, 2026-11-12:** The projection, beam, flux units and universal detectability/shape conclusions below are superseded by [the corrected calculation](../../research_closure_2026_11_12/combined_route/gas_corrections/RESULT.md). The original body and frozen criteria remain historical. The corrected model and its outputs are in `correction_2026_11_12/` beside this file; the original script and outputs are unchanged. No guaranteed 100-sigma detection or universal mass-conservation exclusion is established.
+>
+> *Audit note, 2026-11-12 (lead session):* this notice was written by another session and is committed here on the owner's instruction after an independent check, `reviews/codex_corrections_audit_2026_11_12/C4_gas_signal_and_combined_route.md` (grade: CORRECT). The auditor recomputed the signal independently in SI on both footings and matched the corrected numbers to four digits. The folder `research_closure_2026_11_12/` it links to was not committed with it, so those links may not resolve; the audit file is the checked record. The committed text, labels and outputs below this notice are not edited by this commit.
+
 # FINAL5 — the decisive observation: is the fixed column `Sigma_gas = a0/(pi G x_b^2)` there?
 
 Observing proposal. Criteria frozen in `FROZEN_CRITERIA.md` (committed alone, before any script or
