@@ -1,0 +1,34 @@
+# CT7 FROZEN CRITERIA: candidate C (CFG911 N6 Planck-stiff quintessence portal inside v3s)
+
+Written before any CT7 number was computed. A go to GRADE under owner decision D1 (2026-11-04), not an adoption: nothing here is adopted, the cold sector retired on 2026-11-01 is not reinstated, no particle. kappa = 1/2 FITTED; not theory closed. Nothing here says the data favour the framework. Footings canonical 9.3603e-11 and alt 1.1312e-10 m/s^2, never pooled. Commit nothing (the parent commits).
+
+## Sources read (record, read-only)
+- `complete_theory_2026_11_04/CT_GATES_COMMON.md` (gates G0-G7), `CT1_action/CT1_REPORT.md` (candidate C, lines 29, 69-72, 76-86), `CT2_local_gravity/CT2_REPORT.md` (lines 7, 41, 47-61, 85, 114).
+- `campaign_fresh_gravity/CFG911_kappa_constructive_coupling/` (criteria 1ff4510ee, result 36a18db2ef): N6 is defined at `FROZEN_CRITERIA.md:124` as a0(phi)^2 = xi G V(phi), with H_phi at `:51` (canonical phi, phi_P^2 = c^4/(8 pi G), slope lambda = phi_P V'/V = O(1)). Its local numbers are `cfg911.out:203-206`.
+- `covariant_push_2026_10_22/V3_FULL_PICTURE.md:23-37` (the v3s action, J_x, gamma_L = K L*^2/2), `:45-53` (static limit = AQUAL with simple mu, law S).
+- `rebuild_2026_10_22/C6P_cassini_high_precision/README.md:19-24` (Cassini, planets, gamma for v3s).
+- Backgrounds: DESI DR2 CPL pairs from `fable_independent_2026/L273_desi_a0z_band.py:25` (B1 DESY5 -0.752/-0.86, B1p Pantheon+ -0.838/-0.62, B1u Union3 -0.667/-1.09), and the A29 stand-ins B2 (-0.9, -0.1), B3 (-0.95, +0.35), B4 (-1.1, +0.3) as listed in `qwen_claude_field_theory/papers_2026/LCDM_FRIED_CHICKEN/FROZEN_A29.md:13-20`. That folder is quarantined: only the background definitions are reused (read, not imported); nothing from it is cited as framework evidence. Om0 0.315, H0 67.4, flat, as A29.
+
+## The action graded (candidate C)
+S = (c^3/16 pi G) ∫ sqrt(-g) [R - 2 J(Y; a0(phi)) + 2 K(Q)] - (gamma_L/2) ∫ sqrt(-g) [max(D.P, 0)]^2 + ∫ sqrt(-g) [-(1/2)(d phi)^2 - V(phi)] + S_m[g, matter]
+- J = -2 a_geo^2 [u - ln(1 + u)], a_geo = a0(phi)/c^2, u = sqrt(Y)/a_geo; the bare Lambda inside v3s's J_x is set to 0, so all dark energy is phi.
+- Portal (CFG911 N6, unchanged): a0(phi)^2 = xi G V(phi). phi is minimally coupled to the metric and does not enter S_m.
+- Report-only variant C' (not the candidate; disclosed because CT1's running law is the energy-portal law): a0^2 = xi G T^phi_{mu nu} n^mu n^nu, the energy density in the khronon frame n. Graded at G0 only.
+
+## Gates (fastest death first; stop at the first FAIL)
+- **G0 health.** (a) DOF: v3s's 3 plus phi = 4; no derivative of phi enters J (check symbolically). (b) FRW: the quadratic action of the khronon about Y = 0 must not depend on a0 (so phi decouples from khronon perturbations at quadratic order): d^2 J/dY da0 at Y -> 0 equals 0. (c) Static backgrounds: the J term gives delta phi a mass m^2 = -d^2 L_J/d phi^2 of either sign; PASS iff |m| R <= 0.1 for the region R where the source sits, for: Sun (g at 1 AU, R = 100 AU), MW (g = a0, R = 30 kpc), cluster (g = a0, R = 1 Mpc), neutron star (g = 1e12 m/s^2, R = 10 km), at lambda = 10 (envelope). (d) Realisable backgrounds: a canonical phi has w >= -1 at all times; a background with w < -1 anywhere is labelled NOT REALISABLE (a statement about the candidate, reported at G3, not a G0 fail). (e) W4b: inherited status from CT2:7 (UNDECIDED); reported, not graded. G0 PASS iff (a)-(c) hold; the label carries "conditional on W4b".
+- **G1 weak field.** Symbolically: the v3s J term plus R gives AQUAL with mu = x/(1+x) (law S), independent of how a0 is set; then numerically, with a0 -> a0 (1 + delta), delta = the largest G2 local delta ln a0 at lambda = 10, max |log10 g_obs - log10 g_law| <= 0.01 dex over 1e-12 < g_b < 1e-8 m/s^2, both footings. The mu_K^2 psi term and r < L* stiffness are v3s's own (inherited, not graded here; reported).
+- **G2 local constancy.** delta ln a0 = (G lambda^2 / 2 c^4) ∫ q(x')/|x - x'| d^3x', q = a0 dL_J/da0 at fixed khronon gradient, recomputed in this lane's own code from the v3s J (not imported from CFG911), point masses, both footings. Systems: void (0), field (MW 6e10 Msun at 8 kpc), cluster (1e14 Msun at 1 Mpc), plus Sun 1 AU, Earth surface. Second channel (order of magnitude, labelled): the cosmological quintessence perturbation sourced by the metric potential, delta phi/phi_P ~ 2 lambda Phi * 3 Omega_DE (a H r / c)^2 with Phi = 1e-4, r = 1 Mpc. PASS iff max |delta log10 a0| between any two environments <= 0.015 dex at lambda = 10.
+- **G3 tie.** (a) Symbolic: derive d ln a0/d ln a for the N6 portal from the canonical field equations and compare with CT1's claim -(3/2)(1+w). (b) In each background compute a0(z)/a0(0) = sqrt(V(z)/V0), V = rho (1 - w)/2. Plus one field-equation background: V = V0 exp(-lambda phi/phi_P), lambda = 1 (the O(1) of CFG911 H_phi, not tuned), phi at rest at z = 1e3, V0 set so Omega_DE0 = 0.685 (H0 67.4, Om0 0.315, radiation omitted). (c) Lines, per realisable background: GT |log10[a0(z)/a0(0)] - 0.5 log10[rho_DE(z)/rho_DE0]| <= 0.05 dex at z 1, 1.5, 2.33; least-squares slope s of ln a0 on ln rho_DE over z {0, 1, 1.5, 2.33}, |s - 0.5| <= 0.01, measurable iff the ln range of rho_DE over those z is >= 0.1 (A29's rule), else "not measurable" and the local exponent at z = 0 is reported. G3 PASS iff (c) passes in every realisable measurable background. Non-realisable backgrounds are reported formally (the phantom stretch would need a ghost). (d) What fixes kappa: kappa^2 = xi by inspection; rename test (does the theory stay consistent for every xi?).
+- **G4 local gravity.** Inherits C6P (Q2 >= 2.80e7 / 3.30e7 inside Park, Mars 0.173, gamma = 1) and W4a (c_T: |dv/c| <= 5.1e-32) iff every new contribution from phi is <= 1e-3 of each bound: Sun delta ln a0, a fifth force on baryons (none at tree level: phi not in S_m), tensor speed (phi minimally coupled). If the candidate stopped earlier, G4 is still reported, labelled REPORT ONLY (the parent asked for it).
+
+## Hand-set constants to count
+xi (kappa^2 = xi), V(phi)'s shape (lambda) and amplitude V0, phi's initial condition, L* (v3s), mu_K (v3s, free), the dust abundance (v3s initial condition), J_x's form (postulated).
+
+## Hand expectations (worked by hand before freezing; disclosed)
+- For the V portal, d ln a0/d ln a = -(3/2)(1+w) - w'/(2(1-w)) with w' = dw/d ln a, so CT1's law is exact only for constant w (it is CFG911's energy-portal law, N1).
+- B2 least-squares slope about 0.59, B3 about 0.40: G3 slope FAIL expected; GT within 0.05 dex expected to pass in B2, B3. B1, B1p, B1u, B4 cross w = -1: NOT REALISABLE.
+- C' (energy portal in the khronon frame): the gradient coefficient of phi becomes -(1 - q/2 epsilon_DE), negative where h(g/a0) > 8 pi / kappa^2 (g >~ 100 a0): gradient instability in every star and in the Solar System, so C' fails G0.
+- G0, G1, G2 pass by large margins; kappa not derived (TRADE).
+
+kappa = 1/2 FITTED; not theory closed.

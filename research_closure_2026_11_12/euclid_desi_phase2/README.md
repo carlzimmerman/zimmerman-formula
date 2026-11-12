@@ -1,6 +1,6 @@
 # Euclid/DESI phase 2: beyond the first nuisance-cancellation construction
 
-12 November 2026. **Active research checkpoint.** Continues the [first release review and derivations](../euclid_desi_release_review/HANDOFF.md) under the user's instruction to pursue the clues aggressively. The precise target, ancestry and route ownership are in [CONTRACT.md](CONTRACT.md).
+12 November 2026. **Completed bounded research checkpoint; the full theory remains open.** Start with the [synthesis and Claude handoff](HANDOFF.md). This continues the [first release review and derivations](../euclid_desi_release_review/HANDOFF.md) under the user's instruction to pursue the clues aggressively. The precise target, ancestry and route ownership are in [CONTRACT.md](CONTRACT.md).
 
 ## Results already checked
 
@@ -11,9 +11,13 @@
 4. **Even a fixed identical coupling coefficient cannot separate density and potential from background histories alone.** An explicit positive family assigns different dust-like amounts to matter and the scalar while preserving both histories. [Fixed-coefficient counterexample](portals/FIXED_COEFFICIENT_ADDENDUM.md).
 5. **Growth supplies a conditional third observable.** Under a specified GR + smooth-dark-energy perturbation closure, a derivative-free integral relation identifies the matter coefficient while profiling the unknown initial growth amplitude. It breaks that background ambiguity. It requires latent between-bin functions, measurement windows and joint covariance; no DESI growth pass has been established. [Derivation and independent symbolic audit](portals/GROWTH_IDENTIFIABILITY_AUDIT.md).
 
-## Work still active
+6. **A changed kernel escapes the old kinetic-mixing failure on a declared background class.** For mu=1-(1+2x)^(-1/2), the exact sufficient bound 1+w<=50/81 makes K_lock>=1. The coupled leading PN kinetic block is positive at all angles under its specified assumptions. Independent derivation and 1,080 high-precision matrix fixtures support that limited result; full constraints, screening, metric-cone causality and empirical force-law tests remain open. [Theory derivation](theory/THEORY_CHECKPOINT.md), [finite results and preserved failures](theory/RESULT.md), [independent audit](theory/THEORY_INDEPENDENT_AUDIT.md).
+7. **The information shortage persists across all 175 SPARC templates at the frozen baseline.** None contains a radius passing the illustrative gas-dominated transition cut; none reaches the ideal single-galaxy 0.05-dex quotient marker. This does not rule out ensemble information or other source normalizations. [Full scan](target_scan/REPORT.md), [independent recomputation](target_scan/SCAN_INDEPENDENT_AUDIT.md).
 
-- Independently audit a changed interpolation kernel's coupled principal kinetic matrix; then test its screening, local scalar response and observational obligations.
-- Search the existing full SPARC templates for the gas/transition information missing from our three development cases, using fixed design criteria rather than gravity-law residuals.
+## Next decisive implications
+
+- Solve the changed action's screened background and full constrained perturbations; evaluate local scalar alignment and actual force-law gates on that solution.
+- Obtain independently constrained resolved gas, geometry and dynamics where nuisance-projected transition response is informative.
+- Validate the candidate's growth closure and actual joint observable likelihood before combining it with DESI geometry.
 
 No all-gate theory, empirical validation, calibrated exclusion or broad novelty claim is made. The user-authorized publication branch remains codex/euclid-desi-review-2026-11-12; the shared working checkout is preserved through an isolated Git index. Phase-1 historical results and seals remain unchanged.
