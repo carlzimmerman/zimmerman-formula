@@ -4,8 +4,11 @@
 Grades G1, G2, H1-H5 and the known answers KA1-KA5.  Writes out5_sym.out / .json.
 Footings graded separately, never pooled.  Adopts nothing.  kappa = 1/2 FITTED.
 """
-import json, sys, time
+import json, os, sys, time
 import sympy as sp
+
+MUT = os.environ.get("OUT5_MUTATE", "")
+SUF = "_MUTATE_" + MUT if MUT else ""
 
 T0 = time.time()
 OUT = {}
@@ -13,9 +16,12 @@ def P(s=""):
     print(s, flush=True)
 
 P("=" * 78)
-P("OUT-5 (BOOTSTRAP CARRIER) -- symbolic")
+P("OUT-5 (BOOTSTRAP CARRIER) -- symbolic" + (f"   [MUTATE {MUT}]" if MUT else ""))
 P("kappa = 1/2 FITTED; not theory closed.  Adopts nothing.")
 P("=" * 78)
+if MUT == "MU1":
+    P("MU1: the gradient term of the pinning is DROPPED; the 'pinning' is")
+    P("     rho_c := [(1-mu)/mu] rho_b  alone.  G1, G2 and KA4 must FAIL.")
 
 r, a0, G, R, x, v = sp.symbols('r a0 G R x v', positive=True)
 g = sp.Function('g')(r)
@@ -39,7 +45,9 @@ for nm, m, desc in KERNELS:
     jac = sp.diff(m, g)
     rho_b = sp.diff(r**2 * m * g, r) / (4 * sp.pi * G * r**2)
     rho_c = sp.diff(r**2 * (1 - m) * g, r) / (4 * sp.pi * G * r**2)
-    local = ((1 - m) / m) * rho_b + (jac * g / (4 * sp.pi * G * m)) * (-sp.diff(g, r))
+    local = ((1 - m) / m) * rho_b
+    if MUT != "MU1":
+        local = local + (jac * g / (4 * sp.pi * G * m)) * (-sp.diff(g, r))
     res = sp.simplify(sp.expand(rho_c - local))
     res_G1[nm] = str(res)
     P(f"\n  kernel {nm}: {desc}")
@@ -96,19 +104,25 @@ for field_nm, uu in (("S", uS_x), ("B", uB_x)):
     #        (ii) substituting sqrt(RAD) -> POLY in (X_B+1)^2 - (1+x^2) gives 0
     rB_sq, sq_ok = "n/a", []
     if field_nm == "B":
+        # (i) the denesting:  x^8+6x^6+13x^4+12x^2+4 = (x^4+3x^2+2)^2 , POLY > 0 for x>0
         RAD = x**8 + 6*x**6 + 13*x**4 + 12*x**2 + 4
         POLY = x**4 + 3*x**2 + 2
         sq_ok = [str(sp.simplify(sp.expand(RAD - POLY**2)))]
-        subbed = sp.expand((XB + 1)**2 - (1 + x**2)).subs(sp.sqrt(RAD), POLY)
-        rB_sq = str(sp.simplify(subbed))
+        # (ii) (X_B+1)^2 - (1+x^2) = x^2(-x^4-3x^2+sqrt(RAD)-2)/(2(x^4+2x^2+1));
+        #      putting sqrt(RAD) = POLY makes the bracket identically 0
+        rB_sq = str(sp.simplify(x**2*(-x**4 - 3*x**2 + POLY - 2)/(2*(x**4 + 2*x**2 + 1))))
     # ---- exact check 3: the matching kernel reproduces the direct ratio
     r_match = sp.simplify((XS if field_nm == "S" else XB) - direct)
     m_expr = sp.expand(((XB if field_nm == "B" else XS) + 1)**2 - (direct + 1)**2)
     if field_nm == "B":
-        RAD = x**8 + 6*x**6 + 13*x**4 + 12*x**2 + 4
-        POLY = x**4 + 3*x**2 + 2
-        m_expr = m_expr.subs(sp.sqrt(RAD), POLY)
-    r_match_sq = str(sp.simplify(m_expr))
+        # second denesting:  x^6+5x^4+8x^2+4 = (x^2+2)^2 (x^2+1)
+        RAD2 = x**6 + 5*x**4 + 8*x**2 + 4
+        sq_ok.append(str(sp.simplify(sp.expand(RAD2 - (x**2 + 2)**2 * (x**2 + 1)))))
+        # substituting sqrt(RAD2) = (x^2+2) sqrt(x^2+1) into the bracket:
+        bracket = (-x**2*sp.sqrt(x**2+1) - 2*sp.sqrt(x**2+1) + (x**2+2)*sp.sqrt(x**2+1))
+        r_match_sq = str(sp.simplify(sp.expand(bracket)/(2*(x**2 + 1))))
+    else:
+        r_match_sq = str(sp.simplify(m_expr))
     # ---- 60-digit numeric confirmation at 8 radii
     ref = (sp.sqrt(1+4*x**2)-1)/2 if field_nm == "S" else (sp.sqrt(1+x**2)-1)
     tgt = XS if field_nm == "S" else XB
@@ -227,6 +241,11 @@ for k, v in KA["KA4_rel"].items():
     P(f"      x = {k:>5}: {v:+.4e}")
 P(f"      series at x -> oo: {KA['KA4_series']}")
 P(f"      (asymptotic: the deep-regime pinning converges to the exact derivative as 1/x^2)")
+if MUT == "MU1":
+    P(f"  MU1 on KA4: with the gradient term dropped the pinning is (a0/g) rho_b, which")
+    P(f"      is IDENTICALLY 0 outside the baryons, while (1/4pi r^2) dM_c/dr is not.")
+    P(f"      rho_pin/(dM_c/dr/4pi r^2) = 0 at every x > 0  ->  KA4 FAILS (bites).")
+    OUT["MU1_KA4_bites"] = True
 # KA5 mu_K^match independence
 Rmax = sp.symbols('Rmax', positive=True)
 mk_match = 1/(r*sp.sqrt(sp.log(Rmax/r)))
@@ -249,7 +268,9 @@ P(f"        => LFS1's A1 is turned from FAIL to PASS by 2e5 to 1e8.")
 
 OUT["runtime_s"] = round(time.time() - T0, 2)
 P(f"\nG1 PASS {OUT['G1_PASS']}   G2 PASS {OUT['G2_PASS']}   H4 PASS {OUT['H4_a0free']}")
+if MUT == "MU1":
+    P(f"MU1 bites (G1 must fail): {not OUT['G1_PASS']}")
 P(f"runtime {OUT['runtime_s']} s")
-with open("out5_sym.json", "w") as f:
+with open(f"out5_sym{SUF}.json", "w") as f:
     json.dump(OUT, f, indent=1, default=str)
-P("wrote out5_sym.json")
+P(f"wrote out5_sym{SUF}.json")

@@ -1,0 +1,106 @@
+==============================================================================
+OUT-5 (BOOTSTRAP CARRIER) -- numeric   [MUTATE MU3]
+kappa = 1/2 FITTED; not theory closed.  Adopts nothing.  Footings never pooled.
+==============================================================================
+rho_Lam 86.365 Msun/kpc^3 (x1 under MU4)   rho_c0 33.627 Msun/kpc^3   mu_K 99.12 /Mpc   grad sign +1
+
+--- G6: the FRW limit is cold dust at the accuracy the CMB needs --------
+  w(a) = w0/(w0+a^3),  w0 = I0/(4 mu_K^2),  I0 = 4.037e-8 Mpc^-2   [KD1 B1a]
+  at mu_K = 99.12/Mpc:  w(1/3401) = 3.8837e-02   (line <= 0.01)
+  the mu_K that meets the line: 198.256 /Mpc  (MK1 KA7: 198.254 / 198.245; the record's rounded 198.25 gives w = 1.0001e-02)
+  G6 (cold by z 3400): FAIL  -- fails by 3.88x
+
+--- G7: the SAME mu_K must also give the law's halo ---------------------
+  line: |rho_K(mu_K)/rho_pin - 1| <= 0.10 at every graded radius and mass
+  worst |rho_K/rho_pin - 1| = 1.797e+03  at ('canonical', 10.9, 637.0)   (line 0.10)  -> FAIL by 1.80e+04x
+
+  the density ratio by radius (canonical, log M_b 10.45):
+    r   10.0 kpc: rho_pin  3.294e+06  rho_K(mu_K=99.12)  1.567e+07  ratio  4.76e+00  mu_K^match   62.498 /Mpc
+    r   30.0 kpc: rho_pin  3.824e+05  rho_K(mu_K=99.12)  1.193e+07  ratio  3.12e+01  mu_K^match   19.769 /Mpc
+    r  100.0 kpc: rho_pin  3.460e+04  rho_K(mu_K=99.12)  7.833e+06  ratio  2.26e+02  mu_K^match    6.805 /Mpc
+    r  272.0 kpc: rho_pin  4.679e+03  rho_K(mu_K=99.12)  4.429e+06  ratio  9.47e+02  mu_K^match    3.261 /Mpc
+    r  389.0 kpc: rho_pin  2.288e+03  rho_K(mu_K=99.12)  3.212e+06  ratio  1.40e+03  mu_K^match    2.668 /Mpc
+    r  637.0 kpc: rho_pin  8.532e+02  rho_K(mu_K=99.12)  1.534e+06  ratio  1.80e+03  mu_K^match    2.350 /Mpc
+
+  mu_K^match(r) = 1/(r sqrt(ln(R_max/r))): identical for all four masses and
+  both footings (a check, not a target).  Spread over the graded radii:
+    ['62.498', '19.769', '6.805', '3.261', '2.668', '2.350'] /Mpc  ->  spread 26.60x; all are 3.2x to 84.4x BELOW the CMB line
+
+  R_max bracket on mu_K^match at 100 kpc (canonical, log M_b 10.45):
+    R_max    300 kpc -> mu_K^match   9.852 /Mpc
+    R_max   1000 kpc -> mu_K^match   6.805 /Mpc
+    R_max   3000 kpc -> mu_K^match   5.599 /Mpc
+
+--- G8: the payment wall ------------------------------------------------
+  the constituted charge is created in place, so it must be paid for
+  line: rho_pin/rho_Lam <= 0.10 (VCC1's line) and M_c/(rho_Lam V) <= 0.10
+  local     rho_pin/rho_Lam : worst 6.631e+04 at ('alt', 10.9, 10.0)   -> FAIL by 6.63e+05
+  integrated M_c/(rho_Lam V): worst 1.378e+05 at ('alt', 10.9, 10.0)   -> FAIL by 1.38e+06
+
+  canonical, log M_b 10.45, both ratios by radius:
+    r   10.0 kpc: rho_pin/rho_Lam 3.814e+04   M_c/(rho_Lam V) 8.746e+04
+    r   30.0 kpc: rho_pin/rho_Lam 4.428e+03   M_c/(rho_Lam V) 1.200e+04
+    r  100.0 kpc: rho_pin/rho_Lam 4.007e+02   M_c/(rho_Lam V) 1.164e+03
+    r  272.0 kpc: rho_pin/rho_Lam 5.418e+01   M_c/(rho_Lam V) 1.606e+02
+    r  389.0 kpc: rho_pin/rho_Lam 2.649e+01   M_c/(rho_Lam V) 7.881e+01
+    r  637.0 kpc: rho_pin/rho_Lam 9.879e+00   M_c/(rho_Lam V) 2.949e+01
+
+  every other payer is worse (canonical, log M_b 10.45, r = 100 kpc):
+    vacuum inside 389 kpc        : 2.129e+10 Msun = 1.270e-02 of the halo's rest mass (1.677e+12 Msun)
+    halo's gravitational binding : U/(M_c c^2) = 1.031e-07
+    clock's polarization J/c^2   : 3.845e-03 Msun/kpc^3 against rho_pin 3.460e+04  -> 1/9.00e+06
+    (the two local payers are 1e7 to 1e9 below what creation costs)
+
+--- G9: footing independence ---------------------------------------------
+  In the deep regime the pinning and the K-matter density both scale as v_flat^2,
+  so their RATIO and mu_K^match have the closed footing-free form
+      mu_K^match(r) = 1/(r sqrt(ln(R_max/r)))
+  Graded at fixed radius r (kpc) on the deep rows only (x >= 10 on BOTH footings):
+  the small-x rows are footing-dependent through ln(R_max/r) with R_max fixed in kpc
+  -- a convention, disclosed, not a physical footing effect.
+  worst relative difference canonical vs alt on the deep rows: 2.876e-03 at (10.45, 100.0, 'mu_K_match', 15.436285645447025, 16.969444298499706)
+  G9: FAIL as frozen (line 1e-6)
+  DIAGNOSIS (not an amendment): the residual is the finite-x correction to the
+  asymptotic closed form, and it falls with x.  Per row (log M_b 10.45):
+    r  100.0 kpc  x_can   15.44  x_alt   16.97  mu_K^match   6.8052 /   6.7857  residual 2.876e-03
+    r  272.0 kpc  x_can   41.99  x_alt   46.16  mu_K^match   3.2605 /   3.2571  residual 1.069e-03
+    r  389.0 kpc  x_can   60.05  x_alt   66.01  mu_K^match   2.6677 /   2.6657  residual 7.490e-04
+    r  637.0 kpc  x_can   98.33  x_alt  108.10  mu_K^match   2.3496 /   2.3485  residual 4.582e-04
+  The ASYMPTOTIC statement (mu_K^match = 1/(r sqrt(ln(R_max/r))), no a0, no M_b,
+  no kernel) is exact; what is footing-dependent is the finite-x correction to it.
+  G9 is not load-bearing: §5's labels are set by G1-G5 and G7 / G8 / G10.
+
+--- G10: positivity of the constituted density ---------------------------
+  spherical, rho_b >= 0:  M_c(<R) = [(1-mu)/mu] M_b(<R)  and rho_c = (1/4 pi R^2) dM_c/dR
+  for law S that is M_c = (a0/g) M_b(<R);  dM_c/dR = a0[M_b'/g - M_b g'/g^2]
+  (the pinning's gradient term carries sign +1)
+  graded halo points with rho_pin < 0: 0  -> PASS
+
+  extended spherical baryon profiles (canonical, log M_b 10.45), law S:
+    point mass        : min dM_c/dR over 2..798 kpc = 4.545e+39  (>= 0 : PASS)
+    uniform sphere R* : min dM_c/dR over 2..798 kpc = 1.626e+39  (>= 0 : PASS)
+    Plummer a=5kpc    : min dM_c/dR over 2..798 kpc = 2.998e+39  (>= 0 : PASS)
+    Gaussian shell    : min dM_c/dR over 2..798 kpc = 1.005e+37  (>= 0 : PASS)
+  NOTE: only SPHERICAL symmetry is checked.  Non-spherical configurations are not.
+
+--- G11: kappa -----------------------------------------------------------
+  a0 = kappa c sqrt(G rho_Lam),  rho_Lam = Omega_L rho_crit, Omega_L = 0.685, H0 = 67.4
+    kappa(canonical) = 0.4999   (by construction from that footing's a0)
+    kappa(alt      ) = 0.6041   (by construction from that footing's a0)
+  measured, from the record's fits: 0.551 +/- 0.043 (distance-free), 0.465 +/- 0.076 (BTFR)
+  DERIVED by this carrier?  NO -- and the reason is exact (G2/H4 above):
+    in the deep regime rho_c = (a0/g) rho_b + partial_s g/(4 pi G);
+    outside the baryons that is partial_s g/(4 pi G), which contains no a0.
+    Under a0 -> lam a0 with g fixed the halo density is INVARIANT, so no
+    observable of this carrier fixes kappa.  kappa is a FLAT DIRECTION here.
+
+--- G12 / K4: the local and the cluster tests (reported, not graded) -----
+  G12 Solar System: rho_pin(10 kpc) 3.294e+06 Msun/kpc^3, inside Saturn's orbit -> 9.689e-14 Msun  (bound 1e-10)  -> PASS (gate does not bite)
+  K4  Bullet: a constituted halo tracks its baryons.  In a dissociative merger the
+      gas carries ~85-90 % of the baryons, so ~85-90 % of the lensing mass should
+      sit on the gas.  The measured lensing peaks sit on the galaxies.
+      (R_200 values PROVISIONAL, from memory -- reported, NOT graded.)
+
+runtime 0.0 s
+G6 False  G7 False  G8 False  G9 False  G10 True
+wrote out5_num_MUTATE_MU3.json

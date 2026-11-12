@@ -274,6 +274,28 @@ def run(mutate=False):
         "(F3,V2) share vs de Sitter column           -- INADMISSIBLE",
     ]
 
+    # ---- P6: the radius at which the sector's mean cold density equals the vacuum value.
+    #      The boundary condition N_f = N_v is a statement about a DENSITY, so it does pick a
+    #      radius; this is where that radius is, at the measured a0. Unmeasured: no profile is
+    #      traced this far out.
+    r_rows = []
+    for lm in sorted(FLD1):
+        Rf0 = FLD1[lm][0][0] * KPC
+        Mb = 10.0 ** lm * MSUN
+        f = lambda r: (3.0 * X_of_u(a0 * r ** 2 / (G * Mb)) * Mb / (4.0 * math.pi * r ** 3)) - RHO_L
+        lo, hi = 1e18, 1e28
+        for _ in range(300):
+            m = (lo + hi) / 2
+            if f(m) > 0: lo = m
+            else: hi = m
+        r = (lo + hi) / 2
+        r_rows.append(dict(logM=lm, r_match_kpc=r / KPC, r_match_Mpc=r / (KPC * 1e3),
+                           r_over_Rfold=r / Rf0, X_at_r=X_of_u(a0 * r ** 2 / (G * Mb))))
+    R["r_match"] = dict(rows=r_rows,
+                        at_ref=[x for x in r_rows if x["logM"] == REF_LM][0],
+                        dex_span=math.log10(max(x["r_match_Mpc"] for x in r_rows) /
+                                            min(x["r_match_Mpc"] for x in r_rows)))
+
     # ---- headline label
     gates = [str(R["G2"]["result"])] + [str(R["G3"][n]["result"]) for n in "ABC"] + \
             [str(R["G4"][n]["result"]) for n in "ABC"] + [str(R["G5"][n]["result"]) for n in "ABC"]
@@ -371,6 +393,15 @@ def main():
     P("Inadmissible (unit-mismatched) pairs, recorded not graded:" + "-" * 32)
     for s in R["mismatched_pairs"]:
         P("  " + s)
+    P("")
+    P("P6  where the boundary condition would actually be satisfied  " + "-" * 32)
+    rm = R["r_match"]
+    P("  the radius r* at which the halo's MEAN cold density equals rho_Lambda (measured a0, z = 0):")
+    P(f"  {'logM':>6} {'r* (Mpc)':>10} {'r*/R_fold':>10}")
+    for x in rm["rows"]:
+        P(f"  {x['logM']:6} {x['r_match_Mpc']:10.3f} {x['r_over_Rfold']:10.1f}")
+    P(f"  span over the grid: {rm['dex_span']:.3f} dex (scales as M_b^(1/4)); "
+      f"NOT the fold radius")
     P("")
     P("=" * 100)
     P(f"LABEL: {R['LABEL']}")
