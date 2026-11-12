@@ -1,5 +1,9 @@
 # OUT-5 (BOOTSTRAP CARRIER) RESULT — the carrier evades T4 and LFS1 exactly, and is killed by the same constant it needs
 
+**SCOPE CORRECTION — 2026-11-12.** Section (e) overstates the Lean result. The theorem ignores its a0 argument while holding the field gradient fixed; it does not prove unchanged halo observables. At fixed baryon mass and radius, the solved deep halo density is proportional to sqrt(a0). That physical-flat-direction interpretation is withdrawn. The separate fixed-mu_K obstruction is unchanged. See [correction record](../../research_closure_2026_11_12/combined_route/dt2_corrections/CORRECTIONS.md).
+
+*Audit note, 2026-11-12 (lead session):* this notice was written by another session and is committed here on the owner's instruction after an independent check, `reviews/codex_corrections_audit_2026_11_12/C3_kappa_and_dt2.md` (grade: CORRECT). `OUT5.lean` is unchanged; the wording of its T9 docstring is superseded by this notice. The folder `research_closure_2026_11_12/` it links to was not committed with it, so those links may not resolve; the audit file is the checked record. The committed text, labels and outputs below this notice are not edited by this commit.
+
 Criteria `FROZEN_CRITERIA.md`, committed alone before any OUT-5 script or number.
 TEST lane, quarantined: adopts nothing, relabels nothing, registers nothing.
 Footings graded separately, never pooled. Cold dark energy is a **gravitating field

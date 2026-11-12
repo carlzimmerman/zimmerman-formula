@@ -1,3 +1,7 @@
+> **Forward correction, 2026-11-12:** The universal conservation cap and substance-class closure claims below are superseded in scope. Differential retention remains a dynamical possibility, not a derived rescue. FINAL5 projection/detectability, DT2 time/growth and kappa/gauge interpretations have forward corrections. The combined mass-retention/external-field program is open at transport, source identification and field health. See the [correction index](../research_closure_2026_11_12/combined_route/CORRECTIONS.md). The body below is preserved as the historical record.
+>
+> *Audit note, 2026-11-12 (lead session):* this notice was written by another session and is committed here on the owner's instruction after an independent check, `reviews/codex_corrections_audit_2026_11_12/C3_kappa_and_dt2.md` (grade: CORRECT WITH LIMITS). Its FINAL5 item is graded in `reviews/codex_corrections_audit_2026_11_12/C4_gas_signal_and_combined_route.md`. The folder `research_closure_2026_11_12/` it links to was not committed with it, so those links may not resolve; the audit file is the checked record. The committed text, labels and outputs below this notice are not edited by this commit.
+
 # CLOSURE (2026-11-11): what the theory is, what it is not, and what to do next
 
 Adopts nothing. kappa = 1/2 FITTED; not theory closed. Not registered. This file states a verdict. Where it and a

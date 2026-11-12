@@ -1,5 +1,9 @@
 # OUT-2 (KAPPA_RATELOCK) RESULT: the clock-rate lock makes kappa an OUTPUT -- and the output is not 1/2
 
+**SCOPE CORRECTION — 2026-11-12.** The coefficient is a **conditional output of an added lock postulate**, not independently derived clock-vacuum dynamics. The Lean theorem assumes the lock equation explicitly. KMS periodicity alone does not supply that equation, winding selection, or the asserted transition. Existing post-selection disclosures below remain operative. Kappa=1/2 remains undetermined by this lane. See [correction record](../../research_closure_2026_11_12/combined_route/dt2_corrections/CORRECTIONS.md).
+
+*Audit note, 2026-11-12 (lead session):* this notice was written by another session and is committed here on the owner's instruction after an independent check, `reviews/codex_corrections_audit_2026_11_12/C3_kappa_and_dt2.md` (grade: CORRECT). The folder `research_closure_2026_11_12/` it links to was not committed with it, so those links may not resolve; the audit file is the checked record. The committed text, labels and outputs below this notice are not edited by this commit.
+
 Date: 2026-11-12. Test lane. **Adopts nothing, relabels nothing, is not registered.**
 `kappa = 1/2 FITTED; not theory closed.` Footings graded separately, never pooled.
 Criteria: `PREREGISTER.md`, committed **alone** before `out2.py`, `OUT2RateLock.lean` or any number

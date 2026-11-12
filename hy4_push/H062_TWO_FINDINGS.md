@@ -1,5 +1,9 @@
 # H062 — TWO FINDINGS: THE n-KAPPA IDENTITY COLLAPSE, AND I7
 
+**CORRECTION — 2026-11-12.** The final n=2 versus n>=5 comparison below mixes two different kernel families; the actual H062 code recognizes this distinction. Its historical Cassini evaluation then used the Mandel kernel with the wrong acceleration normalization. The callback is corrected in `H062_exponent_gap_corrected_2026_11_12.py` (output `H062_results_corrected_2026_11_12.out`; the original script and its output are unchanged), and n=3 no longer counts as reproducing n=2. Kappa=1/n is conditional on the chosen scale/kernel; neither a dimensionless coefficient nor its physical interpretation is fixed by renaming n. See [correction record](../research_closure_2026_11_12/combined_route/dt2_corrections/CORRECTIONS.md).
+
+*Audit note, 2026-11-12 (lead session):* this notice was written by another session and is committed here on the owner's instruction after an independent check, `reviews/codex_corrections_audit_2026_11_12/C3_kappa_and_dt2.md` (grade: CORRECT). The folder `research_closure_2026_11_12/` it links to was not committed with it, so those links may not resolve; the audit file is the checked record. The committed text, labels and outputs below this notice are not edited by this commit.
+
 **Status:** both findings are *logical/interpretive*, established from the repo's own
 banked results. Neither required a new physical computation, and neither is claimed
 as one. Filed in `hy4_push` per the per-model separation convention.

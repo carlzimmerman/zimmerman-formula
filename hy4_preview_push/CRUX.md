@@ -1,3 +1,7 @@
+> **Forward correction, 2026-11-12:** The universal observed-baryon budget cap is withdrawn. Conservation gives Mc/Mb=5.41 Fc/Fb for a specified initial patch and final aperture. The 5.41 cap additionally needs equal retention or equivalent assumptions. At excess59.5, Fb/Fc=.0909244; formation must predict that ratio. The historical fixed-infall failures remain scoped evidence, not a universal field no-go. See the [correction index](../research_closure_2026_11_12/combined_route/CORRECTIONS.md). The body below is preserved as the historical record.
+>
+> *Audit note, 2026-11-12 (lead session):* this notice was written by another session and is committed here on the owner's instruction after an independent check, `reviews/codex_corrections_audit_2026_11_12/C3_kappa_and_dt2.md` (grade: CORRECT WITH LIMITS). The folder `research_closure_2026_11_12/` it links to was not committed with it, so those links may not resolve; the audit file is the checked record. The committed text, labels and outputs below this notice are not edited by this commit.
+
 # The reach-amount lock (2026-11-11)
 
 Adopts nothing. kappa = 1/2 FITTED; not theory closed. Not a lane: no criteria, no label, nothing graded.

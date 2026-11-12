@@ -1,5 +1,9 @@
 # The framework: what survives, and why kappa was never a prediction to derive
 
+**CORRECTION — 2026-11-12.** Sections 2–4 below are retained as historical text; their physical-gauge and forced-kappa claims are withdrawn. Ratio covariance is not a symmetry at fixed baryon source; kappa is a dimensionless physical coefficient, not a unit convention. The one-sentence law B and section 1 law S are different exact kernels. Neither kappa=1/2 nor a completed halo-formation mechanism is derived here. See [correction record](../research_closure_2026_11_12/combined_route/dt2_corrections/CORRECTIONS.md).
+
+*Audit note, 2026-11-12 (lead session):* this notice was written by another session and is committed here on the owner's instruction after an independent check, `reviews/codex_corrections_audit_2026_11_12/C3_kappa_and_dt2.md` (grade: CORRECT). The folder `research_closure_2026_11_12/` it links to was not committed with it, so those links may not resolve; the audit file is the checked record. The committed text, labels and outputs below this notice are not edited by this commit.
+
 (2026-11-11)
 
 Adopts nothing. kappa = 1/2 FITTED; not theory closed. Not registered. Each claim cites the lane that
