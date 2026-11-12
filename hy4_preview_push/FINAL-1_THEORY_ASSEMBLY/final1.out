@@ -1,0 +1,164 @@
+==============================================================================
+FINAL-1  arithmetic for THEORY.md   [primary]
+==============================================================================
+DD1 frozen table: 3419 main rows (frozen, unchanged, read-only)
+G = 6.67430e-11 m^3 kg^-1 s^-2   c = 2.997924580e+08 m/s   K = 4 pi G = 8.387173e-10
+a0 canonical = 9.36030e-11 m/s^2     a0 alt = 1.13120e-10 m/s^2  (never pooled)
+kappa = 0.5 FITTED ; Z = 2 sqrt(8 pi/3) = 5.7888 ; R = Omega_c/Omega_b = 5.41
+
+------------------------------------------------------------------------------
+A1  the law's two forms agree, and u = x^2  (checked on every DD1 main point)
+------------------------------------------------------------------------------
+  canonical max|X(sqrt u) - X_L(u)|/X_L = 1.665e-15 ; max|g_N(g(g_N))/g_N - 1| = 4.441e-16
+  alt       max|X(sqrt u) - X_L(u)|/X_L = 2.331e-15 ; max|g_N(g(g_N))/g_N - 1| = 4.441e-16
+  A1 verdict: True
+
+------------------------------------------------------------------------------
+A2  the deep column a0/(2 pi G)  and the amount-fixing gas column a0/(pi G x_b^2)
+------------------------------------------------------------------------------
+  footing   a0/(2piG) kg/m^2    Msun/pc^2           a0/(piG x_b^2) kg/m^2 Msun/pc^2
+  canonical 2.232051e-01        106.849             1.287297e-02        6.1623
+  alt       2.697452e-01        129.128             1.555710e-02        7.4472
+  vs recorded: deep 106.9 / 129.1 Msun/pc^2 ; gas 6.1627 / 7.4477 Msun/pc^2
+     (GAS1 printed G = 6.674e-11; rescale factor 1.00004495 -> gas 6.1626 / 7.4476)
+  A2 verdict: True
+
+------------------------------------------------------------------------------
+A3  the ceiling of the baryon-loss channel: d_max(u) = log10[(1+u)/(1+X_L(u))]
+     footing-free: u = a0/g_bar is the footing-free field variable
+------------------------------------------------------------------------------
+     u=a0/g_bar  X_L(u)       d_max[dex]   d_max/(0.5 log10 u)
+     0.001       0.000999     0.000000     -               
+     0.01        0.009902     0.000042     -               
+     0.1         0.091608     0.003326     -               
+     0.5         0.366025     0.040632     -               
+     1           0.618034     0.092042     -               
+     2           1.000000     0.176091     1.16993         
+     4.5         1.679449     0.312317     0.95625         
+     10          2.701562     0.473008     0.94602         
+     30          5.000000     0.713210     0.96568         
+     100         9.512492     0.982616     0.98262         
+     1000        31.126729    1.493568     0.99571         
+     1e+04       99.501250    1.997872     0.99894         
+     1e+06       999.500125   2.999783     0.99993         
+  monotone: True ; d_max(1e4)/(0.5 log10 1e4) = 0.99894
+  A3 verdict: True   (deep limit: d_max -> (1/2) log10 u)
+
+------------------------------------------------------------------------------
+A4  the ledger per class, from DD1 (per-system medians, DD1's recipe)
+------------------------------------------------------------------------------
+  [canonical]  a0 = 9.36030e-11 m/s^2
+  class                  n     med u     med X   med d      se  d_max reach           f_b     f_C  floor
+  ATLAS3D              187    0.3303    0.4712   0.070   0.010  0.023 UNREACHABLE   3.572   1.720  -0.10
+  CLASH                 20     2.643     7.525   0.553   0.023  0.219 UNREACHABLE    --     5.759  -0.34
+  Coma UDGs             11     133.4     23.41   0.319   0.073  1.047 YES           0.186   2.186  -1.08
+  KiDS                   4      1272     48.63   0.137   0.009  1.547 YES           0.518   1.383  -1.56
+  LG field dwarfs       13     82.48     8.483  -0.090   0.062  0.940 YES           1.601   0.797  -0.98
+  M31 dwarfs            33     293.6      22.1   0.090   0.088  1.223 YES           0.623   1.253  -1.25
+  MW bright dwarfs      11     147.9     23.25   0.065   0.153  1.070 YES           0.680   1.191  -1.10
+  MW ultra-faints       31      1243     117.9   0.592   0.098  1.541 YES           0.053   4.080  -1.55
+  NGC 1052 UDGs          2     44.25   0.06566  -0.843   0.132  0.800 YES         717324388.223   0.009  -0.85
+  RC100                100    0.5788    0.8099   0.088   0.017  0.049 UNREACHABLE   2.444   1.842  -0.15
+  SPARC                149     6.622     1.992   0.004   0.012  0.388 YES           1.032   1.013  -0.49
+  X-COP                  7     4.446     7.672   0.496   0.022  0.310 UNREACHABLE    --     4.333  -0.43
+  faint rotators        20     17.08     1.481  -0.239   0.045  0.589 YES           6.085   0.440  -0.67
+  groups                20     43.06     9.066   0.161   0.023  0.794 YES           0.386   1.531  -0.85
+  massive spirals       12     13.71     3.572   0.066   0.042  0.541 YES           0.583   1.240  -0.63
+  tidal dwarfs           6     27.16    0.1689  -0.687   0.100  0.691 YES         1654.964   0.038  -0.76
+  -- systems below X = 0 beyond 3 e:                  3 of 626
+  -- classes UNREACHABLE by any transfer (X > u): 4 of 16
+  -- classes needing a non-trivial transfer (|f_b - 1| > 0.05): 13 of 16
+
+  [alt]  a0 = 1.13120e-10 m/s^2
+  class                  n     med u     med X   med d      se  d_max reach           f_b     f_C  floor
+  ATLAS3D              187    0.3992    0.4712   0.052   0.010  0.030 UNREACHABLE   2.358   1.496  -0.12
+  CLASH                 20     3.194     7.516   0.524   0.023  0.250 UNREACHABLE    --     5.095  -0.37
+  Coma UDGs             11     161.2     23.41   0.280   0.073  1.089 YES           0.234   1.980  -1.12
+  KiDS                   4      1537     48.62   0.097   0.011  1.588 YES           0.631   1.256  -1.60
+  LG field dwarfs       13     99.68     8.483  -0.130   0.060  0.982 YES           1.956   0.722  -1.02
+  M31 dwarfs            33     354.9      22.1   0.051   0.085  1.265 YES           0.766   1.136  -1.29
+  MW bright dwarfs      11     178.8     23.25   0.027   0.152  1.112 YES           0.854   1.075  -1.14
+  MW ultra-faints       31      1502     117.9   0.552   0.098  1.583 YES           0.065   3.702  -1.59
+  NGC 1052 UDGs          2     53.48   0.06566  -0.881   0.131  0.842 YES         717324430.328   0.008  -0.89
+  RC100                100    0.6995    0.8099   0.066   0.017  0.062 UNREACHABLE   2.065   1.585  -0.17
+  SPARC                149     8.003     1.992  -0.023   0.011  0.426 YES           1.329   0.901  -0.53
+  X-COP                  7     5.374     7.711   0.465   0.023  0.346 UNREACHABLE   0.003   3.884  -0.46
+  faint rotators        20     20.64     1.481  -0.274   0.044  0.630 YES           7.534   0.396  -0.70
+  groups                20     52.04     9.066   0.123   0.023  0.836 YES           0.491   1.382  -0.89
+  massive spirals       12     16.57     3.572   0.032   0.042  0.582 YES           0.780   1.109  -0.66
+  tidal dwarfs           6     32.82    0.1689  -0.725   0.100  0.733 YES         2001.476   0.034  -0.79
+  -- systems below X = 0 beyond 3 e:                  3 of 626
+  -- classes UNREACHABLE by any transfer (X > u): 4 of 16
+  -- classes needing a non-trivial transfer (|f_b - 1| > 0.05): 15 of 16
+
+------------------------------------------------------------------------------
+A5  the amount cap, recomputed at FLD1's KiDS window edges (log M_b = 10.45)
+------------------------------------------------------------------------------
+  footing    r[kpc] where                       r_M[kpc]         x  X(x)[M_b]    /5.41    /1.06    /1.40
+  canonical   272.0 FLD1 inner window edge         6.479    41.980     41.483     7.67    39.14    29.63
+  canonical   637.0 FLD1 middle window edge        6.479    98.314     97.815    18.08    92.28    69.87
+  alt         272.0 FLD1 inner window edge         5.894    46.150     45.652     8.44    43.07    32.61
+  alt         637.0 FLD1 middle window edge        5.894   108.079    107.580    19.89   101.49    76.84
+  A5 verdict: True   (the law's demand exceeds the whole cosmic budget at both edges)
+
+------------------------------------------------------------------------------
+A6  the three regimes for a reference galaxy, log M_b = 10.45 (point baryons)
+------------------------------------------------------------------------------
+  canonical r_M =   6.479 kpc ; X = 1 at   9.163 kpc ; budget (5.41 M_b) spent at  38.155 kpc
+  canonical truncation at   388.7 kpc   (x_t = sqrt(59.5 x 60.5) = 59.998) ; v_inf = 136.8 km/s ; sigma = 96.7 km/s
+  alt       r_M =   5.894 kpc ; X = 1 at   8.335 kpc ; budget (5.41 M_b) spent at  34.708 kpc
+  alt       truncation at   353.6 kpc   (x_t = sqrt(59.5 x 60.5) = 59.998) ; v_inf = 143.4 km/s ; sigma = 101.4 km/s
+  ordering r_M < sqrt(2) r_M < x_b r_M < x_t r_M : True
+
+------------------------------------------------------------------------------
+A7  cosmic time, for the epoch-invariance test (H0 = 67.4 km/s/Mpc, Om = 0.3154
+------------------------------------------------------------------------------
+     z = 0.05   age =  13.0924 Gyr
+     z = 0.45   age =   8.9601 Gyr
+     z = 0.90   age =   6.2708 Gyr
+     age(0.45)/age(0.05) = 0.68437  ->  log10 = -0.1647 dex
+     age(0.90)/age(0.05) = 0.47897  ->  log10 = -0.3197 dex
+     (a charge that accumulates in proportion to cosmic time shifts d by that log10)
+  A7 verdict: True   (t(0)=13.092 Gyr, t(0.45)=8.960 Gyr, t(0.90)=6.271 Gyr)
+
+------------------------------------------------------------------------------
+A8  the master equation's channels (deep limit d ~ log10(f_C/f_b), footing-free)
+------------------------------------------------------------------------------
+     f      S: charge kept f_C, f_b=1    B/A: baryons f_b, f_C=1
+     10.000   f_C=10.000                    d =  -0.500 dex
+     5.000   f_C=5.000                    d =  -0.349 dex
+     3.000   f_C=3.000                    d =  -0.239 dex
+     2.000   f_C=2.000                    d =  -0.151 dex
+     1.500   f_C=1.500                    d =  -0.088 dex
+     1.000   f_C=1.000                    d =  -0.000 dex
+     0.500   f_C=0.500                    d =  +0.151 dex
+     0.300   f_C=0.300                    d =  +0.261 dex
+     0.186   f_C=0.186                    d =  +0.365 dex
+     0.100   f_C=0.100                    d =  +0.500 dex
+     0.053   f_C=0.053                    d =  +0.638 dex
+     0.028   f_C=0.028                    d =  +0.776 dex
+
+------------------------------------------------------------------------------
+A9  worked scales, log M_b = 10.45, both footings (SI)
+------------------------------------------------------------------------------
+  canonical r_M = 1.9993e+20 m = 6.479 kpc ; v_inf = 1.3680e+05 m/s = 136.8 km/s ; sigma = 96.7 km/s
+  alt       r_M = 1.8187e+20 m = 5.894 kpc ; v_inf = 1.4343e+05 m/s = 143.4 km/s ; sigma = 101.4 km/s
+
+------------------------------------------------------------------------------
+A10 the EXACT ceiling per class:  d <= d_max = log10[(1+u)/(1+X_L(u))]
+------------------------------------------------------------------------------
+  canonical classes above their exact ceiling: 4 of 16   -> CLASH +0.334, X-COP +0.185, ATLAS3D +0.047, RC100 +0.039
+  alt       classes above their exact ceiling: 4 of 16   -> CLASH +0.273, X-COP +0.119, ATLAS3D +0.022, RC100 +0.004
+
+==============================================================================
+SUMMARY OF GRADED CHECKS
+==============================================================================
+  A1   PASS
+  A2   PASS
+  A3   PASS
+  A5   PASS
+  A6   PASS
+  A7   PASS
+  ALL: PASS
+
+Adopts nothing. kappa = 1/2 FITTED; not theory closed.

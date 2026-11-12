@@ -1,0 +1,32 @@
+import Mathlib
+open Real BigOperators
+
+#check strictMonoOn_of_deriv_pos
+#check monotoneOn_of_deriv_nonneg
+#check strictMono_of_deriv_pos
+#check monotone_of_deriv_nonneg
+#check convex_Icc
+#check Set.OrdConnected.strictMonoOn_of_deriv_pos
+#check Real.exp_log
+#check Real.log_exp
+#check Real.exp_add
+#check Real.exp_neg
+#check Real.exp_sub
+#check Real.sinh
+#check Real.sinh_zero
+#check Real.one_lt_cosh
+#check Real.cosh_pos
+#check Real.cosh_one_lt
+#check Real.sinh_strictMono
+#check Real.exp_approx_start
+#check Real.exp_approx_end
+#check Real.log_le_sub_one_of_pos
+#check Real.log_lt_sub_one_of_pos
+#check Real.one_sub_inv_le_log
+#check Fin.sum_univ_three
+#check Finset.sum_ite_eq'
+#check deriv_sinh
+#check Real.deriv_log
+#check HasDerivAt.log
+#check intervalIntegral.integral_deriv_eq_sub
+#check Real.pi_pos

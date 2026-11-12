@@ -1,0 +1,258 @@
+GAS1: is form B's amount problem a missing-baryon problem?
+criteria: FROZEN_CRITERIA.md   mode: primary
+
+=== Section 2: constants, printed in SI ===
+  G 6.674000e-11 m^3 kg^-1 s^-2   Msun 1.989000e+30 kg   Mpc 3.085700e+22 m   pc 3.085700e+16 m
+  a0 canonical 9.360300e-11   alt 1.131200e-10 m/s^2   (never pooled)
+  budget R_b = Omega_c/Omega_b = 5.41   S_b = Omega_m/Omega_b = 6.41
+  x_b = sqrt(R_b S_b) = 5.888811   x_b^2 = 34.678100   (AMT1: 5.8888)
+  [canonical] h 0.674  Omega_b 0.049221  Omega_m 0.315359  rho_crit 8.533115e-27 kg/m^3  rho_b 4.200100e-28 kg/m^3 = 6.204202e+09 Msun/Mpc^3
+  [alt] h 0.674  Omega_b 0.049177  Omega_m 0.315315  rho_crit 8.533115e-27 kg/m^3  rho_b 4.196343e-28 kg/m^3 = 6.198652e+09 Msun/Mpc^3
+  1 Msun/pc^2 = 2.088947e-03 kg/m^2 (B21's ESD unit; h70 read as 1, as KO1's R6 did)
+
+=== Known answers KA1-KA3 (identities; no data) ===
+  [PASS] KA1 X(x) = nu(1/x^2) - 1 over x in [1e-3,1e4]: max |dev| 9.09e-13
+  [PASS] KA2 X(x_b) = 5.41 and x_b = 5.8888: X(x_b) - 5.41 = 8.88e-16; x_b - 5.8888 = 1.14e-05
+  [PASS] KA3[canonical] constant column (L2) = a0/(pi G x_b^2): Sigma = 1.287355e-02 kg/m^2 = 6.1627 Msun/pc^2 ; max |numerical/closed - 1| 2.11e-15
+  [PASS] KA4[canonical] fixed point: M_bar = M_star + M_req gives X = 5.41: max |X - 5.41| 8.88e-16
+  [PASS] KA3[alt] constant column (L2) = a0/(pi G x_b^2): Sigma = 1.555779e-02 kg/m^2 = 7.4477 Msun/pc^2 ; max |numerical/closed - 1| 1.78e-15
+  [PASS] KA4[alt] fixed point: M_bar = M_star + M_req gives X = 5.41: max |X - 5.41| 8.88e-16
+
+=== Staged KiDS sums ===
+  lenses 181,477; 15 g_bar bins, edges 1.000e-15 .. 5.000e-12; outer bins O = [0, 1, 2, 3]
+  outer-bin edges: 1.0000e-15 1.7644e-15 3.1131e-15 5.4928e-15 9.6915e-15 m/s^2
+  [PASS] KA7 per-lens sums reproduce cfg96_stack (W10) to 1e-9: max relative deviation 6.42e-14
+
+=== Lens sets: KO1's host-free cut, rebuilt here ===
+  catalogue 1,239,422 objects  [1 s]
+  neighbour pool 888,795  [1 s]
+  [PASS] lens-to-pool identification (position and log M* exact): max position 0.00e+00, max |dlogM| 0.00e+00, 0 mismatches
+  veto F = 1.0 R_h: host-free 40,667  [2 s]
+  veto F = 1.3 R_h: host-free 25,708  [3 s]
+  veto F = 1.6 R_h: host-free 17,335  [6 s]
+  [PASS] KA6 host-free counts 40,667 / 25,708 / 17,335 at F = 1.0 / 1.3 / 1.6: 40,667 / 25,708 / 17,335
+  mean R_h of the P1 set: 2.926 Mpc;  z range 0.100 .. 0.500
+  null (reported): cross-shear amplitude of P1 over O, canonical +0.232 +- 0.267
+  [PASS] Null cross-shear of P1 within 2.5 s of zero: +0.232 +- 0.267
+
+=== Step 1: the law's demand, M_c(<R) = M_b X(x), on the record's own bins (lens set P1) ===
+  [canonical] bin 0: g_bar 1.000e-15-1.764e-15  R_eff 2.6010 Mpc (R_hi 2.8550)  <M_b> 6.931e+10 Msun  r_M 10.160 kpc  <X> 259.1 M_b  M_c 1.777e+13 Msun  demand/budget 47.89
+  [canonical] bin 1: g_bar 1.764e-15-3.113e-15  R_eff 2.2572 Mpc (R_hi 2.5502)  <M_b> 8.355e+10 Msun  r_M 11.155 kpc  <X> 202.7 M_b  M_c 1.694e+13 Msun  demand/budget 37.47
+  [canonical] bin 2: g_bar 3.113e-15-5.493e-15  R_eff 1.7068 Mpc (R_hi 1.9283)  <M_b> 8.427e+10 Msun  r_M 11.204 kpc  <X> 152.5 M_b  M_c 1.285e+13 Msun  demand/budget 28.18
+  [canonical] bin 3: g_bar 5.493e-15-9.692e-15  R_eff 1.2846 Mpc (R_hi 1.4513)  <M_b> 8.423e+10 Msun  r_M 11.201 kpc  <X> 114.7 M_b  M_c 9.658e+12 Msun  demand/budget 21.2
+  [alt] bin 0: g_bar 1.000e-15-1.764e-15  R_eff 2.6010 Mpc (R_hi 2.8550)  <M_b> 6.931e+10 Msun  r_M 9.242 kpc  <X> 284.9 M_b  M_c 1.954e+13 Msun  demand/budget 52.66
+  [alt] bin 1: g_bar 1.764e-15-3.113e-15  R_eff 2.2572 Mpc (R_hi 2.5502)  <M_b> 8.355e+10 Msun  r_M 10.147 kpc  <X> 222.9 M_b  M_c 1.862e+13 Msun  demand/budget 41.2
+  [alt] bin 2: g_bar 3.113e-15-5.493e-15  R_eff 1.7068 Mpc (R_hi 1.9283)  <M_b> 8.427e+10 Msun  r_M 10.191 kpc  <X> 167.7 M_b  M_c 1.413e+13 Msun  demand/budget 30.99
+  [alt] bin 3: g_bar 5.493e-15-9.692e-15  R_eff 1.2846 Mpc (R_hi 1.4513)  <M_b> 8.423e+10 Msun  r_M 10.189 kpc  <X> 126.1 M_b  M_c 1.062e+13 Msun  demand/budget 23.31
+
+=== Step 1b: the measured amplitude of P1 (KO1's estimator; cross-check, added at run time) ===
+  [canonical] A(P1, outer bins) = 1.4002 +- 0.2211   (KO1 E7 at 1.6 R_h: 1.40 +- 0.22 canonical)
+       D_k (m/s^2): 1.2856e-13 4.9663e-13 1.0501e-12 1.3758e-12
+       s_k (m/s^2): 2.3561e-13 2.2604e-13 2.7009e-13 2.8192e-13
+       M_k (m/s^2): 3.6348e-13 4.6485e-13 6.1797e-13 8.2175e-13
+  [alt] A(P1, outer bins) = 1.2740 +- 0.2012   (KO1 E7 at 1.6 R_h: 1.40 +- 0.22 canonical)
+       D_k (m/s^2): 1.2856e-13 4.9663e-13 1.0501e-12 1.3758e-12
+       s_k (m/s^2): 2.3561e-13 2.2604e-13 2.7009e-13 2.8192e-13
+       M_k (m/s^2): 3.9951e-13 5.1091e-13 6.7915e-13 9.0301e-13
+  cross-check against KO1 E7 (canonical): 1.10 +- 0.15 at 1.0 R_h, 1.27 +- 0.19 at 1.3 R_h, 1.40 +- 0.22 at 1.6 R_h
+    F = 1.0: this lane 1.0978 +- 0.1544  vs KO1 1.098 +- 0.154  (difference -0.0002, -0.00 sigma)
+    F = 1.3: this lane 1.2726 +- 0.1926  vs KO1 1.270 +- 0.190  (difference +0.0026, +0.01 sigma)
+    F = 1.6: this lane 1.4002 +- 0.2211  vs KO1 1.400 +- 0.220  (difference +0.0002, +0.00 sigma)
+
+=== Step 2a: (L1) the extra baryons that bring the law's demand inside 5.41 M_b ===
+    M_gas_req(R) = (a0/G) R^2 / x_b^2 - M_b   ;   Sigma = a0/(pi G x_b^2), constant in R
+  [canonical] bin 0: R_eff 2.6178 Mpc  M_b 6.931e+10  M_gas_req 1.326e+14 Msun (= 1913 M_b)  [at R_hi: 1.593e+14]
+        Sigma_gas 6.1627 Msun/pc^2 (constant) ; mean column inside R 6.1595 ; 3D rho 1.765e+12 Msun/Mpc^3
+        G1: sphere of that radius holds 4.662e+11 Msun of baryons -> Q1 = 284.4
+  [canonical] bin 1: R_eff 2.2741 Mpc  M_b 8.355e+10  M_gas_req 1e+14 Msun (= 1197 M_b)  [at R_hi: 1.277e+14]
+        Sigma_gas 6.1627 Msun/pc^2 (constant) ; mean column inside R 6.1576 ; 3D rho 2.031e+12 Msun/Mpc^3
+        G1: sphere of that radius holds 3.056e+11 Msun of baryons -> Q1 = 327.3
+  [canonical] bin 2: R_eff 1.7194 Mpc  M_b 8.427e+10  M_gas_req 5.716e+13 Msun (= 678.2 M_b)  [at R_hi: 7.298e+13]
+        Sigma_gas 6.1627 Msun/pc^2 (constant) ; mean column inside R 6.1536 ; 3D rho 2.684e+12 Msun/Mpc^3
+        G1: sphere of that radius holds 1.321e+11 Msun of baryons -> Q1 = 432.6
+  [canonical] bin 3: R_eff 1.2941 Mpc  M_b 8.423e+10  M_gas_req 3.234e+13 Msun (= 384 M_b)  [at R_hi: 4.131e+13]
+        Sigma_gas 6.1627 Msun/pc^2 (constant) ; mean column inside R 6.1467 ; 3D rho 3.562e+12 Msun/Mpc^3
+        G1: sphere of that radius holds 5.633e+10 Msun of baryons -> Q1 = 574.2
+  [canonical] (L2) Sigma_gas = a0/(pi G x_b^2) = 1.287355e-02 kg/m^2 = 6.1627 Msun/pc^2 (constant in R, from R_budget = x_b r_M outward)
+  [alt] bin 0: R_eff 2.6178 Mpc  M_b 6.931e+10  M_gas_req 1.603e+14 Msun (= 2312 M_b)  [at R_hi: 1.925e+14]
+        Sigma_gas 7.4477 Msun/pc^2 (constant) ; mean column inside R 7.4445 ; 3D rho 2.133e+12 Msun/Mpc^3
+        G1: sphere of that radius holds 4.658e+11 Msun of baryons -> Q1 = 344.1
+  [alt] bin 1: R_eff 2.2741 Mpc  M_b 8.355e+10  M_gas_req 1.209e+14 Msun (= 1447 M_b)  [at R_hi: 1.544e+14]
+        Sigma_gas 7.4477 Msun/pc^2 (constant) ; mean column inside R 7.4425 ; 3D rho 2.455e+12 Msun/Mpc^3
+        G1: sphere of that radius holds 3.054e+11 Msun of baryons -> Q1 = 396
+  [alt] bin 2: R_eff 1.7194 Mpc  M_b 8.427e+10  M_gas_req 6.909e+13 Msun (= 819.8 M_b)  [at R_hi: 8.822e+13]
+        Sigma_gas 7.4477 Msun/pc^2 (constant) ; mean column inside R 7.4386 ; 3D rho 3.245e+12 Msun/Mpc^3
+        G1: sphere of that radius holds 1.32e+11 Msun of baryons -> Q1 = 523.4
+  [alt] bin 3: R_eff 1.2941 Mpc  M_b 8.423e+10  M_gas_req 3.91e+13 Msun (= 464.2 M_b)  [at R_hi: 4.994e+13]
+        Sigma_gas 7.4477 Msun/pc^2 (constant) ; mean column inside R 7.4317 ; 3D rho 4.307e+12 Msun/Mpc^3
+        G1: sphere of that radius holds 5.627e+10 Msun of baryons -> Q1 = 694.8
+  [alt] (L2) Sigma_gas = a0/(pi G x_b^2) = 1.555779e-02 kg/m^2 = 7.4477 Msun/pc^2 (constant in R, from R_budget = x_b r_M outward)
+
+=== Step 2b: (L3) the data-driven requirement (footing-free) ===
+    M_3D,obs = 2/pi * 2 pi R^2 DeltaSigma = R^2 D / G   (isothermal s=1 conversion; point-mass bracket 0.785x)
+  bin 0: D 1.2856e-13 m/s^2  R_eff 2.6178 Mpc  M_3D,obs 6.319e+12 Msun  M_b 6.931e+10  -> M_gas_req 9.165e+11 Msun (13.22 M_b, 14.50% of the enclosed mass);  point-mass bracket 7.05e+11
+  bin 1: D 4.9663e-13 m/s^2  R_eff 2.2741 Mpc  M_3D,obs 1.842e+13 Msun  M_b 8.355e+10  -> M_gas_req 2.79e+12 Msun (33.4 M_b, 15.15% of the enclosed mass);  point-mass bracket 2.174e+12
+  bin 2: D 1.0501e-12 m/s^2  R_eff 1.7194 Mpc  M_3D,obs 2.227e+13 Msun  M_b 8.427e+10  -> M_gas_req 3.39e+12 Msun (40.22 M_b, 15.22% of the enclosed mass);  point-mass bracket 2.644e+12
+  bin 3: D 1.3758e-12 m/s^2  R_eff 1.2941 Mpc  M_3D,obs 1.653e+13 Msun  M_b 8.423e+10  -> M_gas_req 2.494e+12 Msun (29.61 M_b, 15.09% of the enclosed mass);  point-mass bracket 1.941e+12
+
+=== G2: the required gas against the measured enclosed mass (gas cannot outweigh everything) ===
+  [canonical] bin 0: M_gas_req 1.326e+14 / M_obs 6.319e+12 = Q2 20.98
+  [canonical] bin 1: M_gas_req 1e+14 / M_obs 1.842e+13 = Q2 5.43
+  [canonical] bin 2: M_gas_req 5.716e+13 / M_obs 2.227e+13 = Q2 2.567
+  [canonical] bin 3: M_gas_req 3.234e+13 / M_obs 1.653e+13 = Q2 1.957
+  [alt] bin 0: M_gas_req 1.603e+14 / M_obs 6.319e+12 = Q2 25.36
+  [alt] bin 1: M_gas_req 1.209e+14 / M_obs 1.842e+13 = Q2 6.564
+  [alt] bin 2: M_gas_req 6.909e+13 / M_obs 2.227e+13 = Q2 3.103
+  [alt] bin 3: M_gas_req 3.91e+13 / M_obs 1.653e+13 = Q2 2.366
+
+=== Step 3 / KA5: B21's published tables, this lane's own amplitude code ===
+  Fig-4-5-C1 isolated (no gas)     [canonical] outer-4 amplitude 1.4999 +- 0.0706
+  Fig-4-5-C1 isolated (no gas)     [alt      ] outer-4 amplitude 1.3648 +- 0.0642
+  Fig-4 isolated (B21 hot gas)     [canonical] outer-4 amplitude 0.4704 +- 0.0336
+  Fig-4 isolated (B21 hot gas)     [alt      ] outer-4 amplitude 0.4280 +- 0.0306
+  Fig-4-C1 GAMA isolated           [canonical] outer-4 amplitude 0.9742 +- 0.2756
+  Fig-4-C1 GAMA isolated           [alt      ] outer-4 amplitude 0.8864 +- 0.2508
+  [PASS] KA5 B21 tables: no gas 1.50 +- 0.08 and hot gas 0.47 +- 0.04 (KO1 R6), canonical: no gas 1.4999 +- 0.0706 (KO1 1.50 +- 0.08); hot gas 0.4704 +- 0.0336 (KO1 0.47 +- 0.04)
+  monotonicity of the two ESD sequences in g_bar (needed for the inversion): no-gas True, hot gas True
+  [PASS] B21 ESD sequences are monotone in g_bar (inversion is well defined): no-gas True; hot gas True
+
+  B21's gas-to-stellar ratio, extracted at the ESD of each of B21's 15 g_bar bins (largest radius first):
+    g_bar 1.3822e-15  ESD    0.7602  gas/star  +2.3469  (M_gas = 2.347 M_star)
+    g_bar 2.4388e-15  ESD    1.2804  gas/star  +2.1526  (M_gas = 2.153 M_star)
+    g_bar 4.3030e-15  ESD    1.7775  gas/star  +1.4365  (M_gas = 1.436 M_star)
+    g_bar 7.5922e-15  ESD    2.6218  gas/star  +1.2045  (M_gas = 1.204 M_star)
+    g_bar 1.3396e-14  ESD    3.0287  gas/star  +0.6014  (M_gas = 0.6014 M_star)
+    g_bar 2.3635e-14  ESD    3.9252  gas/star  +0.4233  (M_gas = 0.4233 M_star)
+    g_bar 4.1702e-14  ESD    6.2675  gas/star  +0.5433  (M_gas = 0.5433 M_star)
+    g_bar 7.3580e-14  ESD    7.2594  gas/star  +0.1110  (M_gas = 0.111 M_star)
+    g_bar 1.2982e-13  ESD   10.7347  gas/star  +0.4859  (M_gas = 0.4859 M_star)
+    g_bar 2.2906e-13  ESD   12.1992  gas/star  +0.0801  (M_gas = 0.08015 M_star)
+    g_bar 4.0416e-13  ESD   17.1865  gas/star  +0.2723  (M_gas = 0.2723 M_star)
+    g_bar 7.1310e-13  ESD   19.4548  gas/star  -0.0668  (M_gas = -0.0668 M_star)
+    g_bar 1.2582e-12  ESD   25.8771  gas/star  +0.1100  (M_gas = 0.11 M_star)
+    g_bar 2.2200e-12  ESD   33.4118  gas/star  +0.2051  (M_gas = 0.2051 M_star)
+    g_bar 3.9169e-12  ESD   34.2603  gas/star  -0.2480  (M_gas = -0.248 M_star)
+
+  KA8 (revised at run time, disclosed): the enclosed mass B21's Fig-3 profiles imply, M_tot = R^2 D/G
+    mass bin 1: M_tot(<2.60 Mpc) 6.848e+12 Msun; outward reversals over R > 0.3 Mpc 1; grows True; profile 6.95e+11 1.03e+12 2.42e+12 4.79e+12 5.5e+12 5.75e+12 4.67e+12 6.85e+12
+    mass bin 2: M_tot(<2.60 Mpc) 6.955e+12 Msun; outward reversals over R > 0.3 Mpc 3; grows True; profile 2.83e+12 4.47e+12 4.41e+12 6.62e+12 1.14e+13 8.81e+12 9.45e+12 6.96e+12
+    mass bin 3: M_tot(<2.60 Mpc) 1.612e+13 Msun; outward reversals over R > 0.3 Mpc 1; grows True; profile 3.67e+12 3.87e+12 6.69e+12 8.16e+12 1.26e+13 1.35e+13 2.32e+13 1.61e+13
+    mass bin 4: M_tot(<2.60 Mpc) 2.106e+13 Msun; outward reversals over R > 0.3 Mpc 1; grows True; profile 3.38e+12 5.33e+12 7.71e+12 9.2e+12 1.35e+13 1.91e+13 1.76e+13 2.11e+13
+  [PASS] KA8 Fig-3 profiles give a positive, outward-growing enclosed mass of a sane size (revised; disclosed): all four mass bins: M_tot(2.60 Mpc) in [1e11,1e14] Msun and rising from 0.30 to 2.60 Mpc
+
+=== G3a: B21's own hot gas, at the P1 outer-bin radii (B21's gas/star x the P1 stack's M_b) ===
+  [canonical] bin 0: ESD(P1) 0.2305  gas/star 0.5102  M_b 6.931e+10  M_gas,B21 3.536e+10 Msun  M_gas_req 1.326e+14  ->  Q3a 3750
+  [canonical] bin 1: ESD(P1) 0.8906  gas/star 2.2871  M_b 8.355e+10  M_gas,B21 1.911e+11 Msun  M_gas_req 1e+14  ->  Q3a 523.6
+  [canonical] bin 2: ESD(P1) 1.8830  gas/star 1.3651  M_b 8.427e+10  M_gas,B21 1.15e+11 Msun  M_gas_req 5.716e+13  ->  Q3a 496.8
+  [canonical] bin 3: ESD(P1) 2.4670  gas/star 1.1700  M_b 8.423e+10  M_gas,B21 9.854e+10 Msun  M_gas_req 3.234e+13  ->  Q3a 328.2
+  [alt] bin 0: ESD(P1) 0.2305  gas/star 0.5102  M_b 6.931e+10  M_gas,B21 3.536e+10 Msun  M_gas_req 1.603e+14  ->  Q3a 4532
+  [alt] bin 1: ESD(P1) 0.8906  gas/star 2.2871  M_b 8.355e+10  M_gas,B21 1.911e+11 Msun  M_gas_req 1.209e+14  ->  Q3a 632.8
+  [alt] bin 2: ESD(P1) 1.8830  gas/star 1.3651  M_b 8.427e+10  M_gas,B21 1.15e+11 Msun  M_gas_req 6.909e+13  ->  Q3a 600.6
+  [alt] bin 3: ESD(P1) 2.4670  gas/star 1.1700  M_b 8.423e+10  M_gas,B21 9.854e+10 Msun  M_gas_req 3.91e+13  ->  Q3a 396.8
+
+=== G3b: the only measured gas at Mpc radii in the repo (GO1, quoted from its RESULT.md) ===
+    GO1: 102 eRASS1 groups, median z 0.143, lensing-weighted M500 1.0e14, Mgas500 5.36e12, R500 0.66 Mpc.
+    (L1) depends on R alone, so it applies to a group unchanged.
+  [canonical] x  1.00  R  0.660 Mpc  M_gas_req 8.434e+12 Msun  (no gas entry)
+  [canonical] x  1.41  R  0.931 Mpc  M_gas_req 1.677e+13  measured 3.7e+12 +- 1.4e+12 -> +9.33 sigma   (lensing M_exc there 1.31e+14)
+  [canonical] x  2.00  R  1.320 Mpc  M_gas_req 3.373e+13  measured 6.3e+12 +- 2.9e+12 -> +9.46 sigma   (lensing M_exc there 7.4e+13)
+  [canonical] x  2.83  R  1.868 Mpc  M_gas_req 6.754e+13  measured 1.26e+13 +- 6.9e+12 -> +7.96 sigma   (lensing M_exc there 2.2e+14)
+  [canonical] x  4.00  R  2.640 Mpc  M_gas_req 1.349e+14  measured 2.2e+13 +- 1.7e+13 -> +6.64 sigma   (lensing M_exc there 3.25e+14)
+  [canonical] x  5.66  R  3.736 Mpc  M_gas_req 2.702e+14  measured 6e+12 +- 2.6e+13 -> +10.16 sigma   (lensing M_exc there 6e+14)
+  [canonical] x  8.00  R  5.280 Mpc  M_gas_req 5.397e+14  measured -4e+12 +- 5.1e+13 -> +10.66 sigma   (lensing M_exc there 6.9e+14)
+  [canonical] x 11.30  R  7.458 Mpc  M_gas_req 1.077e+15  measured 7.7e+13 +- 7.5e+13 -> +13.33 sigma   (lensing M_exc there 1.7e+15)
+  [canonical] x 16.00  R 10.560 Mpc  M_gas_req 2.159e+15  measured -6.7e+14 +- 3.4e+14 -> +8.32 sigma   (lensing M_exc there 4.9e+15)
+  [canonical] G3b fires (requirement >= 3 sigma above the measured gas at every x >= 2.83): True
+  [alt] x  1.00  R  0.660 Mpc  M_gas_req 1.019e+13 Msun  (no gas entry)
+  [alt] x  1.41  R  0.931 Mpc  M_gas_req 2.026e+13  measured 3.7e+12 +- 1.4e+12 -> +11.83 sigma   (lensing M_exc there 1.31e+14)
+  [alt] x  2.00  R  1.320 Mpc  M_gas_req 4.077e+13  measured 6.3e+12 +- 2.9e+12 -> +11.89 sigma   (lensing M_exc there 7.4e+13)
+  [alt] x  2.83  R  1.868 Mpc  M_gas_req 8.163e+13  measured 1.26e+13 +- 6.9e+12 -> +10.00 sigma   (lensing M_exc there 2.2e+14)
+  [alt] x  4.00  R  2.640 Mpc  M_gas_req 1.631e+14  measured 2.2e+13 +- 1.7e+13 -> +8.30 sigma   (lensing M_exc there 3.25e+14)
+  [alt] x  5.66  R  3.736 Mpc  M_gas_req 3.265e+14  measured 6e+12 +- 2.6e+13 -> +12.33 sigma   (lensing M_exc there 6e+14)
+  [alt] x  8.00  R  5.280 Mpc  M_gas_req 6.523e+14  measured -4e+12 +- 5.1e+13 -> +12.87 sigma   (lensing M_exc there 6.9e+14)
+  [alt] x 11.30  R  7.458 Mpc  M_gas_req 1.301e+15  measured 7.7e+13 +- 7.5e+13 -> +16.33 sigma   (lensing M_exc there 1.7e+15)
+  [alt] x 16.00  R 10.560 Mpc  M_gas_req 2.609e+15  measured -6.7e+14 +- 3.4e+14 -> +9.64 sigma   (lensing M_exc there 4.9e+15)
+  [alt] G3b fires (requirement >= 3 sigma above the measured gas at every x >= 2.83): True
+
+=== G4: the outer amplitude if that gas were in g_bar (Step 4) ===
+  [canonical] A_gas = 0.0392 +- 0.0069   (gate line 0.891; measured A = 1.4002 +- 0.2211)
+       -> the reading moves the outer amplitude from 1.400 to 0.039 of the law
+       bin 0: model with catalogued M_b 3.7770e-13 ; with the gas 1.7373e-11  (x48)
+       bin 1: model with catalogued M_b 4.6485e-13 ; with the gas 1.7498e-11  (x37.6)
+       bin 2: model with catalogued M_b 6.1797e-13 ; with the gas 1.7498e-11  (x28.3)
+       bin 3: model with catalogued M_b 8.2175e-13 ; with the gas 1.7498e-11  (x21.3)
+  [alt] A_gas = 0.0324 +- 0.0057   (gate line 0.891; measured A = 1.2740 +- 0.2012)
+       -> the reading moves the outer amplitude from 1.274 to 0.032 of the law
+       bin 0: model with catalogued M_b 4.1513e-13 ; with the gas 2.0995e-11  (x52.7)
+       bin 1: model with catalogued M_b 5.1091e-13 ; with the gas 2.1147e-11  (x41.4)
+       bin 2: model with catalogued M_b 6.7915e-13 ; with the gas 2.1147e-11  (x31.1)
+       bin 3: model with catalogued M_b 9.0301e-13 ; with the gas 2.1147e-11  (x23.4)
+
+=== G5: the required gas per unit volume, against rho_b (lower bound on n) ===
+  [canonical] survey 1000 deg^2, z < 0.500, chi_max 1888.7 Mpc -> V 6.841e+08 Mpc^3
+       n_lens (lower bound: flux-limited, 23 % pass isolation) 0.0002653 Mpc^-3
+       <M_gas_req> at 1.294 Mpc = 3.234e+13 Msun  ->  rho_req 8.58e+09 Msun/Mpc^3  vs rho_b 6.204e+09  ->  Q5 1.383
+  [alt] survey 1000 deg^2, z < 0.500, chi_max 1888.7 Mpc -> V 6.841e+08 Mpc^3
+       n_lens (lower bound: flux-limited, 23 % pass isolation) 0.0002653 Mpc^-3
+       <M_gas_req> at 1.294 Mpc = 3.91e+13 Msun  ->  rho_req 1.037e+10 Msun/Mpc^3  vs rho_b 6.199e+09  ->  Q5 1.673
+
+=== X-COP: the measured cluster gas on disk, and the extrapolation to the lens radii (REPORTED, not graded) ===
+  A1644    R500 1.054 Mpc  M500 3.48e14  at x = 1.600 R500 (1.687 Mpc): M_gas 7.918e13  M_NFW 63.016e14  f_gas 0.1259
+  A1795    R500 1.153 Mpc  M500 4.63e14  at x = 1.606 R500 (1.852 Mpc): M_gas 9.587e13  M_NFW 67.902e14  f_gas 0.1412
+  A2029    R500 1.423 Mpc  M500 8.82e14  at x = 1.565 R500 (2.227 Mpc): M_gas 18.818e13  M_NFW 125.038e14  f_gas 0.1510
+  A2142    R500 1.424 Mpc  M500 8.95e14  at x = 1.652 R500 (2.353 Mpc): M_gas 23.973e13  M_NFW 143.231e14  f_gas 0.1674
+  A2255    R500 1.196 Mpc  M500 5.26e14  at x = 1.732 R500 (2.072 Mpc): M_gas 15.358e13  M_NFW 105.384e14  f_gas 0.1456
+  A2319    R500 1.346 Mpc  M500 7.31e14  at x = 1.852 R500 (2.493 Mpc): M_gas 32.510e13  M_NFW 123.925e14  f_gas 0.2626
+  A3158    R500 1.123 Mpc  M500 4.26e14  at x = 1.961 R500 (2.202 Mpc): M_gas 12.175e13  M_NFW 80.061e14  f_gas 0.1519
+  A3266    R500 1.430 Mpc  M500 8.80e14  at x = 1.123 R500 (1.605 Mpc): M_gas 12.891e13  M_NFW 100.845e14  f_gas 0.1279
+  A644     R500 1.230 Mpc  M500 5.66e14  at x = 2.127 R500 (2.616 Mpc): M_gas 12.759e13  M_NFW 101.945e14  f_gas 0.1257
+  A85      R500 1.235 Mpc  M500 5.65e14  at x = 1.872 R500 (2.311 Mpc): M_gas 15.369e13  M_NFW 98.901e14  f_gas 0.1553
+  RXC1825  R500 1.105 Mpc  M500 4.08e14  at x = 1.627 R500 (1.798 Mpc): M_gas 10.005e13  M_NFW 63.863e14  f_gas 0.1565
+  ZW1215   R500 1.358 Mpc  M500 7.66e14  at x = 1.512 R500 (2.053 Mpc): M_gas 11.428e13  M_NFW 121.620e14  f_gas 0.0938
+  [canonical] the requirement (L1) at those same radii, and the shortfall of the measured cluster gas:
+    A1644    R  1.687 Mpc  M_gas_req   5.509e13  measured   7.918e13  ->  req/measured   0.696
+    A1795    R  1.852 Mpc  M_gas_req   6.640e13  measured   9.587e13  ->  req/measured   0.693
+    A2029    R  2.227 Mpc  M_gas_req   9.600e13  measured  18.818e13  ->  req/measured    0.51
+    A2142    R  2.353 Mpc  M_gas_req  10.719e13  measured  23.973e13  ->  req/measured   0.447
+    A2255    R  2.072 Mpc  M_gas_req   8.311e13  measured  15.358e13  ->  req/measured   0.541
+    A2319    R  2.493 Mpc  M_gas_req  12.031e13  measured  32.510e13  ->  req/measured    0.37
+    A3158    R  2.202 Mpc  M_gas_req   9.386e13  measured  12.175e13  ->  req/measured   0.771
+    A3266    R  1.605 Mpc  M_gas_req   4.989e13  measured  12.891e13  ->  req/measured   0.387
+    A644     R  2.616 Mpc  M_gas_req  13.251e13  measured  12.759e13  ->  req/measured    1.04
+    A85      R  2.311 Mpc  M_gas_req  10.343e13  measured  15.369e13  ->  req/measured   0.673
+    RXC1825  R  1.798 Mpc  M_gas_req   6.260e13  measured  10.005e13  ->  req/measured   0.626
+    ZW1215   R  2.053 Mpc  M_gas_req   8.160e13  measured  11.428e13  ->  req/measured   0.714
+  [alt] the requirement (L1) at those same radii, and the shortfall of the measured cluster gas:
+    A1644    R  1.687 Mpc  M_gas_req   6.658e13  measured   7.918e13  ->  req/measured   0.841
+    A1795    R  1.852 Mpc  M_gas_req   8.024e13  measured   9.587e13  ->  req/measured   0.837
+    A2029    R  2.227 Mpc  M_gas_req  11.602e13  measured  18.818e13  ->  req/measured   0.617
+    A2142    R  2.353 Mpc  M_gas_req  12.954e13  measured  23.973e13  ->  req/measured    0.54
+    A2255    R  2.072 Mpc  M_gas_req  10.044e13  measured  15.358e13  ->  req/measured   0.654
+    A2319    R  2.493 Mpc  M_gas_req  14.539e13  measured  32.510e13  ->  req/measured   0.447
+    A3158    R  2.202 Mpc  M_gas_req  11.343e13  measured  12.175e13  ->  req/measured   0.932
+    A3266    R  1.605 Mpc  M_gas_req   6.030e13  measured  12.891e13  ->  req/measured   0.468
+    A644     R  2.616 Mpc  M_gas_req  16.014e13  measured  12.759e13  ->  req/measured    1.26
+    A85      R  2.311 Mpc  M_gas_req  12.499e13  measured  15.369e13  ->  req/measured   0.813
+    RXC1825  R  1.798 Mpc  M_gas_req   7.566e13  measured  10.005e13  ->  req/measured   0.756
+    ZW1215   R  2.053 Mpc  M_gas_req   9.861e13  measured  11.428e13  ->  req/measured   0.863
+  EXTRAPOLATION (mine, flagged): X-COP's median gas fraction at 1.6 R500, f_gas = 0.1483, applied to the P1 stack's measured enclosed mass at the KiDS outer radii (cluster -> galaxy scale, so this over-states the gas):
+    [canonical] bin 0: M_obs 6.319e+12  X-COP-extrapolated gas 9.371e+11  M_gas_req 1.326e+14  ->  ratio 141.5
+    [canonical] bin 1: M_obs 1.842e+13  X-COP-extrapolated gas 2.732e+12  M_gas_req 1e+14  ->  ratio 36.62
+    [canonical] bin 2: M_obs 2.227e+13  X-COP-extrapolated gas 3.302e+12  M_gas_req 5.716e+13  ->  ratio 17.31
+    [canonical] bin 3: M_obs 1.653e+13  X-COP-extrapolated gas 2.451e+12  M_gas_req 3.234e+13  ->  ratio 13.2
+    [canonical] Q_xcop (requirement / X-COP-extrapolated gas): 142, 36.6, 17.3, 13.2
+    [alt] bin 0: M_obs 6.319e+12  X-COP-extrapolated gas 9.371e+11  M_gas_req 1.603e+14  ->  ratio 171
+    [alt] bin 1: M_obs 1.842e+13  X-COP-extrapolated gas 2.732e+12  M_gas_req 1.209e+14  ->  ratio 44.26
+    [alt] bin 2: M_obs 2.227e+13  X-COP-extrapolated gas 3.302e+12  M_gas_req 6.909e+13  ->  ratio 20.92
+    [alt] bin 3: M_obs 1.653e+13  X-COP-extrapolated gas 2.451e+12  M_gas_req 3.91e+13  ->  ratio 15.95
+    [alt] Q_xcop (requirement / X-COP-extrapolated gas): 171, 44.3, 20.9, 16
+
+=== Label ===
+  [canonical] G1 True (Q1 284, 327, 433, 574) ; G2 True (Q2 21, 5.43, 2.57, 1.96) ; G3a True ; G3b True ; G4 True (A_gas 0.039 +- 0.007 vs 0.891) ; G5 False (Q5 1.38)
+  [canonical] LABEL: MISSING BARYONS EXCLUDED [AMOUNT AND AMPLITUDE]
+  [alt] G1 True (Q1 344, 396, 523, 695) ; G2 True (Q2 25.4, 6.56, 3.1, 2.37) ; G3a True ; G3b True ; G4 True (A_gas 0.032 +- 0.006 vs 0.891) ; G5 False (Q5 1.67)
+  [alt] LABEL: MISSING BARYONS EXCLUDED [AMOUNT AND AMPLITUDE]
+
+Known answers: 13 of 13 PASS -> ALL PASS
+runtime 7 s
+kappa = 1/2 FITTED; not theory closed. Adopts nothing.

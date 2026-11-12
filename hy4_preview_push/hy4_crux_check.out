@@ -1,0 +1,88 @@
+==============================================================================
+A.  The law's static halo: the stress and the sign of its radial piece
+==============================================================================
+
+  canonical a0 = 9.3603e-11 m/s^2, log M_b = 11, r_M = 12.20 kpc, v_inf = 187.8 km/s
+    r/r_M     rho_c [Msun/pc^3]   sigma_r^2/c^2   sigma_t^2/c^2   (Pi_rr+Pi_tt)/Pi_tt
+       0.1       8.5850e-02     -7.2690e-08     +1.9272e-06    +9.62e-01
+       1.0       3.9153e-03     -1.5102e-07     +2.8749e-07    +4.75e-01
+       3.0       4.7977e-04     -1.7690e-07     +2.2072e-07    +1.99e-01
+      10.0       4.3720e-05     -1.8981e-07     +2.0289e-07    +6.45e-02
+      30.0       4.8632e-06     -1.9396e-07     +1.9831e-07    +2.20e-02
+     100.0       4.3774e-07     -1.9546e-07     +1.9676e-07    +6.64e-03
+
+  alt       a0 = 1.1312e-10 m/s^2, log M_b = 11, r_M = 11.10 kpc, v_inf = 196.9 km/s
+    r/r_M     rho_c [Msun/pc^3]   sigma_r^2/c^2   sigma_t^2/c^2   (Pi_rr+Pi_tt)/Pi_tt
+       0.1       1.1405e-01     -7.9910e-08     +2.1186e-06    +9.62e-01
+       1.0       5.2017e-03     -1.6602e-07     +3.1605e-07    +4.75e-01
+       3.0       6.3739e-04     -1.9447e-07     +2.4264e-07    +1.99e-01
+      10.0       5.8084e-05     -2.0866e-07     +2.2304e-07    +6.45e-02
+      30.0       6.4610e-06     -2.1322e-07     +2.1801e-07    +2.20e-02
+     100.0       5.8156e-07     -2.1487e-07     +2.1631e-07    +6.64e-03
+
+  A1  sigma_r^2 = -sigma_t^2 in the deep field: the radial "dispersion" is NEGATIVE.
+      A kinetic gas cannot have it. A medium with a shear modulus (a solid) can.
+      Large-r closed form: sigma_t^2 = (1/2) sqrt(G M_b a0) = v_inf^2/2  (PD1 P7).
+
+==============================================================================
+B.  Can that anisotropic stress carry the lensing?
+==============================================================================
+  Active (Tolman) source of a static spherical configuration: rho + (p_r + 2 p_t)/c^2.
+  Here p_r = Pi_rr, p_t = Pi_tt, and Pi_rr + Pi_tt = 0, so p_r + 2 p_t = Pi_tt.
+  Fractional correction to the lensing source = (Pi_tt/c^2)/rho = sigma_t^2/c^2.
+  Large-r closed form: sqrt(G M_b a0)/(2 c^2).
+
+    log M_b    canonical          alt                what it must cover
+       9     1.9611e-08        2.1559e-08         a factor 6 to 20 of halo mass
+      10     6.2015e-08        6.8174e-08         a factor 6 to 20 of halo mass
+      11     1.9611e-07        2.1559e-07         a factor 6 to 20 of halo mass
+      12     6.2015e-07        6.8174e-07         a factor 6 to 20 of halo mass
+      13     1.9611e-06        2.1559e-06         a factor 6 to 20 of halo mass
+      14     6.2015e-06        6.8174e-06         a factor 6 to 20 of halo mass
+      15     1.9611e-05        2.1559e-05         a factor 6 to 20 of halo mass
+
+  B1  VERDICT: the anisotropic stress contributes ~1e-6 of the lensing source, against a
+      shortfall of a factor 6 to 20. The stress tells you what the medium is; it does not
+      pay the amount. The lensing signal is mass.
+
+==============================================================================
+C.  The amount budget
+==============================================================================
+  Budget: M_c <= 5.41 M_b (all the cold charge comoving with the galaxy's baryons).
+  Law:    M_c(<r) = M_b X(x),  X(x) = (sqrt(1+4x^2)-1)/2,  x = r/r_M.
+  X(x) = 5.41 at x = 5.8888 r_M. Beyond that the law's halo exceeds the entire
+  cosmic cold budget, and X grows as x thereafter.
+
+    log M_b    r_M [kpc]    budget gone at      at 30 r_M needs     ratio
+  canonical:
+       9           1.22          7.2 kpc          29.50 M_b        5.45x
+      10           3.86         22.7 kpc          29.50 M_b        5.45x
+      11          12.20         71.9 kpc          29.50 M_b        5.45x
+      12          38.59        227.3 kpc          29.50 M_b        5.45x
+  alt:
+       9           1.11          6.5 kpc          29.50 M_b        5.45x
+      10           3.51         20.7 kpc          29.50 M_b        5.45x
+      11          11.10         65.4 kpc          29.50 M_b        5.45x
+      12          35.11        206.7 kpc          29.50 M_b        5.45x
+
+  C1  Required to pass KiDS host-free (ONE1): share X_s = 59.5 M_b.
+      vs the 5.41 budget          : 11.00x over.
+      vs the charge that falls in : 42x to 66x over (VSH1: 0.9-1.4 M_b).
+  C2  T4 (exact: net polarization charge in any free-fall-bounded ball is 0 at all times,
+      for any momentum equation) and LFS1 (exact: static polarization is frozen, the
+      halo's charge changes only by O(|Phi|/c^2) ~ 1e-6) say the halo's charge EQUALS the
+      dust charge carried in. So the cap is a conservation law, not a mechanism failure.
+  C3  The one reconciliation: g_bar at KiDS radii is missing hot gas. The law would be
+      evaluated with g_bar raised 11.0x there. The record's own note: "with B21's own
+      hot-gas estimate in g_bar, its published outer points drop from 1.50 to 0.47 of the
+      law. Nothing on disk measures that gas."
+
+==============================================================================
+D.  What the deep field gives, for the mechanism
+==============================================================================
+  canonical column a0/(2 pi G) = 106.9 Msun/pc^2  (the same for every galaxy)
+            pressure scale a0^2/(8 pi G) = 5.2232e-12 Pa = rho_Lambda c^2/(32 pi) at kappa = 1/2
+  alt       column a0/(2 pi G) = 129.1 Msun/pc^2  (the same for every galaxy)
+            pressure scale a0^2/(8 pi G) = 7.6284e-12 Pa = rho_Lambda c^2/(32 pi) at kappa = 1/2
+
+kappa = 1/2 FITTED; not theory closed. Adopts nothing.
