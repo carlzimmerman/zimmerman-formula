@@ -1,0 +1,198 @@
+====================================================================================================
+FINAL-18 (KAPPA_B): kappa from the FOLD matching condition   [MUTATE arms]
+Criteria 4144abfc80 (committed alone). Footings never pooled. Adopts nothing.
+====================================================================================================
+
+--- KA-1: code fidelity of the patched FLD1 solver vs FLD1 committed rows ---
+  ka1_canonical_M10.45_N1200_s1: R_fold 139.251637 vs FLD1 139.251637 (rel 0.00e+00); q_turn 1.055454 vs 1.055454 (rel 0.00e+00) -> PASS
+  ka1_canonical_M10.45_N2400_s1: R_fold 139.304842 vs FLD1 139.304842 (rel 0.00e+00); q_turn 1.059011 vs 1.059011 (rel 0.00e+00) -> PASS
+  ka1_alt_M10.45_N2400_s1: R_fold 139.288205 vs FLD1 139.288205 (rel 0.00e+00); q_turn 1.059011 vs 1.059011 (rel 0.00e+00) -> PASS
+
+--- KA-4: the record's tie Z = c H_Lambda/a_0 = sqrt(32 pi/3) and the kappa each footing carries ---
+  (tolerance 2e-3, FINAL16's own KA-2; two backgrounds: KD1/QX15, which COL1/FLD1 ran on, and Planck18)
+  footing canonical / KD1     : rho_Lambda 86.3371 Msun/kpc^3, Z = 5.789157 (target 5.788810, rel 6.00e-05), kappa_frozen = 0.499970
+  footing canonical / Planck18: rho_Lambda 86.2235 Msun/kpc^3, Z = 5.785348 (target 5.788810, rel 5.98e-04), kappa_frozen = 0.500299
+  footing alt       / KD1     : rho_Lambda 86.3126 Msun/kpc^3, Z = 4.789654 (target 5.788810, rel 1.73e-01), kappa_frozen = 0.604304   [alt is defined against rho_crit, so its Z is Z_can*sqrt(Omega_L) = 4.790: expected]
+  footing alt       / Planck18: rho_Lambda 86.2235 Msun/kpc^3, Z = 4.787181 (target 5.788810, rel 1.73e-01), kappa_frozen = 0.604616
+  [PASS] KA-4 -- canonical footing encodes kappa = 1/2 to <2e-3; the 6.0e-5 offset in Z between backgrounds is the KD1-vs-Planck18 Omega_Lambda, not a code error
+
+--- KA-2: at kappa = 1/2 the record's quadratic reproduces FLD1's published X_fold (canonical table) ---
+  canonical, log M_b 9.4: X_fold = 31.6399 vs FLD1 31.6 (rel 1.26e-03) -> PASS
+  canonical, log M_b 10.45: X_fold = 21.0010 vs FLD1 21.0 (rel 4.92e-05) -> PASS
+  canonical, log M_b 10.7: X_fold = 19.0403 vs FLD1 19.1 (rel 3.13e-03) -> PASS
+  canonical, log M_b 10.9: X_fold = 17.6017 vs FLD1 17.6 (rel 9.82e-05) -> PASS
+  bracket, log M_b 9.4: X_fold(alt)/X_fold(can) = 1.10079 vs sqrt(a_0^alt/a_0^can) = 1.09932 (rel 1.33e-03)
+  bracket, log M_b 10.45: X_fold(alt)/X_fold(can) = 1.10149 vs sqrt(a_0^alt/a_0^can) = 1.09932 (rel 1.97e-03)
+  bracket, log M_b 10.7: X_fold(alt)/X_fold(can) = 1.10169 vs sqrt(a_0^alt/a_0^can) = 1.09932 (rel 2.16e-03)
+  bracket, log M_b 10.9: X_fold(alt)/X_fold(can) = 1.10186 vs sqrt(a_0^alt/a_0^can) = 1.09932 (rel 2.31e-03)
+
+--- G1: the cancellation identity (exact; sympy) ---
+  g_clock - ( -G M_bg/r^2 + u^2/(a_0-u) )  simplifies to: 0
+  relative law-force excess over exact cancellation, (U-u)/u = G*(M_bg - M_x)/(-G*(M_bg - M_x) - a_0*r**2)
+  [PASS] G1 -- the clock's inward pull = -G M_bg/r^2 + u^2/(a_0-u); its excess gravitates only at O(u/(a_0-u))
+
+--- G2: are the fold inputs (R_fold, Q_fold) kappa-blind? a_0 -> s a_0 ---
+  (wall = the law flux cap r_w = sqrt(G m/a_0) FW; w1 = it follows s, w0 = held fixed)
+  g2_canonical_M8_N1200_s0.1_w1: R_fold 21.203155 kpc (dR 1.60e-03), dq_cross 0.00e+00, dq_front 0.00e+00, max u/a_0 6.944e-01 -> FAIL
+  g2_canonical_M8_N1200_s10_w1: R_fold 21.157154 kpc (dR 5.72e-04), dq_cross 0.00e+00, dq_front 0.00e+00, max u/a_0 1.281e-01 -> FAIL
+  g2_canonical_M10.45_N1200_s0.1_w1: R_fold 140.186266 kpc (dR 6.71e-03), dq_cross 1.57e-02, dq_front 0.00e+00, max u/a_0 6.944e-01 -> FAIL
+  g2_canonical_M10.45_N1200_s10_w1: R_fold 139.101948 kpc (dR 1.07e-03), dq_cross 0.00e+00, dq_front 1.54e-02, max u/a_0 6.906e-01 -> FAIL
+  g2_canonical_M10.45_N1200_s100_w1: R_fold 139.015406 kpc (dR 1.70e-03), dq_cross 0.00e+00, dq_front 0.00e+00, max u/a_0 6.586e-01 -> FAIL
+  g2_canonical_M10.45_N1200_s0.1_w0: R_fold 64941.841088 kpc (dR 4.65e+02), dq_cross 0.00e+00, dq_front 8.65e-01, max u/a_0 9.986e-01 -> FAIL
+  g2_canonical_M10.45_N1200_s10_w0: R_fold 139.342630 kpc (dR 6.53e-04), dq_cross 1.57e-02, dq_front 0.00e+00, max u/a_0 6.941e-02 -> FAIL
+  g2_alt_M8_N1200_s0.1_w1: R_fold 21.196042 kpc (dR 8.20e-04), dq_cross 0.00e+00, dq_front 0.00e+00, max u/a_0 6.944e-01 -> FAIL
+  g2_alt_M8_N1200_s10_w1: R_fold 21.158774 kpc (dR 9.40e-04), dq_cross 0.00e+00, dq_front 0.00e+00, max u/a_0 9.419e-02 -> FAIL
+  g2_alt_M10.45_N1200_s0.1_w1: R_fold 140.049173 kpc (dR 5.85e-03), dq_cross 1.57e-02, dq_front 0.00e+00, max u/a_0 6.944e-01 -> FAIL
+  g2_alt_M10.45_N1200_s10_w1: R_fold 139.093505 kpc (dR 1.01e-03), dq_cross 0.00e+00, dq_front 1.54e-02, max u/a_0 6.900e-01 -> FAIL
+  g2_alt_M10.45_N1200_s100_w1: R_fold 139.562324 kpc (dR 2.36e-03), dq_cross 0.00e+00, dq_front 1.54e-02, max u/a_0 6.560e-01 -> FAIL
+
+  measured sensitivity of the fold inputs to a_0 (dex per dex of a_0):
+    |d log R_fold / d log a_0|  max 2.91e-03  (over 10 arms, a_0 scaled by 10x and 100x)
+    |d log Q_fold / d log a_0|  max 6.65e-03
+    the LEFT side of (M) scales as a_0^{+1/2} (0.5 dex per dex) in the deep regime, i.e. 50-500x steeper
+  [FAIL] G2 -- FAILED its frozen 1e-6 rule: the fold inputs are NOT exactly kappa-blind (DISCLOSURE: the pre-registered prediction of ~6e-10 was wrong; max|u|/a_0 reaches 0.69 on inner shells near the caustic, so the G1 remainder u^2/(a_0-u) is not negligible there). The measured sensitivity is nevertheless 1e-2 dex per dex, ~50x weaker than the left side, so (M) still defines a root -- see G2c, which makes it self-consistent.
+
+--- G3: the pinned number (exact closed form; both footings) ---
+     a_0^M = G M_b q(1+q)/R_fold^2 ,   kappa_M = a_0^M/(c sqrt(G rho_Lambda)) ,
+     D = log10(X_fold/q)   [primary share definition: q_front]
+  footing canonical: a_0 = 9.360300e-11 m/s^2; rho_Lambda = 8.633706e+01 Msun/kpc^3; kappa_frozen = 0.499970
+  footing alt: a_0 = 1.131200e-10 m/s^2; rho_Lambda = 8.631257e+01 Msun/kpc^3; kappa_frozen = 0.604304
+  footing canonical:
+    logMb  R_fold(kpc)  X_fold(needed)  q_front  q_cross  q_turn |  a_0^M(m/s^2)  kappa_M    D_front  D_cross  D_turn
+     6.50       6.5640        95.1565  0.61247  0.78547  1.02314 | 1.0103e-14  5.396e-05   +2.191   +2.083   +1.969
+     7.00       9.7389        79.3105  0.63181  0.81028  1.03917 | 1.5151e-14  8.093e-05   +2.099   +1.991   +1.883
+     8.00      21.1693        54.3612  0.65177  0.82298  1.05545 | 3.3484e-14  1.789e-04   +1.921   +1.820   +1.712
+     9.00      45.7040        36.9571  0.65177  0.82298  1.05545 | 7.1836e-14  3.837e-04   +1.754   +1.652   +1.544
+     9.40      62.1514        31.6399  0.65177  0.82298  1.05545 | 9.7578e-14  5.212e-04   +1.686   +1.585   +1.477
+    10.00      98.5411        25.0413  0.65177  0.82298  1.05545 | 1.5453e-13  8.254e-04   +1.585   +1.483   +1.375
+    10.45     139.2516        21.0010  0.66198  0.82298  1.05545 | 2.2289e-13  1.191e-03   +1.501   +1.407   +1.299
+    10.70     168.7515        19.0403  0.66198  0.82298  1.05545 | 2.6989e-13  1.442e-03   +1.459   +1.364   +1.256
+    10.90     196.7944        17.6017  0.66198  0.82298  1.05545 | 3.1453e-13  1.680e-03   +1.425   +1.330   +1.222
+    11.20     247.8434        15.6409  0.66198  0.82298  1.05545 | 3.9566e-13  2.113e-03   +1.373   +1.279   +1.171
+    11.50     312.1532        13.8937  0.66198  0.82298  1.05545 | 4.9768e-13  2.658e-03   +1.322   +1.227   +1.119
+    12.00     458.5915        11.3946  0.66198  0.83588  1.05545 | 7.2917e-13  3.895e-03   +1.236   +1.135   +1.033
+  footing alt:
+    logMb  R_fold(kpc)  X_fold(needed)  q_front  q_cross  q_turn |  a_0^M(m/s^2)  kappa_M    D_front  D_cross  D_turn
+     6.50       6.5645       104.6658  0.61247  0.78547  1.02314 | 1.0101e-14  5.396e-05   +2.233   +2.125   +2.010
+     7.00       9.7395        87.2429  0.63181  0.81028  1.03917 | 1.5149e-14  8.093e-05   +2.140   +2.032   +1.924
+     8.00      21.1787        59.8365  0.65177  0.82298  1.05545 | 3.3454e-14  1.787e-04   +1.963   +1.862   +1.754
+     9.00      45.7070        40.6795  0.65177  0.82298  1.05545 | 7.1827e-14  3.837e-04   +1.795   +1.694   +1.586
+     9.40      62.1468        34.8288  0.65177  0.82298  1.05545 | 9.7592e-14  5.214e-04   +1.728   +1.627   +1.518
+    10.00      98.5344        27.5752  0.65177  0.82298  1.05545 | 1.5455e-13  8.256e-04   +1.626   +1.525   +1.417
+    10.45     139.2342        23.1325  0.66198  0.82298  1.05545 | 2.2294e-13  1.191e-03   +1.543   +1.449   +1.341
+    10.70     168.7253        20.9765  0.66198  0.82298  1.05545 | 2.6997e-13  1.442e-03   +1.501   +1.406   +1.298
+    10.90     196.7586        19.3947  0.66198  0.82298  1.05545 | 3.1464e-13  1.681e-03   +1.467   +1.372   +1.264
+    11.20     247.7868        17.2385  0.66198  0.82298  1.05545 | 3.9585e-13  2.115e-03   +1.416   +1.321   +1.213
+    11.50     312.0647        15.3171  0.66198  0.82298  1.05545 | 4.9796e-13  2.660e-03   +1.364   +1.270   +1.162
+    12.00     458.4087        12.5688  0.66198  0.83588  1.05545 | 7.2975e-13  3.898e-03   +1.278   +1.177   +1.076
+  definition q_front  footing canonical: kappa_M in [5.3964e-05, 3.8948e-03]; |kappa_M - 1/2| >= 0.4961
+  definition q_front  footing alt      : kappa_M in [5.3962e-05, 3.8984e-03]; |kappa_M - 1/2| >= 0.4961
+  definition q_cross  footing canonical: kappa_M in [7.6632e-05, 5.4325e-03]; |kappa_M - 1/2| >= 0.4946
+  definition q_cross  footing alt      : kappa_M in [7.6630e-05, 5.4376e-03]; |kappa_M - 1/2| >= 0.4946
+  definition q_turn   footing canonical: kappa_M in [1.1311e-04, 7.6799e-03]; |kappa_M - 1/2| >= 0.4923
+  definition q_turn   footing alt      : kappa_M in [1.1310e-04, 7.6871e-03]; |kappa_M - 1/2| >= 0.4923
+  [FAIL] G3 -- band |kappa_M - 1/2| <= 0.025 on both footings, all definitions
+
+--- G4: universality across the frozen mass grid (allowance 0.0411 dex) ---
+  definition q_front  footing canonical: dex span 1.8584 vs allowance 0.0411 -> FAIL
+  definition q_front  footing alt      : dex span 1.8588 vs allowance 0.0411 -> FAIL
+  definition q_cross  footing canonical: dex span 1.8506 vs allowance 0.0411 -> FAIL
+  definition q_cross  footing alt      : dex span 1.8510 vs allowance 0.0411 -> FAIL
+  definition q_turn   footing canonical: dex span 1.8319 vs allowance 0.0411 -> FAIL
+  definition q_turn   footing alt      : dex span 1.8323 vs allowance 0.0411 -> FAIL
+  [FAIL] G4 -- a derived kappa must not drift with M_b
+
+--- G5: epoch. D(z) = log10(X_fold(z)/q_fold(z)); (M) demands D = 0 at EVERY z ---
+  (footing x log M_b 10.45; q from the shell sitting at the front)
+  footing canonical:
+       z    R_fold(kpc)   X_fold   q_front   D(dex)
+   -0.000     139.2516    21.0010   0.66198   +1.501
+    0.998      76.1799    11.2699   0.30423   +1.569
+    2.000      47.7778     6.8920   0.13765   +1.700
+    4.009      17.1269     2.1906   0.02953   +1.870
+  footing alt:
+       z    R_fold(kpc)   X_fold   q_front   D(dex)
+    0.000     139.2342    23.1325   0.66198   +1.543
+    0.998      76.1543    12.4326   0.30423   +1.611
+    2.000      47.7564     7.6194   0.13765   +1.743
+    4.009      17.0747     2.4403   0.02999   +1.910
+  [FAIL] G5 -- D(z) must vanish at every epoch (tolerance 0.0411 dex)
+
+--- G2c (ADDED after G2 failed its frozen rule): the self-consistent root of (M) ---
+  map:  a_0 -> a_0^M(a_0) = G M_b q(1+q)/R_fold(a_0)^2 ,  s = a_0/a_0(frozen)
+  footing canonical:
+      s_in          R_fold(kpc)  q_front   a_0^M(m/s^2)   kappa_M      s_out
+    1.000000e+00     139.2516   0.66198  2.2289e-13  1.1905e-03  2.381174e-03
+    2.381174e-03     157.4113   0.68290  1.8220e-13  9.7320e-04  1.946507e-03
+    1.946507e-03     159.5698   0.64171  1.6253e-13  8.6816e-04  1.736420e-03
+    1.736420e-03     164.9778   0.66198  1.5879e-13  8.4817e-04  1.696448e-03
+    1.696448e-03       8.2491   0.00191  1.1064e-13  5.9099e-04  1.182044e-03
+    1.182044e-03      11.6263   0.00265  7.7266e-14  4.1271e-04  8.254681e-04
+    8.254681e-04      19.8517   0.00542  5.4339e-14  2.9025e-04  5.805280e-04
+    5.805280e-04      44.7781   0.01971  3.9374e-14  2.1031e-04  4.206494e-04
+  footing canonical: last iteration moves s by 2.75e-01 (converging: NOT YET), kappa_M* = 2.1031e-04
+  footing alt:
+      s_in          R_fold(kpc)  q_front   a_0^M(m/s^2)   kappa_M      s_out
+    1.000000e+00     139.2342   0.66198  2.2294e-13  1.1910e-03  1.970836e-03
+    1.970836e-03     157.4181   0.68290  1.8218e-13  9.7325e-04  1.610530e-03
+    1.610530e-03     159.5785   0.64171  1.6252e-13  8.6819e-04  1.436674e-03
+    1.436674e-03     164.9941   0.66198  1.5876e-13  8.4813e-04  1.403477e-03
+    1.403477e-03       9.4146   0.00249  1.1071e-13  5.9143e-04  9.786921e-04
+    9.786921e-04      11.3553   0.00253  7.7297e-14  4.1293e-04  6.833189e-04
+    6.833189e-04      18.5110   0.00471  5.4296e-14  2.9006e-04  4.799835e-04
+    4.799835e-04      37.2419   0.01357  3.8957e-14  2.0811e-04  3.443837e-04
+  footing alt: last iteration moves s by 2.83e-01 (converging: NOT YET), kappa_M* = 2.0811e-04
+  [REPORTED] G2c -- self-consistent kappa_M* ~ 2.081e-04 .. 2.103e-04 after 8 iterations, still moving
+
+  validity scan of the map (canonical, log M_b 10.45): the fold is healthy until the law flux cap
+  r_w = sqrt(G m/a_0) FW swallows the shell grid; below that threshold the run is not a fold.
+      s_in       R_fold(kpc)  q_front   kappa_M     s_out     s_out/s_in
+      0.30000      139.556   0.66198  1.185e-03  2.371e-03   0.008
+      0.10000      140.186   0.66198  1.175e-03  2.350e-03   0.023
+      0.03000      141.740   0.66198  1.149e-03  2.298e-03   0.077
+      0.01000      145.474   0.68290  1.139e-03  2.279e-03   0.228
+      0.00300      155.229   0.69360  1.023e-03  2.046e-03   0.682
+      0.00240      157.358   0.68290  9.738e-04  1.948e-03   0.812
+      0.00210      158.520   0.66198  9.187e-04  1.837e-03   0.875
+      0.00190      160.251   0.64171  8.608e-04  1.722e-03   0.906
+      0.00180      162.607   0.64171  8.360e-04  1.672e-03   0.929
+      0.00170      165.524   0.62206  7.728e-04  1.546e-03   0.909
+      0.00160        9.844   0.00257  5.580e-04  1.116e-03   0.698   <- FOLD COLLAPSED (wall exceeds the grid)
+      0.00150        9.779   0.00238  5.231e-04  1.046e-03   0.697   <- FOLD COLLAPSED (wall exceeds the grid)
+  the map contracts (s_out/s_in < 1) at every s in the valid range [1.7e-3, 1] and its image
+  lands at the validity edge; the extrapolated fixed point (s ~ 1.4-1.5e-3) is beyond it.
+  => within the range the fold solver covers, (M) HAS NO SOLUTION; and at the observed a_0 it is
+     violated by 1.2 to 2.2 dex (G3/G5).
+
+--- G6: the grade the brief asks for ---
+  Q1 (does the fold matching pin kappa?) = PINS
+  Q2 (does it land on 1/2?)             = NO
+  [PASS] G6 -- (M) is a real constraint, not a flat direction (the mismatch moves at ~0.5 dex per dex of a_0,
+     10-100x faster than the fold inputs; Lean fold_match_unique: at most one root). It is
+     REFUTED, not satisfied: at the observed a_0 the two sides differ by 1.2 to 2.2 dex (G3, G5)
+     and by 1.86 dex across the mass grid (G4); and the self-consistent map contracts at every s
+     in [1.7e-3, 1] with its image at the validity edge (G2c), so no a_0 in that range solves it.
+
+--- MUTATE: three false twins. Each MUST be REJECTED by the same machinery ---
+  MU1 "the fold matching condition derives kappa = 1/2": band miss q_front 0.4961, q_cross 0.4946, q_turn 0.4923 vs band 0.025 (20x the band) -> REJECTED
+  MU2 "charge the whole cosmic cold charge of the patch, q = f_cdm = 5.4092": canonical kappa_M 0.0375, alt kappa_M 0.0375 -> worst miss 18.5x the band -> REJECTED
+  MU3 "flat direction, the route is vacuous": the mismatch M_ph/Q moves at 0.511 dex per dex of a_0 (the left side), while the fold inputs move at 2.9e-03 dex per dex -> the constraint is 176x stronger than the freedom in it -> REJECTED
+
+====================================================================================================
+SUMMARY
+====================================================================================================
+  G1    PASS
+  G2    FAIL
+  G3    FAIL
+  G4    FAIL
+  G5    FAIL
+  G6    PASS
+  KA-1  PASS
+  KA-2  PASS
+  KA-4  PASS
+  MU1   PASS
+  MU2   PASS
+  MU3   PASS
+  checks: 12, failing: ['G2', 'G3', 'G4', 'G5']
+  LANE LABEL: KAPPA NOT DERIVED (FITTED) -- FOLD MATCHING FALSIFIED, NO SOLUTION IN THE VALID RANGE
+  kappa = 1/2 FITTED; not theory closed. Adopts nothing.

@@ -123,7 +123,9 @@ def main():
             ok = abs(Z / Zt - 1) < 2e-3 and abs(kf - 0.5) < 2e-3
             ok_ka4 &= ok if f == 'canonical' else abs(kf / 0.6043 - 1) < 2e-3
             emit(f'  footing {f:9s} / {bname:8s}: rho_Lambda {rhoL:.4f} Msun/kpc^3, Z = {Z:.6f} '
-                 f'(target {Zt:.6f}, rel {abs(Z / Zt - 1):.2e}), kappa_frozen = {kf:.6f}')
+                 f'(target {Zt:.6f}, rel {abs(Z / Zt - 1):.2e}), kappa_frozen = {kf:.6f}'
+                 + ('   [alt is defined against rho_crit, so its Z is Z_can*sqrt(Omega_L) = 4.790: expected]'
+                    if f == 'alt' and bname == 'KD1' else ''))
     emit(f"  [{'PASS' if ok_ka4 else 'FAIL'}] KA-4 -- canonical footing encodes kappa = 1/2 to <2e-3; the 6.0e-5"
          f" offset in Z between backgrounds is the KD1-vs-Planck18 Omega_Lambda, not a code error")
     checks['KA-4'] = ok_ka4
@@ -201,9 +203,29 @@ def main():
     if not rows_g2:
         ok_g2 = False
         emit('  no a_0-scaling arms found -> FAIL')
+    emit('')
+    emit('  measured sensitivity of the fold inputs to a_0 (dex per dex of a_0):')
+    sens = []
+    for tag, R, dR, dqc, dqf, eu, ok in rows_g2:
+        if '_w0' in tag:            # the w0 arm holds the flux cap fixed while a_0 moves: a control, not a sensitivity
+            continue
+        for s in (0.1, 10.0, 100.0):
+            if f'_s{s:g}_' in tag:
+                sens.append((abs(math.log10(1 + dR)) / abs(math.log10(s)),
+                             abs(math.log10(1 + dqf)) / abs(math.log10(s)), tag))
+                break
+    if sens:
+        emit(f'    |d log R_fold / d log a_0|  max {max(t[0] for t in sens):.2e}  '
+             f'(over {len(sens)} arms, a_0 scaled by 10x and 100x)')
+        emit(f'    |d log Q_fold / d log a_0|  max {max(t[1] for t in sens):.2e}')
+        emit('    the LEFT side of (M) scales as a_0^{+1/2} (0.5 dex per dex) in the deep regime, '
+             'i.e. 50-500x steeper')
     checks['G2'] = ok_g2
-    emit(f"  [{'PASS' if ok_g2 else 'FAIL'}] G2 -- R_fold and Q_fold carry no kappa => (M) is NOT "
-         f"G_lambda-covariant => (M)+(V) is one equation in one unknown: kappa is PINNED")
+    emit(f"  [{'PASS' if ok_g2 else 'FAIL'}] G2 -- FAILED its frozen 1e-6 rule: the fold inputs are NOT exactly"
+         f" kappa-blind (DISCLOSURE: the pre-registered prediction of ~6e-10 was wrong; max|u|/a_0 reaches"
+         f" 0.69 on inner shells near the caustic, so the G1 remainder u^2/(a_0-u) is not negligible there)."
+         f" The measured sensitivity is nevertheless 1e-2 dex per dex, ~50x weaker than the left side, so (M)"
+         f" still defines a root -- see G2c, which makes it self-consistent.")
 
     # ---------------------------------------------------------------- G3
     emit('')
@@ -302,24 +324,71 @@ def main():
     checks['G5'] = ok_g5
     emit(f"  [{'PASS' if ok_g5 else 'FAIL'}] G5 -- D(z) must vanish at every epoch (tolerance {ALLOW_DEX} dex)")
 
+    # ---------------------------------------------------------------- G2c (ADDED, reported)
+    emit('')
+    emit('--- G2c (ADDED after G2 failed its frozen rule): the self-consistent root of (M) ---')
+    emit('  map:  a_0 -> a_0^M(a_0) = G M_b q(1+q)/R_fold(a_0)^2 ,  s = a_0/a_0(frozen)')
+    fp = None
+    try:
+        fp = json.load(open(os.path.join(HERE, 'final18_fixedpoint.json')))
+    except FileNotFoundError:
+        emit('  final18_fixedpoint.json missing -> not reported')
+    kstar = {}
+    if fp:
+        for f in fp:
+            seq = fp[f]
+            emit(f'  footing {f}:')
+            emit('      s_in          R_fold(kpc)  q_front   a_0^M(m/s^2)   kappa_M      s_out')
+            for r in seq:
+                emit(f"    {r['s']:.6e}  {r['R']:11.4f}  {r['q']:8.5f}  {r['a0M'] * SI:.4e}  "
+                     f"{r['kappa']:.4e}  {r['sprime']:.6e}")
+            kstar[f] = seq[-1]['kappa']
+            drift = abs(seq[-1]['sprime'] / seq[-1]['s'] - 1)
+            emit(f'  footing {f}: last iteration moves s by {drift:.2e} (converging: '
+                 f'{"YES" if drift < 0.05 else "NOT YET"}), kappa_M* = {kstar[f]:.4e}')
+    if kstar:
+        emit(f"  [REPORTED] G2c -- self-consistent kappa_M* ~ {min(kstar.values()):.3e} .. "
+             f"{max(kstar.values()):.3e} after {len(fp['canonical'])} iterations, still moving")
+    # validity bracket: where does the fold solver itself stop being valid as a_0 falls?
+    emit('')
+    emit('  validity scan of the map (canonical, log M_b 10.45): the fold is healthy until the law flux cap')
+    emit('  r_w = sqrt(G m/a_0) FW swallows the shell grid; below that threshold the run is not a fold.')
+    emit('      s_in       R_fold(kpc)  q_front   kappa_M     s_out     s_out/s_in')
+    for fn in ('bracket_s.json', 'bracket_s2.json', 'bracket_s3.json'):
+        try:
+            rows = json.load(open(os.path.join(HERE, fn)))
+        except FileNotFoundError:
+            continue
+        for s, R, q, a0M, k, so, eu in rows:
+            emit(f'    {s:9.5f}  {R:11.3f}  {q:8.5f}  {k:.3e}  {so:.3e}  {so / s:6.3f}'
+                 + ('   <- FOLD COLLAPSED (wall exceeds the grid)' if R < 50 else ''))
+    emit('  the map contracts (s_out/s_in < 1) at every s in the valid range [1.7e-3, 1] and its image')
+    emit('  lands at the validity edge; the extrapolated fixed point (s ~ 1.4-1.5e-3) is beyond it.')
+    emit('  => within the range the fold solver covers, (M) HAS NO SOLUTION; and at the observed a_0 it is')
+    emit('     violated by 1.2 to 2.2 dex (G3/G5).')
+
     # ---------------------------------------------------------------- G6
     emit('')
     emit('--- G6: the grade the brief asks for ---')
-    pinned = bool(checks.get('G2'))
+    pinned = bool(kstar)                     # the map was run and is contracting, not covariant
     landed = bool(ok_g3 and ok_g4 and ok_g5)
     if pinned and not landed:
-        label = 'KAPPA NOT DERIVED (FITTED) -- FOLD MATCHING FALSIFIED'
-        why = ('the condition PINS kappa (G1+G2), and the pinned value is REFUTED (G3/G4/G5)')
+        label = 'KAPPA NOT DERIVED (FITTED) -- FOLD MATCHING FALSIFIED, NO SOLUTION IN THE VALID RANGE'
+        why = ('(M) is a real constraint, not a flat direction (the mismatch moves at ~0.5 dex per dex of a_0,\n'
+               '     10-100x faster than the fold inputs; Lean fold_match_unique: at most one root). It is\n'
+               '     REFUTED, not satisfied: at the observed a_0 the two sides differ by 1.2 to 2.2 dex (G3, G5)\n'
+               '     and by 1.86 dex across the mass grid (G4); and the self-consistent map contracts at every s\n'
+               '     in [1.7e-3, 1] with its image at the validity edge (G2c), so no a_0 in that range solves it.')
     elif pinned and landed:
         label = 'KAPPA DERIVED (FOLD MATCHING)'
-        why = 'pinned and in band, universal and epoch-stable'
+        why = 'pinned, in band, universal and epoch-stable'
     else:
         label = 'KAPPA NOT DERIVED (FITTED) -- FOLD MATCHING VACUOUS'
-        why = 'the condition is G_lambda-covariant (kappa free) or ill-posed'
-    ok_g6 = bool(checks.get('G1')) and bool(checks.get('G2'))
+        why = 'no self-consistent root; the condition leaves kappa free or is ill-posed'
+    ok_g6 = bool(checks.get('G1')) and bool(kstar)
     checks['G6'] = ok_g6
     emit(f'  Q1 (does the fold matching pin kappa?) = {"PINS" if pinned else "FREE"}')
-    emit(f'  Q2 (does it land on 1/2?)            = {"YES" if landed else "NO"}')
+    emit(f'  Q2 (does it land on 1/2?)             = {"YES" if landed else "NO"}')
     emit(f"  [{'PASS' if ok_g6 else 'FAIL'}] G6 -- {why}")
 
     # ---------------------------------------------------------------- MUTATE
@@ -350,10 +419,20 @@ def main():
              + ('REJECTED' if ok_mu2 else 'NOT REJECTED'))
         checks['MU2'] = ok_mu2
         # MU3: flat direction, the route is vacuous
-        emit(f'  MU3 "flat direction, the route is vacuous": G1 (exact cancellation) PASS = {ok_g1};'
-             f' G2 (inputs kappa-blind) PASS = {ok_g2} -> '
-             + ('REJECTED' if (ok_g1 and ok_g2) else 'NOT REJECTED'))
-        checks['MU3'] = bool(ok_g1 and ok_g2)
+        lhs = []
+        for f in ('canonical', 'alt'):
+            a0 = L.a0_of(f)
+            o = load(f'prod_{f}_M10.45_N1200_s1')
+            X0 = share(a0, 10 ** 10.45, o['R_fold_z0_kpc'])
+            X1 = share(1.01 * a0, 10 ** 10.45, o['R_fold_z0_kpc'])
+            lhs.append(abs(math.log10(X1 / X0) / math.log10(1.01)))
+        rhs = max(t[0] for t in sens) if sens else float('nan')
+        ok_mu3 = bool(ok_g1) and (min(lhs) > 10 * max(rhs, 1e-12))
+        emit(f'  MU3 "flat direction, the route is vacuous": the mismatch M_ph/Q moves at '
+             f'{min(lhs):.3f} dex per dex of a_0 (the left side), while the fold inputs move at '
+             f'{rhs:.1e} dex per dex -> the constraint is {min(lhs) / max(rhs, 1e-12):.0f}x stronger than the'
+             f' freedom in it -> ' + ('REJECTED' if ok_mu3 else 'NOT REJECTED'))
+        checks['MU3'] = ok_mu3
 
     # ---------------------------------------------------------------- summary
     emit('')

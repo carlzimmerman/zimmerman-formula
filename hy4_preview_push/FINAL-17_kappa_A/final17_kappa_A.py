@@ -471,7 +471,7 @@ twin("M3  'kappa = 1/2 is a measurement, realized on the alt footing too'",
 
 say("")
 say("  MUTATE VERDICT: %s" % ("PASS (the machinery can be fooled only by disabling it: "
-                              "the 20 %% band and the premise test are what let the twins through)"
+                              "the 20 % band and the premise test are what let the twins through)"
                               if MUTATE else
                               "MAIN: all three twins rejected by the frozen machinery"))
 

@@ -58,24 +58,20 @@ def gbar (a0 g : ℝ) : ℝ := g ^ 2 / (g + a0)
 /-- the enclosed cold mass on the saturated (deep) branch. -/
 def Mc (a0 G r : ℝ) : ℝ := (a0 / G) * r ^ 2
 
-/------------------------------------------------------------------
-  S1-S4 : the capacity is a0, and the shape carries no a0
-------------------------------------------------------------------/
+-- S1-S4 : the capacity is a0, and the shape carries no a0
 
 /-- (S1)  u = a0*g/(g+a0) : the load-bearing algebraic step, in isolation. -/
 theorem phantom_eq (a0 g : ℝ) (hg : g + a0 ≠ 0) :
     phantom a0 g = a0 * g / (g + a0) := by
   unfold phantom
-  field_simp [hg]
-  ring
+  field_simp [hg] <;> ring
 
 /-- (S4)  the capacity deficiency: a0 - u = a0^2/(g+a0) > 0, so u < a0 strictly
     and the ceiling is approached only as g -> infinity. -/
 theorem phantom_deficiency (a0 g : ℝ) (hg : g + a0 ≠ 0) :
     a0 - phantom a0 g = a0 ^ 2 / (g + a0) := by
   rw [phantom_eq a0 g hg]
-  field_simp [hg]
-  ring
+  field_simp [hg] <;> ring
 
 /-- (S3a)  the cold field is positive wherever the total field and a0 are. -/
 theorem phantom_pos (a0 g : ℝ) (ha0 : 0 < a0) (hg : 0 < g) :
@@ -93,10 +89,8 @@ theorem phantom_capacity (a0 g : ℝ) (ha0 : 0 < a0) (hg : 0 < g) :
   rw [div_lt_iff₀ hden]
   nlinarith [sq_pos_of_pos ha0]
 
-/------------------------------------------------------------------
-  T5-T6 : the load-bearing step -- the capacity condition is
-          NORMALISATION-BLIND, so kappa is a flat direction
-------------------------------------------------------------------/
+-- T5-T6 : the load-bearing step -- the capacity condition is
+-- NORMALISATION-BLIND, so kappa is a flat direction
 
 /-- (T5)  covariance of the cold field under G_lam: u carries weight 1. -/
 theorem phantom_covariant (a0 g lam : ℝ) (hl : lam ≠ 0) (hg : g + a0 ≠ 0) :
@@ -105,7 +99,6 @@ theorem phantom_covariant (a0 g lam : ℝ) (hl : lam ≠ 0) (hg : g + a0 ≠ 0) 
   have hden : lam * g + lam * a0 = lam * (g + a0) := by ring
   rw [hden]
   field_simp [hl, hg]
-  ring
 
 /-- (T6)  the response SHAPE u/a0 is G_lam-INVARIANT: everything the route
     determines about the cold component's response is a0-free.  This is why the
@@ -115,7 +108,6 @@ theorem phantom_shape_invariant (a0 g lam : ℝ) (ha0 : a0 ≠ 0) (hl : lam ≠ 
     phantom (lam * a0) (lam * g) / (lam * a0) = phantom a0 g / a0 := by
   rw [phantom_covariant a0 g lam hl hg]
   field_simp [ha0, hl]
-  ring
 
 /-- (T7)  the capacity statement itself is weight-1: under G_lam the bound
     u < a0 becomes lam*u < lam*a0.  It is preserved for every lam, i.e. it is
@@ -125,17 +117,14 @@ theorem capacity_bound_covariant (a0 g lam : ℝ) (hl : lam ≠ 0) (hg : g + a0 
   rw [phantom_covariant a0 g lam hl hg]
   ring
 
-/------------------------------------------------------------------
-  T8-T10 : what the route DOES derive -- the saturated self-sourced branch
-------------------------------------------------------------------/
+-- T8-T10 : what the route DOES derive -- the saturated self-sourced branch
 
 /-- (T8)  Poisson on the saturated branch: the enclosed mass's radial derivative
     is exactly 4 pi r^2 rho_c with rho_c = a0/(2 pi G r). -/
 theorem saturated_poisson (a0 G r : ℝ) (hG : G ≠ 0) (hr : r ≠ 0) :
     2 * a0 * r / G = 4 * Real.pi * r ^ 2 * (a0 / (2 * Real.pi * G * r)) := by
   have hpi : (Real.pi : ℝ) ≠ 0 := by positivity
-  field_simp [hG, hr, hpi]
-  ring
+  field_simp [hG, hr, hpi] <;> ring
 
 /-- (T9)  the self-sourced configuration sits EXACTLY at the capacity:
     G M_c(r)/r^2 = a0 for every r.  The route's one real output. -/
@@ -143,7 +132,6 @@ theorem saturated_field (a0 G r : ℝ) (hG : G ≠ 0) (hr : r ≠ 0) :
     G * Mc a0 G r / r ^ 2 = a0 := by
   unfold Mc
   field_simp [hG, hr]
-  ring
 
 /-- (T10)  the universal column of the saturated branch: M_c/(pi r^2) = a0/(pi G)
     (= 213.7 Msun/pc^2 on the canonical footing; AG4's n=1 capacity ceiling). -/
@@ -152,20 +140,16 @@ theorem saturated_column (a0 G r : ℝ) (hG : G ≠ 0) (hr : r ≠ 0) :
   have hpi : (Real.pi : ℝ) ≠ 0 := by positivity
   unfold Mc
   field_simp [hG, hr, hpi]
-  ring
 
-/------------------------------------------------------------------
-  T11-T13 : branch distinctness -- the canonical law is the n = 1 member,
-            the quadratic a0-line is the n = 2 member, a different theory
-------------------------------------------------------------------/
+-- T11-T13 : branch distinctness -- the canonical law is the n = 1 member,
+-- the quadratic a0-line is the n = 2 member, a different theory
 
 /-- (T11)  the canonical law's own cold field solves the n = 1 rest state
     u^2 + gbar u = a0 gbar exactly (AG4's capacity family at n = 1). -/
 theorem canonical_is_n1_rest_state (a0 g : ℝ) (hg : g + a0 ≠ 0) :
     (phantom a0 g) ^ 2 + (gbar a0 g) * (phantom a0 g) - a0 * (gbar a0 g) = 0 := by
   unfold phantom gbar
-  field_simp [hg]
-  ring
+  field_simp [hg] <;> ring
 
 /-- (T12)  the SAME field leaves a nonzero residual in the n = 2 member:
     u^2 + 2 gbar u - a0 gbar = a0 g^3/(g+a0)^2.  The quadratic a0-line is
@@ -174,8 +158,7 @@ theorem canonical_n2_residual (a0 g : ℝ) (hg : g + a0 ≠ 0) :
     (phantom a0 g) ^ 2 + 2 * (gbar a0 g) * (phantom a0 g) - a0 * (gbar a0 g)
       = a0 * g ^ 3 / (g + a0) ^ 2 := by
   unfold phantom gbar
-  field_simp [hg]
-  ring
+  field_simp [hg] <;> ring
 
 /-- (T13)  that residual is strictly positive for a0, g > 0: the two branches
     cannot be confused, so no n = 2 argument can be used to fix the canonical

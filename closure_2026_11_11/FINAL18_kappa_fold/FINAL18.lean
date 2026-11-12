@@ -82,7 +82,9 @@ theorem fold_match_exists (q : ℝ) (hq : 0 ≤ q) :
 /-- The share is strictly increasing in x^2 (hence in a_0 at fixed R, M_b). -/
 theorem share_strict_mono (k0 k1 : ℝ) (h0 : 0 ≤ k0) (h01 : k0 < k1) :
     (-1 + Real.sqrt (1 + 4 * k0)) / 2 < (-1 + Real.sqrt (1 + 4 * k1)) / 2 := by
-  have hs : Real.sqrt (1 + 4 * k0) < Real.sqrt (1 + 4 * k1) := Real.sqrt_lt_sqrt (by linarith)
+  have hlt : 1 + 4 * k0 < 1 + 4 * k1 := by linarith
+  have hnon : 0 ≤ 1 + 4 * k0 := by linarith
+  have hs : Real.sqrt (1 + 4 * k0) < Real.sqrt (1 + 4 * k1) := Real.sqrt_lt_sqrt hnon hlt
   linarith
 
 /-- Uniqueness: (M) has at most one solution. If a solution exists, kappa is pinned (not a flat
@@ -103,6 +105,5 @@ theorem fold_match_unique (k0 k1 q : ℝ) (h0 : 0 ≤ k0) (h1 : 0 ≤ k1)
 theorem kappa_scales (a0 lam croot : ℝ) (hc : croot ≠ 0) :
     (lam * a0) / croot = lam * (a0 / croot) := by
   field_simp [hc]
-  ring
 
 end FINAL18
