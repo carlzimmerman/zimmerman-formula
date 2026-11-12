@@ -10,7 +10,8 @@ WM1) with the owner's retirement record of 2026-11-01; DCN1 (the disc-centre nul
 not a graded lane) and its lanes R541A to R541E under closure_2026_11_10/; and X38's README, which states route E. BX1 is included.
 Version 1.2 adds every lane folded into its Section 8 (closure_2026_11_10/ to closure_2026_11_12/, fable52_push/, hy4_preview_push/,
 hy4_push/, toe_2026_11_10/) the audit files A1 to A4 of reviews/hy4_codex_audit_2026_11_12/, the corrections audit
-reviews/codex_corrections_audit_2026_11_12/ and the two owner decisions of 2026-11-12 on the Milky Way (revision 2).
+reviews/codex_corrections_audit_2026_11_12/ and the two owner decisions of 2026-11-12 on the Milky Way (revision 2); and PIK2, EUC5R, EUC6R, EUC8 and RAW1
+(revision 3a).
 The shared checkout has diverged from origin (PD1 and PD2 are committed on origin only), so each lane path is taken from whichever
 of HEAD and origin/main last committed to it; the manifest records the ref and commit for each. Untracked files are not included
 and are listed (unless the same path is committed on the chosen ref); a tracked file modified in the working tree stops the build. Deterministic for given commits (fixed entry dates).
@@ -178,6 +179,12 @@ PATHS = [
  "reviews/codex_corrections_audit_2026_11_12",
  "campaign_fresh_gravity/OWNER_DECISION_2026-11-12_EXTERNAL_FIELD_READING.md",
  "campaign_fresh_gravity/OWNER_DECISION_2026-11-12b_ROW32_KILL.md",
+ # version 1.2, revision 3a
+ "closure_2026_11_12/PIK2_gated_dust_graded",
+ "closure_2026_11_12/EUC5R_blind_dynamical_boost_regrade",
+ "closure_2026_11_12/EUC6R_blind_regrade",
+ "closure_2026_11_12/EUC8_wide_lens_residual_profile",
+ "closure_2026_11_12/RAW1_halo_stars_direct",
 ]
 REFS = ("HEAD", "origin/main")
 def git(*a, check=True):
