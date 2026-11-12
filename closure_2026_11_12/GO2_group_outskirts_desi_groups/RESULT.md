@@ -97,4 +97,10 @@ Files: `FROZEN_CRITERIA.md`; `go2_scout.py` -> `go2_scout.out` (pre-freeze count
 `go2_measure_log.txt`; `go2.py` -> `go2.out`, `go2.json`, `go2_MUTATE.out`. Commits: criteria df55a3237c (alone); scripts,
 outputs and RESULT 57afae3555; this id line in the commit after. Not pushed.
 
+Origin commit ids: criteria 896e71ca82 (alone); scripts, outputs and RESULT db4a558fc6; id line 436df3f85f. Re-run by the lead from a copy at
+the same folder depth, measuring the groups afresh into a new checkpoint (the scout, the DESI measurement, KA1a and the
+stacker with its mutations), using the same KiDS column cache and GO1 checkpoint as the lane: of 6 output files, 5
+equal the committed ones byte for byte and 1 differ only in timing or resume lines. A re-run reproduces the arithmetic
+and is not an independent re-grade. Pushed by replay; no history rewritten.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
