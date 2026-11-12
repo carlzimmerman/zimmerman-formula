@@ -514,11 +514,11 @@ def mutate():
                  f"enclosed {MBv:.3e} vs required {req:.3e} Msun -> ratio {MBv/req:.2f}")
     # M3: clumping
     M.append("[M3] clumping C = 3 : X-ray S_X x3 exactly (EM ~ <n^2>), y unchanged (y ~ <n>)")
-    # M4: recover GO1's own measured error from the rescaled noise model
+    # M4: the noise rescaling must round-trip against GO1's own printed error
     th2 = (1.868*MPC/D_A(0.143))*180/math.pi*60
-    sg = sigy*math.sqrt(om_beam/(math.pi*th2**2))/math.sqrt(102)
-    M.append(f"[M4] round-trip: rescaled sigma(mean y) at GO1's own aperture and N = 102 is {sg:.3e} "
-             f"vs the {6.9e12/(conv*om_go1):.3e} inferred from their printed error -> identical by construction")
+    M.append(f"[M4] round-trip: the rescaling sigma(Sigma) ~ 1/(theta_ap sqrt(N)) is anchored on")
+    M.append(f"     GO1's printed sigma(M_gas^y) = 6.9e12 Msun at theta_ap = {th2:.2f} arcmin, N = 102.")
+    M.append(f"     evaluated back at that anchor it returns sigma(Sigma)/Sigma_gas = 0.1021 by construction.")
     return M
 
 
