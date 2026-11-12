@@ -1,0 +1,138 @@
+A0Z1 constants: a0 {'canonical': 9.3603e-11, 'alt': 1.1312e-10} m/s^2; Lstar {'canonical': 21.7, 'alt': 22.9} pc; Om {'canonical': 0.31537, 'alt': 0.31529}; kappa 1/2
+
+==================== Q1: the chi equation of motion, certified variation (sympy, exact)
+  K0 Legendre: K|P| = A*a0/(A + a0);  claim a0 u/(1+u);  residual 0
+  K0 Legendre: max_P[P.A - W] = a0*(A + log(a0**a0/(A + a0)**a0))/K;  claim (a0^2/K)(u - ln(1+u));  residual 0
+  dJ/da0 at fixed |A| = (-A**2 + 2*(A + a0)*(A - log(((A + a0)/a0)**a0)))/(K*(A + a0));  claim (a0/K) S(u) with S = 2(u-ln(1+u)) - u^2/(1+u);  residual 0
+  da0/dchi from a0 = kappa sqrt(G V) = sqrt(G)*kappa*Derivative(V(chi), chi)/(2*sqrt(V(chi)));  claim kappa^2 G V'/(2 a0);  residual 0
+  Euler-Lagrange of L = -(1/2)(dchi)^2 - V + J: residual against (box chi - V' + dJ/dchi) = 0
+  dJ/dchi - V' kappa^2 S(u)/(8 pi) with K = 4 pi G: residual 0
+  Q1 verdict: ACTION.md's hand EOM  box chi = V'(chi) [1 - S(u) kappa^2/(8 pi)]  -> CERTIFIED (every residual exactly 0)
+  KA1 (law sector removed, J == 0): residual against box chi = V' = 0 -> PASS
+  MU1 (on-shell law term given the wrong sign, -J): residual against 1 + kappa^2 S/(8 pi) = 0 -> the bracket would be 1 + kappa^2 S/(8 pi), never negative -> bites
+  KA4 S(u): series -u**4/2 + u**3/3; S(3) = 0.9774 (ACTION.md: about 1 at u = 3); S(u) = 32 pi at u = 108.94 (ACTION.md: about u > 100); S(1e6)/1e6 = 0.999973 -> PASS
+
+==================== Q2: u = |A|/a0, the sign of the bracket, and what follows
+  place                      footing     g_N [m/s^2]  A_law [m/s^2]     u = A/a0      S(u)     bracket
+  Solar System 1 AU          canonical   5.930e-03     5.930e-03    6.3354e+07  6.335e+07  -6.302e+05
+  Solar System 1 AU          alt         5.930e-03     5.930e-03    5.2423e+07  5.242e+07  -5.215e+05
+  Solar System 10 AU         canonical   5.930e-05     5.930e-05    6.3354e+05  6.335e+05       -6301
+  Solar System 10 AU         alt         5.930e-05     5.930e-05    5.2423e+05  5.242e+05       -5213
+  Sun surface                canonical   2.742e+02     2.742e+02    2.9294e+12  2.929e+12  -2.914e+10
+  Sun surface                alt         2.742e+02     2.742e+02     2.424e+12  2.424e+12  -2.411e+10
+  galaxy logMb 10 @1 kpc     canonical   1.394e-09     1.482e-09        15.835      11.13      0.8893
+  galaxy logMb 10 @1 kpc     alt         1.394e-09     1.499e-09        13.255       8.87      0.9118
+  galaxy logMb 10 @10 kpc    canonical   1.394e-11     4.376e-11       0.46753    0.01895      0.9998
+  galaxy logMb 10 @10 kpc    alt         1.394e-11     4.729e-11       0.41806    0.01429      0.9999
+  galaxy logMb 10 @100 kpc   canonical   1.394e-13     3.683e-12      0.039345  1.916e-05           1
+  galaxy logMb 10 @100 kpc   alt         1.394e-13     4.042e-12      0.035728  1.442e-05           1
+  galaxy logMb 11 @1 kpc     canonical   1.394e-08     1.403e-08        149.94      140.9     -0.4016
+  galaxy logMb 11 @1 kpc     alt         1.394e-08     1.405e-08        124.24      115.6     -0.1496
+  galaxy logMb 11 @10 kpc    canonical   1.394e-10     2.035e-10        2.1744     0.5492      0.9945
+  galaxy logMb 11 @10 kpc    alt         1.394e-10     2.133e-10         1.886     0.4197      0.9958
+  galaxy logMb 11 @100 kpc   canonical   1.394e-12     1.214e-11       0.12972  0.0006053           1
+  galaxy logMb 11 @100 kpc   alt         1.394e-12     1.327e-11       0.11735  0.0004557           1
+  cluster 1e15 @50 kpc       canonical   2.377e-10     3.096e-10        3.3072      1.154      0.9885
+  cluster 1e15 @50 kpc       alt         2.377e-10     3.214e-10        2.8409     0.8891      0.9912
+  cluster 1e15 @100 kpc      canonical   2.152e-10     2.857e-10        3.0523      1.007        0.99
+  cluster 1e15 @100 kpc      alt         2.152e-10     2.971e-10        2.6267     0.7743      0.9923
+  cluster 1e15 @300 kpc      canonical   1.529e-10     2.184e-10        2.3333     0.6254      0.9938
+  cluster 1e15 @300 kpc      alt         1.529e-10     2.286e-10        2.0205     0.4786      0.9952
+  Earth surface (given g)    canonical   9.807e+00     9.807e+00    1.0477e+11  1.048e+11  -1.042e+09
+  Earth surface (given g)    alt         9.807e+00     9.807e+00    8.6692e+10  8.669e+10  -8.623e+08
+  bracket negative in 10 of 26 place/footing rows; most negative: Sun surface [canonical] -2.91e+10; Sun surface [alt] -2.41e+10; Earth surface (given g) [canonical] -1.04e+09; Earth surface (given g) [alt] -8.62e+08; Solar System 1 AU [canonical] -6.3e+05
+  reported (not graded): the same galaxies with the record's Hernquist softening, A(r) = G M_b/(r+a)^2:
+    log M_b 10 (a = 1.5 kpc) canonical: u(0.1 kpc)   6.688 bracket +0.9654; u(1 kpc)   3.142 bracket +0.9895;  centre u -> 7.50
+    log M_b 10 (a = 1.5 kpc) alt      : u(0.1 kpc)   5.664 bracket +0.9729; u(1 kpc)   2.702 bracket +0.9919;  centre u -> 6.34
+    log M_b 11 (a = 3.0 kpc) canonical: u(0.1 kpc)  16.442 bracket +0.8839; u(1 kpc)  10.220 bracket +0.9374;  centre u -> 17.50
+    log M_b 11 (a = 3.0 kpc) alt      : u(0.1 kpc)  13.757 bracket +0.9074; u(1 kpc)   8.599 bracket +0.9505;  centre u -> 14.63
+  static response and the runaway test (lambda = 1; da0/a0 scales as lambda^2):
+    place                                footing     da0/a0        closed form    |m_eff| L    1/|m_eff| [Mpc]  region
+    Sun (surface to 100 r_1)             canonical 5.325e-24  5.518e-24  8.769e-13       0.02571  2.255e-11 kpc
+    Sun (surface to 100 r_1)             alt       6.391e-24  6.625e-24  9.640e-13       0.02339  2.255e-11 kpc
+    galaxy logMb 11 (100 pc to 100 r_1)  canonical 1.654e-13  1.848e-13  2.762e-07           362  0.1 kpc
+    galaxy logMb 11 (100 pc to 100 r_1)  alt       1.955e-13  2.189e-13  3.034e-07         329.6  0.1 kpc
+    galaxy logMb 10 (100 pc to 100 r_1)  canonical 1.213e-14  1.405e-14  8.430e-08          1186  0.1 kpc
+    galaxy logMb 10 (100 pc to 100 r_1)  alt       1.423e-14  1.654e-14  9.189e-08          1088  0.1 kpc
+    cluster 1e15 (50 kpc to 100 r_1)     canonical 3.117e-10  1.229e-09  1.133e-05          4414  50 kpc
+    cluster 1e15 (50 kpc to 100 r_1)     alt       3.419e-10  1.441e-09  1.371e-05          3648  50 kpc
+  KA6 (point-mass closed form vs the numerical Poisson integral, 20 %): worst 0.140 -> PASS; the NFW cluster row is excluded, the closed form is a point mass's: integral 3.117e-10 vs point-mass closed form 1.229e-09 (reported)
+  K3 runaway (|m_eff| L >= pi anywhere observed): max |m_eff| L = 1.371e-05 -> does not fire
+  K4 a0 varies (|da0/a0| > 1e-2 anywhere observed): max 3.419e-10 -> does not fire
+  response time where the bracket is negative: the light-crossing time of the region (100 pc: 3.26e+02 yr; 1 AU: 8.3 min)
+  MU2 (S = u^3/3 everywhere) Sun              canonical da0/a0 5.325e-24 -> 7.424e-02 (1.39e+22x)
+  MU2 (S = u^3/3 everywhere) Sun              alt       da0/a0 6.391e-24 -> 8.421e-02 (1.32e+22x)
+  MU2 (S = u^3/3 everywhere) galaxy logMb 11  canonical da0/a0 1.654e-13 -> 7.113e-07 (4.3e+06x)
+  MU2 (S = u^3/3 everywhere) galaxy logMb 11  alt       da0/a0 1.955e-13 -> 5.886e-07 (3.01e+06x)
+  MU2 -> bites
+
+==================== Q4: is the chi coupling screened by gamma_L F(Pi)?  (QX17 (E2), the record's diagnostic)
+  (1 + gamma_L Pi_+) A + gamma_L D Pi_+ = K W' Phat; the two additions to A are sized on the unscreened
+  on-shell P (K|P| = a0 u/(1+u), the K0 Legendre map), spherical symmetry.
+  place                      footing      Pi_+ [kg/m^3]  gamma_L Pi_+   gamma_L|gradPi|/|A|   screened?
+  Solar System 1 AU          canonical    1.492e-12     3.122e-03            3.162e+05    YES
+  Solar System 1 AU          alt          1.804e-12     4.202e-03            4.256e+05    YES
+  Earth surface              canonical    3.504e-08     7.331e+01            1.053e+11    YES
+  Earth surface              alt          4.235e-08     9.866e+01            1.417e+11    YES
+  galaxy logMb 10 @1 kpc     canonical    6.424e-21     1.344e-11            3.199e-05    no
+  galaxy logMb 10 @1 kpc     alt          7.598e-21     1.770e-11            4.280e-05    no
+  galaxy logMb 11 @1 kpc     canonical    7.140e-21     1.494e-11            3.180e-06    no
+  galaxy logMb 11 @1 kpc     alt          8.605e-21     2.005e-11            4.285e-06    no
+  galaxy logMb 11 @10 kpc    canonical    3.769e-22     7.885e-13            1.950e-06    no
+  galaxy logMb 11 @10 kpc    alt          4.244e-22     9.888e-13            2.382e-06    no
+  galaxy logMb 11 @100 kpc   canonical    4.408e-24     9.221e-15            4.415e-08    no
+  galaxy logMb 11 @100 kpc   alt          4.847e-24     1.129e-14            4.948e-08    no
+  cluster 1e15 @100 kpc      canonical    5.346e-23     1.118e-13            1.205e-08    no
+  cluster 1e15 @100 kpc      alt          6.201e-23     1.445e-13            1.504e-08    no
+  Q4: in a galaxy the stiffness is NOT screened; in the Solar System it is screened; in a cluster core not screened. K5 (not screened in a galaxy) -> FIRES
+
+==================== Q3: a0(z) of this action through FRZ2's forest gate
+  X-Pan   canonical lambda_std 1.03395 (action's lambda 1.46223) w0 -0.8380 (target -0.838) Omega_phi0 0.6846 f(z=3) 1.1771 f(z=4.4) 1.1806
+  X-Pan   alt       lambda_std 1.03386 (action's lambda 1.46210) w0 -0.8380 (target -0.838) Omega_phi0 0.6847 f(z=3) 1.1771 f(z=4.4) 1.1807
+  X-DES5  canonical lambda_std 1.26876 (action's lambda 1.79430) w0 -0.7520 (target -0.752) Omega_phi0 0.6846 f(z=3) 1.2971 f(z=4.4) 1.3039
+  X-DES5  alt       lambda_std 1.26866 (action's lambda 1.79415) w0 -0.7520 (target -0.752) Omega_phi0 0.6847 f(z=3) 1.2971 f(z=4.4) 1.3039
+  X-Uni   canonical lambda_std 1.45707 (action's lambda 2.06060) w0 -0.6670 (target -0.667) Omega_phi0 0.6846 f(z=3) 1.4402 f(z=4.4) 1.4519
+  X-Uni   alt       lambda_std 1.45694 (action's lambda 2.06043) w0 -0.6670 (target -0.667) Omega_phi0 0.6847 f(z=3) 1.4403 f(z=4.4) 1.4519
+  reported: the observed CPL Pan (w0 -0.838, wa -0.62) crosses w = -1 at z = 0.35; a canonical scalar has w >= -1 at every z, so this action cannot reproduce that CPL at any lambda (a0(z) is then fixed by the fit to w0)
+  reported: the observed CPL DES5 (w0 -0.752, wa -0.86) crosses w = -1 at z = 0.41; a canonical scalar has w >= -1 at every z, so this action cannot reproduce that CPL at any lambda (a0(z) is then fixed by the fit to w0)
+  reported: the observed CPL Uni (w0 -0.667, wa -1.09) crosses w = -1 at z = 0.44; a canonical scalar has w >= -1 at every z, so this action cannot reproduce that CPL at any lambda (a0(z) is then fixed by the fit to w0)
+  running this lane's copy of FRZ2's halo model on 6 cases x 2 footings, then the forest (FRZ2's gate: Delta chi^2 <= 4 per footing over the 12 DESI P1D bins, reading L)
+    hm P0       canonical exit 0  [171 s]
+    hm P0       alt       exit 0  [171 s]
+    hm D-Pan    canonical exit 0  [171 s]
+    hm D-Pan    alt       exit 0  [171 s]
+    hm X-Pan    canonical exit 0  [171 s]
+    hm X-Pan    alt       exit 0  [171 s]
+    hm X-DES5   canonical exit 0  [171 s]
+    hm X-DES5   alt       exit 0  [171 s]
+    hm X-Uni    canonical exit 0  [171 s]
+    hm X-Uni    alt       exit 0  [171 s]
+    hm MU3-Pan  canonical exit 0  [171 s]
+    hm MU3-Pan  alt       exit 0  [171 s]
+    forest canonical exit 0  [196 s]
+    forest alt       exit 0  [196 s]
+  inherited: KA2 (R = 1 -> 0) 0.0e+00 -> PASS; KA3 (CO1 z = 0 held) 160.74 against HLF1 160.74 -> PASS
+  inherited: KA2 (R = 1 -> 0) 0.0e+00 -> PASS; KA3 (CO1 z = 0 held) 1025.57 against HLF1 1025.57 -> PASS
+  case     footing     Delta chi^2   gate <= 4   f(z=3)  R_cold(z3,k3/k5)
+  P0       canonical     9916.246   FAILS     1.0000  0.8446/0.6646
+  P0       alt           9008.690   FAILS     1.0000  0.8314/0.6695
+  D-Pan    canonical    13657.671   FAILS     0.7750  0.8218/0.6096
+  D-Pan    alt          13418.074   FAILS     0.7750  0.8027/0.5987
+  X-Pan    canonical     7316.089   FAILS     1.1771  0.8629/0.7107
+  X-Pan    alt           6035.206   FAILS     1.1771  0.8580/0.7321
+  X-DES5   canonical     5750.813   FAILS     1.2971  0.8767/0.7444
+  X-DES5   alt           4331.958   FAILS     1.2971  0.8790/0.7774
+  X-Uni    canonical     4116.205   FAILS     1.4402  0.8951/0.7872
+  X-Uni    alt           2678.450   FAILS     1.4403  0.9076/0.8335
+  MU3-Pan  canonical     4708.761   FAILS     1.3856  0.8878/0.7706
+  MU3-Pan  alt           3260.518   FAILS     1.3856  0.8962/0.8119
+  KA5 (this lane's copy of FRZ2's pipeline against FRZ2's own printed numbers, 0.1): P0 canonical PASS; P0 alt PASS; D-Pan canonical PASS; D-Pan alt PASS
+  MU3 (f = V/V0, the square root of a0 = kappa sqrt(GV) dropped): Delta chi^2 4708.8 / 3260.5 against X-Pan 7316.1 / 6035.2 -> bites
+  K2 (every X case fails on both footings): FIRES
+
+==================== labels, kill conditions, mutations
+  known answers: KA1 PASS; KA4 PASS; KA6 PASS; KA2_canonical PASS; KA3_canonical PASS; KA2_alt PASS; KA3_alt PASS; KA5 PASS
+  mutations: MU1 bites; MU2 bites; MU3 bites
+  Q1 EOM CERTIFIED;  Q2 bracket negative anywhere: YES;  K3 runaway no;  K4 a0 varies no;  K5 not screened in a galaxy FIRES;  K2 forest FIRES
+  LABEL: EOM CERTIFIED; a0(chi) FAILS / a0(chi) FAILS
+[196 s]
