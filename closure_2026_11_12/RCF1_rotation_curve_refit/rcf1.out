@@ -1,0 +1,138 @@
+
+==============================================================================================================
+RCF1  Milky Way rotation curves refitted with the stellar mass free (criteria: FROZEN_CRITERIA.md, sha256 in FREEZE_STAMP.txt)
+==============================================================================================================
+
+==============================================================================================================
+KNOWN-ANSWER CHECKS
+==============================================================================================================
+  [PASS] KA1 item 35 reproduced on Ou's census (6.16e10), all baryons scaled, no hot gas, its own grids, stat+sys
+         (Ou census total 6.1570e10; Ou2024 canonical: A 1.420, M_b 8.745e10, e_N <= 0.0085, chi2/N 0.45; Ou2024 alt: A 1.307, M_b 8.045e10, e_N <= 0.0154, chi2/N 0.34; Eilers2019 canonical: A 1.362, M_b 8.388e10, e_N <= 0.0057, chi2/N 0.63; Eilers2019 alt: A 1.253, M_b 7.716e10, e_N <= 0.0080, chi2/N 0.43)
+  [PASS] KA2 McMillan census (stars 5.490, cold gas 1.191, within 0.2 per cent) and MWI1's force ratios (1.0599, 1.0614, 1.0586 within 0.003)
+         (stars 5.4903, cold gas 1.1911; ratios 20 kpc 1.0599, 25 kpc 1.0614, 30 kpc 1.0586)
+  [PASS] KA3 razor-thin exponential disc vs Freeman's analytic force, each within 0.5 per cent (SI)
+         (4 kpc -3.42e-03 (v_an 148.6 km/s), 8 kpc -1.54e-03 (v_an 144.7 km/s), 16 kpc -2.94e-04 (v_an 104.1 km/s), 24 kpc -4.70e-06 (v_an 81.7 km/s))
+  [PASS] KA4 MB15 hot gas inside 27 kpc = 0.153e10 within 1 per cent
+         (0.1526e10)
+  [PASS] KA5 noiseless mock at s = 1.30, e_N = 0.005 recovered: s within 0.002, chi2 < 1e-3
+         (s = 1.3000, e_N = 0.0050, chi2 = 8.86e-29)
+
+==============================================================================================================
+PRIMARY FITS  McMillan census; stars (thin + thick + bulge = 5.490e10) x s; cold gas 1.191e10 fixed; stat+sys errors
+==============================================================================================================
+  model: v^2 / R = nu((g_N + e_N a0) / a0) g_N, g_N = s g_stars + g_cold + g_hot; e_N in [0, 0.03]; 68 per cent = profile Delta chi2 <= 1
+  hot MB15 Ou2024     canonical  M* = 7.247 [7.058, 7.409] e10  (-0.189 / +0.162),  s = 1.3200,  e_N best 0.0300, upper >= 0.03 (bound),  chi2/N = 0.169 (N = 37)
+  hot MB15 Ou2024     alt        M* = 6.640 [6.489, 6.791] e10  (-0.151 / +0.151),  s = 1.2095,  e_N best 0.0300, upper >= 0.03 (bound),  chi2/N = 0.174 (N = 37)
+  hot MB15 Eilers2019 canonical  M* = 6.964 [6.802, 7.096] e10  (-0.162 / +0.132),  s = 1.2685,  e_N best 0.0300, upper >= 0.03 (bound),  chi2/N = 0.201 (N = 38)
+  hot MB15 Eilers2019 alt        M* = 6.396 [6.273, 6.520] e10  (-0.124 / +0.124),  s = 1.1650,  e_N best 0.0300, upper >= 0.03 (bound),  chi2/N = 0.225 (N = 38)
+  hot none Ou2024     canonical  M* = 7.299 [7.091, 7.459] e10  (-0.209 / +0.159),  s = 1.3295,  e_N best 0.0300, upper >= 0.03 (bound),  chi2/N = 0.168 (N = 37)
+  hot none Ou2024     alt        M* = 6.690 [6.539, 6.841] e10  (-0.151 / +0.151),  s = 1.2185,  e_N best 0.0300, upper >= 0.03 (bound),  chi2/N = 0.165 (N = 37)
+  hot none Eilers2019 canonical  M* = 7.011 [6.830, 7.143] e10  (-0.181 / +0.132),  s = 1.2770,  e_N best 0.0300, upper >= 0.03 (bound),  chi2/N = 0.200 (N = 38)
+  hot none Eilers2019 alt        M* = 6.443 [6.319, 6.566] e10  (-0.124 / +0.124),  s = 1.1735,  e_N best 0.0300, upper >= 0.03 (bound),  chi2/N = 0.213 (N = 38)
+
+==============================================================================================================
+MUTATIONS
+==============================================================================================================
+RCF1 mutations (criteria FROZEN_CRITERIA.md). M1 must bite on every footing and data set; M2 reported.
+Ou2024 canonical: M1 kernel off: M* 12.672e10 (primary 7.247 +0.162), chi2/N 5.735 (primary 0.169)  [bites];  M2 hot gas x10: M* 6.802e10 (falls by 0.445)
+Ou2024 alt: M1 kernel off: M* 12.672e10 (primary 6.640 +0.151), chi2/N 5.735 (primary 0.174)  [bites];  M2 hot gas x10: M* 6.190e10 (falls by 0.450)
+Eilers2019 canonical: M1 kernel off: M* 11.903e10 (primary 6.964 +0.132), chi2/N 8.198 (primary 0.201)  [bites];  M2 hot gas x10: M* 6.550e10 (falls by 0.415)
+Eilers2019 alt: M1 kernel off: M* 11.903e10 (primary 6.396 +0.124), chi2/N 8.198 (primary 0.225)  [bites];  M2 hot gas x10: M* 5.979e10 (falls by 0.417)
+
+==============================================================================================================
+GRADING  z = (M* best - published) / sqrt(published upward error^2 + fit lower error^2)
+==============================================================================================================
+
+  hot MB15, Ou2024, canonical: M* = 7.247 -0.189 / +0.162 e10
+     LN15    6.080 + 1.140   z =  +1.01   M*/published 1.19   WITHIN 2 SIGMA   (MWI1: SUPPLIED)
+     McM17   5.430 + 0.570   z =  +3.03   M*/published 1.33   NOT SUPPLIED
+     C20     5.040 + 0.430   z =  +4.70   M*/published 1.44   NOT SUPPLIED
+     I25     6.180 + 0.210   z =  +3.77   M*/published 1.17   NOT SUPPLIED
+     L25     2.607 + 0.363   z = +11.33   M*/published 2.78   NOT SUPPLIED
+     LABEL: SUPPLIED BY 0 OF 5; AT McM17 NOT SUPPLIED
+     MWI1 need (7.05-7.41): HOLDS; classes changed vs MWI1: 1 ['LN15'] -> CLASSES CHANGE
+
+  hot MB15, Ou2024, alt: M* = 6.640 -0.151 / +0.151 e10
+     LN15    6.080 + 1.140   z =  +0.49   M*/published 1.09   SUPPLIED
+     McM17   5.430 + 0.570   z =  +2.05   M*/published 1.22   NOT SUPPLIED   (MWI1: WITHIN 2 SIGMA)
+     C20     5.040 + 0.430   z =  +3.51   M*/published 1.32   NOT SUPPLIED
+     I25     6.180 + 0.210   z =  +1.78   M*/published 1.07   WITHIN 2 SIGMA   (MWI1: SUPPLIED)
+     L25     2.607 + 0.363   z = +10.26   M*/published 2.55   NOT SUPPLIED
+     LABEL: SUPPLIED BY 1 OF 5 (LN15); AT McM17 NOT SUPPLIED
+     MWI1 need (6.36-6.73): HOLDS; classes changed vs MWI1: 2 ['McM17', 'I25'] -> CLASSES CHANGE
+
+  hot MB15, Eilers2019, canonical: M* = 6.964 -0.162 / +0.132 e10
+     LN15    6.080 + 1.140   z =  +0.77   M*/published 1.15   SUPPLIED
+     McM17   5.430 + 0.570   z =  +2.59   M*/published 1.28   NOT SUPPLIED
+     C20     5.040 + 0.430   z =  +4.19   M*/published 1.38   NOT SUPPLIED
+     I25     6.180 + 0.210   z =  +2.96   M*/published 1.13   NOT SUPPLIED
+     L25     2.607 + 0.363   z = +10.96   M*/published 2.67   NOT SUPPLIED
+     LABEL: SUPPLIED BY 1 OF 5 (LN15); AT McM17 NOT SUPPLIED
+     MWI1 need (7.05-7.41): HOLDS; classes changed vs MWI1: 0 [] -> CLASSES UNCHANGED
+
+  hot MB15, Eilers2019, alt: M* = 6.396 -0.124 / +0.124 e10
+     LN15    6.080 + 1.140   z =  +0.28   M*/published 1.05   SUPPLIED
+     McM17   5.430 + 0.570   z =  +1.66   M*/published 1.18   WITHIN 2 SIGMA
+     C20     5.040 + 0.430   z =  +3.03   M*/published 1.27   NOT SUPPLIED
+     I25     6.180 + 0.210   z =  +0.89   M*/published 1.03   SUPPLIED
+     L25     2.607 + 0.363   z =  +9.88   M*/published 2.45   NOT SUPPLIED
+     LABEL: SUPPLIED BY 2 OF 5 (LN15, I25); AT McM17 WITHIN 2 SIGMA
+     MWI1 need (6.36-6.73): HOLDS; classes changed vs MWI1: 0 [] -> CLASSES UNCHANGED
+
+  hot none, Ou2024, canonical: M* = 7.299 -0.209 / +0.159 e10
+     LN15    6.080 + 1.140   z =  +1.05   M*/published 1.20   WITHIN 2 SIGMA   (MWI1: SUPPLIED)
+     McM17   5.430 + 0.570   z =  +3.08   M*/published 1.34   NOT SUPPLIED
+     C20     5.040 + 0.430   z =  +4.73   M*/published 1.45   NOT SUPPLIED
+     I25     6.180 + 0.210   z =  +3.78   M*/published 1.18   NOT SUPPLIED
+     L25     2.607 + 0.363   z = +11.21   M*/published 2.80   NOT SUPPLIED
+     LABEL: SUPPLIED BY 0 OF 5; AT McM17 NOT SUPPLIED
+
+  hot none, Ou2024, alt: M* = 6.690 -0.151 / +0.151 e10
+     LN15    6.080 + 1.140   z =  +0.53   M*/published 1.10   SUPPLIED
+     McM17   5.430 + 0.570   z =  +2.14   M*/published 1.23   NOT SUPPLIED   (MWI1: WITHIN 2 SIGMA)
+     C20     5.040 + 0.430   z =  +3.62   M*/published 1.33   NOT SUPPLIED
+     I25     6.180 + 0.210   z =  +1.97   M*/published 1.08   WITHIN 2 SIGMA   (MWI1: SUPPLIED)
+     L25     2.607 + 0.363   z = +10.39   M*/published 2.57   NOT SUPPLIED
+     LABEL: SUPPLIED BY 1 OF 5 (LN15); AT McM17 NOT SUPPLIED
+
+  hot none, Eilers2019, canonical: M* = 7.011 -0.181 / +0.132 e10
+     LN15    6.080 + 1.140   z =  +0.81   M*/published 1.15   SUPPLIED
+     McM17   5.430 + 0.570   z =  +2.64   M*/published 1.29   NOT SUPPLIED
+     C20     5.040 + 0.430   z =  +4.22   M*/published 1.39   NOT SUPPLIED
+     I25     6.180 + 0.210   z =  +3.00   M*/published 1.13   NOT SUPPLIED
+     L25     2.607 + 0.363   z = +10.86   M*/published 2.69   NOT SUPPLIED
+     LABEL: SUPPLIED BY 1 OF 5 (LN15); AT McM17 NOT SUPPLIED
+
+  hot none, Eilers2019, alt: M* = 6.443 -0.124 / +0.124 e10
+     LN15    6.080 + 1.140   z =  +0.32   M*/published 1.06   SUPPLIED
+     McM17   5.430 + 0.570   z =  +1.74   M*/published 1.19   WITHIN 2 SIGMA
+     C20     5.040 + 0.430   z =  +3.14   M*/published 1.28   NOT SUPPLIED
+     I25     6.180 + 0.210   z =  +1.08   M*/published 1.04   WITHIN 2 SIGMA   (MWI1: SUPPLIED)
+     L25     2.607 + 0.363   z = +10.00   M*/published 2.47   NOT SUPPLIED
+     LABEL: SUPPLIED BY 1 OF 5 (LN15); AT McM17 WITHIN 2 SIGMA
+
+==============================================================================================================
+REPORTED, NOT GRADED
+==============================================================================================================
+  Ou2024     canonical stat-only: M* 7.159 [7.148, 7.170], e_N <= 0.0016, chi2/N 6.6
+                       R >= 12 kpc (25 pts): M* 7.351 [7.121, 7.574], e_N <= >= 0.03 (bound), chi2/N 0.225
+                       Ou census (stars 5.20 x s, Ou gas fixed, MB15): M* 7.457 [7.298, 7.618], e_N <= 0.0096, chi2/N 0.452
+  Ou2024     alt       stat-only: M* 6.684 [6.668, 6.704], e_N <= 0.0300, chi2/N 5.0
+                       R >= 12 kpc (25 pts): M* 6.629 [6.421, 6.835], e_N <= >= 0.03 (bound), chi2/N 0.253
+                       Ou census (stars 5.20 x s, Ou gas fixed, MB15): M* 6.812 [6.661, 6.999], e_N <= 0.0162, chi2/N 0.335
+  Eilers2019 canonical stat-only: M* 6.852 [6.844, 6.863], e_N <= 0.0008, chi2/N 3.4
+                       R >= 12 kpc (24 pts): M* 7.036 [6.811, 7.225], e_N <= >= 0.03 (bound), chi2/N 0.286
+                       Ou census (stars 5.20 x s, Ou gas fixed, MB15): M* 7.064 [6.937, 7.194], e_N <= 0.0048, chi2/N 0.627
+  Eilers2019 alt       stat-only: M* 6.355 [6.333, 6.380], e_N <= 0.0244, chi2/N 3.1
+                       R >= 12 kpc (24 pts): M* 6.341 [6.146, 6.517], e_N <= >= 0.03 (bound), chi2/N 0.308
+                       Ou census (stars 5.20 x s, Ou gas fixed, MB15): M* 6.471 [6.352, 6.596], e_N <= 0.0072, chi2/N 0.420
+
+==============================================================================================================
+LABELS (hot gas MB15 headline; no-hot-gas beside it)
+==============================================================================================================
+  Ou2024     canonical: SUPPLIED BY 0 OF 5; AT McM17 NOT SUPPLIED  |  need HOLDS, CLASSES CHANGE ['LN15']  |  no hot gas: SUPPLIED BY 0 OF 5; AT McM17 NOT SUPPLIED
+  Ou2024     alt      : SUPPLIED BY 1 OF 5 (LN15); AT McM17 NOT SUPPLIED  |  need HOLDS, CLASSES CHANGE ['McM17', 'I25']  |  no hot gas: SUPPLIED BY 1 OF 5 (LN15); AT McM17 NOT SUPPLIED
+  Eilers2019 canonical: SUPPLIED BY 1 OF 5 (LN15); AT McM17 NOT SUPPLIED  |  need HOLDS, CLASSES UNCHANGED []  |  no hot gas: SUPPLIED BY 1 OF 5 (LN15); AT McM17 NOT SUPPLIED
+  Eilers2019 alt      : SUPPLIED BY 2 OF 5 (LN15, I25); AT McM17 WITHIN 2 SIGMA  |  need HOLDS, CLASSES UNCHANGED []  |  no hot gas: SUPPLIED BY 1 OF 5 (LN15); AT McM17 WITHIN 2 SIGMA
+
+RCF1 COMPLETE. Published masses are PROVISIONAL look-ups (MWI1). kappa = 1/2 FITTED; not theory closed. Adopts nothing.
