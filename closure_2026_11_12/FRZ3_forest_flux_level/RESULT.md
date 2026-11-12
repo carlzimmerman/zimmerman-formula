@@ -93,4 +93,14 @@ Delta chi^2 is concentrated at z 2.2 to 2.8.
 - `frz3_grade.py`, which writes `frz3_<foot>.json/.out` and `frz3_<foot>_MUTATE.json/.out`.
 - About 1.7 h of machine time: 4 threads, nice 19, peak resident memory 6.8 GB.
 
+**Commit ids and the lead's re-run (added 2026-11-12, after landing; no number or label changes).** Local / origin:
+criteria e56c67ae91 / ebbe8a7c23; amendment A1 1483ae75ef / c75e13c72f; amendment A2 50dcbd956e / 0bc0e65150; code, parts and outputs
+05280465b7 / 5b286698a1; RESULT bf470aefa1 / ea09de27ed. Pushed. The lead session re-ran `frz3_grade.py` for both footings from a
+copy at the same folder depth, on the 48 committed part files: all eight outputs (two JSON, two logs and their two
+mutation twins each) are equal byte for byte. It also regenerated two of the 48 parts from scratch with
+`frz3_fields.py`, one thread: `z3.0_s0` (anchor) is equal to the committed part in every field but the two timing
+fields; `z2.6_s0` (primary) agrees to 8e-8 relative in 45 numbers and exactly in the rest. The other 46 parts were not
+regenerated. That is a reproduction of this lane's own code, not an independent re-grade; an independent blind
+flux-level build, lane FRZ3R, was started the same day. The PROVISIONAL gas constants were not checked against sources.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
