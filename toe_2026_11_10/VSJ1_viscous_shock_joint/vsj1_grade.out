@@ -1,0 +1,162 @@
+KA1 Noh: shock 0.2055 (0.2000), post-shock density 59.9 (64), energy 1.0e-07 -> PASS
+KA2 fluid terms off, R_ta: 87.7 (FLD1 88) and 597.0 (FLD1 600) -> PASS
+KA3 SIS identities and the law's closed form (sympy): residual 0 -> PASS
+KA4 EdS self-similar: done; shock/R_ta 0.382 (0.339), density slope -2.35 (-2.25, 44 zones), M_ta/seed 164 -> PASS
+KA5 resolution 10.5 canonical N 300 / 600: SETTLED True / True; R_st (A1) 141.4 / 144.2; M_hot(<10 r_M)/M_b 0.4815 / 0.4818 -> PASS
+KA6 zero hot charge: max |log10(X_tot/X_L)| 1.4e-16 -> PASS
+known answers: ALL PASS
+G2 what gravitates (sympy, six residuals 0): PASS: inside R_st the law's phantom of (baryons + hot charge), plus the hot charge
+
+=== canonical (a0 9.3603e-11 m/s^2) ===
+G1 log M_b 9.0 (N 600): done (z -0.00); R_sh 154.0 vs r_e* 7.2; S 3.96e-05 -> SETTLED; shock past r_e* at z 4.98; R_ta 58.0; visc heat frac 0.792; steps 928396, 258.0 s
+G1 log M_b 10.5 (N 600): done (z -0.00); R_sh 410.5 vs r_e* 40.5; S 2.15e-05 -> SETTLED; shock past r_e* at z 3.45; R_ta 259.8; visc heat frac 0.279; steps 6330741, 1518.9 s
+G1 log M_b 11.5 (N 300): done (z -0.00); R_sh 839.2 vs r_e* 127.9; S 0.000281 -> SETTLED; shock past r_e* at z 1.51; R_ta 588.4; visc heat frac 0.0844; steps 9657740, 1802.1 s
+G1 (graded at 10.5): PASS
+--- S-seed ---
+log M_b 9.0: G3 max |dex| 0.036 (at x 10.00: +0.036; x=1 +0.002, x=10 +0.036; X_tot(10) 10.33 vs X_L 9.51; M_hot(<r_M) 0.0030, (<10 r_M) 0.152 M_b) -> PASS; all charge at the centre: 0.353 FAIL; VSH1's-own-law reading X(10 r_M) 0.152
+            G4 R_st 76.5 kpc (62.7 r_M, 1.32 R_ta): jump J 48.75 (1.69 dex), layer -80.6 M_b; real charge 0.69 M_b vs the baryons' law halo 62.2 M_b (0.011); g_out/g_L 0.027; HE1's reason applies: True -> FAIL
+            G5 R_st 77 vs cap 73 (x0.957), KiDS inner 51 (x0.669), middle 120 (x1.57) -> FAIL
+            G6 inside_re_star: sigma 20.5 km/s, sigma^4/law -1.25 dex, sigma^2/virial 0.89; inside_R_st: sigma 9.3 km/s, sigma^4/law -2.63 dex, sigma^2/virial 0.71
+log M_b 10.5: G3 max |dex| 0.099 (at x 10.00: +0.099; x=1 +0.017, x=10 +0.099; X_tot(10) 11.94 vs X_L 9.51; M_hot(<r_M) 0.0211, (<10 r_M) 0.482 M_b) -> PASS; all charge at the centre: 0.407 FAIL; VSH1's-own-law reading X(10 r_M) 0.482
+            G4 R_st 144.2 kpc (21.0 r_M, 0.555 R_ta): jump J 15.94 (1.20 dex), layer -27.7 M_b; real charge 0.86 M_b vs the baryons' law halo 20.5 M_b (0.042); g_out/g_L 0.086; HE1's reason applies: True -> FAIL
+            G5 R_st 144 vs cap 412 (x2.85), KiDS inner 288 (x2), middle 674 (x4.68) -> FAIL
+            G6 inside_re_star: sigma 57.1 km/s, sigma^4/law -0.97 dex, sigma^2/virial 0.91; inside_R_st: sigma 36.3 km/s, sigma^4/law -1.75 dex, sigma^2/virial 0.76
+log M_b 11.5: G3 max |dex| 0.135 (at x 10.00: +0.135; x=1 +0.030, x=10 +0.135; X_tot(10) 12.97 vs X_L 9.51; M_hot(<r_M) 0.0378, (<10 r_M) 0.713 M_b) -> FAIL; all charge at the centre: 0.403 FAIL; VSH1's-own-law reading X(10 r_M) 0.713
+            G4 R_st 275.1 kpc (12.7 r_M, 0.468 R_ta): jump J 9.85 (0.99 dex), layer -16.3 M_b; real charge 0.84 M_b vs the baryons' law halo 12.2 M_b (0.069); g_out/g_L 0.140; HE1's reason applies: True -> FAIL
+            G5 R_st 275 vs cap 1302 (x4.73), KiDS inner 910 (x3.31), middle 2133 (x7.75) -> FAIL
+            G6 inside_re_star: sigma 110.6 km/s, sigma^4/law -0.82 dex, sigma^2/virial 0.87; inside_R_st: sigma 83.8 km/s, sigma^4/law -1.30 dex, sigma^2/virial 0.78
+G6 (reported): d ln sigma^4/d ln M_b 1.53 (law 1, virial 4/3); tied to the law: False
+S-seed: all three masses tuned and run: True; G3 FAIL, G4 FAIL, G5 FAIL
+--- S-cosmo H1 ---
+log M_b 9.0: host target 5.41 M_b, achieved 5.36 (A 0.31; done) -> ok; with the frozen R_st (210 kpc) the host reads 8.11 M_b
+log M_b 9.0: G3 max |dex| 0.243 (at x 10.00: +0.243; x=1 +0.081, x=10 +0.243; X_tot(10) 16.63 vs X_L 9.51; M_hot(<r_M) 0.1093, (<10 r_M) 1.642 M_b) -> FAIL; all charge at the centre: 1.004 FAIL; VSH1's-own-law reading X(10 r_M) 1.642
+            G4 R_st 62.4 kpc (51.1 r_M, 0.448 R_ta): jump J 20.77 (1.32 dex), layer -125.8 M_b; real charge 5.36 M_b vs the baryons' law halo 50.6 M_b (0.106); g_out/g_L 0.123; HE1's reason applies: True -> FAIL
+            G5 R_st 62 vs cap 73 (x1.17), KiDS inner 51 (x0.821), middle 120 (x1.92) -> FAIL
+            G6 inside_R_st: sigma 18.4 km/s, sigma^4/law -1.43 dex, sigma^2/virial 0.93
+log M_b 10.5: host target 5.41 M_b, achieved 5.36 (A 0.31; done) -> ok; with the frozen R_st (665 kpc) the host reads 8.11 M_b
+log M_b 10.5: G3 max |dex| 0.329 (at x 10.00: +0.329; x=1 +0.162, x=10 +0.329; X_tot(10) 20.28 vs X_L 9.51; M_hot(<r_M) 0.2428, (<10 r_M) 2.733 M_b) -> FAIL; all charge at the centre: 1.004 FAIL; VSH1's-own-law reading X(10 r_M) 2.733
+            G4 R_st 197.2 kpc (28.7 r_M, 0.448 R_ta): jump J 11.90 (1.08 dex), layer -69.4 M_b; real charge 5.36 M_b vs the baryons' law halo 28.2 M_b (0.190); g_out/g_L 0.218; HE1's reason applies: True -> FAIL
+            G5 R_st 197 vs cap 412 (x2.09), KiDS inner 288 (x1.46), middle 674 (x3.42) -> FAIL
+            G6 inside_R_st: sigma 58.3 km/s, sigma^4/law -0.93 dex, sigma^2/virial 0.93
+log M_b 11.5: host target 5.41 M_b, achieved 5.36 (A 0.31; done) -> ok; with the frozen R_st (1433 kpc) the host reads 8.11 M_b
+log M_b 11.5: G3 max |dex| 0.384 (at x 10.00: +0.384; x=1 +0.243, x=10 +0.384; X_tot(10) 23.01 vs X_L 9.51; M_hot(<r_M) 0.4058, (<10 r_M) 3.649 M_b) -> FAIL; all charge at the centre: 1.004 FAIL; VSH1's-own-law reading X(10 r_M) 3.649
+            G4 R_st 424.9 kpc (19.6 r_M, 0.448 R_ta): jump J 8.28 (0.92 dex), layer -46.3 M_b; real charge 5.36 M_b vs the baryons' law halo 19.1 M_b (0.281); g_out/g_L 0.317; HE1's reason applies: True -> FAIL
+            G5 R_st 425 vs cap 1302 (x3.06), KiDS inner 910 (x2.14), middle 2133 (x5.02) -> FAIL
+            G6 inside_R_st: sigma 125.7 km/s, sigma^4/law -0.59 dex, sigma^2/virial 0.93
+G6 (reported): d ln sigma^4/d ln M_b 1.33 (law 1, virial 4/3); tied to the law: False
+S-cosmo H1: all three masses tuned and run: True; G3 FAIL, G4 FAIL, G5 FAIL
+--- S-cosmo H2 ---
+log M_b 9.0: host target 83.87 M_b, achieved 82.00 (A 7.1; done) -> ok; with the frozen R_st (456 kpc) the host reads 112.66 M_b
+log M_b 9.0: G3 max |dex| 0.678 (at x 10.00: +0.678; x=1 +0.147, x=10 +0.678; X_tot(10) 45.37 vs X_L 9.51; M_hot(<r_M) 0.2150, (<10 r_M) 13.688 M_b) -> FAIL; all charge at the centre: 2.128 FAIL; VSH1's-own-law reading X(10 r_M) 13.688
+            G4 R_st 145.9 kpc (119.6 r_M, 0.467 R_ta): jump J 13.63 (1.13 dex), layer -1048.5 M_b; real charge 82.00 M_b vs the baryons' law halo 119.1 M_b (0.689); g_out/g_L 0.691; HE1's reason applies: False -> FAIL
+            G5 R_st 146 vs cap 73 (x0.502), KiDS inner 51 (x0.351), middle 120 (x0.822) -> PASS
+            G6 inside_R_st: sigma 36.8 km/s, sigma^4/law -0.23 dex, sigma^2/virial 1.03
+log M_b 10.5: host target 23.73 M_b, achieved 22.83 (A 1.9; done) -> ok; with the frozen R_st (1003 kpc) the host reads 33.21 M_b
+log M_b 10.5: G3 max |dex| 0.546 (at x 10.00: +0.546; x=1 +0.234, x=10 +0.546; X_tot(10) 33.45 vs X_L 9.51; M_hot(<r_M) 0.3858, (<10 r_M) 7.828 M_b) -> FAIL; all charge at the centre: 1.585 FAIL; VSH1's-own-law reading X(10 r_M) 7.828
+            G4 R_st 287.5 kpc (41.9 r_M, 0.391 R_ta): jump J 9.10 (0.96 dex), layer -192.9 M_b; real charge 22.83 M_b vs the baryons' law halo 41.4 M_b (0.552); g_out/g_L 0.562; HE1's reason applies: True -> FAIL
+            G5 R_st 287 vs cap 412 (x1.43), KiDS inner 288 (x1), middle 674 (x2.35) -> FAIL
+            G6 inside_R_st: sigma 81.2 km/s, sigma^4/law -0.35 dex, sigma^2/virial 1.03
+log M_b 11.5: host target 536.73 M_b, achieved 289.25 (A 46; done) -> OUTSIDE 10 %; with the frozen R_st (5240 kpc) the host reads 681.13 M_b
+log M_b 11.5: G3 max |dex| 1.373 (at x 2.00: +1.373; x=1 +1.195, x=10 +1.279; X_tot(10) 180.66 vs X_L 9.51; M_hot(<r_M) 8.7730, (<10 r_M) 116.164 M_b) -> FAIL; all charge at the centre: 2.672 FAIL; VSH1's-own-law reading X(10 r_M) 116.164
+            G4 R_st 1151.1 kpc (53.0 r_M, 0.27 R_ta): jump J 3.65 (0.56 dex), layer -770.2 M_b; real charge 289.25 M_b vs the baryons' law halo 52.6 M_b (5.504); g_out/g_L 5.420; HE1's reason applies: False -> FAIL
+            G5 R_st 1151 vs cap 1302 (x1.13), KiDS inner 910 (x0.791), middle 2133 (x1.85) -> FAIL
+            G6 inside_R_st: sigma 467.7 km/s, sigma^4/law +1.69 dex, sigma^2/virial 1.01
+G6 (reported): d ln sigma^4/d ln M_b 1.70 (law 1, virial 4/3); tied to the law: False
+S-cosmo H2: all three masses tuned and run: False; G3 FAIL, G4 FAIL, G5 FAIL
+--- S-seed, frozen R_st (reported) ---
+log M_b 9.0: G3 max |dex| 0.036 (at x 10.00: +0.036; x=1 +0.002, x=10 +0.036; X_tot(10) 10.33 vs X_L 9.51; M_hot(<r_M) 0.0030, (<10 r_M) 0.152 M_b) -> PASS; all charge at the centre: 0.431 FAIL; VSH1's-own-law reading X(10 r_M) 0.152
+            G4 R_st 109.2 kpc (89.5 r_M, 1.88 R_ta): jump J 64.74 (1.81 dex), layer -123.7 M_b; real charge 0.94 M_b vs the baryons' law halo 89.0 M_b (0.011); g_out/g_L 0.022; HE1's reason applies: True -> FAIL
+            G5 R_st 109 vs cap 73 (x0.671), KiDS inner 51 (x0.469), middle 120 (x1.1) -> FAIL
+            G6 inside_re_star: sigma 20.5 km/s, sigma^4/law -1.25 dex, sigma^2/virial 0.89; inside_R_st: sigma 8.0 km/s, sigma^4/law -2.88 dex, sigma^2/virial 0.67
+log M_b 10.5: G3 max |dex| 0.099 (at x 10.00: +0.099; x=1 +0.017, x=10 +0.099; X_tot(10) 11.94 vs X_L 9.51; M_hot(<r_M) 0.0211, (<10 r_M) 0.482 M_b) -> PASS; all charge at the centre: 0.536 FAIL; VSH1's-own-law reading X(10 r_M) 0.482
+            G4 R_st 403.3 kpc (58.8 r_M, 1.55 R_ta): jump J 38.72 (1.59 dex), layer -89.2 M_b; real charge 1.37 M_b vs the baryons' law halo 58.3 M_b (0.023); g_out/g_L 0.040; HE1's reason applies: True -> FAIL
+            G5 R_st 403 vs cap 412 (x1.02), KiDS inner 288 (x0.714), middle 674 (x1.67) -> FAIL
+            G6 inside_re_star: sigma 57.1 km/s, sigma^4/law -0.97 dex, sigma^2/virial 0.91; inside_R_st: sigma 28.9 km/s, sigma^4/law -2.15 dex, sigma^2/virial 0.68
+log M_b 11.5: G3 max |dex| 0.135 (at x 10.00: +0.135; x=1 +0.030, x=10 +0.135; X_tot(10) 12.97 vs X_L 9.51; M_hot(<r_M) 0.0378, (<10 r_M) 0.713 M_b) -> FAIL; all charge at the centre: 0.541 FAIL; VSH1's-own-law reading X(10 r_M) 0.713
+            G4 R_st 872.0 kpc (40.2 r_M, 1.48 R_ta): jump J 26.49 (1.42 dex), layer -60.9 M_b; real charge 1.39 M_b vs the baryons' law halo 39.7 M_b (0.035); g_out/g_L 0.059; HE1's reason applies: True -> FAIL
+            G5 R_st 872 vs cap 1302 (x1.49), KiDS inner 910 (x1.04), middle 2133 (x2.45) -> FAIL
+            G6 inside_re_star: sigma 110.6 km/s, sigma^4/law -0.82 dex, sigma^2/virial 0.87; inside_R_st: sigma 65.5 km/s, sigma^4/law -1.73 dex, sigma^2/virial 0.69
+G6 (reported): d ln sigma^4/d ln M_b 1.46 (law 1, virial 4/3); tied to the law: False
+S-seed, frozen R_st (reported): all three masses tuned and run: True; G3 FAIL, G4 FAIL, G5 FAIL
+S-cosmo floor (reported; A = 0, baryon seed only): host 1.78 M_b (frozen R_st: 2.94); G3 max |dex| 0.110 / 0.174 / 0.217 -> FAIL
+G7 Bullet (ESTIMATE): Kn = 3 nu_F/(sigma L) = 0.0043 (nu_F 141.9 kpc km/s, 1000 km/s, 100 kpc) -> collisional: the hot charge shocks with the gas; RB1 gate 4 reads as its arm M4 (FAIL)
+LABEL canonical: STANDS BUT MISCOUNTED  [G1 True, G2 True, G3 S-seed False, G3 S-cosmo False (H1 False, H2 False), G4 S-seed False, H1 False, H2 False; G5 S-seed False, H1 False, H2 False; survives {'S-seed': False, 'S-cosmo H1': False, 'S-cosmo H2': False}]
+
+=== alt (a0 1.1312e-10 m/s^2) ===
+G1 log M_b 9.0 (N 600): done (z 0.00); R_sh 154.0 vs r_e* 6.5; S 3.23e-05 -> SETTLED; shock past r_e* at z 4.98; R_ta 58.0; visc heat frac 0.792; steps 928392, 255.6 s
+G1 log M_b 10.5 (N 600): done (z 0.00); R_sh 410.5 vs r_e* 36.8; S 1.64e-05 -> SETTLED; shock past r_e* at z 3.65; R_ta 259.7; visc heat frac 0.278; steps 6331194, 1514.6 s
+G1 log M_b 11.5 (N 300): done (z 0.00); R_sh 839.2 vs r_e* 116.4; S 0.000175 -> SETTLED; shock past r_e* at z 1.7; R_ta 588.3; visc heat frac 0.0844; steps 9659327, 1825.9 s
+G1 (graded at 10.5): PASS
+--- S-seed ---
+log M_b 9.0: G3 max |dex| 0.032 (at x 10.00: +0.032; x=1 +0.002, x=10 +0.032; X_tot(10) 10.23 vs X_L 9.51; M_hot(<r_M) 0.0025, (<10 r_M) 0.134 M_b) -> PASS; all charge at the centre: 0.353 FAIL; VSH1's-own-law reading X(10 r_M) 0.134
+            G4 R_st 76.5 kpc (68.9 r_M, 1.32 R_ta): jump J 53.54 (1.73 dex), layer -88.7 M_b; real charge 0.69 M_b vs the baryons' law halo 68.4 M_b (0.010); g_out/g_L 0.024; HE1's reason applies: True -> FAIL
+            G5 R_st 77 vs cap 67 (x0.871), KiDS inner 51 (x0.669), middle 120 (x1.57) -> FAIL
+            G6 inside_re_star: sigma 21.2 km/s, sigma^4/law -1.27 dex, sigma^2/virial 0.88; inside_R_st: sigma 9.3 km/s, sigma^4/law -2.71 dex, sigma^2/virial 0.71
+log M_b 10.5: G3 max |dex| 0.091 (at x 10.00: +0.091; x=1 +0.015, x=10 +0.091; X_tot(10) 11.73 vs X_L 9.51; M_hot(<r_M) 0.0186, (<10 r_M) 0.437 M_b) -> PASS; all charge at the centre: 0.407 FAIL; VSH1's-own-law reading X(10 r_M) 0.437
+            G4 R_st 144.2 kpc (23.1 r_M, 0.555 R_ta): jump J 17.46 (1.24 dex), layer -30.6 M_b; real charge 0.86 M_b vs the baryons' law halo 22.6 M_b (0.038); g_out/g_L 0.079; HE1's reason applies: True -> FAIL
+            G5 R_st 144 vs cap 375 (x2.6), KiDS inner 288 (x2), middle 674 (x4.68) -> FAIL
+            G6 inside_re_star: sigma 59.6 km/s, sigma^4/law -0.97 dex, sigma^2/virial 0.92; inside_R_st: sigma 36.3 km/s, sigma^4/law -1.83 dex, sigma^2/virial 0.76
+log M_b 11.5: G3 max |dex| 0.127 (at x 10.00: +0.127; x=1 +0.027, x=10 +0.127; X_tot(10) 12.74 vs X_L 9.51; M_hot(<r_M) 0.0335, (<10 r_M) 0.660 M_b) -> FAIL; all charge at the centre: 0.403 FAIL; VSH1's-own-law reading X(10 r_M) 0.660
+            G4 R_st 275.0 kpc (13.9 r_M, 0.467 R_ta): jump J 10.77 (1.03 dex), layer -18.0 M_b; real charge 0.84 M_b vs the baryons' law halo 13.4 M_b (0.063); g_out/g_L 0.128; HE1's reason applies: True -> FAIL
+            G5 R_st 275 vs cap 1184 (x4.31), KiDS inner 910 (x3.31), middle 2133 (x7.76) -> FAIL
+            G6 inside_re_star: sigma 115.9 km/s, sigma^4/law -0.82 dex, sigma^2/virial 0.89; inside_R_st: sigma 83.8 km/s, sigma^4/law -1.38 dex, sigma^2/virial 0.78
+G6 (reported): d ln sigma^4/d ln M_b 1.53 (law 1, virial 4/3); tied to the law: False
+S-seed: all three masses tuned and run: True; G3 FAIL, G4 FAIL, G5 FAIL
+--- S-cosmo H1 ---
+log M_b 9.0: host target 5.41 M_b, achieved 5.36 (A 0.31; done) -> ok; with the frozen R_st (210 kpc) the host reads 8.11 M_b
+log M_b 9.0: G3 max |dex| 0.227 (at x 10.00: +0.227; x=1 +0.072, x=10 +0.227; X_tot(10) 16.06 vs X_L 9.51; M_hot(<r_M) 0.0958, (<10 r_M) 1.486 M_b) -> FAIL; all charge at the centre: 1.004 FAIL; VSH1's-own-law reading X(10 r_M) 1.486
+            G4 R_st 62.4 kpc (56.2 r_M, 0.448 R_ta): jump J 22.77 (1.36 dex), layer -138.6 M_b; real charge 5.36 M_b vs the baryons' law halo 55.7 M_b (0.096); g_out/g_L 0.112; HE1's reason applies: True -> FAIL
+            G5 R_st 62 vs cap 67 (x1.07), KiDS inner 51 (x0.821), middle 120 (x1.92) -> FAIL
+            G6 inside_R_st: sigma 18.5 km/s, sigma^4/law -1.51 dex, sigma^2/virial 0.93
+log M_b 10.5: host target 5.41 M_b, achieved 5.36 (A 0.31; done) -> ok; with the frozen R_st (665 kpc) the host reads 8.11 M_b
+log M_b 10.5: G3 max |dex| 0.315 (at x 10.00: +0.315; x=1 +0.145, x=10 +0.315; X_tot(10) 19.66 vs X_L 9.51; M_hot(<r_M) 0.2128, (<10 r_M) 2.538 M_b) -> FAIL; all charge at the centre: 1.004 FAIL; VSH1's-own-law reading X(10 r_M) 2.538
+            G4 R_st 197.2 kpc (31.6 r_M, 0.448 R_ta): jump J 13.03 (1.12 dex), layer -76.6 M_b; real charge 5.36 M_b vs the baryons' law halo 31.1 M_b (0.173); g_out/g_L 0.198; HE1's reason applies: True -> FAIL
+            G5 R_st 197 vs cap 375 (x1.9), KiDS inner 288 (x1.46), middle 674 (x3.42) -> FAIL
+            G6 inside_R_st: sigma 58.3 km/s, sigma^4/law -1.01 dex, sigma^2/virial 0.93
+log M_b 11.5: host target 5.41 M_b, achieved 5.36 (A 0.31; done) -> ok; with the frozen R_st (1433 kpc) the host reads 8.11 M_b
+log M_b 11.5: G3 max |dex| 0.371 (at x 10.00: +0.371; x=1 +0.221, x=10 +0.371; X_tot(10) 22.35 vs X_L 9.51; M_hot(<r_M) 0.3590, (<10 r_M) 3.420 M_b) -> FAIL; all charge at the centre: 1.004 FAIL; VSH1's-own-law reading X(10 r_M) 3.420
+            G4 R_st 424.8 kpc (21.5 r_M, 0.448 R_ta): jump J 9.05 (0.96 dex), layer -51.2 M_b; real charge 5.36 M_b vs the baryons' law halo 21.0 M_b (0.255); g_out/g_L 0.289; HE1's reason applies: True -> FAIL
+            G5 R_st 425 vs cap 1184 (x2.79), KiDS inner 910 (x2.14), middle 2133 (x5.02) -> FAIL
+            G6 inside_R_st: sigma 125.7 km/s, sigma^4/law -0.68 dex, sigma^2/virial 0.93
+G6 (reported): d ln sigma^4/d ln M_b 1.33 (law 1, virial 4/3); tied to the law: False
+S-cosmo H1: all three masses tuned and run: True; G3 FAIL, G4 FAIL, G5 FAIL
+--- S-cosmo H2 ---
+log M_b 9.0: host target 83.87 M_b, achieved 79.69 (A 7.7; done) -> ok; with the frozen R_st (199 kpc) the host reads 93.45 M_b
+log M_b 9.0: G3 max |dex| 0.661 (at x 10.00: +0.661; x=1 +0.108, x=10 +0.661; X_tot(10) 43.61 vs X_L 9.51; M_hot(<r_M) 0.1502, (<10 r_M) 12.763 M_b) -> FAIL; all charge at the centre: 2.116 FAIL; VSH1's-own-law reading X(10 r_M) 12.763
+            G4 R_st 126.2 kpc (113.7 r_M, 0.339 R_ta): jump J 13.17 (1.12 dex), layer -982.0 M_b; real charge 79.69 M_b vs the baryons' law halo 113.2 M_b (0.704); g_out/g_L 0.706; HE1's reason applies: False -> FAIL
+            G5 R_st 126 vs cap 67 (x0.528), KiDS inner 51 (x0.405), middle 120 (x0.95) -> PASS
+            G6 inside_R_st: sigma 37.9 km/s, sigma^4/law -0.26 dex, sigma^2/virial 1.03
+log M_b 10.5: host target 23.73 M_b, achieved 22.83 (A 1.9; done) -> ok; with the frozen R_st (1002 kpc) the host reads 33.21 M_b
+log M_b 10.5: G3 max |dex| 0.532 (at x 10.00: +0.532; x=1 +0.206, x=10 +0.532; X_tot(10) 32.41 vs X_L 9.51; M_hot(<r_M) 0.3279, (<10 r_M) 7.367 M_b) -> FAIL; all charge at the centre: 1.585 FAIL; VSH1's-own-law reading X(10 r_M) 7.367
+            G4 R_st 287.4 kpc (46.0 r_M, 0.391 R_ta): jump J 9.95 (1.00 dex), layer -213.2 M_b; real charge 22.83 M_b vs the baryons' law halo 45.5 M_b (0.501); g_out/g_L 0.512; HE1's reason applies: True -> FAIL
+            G5 R_st 287 vs cap 375 (x1.3), KiDS inner 288 (x1), middle 674 (x2.35) -> FAIL
+            G6 inside_R_st: sigma 81.2 km/s, sigma^4/law -0.44 dex, sigma^2/virial 1.03
+log M_b 11.5: host target 536.76 M_b, achieved 289.25 (A 46; done) -> OUTSIDE 10 %; with the frozen R_st (5240 kpc) the host reads 681.13 M_b
+log M_b 11.5: G3 max |dex| 1.330 (at x 2.24: +1.330; x=1 +1.107, x=10 +1.266; X_tot(10) 175.55 vs X_L 9.51; M_hot(<r_M) 7.0068, (<10 r_M) 111.706 M_b) -> FAIL; all charge at the centre: 2.672 FAIL; VSH1's-own-law reading X(10 r_M) 111.706
+            G4 R_st 1151.3 kpc (58.3 r_M, 0.271 R_ta): jump J 3.96 (0.60 dex), layer -859.1 M_b; real charge 289.25 M_b vs the baryons' law halo 57.8 M_b (5.002); g_out/g_L 4.934; HE1's reason applies: False -> FAIL
+            G5 R_st 1151 vs cap 1184 (x1.03), KiDS inner 910 (x0.79), middle 2133 (x1.85) -> FAIL
+            G6 inside_R_st: sigma 467.7 km/s, sigma^4/law +1.61 dex, sigma^2/virial 1.01
+G6 (reported): d ln sigma^4/d ln M_b 1.68 (law 1, virial 4/3); tied to the law: False
+S-cosmo H2: all three masses tuned and run: False; G3 FAIL, G4 FAIL, G5 FAIL
+--- S-seed, frozen R_st (reported) ---
+log M_b 9.0: G3 max |dex| 0.032 (at x 10.00: +0.032; x=1 +0.002, x=10 +0.032; X_tot(10) 10.23 vs X_L 9.51; M_hot(<r_M) 0.0025, (<10 r_M) 0.134 M_b) -> PASS; all charge at the centre: 0.431 FAIL; VSH1's-own-law reading X(10 r_M) 0.134
+            G4 R_st 109.2 kpc (98.4 r_M, 1.88 R_ta): jump J 71.12 (1.85 dex), layer -136.0 M_b; real charge 0.94 M_b vs the baryons' law halo 97.9 M_b (0.010); g_out/g_L 0.020; HE1's reason applies: True -> FAIL
+            G5 R_st 109 vs cap 67 (x0.61), KiDS inner 51 (x0.469), middle 120 (x1.1) -> FAIL
+            G6 inside_re_star: sigma 21.2 km/s, sigma^4/law -1.27 dex, sigma^2/virial 0.88; inside_R_st: sigma 8.0 km/s, sigma^4/law -2.96 dex, sigma^2/virial 0.67
+log M_b 10.5: G3 max |dex| 0.091 (at x 10.00: +0.091; x=1 +0.015, x=10 +0.091; X_tot(10) 11.73 vs X_L 9.51; M_hot(<r_M) 0.0186, (<10 r_M) 0.437 M_b) -> PASS; all charge at the centre: 0.536 FAIL; VSH1's-own-law reading X(10 r_M) 0.437
+            G4 R_st 403.3 kpc (64.6 r_M, 1.55 R_ta): jump J 42.51 (1.63 dex), layer -98.2 M_b; real charge 1.37 M_b vs the baryons' law halo 64.1 M_b (0.021); g_out/g_L 0.036; HE1's reason applies: True -> FAIL
+            G5 R_st 403 vs cap 375 (x0.929), KiDS inner 288 (x0.714), middle 674 (x1.67) -> FAIL
+            G6 inside_re_star: sigma 59.6 km/s, sigma^4/law -0.97 dex, sigma^2/virial 0.92; inside_R_st: sigma 28.9 km/s, sigma^4/law -2.23 dex, sigma^2/virial 0.68
+log M_b 11.5: G3 max |dex| 0.127 (at x 10.00: +0.127; x=1 +0.027, x=10 +0.127; X_tot(10) 12.74 vs X_L 9.51; M_hot(<r_M) 0.0335, (<10 r_M) 0.660 M_b) -> FAIL; all charge at the centre: 0.541 FAIL; VSH1's-own-law reading X(10 r_M) 0.660
+            G4 R_st 871.9 kpc (44.2 r_M, 1.48 R_ta): jump J 29.07 (1.46 dex), layer -67.1 M_b; real charge 1.39 M_b vs the baryons' law halo 43.7 M_b (0.032); g_out/g_L 0.054; HE1's reason applies: True -> FAIL
+            G5 R_st 872 vs cap 1184 (x1.36), KiDS inner 910 (x1.04), middle 2133 (x2.45) -> FAIL
+            G6 inside_re_star: sigma 115.9 km/s, sigma^4/law -0.82 dex, sigma^2/virial 0.89; inside_R_st: sigma 65.5 km/s, sigma^4/law -1.81 dex, sigma^2/virial 0.69
+G6 (reported): d ln sigma^4/d ln M_b 1.46 (law 1, virial 4/3); tied to the law: False
+S-seed, frozen R_st (reported): all three masses tuned and run: True; G3 FAIL, G4 FAIL, G5 FAIL
+G7 Bullet (ESTIMATE): Kn = 3 nu_F/(sigma L) = 0.0043 (nu_F 142.0 kpc km/s, 1000 km/s, 100 kpc) -> collisional: the hot charge shocks with the gas; RB1 gate 4 reads as its arm M4 (FAIL)
+LABEL alt: STANDS BUT MISCOUNTED  [G1 True, G2 True, G3 S-seed False, G3 S-cosmo False (H1 False, H2 False), G4 S-seed False, H1 False, H2 False; G5 S-seed False, H1 False, H2 False; survives {'S-seed': False, 'S-cosmo H1': False, 'S-cosmo H2': False}]
+
+G6 (reported) S-seed: d ln sigma^4 / d ln a0 between the footings: +0.0002 / +0.0039 / +0.0085 (the law: 1)
+
+G6 (reported) S-cosmo H1: d ln sigma^4 / d ln a0 between the footings: +0.0006 / +0.0006 / +0.0006 (the law: 1)
+Adopts nothing. kappa = 1/2 FITTED; not theory closed.
