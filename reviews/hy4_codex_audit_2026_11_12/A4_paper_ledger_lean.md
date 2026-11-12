@@ -91,13 +91,9 @@ with 0 errors, 0 `sorry` and 0 `sorryAx`, and uses only the axioms {propext, Cla
 - H017 n = 2: D(D-3)/2 = 2 forces D = 4 for D >= 3, which is true integer algebra. **`joint_relation` and `seesaw_from_polarizations` restate their hypothesis.** `scalar_excluded` is `1 != 2`.
 - H018: `joint_relation_derived_n` restates its hypothesis after `norm_num`.
 - H019 "THE CLOSURE": **a definitional unfolding**. With sqrt G * MPl = 1 and rho = Lambda^4 assumed, (1/2) sqrt(G Lambda^4) = Lambda^2/(2 MPl). It is presented as a physical identity of Zimmerman and the seesaw.
-- H020: G cancels; c H0/a0 = sqrt(32 pi/(3 Omega_L)). Algebra only.
-- H034: the vacuum signs w = -1 and the separate conservation lemma.
-- H038: the attractor algebra.
+- H020 (G cancels; c H0/a0 = sqrt(32 pi/(3 Omega_L))), H034 (vacuum w = -1, separate conservation), H038 (attractor algebra): algebra only.
 - H043: the exponents equal 1, 0 and 4 iff D = 4. The selectors are defined so that D = 4 is their root.
-- H045: f is strictly monotone, so the zero crossing is unique.
-- H046: an honest negative (the health conditions do not force n).
-- H047: the sound speed of k-essence.
+- H045 (f strictly monotone, so the zero crossing is unique), H046 (honest negative: health does not force n), H047 (k-essence sound speed).
 - H061: compiles. **Its `scanPol_200` uses `native_decide`, which adds the non-standard axiom `native_decide.ax_1_1`.** `kappa_two` is `(2:R)^-1 = 1/2` by definition. The file carries its own retraction (l.40).
 - FINAL-10 `Final10Stress.lean`: **does not compile**: exit 1, 34 error lines, and 27 theorems depend on `sorryAx` (error recovery). This matches its own FAIL record. Its intended content (`claimed_identity_false`: Pi_rr + Pi_tt != 0 for every u > 0) contradicts PAPER74 l.151.
 - FINAL-11 `Final11Budget.lean`: the window x_b(5.41) is in (5.8887, 5.8889), plus the demand/budget ratios. Arithmetic.
@@ -117,13 +113,10 @@ Lyman-alpha forest row fails on two independent builds (FRZ1, FRZ1R), that no a0
 dwarfs have no power (DSB1). It hides ONE1's post hoc veto and its -2.7 sigma miss at the frozen veto. It calls an
 asymptotic stress identity "exact", against FINAL-10. Its tSZ "no outcome in between" claim is superseded.
 
-Before deposit:
-- Add a failing-rows section with the forest FAILS (FRZ1, FRZ1R), FRZ2, DSB1 NO POWER, and HLF1 and EFN1 NO VERDICT.
-- Delete or rewrite the symmetry/forced-kappa section and the "complete" and "derived" lines to "kappa = 1/2 fitted; form chosen, not derived".
-- State ONE1's A2 and the 1.0 R_h miss.
-- Fix "exactly" at l.151.
-- Bring FINAL5's corrected forecast in.
-- Commit AMT1's AMOUNT_BUDGET.md and make the audit check origin/main only.
-- Restate the status as PAPER72 v1.1's: a form the record closes on, not a pass.
+Before deposit: add a failing-rows section (forest FAILS per FRZ1 and FRZ1R, FRZ2, DSB1 NO POWER, HLF1 and EFN1 NO
+VERDICT); rewrite the symmetry/forced-kappa section and the "complete" and "derived" lines to "kappa = 1/2 fitted";
+state ONE1's A2 and the 1.0 R_h miss; fix "exactly" at l.151; bring in FINAL5's corrected forecast; commit AMT1's
+AMOUNT_BUDGET.md and make the audit check origin/main only; restate the status as PAPER72 v1.1's: a form the record
+closes on, not a pass.
 
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
