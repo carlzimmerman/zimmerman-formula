@@ -11,6 +11,9 @@ Run:
   python3 -I euc9.py --data-dir <dir with the ECLIPSE csv files, nisp_tables/ and nisp_spectra/>
   EUC9_MUTATE=newton python3 -I euc9.py --data-dir <dir>     (must exit 1)
   EUC9_MUTATE=single python3 -I euc9.py --data-dir <dir>     (must exit 1)
+  python3 -I euc9.py --data-dir <dir> --a1                   POST HOC amendment A1 (AMENDMENT_A1.md, 25d7f82cc2): the
+                                                             same rule on a re-co-addition of the dither spectra without
+                                                             rejection, dither test required; outputs euc9_a1*; twins too
 
 kappa = 1/2 FITTED.  Footings never pooled.  No outcome favours the framework.
 """
@@ -40,6 +43,11 @@ CLASSES = (("below 1.0", 0.0, 1.0), ("1.0 to 1.3", 1.0, 1.3), ("1.3 and above", 
 BAND5 = dict(canonical=((-0.19, 0.22), (-0.05, 0.30), (0.03, 0.32)), alt=((-0.19, 0.21), (-0.06, 0.34), (0.03, 0.31)))
 TIERS = [t[0] for t in C.TIERS]
 RUNGS = TIERS + [t + "-D" for t in TIERS]
+A1 = "--a1" in sys.argv
+if A1: RUNGS = [t + "-D" for t in TIERS]
+ND_MIN = 2 if A1 else C.NDITH_MIN
+def label(r): return ("A1-" + r[:2]) if A1 else r
+def ready(raw): return C.recoadd(raw) if A1 else C.prepare(raw)
 
 OUT = []
 def P(s=""):
@@ -51,10 +59,10 @@ def clopper(k, n, a=0.05):
 
 def classify(d, raw, p, tier, sign=1.0):
     """the frozen rule on one system's spectrum at one tier -> (class, info); info carries the dither test"""
-    b = C.search(p, d["thE"], sign=sign, single_only=SINGLE)[tier]
+    b = C.search(p, d["thE"], sign=sign, single_only=SINGLE, nd_min=ND_MIN)[tier]
     if b is None: return "none", None
     if SINGLE: idc, z, sup = "HA1", b["lam0"] / C.HA - 1.0, []
-    else: idc, z, sup = C.identify(p, b, sign)
+    else: idc, z, sup = C.identify(p, b, sign, joint=A1)
     info = dict(b, idc=idc, z=float(z), sup=sup, D=None if SINGLE else C.dither_test(raw, b, sign))
     lo, hi = WIN["O3" if idc == "O3" else "HA"]
     if not (lo < z < hi): return "none", info
@@ -83,12 +91,13 @@ def f5_word(st, band):
     return "LENSING EQUALS DYNAMICS"
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--data-dir", required=True)
+    ap = argparse.ArgumentParser(); ap.add_argument("--data-dir", required=True); ap.add_argument("--a1", action="store_true")
     a = ap.parse_args(); t0 = time.time()
     sdir = os.path.join(a.data_dir, "nisp_spectra_dith")
-    tag = "euc9" + ("_MUTATE_" + MUT if MUT else "")
-    RES = dict(lane="EUC9", criteria_commit="bea4eacfa8", mutate=MUT, footings=E.FOOT)
-    P("EUC9 (GRISM SPECTRA SOURCE REDSHIFTS)%s" % ("   *** MUTATE = %s ***" % MUT if MUT else ""))
+    tag = "euc9" + ("_a1" if A1 else "") + ("_MUTATE_" + MUT if MUT else "")
+    RES = dict(lane="EUC9", criteria_commit="bea4eacfa8", amendment_a1=A1, mutate=MUT, footings=E.FOOT)
+    P("EUC9 (GRISM SPECTRA SOURCE REDSHIFTS)%s%s" % ("   *** POST HOC AMENDMENT A1: re-co-added dither spectra, dither test required ***" if A1 else "",
+      "   *** MUTATE = %s ***" % MUT if MUT else ""))
     P("footings (m/s^2): canonical %.4e, alt %.4e" % (E.FOOT["canonical"], E.FOOT["alt"]))
 
     # ---------------------------------------------------------------- systems and spectra
@@ -103,8 +112,8 @@ def main():
         fn = os.path.join(sdir, "%d.npz" % d["oid"])
         if not os.path.exists(fn):
             d["why"] = "no spectrum: " + flog.get(str(d["oid"]), "not fetched"); nofile += str(d["oid"]) not in flog; continue
-        raw = dict(np.load(fn, allow_pickle=False)); p = C.prepare(raw)
-        if p is None: d["why"] = "spectrum off the common grid or under 100 good pixels"; continue
+        raw = dict(np.load(fn, allow_pickle=False)); p = ready(raw)
+        if p is None: d["why"] = ("no usable dither in each grism position" if A1 else "spectrum off the common grid or under 100 good pixels"); continue
         d["evaluable"] = True; SPEC[lid] = (raw, p)
     ids = dict(P=sorted(B["inP"]), S=sorted(B["inS"]), X=B["x_ids"])
     P("  systems: S %d (P %d), X %d, truth lens %s;  targets %d;  spectra read %d" % (len(ids["S"]), len(ids["P"]), len(ids["X"]), K.TRUTH[0],
@@ -169,25 +178,33 @@ def main():
             lam0 = float(rng.uniform(12300.0, 18700.0)); s = float(rng.uniform(C.S_MIN + 1.0, max(smax - 1.0, C.S_MIN + 1.5)))
             px = [int(round((lam0 + o - C.W0) / C.DW)) for o in (-s, 0.0, s)]
             j = int(np.argmin(np.abs(C.CENT - lam0)))
-            if N16[j] > 0 and N20[j] > 0 and all(p["good"][q] and p["nd"][q] >= C.NDITH_MIN for q in px): break
+            if N16[j] > 0 and N20[j] > 0 and all(p["good"][q] and p["nd"][q] >= ND_MIN for q in px): break
         else: continue
-        q = C.prepare(C.inject(raw, lam0, s, 16.0, INJ_SN * math.sqrt(2.0 / N16[j])))
-        bb = C.search(q, d["thE"])["TA"] if q else None; tot += 1
-        rec += bool(bb and abs(bb["lam0"] - lam0) <= C.DW)
-        q = C.prepare(C.inject(raw, lam0, 0.0, 20.0, INJ_SN / math.sqrt(N20[j])))
-        b0 = C.search(p, d["thE"])["TA"]
-        bb = C.search(q, d["thE"])["TA"] if q else None; tot2 += 1
-        fal += bool(bb and abs(bb["lam0"] - lam0) <= 80.0 and not (b0 and abs(b0["lam0"] - lam0) <= 80.0))
+        F2 = INJ_SN * math.sqrt(2.0 / N16[j]); F1 = INJ_SN / math.sqrt(N20[j]); tot += 1; tot2 += 1
+        b0 = C.search(p, d["thE"], nd_min=ND_MIN)["TA"]
+        def near(bb, tol): return bool(bb and abs(bb["lam0"] - lam0) <= tol)
+        if A1:                                                    # A1.3: everything is injected into the dithers and re-co-added
+            q3 = C.inject_dithers(raw, lam0, s, 16.0, F2, True); bb = C.search(C.recoadd(q3), d["thE"], nd_min=ND_MIN)["TA"]
+            rec += near(bb, C.DW); t = C.dither_test(q3, bb) if near(bb, C.DW) else None; d3 += bool(t and t["passes"])
+            q1 = C.inject_dithers(raw, lam0, 0.0, 20.0, F1, False); bb = C.search(C.recoadd(q1), d["thE"], nd_min=ND_MIN)["TA"]
+            t = C.dither_test(q1, bb) if (near(bb, 80.0) and not near(b0, 80.0)) else None; fal += bool(t and t["passes"])
+            q4 = C.inject_dithers(raw, lam0, s, 16.0, F2, False); bb = C.search(C.recoadd(q4), d["thE"], nd_min=ND_MIN)["TA"]
+            t = C.dither_test(q4, bb) if near(bb, C.DW) else None; d4 += bool(t and t["passes"])
+            continue
+        q = C.prepare(C.inject(raw, lam0, s, 16.0, F2)); bb = C.search(q, d["thE"])["TA"] if q else None
+        rec += near(bb, C.DW)
+        q = C.prepare(C.inject(raw, lam0, 0.0, 20.0, F1)); bb = C.search(q, d["thE"])["TA"] if q else None
+        fal += bool(near(bb, 80.0) and not near(b0, 80.0))
         if SINGLE: continue
         for mirrored in (True, False):
-            q3 = C.inject_dithers(raw, lam0, s, 16.0, INJ_SN * math.sqrt(2.0 / N16[j]), mirrored); p3 = C.prepare(q3)
+            q3 = C.inject_dithers(raw, lam0, s, 16.0, F2, mirrored); p3 = C.prepare(q3)
             bb = C.search(p3, d["thE"])["TA"] if p3 else None
-            t = C.dither_test(q3, bb) if (bb and abs(bb["lam0"] - lam0) <= C.DW) else None
+            t = C.dither_test(q3, bb) if near(bb, C.DW) else None
             if mirrored: d3 += bool(t and t["passes"])
             else: d4 += bool(t and t["passes"])
     if not SINGLE:
         ck("I1", "injected pairs (S/N 12) returned within 13.4 A in >= 70 %", "%d / %d = %.3f" % (rec, tot, rec / max(tot, 1)), tot > 0 and rec >= 0.70 * tot)
-        ck("I2", "injected single centred lines (S/N 12) returned as a pair in <= 5 %", "%d / %d = %.3f" % (fal, tot2, fal / max(tot2, 1)), tot2 > 0 and fal <= 0.05 * tot2)
+        ck("I2", "injected single centred lines (S/N 12) returned as %s in <= 5 %%" % ("SECURE-A1" if A1 else "a pair"), "%d / %d = %.3f" % (fal, tot2, fal / max(tot2, 1)), tot2 > 0 and fal <= 0.05 * tot2)
     i3ok = tot > 0 and d3 >= 0.60 * tot; i4ok = tot > 0 and d4 <= 0.05 * tot
     if not SINGLE:
         P("  %s I3  injected mirrored pairs pass the dither test in >= 60 %% : %d / %d = %.3f   [gates the -D rungs only]" % ("PASS" if i3ok else "FAIL", d3, tot, d3 / max(tot, 1)))
@@ -199,8 +216,8 @@ def main():
     def cnt(group, rung, cls="SECURE", flip=False): return sum(1 for i in group if SYS[i]["evaluable"] and at(SYS[i], rung, flip)[0] == cls)
     for rung in RUNGS:
         each, comb, dchi = [t[1:] for t in C.TIERS if t[0] == rung[:2]][0]
-        P("\n[rung %s: each component S/N >= %.1f, combined >= %.0f, pair over single dchi2 >= %.0f%s]" % (rung, each, comb, dchi,
-          "; and the dither test (AMENDMENT A0)" if rung.endswith("-D") else ""))
+        P("\n[rung %s: each component S/N >= %.1f, combined >= %.0f, pair over single dchi2 >= %.0f%s]" % (label(rung), each, comb, dchi,
+          "; and the dither test" if rung.endswith("-D") else ""))
         c = {}
         for nm in ("P", "S", "X"):
             Ev = sum(SYS[i]["evaluable"] for i in ids[nm]); n = cnt(ids[nm], rung); lo, hi = clopper(n, Ev)
@@ -255,13 +272,13 @@ def main():
     evaluable = allok and cover_ok and tier is not None
     P("\n[ladder]")
     for r in RUNGS:
-        P("  %-5s H2 %s, H2b %s, H4 %s%s" % (r, *("PASS" if GATE[r][g] else "FAIL" for g in ("H2", "H2b", "H4")),
+        P("  %-5s H2 %s, H2b %s, H4 %s%s" % (label(r), *("PASS" if GATE[r][g] else "FAIL" for g in ("H2", "H2b", "H4")),
           ("" if not r.endswith("-D") else ", I3/I4 %s" % ("PASS" if GATE[r]["injections_ok"] else "FAIL"))))
-    P("  -> " + (("reading rung " + tier + ("" if tier == RUNGS[0] else " (frozen fallback)" if tier == "TB" else " (under pre-data amendment A0)")) if tier else "no rung passes: NOT EVALUABLE"))
+    P("  -> " + (("reading rung " + label(tier) + (" (POST HOC, amendment A1)" if A1 else "" if tier == "TA" else " (frozen fallback)" if tier == "TB" else " (under pre-data amendment A0)")) if tier else "no rung passes: NOT EVALUABLE"))
     rt = tier or RUNGS[0]
 
     # ---------------------------------------------------------------- readings
-    P("\n[readings on rung %s%s]" % (rt, "" if evaluable else ", VOID (the search is not evaluable)"))
+    P("\n[readings on rung %s%s%s]" % (label(rt), ", POST HOC (A1): not the frozen gates' verdicts" if A1 else "", "" if evaluable else ", VOID (the search is not evaluable)"))
     def zmap(tn, classes=("SECURE",), ids_ok=None, o3=False):
         m = {}
         for i in ids["S"]:
@@ -345,16 +362,16 @@ def main():
                          "" if not f.get("D") else "%.2f" % f["D"]["stat"], "" if not f.get("D") else f["D"]["passes"], "" if not f.get("D") else "%d+%d" % (f["D"]["n000"], f["D"]["n180"]), "%.3f" % d["thE"],
                          "%.3f" % d["zlo"], "%.3f" % d["zup"], d["zsrc"], d["oid"]] + [("%.4f" % b[c]) if c in b else "" for c in ("S_canonical", "S_alt", "inf_S_canonical", "inf_S_alt")])
     if not MUT:
-        with open(os.path.join(HERE, "euc9_sources.csv"), "w", newline="") as f:
+        with open(os.path.join(HERE, tag + "_sources.csv"), "w", newline="") as f:
             w = csv.writer(f)
             w.writerow(["unique_identifier", "grade", "in_P", "in_S", "class_TA", "class_TB", "line", "z_s", "midpoint_A", "half_split_A", "half_split_arcsec", "sigma_A",
                         "sn_blue", "sn_red", "flux_ratio_blue_red", "sn_combined", "dchi2_pair_over_single", "line_flux_cgs", "support", "own_line_band",
                         "dither_stat_D", "dither_test_passes", "dithers_RGS000+RGS180", "theta_E_arcsec", "z_lo", "z_up", "interval_source", "mer_object_id", "b_S_canonical", "b_S_alt", "b_inf_S_canonical", "b_inf_S_alt"])
             w.writerows(rows_out)
-        P("\n  per-system table: euc9_sources.csv (%d systems with a TA class; grade X rows included and marked)" % len(rows_out))
+        P("\n  per-system table: %s_sources.csv (%d systems with a TA class before the dither test; grade X rows included and marked)" % (tag, len(rows_out)))
         try:
             import matplotlib; matplotlib.use("Agg"); import matplotlib.pyplot as plt
-            os.makedirs(os.path.join(HERE, "figs"), exist_ok=True)
+            fdir = "figs_a1" if A1 else "figs"; os.makedirs(os.path.join(HERE, fdir), exist_ok=True)
             show = [i for i in [K.TRUTH[0]] + ids["S"] + ids["X"] if SYS[i]["evaluable"] and SYS[i]["TA"][0] == "SECURE"]
             for pg in range(0, len(show), 8):
                 chunk = show[pg:pg + 8]
@@ -383,8 +400,8 @@ def main():
                         axx.set_title(("%s (%s%s) z_s=%.4f %s split=%.0fA=%.2f\" thE=%.2f\" S/N %.1f+%.1f dchi2=%.0f D=%s   [black co-add; blue RGS000, red RGS180]" % (i[-7:], d["grade"],
                                        ", P" if d["inP"] else "", f["z"], f["idc"], f["s"], f["s"] / C.DISP, d["thE"], f["sn_b"], f["sn_r"], f["dchi"],
                                        "n/a" if not f["D"] else "%+.1f%s" % (f["D"]["stat"], " ok" if f["D"]["passes"] else ""))) if c_ == 0 else "whole spectrum (residual)", fontsize=6)
-                fig.tight_layout(); fig.savefig(os.path.join(HERE, "figs", "ta_%02d.png" % (pg // 8)), dpi=70); plt.close(fig)
-            P("  figures: figs/ta_*.png (%d secure pairs: truth lens, S, then grade X)" % len(show))
+                fig.tight_layout(); fig.savefig(os.path.join(HERE, fdir, "ta_%02d.png" % (pg // 8)), dpi=70); plt.close(fig)
+            P("  figures: %s/ta_*.png (%d pairs passing the rule at TA: truth lens, S, then grade X)" % (fdir, len(show)))
         except Exception as ex:
             P("  (figures skipped: %s)" % type(ex).__name__)
     if rP["N"]:
@@ -398,22 +415,22 @@ def main():
     P("\n[summary]")
     P("  instrument checks: %s;  coverage: %s;  reading rung: %s" % ("all pass" if allok else "FAILED", "pass" if cover_ok else "FAIL", tier or "none"))
     if evaluable:
-        v1 = "%s / %s" % (W["F1"]["canonical"], W["F1"]["alt"])
+        v1 = "%s%s / %s" % ("POST HOC READING (A1): " if A1 else "", W["F1"]["canonical"], W["F1"]["alt"])
         P("  N(P) with a secure source redshift = %d (EUC1-F needs %d)" % (rP["N"], F_NMIN))
-        P("  EUC1-F (canonical / alt): %s%s" % (v1, " (IDENTIFICATION-DEPENDENT)" if ident_dep else ""))
+        P("  EUC1-F%s (canonical / alt): %s / %s%s" % (" under A1 (post hoc)" if A1 else "", W["F1"]["canonical"], W["F1"]["alt"], " (IDENTIFICATION-DEPENDENT)" if ident_dep else ""))
         for cn, _, _ in CLASSES:
-            P("  EUC5-F, theta_E %-14s (canonical / alt): %s / %s   [N = %d]" % (cn, W["F5"][cn + " | canonical"], W["F5"][cn + " | alt"], READ["S, theta_E %s" % cn]["N"]))
+            P("  EUC5-F%s, theta_E %-14s (canonical / alt): %s / %s   [N = %d]" % (" under A1 (post hoc)" if A1 else "", cn, W["F5"][cn + " | canonical"], W["F5"][cn + " | alt"], READ["S, theta_E %s" % cn]["N"]))
     else:
         v1 = "NOT EVALUABLE / NOT EVALUABLE"
         P("  EUC1-F: not graded.  EUC5-F: not graded.  (N(P) with a pair passing the rule: %d; void)" % rP["N"])
-    P("  LANE WORD (canonical / alt): %s%s" % (v1, (" [rung %s%s]" % (tier, "" if tier == "TA" else ", frozen fallback" if tier == "TB" else ", under pre-data amendment A0")) if evaluable else ""))
+    P("  %s (canonical / alt): %s%s" % ("A1 WORD" if A1 else "LANE WORD", v1, (" [rung %s%s]" % (label(tier), "" if (A1 or tier == "TA") else ", frozen fallback" if tier == "TB" else ", under pre-data amendment A0")) if evaluable else ""))
     P("  kappa = 1/2 FITTED. No outcome favours the framework.  (%.0f s)" % (time.time() - t0))
     RES.update(checks=CK, checks_all_pass=allok, coverage_ok=cover_ok, tier=tier, evaluable=bool(evaluable), verdict=v1, words=W, words_o3=Wo3,
                identification_dependent=bool(ident_dep), N_P=rP["N"])
 
     code = 0 if evaluable else 3
     if MUT:
-        try: ref = json.load(open(os.path.join(HERE, "euc9_results.json")))
+        try: ref = json.load(open(os.path.join(HERE, tag.split("_MUTATE_")[0] + "_results.json")))
         except Exception: ref = None
         bite = False
         if ref is None: P("\n[MUTATE %s] no reference results: cannot judge" % MUT)
@@ -428,10 +445,11 @@ def main():
                  None if samp is None else "%+.3f / %+.3f" % tuple(ref["reading"][samp]["S_" + k]["true"]["b_med"] for k in E.FOOT),
                  "rose on both footings, as required; exit 1" if bite else "DID NOT RISE"))
         elif MUT == "single":
-            n0, n1 = ref["gates"]["TA"]["counts"]["X"]["SECURE"], GATE["TA"]["counts"]["X"]["SECURE"]
+            r0 = RUNGS[0]; n0, n1 = ref["gates"][r0]["counts"]["X"]["SECURE"], sum(1 for i in ids["X"] if SYS[i]["evaluable"] and SYS[i]["TA"][0] == "SECURE")
+            m0, m1 = ref["gates"][r0]["counts"]["S"]["SECURE"], sum(1 for i in ids["S"] if SYS[i]["evaluable"] and SYS[i]["TA"][0] == "SECURE")
             bite = n1 > n0
-            P("\n[MUTATE single] grade-X SECURE systems (TA): %d (ref %d); S: %d (ref %d) -> %s"
-              % (n1, n0, GATE["TA"]["counts"]["S"]["SECURE"], ref["gates"]["TA"]["counts"]["S"]["SECURE"], "the null count rose, as required; exit 1" if bite else "DID NOT RISE"))
+            P("\n[MUTATE single] grade-X systems passing with the pair requirement removed (S/N >= 6): %d (ref %d); S: %d (ref %d) -> %s"
+              % (n1, n0, m1, m0, "the null count rose, as required; exit 1" if bite else "DID NOT RISE"))
         RES["mutate_bites"] = bool(bite); code = 1 if bite else 2
     json.dump(RES, open(os.path.join(HERE, tag + "_results.json"), "w"), indent=1, default=str)
     open(os.path.join(HERE, tag + ".out"), "w").write("\n".join(OUT) + "\n")
