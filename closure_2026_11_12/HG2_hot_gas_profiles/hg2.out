@@ -1,0 +1,144 @@
+
+==============================================================================================================
+HG2  MWG1 redone with published hot-gas density laws (criteria: FROZEN_CRITERIA.md, sha256 in FREEZE_STAMP.txt)
+==============================================================================================================
+  conversions: mass per electron 1.170 m_p, per H 1.408 m_p (X = 0.71); S15 mu 0.6; N18 mu 0.61 (their eq. 11)
+
+==============================================================================================================
+KNOWN-ANSWER CHECKS
+==============================================================================================================
+  [PASS] KA1 no gas reproduces MWJ1 (Q 4.89 / 2.91; satellite plateau -2.72; window 0 to 0.0075)
+         (canonical: Q 4.89, S plateau -2.72, window [0.0000, 0.0075]; alt: Q 2.91, S plateau -2.72, window [0.0000, 0.0075])
+  [PASS] KA2 MB15's printed law (n_e, 1.17 m_p per electron, density x (Z/Zsun)^-1 at 0.3) gives 3.8e9 (<50) and 4.3e10 (<250) within 5 per cent
+         (Z^-1: 3.852e+09 / 4.306e+10;  Z^-1/2 (emission scaling): 2.110e+09 / 2.359e+10;  solar as printed: 1.155e+09)
+  [PASS] KA3 the line at 80 kpc with no gas within 0.5 per cent of 5.691 / 6.219 / 4.977 / 5.109
+         (5.691; 6.218; 4.977; 5.109)
+  [PASS] KA4 F20's Table 1 approximation gives 4.6e10 (<258) and 5.5e10 (<283) within 20 per cent
+         (5.140e+10 / 6.225e+10  (ratios 1.117 / 1.132))
+  [PASS] KA5 SI shell integral of MB15's law equals the closed form within 0.1 per cent
+         (4.30624e+10 vs 4.30624e+10)
+
+  reported, not blocking:
+    MB13 solar: 2.49e+08 (<18) vs 2.2e8; 1.17e+10 (<200) vs 1.2e10;  at 0.3 Zsun: 8.30e+08 vs 7.5e8; 3.91e+10 vs 3.8e10
+    F17 reconstruction: slope 0.647; 1.332e+11 (<250) vs 1.2e11 (ratio 1.110); mean n_H inside 250 5.85e-05 vs 4.6e-5
+    S15: solved slope 3b = 1.423 (b = 0.474); n0 rc^3b = 0.0273 (Salem's sampled range 0.005 to 0.03: inside)
+    D-L24   total 4.91e+08  (one side 2.46e+08)   [Locatelli 2024 combined b=0.5 disc (Z=0.1)]
+    D-L24z  total 1.44e+08  (one side 7.22e+07)   [Locatelli 2024 combined+high eps disc (Z=0.3)]
+    D-L24d  total 1.30e+09  (one side 6.52e+08)   [Locatelli 2024 disc-only model (Z=0.1)]
+    D-K20e  total 1.42e+08  (one side 7.09e+07)  printed 2e+07: ratio 7.09 (one side 3.54)   [Kaaret 2020 empirical disc (with adiabatic halo, Z=0.3)]
+    D-K20x  total 3.56e+08  (one side 1.78e+08)   [Kaaret 2020 exponential disc model (Z=0.3)]
+    D-N18   total 9.71e+07  (one side 4.86e+07)  printed 5e+07: ratio 1.94 (one side 0.97)   [Nakashima 2018 Suzaku disc (solar Z, mu 0.61)]
+    L24 halo <250: 4.40e+10; L24z <250: 1.30e+10  (paper: 'some 1e9 to some 1e10')
+
+==============================================================================================================
+MUTATIONS
+==============================================================================================================
+  written to hg2_mut.out: bite on both footings
+
+==============================================================================================================
+ENCLOSED MASSES from the published laws [1e10 Msun]  (halo + own disc; constant beyond the paper's outer radius)
+==============================================================================================================
+  model    r_out   < 27  < 30  < 80  <100  <150  <200  <273
+  MB15       250    0.15   0.18   0.78   1.09   2.00   3.08   4.31
+  MB15h      250    0.08   0.10   0.43   0.60   1.10   1.69   2.36
+  MB13       200    0.12   0.14   0.51   0.78   1.89   3.91   3.91
+  S15        300    0.06   0.07   0.32   0.46   0.87   1.37   2.24
+  F17        250    0.07   0.09   0.91   1.54   4.00   7.88  13.32
+  F20        283    0.05   0.06   0.46   0.72   1.67   3.03   5.78
+  B18        250    0.12   0.13   0.52   0.73   1.32   2.02   2.82
+  K20b       260    0.12   0.14   0.75   1.13   2.35   3.97   6.40
+  L24        350    0.20   0.23   0.85   1.16   2.09   3.20   5.07
+  L24z       350    0.06   0.07   0.25   0.34   0.62   0.95   1.50
+
+  disc-like components alone [1e10 Msun]:   <27 kpc     total
+     D-L24      0.0457     0.0491    Locatelli 2024 combined b=0.5 disc (Z=0.1)
+     D-L24z     0.0134     0.0144    Locatelli 2024 combined+high eps disc (Z=0.3)
+     D-L24d     0.1099     0.1304    Locatelli 2024 disc-only model (Z=0.1)
+     D-K20e     0.0142     0.0142    Kaaret 2020 empirical disc (with adiabatic halo, Z=0.3)
+     D-K20x     0.0341     0.0356    Kaaret 2020 exponential disc model (Z=0.3)
+     D-N18      0.0087     0.0097    Nakashima 2018 Suzaku disc (solar Z, mu 0.61)
+     D-B18      0.0180     0.0180    Bregman 2018 hot disc (printed mass, placed inside 27 kpc)
+
+==============================================================================================================
+PART 1  the rotation curve: halo + disc-like hot gas inside 27 kpc against the need
+==============================================================================================================
+
+  canonical: need 1.71 to 2.07 e10 Msun
+     MB15    0.153  (halo 0.153 + disc 0.000)  share  7.4 to  8.9 per cent
+     MB15h   0.084  (halo 0.084 + disc 0.000)  share  4.0 to  4.9 per cent
+     MB13    0.124  (halo 0.124 + disc 0.000)  share  6.0 to  7.3 per cent
+     S15     0.058  (halo 0.058 + disc 0.000)  share  2.8 to  3.4 per cent
+     F17     0.071  (halo 0.071 + disc 0.000)  share  3.4 to  4.1 per cent
+     F20     0.048  (halo 0.048 + disc 0.000)  share  2.3 to  2.8 per cent
+     B18     0.117  (halo 0.099 + disc 0.018)  share  5.7 to  6.9 per cent
+     K20b    0.115  (halo 0.101 + disc 0.014)  share  5.6 to  6.7 per cent
+     L24     0.202  (halo 0.156 + disc 0.046)  share  9.8 to 11.8 per cent
+     L24z    0.060  (halo 0.046 + disc 0.013)  share  2.9 to  3.5 per cent
+     disc D-L24   alone 0.0457  share  2.2 to  2.7 per cent
+     disc D-L24z  alone 0.0134  share  0.6 to  0.8 per cent
+     disc D-L24d  alone 0.1099  share  5.3 to  6.4 per cent
+     disc D-K20e  alone 0.0142  share  0.7 to  0.8 per cent
+     disc D-K20x  alone 0.0341  share  1.6 to  2.0 per cent
+     disc D-N18   alone 0.0087  share  0.4 to  0.5 per cent
+     PART 1 LABEL: ROTATION CURVE NOT SUPPLIED
+
+  alt: need 1.02 to 1.39 e10 Msun
+     MB15    0.153  (halo 0.153 + disc 0.000)  share 11.0 to 15.1 per cent
+     MB15h   0.084  (halo 0.084 + disc 0.000)  share  6.0 to  8.2 per cent
+     MB13    0.124  (halo 0.124 + disc 0.000)  share  8.9 to 12.2 per cent
+     S15     0.058  (halo 0.058 + disc 0.000)  share  4.2 to  5.7 per cent
+     F17     0.071  (halo 0.071 + disc 0.000)  share  5.1 to  7.0 per cent
+     F20     0.048  (halo 0.048 + disc 0.000)  share  3.5 to  4.7 per cent
+     B18     0.117  (halo 0.099 + disc 0.018)  share  8.4 to 11.6 per cent
+     K20b    0.115  (halo 0.101 + disc 0.014)  share  8.3 to 11.4 per cent
+     L24     0.202  (halo 0.156 + disc 0.046)  share 14.5 to 19.9 per cent
+     L24z    0.060  (halo 0.046 + disc 0.013)  share  4.3 to  5.9 per cent
+     disc D-L24   alone 0.0457  share  3.3 to  4.5 per cent
+     disc D-L24z  alone 0.0134  share  1.0 to  1.3 per cent
+     disc D-L24d  alone 0.1099  share  7.9 to 10.8 per cent
+     disc D-K20e  alone 0.0142  share  1.0 to  1.4 per cent
+     disc D-K20x  alone 0.0341  share  2.5 to  3.4 per cent
+     disc D-N18   alone 0.0087  share  0.6 to  0.9 per cent
+     PART 1 LABEL: ROTATION CURVE NOT SUPPLIED
+
+==============================================================================================================
+PART 2  the outer data: census at A = 1 plus each published profile
+==============================================================================================================
+
+  canonical:
+     model   window (all three gates)   at 0.01273: Q; outer medians H / S; plateau medians H / S -> fails
+     none    [0.0000, 0.0075]           Q  4.89; -0.68 / -1.56; -0.80 / -2.72 -> plateau rows (S -2.72)
+     MB15    [0.0000, 0.0180]           Q  2.53; -0.13 / -1.00; -0.22 / -1.42 -> none
+     MB15h   [0.0000, 0.0125]           Q  3.45; -0.34 / -1.24; -0.46 / -2.00 -> plateau rows (S -2.00)
+     MB13    [0.0000, 0.0180]           Q  3.14; -0.07 / -1.04; +0.15 / -1.28 -> none
+     S15     [0.0000, 0.0120]           Q  3.78; -0.40 / -1.31; -0.53 / -2.09 -> plateau rows (S -2.09)
+     F17     [0.0040, 0.0200]           Q  2.60; +0.41 / -0.27; +1.03 / +0.24 -> none
+     F20     [0.0000, 0.0170]           Q  3.50; -0.24 / -1.17; -0.30 / -1.23 -> none
+     B18     [0.0000, 0.0135]           Q  3.13; -0.29 / -1.17; -0.40 / -1.86 -> none
+     K20b    [0.0000, 0.0190]           Q  2.70; +0.07 / -0.92; +0.17 / -0.99 -> none
+     L24     [0.0000, 0.0200]           Q  2.29; -0.10 / -0.96; -0.19 / -1.30 -> none
+     L24z    [0.0000, 0.0100]           Q  3.96; -0.46 / -1.37; -0.60 / -2.30 -> plateau rows (S -2.30)
+     PART 2 LABEL: RECORD'S FIELD PASSES WITH HOT GAS, FRAGILE (MB15h, S15, L24z)
+
+  alt:
+     model   window (all three gates)   at 0.01273: Q; outer medians H / S; plateau medians H / S -> fails
+     none    [0.0000, 0.0075]           Q  2.91; -0.66 / -1.54; -0.80 / -2.72 -> plateau rows (S -2.72)
+     MB15    [0.0000, 0.0185]           Q  0.96; -0.11 / -0.97; -0.21 / -1.42 -> none
+     MB15h   [0.0000, 0.0125]           Q  1.65; -0.33 / -1.21; -0.46 / -2.00 -> plateau rows (S -2.00)
+     MB13    [0.0010, 0.0190]           Q  1.47; -0.04 / -1.02; +0.15 / -1.28 -> none
+     S15     [0.0000, 0.0120]           Q  1.91; -0.39 / -1.28; -0.52 / -2.09 -> plateau rows (S -2.09)
+     F17     [0.0045, 0.0215]           Q  0.71; +0.44 / -0.24; +1.03 / +0.24 -> none
+     F20     [0.0010, 0.0185]           Q  1.57; -0.23 / -1.15; -0.30 / -1.23 -> none
+     B18     [0.0000, 0.0135]           Q  1.44; -0.27 / -1.15; -0.40 / -1.86 -> none
+     K20b    [0.0015, 0.0205]           Q  0.98; +0.09 / -0.90; +0.18 / -0.99 -> none
+     L24     [0.0005, 0.0200]           Q  0.89; -0.09 / -0.93; -0.19 / -1.29 -> none
+     L24z    [0.0000, 0.0100]           Q  2.12; -0.45 / -1.35; -0.60 / -2.30 -> plateau rows (S -2.30)
+     PART 2 LABEL: RECORD'S FIELD PASSES WITH HOT GAS, FRAGILE (MB15h, S15, L24z)
+
+==============================================================================================================
+LABELS
+==============================================================================================================
+  canonical: ROTATION CURVE NOT SUPPLIED  /  RECORD'S FIELD PASSES WITH HOT GAS, FRAGILE (MB15h, S15, L24z)
+  alt      : ROTATION CURVE NOT SUPPLIED  /  RECORD'S FIELD PASSES WITH HOT GAS, FRAGILE (MB15h, S15, L24z)
+
+HG2 COMPLETE. Literature values are PROVISIONAL look-ups of full texts. kappa = 1/2 FITTED; not theory closed. Adopts nothing.
