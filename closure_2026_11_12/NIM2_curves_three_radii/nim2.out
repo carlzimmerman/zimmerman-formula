@@ -1,0 +1,191 @@
+
+==============================================================================================================
+NIM2  NMB1's gate extended to 30, 50 and 80 kpc   (criteria: FROZEN_CRITERIA.md, see FREEZE_STAMP.txt)
+==============================================================================================================
+     TEST lane. kappa = 1/2 FITTED; not theory closed. Adopts nothing.
+     criteria sha256 c8e668d100b9c4dde9759abe3256066f03c13835fbd517979d7091b00d28df9b
+
+==============================================================================================================
+KNOWN-ANSWER CHECKS
+==============================================================================================================
+  [PASS] KA1 the file is the one named in the criteria
+         (md5 5b0cc3aa9947286eb9348e947d01182d)
+  [PASS] KA2 fig10's joint rows reproduce Table 4's RRL and BHB columns (26 values, each within 0.011e11)
+         (largest difference 0.0049 e11)
+  mocks in the file: 24
+  [PASS] KA3 mock residuals reproduce Figure 8's median biases (four values, each within 2.5 points)
+         (nimble-b rrl 80: -6.50 vs -6.50; nimble-a bhb 80: -7.54 vs -7.54; nimble-a rrl 30: +5.92 vs +5.91; nimble-b bhb 30: -1.18 vs -1.19)
+  [PASS] KA4 the machinery on all curves at one radius reproduces the paper's joint within one published sigma (30, 50, 80)
+         (30 kpc: 11.4193 +/- 0.0259 from 6 curves, N = 24 (Table 4: 11.423 +/- 0.0220; k = 1.000); 50 kpc: 11.6541 +/- 0.0195 from 8 curves, N = 24 (Table 4: 11.654 +/- 0.0255; k = 1.305); 80 kpc: 11.7883 +/- 0.0248 from 8 curves, N = 24 (Table 4: 11.804 +/- 0.0345; k = 1.392))
+  [PASS] KA5 NMB1 reproduced with the 50 kpc rows dropped (theta, errors within 0.0005; Q within 0.01)
+         (theta 11.4059 +/- 0.0270, 11.8047 +/- 0.0567; Q E1 canonical 4.89, E1 alt 2.91, E0 canonical 2.40, E0 alt 0.05)
+  [PASS] KA6 estimator and gate on synthetic data (closed form to 1e-10; mean Q 3.00 +/- 0.06; rejection 0.0455 +/- 0.005)
+         (closed form 3.3e-16, 1.4e-17; mean Q 3.009; rejection 0.0473)
+  [PASS] KA7 line at 80 kpc within 0.5 %; M_sph fractions at 30, 80 within 0.001 of DW1; MB15 3.8e9 inside 50 kpc within 3 %
+         (canonical E0 5.691; alt E0 6.219; canonical E1 4.977; alt E1 5.109; worst 0.01%; f30 0.9781, f80 0.9977, f50 (used) 0.9952; MB15(<50) 3.846e+09)
+
+==============================================================================================================
+MUTATIONS
+==============================================================================================================
+  M1, M2 written to nim2_mut.out: all bite
+
+==============================================================================================================
+THE INSTRUMENT
+==============================================================================================================
+  curve            r    M_med [1e11]   16th    84th    log10 M   sigma_stat [dex]
+  nimble-a  rrl    30     2.449      2.334   2.595   11.3890   0.0230
+  nimble-a  bhb    30     2.481      2.370   2.618   11.3946   0.0216
+  nimble-b  rrl    30     2.787      2.589   3.004   11.4451   0.0323
+  nimble-b  bhb    30     2.569      2.374   2.785   11.4097   0.0346
+  nimble-a  rrl    50     5.401      5.085   5.734   11.7324   0.0261
+  nimble-a  bhb    50     4.391      3.949   4.752   11.6426   0.0402
+  nimble-b  rrl    50     4.408      4.098   4.753   11.6442   0.0322
+  nimble-b  bhb    50     4.256      3.938   4.585   11.6290   0.0330
+  nimble-a  rrl    80     6.678      6.030   7.403   11.8246   0.0445
+  nimble-a  bhb    80     5.993      5.112   6.943   11.7777   0.0665
+  nimble-b  rrl    80     6.181      5.525   7.244   11.7911   0.0588
+  nimble-b  bhb    80     6.543      5.752   7.430   11.8158   0.0556
+
+  mocks used N = 24; shrinkage 0.5; k_30 = 1.000, k_50 = 1.305, k_80 = 1.392
+  NIMBLE-only log10(M/Msun) at 30 kpc: 11.4095 +/- 0.0261  (2.568 e11)
+  NIMBLE-only log10(M/Msun) at 50 kpc: 11.6537 +/- 0.0390  (4.505 e11)
+  NIMBLE-only log10(M/Msun) at 80 kpc: 11.8032 +/- 0.0565  (6.357 e11)
+  correlations: 30-50 +0.045, 30-80 +0.189, 50-80 +0.472
+  slope 30-80: 0.924 +/- 0.135;  slope 30-50: 1.101;  slope 50-80: 0.732
+  curvature c = -0.368 +/- 0.371
+  internal consistency: chi2 = 3.55 on 9 dof, p = 0.939  (reported)
+  NMB1 two-radius (reproduced): 30 11.4059 +/- 0.0270; 80 11.8047 +/- 0.0567; slope sigma 0.137
+  Table 4 joint at 50 kpc for comparison: 11.654 +0.025 -0.026
+
+==============================================================================================================
+THE GATE   Q <= 8.02 on 3 dof.  z = (line - data)/sigma; negative = line below the data
+==============================================================================================================
+
+  E1 canonical census:  line 2.326 / 3.613 / 4.977 e11 at 30 / 50 / 80 kpc
+     Q = 8.70 (p = 0.0336);  z30 -1.65, z50 -2.46, z80 -1.88;  slope line 0.776 vs data 0.924 +/- 0.135 (z_s -1.10);  curvature line -0.182 vs data -0.368 +/- 0.371 (z_c +0.50)
+     LABEL: FAILS LOW (2 to 3 sigma), FRAGILE
+       variant NIMBLE-A only            Q =    7.95  z -0.65 -2.55 -1.41 z_s -1.09 z_c +0.95  pass   <- other side
+       variant NIMBLE-B only            Q =    4.25  z -1.65 -1.56 -1.37 z_s -0.65 z_c -0.13  pass   <- other side
+       variant NIMBLE-A RRL dropped     Q =    6.13  z -1.66 -1.84 -1.53 z_s -0.73 z_c +0.08  pass   <- other side
+       variant lambda = 0 (Hartlap)     Q =    2.97  z -1.31 -1.31 -1.26 z_s -0.50 z_c +0.02  pass   <- other side
+       variant lambda = 1               Q =   15.63  z -1.76 -2.96 -1.95 z_s -1.10 z_c +0.54  fail
+       variant k = 1                    Q =   13.61  z -1.67 -3.22 -2.61 z_s -1.42 z_c +0.65  fail
+       reported: published bands only  Q =   76.94
+
+  E1 alt census:  line 2.517 / 3.900 / 5.109 e11 at 30 / 50 / 80 kpc
+     Q = 3.68 (p = 0.2986);  z30 -0.33, z50 -1.61, z80 -1.68;  slope line 0.722 vs data 0.924 +/- 0.135 (z_s -1.50);  curvature line -0.283 vs data -0.368 +/- 0.371 (z_c +0.23)
+     LABEL: PASSES
+       variant NIMBLE-A only            Q =    4.23  z +0.42 -1.89 -1.27 z_s -1.36 z_c +0.78  pass
+       variant NIMBLE-B only            Q =    1.69  z -0.69 -0.91 -1.23 z_s -0.94 z_c -0.36  pass
+       variant NIMBLE-A RRL dropped     Q =    2.13  z -0.47 -1.04 -1.35 z_s -1.08 z_c -0.18  pass
+       variant lambda = 0 (Hartlap)     Q =    1.23  z -0.41 -0.66 -1.09 z_s -0.86 z_c -0.25  pass
+       variant lambda = 1               Q =    7.12  z -0.32 -1.99 -1.74 z_s -1.48 z_c +0.31  pass
+       variant k = 1                    Q =    6.72  z -0.36 -2.11 -2.32 z_s -1.94 z_c +0.30  pass
+       reported: published bands only  Q =   39.96
+
+  E0 canonical census:  line 2.331 / 3.684 / 5.691 e11 at 30 / 50 / 80 kpc
+     Q = 7.59 (p = 0.0554);  z30 -1.61, z50 -2.24, z80 -0.85;  slope line 0.910 vs data 0.924 +/- 0.135 (z_s -0.11);  curvature line +0.029 vs data -0.368 +/- 0.371 (z_c +1.07)
+     LABEL: PASSES, FRAGILE
+       variant NIMBLE-A only            Q =    6.60  z -0.62 -2.38 -0.69 z_s -0.43 z_c +1.32  pass
+       variant NIMBLE-B only            Q =    3.80  z -1.62 -1.40 -0.65 z_s +0.08 z_c +0.34  pass
+       variant NIMBLE-A RRL dropped     Q =    5.08  z -1.62 -1.63 -0.60 z_s +0.14 z_c +0.61  pass
+       variant lambda = 0 (Hartlap)     Q =    3.74  z -1.28 -1.14 -0.37 z_s +0.38 z_c +0.57  pass
+       variant lambda = 1               Q =   11.11  z -1.72 -2.71 -0.91 z_s -0.16 z_c +1.02  fail   <- other side
+       variant k = 1                    Q =   11.16  z -1.63 -2.93 -1.17 z_s -0.11 z_c +1.37  fail   <- other side
+       reported: published bands only  Q =   56.31
+
+  E0 alt census:  line 2.526 / 4.013 / 6.219 e11 at 30 / 50 / 80 kpc
+     Q = 2.01 (p = 0.5710);  z30 -0.27, z50 -1.29, z80 -0.17;  slope line 0.919 vs data 0.924 +/- 0.135 (z_s -0.04);  curvature line +0.025 vs data -0.368 +/- 0.371 (z_c +1.06)
+     LABEL: PASSES
+       variant NIMBLE-A only            Q =    2.79  z +0.47 -1.64 -0.22 z_s -0.39 z_c +1.32  pass
+       variant NIMBLE-B only            Q =    0.80  z -0.65 -0.67 -0.17 z_s +0.12 z_c +0.33  pass
+       variant NIMBLE-A RRL dropped     Q =    0.87  z -0.41 -0.74 +0.01 z_s +0.20 z_c +0.60  pass
+       variant lambda = 0 (Hartlap)     Q =    1.13  z -0.37 -0.42 +0.22 z_s +0.44 z_c +0.56  pass
+       variant lambda = 1               Q =    2.77  z -0.25 -1.63 -0.22 z_s -0.10 z_c +1.01  pass
+       variant k = 1                    Q =    3.41  z -0.30 -1.69 -0.22 z_s -0.03 z_c +1.35  pass
+       reported: published bands only  Q =   19.50
+
+  E1 canonical MB15:  line 2.363 / 3.735 / 5.423 e11 at 30 / 50 / 80 kpc
+     Q = 6.05 (p = 0.1094);  z30 -1.39, z50 -2.09, z80 -1.22;  slope line 0.847 vs data 0.924 +/- 0.135 (z_s -0.57);  curvature line -0.103 vs data -0.368 +/- 0.371 (z_c +0.72)
+     LABEL: PASSES, FRAGILE
+       variant NIMBLE-A only            Q =    5.78  z -0.44 -2.26 -0.95 z_s -0.74 z_c +1.09  pass
+       variant NIMBLE-B only            Q =    3.00  z -1.46 -1.28 -0.91 z_s -0.26 z_c +0.05  pass
+       variant NIMBLE-A RRL dropped     Q =    4.01  z -1.42 -1.49 -0.93 z_s -0.27 z_c +0.28  pass
+       variant lambda = 0 (Hartlap)     Q =    2.20  z -1.13 -1.03 -0.69 z_s -0.03 z_c +0.22  pass
+       variant lambda = 1               Q =   10.26  z -1.47 -2.54 -1.28 z_s -0.60 z_c +0.72  fail   <- other side
+       variant k = 1                    Q =    9.20  z -1.41 -2.74 -1.69 z_s -0.72 z_c +0.92  fail   <- other side
+       reported: published bands only  Q =   52.80
+
+  E1 alt MB15:  line 2.557 / 4.034 / 5.633 e11 at 30 / 50 / 80 kpc
+     Q = 1.68 (p = 0.6425);  z30 -0.07, z50 -1.23, z80 -0.93;  slope line 0.806 vs data 0.924 +/- 0.135 (z_s -0.88);  curvature line -0.182 vs data -0.368 +/- 0.371 (z_c +0.50)
+     LABEL: PASSES
+       variant NIMBLE-A only            Q =    2.85  z +0.63 -1.60 -0.75 z_s -0.95 z_c +0.95  pass
+       variant NIMBLE-B only            Q =    0.65  z -0.50 -0.62 -0.70 z_s -0.49 z_c -0.13  pass
+       variant NIMBLE-A RRL dropped     Q =    0.65  z -0.23 -0.68 -0.67 z_s -0.54 z_c +0.08  pass
+       variant lambda = 0 (Hartlap)     Q =    0.21  z -0.23 -0.38 -0.44 z_s -0.31 z_c +0.02  pass
+       variant lambda = 1               Q =    3.43  z -0.03 -1.57 -0.99 z_s -0.89 z_c +0.54  pass
+       variant k = 1                    Q =    2.97  z -0.10 -1.62 -1.28 z_s -1.13 z_c +0.64  pass
+       reported: published bands only  Q =   22.46
+
+  E0 canonical MB15:  line 2.368 / 3.800 / 6.035 e11 at 30 / 50 / 80 kpc
+     Q = 5.87 (p = 0.1181);  z30 -1.35, z50 -1.90, z80 -0.40;  slope line 0.954 vs data 0.924 +/- 0.135 (z_s +0.22);  curvature line +0.058 vs data -0.368 +/- 0.371 (z_c +1.15)
+     LABEL: PASSES, FRAGILE
+       variant NIMBLE-A only            Q =    5.05  z -0.41 -2.11 -0.38 z_s -0.21 z_c +1.37  pass
+       variant NIMBLE-B only            Q =    3.00  z -1.43 -1.13 -0.33 z_s +0.31 z_c +0.41  pass
+       variant NIMBLE-A RRL dropped     Q =    3.77  z -1.39 -1.31 -0.19 z_s +0.43 z_c +0.68  pass
+       variant lambda = 0 (Hartlap)     Q =    3.58  z -1.10 -0.88 +0.02 z_s +0.68 z_c +0.64  pass
+       variant lambda = 1               Q =    7.63  z -1.43 -2.32 -0.45 z_s +0.15 z_c +1.09  pass
+       variant k = 1                    Q =    8.72  z -1.37 -2.48 -0.54 z_s +0.31 z_c +1.47  fail   <- other side
+       reported: published bands only  Q =   40.42
+
+  E0 alt MB15:  line 2.565 / 4.138 / 6.593 e11 at 30 / 50 / 80 kpc
+     Q = 1.59 (p = 0.6609);  z30 -0.02, z50 -0.95, z80 +0.28;  slope line 0.962 vs data 0.924 +/- 0.135 (z_s +0.28);  curvature line +0.055 vs data -0.368 +/- 0.371 (z_c +1.14)
+     LABEL: PASSES
+       variant NIMBLE-A only            Q =    2.32  z +0.68 -1.37 +0.09 z_s -0.17 z_c +1.37  pass
+       variant NIMBLE-B only            Q =    0.57  z -0.46 -0.41 +0.14 z_s +0.36 z_c +0.40  pass
+       variant NIMBLE-A RRL dropped     Q =    0.69  z -0.18 -0.42 +0.42 z_s +0.48 z_c +0.67  pass
+       variant lambda = 0 (Hartlap)     Q =    1.48  z -0.19 -0.17 +0.61 z_s +0.73 z_c +0.63  pass
+       variant lambda = 1               Q =    1.61  z +0.03 -1.25 +0.24 z_s +0.21 z_c +1.08  pass
+       variant k = 1                    Q =    2.85  z -0.04 -1.24 +0.40 z_s +0.40 z_c +1.45  pass
+       reported: published bands only  Q =   12.97
+
+  the paper's NFW (comparator): 2.485 / 4.174 / 6.205 e11; Q = 1.10; z -0.54 -0.85 -0.19; z_s +0.06; curvature -0.171 (z_c +0.53)  -> PASSES
+
+==============================================================================================================
+SEPARATION LABELS
+==============================================================================================================
+  canonical: E0 vs E1 census: SEPARATES;  E0 vs E1 MB15: DOES NOT SEPARATE;  framework vs NFW: PARTLY SEPARATES (E1 canonical census)
+  alt: E0 vs E1 census: DOES NOT SEPARATE;  E0 vs E1 MB15: DOES NOT SEPARATE;  framework vs NFW: DOES NOT SEPARATE
+
+==============================================================================================================
+POWER COMPARISON WITH NMB1 (reported)
+==============================================================================================================
+  errors: 30 kpc 0.0270 -> 0.0261;  80 kpc 0.0567 -> 0.0565;  slope 30-80 0.137 -> 0.135;  50 kpc (new) 0.0390
+  pair                                   lambda(2 radii)  power(2 dof, 6.18)   lambda(3 radii)  power(3 dof, 8.02)
+  canonical census: E0 vs E1                  1.079          0.131                1.184          0.121   no gain
+  canonical MB15: E0 vs E1                    0.684          0.098                0.740          0.090   no gain
+  alt census: E0 vs E1                        2.315          0.243                2.539          0.224   no gain
+  alt MB15: E0 vs E1                          1.480          0.166                1.599          0.151   no gain
+  E1 canonical census vs NFW                  3.451          0.349                4.427          0.379
+  E1 alt census vs NFW                        2.448          0.255                2.478          0.219   no gain
+  E0 canonical census vs NFW                  1.291          0.149                2.973          0.259
+  E0 alt census vs NFW                        0.069          0.050                0.316          0.064
+  E1 canonical MB15 vs NFW                    1.469          0.165                2.291          0.204
+  E1 alt MB15 vs NFW                          0.907          0.116                0.938          0.104   no gain
+  E0 canonical MB15 vs NFW                    0.610          0.092                1.892          0.173
+  E0 alt MB15 vs NFW                          0.403          0.075                0.530          0.077
+
+==============================================================================================================
+LABELS
+==============================================================================================================
+  E1 canonical census      FAILS LOW (2 to 3 sigma), FRAGILE
+  E1 alt census            PASSES
+  E0 canonical census      PASSES, FRAGILE
+  E0 alt census            PASSES
+  E1 canonical MB15        PASSES, FRAGILE
+  E1 alt MB15              PASSES
+  E0 canonical MB15        PASSES, FRAGILE
+  E0 alt MB15              PASSES
+  paper NFW (comparator)   PASSES
+
+NIM2 COMPLETE. kappa = 1/2 FITTED; not theory closed. Adopts nothing.
