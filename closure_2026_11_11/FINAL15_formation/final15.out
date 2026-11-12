@@ -57,7 +57,28 @@ canonical: band hits 14/16 | sign hits 12.5/16 | rms(pred-meas) 0.148 dex | rms(
 alt: band hits 13/16 | sign hits 12.0/16 | rms(pred-meas) 0.157 dex | rms(distance to band) 0.062 dex
 
 CHECK prediction-file arithmetic: max |frozen pred - recomputed from the frozen table| = 0.0081 dex (PASS)
-CHECK class medians: max |this lane's median lg g_bar - DD1's published| = 0.242 dex (note)
+CHECK class medians: max |this lane's median lg g_bar - DD1's published| = 0.242 dex (note: DD1 quotes the median over systems, here over points)
+
+SENSITIVITY of the scored numbers to the representative g_bar (points vs systems):
+  class                 lg gb (pts)  lg gb (sys)  pred CAN pts  pred CAN sys
+  SPARC                      -10.60       -10.84        +0.000        +0.000
+  faint rotators             -11.26       -11.26        -0.102        -0.102
+  tidal dwarfs               -11.45       -11.45        -0.755        -0.755
+  massive spirals            -11.16       -11.16        +0.000        +0.000
+  ATLAS3D                     -9.55        -9.55        +0.050        +0.050
+  RC100                       -9.79        -9.79        +0.000        +0.000
+  KiDS                       -13.13       -13.13        +0.100        +0.100
+  groups                     -11.66       -11.66        +0.151        +0.151
+  X-COP                      -10.70       -10.68        +0.372        +0.381
+  CLASH                      -10.47       -10.45        +0.457        +0.466
+  MW bright dwarfs           -12.20       -12.20        +0.266        +0.266
+  MW ultra-faints            -13.12       -13.12        +0.289        +0.289
+  M31 dwarfs                 -12.50       -12.50        +0.276        +0.276
+  LG field dwarfs            -11.95       -11.95        +0.255        +0.255
+  Coma UDGs                  -12.15       -12.15        +0.265        +0.265
+  NGC 1052 UDGs              -11.67       -11.67        -0.855        -0.855
+  canonical: rms(pred-meas) 0.148 dex with points medians, 0.147 dex with system medians
+  alt: rms(pred-meas) 0.157 dex with points medians, 0.156 dex with system medians
 
 control canonical: plain-law (all classes 0.000) rms 0.381 dex | global-constant (+0.079) rms 0.379 dex | frozen table rms 0.148 dex
 
@@ -203,3 +224,5 @@ LABEL
   alt: HOLDS IN PATTERN, NOT IN SIZE   (exactly as frozen: FAILS)
      F1 floor False frozen / True corrected | F2 hosted high True | F3 anchor True | F4 dust branch True | F5 floor global True | F6 no tracking True | F7 size False
      band hits 13/16 | sign hits 12.0/16 | rms 0.157 dex (plain-law control 0.379, global-constant 0.381)
+
+kappa = 1/2 FITTED; not theory closed. Adopts nothing.

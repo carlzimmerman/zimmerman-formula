@@ -726,11 +726,12 @@ if MUT:
     z = (rankdata(x0) - (len(x0) + 1) / 2.0) / (len(x0) / 2.0)
     out4 = []
     for rho_t in (0.20, 0.30, 0.50):
-        sd = float(np.std(Dp[(CLS0 == "SPARC") & np.isfinite(Dp)]))
-        k = rho_t * sd / math.sqrt(1.0 - rho_t ** 2)
+        s = 0.15                                  # planted residual scatter, dex
+        u = (z - z.mean()) / z.std()
         rng = np.random.default_rng(3)
-        noise = rng.normal(size=z.size) * (sd * 0.1)
-        Dp[np.where(m)[0]] = np.median(Dp[m]) + k * z + noise
+        v = rng.normal(size=u.size); v = (v - v.mean()) / v.std()
+        base = float(np.median(Dp[(CLS0 == "SPARC") & np.isfinite(Dp)]))
+        Dp[np.where(m)[0]] = base + s * (rho_t * u + math.sqrt(1.0 - rho_t ** 2) * v)
         # recompute the G1 pair with the planted residual
         mm = (CLS0 == "SPARC") & np.isfinite(IND["fg_sparc"]) & np.isfinite(Dp)
         rho, p = spearmanr(IND["fg_sparc"][mm], Dp[mm])

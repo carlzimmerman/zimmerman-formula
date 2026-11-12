@@ -375,7 +375,7 @@ theorem gas_column_alternative_tight :
   · norm_num [pref_alt_GN, PI_HI]
   · norm_num [pref_alt_GN, PI_LO]
 
-/-- (6t) canonical a0, repo G = 6.674e-11: Sigma in (6.1626, 6.1628), i.e. 6.1627 +/- 1e-4. -/
+/-- (6t) canonical a0, repo G = 6.674e-11: Sigma in (6.1626, 6.1628), i.e. 6.1627 +- 1e-4. -/
 theorem gas_column_canonical_gas1_tight :
     (61626 / 10000 : ℝ) < gas_column a0_canon G_gas1 R_b ∧
     gas_column a0_canon G_gas1 R_b < (61628 / 10000 : ℝ) := by
@@ -386,7 +386,7 @@ theorem gas_column_canonical_gas1_tight :
   · norm_num [pref_canon_gas1, PI_HI]
   · norm_num [pref_canon_gas1, PI_LO]
 
-/-- (6t) alternative a0, repo G = 6.674e-11: Sigma in (7.4476, 7.4478), i.e. 7.4477 +/- 1e-4. -/
+/-- (6t) alternative a0, repo G = 6.674e-11: Sigma in (7.4476, 7.4478), i.e. 7.4477 +- 1e-4. -/
 theorem gas_column_alternative_gas1_tight :
     (74476 / 10000 : ℝ) < gas_column a0_alt G_gas1 R_b ∧
     gas_column a0_alt G_gas1 R_b < (74478 / 10000 : ℝ) := by
