@@ -1,0 +1,17 @@
+# Independent coordinator audit of the gas quotient
+
+12 November 2026. Reviewed the actual `experiment_quotient.py`, `target_design.py`, contracts, manifests, structured results and REPORT. This is independent interpretation and implementation inspection, not an independent astronomical data reduction.
+
+For the declared simple-mu algebraic law, fixed source geometry and free global stellar/gas coefficients, simultaneous multiplication of A_star, A_gas and T by lambda multiplies w by lambda. The compensating sine-inclination transformation therefore preserves velocities where a physical inclination exists. S=T/A_gas is invariant. Fixing inclination as a coordinate choice is legitimate for this restricted amplitude symmetry; it cannot fix the real inclination dependence of deprojection, pressure, warps or the gravity field.
+
+The implemented quotient-coordinate derivatives are correct: the log A_gas column at fixed S is J_gas+J_T, and the log S column is J_T. In log w coordinates the remaining two amplitude columns span {1, (1-t)f_star}; projecting t from that span gives the stated local information. The reported errors use 2 error(V)/V from the original catalog as a declared fractional-error design model, rather than a newly observed acceleration likelihood. Signed disk gas forces and independent bulge contributions require care in any broader target scan.
+
+The nonlinear profiles support the modest conclusion: exact nuisance invariance does not deliver a precise measurement with these templates. A small fitted bias is not an identification test. Profile intervals, edge truncations, bounds and the failed unregularized DDO154 run remain visible. The nominal Delta-objective marker has no coverage calibration. Hypothetical population constraints do not establish measured IMF information.
+
+The quotient calibration convention is internally consistent: physical gas force equals gamma_g times the reference force, so S=a0/gamma_g and a0=gamma_g S. Deep BTFR amplitude instead measures a0 times gamma_g when distance and inclination are fixed. Their different calibration dependence reflects different information; the deep limit cannot identify S.
+
+The gas-dominated transition criterion is a sufficient practical search clue, not a necessary theorem for all mixtures. Nonzero projected response is the actual local rank criterion; strong stellar-population constraints can make other classes informative. Additional independent galaxies can improve common-parameter information under an explicit shared calibration model even if no single object is precise. The current finite study does not forecast that population-level likelihood.
+
+All 88 input/output artifact hashes listed across the ten inverse manifests were recomputed against the actual files and matched. Nine run manifests are completed; the DDO154 quotient manifest is failed. A metadata discrepancy was found and sent to the owner: the quotient contract says max_nfev=400 while executed code uses 500, and its input prose names selection.json although selection_quotient.json is the actual hashed input. Preserve the original record and read its explicit erratum; this is not silently repaired provenance. The executed resource limit and failed-case interpretation are unchanged.
+
+Verdict: the quotient identity and limited implementation interpretation pass this review. No calibrated survey precision, observed gravity-law fit, arbitrary-function robustness or full field-equation validation follows.
