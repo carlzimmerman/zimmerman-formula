@@ -242,10 +242,14 @@ Everything else in the criteria is unchanged and used as committed.
 
 | | shared checkout | origin |
 |---|---|---|
-| criteria | 462eaa806d | (push below) |
-| criteria amendment | fed1bc94a4 | |
-| script and outputs | b414a1d1d8 | |
-| result | (this commit) | |
+| criteria (committed alone, before any script or number) | 462eaa806d | 440d1b25bf |
+| criteria amendment | fed1bc94a4 | 440d1b25bf |
+| script, outputs, Lean | b414a1d1d8 | 440d1b25bf |
+| result | 04f69b8b6f | 440d1b25bf |
+
+The four local commits were pushed to origin as one commit (440d1b25bf) from a temporary sparse worktree carrying
+only this lane's folder. The freeze requirement — the criteria committed alone, before any FRM1 script exists or any
+FRM1 number is computed — is met on the shared checkout, and the id order there is the record of it.
 
 ## Disclosure
 
