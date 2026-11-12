@@ -1,5 +1,13 @@
 # FRM1 RESULT: the formation reading as a theory (2026-11-11)
 
+> **Forward correction, 2026-11-12:** the labels and numbers below are historical.
+> The baryon-loss ceiling assumes fixed profile and no incoming cold charge;
+> it does not exclude all formation/transport histories. The class bands were
+> chosen after prior DD1/HIS1 results were known, so the hits are retrospective
+> consistency, not unseen predictions. Read [the correction](CORRECTION_2026_11_12.md).
+>
+> *Audit note, 2026-11-12 (lead session):* this notice was written by another session and is committed here on the owner's instruction after an independent check, `reviews/codex_corrections_audit_2026_11_12/C2_pik1_and_frm1.md` (grade: ceiling scope: CORRECT WITH LIMITS; retrospective bands: CORRECT). The audit adds that the frozen line of this lane reads FAILS / FAILS, and that the sentence below saying the offsets were predicted before the table was read does not hold. The folder `research_closure_2026_11_12/` it links to was not committed with it, so those links may not resolve; the audit file is the checked record. The committed text, labels and outputs below this notice are not edited by this commit.
+
 Criteria 462eaa806d (+ one disclosed amendment fed1bc94a4, made before any FRM1 number existed). Table 441824e854
 (DD1's, frozen, unchanged: 3419 points, 626 systems, 16 classes). TEST lane, quarantined: adopts nothing, relabels
 nothing, registers nothing. Footings never pooled (canonical a0 9.3603e-11, alt 1.1312e-10 m/s^2).

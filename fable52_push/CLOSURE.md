@@ -1,5 +1,25 @@
 # Closure statement for the fable52 push (2026-11-10)
 
+> **Further audit, 2026-11-12 (CP02):** the full metric-constrained density-gate
+> calculation now has a scoped physical instability counterexample. The inherited
+> `mu_K >= 2.51e4/Mpc` growth line used an isolated, polarization-off operator and
+> is not a verified threshold for the corrected coupled theory. The unchanged-FRW
+> early-radiation test is a separate conditional constraint. See the
+> [CP02 result](../research_closure_2026_11_12/closure_push_02/RESULT.md) and
+> [growth audit](../research_closure_2026_11_12/closure_push_02/growth_gate_audit/RESULT.md).
+> This historical closure map and its original labels remain preserved below.
+>
+> *Audit note, 2026-11-12 (lead session):* this notice was written by another session and is committed here on the owner's instruction after an independent check, `reviews/codex_corrections_audit_2026_11_12/C1_dust_and_growth.md` (grade: growth part CORRECT WITH LIMITS). Its first sentence, on an instability of the density-gate calculation, was not independently checked by any auditor: read it as a reported claim. The folder `research_closure_2026_11_12/` it links to was not committed with it, so those links may not resolve; the audit file is the checked record. The committed text, labels and outputs below this notice are not edited by this commit.
+
+> **Corrections, 2026-11-12:** this historical closure map predates the corrected
+> quadratic variation and retention audit. Read [PIK1's correction](PIK1_pi_gated_dust/CORRECTION_2026_11_12.md)
+> and [FRM1's correction](FRM1_formation_theory/CORRECTION_2026_11_12.md).
+> The density gate has no established universal NO VALUE verdict, and FRM1's
+> channel ceiling does not bound all conserved formation/transport histories.
+> These corrections establish neither a working carrier nor theory closure.
+>
+> *Audit note, 2026-11-12 (lead session):* this notice was written by another session and is committed here on the owner's instruction after an independent check, `reviews/codex_corrections_audit_2026_11_12/C2_pik1_and_frm1.md` (grade: CORRECT). The folder `research_closure_2026_11_12/` it links to was not committed with it, so those links may not resolve; the audit file is the checked record. The committed text, labels and outputs below this notice are not edited by this commit.
+
 Adopts nothing. kappa = 1/2 FITTED; not theory closed. Not registered. This file states where the push ends. Every line
 points at a lane; the lanes' RESULT.md files are the record, and where this file and a lane differ the lane is right.
 

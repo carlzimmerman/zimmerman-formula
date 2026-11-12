@@ -1,0 +1,174 @@
+{
+  "status": "FAIL",
+  "mutation": "drop-divergence-square",
+  "checks": [
+    {
+      "name": "exact_first_order_is_spatial_boundary",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "exact_quadratic_equals_bulk_plus_boundary",
+      "passed": false,
+      "residual": "C*(q**2 - 2*q + 1)*Derivative(p(x), x)**2/(2*Pi_c**2)"
+    },
+    {
+      "name": "direct_variation_vs_quadratic_lapse",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "direct_variation_vs_quadratic_polarization",
+      "passed": false,
+      "residual": "C*(-q**2 + 2*q - 1)*Derivative(p(x), (x, 2))/Pi_c**2"
+    },
+    {
+      "name": "direct_variation_vs_quadratic_metric_trace",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "general_gate_coefficients",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "B_closed_form",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "constrained_Pi_first_order",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "constrained_Pi_second_order",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "clock_rate_second_order",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "clock_acceleration_first_order",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "clock_quadratic_modulo_explicit_boundaries",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "gauge_mixing_agrees_alpha_minus_pi_dot_over_q",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "auxiliary_elimination_by_completion_square",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "dispersion_determinant",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "exponential_negative_kinetic_witness",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "exponential_negative_frequency_witness",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "generic_above_threshold_negative_kinetic_coefficient",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "flat_gate_first_derivative_zero",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "flat_gate_second_derivative_zero",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "flat_gate_restores_baseline_kinetic",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "historical_periodic_witness_nonzero",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "historical_invisibility_hypothesis_refuted",
+      "passed": true,
+      "value": "True"
+    },
+    {
+      "name": "baryon_loss_rationalized",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "baryon_loss_limit",
+      "passed": true,
+      "residual": "0"
+    },
+    {
+      "name": "permitted_charge_transport_exceeds_restricted_ceiling",
+      "passed": true,
+      "value": "True"
+    },
+    {
+      "name": "free_formation_field_exceeds_restricted_ceiling",
+      "passed": true,
+      "value": "True"
+    }
+  ],
+  "formulas": {
+    "B": "-C*S1*(q - 1)*(q + 1)/Pi_c",
+    "D": "C*S2*(q - 1)**2/Pi_c**2",
+    "unitary_bulk_L2": "C*S2*(q - 1)**2*Derivative(p(x), x)**2/(2*Pi_c**2) + S1*(-2*C*q*(q - 1) + C*(q - 1)**2)*alpha(x)*Derivative(p(x), x)/Pi_c",
+    "direct_linear_euler_exponential": {
+      "lapse": "C*(q**2 - 1)*Derivative(p(x), x)/Pi_c",
+      "polarization": "C*(q - 1)*(Pi_c*(-q - 1)*Derivative(alpha(x), x) - (q - 1)*Derivative(p(x), (x, 2)))/Pi_c**2",
+      "metric_trace": "0"
+    },
+    "clock_kinetic": "-(C**2*S1**2*k_squared*q**4 - 2*C**2*S1**2*k_squared*q**2 + C**2*S1**2*k_squared - 2*C**2*S2*k_squared*q**4 + 4*C**2*S2*k_squared*q**3 - 2*C**2*S2*k_squared*q**2 + 2*C*K*Pi_c**2*q**2 + 2*C*Pi_c*S1*k_squared*q**2 - 2*C*Pi_c*S1*k_squared + Pi_c**2*k_squared)/(q**2*(C*S2*k_squared*q**2 - 2*C*S2*k_squared*q + C*S2*k_squared - K*Pi_c**2))",
+    "clock_omega_squared": "-2*C*k_squared*q*(q - 1)*(C*S2*k_squared*q**2 - 2*C*S2*k_squared*q + C*S2*k_squared - K*Pi_c**2)/(C**2*S1**2*k_squared*q**4 - 2*C**2*S1**2*k_squared*q**2 + C**2*S1**2*k_squared - 2*C**2*S2*k_squared*q**4 + 4*C**2*S2*k_squared*q**3 - 2*C**2*S2*k_squared*q**2 + 2*C*K*Pi_c**2*q**2 + 2*C*Pi_c*S1*k_squared*q**2 - 2*C*Pi_c*S1*k_squared + Pi_c**2*k_squared)",
+    "clock_constraint_denominator": "-C*S2*k_squared*(q - 1)**2/Pi_c**2 + K"
+  },
+  "health": {
+    "scope": "fixed metric, q frozen >1, gamma_L=0, physical k; not coupled-gravity health",
+    "exponential_witness": {
+      "q": 2,
+      "C": 1,
+      "K": 1,
+      "Pi_c": 1,
+      "k_squared": "3/2",
+      "K_eff": "-1",
+      "omega_squared": "-3/2"
+    },
+    "conclusion": "Generic exponential gate has a negative-kinetic/negative-frequency band just above K/D in this principal sector; flat-at-origin gate remains unexcluded."
+  },
+  "non_claims": [
+    "No completed cluster/galaxy pipeline or numerical field solution",
+    "No full coupled Einstein-lapse-shift scalar spectrum",
+    "No global Taylor replacement of the original one-sided Pi_+ stiffness",
+    "No physical calibration of Pi_c or ultraviolet cutoff",
+    "No derived halo retention, formation epoch or amount"
+  ]
+}
