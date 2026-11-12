@@ -228,7 +228,13 @@ Re-run: `python3 vsj1_hydro.py ka1`, `ka2`, `ka4`; `seed <footing> <logMb> <N>` 
 `python3 vsj1_grade.py`, `python3 vsj1_grade.py mutate`. One thread per run, nice 10, under 0.2 GB each; 4 to 30 minutes
 per S-seed run, 25 to 100 minutes per S-cosmo run. Nothing downloaded.
 
-Commits (local / origin): criteria 5a13c296ea, A1 5f0b3f379e, result in the commit that carries this file; the origin
-ids are recorded in the commit that follows the push.
+Commits (local / origin; pushed by replay onto origin/main, 9866eebdff..c7a234b426):
+
+| commit | local | origin |
+|---|---|---|
+| criteria, alone | 5a13c296ea | 6dd438834d |
+| AMENDMENT A1, alone (post hoc) | 5f0b3f379e | 1be4f0e291 |
+| scripts, runs, outputs, RESULT.md | 42ad7ef2c9 | c7a234b426 |
+| this table | the commit that adds it | its replay, the last VSJ1 commit on origin |
 
 Adopts nothing. kappa = 1/2 FITTED; not theory closed.
