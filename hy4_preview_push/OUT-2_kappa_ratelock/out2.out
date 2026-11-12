@@ -1,0 +1,144 @@
+OUT-2 (KAPPA_RATELOCK) -- clock-rate lock to the vacuum
+criteria: PREREGISTER.md (committed alone, before this script)
+kappa = 1/2 FITTED; not theory closed.  Footings separate, never pooled.
+
+====================================================================================================
+INPUTS
+====================================================================================================
+  G            = 6.674300e-11 m^3 kg^-1 s^-2
+  c            = 2.997925e+08 m/s
+  H0           = 67.40 +/- 0.54 km/s/Mpc      = 2.184285e-18 s^-1
+  Omega_L      = 0.6850 +/- 0.0073
+  rho_crit,0   = 8.532855e-27 kg/m^3   (alt footing reference)
+  rho_Lambda   = 5.845006e-27 kg/m^3   (canonical footing reference)
+  H_Lambda     = 1.807818e-18 s^-1     (the VACUUM's rate = H0 sqrt(Omega_L))
+  c sqrt(G rho_Lambda) = 1.872475e-10 m/s^2  (canonical unit)
+  c sqrt(G rho_crit)   = 2.262407e-10 m/s^2  (alt unit)
+  R_Lambda = c/H_Lambda = 5374.2210 Mpc
+
+====================================================================================================
+G0  input reproduction against CFG493's own numbers
+====================================================================================================
+  a0(c H_Lam / 2 pi)  this lane = 8.625722289e-11
+  a0(c H_Lam / 2 pi)  CFG493    = 8.625722289e-11     rel = 3.00e-16
+  kappa_meas canonical          = 0.417121  vs 0.417214    rel = 2.22e-04
+  kappa_meas alt                = 0.345229  vs 0.345230    rel = 3.13e-06
+  [G0] PASS   (max rel = 2.22e-04, threshold 2e-3)
+
+====================================================================================================
+THE LOCK  (pre-registered: 1:1 phase lock of the clock rate to the vacuum KMS period)
+====================================================================================================
+  beta_Lam = 2 pi / H_Lam = 3.475564e+18 s
+  a0 / c   = 1 / beta_Lam = H_Lam / (2 pi) = 2.877231e-19 s^-1
+  a0_lock  = c H_Lam / (2 pi) = 8.625722289e-11 m/s^2
+  kappa_lock^2 = 2/(3 pi)     = 0.212206591   (exact, no free parameter)
+  kappa_lock                  = 0.460658866
+
+  cross-check kappa_lock = a0_lock / (c sqrt(G rho_Lam)) = 0.460658866   (rel vs closed form 1.21e-16)
+  c^2/a0_lock = 1.041948e+27 m ;  2 pi R_Lam = 1.041948e+27 m ;  ratio = 1.000000000
+
+  a0_lock error from Planck inputs: 0.962 %   (H0 0.80 %, Omega_L 0.53 %)
+  a0_lock = (8.6257 +/- 0.0830) e-11 m/s^2
+  kappa_lock = 0.460659  EXACT (pure number; no measurement error enters it)
+
+====================================================================================================
+G3  derived a0 vs the measured a0  (pull in dex, CFG493 convention)
+====================================================================================================
+  a0_meas = 7.810490e-11 +/- 0.098 dex (25.5 %)
+  a0_lock = 8.625722e-11  ->  +0.0431 dex  ->  pull = 0.4378 sigma
+  CFG493's own pull for this candidate: 0.4378  (rel 0.00e+00)
+  [G3] PASS  (|pull| < 2 required; > 3 would be FAIL)
+  pull on kappa: canonical 0.4592 sigma (footing rho_Lam), alt 1.4746 sigma (footing rho_crit)
+  NOTE the lock output is footing-invariant: kappa_lock = sqrt(2/(3 pi)) on BOTH footings,
+       whereas the measured kappa is footing-dependent (0.4172 vs 0.3452).  Not pooled.
+
+====================================================================================================
+G4  does the lock DISCRIMINATE from the fitted kappa = 1/2 ?
+====================================================================================================
+  a0(kappa=1/2) canonical = 9.362375e-11 m/s^2   (CFG493 quotes 9.3603e-11)
+  a0(kappa=1/2) alt       = 1.131204e-10 m/s^2
+  a0_lock / a0_half       = 0.921318   (canonical footing)
+  offset                  = -0.0356 dex (canonical), -0.1177 dex (alt)
+  2 sigma of the current combined a0 error = 0.1970 dex
+  [G4] NOT DISCRIMINATED  -- offset 0.0356 dex is 5.53x too small to separate at 2 sigma
+  precision a decisive 2-sigma test needs: 0.0178 dex = 4.18 % on a0 (currently 25.45 %)
+  CFG493's own route floor (S_gas-dominated) is 0.0385 dex = 8.9 %%, and its power label is
+  'NOT POSSIBLE': no current route reaches 4.3 %%.
+
+====================================================================================================
+G5  the discrete sibling locks, each graded separately
+====================================================================================================
+  lock                                               a0 [m/s^2]  kappa_can  pull/dex
+  1:1  lock to H_Lam (vacuum rate)   [THE LANE]    8.625722e-11     0.4607     +0.44   pre-registered output
+  2:1  winding                                     1.725144e-10     0.9213     +3.49   MU3
+  1:2  winding                                     4.312861e-11     0.2303     -2.62   MU7
+  1:1  lock to H_0 (total rate)      [MU1]         1.042198e-10     0.5566     +1.27   residual ambiguity
+  angular lock, no 2 pi              [MU2]         5.419701e-10     2.8944     +8.54   MU2
+  FINAL-19 DEC-saturation            [MU4]         4.693599e-10     2.5066     +7.91   MU4, already on record
+  record fit kappa = 1/2 (canonical footing)       9.362375e-11     0.5000     +0.80   the FITTED value, for reference
+
+  excluded at >= 3 sigma: 2:1  winding, angular lock, no 2 pi, FINAL-19 DEC-saturation
+  not excluded  (<2 sigma): 1:1  lock to H_Lam (vacuum rate) (0.44), 1:1  lock to H_0 (total rate) (1.27), record fit kappa = 1/2 (canonical footing) (0.80)
+
+  [G5] PASS  (all seven graded; none omitted)
+
+====================================================================================================
+G6  parameter count of the whole chain
+====================================================================================================
+  continuous free parameters: 0   (kappa is not fitted; G, c, H0, Omega_L are measured)
+  discrete choices: 2  (winding n/m in {2:1,1:1,1:2}, target in {H_Lam, H_0})
+  imported postulates: 1  (the lock equation (3) itself)
+  imported physics: de Sitter KMS periodicity (quantum); the OUTPUT is hbar-free
+  [G6] PASS
+
+====================================================================================================
+G7  8 pi audit -- does the chain secretly use the record identity?
+====================================================================================================
+  a0_lock^2 / (8 pi G)            = 4.435528e-12 Pa
+  rho_Lam c^2 / (32 pi)  [identity] = 5.225484e-12 Pa
+  ratio = 0.848826   (1.0 would mean the chain used the identity)
+  in pure numbers: 1/(12 pi^2) = 0.008443   vs   1/(32 pi) = 0.009947
+  the chain uses ONLY Lam = 8 pi G rho_Lam / c^2 (Einstein's equation), never the identity.
+  [G7] PASS
+
+====================================================================================================
+G1/G2  independence and capacity fix (numeric; the proof terms are in OUT2RateLock.lean)
+====================================================================================================
+  G1  kappa_lock^2 = 2/(3 pi) = 0.212206591  ;  (1/2)^2 = 0.25  ;  difference = -0.037793
+      -> the lock is NOT a restatement of kappa = 1/2 (Lean: lock_kappa_sq_ne_quarter)
+  G2  under G_lam : a0 -> lam*a0.  Lock equation: a0^2 = (c H_Lam/2pi)^2.
+      (lam a0)^2 = (c H_Lam/2pi)^2  <=>  lam^2 = 1  (a0 != 0).  The flat direction is removed.
+      -> the lock is CHARGED under G_lam (Lean: lock_charged_under_Glambda)
+
+====================================================================================================
+THE PREDICTION THAT IS NOT YET MEASURED
+====================================================================================================
+  a0 = c H_Lam / (2 pi) = c H0 sqrt(Omega_L) / (2 pi)
+     = (8.6257 +/- 0.0830) e-11 m/s^2        [Planck inputs only, 0.96 %]
+  equivalently  a0 / (c H0) = sqrt(Omega_L)/(2 pi) = 0.131724  (no free parameter)
+  equivalently  a0 / (c H_Lam) = 1/(2 pi) = 0.159155 exactly
+
+  discriminating tests, in order of how soon they bite:
+   (1) a0 to 4.3 %% separates the lock from the record's fitted kappa = 1/2 (8.5 %% apart).
+       Current combined a0 error 22.7 %%; CFG493's route floor 8.9 %%; its power label 'NOT POSSIBLE'.
+   (2) a0 to ~5 %% separates the vacuum lock (H_Lam) from the total-rate lock (H_0), which are
+       20.8 %% apart (0.4607 vs 0.5567).  NOT separable today (pulls 0.44 vs 1.27).
+   (3) if dark energy is dynamical: the lock tracks rho_DE(z), not rho_Lam(0), so
+       a0(z)/a0(0) = sqrt(rho_DE(z)/rho_DE(0)) = (1+z)^{1.5(1+w)} for constant w.
+       w = -1: flat (0.000 dex at every z, the framework's flat law).
+       DESI DR2 w0wa at face value: -0.057 dex at z=0.9 (L276's DESI column), vs +0.25 dex for
+       the H(z) law and 0.000 for flat.  L276 grades this arm UNDECIDED: no measurement exists.
+   (4) the lock is a PHASE TRANSITION, so the rate Q is pinned, not smoothed: it predicts a
+       universal non-analyticity at g = a0 (a kink in Q, hence in the RAR) rather than the
+       analytic crossover mu = u/(1+u).  The width/shape of the RAR at g = a0 is not measured.
+
+====================================================================================================
+VERDICT
+====================================================================================================
+  kappa is now an OUTPUT:  kappa = sqrt(2/(3 pi)) = 0.460659   (0 continuous free parameters)
+  it is NOT the fitted 1/2:  7.87 % below it (+0.0356 dex in a0);  G4 NOT DISCRIMINATED at 2 sigma.
+  measured kappa = 0.4172 +/- 0.0946  ->  pull 0.46 sigma (canonical footing), 1.47 sigma (alt).
+  the pull is POST-SELECTED over 3 discrete options using CFG493's own pull table (PREREG Sec.6).
+
+  OUT-2 COMPLETE: kappa is an OUTPUT = sqrt(2/(3 pi)) = 0.460659; it does NOT reproduce the fitted 1/2; the data cannot yet separate them.
+  kappa = 1/2 FITTED; not theory closed.  This lane does not relabel it.

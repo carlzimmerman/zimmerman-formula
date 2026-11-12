@@ -1,0 +1,113 @@
+====================================================================================================
+OUT-3 (COSMIC-SHARE FOLD):  M_c(<R_fold) = R_cosmic * M_b  =>  a_0 = G M_b R(1+R)/R_fold^2
+====================================================================================================
+rho_Lambda = 5.835691e-27 kg/m^3 (Planck h=0.6736, Omega_L=0.6847)
+c sqrt(G rho_Lambda) = 1.870940e-10 m/s^2
+footings a0 = 9.3603e-11 (canonical) / 1.1312e-10 (alt), NEVER pooled
+kappa at the footings: canonical 0.500299, alt 0.604616
+R_cosmic = Omega_d/Omega_b = 5.41 (can) / 5.412 (alt) +- 0.065
+
+G0  exact inversion  ----------------------------------------------------------------------------
+  solve X(1+X) = x^2  ->  [sqrt(4*x**2 + 1)/2 - 1/2]
+  record's X(x) = sqrt(4*x**2 + 1)/2 - 1/2
+  X(x)(1+X(x)) - x^2 simplifies to: 0
+  4 R(1+R) + 1 factors as: (2*R + 1)**2
+  sqrt((2R+1)^2) = 2*R + 1   (R > 0)
+  X(sqrt(R(1+R))) - R  = (2*R + 1 - 1)/2 - R simplifies to: 0
+  X(x) = R solved for x  ->  [sqrt(R)*sqrt(R + 1)]   (expect sqrt(R(1+R)) = sqrt(R)*sqrt(R + 1))
+  x^2 = R(1+R) for that root: True
+  => PASS
+
+G1  the number (z = 0, log M_b = 10.45)  ------------------------------------------------------------
+  canonical  R_fold(0) =   139.3048 kpc   R_cosmic = 5.410   a_0^S = 7.0199e-12 m/s^2   kappa_S = 3.752058e-02
+             miss |kappa_S - 1/2| = 0.4625   band 0.025   -> FAIL   (18.5x the band)   dex = -1.1247
+  alt        R_fold(0) =   139.2882 kpc   R_cosmic = 5.412   a_0^S = 7.0263e-12 m/s^2   kappa_S = 3.755514e-02
+             miss |kappa_S - 1/2| = 0.4624   band 0.025   -> FAIL   (18.5x the band)   dex = -1.1243
+  => FAIL
+
+G2  universality in mass (z = 0, both footings)  -----------------------------------------------------
+  footing     logMb     R_fold        a_0^S      kappa_S
+  canonical     6.5      6.564   3.5470e-13  1.89585e-03
+  canonical       7      9.740   5.0953e-13  2.72341e-03
+  canonical       8     21.174   1.0780e-12  5.76204e-03
+  canonical       9     45.713   2.3130e-12  1.23628e-02
+  canonical     9.4     62.168   3.1414e-12  1.67905e-02
+  canonical      10     98.580   4.9737e-12  2.65842e-02
+  canonical   10.45    139.305   7.0199e-12  3.75206e-02
+  canonical    10.7    168.813   8.5006e-12  4.54351e-02
+  canonical    10.9    196.863   9.9068e-12  5.29511e-02
+  canonical    11.2    247.923   1.2463e-11  6.66143e-02
+  canonical    11.5    312.245   1.5677e-11  8.37937e-02
+  canonical      12    458.700   2.2972e-11  1.22785e-01
+  canonical  dex span = 1.8113   allowance 0.0411   -> FAIL (44.1x)
+  alt           6.5      6.565   3.5489e-13  1.89686e-03
+  alt             7      9.740   5.0983e-13  2.72499e-03
+  alt             8     21.165   1.0797e-12  5.77113e-03
+  alt             9     45.713   2.3146e-12  1.23712e-02
+  alt           9.4     62.165   3.1439e-12  1.68038e-02
+  alt            10     98.572   4.9779e-12  2.66067e-02
+  alt         10.45    139.288   7.0263e-12  3.75551e-02
+  alt          10.7    168.788   8.5089e-12  4.54795e-02
+  alt          10.9    196.829   9.9170e-12  5.30055e-02
+  alt          11.2    247.870   1.2477e-11  6.66886e-02
+  alt          11.5    312.161   1.5696e-11  8.38958e-02
+  alt            12    458.528   2.3005e-11  1.22961e-01
+  alt        dex span = 1.8117   allowance 0.0411   -> FAIL (44.1x)
+  => FAIL
+
+G3  universality in epoch (log M_b = 10.45)  ------------------------------------------------------------
+  footing        z     R_fold      kappa_S  drift dex
+  canonical      0    139.305  3.75206e-02    +0.0000   (z_actual -0.000)
+  canonical      1     76.186  1.25446e-01    +0.5242   (z_actual 0.998)
+  canonical      2     47.778  3.18964e-01    +0.9295   (z_actual 2.000)
+  canonical      4     17.130  2.48129e+00    +1.8204   (z_actual 4.009)
+  canonical  max |drift| = 1.8204 dex   allowance 0.0411   -> FAIL
+  alt            0    139.288  3.75551e-02    +0.0000   (z_actual 0.000)
+  alt            1     76.159  1.25620e-01    +0.5244   (z_actual 0.998)
+  alt            2     47.756  3.19482e-01    +0.9298   (z_actual 2.000)
+  alt            4     17.078  2.49824e+00    +1.8230   (z_actual 4.009)
+  alt        max |drift| = 1.8230 dex   allowance 0.0411   -> FAIL
+  => FAIL
+
+G4  the error bar on kappa_S (log M_b = 10.45, z = 0)  ----------------------------------------------
+  central: kappa_S = 3.752058e-02   log10 = -1.4257
+  term                                        shift dex
+  [measured] FLD1 rest/hubble R_fold ratio = 1.2210 (rest 170.090 kpc vs hubble 139.305 kpc)
+  R_cosmic +- 0.065 (Planck fallback, R541 part E)    +0.0096
+  R_fold at-rest vs Hubble flow (ratio 1.2210)    +0.1734
+  R_fold start redshift 20/30 (+1.4%)           +0.0121
+  R_fold shell N 1200->4800 (+0.07%)            +0.0006
+  rho_Lambda +- 1.5% (Planck)                   +0.0032
+  TOTAL (quadrature on the log)                 +0.1741
+  => kappa_S = 3.7521e-02  (+0.174 / -0.174 dex)   = [2.5126e-02, 5.6029e-02]
+  G4 is a REPORT. Per PREREGISTER sec.3, no bar can absorb a G2/G3 failure.
+  distance from the band in units of the bar: 6.5 sigma(bar)
+
+G5  the conservation blocker: can the front deliver R_cosmic?  ----------------------------------------
+  FINAL3 (H): settling rearranges cold charge, it does not create it.
+  footing     logMb  q_turned q_crossed  R_cosmic     q/R verdict
+  canonical     6.5    1.0266    0.5517     5.410   0.190 FAIL
+  canonical       8    1.0590    0.5542     5.410   0.196 FAIL
+  canonical   10.45    1.0590    0.5546     5.410   0.196 FAIL
+  canonical      12    1.0590    0.5546     5.410   0.196 FAIL
+  canonical  => FAIL  (delivered charge never reaches the cosmic share at any mass)
+  alt           6.5    1.0266    0.5517     5.412   0.190 FAIL
+  alt             8    1.0590    0.5542     5.412   0.196 FAIL
+  alt         10.45    1.0590    0.5546     5.412   0.196 FAIL
+  alt            12    1.0590    0.5546     5.412   0.196 FAIL
+  alt        => FAIL  (delivered charge never reaches the cosmic share at any mass)
+  => FAIL
+
+MUTATE  --------------------------------------------------------------------------------------------
+  MU1 'the cosmic-share settle-down derives kappa = 1/2'
+      -> REJECTED: band miss 0.4625 vs 0.025 (18.5x)
+  MU2 'the miss is inside the error bar'
+      -> REJECTED: bar 0.174 dex, miss 1.125 dex, G2 mass span 1.812 dex is a spread of DIFFERENT numbers
+  MU3 'use the X-COP value 5.73 +- 0.68 instead'
+      -> REJECTED: kappa_S = 4.1724e-02, still 18.3x the band (X-COP is reported, never pooled: R541 sec.6)
+
+====================================================================================================
+G0 PASS   G1 FAIL   G2 FAIL   G3 FAIL   G5 FAIL
+LABEL: AMOUNT NOT DERIVED (UNAVAILABLE)
+kappa = 1/2 FITTED; not theory closed.  R_cosmic = 5.41 FITTED; not derived.
+====================================================================================================

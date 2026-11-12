@@ -1,0 +1,110 @@
+==============================================================================
+OUT-5 (BOOTSTRAP CARRIER) -- symbolic
+kappa = 1/2 FITTED; not theory closed.  Adopts nothing.
+==============================================================================
+
+--- G1 / H1: the pinning is an identity -------------------------------
+   Define  rho_b := (1/4piG)(1/r^2) d_r[r^2 mu g]   (the law)
+           rho_c := (1/4piG)(1/r^2) d_r[r^2 (1-mu) g]  (the carrier)
+   Claim:  rho_c = [(1-mu)/mu] rho_b + [mu' g/(4piG mu)] * partial_s g,
+           partial_s g := -dg/dr.   (LOCAL: rho_b, g, partial_s g at one point)
+
+  kernel S: mu = u/(1+u)  [action (A)'s kernel]
+    G1 residual          = 0
+    (1-mu)/mu            = a0/g(r)
+    mu' g/mu             = a0/(a0 + g(r))
+    pinning (local form) = a0*(a0*r*Derivative(g(r), r) + 2*a0*g(r) + 2*g(r)**2)/(4*pi*G*r*(a0**2 + 2*a0*g(r) + g(r)**2))
+
+  kernel B: mu = (sqrt(1+4u^2)-1)/(2u)  [the a0-line g^2=g_N^2+a0 g_N]
+    G1 residual          = 0
+    (1-mu)/mu            = (a0 - sqrt(a0**2 + 4*g(r)**2) + 2*g(r))/(-a0 + sqrt(a0**2 + 4*g(r)**2))
+    mu' g/mu             = a0/sqrt(a0**2 + 4*g(r)**2)
+    pinning (local form) = (r*((-a0 + sqrt(a0**2 + 4*g(r)**2))*sqrt(a0**2 + 4*g(r)**2) - 4*g(r)**2)*Derivative(g(r), r) - (2*r*g(r)*Derivative(g(r), r) + (-a0 + sqrt(a0**2 + 4*g(r)**2))*sqrt(a0**2 + 4*g(r)**2))*(-a0 + sqrt(a0**2 + 4*g(r)**2) - 2*g(r)))/(4*pi*G*r*(-a0 + sqrt(a0**2 + 4*g(r)**2))*sqrt(a0**2 + 4*g(r)**2))
+
+  G1 (identity, exact): PASS   residuals {'S': '0', 'B': '0'}
+
+--- H4: the deep-regime pinning contains no a0 -------------------------
+  kernel S:  u->0 :  ((1-mu)/mu) * (g/a0) -> 1 ;  (mu' g/mu) -> 1
+  kernel B:  u->0 :  ((1-mu)/mu) * (g/a0) -> 1 ;  (mu' g/mu) -> 1
+  => rho_c -> (a0/g) rho_b + partial_s g /(4 pi G): the gradient term carries
+     NO a0, so the halo density outside the baryons is invariant under a0 -> lam a0.
+  H4 (a0-free deep pinning): PASS
+
+--- G2 / H3: M_c(<R) = [(1-mu)/mu] M_b gives the law, counted once -----
+
+  on the S-kernel field  u(x) = (sqrt(4*x**2 + 1) + 1)/(2*x**2)
+    [(1-mu_S)/mu_S]        = sqrt(4*x**2 + 1)/2 - 1/2
+    [(1-mu_B)/mu_B]        = (x**4*sqrt(4*x**2 + 1) - 10*x**4 - 4*x**2*sqrt(4*x**2 + 1) - 2*x**2*sqrt(x**4 + 4*x**2 + 2*sqrt(4*x**2 + 1) + 2) + 2*x**2*sqrt(4*x**6 + 17*x**4 + 8*x**2*sqrt(4*x**2 + 1) + 12*x**2 + 2*sqrt(4*x**2 + 1) + 2) - 8*x**2 - 2*sqrt(4*x**2 + 1) + sqrt(4*x**10 + 33*x**8 + 16*x**6*sqrt(4*x**2 + 1) + 88*x**6 + 68*x**4*sqrt(4*x**2 + 1) + 148*x**4 + 48*x**2*sqrt(4*x**2 + 1) + 64*x**2 + 8*sqrt(4*x**2 + 1) + 8) - 2)/(8*x**4)
+    direct  u x^2 - 1      = sqrt(4*x**2 + 1)/2 - 1/2
+    X_S - (sqrt(1+4x^2)-1)/2      = 0
+    radicand - (x^4+3x^2+2)^2     = []   (the denesting; all 0 => exact)
+    (X_B+1)^2 - (1+x^2)           = (-20*x**10 - 2*x**8*sqrt(4*x**2 + 1) + 7*x**8 + 24*x**6*sqrt(4*x**2 + 1) + 4*x**6*sqrt(x**4 + 4*x**2 + 2*sqrt(4*x**2 + 1) + 2) - 6*x**6*sqrt(4*x**6 + 17*x**4 + 8*x**2*sqrt(4*x**2 + 1) + 12*x**2 + 2*sqrt(4*x**2 + 1) + 2) + 2*x**6*sqrt(16*x**8 + 72*x**6 + 32*x**4*sqrt(4*x**2 + 1) + 65*x**4 + 16*x**2*sqrt(4*x**2 + 1) + 20*x**2 + 2*sqrt(4*x**2 + 1) + 2) + 112*x**6 + 76*x**4*sqrt(4*x**2 + 1) + 16*x**4*sqrt(x**4 + 4*x**2 + 2*sqrt(4*x**2 + 1) + 2) - 8*x**4*sqrt(4*x**6 + 17*x**4 + 8*x**2*sqrt(4*x**2 + 1) + 12*x**2 + 2*sqrt(4*x**2 + 1) + 2) - 8*x**4*sqrt(16*x**8 + 72*x**6 + 32*x**4*sqrt(4*x**2 + 1) + 65*x**4 + 16*x**2*sqrt(4*x**2 + 1) + 20*x**2 + 2*sqrt(4*x**2 + 1) + 2) - 6*x**4*sqrt(4*x**10 + 33*x**8 + 16*x**6*sqrt(4*x**2 + 1) + 88*x**6 + 68*x**4*sqrt(4*x**2 + 1) + 148*x**4 + 48*x**2*sqrt(4*x**2 + 1) + 64*x**2 + 8*sqrt(4*x**2 + 1) + 8) + x**4*sqrt(16*x**12 + 136*x**10 + 64*x**8*sqrt(4*x**2 + 1) + 385*x**8 + 288*x**6*sqrt(4*x**2 + 1) + 680*x**6 + 260*x**4*sqrt(4*x**2 + 1) + 404*x**4 + 80*x**2*sqrt(4*x**2 + 1) + 96*x**2 + 8*sqrt(4*x**2 + 1) + 8) + 156*x**4 + 48*x**2*sqrt(4*x**2 + 1) + 4*x**2*sqrt(x**4 + 4*x**2 + 2*sqrt(4*x**2 + 1) + 2) - 4*x**2*sqrt(16*x**8 + 72*x**6 + 32*x**4*sqrt(4*x**2 + 1) + 65*x**4 + 16*x**2*sqrt(4*x**2 + 1) + 20*x**2 + 2*sqrt(4*x**2 + 1) + 2) - 8*x**2*sqrt(4*x**10 + 33*x**8 + 16*x**6*sqrt(4*x**2 + 1) + 88*x**6 + 68*x**4*sqrt(4*x**2 + 1) + 148*x**4 + 48*x**2*sqrt(4*x**2 + 1) + 64*x**2 + 8*sqrt(4*x**2 + 1) + 8) - 4*x**2*sqrt(16*x**12 + 136*x**10 + 64*x**8*sqrt(4*x**2 + 1) + 385*x**8 + 288*x**6*sqrt(4*x**2 + 1) + 680*x**6 + 260*x**4*sqrt(4*x**2 + 1) + 404*x**4 + 80*x**2*sqrt(4*x**2 + 1) + 96*x**2 + 8*sqrt(4*x**2 + 1) + 8) - 2*x**2*sqrt(4*x**14 + 49*x**12 + 24*x**10*sqrt(4*x**2 + 1) + 228*x**10 + 198*x**8*sqrt(4*x**2 + 1) + 694*x**8 + 528*x**6*sqrt(4*x**2 + 1) + 1408*x**6 + 632*x**4*sqrt(4*x**2 + 1) + 1080*x**4 + 256*x**2*sqrt(4*x**2 + 1) + 320*x**2 + 32*sqrt(4*x**2 + 1) + 32) + 2*x**2*sqrt(16*x**16 + 200*x**14 + 96*x**12*sqrt(4*x**2 + 1) + 961*x**12 + 816*x**10*sqrt(4*x**2 + 1) + 3004*x**10 + 2310*x**8*sqrt(4*x**2 + 1) + 6326*x**8 + 3056*x**6*sqrt(4*x**2 + 1) + 5728*x**6 + 1656*x**4*sqrt(4*x**2 + 1) + 2360*x**4 + 384*x**2*sqrt(4*x**2 + 1) + 448*x**2 + 32*sqrt(4*x**2 + 1) + 32) + 64*x**2 + 8*sqrt(4*x**2 + 1) - 2*sqrt(4*x**10 + 33*x**8 + 16*x**6*sqrt(4*x**2 + 1) + 88*x**6 + 68*x**4*sqrt(4*x**2 + 1) + 148*x**4 + 48*x**2*sqrt(4*x**2 + 1) + 64*x**2 + 8*sqrt(4*x**2 + 1) + 8) - 2*sqrt(16*x**12 + 136*x**10 + 64*x**8*sqrt(4*x**2 + 1) + 385*x**8 + 288*x**6*sqrt(4*x**2 + 1) + 680*x**6 + 260*x**4*sqrt(4*x**2 + 1) + 404*x**4 + 80*x**2*sqrt(4*x**2 + 1) + 96*x**2 + 8*sqrt(4*x**2 + 1) + 8) + 8)/(32*x**8)   [+ X_B+1 > 0 proves X_B = sqrt(1+x^2)-1]
+    matched kernel - direct       = 0
+    (matched+1)^2 - (direct+1)^2  = 0
+    max |numeric diff|, 60 digits, x in [0.5,100] = 0.000e+00
+
+  on the B-kernel field  u(x) = sqrt(x**2 + 1)/x**2
+    [(1-mu_S)/mu_S]        = x**2/sqrt(x**2 + 1)
+    [(1-mu_B)/mu_B]        = (x**2*sqrt(x**2 + 1) - 2*x**2 + sqrt(x**6 + 5*x**4 + 8*x**2 + 4) - 2)/(2*(x**2 + 1))
+    direct  u x^2 - 1      = sqrt(x**2 + 1) - 1
+    X_S - (sqrt(1+4x^2)-1)/2      = x**2/sqrt(x**2 + 1) - sqrt(4*x**2 + 1)/2 + 1/2
+    radicand - (x^4+3x^2+2)^2     = []   (the denesting; all 0 => exact)
+    (X_B+1)^2 - (1+x^2)           = x**2*(-x**4 - 3*x**2 + sqrt(x**8 + 6*x**6 + 13*x**4 + 12*x**2 + 4) - 2)/(2*(x**4 + 2*x**2 + 1))   [+ X_B+1 > 0 proves X_B = sqrt(1+x^2)-1]
+    matched kernel - direct       = (-x**2*sqrt(x**2 + 1) - 2*sqrt(x**2 + 1) + sqrt(x**6 + 5*x**4 + 8*x**2 + 4))/(2*(x**2 + 1))
+    (matched+1)^2 - (direct+1)^2  = x**2*(-x**4 - 3*x**2 + sqrt(x**8 + 6*x**6 + 13*x**4 + 12*x**2 + 4) - 2)/(2*(x**4 + 2*x**2 + 1))
+    max |numeric diff|, 60 digits, x in [0.5,100] = 6.223e-61
+
+  G2 (the law, exact): FAIL
+
+  kernel sensitivity of the DEMAND (both ~ x at large x):
+    x =    5.8888:  X_S    5.410   X_B    4.973   ratio 0.9192
+    x =   41.9814:  X_S   41.484   X_B   40.993   ratio 0.9882
+    x =   59.9980:  X_S   59.500   X_B   59.006   ratio 0.9917
+    x =   98.3168:  X_S   97.818   X_B   97.322   ratio 0.9949
+
+--- H5: universality ---------------------------------------------------
+  (a) the PINNING at fixed x:  partial_s g = a0 u'(x)/r_M  ∝  a0/v_flat^2
+      so rho_pin ∝ v_flat^-2, which is exactly the law's demand scaling
+      (M_b ∝ v_flat^4 from v_flat^4 = G M_b a0;  rho_c = M_b X'/(4 pi r^2 r_M)
+      rho_pin(deep) = a_a**2/(4*pi*G*v_v**2*x**2)   ->  v_flat^-2
+      rho_demand    = a_a**2/(4*pi*G*v_v**2*x**2)   ->  v_flat^-2
+      ratio (demand/pinning) = 1  <- a constant: UNIVERSAL
+      H5(a) (universal scaling): PASS
+
+  (b) the SOURCE route:  S = A(tau) F(u,w),  w := Q-1 ~ -Phi/c^2,  w=0 on FRW
+      at fixed x: u is kernel-fixed (no galaxy dependence); w ∝ v_flat^2/c^2
+      S_source ∝ (v_flat^2)^q ;  S_law ∝ (v_flat^2)^(-1)
+      profile needs p = 2 (so S ∝ r^-2); amplitude needs q = -1
+      => p + q = 1, with p >= 0 and q >= 0 required for regularity at (u,w)=(0,0).
+      Regularity  =>  q >= 0  =>  S ∝ v_flat^(2*q) with 2*q >= 0, versus -2 required.
+      The unique monomial that matches is F ∝ u^2/(Q-1): IRREGULAR (blows up as w -> 0).
+      This is VCC1's V5e (eps = 2c^2/v_flat^2, 5.62x spread) as an exact statement.
+
+--- known answers ------------------------------------------------------
+  KA1 sqrt(M_sun a0/G): canonical 25914.5, alt 28488.4 Msun/kpc (LFS1 KA4: 25914.5)
+  KA2 mu_K solving w(1/3401)=0.01: 10203*sqrt(37411)*sqrt(I0)/2 = 198.256 /Mpc (MK1 KA7 / KD1 B1a: 198.254 / 198.245)
+  KA3 r_M canonical: ['1.934', '6.478', '8.639', '10.876'] kpc (FLD1: 1.934/6.479/8.640/10.877)
+  KA3 r_M alt      : ['1.759', '5.893', '7.858', '9.893'] kpc
+  KA4 deep rho_pin vs (1/4pi r^2) dM_c/dr  (relative difference):
+      x =     1: +1.1803e-01
+      x =     3: +1.3794e-02
+      x =    10: +1.2492e-03
+      x =    30: +1.3888e-04
+      x =   100: +1.2500e-05
+      series at x -> oo: 1/(8*xs_**2) + O(xs_**(-4), (xs_, oo))
+      (asymptotic: the deep-regime pinning converges to the exact derivative as 1/x^2)
+  KA5 mu_K^match(r) = 1/(r*sqrt(log(Rmax/r)))   -- no M_b, no a0, no kernel: exact
+
+--- H6: T4 / LFS1 evasion ----------------------------------------------
+  T4  : the carrier's charge is rho_c, a distinct variable with its own current;
+        it is not D_m[(1+gamma_L Pi_+) P^m]/Q.  The pinning is keyed to g, which
+        does NOT vanish on a free-fall boundary (P = 0 there, g != 0), so T4's
+        boundary premise has no purchase on it.  [structural + G1]
+  LFS1: static clock -- the clock's charge moves by Y dX ~ |Phi|/c^2 ~ 1e-6;
+        the carrier's moves at d ln C/dt = d ln M_b/dt (ratio +1).
+        carrier ratio +1  against LFS1 A1's allowed/demanded [-5e-06, -1e-08]
+        => LFS1's A1 is turned from FAIL to PASS by 2e5 to 1e8.
+
+G1 PASS True   G2 PASS False   H4 PASS True
+runtime 1.08 s
+wrote out5_sym.json

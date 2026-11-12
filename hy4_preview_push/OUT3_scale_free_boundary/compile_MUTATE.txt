@@ -1,0 +1,55 @@
+# PROCEDURE: the canonical .lean files live in this lane folder. To reproduce,
+#   cp OUT3.lean OUT3_MUTATE.lean ../../../fable_independent_2026/lean_2026/
+#   cd ../../../fable_independent_2026/lean_2026 && lake env lean OUT3_MUTATE.lean
+# (a standalone `lean` cannot see Mathlib; it must run under `lake env` in the project.)
+OUT3_MUTATE.lean:189:2: error: linarith failed to find a contradiction
+case h1
+a0 Mb Rf G rhoL : ℝ
+ha0 : 0 ≤ a0
+hMb : 0 < Mb
+hRf : 0 < Rf
+hG : 0 < G
+hrho : rhoC a0 Mb Rf G = rhoL
+u : ℝ := a0 * Rf ^ 2 / (G * Mb)
+q : ℝ := 4 * Real.pi * rhoL * Rf ^ 3 / (3 * Mb)
+hu : 0 ≤ u
+hquad : q * (1 + q) = u
+hX : Xo u = q
+hu_eq : a0 * Mb * 3 ^ 2 = Rf * G * 4 * Real.pi * rhoL * (Mb * 3 + Rf ^ 3 * 4 * Real.pi * rhoL)
+a✝ : a0 * 3 < Rf * G * 4 * Real.pi * rhoL
+⊢ False
+failed
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+OUT3_MUTATE.lean:280:63: error: unsolved goals
+case left
+s : ℝ
+⊢ -1 + s * 2 = -1
+
+case right
+s : ℝ
+⊢ s * 2 = 0
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+OUT3_MUTATE.lean:305:63: error: unsolved goals
+s : ℝ
+⊢ s = 0
+
+real	0m3.767s
+user	0m4.684s
+sys	0m2.210s
+mutate exit=1
