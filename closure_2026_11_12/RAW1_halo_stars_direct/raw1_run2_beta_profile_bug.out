@@ -1,0 +1,60 @@
+
+====================================================================================================
+RAW1 known-answer checks without data (K2-K5)
+====================================================================================================
+  [PASS] K2a beta=0: P/sr^2 = 1 at any eta
+  [PASS] K2b beta=1: P/sr^2 = cos^2 eta
+  [PASS] K2c Monte Carlo: var 0.6243 vs 0.6250
+  [PASS] K3 flat Jeans a=4.5 b=0.5: [11428.7 11428.7 11428.7] vs 11428.6
+  [PASS] K3 flat Jeans a=3.5 b=0.0: [11428.7 11428.7 11428.7] vs 11428.6
+  [PASS] K3 flat Jeans a=4.0 b=0.8: [16666.8 16666.8 16666.8] vs 16666.7
+  [PASS] K4 FW census 80 kpc canonical: 5.6905 vs 5.691
+  [PASS] K4 FW census 80 kpc alt: 6.2183 vs 6.219
+  [PASS] K4 SI r V^2/G: 4.6490e+11 Msun
+  [PASS] K5 Sgr core: Lambda 0.09 B 1.55
+
+====================================================================================================
+Data and K6 (magnitudes and identifiers only)
+====================================================================================================
+  [PASS] K6a TARGETID RVTAB == FIBERMAP: 6327 rows
+  [INFO] frozen K6b (failed in run 1, superseded by A1.3): fraction of S1-S2 stars with dereddened g outside [15.9, 20.1] = 0.0485
+  [PASS] K6b' (A1.3) r window: 4940 MWS-targeted main stars; below 15.95: 0.0000; above 20.3: 0.0000
+  [INFO] K6c DIST vs 10^((g - M_g + 5)/5): fraction within 1 per cent = 1.0000 (median ratio 1.0000)
+  [INFO] GAIA SOURCE_ID == FIBERMAP REF_ID for 0.9618 of rows with a Gaia match (mismatches dropped from the PM fit)
+
+====================================================================================================
+K1 synthetic sample at the real positions (flat 200 km/s, alpha 4.5, beta 0.5)
+====================================================================================================
+  [PASS] K1 alpha recovered: alpha = 4.550 +/- 0.164 (N 1021)
+  [PASS] K1 beta recovered: beta = 0.523 +/- 0.024; usable bins [True, True, True, False]
+  [PASS] K1 f bin 20-30: f = 1.014 +/- 0.034 (stat 0.024, alpha 0.024, beta 0.006)
+  [PASS] K1 f bin 30-40: f = 1.032 +/- 0.051 (stat 0.045, alpha 0.024, beta 0.006)
+  [PASS] K1 f bin 40-55: f = 0.983 +/- 0.051 (stat 0.045, alpha 0.023, beta 0.006)
+  [PASS] K1 f bin 55-80: f = 1.085 +/- 0.117 (stat 0.069, alpha 0.025, beta 0.090)
+
+====================================================================================================
+Nominal measurement
+====================================================================================================
+Stars after S1-S6: 1495; per bin [865, 264, 241, 125] (bins [(20.0, 30.0), (30.0, 40.0), (40.0, 55.0), (55.0, 80.0)]); with usable PM 1444
+alpha (single, 20-80): 5.289 [5.120, 5.458] from 1021 stars in the g window
+alpha two-slope: in 5.394 +/- 0.179, out 0.625 +/- 2.424 (corr -0.30)
+  bin 20-30: N 865, sigma_los 97.24 [94.95, 99.63] km/s, mean 1.2; PM N 854, median t-err 11.7; beta 0.634 [0.632, 0.681]; usable True 
+  bin 30-40: N 264, sigma_los 106.74 [102.25, 111.57] km/s, mean 0.2; PM N 260, median t-err 26.4; beta 0.687 [0.673, 0.721]; usable True 
+  bin 40-55: N 241, sigma_los 92.62 [88.51, 97.04] km/s, mean 6.3; PM N 231, median t-err 59.6; beta 0.396 [0.379, 0.403]; usable True 
+  bin 55-80: N 125, sigma_los 95.30 [89.43, 101.82] km/s, mean -21.6; PM N 99, median t-err 115.8; beta not fitted; usable False PM error > LOS dispersion
+beta nominal 0.634 +/- 0.026; per-bin ranges [(0.608, 0.661), (0.608, 0.661), (0.608, 0.661), (0.2, 0.8)]
+
+====================================================================================================
+Scale factors f = observed / predicted dispersion (nominal), and labels
+====================================================================================================
+FW_census/canonical 20-30: 1.100+/-0.035  30-40: 1.211+/-0.059  40-55: 1.058+/-0.054  55-80: 1.096+/-0.107   -> FAILS HOT ['20-30', '30-40']
+FW_census/alt    20-30: 1.057+/-0.034  30-40: 1.161+/-0.056  40-55: 1.013+/-0.052  55-80: 1.049+/-0.102   -> FAILS HOT ['30-40']
+FW_rc/canonical  20-30: 1.032+/-0.033  30-40: 1.141+/-0.055  40-55: 0.998+/-0.051  55-80: 1.036+/-0.101   -> FAILS HOT ['30-40']
+FW_rc/alt        20-30: 1.017+/-0.033  30-40: 1.120+/-0.054  40-55: 0.978+/-0.050  55-80: 1.013+/-0.099   -> FAILS HOT ['30-40']
+N                20-30: 2.071+/-0.062  30-40: 2.673+/-0.126  40-55: 2.676+/-0.132  55-80: 3.179+/-0.279   -> FAILS HOT ['20-30', '30-40', '40-55', '55-80']
+H                20-30: 1.073+/-0.035  30-40: 1.148+/-0.056  40-55: 1.002+/-0.051  55-80: 1.055+/-0.100   -> FAILS HOT ['20-30', '30-40']
+
+====================================================================================================
+Fragility variants (graded with the nominal sigma_f)
+====================================================================================================
+  A1.2 window r [16.2, 19.9]: alpha 4.719 +/- 0.092 (N 1319); two-slope in 5.272+/-0.141 out 3.122+/-0.306; M30 2.511 M50 3.972
