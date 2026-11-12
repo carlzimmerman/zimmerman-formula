@@ -201,7 +201,8 @@ def main():
                           second=[n for n in SECOND if n in ln and fl(ln[n]["spe_line_snr_gf"]) >= 3.0 and int(fl(ln[n]["spe_line_qual_gf"])) in QUAL_OK],
                           alt=sorted((int(fl(x["spe_rank"])), round(fl(x["spe_z"]), 4), round(fl(x["spe_z_prob"]), 3))
                                      for x in gal.get(m["oid"], []) if obskey(x) == obskey(c) and int(fl(x["spe_rank"])) > 0))
-                sp["q1"] = judge(c, q, ha, d["zlo"], d["zup"], 0.0, GUARD)[1] not in ("no quality row", "Q1 spectrum")
+                sp["T0"] = judge(c, q, ha, d["zlo"], d["zup"], 0.0, GUARD)      # every cut except the S/N threshold (output only)
+                sp["q1"] = sp["T0"][1] not in ("no quality row", "Q1 spectrum")
                 for tn, sn in TIERS: sp[tn] = judge(c, q, ha, d["zlo"], d["zup"], sn, GUARD)
                 d["spectra"].append(sp)
         d["evaluable"] = any(sp["q1"] for sp in d["spectra"])
@@ -433,6 +434,18 @@ def main():
                        [("%.4f" % b[c]) if c in b else "" for c in ("S_canonical", "S_alt", "inf_S_canonical", "inf_S_alt")])
             nrow += 1
     P("\n  per-lens table: %s_sources.csv (%d lens systems with a T5 class)" % (tag, nrow))
+    # per-system table of every evaluable system (lenses and null), for the disclosed post hoc diagnostics; output only
+    with open(os.path.join(HERE, tag + "_systems.csv"), "w", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["unique_identifier", "grade", "in_P", "in_S", "in_U", "r_a_arcsec", "z_lo", "z_up", "interval_source", "lens_H_flux_uJy",
+                    "lens_phz_median", "class_T5", "class_T8", "pass_all_but_snr_z", "pass_all_but_snr_snr", "pass_all_but_snr_role", "pass_all_but_snr_second"])
+        for i in lens_ids + x_ids:
+            d = SYS[i]
+            if not d["evaluable"]: continue
+            p0 = sorted([sp for sp in d["spectra"] if sp["T0"][0] == "secure"], key=lambda sp: -sp["snr"])
+            w.writerow([i, obj[i]["Expert_Grade"].strip(), i in inP, i in inS, i in inU, "%.3f" % d["r_a"], "%.3f" % d["zlo"], "%.3f" % d["zup"], d["zsrc"],
+                        "%.2f" % d["lens_fh"], "%.3f" % d["lens_phz"], d["T5"][0], d["T8"][0], ";".join("%.4f" % sp["z"] for sp in p0),
+                        ";".join("%.2f" % sp["snr"] for sp in p0), ";".join(sp["role"] for sp in p0), ";".join("+".join(sp["second"]) or "-" for sp in p0)])
     if rP["N"]:
         P("  sample P per lens (law S): id, z_l, z_s, Ha S/N, role, theta_E, second lines, b canonical / alt (source-free alt)")
         for j in np.argsort([ZS[i] for i in rP["ids"]]):
