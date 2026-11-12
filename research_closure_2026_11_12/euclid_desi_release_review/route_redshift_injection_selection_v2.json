@@ -1,0 +1,127 @@
+{
+  "target": "NGC2403",
+  "selection_status": "Development template chosen after prior information preflight for informative radial coverage, not a held-out science target.",
+  "laws": [
+    "simple_mu",
+    "quadratic"
+  ],
+  "gamma_injections": [
+    -0.1,
+    0.0,
+    0.1
+  ],
+  "fiducial_a0_m_s2": 9.3603e-11,
+  "fiducial_disk_Upsilon": 0.5,
+  "truth_inclination_deg": 63.0,
+  "inclination_prior_sigma_deg": 3.0,
+  "profiled_gamma_prior_sigma_dimensionless": 0.1,
+  "holdout_zero_based_sorted_indices": [
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49
+  ],
+  "train_rule": "All valid radius/speed/error rows outside the two six-row contiguous holdout annuli; no residual or outcome cuts.",
+  "models": [
+    "gradient_fixed_zero_inclination_profiled",
+    "gradient_profiled_inclination_profiled"
+  ],
+  "shared_priors": "Gaussian inclination 63+/-3deg; independent free positive global stellar and angular-gas amplitudes. Profiled model alone has Gaussian gamma0+/-0.1.",
+  "bounds": {
+    "log_star_amplitude": [
+      -2,
+      2
+    ],
+    "log_angular_gas_amplitude": [
+      -2,
+      2
+    ],
+    "log_T_ratio": [
+      -2,
+      2
+    ],
+    "gamma": [
+      -0.3,
+      0.3
+    ],
+    "inclination_offset_deg": [
+      -10,
+      10
+    ]
+  },
+  "starts": {
+    "fixed": [
+      [
+        0,
+        0,
+        -0.2,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0.2,
+        0
+      ]
+    ],
+    "profiled": [
+      [
+        0,
+        0,
+        -0.2,
+        -0.1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0.2,
+        0.1,
+        0
+      ]
+    ]
+  },
+  "ring_model": {
+    "radial_points": 2048,
+    "azimuthal_points": 512,
+    "softening_h_over_Rd": 0.1,
+    "outer_radius_times_last_rotation_radius": 2,
+    "gamma_interpolation_grid": [
+      -0.4,
+      0.4,
+      0.005
+    ],
+    "outer_tail_policy": "Exponential slope from finaltwo positive surfacebrightness bins; if rounded values give nonnegative slope,use -1/Rd,identical to earlierpreflight. Fixed before any inversefit."
+  },
+  "holdout_interpretation": "Noiseless injected means; error-normalized residual power and linearized predictive-covariance power, not observed chi-square or actual detection significance.",
+  "exploratory_power_marker": "Predictive residual power>=9 is only an optimistic 3-unit Gaussian separation marker; do not interpret as a calibrated rejection probability.",
+  "limits": [
+    "No observed law residual fitted",
+    "Pointwise algebraic prescriptions, not AQUAL disk solutions",
+    "No correlated PSF or velocity/template covariance",
+    "Inclination changes velocity deprojection only, not the fixed light shape",
+    "No new Euclid or other external observations"
+  ],
+  "revision_reason": "First launch stopped before any fit because lasttwo nonzero surfacebrightness values were rounded equal. No science score or fit outcome seen; preserve firstfailedlaunch and use existingpreflighttailpolicy."
+}

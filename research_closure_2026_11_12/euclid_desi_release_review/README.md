@@ -1,6 +1,6 @@
 # Euclid DR1 and DESI DR2 review
 
-12 November 2026. **Release audit complete; new research routes active.**
+12 November 2026. **Release audit and bounded research checks complete; physical validation remains open.**
 
 The task is to identify genuinely executable tests of the Zimmerman acceleration-scale relation using Euclid DR1-Foundation, check all papers in the official release cohort, incorporate public DESI DR2 results, and distinguish new tests from predictions or verdicts already present in this repository. No new observational fit or theory-validation claim has been made.
 
@@ -37,7 +37,7 @@ Start with [the strongest surviving research lead](DISCOVERY_ROUTES.md): an angu
 - [Paper-by-paper review](PAPER_REVIEW.md) and [source hashes](paper_inventory.json).
 - [Prior prediction lanes and inverse-theory records](prior_lane_inventory.json), with checked paths and hashes.
 - [Blinded catalogue audit](sample_access_audit.md): 39 deflector-redshift candidates; the clean both-redshift count remains unknown. This is a metadata audit, not a sealed preregistration.
-- [Research contract and active routes](RESEARCH_STATUS.md): lensing, radial dynamics, slitless spectra, double-source-plane geometry, and a candidate dimensionless Euclid–DESI closure test. These are being independently checked; no new observational pass is claimed.
+- [Research contract and active routes](RESEARCH_STATUS.md): lensing, radial dynamics, slitless spectra, double-source-plane geometry, and a candidate dimensionless Euclid–DESI closure test. The key derivations and bounded checks have independent review; the nonlinear gradient test exposes a material robustness limit. No new observational pass is claimed.
 
 ## Handoff and access
 
@@ -46,3 +46,5 @@ Temporary source directory on the current machine: `/private/tmp/euclid_dr1_revi
 A live query of IRSA `TAP_SCHEMA.tables` for Euclid names returned only Q1 tables during this session; the advertised IRSA DR1 overview returned 404. This is an access observation about that mirror, not evidence that the ESA release is absent. ESA release pages and public paper PDFs were accessible through direct HTTPS. Two small ECLIPSE catalogues were audited without fitting the acceleration law.
 
 Publishing is authorized by the user's request to push the work as it lands. The working checkout has substantial unrelated modifications and divergent history. This review is being published as a document-only branch based on remote `main`, preserving that working state.
+
+See [HANDOFF.md](HANDOFF.md) for the exact current conclusions, preserved failures and measurements needed to continue.

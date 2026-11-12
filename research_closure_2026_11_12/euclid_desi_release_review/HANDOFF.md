@@ -8,7 +8,7 @@ Start with [DISCOVERY_ROUTES.md](DISCOVERY_ROUTES.md), then [RESEARCH_STATUS.md]
 - Twenty initial prediction-bearing records and two additional September inverse-theory predecessors were checked. Their source hashes are in prior_lane_inventory.json. Historical seals and failures were not changed.
 - Two small ECLIPSE public archives were checksum-verified. The offline audit reproduces 39 quality-selected deflectors with DESI redshifts. Source-redshift linkage is missing, so the clean both-redshift sample count remains undetermined.
 - Three agents and root pursued five related mathematical routes. The angular T=D_Aa₀ construction and conditional dimensionless BAO closure survived independent derivation, with explicit inclination, gradient, coupling and rank restrictions.
-- Completed finite checks: 54 deterministic algebraic recovery cases; 225 exact rational spectral-centroid cases; 42 local Fisher scenarios using three preselected old SPARC radial grids/templates/errors. None is a fit to new Euclid acceleration residuals.
+- Completed finite checks: 54 deterministic algebraic recovery cases; 225 exact rational spectral-centroid cases; 42 local Fisher scenarios using three preselected old SPARC radial grids/templates/errors; and 12 nonlinear synthetic inverse cases with three starts each. None is a fit to new Euclid acceleration residuals.
 - Primary review verdict: conditional on observational identification of T under a constrained radial baryonic/geometry model. No healthy completion was found that passes every recorded gate.
 
 ## Do not lose these corrections
@@ -44,3 +44,5 @@ Run manifests were created and validated against /private/tmp/euclid_dr1_review_
 Publication branch: codex/euclid-desi-review-2026-11-12. It is based on remote main and contains only this task's directory. The shared local main checkout is heavily dirty/diverged and was not switched, reset, rebased or staged through its normal index. Some compared local research is not necessarily present on this publication branch; evidence hashes identify the read versions. Do not merge the unrelated local history merely to consume this report.
 
 Original SPARC input bytes, including trailing whitespace in source headers, are preserved to retain their authenticated hashes. Documentation/code whitespace checks exclude those four raw source files.
+
+The final injection continuation found that omitting a γ=±0.1 radial stellar gradient can bias T by 0.30–0.63dex while internal holdout velocities look close. The holdout sensitivity marker is not a calibrated significance. Profiling the exact injected family recovers T under idealized geometry and a truth-centred inclination prior, so no claim of general robustness follows. See route_injection_review.md before implementing any data scorer.

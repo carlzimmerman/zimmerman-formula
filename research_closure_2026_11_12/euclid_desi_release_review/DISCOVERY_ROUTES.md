@@ -2,6 +2,8 @@
 
 12 November 2026. **A conditional observable construction has survived independent algebraic review. No new astronomical confirmation or healthy all-gate theory has been established.** The useful advance is a way to target the acceleration–cosmology connection while removing some nuisance normalizations; we also constructed explicit cases in which the method fails.
 
+The final nonlinear check makes the qualification concrete: on one existing SPARC radial grid, an omitted stellar-population gradient biased the inferred acceleration–distance scale by **0.30–0.63 dex** while the predefined internal holdout remained below its illustrative sensitivity marker. The proposed observable is not yet robust to the required astrophysical uncertainties. Independent gradient and geometry constraints are part of the experiment, not optional refinements.
+
 ## 1. Measure acceleration times distance from radial shape
 
 For a fixed angular baryonic template b(θ), an unknown global stellar mass-to-light multiplier U, and independently measured circular speeds, define
@@ -76,6 +78,10 @@ The next check was executed on three existing SPARC development galaxies, using 
 | DDO154 | 0.392 dex | 0.600 dex |
 
 These are local sensitivity estimates under incomplete nuisance models, **not measured uncertainties, a new fit or a Euclid forecast**. The M/L-gradient prior is a dimensionless radial power-slope uncertainty of 0.1, not a measured property of these galaxies. Correlated errors, photometric deprojection changes, pressure support and a full AQUAL disk calculation remain outside the check. Its practical result is that transition-spanning profiles are worth pursuing, whereas the deep-only DDO154 template has little normalization-independent information. Fixing the angular gas coefficient and geometry creates misleadingly small optimistic-control errors; knowing a gas conversion factor alone does not fix that coefficient when distance remains unknown.
+
+We then executed **12 nonlinear inverse cases, each with three optimizer starts**, using NGC2403's development grid and synthetic velocities. Two interior annuli supplied 12 withheld velocity points; 61 points were used for fitting. Injecting a radial exponent γ=±0.1 corresponds to about ±0.212 dex differential M/L across this window. Fixing γ=0 biased T by 0.30–0.63 dex, despite maximum withheld velocity residuals of only about 1.1–1.7%. The illustrative predictive-residual statistic was 3.39–7.72, below its prespecified marker of 9; that marker is **not a calibrated 3σ test**.
+
+Profiling the same injected gradient family recovered T within 0.020 dex in these cases. Truth and inverse shared the source geometry and gradient family; the inclination prior was centred on truth. This is conditional recovery, not demonstrated robustness to real geometry, arbitrary population gradients or independent data. The result establishes why a small internal holdout residual cannot certify the proposed acceleration measurement. [Full record](route_redshift.md), [independent review](route_injection_review.md).
 
 ## 4. Why Euclid matters, and where spectra help
 

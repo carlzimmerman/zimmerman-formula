@@ -47,3 +47,7 @@ The redshift synthetic computation covers 54 deterministic cases and the declare
 ## Strongest safe statement and next check
 
 The proposed T observable removes a global mass normalization within the restricted inverse problem, and the subsequent BAO construction can avoid an absolute ruler and early matter-density prior. It retains radial-shape, dynamics, inclination, coupling and cosmological-closure assumptions. The cheapest decisive continuation is to project the T sensitivity against realistic nuisance directions and independent constraints, then hold out resolved radial information. If the remaining direction is rank deficient or prior dominated, the route needs new measurements rather than more claims of cancellation.
+
+## Nonlinear continuation
+
+The additional 12 synthetic inverse cases are independently inspected in route_injection_review.md. Their withheld radial modes do not certify an unbiased acceleration inference when gradients are omitted. This is new bounded computational evidence for the existing nuisance objection, not a repair of the observational-identifiability leaf. The correct primary verdict remains conditional.

@@ -1,6 +1,6 @@
 # What Euclid Foundation and DESI DR2 can test
 
-12 November 2026. Literature and repository review complete at the scope below; exploratory derivations continue in the route records. **No Euclid gravity-law fit or new observational confirmation has been performed.**
+12 November 2026. Literature and repository review complete at the scope below; the bounded exploratory derivations and checks are recorded in DISCOVERY_ROUTES.md and the route files. **No Euclid gravity-law fit or new observational confirmation has been performed.**
 
 ## Finding
 
