@@ -238,6 +238,49 @@ def stage_f1diag():
     json.dump(out, open(f"{HERE}/euc5r_f1diag.json", "w"), indent=1)
 
 
+def stage_f1s():
+    """AMENDMENT F1S (post hoc, committed alone before this ran): F1 with the noise scaled so that the mock's median
+    S/N per pixel in the fit window equals the reference spectrum's own (euc5r_f1.json ref_snr_pix)."""
+    f1 = json.load(open(f"{HERE}/euc5r_f1.json"))
+    real = load(f"{D.DESI_DIR}/{f1['ref_sparcl_id']}.npz", "desi")
+    target = f1["ref_snr_pix"]
+    tn = "Ebi1.30Zp0.06T10.0000_iTp0.00_baseFe.fits"
+    rng = np.random.default_rng(SEED + 2)
+    out = dict(target_snr_pix=target, runs={})
+    ok_all = True
+    for sin in (150.0, 250.0, 350.0):
+        r0 = dict(real)
+        r0["iv"] = real["iv"]
+        noiseless, _ = mock_spec(r0, 0.45, sin, "gate", tn, np.random.default_rng(0))
+        # deterministic part: rebuild without noise
+        lt, T = one_template(tn)
+        si = np.interp(lt * 1.45, real["w"], real["ws"]) / 1.45
+        Tb = util.varsmooth(lt, T, np.sqrt(np.maximum((sin / C * lt) ** 2 + si ** 2 - SIG_TPL_A ** 2, 0)), xout=lt, oversample=2)
+        mf = np.interp(real["w"] / 1.45, lt, Tb, left=0, right=0)
+        sel, good = window(real, 0.45)
+        mf = mf * np.median(real["f"][good]) / np.median(mf[sel])
+        sn_now = float(np.median(mf[good] * np.sqrt(real["iv"][good])))
+        k = sn_now / target
+        r2 = dict(real)
+        r2["iv"] = real["iv"] / k ** 2
+        vals, q = [], 0
+        for i in range(40):
+            m, _ = mock_spec(r2, 0.45, sin, "gate", tn, rng)
+            r = fit(m, 0.45)
+            if r["status"] == "ok":
+                vals.append(r["sigma"])
+                q += quality(r)
+        med = float(np.median(vals))
+        out["runs"][str(int(sin))] = dict(sn_before=sn_now, noise_factor=k, median=med, ratio=med / sin,
+                                         scatter=float(np.std(vals)), n_quality=q, n=len(vals))
+        ok_all &= abs(med / sin - 1) <= 0.05
+        print(f"  F1S sigma_in {sin:5.0f}: S/N {sn_now:.3f} -> {target:.3f} (noise x{k:.3f}); median {med:7.2f}"
+              f" ratio {med/sin:.4f} scatter {np.std(vals):6.2f} quality {q}/{len(vals)}", flush=True)
+    out["F1S_pass"] = bool(ok_all)
+    print("F1S:", "PASS" if ok_all else "FAIL")
+    json.dump(out, open(f"{HERE}/euc5r_f1s.json", "w"), indent=1)
+
+
 # ------------------------------------------------------------------ DESI fits
 def stage_desi():
     cat = D.samples()
@@ -342,4 +385,4 @@ def stage_slacs():
 
 
 if __name__ == "__main__":
-    {"f1": stage_f1, "f1diag": stage_f1diag, "desi": stage_desi, "slacs": stage_slacs}[sys.argv[1]]()
+    {"f1": stage_f1, "f1diag": stage_f1diag, "f1s": stage_f1s, "desi": stage_desi, "slacs": stage_slacs}[sys.argv[1]]()
