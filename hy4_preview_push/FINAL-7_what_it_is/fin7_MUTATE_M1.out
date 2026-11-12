@@ -1,0 +1,272 @@
+====================================================================================================
+FINAL-7  what the medium IS: the M5 hypothesis triage   (TEST lane, quarantined; adopts nothing)
+mode MUTATE M1   criteria: FROZEN_CRITERIA.md, committed alone before any script or number
+kappa = 1/2 FITTED; not theory closed.  Footings graded separately, never pooled.
+====================================================================================================
+
+####################################################################################################
+# Q0  known answers  (must pass before any row is graded)
+####################################################################################################
+KA1  (Pi_rr+Pi_tt)/J against +(2/3)u   [the deep-field cancellation Pi_rr = -Pi_tt]
+    u = 1.0e-01   (Pi_rr+Pi_tt)/J = +6.156554e-02   (2/3)u = +6.666667e-02   rel.err = 7.65e-02
+    u = 1.0e-02   (Pi_rr+Pi_tt)/J = +6.611603e-03   (2/3)u = +6.666667e-03   rel.err = 8.26e-03
+    u = 1.0e-03   (Pi_rr+Pi_tt)/J = +6.661120e-04   (2/3)u = +6.666667e-04   rel.err = 8.32e-04
+    u = 1.0e-04   (Pi_rr+Pi_tt)/J = +6.666552e-05   (2/3)u = +6.666667e-05   rel.err = 1.72e-05
+    KA1 PASS
+
+KA2  the negative radial principal value  (crux A5: -v_inf^2/2, +v_inf^2/2)
+    canonical x = 1e+3   sigma_r^2/(v_inf^2/2) = +0.9996668   sigma_t^2/(v_inf^2/2) = +1.0003335
+    canonical x = 1e+4   sigma_r^2/(v_inf^2/2) = +0.9999667   sigma_t^2/(v_inf^2/2) = +1.0000333
+    canonical x = 1e+5   sigma_r^2/(v_inf^2/2) = +0.9999956   sigma_t^2/(v_inf^2/2) = +1.0000044
+    canonical x = 1e+6   sigma_r^2/(v_inf^2/2) = +0.9999238   sigma_t^2/(v_inf^2/2) = +1.0000762
+    alt       x = 1e+3   sigma_r^2/(v_inf^2/2) = +0.9996668   sigma_t^2/(v_inf^2/2) = +1.0003335
+    alt       x = 1e+4   sigma_r^2/(v_inf^2/2) = +0.9999667   sigma_t^2/(v_inf^2/2) = +1.0000333
+    alt       x = 1e+5   sigma_r^2/(v_inf^2/2) = +0.9999956   sigma_t^2/(v_inf^2/2) = +1.0000044
+    alt       x = 1e+6   sigma_r^2/(v_inf^2/2) = +0.9999238   sigma_t^2/(v_inf^2/2) = +1.0000762
+    KA2 PASS  (residual falls as 1/x; 1e-5 is the float noise floor of rho_c)
+
+KA3  point-mass M_c: closed form vs the numerical integral of rho_c
+    worst rel.err over 2 footings x 4 masses x 5 radii = 1.02e-06   KA3 PASS
+
+KA4 / KA5 / KA8  algebraic identities
+    mu_s  recovered = mu
+    lambda recovered = lambda*(e1 + e2 + e3)/(e1 + 2*e2)
+    2W - sigma:u = 0   KA8 PASS
+    Navier-Cauchy: s^2 = -(lambda + 2*mu) k^2 / rho  (L) ,  -(mu) k^2 / rho  (T)   KA5 PASS
+
+####################################################################################################
+# Q1  the sound speeds   (the grade the brief asks for)
+####################################################################################################
+footing   logM  profile    rM    |  min c_T^2   max c_T^2   min c_L^2   max c_L^2  maxcT  maxcL  max|u|  y@60rM
+canonical  9.40 point       1.93 | -4.8003e+02 -5.2258e+01 -6.9421e+02 -7.6914e+01    0.0    0.0  226.45   8.764
+canonical 10.45 point       6.48 | -2.4059e+03 -2.6191e+02 -3.5046e+03 -3.8566e+02    0.0    0.0  151.01   5.858
+canonical 10.70 point       8.64 | -3.5313e+03 -3.8443e+02 -5.1567e+03 -5.6616e+02    0.0    0.0  137.11   5.322
+canonical 10.90 point      10.88 | -4.8003e+03 -5.2258e+02 -7.0257e+03 -7.6971e+02    0.0    0.0  126.90   4.929
+canonical  9.40 plummer     1.93 | -4.7992e+02 -4.4927e+00 -6.9404e+02 -6.1859e+00    0.0    0.0  172.44   8.764
+canonical 10.45 plummer     6.48 | -2.4057e+03 -6.4487e+01 -3.5044e+03 -9.1745e+01    0.0    0.0  139.21   5.858
+canonical 10.70 plummer     8.64 | -3.5312e+03 -1.1796e+02 -5.1565e+03 -1.6905e+02    0.0    0.0  128.85   5.322
+canonical 10.90 plummer    10.88 | -4.8002e+03 -1.8684e+02 -7.0254e+03 -2.6907e+02    0.0    0.0  120.57   4.929
+canonical  9.40 hernquist   1.93 | -4.7591e+02 -1.1837e+01 -6.8801e+02 -1.7096e+01    0.0    0.0  208.96   8.743
+canonical 10.45 hernquist   6.48 | -2.3961e+03 -1.2289e+02 -3.4897e+03 -1.8013e+02    0.0    0.0  146.02   5.851
+canonical 10.70 hernquist   8.64 | -3.5188e+03 -2.0296e+02 -5.1376e+03 -2.9810e+02    0.0    0.0  133.23   5.316
+canonical 10.90 hernquist  10.88 | -4.7848e+03 -2.9831e+02 -7.0019e+03 -4.3871e+02    0.0    0.0  123.69   4.924
+alt        9.40 point       1.76 | -4.8003e+02 -5.2258e+01 -6.9339e+02 -7.6907e+01    0.0    0.0  249.04   9.635
+alt       10.45 point       5.89 | -2.4059e+03 -2.6191e+02 -3.4972e+03 -3.8561e+02    0.0    0.0  166.11   6.439
+alt       10.70 point       7.86 | -3.5313e+03 -3.8443e+02 -5.1442e+03 -5.6608e+02    0.0    0.0  150.82   5.850
+alt       10.90 point       9.89 | -4.8003e+03 -5.2258e+02 -7.0064e+03 -7.6959e+02    0.0    0.0  139.61   5.418
+alt        9.40 plummer     1.76 | -4.7990e+02 -4.0190e+00 -6.9317e+02 -5.5199e+00    0.0    0.0  183.38   9.634
+alt       10.45 plummer     5.89 | -2.4057e+03 -5.5551e+01 -3.4970e+03 -7.8632e+01    0.0    0.0  150.71   6.439
+alt       10.70 plummer     7.86 | -3.5312e+03 -1.0132e+02 -5.1439e+03 -1.4447e+02    0.0    0.0  139.94   5.850
+alt       10.90 plummer     9.89 | -4.8001e+03 -1.6050e+02 -7.0061e+03 -2.3001e+02    0.0    0.0  131.21   5.418
+alt        9.40 hernquist   1.76 | -4.7551e+02 -1.0741e+01 -6.8658e+02 -1.5479e+01    0.0    0.0  227.76   9.609
+alt       10.45 hernquist   5.89 | -2.3951e+03 -1.1291e+02 -3.4809e+03 -1.6524e+02    0.0    0.0  159.98   6.431
+alt       10.70 hernquist   7.86 | -3.5175e+03 -1.8723e+02 -5.1232e+03 -2.7461e+02    0.0    0.0  146.07   5.844
+alt       10.90 hernquist   9.89 | -4.7833e+03 -2.7602e+02 -6.9804e+03 -4.0541e+02    0.0    0.0  135.66   5.413
+
+rows with c_T^2 < 0 somewhere    : 24 / 24
+rows with c_L^2 < 0 somewhere    : 24 / 24
+rows with a sound speed above c  : 0 / 24
+rows with mu_s > 0 everywhere    : 0 / 24
+rows with 3lam+2mu > 0 everywhere: 0 / 24
+largest sound speed over all rows: c_T 0.0 km/s , c_L 0.0 km/s  (c = 2.9979e+05 km/s)
+KA9  mean div(sigma)/(rho_c g) over all 24 rows = -1.000000   (needs +1 for equilibrium)
+
+KA6  the mass-conserving map: Eulerian mass vs rho_ref x Lagrangian volume
+    worst rel.err = 1.78e-15   KA6 PASS
+
+KA10  the Maxwell signature:  -Pi = diag(+J,-J,-J) = T[phi], grad phi = g
+       u            eps/(2J)      (eps/(2J)-1)/u        Pi_rr/(-Pi_tt)
+     1.0e-01      0.00005238        -9.99948            -0.99989523
+     1.0e-02      0.00005387        -99.99461            -0.99989226
+     1.0e-03      0.00005403        -999.94597            -0.99989194
+     1.0e-04      0.00005405        -9999.45955            -0.99989191
+
+     principal values of sigma = -Pi along the halo (point mass, canonical, log M_b 10.9)
+       x        -Pi_rr/J    -Pi_tt/J     (Pi_rr+Pi_tt)/J     c_T km/s   c_L km/s
+     1e+1     +0.935531   -1.000000       +6.447e-02        38.8      46.6
+     1e+2     +0.993356   -1.000000       +6.644e-03        82.0      99.9
+     1e+3     +0.999334   -1.000000       +6.664e-04       176.4     193.0
+     1e+4     +0.999933   -1.000000       +6.668e-05       380.0     436.5
+     => sigma -> diag(+J, -J, -J): radial TENSION = energy density, transverse pressure
+        = energy density. That is the canonical (Maxwell) stress of a field, grad phi = g.
+
+   Q1a (imaginary sound speed anywhere)   : FIRES
+   Q1b (superluminal sound speed anywhere): HOLDS
+
+Q1c  branch structure of the family (deep field)
+      3lam+2mu = J/(7y/3 - 3):  positive  <=>  y > 9/7 = 1.2857 ;  c_L^2 < 0 for 6/5 < y < 9/7
+footing   logM  profile   | r(y=9/7)[kpc] r(y=6/5)[kpc] r_200[kpc] r(y=1)[kpc] | r_97/r_200
+canonical  9.40 point     |    2.0734e+03    2.2995e+03 2.1330e+02  3.0229e+03 |    9.720
+canonical 10.90 point     |    4.9152e+03    5.4514e+03 5.0425e+02  7.1669e+03 |    9.748
+canonical  9.40 plummer   |    2.0734e+03    2.2995e+03 2.1330e+02  3.0229e+03 |    9.721
+canonical 10.90 plummer   |    4.9152e+03    5.4514e+03 5.0424e+02  7.1669e+03 |    9.748
+canonical  9.40 hernquist |    2.0730e+03    2.2991e+03 2.1287e+02  3.0225e+03 |    9.738
+canonical 10.90 hernquist |    4.9143e+03    5.4505e+03 5.0334e+02  7.1660e+03 |    9.763
+alt        9.40 point     |    2.1740e+03    2.4111e+03 2.2371e+02  3.1696e+03 |    9.718
+alt       10.90 point     |    5.1539e+03    5.7161e+03 5.2907e+02  7.5148e+03 |    9.741
+alt        9.40 plummer   |    2.1740e+03    2.4111e+03 2.2371e+02  3.1696e+03 |    9.718
+alt       10.90 plummer   |    5.1539e+03    5.7161e+03 5.2907e+02  7.5148e+03 |    9.742
+alt        9.40 hernquist |    2.1735e+03    2.4106e+03 2.2328e+02  3.1691e+03 |    9.735
+alt       10.90 hernquist |    5.1530e+03    5.7152e+03 5.2816e+02  7.5139e+03 |    9.756
+
+   The shell lies outside every physical halo (min r(y=9/7)/r_200 = 9.72): Q1c HOLDS.
+
+Q1d/e  deep-field closed forms: c_T^2 -> (3/4) v_inf^2 / y , c_L^2/c_T^2 -> 10/7 = 1.4286
+footing   logM  profile   |   c_T^2(60rM)   c_L^2/c_T^2   (3/4)v^2/y   c_T^2/sigma_t^2   3/(2y)
+canonical 10.90 point     |   -4.8003e+03        1.4636   4.7802e+03        -0.3039   0.3043
+canonical 10.90 plummer   |   -4.8002e+03        1.4636   4.7802e+03        -0.3039   0.3044
+canonical 10.90 hernquist |   -4.7848e+03        1.4634   4.7846e+03        -0.3046   0.3046
+alt       10.90 point     |   -4.8003e+03        1.4596   4.7802e+03        -0.2765   0.2769
+alt       10.90 plummer   |   -4.8001e+03        1.4596   4.7802e+03        -0.2765   0.2769
+alt       10.90 hernquist |   -4.7833e+03        1.4593   4.7850e+03        -0.2772   0.2771
+
+   Q1e: c_T^2 / sigma_t^2 = 3/(2y) < 1 wherever y > 3/2 -- the elastic sound speed is
+        BELOW the dispersion the halo must carry. That is the melt condition (Q4/S3).
+
+   K1 (strain): max |u| over all 24 rows = 249.04  -> the elastic description is outside
+        its own domain of validity: K1 FIRES.
+
+####################################################################################################
+# Q3  the Bullet  (pre-registered to kill)
+####################################################################################################
+    main  M_gas 2.000e+14  M_star 1.196e+13  M_cold = 5.41 x = 1.1467e+15 Msun   Sigma_c = 9.1252e+09 Msun/kpc^2
+    sub   M_gas 2.320e+13  M_star 4.000e+12  M_cold = 5.41 x = 1.4715e+14 Msun   Sigma_c = 1.1710e+09 Msun/kpc^2
+    ICM central density (main gas, Plummer b = 200 kpc, PROVISIONAL): 5.9683e+06 Msun/kpc^3
+    ICM column over a 1 Mpc path (PROVISIONAL):                     5.9683e+09 Msun/kpc^2
+    DB1 (i)  needs Sigma_c >= 1.7905e+10 ; the solid's column 9.1252e+09 -> FAILS
+    DB1 (ii) needs Sigma_c >= 5.5366e+09 ; the solid's column 9.1252e+09 -> PASSES
+    BLIND SPOT (must be flagged): both DB1 tests are SELF-GRAVITY tests. They are blind to
+        solidity. A solid passes both and still cannot interpenetrate.
+
+Q3a  structural. A solid's configuration map is a HOMEOMORPHISM (injective), so its material
+     elements keep their neighbours. After a 1:1 passage the two halos' media share the
+     overlap volume. RB1 gate 4 puts each cluster's cold mass with its galaxies (model peak
+     14 / 10 kpc from the galaxies, gas hundreds of kpc away), so the interpenetrated cold
+     mass the data require is at least M_c,sub = 1.4715e+14 Msun. A homeomorphism delivers 0.
+     By invariance of domain the passage must drive det F through 0: the solid must fold.
+
+Q3b  dynamical: elastic Mach number and yield parameter at v = 4700 km/s (r = 500 kpc)
+footing   logM   |  |c_T| km/s   c_L km/s    v/|c_T|    v/c_L     rho_c v^2/|mu|
+canonical 13.40  |      180.6      218.3     26.02     21.53      6.770e+02
+canonical 14.00  |      252.7      306.7     18.60     15.32      3.458e+02
+canonical 14.60  |      396.4      482.9     11.86      9.73      1.406e+02
+alt       13.40  |      184.8      223.1     25.44     21.07      6.471e+02
+alt       14.00  |      255.7      310.1     18.38     15.16      3.378e+02
+alt       14.60  |      393.5      479.1     11.94      9.81      1.427e+02
+
+     HORN: Y = 677 >> 1 -- the impact exceeds the shear strength by two orders of
+     magnitude (Mach %.1f - %.1f): the solid YIELDS. A yielded solid is a fluid, and a
+     fluid that is local, momentum-conserving and normally self-gravitating is M5's
+     class, whose NO-GO already covers it. BOTH HORNS FIRE (Mach 11.9-26.0).  Q3 FIRES.
+
+####################################################################################################
+# Q2  which hypothesis must break
+####################################################################################################
+
+--- Arm N, hypothesis (i) LOCAL:  sigma = -Pi(g_L) with g_L smoothed on scale L.
+    canonical L =    0.0 kpc : rms dex(implied rho_c / law rho_c) = 0.3634  -> FIRES
+    canonical L =   10.0 kpc : rms dex(implied rho_c / law rho_c) = 0.3163  -> FIRES
+    canonical L =   50.0 kpc : rms dex(implied rho_c / law rho_c) = 0.2501  -> FIRES
+    canonical L =  200.0 kpc : rms dex(implied rho_c / law rho_c) = 0.2035  -> FIRES
+    alt       L =    0.0 kpc : rms dex(implied rho_c / law rho_c) = 0.3634  -> FIRES
+    alt       L =   10.0 kpc : rms dex(implied rho_c / law rho_c) = 0.3131  -> FIRES
+    alt       L =   50.0 kpc : rms dex(implied rho_c / law rho_c) = 0.2460  -> FIRES
+    alt       L =  200.0 kpc : rms dex(implied rho_c / law rho_c) = 0.2019  -> FIRES
+
+--- Arm P, hypothesis (ii) MOMENTUM-CONSERVING (medium alone)
+    P1 contact:  opacity needed for the contact to switch on where <a> = a0
+      canonical kappa = 4.6781e-09 kpc^2/Msun = 22.40 cm^2/g = 3.747e-23 cm^2/proton
+                 mfp(z=1100) = 2.554e-02 kpc = 25.5 pc ;  Gamma/H = 0.84 (z1100), 4.58 (z3400)
+                 Bullet: ICM column 0.006-0.03 g/cm^2 -> 0.13 - 0.67 optical depths
+      alt       kappa = 3.8709e-09 kpc^2/Msun = 18.54 cm^2/g = 3.100e-23 cm^2/proton
+                 mfp(z=1100) = 3.087e-02 kpc = 30.9 pc ;  Gamma/H = 0.70 (z1100), 3.79 (z3400)
+                 Bullet: ICM column 0.006-0.03 g/cm^2 -> 0.11 - 0.56 optical depths
+      => Arm P1 FIRES: it breaks (ii) by a direct coupling and then fails (1) (drag ~ H at
+         z = 1100, when the cold component must stay decoupled) and (2) (dragged with the
+         gas, where RB1 puts the mass with the galaxies).
+
+      P2 no material identity: the carrier of Pi is the SOURCED FIELD, not a substance.
+         It interpenetrates because fields SUPERPOSE: two halos' fields add, and the lensing
+         charge follows each cluster's own baryons. => (2) PASSES, (4) PASSES.
+         Price: (1) FAILS -- the carrier has no conserved cold rest mass:
+           canonical log M_b 10.45 : M_c/M_b = 41.49 at 272 kpc, 97.83 at 637 kpc ; budget 5.41 -> excess 7.7x / 18.1x
+           canonical log M_b 10.90 : M_c/M_b = 24.51 at 272 kpc, 58.07 at 637 kpc ; budget 5.41 -> excess 4.5x / 10.7x
+           alt       log M_b 10.45 : M_c/M_b = 45.66 at 272 kpc, 107.60 at 637 kpc ; budget 5.41 -> excess 8.4x / 19.9x
+           alt       log M_b 10.90 : M_c/M_b = 27.00 at 272 kpc, 63.89 at 637 kpc ; budget 5.41 -> excess 5.0x / 11.8x
+         M_c(<r) grows ~ r without bound: the settled halo is PHANTOM, not substance.
+
+--- Arm S, hypothesis (iii) NORMALLY SELF-GRAVITATING
+     A component whose density does not gravitate cannot be 'at full share' in clusters
+     (RB1 gate 1, f_ret -> 1) and cannot supply the lensing mass at all: deficit = the
+     whole cold share, a factor 5.4 below the law's demand at 272 kpc and 5.4 at 637 kpc.
+     And it is still a material continuum, so it cannot interpenetrate: (2) fails too.
+     => Arm S FIRES.
+
+--- Arm M5', the multi-stream escape
+     N mutually transparent, cosmologically MIXED identical elastic constituents: every
+     constituent carries 1/N of the mass and 1/N of the stress, hence the SAME map R(r).
+     In the overlap of two passing halos the preimage of the overlap is, for EACH
+     constituent, TWO disjoint Lagrangian regions: its map is 2-to-1. A material continuum
+     has an injective map, and by continuity det F must vanish on the way: it folds.
+     c_L^2 crosses zero at y = 6/5 and diverges at y = 9/7 (3lam+2mu = J/(7y/3-3)), so
+     the fold is not a benign crossing -- the longitudinal mode is imaginary across it.
+     Segregation by halo (A all in constituent 1, B all in 2) needs one constituent per
+     halo that ever merges: ~10^11 species = labelled dust, and dust has sigma_r^2 >= 0.
+     => The escape closes on itself.  Arm M5' FIRES.
+
+####################################################################################################
+# Q4  what sigma_r^2 < 0 then means
+####################################################################################################
+    canonical log M_b 10.45 : v_inf =  136.8 km/s ; the law requires sigma_r^2 = -9.3525e+03 (km/s)^2 = -(96.7 km/s)^2 = -(v_inf/sqrt2)^2
+    canonical log M_b 10.90 : v_inf =  177.2 km/s ; the law requires sigma_r^2 = -1.5701e+04 (km/s)^2 = -(125.3 km/s)^2 = -(v_inf/sqrt2)^2
+    alt       log M_b 10.45 : v_inf =  143.4 km/s ; the law requires sigma_r^2 = -1.0281e+04 (km/s)^2 = -(101.4 km/s)^2 = -(v_inf/sqrt2)^2
+    alt       log M_b 10.90 : v_inf =  185.8 km/s ; the law requires sigma_r^2 = -1.7260e+04 (km/s)^2 = -(131.4 km/s)^2 = -(v_inf/sqrt2)^2
+
+   (a) Kinetic reading: P_r = int f v_r^2 d^3v is >= 0 for every f >= 0. The law demands
+       P_r = -J < 0, i.e. a NEGATIVE MEASURE: f < 0 on a set carrying second moment
+       |sigma_r^2| = (v_inf/sqrt2)^2, which is -1/2 of the halo's own v_inf^2. No kinetic
+       medium -- cold, warm, hot, collisional, collisionless or anisotropic -- can do this.
+   (b) Maxwell reading: in the deep field
+         sigma = -Pi -> diag(+J, -J, -J) = T[phi],  grad phi = g,
+       i.e. tension ALONG the field equal to the energy density (w_par = -1) and equal
+       transverse pressure: the canonical (Maxwell) stress of a classical field.
+   (c) Therefore: the carrier of the law's static halo is the FIELD. The 'cold dark energy'
+       of form B is that field's polarization charge (phantom mass), and rho_c is NOT a
+       conserved rest-mass density -- M_c(<r) ~ r diverges, which is exactly the amount gap
+       AMT1 measured at the KiDS radii.
+
+====================================================================================================
+VERDICT
+====================================================================================================
+   K1 (strain |u| >> 1, not elastic)   : FIRES
+   K2 (Bullet: homeomorphism / yield)  : FIRES
+   K3 (property 1: no conserved mass)  : FIRES  <-- the price of the only surviving carrier
+   K4 (property 3: a field is not hot) : FIRES
+   K5 (locality is forced)              : FIRES
+   K7 (multi-stream escape)             : FIRES
+   K6 (sound speeds)                    : HOLDS  <-- real, subluminal, no ghost
+
+   WHICH HYPOTHESIS MUST BREAK:  (ii) MOMENTUM-CONSERVING (the medium alone).
+     (i)   LOCAL -- forced. Smoothing the field destroys the equilibrium (Arm N), and
+           locality never touches (2), so dropping it buys nothing there.
+     (iii) NORMALLY SELF-GRAVITATING -- required by (1) and (3). A component whose
+           density does not gravitate is not at full share in clusters (Arm S).
+     (ii)  is the ONLY break compatible with (2): interpenetration forbids a material
+           continuum, and the one carrier of Pi left is a field -- which is not a closed
+           system (it is sourced by, and reacts back on, the baryons).
+   IS IT CONSISTENT WITH THE FOUR PROPERTIES?  Partly, and that is the finding:
+     (2) PASSES, (4) PASSES, (3) FAILS, (1) FAILS -- the carrier is not a substance,
+     so there is no conserved cold 5.41 x baryon component to be carried.
+
+   => the class of media is CLOSED. sigma_r^2 < 0 is a RADIAL TENSION along grad Phi
+      (= the field's Maxwell tension), not a velocity dispersion.
+
+####################################################################################################
+# MUTATION ARM M1
+####################################################################################################
+   planted defect: sigma = +Pi (the sign ELA1's amendment A1 corrected).
+   => sign already flipped for every computation above.
+   mean div(sigma)/(rho_c g) over the 24 rows = -1.000000   (needs +1)
+   rows with c_T^2 < 0 : 24 / 24
+   Q-equilibrium FAILS and the ghost returns (c_T^2 < 0 everywhere).
+   M1 BITES

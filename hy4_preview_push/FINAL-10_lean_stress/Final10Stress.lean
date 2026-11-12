@@ -104,9 +104,9 @@ lemma unit_e2 : dot e2 e2 = 1 := by simp [dot, e2, Fin.sum_univ_three]
 
 /-- Pi_rr = J - g^2/(K(1+u)) -/
 lemma Pi_rr (K a0 g : ℝ) (hg : 0 ≤ g) :
-    PiTensor K a0 (radial g) 0 0 = JF K a0 g - g ^ 2 / (K * (1 + g / a0)) := by
+    PiTensor K a0 (radial g) 0 0 = JF K a0 g - g ^ 2 / (K * (1 + uOf a0 g)) := by
   unfold PiTensor
-  simp [radial, gnorm_radial g hg, uOf]
+  simp [radial, gnorm_radial g hg]
   ring_nf
 
 /-- Pi_tt = J  (index 1 = θ̂) -/
@@ -128,7 +128,7 @@ lemma Pi_tt_eq_Pi_pp (K a0 g : ℝ) (hg : 0 ≤ g) :
 /-- Pi_rr + Pi_tt = 2J - g^2/(K(1+u)) -/
 lemma Pi_rr_add_Pi_tt (K a0 g : ℝ) (hg : 0 ≤ g) :
     PiTensor K a0 (radial g) 0 0 + PiTensor K a0 (radial g) 1 1 =
-      2 * JF K a0 g - g ^ 2 / (K * (1 + g / a0)) := by
+      2 * JF K a0 g - g ^ 2 / (K * (1 + uOf a0 g)) := by
   rw [Pi_rr K a0 g hg, Pi_tt K a0 g hg]
   ring
 
@@ -223,17 +223,17 @@ lemma u_mul_mu (a0 g : ℝ) : uOf a0 g * muOf a0 g = (uOf a0 g) ^ 2 / (1 + uOf a
 /-- the law u·mu = x^2 on the branch -/
 lemma DeepLaw_u_mul_mu (a0 u x : ℝ) (ha0 : 0 < a0) (h : DeepLaw x u) :
     u * muOf a0 (a0 * u) = x ^ 2 := by
-  rw [show uOf a0 (a0 * u) = u from uOf_mul_cancel a0 u (ne_of_gt ha0)]
-  rw [show u * muOf a0 (a0 * u) = u * (uOf a0 (a0 * u) / (1 + uOf a0 (a0 * u))) by rfl]
-  rw [show uOf a0 (a0 * u) = u from uOf_mul_cancel a0 u (ne_of_gt ha0)]
-  rw [h.div_eq]
-  ring
+  unfold muOf
+  have hga : uOf a0 (a0 * u) = u := uOf_mul_cancel a0 u (ne_of_gt ha0)
+  rw [hga, hga]
+  rw [show u * (u / (1 + u)) = u ^ 2 / (1 + u) by ring]
+  exact h.div_eq
 
 /-- the honest residual: R(u) = 2(u - log(1+u)) - u^2/(1+u) -/
-noncomputable def residual (u : ℝ) : ℝ := 2 * u - 2 * Real.log (1 + u) - u ^ 2 / (1 + u)
+noncomputable def residual (u : ℝ) : ℝ := 2 * (u - Real.log (1 + u)) - u ^ 2 / (1 + u)
 
 lemma residual_eq (u : ℝ) :
-    residual u = 2 * (u - Real.log (1 + u)) - u ^ 2 / (1 + u) := by
+    residual u = 2 * u - 2 * Real.log (1 + u) - u ^ 2 / (1 + u) := by
   unfold residual
   ring
 
@@ -255,7 +255,7 @@ lemma stress_sum_on_branch (K a0 u x : ℝ) (ha0 : 0 < a0) (h : DeepLaw x u) :
   rw [Pi_rr_add_Pi_tt K a0 (a0 * u) hg]
   have hga : uOf a0 (a0 * u) = u := uOf_mul_cancel a0 u (ne_of_gt ha0)
   unfold JF
-  simp [hga, uOf]
+  rw [hga]
   rw [← h.div_eq]
   ring_nf
 
@@ -263,9 +263,8 @@ lemma stress_sum_on_branch (K a0 u x : ℝ) (ha0 : 0 < a0) (h : DeepLaw x u) :
 lemma stress_sum_eq_residual (K a0 u x : ℝ) (ha0 : 0 < a0) (h : DeepLaw x u) :
     PiTensor K a0 (radial (a0 * u)) 0 0 + PiTensor K a0 (radial (a0 * u)) 1 1 =
       (a0 ^ 2 / K) * residual u := by
-  rw [stress_sum_on_branch K a0 u x ha0 h]
-  rw [residual_eq u]
-  rw [h.div_eq]
+  rw [stress_sum_on_branch K a0 u x ha0 h, residual_eq u, h.div_eq]
+  ring
 
 /-! ### 2b. The residual is strictly positive (so the claimed identity is FALSE) -/
 
@@ -347,7 +346,7 @@ theorem residual_pos (u : ℝ) (hu : 0 < u) : 0 < residual u := by
 /-- the claimed identity fails -/
 theorem claimed_identity_false (u : ℝ) (hu : 0 < u) :
     2 * (u - Real.log (1 + u)) - u ^ 2 / (1 + u) ≠ 0 := by
-  rw [← residual_eq u]
+  change residual u ≠ 0
   exact ne_of_gt (residual_pos u hu)
 
 /-- the stress sum is strictly positive on the branch -/
@@ -401,9 +400,193 @@ theorem residual_pos_via_sinh (u : ℝ) (hu : 0 < u) : 0 < residual u := by
 
 /-! ### 2d. What Pi_rr/Pi_tt actually equals -/
 
-/-- Pi_rr = (1 - x^2/(u - log(1+u))) · Pi_tt   (u > 0 on the branch). -/
-theorem Pi_rr_eq_ratio_mul_Pi_tt (K a0 u x : ℝ) (hK : K ≠ 0) (h : DeepLaw x u) :
+/-- Pi_tt is nonzero (indeed positive) on the branch, since JF > 0 there. -/
+lemma JF_pos_of_branch (K a0 u : ℝ) (ha0 : 0 < a0) (hK : 0 < K) (hu : 0 < u) :
+    0 < JF K a0 (a0 * u) := by
+  unfold JF
+  have hga : uOf a0 (a0 * u) = u := uOf_mul_cancel a0 u (ne_of_gt ha0)
+  rw [hga]
+  exact mul_pos (div_pos (sq_pos_of_pos ha0) hK) (F_pos u hu)
+
+/-- Pi_rr = (1 - x^2/(u - log(1+u))) · Pi_tt   (u > 0 on the branch).
+
+    So the true ratio is  Pi_rr/Pi_tt = 1 - x^2/(u - log(1+u)):
+    → -1 as x → 0,  and → 0⁻ like -2 log(x)/x^2 as x → ∞. -/
+theorem Pi_rr_eq_ratio_mul_Pi_tt (K a0 u x : ℝ) (ha0 : 0 < a0) (hK : K ≠ 0) (h : DeepLaw x u) :
     PiTensor K a0 (radial (a0 * u)) 0 0 =
       (1 - x ^ 2 / (u - Real.log (1 + u))) * PiTensor K a0 (radial (a0 * u)) 1 1 := by
-  have hg : 0 ≤ a0 * u := mul_nonneg (sub_nonneg.mp (le_of_lt h.1)) -- placeholder
-  sorry
+  have hg : 0 ≤ a0 * u := mul_nonneg (le_of_lt ha0) (le_of_lt h.1)
+  rw [Pi_rr K a0 (a0 * u) hg, Pi_tt K a0 (a0 * u) hg]
+  unfold JF
+  have hga : uOf a0 (a0 * u) = u := uOf_mul_cancel a0 u (ne_of_gt ha0)
+  simp [uOf] at hga ⊢
+  rw [hga]
+  have hterm : (a0 * u) ^ 2 / (K * (1 + u)) = (a0 ^ 2 / K) * (u ^ 2 / (1 + u)) := by
+    ring_nf
+  rw [hterm, h.div_eq]
+  have hF : u - Real.log (1 + u) ≠ 0 := ne_of_gt (F_pos u h.1)
+  field_simp [hF, hK]
+  ring
+
+/-- the ratio as an actual quotient -/
+theorem Pi_rr_div_Pi_tt (K a0 u x : ℝ) (ha0 : 0 < a0) (hK : 0 < K) (h : DeepLaw x u) :
+    PiTensor K a0 (radial (a0 * u)) 0 0 / PiTensor K a0 (radial (a0 * u)) 1 1 =
+      1 - x ^ 2 / (u - Real.log (1 + u)) := by
+  have hJne : JF K a0 (a0 * u) ≠ 0 :=
+    ne_of_gt (JF_pos_of_branch K a0 u ha0 hK h.1)
+  have hg : 0 ≤ a0 * u := mul_nonneg (le_of_lt ha0) (le_of_lt h.1)
+  rw [Pi_tt K a0 (a0 * u) hg]
+  rw [Pi_rr_eq_ratio_mul_Pi_tt K a0 u x (ne_of_gt hK) h]
+  field_simp [hJne]
+
+/-! ## 3. Isotropic pressure limit (target 3) -/
+
+/-- G(u) := u^2/2 - u + log(1+u) = 6·(u^2/2 - (u - log(1+u)))...
+    (scaled by 6 to keep the algebra integral) -/
+noncomputable def isoG (u : ℝ) : ℝ := 3 * u ^ 2 - 6 * u + 6 * Real.log (1 + u)
+
+/-- H(u) := 2u^3 - G(u)  (i.e. 6·(u^3/3 - (u^2/2 - u + log(1+u))) ) -/
+noncomputable def isoH (u : ℝ) : ℝ := 2 * u ^ 3 - isoG u
+
+lemma isoG_zero : isoG 0 = 0 := by
+  unfold isoG
+  norm_num
+
+lemma isoH_zero : isoH 0 = 0 := by
+  unfold isoH
+  rw [isoG_zero]
+  ring
+
+lemma hasDerivAt_isoG (x : ℝ) (hx : 0 < x) :
+    HasDerivAt isoG (6 * x ^ 2 / (1 + x)) x := by
+  have h1p : (1 + x : ℝ) ≠ 0 := by linarith
+  have hsq : HasDerivAt (fun t : ℝ => t ^ 2) (2 * x) x := hasDerivAt_sq x
+  have h3t2 : HasDerivAt (fun t : ℝ => 3 * t ^ 2) (3 * (2 * x)) x := hsq.const_mul 3
+  have h6t : HasDerivAt (fun t : ℝ => 6 * t) (6 * 1) x := (hasDerivAt_id x).const_mul 6
+  have hlog : HasDerivAt (fun t : ℝ => Real.log (1 + t)) (1 / (1 + x)) x :=
+    hasDerivAt_log_one_add x h1p
+  have h6log : HasDerivAt (fun t : ℝ => 6 * Real.log (1 + t)) (6 * (1 / (1 + x))) x :=
+    hlog.const_mul 6
+  have h := (h3t2.sub h6t).add h6log
+  change HasDerivAt (fun t : ℝ => 3 * t ^ 2 - 6 * t + 6 * Real.log (1 + t))
+      (6 * x ^ 2 / (1 + x)) x
+  convert h using 1
+  · field_simp [h1p]
+    ring
+
+lemma hasDerivAt_isoH (x : ℝ) (hx : 0 < x) :
+    HasDerivAt isoH (6 * x ^ 3 / (1 + x)) x := by
+  have h1p : (1 + x : ℝ) ≠ 0 := by linarith
+  have hG := hasDerivAt_isoG x hx
+  have hcu : HasDerivAt (fun t : ℝ => t ^ 3) (3 * x ^ 2) x := hasDerivAt_cube x
+  have h2cu : HasDerivAt (fun t : ℝ => 2 * t ^ 3) (2 * (3 * x ^ 2)) x := hcu.const_mul 2
+  have h := h2cu.sub hG
+  change HasDerivAt (fun t : ℝ => 2 * t ^ 3 - isoG t) (6 * x ^ 3 / (1 + x)) x
+  convert h using 1
+  · field_simp [h1p]
+    ring
+
+lemma isoG_monoOn : MonotoneOn isoG (Set.Ici (0 : ℝ)) := by
+  refine monotoneOn_of_deriv_nonneg (convex_Ici (0 : ℝ)) ?hcont ?hdiff ?hnonneg
+  · -- continuous on [0,∞) (log(1+u) is: 1+u ≥ 1 there)
+    unfold isoG
+    refine ContinuousOn.add ?hpoly ?hlogc
+    · fun_prop
+    · refine ContinuousOn.log ?hlin ?hne
+      · fun_prop
+      · intro x hx
+        linarith
+  · -- differentiable on (0,∞)
+    intro x hx
+    have hx0 : 0 < x := by simpa [interior_Ici] using hx
+    exact (hasDerivAt_isoG x hx0).differentiableAt
+  · intro x hx
+    have hx0 : 0 < x := by simpa [interior_Ici] using hx
+    rw [(hasDerivAt_isoG x hx0).deriv]
+    exact div_nonneg (mul_nonneg (by norm_num) (sq_nonneg x)) (by linarith : (0 : ℝ) ≤ 1 + x)
+
+lemma isoH_monoOn : MonotoneOn isoH (Set.Ici (0 : ℝ)) := by
+  refine monotoneOn_of_deriv_nonneg (convex_Ici (0 : ℝ)) ?hcont ?hdiff ?hnonneg
+  · unfold isoH
+    refine ContinuousOn.sub ?hcube ?hG
+    · fun_prop
+    · unfold isoG
+      refine ContinuousOn.add ?hpoly ?hlogc
+      · fun_prop
+      · refine ContinuousOn.log ?hlin ?hne
+        · fun_prop
+        · intro x hx
+          linarith
+  · intro x hx
+    have hx0 : 0 < x := by simpa [interior_Ici] using hx
+    exact (hasDerivAt_isoH x hx0).differentiableAt
+  · intro x hx
+    have hx0 : 0 < x := by simpa [interior_Ici] using hx
+    rw [(hasDerivAt_isoH x hx0).deriv]
+    have hx3 : 0 ≤ x ^ 3 := by nlinarith [le_of_lt hx0]
+    exact div_nonneg (mul_nonneg (by norm_num) hx3) (by linarith : (0 : ℝ) ≤ 1 + x)
+
+/-- u^2/2 - (u - log(1+u)) ≥ 0, i.e. the isotropic deficit is one-sided -/
+lemma isoG_nonneg (u : ℝ) (hu : 0 ≤ u) : 0 ≤ isoG u := by
+  have hle : isoG 0 ≤ isoG u :=
+    isoG_monoOn (by simp : (0 : ℝ) ∈ Set.Ici (0 : ℝ))
+      (show u ∈ Set.Ici (0 : ℝ) from hu) hu
+  simpa [isoG_zero] using hle
+
+lemma isoH_nonneg (u : ℝ) (hu : 0 ≤ u) : 0 ≤ isoH u := by
+  have hle : isoH 0 ≤ isoH u :=
+    isoH_monoOn (by simp : (0 : ℝ) ∈ Set.Ici (0 : ℝ))
+      (show u ∈ Set.Ici (0 : ℝ) from hu) hu
+  simpa [isoH_zero] using hle
+
+/-- THE ISOTROPIC LIMIT, machine-checked with an explicit constant:
+      | (u - log(1+u)) - u^2/2 |  ≤  u^3/3      for every u ≥ 0.
+    Hence  u - log(1+u) = u^2/2 + O(u^3), i.e. J = g^2/(2K) + O(u^3). -/
+theorem isotropic_bound (u : ℝ) (hu : 0 ≤ u) :
+    |(u - Real.log (1 + u)) - u ^ 2 / 2| ≤ u ^ 3 / 3 := by
+  have hG0 : 0 ≤ isoG u := isoG_nonneg u hu
+  have hH0 : 0 ≤ isoH u := isoH_nonneg u hu
+  have habs : |(u - Real.log (1 + u)) - u ^ 2 / 2| = isoG u / 6 := by
+    have hnonpos : (u - Real.log (1 + u)) - u ^ 2 / 2 ≤ 0 := by
+      unfold isoG at hG0
+      linarith
+    rw [abs_of_nonpos hnonpos]
+    unfold isoG
+    ring
+  rw [habs]
+  have hle : isoG u ≤ 2 * u ^ 3 := by
+    unfold isoH at hH0
+    linarith
+  nlinarith
+
+/-- the same statement in physical units: |J - g^2/(2K)| ≤ (a0^2/K)·u^3/3 -/
+theorem J_isotropic_bound (K a0 g : ℝ) (ha0 : 0 < a0) (hK : 0 < K) (hg : 0 ≤ g) :
+    |JF K a0 g - g ^ 2 / (2 * K)| ≤ (a0 ^ 2 / K) * (g / a0) ^ 3 / 3 := by
+  rw [JF_sub_g2_div_2K K a0 g (ne_of_gt ha0)]
+  have hb := isotropic_bound (g / a0) (div_nonneg hg (le_of_lt ha0))
+  rw [uOf] at hb
+  rw [abs_mul, abs_of_nonneg (div_nonneg (sq_nonneg a0) (le_of_lt hK))]
+  exact mul_le_mul_of_nonneg_left hb (div_nonneg (sq_nonneg a0) (le_of_lt hK))
+
+/-! ### 3b. ρ_c σ² ≡ J -/
+
+/-- The cold (collisionless) component's isotropic pressure ρ_c σ² is *defined* to be J;
+    the identification is therefore definitional (rfl), and it is consistent with
+    target (3) because J = g^2/(2K) + O(u^3). -/
+noncomputable def rhoSigmaSq (K a0 g : ℝ) : ℝ := JF K a0 g
+
+theorem rho_sigma_sq_eq_J (K a0 g : ℝ) : rhoSigmaSq K a0 g = JF K a0 g := rfl
+
+/-- consistency: in the isotropic limit ρ_c σ² = g^2/(2K) + O(u^3) -/
+theorem rho_sigma_sq_isotropic (K a0 g : ℝ) (ha0 : 0 < a0) (hK : 0 < K) (hg : 0 ≤ g) :
+    |rhoSigmaSq K a0 g - g ^ 2 / (2 * K)| ≤ (a0 ^ 2 / K) * (g / a0) ^ 3 / 3 := by
+  exact J_isotropic_bound K a0 g ha0 hK hg
+
+/-- the trace of the stress: tr Π = 3J - g^2/(K(1+u)) -/
+lemma trace_Pi (K a0 g : ℝ) (hg : 0 ≤ g) :
+    PiTensor K a0 (radial g) 0 0 + PiTensor K a0 (radial g) 1 1 + PiTensor K a0 (radial g) 2 2 =
+      3 * JF K a0 g - g ^ 2 / (K * (1 + g / a0)) := by
+  rw [Pi_rr K a0 g hg, Pi_tt K a0 g hg, Pi_pp K a0 g hg]
+  ring
+
+end Final10

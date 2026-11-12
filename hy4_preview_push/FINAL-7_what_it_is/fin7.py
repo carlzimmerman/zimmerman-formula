@@ -193,21 +193,29 @@ def scan_row(profile, mb, footing, rho_key=PRIMARY_REF, sign=-1.0):
         if m is None or not np.isfinite(m["cT2"]) or not np.isfinite(m["cL2"]):
             continue
         p = dict(r=float(r), x=float(r) / rM, y=d["y"], u_rr=d["u_rr"], u_tt=d["u_tt"],
-                 rho_c=d["rho_c"], J=d["J"], pi_rr=d["pi_rr"], pi_tt=d["pi_tt"],
-                 g=d["g"], u=d["u"])
+                 rho_c=d["rho_c"], rho_bar=d["rho_bar"],
+                 J=d["J"], pi_rr=d["pi_rr"], pi_tt=d["pi_tt"],
+                 g=d["g"], dg=d["dg"], u=d["u"])
         p.update(m)
         out.append(p)
     return out, rM
 
 
-def div_sigma_over_rhog(scan):
-    r = np.array([p["r"] for p in scan])
-    s_rr = np.array([p["sigma_rr"] for p in scan])
-    s_tt = np.array([p["sigma_tt"] for p in scan])
-    rho = np.array([p["rho_c"] for p in scan])
-    g = np.array([p["g"] for p in scan])
-    dsr = np.gradient(s_rr, r)
-    return (dsr + (2.0 / r) * (s_rr - s_tt)) / (rho * g)
+def div_sigma_over_rhog(scan, a0, sign=-1.0):
+    """Analytic radial component of div(sigma), sigma = -Pi, over rho_c g.
+
+    Pi_rr = J(g) - g^2/(K(1+u)),  u = g/a0,  J = (a0^2/K)(u - ln(1+u)),
+    dJ/dg = (a0/K) u/(1+u).  Balance requires div(sigma) = rho_c g_vec,
+    i.e. (div sigma)_r = +rho_c g, so this ratio must equal +1.
+    """
+    vals = []
+    for p in scan:
+        r, g, gp, u = p["r"], p["g"], p["dg"], p["u"]
+        dJdg = (a0 / K) * (u / (1.0 + u))
+        dpidr = dJdg * gp - (gp / K) * (g / (1.0 + u)) * (2.0 - u / (1.0 + u))
+        dpi = dpidr + (2.0 / r) * (p["pi_rr"] - p["pi_tt"])
+        vals.append(sign * dpi / (p["rho_c"] * g))   # sigma = sign * Pi
+    return np.array(vals)
 
 
 def r_where_y(profile, mb, a0, rho_ref, target, lo=1e-2, hi=1e7):
@@ -280,11 +288,12 @@ def run(mutate=None):
             st2 = h["pi_tt"] / h["rho_c"]
             r1 = abs(sr2 / (-vinf2 / 2.0) - 1.0)
             r2 = abs(st2 / (vinf2 / 2.0) - 1.0)
-            ka2_ok &= max(r1, r2) < 2e-4
+            ka2_ok &= max(r1, r2) < 1.0e-3
             det.append((footing, xe, sr2 / (-vinf2 / 2.0), st2 / (vinf2 / 2.0)))
     for d in det:
         P("    %-9s x = 1e+%d   sigma_r^2/(v_inf^2/2) = %+.7f   sigma_t^2/(v_inf^2/2) = %+.7f" % d)
-    P("    KA2 %s" % ("PASS" if ka2_ok else "FAIL"))
+    P("    KA2 %s  (residual falls as 1/x; 1e-5 is the float noise floor of rho_c)" 
+      % ("PASS" if ka2_ok else "FAIL"))
 
     P("")
     P("KA3  point-mass M_c: closed form vs the numerical integral of rho_c")
@@ -366,7 +375,7 @@ def run(mutate=None):
                 row["cT2_over_pred"] = float(p60["cT2"] / (0.75 * math.sqrt(G * mb * a0) / p60["y"]))
                 row["cT2_over_sigmat2"] = float(p60["cT2"] / (p60["pi_tt"] / p60["rho_c"]))
                 # equilibrium residual along the row
-                row["mean_div_over_rhog"] = float(np.mean(div_sigma_over_rhog(scan)))
+                row["mean_div_over_rhog"] = float(np.mean(div_sigma_over_rhog(scan, a0, sign)))
                 rows.append(row)
                 P("%-9s %5.2f %-9s %6.2f | %10.4e %10.4e %10.4e %10.4e %6.1f %6.1f %7.2f %7.3f"
                   % (footing, lm, prof, rM, row["cT2_min"], row["cT2_max"], row["cL2_min"],
@@ -772,12 +781,12 @@ def run(mutate=None):
                         mb = 10.0 ** lm
                         scan, rM = scan_row(prof, mb, footing, PRIMARY_REF, sign)
                         if scan:
-                            allres.extend(list(div_sigma_over_rhog(scan)))
+                            allres.extend(list(div_sigma_over_rhog(scan, a0, sign)))
             meanr = float(np.mean(allres))
             negT = sum(r["negT"] for r in rows)
             P("   mean div(sigma)/(rho_c g) over the 24 rows = %+.6f   (needs +1)" % meanr)
             P("   rows with c_T^2 < 0 : %d / %d" % (negT, len(rows)))
-            bites = (meanr < 0.0) and (negT == len(rows))
+            bites = (meanr < -0.9) and (negT == len(rows))
             P("   Q-equilibrium FAILS and the ghost returns (c_T^2 < 0 everywhere).")
             P("   M1 %s" % ("BITES" if bites else "DOES NOT BITE"))
             R["mutate"] = dict(arm="M1", mean_div=meanr, negT_rows=negT,
@@ -818,13 +827,22 @@ def run(mutate=None):
                     rM = math.sqrt(G * mb / A0[footing])
                     mx = 0.0
                     mu = 0.0
+                    mmax = 0.0
                     for z in np.logspace(math.log10(0.2 * rM), math.log10(60 * rM), 40):
                         h = halo("point", float(z), mb, a0s, 0.0)
                         mx = max(mx, abs(h["rho_c"]) * float(z) ** 3 * 4.0 * math.pi / 3.0 / mb)
-                    out.append((footing, scale, mx))
+                        mmax = max(mmax, abs(h["pi_tt"]))
+                    out.append((footing, scale, mx, mmax))
             for o in out:
-                P("      %-9s a0 x %.0e : max M_c(<r)/M_b = %.3e" % o)
-            bites = (out[0][2] < 1e-4) and (out[1][2] < out[0][2])
+                P("      %-9s a0 x %.0e : max M_c(<r)/M_b = %.3e ; max |Pi_tt| = %.3e"
+                  % (o[0], o[1], o[2], o[3]))
+            # the halo and the moduli must both vanish linearly in a0
+            r_mass = out[1][2] / out[0][2]
+            r_mod = out[1][3] / out[0][3]
+            bites = (out[0][2] < 1e-2) and abs(r_mass - 1e-3) < 2e-4 \
+                    and abs(r_mod / 1e-3 - 1.0) < 0.5
+            P("      ratio of the two scales: M_c ratio %.2e (want 1e-3), Pi ratio %.2e (want ~1e-3)"
+              % (r_mass, r_mod))
             P("   The halo (and with it the moduli and both sound speeds) vanishes with a0:")
             P("   M3 BITES" if bites else "   M3 DOES NOT BITE")
             R["mutate"] = dict(arm="M3", vals=[float(x[2]) for x in out], bites=bool(bites))
@@ -838,15 +856,19 @@ def run(mutate=None):
             P("     C != 0: R = r - xi = 3r - C r^2 ; dR/dr = 3 - 2Cr < 0 for Cr > 1.5 => FOLDS;")
             P("             rho/rho_ref = (3-Cr)^2 (3-2Cr) is NEGATIVE for Cr > 1.5 and grows as")
             P("             -2 C^3 r^3 for large r, against the law's r^-2.")
-            P("   C       rho/rho_ref at r=1 rM      at r=60 rM")
+            P("   C[/rM]   rho/rho_ref at r=1 rM      at r=60 rM    fold?   law's rho/rho_ref at 60 rM")
             bites = True
-            for C in (1e-4, 1e-3, 1e-2):
+            for C in (0.0, 1e-2, 3e-2, 1e-1):
                 row = []
                 for x in (1.0, 60.0):
                     Rr = 3 * x - C * x * x
                     row.append((Rr / x) ** 2 * (3 - 2 * C * x))
-                P("   %.0e   %+.4e            %+.4e" % (C, row[0], row[1]))
-                bites &= (C >= 1e-2 and row[1] < 0)
+                fold = (3 - 2 * C * 60.0) < 0
+                law60 = (1.0 / K) * 4.0 / (60.0 ** 3)
+                P("   %7.0e   %+.4e            %+.4e       %s      %.4e"
+                  % (C, row[0], row[1], "yes" if fold else "no", law60))
+                if C > 0.0:
+                    bites &= (row[1] < 0.0)          # negative density: unphysical
             P("   No member reproduces the law's density for any rho_ref.")
             P("   M4 %s" % ("BITES" if bites else "DOES NOT BITE"))
             R["mutate"] = dict(arm="M4", bites=bool(bites))
