@@ -1,0 +1,199 @@
+FINAL6 (KAPPA): is kappa an OUTPUT of the formation reading?   MUTATE = True
+     criteria FROZEN_CRITERIA.md (cbba716d05).  kappa = 1/2 FITTED; not theory closed.  Adopts nothing.
+
+=== BACKGROUND (Planck 2018 TT,TE,EE+lowE+lensing; reported, not graded) ===
+  H0 = 67.36 km/s/Mpc = 2.182989e-18 1/s      c H0 = 6.544436e-10 m/s^2
+  Omega_m = 0.3153  Omega_Lambda = 0.6847  Omega_b = 0.0493  Omega_c = 0.26445
+  rho_crit,0 = 8.522730e-27 kg/m^3
+  rho_Lambda  = 5.835513e-27 kg/m^3      rho_m,0 = 2.687217e-27 kg/m^3
+  f_cdm = Omega_c/Omega_b = 5.364000  (record's adopted 5.3640)     f_b = 0.156359
+  z(rho_m = rho_Lambda)   = 0.294967
+  z(rho_m = 2 rho_Lambda) = 0.631556
+
+=== K1: dimensional closure (sympy, exact) ===
+  exponent matrix (rows L, M, T; cols G, c, rho, M) =
+    [[3, 1, -3, 0], [-1, 0, 1, 1], [-2, -1, 0, 0]]
+  rank = 3 of 4 unknowns  -> solution space dimension = 1
+  particular solution (g = 0)  (a, b, g, m) = [-1, 4, 0, -1]   [= c^4 / (G M)]
+  nullspace direction (normalised on rho) = [3, -6, 1, 2]   [= G^3 rho M^2 / c^6 = (G M sqrt(G rho)/c^3)^2, dimensionless]
+  general monomial exponents  (a, b, g, m) = [3*t - 1, 4 - 6*t, t, 2*t - 1]
+  mass-independence (m = 2t - 1 = 0) requires t = 1/2; then (a, b, g, m) = [1/2, 1, 1/2, 0]  -> c^1 G^(1/2) rho^(1/2) M^0 = c sqrt(G rho)
+  rank==3: True | nullspace == (3,-6,1,2): True | t=1/2 -> (1/2,1,1/2,0): True
+  m(t) = 0 has the single root t = 1/2 : True
+  K1 PASS: True
+  ---> Q1 (form): universality (no M in a_0) forces a_0 = Phi * c sqrt(G rho_*) UNIQUELY.
+       Which rho_* is, and Phi (=kappa) is, are separate questions. K1 does not touch either.
+
+=== K2: what the two footings are (kappa, both readings, both footings) ===
+  Reading A -- the record's tie: rho_ref = 4 a0^2/(c^2 G) is the cosmic density the footing uses.
+  Reading B -- the fitted a0 taken as data: kappa = a0_fit / (c sqrt(G rho_cosm)).
+
+  footing       a0 [m/s^2]      rho_ref  rho_ref/rho_Lam  rho_ref/rho_crit   Z=cH/a0
+  canonical    9.36030e-11  5.84241e-27         1.001183          0.685510   5.78881
+  alt          1.13120e-10  8.53280e-27         1.462220          1.001182   5.78881
+
+  kappa under each reading (kappa = 1/2 is the record's adopted value):
+    footing       A: vs rho_ref    B: vs rho_cosm
+    canonical          0.500000          0.500296
+    alt                0.500000          0.500295
+
+  |kappa_A - 1/2| = 0.00e+00 (can), 0.00e+00 (alt)   -> both <= 5e-3: True
+  |kappa_A(can) - kappa_A(alt)| = 0.00e+00                   -> <= 1e-3: True
+  K2 PASS: True
+  ---> The two fitted a0 values encode ONE posited kappa = 1/2 under two density
+       conventions (canonical = rho_Lambda, alt = rho_crit). Neither footing is a
+       MEASUREMENT of kappa; the 20 % spread is the rho convention, not kappa.
+
+=== K3: kappa = Phi(dimensionless formation data) -- the frozen scan ===
+  Under F2+F3, kappa must be a pure number built from the dimensionless formation data.
+  Frozen list of closed forms in {delta_c, Delta_v, f_cdm, f_b, OL/OM, X, pi}. None is
+  DERIVED from any equation of F; each is an asserted functional form. Printed to show that
+  no natural form lands on 1/2 within the 5 % band.
+    form                                    value   dev from 1/2  in 5% band
+    1/delta_c                            0.593120        +0.1862  False
+    1/(2 delta_c)                        0.296560        -0.4069  False
+    delta_c/pi                           0.536670        +0.0733  False
+    f_b                                  0.156359        -0.6873  False
+    sqrt(f_b)                            0.395423        -0.2092  False
+    1/f_cdm                              0.186428        -0.6271  False
+    1/sqrt(f_cdm)                        0.431773        -0.1365  False
+    (Delta_v/18)^(1/3)                   2.146426        +3.2929  False
+    delta_c^2/(2 pi^2)                   0.144008        -0.7120  False
+    3/(4 pi)                             0.238732        -0.5225  False
+    3/5  (uniform virial)                0.600000        +0.2000  False
+    1/(2 pi)                             0.159155        -0.6817  False
+    sqrt(3/(8 pi))                       0.345494        -0.3090  False
+    sqrt(3/32)                           0.306186        -0.3876  False
+    X^(-1/2) (can)                       0.129656        -0.7407  False
+    X^(-1/2) delta_c/2 (can)             0.109300        -0.7814  False
+    (OL/OM)/4                            0.542896        +0.0858  False
+    f_cdm * f_b                          0.838710        +0.6774  False
+    1/(2 sqrt 2)  (accel-epoch)          0.353553        -0.2929  False
+    1/2  (the claim itself)              0.500000        +0.0000  True
+
+  forms inside the 5% band: ['1/2  (the claim itself)']
+  K3 verdict: no route PASSES. A band hit is a numerological identity, not a derivation -- there
+  is no equation in F that evaluates Phi. K3 PASS requires DERIVED, and none of these is derived.
+
+=== K4: the matching condition -- the one quantitative output of the reading ===
+  F2 with rho_* = rho_m(z_f):   a_0 = kappa * c * sqrt(G rho_m(z_f)),   rho_m(z) = rho_m,0 (1+z)^3
+  => required freeze-out redshift per footing (kappa = 1/2):
+       1 + z_f = ( rho_ref / (Omega_m rho_crit,0) )^{1/3}
+  and the inverse trade:
+       kappa(z_f) = a_0 / (c sqrt(G rho_m(z_f))) = (1/2) * ( rho_ref/rho_m(z_f) )^{1/2}
+
+    footing      rho_ref/rho_m0   z_f required     z(matter=Lam)
+    canonical          2.174151       0.295478          0.294967
+    alt                3.175331       0.469816          0.294967
+
+  The trade, canonical footing, kappa -> required z_f (and beta = rho_m(z_f)/rho_Lambda):
+       kappa   rho_* [kg/m^3]  beta=rho_*/rho_Lam        z_f  verdict
+      0.2500      2.33697e-26             4.00473     0.5880  past: allowed
+      0.3333      1.31454e-26             2.25266     0.3109  past: allowed
+      0.5000      5.84241e-27             1.00118     0.0004  past: allowed
+      0.7071      2.92126e-27             0.50060    -0.2060  FUTURE: excluded
+      1.0000      1.46060e-27             0.25030    -0.3698  FUTURE: excluded
+      2.0000      3.65151e-28             0.06257    -0.6030  FUTURE: excluded
+
+  [canonical] freeze-out defined at rho_m = rho_Lambda  -> kappa = 0.50000
+  [canonical] freeze-out defined at rho_m = 2 rho_Lambda -> kappa = 0.35355
+  [canonical] shift = -0.1505 dex   vs footing spread 0.0411 dex  ->  exceeds by 3.66x
+  [alt] freeze-out defined at rho_m = rho_Lambda  -> kappa = 0.50000
+  [alt] freeze-out defined at rho_m = 2 rho_Lambda -> kappa = 0.35355
+  [alt] shift = -0.1505 dex   vs footing spread 0.0411 dex  ->  exceeds by 3.66x
+
+  consistency (0 <= z_f <= 3) on both footings: True   [z_f = 0.2955, 0.4698]
+  K4 consistency PASS: True
+  K4 as a DERIVATION: FAIL  (sensitivity 0.1505 dex vs allowed 0.0411 dex)
+  ---> kappa = 1/(2 sqrt(beta)): kappa = 1/2 is EXACTLY the statement beta = 1, i.e. freezing at
+       matter--Lambda equality. That is a restatement of the fitted value, not a derivation of it:
+       the shutdown epoch is asymptotic, so beta is not fixed by the dynamics.
+
+=== K5: the two routes that set the scale from the halo itself, graded on universality ===
+  R-A (internal-acceleration route). BTFR v_f^4 = G M_b a_0 with M_b = f_b M_vir, plus virial v_f^2 = G M_vir/R_vir:
+        a_0 = f_b^(-1) * G M_vir / R_vir^2
+      with M_vir = (4 pi/3) Delta_v rho_crit(z) R_vir^3  =>  a_0 = f_b^(-1) (4pi/3)^(2/3) Delta_v^(2/3) G M_vir^(1/3) rho_crit^(2/3)
+  R-B (catchment-saturation route). Settled region exhausts the catchment, R_set = R_c with M_b = (4 pi/3) R_c^3 rho_b:
+        a_0 = f_cdm^2 (4 pi/3)^(2/3) G M_b^(1/3) rho_b^(2/3)
+  Both have the Buckingham form G rho^(2/3) M^(1/3)  (p = 1/6):  MASS DEPENDENT (a_0 ∝ M^(1/3)).
+
+  [canonical]  a0_fit = 9.36030e-11 m/s^2
+        M_b [Msun]       R-A a0    R-A log10(a0/a0fit)       R-B a0    R-B log10(a0/a0fit)
+           1.0e+08   8.5477e-13                -2.0394   1.6339e-14                -3.7581
+           1.0e+10   3.9675e-12                -1.3728   7.5840e-14                -3.0914
+           6.0e+10   7.2094e-12                -1.1134   1.3781e-13                -2.8320
+           1.0e+12   1.8415e-11                -0.7061   3.5202e-13                -2.4247
+      spread over 1e8 -> 1e12 Msun (4 decades):  R-A = 1.333 dex,  R-B = 1.333 dex
+      at M_b = 6e10 Msun:  R-A a0/a0_fit = 7.7021e-02 (-1.113 dex),  R-B a0/a0_fit = 1.4723e-03 (-2.832 dex)
+
+  [alt]  a0_fit = 1.13120e-10 m/s^2
+        M_b [Msun]       R-A a0    R-A log10(a0/a0fit)       R-B a0    R-B log10(a0/a0fit)
+           1.0e+08   8.5477e-13                -2.1217   1.6339e-14                -3.8403
+           1.0e+10   3.9675e-12                -1.4550   7.5840e-14                -3.1736
+           6.0e+10   7.2094e-12                -1.1956   1.3781e-13                -2.9143
+           1.0e+12   1.8415e-11                -0.7884   3.5202e-13                -2.5070
+      spread over 1e8 -> 1e12 Msun (4 decades):  R-A = 1.333 dex,  R-B = 1.333 dex
+      at M_b = 6e10 Msun:  R-A a0/a0_fit = 6.3732e-02 (-1.196 dex),  R-B a0/a0_fit = 1.2183e-03 (-2.914 dex)
+
+  worst predicted spread = 1.333 dex   (threshold 0.5) -> FAIL universality: True
+  worst absolute miss    = 2.914 dex   (threshold 0.5) -> FAIL size:         True
+  K5 verdict: REFUTED
+  ---> Any closing condition that takes the scale from the halo's own M and R makes a_0 ∝ M^(1/3):
+       a factor 10^1.33 across four decades of galaxy mass, against an observed non-universality
+       of 0.041 dex. Formation-per-galaxy is excluded; only a GLOBAL shutdown epoch survives, and
+       that is exactly the statement rho_* = rho_Lambda.
+
+=== K6: the cosmic-budget closure (reported, VACUOUS) ===
+  Integrated over a volume V:  total phantom = f * rho_b * V  and  f := Omega_c/Omega_b (a definition).
+  The cosmic supply is  Omega_c rho_crit V = f * (Omega_b / Omega_m) * Omega_m rho_crit V = f * rho_b V.
+  Identity: total phantom - supply = 0   for every f, rho_b, V -- it contains no kappa.
+  K6: VACUOUS. Not used for a label.
+
+=== K7: the epoch-evolution discriminator (reported, not graded) ===
+  Under F2 a law frozen at the event inherits the time dependence of the density the event imprints:
+    rho_* = rho_Lambda (constant)  ->  a_0 independent of epoch;
+    rho_* = rho_crit(z)            ->  a_0(z)/a_0(0) = E(z).
+
+         z       E(z)  a0(z)/a0(0) CAN  a0(z)/a0(0) ALT
+      0.30    1.17363          1.00000          1.17363
+      0.50    1.32244          1.00000          1.32244
+      1.00    1.79084          1.00000          1.79084
+      2.00    3.03279          1.00000          3.03279
+      6.00   10.43229          1.00000         10.43229
+
+  K7: the formation reading turns the two footing *conventions* into two *hypotheses* about a_0(z).
+  FINAL2's bound on any a_0(z) is the arbiter and FINAL2's own verdict stands; not re-graded here.
+
+=== KNOWN ANSWERS ===
+  [canonical] Z = 5.788810  vs sqrt(32 pi/3) = 5.788810  -> |dZ| = 0.00e+00
+          rho_ref/rho_Lambda = 1.001183   rho_ref/rho_crit,0 = 0.685510
+          R_set = (1+X) r_M = 571.7395 kpc at M_b = 6e10 Msun   (R_set/r_M = 60.486100)
+          g_N at R_set = a_0/(1+X)^2 = 2.55846e-14 m/s^2   (deep-regime consistency)
+  [alt] Z = 5.788810  vs sqrt(32 pi/3) = 5.788810  -> |dZ| = 0.00e+00
+          rho_ref/rho_Lambda = 1.462220   rho_ref/rho_crit,0 = 1.001182
+          R_set = (1+X) r_M = 520.2283 kpc at M_b = 6e10 Msun   (R_set/r_M = 60.502900)
+          g_N at R_set = a_0/(1+X)^2 = 3.09020e-14 m/s^2   (deep-regime consistency)
+
+  KA-1 (Z = sqrt(32 pi/3), tolerance 1e-4, both footings): PASS
+  KA-2 (canonical = rho_Lambda, alt = rho_crit, tolerance 2e-3): PASS
+  KA-3 (R_set = (1+X) r_M, PD1's X): printed above; FINAL4 states no numeric r_ta to compare, so
+       this item is verified structurally (R_set/r_M = 1+X exactly, and g_N(R_set) = a_0/(1+X)^2)
+       instead of against an external number. Recorded as a deviation from the criteria text.
+
+=== MUTATE ===
+  MU1 [canonical] kappa = 1  -> required rho_* = 1.46060e-27  -> z_f = -0.1839   (must be < -0.05): True
+  MU1 [alt] kappa = 1  -> required rho_* = 2.13320e-27  -> z_f = -0.0741   (must be < -0.05): True
+  MU2 [canonical vs rho_crit] kappa = 0.413978 -> |kappa - 1/2| = 0.0860   (must be > 0.05): True
+  MU3 [p = 1/6] a_0(1e12)/a_0(1e8) = 21.544 = 1.333 dex   (must be > 0.5 dex): True
+  MUTATE all bite: True
+
+=== LABELS ===
+  Q1 (form):   OUTPUT.  Universality forces a_0 = Phi * c sqrt(G rho_*) (K1, exact), and the
+               requirement that the frozen normalisation not drift forces rho_* = rho_Lambda:
+               the formation reading SELECTS THE CANONICAL FOOTING over the alt footing.
+  Q2 (coeff):  NOT DERIVED.  kappa = Phi is a pure number (K1) that no equation of F evaluates
+               (K3: no route passes), and the concrete closing conditions are either circular
+               (kappa -> z_f trade, K4) or excluded (halo-scale routes, K5: 1.33 dex spread).
+
+  LANE LABEL: KAPPA NOT DERIVED (FITTED)  + FORMATION REFUTED (per-galaxy)
+  kappa = 1/2 FITTED; not theory closed.  Adopts nothing.
