@@ -45,6 +45,12 @@ value -- i.e. kappa = 1/2 is the *definition of a footing convention*, not a dat
 Known answers **KA-1 .. KA-4 all PASS** (Z = sqrt(32 pi/3) = 5.788810 to 0.00e+00 on both footings;
 rho_ref(can)/rho_L = 1.001183; rho_ref(alt)/rho_crit,0 = 1.001182; the quadratic closes to 1.4e-16).
 
+**Lean** (`FINAL16.lean`, `compile.txt`, exit 0, 51 s): four theorems, zero `sorry`, no new axioms --
+`XL_quadratic` (KA-3, the formation law is the positive root of `g X (1+X) = a0`), `XL_covariant`
+(J1 i, invariance under `(a0,g) -> (lam*a0, lam*g)`), `XL_quadratic_weight` (J1 ii, the quadratic
+carries weight 1, so `kappa -> lam*kappa`), `ratio_invariant` (J1 iii, the law is a function of `a0/g`
+alone -- which is precisely why no kappa can be extracted from it).
+
 ---
 
 ## 1. What the formation reading DOES output (Q1 = YES)

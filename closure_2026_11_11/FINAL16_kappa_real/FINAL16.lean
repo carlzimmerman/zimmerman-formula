@@ -49,7 +49,6 @@ theorem XL_covariant (a0 g lam : ℝ) (hg : g ≠ 0) (hl : lam ≠ 0) :
   unfold XL
   have h : 4 * (lam * a0) / (lam * g) = 4 * a0 / g := by
     field_simp [hl, hg]
-    ring
   rw [h]
 
 /-- (J1 ii)  the quadratic form carries weight 1 under the scaling, so the
@@ -66,6 +65,5 @@ theorem XL_quadratic_weight (a0 g lam : ℝ) (hg : g ≠ 0) (hl : lam ≠ 0) :
 theorem ratio_invariant (a0 g lam : ℝ) (hg : g ≠ 0) (hl : lam ≠ 0) :
     (lam * a0) / (lam * g) = a0 / g := by
   field_simp [hl, hg]
-  ring
 
 end
