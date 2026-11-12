@@ -1,0 +1,92 @@
+CLOSE-2: PAR1's two open branches and the union (canonical / alt never pooled)
+
+R1  PAR1 branch labels (frozen / A1 / A2):
+    frozen canonical  {'B0': 'EMPTY', 'B-L': 'EMPTY', 'B-Ts': 'OPEN', 'B-Tm-fine': 'OPEN', 'B-Tm-smooth': 'OPEN'}
+    frozen alt        {'B0': 'EMPTY', 'B-L': 'EMPTY', 'B-Ts': 'OPEN', 'B-Tm-fine': 'OPEN', 'B-Tm-smooth': 'OPEN'}
+    A1     canonical  {'B0': 'EMPTY', 'B-L': 'EMPTY', 'B-Ts': 'EMPTY', 'B-Tm-fine': 'OPEN', 'B-Tm-smooth': 'OPEN'}
+    A1     alt        {'B0': 'EMPTY', 'B-L': 'EMPTY', 'B-Ts': 'EMPTY', 'B-Tm-fine': 'OPEN', 'B-Tm-smooth': 'OPEN'}
+    A2     canonical  {'B0': 'EMPTY', 'B-L': 'EMPTY', 'B-Ts': 'EMPTY', 'B-Tm-fine': 'OPEN', 'B-Tm-smooth': 'OPEN'}
+    A2     alt        {'B0': 'EMPTY', 'B-L': 'EMPTY', 'B-Ts': 'EMPTY', 'B-Tm-fine': 'OPEN', 'B-Tm-smooth': 'OPEN'}
+
+R5  mass window (computed here):
+    canonical  PAR1 C15 window [4.203e-24, 1.840e-23] eV (ceiling set by log M_b 10.9, g0.1)
+              WV1 S2 lower bound 7.556e-23 eV (binding z = 1089); ratio to PAR1's ceiling 4.11; overlap empty: True
+    alt        PAR1 C15 window [4.203e-24, 1.929e-23] eV (ceiling set by log M_b 10.9, g0.1)
+              WV1 S2 lower bound 7.554e-23 eV (binding z = 1089); ratio to PAR1's ceiling 3.92; overlap empty: True
+
+R6  nu-scan coverage of PAR1's window (computed here):
+    canonical  scanned m (eV): ['1.845e-26', '7.379e-26', '2.952e-25', '1.181e-24', '4.722e-24', '1.889e-23', '7.556e-23']
+              inside the window: ['4.722e-24'] ; below: 4 ; above: 2 ; window covered: True
+              E7 caveat mass 7e-26 eV scanned: True
+    alt        scanned m (eV): ['1.845e-26', '7.379e-26', '2.952e-25', '1.181e-24', '4.722e-24', '1.889e-23', '7.554e-23']
+              inside the window: ['4.722e-24', '1.889e-23'] ; below: 4 ; above: 1 ; window covered: True
+              E7 caveat mass 7e-26 eV scanned: True
+
+R7  lane gate health:
+    WV1 canonical  M3 bites (guards S3b): True ; M4 bites (guards S3c, non-decisive): False
+        R_s at nu_max: {'10.7': 0.0, '9.4': 0.0} ; window: EMPTY ; every scanned nu fails: True
+        frozen R7 (all arms) would read: False
+    WV1 alt        M3 bites (guards S3b): True ; M4 bites (guards S3c, non-decisive): False
+        R_s at nu_max: {'10.7': 0.0, '9.4': 0.0} ; window: EMPTY ; every scanned nu fails: True
+        frozen R7 (all arms) would read: False
+    SMF1 S0: {'S0a': True, 'S0b': False, 'S0c': False} ; first fail S0 ; KA True ; MUTATE {'MU1 (static boundary)': True, 'MU2 (non-analytic exchange)': True, 'MU3 (flipped couplings)': True} ; lean True / twin True
+    PAR1 checks failing: ['S8_TSHK_as_frozen'] (all other PAR1 checks true); C8 as frozen: False ; C8 under A1: True
+
+R4  EDG1 (the re-specification SMF1 left ungraded):
+    canonical  {'R5_gates': {'E0': True, 'E1': True, 'E2': True, 'E2c': True, 'E3': False}, 'R5': 'FAILS AT E3', 'U_gates': {'E0': True, 'E1': False, 'E2': True, 'E2c': True, 'E3': False}, 'U': 'FAILS AT E1'}
+    alt        {'R5_gates': {'E0': True, 'E1': True, 'E2': True, 'E2c': True, 'E3': False}, 'R5': 'FAILS AT E3', 'U_gates': {'E0': True, 'E1': False, 'E2': True, 'E2c': True, 'E3': False}, 'U': 'FAILS AT E1'}
+
+R8  files in the record naming a B-Tm branch: 18
+      closure_2026_11_10/PAR1_parent_action_spec/AMENDMENT_A2.md
+      closure_2026_11_10/PAR1_parent_action_spec/FROZEN_CRITERIA.md
+      closure_2026_11_10/PAR1_parent_action_spec/RESULT.md
+      closure_2026_11_10/PAR1_parent_action_spec/par1_grade.json
+      closure_2026_11_10/SMF1_smooth_frame_parent/AMENDMENT_A1.md
+      closure_2026_11_10/SMF1_smooth_frame_parent/FROZEN_CRITERIA.md
+      closure_2026_11_10/SMF1_smooth_frame_parent/RESULT.md
+      closure_2026_11_10/WV1_wave_dust_split_charge/RESULT.md
+      closure_2026_11_12/CLOSE2_par1_branch_union/AMENDMENT_A1.md
+      closure_2026_11_12/CLOSE2_par1_branch_union/FROZEN_CRITERIA.md
+      closure_2026_11_12/CLOSE2_par1_branch_union/close2_grade.json
+
+BRANCH GRID
+  FROZEN:
+    canonical
+      B0           EMPTY (theorem)        closed=True
+      B-L          EMPTY (theorem)        closed=True
+      B-Ts         OPEN (no member)       closed=False
+      B-Tm-fine    NO VERDICT             closed=False
+      B-Tm-smooth  MEMBER FAILS (S0)      closed=True
+    alt
+      B0           EMPTY (theorem)        closed=True
+      B-L          EMPTY (theorem)        closed=True
+      B-Ts         OPEN (no member)       closed=False
+      B-Tm-fine    NO VERDICT             closed=False
+      B-Tm-smooth  MEMBER FAILS (S0)      closed=True
+  AMENDMENTS:
+    canonical
+      B0           EMPTY (theorem)        closed=True
+      B-L          EMPTY (theorem)        closed=True
+      B-Ts         EMPTY (theorem)        closed=True
+      B-Tm-fine    MEMBER FAILS (S3(b))   closed=True
+      B-Tm-smooth  MEMBER FAILS (S0)      closed=True
+    alt
+      B0           EMPTY (theorem)        closed=True
+      B-L          EMPTY (theorem)        closed=True
+      B-Ts         EMPTY (theorem)        closed=True
+      B-Tm-fine    MEMBER FAILS (S3(b))   closed=True
+      B-Tm-smooth  MEMBER FAILS (S0)      closed=True
+
+UNION U = B-Ts + B-Tm-fine + B-Tm-smooth
+  frozen      canonical  closed=False   unclosed=['B-Ts', 'B-Tm-fine']   (member sense (no class theorem for B-Tm-fine or B-Tm-smooth))
+  frozen      alt        closed=False   unclosed=['B-Ts', 'B-Tm-fine']   (member sense (no class theorem for B-Tm-fine or B-Tm-smooth))
+  amendments  canonical  closed=True   unclosed=[]   (member sense (no class theorem for B-Tm-fine or B-Tm-smooth))
+  amendments  alt        closed=True   unclosed=[]   (member sense (no class theorem for B-Tm-fine or B-Tm-smooth))
+
+LABELS
+  frozen      canonical  NO VERDICT (B-Ts OPEN (no member), B-Tm-fine NO VERDICT)
+  frozen      alt        NO VERDICT (B-Ts OPEN (no member), B-Tm-fine NO VERDICT)
+  amendments  canonical  CANDIDATE STRUCTURE FAILS (B-Ts EMPTY by PAR1 A1; B-Tm-fine: WV1 V1 S3(b), R_s = 0 and the window EMPTY; B-Tm-smooth: SMF1 S0, S0b Gauss and S0c starvation) - member sense, not a class theorem
+  amendments  alt        CANDIDATE STRUCTURE FAILS (B-Ts EMPTY by PAR1 A1; B-Tm-fine: WV1 V1 S3(b), R_s = 0 and the window EMPTY; B-Tm-smooth: SMF1 S0, S0b Gauss and S0c starvation) - member sense, not a class theorem
+
+Adopts nothing. kappa = 1/2 FITTED; not theory closed.
