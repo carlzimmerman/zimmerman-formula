@@ -124,3 +124,18 @@ an extended component, any ΔM in physical units, γ̂, the words.
 Spherical; one profile family at a time; isotropic orbits in the word; the fibre and the Einstein radius are 2–3×
 apart, so the lever arm is short; photometric stellar masses; no source redshifts. A slope read this way describes the
 average of 25 lenses. It tests no part of a₀ or κ.
+
+## Clarification C1 (committed separately, before any script of this lane exists and before any number)
+
+Check K4 as written above compares a median that the two code paths define differently: EUC5's J3 lets the stellar
+boost go below zero, while this lane's model sets the amplitude of X to zero when the stars alone give the lensing
+mass. A quarter or so of SLACS lenses are expected to be in that case, so the two medians would differ for a reason
+that is not a solver error. K4 is restated as a per-lens equivalence of the two code paths:
+
+- **K4** SLACS, alt footing, family T at the true source redshifts, b★ = 0: on every lens whose amplitude is non-zero,
+  this lane's predicted dispersion equals EUC5's `sig_of_B` evaluated at that lens's b_lens to 0.5 %. The number of
+  such lenses must be at least 30. The full-sample median ratio (with the zero-amplitude lenses) is printed beside
+  EUC5's 0.966 for information.
+
+Also fixed here: the dispersion scale and its interval are read from `euc5_a2_scale.json` (1.0641 [1.0155, 1.1408]),
+of which the figures above are the rounded values. Nothing else changes.
