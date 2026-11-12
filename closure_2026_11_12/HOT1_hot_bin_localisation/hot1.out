@@ -1,0 +1,86 @@
+
+====================================================================================================
+K-H HEALPix nside=1 RING cell assignment (no data)
+====================================================================================================
+  [PASS] K-H a equal area: fraction x 12 per cell: 0.9998 0.9991 0.9963 1.0045 1.0000 1.0028 1.0046 1.0005 1.0000 0.9981 0.9970 0.9974
+  [PASS] K-H b pixel centres: got [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], want [0..3, 4..7, 8..11]
+
+====================================================================================================
+Data and K-S sample check
+====================================================================================================
+  [PASS] K-S0 TARGETID RVTAB == FIBERMAP: 6327 rows
+  [PASS] K-S counts: [865, 264, 241, 125] vs [865, 264, 241, 125]
+  [PASS] K-S 30-40 dispersion: 106.739 [102.25, 111.57] vs 106.74
+  bin 20-30: N 865, sigma 97.24 [94.95, 99.63], mean 1.2
+  bin 30-40: N 264, sigma 106.74 [102.25, 111.57], mean 0.2
+  bin 40-55: N 241, sigma 92.62 [88.51, 97.04], mean 6.3
+  bin 55-80: N 125, sigma 95.30 [89.43, 101.82], mean -21.6
+  neighbours' mean 94.93 km/s; excess of 30-40: 11.81 km/s, z_ex = 2.25 (one-sided Gaussian p 0.0123)
+  test bin: median VRAD_ERR 3.6 km/s (max 11.3)
+
+====================================================================================================
+K-N 200 synthetic smooth bins at the real positions (5000 permutations each)
+====================================================================================================
+  [PASS] K-N L1 false-fire rate: 13 / 200 at p < 0.05
+  [PASS] K-N L2 false-fire rate: 9 / 200 at p < 0.05
+  [PASS] K-N L3 false-fire rate: 15 / 200 at p < 0.05
+  [INFO] fraction at p < 0.01: L1 0.000, L2 0.005, L3 0.010
+
+====================================================================================================
+K-P planted stream: 30 stars in a 10-deg cap, v = +150 +- 15 km/s
+====================================================================================================
+  centre l 70.4 b 24.5; planted stars' cells [0, 5]
+  [PASS] K-P L1: L1 20.32 (cell 5), p 0.0004
+  [PASS] K-P L3: L3 383 pairs vs null mean 184.6, p 0.0002
+  [INFO] planted L1b p 0.0040; L2 z -1.64 p 0.9424
+
+====================================================================================================
+Test bin 30-40 kpc: L1, L1b, L2, L3
+====================================================================================================
+cells with >= 15 stars: [0, 1, 2, 5, 8, 9]; occupancy all cells: [75, 38, 46, 9, 0, 36, 0, 0, 38, 17, 5, 0]
+  cell  0: n  75, mean v_gsr   +33.1, ML sigma  106.4 [98.3, 115.8], rms about bin mean  111.5, median l  48.7 b +39.0
+  cell  1: n  38, mean v_gsr    +0.9, ML sigma  125.6 [112.4, 141.5], rms about bin mean  125.6, median l 140.3 b +48.1
+  cell  2: n  46, mean v_gsr   -12.3, ML sigma  100.6 [90.9, 112.1], rms about bin mean  101.4, median l 241.4 b +40.1
+  cell  3: n   9, mean v_gsr   -89.0, ML sigma   59.5 [47.7, 76.9], rms about bin mean  107.3, median l 288.6 b +55.6
+  cell  4: n   0
+  cell  5: n  36, mean v_gsr    +1.1, ML sigma   76.1 [67.9, 86.1], rms about bin mean   76.3, median l  91.3 b +20.6
+  cell  6: n   0
+  cell  7: n   0
+  cell  8: n  38, mean v_gsr    -8.5, ML sigma  119.7 [107.1, 134.8], rms about bin mean  120.1, median l  57.8 b -32.3
+  cell  9: n  17, mean v_gsr   -31.6, ML sigma   72.1 [61.3, 86.5], rms about bin mean   78.9, median l 125.5 b -47.6
+  cell 10: n   5, mean v_gsr   -53.3, ML sigma   73.4 [55.1, 104.5], rms about bin mean   90.9, median l 200.3 b -38.5
+  cell 11: n   0
+L1 (signed LR) = 10.164 at cell 0, p = 0.0108
+L1b (dispersion z, reported) = 1.979, p = 0.0806
+  bin without top cell: N 189, sigma 104.03 [98.89, 109.63]; threshold 94.93 + 5.37
+L2 Sgr proximity: 15-30 deg N 121 sigma 103.43 [97.11, 110.47] mean -12.1; >= 30 deg N 143 sigma 108.37 [102.26, 115.12] mean +10.7
+   z = -0.608, one-sided p = 0.7177, two-sided p = 0.5461
+L3 pairs < 10 deg and < 30 km/s: 213 (of 1125 close pairs), null mean 172.9, p = 0.0018
+L3 variant < 5 deg and < 20 km/s: 50 (of 405), null mean 41.9, p = 0.1132
+L3 3-D variant (260 stars with usable PMs; < 10 deg and |Delta V| < 50 km/s): 52 (of 1072), null mean 28.7, p = 0.0002
+
+====================================================================================================
+Reported without a label
+====================================================================================================
+  Galactic north b > 0: N 190, sigma 107.31 [102.02, 113.07], mean +6.7
+  Galactic south b < 0: N 74, sigma 103.44 [95.47, 112.58], mean -16.4
+  sub-bin 30-35: N 148, sigma 102.42 [96.73, 108.69], mean +8.9
+  sub-bin 35-40: N 116, sigma 111.02 [104.10, 118.75], mean -10.9
+  bin mean v_gsr +0.24 km/s; excess kurtosis -0.628; Shapiro-Wilk W 0.9840, p 0.0047
+
+====================================================================================================
+Control bins (same statistics)
+====================================================================================================
+  bin 20-30 (N 865): L1 p 0.0200 (cell 1), L1b p 0.1346, L2 z +0.65 p 0.2527, L3 3182 vs 3069.7 p 0.0630, L3(5,20) p 0.4147
+  bin 40-55 (N 241): L1 p 0.0300 (cell 8), L1b p 0.0540, L2 z -0.21 p 0.5819, L3 355 vs 250.2 p 0.0002, L3(5,20) p 0.0002
+
+====================================================================================================
+LABEL (test bin 30-40 kpc)
+====================================================================================================
+LABEL: CLUMPED
+  L1 p 0.0108; L2 p 0.7177; L3 p 0.0018; north sigma 107.31, south sigma 103.44 (threshold 94.93)
+  significance of the excess over the neighbours: z_ex = 2.25
+POST HOC (not graded):
+  without stars in counted pairs (201 stars): sigma 124.93 [114.56, 136.95]; f_new (census can, census alt, rc can, rc alt) [1.41, 1.352, 1.328, 1.304]
+
+kappa = 1/2 FITTED; not theory closed. Adopts nothing.
