@@ -1,0 +1,158 @@
+{
+  "lane": "FINAL-17 KAPPA_A",
+  "mutate": false,
+  "label": "KAPPA NOT DERIVED (FITTED) -- CAPACITY DERIVED",
+  "Q1_capacity": "DERIVED",
+  "Q2_coefficient": "NOT DERIVED",
+  "A1_identity": true,
+  "A1b_saturated_branch": true,
+  "A1c_fixed_point_degenerate": true,
+  "A2_branch_distinct": true,
+  "A3_band_hits": [],
+  "A3_span_dex": 0.7981798683581149,
+  "A3_allowance_dex": 0.0411,
+  "A3_arms": {
+    "C1": {
+      "kappa": 2.8944050182330696,
+      "sigma": 0.027865132916896174
+    },
+    "C2": {
+      "kappa": 1.4472025091165355,
+      "sigma": 0.013932566458448094
+    },
+    "C3": {
+      "kappa": 0.46065886596178063,
+      "sigma": 0.004434873643636711
+    },
+    "C4": {
+      "kappa": 1.0854018818374016,
+      "sigma": 0.010449424843836071
+    },
+    "C5": {
+      "kappa": 0.5427009409187008,
+      "sigma": 0.0052247124219180355
+    },
+    "C6": {
+      "kappa": 0.4606588659617806,
+      "sigma": 0.004434873643636711
+    }
+  },
+  "A3_nearest": {
+    "id": "C3/C6",
+    "kappa": 0.46065886596178063,
+    "sigma": 0.004434873643636711,
+    "abs_miss": 0.03934113403821937,
+    "dex_miss": 0.035590570210926396
+  },
+  "A4_nogo": true,
+  "A5_kappa_can_vs_rhoL": {
+    "value": 0.5002955852492879,
+    "sigma": 0.00481646586876709
+  },
+  "A5_kappa_alt_vs_rhoL": {
+    "value": 0.6046113543732512,
+    "sigma": 0.005820738855324436
+  },
+  "A5_kappa_can_vs_rhocrit": 0.41397759244053817,
+  "A5_kappa_alt_vs_rhocrit": 0.5002953458422665,
+  "A5_kappa_ext_vs_rhoL": {
+    "value": 0.6413840392926993,
+    "rand": 0.010689733988211655,
+    "sys": 0.12827680785853984
+  },
+  "A5_footing_dex": 0.08224962824285333,
+  "A5_footing_selected": "NEITHER",
+  "rel_kappa": 0.009627240397028761,
+  "s_unit": 1.8709539472222088e-10,
+  "rho_Lambda": 5.835513334449543e-27,
+  "columns": {
+    "n1_canonical_214": 213.70660614736659,
+    "n2_quadratic_107": 106.85330307368329
+  },
+  "checks": [
+    {
+      "name": "KA-1  Z and kappa are the SAME number: kappa = sqrt(8 pi/3)/Z",
+      "ok": true,
+      "measured": "Z=5.785390  kappa=0.500296",
+      "reading": "kappa = 0.500295585249 from Z, 0.500295585249 directly (Planck rho_L) -- one statement, not two. [circular route: rho_ref := 4a0^2/(c^2G) gives Z = 5.788810 = sqrt(32pi/3) identically]"
+    },
+    {
+      "name": "KA-2  each footing realizes kappa = 1/2 against its OWN reference density",
+      "ok": true,
+      "measured": "0.500296 / 0.500295",
+      "reading": "kappa(can vs rho_L) = 0.500296 ; kappa(alt vs rho_crit,0) = 0.500295 ; the tie alone therefore CANNOT select a footing"
+    },
+    {
+      "name": "KA-3  AG4 T7_n2_not_canonical: canonical g_ph is NOT the n=2 rest state",
+      "ok": true,
+      "measured": "n1=0 n2=a0*g**3/(a0 + g)**2",
+      "reading": "n=1 residual = 0 (canonical IS the n=1 rest state); n=2 residual = a0*g**3/(a0 + g)**2 = gbar*g_ph != 0"
+    },
+    {
+      "name": "KA-4  capacity column pair: a0/(pi G) ~ 214, a0/(2 pi G) ~ 107 Msun/pc^2",
+      "ok": true,
+      "measured": "213.7 / 106.9",
+      "reading": "Sigma_bar(n=1) = 213.7 Msun/pc^2 (PAPER49 anchor 214); Sigma_bar(n=2) = 106.9 (AG4's 107); the record's deep universal column Sigma_c = a0/(2 pi G) = 106.9"
+    },
+    {
+      "name": "A1  capacity = a0 is an IDENTITY of the law, not a determination of a0",
+      "ok": true,
+      "measured": "class=IDENTITY",
+      "reading": "the capacity condition u -> a0 is one equation a0 = a0; (ii)+(vi) show the route's whole content is the a0-FREE shape nu/(1+nu)"
+    },
+    {
+      "name": "A1b  the saturated self-sourced branch is at capacity with a universal column",
+      "ok": true,
+      "measured": "g_c = a0",
+      "reading": "rho_c = a0/(2 pi G r)  <=>  g_c = a0  <=>  Sigma_c = a0/(pi G): three faces of ONE statement, all a0-free in shape"
+    },
+    {
+      "name": "A1c  Poisson closes for EVERY amplitude C: the self-source condition fixes no scale",
+      "ok": true,
+      "measured": "residual=0",
+      "reading": "the pair (g_c = C/r, rho_c = C/(4 pi G r^2)) is a self-consistent solution for all C > 0 -- self-sourcing is a fixed point, not a normalisation"
+    },
+    {
+      "name": "A2  the two branches are certified distinct; capacity = a0/n",
+      "ok": true,
+      "measured": "capacity = a0/n",
+      "reading": "n=1 <=> canonical g^2 = gbar(g+a0); n=2 <=> quadratic g^2 - gbar^2 = a0 gbar; the canonical g_ph leaves residual gbar*g_ph in the n=2 equation"
+    },
+    {
+      "name": "A3  NO ARM PASSES: no arm lands in the 5% band, and the menu is 19.4x too free",
+      "ok": true,
+      "measured": "span=0.7982 dex",
+      "reading": "the nearest arm misses by 0.039341 (0.0356 dex); the frozen menu spans 0.7982 dex against the 0.0411 dex the route would need to discriminate a footing"
+    },
+    {
+      "name": "A4  NO-GO CONFIRMED: kappa is a flat direction of the self-source/capacity route",
+      "ok": true,
+      "measured": "all residuals 0",
+      "reading": "every relation of the route is G_lam-covariant; the capacity, the column and the closure ratio all carry the SAME weight as a0, so none of them can evaluate a0"
+    },
+    {
+      "name": "A5  the tie selects the canonical footing by DEFINITION and excludes the alt footing",
+      "ok": true,
+      "measured": "can=0.500296 alt=0.604611",
+      "reading": "kappa(can vs rho_L) = 0.500296 +- 0.004816 ; kappa(alt vs rho_L) = 0.604611 +- 0.005821, i.e. 0.0822 dex away (3.3x the 5 % band in dex terms).  The alt footing reaches kappa = 1/2 only by swapping rho_L -> rho_crit,0, which is a definition."
+    },
+    {
+      "name": "M1  'the Milgrom-form capacity derives kappa = 1/2'",
+      "ok": true,
+      "measured": "REJECTED",
+      "reading": "C3 gives kappa = 0.460659 +- 0.004435; |dkappa| = 0.039341 vs band 0.025 (1.57 x); and the premise is menu item C3, a choice, not a derived condition"
+    },
+    {
+      "name": "M2  'Sigma_c = a0/(2 pi G) ~ 107 confirms kappa = 1/2 via the half-capacity'",
+      "ok": true,
+      "measured": "REJECTED",
+      "reading": "107 is the n=2 (QUADRATIC) capacity ceiling in AG4's convention; the canonical ceiling is 213.7.  The equality is an identity of the column convention and carries no cosmology -- AG4 certifies the two branches as DIFFERENT THEORIES"
+    },
+    {
+      "name": "M3  'kappa = 1/2 is a measurement, realized on the alt footing too'",
+      "ok": true,
+      "measured": "REJECTED",
+      "reading": "kappa(alt vs rho_L) = 0.604611 +- 0.005821: 0.0822 dex from canonical's 0.500296.  The alt footing realizes 1/2 only by swapping the reference density to rho_crit,0 (kappa = 0.500295), which is a definition"
+    }
+  ]
+}

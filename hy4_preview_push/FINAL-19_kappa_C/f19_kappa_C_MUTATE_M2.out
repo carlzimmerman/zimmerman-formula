@@ -1,0 +1,139 @@
+FINAL-19 (KAPPA_C) -- the deep-field column; kappa DERIVED, not assumed   [MUTATE M2]
+criteria 0eb6a338d5 (frozen before any number).  TEST lane.  kappa = 1/2 FITTED; not theory closed.
+
+S0  inputs (independent measurements; footings never pooled)
+    c  = 299792458.0 m/s     G = 6.6743e-11 m^3/kg/s^2     Msun = 1.98892e+30 kg
+    H0 = 67.4 km/s/Mpc,  Omega_Lambda = 0.685        (CFG493 footing inputs)
+    vacuum acceleration scale s = c sqrt(G rho):
+      canonical (rho = rho_Lambda) s_L = 1.872475041e-10 m/s^2
+      alt       (rho = rho_crit ) s_C = 2.262407083e-10 m/s^2
+      rho_Lambda = 5.8450058e-27 kg/m^3   rho_crit = 8.5328552e-27 kg/m^3
+      eps_Lambda = 5.2532292e-10 Pa      eps_crit = 7.6689478e-10 Pa
+    MEASURED a0  (CFG493 GLS): log10 a0 = -10.1073 +- 0.0985 dex -> a0 = 7.81088062e-11 m/s^2
+    f = Pi_max / eps  : f = 1 PRE-REGISTERED (the vacuum's own energy density is the ceiling)
+
+S1  G1  the record's universal column: unit cross-check only
+    Sigma_c = a0/(2 pi G), from the footing a0 values:
+      canonical  0.22320513 kg/m^2 = 106.853 Msun/pc^2   (record says 106.9)
+      alt        0.26974525 kg/m^2 = 129.133 Msun/pc^2   (record says 129.2)
+  [PASS] G1a canonical Sigma_c reproduces 106.9 Msun/pc^2 (rel < 1e-3)
+  [PASS] G1b alt Sigma_c reproduces 129.2 Msun/pc^2 (rel < 1e-3)
+    FLAGGED: those two a0 values are themselves outputs of kappa = 1/2.  They are used
+             only as a units/slot cross-check; every graded number below uses the
+             MEASURED a0 and the MEASURED rho_Lambda (or rho_crit).
+
+S2  the derivation
+
+    law's static stress (record, FINAL-7 crux):
+      Pi_ij = J(g) delta_ij - g_i g_j/(K(1+u)),  J = (a0^2/K)[u - ln(1+u)],  u = g/a0
+    deep field: J = g^2/(2K) + O(u^3)  =>  Pi_rr = -g^2/(2K),  Pi_tt = +g^2/(2K)
+
+    J1 (K3) Jeans / momentum balance on the exact RAR branch  g^2/(g+a0) = g_N
+      (law's Pi with its exact anisotropy; rho_h from Poisson)
+      x=r/r_M    |resid|/|rho_h g|   (law's Pi)      |resid|/|rho_h g|   (isotropic Pi)
+           1.5           7.302e-51              2.302e-50
+             3           6.568e-50              1.110e-49
+            10           3.927e-48              3.982e-48
+           100           1.098e-45              1.100e-45
+          1000           1.813e-42              1.813e-42
+           1e4           6.245e-39              6.245e-39
+  [PASS] J1  law's anisotropic Pi satisfies Jeans balance identically (rel < 1e-8)
+      -> M1 (isotropic) is NOT excluded by the balance itself: the two readings differ by a
+         radial-radial stress tau ∝ g_N ∝ r^-2, annihilated by the spherical Jeans operator.
+
+    K6  the deep-field anisotropy signature   (Pi_rr + Pi_tt)/|Pi_tt|  ->  2u/3 -> 0
+      x=r/r_M     u=g/a0      (Pi_rr+Pi_tt)/|Pi_tt|     2u/3
+             1    1.6180e+00           4.7470e-01      1.0787e+00
+            10    1.0512e-01           6.4469e-02      7.0083e-02
+           100    1.0050e-02           6.6445e-03      6.7001e-03
+          1000    1.0005e-03           6.6644e-04      6.6700e-04
+           1e4    1.0001e-04           6.6664e-05      6.6670e-05
+  [PASS] K6  Pi_rr = -Pi_tt in the deep field (|<10%| for x >= 100)
+
+    J1-sym  exact symbolic certificate (sympy): residual == 0 identically in x
+      residual (law's Pi, exact branch) : 0
+      residual (isotropic reading)      : 0
+  [PASS] J1-sym  sympy: Jeans residual is identically zero on the law's branch
+
+    C1  |Pi|(r) = 2 pi G Sigma(r)^2,   Sigma(r) = int_r^inf rho_h dr'
+      x=r/r_M      2 pi G Sigma^2 [Pa]        |Pi_rr| [Pa]         rel dev
+            10            5.218821e-14          5.049192e-14   +3.360e-02
+           100            5.223124e-16          5.205757e-16   +3.336e-03
+          1000            5.223167e-18          5.221426e-18   +3.334e-04
+           1e4            5.223167e-20          5.222993e-20   +3.333e-05
+      successive deviation ratios (expect ~10 per decade, i.e. O(1/x)):
+        10.07, 10.01, 10.00
+  [PASS] C1  deviation from |Pi| = 2 pi G Sigma^2 falls as O(1/x) (each decade shrinks it >5x)
+
+S3  the comparison, in SI (kg/m^2 and Msun/pc^2)
+    footing-internal kappa from the measured a0 (consistency with CFG493):
+      canonical 0.417142 vs 0.4172  (rel -1.39e-04)
+      alt       0.345246 vs 0.3452  (rel +1.35e-04)
+  [PASS] G0a footing kappa reproduces CFG493 canonical (rel < 2e-3)
+  [PASS] G0b footing kappa reproduces CFG493 alt (rel < 2e-3)
+
+  [canonical]
+    rho          = 5.8450058e-27 kg/m^3
+    eps = rho c^2 = 5.2532292e-10 Pa
+    Sigma_c  = a0/(2 pi G)                    = 0.18625777 kg/m^2 = 89.16577 Msun/pc^2
+    Sigma_vac = sqrt(f eps/(2 pi G)), f = 1       = 1.1192327 kg/m^2 = 535.8018 Msun/pc^2
+    R = Sigma_vac/Sigma_c   = 6.00905 +- 1.363
+    analytic sqrt(2 pi f)/kappa = 6.00822  (cross-check)
+    kappa forced by demanding R = 1 : 2.506628275   (= sqrt(2 pi))
+    pull vs measured kappa      : 22.09 sigma
+    required f for kappa = 1/2 : 1/(8 pi) = 0.039788736 ; measured f = kappa^2/(2 pi) = 0.0277018 +- 0.01256
+
+  [alt]
+    rho          = 8.5328552e-27 kg/m^3
+    eps = rho c^2 = 7.6689478e-10 Pa
+    Sigma_c  = a0/(2 pi G)                    = 0.18625777 kg/m^2 = 89.16577 Msun/pc^2
+    Sigma_vac = sqrt(f eps/(2 pi G)), f = 1       = 1.3523064 kg/m^2 = 647.3794 Msun/pc^2
+    R = Sigma_vac/Sigma_c   = 7.2604 +- 1.647
+    analytic sqrt(2 pi f)/kappa = 7.26138  (cross-check)
+    kappa forced by demanding R = 1 : 2.506628275   (= sqrt(2 pi))
+    pull vs measured kappa      : 27.6 sigma
+    required f for kappa = 1/2 : 1/(8 pi) = 0.039788736 ; measured f = kappa^2/(2 pi) = 0.0189654 +- 0.008604
+
+S3b  gates (value and threshold on the same line)
+  [PASS] G2  sustained: R >= 1, canonical                         6.00905   (threshold >= 1)
+  [FAIL] G2b  is R = 1? |R-1|/sigma <= 3, canonical               3.67623   (threshold <= 3)
+  [FAIL] G3  kappa_forced vs measured, pull <= 3, canonical       22.087   (threshold <= 3)
+  [PASS] G2  sustained: R >= 1, alt                               7.2604   (threshold >= 1)
+  [FAIL] G2b  is R = 1? |R-1|/sigma <= 3, alt                     3.80146   (threshold <= 3)
+  [FAIL] G3  kappa_forced vs measured, pull <= 3, alt             27.6044   (threshold <= 3)
+
+S3c  G4  which input would have to move
+      f required by kappa = 1/2      : 1/(8 pi) = 0.039788736
+      f measured (canonical)        : 0.02770184731001204 +- 0.012562774475202008
+      pull of 1/(8 pi) vs measured  : 0.9621 sigma  (consistent)
+      f = 1 vs measured             : factor 36.10 in f (77.4 sigma on the linearised f error; the honest pull is the one in kappa: 22.1 sigma)
+      equivalent: a0 would have to be 6.009 x larger (0.779 dex = 7.91 sigma_log)
+                  or rho 36.1 x smaller.
+      (the dimensionally unique column from rho_Lambda, c and G is c sqrt(rho/G) = 2.8055003 kg/m^2 = 1343.056 Msun/pc^2; the derivation supplies the factor 1/sqrt(2 pi) = 0.3989 on top of it.)
+  [PASS] G4  kappa = 1/2 requires f = 1/(8 pi) = 0.0398, not the DEC ceiling f = 1
+
+S4  G5  robustness: R over the named column conventions
+      convention                                        R (canonical)   R (alt)
+      spherical_beta2                        6.009           7.260
+      slab_isotropic                        12.018          14.521
+      min R over conventions = 6.009
+  [PASS] G5  min R over column conventions (must be >= 2)         6.00905   (threshold >= 2)
+
+S5  mutation arms
+
+    M2 (CIRCULAR): assume U2 = [a0^2/(8 pi G) = rho c^2/(32 pi)] and read off kappa.
+      kappa recovered = 0.500000  (trivial)
+  [PASS] M2a  shortcut reproduces kappa = 1/2
+  [FAIL] M2b  INDEPENDENCE: U2 is independent of kappa = 1/2 (must FAIL)
+      => the shortcut is circular: U2 asserts the conclusion.
+
+S6  the inversion the brief asks for
+      demand Sigma_c = Sigma_vac  <=>  kappa = sqrt(2 pi f)
+      f = 1 (DEC):  kappa = 2.506628275
+      measured       : canonical 0.4172 +- 0.0946   (22.1 sigma);  alt 0.3452 +- 0.0783   (27.6 sigma)
+      adoption      : kappa = 1/2 would require f = 0.039788736 = 1/(8 pi)
+
+FINAL-19 COMPLETE: 13/18 checks PASS.
+
+  LABEL canonical : NOT 1/2 -- the column does not derive kappa: R = Sigma_vac/Sigma_c = 6.01 +- 1.36 (not 1, 3.7 sigma); demanding R = 1 forces kappa = sqrt(2 pi) = 2.5066 against the measured 0.4172 +- 0.0946 (22.1 sigma). The input that must move is the deployable-stress fraction f = Pi_max/(rho_Lambda c^2): kappa = 1/2 needs f = 1/(8 pi) = 0.0397887, i.e. the vacuum's own pressure divided by Einstein's 8 pi.
+  LABEL alt       : NOT 1/2 -- the column does not derive kappa: R = Sigma_vac/Sigma_c = 7.26 +- 1.65 (not 1, 3.8 sigma); demanding R = 1 forces kappa = sqrt(2 pi) = 2.5066 against the measured 0.3452 +- 0.0783 (27.6 sigma). Same named input f = 1/(8 pi) must move.

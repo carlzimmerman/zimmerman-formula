@@ -172,7 +172,12 @@ def audit(rel_path):
 
     got = axiom_lines(out)
     rec["axioms_printed"] = got
-    rec["axiom_lines_missing"] = [t for t in want if t not in got]
+    # A `#print axioms X` written inside `namespace N` is printed back as `N.X`,
+    # so match on the qualified suffix rather than exact string equality.
+    rec["axiom_lines_missing"] = [
+        t for t in want
+        if not any(n == t or n.endswith("." + t) for n in got)
+    ]
 
     # non-standard axiom check + sorryAx check
     nonstd, sorryax = [], []

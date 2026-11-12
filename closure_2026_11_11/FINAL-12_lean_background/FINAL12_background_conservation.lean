@@ -204,16 +204,12 @@ theorem nQuad_deriv (mu x : ℝ) : deriv (nQuad mu) x = mu ^ 2 := by
 /-- the derivative of the exponential law: n'(x) = n(x)/x_T -/
 theorem nExp_deriv (nstar xT x : ℝ) : deriv (nExp nstar xT) x = nExp nstar xT x / xT := by
   change deriv (fun y : ℝ => nstar * Real.exp (y / xT)) x = nstar * Real.exp (x / xT) / xT
-  have h1 : HasDerivAt (fun y : ℝ => y / xT) (1 / xT) x := by
-    simpa [div_eq_mul_inv] using ((hasDerivAt_id x).div_const xT)
-  have h2 : HasDerivAt (fun y : ℝ => Real.exp (y / xT))
-      (Real.exp (x / xT) * (1 / xT)) x := by
-    simpa [Function.comp] using (Real.hasDerivAt_exp (x / xT)).comp x h1
-  have h3 : HasDerivAt (fun y : ℝ => nstar * Real.exp (y / xT))
-      (nstar * (Real.exp (x / xT) * (1 / xT))) x := by
-    simpa using h2.const_mul nstar
-  rw [h3.deriv]
-  ring_nf
+  have h1 := (hasDerivAt_id x).div_const xT
+  have h2 := (Real.hasDerivAt_exp (x / xT)).comp x h1
+  have h3 := h2.const_mul nstar
+  convert h3.deriv using 1
+  · rfl
+  · ring_nf
 
 /-- **(2, quadratic)** DT1's ratio n/n' for n = mu^2 x is x — exact and epoch-independent -/
 theorem cs2_quadratic (mu x : ℝ) (hmu : 0 < mu) :
@@ -347,8 +343,9 @@ theorem kJ2_exponential_ratio (nstar xT x : ℝ) (hnstar : 0 < nstar)
     kJ2 (Qof x) (nExp nstar xT x) (Vexp nstar xT x) (cad2 (nExp nstar xT) x) /
         (nExp nstar xT x / xT) = (1 + x) * ((1 + x) - xT) := by
   rw [kJ2_exponential nstar xT x hnstar hxT hQ]
-  have hn : nstar * Real.exp (x / xT) ≠ 0 :=
-    mul_ne_zero (ne_of_gt hnstar) (Real.exp_pos (x / xT)).ne'
+  have hn : nExp nstar xT x ≠ 0 := by
+    dsimp [nExp]
+    exact mul_ne_zero (ne_of_gt hnstar) (Real.exp_pos (x / xT)).ne'
   field_simp [hn, hxT] <;> ring_nf
 
 /-! ## 4. the DT1 section 2 trade-off (discrete two-point form) -/
@@ -380,7 +377,7 @@ theorem tradeoff_two_point {n : ℝ → ℝ} {xa xb k2 : ℝ} (hxa : xa ≤ xb)
     have hgd : deriv g y = deriv n y - k2 := by
       change deriv ((fun z : ℝ => n z) - (fun z : ℝ => k2 * z)) y = deriv n y - k2
       rw [deriv_sub]
-      · simp [deriv_const_mul_field, deriv_id'', mul_one]
+      · simp
       · exact (hdiff y hyn).differentiableAt (isOpen_Ioo.mem_nhds hyn)
       · fun_prop
     rw [hgd]
