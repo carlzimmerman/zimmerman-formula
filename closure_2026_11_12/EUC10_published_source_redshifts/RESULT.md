@@ -10,9 +10,8 @@ catalogue's `lens_model_success` or `final_sample` flag, three have no stellar m
 counting every unverified NED pointer as real, N(P) would be 3 and N(S) 5. The gates stay open.
 
 All checks pass (null 0, mutation exits 1). KA3: the published 1.366 for L015763 was recovered (Bergamini et al.,
-Table 1); that lens fails `final_sample`, so it is not in P.
-
-κ = ½ FITTED; not theory closed. Footings never pooled. No outcome here favours the framework.
+Table 1); that lens fails `final_sample`, so it is not in P. κ = ½ FITTED; not theory closed. Footings never pooled.
+No outcome here favours the framework.
 
 ## 1. What was matched (`euc10_matches.csv`; all machine-readable, none PROVISIONAL)
 
