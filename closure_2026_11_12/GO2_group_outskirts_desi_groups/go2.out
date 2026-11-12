@@ -1,0 +1,62 @@
+GO2. isolated groups measured 788, kept 369, dropped {'sources': 339, 'empty bin': 72, 'y mask': 6, 'randoms': 2}; M1 control measured 600, kept 277
+isolated: median z 0.220; weighted mean M_HALO 8.417e+13 (Msun/h), M500 6.716e+13, R500 0.570 Mpc; median theta500 2.84'; randoms per group 3.85; weighted mean visible member stellar mass 6.684e+11 (catalogue units)
+stacked Delta Sigma x R500^2 per bin (Msun per unit x^2), S/N per bin: 3.19e+13(+3.9), 4.70e+12(+0.9), 5.16e+12(+1.4), 2.93e+12(+0.9), 5.90e+12(+2.9), 3.46e+12(+2.0), 4.36e+12(+4.7), 3.12e+12(+4.0), 1.76e+11(+0.3), 9.24e+11(+2.6), 5.18e+11(+2.1), 4.78e+11(+1.9); total S/N 9.2
+
+## Known answers
+KA1a GO2 measurement code vs GO1 checkpoint, 10 kept GO1 groups, max relative difference in numt/den: 0.00e+00 -> PASS
+KA1b GO2 stacker on GO1's checkpoint (catalogue Mgas500) vs go1.json delta, M_exc at x 1, 4, 8, 11.3, 16: max rel diff 0.0e+00 -> PASS
+     (GO1 reproduced: delta at x 8 / 11.3 / 16 = 18.48 / 16.58 / 16.68)
+KA3 A1 deprojection NFW + r^-2: M_rec/M_true at x 1, 2.83, 8 [1.0233, 1.0285, 1.0436] (5 %); mocks bias/sd [0.1, 0.03, 0.15], rel sd [0.33, 0.42, 0.48] -> PASS
+KA3 beta-model y template, gNFW beam-corrected, recovered/true per shell (inner sphere, 0.25 ... 16): [0.864, 1.122, 1.25, 1.265, 1.13, 1.006, 0.963, 0.966, 0.979, 0.986, 1.028, 0.939, 1.785]; graded shells 1-4 -> PASS
+     gNFW beam correction per shell: [2.356, 1.448, 1.124, 0.935, 0.859, 0.863, 0.899, 0.934, 0.96, 0.977, 0.987, 0.993, 0.997]
+KA3 f_ret identity with no excess: PASS
+KA2 cross shear M_exc: Mexc@1 -1.63e+13 ± 8.22e+12 (z -1.98); Mexc@3 -1.67e+13 ± 2.42e+13 (z -0.69); Mexc@8 -4.95e+13 ± 7.61e+13 (z -0.65) -> PASS
+KA2 random-position stack (random minus random): Mexc@3 2.32e+13 ± 2.11e+13 (z +1.10); Mexc@8 1.03e+14 ± 6.17e+13 (z +1.67); Mexc@16 1.23e+15 ± 9.35e+14 (z +1.32); gas5@1 -1.72e+11 ± 4.65e+11 (z -0.37); Gy@3 -2.40e+12 ± 4.77e+12 (z -0.50); Gy@8 -5.75e+13 ± 3.60e+13 (z -1.60) -> PASS
+
+## Primary (isolated, z 0.05-0.30, R 5.41, delta_ta 5.55, lens tail x^-2, y truncated, beam-corrected, gas500 from y at T500, T = T500 x^-0.6 outside)
+gas500 (y, T500) 1.507e+12 ± 5.34e+11; gas500 bracket 0.0536 M500 = 3.600e+12; stars500 (KVM18) 1.285e+12; weighted T500 1.48 keV
+| x | M_exc (lensing) | y gas 1..x (primary T) | M_b | M_tot | delta/rho_m | f_ret | f_ret_lo (isothermal) |
+|---|---|---|---|---|---|---|---|
+| 1.00 | 3.073e+13 ± 9.23e+12 | 0.000e+00 ± 0.00e+00 | 2.792e+12 | 3.079e+13 | 515.34 ± 150.06 | 0.540 ± 0.203 | 0.540 ± 0.203 |
+| 1.41 | 3.655e+13 ± 1.49e+13 | 7.455e+11 ± 8.83e+11 | 3.666e+12 | 3.672e+13 | 217.30 ± 86.21 | 0.600 ± 0.292 | 0.584 ± 0.277 |
+| 2.00 | 7.501e+13 ± 1.67e+13 | 3.470e+12 ± 2.67e+12 | 7.174e+12 | 7.548e+13 | 157.92 ± 33.55 | 0.568 ± 0.298 | 0.494 ± 0.232 |
+| 2.83 | 1.235e+14 ± 2.84e+13 | 7.766e+12 ± 7.60e+12 | 1.254e+13 | 1.249e+14 | 92.38 ± 20.68 | 0.604 ± 0.435 | 0.465 ± 0.269 |
+| 4.00 | 3.091e+13 ± 3.97e+13 | 6.616e+12 ± 1.37e+13 | 9.999e+12 | 3.473e+13 | 9.08 ± 10.30 | 2.187 ± 5.805 | 1.608 ± 3.209 |
+| 5.66 | 1.707e+14 ± 7.14e+13 | 1.334e+13 ± 2.29e+13 | 2.049e+13 | 1.815e+14 | 16.78 ± 6.50 | 0.688 ± 0.871 | 0.463 ± 0.374 |
+| 8.00 | 2.467e+14 ± 9.07e+13 | 1.732e+13 ± 4.77e+13 | 2.901e+13 | 2.773e+14 | 9.06 ± 3.00 | 0.632 ± 1.185 | 0.423 ± 0.392 |
+| 11.31 | 4.792e+14 ± 3.36e+14 | 9.046e+13 ± 7.69e+13 | 1.153e+14 | 5.657e+14 | 6.54 ± 3.89 | 1.385 ± 1.513 | 0.546 ± 0.391 |
+| 16.00 | 1.195e+15 ± 1.13e+15 | 1.336e+14 ± 4.15e+14 | 1.968e+14 | 1.440e+15 | 5.88 ± 4.59 | 0.857 ± 2.390 | 0.400 ± 0.482 |
+primary: r_ta = NOT REACHED (reached in 12/30 jackknife)
+lower bound: r_ta = NOT REACHED (reached in 12/30 jackknife)
+M_b(<R500) = 2.792e+12 ± 5.38e+11; M_tot(<R500) = 3.079e+13
+  x = 1: f_ret 0.540 ± 0.203, lower bound 0.540 ± 0.203
+  x = 2: f_ret 0.568 ± 0.298, lower bound 0.494 ± 0.232
+  x = 3: f_ret 0.873 ± 1.197, lower bound 0.659 ± 0.666
+  x = 5: f_ret 1.222 ± 2.353, lower bound 0.871 ± 1.261
+
+## Brackets (label per bracket)
+  lens tail x^-1.5: r_ta NOT REACHED, delta(16) 6.18 -> NOT EVALUABLE [r_ta NOT REACHED]
+  lens tail x^-3: r_ta 15.49 (17/30), f_ret 0.959 ± 1.162 -> NOT EVALUABLE [r_ta reached in 17 of 30 jackknife]
+  lens no tail: r_ta 9.71 (30/30), f_ret 1.353 ± 1.770 -> NOT EVALUABLE [sigma f_ret 1.77 > 0.20]
+  y tail x^-3: r_ta NOT REACHED, delta(16) 5.88 -> NOT EVALUABLE [r_ta NOT REACHED]
+  no beam correction: r_ta NOT REACHED, delta(16) 5.88 -> NOT EVALUABLE [r_ta NOT REACHED]
+  CIB-deprojected y: r_ta NOT REACHED, delta(16) 5.88 -> NOT EVALUABLE [r_ta NOT REACHED]
+  gas500 = 0.0536 M500: r_ta NOT REACHED, delta(16) 5.88 -> NOT EVALUABLE [r_ta NOT REACHED]
+  no stars beyond R500: r_ta NOT REACHED, delta(16) 5.88 -> NOT EVALUABLE [r_ta NOT REACHED]
+  stars x 1.5: r_ta NOT REACHED, delta(16) 5.88 -> NOT EVALUABLE [r_ta NOT REACHED]
+  R 5.562: r_ta NOT REACHED, delta(16) 5.77 -> NOT EVALUABLE [r_ta NOT REACHED]
+  delta_ta 11: r_ta 7.17 (30/30), f_ret 0.649 ± 0.917 -> NOT EVALUABLE [sigma f_ret 0.92 > 0.20]
+  lambda_n 2.5e-7: r_ta NOT REACHED, delta(16) 5.90 -> NOT EVALUABLE [r_ta NOT REACHED]
+  lambda_n 2.5e-3: r_ta 12.67 (24/30), f_ret 1.359 ± 1.577 -> NOT EVALUABLE [r_ta reached in 24 of 30 jackknife]
+  M500 x 0.7: r_ta NOT REACHED, delta(16) 5.88 -> NOT EVALUABLE [r_ta NOT REACHED]
+  M500 x 1.4: r_ta NOT REACHED, delta(16) 5.88 -> NOT EVALUABLE [r_ta NOT REACHED]
+  z 0.05-0.20: r_ta NOT REACHED, delta(16) 6.82 -> NOT EVALUABLE [too few groups]
+
+## Footings and the law row (reported; a0 enters only here)
+  canonical (a0 9.3603e-11): f_ret(<r_ta) None; x 1.00: M_law/M_tot 0.848 (g_N/a0 0.013); x 3.00: M_law/M_tot 1.464 (g_N/a0 0.006)
+  alt (a0 1.1312e-10): f_ret(<r_ta) None; x 1.00: M_law/M_tot 0.928 (g_N/a0 0.011); x 3.00: M_law/M_tot 1.604 (g_N/a0 0.005)
+KA3 footings give identical f_ret: PASS
+
+# LABEL
+#   canonical: NOT EVALUABLE [r_ta NOT REACHED] [BRACKET-DEPENDENT: lens tail x^-3, lens no tail, delta_ta 11, lambda_n 2.5e-3, z 0.05-0.20]
+#   alt: NOT EVALUABLE [r_ta NOT REACHED] [BRACKET-DEPENDENT: lens tail x^-3, lens no tail, delta_ta 11, lambda_n 2.5e-3, z 0.05-0.20]
