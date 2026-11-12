@@ -115,4 +115,9 @@ aperture is 712 kpc at the median redshift 0.45 (755 kpc at 0.5; the criteria's 
 neighbours add pressure, which works against EXCLUDED.
 Coverage is set by local noise, a proxy for the survey mask. It tests no part of a₀ or κ.
 
+## Commit ids (local / origin)
+
+Criteria `07a07ec1a6` / `a22f1554b2`; script and run `c107fd8afe` / `eb08cfdcbc`; result `eb59dcf96b` /
+`41b11ac851`. Pushed by replay onto origin's tip, so the two histories carry different ids for the same content.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
