@@ -232,6 +232,10 @@ are left as written; they read differently now:
   on the framework's own line.
 - **38a (mass at 73 kpc):** unchanged; it was a no-field number.
 - The count of entries by class above is not revised.
+- **Later the same day** the owner retired row 32's first-registered mass kill
+  (`campaign_fresh_gravity/OWNER_DECISION_2026-11-12b_ROW32_KILL.md`). Row 32 now stands as a slope
+  prediction over 100 to 200 kpc (d ln M / d ln r = 0.96 to 0.97; kill at 0.75 or below) and is NOT YET
+  TESTED: no profile with a covariance exists at those radii.
 
 ## Method and limits
 
