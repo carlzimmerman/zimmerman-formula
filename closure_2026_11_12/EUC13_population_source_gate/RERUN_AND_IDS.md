@@ -48,4 +48,23 @@ Median photometric redshift at 23.5 < i < 24.5 from the raw rows: 1.017 (the lan
 Not done: an independent blind re-grade of the population gate; a forward-model member built from Euclid's own
 photometric redshifts.
 
+## Correction to note 2, and the blind re-grade (dated addition, later on 2026-11-12)
+
+The blind re-grade now exists: `closure_2026_11_12/EUC13R_blind_population_gate_regrade/` (same two words; AGREES WITH
+DIFFERENCES THAT DO NOT MOVE A LABEL; every member's point and interval within 0.004).
+
+It found that the sentence in note 2 above, "the 2,639 below 1.3 arcsec sit inside their sealed bands in every member",
+is true only under the rule RESULT.md's table uses, where a class counts as inside if its interval overlaps the band.
+The criteria do not say whether the point or the interval is placed. Placing the point, from RESULT.md's own table:
+
+- below 1.0 arcsec: the DESI SLF IV member is above the band on both footings (+0.231 against an upper edge of +0.22
+  canonical; +0.215 against +0.21 alt); the AGEL and forward-model members are inside;
+- 1.0 to 1.3 arcsec: the DESI SLF IV member is above on canonical (+0.333 against +0.30) and inside on alt (+0.316
+  against +0.34); the AGEL and forward-model members are inside;
+- 1.3 arcsec and above: above in every member and footing under either rule (+0.43 to +0.50).
+
+So the accurate statement is: for lenses below 1.3 arcsec, two of the three constructions put the class medians inside
+the sealed bands and the third puts them at or just above the upper edge (by 0.005 to 0.03 dex). No word of the lane
+changes; the class placement was a reading, not a gate.
+
 Adopts nothing. kappa = 1/2 FITTED; not theory closed.
