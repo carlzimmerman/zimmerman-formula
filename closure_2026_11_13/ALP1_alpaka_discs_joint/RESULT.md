@@ -177,4 +177,12 @@ The joint's statement stays untested on resolved curves. A decision needs three 
 - **Not modelled.** Bulge, inclination brackets, beam forward-modelling, and an AGN correction to M*.
 - **Not run.** No independent re-grade; ALP1R runs blind and separately. Nothing was pushed.
 
+**Commit ids and the lead's re-run (added 2026-11-13, after landing; no number or label changes).** Local / origin:
+criteria b0e1ea1287, script and outputs 05c2584f62, RESULT 473438c9fb (origin tip 634ec7144f). Pushed. The lead session
+re-ran `alp1.py` and both twins from a copy at the same folder depth: all six outputs are equal byte for byte. A
+reproduction, not an independent re-grade. The blind build, lane ALP1R, reads NO VERDICT as frozen (its twins were
+frozen on the uninformative shape-only test and do not bite) and, under that, NO POWER above and below the boundary on
+both footings: the same reading as this lane. The two differ in baryon masses by 0.1 to 0.5 dex for five discs (the
+gas route), and only this lane's measured-speed bracket reads FAILS on canonical.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
