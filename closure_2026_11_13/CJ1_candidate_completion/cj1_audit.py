@@ -3,7 +3,7 @@
 
 Reads cited files with `git show HEAD:<path>` (paths relative to the repository root). Text is compared after removing
 markdown bold markers and collapsing whitespace, so line wraps do not matter. Also checks: each quoted word appears in
-SCORECARD.md; every scorecard row has a check; the stated word counts match the table; RRL1 has no committed RESULT.md;
+SCORECARD.md; every scorecard row has a check; the stated word counts match the table;
 no home paths and no banned names in this folder's files; each file ends with the required line.
 Exit 0 only if every check passes. Run: python3 -I -B cj1_audit.py
 """
@@ -92,6 +92,9 @@ CHECKS = [
     (30, C12 + "PLT1_outer_mass_vs_literature/RESULT.md", "PASSES, FRAGILE"),
     (30, C12 + "SAT1_satellite_directions/RESULT.md", "ANISOTROPY LOWERS IT, NOT ENOUGH"),
     (30, C12 + "EFC1_external_field_convention/RESULT.md", "CONVENTION-DEPENDENT"),
+    (22, C13 + "FRZ5_forest_nuisance_refit/RESULT.md", "NO VERDICT (a twin does not bite)"),
+    (22, C13 + "FRZ5_forest_nuisance_refit/RESULT.md", "FOREST ROW FAILS AFTER REFIT"),
+    (28, C13 + "RRL1_halo_slope_from_rr_lyrae/RESULT.md", "MEASURED SLOPE MAKES A PASSING BIN FAIL [40-55 COLD]"),
     (31, C11 + "DW1_desi_dr2_mw_mass/RESULT.md", "9 of 12"),
     (32, C12 + "MWI1_inner_baryons/RESULT.md", "SUPPLIED BY 1 OF 5"),
     (33, C12 + "MWG1_hot_halo_gas/RESULT.md", "ROTATION CURVE NOT SUPPLIED"),
@@ -125,7 +128,6 @@ CHECKS = [
      "window without the coverage line is [1.25, 2] in both builds on both footings"),
     (45, "fable52_push/FLD1_fold_reach/RESULT.md", "DOES NOT / DOES NOT"),
 ]
-RRL1_ROW = 28
 WORDS = ["PASSES TRIVIALLY", "FAILS ON COVERAGE ONLY", "EQUALS THE LAW", "NO POWER",
          "DEPENDS ON AN UNTESTED ASSUMPTION", "NOT GRADED FOR THIS FORM", "PASSES", "FAILS"]
 END_LINE = "kappa = 1/2 FITTED; not theory closed. Adopts nothing."
@@ -166,13 +168,6 @@ def main():
                % (row, path, word, "yes" if in_src else ("NO" if src is not None else "FILE NOT COMMITTED"),
                   "yes" if in_card else "NO"))
 
-    # RRL1: must have no committed RESULT file
-    r = subprocess.run(["git", "ls-files", "--", C13], cwd=ROOT, capture_output=True, text=True, check=True)
-    rrl = [p for p in r.stdout.splitlines() if p.startswith(C13 + "RRL1") and "/RESULT" in p]
-    report(not rrl and "RRL1: running, not landed" in card,
-           "row %d | %sRRL1* | no committed RESULT file (found %d) and SCORECARD says \"RRL1: running, not landed\""
-           % (RRL1_ROW, C13, len(rrl)))
-
     # table rows, coverage, counts
     rows = {}
     for ln in card_raw.splitlines():
@@ -181,7 +176,7 @@ def main():
             cells = [c.strip() for c in ln.strip().strip("|").split("|")]
             rows[int(m.group(1))] = cells[5]
     report(sorted(rows) == list(range(1, len(rows) + 1)), "table rows numbered 1..%d without gaps" % len(rows))
-    checked = {c[0] for c in CHECKS} | {RRL1_ROW}
+    checked = {c[0] for c in CHECKS}
     missing = sorted(set(rows) - checked)
     report(not missing, "every table row has a check (missing: %s)" % (missing or "none"))
     for k, footing in ((0, "Canonical"), (1, "Alt")):
