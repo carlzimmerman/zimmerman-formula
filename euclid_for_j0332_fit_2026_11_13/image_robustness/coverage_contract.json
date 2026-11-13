@@ -1,0 +1,84 @@
+{
+  "claim_id": "FORJ0332_SOURCE_WINDOW_RAY_AND_POSITION_AUDIT",
+  "mathematics": {
+    "assertion_tested": "Measure 2x2 subpixel ray coverage on released source segmentation for compact and wide source windows, and source-plane position diameters for all existing branches; render preserved high/low/fixed-SED source and image arrays.",
+    "coefficient_domain": "float64, Gaussian linear nuisance integration, bounded nonlinear local optimization",
+    "conventions": "Corrected continuous zero-padded bilinear source basis only; same mass prior and shear sigma.10 component priors as fit_images_v2.py. Matched fixed-SIE source-marginal differences are diagnostics, not model Bayes factors.",
+    "inputs": [
+      "Released VIS image/PSF/RMS/masks, fixed lens light geometry/template, canonical AQUAL field library01, imagefit02 starting parameters"
+    ],
+    "bounds": {
+      "coverage_models": 5,
+      "subpixels_per_pixel": 4,
+      "positions": 4,
+      "position_pairs": 6,
+      "source_window_sizes": [
+        [
+          25,
+          0.04
+        ],
+        [
+          33,
+          0.04
+        ],
+        [
+          33,
+          0.06
+        ]
+      ],
+      "gates_arcsec": [
+        0.3,
+        0.5
+      ]
+    },
+    "non_claims": [
+      "Geometric coverage does not eliminate source-prior assumptions.",
+      "Released source segmentation and image positions are pipeline diagnostics, not independent data.",
+      "No exact source-point identity is established by this statistic."
+    ]
+  },
+  "execution_artifacts": [
+    "euclid_for_j0332_fit_2026_11_13/image_robustness/window_coverage.py",
+    "euclid_for_j0332_fit_2026_11_13/lens_models.py",
+    "euclid_for_j0332_fit_2026_11_13/library_01/library.npz",
+    "euclid_for_j0332_fit_2026_11_13/inputs/results/coolest_sersic.json",
+    "euclid_for_j0332_fit_2026_11_13/inputs/results/coolest.json",
+    "euclid_for_j0332_fit_2026_11_13/inputs/results/model.fits",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/info.json",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/segmentation/artefact_binary.fits",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/segmentation/source_binary.fits",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/Tile102034383RA0532498193624DECNEG0359643115588.fits",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/positions.json",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/positions_meta.json",
+    "euclid_for_j0332_fit_2026_11_13/image_robustness/run_01/result.json",
+    "euclid_for_j0332_fit_2026_11_13/image_robustness/run_02/result.json",
+    "euclid_for_j0332_fit_2026_11_13/image_robustness/run_02/images_sources.npz"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.4"
+    },
+    {
+      "name": "scipy",
+      "version": "1.13.1"
+    },
+    {
+      "name": "astropy",
+      "version": "6.0.1"
+    },
+    {
+      "name": "matplotlib",
+      "version": "3.9.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

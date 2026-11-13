@@ -1,0 +1,27 @@
+{
+  "claim_id": "FORJ0332_FIXED_MODEL_POSITIVE_SOURCE_MAP",
+  "mathematics": {
+    "assertion_tested": "For corrected image_fit_02 AQUAL parameters and fixed published SIE, retain each previously optimized regularization and solve the same proper-prior source/light/sky quadratic with source coefficients constrained nonnegative; report KKT and cost changes",
+    "coefficient_domain": "float64",
+    "conventions": "Continuous zero-padded bilinear25x25source,.04arcsec spacing,2x2rays,source>=0,last2coefficients free; diagonal Hessian preconditioning is an exact change of variables",
+    "inputs": ["Frozen image_fit_02 parameters and regularizations", "Released pixels/RMS/PSF/light template", "Same Gaussian precision priors as unconstrained inversion"],
+    "bounds": {"source_coefficients":625,"nuisance_coefficients":2,"models":2,"max_iterations_each":10000,"max_line_search_steps":50,"relative_KKT_target":1e-7,"scaled_projected_gradient_target":2e-4},
+    "non_claims": ["No truncated-Gaussian marginal evidence or Bayes factor", "No nonlinear lens or regularization refit", "No final association-gated posterior certification", "No theory pass/fail"]
+  },
+  "execution_artifacts": [
+    "euclid_for_j0332_fit_2026_11_13/positivity_check/check_positive_map.py",
+    "euclid_for_j0332_fit_2026_11_13/image_inversion/inversion_continuous.py",
+    "euclid_for_j0332_fit_2026_11_13/lens_models.py",
+    "euclid_for_j0332_fit_2026_11_13/library_01/library.npz",
+    "euclid_for_j0332_fit_2026_11_13/image_fit_02/result.json",
+    "euclid_for_j0332_fit_2026_11_13/inputs/results/coolest_sersic.json",
+    "euclid_for_j0332_fit_2026_11_13/inputs/results/coolest.json",
+    "euclid_for_j0332_fit_2026_11_13/inputs/results/model.fits",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/info.json",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/segmentation/artefact_binary.fits",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/segmentation/source_binary.fits",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/Tile102034383RA0532498193624DECNEG0359643115588.fits"
+  ],
+  "software": [{"name":"Python","version":"3.9.6"},{"name":"numpy","version":"1.26.4"},{"name":"scipy","version":"1.13.1"},{"name":"astropy","version":"6.0.1"}],
+  "randomness": {"used":false,"generator":"","seed":null}
+}

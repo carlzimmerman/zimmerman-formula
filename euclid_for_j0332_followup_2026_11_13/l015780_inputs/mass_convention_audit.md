@@ -1,0 +1,25 @@
+# Stellar-mass convention and aperture audit
+
+## DESI value lineage directly verified
+
+OfficialstronglensVACprimarydocs https://data.desi.lbl.gov/doc/releases/dr1/vac/strong-lensing/ labelLOGMSTARh=1,ChabrierIMF. ThebareVACheaderdoesnotrecordFastSpecFitversion. WeusedboundedHTTPbyteranges (206responses,first2097152bytesONLY) fromofficialIronv2.1andv3.0perhealpixfiles;partialgzipcontainsCOMPLETEtableHDUsbeforeMODELS. FASTSPEC/METADATAandv3SPECPHOTtableCHECKSUM/DATASUMALLverify1. Fullmodelsnotdownloaded;FITSexpectedtruncationwarningconcernsmissingMODELSonly. URLs/rangehashesfastspec_range_provenance.json;headerssaved. Extractioninspect_fastspec_ranges.pyandrowauditfastspec_range_audit.json.
+
+v2.1headercode2.5.0,templatesftemplates-chabrier-1.3.0.fits. TARGETID39633467440368852 row270 exactlymatchesstronglensVAC mass11.34730148315,SFR33.01250458,VDISP289.09094238,IVAR.00047716958. Thusversionlineage is verifiedbyexactrowagreement,notmerelyassumedfromDR1label. APERCORR4.37929,RCHI2_PHOT25.57707. ThisversionrowhasNOLOGMSTAR_IVAR.
+
+v3.0headercode3.1.5:mass11.35346889,formalLOGMSTAR_IVAR1935.92114(~.0227dexstatistical),VDISP295.30569±30.47236km/s;RCHI2_PHOT302.23465,SFR~1.32e-13. PhotometricfitsarepoorandSFRchangesradicallydespitesimilarmass;formalstatisticalmassprecisioncannotjustifyanindependenttightmassprior. Versionhistoryprimary https://fastspecfit.readthedocs.io/en/latest/iron.html distinguishesv2.1/v3.0;latestdocscontainfuturev4notusedhere.
+
+## h/IMF conversion
+
+Exactversion2.5.0primarycode https://github.com/desihub/fastspecfit/blob/2.5.0/py/fastspecfit/util.py lines395–417 setsH0=100andreturnsluminosity_distanceinMpc/h. continuum.py https://github.com/desihub/fastspecfit/blob/2.5.0/py/fastspecfit/continuum.py line1613 scalesmodeltemplatefluxasstellar-massnormalization/dluminosity²;lines2288–2291derivecurrentstellarMstarfromcoefficientsandtemplatecurrentmass. Bothsourcefilescachedwithversioninfilename. ConsequentlyatfixedSED/geometrymassscalesh^-2 (derivedfromdocumentedflux-distance²normalization,notanadditionalfit): logMphysical=logMh1−2log10(h).
+
+h=.6774gives+.3383096dex→11.6856111Chabrier. ECLIPSEprimaryportal https://euclid-eclipse-lenses.org/about statesSalpeter→Chabrier/Kroupareducesmass~.2–.25dex;reverseconversiongives~11.88561–11.93561Salpeter,~.19–.24dexaboveEuclid11.69542. ThisisschematicIMFnormalizationmatching,notanewmassposterior;SFH,metallicity,dust,cosmology/deblendingstilldiffer.
+
+OfficialFastSpecFitmethods https://data.desi.lbl.gov/doc/releases/dr1/vac/fastspecfit/ jointlymodelsfiberopticalspectrumandUV–IRbroadbandphotometry;metadatafluxesoriginateLegacySurveystractor. Lensmassreconstructionisnotusedtodeblendlensedsourceinthatpipeline. Atthislensbluearcfluxcancontaminateunresolvedphotometry;APERCORR~4.38remindsthatfiberandtotalfluxdiffer. EuclidDphotometryisexplicitlylens/sourcedeblendedwithfrozenVISshapes. NeitherconvertedDESImassnorEuclidformalerroraloneisafullindependentprecisestellarprofileprior.
+
+## Finite Euclid aperture versus infinite Sérsic normalization
+
+PrimaryECLIPSE-D https://eceb.astro.uni-bonn.de/public/dr1/nersesian.pdf Section3.1 definescatalogue'total'lensfluxbysummingunconvolvedmodelpixelswithinthemodellingcircle. ItisnotexplicitlyanalyticinfiniteSersicflux. HereRe3.593arcsec,n7.149andmaskradius6.913extendbeyond10arcseccutout. LargeunobservedSersicwingsmatter.
+
+Diagnosticaperture_normalization_diagnostic.json:sumreleasedVISprePSFlensmapinsideavailablecutout+circle145.26958;analyticinfiniteSersicfluxusingSAMECOOLESTpointIe,Re,n258.17480;ratio.56267916. InfinitecircularizedSersicfluxformula F=Ie*2*pi*Re²*n*exp(bn)*bn^(-2n)*Gamma(2n)/pixel_area,withpixel_area=.01arcsec². FormalconstantM/Linfinite-massnormalizationwouldadd.249739dexrelativefiniteaperturemass.
+
+ThisisNOTameasurementofouterstellarwingsornotproofcatalogueMstarunderestimatestrueM. Itflagsadefinitionmismatch: assigningfinitecatalogueSEDmassdirectlyastotalmassofaninfinitestellarprofilecanunderstateitsnormalization. Converselyaddingunconstrainedextrapolatedwingsasobservedmasswouldalsooverclaim. Rootmustresolveaperture/lightprofilewithdataandexplicitpriorsbeforephysicalpointbound/theoryexclusion. The~.25dexscaleiscomparabletoh/IMFconvertedDESIversusEucliddifferenceandcouldremoveanominalmassshortfall;thatrequiresactualmodeltest,notassertionhere.

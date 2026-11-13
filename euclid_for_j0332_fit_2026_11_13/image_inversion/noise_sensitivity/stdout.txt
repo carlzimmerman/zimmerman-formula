@@ -1,0 +1,25 @@
+baseline 1.0 {'score': 28599.446086526674, 'log_evidence': 28599.446086526674, 'chi2': 3102.200859413112, 'prior_penalty': 103.9668451140573, 'log_regularization': 6.983609351664808, 'n_pixels': 6420, 'n_source': 625, 'lens_amplitude': 1.0040486977799423, 'sky': 1.4979557204119421e-05, 'negative_source_fraction': 0.4272, 'source_footprint_fraction': 0.13372274143302182, 'seconds': 0.003238201141357422}
+Traceback (most recent call last):
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/euclid_for_j0332_fit_2026_11_13/image_inversion/noise_sensitivity/run.py", line 43, in <module>
+    if __name__=='__main__':main()
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/euclid_for_j0332_fit_2026_11_13/image_inversion/noise_sensitivity/run.py", line 37, in main
+    opt=minimize(obj,p0,method='Nelder-Mead',options={'maxiter':300,'xatol':1e-5,'fatol':.003,'initial_simplex':np.vstack([p0,p0+[.008,0,0,0],p0+[0,.008,0,0],p0+[0,0,.008,0],p0+[0,0,0,.3]])});s,fit=evaluate(opt.x);rec=dict(scale=scale,correlation=.23,baseline=serial(baseline),optimized_parameters=opt.x.tolist(),posterior_objective=s,fit=serial(fit),delta_conditional_log_evidence=fit['score']-baseline['score'],delta_chi2=fit['chi2']-baseline['chi2'],success=bool(opt.success),seconds=time.time()-start)
+  File "/private/tmp/forj0332-fit-venv/lib/python3.9/site-packages/scipy/optimize/_minimize.py", line 701, in minimize
+    res = _minimize_neldermead(fun, x0, args, callback, bounds=bounds,
+  File "/private/tmp/forj0332-fit-venv/lib/python3.9/site-packages/scipy/optimize/_optimize.py", line 843, in _minimize_neldermead
+    fxr = func(xr)
+  File "/private/tmp/forj0332-fit-venv/lib/python3.9/site-packages/scipy/optimize/_optimize.py", line 526, in function_wrapper
+    fx = function(np.copy(x), *(wrapper_args + args))
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/euclid_for_j0332_fit_2026_11_13/image_inversion/noise_sensitivity/run.py", line 36, in obj
+    s,r=evaluate(p);trace.append({'p':list(p),'score':s});return -s
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/euclid_for_j0332_fit_2026_11_13/image_inversion/noise_sensitivity/run.py", line 34, in evaluate
+    fit=inv.evaluate(deflection=lambda X,N:lens.deflection(X,N,m,g1,g2),log_regularization=z,return_arrays=False);score=fit['score']-.5*((g1/.1)**2+(g2/.1)**2)+mass_logprior(m);return score,fit
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/euclid_for_j0332_fit_2026_11_13/image_inversion/noise_sensitivity/run.py", line 22, in evaluate
+    ret=super().evaluate(*a,**kw);corr=-ret['n_pixels']*np.log((1-self.r*self.r)*self.scale);ret['score']+=corr;ret['log_evidence']+=corr;return ret
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/euclid_for_j0332_fit_2026_11_13/image_inversion/inversion.py", line 46, in evaluate
+    if deflection is not None:self.operator(deflection)
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/euclid_for_j0332_fit_2026_11_13/image_inversion/noise_sensitivity/run.py", line 14, in operator
+    self.mask=self.originalmask.copy();super().operator(fn);r=self.r
+  File "/Users/carlzimmerman/new_physics/zimmerman-formula/euclid_for_j0332_fit_2026_11_13/image_inversion/inversion.py", line 43, in operator
+    D=np.column_stack([B,self.lens[self.mask],np.ones(self.mask.sum())]);self.D=D;self.WD=D/self.noise[self.mask,None];self.y=(self.data-self.lens)[self.mask]/self.noise[self.mask];self.H0=self.WD.T@self.WD;self.b=self.WD.T@self.y;return self
+KeyboardInterrupt

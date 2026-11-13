@@ -1,0 +1,205 @@
+ECLIPSE screening for a dark-energy-tied acceleration scale
+13 November 2026
+
+RESULT
+
+One well-supported starting target was recovered: FOR J0332-3557,
+EUCL-DR1-L014994. It has independently published lens and source spectroscopy,
+usable Euclid imaging, a successful released image model, and substantial raw
+a0 sensitivity. A dedicated fit can start now. This screen has NOT fitted the
+user's screened v3s theory to the pixels or measured the a0--dark-energy tie.
+
+SDSS J1524+4409 (L017819) is a secondary target with measured redshifts but an
+unsettled image model and large external shear. HSCJ151336+433251 (L010972) is a
+particularly useful follow-up target because an observed stellar velocity
+dispersion is published, but a source redshift was not recovered here.
+
+This is a verified shortlist from a full released-table screen and a bounded
+external-source search. It is not a proof that other ECLIPSE lenses lack usable
+external data. No fitted likelihood or decisive test of rho_DE tracking has
+been established by this computation.
+
+NAMED TARGETS
+
+1. FOR J0332-3557 / EUCL-DR1-L014994 / J033259.956-355751.52
+   Lens redshift 0.986 +/- 0.005; source redshift 3.773 +/- 0.003,
+   both spectroscopic (Cabanac et al. 2005).
+   Euclid grade A; image-model consensus Success; passes released SED selection.
+   Effective Einstein radius 1.497 arcsec; lens-light effective radius about
+   1.062 arcsec, Sersic n=5.663; approximate axis ratio 0.810.
+   External-shear amplitude 0.0566.
+   log10 surviving stellar mass/Msun = 11.831, with a maximum quoted conditional
+   68% error of 0.104 dex. Mass assumes Salpeter IMF and photo-z=0.98.
+   Fixed-baryon, fixed-impact logarithmic deflection sensitivity S_alpha=0.2372.
+   Exact spherical diagnostic: a0/2 changes deflection -13.26%; 2*a0 +20.46%.
+   Increasing stellar mass by 0.2 dex instead changes deflection +43.49%.
+   The quoted conditional mass uncertainty alone corresponds to a local
+   deflection uncertainty of about 18% in log units. Thus a0 is not already
+   precisely identified. The alternate a0 footing changes deflection only 4.77%.
+   Published velocity dispersion 302 +/- 12 km/s is LENS-MODEL-INFERRED,
+   NOT an independent dynamical measurement. It must not be used as such.
+   Image inspection: the published generic lens model reproduces the main arc
+   and counterimage qualitatively. This does not validate the user's model or
+   certify statistical image-fit adequacy.
+   Decision: first candidate for a dedicated baryonic forward fit, with stellar
+   population/IMF, geometry, external field and convergence treated explicitly.
+
+2. SDSS J1524+4409 / EUCL-DR1-L017819 / J152445.636+440949.53
+   Lens redshift 0.320 +/- 0.001; source redshift 1.210 +/- 0.001,
+   both spectroscopic (Oguri et al. 2008). DESI lens z=0.320221 is consistent.
+   Grade A; released model No Consensus; SED final_sample=True.
+   Axis ratio about 0.565; external shear 0.222; effective Einstein radius
+   0.801 arcsec. Mass assumes photo-z=0.34 rather than the measured 0.320.
+   Exact spherical diagnostic S_alpha=0.1328; a0/2 gives -7.21%; 2*a0 +11.85%.
+   Decision: a real paired-redshift target, but repair/review its image model
+   and environment before attributing a residual to a0. Not the first choice.
+
+3. HSCJ151336+433251 / EUCL-DR1-L010972
+   Lens spectroscopic redshift 0.487. Observed SDSS stellar dispersion
+   204 +/- 26 km/s (Wong et al. 2018). Source redshift absent in inspected table.
+   Grade B; successful Euclid model; passes SED selection; axis ratio 0.940,
+   external shear 0.034. Proxy S_alpha=0.2583; doubling a0 gives +22.15%.
+   Decision: strong spectroscopy follow-up target. Existing kinematics could
+   support a joint lensing--dynamics test once source geometry is established.
+
+4. HFLS08 / EUCL-DR1-L001617
+   Calanog et al. 2014 lists lens z=0.330 and source z=2.264. The lens value
+   cites the Oyaizu photometric catalogue; the source value is attributed to
+   Riechers in preparation. This is NOT two independently verified spec-z's.
+   Euclid mass assumes photo-z=0.41; external shear 0.253; grade B.
+   Its high raw sensitivity (0.420) must not outrank the data problems.
+   Decision: provisional follow-up, not ready for the proposed test.
+
+RELEASE COVERAGE AND FILTERS
+
+Downloaded the three relevant public catalogue archives, about 267 MB, and
+verified all three publisher MD5 checksums. No multi-gigabyte image bundles
+were needed. Original archives and download provenance are retained.
+
+- All 26,662 graded parent rows checked: 6,073 A, 8,999 B, 9,010 C, 2,580 X.
+- All 15,072 A/B rows joined one-to-one across object, physical-property and
+  image-model tables, with identifier uniqueness assertions.
+- 9,538 pass the publisher's final SED-sample selection.
+- 14,040 have positive, finite inputs in the declared numerical domain and
+  receive an approximate sensitivity diagnostic; excluded rows remain in CSV.
+- 2,964 pass our stricter grade-A + successful-model + final-SED criteria,
+  excluding marked large systems and inclined-disc deflectors.
+- 790 additionally have q>=0.7, external shear<0.1, n<9.5 and SED
+  specific-SFR<1e-11/yr. These are prioritization cuts, not physical theorems.
+- 371 parent rows have a vetted DESI foreground redshift; 258 are A/B.
+- A full spherical-nearest-neighbour match to the 85-row public SLACS sample
+  finds zero matches within 10 arcsec. This does not exhaust external surveys.
+- Six prioritized external records were explicitly tracked; two yielded
+  independently verified spectroscopic pairs. Other published-reference routes
+  were checked at documentation level, not exhaustively crossmatched.
+
+The official SED sample is more permissive than our strict model-quality cut:
+it can retain No Consensus models. A sure-lens classification is not a
+successful-model flag. Numeric -99 values are missing; SED _low/_upp values
+are ERRORS, whereas lens-model lower/upper values are interval BOUNDS.
+
+THE SOURCE-REDSHIFT OMISSION
+
+ECLIPSE-A reports 20 vetted DESI lens/source spectroscopic pairs (12 A, 5 B,
+3 C) and attributes spectroscopy to Storfer et al., in preparation. The
+downloaded object table has desi_deflector_specz only. The released SED table
+characterizes foreground deflectors, not source redshifts. The 17 A/B pairs
+therefore cannot be recovered from these tables alone.
+
+We do not know the authors' reason. This is a reproducibility limitation for
+this screening, not evidence of misconduct. Placeholder redshifts in time-delay
+products are not observations and were never admitted as source data.
+
+The public DESI strong-lensing VAC contains Redrock Z and VDISP/VDISP_IVAR,
+but its documented schema has no separate vetted foreground/background-redshift
+columns. It can support additional kinematic work, not silently fill this gap.
+Talbot's SILO catalogue is another spectroscopic follow-up lead; its paired
+emission-line candidates were not exhaustively crossmatched in this screen.
+
+WHAT THE SENSITIVITY CALCULATION MEANS
+
+This is target selection under the isolated, spherical, stellar-only,
+UNSCREENED simple-mu branch, not the full adopted screened v3s action.
+
+  gN(r) = G Mstar_3D(<r) / r^2
+  g(r) = [gN + sqrt(gN^2 + 4 a0 gN)] / 2
+  alpha_hat(R) = (4 R/c^2) integral_0^(pi/2) g(R sec(t)) sec(t) dt
+  S_alpha = d ln(alpha_hat) / d ln(a0), holding baryons and impact fixed.
+
+The projected Sersic mass is deprojected before computing gN. The full-table
+ranking uses the Lima Neto / Prugniel-Simien approximation. Both named paired
+candidates were checked separately with exact Abel deprojection and adaptive
+line-of-sight quadrature. Foreground/background geometry cancels out of this
+logarithmic sensitivity; a source redshift is nevertheless required for an
+absolute lens prediction.
+
+The baseline retains the published non-circularized effective radius. A
+sqrt(q) radius variation and +/- mass-scale scenarios show model dependence.
+Canonical a0=9.3603e-11 and alternate a0=1.1312e-10 m/s^2 are kept separate.
+Distances use ECLIPSE-D's H0=67.74, Om=0.3089 flat fiducial cosmology for
+consistent bookkeeping ONLY. This is not an independent rho_DE measurement.
+
+S_alpha>=0.10 is called stronger raw sensitivity, .05-.10 intermediate, below
+.05 weak. These are declared triage choices. Among the strict sample, 2,959
+are stronger and five intermediate. This does NOT mean 2,959 usable tests:
+source distances, mass accuracy, environment and likelihoods are still needed.
+
+At fixed stellar shape, d ln(alpha)/d ln(Mstar)=1-S_alpha. Thus IMF and mass
+normalization uncertainty can easily mimic a0. Gas, external fields,
+convergence, shear, non-spherical structure, and mass-to-light gradients must
+also enter a real fit. Changing the lens redshift requires revisiting the SED
+mass; it cannot simply be swapped without consequence. The diagnostic column
+alpha_over_thetaE_proxy_at_photo_mass holds that mass fixed and must NOT be
+interpreted as an observed theory residual or an exclusion.
+
+NUMERICAL AND PROVENANCE CHECKS
+
+Authoritative full screen: run_02/manifest.json, run.status=completed.
+Independent candidate audit: audit_run/manifest.json, run.status=completed.
+The code, input hashes, software versions, dirty repository state, command,
+resource bounds, logs and result hashes are recorded by the bounded runner.
+
+Checks include publisher file checksums, population and join uniqueness,
+128/256-node quadrature agreement, 0<=S_alpha<=0.5, analytic point-mass
+deflection, finite-difference derivatives, and an independent Gaussian
+deprojection benchmark. For the two paired candidates the approximate versus
+exact deflection errors are -0.0317% and +0.0131%; sensitivity derivatives
+agree to better than 1e-7 with independent finite differences.
+
+Outcome: finite catalogue screening verified within the declared numerical
+domain, conditional on the explicitly stated physical approximations. No
+statistical theory verdict. The external-source search is bounded.
+
+Reproduce from /Users/carlzimmerman/new_physics/zimmerman-formula:
+
+  python3 euclid_eclipse_screen_2026_11_13/screen.py --output /tmp/eclipse_recheck
+  python3 euclid_eclipse_screen_2026_11_13/exact_sersic_check.py --output /tmp/eclipse_exact_recheck.json
+
+For the fully recorded run commands and limits, use the command arrays in
+run_02/manifest.json and audit_run/manifest.json; make a fresh output directory
+for a new runner record. run_01 is an earlier retained exploratory screen.
+
+FILES
+
+shortlist.csv                        Compact four-target comparison
+run_02/screen_all_15072.csv           Every A/B row, inputs, flags and diagnostics
+run_02/followup_shortlist.csv         Top 30 strict candidates, source-z unverified
+run_02/named_targets.csv             All six inspected literature records
+external_verified_redshifts.csv      Redshift values, types and source notes
+inputs/external_primary_provenance.json  Cached primary-document hashes and URLs
+inputs/external_FOR_J0332_fit.png     Publisher's generic image fit, not our fit
+screen.py / contract.json            Reproducible full screen and contract
+exact_sersic_check.py / audit_contract.json  Independent numerical checks
+
+PRIMARY SOURCES
+
+ECLIPSE release: https://zenodo.org/records/19654904
+ECLIPSE-A: https://eceb.astro.uni-bonn.de/public/dr1/lines.pdf
+ECLIPSE-D: https://eceb.astro.uni-bonn.de/public/dr1/nersesian.pdf
+Cabanac et al.: https://arxiv.org/abs/astro-ph/0504585
+Oguri et al.: https://arxiv.org/abs/0708.0871
+Wong catalogue: https://cdsarc.cds.unistra.fr/viz-bin/cat/J/ApJ/867/107
+Calanog et al.: https://users.ugent.be/~mbaes/MyPapers/Calanog%20et%20al.%202014.pdf
+Sersic approximation review/validation: https://arxiv.org/abs/2001.03121
+DESI VAC documentation: https://data.desi.lbl.gov/doc/releases/dr1/vac/strong-lensing/
+FOR J0332 data page: https://euclid-eclipse-lenses.org/lens.html?lens=Tile102034383RA0532498193624DECNEG0359643115588

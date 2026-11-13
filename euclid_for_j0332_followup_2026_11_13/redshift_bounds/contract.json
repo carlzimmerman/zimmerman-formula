@@ -1,0 +1,78 @@
+{
+  "claim_id": "SOURCE_REDSHIFT_FREE_SPHERICAL_LENS_BOUNDS",
+  "mathematics": {
+    "assertion_tested": "For five Euclid/DESI matches and FORcontrol, compute exact isolated spherical simple-mu point-mass upper envelopes, algebraic envelopes, source-infinity and beta<=1 necessary mass floors, geometry-summary quantiles, exact-Sersic diagnostics and source-redshift feasibility under named mass scenarios",
+    "coefficient_domain": "float64",
+    "conventions": "a0=9.3603e-11m/s2; H0=67.74,OmegaM=.3089,flat matter+Lambda with radiation omitted; foreground spec-z; ECLIPSE masses flux-only distance-rescaled photo\u2192spec; positive spherical mass only",
+    "inputs": [
+      "Frozen five-match CSV",
+      "FullAB screen02 catalog",
+      "DESI VAC masses with explicit illustrative h/IMF conversions",
+      "Canonical isolated simple-mu law and static lensing equality premises"
+    ],
+    "bounds": {
+      "targets": 6,
+      "geometry_quantile_samples": 2048,
+      "Sobol_seed": 13613,
+      "LOS_orders": [
+        128,
+        256
+      ],
+      "Abel_orders": [
+        128,
+        192
+      ],
+      "pointmass_root_logM_range": [
+        7,
+        15
+      ],
+      "pointmass_bisection_steps": 50,
+      "source_redshift_domain": "zl<zs<infinity",
+      "mass_offset_scenarios_dex": [
+        0,
+        0.2,
+        0.25,
+        0.3,
+        0.5
+      ]
+    },
+    "non_claims": [
+      "No non-spherical or full-action exclusion",
+      "No source redshift measurement",
+      "No calibrated theory p-value",
+      "No fully refitted stellar SED or matched IMF prior",
+      "No radiation-inclusive background"
+    ]
+  },
+  "execution_artifacts": [
+    "euclid_for_j0332_followup_2026_11_13/redshift_bounds/bounds.py",
+    "euclid_for_j0332_fit_2026_11_13/desi_crossmatch/matches_1arcsec.csv",
+    "euclid_eclipse_screen_2026_11_13/run_02/screen_all_15072.csv",
+    "euclid_for_j0332_fit_2026_11_13/desi_crossmatch/desi-sl-vac-v1.fits",
+    "closure_2026_11_07/FINAL_THEORY_2026_11_07.md",
+    "closure_2026_11_06/QX17_covariant_field_equations/RESULT.md"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.4"
+    },
+    {
+      "name": "scipy",
+      "version": "1.13.1"
+    },
+    {
+      "name": "astropy",
+      "version": "6.0.1"
+    }
+  ],
+  "randomness": {
+    "used": true,
+    "generator": "scipy.stats.qmc.Sobol scramble=True dimension2",
+    "seed": 13613
+  }
+}

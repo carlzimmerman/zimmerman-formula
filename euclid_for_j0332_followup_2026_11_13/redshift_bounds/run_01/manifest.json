@@ -1,0 +1,193 @@
+{
+  "schema_version": 2,
+  "claim_id": "SOURCE_REDSHIFT_FREE_SPHERICAL_LENS_BOUNDS",
+  "repository": {
+    "commit": "ba80269ed548287df30c4b63370fb1ced708a048",
+    "dirty": true
+  },
+  "command": [
+    "/private/tmp/forj0332-fit-venv/bin/python",
+    "-B",
+    "euclid_for_j0332_followup_2026_11_13/redshift_bounds/bounds.py",
+    "--output",
+    "euclid_for_j0332_followup_2026_11_13/redshift_bounds/run_01"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "scipy",
+        "version": "1.13.1"
+      },
+      {
+        "name": "astropy",
+        "version": "6.0.1"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "For five Euclid/DESI matches and FORcontrol, compute exact isolated spherical simple-mu point-mass upper envelopes, algebraic envelopes, source-infinity and beta<=1 necessary mass floors, geometry-summary quantiles, exact-Sersic diagnostics and source-redshift feasibility under named mass scenarios",
+    "coefficient_domain": "float64",
+    "conventions": "a0=9.3603e-11m/s2; H0=67.74,OmegaM=.3089,flat matter+Lambda with radiation omitted; foreground spec-z; ECLIPSE masses flux-only distance-rescaled photo→spec; positive spherical mass only",
+    "inputs": [
+      "Frozen five-match CSV",
+      "FullAB screen02 catalog",
+      "DESI VAC masses with explicit illustrative h/IMF conversions",
+      "Canonical isolated simple-mu law and static lensing equality premises"
+    ],
+    "bounds": {
+      "targets": 6,
+      "geometry_quantile_samples": 2048,
+      "Sobol_seed": 13613,
+      "LOS_orders": [
+        128,
+        256
+      ],
+      "Abel_orders": [
+        128,
+        192
+      ],
+      "pointmass_root_logM_range": [
+        7,
+        15
+      ],
+      "pointmass_bisection_steps": 50,
+      "source_redshift_domain": "zl<zs<infinity",
+      "mass_offset_scenarios_dex": [
+        0,
+        0.2,
+        0.25,
+        0.3,
+        0.5
+      ]
+    },
+    "non_claims": [
+      "No non-spherical or full-action exclusion",
+      "No source redshift measurement",
+      "No calibrated theory p-value",
+      "No fully refitted stellar SED or matched IMF prior",
+      "No radiation-inclusive background"
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "scipy.stats.qmc.Sobol scramble=True dimension2",
+    "seed": 13613
+  },
+  "run": {
+    "started_at": "2026-11-13T21:09:35.622392+00:00",
+    "runtime_seconds": 1.45132,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 65536,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 30,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "euclid_for_j0332_followup_2026_11_13/redshift_bounds/bounds.py",
+    "euclid_for_j0332_fit_2026_11_13/desi_crossmatch/matches_1arcsec.csv",
+    "euclid_eclipse_screen_2026_11_13/run_02/screen_all_15072.csv",
+    "euclid_for_j0332_fit_2026_11_13/desi_crossmatch/desi-sl-vac-v1.fits",
+    "closure_2026_11_07/FINAL_THEORY_2026_11_07.md",
+    "closure_2026_11_06/QX17_covariant_field_equations/RESULT.md"
+  ],
+  "input_artifacts": [
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/redshift_bounds/bounds.py",
+      "sha256": "36ad84ab7f0d66e0cb7d076e823d48242c4543ebae40a874b657f57b6ff4dc02",
+      "sha256_after": "36ad84ab7f0d66e0cb7d076e823d48242c4543ebae40a874b657f57b6ff4dc02"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/desi_crossmatch/matches_1arcsec.csv",
+      "sha256": "6231bb54d72c6e25b49360a56791ee0d6d5001d2137b7c81d0639854696dc2e1",
+      "sha256_after": "6231bb54d72c6e25b49360a56791ee0d6d5001d2137b7c81d0639854696dc2e1"
+    },
+    {
+      "path": "euclid_eclipse_screen_2026_11_13/run_02/screen_all_15072.csv",
+      "sha256": "f0ae145c69b2c546ee37b9a9b91adc9fce7f063a83da3226498fd8d5f7648461",
+      "sha256_after": "f0ae145c69b2c546ee37b9a9b91adc9fce7f063a83da3226498fd8d5f7648461"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/desi_crossmatch/desi-sl-vac-v1.fits",
+      "sha256": "0fb81f2272635605244e0c024b8405219f30d60ed60b58c0ed3079c47d3139b0",
+      "sha256_after": "0fb81f2272635605244e0c024b8405219f30d60ed60b58c0ed3079c47d3139b0"
+    },
+    {
+      "path": "closure_2026_11_07/FINAL_THEORY_2026_11_07.md",
+      "sha256": "bf27e5960d484c64ff1122e7cc4af44b7a6380ba4aa687ddb7e70f99566ad752",
+      "sha256_after": "bf27e5960d484c64ff1122e7cc4af44b7a6380ba4aa687ddb7e70f99566ad752"
+    },
+    {
+      "path": "closure_2026_11_06/QX17_covariant_field_equations/RESULT.md",
+      "sha256": "dd2a318fbfb01a8449f33448547989ca4074e2ebae6925ffdee9937c951d010b",
+      "sha256_after": "dd2a318fbfb01a8449f33448547989ca4074e2ebae6925ffdee9937c951d010b"
+    }
+  ],
+  "output_directory": "euclid_for_j0332_followup_2026_11_13/redshift_bounds/run_01",
+  "declared_results": [
+    "euclid_for_j0332_followup_2026_11_13/redshift_bounds/run_01/result.json",
+    "euclid_for_j0332_followup_2026_11_13/redshift_bounds/run_01/summary.csv"
+  ],
+  "outputs": [
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/redshift_bounds/run_01/stdout.txt",
+      "sha256": "27f8fcf3ad5989f5cc2e953262ffafcb82d3bf78bb9efac874a8e76e343fd5aa",
+      "kind": "log"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/redshift_bounds/run_01/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/redshift_bounds/run_01/result.json",
+      "sha256": "41644913bdda0951eaa3cf9e24744b451c8a4111a77c82ab6ee369cd88e0007a",
+      "kind": "result"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/redshift_bounds/run_01/summary.csv",
+      "sha256": "c619709ef5902f589257aad728542070a40c28a95f20bec0f8f197b735233e6b",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,23 @@
+# L002777 eight-band association information audit
+
+## Finding
+
+The actual public images contain useful spatial/color information, but they do NOT yet distinguish securely between foreground disc structure/contaminants and a common lensed source. No new source identity or successful lens model is established. Existing SILO/SDSS spectrum audit was read, not rerun: the unresolved candidate background-line interpretation cannot locate which image feature emits those lines.
+
+Inspected official results/rgb.png and all eight raw FITS images in run_01/eight_band_markers.png. RGB shows an elongated warm central light component and a visually blue northern plume/knot, plus blue structure toward the opposite extension. VIS resolves the northern feature separately from the central disc. The same northern structure is visible spatially in Y/J/H and optical images, although contrast differs and ground optical seeing blends it. This is real image information, not proof of a common source or a calibrated color measurement. RGB band weights/stretches and different raw-image scales cannot be used as a quantitative color likelihood.
+
+All old AND current marker sites are retained in the plot. Conversion of release(south,west) to(west,north): current positions are A(−.15,−.65),B(−1.05,+.25),C(+.65,−.05); segmentation_v1 gives A, D(+.55,+1.35),E(−1.05,−.65). The northernD is not merely a small astrometric relocation: it is absent from current gate and is mostly within the released artefact region rather than source mask. B and E differ by0.9arcsec in north coordinate. No official reason for edits or failure is inferred. Treating the source/artefact labels as ground truth would assume the association that this investigation needs to test.
+
+## Resolution constraint
+
+Bounded code computes radial finite-stamp encircled-energy radii after normalizing each supplied PSF sum. Approximate r80(arcsec): VIS.224; Y.424; J.500; H.566; g1.044; r.707; i1.342; z.608. r50: VIS.141; Y/J.283; H.316; g.608; r.412; i.762; z.361. See run_01/result.json for exact values and stamp sums. PSF sums are not all1: VIS.95346 and PANSTARRS_i.87589 notably omit/non-unit-normalize finite-stamp flux. These are finite-stamp summaries, not calibrated outside-wing corrections. Tiny negative empirical-PSF samples are documented.
+
+Therefore VIS and NIR resolve different structure on scales where g/i smooth together source sites, foreground disc and northern feature. Simple same-pixel color ratios or small fixed-aperture g/i contrasts would mainly measure varying blends. No such misleading contrast significance was calculated. The northern feature cannot be dropped solely because it was masked, and g/i cannot independently separate all these subarcsec knots without a deblend model. Eight-band availability alone is not eight independent morphology measurements.
+
+## Smallest useful next model
+
+Fit VIS+Y/J/H first with separate foreground disc and bulge (or a flexible smooth foreground with tested gradients) plus an independent northern-component template; include all marker sites and fit contaminant light beyond mask boundaries. Compare TWO association hypotheses: (1) independent foreground/neighbor clumps with free colors, and (2) a common-source lens mapping predicting at least one held-out feature/counterimage. Permit northernD to be either source or separate foreground component; report that model uncertainty. The released failed lens/light decomposition must not supply a precise prior that presupposes the answer.
+
+Carry those spatial templates through actual g/r/i/z PSFs and allow calibrated registration/sky errors, rather than measuring raw small-aperture colors. Source color gradients and foreground dust/spiral structure must remain alternatives to identical-color source patches. Estimate noise covariance and deblend uncertainty with empty matched apertures and injection/recovery; no theory-tuned numerical error floor has been introduced. Consistent colors would increase plausibility, not secure source identity. Strongest cheap discriminator would be a correctly predicted held-out counterimage with compatible PSF-convolved morphology; spatially resolved spectroscopy of northernD versus central region would identify the emission source directly but is not present here.
+
+This is a bounded information/resolution audit, not a full gravity fit or a new official lens-model classification. r80 and diagnostics reproduced in run_01 (completed validated Mathboxv2); input dataset/mask hashes pinned. Original asset URL/time/SHA sidecars remain read-only in parent inputs. No spectral line fitting was repeated.

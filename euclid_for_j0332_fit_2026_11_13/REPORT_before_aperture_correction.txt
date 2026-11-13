@@ -1,0 +1,231 @@
+FOR J0332 — image-level test of the dark-energy acceleration-scale model
+2026-11-13
+
+OUTCOME
+
+The specified smooth, isolated, unscreened AQUAL galaxy branch can reproduce
+the Euclid VIS arcs with the released stellar-mass uncertainty included.
+Conditioning on the released multiple-image association, zero external
+convergence, and the fixed light geometry, it requires about 1.08–1.10e12 Msun
+of stars. The released Salpeter SED estimate is 6.78e11 Msun, with its 16–84%
+interval 5.33–8.27e11 Msun. The fitted mass is about 1.59–1.62 times its median.
+
+This is moderate stellar-mass tension, approximately 2.3–2.5 upper-side
+catalogue standard deviations under those conditional error summaries.
+That number is NOT a calibrated physical-theory exclusion significance.
+The images are compatible with this branch; neither a decisive falsification
+nor a clean confirmation of the complete adopted screened theory follows.
+No new-physics breakthrough has been established.
+
+WHAT WAS ACTUALLY FITTED
+
+Target EUCL-DR1-L014994, FOR J0332-3557:
+  tile Tile102034383RA0532498193624DECNEG0359643115588
+  lens z=0.986 +/-0.005, source z=3.773 +/-0.003, spectroscopic literature values.
+  canonical a0=9.3603e-11 m/s^2 from the adopted relation
+  a0=(c/2)sqrt(G rho_DE), with rho_DE a mass-equivalent density.
+
+The actual released 100x100 VIS image, RMS map and normalized 21x21 PSF were
+used. The mask includes 6,711 pixels. Eight bands were downloaded, but this
+is a VIS image likelihood plus the released multi-band SED mass constraint,
+NOT a fresh joint eight-band stellar-population fit.
+
+The field solves div[mu(|gradPhi|/a0) gradPhi]=4piG rho with
+mu(x)=x/(1+x), using an axisymmetric finite-volume solver. Deflections are
+computed by line-of-sight projection of the field, with equal weak-field
+metric potentials. The non-spherical algebraic MOND shortcut was not used.
+
+Stars follow an edge-on oblate, constant-M/L, Abel-deprojected Sersic profile.
+The COOLEST point light shape is held fixed:
+  geometric-mean Re=1.1391817887 arcsec, n=5.86871910, q=0.8133792204.
+The observed light centre and angle are used. Stellar mass and two external
+shear components are fitted; baseline external convergence is zero.
+The adopted galaxy branch sets mu_K=0. No bound dark halo was added.
+Gas and a central black hole were not independently constrained or fitted;
+the mass-to-light model attributes the fitted baryonic component to stars.
+Distances use flat LambdaCDM with H0=67.74km/s/Mpc and Omega_m=.3089.
+No evolving-dark-energy history or DESI cosmological likelihood was jointly
+fitted; this tests the specified fixed acceleration value at the lens redshift.
+
+A continuous bilinear source grid is reconstructed through the PSF. Proper
+Gaussian source, lens-light-amplitude and sky priors permit analytic
+marginalization over their linear coefficients. Source regularization is
+sampled in the final posterior. The stellar mass constraint is a two-half-
+normal quantile approximation with median log10M=11.8310873126 and lower/
+upper 68% offsets 0.1041923878 / 0.0863788677 dex. The quoted mass errors were
+not mistaken for absolute bounds, and the Salpeter IMF was not switched.
+Shear components have independent zero-mean Gaussian priors of width0.1.
+
+SOURCE ASSOCIATION IS A NECESSARY CONDITION
+
+The release supplies four candidate multiple-image positions and a maximum
+source-plane separation threshold0.3 arcsec. The final conditional posterior
+requires those positions to trace within that separation. A 0.5arcsec
+threshold is a separately reported sensitivity check, not additional data.
+
+Without this association condition, a wide source grid finds a branch at
+the lower searched mass bound, logM=11.56, partly reconstructing the observed
+arc as intrinsic source structure. Its position separation is1.518arcsec;
+the released SIE has0.19155arcsec. This is the known demagnified-source
+failure mode of flexible lens inversions. It must not be silently discarded,
+nor interpreted as a robust measurement of low stellar mass. All branches
+are preserved. The final mass is explicitly conditional on the strong-lens
+source association; it is not a source-prior-independent mass measurement.
+
+FINAL CONDITIONAL POSTERIOR AND FIT
+
+Authoritative sampler: gated_posterior_02, four independent Metropolis-
+Hastings chains with a frozen proposal and the exact Hastings correction.
+Each chain has3,000 steps, with500 discarded. Classical split R-hat values
+are1.00008,1.00242,1.00055,1.00118; autocorrelation estimates2.61–3.11steps.
+The registered R-hat<1.01 and post-burn length>50tau checks passed.
+This is finite convergence evidence, not proof of global convergence.
+
+log10(Mstar/Msun), 16/50/84%:
+  12.037527 / 12.039271 / 12.041651
+Mstar, 16/50/84%:
+  1.09025e12 / 1.09464e12 / 1.10066e12 Msun
+External shear magnitude, 16/50/84%:
+  0.15580 / 0.15733 / 0.15884
+
+These narrow intervals freeze the light shape, inclination, IMF, noise
+covariance and line-of-sight convergence. They are NOT the complete physical
+uncertainty on this galaxy's mass. Representation changes alone are larger.
+
+The compact-grid constrained local fit has chi2=3091.62 on6,711pixels.
+A matched source reconstruction using the fixed published SIE parameters
+has chi2=3124.04. Its SIE mass parameters were not reoptimized, so neither
+this difference nor the linear-source marginal scores are a Bayes factor
+between gravity theories. Correlated noise and source regularization also
+prevent treating chi2/N as a calibrated pass probability.
+
+SOURCE, NOISE AND NUMERICAL CHECKS
+
+With the0.3arcsec association gate, wide/compact source grids yield
+logM=12.033283 / 12.041171: a1.83% mass shift. The0.5arcsec checks retain a
+similar high-mass branch. Several starts were tested; inferior local optima
+are recorded and no global optimization proof is claimed.
+
+Before association conditioning, other source-grid/centre/subpixel choices
+shifted the high-mass branch by0.48%. A separable correlated-noise sensitivity
+with nearest-neighbour correlation0.23 gives logM=12.04056, close to the
+diagonal-RMS result. This approximate covariance model is not a measured
+full covariance. A separate global RMS rescaling is labelled only a stress
+case and is not substituted for the actual noise model.
+
+A source-only holdout of49 faint-counterimage pixels gives chi2=30.25 for
+AQUAL and48.08 for the fixed SIE control. The mass/shear used these pixels
+in their earlier fit and PSF coupling remains, so this is a consistency
+check, not an independent validation dataset.
+
+Nonnegative-source MAP checks at fixed pre-gate nonlinear parameters still
+fit: chi2 rises by66.98 for AQUAL and87.72 for SIE. Neither unconstrained
+source contains a pixel negative by more than3 conditional standard
+deviations. These checks do not turn a Gaussian-source marginal likelihood
+into a positivity-constrained Bayesian evidence.
+
+Independent field checks cover spherical Abel projection, analytic elliptical
+Newtonian deflections, density normalization, AQUAL mesh/outer-domain/LOS
+refinement and map interpolation. At the tested arc positions, AQUAL mesh
+refinement changes deflection by at most0.0623%, outer-domain doubling by
+0.00309%, LOS refinement by0.00119%; map interpolation was checked to about
+0.026%. These are finite tests with explicit ranges, not universal bounds.
+
+An initial source-window implementation was discontinuous. Its old fits
+were withdrawn, preserved, and rerun with a continuous zero-padded basis.
+Even the corrected bilinear basis has derivative kinks; inverse-Hessian
+uncertainties were therefore rejected. The first two sampler runs did not
+meet their registered convergence checks and are not the final posterior.
+
+MATERIAL PHYSICAL LIMITS
+
+The ECLIPSE-D methods explicitly define Re=sqrt(ab), a circularized scale.
+All non-VIS shapes are fixed to VIS; their fluxes and centres can change.
+The photometric extraction also freezes the initial lens mass model. Thus
+the SED mass constraint is conditional and data-dependent, not an independent
+joint posterior for stellar mass, mass profile and lens geometry. Joint
+shape covariances and IMF/SPS/M/L-gradient uncertainties are not supplied
+by the marginal table. Earlier optical/NIR radii from Cabanac's de Vaucouleurs
+fits are considerably smaller; this discrepancy has not been fully resolved.
+
+The SED mass uses photometric z=0.98. Pure luminosity-distance rescaling to
+the spectroscopic redshift would shift logM by+0.00653dex, mildly reducing
+the quoted tension, but is not a replacement for a stellar-population refit.
+The independent spherical calculation propagates reported Re,n,thetaE,z
+marginals and obtains a similar conditional tension,2.475sigma canonical
+and2.241sigma for the alternative a0. It is a diagnostic, not this image fit.
+
+Changing only a0 to1.1312e-10 at the same geometry gives about logM12.01999
+on the pre-gate high-mass branch, roughly5% lower. This is a sensitivity
+calculation, not a complete alternative-cosmology fit or an a0 measurement.
+
+Allowing a hypothetical external convergence can change the mass requirement.
+At the SED median mass a fitted kappa_ext=0.30879 gives chi2=3169.53 and an
+association separation0.21042arcsec. That convergence has NOT been measured;
+the fit is worse than the baseline under the stated source prior. A free-
+convergence search also runs to its negative search boundary, demonstrating
+prior sensitivity rather than measuring an acceptable physical environment.
+A lens-plane shear/convergence is not a self-consistent AQUAL external-field
+or full multiplane solution. The environment cannot be silently used to
+declare a successful theory prediction.
+
+The adopted screened theory does not uniquely fix Lstar;21.7pc is a lower
+bound. An actual smooth spherical solve of its leading weak screened-P
+equation with the adopted charge blend gives negligible deflection changes
+for the named floor/100pc/1kpc fixtures. This supports the smooth nominal
+galaxy-limit approximation locally. It is not an oblate full-action solve,
+an arbitrary-Lstar bound, a treatment of stellar granularity, or a covariant
+accuracy certificate. See theory_audit.md and screened_diagnostic/README.md.
+
+LEAN AND DESI
+
+Nine algebraic identities compile in Lean, with independent review and a
+deliberately false mutation that fails. They prove positive AQUAL flux/
+residual scaling under explicit linear geometry assumptions, linear
+projection scaling, mass-sheet/source-brightness identities, and density
+scaling under the postulated square-root relation. They establish a precise
+conditional identifiability limitation. They do not prove the observations,
+the numerical PDE implementation, the screened action's validity, novelty,
+or that the theory passes this lens.
+
+The official DESI DR1 strong-lens VAC has no FOR J0332 counterpart. This is
+not an exhaustive search of all spectroscopy. Its five1arcsec matches to
+the ECLIPSE A/B catalogue identify L015780 as a possible future joint test,
+with observed dispersion289.09+/-45.78km/s and lens z=.4282704. Its source
+redshift remains unverified. An actual recovered DESI spectrum was searched
+conservatively for background multiplets; no candidate passed. Cabanac's
+302+/-12km/s for FOR is lens-inferred, not independent dynamical data.
+
+AUTHORITATIVE FILES AND PROVENANCE
+
+Final image comparison: figures/for_j0332_final_fit.png
+Final compact conditional posterior: gated_posterior_02/{result.json,manifest.json}
+Gated wide/compact fits: image_robustness/run_03/{result.json,manifest.json}
+Unrestricted-source audit: image_robustness/{run_02,coverage_01}
+Field checks: field_validation_01, field_audit/run_01, library_01
+Stellar-mass crosscheck: spherical_diagnostic/run_01
+Screening diagnostic: screened_diagnostic/run_01
+Positive source check: positivity_check/run_01
+Formal certificate: formal/AqualScaling.lean, certificate_provenance.json,
+  independent_review.md
+Data URL/hash record: inputs/fetch_provenance.json
+Aggregate record checks: manifest_validation.json
+
+Each bounded experiment has its own contract and exact command in its v2
+manifest. The validation script verifies current input/output hashes; a valid
+manifest records provenance, not scientific truth. Reproduction environment:
+/private/tmp/forj0332-fit-venv/bin/python (Python3.9.6,numpy1.26.4,scipy1.13.1,
+astropy6.0.1,emcee3.1.6); numerical library threads1. The environment is temporary;
+versions and scripts are retained so it can be rebuilt.
+
+Primary source links:
+  https://zenodo.org/records/19654904
+  https://euclid-eclipse-lenses.org/lens.html?lens=Tile102034383RA0532498193624DECNEG0359643115588
+  https://eceb.astro.uni-bonn.de/public/dr1/nersesian.pdf
+  https://arxiv.org/abs/astro-ph/0504585
+  https://pyautolens.readthedocs.io/en/latest/general/demagnified_solutions.html
+  https://data.desi.lbl.gov/doc/releases/dr1/vac/strong-lensing/
+
+The immediate conditional image-fit investigation is complete at this
+checkpoint. The broader request for a breakthrough and full physical-theory
+certification remains unresolved; no goal-complete claim is made.

@@ -1,0 +1,11 @@
+# SL2S47 versus ECLIPSE15072: completed null positional match
+
+Primary paper: Mozumdar et al., TDCOSMO XXI, A&A705,A13 (2026), https://doi.org/10.1051/0004-6361/202555583 ; arXiv https://arxiv.org/abs/2505.13962 . Online publication24Dec2025; volume2026. It reports accurate stellar kinematics with sample systematic uncertainty/covariance, not merely an isothermal-lens sigma. VizieR primary linked data: https://cdsarc.cds.unistra.fr/viz-bin/cat/J/A%2BA/705/A13 . Service description identifies47 spectra (31LRIS,3DEIMOS,13XSHOOTER).
+
+Reused the immutable small TSV already fetched by sibling agent from https://vizier.cfa.harvard.edu/viz-bin/asu-tsv?-source=J/A%2BA/705/A13/table&-out.all&-out.max=unlimited . Source bytes and fetch provenance are `../external_spectroscopic_matches/inputs/sl2s_table.tsv` and `.provenance.json`; hashed as bounded-run inputs. Strasbourg web accesses timed out; CfA cached table is complete with47 distinct names.
+
+Actual columns: recno,Name,RAJ2000,DEJ2000,Inst,FileName,Gav+14,Sonn+13,sp,Simbad. Coordinates are sexagesimal J2000 RA hours/Dec degrees. This table has NO redshift or velocity-dispersion columns; those would require original paper tables/linked original references for an overlapping object. Do not interpret spectrum availability as paired-redshift availability.
+
+All15072 ECLIPSE rows from `euclid_eclipse_screen_2026_11_13/run_02/screen_all_15072.csv` matched against all47 spectra rows, without grade/model/final-sample cuts. ECLIPSE RA_obj/DEC_obj used in degrees. No pair within2arcsec; no pair within10arcsec. The nearest pair across the two complete finite lists is25167.9000374arcsec (6.99108degrees). All47 nearest-neighbor records retained in `run_01/nearest_all47.csv`. Thus no per-match redshift/sigma extraction is needed: this particular47-row catalogue provides no joint ECLIPSE system.
+
+`run_01/manifest.json` validated v2 completed; assertions verify input row counts and uniqueness. Astropy all-pairs search within10arcsec plus independent haversine nearest-distance check agrees to2.04e-10arcsec. Coordinate epoch/frame precision is irrelevant at the observed minimum separation. This is a complete match for these two supplied tables, NOT a claim that all historical SL2S systems or all public spectroscopy have been exhausted.

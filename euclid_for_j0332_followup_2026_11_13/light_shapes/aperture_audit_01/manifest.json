@@ -1,0 +1,219 @@
+{
+  "schema_version": 2,
+  "claim_id": "FORJ0332_APERTURE_TO_INFINITE_SERSIC_NORMALIZATION",
+  "repository": {
+    "commit": "2729e12a7d589e8e1c8231be3130fbe70958b915",
+    "dirty": true
+  },
+  "command": [
+    "/private/tmp/forj0332-fit-venv/bin/python",
+    "euclid_for_j0332_followup_2026_11_13/light_shapes/aperture_audit.py",
+    "--output",
+    "euclid_for_j0332_followup_2026_11_13/light_shapes/aperture_audit_01"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "scipy",
+        "version": "1.13.1"
+      },
+      {
+        "name": "astropy",
+        "version": "6.0.1"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Integrate COOLEST-point Sersic profile inside actual offset circular modelling mask; compare released pre-PSF map/table flux and derive constant-M/L total/aperture mass normalization.",
+    "coefficient_domain": "float64, native flux units and microJy; arcsec",
+    "conventions": "Re geometric mean; exact radial incomplete-gamma primitive with angular integration. SED finite circle flux per primary ECLIPSE-D. Infinite extension and constant M/L assumed.",
+    "inputs": [
+      "FOR COOLEST point shape, mask, pre-PSF maps, photometry table, SEDmass and light marginal summaries."
+    ],
+    "bounds": {
+      "angular_nodes": 256,
+      "convergence_nodes": 512,
+      "adaptive_reference": true,
+      "summary_angular_nodes": 128,
+      "samples_per_correlation": 8192,
+      "assumed_n_Re_correlations": [
+        -0.9,
+        0,
+        0.9
+      ]
+    },
+    "non_claims": [
+      "No actual outer-wing mass measurement.",
+      "Summary covariance sensitivity is not a native joint shape posterior.",
+      "Changing shape also changes deflection; f-only changes are not a full refit.",
+      "No SED refit, IMF change or M/L gradient."
+    ]
+  },
+  "randomness": {
+    "used": true,
+    "generator": "scrambled Sobol inverse-normal summaries",
+    "seed": 20261113
+  },
+  "run": {
+    "started_at": "2026-11-13T21:15:54.400692+00:00",
+    "runtime_seconds": 2.46811,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 120.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "euclid_for_j0332_followup_2026_11_13/light_shapes/aperture_audit.py",
+    "euclid_for_j0332_followup_2026_11_13/light_shapes/fit_light_shapes.py",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/info.json",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/Tile102034383RA0532498193624DECNEG0359643115588.fits",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/segmentation/artefact_binary.fits",
+    "euclid_for_j0332_fit_2026_11_13/inputs/results/coolest_sersic.json",
+    "euclid_for_j0332_fit_2026_11_13/inputs/results/pre_psf.fits",
+    "euclid_for_j0332_fit_2026_11_13/inputs/results/model.fits",
+    "euclid_for_j0332_fit_2026_11_13/inputs/results/magnitudes.csv",
+    "euclid_for_j0332_fit_2026_11_13/inputs/results/lens_sersic.csv",
+    "euclid_eclipse_screen_2026_11_13/inputs/ECLIPSE_D_dr1_redshifts_and_physical_properties.zip",
+    "euclid_for_j0332_fit_2026_11_13/light_profile_audit/nersesian.pdf",
+    "euclid_for_j0332_fit_2026_11_13/light_profile_audit/nersesian.txt"
+  ],
+  "input_artifacts": [
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/light_shapes/aperture_audit.py",
+      "sha256": "4ae724c7b9d38c94acbbfabae9f580df192502282d32a60b1b9a2cdbfc185397",
+      "sha256_after": "4ae724c7b9d38c94acbbfabae9f580df192502282d32a60b1b9a2cdbfc185397"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/light_shapes/fit_light_shapes.py",
+      "sha256": "150ed21dcd6023328282112a81325804dafb3178041c809f47696d6bccd3c572",
+      "sha256_after": "150ed21dcd6023328282112a81325804dafb3178041c809f47696d6bccd3c572"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/inputs/dataset/info.json",
+      "sha256": "5f7572d0debf02ab9c7a7b702c9a8cb7b6dfd9fd65b408f0d7cf611072abf4b9",
+      "sha256_after": "5f7572d0debf02ab9c7a7b702c9a8cb7b6dfd9fd65b408f0d7cf611072abf4b9"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/inputs/dataset/Tile102034383RA0532498193624DECNEG0359643115588.fits",
+      "sha256": "7f139d39ee2b447e3b319ce41faed8ee7fbefa9423f4429dfe3d0a1b48e2dcb1",
+      "sha256_after": "7f139d39ee2b447e3b319ce41faed8ee7fbefa9423f4429dfe3d0a1b48e2dcb1"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/inputs/dataset/segmentation/artefact_binary.fits",
+      "sha256": "51c104007d7f5d76ac5ba299d627c71014c46498c0890230939021dba769f6e4",
+      "sha256_after": "51c104007d7f5d76ac5ba299d627c71014c46498c0890230939021dba769f6e4"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/inputs/results/coolest_sersic.json",
+      "sha256": "b151c55c3b5550afba3ee5864ace1bab1d0c367ec0c0c2a2e783f239b9b950c2",
+      "sha256_after": "b151c55c3b5550afba3ee5864ace1bab1d0c367ec0c0c2a2e783f239b9b950c2"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/inputs/results/pre_psf.fits",
+      "sha256": "edd28d85199d22d0d3a4bbb84f9b1e32974a1b1ba599524f62659c035244bbd7",
+      "sha256_after": "edd28d85199d22d0d3a4bbb84f9b1e32974a1b1ba599524f62659c035244bbd7"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/inputs/results/model.fits",
+      "sha256": "89a337eda2b88a992100aa1acf4468aa8f386528990a0f69e50b6c27a89e5a13",
+      "sha256_after": "89a337eda2b88a992100aa1acf4468aa8f386528990a0f69e50b6c27a89e5a13"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/inputs/results/magnitudes.csv",
+      "sha256": "5e06b5bb0a4d4f28ccdf8900af729ef465058e0d84dff17ac0e5fcb8445280f2",
+      "sha256_after": "5e06b5bb0a4d4f28ccdf8900af729ef465058e0d84dff17ac0e5fcb8445280f2"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/inputs/results/lens_sersic.csv",
+      "sha256": "3d8fef1cf10997fdc62708883e7d0b8cfa153f3d47519415f49f71f11b976fce",
+      "sha256_after": "3d8fef1cf10997fdc62708883e7d0b8cfa153f3d47519415f49f71f11b976fce"
+    },
+    {
+      "path": "euclid_eclipse_screen_2026_11_13/inputs/ECLIPSE_D_dr1_redshifts_and_physical_properties.zip",
+      "sha256": "511b68d3aa00c2289098fe47e251b3e9667fc6ea025083396a9a9ebcda8fb186",
+      "sha256_after": "511b68d3aa00c2289098fe47e251b3e9667fc6ea025083396a9a9ebcda8fb186"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/light_profile_audit/nersesian.pdf",
+      "sha256": "23c04925228934a9504aa33cb541de57173eb713ec201a3d68fc7f1e814b996f",
+      "sha256_after": "23c04925228934a9504aa33cb541de57173eb713ec201a3d68fc7f1e814b996f"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/light_profile_audit/nersesian.txt",
+      "sha256": "1aebd272ce1d3e953fa1ec87b4ca11cc013c9ce173a811f4c769a3490f6b9c33",
+      "sha256_after": "1aebd272ce1d3e953fa1ec87b4ca11cc013c9ce173a811f4c769a3490f6b9c33"
+    }
+  ],
+  "output_directory": "euclid_for_j0332_followup_2026_11_13/light_shapes/aperture_audit_01",
+  "declared_results": [
+    "euclid_for_j0332_followup_2026_11_13/light_shapes/aperture_audit_01/central.json",
+    "euclid_for_j0332_followup_2026_11_13/light_shapes/aperture_audit_01/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/light_shapes/aperture_audit_01/stdout.txt",
+      "sha256": "b22b7da405d3354f906e4b6a0acf6e2f69672e8f46d7c087196d39e5fc839e34",
+      "kind": "log"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/light_shapes/aperture_audit_01/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/light_shapes/aperture_audit_01/central.json",
+      "sha256": "04e34a482f8158fb510e19a4785d420e86551a4a62378ea60f92015562c112cc",
+      "kind": "result"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/light_shapes/aperture_audit_01/result.json",
+      "sha256": "6a272fc1b883506885333b8dd97f5d37fc0398e450d5321271c3980ada8a1b7f",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

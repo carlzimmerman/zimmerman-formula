@@ -1,0 +1,14 @@
+# ECLIPSE-D finite-mask stellar-mass normalization: decisive primary-source audit
+
+**Conclusion: the finite-mask unconvolved lens-model flux is directly used for the catalogue physical-property SED fits. No analytic Sérsic-to-infinity correction is described or consistent with the paper's explicit finite-mask caveat.** The reported stellar mass must not automatically be treated as the normalization of an infinite stellar profile.
+
+Primary: [ECLIPSE-D](https://eceb.astro.uni-bonn.de/public/dr1/nersesian.pdf). Cached PDF and SHA256 in source_provenance.json. Exact page-local text saved as D_pages5_7_raw.txt and D_page13_raw.txt, with source lines below.
+
+1. **Section3.1, printedp5:** D_pages5_7_raw.txt lines50–57 define lensflux by summing unconvolved model pixels in the modellingcircle. This defines what the paper subsequently calls totalflux; it is not automatically analytic-infinite Sérsic total.
+2. **Section3.2, printedp6:** samefile lines147–150 explicitly identifies the physical-property SED input as the unconvolved model “summed within the circular mask,” used for stellar mass and SFR. The adjacent4×FWHM aperture is for photometric-redshift inference, not a hidden total-mass correction. MER4×FWHM errors later adopted as uncertainties do not change the flux definition.
+3. **Section4.2, printedp7:** samefile lines310–323 describes Prospector deriving physical properties from these totalfluxes, at spectroscopic redshift when available, otherwise photometric redshift. No further aperture-to-infinite-total rescaling is stated there.
+4. **Section6.1, printedp13:** D_page13_raw.txt lines87–97 explicitly explains that flux outside the mask can make the measured flux “a lower limit on the true total flux” and hence underestimate stellar mass. This provides an independent internal check on the interpretation of Sections3.1–4.2. The caveat emphasizes high-n systems but is not restricted mathematically to n>9.5.
+
+There are PSF matching, photometric zero-point/error-calibration and SED-model corrections elsewhere, but they are not a correction recovering unconstrained stellar light beyond the modellingmask. The primary paper does NOT license adding unlimited outer stellar mass either: an analytic extension is a conditional extrapolation requiring stated profile/M/L assumptions. For FOR J0332, the numerical aperturefraction should be computed for its actual released profile/mask by the separate numerical audit before interpreting any required stellar-mass shift. Finite-aperture catalogue mass, extrapolated infinite Sérsic mass, and the mass enclosed by the lensing region are distinct quantities.
+
+This settles the METHODS definition from primary evidence; it does not independently audit the catalogue-generation code or prove no undocumented pipeline discrepancy. Released README's model-flux description agrees with the primary source. No newphysical exclusion or population conclusion is asserted.

@@ -1,0 +1,118 @@
+{
+  "claim_id": "FORJ0332_RAW_VIS_NIR_FREE_LIGHT_SHAPES",
+  "mathematics": {
+    "assertion_tested": "Free elliptical Sersic lens+sky shape fits to actual VIS/Y/J/H pixels with normalized PSFs, source/artefact mask dilation1/2/3, PSF-overlap halo controls and secondary published-source subtraction; joint n/Re profile maps and finite renderer benchmarks.",
+    "coefficient_domain": "IEEE754 float64; native per-band image/RMS units; arcsecond coordinates",
+    "conventions": "Unit-total-flux elliptical major-axis Sersic model integrated within pixels, convolved with normalized supplied PSF with padded model support; core3x3 pixels use angular quadrature of incomplete-gamma radial primitive. Free intensity and sky profiled linearly. No catalogue shape priors, only starts.",
+    "inputs": [
+      "Released8band100x100FITS withPSFs/RMS and masks; VISCOOLESTshape initialization; released source images only for explicitly secondary subtraction."
+    ],
+    "bounds": {
+      "bands": [
+        "VIS",
+        "NIR_Y",
+        "NIR_J",
+        "NIR_H"
+      ],
+      "primary_dilations_pixels": [
+        1,
+        2,
+        3
+      ],
+      "halo_overlap_controls": [
+        0.03,
+        0.01
+      ],
+      "aperture_radius_arcsec": 4.5,
+      "free_shape_parameters": 6,
+      "linear_parameters": 2,
+      "shape_bounds": {
+        "center_west_north": [
+          -1,
+          1
+        ],
+        "Re_major_arcsec": [
+          0.12,
+          10
+        ],
+        "n": [
+          0.4,
+          12
+        ],
+        "q": [
+          0.2,
+          1
+        ],
+        "PA_radian": [
+          -3.141592653589793,
+          3.141592653589793
+        ]
+      },
+      "mask_cases_per_band": 6,
+      "starts_per_case": 2,
+      "fixed_n_control": 4,
+      "profile_grid_per_band": [
+        7,
+        7
+      ],
+      "profile_extent_initial_sigma": 3,
+      "profile_reoptimized_nuisance_parameters": 6,
+      "fit_max_nfev": 180,
+      "profile_max_nfev": 70,
+      "baseline_GL_orders": [
+        3,
+        8,
+        24
+      ],
+      "fine_GL_orders": [
+        6,
+        16,
+        48
+      ],
+      "gaussian_benchmark_max_error": 1e-05,
+      "synthetic_shapes_per_band": 1
+    },
+    "non_claims": [
+      "No source-prior-independent uncontaminated NIR n/Re measurement from small dilation masks.",
+      "PSF overlap is geometric, not a strict source contamination flux bound.",
+      "No covariance correction for correlated resampled noise; profile intervals conditional.",
+      "No conversion of band-shape differences into measured stellar M/L gradient.",
+      "No theory pass/fail or lensing-mass fit."
+    ]
+  },
+  "execution_artifacts": [
+    "euclid_for_j0332_followup_2026_11_13/light_shapes/fit_light_shapes.py",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/Tile102034383RA0532498193624DECNEG0359643115588.fits",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/segmentation/source_binary.fits",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/segmentation/artefact_binary.fits",
+    "euclid_for_j0332_fit_2026_11_13/inputs/results/coolest_sersic.json",
+    "euclid_for_j0332_fit_2026_11_13/inputs/results/model.fits"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.4"
+    },
+    {
+      "name": "scipy",
+      "version": "1.13.1"
+    },
+    {
+      "name": "astropy",
+      "version": "6.0.1"
+    },
+    {
+      "name": "matplotlib",
+      "version": "3.9.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

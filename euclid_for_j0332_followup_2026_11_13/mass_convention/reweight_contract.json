@@ -1,0 +1,70 @@
+{
+  "claim_id": "FOR_FINITE_MASK_PRIOR_CORRECTION",
+  "mathematics": {
+    "assertion_tested": "At fixed light shape, transport existing FOR image posterior from infinite-total SED prior to finite-mask SED prior using exact importance weights; check image likelihood identity and finite sample overlap.",
+    "coefficient_domain": "float64",
+    "conventions": "log10 M_aperture = log10 M_infinite + log10 f; equal-probability half-normal approximation to catalogue asymmetric mass summaries; fixed a0 9.3603e-11 m/s2, original conditional image/source model.",
+    "inputs": [
+      "Existing converged four-chain posterior",
+      "Finite-mask method definition in ECLIPSE-D",
+      "COOLEST point-shape analytic infinite flux and released VIS aperture flux"
+    ],
+    "bounds": {
+      "posterior_samples": 10000,
+      "burn_per_chain": 500,
+      "aperture_fraction": 0.7984475942238768,
+      "recomputed_likelihoods": 5,
+      "min_importance_ESS_fraction": 0.9,
+      "max_chain_median_spread_dex": 0.001
+    },
+    "non_claims": [
+      "No global posterior exploration",
+      "No full screened action fit",
+      "No independent measurement of outer wings",
+      "No calibrated physical theory pass probability",
+      "No propagation of shape/IMF/environment/noise covariance uncertainty"
+    ]
+  },
+  "execution_artifacts": [
+    "euclid_for_j0332_fit_2026_11_13/gated_posterior_02/chains.npz",
+    "euclid_for_j0332_fit_2026_11_13/gated_posterior_02/result.json",
+    "euclid_for_j0332_fit_2026_11_13/gated_posterior_02/manifest.json",
+    "euclid_for_j0332_fit_2026_11_13/fit_images_v2.py",
+    "euclid_for_j0332_fit_2026_11_13/lens_models.py",
+    "euclid_for_j0332_fit_2026_11_13/image_inversion/inversion_continuous.py",
+    "euclid_for_j0332_fit_2026_11_13/library_01/library.npz",
+    "euclid_for_j0332_fit_2026_11_13/inputs/results/coolest_sersic.json",
+    "euclid_for_j0332_fit_2026_11_13/inputs/results/model.fits",
+    "euclid_for_j0332_fit_2026_11_13/inputs/results/pre_psf.fits",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/info.json",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/positions.json",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/segmentation/artefact_binary.fits",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/segmentation/source_binary.fits",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/Tile102034383RA0532498193624DECNEG0359643115588.fits",
+    "euclid_for_j0332_followup_2026_11_13/mass_convention/reweight_for.py",
+    "euclid_for_j0332_followup_2026_11_13/mass_convention/finite_mask_evidence.md"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.4"
+    },
+    {
+      "name": "scipy",
+      "version": "1.13.1"
+    },
+    {
+      "name": "astropy",
+      "version": "6.0.1"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "Existing frozen MCMC samples; no new randomness",
+    "seed": null
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "claim_id": "FORJ0332_FIXED_SED_MASS_CONVERGENCE",
+  "mathematics": {
+    "assertion_tested": "Fit same VIS likelihood at fixed catalogue median stellar mass with a hypothetical uniform convergence free",
+    "coefficient_domain": "float64",
+    "conventions": "simple mu isolated AQUAL, SI a0 converted to kpc km/s units, edge-on projection, equal metric potentials; continuous zero-padded bilinear source basis",
+    "inputs": [
+      "Released VIS pixels PSF RMS masks and lens template",
+      "AQUAL deflection library and fixed COOLEST light geometry",
+      "SEDmass median11.8310873126 lower.1041923878 upper.0863788677 dex"
+    ],
+    "bounds": {
+      "logM": [
+        11.56,
+        12.39
+      ],
+      "shear_components": [
+        -0.3,
+        0.3
+      ],
+      "log_source_precision": [
+        -5,
+        18
+      ],
+      "source_grid": 25,
+      "source_pixel_arcsec": 0.04,
+      "image_subpixel": 2,
+      "max_iterations_each": 450,
+      "kappa_external": [
+        -0.2,
+        0.5
+      ],
+      "starts": 2,
+      "maxiter": 600
+    },
+    "non_claims": [
+      "Not full screened-v3s action",
+      "No calibrated theory exclusion or pass probability",
+      "Fixed light shape inclination M/L",
+      "Released diagonal RMS neglects correlations",
+      "Gaussian source prior allows negative brightness; inspect diagnostic",
+      "No measured environmental prior or self-consistent AQUAL external field"
+    ]
+  },
+  "execution_artifacts": [
+    "euclid_for_j0332_fit_2026_11_13/aqual_lensing.py",
+    "euclid_for_j0332_fit_2026_11_13/lens_models.py",
+    "euclid_for_j0332_fit_2026_11_13/fit_images_v2.py",
+    "euclid_for_j0332_fit_2026_11_13/image_inversion/inversion_continuous.py",
+    "euclid_for_j0332_fit_2026_11_13/library_01/library.npz",
+    "euclid_for_j0332_fit_2026_11_13/inputs/results/coolest_sersic.json",
+    "euclid_for_j0332_fit_2026_11_13/inputs/results/coolest.json",
+    "euclid_for_j0332_fit_2026_11_13/inputs/results/model.fits",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/info.json",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/segmentation/artefact_binary.fits",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/segmentation/source_binary.fits",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/Tile102034383RA0532498193624DECNEG0359643115588.fits",
+    "euclid_for_j0332_fit_2026_11_13/environment_fixedmass.py"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.4"
+    },
+    {
+      "name": "scipy",
+      "version": "1.13.1"
+    },
+    {
+      "name": "astropy",
+      "version": "6.0.1"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

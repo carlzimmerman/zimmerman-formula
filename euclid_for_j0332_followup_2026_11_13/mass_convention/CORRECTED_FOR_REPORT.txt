@@ -1,0 +1,137 @@
+FOR J0332: aperture-corrected image fit and stellar-mass assessment
+2026-11-13 — supersedes the earlier stellar-mass tension interpretation
+
+RESULT
+
+The smooth, unscreened galaxy branch of the adopted theory is compatible
+with FOR J0332 under the stated lens/source assumptions. The corrected
+comparison requires 8.80e11 Msun of stars inside the modelling aperture,
+versus the catalogue Salpeter estimate 6.78e11 Msun with a 16–84% interval
+5.33–8.27e11 Msun. The offset is 0.113425 dex, a factor1.298, or1.313 of
+the quoted upper-side mass errors. This is mild conditional tension, not
+a significant exclusion. It is also not a calibrated goodness-of-fit test
+or a confirmation of the complete theory or its dark-energy connection.
+
+I previously compared a finite-aperture catalogue mass with an infinite
+Sersic mass normalization. That comparison was incorrect. The earlier
+approximately2.4sigma/1.6times stellar-mass tension claim is withdrawn.
+The fitted field/image solution remains usable; its mass prior and physical
+interpretation are corrected here. No new physical effect was discovered.
+
+MODEL AND DATA
+
+The fit uses the actual Euclid VIS pixels, released PSF/RMS/masks, known
+lens/source redshifts0.986/3.773, and the catalogue's asymmetric multi-band
+stellar-mass constraint. It fixes a0=9.3603e-11m/s² from the adopted
+relation a0=(c/2)sqrt(G rho_DE), with rho_DE a mass-equivalent density.
+The axisymmetric AQUAL equation with mu(x)=x/(1+x) is solved and its field
+projected along the line of sight. This is not a scalar spherical shortcut.
+
+The point light shape is fixed (circularized Re1.13918arcsec,n5.86872,
+q.813379), edge-on, with constant stellar mass-to-light ratio. Stellar mass,
+two external-shear components, source regularization and a pixelated source
+are fitted/marginalized as described in the original image analysis.
+The released four-image association is imposed with source-plane diameter
+<=.3arcsec; line-of-sight convergence is fixed to zero. The SED prior uses
+Salpeter living stars plus remnants, unchanged. This is a VIS likelihood
+plus the released SED summary, not a fresh joint eight-band SED fit.
+
+APERTURE CORRECTION
+
+ECLIPSE-D Sections3.1/3.2 define the physical-property SED input as the
+unconvolved lens model summed within the modelling circle. Section6.1
+explicitly acknowledges missing outer light and underestimated total masses.
+The defined mass is therefore not automatically an infinite-profile mass.
+See finite_mask_evidence.md for exact primary-source locations/provenance.
+
+Integrating the fixed unit-total Sersic profile over the actual selected
+pixel union/cutout gives f_ap=.8038930178. Under the SAME constant-M/L,
+infinite-profile assumption already used by the field library,
+
+  M_aperture = f_ap M_infinite.
+
+Thus the extrapolated SED total is8.43e11 Msun (logM11.925889), while the
+image-required infinite mass is1.09475e12 Msun (logM12.039314). Comparing
+aperture masses directly avoids mixing these definitions. The unobserved
+outer profile is an assumption, not a new measurement of extra stars.
+
+A separate released-map/analytic-infinite normalization gives f=.798448;
+this changes the required aperture mass to8.74e11 Msun and the discrepancy
+to1.279 upper-side error units. The small difference reflects finite image
+rendering/normalization. The actual pixel-integrated geometry is primary.
+The full geometric circle extends beyond the cutout and is not substituted
+for the actual pixel mask. Non-VIS map fluxes agree closely with catalogue
+maximum-likelihood fluxes; VIS differs by1.11%, so exact universal table/map
+identity is not claimed.
+
+POSTERIOR AND VERIFICATION
+
+The corrected prior is p_SED(logM_infinite+log10f_ap). Existing posterior
+samples were reweighted by the exact new/old prior ratio, preserving the
+original image likelihood and half-normal asymmetric mass surrogate.
+Four original chains passed their registered R-hat/autocorrelation checks.
+Importance ESS is9993.39 of10000 stored samples; this is a weight-overlap
+measure, not the number of independent MCMC samples. Per-chain weighted
+log-mass medians span0.000167dex. Five target densities recomputed from
+pixels and field maps match the recorded original values exactly.
+The total-mass posterior median changes by only0.0000427dex.
+
+Corrected conditional16/50/84% infinite masses:
+  1.09036 /1.09475 /1.10084e12 Msun.
+Corrected conditional16/50/84% aperture masses:
+  8.76529 /8.80060 /8.84955e11 Msun.
+Shear magnitude16/50/84%: .155788 /.157311 /.158814.
+These narrow intervals freeze physical nuisance assumptions and must NOT
+be presented as complete galaxy-mass uncertainties.
+
+A representative corrected-posterior sample has chi²3094.19 on6711pixels,
+and source-association diameter.299931arcsec. The original constrained
+local optimum had chi²3091.62. A matched reconstruction using fixed published
+SIE parameters has chi²3124.04, but its parameters were not reoptimized.
+These are image consistency checks, not a gravity-model Bayes factor.
+The released diagonal RMS is not a calibrated full covariance. The source
+prior and association gate also materially affect mass inference.
+
+The original finite field/projection/grid/refinement and positive-source
+checks remain applicable. New main and pipeline-sensitivity bounded runs
+both completed; their v2 provenance manifests validate. The aperture audit
+also completed and validates. Reproduction commands are in those manifests.
+
+WHAT REMAINS UNRESOLVED
+
+The full screened covariant action is not fitted: screening scale, boundary
+conditions and granularity are not uniquely supplied by this lens. The
+current branch is a smooth-galaxy approximation with explicit scope.
+Inclination, shape covariance, IMF/SPS systematics, M/L gradients and the
+line-of-sight environment have not been jointly marginalized. Raw NIR
+masked fits were attempted but do not establish an independent precise
+light shape: conservative PSF-contamination masks remove the useful centre,
+and results depend on masks. Those limitations are retained, not replaced
+with optimistic tiny fit errors.
+
+ECLIPSE-D uses spectroscopic redshifts when available and photometric ones
+otherwise. A separate +.00653358dex luminosity-distance-only prior shift is
+reported as OPTIONAL sensitivity; presence of a catalogue photo-z does not
+by itself prove the redshift actually used by this object's SED fit. It is
+not treated as a mandatory correction or a full stellar-population refit.
+
+FOR has no match in the searched DESI strong-lens VAC and no independent
+stellar velocity-dispersion measurement was established. A single lens at
+one adopted a0 does not establish how a0 depends on dark-energy density.
+Existing Lean identities certify scoped algebraic relations only. They do
+not certify the data, numerical solution, empirical success or novelty.
+
+FILES
+
+Main: reweighted_geometry_01/result.json and manifest.json
+Pipeline sensitivity: reweighted_01/result.json and manifest.json
+Aperture: ../light_shapes/aperture_audit_01/result.json and manifest.json
+Source evidence: finite_mask_evidence.md and source_provenance.json
+Code: reweight_for.py; plot: for_j0332_corrected_fit.png
+Original image/numerical evidence: ../../euclid_for_j0332_fit_2026_11_13/
+
+The FOR conditional fit and aperture correction are complete. The broader
+Euclid/DESI breakthrough goal remains active and unachieved. Other lenses'
+comparisons of catalogue mass to infinite-profile mass are on interpretation
+hold until their aperture normalizations are reconciled; numerical total-
+mass bounds are not themselves invalidated by this bookkeeping correction.

@@ -1,0 +1,96 @@
+{
+  "claim_id": "L015780_APERTURE_CORRECTED_SPHERICAL_JEANS_FIXTURE",
+  "mathematics": {
+    "assertion_tested": "Compute exact adopted COOLEST-profile pixel-union aperture fraction; infer conditional mass scan from DESI velocity dispersion and asymmetric finite-aperture SED prior under nine spherical constant-beta and seeing fixtures, with independent aperture integration and numerical benchmarks.",
+    "coefficient_domain": "float64; kpc, km/s, Msun, arcsec",
+    "conventions": "Planck-like flat H0=67.74 Om=.3089 geometry; spherical geometric-mean Re and n from COOLEST point; infinite constant-M/L Sersic; simple-mu a0=9.3603e-11 m/s2. No mandatory SED photoz transport. Equal-tail two-half-normal logmass surrogate.",
+    "inputs": [
+      "L015780 released point shape and modelling mask; ECLIPSE aperture mass conditional summaries; independent alternative DESI v2.1/v3.0 dispersions; fiber offset from official FIBERMAP"
+    ],
+    "bounds": {
+      "beta": [
+        -0.3,
+        0,
+        0.3
+      ],
+      "seeing_FWHM_arcsec": [
+        0.8,
+        1.2,
+        1.6
+      ],
+      "mass_nodes": 1301,
+      "mass_interval_relative_SED_median": [
+        -1.2,
+        1.4
+      ],
+      "radial_nodes": [
+        5000,
+        10000
+      ],
+      "Abel_nodes": [
+        256,
+        512
+      ],
+      "angular_kernel_nodes": [
+        128,
+        256
+      ],
+      "luminosity_radial_nodes": [
+        1200,
+        2400
+      ],
+      "independent_LOS_nodes": 512,
+      "independent_projected_radial_nodes": 800,
+      "pixel_renderer_base_and_fine": true
+    },
+    "non_claims": [
+      "Not an oblate or rotating dynamical model",
+      "No measured or marginalized seeing or anisotropy prior",
+      "No full lens/dynamics/source-redshift posterior",
+      "No true outer-wing stellar mass measurement",
+      "No theory exclusion from this conditional fixture",
+      "Alternative DESI reductions not independent likelihoods"
+    ]
+  },
+  "execution_artifacts": [
+    "euclid_for_j0332_followup_2026_11_13/l015780_joint/dynamics/joint_diagnostic.py",
+    "euclid_for_j0332_followup_2026_11_13/light_shapes/fit_light_shapes.py",
+    "euclid_for_j0332_followup_2026_11_13/dynamics/jeans_diagnostic.py",
+    "euclid_for_j0332_fit_2026_11_13/aqual_lensing.py",
+    "closure_2026_11_06/QX4_udg/aqual.py",
+    "euclid_for_j0332_followup_2026_11_13/l015780_inputs/dataset/info.json",
+    "euclid_for_j0332_followup_2026_11_13/l015780_inputs/results/coolest_sersic.json",
+    "euclid_for_j0332_followup_2026_11_13/l015780_inputs/results/pre_psf.fits",
+    "euclid_for_j0332_followup_2026_11_13/l015780_inputs/fastspec_target_rows.json",
+    "euclid_for_j0332_fit_2026_11_13/desi_crossmatch/matches_1arcsec.csv",
+    "euclid_eclipse_screen_2026_11_13/run_02/screen_all_15072.csv",
+    "euclid_for_j0332_followup_2026_11_13/l015780_joint/observational_audit/fiber_light_offsets.json"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.4"
+    },
+    {
+      "name": "scipy",
+      "version": "1.13.1"
+    },
+    {
+      "name": "astropy",
+      "version": "6.0.1"
+    },
+    {
+      "name": "matplotlib",
+      "version": "3.9.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

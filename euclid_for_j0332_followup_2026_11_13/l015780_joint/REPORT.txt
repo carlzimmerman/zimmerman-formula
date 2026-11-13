@@ -1,0 +1,176 @@
+L015780: a source-distance-independent conditional lensing constraint
+2026-11-13
+
+The broader breakthrough goal remains OPEN. This phase establishes a useful
+conditional inconsistency, an independently checked finite Lean certificate,
+and new archival candidates. It does not establish a new-physics discovery
+or exclude the complete adopted theory.
+
+PRINCIPAL RESULT
+
+EUCL-DR1-L015780 / J100537.754+673027.15 has observed DESI foreground redshift
+0.428270374 and stellar velocity dispersion289.09+/-45.78km/s. Its background
+source redshift has not been verified. Its Euclid model is graded A/Success.
+
+After correcting the stellar-mass aperture, the fixed-profile SED total
+normalization is log10M=11.926879 (8.45e11Msun), equivalent to aperture mass
+log10M=11.695424 (4.96e11Msun). The actual selected pixel aperture contains
+fraction.5868739078 of the adopted infinite Sersic profile. Two independent
+integrations agree to1.6e-15; this precision describes the stated profile,
+not astrophysical knowledge of unobserved outer stars. The map/infinite-flux
+ratio.562679 is retained as a separate normalization sensitivity.
+
+For canonical a0=9.3603e-11m/s², an isolated smooth oblate AQUAL field with
+constant stellar M/L cannot bring the FOUR supplied image markers within the
+released .3arcsec source-plane diameter at this nominal mass, even allowing
+any source efficiency0<=Dls/Ds<=1 and arbitrary trace-free external shear.
+The nominal edge-on direct field gives minimum diameter1.40473arcsec for
+beta<=1 and1.76463arcsec for the adopted flat-background horizon cap.882437.
+The published SIE control gives.08868arcsec and agrees with the released
+deflection maps, checking the coordinate/angle/normalization conventions.
+
+With zero external convergence and shear magnitude<=.3, the approximate
+mass thresholds for the marker condition are:
+
+  inclination       beta<=.882437        conservative beta<=1
+  90 degrees        logM12.18            logM12.11
+  60 degrees        logM12.19            logM12.12
+  50 degrees        logM12.20            logM12.13
+
+These are approximate thresholds interpolated within explicitly verified
+finite grid brackets, not a continuous-parameter theorem or a full pixel
+fit. The first column corresponds to1.79–1.87times the corrected SED mass;
+even the enlarged beta<=1 domain requires1.52–1.59times. Exact source
+infinity is a limiting fixture; finite background sources need more mass.
+The tested inclinations are three fixtures, not exhaustive inclination
+marginalization. Conditions with shear<=.2 give the same principal brackets.
+
+Independent direct fields at the interpolated thresholds differ by at most
+.001465arcsec in pair deflection. Their optimal source diameters are slightly
+above.3, so the true numerical crossings shift slightly UP, not down. Masses
+are deliberately rounded to.01dex; many-digit interpolation roots are not
+reported as physically precise masses. Numerical mesh/LOS/outer refinement
+at selected points changes deflections by<=.0405%/.0010%/.0054% respectively.
+
+DESI DYNAMICS AND INTERPRETATION
+
+The corrected median mass predicts a central spherical Jeans aperture
+velocity dispersion251.92km/s. Nine named anisotropy/seeing fixtures span
+243.72–263.19km/s, consistent with DESI's289.09+/-45.78. A newer reduction
+295.31+/-30.47 gives a similar central value but is not an independent datum.
+The measurement is not a fallback; target/exposure quality checks pass,
+although blue-camera signal is low. Measured seeing was unavailable, so
+.8/1.2/1.6arcsec are explicit fixtures, not measured priors. The0.049arcsec
+fiber offset has a negligible effect in the tested spherical calculation.
+
+SED plus this spherical dynamics fixture gives central conditional logM
+16/50/84%=11.87655/11.94315/11.99475. At the beta-infinity lensing thresholds,
+predicted dispersions span321–354km/s across the named fixtures. Dynamics
+alone therefore does not strongly reject the larger lensing masses. The
+sharp tension primarily comes from the conditional stellar-population mass
+normalization and fixed spatial mass-to-light model. The catalogue formal
+mass offset is about4.5–4.9 upper-side errors; neither that number nor the
+stored conditional mass-tail integrals is a calibrated theory significance.
+The spherical dynamics fixture is not a flattened rotating Jeans model,
+and cannot masquerade as a full joint oblate image/SED/dynamics likelihood.
+
+ENVIRONMENT AND SHAPE LIMITATIONS
+
+At the nominal SED mass, an effective convergence parameter of about
+.329/.339/.353 for the three inclinations removes the marker mismatch at
+the favorable horizon geometry. With merely beta<=1, about.249–.276 suffices.
+These are mathematical requirements in an effective lens-plane model, not
+measurements of real environmental mass or self-consistent AQUAL external-
+field/multiplane solutions.
+
+The public same-healpix DESI sample contains22 other quality-selected
+spectroscopic galaxies within10arcmin, none within+/-1000km/s of the lens.
+The nearest separate spectrum is124arcsec away; the bright approximately
+3arcsec companions have no independent redshift in this subset. WHL and
+redMaPPer cluster queries return no entry within10arcmin. These incomplete
+samples establish NO upper bound on convergence and do not justify kappa=0.
+
+A finite endpoint stress test recomputed aperture mass normalization and
+fields at four reported3sigma n/Re combinations plus the point profile,
+two inclinations, and median/+3upper-error stellar masses. All ten nominal-
+mass fixtures still fail the necessary condition with beta<=1 and arbitrary
+shear. One high-mass endpoint has a lower witness.292997arcsec: INCONCLUSIVE,
+not a fit that passes. No continuous shape-box or full systematic bound
+follows. Spatial M/L gradients, IMF/SPS, stellar/gas components, inclination,
+source association, environment and the full screened action remain open.
+
+The raw g image contains an arc, which could help constrain extreme source
+redshifts. Broad PSF wings, a neighboring contaminant and fixed source
+morphology prevent a validated photo-z or hard upper-z cutoff here. No
+arbitrary color/redshift cutoff was imposed to strengthen the tension.
+
+LEAN CERTIFICATE
+
+geometry_audit/formal/FiniteCapacity.lean proves an exact finite statement:
+for the specified four positions and the stored edge-on logM11.925 deflection
+arrays, no beta in[0,1] and no arbitrary real two-component shear meets the
+.3arcsec pair-diameter condition at zero convergence. The same conclusion
+holds for EVERY deflection array with all eight components within.05arcsec
+of the stated four-decimal centers.
+
+The proof uses an exact rational linear functional cancelling both shear
+components and a common source offset. The source-gate premise bounds this
+functional by100.2, while the allowed field box forces it to be at least
+283.6. Input binary64 deflections are converted to exact rational values;
+this conversion and the nonempty robustness box were independently audited.
+The exact grid mass11.925 is distinguished from the corrected SED median
+11.926879. The numerical direct-median calculation is a separate record.
+
+The unchanged certificate compiles in Lean4.34.0-rc2. Independent root and
+separate-agent builds and raw-proof audits pass; only standard logical
+axioms occur, with no sorry or custom axioms. This certifies the finite
+geometric implication, NOT the PDE solution, an observational association,
+astrometric uncertainty, zero convergence in nature, or empirical validity
+of the complete action. The.05arcsec box is a mathematical robustness
+fixture; it is not a proved numerical PDE error bound.
+
+The initial negative-control wrapper used a relative mutation path and
+failed to find its file. That control is withdrawn, with its rawrun preserved.
+The corrected versioned control, formal/run_02, completed and its manifest
+validates. Lean actually read the false3arcsec-gate mutation and rejected it
+with a proof failure; affirmative diagnostic and file/import-error guards
+passed. Only run_02 supports the negative-control claim. The accepted theorem
+and source/data mapping were unchanged.
+
+ADDITIONAL DATA ROUTES
+
+Complete matches of15072 ECLIPSE objects against1551 SILO eBOSS detections
+found3 candidate redshift pairs; no extra pair lies between2 and10arcsec.
+The47-object SL2S sample and457-row MaNGA SILO sample have no matches within
+10arcsec. These are finite catalog coverage results, not an exhaustive
+statement about all available spectroscopy.
+
+The strongest new archival candidate is L002777/SILO790, with foreground
+z=.327416 and candidate sourcez=.971369. Its actual SDSS spectrum gives
+stellar dispersion203.76+/-19.81km/s, but the background identification is
+primarily one[OII]doublet feature, not a secure high-S/N multiplet. Euclid's
+released model fails all four runs; its position procedure dropped a blue
+northern feature. A model/association rescue and spectral-quality audit are
+needed before any a0 inference. Do not use rejected light/radius fits as
+physical constraints. Its SED input redshift is unverified; a published
+photo-z column does not establish which redshift its SED fit actually used.
+
+AUTHORITATIVE RECORDS
+
+field_grid_01: direct oblate fields and refinement checks.
+geometry_audit/run_01: marker capacity, primal/dual checks and convergence.
+dynamics/run_01 and independent_01: aperture and spherical Jeans checks.
+shape_probe_01: finite shape stress test; independent review saved separately.
+interpolation_check_01 and combined_01: direct fields and joint comparison.
+environment_audit/run_01 and observational_audit: external data limitations.
+geometry_audit/formal: Lean source, exact instance mapping and independent review.
+manifest_validation.json: current validation of eight completed numerical runs.
+../external_spectroscopic_matches: complete SILO/MaNGA matches and L002777 inputs.
+../external_sl2s_match: complete SL2S null crossmatch.
+
+The completed statement is conditional and finite. The original breakthrough
+objective is not achieved. Next promising action: assess whether L002777's
+actual spectrum and full image permit a defensible association and joint
+model, preserving the dropped feature as a competing hypothesis; alternatively
+obtain a justified environment or source-SED constraint for L015780. Do not
+rerun the same zero-convergence marker scan as if it removes that bottleneck.

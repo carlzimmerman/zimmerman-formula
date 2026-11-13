@@ -1,0 +1,265 @@
+{
+  "schema_version": 2,
+  "claim_id": "FORJ0332_CONTINUOUS_SOURCE_FINITE_ROBUSTNESS",
+  "repository": {
+    "commit": "5ffd920204c2588a0a3c72bac6f89b4c69efc4ad",
+    "dirty": true
+  },
+  "command": [
+    "/private/tmp/forj0332-fit-venv/bin/python",
+    "euclid_for_j0332_fit_2026_11_13/image_robustness/run_robustness.py",
+    "--output",
+    "euclid_for_j0332_fit_2026_11_13/image_robustness/run_01"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "scipy",
+        "version": "1.13.1"
+      },
+      {
+        "name": "astropy",
+        "version": "6.0.1"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Optimize four mass/shear/regularization parameters for three changed source representations and four original-grid starts, then one alternative-a0 original-grid fit. Refit source regularization for fixed SIE baseline on every grid.",
+    "coefficient_domain": "float64, Gaussian linear nuisance integration, bounded nonlinear local optimization",
+    "conventions": "Corrected continuous zero-padded bilinear source basis only; same mass prior and shear sigma.10 component priors as fit_images_v2.py. Matched fixed-SIE source-marginal differences are diagnostics, not model Bayes factors.",
+    "inputs": [
+      "Released VIS image/PSF/RMS/masks, fixed lens light geometry/template, canonical AQUAL field library01, imagefit02 starting parameters"
+    ],
+    "bounds": {
+      "cases": [
+        [
+          33,
+          0.03,
+          3,
+          -0.03,
+          -0.05
+        ],
+        [
+          33,
+          0.04,
+          3,
+          -0.03,
+          -0.05
+        ],
+        [
+          25,
+          0.04,
+          3,
+          -0.01,
+          -0.03
+        ],
+        [
+          25,
+          0.04,
+          2,
+          -0.03,
+          -0.05
+        ]
+      ],
+      "original_mass_starts": [
+        12.0,
+        12.08
+      ],
+      "original_shear_shifts": [
+        -0.03,
+        0.03
+      ],
+      "nonlinear_optimizations": 8,
+      "max_iterations_each": 450,
+      "logmass_bounds": [
+        11.56,
+        12.39
+      ],
+      "shear_component_absolute_bound": 0.3,
+      "log_source_precision_bounds": [
+        -5,
+        18
+      ],
+      "a0_values_m_s2": [
+        9.3603e-11,
+        1.1312e-10
+      ]
+    },
+    "non_claims": [
+      "No posterior confidence interval from representation spread.",
+      "No global maximum proof.",
+      "No model Bayes factor against fixed SIE.",
+      "No full screened-v3s or physical theory pass/fail certificate."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-13T20:34:33.583453+00:00",
+    "runtime_seconds": 286.232582,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 600.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 580,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "euclid_for_j0332_fit_2026_11_13/image_robustness/run_robustness.py",
+    "euclid_for_j0332_fit_2026_11_13/fit_images_v2.py",
+    "euclid_for_j0332_fit_2026_11_13/lens_models.py",
+    "euclid_for_j0332_fit_2026_11_13/image_inversion/inversion_continuous.py",
+    "euclid_for_j0332_fit_2026_11_13/library_01/library.npz",
+    "euclid_for_j0332_fit_2026_11_13/image_fit_02/result.json",
+    "euclid_for_j0332_fit_2026_11_13/inputs/results/coolest_sersic.json",
+    "euclid_for_j0332_fit_2026_11_13/inputs/results/coolest.json",
+    "euclid_for_j0332_fit_2026_11_13/inputs/results/model.fits",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/info.json",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/segmentation/artefact_binary.fits",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/segmentation/source_binary.fits",
+    "euclid_for_j0332_fit_2026_11_13/inputs/dataset/Tile102034383RA0532498193624DECNEG0359643115588.fits"
+  ],
+  "input_artifacts": [
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/image_robustness/run_robustness.py",
+      "sha256": "777197515c4df8f71c5c204d5c9b7b1b113ff0ed74b31bc20b06d966a1c75062",
+      "sha256_after": "777197515c4df8f71c5c204d5c9b7b1b113ff0ed74b31bc20b06d966a1c75062"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/fit_images_v2.py",
+      "sha256": "d8564bfede98d3492fa327d0976c73a2c278c3cbc7d08a36e47b55890c697efb",
+      "sha256_after": "d8564bfede98d3492fa327d0976c73a2c278c3cbc7d08a36e47b55890c697efb"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/lens_models.py",
+      "sha256": "5a016fb0634f4d585ec4e44e34057f7e8d6e9a0e5f4814e00230cb57b67b4b10",
+      "sha256_after": "5a016fb0634f4d585ec4e44e34057f7e8d6e9a0e5f4814e00230cb57b67b4b10"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/image_inversion/inversion_continuous.py",
+      "sha256": "295cd5c28ce486e644036996552d93d00acd31ec1cafc1c2c2718a3fd08b6870",
+      "sha256_after": "295cd5c28ce486e644036996552d93d00acd31ec1cafc1c2c2718a3fd08b6870"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/library_01/library.npz",
+      "sha256": "88a839a121a0b5f4715728ad6258089fa3d48e5270ce311eaf75f46651daf3f8",
+      "sha256_after": "88a839a121a0b5f4715728ad6258089fa3d48e5270ce311eaf75f46651daf3f8"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/image_fit_02/result.json",
+      "sha256": "15e68fba6c037f42a620c63f7bb22634f8876308e74464362b238a9ae30610e1",
+      "sha256_after": "15e68fba6c037f42a620c63f7bb22634f8876308e74464362b238a9ae30610e1"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/inputs/results/coolest_sersic.json",
+      "sha256": "b151c55c3b5550afba3ee5864ace1bab1d0c367ec0c0c2a2e783f239b9b950c2",
+      "sha256_after": "b151c55c3b5550afba3ee5864ace1bab1d0c367ec0c0c2a2e783f239b9b950c2"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/inputs/results/coolest.json",
+      "sha256": "302d069619a7a732663a22e155a2f12b0f1793e11c807381fcbcdf629176e0fe",
+      "sha256_after": "302d069619a7a732663a22e155a2f12b0f1793e11c807381fcbcdf629176e0fe"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/inputs/results/model.fits",
+      "sha256": "89a337eda2b88a992100aa1acf4468aa8f386528990a0f69e50b6c27a89e5a13",
+      "sha256_after": "89a337eda2b88a992100aa1acf4468aa8f386528990a0f69e50b6c27a89e5a13"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/inputs/dataset/info.json",
+      "sha256": "5f7572d0debf02ab9c7a7b702c9a8cb7b6dfd9fd65b408f0d7cf611072abf4b9",
+      "sha256_after": "5f7572d0debf02ab9c7a7b702c9a8cb7b6dfd9fd65b408f0d7cf611072abf4b9"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/inputs/dataset/segmentation/artefact_binary.fits",
+      "sha256": "51c104007d7f5d76ac5ba299d627c71014c46498c0890230939021dba769f6e4",
+      "sha256_after": "51c104007d7f5d76ac5ba299d627c71014c46498c0890230939021dba769f6e4"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/inputs/dataset/segmentation/source_binary.fits",
+      "sha256": "27d945f8e0ab68732e44df13347766eb9ea4fc8dc5af332157e60818010a8650",
+      "sha256_after": "27d945f8e0ab68732e44df13347766eb9ea4fc8dc5af332157e60818010a8650"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/inputs/dataset/Tile102034383RA0532498193624DECNEG0359643115588.fits",
+      "sha256": "7f139d39ee2b447e3b319ce41faed8ee7fbefa9423f4429dfe3d0a1b48e2dcb1",
+      "sha256_after": "7f139d39ee2b447e3b319ce41faed8ee7fbefa9423f4429dfe3d0a1b48e2dcb1"
+    }
+  ],
+  "output_directory": "euclid_for_j0332_fit_2026_11_13/image_robustness/run_01",
+  "declared_results": [
+    "euclid_for_j0332_fit_2026_11_13/image_robustness/run_01/result.json",
+    "euclid_for_j0332_fit_2026_11_13/image_robustness/run_01/trace.json",
+    "euclid_for_j0332_fit_2026_11_13/image_robustness/run_01/images_sources.npz"
+  ],
+  "outputs": [
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/image_robustness/run_01/stdout.txt",
+      "sha256": "2fcd16adc4d3d53fc3ed076d5b9b3935cdb5b7b398ea1c2110bfaaa757c5b275",
+      "kind": "log"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/image_robustness/run_01/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/image_robustness/run_01/result.json",
+      "sha256": "84d0bb66b80d6b9866a1f6acf171483d75aa33f2a5adba7d8ac1376e3679fe2a",
+      "kind": "result"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/image_robustness/run_01/trace.json",
+      "sha256": "4f14ef39a4d78b7b4fd3eb57752089ee580efd3851a676060d5b0818eb0bf731",
+      "kind": "result"
+    },
+    {
+      "path": "euclid_for_j0332_fit_2026_11_13/image_robustness/run_01/images_sources.npz",
+      "sha256": "18d4251597b496a450ba69a60bb67ccc61a63d33636cec47f118f1c6ef3f993f",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}
