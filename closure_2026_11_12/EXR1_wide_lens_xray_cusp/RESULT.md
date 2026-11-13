@@ -4,10 +4,11 @@
 were wrongly designed (`AMENDMENT_A1.md`). **Post hoc reading A1: EXCLUDED / EXCLUDED**, the same in every bracket;
 the frozen measurement read conservatively (reading R) is also EXCLUDED. Part C: frozen NOT EVALUABLE; post hoc
 reading WIDE LENSES ARE BRIGHTER IN X-RAYS.
-
 ESZ1 left law S one hot gas body: a cusp, ρ ∝ r⁻², around Euclid's wide lenses. eRASS1 sees about a thirtieth of the
 least X-ray flux that gas must emit; not a word, because a frozen check failed. No outcome here is a pass. 2026-11-12.
-Criteria `0cc195b7f6` (alone, first); frozen run `726d2a6ba8`; amendment `676977b65b` (alone); A1 run `07360f21b4`.
+Commits, local / origin (replayed onto origin's tip): criteria `0cc195b7f6` / `a58b31dd9f` (alone, first); frozen run
+`726d2a6ba8` / `8cbed25a65`; amendment `676977b65b` / `f72daaf38f` (alone); A1 run `07360f21b4` / `7475d4a547`;
+result `b0882c91d9` / `77b967f188`.
 
 ## The numbers
 
@@ -96,5 +97,4 @@ ratios 0.887 / 1.281 / 0.952 against 0.858 / 1.265 / 0.944; K3 UL_B recomputed (
 **Limits.** Spherical, hydrostatic, single-phase gas in collisional ionisation equilibrium; photometric lens redshifts
 (the far source is the least mass); a stated PSF bound. AGN or group emission at a lens adds flux, which works against
 EXCLUDED. It tests no part of a₀ or κ.
-
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
