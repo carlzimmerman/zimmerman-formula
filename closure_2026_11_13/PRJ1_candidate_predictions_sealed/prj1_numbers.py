@@ -175,6 +175,16 @@ for ft in FOOTS:
     for (z, lM) in ((0.0, 10.7), (1.2, 11.5), (2.3, 11.45), (2.3, 11.3), (4.5, 10.25), (5.0, 10.25), (5.5, 10.25), (0.0, 13.0), (0.0, 13.3)):
         R = rfold_kpc(ft, z, lM); Rta = rfold_kpc(ft, z, lM, col=3)
         P(f"  [{ft}] z {z} log M_b {lM}: R_fold {R:7.1f}, R_ta {Rta:7.1f}, R_set at f 1.25 / 2: {1.25 * R:7.1f} / {2 * R:7.1f}")
+P("  cell corners and the law side of P4 (smallest R_set where the candidate gives the law):")
+for ft in FOOTS:
+    rows = [("cell B low corner", 0.5, VB[0.5][FOOTS.index(ft)] + 0.15), ("cell B low corner", 1.7, lMb_vstiff(ft, 1.7) + 0.15),
+            ("cell A low corner (candidate: reference)", 2.6, logMbstar(ft, 2.6) + 0.15)]
+    rows += [("P4 law side, M_b* - 0.5", z, logMbstar(ft, z) - 0.5) for z in (3.5, 4.5, 5.0, 6.0)]
+    rows += [("P4 law side, M_b* - 0.15", z, logMbstar(ft, z) - 0.15) for z in (3.5, 4.5, 5.0, 6.0)]
+    rows += [("cell C high corner (rivals: law)", z, lMb_vstiff(ft, z) - 0.15) for z in (3.5, 4.5, 5.5, 6.0)]
+    for lab, z, lM in rows:
+        R = rfold_kpc(ft, z, lM)
+        P(f"  [{ft}] {lab}: z {z} log M_b {lM:.3f}: R_fold {R:6.1f} kpc, R_set at f 1.25 / 2: {1.25 * R:6.1f} / {2 * R:6.1f}; f giving R_set = 30 kpc: {30 / R:.2f}")
 P()
 P("== 5. Representative discs (named, not real): V_c^2 / V_bar^2 at 2, 3, 4, 5 R_1/2 under the law, the record's reference halo at A = 1, and baryons alone")
 P("   Gamma = g / g_N in the disc plane (thin exponential disc). A_eq = the reference multiple that gives the law's g at that radius.")
