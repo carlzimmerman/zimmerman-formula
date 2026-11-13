@@ -186,3 +186,31 @@ Data are not in the repository: ECLIPSE archive, DOI 10.5281/zenodo.19654904; th
 script on every run.
 
     python3 -I euc1.py --data-dir <dir with eclipse_dr1_catalogue_key_v20261103.csv and ECLIPSE_object_catalogue.csv>
+
+## 9. Dated note (2026-11-12, evening): the SLACS reference numbers are on a different mass convention
+
+Found by lane EUC12 (`../EUC12_common_mass_scale/`, another session) and checked here through this lane's own code
+(`euc1_slacs_convention.py`, `.out`). **No frozen threshold changes; EUC1's word and EUC1-F's lines (0.15, 0.25) are
+untouched** (they came from stellar-mass systematics, not from SLACS).
+
+- **The two conventions.** Every SLACS number above takes a SLACS stellar mass as Auger's Salpeter fraction inside the
+  Einstein radius × the Einstein mass ÷ the n = 4 light fraction inside R_E (convention F). Euclid's lenses are graded
+  with the catalogue's total stellar mass. The like-for-like SLACS mass is Auger's total Salpeter mass (convention T).
+  F is a median 0.0375 dex above T; the size and sign follow the radius used in the light fraction (with the I-band
+  radius instead of the V-band one, F is 0.049 dex below T).
+- **SLACS under law S, both conventions** (canonical / alt):
+
+| | F (as written above) | T (like Euclid's) |
+|---|---|---|
+| Lensing b at the true source redshifts | +0.082 / +0.070 | **+0.121 [+0.082, +0.159] / +0.109 [+0.071, +0.144]** |
+| Lensing b with the source at infinity | −0.144 / −0.163 | −0.108 / −0.129 |
+| Dynamics b (published dispersions) | +0.091 / +0.085 | +0.132 / +0.123 |
+
+- **What moves in this file.** "Euclid's lenses read 0.12 dex above SLACS on the same source-free footing" becomes
+  0.09 dex. "Euclid's median reaches SLACS's only at a common z_s ≈ 5.3 / 4.8" becomes z_s ≈ 3.6 / 3.4. The reference
+  point "SLACS reads +0.082 / +0.070" in §8 should be read as +0.121 / +0.109 when it is set beside a Euclid number.
+- **What it means.** On one convention SLACS needs about 1.3 × Salpeter under law S, not 1.2 ×, and Euclid's lenses
+  sit closer to SLACS than this file said. SLACS's own interval now straddles EUC1-F's 0.15 line on the canonical
+  footing (upper bound +0.159) and stays under it on the alt footing (+0.144).
+- **Not checked.** Which radius Auger's fraction was computed with; the T numbers have no independent re-grade beyond
+  EUC12's.
