@@ -119,4 +119,10 @@ A test needs three things:
   - lines 20-70 of `dsc1.py` were read, as allowed (halo construction and ALPAKA paths), and contain no number.
 - CFG229 and CFG272 READMEs (earlier lanes) were read before the freeze, and that is disclosed in READING section 0.
 
+**Commit ids and the lead's re-run (added 2026-11-13, after landing; no number or label changes).** Local: READING
+8d3b72f35f, script and outputs 5feaf7b5a3, RESULT_BLIND edd13ab6bf, RESULT 3f6a09eec8 (origin tip 97793aea6b). Pushed.
+The lead session re-ran `alp1r.py` from a copy at the same folder depth: `alp1r.json` and `alp1r.out` are equal byte for byte. The
+twins and the grader (which reads the twins' outputs) were not re-run. A reproduction,
+not a further independent re-grade.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
