@@ -1,5 +1,13 @@
 # LMC1 RESULT: the LMC's pull on the DESI DR1 BHB halo stars, in the framework's own Milky Way
 
+> **NOTE 2026-11-12, later (after lane RFX1; no label changes).** Point 4 of "Lead's verification and reading"
+> below compared the model's apex with Petersen and Penarrubia 2021 only. The published apexes disagree among
+> themselves: Chandra et al. 2024 and Bystrom et al. 2025 put it near the LMC's present position, and this
+> model's apex is 17 to 37 degrees from theirs (about 100 from Petersen and Penarrubia's). So "not validated
+> against the measured reflex" should read "matches one group of published directions and not the other"; the
+> amplitude remarks stand. See `closure_2026_11_12/RFX1_lmc_reflex_momentum_bound/RESULT.md` and
+> `rfx1_lead_check.out` (C3). All look-ups PROVISIONAL.
+>
 > **LEAD'S STATUS NOTE (2026-11-12, after verification).** AS FROZEN THIS LANE EARNS **NO LABEL** on either
 > footing: the frozen rule stops the script before any label when a known-answer check fails, and the
 > precision check K7 failed in runs 3 and 4; mutation M1 also failed to bite. The words below are the reading
