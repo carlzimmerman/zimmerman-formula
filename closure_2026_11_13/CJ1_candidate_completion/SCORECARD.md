@@ -14,7 +14,10 @@ its audit then read 108 of 108, and read 110 of 110 after that update.
 Updated again 2026-11-13 by the lead after the blind DSC1R landed: rows 7 and 8, the counts and the three lists. Both
 new words for the completed form are the lead's placements, made the same way in both directions: a hit the blind
 build does not confirm becomes NO POWER, and a fail the blind build does not confirm becomes DEPENDS ON AN UNTESTED
-ASSUMPTION. The audit reads 112 of 112.
+ASSUMPTION. The audit read 112 of 112.
+
+Updated a third time 2026-11-13 by the lead after EUC16 landed: row 39 and one line of the last list. The word for the
+completed form does not change. The audit reads 113 of 113.
 
 Words for the completed form (fixed list): PASSES / FAILS / FAILS ON COVERAGE ONLY / PASSES TRIVIALLY (the form equals
 the reference there) / EQUALS THE LAW (unchanged by rule 6: the form gives the law's own layout there, so the row's
@@ -70,7 +73,7 @@ verdict on the law carries over) / NO POWER / DEPENDS ON AN UNTESTED ASSUMPTION 
 | 37 | Coma UDGs, MW classical dwarfs | RB2, DSB1 | "B CONSISTENT / B CONSISTENT" | no (DSB1) | PASSES | yes (DSB1: NO POWER) | Inside the interval only with the systematics budget; rule 6 does not touch them. |
 | 38 | Wide binaries (Gaia DR4, due 2026-12-02) | CW1, DR4MAP | DR4MAP "Governing for the adopted theory (wide binaries only)" | no (data not out) | EQUALS THE LAW | no | Can kill the adopted theory, cannot confirm it. |
 | **Strong lenses** | | | | | | | |
-| 39 | Euclid lenses at the law's ceiling | EUC1, EUC12, EUC13, EUC13R, EUC2, EUC3, EUC9, EUC10, EUC11, EUC14, EUC15 | EUC1 "NO VERDICT / NO VERDICT (canonical / alt)"; EUC13R "NO VERDICT"; EUC15 "EARLY READING, NOT A GATE" | no | EQUALS THE LAW | yes (EUC13R, same word) | 26 / 0 of 6,173 lenses above v* (LNJ1). Source redshifts: 5 found where 10 are needed. |
+| 39 | Euclid lenses at the law's ceiling | EUC1, EUC12, EUC13, EUC13R, EUC2, EUC3, EUC9, EUC10, EUC11, EUC14, EUC15, EUC16 | EUC1 "NO VERDICT / NO VERDICT (canonical / alt)"; EUC13R "NO VERDICT"; EUC15 "EARLY READING, NOT A GATE"; EUC16 "EUC1-F graded for the first time", NO VERDICT on both footings | no | EQUALS THE LAW | yes (EUC13R, same word) | 26 / 0 of 6,173 lenses above v* (LNJ1). EUC16 certified 11 source redshifts (5 on a single line) and graded the gate: median boost +0.405 [+0.137, +0.589] / +0.385 [+0.121, +0.574] against the hold line 0.15 and the fail line 0.25, so NO VERDICT with the centre on the failing side. The certified lenses read about 0.13 heavier than the whole sample before any source redshift. |
 | 40 | Wide lenses break the ceiling | EUC4, EUC4R, EUC6, EUC6R, EUC8, LNJ1 | EUC4 "WIDE LENSES BREAK THE CEILING"; EUC6 "WIDE LENSES SIT IN RICHER ENVIRONMENTS"; LNJ1 "NO POWER, FRAGILE / NO POWER" | yes (data) / no (joint) | DEPENDS ON AN UNTESTED ASSUMPTION | yes (EUC4R, EUC6R, data words; none of LNJ1) | 1 / 0 of 316 wide lenses above v*; the break is not the switch. The form needs group mass along the sightline that no lane has counted. |
 | 41 | Wide-lens extra mass as hot gas | ESZ1, EXR1, EXR1R, EXR2 | ESZ1 "ONLY A CUSP IS LEFT"; EXR1 "Frozen word: NOT EVALUABLE / NOT EVALUABLE" (post hoc EXCLUDED) | no | EQUALS THE LAW | yes (EXR1R, same frozen word) | A question about the law on the stars. |
 | **The constants** | | | | | | | |
@@ -126,7 +129,8 @@ No row differs between the footings after the DSC1R update (row 7 read PASSES ca
   a contamination model in place of a band mask and a score cut, and the cold groups at 30 to 55 kpc set aside by a
   frozen rule (RRL1, MWT2).
 - Wide lenses (40): the group mass along wide-lens sightlines (members, intragroup gas and light, line of sight).
-- Euclid's ceiling (39): 10 lenses with certified source redshifts for EUC1's gate.
+- Euclid's ceiling (39): many more certified source redshifts than EUC16's 11 (follow-up spectra, or later releases with
+  more roll angles); with 11 the gate's interval spans both of its lines.
 - Wide binaries (38): Gaia DR4 on 2026-12-02, scored as pre-registered.
 - The constants (42, 43): no data row can grade them; a derivation would.
 
