@@ -9,7 +9,12 @@ a particle. Nothing here says the data favour the framework. Every quoted word i
 committed file by `cj1_audit.py` (output `cj1_audit.out`, which also lists each file's path).
 
 Updated 2026-11-13 by the lead after RRL1 and FRZ5 landed: rows 21, 22, 27 and 28, the counts and the three lists. No other row changes. Row 28's word for the completed form is the lead's placement. CJ1's first commit is e3b5114d3f (origin 76634be68d);
-its audit then read 108 of 108, and reads 110 of 110 after this update.
+its audit then read 108 of 108, and read 110 of 110 after that update.
+
+Updated again 2026-11-13 by the lead after the blind DSC1R landed: rows 7 and 8, the counts and the three lists. Both
+new words for the completed form are the lead's placements, made the same way in both directions: a hit the blind
+build does not confirm becomes NO POWER, and a fail the blind build does not confirm becomes DEPENDS ON AN UNTESTED
+ASSUMPTION. The audit reads 112 of 112.
 
 Words for the completed form (fixed list): PASSES / FAILS / FAILS ON COVERAGE ONLY / PASSES TRIVIALLY (the form equals
 the reference there) / EQUALS THE LAW (unchanged by rule 6: the form gives the law's own layout there, so the row's
@@ -26,8 +31,8 @@ verdict on the law carries over) / NO POWER / DEPENDS ON AN UNTESTED ASSUMPTION 
 | **High-redshift discs** | | | | | | | |
 | 5 | RC100 coverage at 2.2 R_e | JNT2, JNT2R (line from SRH1) | "JOINT FAILS ON G2 (coverage)" in both builds | coverage line; data no power | FAILS ON COVERAGE ONLY | yes (JNT2R, same word, FRAGILE) | 10 / 2 discs at z 2.10 to 2.52 above v*(z), covered 90 / 98 of 100 at every f. 2 v* restores coverage and breaks the forest. |
 | 6 | RC100 discs under the reference layout | SRJ3, SRJ4 | "NO VERDICT (no power) / NO VERDICT (no power)" (both lanes) | no | NO POWER | no | One point per disc cannot tell the reference, half of it or the law apart. The 10 / 2 are inside SRJ2's 31 / 22. |
-| 7 | Resolved z about 2 discs above v* | DSC1 | "JOINT'S STATEMENT HOLDS ON THE RESOLVED DISCS, FRAGILE" (canonical); alt "NO POWER (fewer than three discs above)" | fragile | PASSES / NO POWER | no | 3 / 2 discs; A 0.670 [0.250, 1.175]. Amplitude only; turns to FAILS with no pressure term or M_b + 1 sigma. A hit, not a pass, by the lane's words. |
-| 8 | Resolved discs below v* | DSC1 | "LAW FAILS BELOW, FRAGILE" (both) | fragile | FAILS | no | 4 / 5 discs at z 0.85 to 1.6 (alt adds zC 406690 at z 2.2); the reference at A about 1.4 fits better than the law (chi2 224 vs 281 / 267 vs 303). Flips under k = 0. |
+| 7 | Resolved z about 2 discs above v* | DSC1, DSC1R | DSC1 "JOINT'S STATEMENT HOLDS ON THE RESOLVED DISCS, FRAGILE" (canonical); alt "NO POWER (fewer than three discs above)"; DSC1R "NO POWER, FRAGILE" (both footings, as frozen and under its post hoc A1) | no (DSC1R) | NO POWER | yes (DSC1R; did not confirm) | 3 / 2 discs. At the record's halo: DSC1 A 0.670 [0.250, 1.175], DSC1R 0.590 [-0.13, 1.58] (canonical). The whole difference is how many digitised points count as independent (DSC1 all of them; DSC1R one per 0.6 arcsec beam); at the paper's two per beam A = 0 sits just outside (0.610 [0.040, 1.335]). DSC1R's word flips in 8 / 6 of 12 brackets, both ways. |
+| 8 | Resolved discs below v* | DSC1, DSC1R | DSC1 "LAW FAILS BELOW, FRAGILE" (both); DSC1R "LAW HOLDS BELOW, FRAGILE" (both, as frozen and under A1) | fragile | DEPENDS ON AN UNTESTED ASSUMPTION | yes (DSC1R; opposite word) | 4 / 5 discs at z 0.85 to 1.6 (alt adds zC 406690). In both builds a free reference halo at A about 1.25 to 1.57 fits better than the law (DSC1R canonical chi2 207.8 vs 252.9) and the law beats baryons alone by far; the two words differ only by the decision line. Every layout is rejected in absolute terms. Turns on baryon mass and the count of independent points. |
 | 9 | ALPAKA ring curves | ALP1, ALP1R | ALP1 "NO POWER / NO POWER"; ALP1R "NO VERDICT (TW-N and TW-D do not bite)", reading NO POWER | no | NO POWER | yes (ALP1R, same reading) | Baryons alone overshoot the discs above v*; 2 to 5 rings; gas-mass conversion, sizes and beam block it. |
 | 10 | ALMA limit on one disc | U4L1 | "NO LABEL" (A1: NO TENSION) | no | NO POWER | no | One disc excludes no model. |
 | **Lensing** | | | | | | | |
@@ -76,11 +81,11 @@ verdict on the law carries over) / NO POWER / DEPENDS ON AN UNTESTED ASSUMPTION 
 
 ## Counts
 
-Canonical: EQUALS THE LAW 14; NOT GRADED FOR THIS FORM 9; FAILS 6; NO POWER 5; PASSES TRIVIALLY 4; PASSES 3; DEPENDS ON AN UNTESTED ASSUMPTION 3; FAILS ON COVERAGE ONLY 1. Total 45.
+Canonical: EQUALS THE LAW 14; NOT GRADED FOR THIS FORM 9; NO POWER 6; FAILS 5; PASSES TRIVIALLY 4; DEPENDS ON AN UNTESTED ASSUMPTION 4; PASSES 2; FAILS ON COVERAGE ONLY 1. Total 45.
 
-Alt: EQUALS THE LAW 14; NOT GRADED FOR THIS FORM 9; NO POWER 6; FAILS 6; PASSES TRIVIALLY 4; DEPENDS ON AN UNTESTED ASSUMPTION 3; PASSES 2; FAILS ON COVERAGE ONLY 1. Total 45.
+Alt: EQUALS THE LAW 14; NOT GRADED FOR THIS FORM 9; NO POWER 6; FAILS 5; PASSES TRIVIALLY 4; DEPENDS ON AN UNTESTED ASSUMPTION 4; PASSES 2; FAILS ON COVERAGE ONLY 1. Total 45.
 
-The only row where the footings differ is 7 (DSC1 above v*: PASSES canonical, NO POWER alt).
+No row differs between the footings after the DSC1R update (row 7 read PASSES canonical / NO POWER alt before it).
 
 ## What the form survives with power
 
@@ -89,14 +94,14 @@ The only row where the footings differ is 7 (DSC1 above v*: PASSES canonical, NO
 - Equal to the reference, so trivial: X-COP's one-sided amount (14), X-COP's radial shape under RB1's post hoc A1 (16),
   the forest at matter level up to f 2 (21), and the CMB, CMB-lensing and growth rows, which are not independent of the
   fitted share (23).
-- With fragile power only, and none confirmed by an independent blind re-grade: DSC1's three resolved z about 2 discs
-  above v* (7, amplitude only), KiDS early-type lensing at f 1.25 and above (11, a gate SRH1R found cannot see f), the
+- With fragile power only, and none confirmed by an independent blind re-grade: KiDS early-type lensing at f 1.25 and above (11, a gate SRH1R found cannot see f), the
   9 massive SPARC spirals on the law (4, canonical, JNT1R's reading), NMB1 and PLT1 (29, 30).
+- No longer listed: DSC1's hit on three resolved z about 2 discs above v* (7). The blind DSC1R reads NO POWER there.
 
 ## What the form fails
 
 - On coverage only, as frozen in both builds: RC100 at z 2.1 to 2.5 (5). The data on those discs have no power (6).
-- On data, fragile: the law below v* on DSC1's resolved discs (8).
+- No longer listed: the law below v* on DSC1's resolved discs (8). The blind DSC1R reads the opposite word; see below.
 - On data, fragile, and shared by every smooth model including DESI's NFW: Milky Way halo stars at 40 to 55 kpc once
   the star-count slope is the measured RR Lyrae one (28). The hot 30 to 40 kpc bin of row 27 passes with that slope.
 - Untouched by rule 6, so form B's fails stay: X-COP's two-sided amount (15), the outer cluster shear (20, carried), the
@@ -105,7 +110,9 @@ The only row where the footings differ is 7 (DSC1 above v*: PASSES canonical, NO
 ## What is undecided, and what would decide it
 
 - RC100's massive z 2 discs and rows 7 and 8: resolved rotation curves beyond about 3 R_1/2 with measured
-  gas profiles on both sides of log M_b 11.3 / 11.5 (DSC1). ALPAKA cannot (9): gas conversion, sizes, beam.
+  gas profiles on both sides of log M_b 11.3 / 11.5 (DSC1). ALPAKA cannot (9): gas conversion, sizes, beam. DSC1R's
+  reconciliation adds: beam-forward modelling with each disc's real point-spread function and point covariance, and a
+  gas conversion fixed independently, because the answer above v* turns on how many points count as independent.
 - The forest at flux level for this split (22): a hydrodynamic forest model that sets the smoothing scale, a box of at
   least about 50 Mpc/h, 6 to 18 seeds at z 2.2 (FRZ3R, FRZ4); and f between 2 and 3 run in both builds. FRZ5 adds: the
   gas parameters must be fitted with the layout, not held fixed; refitting them removes about 91 % of the full layout's

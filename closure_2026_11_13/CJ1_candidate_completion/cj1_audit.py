@@ -41,6 +41,8 @@ CHECKS = [
     (7, C13 + "DSC1_joint_on_resolved_discs/RESULT.md", "JOINT'S STATEMENT HOLDS ON THE RESOLVED DISCS, FRAGILE"),
     (7, C13 + "DSC1_joint_on_resolved_discs/RESULT.md", "NO POWER (fewer than three discs above)"),
     (8, C13 + "DSC1_joint_on_resolved_discs/RESULT.md", "LAW FAILS BELOW, FRAGILE"),
+    (7, C13 + "DSC1R_blind_resolved_discs_regrade/RESULT_BLIND.md", "NO POWER, FRAGILE"),
+    (8, C13 + "DSC1R_blind_resolved_discs_regrade/RESULT_BLIND.md", "LAW HOLDS BELOW, FRAGILE"),
     (9, C13 + "ALP1_alpaka_discs_joint/RESULT.md", "NO POWER / NO POWER"),
     (9, C13 + "ALP1R_blind_alpaka_discs_joint/RESULT_BLIND.md", "NO VERDICT (TW-N and TW-D do not bite)"),
     (10, C12 + "U4L1_alma_limit_reading/RESULT.md", "NO LABEL"),
