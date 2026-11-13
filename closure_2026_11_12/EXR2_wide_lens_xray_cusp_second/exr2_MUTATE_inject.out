@@ -1,0 +1,56 @@
+EXR2 (WIDE-LENS X-RAY CUSP, SECOND MEASUREMENT)   *** MUTATE = inject ***
+
+[data]
+  sha256 eclipse_dr1_catalogue_key_v20261103.csv  65338917534c9c76  matches the frozen hash
+  sha256 ECLIPSE_object_catalogue.csv  8247a4d5f23513b8  matches the frozen hash
+  targets: W 237 (ESZ1's wide lenses), C 237 (ESZ1's controls); positions 4266
+
+[instrument checks]
+  PASS K1  UL_B x Exposure at zero counts constant to 0.5 % (N >= 50 per band), equal to the values met before freezing, ECF(024) within 3 % of 1.074e12 : 022: N 1986, spread 1.1e-07, K 8.1534e-12; 024: N 1361, spread 1.1e-07, K 8.2439e-12; ECF(024) 1.0687e+12
+  FAIL K2  catalogued point sources (ml_flux_1 1e-13 to 1e-12): median aperture flux / catalogue flux in 0.75-1.25 (N >= 20); below 0.2 when moved 0.1 deg : N = 0, median ratio nan; moved: -0.003
+  PASS K4  pyatomdb 1.2.2: Lambda(1 keV, Z = 0) within 30 % of the free-free estimate; rest 0.87-3.34 keV at 0.45 keV, Z 0.3 / Z 0 > 2 : 7.986e-24 against 8.012e-24; ratio 4.67
+  PASS K6  luminosity integral for a constant emissivity against the closed form (1e-3) : 2.5e-06
+
+[model: ESZ1's r^-2 gas, least hydrostatic temperature, APEC, gas outside R_E and inside 15 arcsec, x 0.80 x 0.40]
+  canonical least setting: median gas mass 3.18e+12 Msun (5 % of lenses need none), n_e(R_E) 0.20 cm^-3, kT(R_E) 0.48 keV
+            Z = 0.0: band luminosity outside R_E median 1.39e+43, mean 3.25e+43 erg/s; predicted flux median 4.1, mean 26.9 (1e-15 erg/s/cm^2)
+            Z = 0.3: band luminosity outside R_E median 5.80e+43, mean 1.42e+44 erg/s; predicted flux median 16.2, mean 156.3 (1e-15 erg/s/cm^2)
+  alt       least setting: median gas mass 2.82e+12 Msun (8 % of lenses need none), n_e(R_E) 0.18 cm^-3, kT(R_E) 0.48 keV
+            Z = 0.0: band luminosity outside R_E median 1.05e+43, mean 2.72e+43 erg/s; predicted flux median 3.2, mean 23.2 (1e-15 erg/s/cm^2)
+            Z = 0.3: band luminosity outside R_E median 4.41e+43, mean 1.18e+44 erg/s; predicted flux median 11.4, mean 134.4 (1e-15 erg/s/cm^2)
+
+[measurement: net rate at the target minus the mean of its usable offsets; flux = rate x K / 6.6077; 1e-15 erg/s/cm^2]
+  [MUTATE inject] each W lens's Z = 0 canonical prediction added to its value, both bands
+  band 022: valid W 195 of 237, valid C 212 of 237; W medians: exposure 219 s, background 0.63 counts; total counts at W targets 374
+  band 024: valid W 183 of 237, valid C 206 of 237; W medians: exposure 217 s, background 1.03 counts; total counts at W targets 550
+  W, band 022: N = 195, stack +20.600, sigma 4.961 (bootstrap 4.961, null stacks 0.379)
+  PASS K3  none of the 8 null stacks of W beyond 3.5 sigma : largest 0.707 against sigma 4.961 (1e-15)
+
+[Part G: least demanding setting (far source, stars +0.10 dex); 1e-15 erg/s/cm^2]
+    canonical Z = 0.0  pred    18.85   measured +20.60 +- 4.96   (pred - meas) / sigma =   -0.4   (meas + 2 sigma) / pred = 1.619   gas share allowed 127 %   -> ALLOWED
+    canonical Z = 0.3  pred   103.64   measured +20.60 +- 4.96   (pred - meas) / sigma =   16.7   (meas + 2 sigma) / pred = 0.295   gas share allowed 54 %   -> EXCLUDED
+    alt       Z = 0.0  pred    16.03   measured +20.60 +- 4.96   (pred - meas) / sigma =   -0.9   (meas + 2 sigma) / pred = 1.904   gas share allowed 138 %   -> ALLOWED
+    alt       Z = 0.3  pred    87.49   measured +20.60 +- 4.96   (pred - meas) / sigma =   13.5   (meas + 2 sigma) / pred = 0.349   gas share allowed 59 %   -> EXCLUDED
+  brackets (measured +- sigma; pred Z = 0 and Z = 0.3, canonical; lane word per footing):
+    band 024 (0.2-2.3 keV)   N = 183  +15.53 +- 2.37      13.92 /    78.65   NOT EVALUABLE / NOT EVALUABLE
+    inner radius 2 R_E       N = 195  +20.60 +- 4.96       8.57 /    45.20   NOT EVALUABLE / NOT EVALUABLE
+    transmission 0.25        N = 195  +20.60 +- 4.96      11.78 /    64.78   NOT EVALUABLE / NOT EVALUABLE
+    unweighted mean          N = 195  +20.75 +- 4.37      18.86 /   105.31   NOT EVALUABLE / NOT EVALUABLE
+    grade A only             N = 119  +15.72 +- 2.95      13.72 /    74.91   NOT EVALUABLE / NOT EVALUABLE
+    z_l <= 0.6 only          N = 126  +29.54 +- 7.50      27.05 /   152.36   NOT EVALUABLE / NOT EVALUABLE
+  LANE WORD (Part G): NOT EVALUABLE / NOT EVALUABLE
+  reported, same weights: Salpeter stars Z 0 24.9 / 21.4, Z 0.3 138.0 / 117.6; sources near z 2 Z 0 85.2 / 75.3, Z 0.3 353.9 / 309.1 (canonical / alt)
+
+[Part C: wide lenses against ESZ1's matched controls]
+  band 022: N = 175 pairs, mean difference +19.999 [+11.856, +31.014] -> WIDE LENSES ARE BRIGHTER IN X-RAYS
+  band 024: N = 160 pairs, mean difference +15.430 [+10.571, +21.492] -> WIDE LENSES ARE BRIGHTER IN X-RAYS
+  LANE WORD (Part C): NOT EVALUABLE
+
+[Part D (no word); 1e-15 erg/s/cm^2]
+  W band 022: N 195, stack +20.600 +- 4.961 (unweighted +20.755 +- 4.370); its offsets alone average -0.034; mean luminosity 9.67e+42 erg/s
+  C band 022: N 212, stack +0.752 +- 0.398 (unweighted +0.820 +- 0.454); its offsets alone average +0.056; mean luminosity 2.02e+41 erg/s
+  W band 024: N 183, stack +15.526 +- 2.373 (unweighted +16.505 +- 2.542); its offsets alone average +0.262; mean luminosity 7.79e+42 erg/s
+  C band 024: N 206, stack +0.898 +- 0.634 (unweighted +1.003 +- 0.689); its offsets alone average +0.254; mean luminosity 1.11e+42 erg/s
+  per lens: the service's own 3 sigma limit lies below the lens's least prediction for (Z 0 / Z 0.3): eRASS1 band 022 19 / 69 of 195 (canonical), 17 / 55 (alt); DR2 three-survey band 024 25 / 68 of 163 (canonical), 22 / 62 (alt)
+
+[MUTATE inject] Z = 0 reads ALLOWED / ALLOWED -> BITES (exit 1)
