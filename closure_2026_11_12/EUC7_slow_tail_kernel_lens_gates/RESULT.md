@@ -90,3 +90,21 @@ file was made (see EUC5 RESULT.md §3e). Re-run in a copy of the lane folders wi
 
 The reading keeps its label (AT AN EDGE). T1–T4 and the lane word (SLACS lensing, INSIDE THE WINDOW / INSIDE THE
 WINDOW) do not use that file and are identical in the re-run.
+
+## Dated note (2026-11-12, evening): the SLACS rows are on a different mass convention from Euclid's
+
+Found by lane EUC12 and checked through this lane's code (`../EUC1_eclipse_saturation_ceiling/euc1_slacs_convention.out`;
+EUC1 RESULT.md §9). T1 and T2 take each SLACS stellar mass from Auger's fraction inside the Einstein radius (F); the
+like-for-like mass for a comparison with Euclid is Auger's total Salpeter mass (T), a median 0.0375 dex lower.
+
+| Slow-tail kernel, SLACS | F (as above) | T (like Euclid's) |
+|---|---|---|
+| T1 lensing, canonical | +0.015 [−0.005, +0.039] INSIDE THE WINDOW | +0.054 [+0.018, +0.090] INSIDE THE WINDOW |
+| T1 lensing, alt | +0.001 [−0.019, +0.026] INSIDE THE WINDOW | +0.039 [+0.004, +0.073] INSIDE THE WINDOW |
+| T2 dynamics, canonical | +0.039 [+0.003, +0.079] INSIDE THE WINDOW | +0.073 [+0.027, +0.114] AT AN EDGE |
+| T2 dynamics, alt | +0.030 [−0.010, +0.072] INSIDE THE WINDOW | +0.062 [+0.021, +0.103] AT AN EDGE |
+| Dynamics minus lensing | +0.039 / +0.045 | +0.039 / +0.045 |
+
+**The lane word (T1) does not change: INSIDE THE WINDOW / INSIDE THE WINDOW.** What changes is the plain-language
+reading: on the like-for-like convention the slow tail needs about 1.1 × Salpeter on SLACS, not Salpeter itself, and
+law S needs about 1.3 ×, not 1.2 ×. The dynamics row's upper bound crosses the window's +0.10 edge.
