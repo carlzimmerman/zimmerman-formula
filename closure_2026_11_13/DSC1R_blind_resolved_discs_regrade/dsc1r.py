@@ -21,7 +21,14 @@ def P(*a):
 G, MS, KPC, MPC = 6.674e-11, 1.989e30, 3.0857e19, 3.0857e22
 A0 = {"canonical": 9.3603e-11, "alt": 1.1312e-10}; FOOTS = ("canonical", "alt")
 X = 5.41; H0 = 67.4e3 / MPC; OL = 0.6847; OM = 1 - OL
-hh = 0.6736; FB = 0.02237 / (0.02237 + 0.1200); RHO_M = OM * 2.77536627e11          # Msun/h per (Mpc/h)^3, comoving
+hh = 0.6736; FB = 0.02237 / (0.02237 + 0.1200)
+A1 = "--A1" in sys.argv[1:]                                                          # AMENDMENT_A1.md (f70457d798)
+TAG = "_A1" if A1 else ""
+XTAB = {"canonical": {"z0.0": 59.4861237154402, "z1.0": 55.715882476869666}, "alt": {"z0.0": 59.502850378209175, "z1.0": 55.731266185367176}}
+OMH = (0.02237 + 0.1200) / hh ** 2 if A1 else OM                                    # the halo's own Omega_m (record's under A1)
+RHO_M = OMH * 2.77536627e11                                                          # Msun/h per (Mpc/h)^3, comoving
+CUR = {"ft": "canonical"}
+def Xh(z): return (XTAB[CUR["ft"]]["z0.0"] if z < 1 else XTAB[CUR["ft"]]["z1.0"]) if A1 else X
 def E(z): return math.sqrt(OM * (1 + z) ** 3 + OL)
 def vstar0(ft): return A0[ft] / (10 * (1 + X) * H0)                                 # m/s
 def logthr(ft, z): return math.log10((vstar0(ft) / E(z)) ** 4 / (G * A0[ft]) / MS)
@@ -29,8 +36,9 @@ def law(gN, a0): return 0.5 * (gN + np.sqrt(gN * gN + 4 * a0 * gN))
 
 # ------------------------------------------------------------------ reference halo (FRZ1 / SRJ3 construction, X = 5.41)
 def m_nfw(x): return np.log1p(x) - x / (1 + x)
-def Omz(z): return OM * (1 + z) ** 3 / (OM * (1 + z) ** 3 + OL)
-def dta_of(z): return 5.55 + (11.81 - 5.55) * (1 - Omz(z)) / (1 - OM)
+OLH = 1 - OMH if A1 else OL
+def Omz(z): return OMH * (1 + z) ** 3 / (OMH * (1 + z) ** 3 + OLH)
+def dta_of(z): return 5.55 + (11.81 - 5.55) * (1 - Omz(z)) / (1 - OMH)
 def conc(M, z): return 10.14 * (M / 2e12) ** -0.081 * (1 + z) ** -1.01
 def hb(M, z):
     c = conc(M, z); r2 = (3 * M / (4 * math.pi * 200 * RHO_M)) ** (1 / 3); mc = m_nfw(c); dta = dta_of(z)
@@ -38,16 +46,16 @@ def hb(M, z):
     return dict(M=M, c=c, r200=r2, rs=r2 / c, xta=xta, rta=xta * r2, Mta=M * m_nfw(c * xta) / mc)
 _H = {}
 def halo(Mb, z):
-    key = (round(math.log10(Mb), 10), round(z, 8))
+    Xz = Xh(z); key = (round(math.log10(Mb), 10), round(z, 8), Xz)
     if key not in _H:
-        Mta = X * Mb * hh / (1 - FB)
+        Mta = Xz * Mb * hh / (1 - FB)
         lM = brentq(lambda l: hb(10 ** l, z)["Mta"] / Mta - 1, math.log10(Mta) - 2, math.log10(Mta) + 1, xtol=1e-13)
         b = hb(10 ** lM, z); a = MPC / hh / (1 + z)
-        _H[key] = dict(b, rs_m=b["rs"] * a, rta_m=b["rta"] * a, cta=b["c"] * b["xta"], Mb=Mb, z=z)
+        _H[key] = dict(b, rs_m=b["rs"] * a, rta_m=b["rta"] * a, cta=b["c"] * b["xta"], Mb=Mb, z=z, X=Xz)
     return _H[key]
 def g_ref(R_kpc, Mb, z):
     H = halo(Mb, z); r = np.minimum(np.asarray(R_kpc) * KPC, H["rta_m"])
-    C = X * Mb * MS * m_nfw(r / H["rs_m"]) / m_nfw(H["cta"])
+    C = H["X"] * Mb * MS * m_nfw(r / H["rs_m"]) / m_nfw(H["cta"])
     return G * C / (np.asarray(R_kpc) * KPC) ** 2
 
 # ------------------------------------------------------------------ baryon components (Newtonian)
@@ -225,20 +233,22 @@ def rfold(ft, z, lM):
 
 # ------------------------------------------------------------------ run
 P("DSC1R blind re-grade of the crossing-speed joint on resolved high-z curves (criteria ad6ac2377e).")
+if A1: P("AMENDMENT A1 (f70457d798, post hoc): A = 1 is the record's reference halo (SRJ2 / SRJ3: X from XTAB, record cosmology for the halo).")
 P("TEST lane. Adopts nothing. kappa = 1/2 FITTED; not theory closed. Footings never pooled.")
 RES = dict(lane="DSC1R", criteria="ad6ac2377e", note="Adopts nothing. kappa = 1/2 FITTED; not theory closed.")
+if A1: RES["amendment"] = "A1 f70457d798 (post hoc): A = 1 is the record halo"
 
 # KA1 (SI)
 ka1 = {}
 for ft in FOOTS:
     ka1[ft] = dict(vstar0_kms=vstar0(ft) / 1e3, logthr_z2=logthr(ft, 2.0))
-Ht = halo(2e11, 2.3); r = Ht["rta_m"]; cold_rta = X * 2e11 * MS * m_nfw(r / Ht["rs_m"]) / m_nfw(Ht["cta"])
-rho_m_SI = OM * 3 * H0 ** 2 / (8 * math.pi * G) * (1 + 2.3) ** 3
+Ht = halo(2e11, 2.3); r = Ht["rta_m"]; cold_rta = Ht["X"] * 2e11 * MS * m_nfw(r / Ht["rs_m"]) / m_nfw(Ht["cta"])
+rho_m_SI = OMH * 3 * H0 ** 2 / (8 * math.pi * G) * (1 + 2.3) ** 3
 r200_SI = (3 * Ht["M"] / hh * MS / (4 * math.pi * 200 * rho_m_SI)) ** (1 / 3); r200_scr = Ht["r200"] / (1 + 2.3) / hh * MPC
 ka1_ok = (abs(ka1["canonical"]["vstar0_kms"] - 668.5) <= 0.1 and abs(ka1["alt"]["vstar0_kms"] - 807.9) <= 0.1 and abs(ka1["canonical"]["logthr_z2"] - 11.279) <= 0.005
-          and abs(ka1["alt"]["logthr_z2"] - 11.526) <= 0.005 and abs(cold_rta / (X * 2e11 * MS) - 1) <= 1e-8 and abs(r200_SI / r200_scr - 1) <= 1e-3)
+          and abs(ka1["alt"]["logthr_z2"] - 11.526) <= 0.005 and abs(cold_rta / (Ht["X"] * 2e11 * MS) - 1) <= 1e-8 and abs(r200_SI / r200_scr - 1) <= 1e-3)
 lawchk = float(np.max(np.abs((lambda g, gn, a: g * g / (a + g) / gn - 1)(law(np.logspace(-13, -8, 50), 1e-10), np.logspace(-13, -8, 50), 1e-10))))
-ka1.update(cold_rta_over_XMb=cold_rta / (X * 2e11 * MS), r200m_SI_kpc=r200_SI / KPC, r200m_script_kpc=r200_scr / KPC, rs_kpc=Ht["rs_m"] / KPC,
+ka1.update(cold_rta_over_XMb=cold_rta / (Ht["X"] * 2e11 * MS), r200m_SI_kpc=r200_SI / KPC, r200m_script_kpc=r200_scr / KPC, rs_kpc=Ht["rs_m"] / KPC,
            c200m=Ht["c"], rta_kpc=Ht["rta_m"] / KPC, law_identity_maxrel=lawchk, pass_=bool(ka1_ok and lawchk < 1e-12))
 P(f"KA1 SI: v*(0) {ka1['canonical']['vstar0_kms']:.2f} / {ka1['alt']['vstar0_kms']:.2f} km/s; log thr z 2 {ka1['canonical']['logthr_z2']:.3f} / {ka1['alt']['logthr_z2']:.3f}; "
   f"halo (M_b 2e11, z 2.3): cold(r_ta)/(X M_b) {ka1['cold_rta_over_XMb']:.10f}, r200m SI {ka1['r200m_SI_kpc']:.2f} vs {ka1['r200m_script_kpc']:.2f} kpc, "
@@ -247,6 +257,10 @@ P(f"  reported: CO L'(1-0) zC-488879 {LP488:.3e} (gas at alpha 0.4 {0.4*LP488:.2
   f"zC-400569 {LP400:.3e} (0.4 -> {0.4*LP400:.2e}; CFG278 9.4e9); kpc/arcsec {DA_kpc_per_arcsec(1.46997):.3f} / {DA_kpc_per_arcsec(2.23999):.3f}")
 RES["KA1"] = ka1
 
+def setft(ft, D=()):
+    CUR["ft"] = ft
+    for d in D: d["gref"] = g_ref(d["R"], d["Mb"], d["z"])
+setft("canonical")
 D0 = build_all("MAIN")
 RES["discs"] = []
 for d in D0:
@@ -254,6 +268,7 @@ for d in D0:
                gN_over_a0_can=[float(d["gN"].min() / A0["canonical"]), float(d["gN"].max() / A0["canonical"])], gref_over_gN_outer=float(d["gref"][np.argmax(d["R"])] / d["gN"][np.argmax(d["R"])]),
                halo=dict(c=halo(d["Mb"], d["z"])["c"], rs_kpc=halo(d["Mb"], d["z"])["rs_m"] / KPC, rta_kpc=halo(d["Mb"], d["z"])["rta_m"] / KPC), comp={k: float(v) for k, v in d["comp"].items()})
     for ft in FOOTS:
+        setft(ft, [d])
         row[ft] = dict(logthr=logthr(ft, d["z"]), margin=math.log10(d["Mb"]) - logthr(ft, d["z"]), group="ABOVE" if member(d, ft) else "below",
                        R_fold_kpc=rfold(ft, d["z"], math.log10(d["Mb"])))
         row[ft]["pts_outside_Rfold"] = int(np.sum(d["R"] > row[ft]["R_fold_kpc"]))
@@ -279,13 +294,18 @@ BRK = ["AD0", "AD2", "M-", "M+", "STARS", "GLO", "GHI", "I-", "I+", "BEAM", "OUT
 RES["foot"] = {}
 for ft in FOOTS:
     R = RES["foot"][ft] = {}
+    setft(ft, D0)
     R["main"] = grade(D0, ft); show("MAIN", R["main"], ft)
     # context: the law on the above discs, X_PD1 position
     ab = [d for d in D0 if member(d, ft)]
     if ab:
         R["context_law_on_above"] = dict(chi2_L=chi_law(ab, A0[ft]), chi2_A1=chi_at(ab, 1.0))
-        P(f"[{ft}]   context (not graded): law on the above discs chi2 {R['context_law_on_above']['chi2_L']:.1f} vs A = 1 {R['context_law_on_above']['chi2_A1']:.1f}; "
-          f"PD1 X ~56-59 -> A ~{55.72/X:.1f}-{59.50/X:.1f}: {'inside' if R['main']['above']['A_lo'] <= 10.3 and R['main']['above']['A_hi'] >= 11.0 else 'outside'} the A interval")
+        if A1:
+            P(f"[{ft}]   context (not graded): law on the above discs chi2 {R['context_law_on_above']['chi2_L']:.1f} vs A = 1 {R['context_law_on_above']['chi2_A1']:.1f}; "
+              f"A1: A = 1 is the record's halo (X {XTAB[ft]['z1.0']:.2f} at z >= 1); the brief's 5.41 M_b halo is A ~ {X/XTAB[ft]['z1.0']:.3f}")
+        else:
+            P(f"[{ft}]   context (not graded): law on the above discs chi2 {R['context_law_on_above']['chi2_L']:.1f} vs A = 1 {R['context_law_on_above']['chi2_A1']:.1f}; "
+              f"PD1 X ~56-59 -> A ~{55.72/X:.1f}-{59.50/X:.1f}: {'inside' if R['main']['above']['A_lo'] <= 10.3 and R['main']['above']['A_hi'] >= 11.0 else 'outside'} the A interval")
     # KA2 / KA3
     Dk = build_all("MAIN")
     for d in Dk:
@@ -305,6 +325,7 @@ TW = {}
 for t in ("TWV", "TWM"):
     TW[t] = dict(lane="DSC1R", twin=t, foot={})
     for ft in FOOTS:
+        setft(ft)
         Dt = build_all("MAIN")
         if t == "TWV":
             for d in Dt: d["lg"] = d["lg"] + math.log10(1.5625)
@@ -353,8 +374,8 @@ def clean(o):
     if isinstance(o, (np.floating, np.integer)): return o.item()
     if isinstance(o, np.bool_): return bool(o)
     return o
-json.dump(clean(RES), open(os.path.join(HERE, "dsc1r.json"), "w"), indent=1)
-open(os.path.join(HERE, "dsc1r.out"), "w").write("\n".join(OUT) + "\nAdopts nothing. kappa = 1/2 FITTED; not theory closed.\n")
+json.dump(clean(RES), open(os.path.join(HERE, f"dsc1r{TAG}.json"), "w"), indent=1)
+open(os.path.join(HERE, f"dsc1r{TAG}.out"), "w").write("\n".join(OUT) + "\nAdopts nothing. kappa = 1/2 FITTED; not theory closed.\n")
 for t in TW:
-    json.dump(clean(TW[t]), open(os.path.join(HERE, f"dsc1r_MUTATE_{t}.json"), "w"), indent=1)
-    open(os.path.join(HERE, f"dsc1r_MUTATE_{t}.out"), "w").write("\n".join(l for l in OUT if f"twin {t}" in l) + "\nAdopts nothing. kappa = 1/2 FITTED; not theory closed.\n")
+    json.dump(clean(TW[t]), open(os.path.join(HERE, f"dsc1r{TAG}_MUTATE_{t}.json"), "w"), indent=1)
+    open(os.path.join(HERE, f"dsc1r{TAG}_MUTATE_{t}.out"), "w").write("\n".join(l for l in OUT if f"twin {t}" in l) + "\nAdopts nothing. kappa = 1/2 FITTED; not theory closed.\n")
