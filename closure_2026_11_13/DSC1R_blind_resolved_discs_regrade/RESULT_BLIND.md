@@ -126,4 +126,56 @@ assumptions: drift support, inclination and baryon mass. Six (canonical) / four 
 below word into LAW FAILS BELOW, and four (canonical) / two (alt) turn the above word into FAILS or HOLDS. These curves do not decide the joint either way, and
 nothing here is a pass of the theory.
 
+## Amendment A1 (2026-11-13, post hoc): A = 1 is the record's reference halo
+
+AMENDMENT_A1.md (f70457d798, committed alone before the run): the brief's "5.41 x M_b" was the lead's error; A = 1 now
+means SRJ2 / SRJ3's halo (M_ta = X M_b h / (1 - FB), X = 59.49 / 55.72 canonical, 59.50 / 55.73 alt for z < 1 / >= 1,
+the record's halo cosmology). Nothing else changed. Post hoc: the as-frozen RESULT already said where that halo falls
+(A ~ 10.3-11 on the old axis). Run: `python3 -I -B dsc1r.py --A1` (outputs 75e3203c75); the as-frozen path still
+reproduces its committed outputs byte for byte. Still blind at this step.
+
+**Labels, as frozen first, then A1 (canonical / alt):**
+
+| group | as frozen | A1 |
+|---|---|---|
+| ABOVE | NO POWER, FRAGILE / NO POWER, FRAGILE | **NO POWER, FRAGILE / NO POWER, FRAGILE** |
+| BELOW | LAW HOLDS BELOW, FRAGILE / LAW HOLDS BELOW, FRAGILE | **LAW HOLDS BELOW, FRAGILE / LAW HOLDS BELOW, FRAGILE** |
+
+KA1-KA3 pass under A1 (A1 halo at M_b 2e11, z 2.3: c 2.92, r_s 54 kpc, r_ta 715 kpc; r200m SI 158.89 vs 158.94 kpc);
+both twins bite everywhere.
+
+**A1 above:** A = 0.590 [-0.130, 1.580] canonical, 0.120 [-0.585, 1.160] alt. Both intervals now exclude A = 2 but
+contain A = 0 and A = 1, so by the frozen rule the word stays NO POWER (the data cannot tell the record's halo from
+none). chi^2 at A = 0 / 1 / 2: 90.8 / 76.5 / 131.1 canonical, 41.5 / 63.1 / 117.7 alt (law on the same discs 68.8 / 51.4).
+Per disc alone: zC 406690 1.47 [0.19, 3.48], zC 400569 -1.38 [-2.00, 1.47], D3a 15504 0.40 [-0.20, 1.20].
+The brief's 5.41 M_b halo is A ~ 0.097 on this axis.
+
+**A1 below:** chi^2 L / N / H (A) / H at A = 1: 252.9 / 609.7 / 207.8 (1.40) / 226.1 canonical; 253.4 / 659.0 / 218.7
+(1.40) / 239.5 alt. L - min(N, H) = +45.1 / +34.7 against 9 s^2 = 102.3 / 94.5: no layout preferred; LAW HOLDS BELOW
+(relative only, p_L ~ 1e-42 / 2e-41). A free halo of about 1.4 record halos is the best layout; zC-488879 alone wants
+A 7.3 [3.8, 12.9], COS4 01351 1.22 [0.92, 1.55].
+
+**A1 brackets** (above: A_best [95 %] -> word; below: L - min(N, H) -> word):
+
+| bracket | above canonical | above alt | below canonical | below alt |
+|---|---|---|---|---|
+| main | 0.59 [-0.13, 1.58] NO POWER | 0.12 [-0.59, 1.16] NO POWER | +45.1 HOLDS | +34.7 HOLDS |
+| AD0 | -0.10 [-0.73, 0.83] **FAILS (A < 1)** | -0.57 [-1.10, 0.31] **FAILS (A < 1)** | +6.4 HOLDS | +0.1 HOLDS |
+| AD2 | 1.34 [0.48, 2.48] **HOLDS** | 0.80 [-0.09, 2.07] NO POWER | +114.5 **FAILS** | +115.5 **FAILS** |
+| M- | 1.26 [0.67, 1.99] **HOLDS** (2 discs) | empty: NO POWER | +340.7 **FAILS** | +268.5 **FAILS** |
+| M+ | -0.56 [-1.28, 0.67] **FAILS (A < 1)** | -0.95 [-1.64, 0.62] **FAILS (A < 1)** | +11.8 **NO POWER** | +24.9 **NO POWER** |
+| STARS | 1.07 [0.33, 2.06] **HOLDS** (D3a 15504 only) | empty: NO POWER | +203.1 **FAILS** | +147.9 **FAILS** |
+| GLO | 0.47 [-0.22, 1.41] NO POWER | empty: NO POWER | +119.3 **FAILS** | +59.2 HOLDS |
+| GHI | -0.05 [-0.76, 0.99] **FAILS (A < 1)** | -0.05 [-0.76, 0.99] **FAILS (A < 1)** | +1.3 HOLDS | -0.6 HOLDS |
+| I- | 3.69 [1.54, 6.95] **FAILS (A > 1)** | 1.77 [0.75, 3.08] **HOLDS** | +137.3 **FAILS** | +217.9 **FAILS** |
+| I+ | -0.18 [-0.68, 0.57] **FAILS (A < 1)** | -0.40 [-1.00, 0.68] **FAILS (A < 1)** | +12.5 HOLDS | -7.6 HOLDS |
+| BEAM | 0.57 [-0.05, 1.39] NO POWER | 0.19 [-0.40, 1.00] **FAILS (A < 1)** | +60.0 HOLDS | +41.7 HOLDS |
+| OUT | 0.67 [-0.21, 1.91] NO POWER | 0.06 [-0.79, 1.35] NO POWER | +37.3 HOLDS | +34.9 HOLDS |
+| ALTC | 0.58 [-0.17, 1.61] NO POWER | 0.09 [-0.65, 1.22] NO POWER | = main | = main |
+
+Under A1 the above word is flipped by 8 (canonical) / 6 (alt) of the 12 brackets, in both directions; the below word by
+6 / 5. The most-moving assumption is again inclination for the above group (I- moves A by 3.1 / 1.6) and baryon mass
+for the below group (M- moves the margin by 296 / 234). With the record's halo the above group's best value sits
+below one record halo on both footings (0.59 / 0.12), but the interval reaches zero and one alike.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
