@@ -1,0 +1,49 @@
+{
+  "claim_id": "CP02_COMPRESSION_CONTROLS",
+  "mathematics": {
+    "assertion_tested": "Recompute energy and grid/time refinement; run zero-velocity and reversed-velocity controls for the same finite NR compression interval.",
+    "coefficient_domain": "IEEE float64 NumPy Fourier collocation and dense Newton; RK4 time evolution",
+    "conventions": "K=a0=Pi_c=1,C=1e6,gamma=1e-8,k0=1e4; Pi=DxP, n=H_Q+Pi; S=exp(-Pi_+^3), Gamma=gamma Pi_+^2/2; Poisson mean subtracted explicitly",
+    "inputs": [
+      "two disjoint smooth bump divergence profiles, Pi maximum .86",
+      "constraint-consistent low quadratic root, e_P mean=-.15/C",
+      "velocity=-.001 sin(theta)"
+    ],
+    "bounds": {
+      "N_controls": 256,
+      "dt": 1e-05,
+      "steps": 174,
+      "number_controls": 2
+    },
+    "non_claims": [
+      "Not a full GR trajectory or cosmological formation test",
+      "Not a theorem of continuum regularity past instability",
+      "Clamping changes the literal gate; specified candidate only"
+    ]
+  },
+  "execution_artifacts": [
+    "research_closure_2026_11_12/closure_push_02/hamiltonian/controls.py",
+    "research_closure_2026_11_12/closure_push_02/hamiltonian/compression_entry.py",
+    "research_closure_2026_11_12/closure_push_02/hamiltonian/compression256/results.json",
+    "research_closure_2026_11_12/closure_push_02/hamiltonian/compression256/results.npz",
+    "research_closure_2026_11_12/closure_push_02/hamiltonian/compression512/results.json",
+    "research_closure_2026_11_12/closure_push_02/hamiltonian/compression512/results.npz",
+    "research_closure_2026_11_12/closure_push_02/hamiltonian/compression512half/results.json",
+    "research_closure_2026_11_12/closure_push_02/hamiltonian/compression512half/results.npz"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

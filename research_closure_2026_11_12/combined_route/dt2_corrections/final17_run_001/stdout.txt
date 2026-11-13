@@ -1,0 +1,180 @@
+====================================================================================================
+FINAL-17 (KAPPA_A): does the self-source / capacity route derive kappa?
+   MUTATE = False      criteria PREREGISTER.md (written alone, pre-script)
+====================================================================================================
+
+=== BACKGROUND (SI; primary = FINAL-16 PREREGISTER sec.2 / Planck 2018) ===
+  H0 = 67.36 +- 0.54 km/s/Mpc = 2.182989e-18 1/s     c H0    = 6.544436e-10 m/s^2
+  Om = 0.3153   OL = 0.6847 +- 0.0073
+  rho_crit,0 = 8.522730e-27 kg/m^3
+  rho_Lambda = 5.835513e-27 kg/m^3
+  H_Lambda   = 1.806349e-18 1/s      c H_L = 5.415298e-10 m/s^2
+  R_Lambda   = 1.659660e+26 m
+  s := c sqrt(G rho_L) = 1.870954e-10 m/s^2   (the cosmic acceleration unit)
+  cross-check (GF1/F05 register): rho_c = 8.533239e-27, OL = 0.685, H0 = 2.184334e-18 1/s,
+                                  s = 1.872517e-10 m/s^2  (0.0835 % high vs primary)
+  footing separation: log10(1.1312e-10/9.3603e-11) = 0.0822 dex  -> half-allowance 0.0411 dex
+  MEMORY-FLAGGED inputs: sigma(H0) = 0.54, sigma(OL) = 0.0073 (Planck 2018).
+  G cancels EXACTLY in kappa = a0 sqrt(8 pi/(3 OL))/(c H0)  [sympy-verified below]
+
+=== KNOWN ANSWERS (each must PASS, else the apparatus is broken) ===
+[PASS] KA-1  Z and kappa are the SAME number: kappa = sqrt(8 pi/3)/Z  (Z=5.785390  kappa=0.500296)
+       kappa = 0.500295585249 from Z, 0.500295585249 directly (Planck rho_L) -- one statement, not two. [circular route: rho_ref := 4a0^2/(c^2G) gives Z = 5.788810 = sqrt(32pi/3) identically]
+      Z(Planck rho_L) = 5.785390  vs  sqrt(32 pi/3) = 5.788810  ->  kappa_real = 0.500296, i.e. kappa = 1/2 is off by 0.059 % (footing round-off, not a measurement)
+[PASS] KA-2  each footing realizes kappa = 1/2 against its OWN reference density  (0.500296 / 0.500295)
+       kappa(can vs rho_L) = 0.500296 ; kappa(alt vs rho_crit,0) = 0.500295 ; the tie alone therefore CANNOT select a footing
+[PASS] KA-3  AG4 T7_n2_not_canonical: canonical g_ph is NOT the n=2 rest state  (n1=0 n2=a0*g**3/(a0 + g)**2)
+       n=1 residual = 0 (canonical IS the n=1 rest state); n=2 residual = a0*g**3/(a0 + g)**2 = gbar*g_ph != 0
+[PASS] KA-4  capacity column pair: a0/(pi G) ~ 214, a0/(2 pi G) ~ 107 Msun/pc^2  (213.7 / 106.9)
+       Sigma_bar(n=1) = 213.7 Msun/pc^2 (PAPER49 anchor 214); Sigma_bar(n=2) = 106.9 (AG4's 107); the record's deep universal column Sigma_c = a0/(2 pi G) = 106.9
+
+=== A1: the capacity identity (graded; predicted class = IDENTITY) ===
+  canonical law g_N = g^2/(g+a0);  u := g - g_N  (the cold component's own field)
+  (i)   u = a0*g/(g+a0)                       residual = 0
+  (ii)  u/a0 = nu/(1+nu), nu := g/a0          residual = 0   <- the SHAPE carries no a0
+  (iv)  a0 - u = a0^2/(g+a0)                  residual = 0   <- strict bound, u < a0
+  (iii) limit g->oo of u  = a0   ;  limit g->0+ of u = 0
+  (v)   u(lam a0, lam g) = lam u(a0,g)        residual = 0   <- weight 1
+  (vi)  (u/a0)(lam a0, lam g) = (u/a0)(a0,g)  residual = 0   <- shape INVARIANT
+[PASS] A1  capacity = a0 is an IDENTITY of the law, not a determination of a0  (class=IDENTITY)
+       the capacity condition u -> a0 is one equation a0 = a0; (ii)+(vi) show the route's whole content is the a0-FREE shape nu/(1+nu)
+
+  the self-sourced deep branch (rho_c -> a0/(2 pi G r)) sits AT the capacity:
+     M_c(r) = a0 r^2/G   ->  rho_c = a0/(2*pi*G*r)
+     g_c    = G M_c/r^2  = a0        (EXACTLY the capacity, for every r)
+     Sigma_c= M_c/(pi r^2)= a0/(pi*G)
+[PASS] A1b  the saturated self-sourced branch is at capacity with a universal column  (g_c = a0)
+       rho_c = a0/(2 pi G r)  <=>  g_c = a0  <=>  Sigma_c = a0/(pi G): three faces of ONE statement, all a0-free in shape
+
+  the self-source fixed point, for a general amplitude C (the crux):
+     (1/r^2) d/dr (r^2 * C/r) - 4 pi G * [C/(4 pi G r^2)] = 0
+[PASS] A1c  Poisson closes for EVERY amplitude C: the self-source condition fixes no scale  (residual=0)
+       the pair (g_c = C/r, rho_c = C/(4 pi G r^2)) is a self-consistent solution for all C > 0 -- self-sourcing is a fixed point, not a normalisation
+
+=== A2: branch-distinctness audit (graded; predicted CONFIRMED) ===
+  AG4 G3 capacity family: K W_rem'(u) = u^2/(a0 - n u)  =>  rest state u^2 + n gbar u = a0 gbar
+     T7: (g^2-gbar^2) - [a0 gbar + (2-n) gbar u]  ==  rest-state equation : residual = 0
+     positive root u(gbar) = sqrt(g_b)*sqrt(4*a0 + g_b*n**2)/2 - g_b*n/2
+     capacity (gbar -> oo) = a0/n   ->  a0 (n=1)  vs  a0/2 (n=2)
+     columns in AG4's convention Sigma_bar = capacity/(pi G):
+        n=1 (canonical) : 213.7 Msun/pc^2   [PAPER49 Sigma_bar_max = 214]
+        n=2 (quadratic) : 106.9 Msun/pc^2   [AG4's '107 in the same convention']
+[PASS] A2  the two branches are certified distinct; capacity = a0/n  (capacity = a0/n)
+       n=1 <=> canonical g^2 = gbar(g+a0); n=2 <=> quadratic g^2 - gbar^2 = a0 gbar; the canonical g_ph leaves residual gbar*g_ph in the n=2 equation
+  [TRAP FLAGGED, not used] the record's deep universal column Sigma_c = a0/(2 pi G) = 106.9 Msun/pc^2
+     is NUMERICALLY the n=2 (quadratic) capacity ceiling, not the canonical one (213.7).
+     Using it to argue for kappa = 1/2 in the CANONICAL branch is a branch mix.
+
+=== A3: the derivation attempt -- capacity := a cosmic scale (graded; THE POINT) ===
+  The capacity condition outputs a_0.  kappa needs a_0 pinned against s = c sqrt(G rho_L).
+  The only way the route can do that is an added premise of the form
+      capacity := (dimensionless) x (an acceleration built from c, G, rho_Lambda alone).
+  Frozen menu of six such premises (no item added or dropped after the run):
+
+      error propagation: kappa = a0 sqrt(8 pi/(3 OL))/(c H0);  G cancels EXACTLY
+         d ln kappa/d ln a0 = +1, d ln kappa/d ln H0 = -1, d ln kappa/d ln OL = -1/2
+         sigma(kappa)/kappa = sqrt((0.0080)^2 + (0.0053)^2) = 0.9627 %
+         (sympy: d ln kappa/d ln a0 = 1 ; d ln kappa/d ln H0 = -1 ; d ln kappa/d ln OL = -1/2)
+      id   premise                                             kappa        sigma       a0 implied
+      C1   c^2/R_Lambda = c H_Lambda                     2.894405   0.027865   5.41530e-10
+      C2   4 pi G rho_L R_Lambda/3 = c H_Lambda/2        1.447203   0.013933   2.70765e-10
+      C3   c H_Lambda/(2 pi)   [Milgrom form]            0.460659   0.004435   8.61872e-11
+      C4   pi G rho_L R_Lambda  [cosmic column]          1.085402   0.010449   2.03074e-10
+      C5   pi G rho_L R_Lambda/2 [half column]           0.542701   0.005225   1.01537e-10
+      C6   c^2/(2 pi R_Lambda)  [circumference reading of C3]  0.460659   0.004435   8.61872e-11
+
+      menu span = log10(2.894405/0.460659) = 0.7982 dex   (PREREGISTER predicted ~0.923 dex;
+         the frozen menu tops out at C1 and C6 duplicates C3, so the actual span is 0.798 dex;
+         the prediction was made against a menu draft that still carried a 0.3455 arm -- recorded as a pre-registration bookkeeping miss, not a result.)
+      nearest arm to 1/2: C3/C6 at 0.460659, |dkappa| = 0.039341 = 1.574 x the 0.025 band
+      arms inside the 5 %% band: NONE
+[PASS] A3  NO ARM PASSES: no arm lands in the 5% band, and the menu is 19.4x too free  (span=0.7982 dex)
+       the nearest arm misses by 0.039341 (0.0356 dex); the frozen menu spans 0.7982 dex against the 0.0411 dex the route would need to discriminate a footing
+
+=== A4: formal covariance checks (NOT a physical gauge or no-go) ===
+  G_lam :  a0 -> lam a0,  g -> lam g,  g_N -> lam g_N,  u -> lam u ;
+           algebraic symbols only; g_N cannot scale at fixed G,M_b,r.
+  (law)  residual under G_lam (0 = covariant) : 0
+  (u)  residual under G_lam (0 = covariant) : 0
+  (bound)  residual under G_lam (0 = covariant) : 0
+  (poisson)  residual under G_lam (0 = covariant) : 0
+  (sigma_ratio)  residual under G_lam (0 = covariant) : 0
+  (column)  residual under G_lam (0 = covariant) : 0
+  (defic)  residual under G_lam (0 = covariant) : 0
+  Poisson weight: rho_c carries lam^{1/2} (C := sqrt(G M_b a0)) -> residual 0
+
+  This is NOT a symmetry of the fixed-source boundary-value problem.
+     The Poisson calculation separately changes a0 at fixed M_b,r, giving sqrt(lam).
+     It is not the same map as g -> lam*g. No gauge or global no-go follows.
+     The capacity statement 'sup u = a0' has weight 1: it is the equation a0 = a0.
+
+  numerical parameter variations (physically different columns and accelerations):
+     lam      a0 [m/s^2]   capacity   sigma^2/v_f^2   Sigma_c [Msun/pc^2]   kappa
+      0.50   4.68015e-11   4.68015e-11      0.5          106.9              0.2500
+      1.00   9.36030e-11   9.36030e-11      0.5          213.7              0.5000
+      2.00   1.87206e-10   1.87206e-10      0.5          427.4              1.0000
+[PASS] A4  algebraic covariance checked; physical-gauge/no-go claim WITHDRAWN  (all residuals 0)
+       separate algebraic identities hold; they do not implement a common physical transformation at fixed source and cannot prove kappa unobservable
+
+=== A5: the footing ledger, computed not assumed (band-graded) ===
+     a_0 source                     a_0 [m/s^2]     rho used        kappa         +-1sigma
+     footing 'can' (canonical)      9.36030e-11    rho_L     0.500296   0.004816
+     footing 'alt'                  1.13120e-10    rho_L     0.604611   0.005821
+     footing 'can'                  9.36030e-11    rho_c0    0.413978
+     footing 'alt'                  1.13120e-10    rho_c0    0.500295
+     external RAR (PROVISIONAL)     1.20000e-10    rho_L     0.641384   0.0107 rand / 0.1283 sys
+
+     source-lane systematic: kappa(can vs rho_L) = 0.500296 (FINAL-16/Planck-67.36)
+                             kappa(can vs rho_L) = 0.499878 (GF1/F05 register cosmo) -> 0.00036 dex
+
+     footing separation: kappa_alt/kappa_can = 1.208508  ->  0.0822 dex (half-allowance 0.0411 dex)
+
+     distance of the nearest arm (C3/C6, kappa = 0.460659) from each footing:
+        vs canonical (0.500296): 0.0358 dex   INSIDE the 0.0411 dex half-allowance
+        vs alt       (0.604611): 0.1181 dex   OUTSIDE
+        a_0 the arm implies: 8.61872e-11 m/s^2 (canonical is 0.0358 dex above it, alt 0.1181 dex)
+
+     FOOTING RULE (frozen in PREREGISTER sec.3 A5): the route selects a footing only
+     if some A3 arm BOTH lands inside |kappa - 1/2| <= 0.025 AND has its premise derived
+     from the route.  No arm clears (i) -- nearest misses by 0.039341 = 1.574 x the band --
+     and no arm clears (ii) -- C3 is menu item 3, a choice.  Hence: SELECTS NEITHER.
+[PASS] A5  the tie selects the canonical footing by DEFINITION and excludes the alt footing  (can=0.500296 alt=0.604611)
+       kappa(can vs rho_L) = 0.500296 +- 0.004816 ; kappa(alt vs rho_L) = 0.604611 +- 0.005821, i.e. 0.0822 dex away (3.3x the 5 % band in dex terms).  The alt footing reaches kappa = 1/2 only by swapping rho_L -> rho_crit,0, which is a definition.
+
+=== MUTATE: three false twins, each must be REJECTED by the same machinery ===
+[PASS] M1  'the Milgrom-form capacity derives kappa = 1/2'
+       C3 gives kappa = 0.460659 +- 0.004435; |dkappa| = 0.039341 vs band 0.025 (1.57 x); and the premise is menu item C3, a choice, not a derived condition
+[PASS] M2  'Sigma_c = a0/(2 pi G) ~ 107 confirms kappa = 1/2 via the half-capacity'
+       107 is the n=2 (QUADRATIC) capacity ceiling in AG4's convention; the canonical ceiling is 213.7.  The equality is an identity of the column convention and carries no cosmology -- AG4 certifies the two branches as DIFFERENT THEORIES
+[PASS] M3  'kappa = 1/2 is a measurement, realized on the alt footing too'
+       kappa(alt vs rho_L) = 0.604611 +- 0.005821: 0.0822 dex from canonical's 0.500296.  The alt footing realizes 1/2 only by swapping the reference density to rho_crit,0 (kappa = 0.500295), which is a definition
+
+  MUTATE VERDICT: MAIN: all three twins rejected by the frozen machinery
+
+====================================================================================================
+SUMMARY
+====================================================================================================
+  checks: 14, failing: NONE
+  A1  capacity identity                    = IDENTITY (u = a0 g/(g+a0); shape a0-free)
+  A1b saturated self-sourced branch        = g_c = a0 exactly, Sigma_c = a0/(pi G)
+  A1c self-source fixed point              = degenerate in C (no normalisation)
+  A2  branch distinctness (AG4)            = CONFIRMED (n=1 canonical, n=2 quadratic)
+  A3  menu freedom                         = 0.7982 dex vs 0.0411 dex allowance (19.4x)
+      nearest arm C3/C6                    = kappa 0.460659 +- 0.004435 (0.0356 dex from 1/2)
+  A4  algebraic covariance identities     = True; physical no-go WITHDRAWN
+  A5  kappa(can vs rho_L)                  = 0.500296 +- 0.004816
+      kappa(alt vs rho_L)                  = 0.604611 +- 0.005821  (0.0822 dex)
+      footing selected                     = NEITHER (no A3 arm is derived)
+
+  LANE LABEL: KAPPA NOT DERIVED (FITTED) -- CAPACITY DERIVED
+     Q1 (capacity)    = DERIVED  : the cold component's own field saturates at a_0,
+                                   the self-sourced branch sits AT it (g_c = a_0),
+                                   and the universal column is a_0/(pi G) ~ 214;
+                                   AG4's n=2 half-capacity (107) is a DIFFERENT branch.
+     Q2 (kappa = 1/2) = NO       : the capacity condition is the equation a_0 = a_0;
+                                   no independent scale-setting mechanism is supplied;
+                                   A4 is algebra only; the frozen cosmic-scale menu spans
+                                   0.7982 dex against a 0.0411 dex allowance (A3).
+
+  wrote final17.json
+  exit=0 (all pre-registered verdicts landed)

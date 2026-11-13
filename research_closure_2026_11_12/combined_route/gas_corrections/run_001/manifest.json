@@ -1,0 +1,128 @@
+{
+  "schema_version": 2,
+  "claim_id": "FINAL5_CORRECTED_FORWARD",
+  "repository": {
+    "commit": "2ffc012fa56dcdcbb4b3d5f169ba757fe482bcb8",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "research_closure_2026_11_12/combined_route/gas_corrections/corrected_signal.py",
+    "research_closure_2026_11_12/combined_route/gas_corrections/run_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Verify spherical-shell LOS projection, Gaussian beam, integrated mass/emission, flux units and temperature scaling.",
+    "coefficient_domain": "IEEE double precision; analytic identities in companion derivation.",
+    "conventions": "SI internally; columns cm^-2; emission cm^-5; flux erg s^-1 cm^-2.",
+    "inputs": [
+      "Constants and explicit hypotheses in pinned driver"
+    ],
+    "bounds": {
+      "Rout_Mpc": 2.6,
+      "radii_Mpc": [
+        0.3,
+        1,
+        2,
+        2.6
+      ],
+      "beam_grid_points": 2001,
+      "beam_grid_max": 10
+    },
+    "non_claims": [
+      "No observational likelihood, forecast significance or theory verdict."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-12T16:23:40.101937+00:00",
+    "runtime_seconds": 0.61759,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "research_closure_2026_11_12/combined_route/gas_corrections/corrected_signal.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "research_closure_2026_11_12/combined_route/gas_corrections/corrected_signal.py",
+      "sha256": "d1e3eb31a72fda517459df9a1493b43d5614b2dd67d11dc0cb6ccbca235b522d",
+      "sha256_after": "d1e3eb31a72fda517459df9a1493b43d5614b2dd67d11dc0cb6ccbca235b522d"
+    }
+  ],
+  "output_directory": "research_closure_2026_11_12/combined_route/gas_corrections/run_001",
+  "declared_results": [
+    "research_closure_2026_11_12/combined_route/gas_corrections/run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "research_closure_2026_11_12/combined_route/gas_corrections/run_001/stdout.txt",
+      "sha256": "d53f6d2532a6578fdafa42dbd6acb3cbd1e9c4d043352448fa9f6f8dcc770dc4",
+      "kind": "log"
+    },
+    {
+      "path": "research_closure_2026_11_12/combined_route/gas_corrections/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "research_closure_2026_11_12/combined_route/gas_corrections/run_001/results.json",
+      "sha256": "0c66050fdc6a58a8c06fa3d1d5d0f69540ff3d067344c0ddbc80fe7ad32e0a23",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

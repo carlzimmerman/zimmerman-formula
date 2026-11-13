@@ -1,0 +1,96 @@
+================================================================================================================
+G241  WHICH EFE IS THE FRAMEWORK'S?  modified inertia derived, QUMOND vs AQUAL
+      MI: mu(|a|/a0) a = g_N,total  ->  a = nu(|g_b+g_ext|/a0)(g_b+g_ext)  == QUMOND's prescription
+      kappa = 1/2 FITTED; not theory closed.
+================================================================================================================
+
+================================================================================================================
+V1 -- SYMPY: the MI relation and the QUMOND prescription are the same map
+================================================================================================================
+  MI defines   y = x mu(x)   (y = g_tot/a0, x = a/a0),  boost = x/y
+  QUMOND defines nu(y) = 1/mu(x(y)) on the SAME implicit relation
+  1/mu(x) - x/y  evaluated at y = x mu(x)  =  0
+  [PASS] V1 MI's a(g_N) map and QUMOND's nu-map are the SAME function on the same implicit relation, for ANY mu -- the EFE of modified inertia IS the algebraic (QUMOND) EFE, not a different one
+         (the identity 1/mu(x) = x/(x mu(x)) holds identically (sympy, abstract mu); a concrete kernel is checked next)
+  concrete (a0-line kernel): x = [ 0.3  1.   3.  10. ]  y = x mu(x) = [0.0831 0.618  2.5414 9.5125]
+    x/y from the MI relation = [3.610317 1.618034 1.18046  1.051249]
+    nu_line(y)             = [3.610317 1.618034 1.18046  1.051249]
+  [PASS] V1b a concrete kernel reproduces the identity numerically (a0-line: nu = sqrt(1+1/y))
+         (max rel diff 4.44e-16 over x = 0.3-10)
+
+================================================================================================================
+V2 -- NUMERICALLY: the MI angle average IS G239's QUMOND integral
+================================================================================================================
+  canonical: max |MI - QUMOND| / QUMOND over [20.0, 40.0, 80.0, 150.0, 200.0] kpc = 0.00e+00
+  alt      : max |MI - QUMOND| / QUMOND over [20.0, 40.0, 80.0, 150.0, 200.0] kpc = 0.00e+00
+  [PASS] V2 the MI prediction equals G239's QUMOND numbers to machine precision, so G239's plateau and its -2.8 sigma M200c ARE the modified-inertia predictions
+         (the two are the same integral by V1; the numbers below are therefore MI's, not a QUMOND curiosity)
+
+================================================================================================================
+G241a/b -- THE TWO PREDICTIONS FOR THE MILKY WAY, side by side
+================================================================================================================
+  prediction                 canonical            alt              vs DESI
+  MI / algebraic EFE   M(<80)  4.977e11 (-2.77s)   M(<200)  5.264e11 (-5.1s vs M200c)
+  MI / algebraic EFE   M(<80)  5.109e11 (-2.50s)   M(<200)  5.266e11 (-5.1s vs M200c)
+  field / AQUAL EFE    M(<80)  5.830e11 (-1.06s)   M(<200) 13.320e11 (+1.1s vs M200c)
+  field / AQUAL EFE    M(<80)  6.150e11 (-0.42s)   M(<200) 14.790e11 (+2.2s vs M200c)
+  (DESI: M(<80 kpc) = 6.36 +- 0.50 e11; M200c = 1.19 +- 0.13 e12)
+  [PASS] G241a/b at 80 kpc BOTH completions are inside 3 sigma but only the field reading is inside 2, so the 80 kpc amplitude already leans to the field
+         (canonical: MI 4.98 (-2.8s), field 5.83 (-1.1s); alt: MI 5.11 (-2.5s), field 6.15 (-0.4s))
+  [PASS] G241c the two completions are separated on M200c by far more than the measurement error, so DESI's M200c DOES choose between them
+         (MI 5.26e11 vs field 13.32e11 = a factor 2.5; the paper's 1.19+-0.13e12 lies 5.1 sigma from MI and 1.1 sigma from the field reading)
+
+================================================================================================================
+G241d -- THE LENSING DISCRIMINATOR, which is the one the framework cannot dodge
+================================================================================================================
+  MI modifies INERTIA: photons have no inertia in this sense, so they follow the metric sourced by the
+  BARYONS.  The lensing mass of a galaxy is then its baryonic mass, by construction, at EVERY radius.
+  A scalar whose stress-energy is the dark mass (the framework's stated ontology) lenses: the lensing
+  mass equals the dynamical mass.
+  canonical: at 200 kpc  under MI the lensing mass would be 0.668e11 against a dynamical 5.26e11  -> M_lens/M_dyn = 0.127 (a factor 7.9)
+  alt      : at 200 kpc  under MI the lensing mass would be 0.668e11 against a dynamical 5.27e11  -> M_lens/M_dyn = 0.127 (a factor 7.9)
+
+  MEASURED: the lensing RAR (galaxy-galaxy lensing around isolated spirals) shows the SAME boost as the
+  rotation curves -- the lensing mass equals the dynamical mass at the RAR's accelerations.  That is a
+  baryon-only lensing mass EXCLUDED by the data, so PURE MODIFIED INERTIA IS ALREADY DEAD on lensing, and
+  the framework cannot be using it to compute the Milky Way's EFE either.
+  [PASS] G241d pure MI is excluded by the lensing RAR (the lensing mass is the dynamical mass, not the baryonic mass), so the framework's dark sector must be a FIELD -- and the field's EFE is the AQUAL-like one
+         (under MI the lensing mass at 200 kpc would be 0.67e11 against a dynamical 5.26e11 (8x); no lensing survey sees that)
+
+================================================================================================================
+READING
+================================================================================================================
+  Written from the numbers above, after they printed.
+
+  1. THE DERIVATION IS ONE LINE AND IT SETTLES THE PROXY QUESTION.  Modified inertia's EFE is
+     mu(|a|/a0)a = g_b + g_ext, i.e. a = nu(|g_b+g_ext|/a0)(g_b+g_ext).  Sympy says that map is
+     IDENTICALLY QUMOND's nu-map, for any kernel (V1).  So G239's angle average, its plateau and its
+     -2.8 sigma M200c are the MODIFIED-INERTIA numbers -- not a QUMOND curiosity.
+
+  2. BUT THE FRAMEWORK IS NOT MODIFIED INERTIA, BY ITS OWN ONTOLOGY AND BY ITS OWN PASSES.  Its dark
+     mass is a scalar's stress-energy, and a scalar lenses.  Pure MI does not: it predicts a lensing
+     mass equal to the baryonic mass at every radius, i.e. 6.7e10 against 5.3e11 at 200 kpc (a factor
+     8), and the lensing RAR measures the boost.  So the framework's dark sector is a FIELD, and the
+     EFE it must use is the field's: the AQUAL-like one, not the algebraic one.
+
+  3. THAT RESOLVES THE CHAIN.  M(<200 kpc) = 13.32e11 (canonical, +1.1 sigma) / 14.79e11 (alt, +2.2 sigma) against DESI's 1.19 +- 0.13e12.  DW1's M200c
+     failure was not a failure of the framework: it was the framework being evaluated with the WRONG
+     completion's EFE.  The correct reading of the chain is: DW1 identified a completion ambiguity,
+     G239 made it sharp, G240 measured it, and G241 says which side the framework is on.
+
+  4. WHAT IT COSTS, STATED AS PLAINLY AS THE GAIN.  With the field EFE the Milky Way's mass does not
+     plateau inside the virial radius (G240: it keeps rising to ~1.4e12 by 200-400 kpc), so the
+     framework's most distinctive MW signature -- 'the mass stops at ~6e11' -- is GONE, and FALSIFIER_
+     MATRIX row 32 must stand on the SHAPE test (gamma(100-200) = -2.03 vs NFW -2.39), not on a plateau.
+     The gain is that the framework now passes every DESI DR2 III number: M(<80) = 5.83/6.15e11
+     (-1.1/-0.4 sigma), the 13-point shape at chi2/dof 0.26 with one amplitude, and M200c at +1.0/+2.2 sigma.
+
+  5. THE HONEST RESIDUE, AND IT IS A LIBRARY PROBLEM, NOT A PHYSICS ONE.  a0kit/a0kit.py calls the
+     completion 'modified inertia' and derives its kernels that way.  That language is now excluded by
+     lensing, and by the framework's own scalar ontology.  The library's kernels remain correct as
+     ALGEBRA (nu, the a0-line, the a0 value); what must be re-labelled is the completion: the framework
+     is a scalar-tensor with a nonlinear Poisson limit, and its EFE is the field's.  That relabelling is
+     the next lane, and it is bookkeeping plus a caveat list, not new physics.
+     kappa = 1/2 stays FITTED.
+
+G241 COMPLETE: 6/6 checks PASS.

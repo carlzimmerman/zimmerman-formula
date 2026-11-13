@@ -1,0 +1,133 @@
+{
+  "schema_version": 2,
+  "claim_id": "HY4_H062_KERNEL_SCALE_CORRECTION",
+  "repository": {
+    "commit": "2ffc012fa56dcdcbb4b3d5f169ba757fe482bcb8",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "-B",
+    "hy4_push/H062_exponent_gap.py"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Rerun historical finite H062 scan with Mandel inverse kernel in g_N/a0 units and exact n=2 selection check.",
+    "coefficient_domain": "double precision quadrature/rootfinding",
+    "conventions": "mu_mand(Y)=1-(1+Y)^(-n), Y=g/s; a0=s/n; Cassini callback therefore mu_mand(x/n) with x=g/a0.",
+    "inputs": [
+      "Historical SPARC export with Ups=.70 and canonical a0 units; historical Gext and Q2 ceiling unchanged."
+    ],
+    "bounds": {
+      "n": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        10,
+        20
+      ],
+      "nu_grid_points": 1801
+    },
+    "non_claims": [
+      "Does not certify QUMOND-to-AQUAL calibration or current Cassini limit.",
+      "Not an exhaustive scan of kernels or a per-galaxy nuisance likelihood.",
+      "Expected nonzero exit if historical claim n=2 is not reproduced; finite output remains adverse evidence."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-12T16:17:09.508752+00:00",
+    "runtime_seconds": 4.024544,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 180.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 150,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "hy4_push/H062_exponent_gap.py",
+    "qwen_38_experiment/data/rar_sparc_a0units.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "hy4_push/H062_exponent_gap.py",
+      "sha256": "cf65cc5b3a448d9e2367b5d9c73883cb5949186c884f675ba189223469de4411",
+      "sha256_after": "cf65cc5b3a448d9e2367b5d9c73883cb5949186c884f675ba189223469de4411"
+    },
+    {
+      "path": "qwen_38_experiment/data/rar_sparc_a0units.json",
+      "sha256": "71ea7e61ff2ab7b3712dbf154188a4e5fd624e2e8ca05099dc51a98f18a5c666",
+      "sha256_after": "71ea7e61ff2ab7b3712dbf154188a4e5fd624e2e8ca05099dc51a98f18a5c666"
+    }
+  ],
+  "output_directory": "research_closure_2026_11_12/combined_route/dt2_corrections/h062_run_001",
+  "declared_results": [],
+  "outputs": [
+    {
+      "path": "research_closure_2026_11_12/combined_route/dt2_corrections/h062_run_001/stdout.txt",
+      "sha256": "45f94e90e24e99336343c74db4ebf0960f8972f62bb651323b7f8e561748255d",
+      "kind": "log"
+    },
+    {
+      "path": "research_closure_2026_11_12/combined_route/dt2_corrections/h062_run_001/stderr.txt",
+      "sha256": "359473380c129f611d53b9f8b743639f67e943d7e5b86a076bda8c3bbbb2b154",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

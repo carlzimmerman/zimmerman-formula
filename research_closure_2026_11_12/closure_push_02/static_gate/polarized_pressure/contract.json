@@ -1,0 +1,62 @@
+{
+  "claim_id": "CP02_POLARIZED_PRESSURE_AND_MU_CAP",
+  "mathematics": {
+    "assertion_tested": "Retain full static rho+trace pressure and subtract polarization divergence on the accepted quiet annulus for minimum-moment band Gamma; verify constitutive correction stays tiny. Independently solve the finite-Qband raw lapse necessary mu upper bound as a scalar root at explicit Lambda benchmarks.",
+    "coefficient_domain": "IEEE float64 bounded SciPy BVP, quadrature and scalar root",
+    "conventions": "c1,K4piG; mu and Lambda inMpc^-1/Mpc^-2; a=a0/c\u00b2; masses normalizedbybaryonmass. OriginalW andone-sidedstiffness retained.",
+    "inputs": [
+      "Canonical1e11Msun,uR4,Lstar22pc annulus",
+      "Minimum-momentGamma_uu=Bband max(Suu,0),rectangularQband",
+      "delta=1/mu\u00b2; Lambda=0,1e-7,1.1e-7 benchmark"
+    ],
+    "bounds": {
+      "radial_samples": 12001,
+      "radial_x": [
+        1,
+        60
+      ],
+      "BVP_tolerance": 5e-07,
+      "BVP_maxnodes": 15000,
+      "root_bracket_mu": [
+        198.25,
+        1000
+      ],
+      "Lambda": [
+        0,
+        1e-07,
+        1.1e-07
+      ]
+    },
+    "non_claims": [
+      "Not a solve for a substantially deformed repaired-action halo",
+      "Does not exclude all deformed low-mu configurations from quietP residual",
+      "Coefficient cap conditional on target,energyceiling andrectangularstate-domainhealthcriterion",
+      "No universaltheory no-go; no newempiricalfit",
+      "Lambda choices are explicit benchmark parameters"
+    ]
+  },
+  "execution_artifacts": [
+    "research_closure_2026_11_12/closure_push_02/static_gate/polarized_pressure/check.py",
+    "research_closure_2026_11_12/closure_push_02/static_gate/check_physical_annulus.py",
+    "research_closure_2026_11_12/closure_push_02/static_gate/matching/run01/results.json"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

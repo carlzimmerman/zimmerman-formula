@@ -1,0 +1,152 @@
+{
+  "schema_version": 2,
+  "claim_id": "CP02_NR_NR32",
+  "repository": {
+    "commit": "cace4617bb6a518bf910b56a4c0ee8bddce7fa07",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "research_closure_2026_11_12/closure_push_02/current_transport/nr_transport.py",
+    "--N",
+    "32",
+    "--dt",
+    "0.005",
+    "--mean",
+    "1",
+    "--output",
+    "research_closure_2026_11_12/closure_push_02/current_transport/nr32"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Closed leading NR gated charge evolution preserves global charge and Reynolds moving-boundary balance, solves nonlinear polarization constraint, evolves nonuniform density; optional independent linear growth prediction.",
+    "coefficient_domain": "float64 periodic Fourier collocation and RK4; Newton solve of polarization",
+    "conventions": "c=1 dimensionless; physical QX17 W; H=C x^2 exp(-Pi/Pic); gamma=0; zero-mean Poisson source required on periodic domain, a prescribed compatibility background",
+    "inputs": [
+      "C500,K.01,a0.1,Pic10",
+      "smooth periodic density and velocity",
+      "moving interval radius1.2+.08sin(t)"
+    ],
+    "bounds": {
+      "N": 32,
+      "dt": 0.005,
+      "mean": 1,
+      "linear": false,
+      "t_final": 1,
+      "newton_residual_max": 2e-13
+    },
+    "non_claims": [
+      "No expanding cosmology",
+      "No full relativistic equations or exact current conservation beyond leading Newtonian order",
+      "No UV stability or nonlinear wellposedness theorem",
+      "No EFE mass identification or physical normalization selection"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-12T16:52:52.063493+00:00",
+    "runtime_seconds": 0.243652,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 55,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "research_closure_2026_11_12/closure_push_02/current_transport/nr_transport.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/current_transport/nr_transport.py",
+      "sha256": "d32f263600e885ac52120d130ff9c99be500dcacfc7bcca4c1b66999ce1e48a6",
+      "sha256_after": "d32f263600e885ac52120d130ff9c99be500dcacfc7bcca4c1b66999ce1e48a6"
+    }
+  ],
+  "output_directory": "research_closure_2026_11_12/closure_push_02/current_transport/nr32",
+  "declared_results": [
+    "research_closure_2026_11_12/closure_push_02/current_transport/nr32/results.json",
+    "research_closure_2026_11_12/closure_push_02/current_transport/nr32/trajectory.npz"
+  ],
+  "outputs": [
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/current_transport/nr32/stdout.txt",
+      "sha256": "f020a5f4555f44c6202d42a767c29492391143b072faa7af197fca6f992f61bf",
+      "kind": "log"
+    },
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/current_transport/nr32/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/current_transport/nr32/results.json",
+      "sha256": "f020a5f4555f44c6202d42a767c29492391143b072faa7af197fca6f992f61bf",
+      "kind": "result"
+    },
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/current_transport/nr32/trajectory.npz",
+      "sha256": "f4788b9debc387026cd9122faf4e26027eb5c629bf20613ed8d110f41dab03d9",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

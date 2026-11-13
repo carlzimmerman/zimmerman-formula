@@ -1,0 +1,51 @@
+{
+  "claim_id": "COSMOLOGY_NEWTONIAN_COLD_REFERENCE_CENTRAL_260_STRICT",
+  "mathematics": {
+    "assertion_tested": "The specified Newtonian cold-shell equations reproduce r proportional to a without a central excess; prescribed nonnegative Plummer source is followed only through first central focusing or finite shell crossing. Tighter-tolerance follow-up to the failed loose central_130 invariant check; threshold unchanged.",
+    "coefficient_domain": "real IEEE float64, numerical DOP853 ODE",
+    "conventions": "kpc,Gyr,Msun; physical radius r=initial_radius*u; exact initial enclosed cold mass; Omega_c .26, Omega_b .05, Omega_Lambda .69; initial z10; baryon excess 10^10.45 Msun ramped over1Gyr; Plummer epsilon1kpc",
+    "inputs": [
+      "positive shell labels 1..2000 kpc",
+      "analytic central-limit marker",
+      "homogeneous cold+baryon background with Lambda"
+    ],
+    "bounds": {
+      "n": 260,
+      "rtol": 2e-13,
+      "atol": 1e-15,
+      "initial_z": 10,
+      "max_parameter_time_Gyr": 100,
+      "stop_at_first_central_focusing": true,
+      "no_post_caustic_evolution": true,
+      "central": true
+    },
+    "non_claims": [
+      "Not exact DT2/v3 conserved charge transport",
+      "No EFE or halo equilibrium derived",
+      "No predictive mass retention or baryonic assembly law",
+      "No interpretation of inward acceleration alone as collapse"
+    ]
+  },
+  "execution_artifacts": [
+    "research_closure_2026_11_12/combined_route/cosmology_diagnostic/cold_shells.py"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

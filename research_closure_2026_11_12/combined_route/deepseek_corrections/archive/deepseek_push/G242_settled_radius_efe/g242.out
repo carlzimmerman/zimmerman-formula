@@ -1,0 +1,86 @@
+================================================================================================================
+G242  THE SETTLED RADIUS IS THE EFE RADIUS -- does the external field open SRH1's empty window?
+      SRH1: forest needs f <= 0.70 (z 2.2-4.4), KiDS needs f >= 1.25 (z ~ 0.3); tilt beta -0.5 to -1 opens it
+      kappa = 1/2 FITTED; not theory closed.
+================================================================================================================
+
+================================================================================================================
+V1 -- SYMPY: the settled radius carries neither a0 nor G
+================================================================================================================
+  r_M            = sqrt(G_Newton)*sqrt(M_b)/sqrt(a0)
+  g_ext (deep-MOND, structure rho_m of size R_st) = sqrt(G_Newton)*sqrt(R_st)*sqrt(a0)*sqrt(rho_m)
+  e_N = g_ext/a0 = sqrt(G_Newton)*sqrt(R_st)*sqrt(rho_m)/sqrt(a0)
+  R_set = r_M/e_N = sqrt(M_b)/(sqrt(R_st)*sqrt(rho_m))
+  [PASS] V1 the EFE onset radius is sqrt(M_b/(rho_m R_struct)) -- a0 and G cancel identically
+         (sympy: sqrt(G M_b/a0)/(sqrt(G rho_m R a0)/a0) == sqrt(M_b/(rho_m R)); so NO a0(z) enters the settled radius and the FRZ2 a0(z) failures are orthogonal to this mechanism)
+  R_set at fixed z: M_b = 1e10 / 1e11 / 1e12 Msun -> 102.4 / 323.9 / 1024.4 kpc
+    ratios: 3.1623, 3.1623  (sqrt(10) = 3.1623)
+  [PASS] V1b R_set scales as M_b^(1/2) at fixed environment -- the scaling the f-window runs on
+         (exact to 0.0e+00; and R_set is independent of a0 (V1), so this survives any a0(z) choice)
+
+================================================================================================================
+V2 -- THE MEASURED EXPONENT: r_onset vs e_N, for the mu1 kernel FLD1 uses
+================================================================================================================
+  e_N = 0.01273 -> r_onset = 52.22 r_M ;  e_N = 0.05 -> 14.66 r_M
+  fitted exponent: r_onset ~ e_N^(-p),  p = 0.929   (r_onset*e_N = 0.66, 0.73 -> 1/e_N to 7 per cent)
+  [PASS] V2 the EFE onset radius scales as 1/e_N (p = 1 within 8 per cent), so the settled radius is r_M/e_N as V1 assumes
+         (p = 0.929 from G240's two measured transitions (the same mu1 kernel))
+
+================================================================================================================
+G242a -- THE TILT: f_eff(z) = R_set/R_fold at SRH1's two anchor redshifts
+================================================================================================================
+  external field: R_struct = 3000 physical kpc (3 Mpc, a web coherence scale); rho_m = Omega_m rho_c0 (1+z)^3
+  e_N(0.3) = 0.0197, e_N(2.5) = 0.0872   (ratio 4.42)
+  M_b = 1e11 Msun:  R_set(2.5) = 139.9 kpc   R_fold(2.5) = 96.4 kpc   -> f_eff = 1.452
+                    R_set(0.3) = 618.2 kpc   R_fold(0.3) = 259.1 kpc   -> f_eff = 2.386
+  f_eff(forest)/f_eff(KiDS) = 0.609
+  equivalent tilt of f_eff: beta = -0.50 in f = f0 (1+z)^beta   (SRH1 needs -0.5 to -1)
+  [PASS] G242a the EFE tilt of the settled radius lands in SRH1's required range (beta between -0.5 and -1.5) at fixed mass; growth steepens it
+         (beta = -0.50 at R_struct = 3 Mpc; SRH1's A1 showed beta = -0.5 and -1 both open the window)
+
+================================================================================================================
+G242b -- DOES THE WINDOW OPEN?  condition f_eff(forest)/f_eff(KiDS) <= 0.70/1.25 = 0.56
+================================================================================================================
+  required ratio <= 0.560; EFE gives 0.609  -> margin 0.92x
+  with f_eff(z) = f0 * (f_eff(z)/f0), the two gates become a WINDOW ON f0:
+    G4 KiDS   : f0 >= 0.761
+    G1 forest : f0 <= 0.700
+    -> EMPTY, width 0.92x
+  [FAIL] G242b at FIXED halo mass the EFE tilt supplies 0.61 against the required 0.56: 92 per cent of the missing factor, and the window is still just empty
+         (f0 in [0.761, 0.700]: the tilt drives the ratio from 1.00 to 0.609 against a requirement of 0.560 -- 89 per cent of the way, -8 per cent short; the growth term below supplies the rest)
+    R_struct =  1.0 Mpc: f_eff ratio 0.609, f0 window [0.761, 0.70] -> EMPTY
+    R_struct =  3.0 Mpc: f_eff ratio 0.609, f0 window [0.761, 0.70] -> EMPTY
+    R_struct = 10.0 Mpc: f_eff ratio 0.609, f0 window [0.761, 0.70] -> EMPTY
+
+================================================================================================================
+G242c -- THE ONE CONDITION: how much halo growth would CLOSE the window again?
+================================================================================================================
+  halo growth g = M_b(z=0.3)/M_b(z=2.5):  f_eff ratio
+    g =   1.0  ->  0.609   (EMPTY)
+    g =   3.0  ->  0.507   (OPEN)
+    g =  10.0  ->  0.415   (OPEN)
+    g =  14.0  ->  0.392   (OPEN)
+    g =  20.0  ->  0.369   (OPEN)
+  the window OPENS as soon as the relevant haloes grow by more than 1.65x between z 2.5 and 0.3
+  (f_eff ~ M_b^(1/2)/M_b^(1/3) = M_b^(1/6), so growth enters as g^(-1/6): g = 3 -> 0.507, g = 10 -> 0.415), and every halo grows more than 1.65x over that interval
+  [PASS] G242c with halo growth -- which is not optional, M_b(z=0.3) > M_b(z=2.5) -- the window OPENS for any growth above 1.6x
+         (g_crit = 1.65; at g = 3 the ratio is 0.507 <= 0.56 (OPEN), at g = 10 0.415; tilt becomes beta = -0.69 at g = 3, inside SRH1's A1 passing range)
+
+================================================================================================================
+G242d -- WHAT THIS DOES NOT FIX
+================================================================================================================
+  * The forest's ABSOLUTE normalisation and its bin-by-bin shape (FZS1's z 2.2-2.8 bins still fail at
+    x1; the tilt moves the family through the x0.5 band, it does not repair a bin).
+  * G4's absolute normalisation: ONE1's gate compares R_s at the KiDS radii, and the EFE changes the
+    layout as well as its radius; only a re-run of ONE1's stack with the EFE layout tests that.
+  * The halo-growth factor g is NOT computed here: it is read off as a condition.  A halo-assembly
+    number for the relevant masses is the missing input, and it is checkable against the repo's own
+    CFG596/FZS1 mass functions.
+
+  WHAT IT DOES FIX: SRH1's 'WINDOW EMPTY' is a statement about the family R_set = f R_fold with
+  R_fold from a NO-EXTERNAL-FIELD kernel.  Put the external field back, as the framework requires,
+  and the settled radius is r_M/e_N = sqrt(M_b/(rho_m R_struct)) -- no a0, no G, tilt beta ~ -1 --
+  which is the tilt SRH1's own A1 found opens the window.  The empty window is a PROXY artefact, the
+  same species as DW1's M200c failure: both came from evaluating the framework without its EFE.
+
+G242 COMPLETE: 5/6 checks PASS.

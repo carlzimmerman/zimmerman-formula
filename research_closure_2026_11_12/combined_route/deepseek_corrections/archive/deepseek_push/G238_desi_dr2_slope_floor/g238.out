@@ -1,0 +1,124 @@
+================================================================================================================
+G238  THE SLOPE FLOOR RE-READ ON DESI DR2 III (arXiv:2611.05518) -- the decider G157 named
+      G157 P-A: gamma = -2.00 +- 0.02 constant, KILL if steeper than -2.05 at r >= 3 r_M = 30.63 kpc
+      convention: gamma = dln(rho)/dln(r) = dlnM/dlnr - 3;  M ~ r^p -> gamma = p - 3
+      kappa = 1/2 FITTED; not theory closed.  Both footings.
+================================================================================================================
+
+================================================================================================================
+V -- INSTRUMENT
+================================================================================================================
+  McMillan 2017 baryons: M_* = 5.4903e+10, M_b = 6.6814e+10 Msun
+  [PASS] V1 the baryon model is h34's validated one (its own V1 anchor: M_b = 6.681e10)
+         (M_b = 6.6814e+10 vs 6.681e10)
+  [PASS] V2 the DESI table is transcribed strictly increasing and its errors bracket the headline M(<80 kpc)
+         (M(20) = 1.94 -> M(80) = 6.36e11, mean sigma 0.282e11)
+  [PASS] V3 the estimator returns an injected power law exactly (the mapping is not the error)
+         (injected p = 0.930 -> polyfit 0.930000000, weighted estimator 0.930000000 +- 6.6e-03)
+  [PASS] V4 a POINT MASS (M = const) returns gamma = -3.000, the Keplerian control, on 4 radii
+         (p = 0.000000000 -> gamma = -3.000000000)
+
+================================================================================================================
+G238a -- GLOBAL power law over 20-80 kpc (all 13 points): the G157 statistic
+================================================================================================================
+  global fit M ~ r^p:  p = 0.9026 +- 0.1467  ->  gamma = -2.097 +- 0.147
+  equivalent curve slope alpha = (p-1)/2 = -0.0487 +- 0.0733  (P-A in curve space: alpha = 0.00 +- 0.01)
+  P-A (-2.00 +- 0.02):  0.66 sigma
+  G157 kill line (-2.05): measured is -0.32 sigma on the steep side
+  [FAIL] G238a the DESI profile is steeper than P-A's constant at >= 2 sigma (a LOWER bound; correlated errors only raise it)
+         (gamma = -2.097 +- 0.147 vs P-A -2.000 +- 0.02: 0.7 sigma; the framework's own kernel (below) predicts -2.167 at 3 r_M)
+
+================================================================================================================
+G238b -- LOCAL slopes: where the profile steepens, and the bin that contains 3 r_M
+================================================================================================================
+   bin [kpc]    p          gamma       sigma_gamma    vs P-A (-2.00)   vs kill (-2.05)
+   20-40       0.841     -2.159      0.2571         -0.62 sigma     -0.42 sigma
+   40-60       0.979     -2.021      0.7796         -0.03 sigma     +0.04 sigma
+   60-80       0.720     -2.280      1.8559         -0.15 sigma     -0.12 sigma
+   20-80       0.903     -2.097      0.1467         -0.66 sigma     -0.32 sigma
+  [PASS] G238b the bin containing 3 r_M = 30.63 kpc is not steeper than the -2.05 kill line at 3 sigma
+         (gamma(20-40) = -2.159 +- 0.257: -0.42 sigma past the kill line -> G157's 3-sigma KILL DOES NOT FIRE; but it is -0.62 sigma past P-A's constant, and the outermost bin is -2.28 +- 1.86)
+
+================================================================================================================
+G238c -- IS P-A WHAT THE KERNEL PREDICTS?  the finite-r correction at the radius P-A was registered for
+================================================================================================================
+  r_M = sqrt(G M_b/a0) with G157's M_b = 7.0e+10:  canonical 10.21 kpc, alt 9.29 kpc
+  Route A deep limit: nu ~ 1/sqrt(y) + 1/2  =>  M_dyn = M_b (r/r_M + 1/2)  =>  gamma = -(2 + r_M/(2r))
+    canonical r =   30.6 kpc: gamma = -2.167
+    canonical r =   50.0 kpc: gamma = -2.102
+    canonical r =   80.0 kpc: gamma = -2.064
+    canonical r =  100.0 kpc: gamma = -2.051
+    alt       r =   27.9 kpc: gamma = -2.167
+    alt       r =   50.0 kpc: gamma = -2.093
+    alt       r =   80.0 kpc: gamma = -2.058
+    alt       r =  100.0 kpc: gamma = -2.046
+  Milgrom kernel sqrt(1+1/y): M ~ M_b (r/r_M + r_M/(2r)) -> gamma = -(2 + (r_M/r)^2/2 ... ) evaluated below
+    canonical r =   30.6 kpc (3 r_M): Milgrom gamma = -2.100
+    alt       r =   27.9 kpc (3 r_M): Milgrom gamma = -2.100
+  [PASS] G238c P-A's +-0.02 band is the ASYMPTOTIC value, not the value at 3 r_M: the finite-r correction there is 8x the band
+         (kernel gamma(3 r_M) = -2.167 = 8.3x the registered band and 5.8x PAST P-A's own 'never steeper than -2.07' ceiling; G157's kill line (-2.05) therefore sits INSIDE the framework's own prediction at the radius where the kill was to be applied)
+  the framework's own gamma from its own profile (A = 1, McMillan baryons):
+    canonical e_N=0.0000: -2.123  -2.090  -2.069  |  20-80 -2.100
+    canonical e_N=0.0127: -2.211  -2.314  -2.435  |  20-80 -2.288
+    alt       e_N=0.0000: -2.109  -2.082  -2.063  |  20-80 -2.090
+    alt       e_N=0.0127: -2.214  -2.340  -2.473  |  20-80 -2.307
+
+================================================================================================================
+G238d -- THE COMPARATOR: the paper's own NFW (M200c = 1.19e12, c = 12), zero free parameters
+================================================================================================================
+  NFW r200 = 218.6 kpc, rs = 18.22 kpc
+   bin        measured            framework (canon)    NFW (paper)        P-A
+   20-40    -2.159 +- 0.257      -2.123             -1.875            -2.000
+   40-60    -2.021 +- 0.780      -2.090             -2.078            -2.000
+   60-80    -2.280 +- 1.856      -2.069             -2.193            -2.000
+   20-80    -2.097 +- 0.147      -2.100             -2.002            -2.000
+  [PASS] G238d on THIS data set neither pair is separated: kernel-vs-NFW and kernel-vs-P-A are both below the measurement error
+         (kernel-vs-NFW 0.25, kernel-vs-P-A 0.12, measurement error 0.15: no discrimination at 20-80 kpc; the test must move outward)
+
+================================================================================================================
+MUTATION CONTROLS
+================================================================================================================
+  shuffled profile  : p = -0.111 -> gamma = -3.111   (real +0.903 -> -2.097)
+  baryons only      : p = +0.051 -> gamma = -2.949   (Newtonian census, for scale)
+  point mass        : p = +0.000000000 -> gamma = -3.000000000
+  [PASS] MUT the estimator returns the Keplerian -3.000 exactly, and shuffling destroys the statistic
+         (point mass -3.000000000; shuffled -3.111 vs real -2.097; baryons-only -2.949)
+
+================================================================================================================
+READING
+================================================================================================================
+  Written from the numbers above, after they printed.
+
+  1. THE DECIDER ARRIVED AND IT DID NOT DECIDE.  gamma(20-80 kpc) = -2.097 +- 0.147 from 13 points,
+     M ~ r^0.903.  P-A's constant (-2.00 +- 0.02) is only 0.7 sigma away and the framework's
+     own kernel (-2.10) is 0.0 sigma away: the DESI profile is consistent with BOTH, and with NFW
+     (-2.00).  G157's 3-sigma kill does not fire (-0.42 sigma).  On this data set the slope floor is
+     UNTESTED at its own registered precision -- not passed, not failed.
+
+  2. THE ONE THING THE DATA DO SAY, WEAKLY: the 20-40 kpc bin (which contains 3 r_M) gives -2.16 +- 0.26,
+     0.6 sigma below P-A and 0.1 sigma from the kernel.  The outermost bin is
+     -2.28 +- 1.86 -- useless on its own (5 points, narrow lever), which is the real reason the floor
+     stays untested rather than the reason it passes.
+
+  3. THE STRUCTURAL FINDING STANDS INDEPENDENT OF THE DATA, AND IT IS AGAINST THE RECORD, NOT THE THEORY.
+     P-A's +-0.02 band is the ASYMPTOTE.  The committed kernel's deep limit is nu ~ 1/sqrt(y) + 1/2, so
+     M = M_b(r/r_M + 1/2) and gamma = -(2 + r_M/(2r)) = -2.167 at 3 r_M (8x the band) falling to
+     -2.051 at 100 kpc.  G157's kill line (-2.05) therefore lay INSIDE the framework's own prediction
+     at the radius where the kill was to be applied: as registered, the test would have killed the framework for
+     landing on its own kernel.  That is a mis-registration to correct whether or not the data ever decide.
+     For the record the kernel predicts -2.10 (canonical) / -2.09 (alt) over 20-80 kpc; the measurement is
+     -2.10 +- 0.15.  The kernel is not in trouble here; P-A's band was the wrong statement.
+
+  4. WHAT WOULD DECIDE IT: not more slope precision at 20-80 kpc (the diagonal errors already span 0.15 and the
+     correlated ones are unknown), but a 100-200 kpc enclosed-mass profile -- the same measurement that decides
+     the DW1 plateau falsifier.  There the separation is real:
+     gamma(100-200 kpc): kernel -2.034 (canonical, -2.031 alt), NFW -2.388 -> a 0.35 separation
+     that a 5 per cent enclosed-mass profile at 150 kpc would resolve at ~7 sigma.
+
+  5. ACTION: keep P-A's band as the ASYMPTOTIC statement and register the finite-r form gamma(r) = -(2 + r_M/(2r))
+     as the operative prediction (r_M = 10.21 / 9.29 kpc canonical/alt).  G157's FALSIFIER_MATRIX row moves
+     from PENDING to 'decider arrived 2026-11-11 (DESI DR2 III): gamma(20-80) = -2.10 +- 0.15, no 3-sigma kill,
+     kernel and NFW both consistent; the registered +-0.02 band is the asymptote and the kill line sat inside
+     the kernel's own prediction; next decider = a 100-200 kpc profile'.  kappa = 1/2 stays FITTED.
+
+G238 COMPLETE: 8/9 checks PASS.

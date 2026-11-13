@@ -1,0 +1,62 @@
+{
+  "claim_id": "CP02_CORRECTED_POLARIZATION_GROWTH_AND_EXACT_BBN",
+  "mathematics": {
+    "assertion_tested": "Numerically integrate corrected NR coupled baryon-clock growth on recorded KD1 canonical/alt backgrounds from z1090 or100 with explicitly matched initial data; compare mu_B1a and historical mu_J to infinite-mu; independently reproduce frozen BBN background bound.",
+    "coefficient_domain": "float64 numerical ODE and exact analytic formulas evaluated in float64",
+    "conventions": "K=4piG,c=1,k is comoving Mpc^-1, mu physical Mpc^-1, derivative ln(a); smooth radiation background, pressureless baryons, gamma0, linear endpoint S=1 with flat first two Pi derivatives",
+    "inputs": [
+      "KD1 canonical and alt parameter record",
+      "matched equal-species Meszaros growing initial data or baryon-zero catchup at z1090 and100",
+      "k=0.2h,0.2,1,3h,20/3,2pi*h/0.42 Mpc^-1; optional diagnostic curve0.03..30",
+      "frozen BBN T0.1MeV, radiation budget0.067, Tcmb2.7255K, original homogeneous clock inventory"
+    ],
+    "bounds": {
+      "z_start": [
+        1090,
+        100
+      ],
+      "z_output": [
+        10,
+        3,
+        0
+      ],
+      "curve_k_count": 121,
+      "DOP853_rtol": 2e-11,
+      "DOP853_atol": 2e-12,
+      "independent_midpoint_steps": [
+        2048,
+        4096
+      ]
+    },
+    "non_claims": [
+      "Not a primordial transfer or Boltzmann/CMB/forest likelihood",
+      "No replacement mu threshold or changed frozen criterion",
+      "No nonlinear formation or general stability conclusion",
+      "Literal one-sided gamma switch has no unique Fourier Hessian at Pi0; gamma0 is separate smooth reference",
+      "BBN result conditional on same homogeneous branch and conserved inventory through specified epoch; thermal convention from original criterion"
+    ]
+  },
+  "execution_artifacts": [
+    "research_closure_2026_11_12/closure_push_02/growth_gate_audit/growth.py",
+    "research_closure_2026_11_12/closure_push_02/growth_gate_audit/sources/03_kd1.json"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

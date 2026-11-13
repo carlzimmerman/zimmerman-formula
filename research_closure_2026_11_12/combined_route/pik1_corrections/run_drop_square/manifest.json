@@ -1,0 +1,115 @@
+{
+  "schema_version": 2,
+  "claim_id": "PIK1_CORRECTION_CORRECTED",
+  "repository": {
+    "commit": "2ffc012fa56dcdcbb4b3d5f169ba757fe482bcb8",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "research_closure_2026_11_12/combined_route/pik1_corrections/check_quadratic.py",
+    "--mutation",
+    "drop-divergence-square"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "SymPy",
+        "version": "1.14.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact constrained quadratic gate action agrees with direct variation; fixed-metric principal spectrum and restricted FRM1 ceiling checks.",
+    "coefficient_domain": "Exact symbolic real algebra via SymPy, positive q,C,K,Pi_c; q>1 for health interpretation",
+    "conventions": "Signature -+++, Q=sqrt(-d tau squared), P tangent; unitary tau=tau(t), physical k; gamma_L=0; principal clock calculation holds metric and q fixed",
+    "inputs": [
+      "PIK1 L_K=C(Q-1)^2 S(Pi/Pi_c), C=mu_K^2/(2K)",
+      "FRM1 transfer identity X=X_L(g_b,f) F_C/F_b"
+    ],
+    "bounds": {
+      "perturbation_order": 2,
+      "direct_nonlinear_gate": "exp(-u)",
+      "health_scope": "fixed-metric frozen-background longitudinal sector"
+    },
+    "non_claims": [
+      "No full coupled gravity health",
+      "No cluster/galaxy gate re-run",
+      "No derived share or coefficient"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-12T16:16:10.209934+00:00",
+    "runtime_seconds": 2.319374,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "research_closure_2026_11_12/combined_route/pik1_corrections/check_quadratic.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "research_closure_2026_11_12/combined_route/pik1_corrections/check_quadratic.py",
+      "sha256": "36f1edf615766b4ff8fa93f696e58ba8ea118c7caf008dc45003e531f01fd149",
+      "sha256_after": "36f1edf615766b4ff8fa93f696e58ba8ea118c7caf008dc45003e531f01fd149"
+    }
+  ],
+  "output_directory": "research_closure_2026_11_12/combined_route/pik1_corrections/run_drop_square",
+  "declared_results": [],
+  "outputs": [
+    {
+      "path": "research_closure_2026_11_12/combined_route/pik1_corrections/run_drop_square/stdout.txt",
+      "sha256": "7353a08b28d7099490cb761567be7c4cfb021122650001d553881f1f2c73732f",
+      "kind": "log"
+    },
+    {
+      "path": "research_closure_2026_11_12/combined_route/pik1_corrections/run_drop_square/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

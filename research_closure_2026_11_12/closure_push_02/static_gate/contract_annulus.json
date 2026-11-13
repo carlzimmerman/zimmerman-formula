@@ -1,0 +1,64 @@
+{
+  "claim_id": "CP02_STATIC_PHYSICAL_ANNULUS",
+  "mathematics": {
+    "assertion_tested": "Solve fully coupled gated static radial equations in a finite exterior annulus at physical muK,Lstar,Mb with suppression u_R=4, verify original unclipped equations, flux and refinement. This probes finite-box existence only.",
+    "coefficient_domain": "Exact symbolic identities over real positive symbols, then IEEE float64 numerics",
+    "conventions": "c=1,K=4piG, phi=Phi_phys/c^2, mu in Mpc^-1. Canonical a0 only. Flat gate S=exp(-u^3); spherical solves accepted only for Pi>=0. Reference-profile numbers are diagnostic substitutions, not on-shell galaxy solutions.",
+    "inputs": [
+      "Canonical a0=9.3603e-11 m/s^2,Mb1e11Msun,Lstar22pc",
+      "mu198.25 and25120/Mpc,gate exp(-u^3)",
+      "Point baryon source represented by inner (y-p)=1 atx1; innerZ and outerf,p fixed to reference; x1to60."
+    ],
+    "bounds": {
+      "mesh_initial_nodes": 300,
+      "max_nodes": 15000,
+      "check_samples": 10001,
+      "mu_Mpc_inverse": [
+        198.25,
+        25120.0
+      ],
+      "u_R": 4,
+      "tol": [
+        2e-06,
+        5e-07
+      ]
+    },
+    "non_claims": [
+      "No cosmological evolution or observed-galaxy fit",
+      "No global no-go from finite-box failure or from zero net asymptotic excess mass",
+      "No full GR health inference from static spatial symbol",
+      "No proof of whole parameter space viability or nonexistence",
+      "Trial gate clipping is rejected as evidence unless accepted solution passes original unclipped equations; large positive u underflows correctly",
+      "Only canonical footing; alternative a0 not pooled",
+      "Nonfinite residuals in rejected BVP attempts are retained as null plus explicit path/value, not numerical evidence."
+    ]
+  },
+  "execution_artifacts": [
+    "research_closure_2026_11_12/closure_push_02/static_gate/check_physical_annulus.py",
+    "closure_2026_11_06/QX17_covariant_field_equations/RESULT.md",
+    "fable52_push/PIK1_pi_gated_dust/FROZEN_CRITERIA.md"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    },
+    {
+      "name": "sympy",
+      "version": "1.14.0"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}
