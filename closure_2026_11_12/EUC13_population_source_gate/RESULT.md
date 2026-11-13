@@ -69,46 +69,32 @@ at most 0.004 dex.
 | 1.0-1.3″ (691) | +0.280 / +0.262 | +0.333 / +0.316 | +0.276 / +0.266 (can.) | −0.05..+0.30 / −0.06..+0.34 | inside, all |
 | θ_E ≥ 1.3″ (553) | +0.449 / +0.431 | +0.496 / +0.477 | +0.454 / +0.445 (can.) | +0.03..+0.32 / +0.03..+0.31 | **above**, all |
 
-M1, M2 columns are canonical / alt. Every member, both footings, puts the wide class above its dynamical band (lower
-bounds +0.40 to +0.45) and the two smaller classes inside. This is EUC1's wide-lens excess again, now at modelled
-source redshifts. It is a reading on sample P, not EUC5-F (sample S, row-level redshifts).
+M1, M2: canonical / alt. Every member, both footings, puts the wide class above its band (lower bounds +0.40 to +0.45),
+the others inside: EUC1's wide-lens excess at modelled source redshifts. A reading on P, not EUC5-F.
 
 ## 5. Checks (all pass)
 
 KA1 SLACS +0.0815 / +0.0696. KA2 EUC1 source-free −0.0185 / −0.0439 (N 3,192). KA3 EUC10 Part B by its own recipe
-+0.2381 / +0.2201 (AGEL), +0.2983 / +0.2816 (SLF IV); KA4 the same draws through EUC13's b table within 0.0001. KA5 b
-table vs 300 direct solves per footing: max 1.5e-4. KA6 COSMOS2020 median photo-z at 23.5 < i < 24.5: 0.994. MUTATE
-newton: b_med rises in every member and footing (M1 +0.238 → +0.347, M2 +0.298 → +0.399, M3 +0.233 → +0.349 canonical;
-alt likewise), so the word would move to FAILS; exit 1.
++0.2381 / +0.2201 (AGEL), +0.2983 / +0.2816 (SLF IV); KA4 same draws via EUC13's b table within 0.0001. KA5 table vs
+direct solves: 1.5e-4. KA6 COSMOS2020 median photo-z at 23.5 < i < 24.5: 0.994. MUTATE newton: b_med rises in every
+member and footing (M1 +0.238 → +0.347, M2 +0.298 → +0.399, M3 +0.233 → +0.349, canonical), word would be FAILS; exit 1.
 
 ## 6. Deviations and limits (disclosed)
 
 1. CfA TAPVizieR did not answer; COSMOS2020 Classic (713,374 galaxies, FlagCOMBINED 0, i < 28) came from the CfA ASU
-   service in 12 magnitude slices. Seven slices first returned server error pages ("database not reachable"); these were
-   set aside and refetched, all logged in `_external_data/euc13_population_gate/MANIFEST.txt` (14 MB, untracked). Only
-   the aggregate counts are committed. No IRSA, ESA or SPARCL query.
-2. After the first full run one printed label was corrected ("μ marginal" → the setting actually used, μ 10, for the
-   self-consistent boost). The re-run reproduced every number; only that line changed.
-3. The criteria's bounding readings named the μ-marginal setting, which validation dropped; A1 ran them at μ 10.
-4. Nothing is PROVISIONAL: every input is machine-readable (ECLIPSE, EUC3's cached MER table, COSMOS2020 via VizieR,
-   the publications' own LaTeX). COSMOS2020 redshifts are photometric.
-5. The lens MER flux may include some arc light (arc magnitude slightly too bright, source z slightly too low).
+   service in 12 slices; seven first returned server error pages and were refetched, all logged in
+   `_external_data/euc13_population_gate/MANIFEST.txt` (14 MB, untracked). No IRSA, ESA or SPARCL query.
+2. One printed label was corrected after the first run (the self-consistent boost used μ 10, not "μ marginal"); the
+   re-run reproduced every number. The criteria's bounding readings named μ marginal; A1 ran them at μ 10.
+3. Nothing is PROVISIONAL (all inputs machine-readable). COSMOS2020 redshifts are photometric. The lens MER flux may
+   include some arc light (arc slightly too bright, source z slightly too low).
 
-## 7. The lead's hand estimate
+## 7. The lead's hand estimate, and what this says
 
-Partly wrong. M3's typical source sits near z 2.2, not 1.5-2, and reads +0.23 / +0.22, not +0.25 to +0.30. AGEL just
-under 0.25 on canonical: right (+0.238). NO VERDICT both footings: right. f25 well above 0.25 in every member: right.
+Partly wrong: M3's typical source sits near z 2.2 (not 1.5-2) and reads +0.23 / +0.22 (not +0.25 to +0.30). AGEL just
+under 0.25 on canonical, NO VERDICT on both footings, f25 well above 0.25 everywhere: right.
 
-## 8. What this says
-
-If Euclid's lensed sources are distributed like any population this lane could build or borrow, the law needs about
-1.6-2.0 × Salpeter for the median Euclid lens, against 1.17 × for SLACS at measured redshifts; no member allows the
-HOLDS line (1.41 ×). The excess sits in the wide lenses. The word stays NO VERDICT because the members straddle 0.25,
-and a population model cannot replace measured redshifts. EUC1-F remains the gate.
-
-Files: `euc13_fetch_cosmos.py`, `euc13.py`, `euc13_posthoc.py`; `euc13_cosmos2020_counts.csv`, `euc13.out`,
-`euc13_results.json`, `euc13_per_lens.csv`, `euc13_MUTATE_newton.*`, `euc13_posthoc.*`.
-
-    python3 -I euc13.py --data-dir <ECLIPSE dir> --lit <EUC10 lit dir>
-
-Adopts nothing. κ = ½ FITTED; not theory closed.
+If Euclid's sources are distributed like any population this lane could build or borrow, the median Euclid lens needs
+1.6-2.0 × Salpeter (SLACS: 1.17 × at measured redshifts); no member allows the HOLDS line (1.41 ×); the excess sits in
+the wide lenses. The word stays NO VERDICT because the members straddle 0.25, and a population cannot replace measured
+redshifts. EUC1-F remains the gate. Files: `euc13*.py`, `.out`, `.json`, `.csv`. Adopts nothing. κ = ½ FITTED.
