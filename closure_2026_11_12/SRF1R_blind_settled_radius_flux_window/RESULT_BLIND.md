@@ -170,4 +170,11 @@ Reading the brackets:
 - `srf1r_grade.py` -> `srf1r_grade_<foot>.json` / `.out` / `_MUTATE.json`.
 - The console logs stay local.
 
+**Commit ids and the lead's check (added 2026-11-12, after landing; no number or label changes).** Local / origin:
+READING cc3d45432d / c9b6dcfa4f; amendment A1 696d184fbf / 2f5c40c38f; A2 23c3b8956a / 091e170393; A3 f845b9632f / 525d8c396c; RESULT_BLIND
+34175112c6 / 2fac53f07a. Pushed. The lead's standing re-run of the grader from a copy could NOT be done: `srf1r_grade.py`
+reads the halo-model tables, which this lane deleted after its run, and they were not regenerated. So nothing in this
+file has been reproduced by anyone but the lane itself. No RESULT.md exists: the comparison with lane SRF1 waits for
+that lane's result.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
