@@ -113,6 +113,7 @@ CHECKS = [
     (39, C12 + "EUC1_eclipse_saturation_ceiling/RESULT.md", "NO VERDICT / NO VERDICT (canonical / alt)"),
     (39, C12 + "EUC13R_blind_population_gate_regrade/RESULT_BLIND.md", "NO VERDICT"),
     (39, C12 + "EUC15_image_arc_predicted_split/RESULT.md", "EARLY READING, NOT A GATE"),
+    (39, C13 + "EUC16_better_arc_finder_source_redshifts/RESULT.md", "EUC1-F graded for the first time"),
     (40, C12 + "EUC4_wide_lenses/RESULT.md", "WIDE LENSES BREAK THE CEILING"),
     (40, C12 + "EUC4R_blind_regrade/RESULT.md", "WIDE LENSES BREAK THE CEILING"),
     (40, C12 + "EUC6_wide_lens_environment/RESULT.md", "WIDE LENSES SIT IN RICHER ENVIRONMENTS"),
