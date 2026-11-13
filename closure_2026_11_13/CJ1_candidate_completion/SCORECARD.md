@@ -8,6 +8,9 @@ canonical / alt, never pooled; a single word means both footings. Cold dark ener
 a particle. Nothing here says the data favour the framework. Every quoted word is checked verbatim against its
 committed file by `cj1_audit.py` (output `cj1_audit.out`, which also lists each file's path).
 
+Updated 2026-11-13 by the lead after RRL1 and FRZ5 landed: rows 21, 22, 27 and 28, the counts and the three lists. No other row changes. Row 28's word for the completed form is the lead's placement. CJ1's first commit is e3b5114d3f (origin 76634be68d);
+its audit then read 108 of 108, and reads 110 of 110 after this update.
+
 Words for the completed form (fixed list): PASSES / FAILS / FAILS ON COVERAGE ONLY / PASSES TRIVIALLY (the form equals
 the reference there) / EQUALS THE LAW (unchanged by rule 6: the form gives the law's own layout there, so the row's
 verdict on the law carries over) / NO POWER / DEPENDS ON AN UNTESTED ASSUMPTION / NOT GRADED FOR THIS FORM.
@@ -40,16 +43,16 @@ verdict on the law carries over) / NO POWER / DEPENDS ON AN UNTESTED ASSUMPTION 
 | 19 | The Bullet | RB1 | "CONSISTENT [STRIPPING-DEPENDENT]" | fragile | DEPENDS ON AN UNTESTED ASSUMPTION | no | Passes only if the subcluster's stripped gas is counted; nothing measures it. |
 | 20 | Outer cluster shear | ZN4, FR1 (PAPER72 table) | PAPER72 "FAIL, about 3$\sigma$ with systematics"; ZN4 "X-COP ONLY" on measured gas; FR1 "NOT RETENTION" | yes | FAILS | no | Carried from PAPER72's table; rule 6 leaves clusters on the reference these lanes graded. On X-COP's own gas scale ZN4's class passes. |
 | **The forest** | | | | | | | |
-| 21 | Forest at matter level | FRZ1, FRZ1R, FZS1, JNT2, JNT2R | FRZ1 "FOREST ROW FAILS" (full layout); FZS1 "FOREST ROW FAILS, FRAGILE" (unsplit settled); JNT2 "TRIVIAL to f 2" | yes | PASSES TRIVIALLY | yes (JNT2R, trivial to f 2) | The split hands a third to two thirds of the haloes to the reference. At f 3: JNT2 1.99 / 6.43, JNT2R "17.6 / 29.2 FAIL". |
-| 22 | Forest at flux level | FRZ3, FRZ3R, FRZ4, SRF1, SRF1R | FRZ4 "FOREST ROW FAILS AT FLUX LEVEL" (full layout, f = inf) and "NO VERDICT (known answer e fails)" (unsplit f 1, 2, 3); SRF1 "NO VERDICT / NO VERDICT (canonical / alt)"; SRF1R "As frozen: NO VERDICT / NO VERDICT" | no | NOT GRADED FOR THIS FORM | yes (SRF1R, unsplit family; NO VERDICT) | The full law layout is dead at flux level. The v* split was never run at flux level; unsplit f 1 / 2 read 0.10 / 0.11 and 0.50 / 0.41, ungraded. |
+| 21 | Forest at matter level | FRZ1, FRZ1R, FZS1, JNT2, JNT2R | FRZ1 "FOREST ROW FAILS" (full layout); FZS1 "FOREST ROW FAILS, FRAGILE" (unsplit settled); JNT2 "TRIVIAL to f 2" | yes | PASSES TRIVIALLY | yes (JNT2R, trivial to f 2) | The split hands a third to two thirds of the haloes to the reference. At f 3: JNT2 1.99 / 6.43, JNT2R "17.6 / 29.2 FAIL". FRZ5 (post hoc A1): with the gas template refit the full layout's matter-level number falls from 9916 / 9009 to 118 / 107, and only with the smoothing at its floor. |
+| 22 | Forest at flux level | FRZ3, FRZ3R, FRZ4, FRZ5, SRF1, SRF1R | FRZ4 "FOREST ROW FAILS AT FLUX LEVEL" (full layout, f = inf) and "NO VERDICT (known answer e fails)" (unsplit f 1, 2, 3); SRF1 "NO VERDICT / NO VERDICT (canonical / alt)"; SRF1R "As frozen: NO VERDICT / NO VERDICT"; FRZ5 "NO VERDICT (a twin does not bite)" (post hoc A1: "FOREST ROW FAILS AFTER REFIT", full layout) | no | NOT GRADED FOR THIS FORM | yes (SRF1R, unsplit family; NO VERDICT) | The full law layout is dead at flux level. The v* split was never run at flux level; unsplit f 1 / 2 read 0.10 / 0.11 and 0.50 / 0.41, ungraded. FRZ5: the record's gate fits no gas parameter; with an amplitude, a tilt and a smoothing per redshift bin refit, the full layout falls from 269 / 288 to 23.0 / 23.9 (gate 4) and unsplit f 3 from 2.20 / 2.04 to 0.78 / 0.76, ungraded. |
 | **Cosmology and amplitude** | | | | | | | |
 | 23 | CMB peaks, CMB lensing, growth | CO1, CO2 | CO1 "ROWS HOLD / ROWS HOLD" (amended; as frozen "NO VERDICT / NO VERDICT"); CO2 pinned CMB lensing -0.30 sigma | yes, not independent | PASSES TRIVIALLY | no | Linear content is the cold reference; the share is fitted to the CMB. |
 | 24 | Matter-power redistribution | CO1, HLF1 | HLF1 "NO VERDICT / NO VERDICT (canonical / alt)" (post hoc A1: ROWS HOLD WITH THE OWN LIST) | no | NOT GRADED FOR THIS FORM | no | Not computed with the v* split. |
 | 25 | Weak-lensing amplitude | CO2, KL1, BX1, LWB1, LWB1R | CO2 "AMPLITUDE EXCLUDED BY RAW KiDS AT 3 SIGMA"; KL1 "As frozen: NO VERDICT / NO VERDICT."; BX1 "NO VERDICT (canonical) / NO VERDICT (alt)" (post hoc AMPLITUDE CONSISTENT); LWB1R "AMPLITUDE CONSISTENT, FRAGILE" | yes | NOT GRADED FOR THIS FORM | yes (LWB1R) | JNT2 does not address it; the tension is the one any cold component fitted to the CMB carries. |
 | 26 | Flat a0 at z 2.33 | AZ2, AZ2R | AZ2 "As frozen: NO VERDICT / NO VERDICT" (A2: FLAT HOLDS); AZ2R "FLAT HOLDS / EXPANSION-MODEL DEPENDENT" | no | EQUALS THE LAW | yes (AZ2R) | The candidate holds a0 constant; does not separate from LCDM. |
 | **The Milky Way** (log M_b about 10.7: R_fold 169 kpc today, so R_set at least 211 kpc; every row below is inside it) | | | | | | | |
-| 27 | Halo stars directly, 20 to 80 kpc | RAW1, HOT1, LMC1, MWT1, MWT2 | RAW1 "FAILS HOT, FRAGILE"; MWT1 "FAIL DEPENDS ON AN ASSUMPTION THE DATA CANNOT TEST"; MWT2 "NO POWER"; HOT1 "CLUMPED"; LMC1 "NO LABEL" | fragile | DEPENDS ON AN UNTESTED ASSUMPTION | no | The tracer slope beyond the sample's reach. MWT2, ungraded: 30 to 40 kpc holds a cold lump; the smooth part passes when it is set aside. |
-| 28 | Halo slope from RR Lyrae | RRL1 | "RRL1: running, not landed" | - | NOT GRADED FOR THIS FORM | no | No committed RESULT.md. |
+| 27 | Halo stars directly, 20 to 80 kpc | RAW1, HOT1, LMC1, MWT1, MWT2 | RAW1 "FAILS HOT, FRAGILE"; MWT1 "FAIL DEPENDS ON AN ASSUMPTION THE DATA CANNOT TEST"; MWT2 "NO POWER"; HOT1 "CLUMPED"; LMC1 "NO LABEL" | fragile | DEPENDS ON AN UNTESTED ASSUMPTION | no | The tracer slope beyond the sample's reach (row 28 measures it). MWT2, ungraded: 30 to 40 kpc holds a cold lump; the smooth part passes when it is set aside. |
+| 28 | Halo stars with the slope measured from RR Lyrae | RRL1 | "MEASURED SLOPE MAKES A PASSING BIN FAIL [40-55 COLD]" (all four framework cases; robust only on the rotation-curve stellar mass, alt) | fragile | FAILS | no | Pan-STARRS1 RR Lyrae: slope 5.29 inside 39.0 kpc, 3.93 beyond. With it the hot 30 to 40 kpc bin passes in every case (census 1.205 -> 1.052 / 1.155 -> 1.008) and 40 to 55 kpc turns cold (0.857 / 0.820) for every smooth model, DESI's NFW included. The outer slope moves from 3.35 to 4.20 with the cuts and the shape reverses without the Sagittarius mask; a single slope (4.77) removes the fail on alt. |
 | 29 | DESI shape-measuring curves | NMB1, NIM2, RG1 | NMB1 "PASSES"; NIM2 canonical census "FAILS LOW" | fragile | EQUALS THE LAW | yes (RG1 "REPRODUCED" for NMB1; shares inputs) | NIM2 awaits a re-grade. |
 | 30 | Outer masses, 100 kpc and beyond | PLT1, SAT1, EFC1, RG1 | PLT1 "PASSES, FRAGILE" (field) / PASSES (no field); SAT1 "ANISOTROPY LOWERS IT, NOT ENOUGH"; EFC1 "CONVENTION-DEPENDENT" | fragile | EQUALS THE LAW | yes (RG1) | Under the owner's actual-field reading the no-field rows are the framework's, and they pass. |
 | 31 | DESI DR2 enclosed-mass profile | DW1 | "9 of 12" | yes | EQUALS THE LAW | no | The extrapolated M200c fails. |
@@ -73,9 +76,9 @@ verdict on the law carries over) / NO POWER / DEPENDS ON AN UNTESTED ASSUMPTION 
 
 ## Counts
 
-Canonical: EQUALS THE LAW 14; NOT GRADED FOR THIS FORM 10; FAILS 5; NO POWER 5; PASSES TRIVIALLY 4; PASSES 3; DEPENDS ON AN UNTESTED ASSUMPTION 3; FAILS ON COVERAGE ONLY 1. Total 45.
+Canonical: EQUALS THE LAW 14; NOT GRADED FOR THIS FORM 9; FAILS 6; NO POWER 5; PASSES TRIVIALLY 4; PASSES 3; DEPENDS ON AN UNTESTED ASSUMPTION 3; FAILS ON COVERAGE ONLY 1. Total 45.
 
-Alt: EQUALS THE LAW 14; NOT GRADED FOR THIS FORM 10; NO POWER 6; FAILS 5; PASSES TRIVIALLY 4; DEPENDS ON AN UNTESTED ASSUMPTION 3; PASSES 2; FAILS ON COVERAGE ONLY 1. Total 45.
+Alt: EQUALS THE LAW 14; NOT GRADED FOR THIS FORM 9; NO POWER 6; FAILS 6; PASSES TRIVIALLY 4; DEPENDS ON AN UNTESTED ASSUMPTION 3; PASSES 2; FAILS ON COVERAGE ONLY 1. Total 45.
 
 The only row where the footings differ is 7 (DSC1 above v*: PASSES canonical, NO POWER alt).
 
@@ -94,6 +97,8 @@ The only row where the footings differ is 7 (DSC1 above v*: PASSES canonical, NO
 
 - On coverage only, as frozen in both builds: RC100 at z 2.1 to 2.5 (5). The data on those discs have no power (6).
 - On data, fragile: the law below v* on DSC1's resolved discs (8).
+- On data, fragile, and shared by every smooth model including DESI's NFW: Milky Way halo stars at 40 to 55 kpc once
+  the star-count slope is the measured RR Lyrae one (28). The hot 30 to 40 kpc bin of row 27 passes with that slope.
 - Untouched by rule 6, so form B's fails stay: X-COP's two-sided amount (15), the outer cluster shear (20, carried), the
   ultra-faints and M31's bright dwarfs (35, fragile under DSB1's blind budget), DF2, DF4, NGC 147 and IC 1613 (36).
 
@@ -102,13 +107,17 @@ The only row where the footings differ is 7 (DSC1 above v*: PASSES canonical, NO
 - RC100's massive z 2 discs and rows 7 and 8: resolved rotation curves beyond about 3 R_1/2 with measured
   gas profiles on both sides of log M_b 11.3 / 11.5 (DSC1). ALPAKA cannot (9): gas conversion, sizes, beam.
 - The forest at flux level for this split (22): a hydrodynamic forest model that sets the smoothing scale, a box of at
-  least about 50 Mpc/h, 6 to 18 seeds at z 2.2 (FRZ3R, FRZ4); and f between 2 and 3 run in both builds.
+  least about 50 Mpc/h, 6 to 18 seeds at z 2.2 (FRZ3R, FRZ4); and f between 2 and 3 run in both builds. FRZ5 adds: the
+  gas parameters must be fitted with the layout, not held fixed; refitting them removes about 91 % of the full layout's
+  number and still leaves it about 6 times over the gate.
 - f itself (44): a lensing gate that can see the settled radius (row 11 cannot, per SRH1R).
 - The weak-lensing amplitude and the redistribution rows (24, 25): the split computed through the power spectrum, the
   shear row on reference runs without realisation noise, a refit with neutrino mass.
 - Groups (17, 18): a census and lensing mass out to turnaround around groups near v*(0).
 - The Bullet (19): the subcluster's gas before the merger.
-- The Milky Way halo stars (27, 28): the halo star-count slope beyond 45 kpc from a deeper sample; RRL1 is running.
+- The Milky Way halo stars (27, 28): the outer star-count slope beyond about 39 kpc with a Sagittarius stream model and
+  a contamination model in place of a band mask and a score cut, and the cold groups at 30 to 55 kpc set aside by a
+  frozen rule (RRL1, MWT2).
 - Wide lenses (40): the group mass along wide-lens sightlines (members, intragroup gas and light, line of sight).
 - Euclid's ceiling (39): 10 lenses with certified source redshifts for EUC1's gate.
 - Wide binaries (38): Gaia DR4 on 2026-12-02, scored as pre-registered.
