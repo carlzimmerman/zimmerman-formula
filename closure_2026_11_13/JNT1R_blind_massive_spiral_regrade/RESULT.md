@@ -61,4 +61,11 @@ reading in words ("the reference layout over-predicts the outer curves at the re
 fits"), without numbers. This is recorded in READING.md. So my agreement on the reading is not fully blind. The numbers,
 the shape statistic and the power rule were computed and frozen without JNT1's.
 
+**Commit ids and the lead's re-run (added 2026-11-13, after landing; no number or label changes).** Local / origin:
+READING 543118d9b8 / 9195085721; scripts and outputs e29b235cfb / 5d40824041; RESULT_BLIND 754a7e120f / f99d9d4d2e; RESULT 471ff93785 /
+a9d6811b66. Pushed. The lead session re-ran `jnt1r.py` (MAIN, MUT_C, MUT_E) and `jnt1r_light.py` from a copy at the same
+folder depth, one thread: all eight output files are equal byte for byte. That is a reproduction, not a further
+independent re-grade. As this file's READING records, the lead's brief stated JNT1's ungraded reading in words before
+the freeze, so the agreement with that reading is not fully blind; the numbers were computed blind.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
