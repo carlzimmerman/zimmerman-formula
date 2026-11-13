@@ -133,4 +133,10 @@ same way.
 the script). Run: `python3 -I -B mwt2.py <MWS_BHB.fits>` (about 12 minutes, one thread). A B = 30 debug smoke run
 preceded the graded run; its output was overwritten and is not graded.
 
+**Commit ids and the lead's re-run (added 2026-11-13, after landing; no number or label changes).** Local: criteria
+163d74faa3, amendment A1 6ee1e86a47, graded run cc0fa0daa9, A1 run 68ec383aae, RESULT a28187ea71 (origin tip
+fe656291c7). Pushed. The lead session re-ran `mwt2.py` from a copy with the same catalogue: `mwt2_results.json` and
+`mwt2_MUTATE.out` are equal byte for byte; `mwt2.out` differs in 12 lines that were not traced line by line. The A1
+script was not re-run. A reproduction, not an independent re-grade.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.

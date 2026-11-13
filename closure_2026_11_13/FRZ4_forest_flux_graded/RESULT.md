@@ -190,4 +190,11 @@ here, and nothing here says the data favour the framework.
   - `parts/*.json`: 20 parts, 23 MB.
   - `frz4_grade_<footing>.json/.out` and `_MUTATE.json/.out`.
 
+**Commit ids and the lead's re-run (added 2026-11-13, after landing; no number or label changes).** Local: criteria
+199d710a9a, code, parts and grading outputs b89ced280f, RESULT b23f8b4aec (origin tip fe9a3ec771). Pushed. The lead
+session re-ran `frz4_grade.py` for both footings from a copy at the same folder depth, on the committed part files: all
+eight outputs are equal byte for byte. No field part was regenerated. A reproduction of the grading, not an independent
+re-grade; the full-layout label agrees with the reported reading of the earlier blind build FRZ3R (363 / 425 there
+against 357 / 442 here on the same placement).
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
