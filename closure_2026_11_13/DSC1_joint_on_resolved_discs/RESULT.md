@@ -155,4 +155,11 @@ So the resolved Genzel / Lelli curves do not decide the joint. A decision needs 
 
 The ALPAKA rings already on disk are the nearest candidate set.
 
+**Commit ids and the lead's re-run (added 2026-11-13, after landing; no number or label changes).** Local / origin:
+criteria 34edc4c9e7 / 8d2d7d47b1; script and outputs 370952bd28 / 84110aa51e; RESULT 86497cf4c3 / f8a2dfcf1d. Pushed. The lead session
+re-ran `dsc1.py` and both twins from a copy at the same folder depth, one thread: all six output files are equal byte
+for byte. That is a reproduction, not an independent re-grade; no blind twin of this lane was run. The lead's own
+expectation, written before the result, was that the reference layout at the record share would fail on these discs;
+as frozen it holds on canonical, fragile, on three discs, through amplitude only.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
