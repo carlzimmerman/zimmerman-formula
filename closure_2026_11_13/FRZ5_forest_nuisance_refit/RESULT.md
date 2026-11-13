@@ -160,4 +160,15 @@ the smoothing pinned at its floor. The settled layout stays ungraded. Its number
 - Machine: 23 s per run, 0.51 GB, one thread. Nothing was downloaded, nothing was written outside this folder, and
   nothing was pushed.
 
+## Commit ids and the lead's re-run (2026-11-13)
+
+- Criteria 84ab155bc1 (origin 6f8d4ffd6f); script and as-frozen outputs dcf2b304de (origin e4815cb06e); amendment A1
+  04460600b2 (origin e661b99e77); A1 flag and outputs fa573ee430 (origin 2720e619a5); result ca62e5310c (origin
+  f5b9f6da79).
+- The lead re-ran `frz5_refit.py` from a copy at the same folder depth, both footings, with and without `--A1`:
+  - the eight twin files (`*_MUTATE.json/.out`) equal byte for byte;
+  - the four main JSON files and four logs differ only in timing and memory lines, plus an `amendment` key in the
+    as-frozen JSON that the committed as-frozen file predates. Every fixed and refit number is identical.
+- A reproduction, not an independent re-grade. The twin amendment is post hoc. No number or label changes.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.

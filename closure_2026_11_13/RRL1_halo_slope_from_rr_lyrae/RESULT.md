@@ -188,4 +188,12 @@ sha256 checked by the script): PS1 table5_subset.tsv, DES table1.tsv, RAW1's MWS
 `python3 -I -B rrl1.py <PS1 tsv> <DES tsv> <MWS_BHB.fits>` (about 2 minutes, one thread). Commits: criteria
 59ab8ca9fa, script and graded run 8bc8c2bee7. Not pushed. No independent re-grade exists.
 
+## Commit ids and the lead's re-run (2026-11-13)
+
+- Criteria 59ab8ca9fa (origin 8e3ac816ab); script and graded run 8bc8c2bee7 (origin ed0a6eed4e); result e68ac1001b
+  (origin 86b61fee19).
+- The lead re-ran `rrl1.py` from a copy at the same folder depth on the same three data files: `rrl1.out`,
+  `rrl1_results.json` and `rrl1_MUTATE.out` equal byte for byte.
+- A reproduction, not an independent re-grade. No blind re-grade exists. No number or label changes.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
