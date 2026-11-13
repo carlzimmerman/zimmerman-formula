@@ -1,0 +1,122 @@
+EUC16 (BETTER ARC FINDER, PREDICTED-SPLIT SOURCE REDSHIFTS)   *** CHECK K8: EUC15's finder ***
+footings (m/s^2): canonical 9.3603e-11, alt 1.1320e-10;  convention C0 = 270 deg, tilt sign +1;  k window 1 +- 0.30
+
+[data]
+  truth lens EUCL-DR1-L015763: arc from its VIS image at (east -1.10, north -1.11) arcsec, 1.57 arcsec from the lens object (theta_E 1.51)
+  pre-guard TA candidates (S and X; true / sign-flipped / rotated / mirrored): {'true': 51, 'flip': 16, 'rot': 20, 'mirror': 19}
+  P  N = 3192; usable spectrum with position angles 1164 (0.365); VIS box 1164; image arc 1164 (median radius / theta_E 0.71); evaluable (predicted half-split >= 30 A)  311
+  S  N = 6173; usable spectrum with position angles 2260 (0.366); VIS box 2260; image arc 2259 (median radius / theta_E 0.61); evaluable (predicted half-split >= 30 A)  536
+  X  N = 2580; usable spectrum with position angles  923 (0.358); VIS box  923; image arc  918 (median radius / theta_E 0.62); evaluable (predicted half-split >= 30 A)  210
+  coverage gate (>= 30 % of S and of X with a usable spectrum): PASS
+
+[instrument checks]
+  PASS K1  EUC1 reproduced: N(P) = 3192, source-free b_med law S = -0.019 / -0.044 to 0.001 : N = 3192, -0.0185 / -0.0439
+  PASS K2  EUC2 anchor L015763 at z_l(DESI), z_s = 1.3657: b = +0.231 / +0.215 to 0.002 : +0.2314 / +0.2149
+  PASS K5  dither cache complete (EUC9's fetch) and re-read identical : targets with neither a spectrum nor a recorded reason 0; EUC9's re-read check 20 of 20 identical
+  PASS K6  position angle found for >= 95 % of the dithers of evaluable-spectrum systems : 19030 of 19033 (1.000)
+  PASS K7S VIS box for >= 95 % of usable-spectrum S systems, and a usable image arc for >= 90 % of those : box 2260 of 2260, arc 2259
+  PASS K7X VIS box for >= 95 % of usable-spectrum X systems, and a usable image arc for >= 90 % of those : box 923 of 923, arc 918
+  PASS C1  field calibration reproduced: convention and k window as frozen, calibration passes : convention [270.0, 1.0], 13 detections (next 3), median k 1.000, sigma 0.148, n 9
+  PASS I1  a line injected at the predicted shifts (S/N 12) returned at TA within 13.4 A in >= 70 % : 278 / 300 = 0.927
+  PASS I2  a centred line (S/N 12) returned at TA in <= 5 % : 1 / 300 = 0.003
+  PASS I3  a line at the mirrored shifts (S/N 12) returned at TA in <= 5 % : 0 / 300 = 0.000
+
+[tier TA: each grism position S/N >= 3.5, combined >= 6, over a centred line dchi2 >= 9; k within 1 +- 0.30]
+  P  evaluable  311: SECURE   7 (rate 0.0225 [0.0091, 0.0458]) {'HA1': 5, 'O3': 2}; AMBIGUOUS-OWN 15; CONFLICT 0 | sign-flipped 6; rotated 90 deg 3 (of 310); mirrored 5
+  S  evaluable  536: SECURE  14 (rate 0.0261 [0.0144, 0.0434]) {'HA1': 8, 'O3': 6}; AMBIGUOUS-OWN 23; CONFLICT 0 | sign-flipped 6; rotated 90 deg 4 (of 535); mirrored 6
+  X  evaluable  210: SECURE   4 (rate 0.0190 [0.0052, 0.0480]) {'HA1': 4}; AMBIGUOUS-OWN 3; CONFLICT 0 | sign-flipped 1; rotated 90 deg 2 (of 224); mirrored 1
+  H2  purity null: grade-X SECURE = 4 against a limit of 1.1 -> FAIL
+  H3  scrambled prediction (arcs rotated by 90 deg): S SECURE = 4 against a limit of 2.8 -> FAIL
+  H2b sign-flipped residuals: S SECURE = 6 against a limit of 2.8 -> FAIL
+  H4  truth EUCL-DR1-L015763 (z_s = 1.3657): RECOVERED  [midpoint 15524.7 A, z = 1.3649 as HA1, k = 1.05 (predicted half-split 63.7 A), sigma 12, S/N 51.6 (RGS000 39.6, RGS180 33.3), dchi2 over centred 803.8, support []]
+
+[tier TB: each grism position S/N >= 5.0, combined >= 8, over a centred line dchi2 >= 16; k within 1 +- 0.30]
+  P  evaluable  311: SECURE   5 (rate 0.0161 [0.0052, 0.0371]) {'HA1': 3, 'O3': 2}; AMBIGUOUS-OWN 11; CONFLICT 0 | sign-flipped 1; rotated 90 deg 1 (of 310); mirrored 0
+  S  evaluable  536: SECURE  11 (rate 0.0205 [0.0103, 0.0364]) {'HA1': 5, 'O3': 6}; AMBIGUOUS-OWN 15; CONFLICT 0 | sign-flipped 1; rotated 90 deg 1 (of 535); mirrored 0
+  X  evaluable  210: SECURE   0 (rate 0.0000 [0.0000, 0.0174]) {}; AMBIGUOUS-OWN 1; CONFLICT 0 | sign-flipped 1; rotated 90 deg 0 (of 224); mirrored 0
+  H2  purity null: grade-X SECURE = 0 against a limit of 1.0 -> PASS
+  H3  scrambled prediction (arcs rotated by 90 deg): S SECURE = 1 against a limit of 2.2 -> PASS
+  H2b sign-flipped residuals: S SECURE = 1 against a limit of 2.2 -> PASS
+  H4  truth EUCL-DR1-L015763 (z_s = 1.3657): RECOVERED  [midpoint 15524.7 A, z = 1.3649 as HA1, k = 1.05 (predicted half-split 63.7 A), sigma 12, S/N 51.6 (RGS000 39.6, RGS180 33.3), dchi2 over centred 803.8, support []]
+
+[every SECURE system at TA: grade X and lenses]
+  X EUCL-DR1-L023203 z = 1.0352 (HA1) midpoint 13361 A, k 0.80, predicted half-split 34 A, S/N 6.8 (4.1 / 5.4), dchi2 31.1 | arc (E +1.00, N -0.31) | theta_E 1.30 | z_up 0.84 | support [] | TB none
+  X EUCL-DR1-L023258 z = 1.4455 (HA1) midpoint 16054 A, k 0.95, predicted half-split 40 A, S/N 6.2 (3.8 / 4.9), dchi2 25.2 | arc (E +0.73, N -0.67) | theta_E 0.85 | z_up 1.00 | support [] | TB none
+  X EUCL-DR1-L026011 z = 1.3078 (HA1) midpoint 15150 A, k 1.10, predicted half-split 40 A, S/N 6.0 (3.9 / 5.0), dchi2 22.8 | arc (E -0.56, N +0.97) | theta_E 1.11 | z_up 0.93 | support [] | TB none
+  X EUCL-DR1-L026522 z = 1.4711 (HA1) midpoint 16222 A, k 1.05, predicted half-split 46 A, S/N 8.1 (4.0 / 7.4), dchi2 12.2 | arc (E +0.43, N -0.94) | theta_E 0.70 | z_up 0.43 | support [] | TB none
+  S EUCL-DR1-L001449 (P) z = 1.5782 (HA1) midpoint 16925 A, k 1.25, predicted half-split 40 A, S/N 14.9 (12.9 / 8.0), dchi2 163.0 | arc (E +0.43, N -0.87) | theta_E 0.89 | z_up 0.95 | support [] | TB SECURE
+  S EUCL-DR1-L001520 (P) z = 1.2292 (HA1) midpoint 14634 A, k 1.00, predicted half-split 31 A, S/N 13.0 (8.6 / 9.7), dchi2 99.4 | arc (E +0.03, N +0.95) | theta_E 0.96 | z_up 1.06 | support [] | TB SECURE
+  S EUCL-DR1-L001848 (P) z = 1.3935 (HA1) midpoint 15712 A, k 0.90, predicted half-split 34 A, S/N 7.6 (5.7 / 5.0), dchi2 10.5 | arc (E -0.38, N -0.68) | theta_E 0.82 | z_up 1.04 | support [] | TB none
+  S EUCL-DR1-L001883 (P) z = 1.4874 (HA1) midpoint 16329 A, k 1.05, predicted half-split 39 A, S/N 7.5 (5.4 / 5.2), dchi2 16.5 | arc (E +0.82, N -0.43) | theta_E 1.12 | z_up 0.96 | support [] | TB none
+  S EUCL-DR1-L001890 (P) z = 1.0363 (HA1) midpoint 13367 A, k 1.20, predicted half-split 58 A, S/N 13.5 (7.7 / 12.6), dchi2 130.1 | arc (E +1.02, N -0.82) | theta_E 1.32 | z_up 0.72 | support [] | TB SECURE
+  S EUCL-DR1-L001971 (P) z = 2.4677 (O3) midpoint 17367 A, k 0.90, predicted half-split 35 A, S/N 29.3 (19.9 / 21.6), dchi2 297.4 | arc (E -0.67, N +0.51) | theta_E 0.59 | z_up 1.15 | support ['OIII4960 8.3'] | TB SECURE
+  S EUCL-DR1-L004590 z = 1.3914 (HA1) midpoint 15699 A, k 1.20, predicted half-split 32 A, S/N 9.5 (8.1 / 5.2), dchi2 63.6 | arc (E +0.52, N +0.48) | theta_E 1.06 | z_up 0.81 | support [] | TB SECURE
+  S EUCL-DR1-L011858 z = 2.5052 (O3) midpoint 17555 A, k 1.00, predicted half-split 38 A, S/N 15.2 (12.0 / 9.4), dchi2 134.3 | arc (E +0.16, N -0.84) | theta_E 0.62 | z_up 1.70 | support ['OIII4960 5.2'] | TB SECURE
+  S EUCL-DR1-L012019 z = 2.6095 (O3) midpoint 18077 A, k 0.85, predicted half-split 33 A, S/N 20.6 (13.6 / 15.4), dchi2 273.6 | arc (E -0.08, N +0.77) | theta_E 0.92 | z_up 1.07 | support ['OIII4960 6.0'] | TB SECURE
+  S EUCL-DR1-L012277 z = 1.0414 (HA1) midpoint 13401 A, k 0.80, predicted half-split 81 A, S/N 9.5 (8.7 / 3.9), dchi2 35.4 | arc (E -0.15, N -1.83) | theta_E 1.36 | z_up 0.70 | support [] | TB none
+  S EUCL-DR1-L012745 (P) z = 2.1855 (O3) midpoint 15954 A, k 1.05, predicted half-split 118 A, S/N 14.2 (11.3 / 8.7), dchi2 160.8 | arc (E -1.31, N -2.29) | theta_E 2.13 | z_up 0.43 | support ['OIII4960 5.5'] | TB SECURE
+  S EUCL-DR1-L013774 z = 2.0089 (O3) midpoint 15069 A, k 1.00, predicted half-split 50 A, S/N 9.4 (7.1 / 6.2), dchi2 46.3 | arc (E +0.39, N -1.15) | theta_E 0.89 | z_up 0.93 | support ['OIII4960 3.2'] | TB SECURE
+  S EUCL-DR1-L014252 z = 1.5139 (O3) midpoint 12590 A, k 1.05, predicted half-split 38 A, S/N 13.8 (11.6 / 7.5), dchi2 79.5 | arc (E +0.77, N -0.47) | theta_E 0.67 | z_up 0.69 | support ['OIII4960 6.0'] | TB SECURE
+  S EUCL-DR1-L016686 z = 1.6987 (HA1) midpoint 17716 A, k 1.00, predicted half-split 51 A, S/N 10.6 (7.4 / 7.6), dchi2 82.1 | arc (E -0.67, N +0.94) | theta_E 0.85 | z_up 0.59 | support [] | TB SECURE
+
+[ladder]
+  TA  H2 FAIL, H3 FAIL, H2b FAIL, H4 PASS
+  TB  H2 PASS, H3 PASS, H2b PASS, H4 PASS
+  -> reading tier TB (frozen fallback)
+
+[readings on tier TB]
+  P                                  law S canonical N =   5  b_med = +0.589 [+0.151, +0.851]   source-free +0.145
+  P                                  law S alt       N =   5  b_med = +0.574 [+0.134, +0.838]   source-free +0.117
+  S                                  law S canonical N =  11  b_med = +0.405 [+0.061, +0.589]   source-free -0.095
+  S                                  law S alt       N =  11  b_med = +0.385 [+0.042, +0.574]   source-free -0.123
+  P [HA1 read as [S III] 9533]       law S canonical N =   5  b_med = +0.589 [+0.151, +0.851]   source-free +0.145
+  P [HA1 read as [S III] 9533]       law S alt       N =   5  b_med = +0.574 [+0.134, +0.838]   source-free +0.117
+  P [HA1 read as [O III] 5008]       law S canonical N =   5  b_med = +0.405 [+0.151, +0.613]   source-free +0.145
+  P [HA1 read as [O III] 5008]       law S alt       N =   5  b_med = +0.385 [+0.134, +0.596]   source-free +0.117
+  P [HA1 read as [O II] 3727]        law S canonical N =   5  b_med = +0.326 [+0.117, +0.511]   source-free +0.145
+  P [HA1 read as [O II] 3727]        law S alt       N =   5  b_med = +0.304 [+0.097, +0.491]   source-free +0.117
+  line identity: HA1 lenses read as [S III] 9533, [O III] 5008, [O II] 3727 -> words THE SAME
+  secure sample of S: N = 11 ({'HA1': 5, 'HA2': 0, 'O3': 6}); median theta_E 0.89 arcsec (sample P: 0.90); median z_s 1.70
+
+[robustness, law S; reported]
+  1 P, two-line classes only         law S canonical N =   2  b_med = +0.278 [+0.151, +0.405]   source-free +0.061
+  1 P, two-line classes only         law S alt       N =   2  b_med = +0.260 [+0.134, +0.385]   source-free +0.036
+  2 P, tier TB only                  law S canonical N =   5  b_med = +0.589 [+0.151, +0.851]   source-free +0.145
+  2 P, tier TB only                  law S alt       N =   5  b_med = +0.574 [+0.134, +0.838]   source-free +0.117
+  3 P, + AMBIGUOUS-OWN               law S canonical N =  16  b_med = +0.322 [+0.160, +0.459]   source-free +0.076
+  3 P, + AMBIGUOUS-OWN               law S alt       N =  16  b_med = +0.302 [+0.142, +0.444]   source-free +0.048
+  4 P, DESI deflector z              law S canonical N =   5  b_med = +0.589 [+0.151, +0.851]   source-free +0.145
+  4 P, DESI deflector z              law S alt       N =   5  b_med = +0.574 [+0.134, +0.838]   source-free +0.117
+  sample P per lens (law S): id, z_l, z_s, line, k, predicted half-split arcsec, theta_E, S/N, support, b canonical / alt (source-free alt)
+    EUCL-DR1-L001890 0.640 1.0363 HA1 1.20 1.31 1.32  13.5 -                      +0.851 / +0.838  (+0.315)
+    EUCL-DR1-L001520 0.970 1.2292 HA1 1.00 0.69 0.96  13.0 -                      +0.688 / +0.679  (-0.162)
+    EUCL-DR1-L001449 0.860 1.5782 HA1 1.25 0.90 0.89  14.9 -                      +0.589 / +0.574  (+0.117)
+    EUCL-DR1-L012745 0.350 2.1855 O3  1.05 2.63 2.13  14.2 OIII4960 5.5           +0.405 / +0.385  (+0.282)
+    EUCL-DR1-L001971 1.060 2.4677 O3  0.90 0.79 0.59  29.3 OIII4960 8.3           +0.151 / +0.134  (-0.210)
+
+[EUC15's five certified lenses of P under this finder]
+  EUCL-DR1-L001890 arc (+1.02, -0.82); evaluable True; TA SECURE; TB SECURE  [z 1.0363 HA1, k 1.20, half-split 58 A]
+  EUCL-DR1-L001520 arc (+0.03, +0.95); evaluable True; TA SECURE; TB SECURE  [z 1.2292 HA1, k 1.00, half-split 31 A]
+  EUCL-DR1-L001449 arc (+0.43, -0.87); evaluable True; TA SECURE; TB SECURE  [z 1.5782 HA1, k 1.25, half-split 40 A]
+  EUCL-DR1-L012745 arc (-1.31, -2.29); evaluable True; TA SECURE; TB SECURE  [z 2.1855 O3, k 1.05, half-split 118 A]
+  EUCL-DR1-L001971 arc (-0.67, +0.51); evaluable True; TA SECURE; TB SECURE  [z 2.4677 O3, k 0.90, half-split 35 A]
+
+[single lines] certified lenses of P resting on one line (HA1): 3 of 5
+
+[selection check] source-free b (law S, z_s at infinity) of the certified lenses against all of P
+  canonical certified (N 5) median +0.145; all P (N 3192) median -0.019; certified lenses' percentiles in P: 0.90 0.30 0.74 0.88 0.23 (mean 0.61)
+  alt       certified (N 5) median +0.117; all P (N 3192) median -0.044; certified lenses' percentiles in P: 0.90 0.30 0.73 0.88 0.23 (mean 0.61)
+  theta_E median: certified 0.96, P 0.90;  z_l median: certified 0.860, P 0.660
+
+[leave-one-out, law S, P; reported, never the word] interval bounds with each certified lens dropped
+  canonical lower bound +0.151 to +0.405; upper bound +0.688 to +0.851
+  alt       lower bound +0.134 to +0.385; upper bound +0.679 to +0.838
+
+[summary]
+  instrument checks: all pass;  coverage: pass;  reading tier: TB
+  N(P) with a secure source redshift = 5 (EUC1-F needs 10)
+  EUC1-F (canonical / alt): EARLY READING, NOT A GATE / EARLY READING, NOT A GATE
+  LANE WORD (canonical / alt): EARLY READING, NOT A GATE / EARLY READING, NOT A GATE [tier TB, frozen fallback]
+  kappa = 1/2 FITTED. No outcome favours the framework.  (744 s)
+
+[CHECK K8] EUC15's finder in this code: coverage same, gate counts same, pre-guard and N(P), N(S) same (EUC15: N(P) 5) -> PASS
