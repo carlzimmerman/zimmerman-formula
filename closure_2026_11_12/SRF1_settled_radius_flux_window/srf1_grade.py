@@ -10,6 +10,7 @@ HERE = os.path.dirname(os.path.abspath(__file__)); REPO = os.path.abspath(os.pat
 FRZ3R = os.path.join(REPO, "closure_2026_11_12", "FRZ3R_blind_flux_forest_regrade")
 SRH = os.path.join(REPO, "closure_2026_11_10", "SRH1_settled_radius_history")
 FOOT = sys.argv[1]; assert FOOT in ("canonical", "alt")
+OUTD = os.environ.get("SRF1_OUT", HERE)          # test runs only; the graded outputs go next to this script
 src = open(os.path.join(FRZ3R, "frz3r_grade.py")).read(); cut = src.index("# ------------------------------------------------------------------ parts")
 g = {"__file__": os.path.join(FRZ3R, "frz3r_grade.py"), "__name__": "frz3r_grade_setup_srf1"}; _a = sys.argv; sys.argv = ["frz3r_grade.py", FOOT]
 exec(compile(src[:cut], "frz3r_grade_setup", "exec"), g); sys.argv = _a
@@ -27,13 +28,22 @@ SEL = lambda zs: np.isin(FD["zs"], zs)
 # ------------------------------------------------------------------ parts
 def load(stage, N=384):
     D = {}
-    for f in sorted(glob.glob(os.path.join(HERE, "parts", f"{stage}_z*_s*_{FOOT}_N{N}.json"))):
+    for f in sorted(glob.glob(os.path.join(os.environ.get("SRF1_PARTS", os.path.join(HERE, "parts")), f"{stage}_z*_s*_{FOOT}_N{N}.json"))):
         d = json.load(open(f)); D.setdefault(d["z"], {})[d["seed"]] = d
     return D
-PR = load("primary")
+PR = load("primary", int(os.environ.get("SRF1_N", "384")))
 missing = [z for z in ZB if z not in PR]
 assert not missing, f"missing primary bins {missing}"
 
+WMODE = {"m": "frozen"}
+IK3 = int(np.searchsorted(TB.KT, 3.0)); _TT = {}
+def wratio(d, gr, key):
+    """AMENDMENT_A2 reading R: w_g = sum_b E_b s_b / sum_b n_b s_b, s_b the per-halo ta-scope 1h difference at k 3."""
+    if d["z"] not in _TT: _TT[d["z"]] = TB.tables(d["z"])[FOOT]
+    t = _TT[d["z"]]; b = np.array(gr["bins"]); E = np.array(gr["E"]); n = np.array(d["forced"][str(gr["g"])]["counts"])
+    kk = key if key in t["Ub"] else "f1.00"
+    UR = t["UbR"][b, IK3]; dU = t["Ub"][kk][b, IK3]; sb = (UR + dU) ** 2 - UR ** 2
+    return float((E * sb).sum() / (n * sb).sum())
 def est(d, key, spec="primary", what="p", poisson=False):
     """stratified estimate R = 1 + [dP_base + sum_g w_g dP_g] / P_R(base); what = 'p' (1D flux) or 'P3D'."""
     F = d["flux"][spec]; R = np.array(F["base"]["R"][what])
@@ -42,7 +52,8 @@ def est(d, key, spec="primary", what="p", poisson=False):
     for gr in d["groups"]:
         bx = F.get(f"g{gr['g']}")
         if bx is None: raise KeyError(f"forced box {gr['g']} missing")
-        dP = dP + gr["w"] * (np.array(bx["B|" + key][what]) - np.array(bx["R"][what]))
+        w = gr["w"] if WMODE["m"] == "frozen" else wratio(d, gr, key)
+        dP = dP + w * (np.array(bx["B|" + key][what]) - np.array(bx["R"][what]))
     return 1.0 + dP / R
 
 def r_at(kvz, Rz):
@@ -67,10 +78,10 @@ def mat_D(key, poisson=False):
 
 # ------------------------------------------------------------------ halo model per f (tables)
 T = {z: TB.tables(z)[FOOT] for z in ZB}
-mk = KT[1:] <= 10.5
+KKF = np.geomspace(1e-3, 10.0, 260)        # FRZ1's KK (the grid SRH1's and FZS1's numbers were projected from)
 def hm_D(key, q):
-    Rz = {z: T[z]["spec"][key][q][1:][mk] for z in ZB}
-    return float(forest_eval(FD, BGB, amp(Rz, KT[1:][mk]))["dchi2"])
+    Rz = {z: np.interp(np.log(KKF), np.log(KT[1:]), T[z]["spec"][key][q][1:]) for z in ZB}
+    return float(forest_eval(FD, BGB, amp(Rz, KKF))["dchi2"])
 HMF = sorted(set(TB.SRH1_GRID + FG))
 Drec = {fk_(f): hm_D(fk_(f), "Rcold") for f in HMF + [math.inf]}
 Dta = {fk_(f): hm_D(fk_(f), "Rta") for f in HMF + [math.inf]}
@@ -125,6 +136,7 @@ bmax = 0.0; seeds_used = {}
 for z, ps in PR.items():
     for s, d in ps.items():
         fr = json.load(open(os.path.join(FRZ3R, "parts", f"turn_z{z:.1f}_s{s}_{FOOT}_N384.json")))
+        if len(fr["kv"]) != len(d["kv"]): bmax = float("inf"); seeds_used.setdefault(z, []).append(s); continue
         mine_R = np.array(d["flux"]["primary"]["base"]["R"]["p"]); mine_B = np.array(d["flux"]["primary"]["base"]["BP|finf"]["p"])
         bmax = max(bmax, float(np.max(np.abs(mine_R / np.array(fr["flux"]["primary"]["R"]["p"]) - 1))), float(np.max(np.abs(mine_B / np.array(fr["flux"]["primary"]["B"]["p"]) - 1))))
         seeds_used.setdefault(z, []).append(s)
@@ -137,6 +149,7 @@ for z in ZB:
         fkv[z] = np.array(fr["kv"]); arr.append(np.array(fr["flux"]["primary"]["B"]["p"]) / np.array(fr["flux"]["primary"]["R"]["p"]))
         k = np.array(fr["P3D"]["k"]); arr3.append(np.array(fr["P3D"]["B"]) / np.array(fr["P3D"]["R"]))
     fR[z] = np.mean(arr, 0); R3 = np.mean(arr3, 0); m = (k <= 10) & np.isfinite(R3); fk3[z], fR3[z] = k[m], R3[m]
+if os.environ.get("SRF1_N", "384") != "384": fkv, fR = kvz, Rz
 D_frz3r = dchi(fkv, fR); Dm_frz3r = float(forest_eval(FD, BGB, amp(fR3, fk3))["dchi2"])
 KA["b"] = dict(max_rel_part=bmax, flux=[Dp_inf, D_frz3r], matter=[Dm_p_inf, Dm_frz3r],
                pass_=bool(bmax <= 1e-4 and abs(Dp_inf / D_frz3r - 1) <= 0.01 and abs(Dm_p_inf / Dm_frz3r - 1) <= 0.01))
@@ -161,7 +174,7 @@ KA["c1"] = dict(rows=c1, pass_=bool(ok))
 # (d) mean flux
 dmax = 0.0
 for stg in ("primary", "bracket", "clustered"):
-    for z, ps in (PR if stg == "primary" else load(stg)).items():
+    for z, ps in (PR if stg == "primary" else load(stg, int(os.environ.get("SRF1_N", "384")))).items():
         for d in ps.values():
             for sp, boxes in d["flux"].items():
                 sF = {"tau_x0.9": 0.9, "tau_x1.1": 1.1}.get(sp, 1.0)
@@ -191,6 +204,15 @@ P(f"[{FOOT}] Poisson-only reading (FRZ3R's method, reported): f 1.00 flux {dchi(
 dr = {z: PR[z][0]["dropped_share"] for z in ZB}; RES["dropped_share"] = dr
 P(f"[{FOOT}] rare-group share dropped by A1's 3 % cut (ta-scope 1h difference at k 3; f 1.00 / 1.30 / 2.00): " + "; ".join(f"z {z}: " + "/".join(f"{v:+.3f}" for v in dd.values()) for z, dd in dr.items()))
 P(f"[{FOOT}] forced groups (log M, n_g, E_g) at z 2.2: {[(gg['lM'], gg['ng'], round(gg['Eg'], 4)) for gg in PR[2.2][0]['groups']]}")
+
+# ------------------------------------------------------------------ AMENDMENT_A2 reading R (reported; never the label)
+WMODE["m"] = "ratio"; rowsR = {}
+for f in FG + [math.inf]:
+    key = fk_(f); kvz, Rz = flux_curves(key); rowsR[key] = dict(flux=dchi(kvz, Rz), matter=mat_D(key)[0])
+WMODE["m"] = "frozen"
+ER = edge({k: v["flux"] for k, v in rowsR.items()})
+RES["reading_R_A2"] = dict(rows=rowsR, edge=ER)
+P(f"[{FOOT}] reading R (AMENDMENT_A2, ratio-weighted forced groups; REPORTED, not the label): " + "; ".join(f"{v and k}: flux {r['flux']:.3f} matter {r['matter']:.2f}" for k, r in rowsR.items() for v in [True]) + f"; f_max {ER}")
 
 # ------------------------------------------------------------------ regime split (ADDED AFTER THE CRITERIA WERE FROZEN, on the lead's
 # request; UNGRADED; no new compute: the stratified estimator is a sum over the base box and the forced groups, so the sum is split)
@@ -222,7 +244,7 @@ P(f"[{FOOT}] REGIME SPLIT at f 1.00 (added after the criteria were frozen; UNGRA
 
 # ------------------------------------------------------------------ mutations
 MU = {}
-BR = load("bracket"); S23 = SEL((2.2, 3.0))
+BR = load("bracket", int(os.environ.get("SRF1_N", "384"))); S23 = SEL((2.2, 3.0))
 def br_D(tag, key, parts, sel):
     kz = {z: np.array(parts[z][0]["kv"]) for z in parts}; Rz = {z: est(parts[z][0], key, tag) for z in parts}; return dchi(kz, Rz, sel)
 if all(z in BR for z in (2.2, 3.0)):
@@ -257,7 +279,7 @@ if all(z in BR for z in (2.2, 3.0)):
             k = fk_(f); est12[k] = Dflux[k] * br_D(tag, k, BR, S23) / max(br_D("primary", k, BR, S23), 1e-12)
         BRK[tag] = est12
 for stg in ("clustered", "res"):
-    PP = load(stg, 256 if stg == "res" else 384)
+    PP = load(stg, 256 if stg == "res" else int(os.environ.get("SRF1_N", "384")))
     if 2.2 in PP:
         est12 = {}
         for f in (1.00, 1.30, 2.00):
@@ -294,12 +316,15 @@ else:
 if lab != "NO VERDICT" and frag: lab += ", FRAGILE (" + "; ".join(frag) + ")"
 if not brok: lab += " [brackets incomplete]"
 RES["label"] = lab
+fR = fmax_of(ER); wR = window(fR, f_lo)
+RES["reading_R_A2"]["window"] = wR; RES["reading_R_A2"]["moves"] = dict(f1_across_gate=bool((rowsR["f1.00"]["flux"] > 4) != (Dflux["f1.00"] > 4)), window_changes=bool((wR is None) != (win0 is None)))
+P(f"[{FOOT}] reading R (A2, reported beside the label): f_max {fR}, window {wR}; moves f = 1 across the gate: {RES['reading_R_A2']['moves']['f1_across_gate']}; opens/closes the window: {RES['reading_R_A2']['moves']['window_changes']}")
 w_r = window(fM, G2E)
 RES["reported"] = dict(f_max=fM, edge=E0, window_with_SRH1R_reading=w_r, f_lo=f_lo)
 P(f"[{FOOT}] reported: forest flux-level edge f_max {fM} (SRH1's matter-level edge 0.722 / 0.725); lower edge used {f_lo} (G2 0.391, G4 {G4E}: SRH1 RESULT.md, interpolated); "
   f"window with SRH1R's reading (lensing cannot see f, f_lo = 0.391): {w_r}")
 P(f"[{FOOT}] LABEL (as amended by A1; the as-frozen grid could not be run): {lab}")
-json.dump(RES, open(os.path.join(HERE, f"srf1_grade_{FOOT}.json"), "w"), indent=1, default=float)
-open(os.path.join(HERE, f"srf1_grade_{FOOT}.out"), "w").write("\n".join(OUT) + "\nkappa = 1/2 FITTED; not theory closed. Adopts nothing.\n")
-json.dump(dict(lane="SRF1", footing=FOOT, mutations=MU, note=RES["note"]), open(os.path.join(HERE, f"srf1_grade_{FOOT}_MUTATE.json"), "w"), indent=1, default=float)
-open(os.path.join(HERE, f"srf1_grade_{FOOT}_MUTATE.out"), "w").write("\n".join(OUTM) + "\nkappa = 1/2 FITTED; not theory closed. Adopts nothing.\n")
+json.dump(RES, open(os.path.join(OUTD, f"srf1_grade_{FOOT}.json"), "w"), indent=1, default=float)
+open(os.path.join(OUTD, f"srf1_grade_{FOOT}.out"), "w").write("\n".join(OUT) + "\nkappa = 1/2 FITTED; not theory closed. Adopts nothing.\n")
+json.dump(dict(lane="SRF1", footing=FOOT, mutations=MU, note=RES["note"]), open(os.path.join(OUTD, f"srf1_grade_{FOOT}_MUTATE.json"), "w"), indent=1, default=float)
+open(os.path.join(OUTD, f"srf1_grade_{FOOT}_MUTATE.out"), "w").write("\n".join(OUTM) + "\nkappa = 1/2 FITTED; not theory closed. Adopts nothing.\n")

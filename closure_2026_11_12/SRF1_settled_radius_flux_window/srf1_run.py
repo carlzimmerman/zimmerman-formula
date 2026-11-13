@@ -126,9 +126,28 @@ def flux_job(grid, z, fk, lam, gam=GAM, sF=1.0, mode="exp", want3d=True):
     if want3d: out["P3D"] = C.pk3d(grid, fk, nbins=40, kmin=0.3)[1].tolist()
     return kv, out
 
-def run_part(stage, z, seed, ft, N=384):
+def run_part(stage, z, seed, ft, N=384, box=None):
+    """box None: the whole part in one process. box 'base': base box only (saves the reference halo field and the smooth field
+    to temporary npy files); box '<g>': forced group g only (loads them). 'merge' joins the sub-parts into the part file.
+    One box per process keeps memory bounded (macOS does not return freed memory between boxes)."""
     name = os.path.join(PARTS, f"{stage}_z{z:.1f}_s{seed}_{ft}_N{N}.json")
     if os.path.exists(name): return
+    stem = name[:-5]
+    if box == "merge":
+        res = json.load(open(stem + "__base.json"))
+        for gr in res["groups"]:
+            sub = json.load(open(stem + f"__g{gr['g']}.json"))
+            for sp, bxs in sub["flux"].items(): res["flux"].setdefault(sp, {}).update(bxs)
+            res.setdefault("forced", {})[str(gr["g"])] = sub["forced"]; res["time_s"] += sub["time_s"]
+        tmp = name + ".tmp"; json.dump(res, open(tmp, "w")); os.replace(tmp, name)
+        for f in [stem + "__base.json", stem + "__acc_ref.npy", stem + "__dsk.npy"] + [stem + f"__g{gr['g']}.json" for gr in res["groups"]]:
+            if os.path.exists(f): os.remove(f)
+        print(f"{stage} z {z:.1f} seed {seed} {ft} N {N}: {res['time_s']:.0f} s; groups {[(g['lM'], g['ng']) for g in res['groups']]}; fs {res['fs']:.4f} halos {res['n_halo']}", flush=True)
+        return
+    if box not in (None, "base"):
+        sub = stem + f"__g{box}.json"
+        if os.path.exists(sub): return
+    elif box == "base" and os.path.exists(stem + "__base.json"): return
     t0 = time.time(); T = TB.tables(z); t = T[ft]; lM, W, b = masses(z)
     grid = C.Grid(N, LBOX); ug = UGrid(grid); RHO = t["RHO"]; V = LBOX ** 3
     groups, shares, dropped, rare = groups_for(t, lM, W)
@@ -147,6 +166,24 @@ def run_part(stage, z, seed, ft, N=384):
             specs = [("primary", LAM0, GAM, 1.0, "exp")]
     # ---- base box (FRZ3R reading T reference)
     fs_exp = 1.0 - t["Mta_sum_painted"] / RHO
+    if box not in (None, "base"):
+        meta = json.load(open(stem + "__base.json")); acc_ref = np.load(stem + "__acc_ref.npy"); dsk = np.load(stem + "__dsk.npy")
+        Mh = meta["Mh"]; res = dict(flux={}); gr = [g for g in groups if str(g["g"]) == str(box)][0]
+        def run_jobs(jobs):
+            with ThreadPoolExecutor(max_workers=NW) as ex:
+                futs = [(bx, fn, sp, ex.submit(lambda b=bld, s=sp: flux_job(grid, z, b(), s[1], s[2], s[3], s[4], want3d=(s[0] == "primary")))) for bx, fn, sp, bld in jobs]
+                for bx, fn, sp, fu in futs:
+                    kv, o = fu.result(); res["flux"].setdefault(sp[0], {}).setdefault(bx, {})[fn] = o
+        aref, acc, Mf, counts = forced(grid, ug, t, gr, seed, z, fl)
+        fsg = 1.0 - (Mh + Mf) / (RHO * V); Rg = acc_ref + aref + fsg * dsk; Rg.flat[0] = 0.0; del aref, acc_ref
+        res["forced"] = dict(counts=counts, fs=fsg, Mforced=Mf)
+        jobs = []
+        for sp in specs:
+            jobs.append((f"g{gr['g']}", "R", sp, lambda: Rg))
+            for key in fl: jobs.append((f"g{gr['g']}", "B|" + key, sp, (lambda key=key: Rg + acc[key])))
+        run_jobs(jobs); res["time_s"] = time.time() - t0
+        tmp = stem + f"__g{box}.json.tmp"; json.dump(res, open(tmp, "w")); os.replace(tmp, stem + f"__g{box}.json")
+        print(f"  {stage} z {z:.1f} seed {seed} {ft} group {box}: {res['time_s']:.0f} s", flush=True); return
     S = np.maximum(t["PRta"] - t["p1_Rb"], 1e-12)
     wk = C.white(grid, seed); dsk, Gk, linfo = C.lognormal_smooth(grid, wk, S / fs_exp ** 2); del wk
     acc_ref, acc_c, acc_rP, Mh, nh = paint(grid, ug, t, lM, W, b, seed, rare, list(dict.fromkeys(fl + flP)), flP,
@@ -175,6 +212,11 @@ def run_part(stage, z, seed, ft, N=384):
     run_jobs(jobs)
     kc = C.pk3d(grid, base, nbins=40, kmin=0.3)[0]; res["k3d"] = kc.tolist()
     del acc_c, acc_rP
+    if box == "base":
+        res["Mh"] = Mh; res["time_s"] = time.time() - t0
+        np.save(stem + "__acc_ref.npy", acc_ref); np.save(stem + "__dsk.npy", dsk)
+        tmp = stem + "__base.json.tmp"; json.dump(res, open(tmp, "w")); os.replace(tmp, stem + "__base.json")
+        print(f"  {stage} z {z:.1f} seed {seed} {ft} base: {res['time_s']:.0f} s; groups {[g['g'] for g in groups]}", flush=True); return
     # ---- forced boxes
     for gr in groups:
         if STOP["flag"]: break
@@ -192,6 +234,14 @@ def run_part(stage, z, seed, ft, N=384):
     print(f"{stage} z {z:.1f} seed {seed} {ft} N {N}: {res['time_s']:.0f} s; groups {[ (g['lM'], g['ng']) for g in groups]}; fs {fs:.4f} halos {nh}", flush=True)
 
 if __name__ == "__main__":
+    if sys.argv[1] == "one":                     # one part per process (macOS malloc keeps freed memory across parts)
+        st, z, seed, ft = sys.argv[2], float(sys.argv[3]), int(sys.argv[4]), sys.argv[5]; bx = sys.argv[6] if len(sys.argv) > 6 else None
+        run_part(st, z, seed, ft, N=256 if st == "res" else 384, box=bx); sys.exit(0)
+    if sys.argv[1] == "groups":                  # print the forced group ids of a base sub-part
+        st, z, seed, ft = sys.argv[2], float(sys.argv[3]), int(sys.argv[4]), sys.argv[5]; N = 256 if st == "res" else 384
+        nm = os.path.join(PARTS, f"{st}_z{z:.1f}_s{seed}_{ft}_N{N}")
+        if os.path.exists(nm + ".json"): print(""); sys.exit(0)
+        print(" ".join(str(g["g"]) for g in json.load(open(nm + "__base.json"))["groups"])); sys.exit(0)
     stage = sys.argv[1]; zs = [float(x) for x in sys.argv[2:]]
     for z in zs:
         if stage == "primary": seeds = (0, 1) if z in ANCH else (0,)
