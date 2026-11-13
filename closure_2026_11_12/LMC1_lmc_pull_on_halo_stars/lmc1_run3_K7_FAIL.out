@@ -1,0 +1,112 @@
+
+====================================================================================================
+K6 effective-mass bracket (before any simulation)
+====================================================================================================
+  [PASS] K6 (i) measured V^2 r / G at 8.7 kpc: 1.7006e+10 Msun
+  [PASS] K6 (i) upper end canonical: flat curve to the equal-field radius: V_MW(49.08) 178.2 km/s, r_eq 13.00 kpc, M 2.5414e+10 Msun (Jacobi variant, reported: r_J 17.86 kpc, M 3.4916e+10)
+  [PASS] K6 (ii) kernel on LMC baryons 3.2e+09 canonical: g_b,MW(49.08) = 3.8454e-12 m/s^2 (M_b(<r) 6.6446e+10), nu 5.4505, M_eff 1.7442e+10
+  [PASS] K6 (ii) kernel on LMC baryons 3.0e+09 canonical: g_b,MW(49.08) = 3.8454e-12 m/s^2 (M_b(<r) 6.6446e+10), nu 5.4505, M_eff 1.6352e+10
+  [PASS] K6 (iii) momentum, baryonic inertia canonical: m_LMC / m_MW = 3.2e9 / 6.6721e+10 = 0.0480; g_MW 2.0959e-11 m/s^2; equivalent M_eff 1.7370e+10
+  [PASS] K6 (i) upper end alt: flat curve to the equal-field radius: V_MW(49.08) 185.9 km/s, r_eq 11.94 kpc, M 2.3335e+10 Msun (Jacobi variant, reported: r_J 17.12 kpc, M 3.3457e+10)
+  [PASS] K6 (ii) kernel on LMC baryons 3.2e+09 alt: g_b,MW(49.08) = 3.8454e-12 m/s^2 (M_b(<r) 6.6446e+10), nu 5.9363, M_eff 1.8996e+10
+  [PASS] K6 (ii) kernel on LMC baryons 3.0e+09 alt: g_b,MW(49.08) = 3.8454e-12 m/s^2 (M_b(<r) 6.6446e+10), nu 5.9363, M_eff 1.7809e+10
+  [PASS] K6 (iii) momentum, baryonic inertia alt: m_LMC / m_MW = 3.2e9 / 6.6721e+10 = 0.0480; g_MW 2.2827e-11 m/s^2; equivalent M_eff 1.8918e+10
+
+====================================================================================================
+K1 integrator checks (static census-canonical field) and K4 LMC today
+====================================================================================================
+  [PASS] K1a circular 30 kpc energy: max |dE/E| 3.91e-10
+  [PASS] K1b circular stays circular: max |r/30 - 1| 4.13e-05
+  [PASS] K1c eccentric orbit energy: max |dE/E| 4.36e-05
+  [PASS] K1d LMC-track integrator, M = 0, 3 Gyr: max |dE/E| 1.73e-08
+  [PASS] K4 r_GC (A2.1): 49.082 kpc vs 49.7 (K13 position at their distance 50.1); position [-1.046, -40.616, -27.537] kpc
+  [PASS] K4 position components (A2.1): scaled K13 [-0.99, -40.583, -27.715]; max |diff| 0.178 kpc
+  [PASS] K4 speed: 320.09 vs 321 +/- 24 km/s
+  [PASS] K4 v_rad: 68.19 vs 64 +/- 7
+  [PASS] K4 v_tan: 312.74 vs 314 +/- 24
+
+====================================================================================================
+K5 sample check (real stars)
+====================================================================================================
+  [PASS] K5a TARGETID RVTAB == FIBERMAP: 6327 rows
+  [PASS] K5b counts: [865, 264, 241, 125]
+  [PASS] K5c dispersions: 97.244, 106.739, 92.617, 95.301
+  [PASS] K5d E0, z0: E0 11.809 km/s, z0 2.247
+  footprint pixels (nside 4, of 192) per bin: 20-30: 69, 30-40: 63, 40-55: 50, 55-80: 45
+
+====================================================================================================
+K3 relaxation without the LMC (labelled footings)
+====================================================================================================
+FW_census/canonical (initial beta 0.6): relaxed 5 Gyr; at t = 0 alpha(20-80) 4.984
+   bin 20-30: sigma(t) 94.37 94.95 94.57 94.34 95.25 94.13 94.70 94.30 95.01; trend drift +0.0009; beta(0) 0.615
+  [PASS] K3 drift FW_census/canonical 20-30: +0.0009
+  [PASS] K3 beta FW_census/canonical 20-30: 0.615 in (0.5, 0.85)
+   bin 30-40: sigma(t) 91.91 91.13 91.51 92.77 91.20 90.56 92.89 92.56 93.64; trend drift +0.0170; beta(0) 0.681
+  [PASS] K3 drift FW_census/canonical 30-40: +0.0170
+  [PASS] K3 beta FW_census/canonical 30-40: 0.681 in (0.5, 0.85)
+   bin 40-55: sigma(t) 91.76 90.63 92.77 92.27 89.90 91.74 91.56 91.83 93.38; trend drift +0.0104; beta(0) 0.724
+  [PASS] K3 drift FW_census/canonical 40-55: +0.0104
+  [PASS] K3 beta FW_census/canonical 40-55: 0.724 in (0.35, 0.85)
+   bin 55-80: sigma(t) 92.67 93.64 91.09 93.87 92.70 93.66 93.21 93.16 91.44; trend drift -0.0033; beta(0) 0.773
+  [PASS] K3 drift FW_census/canonical 55-80: -0.0033
+  [PASS] K3 beta FW_census/canonical 55-80: 0.773 in (0.35, 0.85)
+  [PASS] K3 alpha FW_census/canonical: 4.984
+FW_census/alt (initial beta 0.6): relaxed 5 Gyr; at t = 0 alpha(20-80) 4.959
+   bin 20-30: sigma(t) 97.44 98.52 98.78 98.64 98.66 97.36 98.44 98.68 98.08; trend drift +0.0014; beta(0) 0.605
+  [PASS] K3 drift FW_census/alt 20-30: +0.0014
+  [PASS] K3 beta FW_census/alt 20-30: 0.605 in (0.5, 0.85)
+   bin 30-40: sigma(t) 95.78 95.52 94.17 95.85 95.40 97.23 94.71 96.90 95.74; trend drift +0.0090; beta(0) 0.674
+  [PASS] K3 drift FW_census/alt 30-40: +0.0090
+  [PASS] K3 beta FW_census/alt 30-40: 0.674 in (0.5, 0.85)
+   bin 40-55: sigma(t) 95.03 95.39 95.33 96.31 96.00 95.34 96.02 96.86 96.12; trend drift +0.0127; beta(0) 0.715
+  [PASS] K3 drift FW_census/alt 40-55: +0.0127
+  [PASS] K3 beta FW_census/alt 40-55: 0.715 in (0.35, 0.85)
+   bin 55-80: sigma(t) 97.40 94.93 96.50 96.08 99.85 95.02 96.20 96.26 97.31; trend drift +0.0027; beta(0) 0.767
+  [PASS] K3 drift FW_census/alt 55-80: +0.0027
+  [PASS] K3 beta FW_census/alt 55-80: 0.767 in (0.35, 0.85)
+  [PASS] K3 alpha FW_census/alt: 4.959
+
+====================================================================================================
+Twins: with and without the LMC (labelled footings)
+====================================================================================================
+FW_census/canonical M_eff 1.60e+10 (low): LMC orbit r today 49.08, pericentre 47.43 kpc at -46 Myr, r(-2 Gyr) 240.1, r(-3 Gyr) 175.7, max 240.3
+   bin 20-30: q 1.00389 +/- 0.00493 (n 8431/8386; sigma 95.00 / 94.63); full-sky q 1.00080
+   bin 30-40: q 0.99298 +/- 0.00880 (n 2934/2912; sigma 91.60 / 92.24); full-sky q 1.01165
+   bin 40-55: q 1.01007 +/- 0.01358 (n 1421/1391; sigma 92.64 / 91.72); full-sky q 1.00303
+   bin 55-80: q 0.97250 +/- 0.01648 (n 696/704; sigma 90.73 / 93.30); full-sky q 1.00218
+   full-sky 50-80 kpc dipole 9.42 km/s toward l 67, b +39
+FW_census/canonical M_eff 2.50e+10 (central): LMC orbit r today 49.08, pericentre 47.42 kpc at -46 Myr, r(-2 Gyr) 233.9, r(-3 Gyr) 162.4, max 234.5
+   bin 20-30: q 1.00054 +/- 0.00535 (n 8437/8386; sigma 94.68 / 94.63); full-sky q 0.99912
+   bin 30-40: q 0.99599 +/- 0.00885 (n 2987/2912; sigma 91.87 / 92.24); full-sky q 1.01384
+   bin 40-55: q 1.01561 +/- 0.01622 (n 1431/1391; sigma 93.15 / 91.72); full-sky q 1.00799
+   bin 55-80: q 1.00565 +/- 0.02239 (n 702/704; sigma 93.83 / 93.30); full-sky q 1.01042
+   full-sky 50-80 kpc dipole 11.71 km/s toward l 71, b +43
+FW_census/canonical M_eff 4.00e+10 (high): LMC orbit r today 49.08, pericentre 47.38 kpc at -48 Myr, r(-2 Gyr) 223.4, r(-3 Gyr) 139.8, max 225.3
+   bin 20-30: q 1.00606 +/- 0.00618 (n 8486/8386; sigma 95.21 / 94.63); full-sky q 1.00251
+   bin 30-40: q 1.00741 +/- 0.01093 (n 3008/2912; sigma 92.93 / 92.24); full-sky q 1.01588
+   bin 40-55: q 1.03317 +/- 0.01779 (n 1458/1391; sigma 94.76 / 91.72); full-sky q 1.01692
+   bin 55-80: q 0.97001 +/- 0.02610 (n 718/704; sigma 90.50 / 93.30); full-sky q 1.01795
+   full-sky 50-80 kpc dipole 14.47 km/s toward l 73, b +52
+FW_census/alt M_eff 1.60e+10 (low): LMC orbit r today 49.08, pericentre 47.37 kpc at -48 Myr, r(-2 Gyr) 194.1, r(-3 Gyr) 67.8, max 204.3
+   bin 20-30: q 1.00222 +/- 0.00414 (n 8368/8339; sigma 97.34 / 97.12); full-sky q 1.00087
+   bin 30-40: q 0.99964 +/- 0.00833 (n 3008/3002; sigma 95.70 / 95.74); full-sky q 1.00071
+   bin 40-55: q 0.99497 +/- 0.01342 (n 1474/1475; sigma 96.99 / 97.48); full-sky q 1.01160
+   bin 55-80: q 1.00150 +/- 0.01772 (n 718/706; sigma 96.14 / 96.00); full-sky q 0.99813
+   full-sky 50-80 kpc dipole 5.20 km/s toward l 71, b +28
+FW_census/alt M_eff 2.50e+10 (central): LMC orbit r today 49.08, pericentre 47.35 kpc at -48 Myr, r(-2 Gyr) 187.6, r(-3 Gyr) 57.0, max 199.8
+   bin 20-30: q 0.99878 +/- 0.00457 (n 8423/8339; sigma 97.00 / 97.12); full-sky q 0.99777
+   bin 30-40: q 0.99184 +/- 0.00947 (n 3010/3002; sigma 94.95 / 95.74); full-sky q 1.00329
+   bin 40-55: q 1.00255 +/- 0.01507 (n 1486/1475; sigma 97.72 / 97.48); full-sky q 1.01201
+   bin 55-80: q 1.00470 +/- 0.02019 (n 725/706; sigma 96.45 / 96.00); full-sky q 1.01068
+   full-sky 50-80 kpc dipole 9.17 km/s toward l 72, b +36
+FW_census/alt M_eff 4.00e+10 (high): LMC orbit r today 49.08, pericentre 47.31 kpc at -50 Myr, r(-2 Gyr) 176.6, r(-3 Gyr) 47.5, max 192.7
+   bin 20-30: q 1.00307 +/- 0.00578 (n 8385/8339; sigma 97.42 / 97.12); full-sky q 1.00278
+   bin 30-40: q 0.99328 +/- 0.01097 (n 3043/3002; sigma 95.09 / 95.74); full-sky q 1.00075
+   bin 40-55: q 0.99700 +/- 0.01781 (n 1498/1475; sigma 97.18 / 97.48); full-sky q 1.02475
+   bin 55-80: q 0.98687 +/- 0.02466 (n 763/706; sigma 94.74 / 96.00); full-sky q 1.00782
+   full-sky 50-80 kpc dipole 13.02 km/s toward l 81, b +34
+  [PASS] K2 zero-mass twin equals the no-LMC state bitwise: max |dx| 0.0e+00 kpc, max |dv| 0.0e+00 kpc/Myr
+  [FAIL] K7 q error canonical central: 0.00535, 0.00885, 0.01622, 0.02239
+  [FAIL] K7 q error alt central: 0.00457, 0.00947, 0.01507, 0.02019
+
+KNOWN-ANSWER CHECK FAILED: K7 q error canonical central, K7 q error alt central. Stopping before any label.
