@@ -22,6 +22,7 @@ FRZ4 = os.path.join(REPO, "closure_2026_11_13", "FRZ4_forest_flux_graded")
 FRZ1 = os.path.join(REPO, "closure_2026_11_10", "FRZ1_forest_redistribution_at_z")
 CO1 = os.path.join(REPO, "closure_2026_11_09", "CO1_form_b_cosmology_computed")
 FOOT = sys.argv[1]; assert FOOT in ("canonical", "alt")
+A1 = "--A1" in sys.argv[2:]; SFX = "_A1" if A1 else ""     # AMENDMENT_A1.md (04460600b2): twins T3 and T4 redesigned
 OUT, OUTM = [], []
 def P(*a, m=False):
     s = " ".join(str(x) for x in a); print(s, flush=True); (OUTM if m else OUT).append(s)
@@ -45,7 +46,7 @@ NB = FD["NB"]; ZS = FD["zs"]; KS = FD["ks"]; PD = FD["Pd"]
 BINS = [float(z) for z in FD["ZB"]]; BID = np.array([BINS.index(float(z)) for z in ZS]); NZ = len(BINS)
 KP = 0.01                                                            # s/km, P1D3's pivot
 R0_BASE = 0.079 * HB                                                 # lambda_P = 79 comoving kpc -> Mpc/h
-RES = dict(lane="FRZ5", footing=FOOT, criteria="84ab155bc1", note="kappa = 1/2 FITTED; not theory closed. Adopts nothing.")
+RES = dict(lane="FRZ5", footing=FOOT, criteria="84ab155bc1", amendment="A1 04460600b2" if A1 else None, note="kappa = 1/2 FITTED; not theory closed. Adopts nothing.")
 P(f"[{FOOT}] FRZ5: {NB} points, {NZ} bins; F1A h {HB:.5f}; R0 = lambda_P = 79 ckpc = {R0_BASE:.5f} Mpc/h; computed flux bins {g4['ZCOMP']}")
 
 # ------------------------------------------------------------------ chi^2 machinery
@@ -255,8 +256,14 @@ fx = chi2_w(rT3); rf = refit(rT3)["dchi2"]; TW["T3_nuisance_shaped"] = dict(fixe
 p = ROWS["A_finf"]["refit"]; t4 = refit(CASE["A_finf"], free=("a", "R"))
 TW["T4_amplitude_frozen_A"] = dict(primary=p["dchi2"], amp_frozen=t4["dchi2"], primary_max_absA_minus1=p["max_absA_minus1"],
                                    bites=bool(t4["dchi2"] >= p["dchi2"] - 1e-9 and (t4["dchi2"] >= 1.25 * p["dchi2"] or p["max_absA_minus1"] < 1e-3)))
+if A1:
+    TW["T3_as_frozen_reported"] = TW.pop("T3_nuisance_shaped"); TW["T4_as_frozen_reported"] = TW.pop("T4_amplitude_frozen_A")
+    TW["T3_as_frozen_reported"]["counts"] = TW["T4_as_frozen_reported"]["counts"] = False
+    rT3a = 1.0 / N_of(np.zeros(NZ), np.full(NZ, 0.1), np.full(NZ, R0_BASE + 0.02), R0_BASE)
+    fx = chi2_w(rT3a); rf = refit(rT3a)["dchi2"]; TW["T3_nuisance_shaped"] = dict(A1=True, fixed=fx, refit=rf, bites=bool(fx > 100 and rf <= 1e-4))
+    t4a = refit(np.full(NB, 1.05), free=("a", "R")); TW["T4_amplitude_frozen_A"] = dict(A1=True, twin="T2 constant 1.05, every A_j frozen at 1", refit=t4a["dchi2"], bites=bool(t4a["dchi2"] > 4))
 for k, v in TW.items():
-    P(f"[{FOOT}] MUTATE {k}: " + json.dumps(v, default=float) + (" -> bites" if v["bites"] else " -> DOES NOT BITE"), m=True)
+    P(f"[{FOOT}] MUTATE {k}: " + json.dumps(v, default=float) + (" -> bites" if v["bites"] else (" -> does not bite (as frozen; reported, does not count under A1)" if v.get("counts") is False else " -> DOES NOT BITE")), m=True)
 RES["twins"] = TW
 
 # ------------------------------------------------------------------ labels
@@ -280,7 +287,7 @@ for c in CASE:
 RES["labels"] = LAB; RES["reading_S"] = "the gate has no forest nuisance parameter: the strict refit set is empty and the refit equals the fixed number"
 RES["seconds"] = time.time() - T0; RES["peak_rss_GB"] = rss()
 P(f"[{FOOT}] done {RES['seconds']:.0f} s, peak RSS {RES['peak_rss_GB']:.2f} GB")
-json.dump(RES, open(os.path.join(HERE, f"frz5_{FOOT}.json"), "w"), indent=1, default=float)
-open(os.path.join(HERE, f"frz5_{FOOT}.out"), "w").write("\n".join(OUT) + "\nkappa = 1/2 FITTED; not theory closed. Adopts nothing.\n")
-json.dump(dict(lane="FRZ5", footing=FOOT, twins=TW, note=RES["note"]), open(os.path.join(HERE, f"frz5_{FOOT}_MUTATE.json"), "w"), indent=1, default=float)
-open(os.path.join(HERE, f"frz5_{FOOT}_MUTATE.out"), "w").write("\n".join(OUTM) + "\nkappa = 1/2 FITTED; not theory closed. Adopts nothing.\n")
+json.dump(RES, open(os.path.join(HERE, f"frz5_{FOOT}{SFX}.json"), "w"), indent=1, default=float)
+open(os.path.join(HERE, f"frz5_{FOOT}{SFX}.out"), "w").write("\n".join(OUT) + "\nkappa = 1/2 FITTED; not theory closed. Adopts nothing.\n")
+json.dump(dict(lane="FRZ5", footing=FOOT, twins=TW, note=RES["note"]), open(os.path.join(HERE, f"frz5_{FOOT}{SFX}_MUTATE.json"), "w"), indent=1, default=float)
+open(os.path.join(HERE, f"frz5_{FOOT}{SFX}_MUTATE.out"), "w").write("\n".join(OUTM) + "\nkappa = 1/2 FITTED; not theory closed. Adopts nothing.\n")
