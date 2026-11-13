@@ -1,0 +1,132 @@
+{
+  "schema_version": 2,
+  "claim_id": "CP02_CLAMPED_GATE_COMPRESSION_compression512half",
+  "repository": {
+    "commit": "cace4617bb6a518bf910b56a4c0ee8bddce7fa07",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "research_closure_2026_11_12/closure_push_02/hamiltonian/compression_entry.py",
+    "research_closure_2026_11_12/closure_push_02/hamiltonian/compression512half/results.json",
+    "--N",
+    "512",
+    "--dt",
+    "0.000005",
+    "--tmax",
+    "0.004"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Finite periodic conserved-charge evolution of initially locally healthy clamped-gate data reaches D>0 with positive fixed-charge polarization Hessian and negative high-frequency density response; stop at first sampled crossing.",
+    "coefficient_domain": "IEEE float64 NumPy Fourier collocation and dense Newton; RK4 time evolution",
+    "conventions": "K=a0=Pi_c=1,C=1e6,gamma=1e-8,k0=1e4; Pi=DxP, n=H_Q+Pi; S=exp(-Pi_+^3), Gamma=gamma Pi_+^2/2; Poisson mean subtracted explicitly",
+    "inputs": [
+      "two disjoint smooth bump divergence profiles, Pi maximum .86",
+      "constraint-consistent low quadratic root, e_P mean=-.15/C",
+      "velocity=-.001 sin(theta)"
+    ],
+    "bounds": {
+      "N": 512,
+      "dt": 5e-06,
+      "tmax": 0.004,
+      "newton_iterations": 30,
+      "newton_tolerance": 1e-12,
+      "highband_fraction_limit": 0.001,
+      "Pi_absolute_limit": 5
+    },
+    "non_claims": [
+      "Not a full GR trajectory or cosmological formation test",
+      "Not a theorem of continuum regularity past instability",
+      "Clamping changes the literal gate; specified candidate only"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-12T17:16:33.857459+00:00",
+    "runtime_seconds": 42.377201,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 90.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "research_closure_2026_11_12/closure_push_02/hamiltonian/compression_entry.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/hamiltonian/compression_entry.py",
+      "sha256": "dea99af6c1f837d14502a00bb3807fd75e1b278ec9139cf50095d10bdb560bbe",
+      "sha256_after": "dea99af6c1f837d14502a00bb3807fd75e1b278ec9139cf50095d10bdb560bbe"
+    }
+  ],
+  "output_directory": "research_closure_2026_11_12/closure_push_02/hamiltonian/compression512half",
+  "declared_results": [
+    "research_closure_2026_11_12/closure_push_02/hamiltonian/compression512half/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/hamiltonian/compression512half/stdout.txt",
+      "sha256": "a0307694edaedf5f9832818df9170c2dfb327836a777bb9b98d1d22758ee1f4c",
+      "kind": "log"
+    },
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/hamiltonian/compression512half/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/hamiltonian/compression512half/results.json",
+      "sha256": "999014954f336a9f42f023fc88ef0b3b192709b745a314510cdf469bf2b7839d",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

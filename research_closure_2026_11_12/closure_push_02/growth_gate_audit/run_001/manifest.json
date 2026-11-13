@@ -1,0 +1,162 @@
+{
+  "schema_version": 2,
+  "claim_id": "CP02_CORRECTED_POLARIZATION_GROWTH_AND_EXACT_BBN",
+  "repository": {
+    "commit": "979b48e05d011f3314560e79f4e238b53aa11630",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "research_closure_2026_11_12/closure_push_02/growth_gate_audit/growth.py",
+    "--out",
+    "research_closure_2026_11_12/closure_push_02/growth_gate_audit/run_001"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Numerically integrate corrected NR coupled baryon-clock growth on recorded KD1 canonical/alt backgrounds from z1090 or100 with explicitly matched initial data; compare mu_B1a and historical mu_J to infinite-mu; independently reproduce frozen BBN background bound.",
+    "coefficient_domain": "float64 numerical ODE and exact analytic formulas evaluated in float64",
+    "conventions": "K=4piG,c=1,k is comoving Mpc^-1, mu physical Mpc^-1, derivative ln(a); smooth radiation background, pressureless baryons, gamma0, linear endpoint S=1 with flat first two Pi derivatives",
+    "inputs": [
+      "KD1 canonical and alt parameter record",
+      "matched equal-species Meszaros growing initial data or baryon-zero catchup at z1090 and100",
+      "k=0.2h,0.2,1,3h,20/3,2pi*h/0.42 Mpc^-1; optional diagnostic curve0.03..30",
+      "frozen BBN T0.1MeV, radiation budget0.067, Tcmb2.7255K, original homogeneous clock inventory"
+    ],
+    "bounds": {
+      "z_start": [
+        1090,
+        100
+      ],
+      "z_output": [
+        10,
+        3,
+        0
+      ],
+      "curve_k_count": 121,
+      "DOP853_rtol": 2e-11,
+      "DOP853_atol": 2e-12,
+      "independent_midpoint_steps": [
+        2048,
+        4096
+      ]
+    },
+    "non_claims": [
+      "Not a primordial transfer or Boltzmann/CMB/forest likelihood",
+      "No replacement mu threshold or changed frozen criterion",
+      "No nonlinear formation or general stability conclusion",
+      "Literal one-sided gamma switch has no unique Fourier Hessian at Pi0; gamma0 is separate smooth reference",
+      "BBN result conditional on same homogeneous branch and conserved inventory through specified epoch; thermal convention from original criterion"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-12T17:44:23.749308+00:00",
+    "runtime_seconds": 0.844215,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 55,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "research_closure_2026_11_12/closure_push_02/growth_gate_audit/growth.py",
+    "research_closure_2026_11_12/closure_push_02/growth_gate_audit/sources/03_kd1.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/growth_gate_audit/growth.py",
+      "sha256": "7e08df21eaaff22c3fd2e7bff75ad119697f8b02a47bd14194560e9681d3094b",
+      "sha256_after": "7e08df21eaaff22c3fd2e7bff75ad119697f8b02a47bd14194560e9681d3094b"
+    },
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/growth_gate_audit/sources/03_kd1.json",
+      "sha256": "d522d4c52d3a833bbae496859345d00aafc8221a08f453a3f99cb5a915cbe48d",
+      "sha256_after": "d522d4c52d3a833bbae496859345d00aafc8221a08f453a3f99cb5a915cbe48d"
+    }
+  ],
+  "output_directory": "research_closure_2026_11_12/closure_push_02/growth_gate_audit/run_001",
+  "declared_results": [
+    "research_closure_2026_11_12/closure_push_02/growth_gate_audit/run_001/results.json",
+    "research_closure_2026_11_12/closure_push_02/growth_gate_audit/run_001/canonical_z3_curve.npz",
+    "research_closure_2026_11_12/closure_push_02/growth_gate_audit/run_001/alt_z3_curve.npz"
+  ],
+  "outputs": [
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/growth_gate_audit/run_001/stdout.txt",
+      "sha256": "ee3b7b3901dd5690aded82f8e19b6ef974d598c6c9a04011ccd9005d3172ff12",
+      "kind": "log"
+    },
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/growth_gate_audit/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/growth_gate_audit/run_001/results.json",
+      "sha256": "970928b3da4b89bca00cceffa663097f3e6e828cdc86f18cd49ec840ae0aaa28",
+      "kind": "result"
+    },
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/growth_gate_audit/run_001/canonical_z3_curve.npz",
+      "sha256": "3cede940e7e149b9726d5d7fd99f92002c1526639b833c30c74841d5387fec71",
+      "kind": "result"
+    },
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/growth_gate_audit/run_001/alt_z3_curve.npz",
+      "sha256": "7914c45b5461882dab16cbf408a773277e499287d6a2505798a63ee05279c633",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "schema_version": 2,
+  "claim_id": "COSMOLOGY_NEWTONIAN_COLD_REFERENCE_CENTRAL_130",
+  "repository": {
+    "commit": "2ffc012fa56dcdcbb4b3d5f169ba757fe482bcb8",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "research_closure_2026_11_12/combined_route/cosmology_diagnostic/cold_shells.py",
+    "--n",
+    "130",
+    "--central",
+    "--rtol",
+    "2e-10",
+    "--atol",
+    "1e-12",
+    "--output",
+    "research_closure_2026_11_12/combined_route/cosmology_diagnostic/central_130"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "The specified Newtonian cold-shell equations reproduce r proportional to a without a central excess; prescribed nonnegative Plummer source is followed only through first central focusing or finite shell crossing.",
+    "coefficient_domain": "real IEEE float64, numerical DOP853 ODE",
+    "conventions": "kpc,Gyr,Msun; physical radius r=initial_radius*u; exact initial enclosed cold mass; Omega_c .26, Omega_b .05, Omega_Lambda .69; initial z10; baryon excess 10^10.45 Msun ramped over1Gyr; Plummer epsilon1kpc",
+    "inputs": [
+      "positive shell labels 1..2000 kpc",
+      "analytic central-limit marker",
+      "homogeneous cold+baryon background with Lambda"
+    ],
+    "bounds": {
+      "n": 130,
+      "rtol": 2e-10,
+      "atol": 1e-12,
+      "initial_z": 10,
+      "max_parameter_time_Gyr": 100,
+      "stop_at_first_central_focusing": true,
+      "no_post_caustic_evolution": true,
+      "central": true
+    },
+    "non_claims": [
+      "Not exact DT2/v3 conserved charge transport",
+      "No EFE or halo equilibrium derived",
+      "No predictive mass retention or baryonic assembly law",
+      "No interpretation of inward acceleration alone as collapse"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-12T16:34:05.715121+00:00",
+    "runtime_seconds": 1.181413,
+    "exit_status": 1,
+    "status": "failed",
+    "timeout_seconds": 60.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 55,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [
+      "research_closure_2026_11_12/combined_route/cosmology_diagnostic/central_130/results.json",
+      "research_closure_2026_11_12/combined_route/cosmology_diagnostic/central_130/trajectory.npz"
+    ],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "research_closure_2026_11_12/combined_route/cosmology_diagnostic/cold_shells.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "research_closure_2026_11_12/combined_route/cosmology_diagnostic/cold_shells.py",
+      "sha256": "0de95b6f05439e448c77ba3896e868984a6046b7684ff6f28b925cf77ec80657",
+      "sha256_after": "0de95b6f05439e448c77ba3896e868984a6046b7684ff6f28b925cf77ec80657"
+    }
+  ],
+  "output_directory": "research_closure_2026_11_12/combined_route/cosmology_diagnostic/central_130",
+  "declared_results": [
+    "research_closure_2026_11_12/combined_route/cosmology_diagnostic/central_130/results.json",
+    "research_closure_2026_11_12/combined_route/cosmology_diagnostic/central_130/trajectory.npz"
+  ],
+  "outputs": [
+    {
+      "path": "research_closure_2026_11_12/combined_route/cosmology_diagnostic/central_130/stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "research_closure_2026_11_12/combined_route/cosmology_diagnostic/central_130/stderr.txt",
+      "sha256": "7ac599fee9ce5cbdd2c1c084876bfdd7bcb149c94ddbe16d32cf3ef75c5f5667",
+      "kind": "log"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": false
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": false
+    }
+  ],
+  "result": "Run failed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget.",
+    "Declared results were not produced: research_closure_2026_11_12/combined_route/cosmology_diagnostic/central_130/results.json, research_closure_2026_11_12/combined_route/cosmology_diagnostic/central_130/trajectory.npz"
+  ]
+}

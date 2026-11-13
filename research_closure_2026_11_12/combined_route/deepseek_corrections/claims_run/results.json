@@ -1,0 +1,142 @@
+{
+  "section": "all",
+  "checks": [
+    {
+      "name": "G238 local-density identity includes dlog(p)/dlog(r)",
+      "passed": true,
+      "measured": {
+        "p": "r/(b + r)",
+        "local_density_slope": "-2",
+        "mean_density_slope": "r/(b + r) - 3"
+      }
+    },
+    {
+      "name": "G238 original finite-radius slope counterexample detected",
+      "passed": true,
+      "measured": "-b/(b + r)"
+    },
+    {
+      "name": "G238 log-fit recovers an exact power law",
+      "passed": true,
+      "measured": [
+        0.7000000000000035,
+        0.7999999999999975
+      ]
+    },
+    {
+      "name": "G240 physical/Newtonian external fields match constitutively",
+      "passed": true,
+      "measured": {
+        "y_newtonian": 0.01273,
+        "x_physical": 0.11937169548747985
+      }
+    },
+    {
+      "name": "AQUAL effective density independently differentiated from potential",
+      "passed": true,
+      "measured": "L*(3*L*u**2*(u**2 - 1) + (3*u**2 - 1)*(-L*(u**2 - 1) + 1))/(-L*(u**2 - 1) + 1)**(5/2)"
+    },
+    {
+      "name": "AQUAL EFE source changes sign and has zero shell monopole",
+      "passed": true,
+      "measured": {
+        "equator": -0.34290709066861047,
+        "pole": 1.7867166090250401,
+        "angular_average": -8.93450352763836e-15
+      }
+    },
+    {
+      "name": "AQUAL solid-angle Green integral matches closed form",
+      "passed": true,
+      "measured": {
+        "quadrature": 7.512472337694454,
+        "analytic": 7.512472337694459
+      }
+    },
+    {
+      "name": "QUMOND finite-radius flux approaches its own asymptote",
+      "passed": true,
+      "measured": {
+        "flux_at_r1000": 7.902356378933627,
+        "analytic": 7.902356380078488
+      }
+    },
+    {
+      "name": "Original small-field AQUAL Green benchmark is rejected",
+      "passed": true,
+      "measured": {
+        "correct": 62.625294486597056,
+        "historical": 21.42
+      }
+    },
+    {
+      "name": "G241 constitutive inverse identity, restricted to supplied algebraic map",
+      "passed": true,
+      "measured": "0"
+    },
+    {
+      "name": "G242 fixed-mass fails while conditional growth opens ratio inequality",
+      "passed": true,
+      "measured": {
+        "fixed_mass": 0.6087047874275476,
+        "need": 0.5599999999999999,
+        "at_growth3": 0.5068582366493495,
+        "growth_threshold": 1.649347409788031
+      }
+    },
+    {
+      "name": "G242 cancellation leaves coherence-scale dependence",
+      "passed": true,
+      "measured": {
+        "radius": "sqrt(M)/(sqrt(R)*sqrt(rho))",
+        "coherence_log_elasticity": "-1/2"
+      }
+    }
+  ],
+  "g238": {
+    "p": 0.9111896511179142,
+    "sigma_p_diagonal_only": 0.04188852116523661,
+    "mean_enclosed_density_power_law_slope": -2.088810348882086,
+    "local_density_slope": null,
+    "covariance_available": false,
+    "interpretation": "Descriptive power-law mass fit; no calibrated significance or local density falsifier"
+  },
+  "g241": {
+    "general_modified_inertia_efe": "not derived",
+    "unique_aqual_completion": "not derived",
+    "lensing_exclusion_scope": "baryons-only GR metric plus inertia-only changes; no universal MI exclusion",
+    "removed_checks": [
+      "M_QUM returning M_MI",
+      "hard-coded True for field ontology implies AQUAL"
+    ],
+    "source": "Milgrom astro-ph/9303012v1 section IV equations 53-55: circular orbits only"
+  },
+  "g242": {
+    "ratio_condition_only": true,
+    "growth_threshold": 1.649347409788031,
+    "growth_computed": false,
+    "fixed_mass_pass": false,
+    "absolute_normalization_pass": null,
+    "forest_likelihood_pass": null,
+    "kids_likelihood_pass": null,
+    "efe_equals_settled_radius": "unproved",
+    "coherence_scale": "assumed; controls absolute radius and history if evolving",
+    "population_mapping": "forest and lensing samples not shown to be progenitor-descendant populations"
+  },
+  "aqual": {
+    "x_physical": 0.11937169548747985,
+    "y_newtonian": 0.01273,
+    "L": 0.8933583045125201,
+    "monopole": 7.512472337694459,
+    "qumond_monopole": 7.902356380078488,
+    "negative_source_belt_abs_cos_lt": 0.697355479377416,
+    "local_density": "M L ((3+L)cos(theta)^2-(1+L))/(4 pi mu_e r^3 (1+L sin(theta)^2)^(5/2))",
+    "interpretation": "signed effective source, not a nonnegative cold-mass density"
+  },
+  "theory_closed": false,
+  "non_claims": [
+    "No PDE rerun in this script",
+    "No data covariance recovered",
+    "No new empirical pass"
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "claim_id": "COSMOLOGY_REFERENCE_REGRESSION",
+  "mathematics": {
+    "assertion_tested": "Original missing-background, wrong inner-face homology and half-cell mass fail direct exact witnesses; regularized solver matches analytic Kepler central freefall; accepted homogeneous and central numerical runs satisfy scoped checks.",
+    "coefficient_domain": "real IEEE float64, numerical DOP853 ODE",
+    "conventions": "kpc,Gyr,Msun; physical radius r=initial_radius*u; exact initial enclosed cold mass; Omega_c .26, Omega_b .05, Omega_Lambda .69; initial z10; baryon excess 10^10.45 Msun ramped over1Gyr; Plummer epsilon1kpc",
+    "inputs": [
+      "positive shell labels 1..2000 kpc",
+      "analytic central-limit marker",
+      "homogeneous cold+baryon background with Lambda"
+    ],
+    "bounds": {
+      "n": [
+        130,
+        260
+      ],
+      "kepler_rtol": 2e-13,
+      "kepler_atol": 1e-15,
+      "background_scale_probes": [
+        0.09090909090909091,
+        0.2,
+        0.5,
+        1
+      ]
+    },
+    "non_claims": [
+      "Not exact DT2/v3 conserved charge transport",
+      "No EFE or halo equilibrium derived",
+      "No predictive mass retention or baryonic assembly law",
+      "No interpretation of inward acceleration alone as collapse"
+    ]
+  },
+  "execution_artifacts": [
+    "research_closure_2026_11_12/combined_route/cosmology_diagnostic/cold_shells.py",
+    "research_closure_2026_11_12/combined_route/cosmology_diagnostic/regression_checks.py",
+    "research_closure_2026_11_12/combined_route/cosmology_diagnostic/homogeneous/results.json",
+    "research_closure_2026_11_12/combined_route/cosmology_diagnostic/central_130_strict/results.json",
+    "research_closure_2026_11_12/combined_route/cosmology_diagnostic/central_260_strict/results.json",
+    "research_closure_2026_11_12/combined_route/cosmology_diagnostic/central_260_strict/trajectory.npz"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

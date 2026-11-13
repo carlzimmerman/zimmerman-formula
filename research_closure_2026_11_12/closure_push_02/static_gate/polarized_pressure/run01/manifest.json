@@ -1,0 +1,154 @@
+{
+  "schema_version": 2,
+  "claim_id": "CP02_POLARIZED_PRESSURE_AND_MU_CAP",
+  "repository": {
+    "commit": "979b48e05d011f3314560e79f4e238b53aa11630",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "research_closure_2026_11_12/closure_push_02/static_gate/polarized_pressure/check.py",
+    "--output",
+    "research_closure_2026_11_12/closure_push_02/static_gate/polarized_pressure/run01/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "scipy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Retain full static rho+trace pressure and subtract polarization divergence on the accepted quiet annulus for minimum-moment band Gamma; verify constitutive correction stays tiny. Independently solve the finite-Qband raw lapse necessary mu upper bound as a scalar root at explicit Lambda benchmarks.",
+    "coefficient_domain": "IEEE float64 bounded SciPy BVP, quadrature and scalar root",
+    "conventions": "c1,K4piG; mu and Lambda inMpc^-1/Mpc^-2; a=a0/c²; masses normalizedbybaryonmass. OriginalW andone-sidedstiffness retained.",
+    "inputs": [
+      "Canonical1e11Msun,uR4,Lstar22pc annulus",
+      "Minimum-momentGamma_uu=Bband max(Suu,0),rectangularQband",
+      "delta=1/mu²; Lambda=0,1e-7,1.1e-7 benchmark"
+    ],
+    "bounds": {
+      "radial_samples": 12001,
+      "radial_x": [
+        1,
+        60
+      ],
+      "BVP_tolerance": 5e-07,
+      "BVP_maxnodes": 15000,
+      "root_bracket_mu": [
+        198.25,
+        1000
+      ],
+      "Lambda": [
+        0,
+        1e-07,
+        1.1e-07
+      ]
+    },
+    "non_claims": [
+      "Not a solve for a substantially deformed repaired-action halo",
+      "Does not exclude all deformed low-mu configurations from quietP residual",
+      "Coefficient cap conditional on target,energyceiling andrectangularstate-domainhealthcriterion",
+      "No universaltheory no-go; no newempiricalfit",
+      "Lambda choices are explicit benchmark parameters"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-12T17:47:10.771514+00:00",
+    "runtime_seconds": 0.627064,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 40.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "research_closure_2026_11_12/closure_push_02/static_gate/polarized_pressure/check.py",
+    "research_closure_2026_11_12/closure_push_02/static_gate/check_physical_annulus.py",
+    "research_closure_2026_11_12/closure_push_02/static_gate/matching/run01/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/static_gate/polarized_pressure/check.py",
+      "sha256": "14c0b8d682bc095ed07fc5df3d34d93c1cec6a63eb3539e6f72af4ba3a756a33",
+      "sha256_after": "14c0b8d682bc095ed07fc5df3d34d93c1cec6a63eb3539e6f72af4ba3a756a33"
+    },
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/static_gate/check_physical_annulus.py",
+      "sha256": "d53bac320ea3c04e1a728431862817c8230c574ec302b45f569a7e073373c1a9",
+      "sha256_after": "d53bac320ea3c04e1a728431862817c8230c574ec302b45f569a7e073373c1a9"
+    },
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/static_gate/matching/run01/results.json",
+      "sha256": "e245ee824c60bab0f9f812f4ecffb0c40d3a49b55ae6fec2c4848ac8cd6be18e",
+      "sha256_after": "e245ee824c60bab0f9f812f4ecffb0c40d3a49b55ae6fec2c4848ac8cd6be18e"
+    }
+  ],
+  "output_directory": "research_closure_2026_11_12/closure_push_02/static_gate/polarized_pressure/run01",
+  "declared_results": [
+    "research_closure_2026_11_12/closure_push_02/static_gate/polarized_pressure/run01/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/static_gate/polarized_pressure/run01/stdout.txt",
+      "sha256": "fffb0fde3000e1514301c3be9f1e02bdf4eaa1ddb2ab46220276d3ac26490c9d",
+      "kind": "log"
+    },
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/static_gate/polarized_pressure/run01/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/static_gate/polarized_pressure/run01/results.json",
+      "sha256": "fffb0fde3000e1514301c3be9f1e02bdf4eaa1ddb2ab46220276d3ac26490c9d",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

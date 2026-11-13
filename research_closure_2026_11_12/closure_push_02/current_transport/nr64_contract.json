@@ -1,0 +1,57 @@
+{
+  "claim_id": "CP02_NR_NR64",
+  "mathematics": {
+    "assertion_tested": "Closed leading NR gated charge evolution preserves global charge and Reynolds moving-boundary balance, solves nonlinear polarization constraint, evolves nonuniform density; optional independent linear growth prediction.",
+    "coefficient_domain": "float64 periodic Fourier collocation and RK4; Newton solve of polarization",
+    "conventions": "c=1 dimensionless; physical QX17 W; H=C x^2 exp(-Pi/Pic); gamma=0; zero-mean Poisson source required on periodic domain, a prescribed compatibility background",
+    "inputs": [
+      "C500,K.01,a0.1,Pic10",
+      "smooth periodic density and velocity",
+      "moving interval radius1.2+.08sin(t)"
+    ],
+    "bounds": {
+      "N": 64,
+      "dt": 0.0025,
+      "mean": 1,
+      "linear": false,
+      "t_final": 1,
+      "newton_residual_max": 2e-13
+    },
+    "non_claims": [
+      "No expanding cosmology",
+      "No full relativistic equations or exact current conservation beyond leading Newtonian order",
+      "No UV stability or nonlinear wellposedness theorem",
+      "No EFE mass identification or physical normalization selection"
+    ]
+  },
+  "execution_artifacts": [
+    "research_closure_2026_11_12/closure_push_02/current_transport/nr_transport.py"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.2"
+    },
+    {
+      "name": "scipy",
+      "version": "1.11.4"
+    },
+    {
+      "name": "sympy",
+      "version": "1.14.0"
+    },
+    {
+      "name": "mpmath",
+      "version": "1.3.0"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

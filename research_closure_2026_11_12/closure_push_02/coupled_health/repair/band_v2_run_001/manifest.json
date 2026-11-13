@@ -1,0 +1,138 @@
+{
+  "schema_version": 2,
+  "claim_id": "CP02_REPAIR_RECTANGULAR_Q_BAND",
+  "repository": {
+    "commit": "a98a7670ef12f61ceec75dbc9453a604cc1685d1",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "research_closure_2026_11_12/closure_push_02/coupled_health/repair/check_band_bound.py",
+    "research_closure_2026_11_12/closure_push_02/coupled_health/repair/band_v2_run_001/result.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "sympy",
+        "version": "1.14.0"
+      },
+      {
+        "name": "mpmath",
+        "version": "1.3.0"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Exact monotonicity identity and bounded high-precision arithmetic support the necessary finite-Q-band pressure bound for the same perspective compensation repair.",
+    "coefficient_domain": "SymPy exact algebra and70-digit mpmath",
+    "conventions": "Q andPi independently range over1<=Q<=qmax,Pi>=0;C=mu²/(2K);sameweakpotentialQmappingandimportedenergyceilings",
+    "inputs": [
+      "Pinned canonical matching rows",
+      "f(t)=(1-exp(-t))/t, delta ceiling andfinite-u pressuremoment"
+    ],
+    "bounds": {
+      "mu_cases": 2,
+      "scale_witnesses_per_case": 4,
+      "precision_decimal": 70
+    },
+    "non_claims": [
+      "No exclusion of arbitrarycorrelatedQ(Pi)domains",
+      "No low-mu pressure exclusion fromthisbound",
+      "No staticorcosmologicalevolution"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-12T17:34:27.681958+00:00",
+    "runtime_seconds": 0.3274,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": 25,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "research_closure_2026_11_12/closure_push_02/coupled_health/repair/check_band_bound.py",
+    "research_closure_2026_11_12/closure_push_02/coupled_health/repair/BAND_BOUND.md",
+    "research_closure_2026_11_12/closure_push_02/static_gate/matching/run01/results.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/coupled_health/repair/check_band_bound.py",
+      "sha256": "56cabd904209775335b6fceaba5f525773250c3d8af54419b58a8362c03954ad",
+      "sha256_after": "56cabd904209775335b6fceaba5f525773250c3d8af54419b58a8362c03954ad"
+    },
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/coupled_health/repair/BAND_BOUND.md",
+      "sha256": "81bcab79fda467b22c0e789f0cf00d34c0ed27b8bc4bbfe6c28ba2d504070d8e",
+      "sha256_after": "81bcab79fda467b22c0e789f0cf00d34c0ed27b8bc4bbfe6c28ba2d504070d8e"
+    },
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/static_gate/matching/run01/results.json",
+      "sha256": "e245ee824c60bab0f9f812f4ecffb0c40d3a49b55ae6fec2c4848ac8cd6be18e",
+      "sha256_after": "e245ee824c60bab0f9f812f4ecffb0c40d3a49b55ae6fec2c4848ac8cd6be18e"
+    }
+  ],
+  "output_directory": "research_closure_2026_11_12/closure_push_02/coupled_health/repair/band_v2_run_001",
+  "declared_results": [
+    "research_closure_2026_11_12/closure_push_02/coupled_health/repair/band_v2_run_001/result.json"
+  ],
+  "outputs": [
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/coupled_health/repair/band_v2_run_001/stdout.txt",
+      "sha256": "3b4006a7e2d2cf6b82b80c43d7e2dc553c4125e0ef80c3fbfd414d9121ab7756",
+      "kind": "log"
+    },
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/coupled_health/repair/band_v2_run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "research_closure_2026_11_12/closure_push_02/coupled_health/repair/band_v2_run_001/result.json",
+      "sha256": "3b4006a7e2d2cf6b82b80c43d7e2dc553c4125e0ef80c3fbfd414d9121ab7756",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them.",
+    "The POSIX CPU-time limit is per process, not an aggregate descendant budget."
+  ]
+}

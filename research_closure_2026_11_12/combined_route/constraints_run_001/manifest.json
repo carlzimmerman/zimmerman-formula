@@ -1,0 +1,136 @@
+{
+  "schema_version": 2,
+  "claim_id": "COMBINED_RETENTION_EFE_CONDITIONS",
+  "repository": {
+    "commit": "2ffc012fa56dcdcbb4b3d5f169ba757fe482bcb8",
+    "dirty": true
+  },
+  "command": [
+    "python3",
+    "research_closure_2026_11_12/combined_route/combined_constraints.py",
+    "research_closure_2026_11_12/combined_route/constraints_run_001/results.json"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.2"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.11.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Evaluate necessary joint mass/extent/history conditions; cross-check positive spherical equilibrium identities.",
+    "coefficient_domain": "IEEE double precision; analytic identities in companion derivation.",
+    "conventions": "AQUAL simple mu; x physical, y Newtonian; Xc excess; R=5.41. Surrogate dimensionless G=Mb=rM=1.",
+    "inputs": [
+      "Constants and explicit hypotheses in pinned driver"
+    ],
+    "bounds": {
+      "target_Xc": 59.5,
+      "redshifts": [
+        2.5,
+        0.3
+      ],
+      "mass_Msun": [
+        1000000000.0,
+        10000000000.0,
+        100000000000.0
+      ],
+      "surrogate_radial_grid": [
+        1e-06,
+        1000000.0,
+        2001
+      ]
+    },
+    "non_claims": [
+      "No evolution predicting retention or environment.",
+      "No exact AQUAL identity with positive rest mass.",
+      "Surrogate equilibrium is not a field-action completion or stability certificate."
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-12T16:23:40.101926+00:00",
+    "runtime_seconds": 0.506069,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "research_closure_2026_11_12/combined_route/combined_constraints.py"
+  ],
+  "input_artifacts": [
+    {
+      "path": "research_closure_2026_11_12/combined_route/combined_constraints.py",
+      "sha256": "050f7b657ecedcf0dfa367108f569094b95a91e48ca41c217444ab02aa882413",
+      "sha256_after": "050f7b657ecedcf0dfa367108f569094b95a91e48ca41c217444ab02aa882413"
+    }
+  ],
+  "output_directory": "research_closure_2026_11_12/combined_route/constraints_run_001",
+  "declared_results": [
+    "research_closure_2026_11_12/combined_route/constraints_run_001/results.json"
+  ],
+  "outputs": [
+    {
+      "path": "research_closure_2026_11_12/combined_route/constraints_run_001/stdout.txt",
+      "sha256": "77bee76af6989e510f07ab2b7cc0424462c9d93189863e43f4dd4378e82418a7",
+      "kind": "log"
+    },
+    {
+      "path": "research_closure_2026_11_12/combined_route/constraints_run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "research_closure_2026_11_12/combined_route/constraints_run_001/results.json",
+      "sha256": "711c85be0a36dd9d149f3394e823d4550d60016dec2e1a053280ed9d9bd9fefc",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
