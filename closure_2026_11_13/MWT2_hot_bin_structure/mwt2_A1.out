@@ -1,0 +1,127 @@
+
+==============================================================================================================
+Known answers K0 (RAW1 reproduced, nothing removed) and K2 (SI)
+==============================================================================================================
+  RAW1 files read-only: raw1.py sha256 60fa5c20b877ed6b..., raw1_model.py 37925777a908cffc...; data sha256 5669c8212bf122d2... (matches)
+  a0 as in raw1_model.py: canonical 9.360e-11, alt 1.130e-10 m/s^2; no external field (RAW1's reading)
+  [PASS] K2 SI: M = g r^2 / G at 30 kpc (FW census canonical): g = 3.6111e-11 m/s^2, M = 2.3311e+11 Msun, V = sqrt(g r) = 182.8 km/s
+  [PASS] K0 counts: [865, 264, 241, 125]
+  [PASS] K0 sigma_los: 97.244  106.739  92.617  95.301 (max diff 0.0e+00)
+  [PASS] K0 alpha, beta: alpha 5.2886 +/- 0.1691; beta 0.6586 +/- 0.0175
+  [PASS] K0 f FW_census/canonical: 1.095+/-0.035  1.205+/-0.058  1.052+/-0.053  1.090+/-0.106 (max diff 0.0e+00)
+  [PASS] K0 f FW_census/alt: 1.052+/-0.034  1.155+/-0.056  1.007+/-0.051  1.043+/-0.102 (max diff 0.0e+00)
+  [PASS] K0 f FW_rc/canonical: 1.028+/-0.033  1.135+/-0.055  0.992+/-0.050  1.030+/-0.100 (max diff 0.0e+00)
+  [PASS] K0 f FW_rc/alt: 1.012+/-0.032  1.114+/-0.054  0.972+/-0.049  1.007+/-0.098 (max diff 0.0e+00)
+  [PASS] K0 f H: 1.068+/-0.035  1.142+/-0.055  0.997+/-0.050  1.050+/-0.099 (max diff 0.0e+00)
+  [PASS] K0 f N: 2.064+/-0.061  2.662+/-0.125  2.664+/-0.131  3.164+/-0.278 (max diff 0.0e+00)
+
+==============================================================================================================
+K1 machinery: mixture f with w = 0 equals RAW1's fit_f; two-Gaussian recovery on a synthetic sample
+==============================================================================================================
+  [PASS] K1a mixture f (w = 0) == RAW1 fit_f: 0.94966555/0.03957036 vs 0.94966555/0.03957036
+  [PASS] K1b two-Gaussian recovery (w_g, mu_g, s_g, mu_h, s_h) within 3 bootstrap sigma: est 0.30, 116.54, 19.07, 7.15, 91.34 / true 0.3, 120, 20, 0, 90 / sigma 0.04, 2.73, 2.32, 7.05, 3.71
+
+==============================================================================================================
+(a) one Gaussian against two, every bin (parametric bootstrap B = 1000; dispersion floor 5 km/s)
+==============================================================================================================
+  20-30: N 865; one Gaussian mu +1.2 sigma 97.24; two: group w 0.011 [0.01,0.07] mu -224.9 [-226,+101] s 22.9 [5,29] | halo w 0.989 mu +3.8 [-2,+6] s 94.7 [93,101]; LR 3.41 (null 95/99 pct 11.39/15.04); p 0.8571; minor weight 0.011 (9.9 stars) -> one component
+  30-40: N 264; one Gaussian mu +0.2 sigma 106.74; two: group w 0.118 [0.09,0.15] mu -168.2 [-177,-160] s 20.3 [14,24] | halo w 0.882 mu +22.7 [+16,+30] s 92.5 [87,96]; LR 26.71 (null 95/99 pct 11.26/14.64); p 0.0010; minor weight 0.118 (31.1 stars) -> TWO COMPONENTS
+  40-55: N 241; one Gaussian mu +6.3 sigma 92.62; two: group w 0.083 [0.07,0.16] mu +11.8 [-142,+22] s 5.0 [5,34] | halo w 0.917 mu +5.8 [-1,+29] s 96.7 [77,98]; LR 10.21 (null 95/99 pct 11.53/14.19); p 0.0789; minor weight 0.083 (19.9 stars) -> one component
+  55-80: N 125; one Gaussian mu -21.6 sigma 95.30; two: group w 0.084 [0.05,0.39] mu -65.5 [-132,+136] s 9.4 [5,43] | halo w 0.916 mu -17.4 [-39,+1] s 98.5 [70,99]; LR 3.43 (null 95/99 pct 10.48/13.41); p 0.7453; minor weight 0.084 (10.5 stars) -> one component
+  [434 s]
+
+==============================================================================================================
+(a) brackets: dispersion floor 3 and 10 km/s (B = 300 each), threshold 0.05 / 0.001, minor weight 0.05 / 0.15
+==============================================================================================================
+  floor 3: 20-30 LR 3.41 p 0.8837 w_minor 0.011 group mu -224.9 s 22.9 -> one
+  floor 3: 30-40 LR 26.71 p 0.0033 w_minor 0.118 group mu -168.2 s 20.3 -> TWO
+  floor 3: 40-55 LR 10.46 p 0.0664 w_minor 0.077 group mu +11.2 s 3.2 -> one
+  floor 3: 55-80 LR 3.43 p 0.8339 w_minor 0.084 group mu -65.5 s 9.4 -> one
+  floor 10: 20-30 LR 3.41 p 0.7276 w_minor 0.011 group mu -224.9 s 22.9 -> one
+  floor 10: 30-40 LR 26.71 p 0.0033 w_minor 0.118 group mu -168.2 s 20.3 -> TWO
+  floor 10: 40-55 LR 8.58 p 0.0963 w_minor 0.095 group mu +14.4 s 10.0 -> one
+  floor 10: 55-80 LR 3.42 p 0.7209 w_minor 0.086 group mu -65.4 s 10.0 -> one
+  20-30: p<0.05 -> one; p<0.001 -> one; wmin 0.05 -> one; wmin 0.15 -> one
+  30-40: p<0.05 -> TWO; p<0.001 -> TWO; wmin 0.05 -> TWO; wmin 0.15 -> one
+  40-55: p<0.05 -> one; p<0.001 -> one; wmin 0.05 -> one; wmin 0.15 -> one
+  55-80: p<0.05 -> one; p<0.001 -> one; wmin 0.05 -> one; wmin 0.15 -> one
+  [653 s]
+
+==============================================================================================================
+(b) identity of the candidate group (smaller-dispersion component), every bin; graded only where (a) says TWO COMPONENTS
+==============================================================================================================
+  20-30 [forced (not TWO COMPONENTS)] split at 0.5: group 4 / halo 861 stars; family p SKY NOT EVALUABLE, DISTANCE NOT EVALUABLE, CHEMISTRY NOT EVALUABLE, TANGENTIAL NOT EVALUABLE -> not distinct
+     tests: sky_meanvec p nan (4/861); sky_absBsgr p nan (4/861); sky_knn5 p nan (4/861); sky_lamSgr p nan (4/861); dist_r p nan (4/861); chem_feh p nan (4/843); tan_vphi p nan (4/850); tan_vt p nan (4/850)
+     medians group / halo: r 22.6 / 23.4 kpc; |B_Sgr| 38.8 / 32.3 deg; [Fe/H] -1.87 / -1.92; v_phi -55 / -3 km/s; group (l, b) median (82, +38)
+  30-40 [graded] cores 0.8 / 0.2: group 24 / halo 222 stars; family p SKY 0.1379, DISTANCE 0.1884, CHEMISTRY 0.2239, TANGENTIAL 0.5737 -> not distinct
+     tests: sky_meanvec p 0.2004 (24/222); sky_absBsgr p 0.0565 (24/222); sky_knn5 p 0.3288 (24/222); sky_lamSgr p 0.0345 (24/222); dist_r p 0.1884 (24/222); chem_feh p 0.2239 (23/206); tan_vphi p 0.2869 (24/219); tan_vt p 0.8946 (24/219)
+     medians group / halo: r 35.8 / 33.9 kpc; |B_Sgr| 27.4 / 32.3 deg; [Fe/H] -2.22 / -2.11; v_phi +11 / -7 km/s; group (l, b) median (92, +23)
+  40-55 [forced (not TWO COMPONENTS)] split at 0.5: group 14 / halo 227 stars; family p SKY 0.0020, DISTANCE 0.0005, CHEMISTRY 0.0130, TANGENTIAL 0.0160 -> DISTINCT GROUP
+     tests: sky_meanvec p 0.0505 (14/227); sky_absBsgr p 0.0010 (14/227); sky_knn5 p 0.0005 (14/227); sky_lamSgr p 0.0010 (14/227); dist_r p 0.0005 (14/227); chem_feh p 0.0130 (14/185); tan_vphi p 0.0080 (12/219); tan_vt p 0.6217 (12/219)
+     medians group / halo: r 43.5 / 47.5 kpc; |B_Sgr| 41.2 / 28.6 deg; [Fe/H] -2.35 / -2.09; v_phi -79 / +4 km/s; group (l, b) median (52, +51)
+  55-80 [forced (not TWO COMPONENTS)] split at 0.5: group 0 / halo 125 stars; family p SKY NOT EVALUABLE, DISTANCE NOT EVALUABLE, CHEMISTRY NOT EVALUABLE, TANGENTIAL NOT EVALUABLE -> not distinct
+     tests: sky_meanvec p nan (0/125); sky_absBsgr p nan (0/125); sky_knn5 p nan (0/125); sky_lamSgr p nan (0/125); dist_r p nan (0/125); chem_feh p nan (0/93); tan_vphi p nan (0/99); tan_vt p nan (0/99)
+     medians group / halo: r nan / 61.4 kpc; |B_Sgr| nan / 26.1 deg; [Fe/H] nan / -1.83; v_phi +nan / +11 km/s; group (l, b) median (nan, +nan)
+  DISTINCT GROUP per bin (graded): {'20-30': False, '30-40': False, '40-55': False, '55-80': False}
+  [654 s]
+
+==============================================================================================================
+(c) consequence: RAW1's statistic with the smooth component only; every bin (graded where DISTINCT GROUP, else forced)
+==============================================================================================================
+  (c2) alpha without bin 20-30's group stars (q > 0.5: 4 stars, 3 in the window): 5.281 +/- 0.169 (nominal 5.289)
+  (c2) alpha without bin 30-40's group stars (q > 0.5: 36 stars, 27 in the window): 5.507 +/- 0.174 (nominal 5.289)
+  (c2) alpha without bin 40-55's group stars (q > 0.5: 14 stars, 2 in the window): 5.315 +/- 0.170 (nominal 5.289)
+  (c2) alpha without bin 55-80's group stars (q > 0.5: 0 stars, 0 in the window): 5.289 +/- 0.169 (nominal 5.289)
+  FW_census/canonical  20-30: RAW1 1.095+/-0.035 HOT; c1 1.066+/-0.039 PASS; c2 1.065 PASS; c3 1.082 HOT [forced] | 30-40: RAW1 1.205+/-0.058 HOT; c1 1.044+/-0.064 PASS; c2 1.072 PASS; c3 0.996 PASS [forced] | 40-55: RAW1 1.052+/-0.053 PASS; c1 1.098+/-0.059 PASS; c2 1.102 PASS; c3 1.084 PASS [forced] | 55-80: RAW1 1.090+/-0.106 PASS; c1 1.127+/-0.115 PASS; c2 1.127 PASS; c3 1.090 PASS [forced]
+  FW_census/alt        20-30: RAW1 1.052+/-0.034 PASS; c1 1.025+/-0.037 PASS; c2 1.024 PASS; c3 1.039 PASS [forced] | 30-40: RAW1 1.155+/-0.056 HOT; c1 1.001+/-0.061 PASS; c2 1.028 PASS; c3 0.955 PASS [forced] | 40-55: RAW1 1.007+/-0.051 PASS; c1 1.052+/-0.057 PASS; c2 1.055 PASS; c3 1.038 PASS [forced] | 55-80: RAW1 1.043+/-0.102 PASS; c1 1.078+/-0.110 PASS; c2 1.078 PASS; c3 1.043 PASS [forced]
+  FW_rc/canonical      20-30: RAW1 1.028+/-0.033 PASS; c1 1.001+/-0.036 PASS; c2 1.000 PASS; c3 1.015 PASS [forced] | 30-40: RAW1 1.135+/-0.055 HOT; c1 0.983+/-0.060 PASS; c2 1.009 PASS; c3 0.938 PASS [forced] | 40-55: RAW1 0.992+/-0.050 PASS; c1 1.036+/-0.056 PASS; c2 1.040 PASS; c3 1.023 PASS [forced] | 55-80: RAW1 1.030+/-0.100 PASS; c1 1.065+/-0.108 PASS; c2 1.065 PASS; c3 1.030 PASS [forced]
+  FW_rc/alt            20-30: RAW1 1.012+/-0.032 PASS; c1 0.986+/-0.036 PASS; c2 0.985 PASS; c3 1.000 PASS [forced] | 30-40: RAW1 1.114+/-0.054 HOT; c1 0.966+/-0.059 PASS; c2 0.991 PASS; c3 0.921 PASS [forced] | 40-55: RAW1 0.972+/-0.049 PASS; c1 1.015+/-0.055 PASS; c2 1.019 PASS; c3 1.002 PASS [forced] | 55-80: RAW1 1.007+/-0.098 PASS; c1 1.042+/-0.106 PASS; c2 1.042 PASS; c3 1.007 PASS [forced]
+  H                    20-30: RAW1 1.068+/-0.035 PASS; c1 1.040+/-0.038 PASS; c2 1.039 PASS; c3 1.055 PASS [forced] | 30-40: RAW1 1.142+/-0.055 HOT; c1 0.990+/-0.060 PASS; c2 1.017 PASS; c3 0.944 PASS [forced] | 40-55: RAW1 0.997+/-0.050 PASS; c1 1.041+/-0.056 PASS; c2 1.044 PASS; c3 1.027 PASS [forced] | 55-80: RAW1 1.050+/-0.099 PASS; c1 1.086+/-0.107 PASS; c2 1.086 PASS; c3 1.050 PASS [forced]
+  N                    20-30: RAW1 2.064+/-0.061 HOT; c1 2.005+/-0.080 HOT; c2 2.003 HOT; c3 2.039 HOT [forced] | 30-40: RAW1 2.662+/-0.125 HOT; c1 2.289+/-0.138 HOT; c2 2.340 HOT; c3 2.192 HOT [forced] | 40-55: RAW1 2.664+/-0.131 HOT; c1 2.785+/-0.147 HOT; c2 2.792 HOT; c3 2.746 HOT [forced] | 55-80: RAW1 3.164+/-0.278 HOT; c1 3.277+/-0.303 HOT; c2 3.277 HOT; c3 3.164 HOT [forced]
+  graded words (RAW1's word kept where no DISTINCT GROUP):
+   FW_census/canonical  RAW1 ['HOT', 'HOT', 'PASS', 'PASS'] -> graded ['HOT', 'HOT', 'PASS', 'PASS']; RAW1-passing bins that change: none; row FAILS HOT
+   FW_census/alt        RAW1 ['PASS', 'HOT', 'PASS', 'PASS'] -> graded ['PASS', 'HOT', 'PASS', 'PASS']; RAW1-passing bins that change: none; row FAILS HOT
+   FW_rc/canonical      RAW1 ['PASS', 'HOT', 'PASS', 'PASS'] -> graded ['PASS', 'HOT', 'PASS', 'PASS']; RAW1-passing bins that change: none; row FAILS HOT
+   FW_rc/alt            RAW1 ['PASS', 'HOT', 'PASS', 'PASS'] -> graded ['PASS', 'HOT', 'PASS', 'PASS']; RAW1-passing bins that change: none; row FAILS HOT
+   H                    RAW1 ['PASS', 'HOT', 'PASS', 'PASS'] -> graded ['PASS', 'HOT', 'PASS', 'PASS']; RAW1-passing bins that change: none; row FAILS HOT
+   N                    RAW1 ['HOT', 'HOT', 'HOT', 'HOT'] -> graded ['HOT', 'HOT', 'HOT', 'HOT']; RAW1-passing bins that change: none; row FAILS HOT
+  [663 s]
+
+==============================================================================================================
+TWIN: velocities (with errors) shuffled among all 20-80 kpc stars, 20 seeded shuffles; graded against each bin's real-data null
+==============================================================================================================
+  shuffle  0: 20-30 p 0.514  30-40 p 0.280  40-55 p 0.003 TWO  55-80 p 0.459
+  shuffle  1: 20-30 p 0.053  30-40 p 0.696  40-55 p 0.159  55-80 p 0.048
+  shuffle  2: 20-30 p 0.620  30-40 p 0.289  40-55 p 0.747  55-80 p 0.087
+  shuffle  3: 20-30 p 0.104  30-40 p 0.644  40-55 p 0.831  55-80 p 0.271
+  shuffle  4: 20-30 p 0.209  30-40 p 0.341  40-55 p 0.059  55-80 p 0.511
+  shuffle  5: 20-30 p 0.339  30-40 p 0.325  40-55 p 0.016  55-80 p 0.979
+  shuffle  6: 20-30 p 0.126  30-40 p 0.068  40-55 p 0.474  55-80 p 0.231
+  shuffle  7: 20-30 p 0.252  30-40 p 0.802  40-55 p 0.245  55-80 p 0.518
+  shuffle  8: 20-30 p 0.160  30-40 p 0.018  40-55 p 0.223  55-80 p 0.379
+  shuffle  9: 20-30 p 0.310  30-40 p 0.978  40-55 p 0.586  55-80 p 0.206
+  shuffle 10: 20-30 p 0.465  30-40 p 0.268  40-55 p 0.105  55-80 p 0.374
+  shuffle 11: 20-30 p 0.328  30-40 p 0.771  40-55 p 0.728  55-80 p 0.395
+  shuffle 12: 20-30 p 0.366  30-40 p 0.590  40-55 p 0.601  55-80 p 0.875
+  shuffle 13: 20-30 p 0.208  30-40 p 0.196  40-55 p 0.511  55-80 p 0.436
+  shuffle 14: 20-30 p 0.195  30-40 p 0.335  40-55 p 0.369  55-80 p 0.490
+  shuffle 15: 20-30 p 0.624  30-40 p 0.770  40-55 p 0.074  55-80 p 0.712
+  shuffle 16: 20-30 p 0.044  30-40 p 0.549  40-55 p 0.285  55-80 p 0.131
+  shuffle 17: 20-30 p 0.064  30-40 p 0.470  40-55 p 0.726  55-80 p 0.436
+  shuffle 18: 20-30 p 0.216  30-40 p 0.398  40-55 p 0.070  55-80 p 0.169
+  shuffle 19: 20-30 p 0.243  30-40 p 0.595  40-55 p 0.057  55-80 p 0.454
+  [PASS] TWIN: at most 3 of 80 bin-shuffles TWO COMPONENTS: 1 of 80
+  [PASS] TWIN: at most 1 of 80 bin-shuffles DISTINCT GROUP: 0 of 80
+  [671 s]
+  mutations: G bites False; S not flagged True (details in mwt2_A1_MUTATE.out)
+
+==============================================================================================================
+Labels (30-40 kpc bin; FW census headline per footing, FW rc by the same rule)
+==============================================================================================================
+  FW_census/canonical : NO POWER
+  FW_census/alt       : NO POWER
+  FW_rc/canonical     : NO POWER
+  FW_rc/alt           : NO POWER
+
+runtime 728 s
+kappa = 1/2 FITTED; not theory closed. Adopts nothing.
