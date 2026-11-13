@@ -182,6 +182,21 @@ stand as written. For the record only: the 56-lens file would give −0.24 to +0
 **Knock-on.** EUC7's T5 row and EUC8 read the 55-lens file; dated notes are in their RESULT.md files. No word of
 either changes.
 
+### 3f. Dated note (2026-11-12, evening): the SLACS comparison is on a different mass convention
+
+Found by lane EUC12 and checked through this lane's code (`../EUC1_eclipse_saturation_ceiling/euc1_slacs_convention.out`;
+EUC1 RESULT.md §9 has the details). The SLACS dynamical boost quoted in this file (+0.085) takes the SLACS stellar
+mass from Auger's fraction inside the Einstein radius; Euclid's lenses are graded with the catalogue's total mass. On
+Auger's total Salpeter mass, like for like, **SLACS reads +0.132 / +0.123** (canonical / alt) by dynamics and
++0.121 / +0.109 by lensing.
+
+So where this file sets Euclid beside SLACS: Euclid's lens galaxies with spectra (+0.135 / +0.128 on the 56-lens
+input) need the same stars as SLACS, about 1.35 × Salpeter under law S, not 0.05 dex more. The small-separation class
+(−0.07 [−0.17, +0.16] ± 0.07) reads below SLACS, inside its own interval. The wide class (+0.20) is 0.07 dex above
+SLACS, not 0.12. The contrast between small and wide Euclid lenses does not involve SLACS and is unchanged. No word,
+band or check of this lane uses the SLACS boost (J3 compares dispersions at lensing-calibrated masses and is
+unaffected).
+
 ## 4. What this says
 
 1. **No gate.** The raw readings span +0.05 (SDSS pipeline, 16 lenses) to +0.25 (DESI fits with the mock correction).
