@@ -231,4 +231,13 @@ a group-scale residual that the framework has no constructed state for.
 - **Read-only use:** EUC1's `euc1.py` and JNT2's `jnt2_common.py` were imported read-only with bytecode writing off.
   FRZ1's halo functions were copied. The data are the EUC lanes' files, checked against EUC1's frozen hashes.
 
+**Commit ids and the lead's re-run (added 2026-11-13, after landing; no number or label changes).** Local: criteria
+640fbf99e4, script and outputs 075770dbed, RESULT e66c10b56d (origin tip e35839a701). Pushed. The lead session re-ran
+`lnj1.py` from a copy at the same folder depth, one thread: `lnj1.json` and `lnj1_per_lens.csv` are equal byte for
+byte; `lnj1.out` differs in two lines (timing). The twins and the post-run reading script were not re-run. A
+reproduction, not an independent re-grade. The idea this lane tested was the lead's (that the ceiling break in wide
+lenses is the joint's switch); as frozen the data do not support it: on the joint's own membership rule the wide lenses
+are not above the boundary, and stars plus the cosmic share projected inside the Einstein radius add almost nothing to
+the law.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
