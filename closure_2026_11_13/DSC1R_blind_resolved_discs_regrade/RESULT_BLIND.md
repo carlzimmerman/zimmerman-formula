@@ -178,4 +178,15 @@ Under A1 the above word is flipped by 8 (canonical) / 6 (alt) of the 12 brackets
 for the below group (M- moves the margin by 296 / 234). With the record's halo the above group's best value sits
 below one record halo on both footings (0.59 / 0.12), but the interval reaches zero and one alike.
 
+## Commit ids and the lead's re-run (2026-11-13)
+
+- Criteria ad6ac2377e (origin f4b6b5b6d6); script and outputs ab30d74358 (origin 700ef40600); result 99f7bc86e6 (origin
+  cee0f2e5b9); amendment A1 f70457d798 (origin 0fe250f4e8); A1 run 75e3203c75 (origin d89b515b56); A1 section
+  c1d4da0525 (origin 6d861d172c); reconcile 95b8d12127 (origin 673e844509).
+- The brief's statement that the reference halo holds 5.41 times the disc's baryons was the lead's error, not the lane's;
+  amendment A1 corrects it to the record's halo.
+- The lead re-ran `dsc1r.py` (as frozen and with `--A1`) and `dsc1r_reconcile.py` from a copy at the same folder depth:
+  all 14 output files equal byte for byte.
+- A reproduction of a blind build. No number or label changes.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.

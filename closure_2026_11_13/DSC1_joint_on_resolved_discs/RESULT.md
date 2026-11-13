@@ -162,4 +162,13 @@ for byte. That is a reproduction, not an independent re-grade; no blind twin of 
 expectation, written before the result, was that the reference layout at the record share would fail on these discs;
 as frozen it holds on canonical, fragile, on three discs, through amplitude only.
 
+## Blind re-grade (note added 2026-11-13; no number or label of this lane changes)
+
+- The blind re-grade is `closure_2026_11_13/DSC1R_blind_resolved_discs_regrade/` (`RESULT_BLIND.md`, `RECONCILE.md`).
+  It did not confirm this lane: above it reads NO POWER, FRAGILE on both footings, and below it reads LAW HOLDS BELOW,
+  FRAGILE on both footings.
+- Its reconciliation reproduces every number of this lane when all of this lane's ingredients are swapped in. Above,
+  the difference is how many digitised points count as independent; below, it is the decision line. Neither side is
+  decided.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
