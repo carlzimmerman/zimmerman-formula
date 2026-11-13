@@ -1,6 +1,7 @@
 # LGS1 — the Dovekie supernova lanes with the legacy low-redshift supernovae dropped
 
 Criteria and harness: a917faa500 (alone first, before any number). Labels: `lgs1_collect.out`, `lgs1_results.json`.
+Commit ids, local / origin: criteria a917faa500 / 823b098e6c; result 4fdcc846de / f58039cda2.
 Per-run files: `lgs1_cfg684_<sample>.{json,out}`, `lgs1_cfg689_<mode>_<sample>.{json,out}`.
 A re-read of committed lanes. It adopts nothing and edits no ledger.
 
