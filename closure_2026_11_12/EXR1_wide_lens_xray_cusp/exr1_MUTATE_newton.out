@@ -1,0 +1,79 @@
+EXR1 (WIDE-LENS X-RAY CUSP)   *** MUTATE = newton ***
+
+[data]
+  sha256 eclipse_dr1_catalogue_key_v20261103.csv  65338917534c9c76  matches the frozen hash
+  sha256 ECLIPSE_object_catalogue.csv  8247a4d5f23513b8  matches the frozen hash
+  S 6173 lenses; W (theta_E >= 1.7") 316
+  sha256 erass1cl_primary_v3.2.fits               e79c392e2d7b9e26105ead7d56787713465aa853feb040a227891fb9571b9a54
+  sha256 em01_180135_020_ARF_00004_c010.fits      d5907a0552337da361c4cc4388f8c48bf0ddb98d8499a1b0065f9ea11a38e4c8
+  sha256 em01_180135_020_RMF_00004_c010.fits      24c04ed671f222829e018724bdb0b8510470af0474b4843ee6876fdea7b5edae
+  sha256 apec_v3.1.3_line.fits                    6d47d93b539142b3bd5c6e425f80f031f14dabdd2ab60c129bf650ac6ef06650
+  sha256 apec_v3.1.3_coco.fits                    ab4305ac323443c58a128f66dc6e33a63168136e7cdf38a181a3c2229d078eb7
+  upper-limit rows 16161, N_HI rows 355, cone rows 20224 (cones with any source 327)
+  APEC: 201 temperatures 8.62e-04 to 8.62e+01 keV; rest grid 6000 bins; my ECF (TM0 ARF shape only) 4.7946e+11
+
+[instrument checks]
+  PASS K1  APEC reader: Lambda_bol(1 keV, Z 0) = 8.917e-24 (2 %); Lambda_bol(0.12 keV) Z 1 / Z 0 = 30.1 (5 %) : 8.7915e-24 (-1.41 %); 30.73 (+2.11 %)
+  PASS K2  band ECF ratios 0.2-0.5 / 0.5-1 / 1-2 keV over 0.2-2.3 keV, absorbed Gamma 2, N_H 3e20 (8 %) : 0.887 vs 0.858 / 1.281 vs 1.265 / 0.952 vs 0.944
+
+[sample]  W in the eROSITA-DE sky: 263 of 316; tested (de_sky, exposure > 0): 263 (required >= 100)
+  N_HI (HI4PI) over T: median 1.80e+20, range 6.58e+19 to 5.54e+20 cm^-2
+  median exposure 221 s, median background 1.05 counts, median z_l 0.460
+  PASS K3  UL_B recomputed (KBN 99.87 %, EEF 0.75, ECF 1.074e12) within 2 % at >= 99 % of de_sky lens positions : 4933 positions; median dev 7.46e-04, 100.00 % within 2 %, max 7.46e-04
+  PASS K4  eRASS1 groups (kT to 30 %, z > 0.05; N = 39): CR500/F500 vs predicted (1 +- 0.10); F500 4 pi D_L^2 / L500 vs predicted (1 +- 0.10); L500 over uniform-sphere least (median 1 to 30) : median 0.982 [0.972, 0.992]; 1.034 [1.009, 1.045]; 2.51 [1.62, 4.39]
+  PASS K5  luminosity integral of an r^-2 body at constant Lambda against analytic (1e-4) : 3.73e-07
+
+[model: G2 per tested lens, catalogue-equivalent 0.2-2.3 keV flux in the aperture]
+  canonical median gas mass 6.58e+12 Msun (0.0 % need none); kT at R_E 0.508 keV; n_e at R_E 0.411 cm^-3; rest 0.2-2.3 keV luminosity (Z 0.1) from 1 kpc 8.94e+45, from R_E 6.17e+44 erg/s; pred_i 2.09e-13 erg/s/cm^2; t_cool at R_E 21 Myr (Z 0.1), 13 Myr (Z 0.3)
+  alt       median gas mass 6.58e+12 Msun (0.0 % need none); kT at R_E 0.508 keV; n_e at R_E 0.411 cm^-3; rest 0.2-2.3 keV luminosity (Z 0.1) from 1 kpc 8.94e+45, from R_E 6.17e+44 erg/s; pred_i 2.09e-13 erg/s/cm^2; t_cool at R_E 21 Myr (Z 0.1), 13 Myr (Z 0.3)
+
+[stack of tested W lenses; units 1e-15 erg/s/cm^2, catalogue-equivalent 0.2-2.3 keV in the aperture]
+  N = 263: measured +5.801, sigma 1.771 (bootstrap 0.819, null stacks 1.771); null stacks: +1.19 +2.77 +1.31 +1.50 +1.49 +1.29 +2.80 +0.57
+  FAIL K8  8 null stacks at 0.5 deg: mean within 3 sigma/4 of zero, none beyond 3.5 sigma : mean +1.614, largest 2.804, sigma 1.771 (1e-15)
+  PASS K7  positive control: eRASS1 clusters (M500 >= 2e14, 0.1 <= z <= 0.6): stack >= 5 sigma; >= 90 %% of 60 with a Main source within 60" : N = 3730, +175.19 +- 2.88 (1e-15), 60.8 sigma; 60 of 60 recovered
+
+[Part G: predicted least stack against the measured stack; units 1e-15 erg/s/cm^2]
+    primary                    canonical pred_min   348.30   measured  +5.801 +- 1.771   (pred - meas)/sigma   193.4   pred/(meas + 2 sigma)  37.28   f_M 0.164 -> NOT EVALUABLE
+    primary                    alt       pred_min   348.30   measured  +5.801 +- 1.771   (pred - meas)/sigma   193.4   pred/(meas + 2 sigma)  37.28   f_M 0.164 -> NOT EVALUABLE
+    Z = 0 (H and He only)      canonical pred_min   184.16   measured  +5.801 +- 1.771   (pred - meas)/sigma   100.7   pred/(meas + 2 sigma)  19.71   f_M 0.225 -> NOT EVALUABLE
+    Z = 0 (H and He only)      alt       pred_min   184.16   measured  +5.801 +- 1.771   (pred - meas)/sigma   100.7   pred/(meas + 2 sigma)  19.71   f_M 0.225 -> NOT EVALUABLE
+    Z = 0.3                    canonical pred_min   527.88   measured  +5.801 +- 1.771   (pred - meas)/sigma   294.8   pred/(meas + 2 sigma)  56.51   f_M 0.133 -> NOT EVALUABLE
+    Z = 0.3                    alt       pred_min   527.88   measured  +5.801 +- 1.771   (pred - meas)/sigma   294.8   pred/(meas + 2 sigma)  56.51   f_M 0.133 -> NOT EVALUABLE
+    N_H = 1 x N_HI             canonical pred_min   386.28   measured  +5.801 +- 1.771   (pred - meas)/sigma   214.9   pred/(meas + 2 sigma)  41.35   f_M 0.156 -> NOT EVALUABLE
+    N_H = 1 x N_HI             alt       pred_min   386.28   measured  +5.801 +- 1.771   (pred - meas)/sigma   214.9   pred/(meas + 2 sigma)  41.35   f_M 0.156 -> NOT EVALUABLE
+    point source               canonical pred_min   467.76   measured  +5.801 +- 1.771   (pred - meas)/sigma   260.9   pred/(meas + 2 sigma)  50.07   f_M 0.141 -> NOT EVALUABLE
+    point source               alt       pred_min   467.76   measured  +5.801 +- 1.771   (pred - meas)/sigma   260.9   pred/(meas + 2 sigma)  50.07   f_M 0.141 -> NOT EVALUABLE
+    r_in = R_E/2               canonical pred_min   554.38   measured  +5.801 +- 1.771   (pred - meas)/sigma   309.8   pred/(meas + 2 sigma)  59.34   f_M 0.130 -> NOT EVALUABLE
+    r_in = R_E/2               alt       pred_min   554.38   measured  +5.801 +- 1.771   (pred - meas)/sigma   309.8   pred/(meas + 2 sigma)  59.34   f_M 0.130 -> NOT EVALUABLE
+    r_in = 1 kpc               canonical pred_min   933.98   measured  +5.801 +- 1.771   (pred - meas)/sigma   524.2   pred/(meas + 2 sigma)  99.98   f_M 0.100 -> NOT EVALUABLE
+    r_in = 1 kpc               alt       pred_min   933.98   measured  +5.801 +- 1.771   (pred - meas)/sigma   524.2   pred/(meas + 2 sigma)  99.98   f_M 0.100 -> NOT EVALUABLE
+    Z = 1.0 (reported)         canonical pred_min   739.77   measured  +5.801 +- 1.771   (pred - meas)/sigma   414.5   pred/(meas + 2 sigma)  79.19   f_M 0.112 -> NOT EVALUABLE
+    Z = 1.0 (reported)         alt       pred_min   739.77   measured  +5.801 +- 1.771   (pred - meas)/sigma   414.5   pred/(meas + 2 sigma)  79.19   f_M 0.112 -> NOT EVALUABLE
+    central source (reported)  canonical pred_min   686.59   measured  +5.801 +- 1.771   (pred - meas)/sigma   384.5   pred/(meas + 2 sigma)  73.50   f_M 0.117 -> NOT EVALUABLE
+    central source (reported)  alt       pred_min   686.59   measured  +5.801 +- 1.771   (pred - meas)/sigma   384.5   pred/(meas + 2 sigma)  73.50   f_M 0.117 -> NOT EVALUABLE
+    b* = 0 (reported)          canonical pred_min   416.70   measured  +5.801 +- 1.771   (pred - meas)/sigma   232.1   pred/(meas + 2 sigma)  44.61   f_M 0.150 -> NOT EVALUABLE
+    b* = 0 (reported)          alt       pred_min   416.70   measured  +5.801 +- 1.771   (pred - meas)/sigma   232.1   pred/(meas + 2 sigma)  44.61   f_M 0.150 -> NOT EVALUABLE
+    primary                    canonical pred_min   313.22   measured  +5.361 +- 1.939   (pred - meas)/sigma   158.8   pred/(meas + 2 sigma)  33.90   f_M 0.172 -> NOT EVALUABLE
+    primary                    alt       pred_min   313.22   measured  +5.361 +- 1.939   (pred - meas)/sigma   158.8   pred/(meas + 2 sigma)  33.90   f_M 0.172 -> NOT EVALUABLE
+    primary                    canonical pred_min   493.28   measured  +7.130 +- 1.464   (pred - meas)/sigma   332.1   pred/(meas + 2 sigma)  49.04   f_M 0.143 -> NOT EVALUABLE
+    primary                    alt       pred_min   493.28   measured  +7.130 +- 1.464   (pred - meas)/sigma   332.1   pred/(meas + 2 sigma)  49.04   f_M 0.143 -> NOT EVALUABLE
+  LANE WORD (Part G): NOT EVALUABLE / NOT EVALUABLE
+  canonical f_T (largest factor on kT(r), density fixed, at which the least stack falls to measured + 2 sigma): 0.126; stack at kT x 0.1, 0.3, 1: 2.16, 105.67, 348.30
+  alt       f_T (largest factor on kT(r), density fixed, at which the least stack falls to measured + 2 sigma): 0.126; stack at kT x 0.1, 0.3, 1: 2.16, 105.67, 348.30
+
+[Part C: wide lenses against matched small-ring controls]
+  263 pairs; median |dz| 0.010, median |d log M*| 0.072; controls stack +2.694 +- 0.562 (1e-15)
+  wide minus control: +3.107 [+1.210, +5.019] x 1e-15 -> NOT EVALUABLE
+
+[Part L: per lens (reported)]
+  canonical lenses whose eRASS1 3-sigma bound UL_B is below their least prediction: 204 of 263; lenses where an empty aperture could do that: 220 (of them below: 204)
+  alt       lenses whose eRASS1 3-sigma bound UL_B is below their least prediction: 204 of 263; lenses where an empty aperture could do that: 220 (of them below: 204)
+  Main-catalogue source within 30" of the lens: 16 of 263 (6.1 %); at the 8 shifted positions: 1.90 % (chance); catalogued fluxes of matched sources: median 3.15e-14, max 2.08e-13
+
+[Part D (reported)]
+  the stack as a mean luminosity (catalogue-equivalent flux x 4 pi D_L^2, no K-correction): 5.44e+42 erg/s
+  class 1.3 - 1.7"   N =  543  measured +3.295 +- 0.466 (1e-15)
+  class 1.0 - 1.3"   N =  971  measured +2.774 +- 0.313 (1e-15)
+  class below 1.0"   N = 3156  measured +2.410 +- 0.314 (1e-15)
+
+[MUTATE newton] pred_min 3.483e-13 / 3.483e-13 against 1.417e-13 / 1.213e-13 -> BITES (exit 1)
