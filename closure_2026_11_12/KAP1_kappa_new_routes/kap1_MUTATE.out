@@ -1,0 +1,80 @@
+KAP1 run, MUTATE = True
+Inputs: G 6.67430e-11, c 299792458, H0 67.4 km/s/Mpc, Omega_L 0.685
+  rho_Lambda 5.8450e-27 kg/m^3, rho_crit 8.5329e-27 kg/m^3
+Known answers
+  PASS  KA1 canonical a0 = (1/2) c sqrt(G rho_L) = 9.3624e-11 vs 9.3603e-11 (rel < 1e-3)
+  PASS  KA2 alt a0 = (1/2) c sqrt(G rho_crit) = 1.1312e-10 vs 1.1312e-10 (rel < 1e-3)
+
+L1  Are the new inputs able to fix a universal kappa? Dimension census (L, M, T exponents)
+  variables ['G', 'rho', 'M', 'a0'] -> 1 dimensionless group(s)
+    exponents {'G': '-1', 'rho': '-2/3', 'M': '-1/3', 'a0': '1'}
+  PASS  L1a without c: no dimensionless group contains a0 and is free of M_b
+  variables ['G', 'rho', 'M', 'a0', 'c'] -> 2 dimensionless group(s)
+    exponents {'G': '-1', 'rho': '-2/3', 'M': '-1/3', 'a0': '1', 'c': '0'}
+    exponents {'G': '-1/2', 'rho': '-1/6', 'M': '-1/3', 'a0': '0', 'c': '1'}
+  with c, the M-free group containing a0: {'G': '-1/2', 'rho': '-1/2', 'M': '0', 'a0': '1', 'c': '-1'}   i.e. a0 / (c sqrt(G rho)) = kappa
+  PASS  L1b with c added: an M-free group containing a0 exists (kappa itself)
+  variables ['G', 'rho', 'M', 'a0', 'muK'] -> 2 dimensionless group(s)
+    exponents {'G': '-1', 'rho': '-2/3', 'M': '-1/3', 'a0': '1', 'muK': '0'}
+    exponents {'G': '0', 'rho': '-1/3', 'M': '1/3', 'a0': '0', 'muK': '1'}
+  with the clock mass mu_K (a length^-1) instead of c: a0 mu_K/(G rho) is M-free; mu_K is bounded and free
+  (galaxy bound <= 0.1/Mpc, CMB wants >= 198/Mpc; MK1 NO VALUE), so that group is a TRADE, not a kappa.
+  Which new inputs carry c? COL1 (weak-field collapse in an FRW background, units kpc, km/s, Msun; c absent),
+  FLD1 (reads COL1-type runs), FB1 identities (sigma^2 = (1/2) sqrt(G M a0), J(g) = (a0^2/K)[u - ln(1+u)]): none.
+  Radii and times in them are set by (G, rho, M_b): R ~ (M/rho)^(1/3), t ~ 1/sqrt(G rho), which reduces to base.
+
+R1  Postulate: r_M = sqrt(G M_b / a0) equals the fold radius R_fold.  Target T_can (kappa = 1/2 on rho_Lambda)
+  de Sitter limit, R_fold = f R_max, R_max^3 = 3 M/(8 pi rho):  a0 = 4*3**(1/3)*pi**(2/3)*G*M**(1/3)*rho**(2/3)/(3*f**2)
+  kappa = a0/(c sqrt(G rho)) = 4*3**(1/3)*pi**(2/3)*sqrt(G)*M**(1/3)*rho**(1/6)/(3*c*f**2)
+  PASS  R1 sympy: d ln kappa / d ln M_b = 1/3 (nonzero: kappa is mass-dependent)
+  SI chain on FLD1's z = 0 fold radii (f multiplier 2):
+    log M_b  8.00  R_fold   21 kpc  a0 = 7.904e-15 m/s^2  kappa = 4.221e-05  (-4.07 dex from 1/2)
+    log M_b  9.00  R_fold   46 kpc  a0 = 1.647e-14 m/s^2  kappa = 8.797e-05  (-3.75 dex from 1/2)
+    log M_b  9.40  R_fold   62 kpc  a0 = 2.278e-14 m/s^2  kappa = 1.216e-04  (-3.61 dex from 1/2)
+    log M_b 10.00  R_fold   99 kpc  a0 = 3.556e-14 m/s^2  kappa = 1.899e-04  (-3.42 dex from 1/2)
+    log M_b 10.45  R_fold  139 kpc  a0 = 5.084e-14 m/s^2  kappa = 2.715e-04  (-3.27 dex from 1/2)
+    log M_b 10.70  R_fold  169 kpc  a0 = 6.116e-14 m/s^2  kappa = 3.266e-04  (-3.18 dex from 1/2)
+    log M_b 10.90  R_fold  197 kpc  a0 = 7.134e-14 m/s^2  kappa = 3.810e-04  (-3.12 dex from 1/2)
+    log M_b 11.20  R_fold  248 kpc  a0 = 8.982e-14 m/s^2  kappa = 4.797e-04  (-3.02 dex from 1/2)
+    log M_b 11.50  R_fold  312 kpc  a0 = 1.132e-13 m/s^2  kappa = 6.047e-04  (-2.92 dex from 1/2)
+  mass slope d log a0 / d log M_b on FLD1 radii: 0.331 (de Sitter limit 1/3); spread 1.16 dex
+  de Sitter-limit kappa at f = 0.52: 2.57e-05, 5.55e-05, 7.54e-05, 1.20e-04, 1.69e-04, 2.05e-04, 2.38e-04, 3.00e-04, 3.78e-04
+  LABEL R1: NOT DERIVED (c-free, so by L1 mass-dependent; -4.07 to -2.92 dex from 1/2 across the masses)
+
+R2  Postulate: kappa = R_fold / R_ta.  Target T_can
+  FLD1 z = 0: R_fold/R_ta = 0.52 ->  0.0170 dex from 1/2 (window 0.0178), 0.0526 dex from 0.4607
+  per mass from FLD1's table: 0.525, 0.523, 0.517, 0.521, 0.519, 0.520, 0.521, 0.521, 0.520
+  epoch drift (FLD1): z 0 / 1 / 2 / 4 = 0.52 / 0.46 / 0.435 / 0.32  -> spread 0.211 dex
+  counterfactual (FINAL18 table): R_fold 139.25 / 139.23 kpc at a0 canonical / alt -> d ln R_fold / d ln a0 = 7.6e-04
+  PASS  R2 counterfactual: the fold ratio does not move when a0 (kappa) moves (|response| < 1e-2) -> rules S2 fails
+  uniform-sphere collapse, energy conserved, virial 2K + W = 0: R_vir = R_ta/2 -> R_vir/R_ta = 1/2
+  PASS  R2 sympy: R_vir/R_ta = 1/2 for the uniform sphere (the 0.52 is a virial-class number, rules S7)
+  LABEL R2: NUMEROLOGY (inside the window at z = 0 only; no mechanism; a0-blind; drifts 0.21 dex with epoch)
+
+R3  Postulate: at the fold the static halo's stress |Pi| = g^2/(8 pi G) (FB1 deep field) equals the vacuum's
+    |p| = rho_Lambda c^2.  Target T_can
+  the condition fixes the halo field at the fold: g_* = 2*sqrt(pi)*sqrt(G)*c*sqrt(rho)  = 2*sqrt(pi) c sqrt(G rho)
+  PASS  R3 sympy: law S inverted, g_N = g^2/(g + a0) at a0 = g(g-g_N)/g_N
+  deep-field form: a0 = g_*^2 R_fold^2/(G M_b) = 4*pi*R**2*c**2*rho/M
+  kappa = 4*pi*R**2*c*sqrt(rho)/(sqrt(G)*M)  (depends on M_b and R_fold; with R_fold ~ M_b^(1/3) it scales as M_b^(-1/3))
+    log M_b  8.00  a0 = 1.394e-05 (deep 1.394e-05)  kappa = 7.443e+04  (5.17 dex from 1/2); g_* / g_law(R_fold) = 10^2.58
+    log M_b  9.00  a0 = 6.686e-06 (deep 6.687e-06)  kappa = 3.571e+04  (4.85 dex from 1/2); g_* / g_law(R_fold) = 10^2.42
+    log M_b  9.40  a0 = 4.836e-06 (deep 4.836e-06)  kappa = 2.582e+04  (4.71 dex from 1/2); g_* / g_law(R_fold) = 10^2.35
+    log M_b 10.00  a0 = 3.097e-06 (deep 3.097e-06)  kappa = 1.654e+04  (4.52 dex from 1/2); g_* / g_law(R_fold) = 10^2.25
+    log M_b 10.45  a0 = 2.166e-06 (deep 2.166e-06)  kappa = 1.157e+04  (4.36 dex from 1/2); g_* / g_law(R_fold) = 10^2.17
+    log M_b 10.70  a0 = 1.800e-06 (deep 1.801e-06)  kappa = 9.614e+03  (4.28 dex from 1/2); g_* / g_law(R_fold) = 10^2.13
+    log M_b 10.90  a0 = 1.543e-06 (deep 1.544e-06)  kappa = 8.242e+03  (4.22 dex from 1/2); g_* / g_law(R_fold) = 10^2.10
+    log M_b 11.20  a0 = 1.226e-06 (deep 1.226e-06)  kappa = 6.546e+03  (4.12 dex from 1/2); g_* / g_law(R_fold) = 10^2.05
+    log M_b 11.50  a0 = 9.721e-07 (deep 9.728e-07)  kappa = 5.192e+03  (4.02 dex from 1/2); g_* / g_law(R_fold) = 10^1.99
+  mass slope d log a0 / d log M_b: -0.331; spread 1.16 dex
+  PASS  R3 two paths agree at log M_b 10.45: sympy kappa 1.157001e+04 vs SI deep chain 1.157001e+04 (rel < 1e-9)
+  LABEL R3: NOT DERIVED (mass-dependent; 4.02 to 5.17 dex from 1/2; the record's halo field at the fold is 1.99 to 2.58 dex below g_*)
+
+MUTATE: expected moves
+  PASS  MUTATE R1 f -> 2f moves kappa by 1/4: 2.7153e-04 / 1.0861e-03 = 0.250000
+  PASS  MUTATE R3 8 pi G -> 4 pi G halves kappa (deep field): ratio 0.49996 (|r - 1/2| < 1e-2)
+  FAIL  MUTATE L1 control: on the c-bearing variable list an M-free a0 group must be ABSENT (expected to FAIL)
+
+Labels: L1 HOLDS | R1 NOT DERIVED | R2 NUMEROLOGY | R3 NOT DERIVED
+MUTATE twin
+Failed checks: ['MUTATE L1 control: on the c-bearing variable list an M-free a0 group must be ABSENT (expected to FAIL)']
