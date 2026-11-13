@@ -152,3 +152,13 @@ lane word (SLOPE NOT CONSTRAINED / SLOPE NOT CONSTRAINED) and every γ̂ of clas
 Only the reported row for θ_E below 1.0″ changes: 17 lenses instead of 16, still below zero in every source case
 (median d of the star-tracking family −0.031 / −0.046 / −0.085 against −0.030 / −0.041 / −0.085). Part A does not use
 dispersions.
+
+## Dated note (2026-11-12, evening): the SLACS row is on a different mass convention
+
+Found by lane EUC12 and checked through this lane's code (`../EUC1_eclipse_saturation_ceiling/euc1_slacs_convention.out`;
+EUC1 RESULT.md §9). The SLACS row of §3 takes each SLACS stellar mass from Auger's fraction inside the Einstein radius;
+the like-for-like mass (Auger's total Salpeter mass) is a median 0.0375 dex lower. On it the SLACS slope reading is
+γ̂ = 2.27 [1.97, 2.49] canonical and 2.35 [2.00, above 2.5] alt at b★ = 0 (was 2.18 [1.7, above 2.5]), 2.23 / 2.27 at
+−0.10, and 1.64 / 1.58 [below 0, 2.35] at +0.10 (was below zero). The reading "near isothermal, like the Euclid wide
+lenses" stands and is slightly firmer. Nothing in Parts A or B uses SLACS except check K4, which compares two code
+paths on the same masses and is unaffected.
