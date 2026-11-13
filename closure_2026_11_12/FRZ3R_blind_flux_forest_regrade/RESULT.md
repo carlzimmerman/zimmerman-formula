@@ -96,4 +96,16 @@ PROVISIONAL.
 - Machine time about 4.5 h: one job, nice 19, 4 threads, peak resident memory about 16 GB.
 - Nothing downloaded. Nothing written outside this folder.
 
+**Commit ids and the lead's checks (added 2026-11-12, after landing; no number or label changes).** Local / origin:
+READING 4abb5b4a36 / e8b15feea5; amendment A1 5f39677e97 / 2ab95dbe15; code, parts and outputs beea11ac52 / e3a65c3d97; RESULT_BLIND
+292fe90b51 / 3346a9df8b; RESULT a6a0186a48 / 8e3bbb60d8. Pushed. The lead session re-ran the four grader jobs
+(`frz3r_grade.py` and `frz3r_grade_turn.py`, each footing) from a copy at the same folder depth, on the committed
+part files: all sixteen outputs are equal byte for byte. No field part was regenerated (the halo-model tables were
+deleted after the run and a part needs about 16 GB), so this checks the grading, not the fields. The lead also checked
+the comparison's central point independently: FRZ3's script sets its pressure-smoothing scale as 80 proper kpc (320
+comoving kpc at z 3), and the abstract of Kulkarni et al. 2015 (arXiv 1504.00366), read by the lead through a web
+summariser and so PROVISIONAL, gives 79 kpc comoving at z 3. That is a reproduction and a look-up, not a further
+independent re-grade. The two flux-level builds still differ by about a factor of nine at matched smoothing; the cause
+named above (clustered halo placement) is post hoc and was not run together with the smoothing change.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
