@@ -199,4 +199,15 @@ The stratified sum is split by FRZ1's v_stiff boundary (unchanged); a straddling
   - Nothing was downloaded, and nothing was written outside this folder (apart from scratch files, now deleted).
   - Console logs are git-ignored.
 
+**Commit ids and the lead's re-run (added 2026-11-13, after landing; no number or label changes).** Local / origin:
+criteria fa73352ceb / 7f39f9c940; amendment A1 88144763e1 / 371d0d4dc1; first code 1736390660 / 375996f0c7; amendment A2
+9df63f25f0 / 2e797bc365; RESULT f9c71956d9 / 3d2377b7b8. Pushed. The lead session re-ran `srf1_grade.py` for both
+footings from a copy at the same folder depth, on the 38 committed part files: all eight outputs (two JSON, two logs
+and their two mutation twins each) are equal byte for byte. No field part was regenerated. That is a reproduction of
+the grading, not an independent re-grade. The independent blind build, lane SRF1R
+(`closure_2026_11_12/SRF1R_blind_settled_radius_flux_window/`, RESULT_BLIND only), is also NO VERDICT as frozen; its
+ungraded forest edge is f_max 3.16 / 3.21 and its flux-level Delta chi^2 at f = 1 is 0.0081 / 0.0051, against this
+lane's f_max above 3 and 0.068 / 0.072. The two agree, ungraded, that the forest at flux level does not exclude this
+family; they differ by about a factor of ten at f = 1, and SRF1R did not force the rare haloes. Neither is a label.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
