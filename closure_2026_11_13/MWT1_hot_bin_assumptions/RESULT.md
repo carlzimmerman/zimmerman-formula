@@ -162,4 +162,10 @@ correct.
 `mwt1_posthoc_E_forced_MUTATE.out`. Data: RAW1's `MWS_BHB.fits` (sha256 5669c821...5246, not in the
 repository; checked by the script). Run: `python3 -I -B mwt1.py <MWS_BHB.fits>`.
 
+**Commit ids and the lead's check (added 2026-11-13, after landing; no number or label changes).** Local: criteria
+f154c41c0f, script and graded run a981fdcc8e, RESULT 9f1eadc34d (origin tip 3bb9b7e2cd). Pushed. The lead's standing
+re-run was NOT done: the star catalogue is held outside the repository and the lead session did not locate it, so this
+file has been reproduced by no one but the lane. The lead confirmed in git that the criteria commit holds that one file.
+No independent re-grade exists.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
