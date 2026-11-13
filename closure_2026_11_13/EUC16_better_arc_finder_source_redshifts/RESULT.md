@@ -101,4 +101,13 @@ lenses (later releases with more roll angles) or follow-up source redshifts; thi
     EUC16_FINDER=v1 python3 -I -B euc16.py --data-dir <dir>   (K8, then)   python3 -I -B euc16.py --data-dir <dir>
     EUC16_MUTATE=newton|nowindow python3 -I -B euc16.py --data-dir <dir>   (twins exit 1)
 
+## 9. Commit ids and the lead's re-run (2026-11-13)
+
+- Criteria 33df43d883 (origin e0a3eae0a6); scripts and run 84c7b33eec (origin ec4a708755); result 5ffd920204 (origin
+  05c4d81dc7).
+- The lead re-ran the lane from a copy at the same folder depth in its documented order (K8 check run, main run, both
+  twins): the five JSON and CSV outputs equal byte for byte; the four logs differ only in the elapsed-seconds line; the
+  twins exit 1. A first re-run that skipped the K8 check run was the lead's error and is discarded.
+- A reproduction, not an independent re-grade. No number or label changes.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
