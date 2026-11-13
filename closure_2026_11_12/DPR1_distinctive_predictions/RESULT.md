@@ -6,12 +6,11 @@
 
 - 17 candidates were examined: 16 of form B as adopted, and 1 CONDITIONAL ON THE JOINT.
 - None is DISTINCTIVE on data due on or before 2027-12-31.
-- So form B as adopted has no prediction that (i) is its own, (ii) separates it from both rivals by 3 expected errors, and
-  (iii) rests on data with a date. That is the lane's answer, not a failure of the lane.
-- The closest candidate is the KO2 own-field statistic for early types on Euclid DR1 shear (2027-06-16).
-  - Form B is 18-19 expected errors from the law (R2).
-  - It is only 1.9 (canonical) and 2.6 (alt) expected errors from the record's cold reference (R1), against a line of 3.
-  - On KiDS, which already exists, the measured value sits 6.4 / 6.9 KiDS errors above form B.
+- Form B as adopted has no prediction that is its own, separates it from both rivals by 3 expected errors, and rests on
+  dated data. That is the lane's answer, not a failure of the lane.
+- Closest: the KO2 own-field statistic, early types, Euclid DR1 shear (2027-06-16). Form B is 18-19 expected errors from
+  the law (R2) but only 1.9 / 2.6 (canonical / alt) from the record's cold reference (R1); on KiDS, which exists, the
+  measurement already sits 6.4 / 6.9 KiDS errors above form B.
 
 Criteria `FROZEN_CRITERIA.md` (ded8ccd8e4, committed alone first). Scripts and outputs: bcfea35c0d. TEST lane. Registers
 nothing and edits no registry. Footings never pooled. kappa = 1/2 FITTED; not theory closed. Adopts nothing.
@@ -23,10 +22,8 @@ The record had no value for R1 on KO2's statistic, so this lane computed one.
 - **R1's profile.** The record's cold reference (FRZ1's rule as written in `srh1r_model.py`): form B's own total cold mass
   (PD1's share, 59.49 / 59.50 M_b), laid out as an NFW profile to the turnaround radius.
 - **Same designs.** Every lens and every neighbour follows the rule, and the planted sums are fitted with KO2's designs.
-- **Cache.** KO2's cache was rebuilt by re-running `ko2.py` from a copy kept outside the repo. The re-run reproduces KO2's
-  12 of 13 checks and its KA-3b fail.
-- **Checks.** 9 of 9 pass on both runs. KA-B5 reproduces the committed `ko2.json` data readings to 2e-16. KA-R3 checks the
-  kernels against direct quadrature: worst error 2.5e-4 of the maximum.
+- **Cache and checks.** KO2's cache was rebuilt by re-running `ko2.py` from a copy outside the repo (reproduces its 12 of 13
+  checks and the KA-3b fail). 9 of 9 checks pass on both runs; KA-B5 reproduces `ko2.json`'s data readings to 2e-16.
 
 KO2 primary statistic R_ext (the law as a galaxy's own field gives 1; no own field beyond the inner window gives 0):
 
@@ -35,17 +32,9 @@ KO2 primary statistic R_ext (the law as a galaxy's own field gives 1; no own fie
 | early | 0.034 / -0.001 | 0.135 / 0.187 | 0.9999 | 0.487 +- 0.071 |
 | late | 0.038 / 0.007 | 0.141 / 0.183 | 0.9999 | 0.277 +- 0.183 |
 
-**Expected Euclid DR1 error.** KO2's statistical part is scaled by (area x n_eff)^-1/2, with the 0.05 floor kept:
-- nominal (1,900 deg^2, n_eff 30): sigma_D 0.053 early, 0.077 late;
-- conservative (n_eff 20): 0.054 early, 0.087 late.
-
-These inputs are PROVISIONAL: the area is a web read in A6, and n_eff is recalled here.
-
-**Separations from form B,** nearest band edges, in units of sigma_D:
-- early: R1 1.9 / 2.6, R2 18.3 / 19.0;
-- late: R1 1.3 / 1.7, R2 12.5 / 13.0.
-
-A spread in concentration could only widen R1's band and shrink these gaps, so those brackets were not run.
+Euclid error: KO2's statistical part scaled by (area x n_eff)^-1/2, 0.05 floor kept: sigma_D 0.053 early / 0.077 late
+(1,900 deg^2, n_eff 30; n_eff 20 gives 0.054 / 0.087; inputs PROVISIONAL). Separations from B in sigma_D: early R1 1.9 /
+2.6, R2 18.3 / 19.0; late R1 1.3 / 1.7, R2 12.5 / 13.0. A concentration spread only widens R1's band, so it was not run.
 
 ## All candidates (separations in expected errors of the dated data; canonical / alt)
 
@@ -84,9 +73,8 @@ These are reasons, not new labels.
 
 ## What surprised, or contradicts the brief
 
-- **Form B can be confirmed nowhere before 2028 by the frozen standard. It can only be killed.**
-  - Gaia DR4, Euclid's own-field statistic and the a0(z) units can kill it.
-  - That matches the lead's estimate for 2026. It extends to 2027 for the data in the record.
+- **Form B can be confirmed nowhere before 2028 by the frozen standard; Gaia DR4, Euclid's own-field statistic and the
+  a0(z) units can only kill it.** That matches the lead's estimate for 2026 and extends it through 2027.
 - **The conditional joint was expected to be where distinctive predictions live.** It is not: its break lies beyond every
   dated rotation curve, and lensing does not see inside R_set (SRH1R). The lead's estimate is not borne out there.
 - **Post hoc, never graded:** KiDS's early-type KO2 value (0.487 +- 0.071) sits about 5.0 KiDS errors above R1's 0.135, as
@@ -98,15 +86,9 @@ These are reasons, not new labels.
 
 ## PROVISIONAL and unverified
 
-- Euclid DR1's area and shear products (A6, a web read) and both n_eff values: PROVISIONAL.
-- The default rule scales errors by (area x n_eff)^-1/2, assumes Euclid's lens sample matches KiDS's density, and treats
-  KO2's machinery as able to run on Euclid's catalogue (not tested).
-- Row 3 is a proxy from T differences, because SRH1R stores no model vectors.
-- Row 14's R2 is a crude cut at EFC1's saturation mass.
-- Row 11's feedback spread is from the literature and was not computed here.
-- Row 15 is an argument.
-- R1's KO2 value uses the record's concentration relation at the median lens redshift. The z 0 bracket is reported. No
-  bracket for the spread in concentration was run.
+- Euclid DR1 area and shear products (A6, web read) and both n_eff values; the error rule assumes a KiDS-density lens sample
+  and that KO2's machinery runs on Euclid's catalogue (not tested). Row 3 is a proxy (SRH1R stores no model vectors); row
+  14's R2 is a crude cut at EFC1's saturation mass; row 11's feedback spread is literature; row 15 is an argument.
 
 ## Files
 
