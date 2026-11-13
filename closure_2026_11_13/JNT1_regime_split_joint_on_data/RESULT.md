@@ -98,4 +98,11 @@ needs a third choice, a lighter reference halo for those galaxies, and that choi
 galaxies show the same shape, but two galaxies carry no power. The alt hit is the rule "law inside 1.25 to 2 R_fold of
 galaxies with v_vir <= 288.1 km/s, cold-dust layout elsewhere". It rests on KiDS early-type lensing that cannot see f.
 
+**Commit ids and the lead's re-run (added 2026-11-13, after landing; no number or label changes).** Local / origin:
+criteria 00292e1430 / 680a64c35a; scripts and outputs b5731fd9a5 / fbe5dde686; RESULT 317b948cf5 / e9f728188e. Pushed. The lead session
+re-ran `jnt1.py` and its three twins (TWN, TWH, TWD) from a copy at the same folder depth, one thread: all eight output
+files are equal byte for byte, and the criteria commit holds that one file. That is a reproduction, not an independent
+re-grade. No blind twin of this lane was run. The alt label is a hit by the frozen rule only: its deciding row has two
+galaxies and no power, and it rests on a lensing gate that a blind re-grade (SRH1R) found cannot see f.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
