@@ -95,6 +95,6 @@ P, N = 2: median b +0.476 [+0.151, +0.801] / +0.460 [+0.134, +0.786]; source-fre
 
 `euc14_fetch.py`, `euc14_cal.py` (`euc14_cal.out`, `_results.json`), `euc14_core.py`, `euc14_geom.py`, `euc14.py`
 (`euc14.out`, `_results.json`, `_sources.csv`, `euc14_MUTATE_*`), `euc14_figs.py` (`figs/euc14_secure.png`).
+Commits (local / origin): criteria d537220287 / b8ab6111da; scripts and run 49575947e2 / dc161537eb; result ae3aba7b5c / 43ff7de733.
 
-    python3 -I euc14_cal.py --data-dir <dir>;  python3 -I euc14.py --data-dir <dir>
-    EUC14_MUTATE=newton|anyk python3 -I euc14.py --data-dir <dir>      (each must exit 1)
+    python3 -I euc14.py --data-dir <dir>;  EUC14_MUTATE=newton|anyk python3 -I euc14.py --data-dir <dir>  (twins exit 1)
