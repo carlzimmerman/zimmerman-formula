@@ -80,3 +80,11 @@ decompositions graded as data; neither was frozen here.
 (3864669e69). SRJ2's srj2_rc.py is executed read-only from its own path; nothing is written in its folder.
 
 Adopts nothing. kappa = 1/2 FITTED; not theory closed.
+
+## Dated correction (2026-11-13)
+
+The sentence under "TW-H and TW-L" that halving the halo cuts f_cold "from ~0.29 to ~0.17" is wrong. It was a hand
+figure, not a computed one. SRJ4's separate code gives a median f_cold of 0.245 / 0.238 with the halo halved: the halo
+is re-solved, so the cold mass inside R_e scales about as M^(1/3). That agrees with this lane's own computed twin shift
+(+0.020 dex at the median corresponds to an f_cold of roughly 0.25, not 0.17). No graded number, twin outcome or word
+changes.
