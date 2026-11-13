@@ -7,8 +7,8 @@ This joint is post hoc three times over: to FRZ1's forest fail, to FZS1's remain
 was written to remove exactly those misses, and it does remove them, but only by handing the forest and the clusters back
 to the cold reference. It then fails on high-redshift rotation curves (both footings), on KiDS early-type lenses by 0.01 /
 0.04 sigma (both), and on SPARC under the frozen reading (canonical only). Nothing here is a pass of the theory.
-TEST lane. Criteria b8a99499ad (alone, before any script or number). Scripts and outputs 7671345425. No amendment. Footings
-never pooled. Cold dark energy is a gravitating field component; no particle. SRF1 and SRF1R were not opened.
+TEST lane. Criteria b8a99499ad (alone, before any number); scripts and outputs 7671345425; no amendment. Footings never
+pooled. Cold dark energy is a gravitating field component; no particle. SRF1 and SRF1R were not opened.
 
 ## What the joint is
 
@@ -34,18 +34,14 @@ The cluster and group numbers are RB1's reference numbers, recomputed (2e-13 fro
 
 ## Who sits on which side of v_stiff
 
-- **Clusters and groups: all above.** X-COP v200 1213 to 1728 km/s. Lovisari groups 353 to 666 km/s. None is below, so
-  no joint was computed for any of them.
-- **Forest haloes:** 155 / 151 of FRZ1's 321 mass-grid haloes are cluster-regime at z 2.2. That is a count of grid points.
+- **Clusters and groups: all above** (X-COP v200 1213 to 1728 km/s, groups 353 to 666), so no joint was computed for any.
+- **Forest:** 155 / 151 of FRZ1's 321 mass-grid haloes are cluster-regime at z 2.2 (a count of grid points).
 - **RC100: 31 / 22 of 100 are cluster-regime.** At z ~ 2 the boundary sits at log M_b 10.93 / 11.04. The reason is that
   FRZ1's halo for a galaxy has M_ta = X M_b / (1 - FB) with X about 56. Those 31 / 22 galaxies have R_set = 0, so the law
   covers none of their radii at any f.
-- **SPARC, z 0 (boundary log M_b 11.32 / 11.43).**
-  - With FLD1's M_b: 3 / 0 above (NGC6195, UGC02487, UGC02885).
-  - With PD1's M_b: 9 / 2 above.
-- **KiDS (40,667 host-free lenses: 10,282 late, 30,385 early).** Boundary log M_b 11.24 / 11.35 at z 0.3.
-  - At the all-fit k (1.459 / 1.446): 224 / 0 above (118 late, 106 early / none).
-  - At f 1.25: 1,671 / 0. At f 2: 8,091 / 43.
+- **SPARC (z 0 boundary log M_b 11.32 / 11.43):** 3 / 0 above with FLD1's M_b (NGC6195, UGC02487, UGC02885); 9 / 2 with PD1's.
+- **KiDS (40,667 host-free lenses: 10,282 late, 30,385 early; boundary log M_b 11.24 / 11.35 at z 0.3):** at the all-fit
+  k (1.459 / 1.446) 224 / 0 above (118 late, 106 early / none); 1,671 / 0 at f 1.25; 8,091 / 43 at f 2.
 
 ## Why each row came out as it did
 
@@ -57,26 +53,18 @@ The cluster and group numbers are RB1's reference numbers, recomputed (2e-13 fro
 - **G3, canonical.** The fail rests on the frozen reading: cluster-regime galaxies at g = g_N, which is SRH1's truncated
   form at R_trunc = 0. Under the joint's own layout (reference NFW cold mass) the same line holds: rms 0.0640, massive
   0.0387 canonical; 0.0559 / 0.0332 alt. That reading was reported, not graded, as frozen. Read it as a soft fail.
-- **G4.** Almost no lenses cross the boundary at f = 1. So the joint reads like SRH1's f = 1 row: +2.003 -> +2.012
-  canonical, and unchanged on alt. It fails the early-type line by 0.012 / 0.037 sigma. f = 1.25 passes (+1.84 / +1.85).
-  SRH1R found this lensing gate cannot tell one f from another.
+- **G4.** Almost no lenses cross the boundary at f = 1, so it reads like SRH1's f = 1 row (+2.003 -> +2.012 canonical,
+  alt unchanged): 0.012 / 0.037 sigma over the line; f = 1.25 passes. SRH1R found this gate cannot tell f apart.
 - **Clusters and groups.** By construction they equal the reference, which passes RB1's gates. The R500 aperture bracket
   fails for the reference too.
 
 ## Checks and twins (all pass or bite)
 
-- **C1, split off at f 1:**
-  - G1 38.741 / 36.658 = FZS1 (R_cold to 0).
-  - G2 0.391237 / 0.391383, G3(a) 0.467132 / 0.467178 = SRH1.
-  - G4 equals SRH1's stored f 1 row exactly.
-- **C2, f 0:** G1 0; G4 equals SRH1's f0 row exactly.
-- **C3:** VST and v_vir equal FRZ1's, to 0.
-- **C4:** M_S conserves M_ta to 6.6e-16 and never decreases.
-- **C5:** RB1 reproduced, 2.4e-13.
-- **TW-C (law's layout restored in cluster-regime haloes):** 38.741 / 36.658 = FZS1. Bites; exits 1.
-- **TW-F2 (joint at f 2):**
-  - G1 rises only to 0.42 / 0.58, so the G1 part does not bite.
-  - The G4 early z falls +2.012 -> +1.420 and +2.037 -> +1.142, so it bites. Exits 1.
+- **C1 (split off, f 1):** G1 38.741 / 36.658 = FZS1 (R_cold to 0); G2 0.391237 / 0.391383 and G3(a) 0.467132 / 0.467178
+  = SRH1; G4 equals SRH1's stored f 1 row exactly. **C2 (f 0):** G1 0; G4 = SRH1's f0 row exactly.
+- **C3** VST and v_vir equal FRZ1's (to 0). **C4** M_ta conserved to 6.6e-16, M_S non-decreasing. **C5** RB1 to 2.4e-13.
+- **TW-C** (law restored in cluster-regime haloes): 38.741 / 36.658 = FZS1; bites, exits 1. **TW-F2** (joint at f 2): G1
+  only 0.42 / 0.58 (that part does not bite); G4 early z +2.012 -> +1.420, +2.037 -> +1.142: bites, exits 1.
 
 ## What the joint gives up, and what it leaves open
 
@@ -85,11 +73,8 @@ The cluster and group numbers are RB1's reference numbers, recomputed (2e-13 fro
   0.9784; CO1's law-to-r_ta value is 1.0033 / 1.0282. That is the content behind form B's lensing amplitude.
 - **Every system above v_stiff loses the law,** including about a quarter to a third of RC100 and the most massive SPARC
   galaxies.
-- **Not addressed:**
-  - the weak-lensing amplitude;
-  - hosted dwarfs;
-  - the two fitted constants;
-  - why v_stiff, a form choice with no bracket in FRZ1 or PD1, should be a layout switch.
+- **Not addressed:** the weak-lensing amplitude; hosted dwarfs; the two fitted constants; why v_stiff (a form choice,
+  unbracketed in FRZ1 and PD1) should switch the layout.
 
 ## Estimates against the outcome
 
@@ -102,21 +87,14 @@ The cluster and group numbers are RB1's reference numbers, recomputed (2e-13 fro
 
 - The regime of an observed galaxy uses FRZ1's halo (X about 56 to 59, Duffy c, Delta_ta). A smaller X would move the
   boundary up and the G2 count down. No bracket was frozen for that.
-- The G4 table switches at grid nodes, and the trilinear interpolation blends across one cell. G4 neighbours keep ONE1's
-  halos.
-- G1 inherits FRZ1's halo model (PROVISIONAL inputs) and is at matter level only.
-- G2 is coverage only.
+- G4's table switches at grid nodes (trilinear blend across one cell); its neighbours keep ONE1's halos. G1 inherits FRZ1's
+  halo model (PROVISIONAL inputs), matter level only. G2 is coverage only.
 
 ## Files
 
-`FROZEN_CRITERIA.md` (b8a99499ad). Scripts and outputs (7671345425):
-- `srj2_hm.py`, `srj2_forest.py` (G1, TW-C, TW-F2);
-- `srj2_rc.py` (G2, G3);
-- `srj2_lens.py` (G4, TW-F2);
-- `srj2_clusters.py`;
-- `srj2_grade.py`.
-
-The console logs stay local (gitignored). Owners' code is executed read-only from its own path. Nothing was fetched or
-pushed.
+`FROZEN_CRITERIA.md` (b8a99499ad). Scripts and outputs (7671345425): `srj2_hm.py`, `srj2_forest.py` (G1, TW-C, TW-F2),
+`srj2_rc.py` (G2, G3), `srj2_lens.py` (G4, TW-F2), `srj2_clusters.py`, `srj2_grade.py`. RESULT first committed at 122 lines
+(c67c2ce0e8), over the 100-line limit; this version only shortens it (no number or word changed). Console logs stay local
+(gitignored). Owners' code is executed read-only from its own path. Nothing was fetched or pushed.
 
 Adopts nothing. kappa = 1/2 FITTED; not theory closed.
