@@ -134,4 +134,10 @@ Planck Society. The Argelander Institute for Astronomy of the University of Bonn
 Universität Munich also participated in the science preparation for eROSITA. (Merloni et al. 2024, A&A 682, A34;
 Tubín-Arenas et al. 2024 for the upper-limit service.)
 
+## Commit ids (local / origin)
+
+Criteria `512015c599` / `41733e3421`; frozen run `0712e53975` / `09db77599c`; amendment `c571f1b90a` /
+`d7db8dadf6`; A1 run `bb9cd129db` / `fd30b78a5c`; result `b5fcb2155a` / `e1258e6df4`. Pushed by replay onto
+origin's tip, so the two histories carry different ids for the same content.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
