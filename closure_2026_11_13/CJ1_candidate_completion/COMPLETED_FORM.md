@@ -109,7 +109,8 @@ only.
    *What would decide it:* resolved rotation curves of z about 2 discs reaching beyond about 3 R_1/2, with measured gas
    profiles, on both sides of log M_b 11.3 / 11.5 (DSC1's named need). Above: the reference layout (a cold-dust halo at
    the full share). Below: the law. DSC1 now reads the first as holding (fragile, amplitude only) and the second as
-   failing (fragile).
+   failing (fragile). The blind DSC1R (2026-11-13) reads NO POWER above and the law holding below, both fragile:
+   neither is decided.
 2. **Today no galaxy switches, but groups sit at the edge.** SPARC: 0 of 175 above (largest Vflat 332). Lovisari groups
    v200 353 to 666 against v* about 661: canonical IC1633 at 666 in JNT2 and none above in JNT2R (largest 658); 7 / 1
    groups within 20 % on the model speed. X-COP clusters (v200 at least 1247, about 1.9 v*) keep the cold dust.
@@ -135,7 +136,10 @@ to the cold dust while the coverage line asks for the law, where RC100's single 
 apart (SRJ3). Its passes are TRIVIAL (forest at matter level, X-COP, the CMB rows) or EQUAL TO THE LAW (SPARC, KiDS,
 the Milky Way, groups), and the one row that sets the lower edge of f cannot see f in a blind build. Its one
 non-trivial data hit, DSC1 on three resolved z about 2 discs above v*, is fragile and rests on amplitude only, and the
-same lane reads the law failing below v*. No hit has had an independent blind re-grade that confirmed it. Doubling v*
+same lane reads the law failing below v*. No hit has had an independent blind re-grade that confirmed it. (Update
+2026-11-13: the blind re-grade DSC1R confirms neither reading. It reads NO POWER above and LAW HOLDS BELOW, both
+FRAGILE, on both footings; above, the difference from DSC1 is how many digitised points count as independent, and
+below it is the decision line.) Doubling v*
 would restore coverage and break the forest, so rescuing the coverage line needs a fitted constant between 1 and 2 v*.
 What holds, with its scope: with no new constant it keeps every z = 0 galaxy, every KiDS lens and the groups on the law,
 every X-COP cluster on the reference, the forest at matter level trivial up to f 2, and it removes SRJ2's problem with
