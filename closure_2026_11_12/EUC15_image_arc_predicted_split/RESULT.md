@@ -95,7 +95,6 @@ identities.
 
 `euc15_fetch.py`, `euc15.py` (imports `euc14.py`), `euc15_figs.py`; `euc15.out`, `euc15_results.json`,
 `euc15_sources.csv`, `euc15_MUTATE_*`, `figs/euc15_secure_*.png`. Boxes outside git (`_external_data/.../euc15/`).
-
 Commits (local / origin): criteria 176eefd3d1 / be6185dbb6; scripts and run b272af9768 / 7db33d8cda; result 076321f1fd / 7d77a8282c.
 
     python3 -I euc15.py --data-dir <dir>;  EUC15_MUTATE=newton|nowindow python3 -I euc15.py --data-dir <dir>  (twins exit 1)
