@@ -2,15 +2,13 @@
 
 No number, word or line of the lane changes. RESULT.md stays as the lane wrote it.
 
-## Commit ids (local / origin): see the table
+## Commit ids (local / origin)
 
-| Commit | Local |
-|---|---|
-| FROZEN_CRITERIA (alone) | 3116ad793b |
-| Attempts (script, outputs, twin) | 681cfa10b7 |
-| RESULT | a6025e7958 |
-
-The origin ids are in the commit that adds this file's successor line, since they exist only after the push.
+| Commit | Local | Origin |
+|---|---|---|
+| FROZEN_CRITERIA (alone) | 3116ad793b | 05df560c55 |
+| Attempts (script, outputs, twin) | 681cfa10b7 | 6af0fb2222 |
+| RESULT | a6025e7958 | a82529b31c |
 
 ## Re-run by the lead
 
