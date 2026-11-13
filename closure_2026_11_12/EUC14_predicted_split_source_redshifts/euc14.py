@@ -1,0 +1,496 @@
+#!/usr/bin/env python3
+"""EUC14 (PREDICTED-SPLIT SOURCE REDSHIFTS).  Frozen criteria: FROZEN_CRITERIA.md.
+
+A lensed-source line is searched for in the individual dither spectra of each lens object at the wavelength shift that
+a catalogued arc's sky position and each dither's dispersion direction predict (euc14_core.py, euc14_geom.py), with the
+convention fixed on field calibrators (euc14_cal.py).  Gates: the truth lens (arc from its VIS image), a grade-X purity
+null, a scrambled-prediction null (arcs rotated by 90 deg), a sign-flipped null, injections, instrument checks, twins.
+Reading: EUC1-F exactly as frozen in EUC1 RESULT section 8 if N(P) >= 10, otherwise EARLY READING, NOT A GATE.
+
+Run:
+  python3 -I euc14.py --data-dir <dir>                       (the lane)
+  EUC14_MUTATE=newton python3 -I euc14.py --data-dir <dir>   (must exit 1)
+  EUC14_MUTATE=anyk   python3 -I euc14.py --data-dir <dir>   (must exit 1)
+
+kappa = 1/2 FITTED.  Footings never pooled.  No outcome favours the framework.
+"""
+import argparse, csv, json, math, os, sys, time
+import numpy as np
+from scipy.ndimage import maximum_filter1d
+from scipy.stats import beta
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE); sys.path.insert(0, os.path.join(HERE, "..", "EUC9_grism_spectra_source_redshifts"))
+import euc9_common as K                                     # EUC9's systems (EUC1's samples, lens objects, intervals)
+import euc14_core as C
+import euc14_geom as GM
+import euc14_cal as CAL
+E = K.E
+
+MUT = (os.environ.get("EUC14_MUTATE", "") or "").strip()
+if MUT == "newton": E.FOOT = {k: 1.0e-30 for k in E.FOOT}
+
+# ------------------------------------------------------------------ frozen numbers (FROZEN_CRITERIA.md)
+CONV = (270.0, 1.0)                          # (C0, tilt sign) from the field calibration (criteria section 1b)
+W_K = 0.30                                   # |k - 1| <= W_K (2 x 0.148, within [0.25, 0.5])
+H_MIN = 30.0                                 # predicted half-split (A), median over usable dithers
+TIERS = (("TA", 3.5, 6.0, 9.0), ("TB", 5.0, 8.0, 16.0))   # each grism position S/N, combined S/N, dchi2 over a centred line
+NB_PAD = 27.0
+PARTNER_SN = 3.0
+HA, O3B, O3A, HB, S2, S3, O2 = 6564.61, 5008.24, 4960.295, 4862.69, 6725.5, 9533.2, 3728.48
+WIN = dict(HA=(0.84, 1.88), O3=(1.41, 2.78))
+DZ_ABOVE, PAD_A = 0.15, 66.0
+BANDS = (("[S III] 9533", 9533.2, 9533.2), ("He I 10833 / Pa gamma", 10833.3, 10941.1), ("Pa beta", 12821.6, 12821.6))
+CONFLICT_DZ = 0.02
+NULL_FRAC, COVER_MIN = 0.20, 0.30
+F_HOLDS, F_FAILS, F_NMIN = 0.15, 0.25, 10
+TRUTH_TOL = 0.004
+INJ_N, INJ_SN, INJ_SEED = 300, 12.0, 20261112
+ANCHOR = ("EUCL-DR1-L015763", 1.3657, (0.231, 0.215))
+IDENT = (("[S III] 9533", S3), ("[O III] 5008", O3B), ("[O II] 3727", O2))
+TRUTH_IMG_ANN = (0.5, 1.5)                   # arc search annulus in units of theta_E (truth lens only)
+
+OUT = []
+def P(s=""):
+    print(s); OUT.append(s)
+
+def clopper(k, n, a=0.05):
+    if n == 0: return 0.0, 1.0
+    return (0.0 if k == 0 else float(beta.ppf(a / 2, k, n - k + 1))), (1.0 if k == n else float(beta.ppf(1 - a / 2, k + 1, n - k)))
+
+def kin(kg):
+    if MUT == "anyk": return np.abs(kg) >= 0.3
+    return np.abs(kg - 1.0) <= W_K + 1e-9
+
+SIG_ALL = sorted(set(C.SIG_PAIR) | set(C.SIG_SINGLE))
+
+# ------------------------------------------------------------------ the rule on one arc
+def usable(dl, pr):
+    m = np.array([d is not None and np.isfinite(pr[i]) for i, d in enumerate(dl)])
+    if not m.any(): return None
+    g = np.array([dl[i]["pos"] if m[i] else "" for i in range(len(dl))])
+    p0, p1 = pr[m & (g == C.POS[0])], pr[m & (g == C.POS[1])]
+    if len(p0) == 0 or len(p1) == 0: return None
+    h = float(np.median(np.abs(pr[m]))) * C.DISP
+    opp = np.sign(np.median(p0)) * np.sign(np.median(p1)) < 0
+    return dict(h=h, opposite=bool(opp), ok=bool(h >= H_MIN and opp))
+
+def search_arc(dl, S, pr):
+    """best candidate per tier for one arc: (lambda0, sigma, k) with k in W that dominates its neighbourhood over all k,
+    widths and nearby midpoints, beats the best centred line there, and is seen in both grism positions"""
+    u = usable(dl, pr)
+    if u is None or not u["ok"]: return None, u
+    sc = {s: C.scan(dl, S, pr, s) for s in C.SIG_PAIR}
+    D2 = np.stack([np.where(sc[s]["F"] > 0, sc[s]["d2"], 0.0) for s in C.SIG_PAIR])            # (sig, k, lam0)
+    m = int(math.ceil((2.0 * u["h"] + NB_PAD) / (C.DW / 2.0)))
+    allmax = maximum_filter1d(D2.max(axis=(0, 1)), size=2 * m + 1, mode="constant", cval=0.0)
+    cb, _ = C.centred(dl, S); cmax = maximum_filter1d(cb, size=2 * m + 1, mode="constant", cval=0.0)
+    kk = kin(C.KGRID)
+    out = {}
+    for tn, each, comb, dchi in TIERS:
+        best = None
+        for a, s in enumerate(C.SIG_PAIR):
+            q = (D2[a] >= comb * comb) & (D2[a] >= allmax[None, :] - 1e-9) & (D2[a] - cmax[None, :] >= dchi) & kk[:, None]
+            q &= (sc[s]["sn_pos"][C.POS[0]] >= each) & (sc[s]["sn_pos"][C.POS[1]] >= each)
+            if not q.any(): continue
+            j = np.unravel_index(int(np.argmax(np.where(q, D2[a], 0.0))), q.shape)
+            if best is None or D2[a][j] > best["d2"]:
+                best = dict(d2=float(D2[a][j]), sn=float(math.sqrt(D2[a][j])), k=float(C.KGRID[j[0]]), lam0=float(C.LAM0[j[1]]), sig=s,
+                            flux=float(sc[s]["F"][j]), sn000=float(sc[s]["sn_pos"][C.POS[0]][j]), sn180=float(sc[s]["sn_pos"][C.POS[1]][j]),
+                            dchi=float(D2[a][j] - cmax[j[1]]), h=u["h"])
+        out[tn] = best
+    return out, u
+
+def identify(dl, pr, c):
+    """O3 ([O III] 5008 with its 4960 partner), HA2 (H-alpha with a second line) or HA1; partners at the same shifts"""
+    f = C.fit_lines(dl, pr, c["k"], c["sig"], [c["lam0"], c["lam0"] * O3A / O3B])
+    if f is not None and f[0][1] / f[1][1] >= PARTNER_SN and f[0][0] > 0 and 0.15 <= f[0][1] / f[0][0] <= 0.6:
+        return "O3", c["lam0"] / O3B - 1.0, ["OIII4960 %.1f" % (f[0][1] / f[1][1])]
+    sup = []
+    for nm, lam in (("SII", S2), ("OIII5008", O3B), ("Hbeta", HB)):
+        f = C.fit_lines(dl, pr, c["k"], c["sig"], [c["lam0"], c["lam0"] * lam / HA])
+        if f is not None and f[0][1] / f[1][1] >= PARTNER_SN: sup.append("%s %.1f" % (nm, f[0][1] / f[1][1]))
+    return ("HA2" if sup else "HA1"), c["lam0"] / HA - 1.0, sup
+
+def classify(d, dl, S, arcs, tier, cache):
+    """class of one system at one tier: SECURE, AMBIGUOUS-OWN, CONFLICT or none, with the chosen arc's info"""
+    sec = []; amb = []
+    for ai, off in enumerate(arcs):
+        res = cache.get(ai)
+        if res is None or res[0] is None or res[0].get(tier) is None: continue
+        c = dict(res[0][tier]); pr = res[2]
+        idc, z, sup = identify(dl, pr, c)
+        c.update(idc=idc, z=float(z), sup=sup, arc=ai, off=[float(off[0]), float(off[1])])
+        lo, hi = WIN["O3" if idc == "O3" else "HA"]
+        if not (lo < z < hi) or not (z >= d["zup"] + DZ_ABOVE): continue
+        own = None
+        for nm, l1, l2 in BANDS:
+            if (1.0 + d["zlo"]) * l1 - PAD_A <= c["lam0"] <= (1.0 + d["zup"]) * l2 + PAD_A: own = nm
+        if own: c["own"] = own; amb.append(c)
+        else: sec.append(c)
+    if sec:
+        sec.sort(key=lambda c: -c["d2"]); b = sec[0]
+        if any(abs(o["z"] - b["z"]) > CONFLICT_DZ for o in sec[1:]): return "CONFLICT", b
+        return "SECURE", b
+    if amb: return "AMBIGUOUS-OWN", max(amb, key=lambda c: c["d2"])
+    return "none", None
+
+# ------------------------------------------------------------------ truth lens arc from its VIS image (frozen procedure)
+def truth_arc(path, ra0, de0, thE):
+    from astropy.io import fits
+    from astropy.wcs import WCS
+    from scipy.ndimage import gaussian_filter
+    with fits.open(path) as hl:
+        h = next(x for x in hl if x.data is not None and x.data.ndim == 2)
+        img = np.array(h.data, float); w = WCS(h.header)
+    ny, nx = img.shape
+    yy, xx = np.mgrid[0:ny, 0:nx]
+    ra, de = w.all_pix2world(xx.ravel(), yy.ravel(), 0)
+    off = np.array([GM.tan_offset(r, d, ra0, de0) for r, d in zip(ra, de)])
+    E_, N_ = off[:, 0].reshape(ny, nx), off[:, 1].reshape(ny, nx); R = np.hypot(E_, N_)
+    model = np.zeros_like(img); good = np.isfinite(img)
+    for r0 in np.arange(0.0, R.max(), 0.1):
+        m = good & (R >= r0) & (R < r0 + 0.1)
+        if m.any(): model[m] = np.median(img[m])
+    res = gaussian_filter(np.where(good, img - model, 0.0), 1.5)
+    ann = (R >= TRUTH_IMG_ANN[0] * thE) & (R <= TRUTH_IMG_ANN[1] * thE) & good
+    j = np.unravel_index(int(np.argmax(np.where(ann, res, -np.inf))), res.shape)
+    near = (np.hypot(E_ - E_[j], N_ - N_[j]) <= 0.3) & (res > 0)
+    wgt = res[near]
+    return np.array([float(np.sum(E_[near] * wgt) / np.sum(wgt)), float(np.sum(N_[near] * wgt) / np.sum(wgt))])
+
+# ------------------------------------------------------------------ main
+def main():
+    assert CONV is not None and W_K is not None, "convention and k window are frozen in the criteria"
+    ap = argparse.ArgumentParser(); ap.add_argument("--data-dir", required=True); a = ap.parse_args(); t0 = time.time()
+    sdir = os.path.join(a.data_dir, "nisp_spectra_dith"); odir = os.path.join(a.data_dir, "euc14")
+    tag = "euc14" + ("_MUTATE_" + MUT if MUT else "")
+    RES = dict(lane="EUC14", mutate=MUT, footings=E.FOOT, convention=CONV, w_k=W_K)
+    P("EUC14 (PREDICTED-SPLIT SOURCE REDSHIFTS)%s" % ("   *** MUTATE = %s ***" % MUT if MUT else ""))
+    P("footings (m/s^2): canonical %.4e, alt %.4e;  convention C0 = %.0f deg, tilt sign %+.0f;  k window 1 +- %.2f" % (E.FOOT["canonical"], E.FOOT["alt"], CONV[0], CONV[1], W_K))
+
+    # ---------------------------------------------------------------- systems, arcs, spectra
+    P("\n[data]")
+    B = K.build(a.data_dir); SYS, key, obj, Pm, Sm = B["SYS"], B["key"], B["obj"], B["Pm"], B["Sm"]
+    PA = GM.load_pa(a.data_dir)
+    tdir = os.path.join(a.data_dir, "nisp_tables")
+    sysrow = {int(r["sid"]): r for r in csv.DictReader(open(os.path.join(tdir, "systems.csv"), newline=""))}
+    mer = {}
+    for r in K.read_tab(tdir, "mer"): mer.setdefault(sysrow[int(r["sid"])]["unique_identifier"], []).append(r)
+    ids = dict(P=sorted(B["inP"]), S=sorted(B["inS"]), X=B["x_ids"])
+    D = {}
+    for lid, d in SYS.items():
+        d["spec_ok"] = False; d["evaluable"] = False; d["arcs"] = []
+        if not d.get("target"): continue
+        fn = os.path.join(sdir, "%d.npz" % d["oid"])
+        if not os.path.exists(fn): d["why"] = "no spectrum"; continue
+        rows = mer.get(lid, []); lo = [r for r in rows if int(r["object_id"]) == d["oid"]]
+        if not lo: d["why"] = "lens object not in the table"; continue
+        ra0, de0 = float(lo[0]["ra"]), float(lo[0]["dec"]); d["ra0"], d["de0"] = ra0, de0
+        raw = dict(np.load(fn, allow_pickle=False))
+        U = GM.dither_dirs(raw, PA, CONV, ra0, de0)
+        dl = C.dithers(raw)
+        okd = [i for i, x in enumerate(dl) if x is not None and np.isfinite(U[i, 0])]
+        if not any(dl[i]["pos"] == C.POS[0] for i in okd) or not any(dl[i]["pos"] == C.POS[1] for i in okd):
+            d["why"] = "no usable dither with a position angle in each grism position"; continue
+        d["spec_ok"] = True
+        ra_s, de_s = float(obj[lid]["RA_obj"]), float(obj[lid]["DEC_obj"])
+        r_a = min(d["thE"] + 0.7, 3.0)
+        for r in rows:
+            if int(r["object_id"]) == d["oid"]: continue
+            if float(GM.tan_offset(float(r["ra"]), float(r["dec"]), ra_s, de_s) @ GM.tan_offset(float(r["ra"]), float(r["dec"]), ra_s, de_s)) ** 0.5 > r_a: continue
+            d["arcs"].append(GM.tan_offset(float(r["ra"]), float(r["dec"]), ra0, de0))
+        D[lid] = (raw, dl, U)
+    # the truth lens's arc from its VIS image
+    dt = SYS[K.TRUTH[0]]; img = os.path.join(odir, "truth_vis_cutout.fits")
+    if K.TRUTH[0] in D and os.path.exists(img):
+        dt["arcs"] = [truth_arc(img, dt["ra0"], dt["de0"], dt["thE"])]
+        P("  truth lens %s: arc from its VIS image at (east %+.2f, north %+.2f) arcsec, %.2f arcsec from the lens object (theta_E %.2f)"
+          % (K.TRUTH[0], dt["arcs"][0][0], dt["arcs"][0][1], float(np.hypot(*dt["arcs"][0])), dt["thE"]))
+    # per-arc searches: true prediction, sign-flipped residuals, arcs rotated by +90 deg, arcs mirrored
+    def rot(o): return np.array([o[1], -o[0]])
+    S_cache = {}
+    for lid, (raw, dl, U) in D.items():
+        d = SYS[lid]
+        if not (d["inS"] or d["isX"] or lid == K.TRUTH[0]): continue
+        S = C.sums(dl, SIG_ALL); dlf = [None if x is None else dict(x, r=-x["r"]) for x in dl]; Sf = C.sums(dlf, SIG_ALL)
+        d["cache"] = {v: {} for v in ("true", "flip", "rot", "mirror")}
+        for ai, off in enumerate(d["arcs"]):
+            for v, (dd, SS, oo) in dict(true=(dl, S, off), flip=(dlf, Sf, off), rot=(dl, S, rot(off)), mirror=(dl, S, -off)).items():
+                pr = GM.proj(U, oo); r_, u_ = search_arc(dd, SS, pr)
+                d["cache"][v][ai] = (r_, u_, pr)
+        d["usable_arc"] = {v: any(x[1] is not None and x[1]["ok"] for x in d["cache"][v].values()) for v in d["cache"]}
+        d["evaluable"] = d["usable_arc"]["true"]
+        S_cache[lid] = (S, Sf, dlf)
+    COV = {}
+    for nm in ("P", "S", "X"):
+        n = len(ids[nm]); sp = sum(SYS[i]["spec_ok"] for i in ids[nm]); wa = sum(1 for i in ids[nm] if SYS[i]["spec_ok"] and SYS[i]["arcs"])
+        ev = sum(SYS[i]["evaluable"] for i in ids[nm])
+        COV[nm] = dict(N=n, spectrum=sp, with_arc=wa, evaluable=ev)
+        P("  %-2s N = %4d; usable spectrum with position angles %4d (%.3f); with a catalogued arc candidate %4d; evaluable (an arc with predicted half-split >= %.0f A) %4d"
+          % (nm, n, sp, sp / n, wa, H_MIN, ev))
+    cover_ok = COV["S"]["spectrum"] / COV["S"]["N"] >= COVER_MIN and COV["X"]["spectrum"] / COV["X"]["N"] >= COVER_MIN
+    P("  coverage gate (>= %.0f %% of S and of X with a usable spectrum): %s;  arc candidates per evaluable system: S %.2f, X %.2f"
+      % (100 * COVER_MIN, "PASS" if cover_ok else "FAIL", np.mean([len(SYS[i]["arcs"]) for i in ids["S"] if SYS[i]["evaluable"]] or [0]),
+         np.mean([len(SYS[i]["arcs"]) for i in ids["X"] if SYS[i]["evaluable"]] or [0])))
+    RES["coverage"] = COV
+
+    def cls(lid, tier, v="true"):
+        d = SYS[lid]
+        if not d.get("usable_arc", {}).get(v): return "none", None
+        ck = (tier, v)
+        if ck not in d.setdefault("cls", {}):
+            raw, dl, U = D[lid]; S, Sf, dlf = S_cache[lid]
+            dd, SS = (dlf, Sf) if v == "flip" else (dl, S)
+            arcs = d["arcs"] if v in ("true", "flip") else [rot(o) if v == "rot" else -o for o in d["arcs"]]
+            d["cls"][ck] = classify(d, dd, SS, arcs, tier, d["cache"][v])
+        return d["cls"][ck]
+
+    # ---------------------------------------------------------------- instrument checks
+    P("\n[instrument checks]")
+    CK = {}
+    def ck(k, what, val, ok):
+        CK[k] = dict(what=what, value=val, ok=bool(ok)); P("  %s %-3s %s : %s" % ("PASS" if ok else "FAIL", k, what, val))
+    engP, zP, REP, _, _, _ = E.build(Pm)
+    k1 = tuple(float(np.median(E.run_b(engP, zP, REP, E.ZS_INF, a0, "S"))) for a0 in (E.FOOT["canonical"], E.FOOT["alt"]))
+    ck("K1", "EUC1 reproduced: N(P) = 3192, source-free b_med law S = -0.019 / -0.044 to 0.001", "N = %d, %+.4f / %+.4f" % (len(Pm), k1[0], k1[1]),
+       (len(Pm) == 3192 and abs(k1[0] + 0.019) <= 0.001 and abs(k1[1] + 0.044) <= 0.001) or MUT == "newton")
+    ar = key[ANCHOR[0]]; zsp = K.fl(obj[ANCHOR[0]]["desi_deflector_specz"])
+    lma = ar["lm"] + 2.0 * math.log10(float(E.EUCLID.DL(zsp)) / float(E.EUCLID.DL(ar["z"])))
+    enga, za, REa, _, _, _ = E.build([ar], z=np.array([zsp]), lm=np.array([lma]))
+    anc = {nm: float(E.run_b(enga, za, REa, ANCHOR[1], a0, "S")[0]) for nm, a0 in E.FOOT.items()}
+    ck("K2", "EUC2 anchor L015763 at z_l(DESI), z_s = 1.3657: b = +0.231 / +0.215 to 0.002", "%+.4f / %+.4f" % (anc["canonical"], anc["alt"]),
+       (abs(anc["canonical"] - ANCHOR[2][0]) <= 0.002 and abs(anc["alt"] - ANCHOR[2][1]) <= 0.002) or MUT == "newton")
+    RES["anchor_b"] = anc
+    try:
+        ver = json.load(open(os.path.join(sdir, "verify.json"))); flog = json.load(open(os.path.join(sdir, "fetch_log.json")))
+        miss = sum(1 for d in SYS.values() if d.get("target") and not os.path.exists(os.path.join(sdir, "%d.npz" % d["oid"])) and str(d["oid"]) not in flog)
+        k5ok = miss == 0 and len(ver) >= 20 and all(v["identical"] for v in ver)
+        k5v = "targets with neither a spectrum nor a recorded reason %d; EUC9's re-read check %d of %d identical" % (miss, sum(v["identical"] for v in ver), len(ver))
+    except Exception as ex:
+        k5ok, k5v = False, "unreadable (%s)" % type(ex).__name__
+    ck("K5", "dither cache complete (EUC9's fetch) and re-read identical", k5v, k5ok)
+    npa = sum(int(np.sum(np.isfinite(D[i][2][:, 0]))) for i in D); nd = sum(len(D[i][1]) for i in D)
+    ck("K6", "position angle found for >= 95 % of the dithers of evaluable-spectrum systems", "%d of %d (%.3f)" % (npa, nd, npa / max(nd, 1)), npa >= 0.95 * nd)
+    cal = CAL.summary(a.data_dir)
+    ck("C1", "field calibration reproduced: convention and k window as frozen, calibration passes",
+       "convention %s, %d detections (next %d), median k %.3f, sigma %.3f, n %d" % (cal["convention"], cal["n_detected"], cal["next_detected"], cal["k_median"], cal["k_sigma"], cal["n_scale"]),
+       cal["passes"] and tuple(cal["convention"]) == tuple(CONV) and abs(max(0.25, min(0.5, 2.0 * cal["k_sigma"])) - W_K) < 0.005)
+
+    # injections into the dithers of S systems with a usable arc
+    rng = np.random.default_rng(INJ_SEED)
+    evS = [i for i in ids["S"] if SYS[i]["evaluable"]]
+    pick = [evS[j] for j in rng.permutation(len(evS))[:INJ_N]]
+    i1 = i2 = i3 = n_inj = 0
+    for lid in pick:
+        d = SYS[lid]; raw, dl, U = D[lid]
+        ai = next(ai for ai, x in d["cache"]["true"].items() if x[1] is not None and x[1]["ok"]); pr = d["cache"]["true"][ai][2]
+        b0, _ = search_arc(dl, S_cache[lid][0], pr)
+        for _ in range(50):
+            lam0 = float(rng.uniform(12300.0, 18700.0)); j = int(np.argmin(np.abs(C.LAM0 - lam0)))
+            sc = C.scan(dl, S_cache[lid][0], pr, 16.0, kgrid=np.array([1.0, -1.0, 0.0]), lam0=np.array([C.LAM0[j]]))
+            if np.all(sc["N"][:, 0] > 0): break
+        else: continue
+        lam0 = float(C.LAM0[j]); n_inj += 1
+        def near(bb, tol): return bool(bb and bb.get("TA") and abs(bb["TA"]["lam0"] - lam0) <= tol)
+        dq = C.dithers(C.inject(raw, pr, lam0, 1.0, 16.0, INJ_SN / math.sqrt(sc["N"][0, 0]))); q, _ = search_arc(dq, C.sums(dq, SIG_ALL), pr)
+        i1 += near(q, C.DW)
+        dq = C.dithers(C.inject(raw, pr, lam0, 0.0, 20.0, INJ_SN / math.sqrt(sc["N"][2, 0]))); q, _ = search_arc(dq, C.sums(dq, SIG_ALL), pr)
+        i2 += near(q, 80.0) and not near(b0, 80.0)
+        dq = C.dithers(C.inject(raw, pr, lam0, -1.0, 16.0, INJ_SN / math.sqrt(sc["N"][1, 0]))); q, _ = search_arc(dq, C.sums(dq, SIG_ALL), pr)
+        i3 += near(q, C.DW) and not near(b0, C.DW)
+    if MUT != "anyk":
+        ck("I1", "a line injected at the predicted shifts (S/N 12) returned at TA within 13.4 A in >= 70 %", "%d / %d = %.3f" % (i1, n_inj, i1 / max(n_inj, 1)), n_inj > 0 and i1 >= 0.70 * n_inj)
+        ck("I2", "a centred line (S/N 12) returned at TA in <= 5 %", "%d / %d = %.3f" % (i2, n_inj, i2 / max(n_inj, 1)), n_inj > 0 and i2 <= 0.05 * n_inj)
+        ck("I3", "a line at the mirrored shifts (S/N 12) returned at TA in <= 5 %", "%d / %d = %.3f" % (i3, n_inj, i3 / max(n_inj, 1)), n_inj > 0 and i3 <= 0.05 * n_inj)
+
+    # ---------------------------------------------------------------- gates per tier
+    GATE = {}
+    def cnt(group, tier, v="true", c_="SECURE"): return sum(1 for i in group if SYS[i]["evaluable"] and cls(i, tier, v)[0] == c_)
+    for tn, each, comb, dchi in TIERS:
+        P("\n[tier %s: each grism position S/N >= %.1f, combined >= %.0f, over a centred line dchi2 >= %.0f; k within 1 +- %.2f]" % (tn, each, comb, dchi, W_K))
+        c = {}
+        for nm in ("P", "S", "X"):
+            Ev = sum(SYS[i]["evaluable"] for i in ids[nm]); n = cnt(ids[nm], tn); lo, hi = clopper(n, Ev)
+            byid = {}
+            for i in ids[nm]:
+                if SYS[i]["evaluable"] and cls(i, tn)[0] == "SECURE": byid[cls(i, tn)[1]["idc"]] = byid.get(cls(i, tn)[1]["idc"], 0) + 1
+            c[nm] = dict(E=Ev, SECURE=n, by_identity=byid, AMBIG=cnt(ids[nm], tn, c_="AMBIGUOUS-OWN"), CONFLICT=cnt(ids[nm], tn, c_="CONFLICT"),
+                         flip=cnt(ids[nm], tn, "flip"), rot=cnt(ids[nm], tn, "rot"), mirror=cnt(ids[nm], tn, "mirror"),
+                         E_rot=sum(1 for i in ids[nm] if SYS[i].get("usable_arc", {}).get("rot")))
+            P("  %-2s evaluable %4d: SECURE %3d (rate %.4f [%.4f, %.4f]) %s; AMBIGUOUS-OWN %d; CONFLICT %d | sign-flipped %d; rotated 90 deg %d (of %d); mirrored %d"
+              % (nm, Ev, n, n / max(Ev, 1), lo, hi, byid, c[nm]["AMBIG"], c[nm]["CONFLICT"], c[nm]["flip"], c[nm]["rot"], c[nm]["E_rot"], c[nm]["mirror"]))
+        lim = max(1.0, NULL_FRAC * c["S"]["SECURE"] * c["X"]["E"] / max(c["S"]["E"], 1)); h2 = c["X"]["SECURE"] <= lim
+        lim3 = max(1.0, NULL_FRAC * c["S"]["SECURE"]); h3 = c["S"]["rot"] <= lim3
+        h2b = c["S"]["flip"] <= lim3
+        P("  H2  purity null: grade-X SECURE = %d against a limit of %.1f -> %s" % (c["X"]["SECURE"], lim, "PASS" if h2 else "FAIL"))
+        P("  H3  scrambled prediction (arcs rotated by 90 deg): S SECURE = %d against a limit of %.1f -> %s" % (c["S"]["rot"], lim3, "PASS" if h3 else "FAIL"))
+        P("  H2b sign-flipped residuals: S SECURE = %d against a limit of %.1f -> %s" % (c["S"]["flip"], lim3, "PASS" if h2b else "FAIL"))
+        if dt.get("usable_arc", {}).get("true"):
+            k_, info = cls(K.TRUTH[0], tn)
+            h4 = k_ == "SECURE" and abs(info["z"] - K.TRUTH[1]) <= TRUTH_TOL
+            best = dt["cache"]["true"][0][0]
+            P("  H4  truth %s (z_s = %.4f): %s%s" % (K.TRUTH[0], K.TRUTH[1], "RECOVERED" if h4 else "NOT RECOVERED (class %s)" % k_,
+              "" if not info else "  [midpoint %.1f A, z = %.4f as %s, k = %.2f (predicted half-split %.1f A), sigma %.0f, S/N %.1f (RGS000 %.1f, RGS180 %.1f), dchi2 over centred %.1f, support %s]"
+              % (info["lam0"], info["z"], info["idc"], info["k"], info["h"], info["sig"], info["sn"], info["sn000"], info["sn180"], info["dchi"], info["sup"])))
+        else:
+            h4 = False; best = None
+            P("  H4  truth %s: NOT EVALUABLE (%s)" % (K.TRUTH[0], "no usable arc" if dt.get("spec_ok") else dt.get("why", "no spectrum")))
+        GATE[tn] = dict(counts=c, H2_limit=lim, H2=bool(h2), H3_limit=lim3, H3=bool(h3), H2b=bool(h2b), H4=bool(h4), passes=bool(h2 and h3 and h2b and h4))
+    RES["gates"] = GATE
+
+    P("\n[every SECURE system at TA: grade X and lenses]")
+    NH = []
+    for nm in ("X", "S"):
+        for i in ids[nm]:
+            k_, f = cls(i, "TA")
+            if k_ != "SECURE": continue
+            d = SYS[i]
+            NH.append(dict(id=i, side=nm, inP=d["inP"], z=f["z"], idc=f["idc"], lam0=f["lam0"], k=f["k"], h=f["h"], sn=f["sn"], sn000=f["sn000"], sn180=f["sn180"],
+                           dchi=f["dchi"], sup=f["sup"], thE=d["thE"], zup=d["zup"], arc=f["off"], TB=cls(i, "TB")[0]))
+            P("  %s %s%s z = %.4f (%s) midpoint %.0f A, k %.2f, predicted half-split %.0f A, S/N %.1f (%.1f / %.1f), dchi2 %.1f | arc (E %+.2f, N %+.2f) | theta_E %.2f | z_up %.2f | support %s | TB %s"
+              % (nm, i, " (P)" if d["inP"] else "", f["z"], f["idc"], f["lam0"], f["k"], f["h"], f["sn"], f["sn000"], f["sn180"], f["dchi"], f["off"][0], f["off"][1], d["thE"], d["zup"], f["sup"], NH[-1]["TB"]))
+    RES["secure_list"] = NH
+
+    # ---------------------------------------------------------------- ladder
+    allok = all(v["ok"] for v in CK.values())
+    tier = next((t[0] for t in TIERS if GATE[t[0]]["passes"]), None)
+    evaluable = allok and cover_ok and tier is not None
+    P("\n[ladder]")
+    for t in TIERS: P("  %s  H2 %s, H3 %s, H2b %s, H4 %s" % (t[0], *("PASS" if GATE[t[0]][g] else "FAIL" for g in ("H2", "H3", "H2b", "H4"))))
+    P("  -> " + (("reading tier " + tier + ("" if tier == "TA" else " (frozen fallback)")) if tier else "no tier passes: NOT EVALUABLE"))
+    rt = tier or "TA"
+
+    # ---------------------------------------------------------------- readings
+    P("\n[readings on tier %s%s]" % (rt, "" if evaluable else ", VOID (the search is not evaluable)"))
+    READ = {}
+    def zmap(tn, ident=None, classes=("SECURE",), ids_ok=None):
+        m = {}
+        for i in ids["S"]:
+            d = SYS[i]
+            if not d["evaluable"] or cls(i, tn)[0] not in classes: continue
+            f = cls(i, tn)[1]
+            if ids_ok is not None and f["idc"] not in ids_ok: continue
+            z = f["z"]
+            if ident is not None and f["idc"] == "HA1":
+                zx = (1.0 + z) * HA / ident - 1.0
+                if zx >= d["zup"] + DZ_ABOVE: z = zx                            # an identity that puts the source at or below the lens is excluded
+            m[i] = z
+        return m
+    def reading(name, sample, zs_of, desi=False, quiet=False):
+        sel = [r for r in sample if r["id"] in zs_of]
+        zs = np.array([zs_of[r["id"]] for r in sel]); zl = E.arr(sel, "z") if sel else np.array([]); lm = E.arr(sel, "lm") if sel else np.array([])
+        if desi and sel:
+            zsp = np.array([r["zspec"] if np.isfinite(r["zspec"]) and r["zspec"] > 0 else r["z"] for r in sel])
+            lm = lm + 2.0 * np.log10(E.EUCLID.DL(zsp) / E.EUCLID.DL(zl)); zl = zsp
+        keep = zl < zs - 0.2; dropped = int(np.sum(~keep))
+        sel = [r for r, k_ in zip(sel, keep) if k_]; zs, zl, lm = zs[keep], zl[keep], lm[keep]
+        out = dict(N=len(sel), dropped=dropped, ids=[r["id"] for r in sel])
+        if sel:
+            eng, z, RE, _, _, _ = E.build(sel, z=zl, lm=lm); out["b"] = {}
+            for law in ("S", "B"):
+                for nm, a0 in E.FOOT.items():
+                    bt = eng.solve_b(math.pi * RE ** 2 * E.EUCLID.sigcr(z, zs), a0, law)
+                    bi = eng.solve_b(math.pi * RE ** 2 * E.EUCLID.sigcr(z, E.ZS_INF), a0, law)
+                    out["%s_%s" % (law, nm)] = dict(true=E.stats(bt), inf=E.stats(bi))
+                    out["b"]["%s_%s" % (law, nm)] = [float(x) for x in bt]; out["b"]["inf_%s_%s" % (law, nm)] = [float(x) for x in bi]
+            out["thE_med"] = float(np.median(E.arr(sel, "tE"))); out["zs_med"] = float(np.median(zs))
+        if not quiet:
+            if not sel: P("  %-34s N = 0%s" % (name, " (dropped %d)" % dropped if dropped else ""))
+            else:
+                for nm in E.FOOT:
+                    st, si = out["S_" + nm]["true"], out["S_" + nm]["inf"]
+                    P("  %-34s law S %-9s N = %3d  b_med = %+.3f [%+.3f, %+.3f]   source-free %+.3f%s"
+                      % (name, nm, len(sel), st["b_med"], st["b_med_lo"], st["b_med_hi"], si["b_med"], "  (dropped %d)" % dropped if dropped else ""))
+        READ[name] = out; return out
+    def f_word(rP_):
+        w = {}
+        for nm in E.FOOT:
+            if rP_["N"] < F_NMIN: w[nm] = "EARLY READING, NOT A GATE"; continue
+            st = rP_["S_" + nm]["true"]
+            w[nm] = "LENS GATE HOLDS" if st["b_med_hi"] <= F_HOLDS else "LENS GATE FAILS" if st["b_med_lo"] >= F_FAILS else "NO VERDICT"
+        return w
+    ZS = zmap(rt)
+    rP = reading("P", Pm, ZS); rS = reading("S", Sm, ZS)
+    W = f_word(rP)
+    WID = {}
+    for nm_i, lam_i in IDENT:
+        WID[nm_i] = f_word(reading("P [HA1 read as %s]" % nm_i, Pm, zmap(rt, lam_i), quiet=False))
+    ident_dep = any(WID[k_] != W for k_ in WID)
+    P("  line identity: HA1 lenses read as %s -> words %s" % (", ".join(n for n, _ in IDENT), "THE SAME" if not ident_dep else "DIFFERENT: %s" % json.dumps(WID)))
+    nH = {k_: sum(1 for i in ZS if cls(i, rt)[1]["idc"] == k_) for k_ in ("HA1", "HA2", "O3")}
+    P("  secure sample of S: N = %d (%s); median theta_E %.2f arcsec (sample P: %.2f); median z_s %.2f"
+      % (len(ZS), nH, np.median([SYS[i]["thE"] for i in ZS]) if ZS else float("nan"), np.median(E.arr(Pm, "tE")), np.median(list(ZS.values())) if ZS else float("nan")))
+    P("\n[robustness, law S; reported]")
+    reading("1 P, two-line classes only", Pm, zmap(rt, ids_ok=("HA2", "O3")))
+    reading("2 P, tier TB only", Pm, zmap("TB"))
+    reading("3 P, + AMBIGUOUS-OWN", Pm, zmap(rt, classes=("SECURE", "AMBIGUOUS-OWN")))
+    reading("4 P, DESI deflector z", Pm, ZS, desi=True)
+    RES["reading"] = {k_: {kk: vv for kk, vv in v.items() if kk not in ("b", "ids")} for k_, v in READ.items()}
+
+    # per-system table
+    if not MUT:
+        bS = {i: {k_: v[j] for k_, v in rS["b"].items()} for j, i in enumerate(rS["ids"])} if rS["N"] else {}
+        with open(os.path.join(HERE, tag + "_sources.csv"), "w", newline="") as f:
+            w = csv.writer(f)
+            w.writerow(["unique_identifier", "grade", "in_P", "in_S", "class_TA", "class_TB", "line", "z_s", "midpoint_A", "k", "predicted_half_split_A", "sigma_A",
+                        "sn_combined", "sn_RGS000", "sn_RGS180", "dchi2_over_centred", "support", "own_line_band", "arc_east_arcsec", "arc_north_arcsec",
+                        "theta_E_arcsec", "z_lo", "z_up", "mer_object_id", "b_S_canonical", "b_S_alt", "b_inf_S_canonical", "b_inf_S_alt"])
+            for i in [K.TRUTH[0]] + ids["S"] + ids["X"]:
+                d = SYS[i]
+                if not d["evaluable"]: continue
+                ka, f_ = cls(i, "TA")
+                if ka == "none": continue
+                b = bS.get(i, {}) if ka == "SECURE" else {}
+                w.writerow([i, d["grade"], d["inP"], d["inS"], ka, cls(i, "TB")[0], f_["idc"], "%.4f" % f_["z"], "%.1f" % f_["lam0"], "%.2f" % f_["k"], "%.1f" % f_["h"],
+                            "%.0f" % f_["sig"], "%.2f" % f_["sn"], "%.2f" % f_["sn000"], "%.2f" % f_["sn180"], "%.1f" % f_["dchi"], "; ".join(f_["sup"]), f_.get("own", ""),
+                            "%.2f" % f_["off"][0], "%.2f" % f_["off"][1], "%.3f" % d["thE"], "%.3f" % d["zlo"], "%.3f" % d["zup"], d["oid"]]
+                           + [("%.4f" % b[c_]) if c_ in b else "" for c_ in ("S_canonical", "S_alt", "inf_S_canonical", "inf_S_alt")])
+    if rP["N"]:
+        P("  sample P per lens (law S): id, z_l, z_s, line, k, predicted half-split arcsec, theta_E, S/N, support, b canonical / alt (source-free alt)")
+        for j in np.argsort([ZS[i] for i in rP["ids"]]):
+            i = rP["ids"][j]; f_ = cls(i, rt)[1]
+            P("    %s %.3f %.4f %-3s %.2f %.2f %.2f %5.1f %-22s %+.3f / %+.3f  (%+.3f)" % (i, key[i]["z"], ZS[i], f_["idc"], f_["k"], f_["h"] / C.DISP, key[i]["tE"], f_["sn"],
+              "; ".join(f_["sup"]) or "-", rP["b"]["S_canonical"][j], rP["b"]["S_alt"][j], rP["b"]["inf_S_alt"][j]))
+
+    # ---------------------------------------------------------------- verdict
+    P("\n[summary]")
+    P("  instrument checks: %s;  coverage: %s;  reading tier: %s" % ("all pass" if allok else "FAILED", "pass" if cover_ok else "FAIL", tier or "none"))
+    if evaluable:
+        wc, wa = W["canonical"], W["alt"]
+        if ident_dep:
+            wc = wc if wc.startswith("EARLY") else "NO VERDICT"; wa = wa if wa.startswith("EARLY") else "NO VERDICT"
+        v1 = "%s / %s" % (wc, wa)
+        P("  N(P) with a secure source redshift = %d (EUC1-F needs %d)" % (rP["N"], F_NMIN))
+        P("  EUC1-F (canonical / alt): %s%s" % (v1, " (IDENTIFICATION-DEPENDENT: the words flip with the identity of single lines)" if ident_dep else ""))
+    else:
+        v1 = "NOT EVALUABLE / NOT EVALUABLE"
+        P("  EUC1-F: not graded.  (N(P) with a line passing the rule: %d; void)" % rP["N"])
+    P("  LANE WORD (canonical / alt): %s%s" % (v1, (" [tier %s%s]" % (tier, "" if tier == "TA" else ", frozen fallback")) if evaluable else ""))
+    P("  kappa = 1/2 FITTED. No outcome favours the framework.  (%.0f s)" % (time.time() - t0))
+    RES.update(checks=CK, checks_all_pass=allok, coverage_ok=cover_ok, tier=tier, evaluable=bool(evaluable), verdict=v1, words=W, words_identity=WID,
+               identification_dependent=bool(ident_dep), N_P=rP["N"], N_S=rS["N"])
+    code = 0 if evaluable else 3
+    if MUT:
+        try: ref = json.load(open(os.path.join(HERE, "euc14_results.json")))
+        except Exception: ref = None
+        bite = False
+        if ref is None: P("\n[MUTATE %s] no reference results: cannot judge" % MUT)
+        elif MUT == "newton":
+            samp = next((s for s in ("P", "S") if ref["reading"].get(s, {}).get("N", 0) >= 1 and READ.get(s, {}).get("N", 0) >= 1), None)
+            up_a = all(anc[k_] > ref["anchor_b"][k_] for k_ in E.FOOT)
+            up_s = samp is not None and all(READ[samp]["S_" + k_]["true"]["b_med"] > ref["reading"][samp]["S_" + k_]["true"]["b_med"] for k_ in E.FOOT)
+            bite = up_a and (up_s or samp is None)
+            P("\n[MUTATE newton] anchor b %+.3f / %+.3f (ref %+.3f / %+.3f); sample %s -> %s" % (anc["canonical"], anc["alt"], ref["anchor_b"]["canonical"], ref["anchor_b"]["alt"], samp,
+              "rose on both footings, as required; exit 1" if bite else "DID NOT RISE"))
+        elif MUT == "anyk":
+            n0, n1 = ref["gates"]["TA"]["counts"]["X"]["SECURE"], GATE["TA"]["counts"]["X"]["SECURE"]
+            bite = n1 > n0
+            P("\n[MUTATE anyk] grade-X SECURE at TA with the k window removed (any |k| >= 0.3): %d (ref %d) -> %s" % (n1, n0, "rose, as required; exit 1" if bite else "DID NOT RISE"))
+        RES["mutate_bites"] = bool(bite); code = 1 if bite else 2
+    json.dump(RES, open(os.path.join(HERE, tag + "_results.json"), "w"), indent=1, default=str)
+    open(os.path.join(HERE, tag + ".out"), "w").write("\n".join(OUT) + "\n")
+    sys.exit(code)
+
+if __name__ == "__main__":
+    main()
