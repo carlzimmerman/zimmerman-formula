@@ -19,6 +19,7 @@ import exr2_fetch as FT
 E, L8 = Z.E, Z.L8
 MUT = (os.environ.get("EXR2_MUTATE", "") or "").strip()
 if MUT == "newton": E.FOOT = {k: 1.0e-30 for k in E.FOOT}
+AMEND = (os.environ.get("EXR2_AMEND", "") or "").strip()      # "A1": post hoc amendment AMENDMENT_A1.md (Flag_pos ignored); unset = the frozen run
 G, MSUN, KPC, MP, KEV, MU, MUE = Z.G, Z.MSUN, Z.KPC, Z.MP, Z.KEV, Z.MU, Z.MUE
 XH = 2.0 / MUE - 1.0
 SUL = -math.log(1.0 - 0.99865)                 # count limit for zero counts at the one-sided 3 sigma level
@@ -40,7 +41,8 @@ def load_ul(cache, name, n):
     return dict(cnt=g("Count"), bkg=g("Bkg_counts"), exp=g("Exposure"), ulb=g("UL_B"), flag=g("Flag_pos"),
                 de=np.array([bool(x.get("de_sky")) for x in lim]), ra=g("ra"), dec=g("dec"))
 def usable(d):
-    return d["de"] & (d["flag"] == 0) & (d["exp"] > 0) & np.isfinite(d["cnt"]) & np.isfinite(d["bkg"])
+    ok = d["de"] & (d["exp"] > 0) & np.isfinite(d["cnt"]) & np.isfinite(d["bkg"])
+    return ok if AMEND == "A1" else ok & (d["flag"] == 0)
 def values(d, n):
     """per target: value (rate, target minus the mean of its usable offsets), validity, exposure, the 8 null values."""
     use = usable(d).reshape(n, 9)
@@ -131,9 +133,12 @@ def lane_word(w0, w3, N, ok):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--data-dir", required=True); ap.add_argument("--cache-dir", required=True); ap.add_argument("--atomdb", required=True)
-    a = ap.parse_args(); tag = "exr2" + ("_MUTATE_" + MUT if MUT else "")
+    a = ap.parse_args(); base = "exr2" + ("_a1" if AMEND == "A1" else ""); tag = base + ("_MUTATE_" + MUT if MUT else "")
+    if AMEND not in ("", "A1"): sys.exit("unknown EXR2_AMEND")
     P("EXR2 (WIDE-LENS X-RAY CUSP, SECOND MEASUREMENT)%s" % ("   *** MUTATE = %s ***" % MUT if MUT else ""))
+    if AMEND == "A1": P("*** POST HOC READING A1 (AMENDMENT_A1.md): Flag_pos ignored.  Not the lane word, which stays NOT EVALUABLE / NOT EVALUABLE. ***")
     RES = dict(lane="EXR2", criteria_commit="512015c599", mutate=MUT, footings=E.FOOT, not_blind=True); CK = {}
+    if AMEND: RES["amendment"] = AMEND
     def ck(k, what, val, ok):
         CK[k] = dict(what=what, value=val, ok=bool(ok)); P("  %s %-3s %s : %s" % ("PASS" if ok else "FAIL", k, what, val))
 
@@ -321,7 +326,7 @@ def main():
         elif MUT == "shift":
             ok = not CK["K2"]["ok"]; msg = "K2 %s" % ("FAILS" if ok else "still passes")
         elif MUT == "newton":
-            ref = json.load(open(os.path.join(HERE, "exr2_results.json")))["partG"]["primary"]["fam"]
+            ref = json.load(open(os.path.join(HERE, base + "_results.json")))["partG"]["primary"]["fam"]
             now = [G0["fam"]["%s|Z0.0" % nm]["pred"] for nm in ("canonical", "alt")]; was = [ref["%s|Z0.0" % nm]["pred"] for nm in ("canonical", "alt")]
             ok = all(x > y for x, y in zip(now, was)); msg = "pred(Z = 0) %.3e / %.3e against %.3e / %.3e erg/s/cm^2" % (now[0], now[1], was[0], was[1])
         else: ok, msg = False, "unknown twin"
@@ -329,7 +334,7 @@ def main():
         json.dump(RES, open(os.path.join(HERE, tag + "_results.json"), "w"), indent=1, default=float)
         open(os.path.join(HERE, tag + ".out"), "w").write("\n".join(OUT) + "\n"); sys.exit(1 if ok else 2)
 
-    with open(os.path.join(HERE, "exr2_per_lens.csv"), "w", newline="") as f:
+    with open(os.path.join(HERE, base + "_per_lens.csv"), "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["unique_identifier", "class", "pair", "z_l", "theta_E_arcsec", "valid_022", "exposure_s_022", "counts_022", "background_022", "flux_022", "flux_024",
                     "service_limit_022", "pred_Z0_canonical", "pred_Z0.3_canonical", "pred_Z0_alt", "pred_Z0.3_alt"])
@@ -340,8 +345,8 @@ def main():
             w.writerow([t["id"], t["cls"], t["pair"], "%.4f" % r["z"], "%.4f" % r["tE"], int(V["022"]["valid"][i]), "%.1f" % V["022"]["T"][i] if np.isfinite(V["022"]["T"][i]) else "",
                         fm(c9[i, 0]), fm(b9[i, 0]), fm(V["022"]["f"][i]), fm(V["024"]["f"][i]), fm(u9[i, 0])] + pr)
     P("\nchecks all pass: %s" % allok)
-    json.dump(RES, open(os.path.join(HERE, "exr2_results.json"), "w"), indent=1, default=float)
-    open(os.path.join(HERE, "exr2.out"), "w").write("\n".join(OUT) + "\n")
+    json.dump(RES, open(os.path.join(HERE, base + "_results.json"), "w"), indent=1, default=float)
+    open(os.path.join(HERE, base + ".out"), "w").write("\n".join(OUT) + "\n")
     sys.exit(0 if allok else 3)
 
 if __name__ == "__main__":
