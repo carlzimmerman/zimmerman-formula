@@ -34,7 +34,10 @@ WLJ1 ran; row 25's lane word is NO VERDICT, which the fixed list does not carry,
 the gates cannot see the split's layout and the tension is the reference's own. The audit read 119 of 119.
 
 Updated a seventh time 2026-11-14 by the lead after the blind FWN1R landed: rows 22 and 44 and the undecided list. No
-word for the completed form and no count changes. The audit reads 122 of 122.
+word for the completed form and no count changes. The audit read 122 of 122.
+
+Updated an eighth time 2026-11-14 by the lead after the blind RRL1R landed: row 28 and one line of the fails list. No
+word for the completed form and no count changes. The audit reads 123 of 123.
 
 Words for the completed form (fixed list): PASSES / FAILS / FAILS ON COVERAGE ONLY / PASSES TRIVIALLY (the form equals
 the reference there) / EQUALS THE LAW (unchanged by rule 6: the form gives the law's own layout there, so the row's
@@ -77,7 +80,7 @@ verdict on the law carries over) / NO POWER / DEPENDS ON AN UNTESTED ASSUMPTION 
 | 26 | Flat a0 at z 2.33 | AZ2, AZ2R | AZ2 "As frozen: NO VERDICT / NO VERDICT" (A2: FLAT HOLDS); AZ2R "FLAT HOLDS / EXPANSION-MODEL DEPENDENT" | no | EQUALS THE LAW | yes (AZ2R) | The candidate holds a0 constant; does not separate from LCDM. |
 | **The Milky Way** (log M_b about 10.7: R_fold 169 kpc today, so R_set at least 211 kpc; every row below is inside it) | | | | | | | |
 | 27 | Halo stars directly, 20 to 80 kpc | RAW1, HOT1, LMC1, MWT1, MWT2 | RAW1 "FAILS HOT, FRAGILE"; MWT1 "FAIL DEPENDS ON AN ASSUMPTION THE DATA CANNOT TEST"; MWT2 "NO POWER"; HOT1 "CLUMPED"; LMC1 "NO LABEL" | fragile | DEPENDS ON AN UNTESTED ASSUMPTION | no | The tracer slope beyond the sample's reach (row 28 measures it). MWT2, ungraded: 30 to 40 kpc holds a cold lump; the smooth part passes when it is set aside. |
-| 28 | Halo stars with the slope measured from RR Lyrae | RRL1 | "MEASURED SLOPE MAKES A PASSING BIN FAIL [40-55 COLD]" (all four framework cases; robust only on the rotation-curve stellar mass, alt) | fragile | FAILS | no | Pan-STARRS1 RR Lyrae: slope 5.29 inside 39.0 kpc, 3.93 beyond. With it the hot 30 to 40 kpc bin passes in every case (census 1.205 -> 1.052 / 1.155 -> 1.008) and 40 to 55 kpc turns cold (0.857 / 0.820) for every smooth model, DESI's NFW included. The outer slope moves from 3.35 to 4.20 with the cuts and the shape reverses without the Sagittarius mask; a single slope (4.77) removes the fail on alt. |
+| 28 | Halo stars with the slope measured from RR Lyrae | RRL1, RRL1R | "MEASURED SLOPE MAKES A PASSING BIN FAIL [40-55 COLD]" (all four framework cases; robust only on the rotation-curve stellar mass, alt); the blind RRL1R: the same label in all four cases, with the same fragility | fragile | FAILS | yes (RRL1R; same label and fragility) | Pan-STARRS1 RR Lyrae: slope 5.29 inside 39.0 kpc, 3.93 beyond. With it the hot 30 to 40 kpc bin passes in every case (census 1.205 -> 1.052 / 1.155 -> 1.008) and 40 to 55 kpc turns cold (0.857 / 0.820) for every smooth model, DESI's NFW included. The outer slope moves from 3.35 to 4.20 with the cuts and the shape reverses without the Sagittarius mask; a single slope (4.77) removes the fail on alt. The blind RRL1R, with its own code for the star counts and the Jeans step, fits 5.291 / 3.934 / 39.03 kpc and gives the same per-bin values to 0.001; it confirms the arithmetic of the frozen specification, not the cuts, completeness function and band mask that both builds share. |
 | 29 | DESI shape-measuring curves | NMB1, NIM2, RG1 | NMB1 "PASSES"; NIM2 canonical census "FAILS LOW" | fragile | EQUALS THE LAW | yes (RG1 "REPRODUCED" for NMB1; shares inputs) | NIM2 awaits a re-grade. |
 | 30 | Outer masses, 100 kpc and beyond | PLT1, SAT1, EFC1, RG1 | PLT1 "PASSES, FRAGILE" (field) / PASSES (no field); SAT1 "ANISOTROPY LOWERS IT, NOT ENOUGH"; EFC1 "CONVENTION-DEPENDENT" | fragile | EQUALS THE LAW | yes (RG1) | Under the owner's actual-field reading the no-field rows are the framework's, and they pass. |
 | 31 | DESI DR2 enclosed-mass profile | DW1 | "9 of 12" | yes | EQUALS THE LAW | no | The extrapolated M200c fails. |
@@ -125,7 +128,8 @@ No row differs between the footings after the DSC1R update (row 7 read PASSES ca
 - On coverage only, as frozen in both builds: RC100 at z 2.1 to 2.5 (5). The data on those discs have no power (6).
 - No longer listed: the law below v* on DSC1's resolved discs (8). The blind DSC1R reads the opposite word; see below.
 - On data, fragile, and shared by every smooth model including DESI's NFW: Milky Way halo stars at 40 to 55 kpc once
-  the star-count slope is the measured RR Lyrae one (28). The hot 30 to 40 kpc bin of row 27 passes with that slope.
+  the star-count slope is the measured RR Lyrae one (28; the blind RRL1R gives the same label and the same fragility).
+  The hot 30 to 40 kpc bin of row 27 passes with that slope.
 - Untouched by rule 6, so form B's fails stay: X-COP's two-sided amount (15), the outer cluster shear (20, carried), the
   ultra-faints and M31's bright dwarfs (35, fragile under DSB1's blind budget), DF2, DF4, NGC 147 and IC 1613 (36).
 
