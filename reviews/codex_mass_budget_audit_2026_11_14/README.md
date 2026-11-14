@@ -145,7 +145,7 @@ Nothing else in those two files claims more than was done. PAPER72 1584/1584 is 
 **Home path or account name** (18 files):
 
 - `codex_mass_budget_2026_11_14/latex_compile.json`
-- `.../before_correction/PAPER72_audit.py`: a false positive; the string is the audit's own `"/Users/" not in TEX` check.
+- `.../before_correction/PAPER72_audit.py`: a false positive; the string is the audit's own no-local-paths check on the TeX.
 - `.../latest_review/REVIEW.md`, at line 181 (validator path)
 - `.../latest_review/run_001/stderr.txt`, `run_002/stderr.txt`, `run_003/stderr.txt` and `run_004/stderr.txt` (tracebacks)
 - `.../calculation/README.md`, at line 159 (validator path)
