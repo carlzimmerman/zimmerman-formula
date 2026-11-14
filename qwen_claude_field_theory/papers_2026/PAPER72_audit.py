@@ -1326,7 +1326,6 @@ L += [
  ("a compact scorecard of the completed form against 45 rows", CJS, "Total 45."),
  # section 9 intro
  ("which computes nothing new, freezes nothing and relabels nothing", CJF, "it computes nothing new, freezes nothing and relabels nothing"),
- ("whose own audit checks every quoted word against its committed file (115 of 115)", CJS, "The audit reads 115 of 115."),
  ("made the same way in both directions", CJS, "made the same way in both directions"),
  # 9.1 the candidate
  ("It is a completed statement, not a confirmed theory, and it is NOT ADOPTED: adopting it is the owner's decision.", CJF, "a completed statement, not a confirmed theory; NOT ADOPTED: adopting it is the owner's decision."),
@@ -1507,7 +1506,6 @@ L += [
  ("ALP1R NO VERDICT, reading NO POWER", CJS, "ALP1R \"NO VERDICT (TW-N and TW-D do not bite)\", reading NO POWER"),
  ("A1 post hoc, same word", MWT2, "As frozen (and identical under A1), every case, every bracket:"),
  ("FLOOR DISFAVOURED / FRAGILE", NUF1, "**FLOOR DISFAVOURED / FRAGILE**"),
- ("an assembly; grades nothing; NOT ADOPTED & audit 115 of 115", CJS, "The audit reads 115 of 115."),
  # Method, the gate table, the open items and the decide list
  (r"FRZ6's 44 part files (49\,MB)", FRZ6, "`parts/*.json`: 44 parts, 49 MB."),
  (r"(\texttt{FRZ6\_parts.zip})", FZ2, "\"FRZ6_parts.zip\""),
@@ -1521,6 +1519,49 @@ L += [
  ("many more certified source redshifts for Euclid's lenses than EUC16's 11", CJS, "many more certified source redshifts than EUC16's 11"),
  (r"outer star-count slope beyond about 39\,kpc with a Sagittarius stream model", CJS, "the outer star-count slope beyond about 39 kpc with a Sagittarius stream model"),
  ("fitted by beam-forward modelling with each disc's real point-spread function and point covariance", CJS, "beam-forward modelling with each disc's real point-spread function and point covariance"),
+]
+# ---------------- version 1.3, revision 2: the blind re-grade FRZ6R ----------------
+FRB = D13 + "FRZ6R_blind_forest_flux_candidate/RESULT_BLIND.md"; FRA = D13 + "FRZ6R_blind_forest_flux_candidate/AMENDMENT_A1_2026-11-13.md"
+FRC = D13 + "FRZ6R_blind_forest_flux_candidate/FROZEN_CRITERIA.md"
+L += [
+ ("A blind, independent build of the same split reads NO VERDICT as frozen on every split case, because one of its twins does not bite", FRB, "**As frozen: NO VERDICT for every case on both footings.** The only failing item is twin TW1, which does not bite."),
+ ("it neither confirms the hold as a label nor contradicts it, so the hold stays a hit, not a confirmed hold", FRB, "Neither build contradicts the other; the hold stays a hit, not a confirmed hold."),
+ ("its blind re-grade reads NO VERDICT on every split case (a twin does not bite), with every split case under the gate and its control failing", FRB, "Every known answer passes, twin TW2 bites, and D + 2 SE < 4 in every case."),
+ ("the blind re-grade of FRZ6 reads NO VERDICT as frozen and so does not confirm its hold", CJS, "FRZ6R reads NO VERDICT as frozen and so does not confirm FRZ6's label; its numbers are under the gate and its control fails."),
+ ("CJ1 keeps row 22's word by the rule it already used in row 11 and marks it unconfirmed", CJS, "Row 22's word is kept by the rule already used in row 11 (a blind NO VERDICT that does not contradict the first lane leaves the word and marks it unconfirmed)."),
+ ("whose own audit checks every quoted word against its committed file (116 of 116)", CJS, "The audit reads 116 of 116."),
+ ("an assembly; grades nothing; NOT ADOPTED & audit 116 of 116", CJS, "The audit reads 116 of 116."),
+ ("so this is a hit that the blind build neither confirmed as a label nor contradicted", CJF, "So the hold is a hit that the blind build neither confirmed as a label nor contradicted."),
+ ("its own split tables, realisation, seeds, estimator and grader, with FRZ3R's FGPA functions reused unchanged", FRB, "My own code: the split function, the tables, the realisation (0.125-dex bins, per-mass Poisson, TSC deposit, lognormal), the seeds, the estimator and the grader."),
+ ("its own split tables, realisation, seeds, estimator and grader, with FRZ3R's FGPA functions reused unchanged", FRB, "FGPA step: `tau_field`, `tune_A`, `p1d` and `dv_cell` from FRZ3R's `frz3r_core.py`, unchanged"),
+ ("4 seeds per bin in all 12 bins", FRB, "12 bins, 4 seeds per bin, ratio-of-seed-sums estimator, delete-one jackknife SE"),
+ ("Its criteria were committed alone before any script", FRC, "Written and committed alone, before any script of this lane exists."),
+ ("its amendment A1, committed alone before any graded number, adds a relative bite rule for one twin as a reported reading", FRB, "Amendment: AMENDMENT_A1_2026-11-13.md (4265c14111, committed alone before any graded number)."),
+ ("its amendment A1, committed alone before any graded number, adds a relative bite rule for one twin as a reported reading", FRA, "a relative bite rule for twin TW1, added as a reported reading; the as-frozen rule stays first"),
+ (r"As frozen it reads NO VERDICT for every case on both footings, $f=3$ with FRAGILE (lambda\_P x 0.5)", FRB, "| f = 3 | NO VERDICT, FRAGILE (lambda_P x 0.5) | NO VERDICT, FRAGILE (lambda_P x 0.5) |"),
+ ("FAILS (D 323.0, SE 4.5 canonical; D 395.8, SE 8.5 alt)", FRB, "| control (law's layout everywhere) | FAILS (D 323.0, SE 4.5) | FAILS (D 395.8, SE 8.5) |"),
+ (r"against FRZ3R's reading T of 363.26/424.50, that is $-11$\,\%/$-7$\,\%", FRB, "the control gives D 323.0 / 395.8 against FRZ3R reading T's 363.26 / 424.50, that is -11 % / -7 % (tolerance +-35 %)."),
+ ("(a change of 0.142 against twice its seed error, 0.150, canonical; 0.068 against 0.091 alt)", FRB, "DOES NOT BITE (change 0.142 vs 2 SE 0.150; 0.068 vs 0.091)"),
+ ("it does not bite under the frozen rule nor under A1's relative rule", FRB, "TW1 does not bite under the frozen rule, nor under AMENDMENT_A1's relative rule"),
+ ("Every known answer passes, twin TW2 bites, and D + 2 SE is under 4 in every split case", FRB, "Every known answer passes, twin TW2 bites, and D + 2 SE < 4 in every case."),
+ ("$f=1.25$ & 0.00056 (0.00024) & 0.00130 (0.00054)", FRB, "| f = 1.25 | 0.00056 | 0.00024 | 1.9e-5 (0.4) PASS | 0.00130 | 0.00054 |"),
+ ("$f=2$ & 0.0244 (0.0032) & 0.0293 (0.0035)", FRB, "| f = 2 | 0.0244 | 0.0032 | 7.6e-5 (0.4) PASS | 0.0293 | 0.0035 |"),
+ ("$f=3$ & 0.572 (0.044) & 0.691 (0.047)", FRB, "| f = 3 | 0.572 | 0.044 | 0.0015 (0.4) PASS | 0.691 | 0.047 |"),
+ ("control & 323.0 (4.5) & 395.8 (8.5)", FRB, "| control | 323.0 | 4.5 | 0.92 (32.3) PASS | 395.8 | 8.5 |"),
+ (r"Only one bracket crosses the gate: $f=3$ at lambda\_P x 0.5 (40 comoving kpc), 4.29/4.29, hence FRAGILE", FRB, "Only f = 3 at lambda_P x 0.5 (40 comoving kpc) crosses 4, on both footings, hence FRAGILE."),
+ (r"Only one bracket crosses the gate: $f=3$ at lambda\_P x 0.5 (40 comoving kpc), 4.29/4.29, hence FRAGILE", FRB, "**4.29 / 4.29**"),
+ ("at that smoothing its grid does not resolve the scale, so that bracket is also the least reliable one", FRB, "does not resolve the scale, so that bracket is also the least reliable one."),
+ (r"lambda\_P 91.4 to 138.6 comoving kpc, PROVISIONAL, reported) $f=3$ reads D 0.057 to 0.58 canonical and 0.072 to 0.64 alt, still NO VERDICT (twin TW1)", FRB, "| f = 3 | 0.057 to 0.58 | 0.072 to 0.64 | NO VERDICT (twin TW1) |"),
+ ("and the control 112 to 247 and 136 to 300, failing", FRB, "| control | 112 to 247 | 136 to 300 | fails |"),
+ ("The lead re-ran its grader from a copy and the four outputs equal byte for byte; the boxes were not re-run", FRB, "the four outputs equal byte for byte. The boxes themselves were not re-run."),
+ ("its numbers are lower than FRZ6's and under the gate, and the full layout fails in both builds", FRB, "its numbers are lower than FRZ6's, under the gate in every split case, and its control fails."),
+ ("a firmer word needs a twin that bites, for example more seeds for the twin or a twin defined at full 12-bin scope, frozen in advance", FRB, "A firmer word needs a twin that bites, for example more seeds for the twin or a twin defined at full 12-bin scope, frozen in advance."),
+ ("and even then a HOLDS here would be a hit, not a pass of the theory", FRB, "Even then a HOLDS here would be a hit, not a pass of the theory."),
+ (r"NO VERDICT for every split case (both); $f=3$ FRAGILE (lambda\_P x 0.5); control FAILS", FRB, "**As frozen: NO VERDICT for every case on both footings.**"),
+ ("a blind build of the forest split whose boundary-removed twin bites (FRZ6R's did not)", CJS, "a blind build whose boundary-removed twin bites (FRZ6R's did not)"),
+ ("expected the split to fail the forest at $f=3$ and $f=2$; it found values 50 to 10,000 times below the estimate", FRB, "f = 3 and f = 2 FAIL."),
+ ("expected the split to fail the forest at $f=3$ and $f=2$; it found values 50 to 10,000 times below the estimate", FRB, "These are 50 to 10,000 times below the estimate."),
+ ("they keep a little, and that is the whole of D", FRB, "They keep a little, and that is the whole of D."),
 ]
 # (fragment in the TeX, JSON file, key path, format, the number as the TeX prints it)
 J = [
@@ -1616,7 +1657,6 @@ A = [
 ]
 NOTES = [
  "Section 9.1's paragraph on prior work rests on the lead session's provisional web search (2026-11-13), read through a summarising tool; no committed file holds it, so this audit does not check it.",
- "FRZ6R (the blind re-grade of FRZ6) was running when version 1.3 was written; \\pend{FRZ6R} marks every place FRZ6's holds are stated, so the pending rule fails by design until it is folded in.",
 ]
 def ws(s): return re.sub(r"\s+", " ", s)
 _cache = {}
