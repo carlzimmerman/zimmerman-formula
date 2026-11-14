@@ -1298,6 +1298,8 @@ L += [
 # ---------------- version 1.3: the candidate sixth rule (CJ1), its scorecard, the forest at flux level, the data checks, PRJ1 ----------------
 D13 = "closure_2026_11_13/"
 CJF = D13 + "CJ1_candidate_completion/COMPLETED_FORM.md"; CJS = D13 + "CJ1_candidate_completion/SCORECARD.md"
+# Historical v1.4 quotations must not drift with later CJ1 updates; provenance beside the snapshot.
+CJS14 = "codex_mass_budget_2026_11_14/before_correction/CJ1_SCORECARD_at_PAPER72_v1_4.md"
 FRZ4 = D13 + "FRZ4_forest_flux_graded/RESULT.md"; FRZ5 = D13 + "FRZ5_forest_nuisance_refit/RESULT.md"
 FRZ6 = D13 + "FRZ6_forest_flux_candidate_graded/RESULT.md"; FRZ6a = D13 + "FRZ6_forest_flux_candidate_graded/AMENDMENT_A1.md"
 FZ1 = D13 + "FRZ6Z_zenodo_record/frz6z_deposit_receipt.json"; FZ2 = D13 + "FRZ6Z_zenodo_record/frz6z_v2_deposit_receipt.json"
@@ -1312,8 +1314,8 @@ EUC15 = D12 + "EUC15_image_arc_predicted_split/RESULT.md"; EXR2 = D12 + "EXR2_wi
 L += [
  # header, abstract, what changed
  (r"with $v^*(0)=a_0/(10(1+5.41)H_0)$, 668.5/807.9\,km\,s$^{-1}$", CJF, "v*(0) = a0 / (10 (1 + X) H0) = 668.5 / 807.9 km/s (669 / 808 rounded)"),
- ("The speed follows from rules 2, 4 and 5 and the virial relation with no new constant, and it carries both fitted constants", CJF, "So no new constant enters v*: it follows from rules 2, 4 and 5 and the virial definition."),
- ("The speed follows from rules 2, 4 and 5 and the virial relation with no new constant, and it carries both fitted constants", CJF, "It still carries both fitted constants (kappa through a0, and X)."),
+ ("The speed is an algebraic intersection of the asymptotic and virial relations", CJF, "This is an algebraic speed intersection, not a derivation of a transition"),
+ ("carries both fitted constants, and does not derive a physical switch", CJF, "It still carries both fitted constants (kappa through a0, and X)."),
  ("the completed form fails as frozen on one line, the coverage of massive discs at", CJF, "It FAILS AS FROZEN in both builds, on one line: coverage of 10 / 2 RC100 discs at z 2.1 to 2.5"),
  ("and no hit has had an independent blind re-grade that confirmed it", CJF, "No hit has had an independent blind re-grade that confirmed it."),
  ("the law's full layout FAILS; the record's gate fits no gas parameter", FRZ4, "| **A, f = inf (full layout)** | **FOREST ROW FAILS AT FLUX LEVEL** | **FOREST ROW FAILS AT FLUX LEVEL** |"),
@@ -1335,15 +1337,17 @@ L += [
  (r"$\log M_b^*$ is 13.21/13.45 today, 12.19/12.44 at $z=1$ and 11.28/11.53 at $z=2$", CJF, "log M_b* = 13.21 / 13.45 today, 12.19 / 12.44 at z 1, 11.28 / 11.53 at z 2"),
  (r"$H(z)$ is flat with $\Omega_\Lambda$ 0.6847 and $H_0$ 67.4", CJF, "H(z) is flat with Omega_Lambda 0.6847 and H0 67.4"),
  ("with the cosmic share the two meet at one speed only", CJF, "With the cosmic share the two meet at one speed only, 669 / 808 km/s."),
- ("which rule 5 forbids", CJF, "above it the law's halo would need more than the whole share, which rule 5 forbids"),
+ ("This is an algebraic speed intersection, not a derivation of a transition", CJF, "This is an algebraic speed intersection, not a derivation of a transition"),
+ ("The previous mass-budget explanation reversed the implication at a common radius", CJF, "The previous mass-budget explanation reversed the implication at a common radius"),
  ("and it still carries both fitted constants", CJF, "It still carries both fitted constants (kappa through a0, and X)."),
  ("5.41 (5.411/5.412 in CO2)", CJF, "5.411 / 5.412 in CO2"),
  ("R541A to R541E: four EXCLUDED, one TRADES", CJF, "R541A to R541E: four EXCLUDED, one TRADES"),
  ("recomputed in SI by JNT2 and JNT2R", CJF, "recomputed in SI by JNT2 and JNT2R"),
  ("373.3/451.1 at $z$ 1, 220.4/266.4 at $z$ 2, 177.4/214.4 at $z$ 2.5", CJF, "373.3 / 451.1 at z 1, 220.4 / 266.4 at z 2, 177.4 / 214.4 at z 2.5"),
  ("ungraded window [1.25, 2] in both builds on both footings; JNT2 alone reads [1.25, 3] canonical", CJF, "ungraded window [1.25, 2] in both builds on both footings; JNT2 alone reads [1.25, 3] canonical"),
- ("BOUNDED BY DATA, NOT FIXED", CJF, "BOUNDED BY DATA, NOT FIXED"),
- ("FOLLOWS FROM THE RULES", CJF, "| FOLLOWS FROM THE RULES |"),
+ ("EXPLORATORY, JUNCTION-DEPENDENT", CJF, "EXPLORATORY, JUNCTION-DEPENDENT"),
+ ("ALGEBRAIC SPEED INTERSECTION", CJF, "| ALGEBRAIC SPEED INTERSECTION |"),
+ ("ALGEBRAIC SCALING", CJF, "| ALGEBRAIC SCALING |"),
  (r"169\,kpc today at $\log M_b$ 10.7 (canonical; alt within 0.5\,\%)", CJF, "169 kpc today at log M_b 10.7 (canonical; alt within 0.5 %)"),
  ("TAKEN FROM A LANE'S CONSTRUCTION", CJF, "TAKEN FROM A LANE'S CONSTRUCTION"),
  (r"($+2.003$/$+2.037\sigma$ at $f=1$)", CJF, "+2.003 / +2.037 sigma at f 1"),
@@ -1530,7 +1534,7 @@ L += [
  ("the blind re-grade of FRZ6 reads NO VERDICT as frozen and so does not confirm its hold", CJS, "FRZ6R reads NO VERDICT as frozen and so does not confirm FRZ6's label; its numbers are under the gate and its control fails."),
  ("CJ1 keeps row 22's word by the rule it already used in row 11 and marks it unconfirmed", CJS, "Row 22's word is kept by the rule already used in row 11 (a blind NO VERDICT that does not contradict the first lane leaves the word and marks it unconfirmed)."),
  ("whose own audit checks every quoted word against its committed file (116 of 116 at version 1.3; 122 of 122 at version 1.4)", CJS, "The audit read 116 of 116."),
- ("whose own audit checks every quoted word against its committed file (116 of 116 at version 1.3; 122 of 122 at version 1.4)", CJS, "The audit reads 122 of 122."),
+ ("whose own audit checks every quoted word against its committed file (116 of 116 at version 1.3; 122 of 122 at version 1.4)", CJS14, "The audit reads 122 of 122."),
  ("an assembly; grades nothing; NOT ADOPTED & audit 116 of 116 at version 1.3; 122 of 122 at version 1.4", CJS, "The audit read 116 of 116."),
  ("so this is a hit that the blind build neither confirmed as a label nor contradicted", CJF, "So the hold is a hit that the blind build neither confirmed as a label nor contradicted."),
  ("its own split tables, realisation, seeds, estimator and grader, with FRZ3R's FGPA functions reused unchanged", FRB, "My own code: the split function, the tables, the realisation (0.125-dex bins, per-mass Poisson, TSC deposit, lognormal), the seeds, the estimator and the grader."),
@@ -1613,10 +1617,10 @@ L += [
  ("FWN1R, a blind check of FWN1", FW1Rc, "FWN1R frozen criteria: blind flux-level ceiling on f for the crossing-speed split, and the split with no settled radius"),
  # dated additions in Sections 4 to 6 and 9
  ("version 1.4: without a settled radius and at $f=10$ the split FAILS at flux level in two builds, one blind, so the candidate needs its settled radius (Section~10.1)", CJS, "fails at f 10 and with no settled radius in two builds (FWN1: 184 / 234 and 200 / 251; blind FWN1R: 194 / 288 and 215 / 315; gate 4), neither fail FRAGILE."),
- ("Version 1.4: the upper edge of $f$ comes from the forest at flux level and lies between 3 and 5 (Section~10.1).", CJS, "without the interpolation the upper edge lies between the run points 3 and 5, and f 4 was run in neither build."),
+ ("Version 1.4: the upper edge of $f$ comes from the forest at flux level and lies between 3 and 5 (Section~10.1).", CJS14, "without the interpolation the upper edge lies between the run points 3 and 5, and f 4 was run in neither build."),
  ("With the split the amplitude gates read NO VERDICT on both footings and the tension is not relieved: raw KiDS still prefers an amplitude 5.46/5.52 of its widths below the pinned value.", WLJ, "| KiDS best sigma8, pinned minus best (widths), can / alt | 5.41 / 5.41 | 5.62 / 5.78 | 5.46 / 5.52 | 5.46 / 5.52 | 5.45 / 5.51 | reported |"),
  ("With the split the amplitude gates read NO VERDICT on both footings and the tension is not relieved: raw KiDS still prefers an amplitude 5.46/5.52 of its widths below the pinned value.", WLJ, "row 25 is **NO VERDICT** on both footings at every f."),
- ("the forest at flux level at $f=4$, run in neither build, and at $f=5$, where the two builds agree in size and differ in word, on a grid that resolves the gas smoothing scale", CJS, "the forest at flux level at f 4 (run in neither build) and at f 5, where FWN1 and the blind FWN1R agree in size and differ in word, on a grid that resolves the gas smoothing scale"),
+ ("the forest at flux level at $f=4$, run in neither build, and at $f=5$, where the two builds agree in size and differ in word, on a grid that resolves the gas smoothing scale", CJS14, "the forest at flux level at f 4 (run in neither build) and at f 5, where FWN1 and the blind FWN1R agree in size and differ in word, on a grid that resolves the gas smoothing scale"),
  ("the shear row on reference runs without realisation noise, a refit with neutrino mass, and a gate that can see the split's layout", CJS, "the shear row on reference runs without realisation noise, a refit with neutrino mass, and a gate that can see the split's layout"),
  ("version 1.4: at flux level the upper edge lies between 3 and 5 (Section~10.1)", CJF, "The window, ungraded, is 1.25 (from a gate that cannot see f) to between 3 and 5."),
  ("Version 1.4: FWN1 and the blind FWN1R find that the split FAILS at flux level at $f=10$ and with no settled radius, so the forest does bound $f$ from above, between 3 and 5 (Section~10.1).", CJF, "the fails at f = 10 and with no settled radius are confirmed on both footings (194 / 288 and 215 / 315), neither FRAGILE."),
@@ -1626,7 +1630,7 @@ L += [
  ("Version 1.4: the matter-power redistribution rows join the trivial passes (WLJ1, Section~10.2).", CJS, "The same word as the adopted form, so not a hit: every gate WLJ1 ran reads EQUALS THE REFERENCE THERE."),
  ("Version 1.4: both have landed, with a blind check of FWN1, and are in Section~10.", FW1R, "FWN1's fails are confirmed by a blind build, and neither build's fail is FRAGILE."),
  # Section 10, opening
- ("its audit reads 122 of 122", CJS, "The audit reads 122 of 122."),
+ ("its audit reads 122 of 122", CJS14, "The audit reads 122 of 122."),
  ("CJ1's scorecard was updated for them in rows 22, 24, 25 and 44", CJS, "Updated a sixth time 2026-11-14 by the lead after FWN1 and WLJ1 landed: rows 22, 24, 25 and 44, the counts and the lists."),
  ("CJ1's scorecard was updated for them in rows 22, 24, 25 and 44", CJS, "Updated a seventh time 2026-11-14 by the lead after the blind FWN1R landed: rows 22 and 44 and the undecided list."),
  # 10.1 the forest's ceiling
@@ -1719,7 +1723,7 @@ L += [
  (r"FWN1R & FWN1, blind & $f=5$ FOREST ROW FAILS AT FLUX LEVEL, FRAGILE; $f=10$ and no settled radius FOREST ROW FAILS AT FLUX LEVEL (both) & no amendment", FW1R, "| f = 5 | FOREST ROW FAILS AT FLUX LEVEL, FRAGILE (lambda_P x 2; gamma 1.2) | FOREST ROW FAILS AT FLUX LEVEL, FRAGILE (lambda_P x 2) |"),
  (r"WLJ1 & rows 24 and 25 with the split & row 24 NO VERDICT / ROW HOLDS WITH THE SPLIT; row 25 NO VERDICT (both)", WLJ, "row 24 is **NO VERDICT** on canonical at every f"),
  ("A1, A2 post hoc: row 24 ROW HOLDS WITH THE SPLIT (both), equal to the reference; not a hit", WLJ, "| CO1's row rule (C1-C4 PASS, C5 CONSISTENT) | EQ. REF (HOLDS) / same | EQ. REF (HOLDS) / same | EQ. REF (HOLDS) / same | HOLDS | no |"),
- (r"CJ1, updated & the scorecard after these lanes & an assembly; grades nothing; NOT ADOPTED & audit 122 of 122", CJS, "The audit reads 122 of 122."),
+ (r"CJ1, updated & the scorecard after these lanes & an assembly; grades nothing; NOT ADOPTED & audit 122 of 122", CJS14, "The audit reads 122 of 122."),
  ("in two independent builds, and the edge lies between 3 and 5", FW1, "Read it as: the upper edge for f lies between 3 and 5, not as a measured value."),
  ("with the split the tension is the reference's own", CJS, "the tension is the reference's own"),
  # the estimates and the method paragraph
@@ -1826,6 +1830,7 @@ H0, CKM, OMC, A_REC = 70.0, 299792.458, 0.26, 1.0 / 1090.0
 COEF = 3.0 * (H0 / CKM) ** 2 * OMC / 4.0
 MUK = math.sqrt(COEF / A_REC ** 3)
 A = [
+ ("1.18484", f"{(1.0 + 5.41) / 5.41:.5f}", "1.18484"),
  ("$w_0=1.063\\times10^{-8}/\\mu_K^2$", f"{COEF:.3e}".replace("e-08", "e-8"), "1.063e-8"),
  ("so at $\\mu_K=3.71$ per Mpc the component still has $w=\\tfrac12$", f"{MUK:.2f}", "3.71"),
  ("still has $w=\\tfrac12$ at $z=1089$", f"{1 / A_REC - 1:.0f}", "1089"),
