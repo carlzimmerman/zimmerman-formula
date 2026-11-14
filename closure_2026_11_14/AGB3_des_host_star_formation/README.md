@@ -122,6 +122,48 @@ no age term.
 - Reported: both subsamples want the same amount of AGB1's redshift template (A = 0.80 young, 0.83 old). An age
   drift would be wanted by the old hosts and not by the young ones.
 
+## Post hoc (2026-11-14, after the numbers above were seen; no frozen word): how noisy are the star-formation ages?
+`agb3_posthoc_noise.py`, `agb3_posthoc_noise.out`. The half-template fork is a stress test with no number behind
+it. This puts a number on it with witnesses that do not share the host photometry's noise.
+
+**A. Supernova stretch agrees with the star-formation ages** (no magnitude involved). Fast-declining supernovae
+(x1 < −1) come from old stars. Their share climbs steadily with the host's two-component age:
+0.11, 0.09, 0.16, 0.22, 0.30, 0.32, 0.41, 0.57 for ages 0–0.5, 0.5–1, 1–2, 2–3, 3–4, 4–5, 5–7, 7–12 Gyr
+(a line of 0.081 + 0.058 per Gyr). The star-formation rates do sort hosts by age.
+
+**B. Reliability, and the amplitudes with the noise taken out.** With stretch and host mass as two witnesses whose
+errors are independent of the star-formation fit, the part of the age they all share has 0.69 ± 0.05 of the age's
+variance inside redshift bins. The rest, 1.2 Gyr rms against a spread of 2.2 Gyr, is counted as noise. That is an
+upper bound on the noise: real age information in the star-formation rate that stretch and mass do not hold is
+counted as noise too. Host colour in the place of mass shares photometry with the age and gives the other end.
+
+| witnesses | reliability | U: reliability inside the fit | U corrected | Δχ²(1) | D2: reliability inside the fit | D2 corrected | Δχ²(1) |
+|---|---|---|---|---|---|---|---|
+| none (as frozen) | 1 | 1 | +0.40 ± 0.07 | 85.9 | 1 | +0.39 ± 0.08 | 59.3 |
+| low-stretch flag + mass | 0.84 ± 0.08 | 0.82 | +0.49 ± 0.11 | 21.4 | 0.73 | +0.54 ± 0.18 | 6.6 |
+| stretch + colour | 0.79 ± 0.04 | 0.76 | +0.53 ± 0.11 | 19.7 | 0.64 | +0.61 ± 0.17 | 5.0 |
+| **stretch + mass (most noise allowed)** | 0.69 ± 0.05 | 0.64 | **+0.62 ± 0.13** | 8.5 | 0.46 | **+0.85 ± 0.28** | 0.3 |
+
+- **The half-template stress test was about right for D2 and too harsh for U.**
+- **Upper limit, noise allowed for:** counting every host effect as age, the slope is between 0.49 and 0.62 of the
+  published one; the published slope is 2.9σ away at the very least (Δχ² 8.5) and 4.6σ at the other end.
+- **Beyond the mass step, noise allowed for:** 0.54 to 0.85, and the published slope is no longer excluded
+  (Δχ² 0.3 at the noisiest end). A = 0 stays excluded (Δχ² ≥ 8.8).
+
+**C. "Today" with the corrected slope.** With either corrected amplitude as the prior, the whole sample reads
+SIGN NOT SETTLED (q0 −0.10 to −0.14, Δχ² 0.6 to 2.1) and DES alone reads ACCELERATING TODAY (Δχ² 7.3 to 9.0).
+Never accelerated stays excluded (Δχ² ≥ 79). **J2's thin margin does not survive the noise correction on the whole
+sample; it does on DES alone.**
+
+**D. What the whole-sample result hangs on.** The only large age drift in this sample is between the legacy
+low-redshift hosts (listed mean age 5.6 Gyr) and the DES hosts (2.6 to 3.2 Gyr). Stretch does not show a larger
+share of old progenitors in the legacy set: its low-stretch share is 0.24 ± 0.03, against 0.31, 0.21, 0.24, 0.27 in
+the four DES redshift bands. So the legacy hosts are not "more often old"; their old stars are older, because the
+universe is 4 Gyr older at z 0.04 than at z 0.5. That changes brightness only if the 0.030 mag/Gyr law keeps
+running linearly from 6 to 10 Gyr, which is the published claim's own assumption and is not tested here.
+(Stretch selection is not corrected; a magnitude-limited low-redshift set under-counts faint, low-stretch
+supernovae, which would raise the legacy share.)
+
 ## Known-answer checks
 | check | result | |
 |---|---|---|
@@ -155,7 +197,7 @@ K4 passes with the stated errors about 10 to 20 % small. No word above changes i
 - J2's margin is thin (4.46 and 4.41 against 4).
 - Part E selects by host; the survey's bias corrections were made for the whole sample.
 - Cosmology words live inside the flat w0–wa family. AGB1's and AGB2's words stand as written.
-- No blind re-grade has been run.
+- No blind re-grade had been run when this was written.
 
 ## Data fetched
 `DES-Dovekie_Metadata.csv`, 1,269,831 bytes, sha256
@@ -166,7 +208,7 @@ K4 passes with the stated errors about 10 to 20 % small. No word above changes i
 ## Files
 `FROZEN_CRITERIA.md`; `agb3_twocomp.py` (two-component ages), `agb3_run.py` (checks and Part D), `agb3_cosmo.py`
 (Parts S, J, E), `agb3_collect.py`; outputs `agb3_{KM,K1,K2,K3,K4,D,S,E,J}.{json,out}`, `agb3_results.json`,
-`agb3_collect.out`.
+`agb3_collect.out`. Post hoc: `agb3_posthoc_noise.py`, `.json`, `.out`.
 
 Commits (local / origin): criteria 5403d1b288 / 6b0231f3a1; scripts 8e1fd5b361 / 01b873cb60; result 9c06d486f3 /
 64a7b86222.
