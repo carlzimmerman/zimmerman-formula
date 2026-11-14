@@ -148,4 +148,30 @@ gas inputs, while the fail at f = 10 and above is robust to every bracket.
 
 These are hits and misses of one candidate rule, not a test passed by the theory.
 
+## Commit ids, the lead's checks and the comparison with FWN1 (2026-11-14, written by the lead after this file landed)
+
+- Criteria ed67b21129 (origin 51a550b8a7); scripts, parts and graded outputs eafc9a5b2b (origin fc2e01f040); result 994eab6169
+  (origin 255cd46790).
+- **Re-run.** The lead re-ran the grader from a copy at the same folder depth: `fwn1r_grade.json`, `fwn1r_grade.out` and both
+  twin files equal byte for byte. The boxes were not re-run. A reproduction, not a further independent grade.
+- **Blindness, checked on the commit-list route.** The lead's commits whose subjects carry FWN1's words were made at 03:57 to
+  03:59 EST, after this lane's criteria (03:51) and before its scripts. The agent's session log shows `git log` was called three
+  times in this lane, each `git log -1` straight after one of its own commits, and each showed only that commit.
+- **Comparison with FWN1** (`closure_2026_11_13/FWN1_forest_flux_split_f_ceiling/RESULT.md`; canonical / alt):
+
+  | case | FWN1 label | FWN1 D | this lane's label | this lane's D |
+  |---|---|---|---|---|
+  | f = 5 | NO VERDICT / NO VERDICT | 8.09 / 9.45 | FAILS, FRAGILE / FAILS, FRAGILE | 8.83 / 10.90 |
+  | f = 10 | FAILS / FAILS | 184.3 / 233.5 | FAILS / FAILS | 194.5 / 288.0 |
+  | no settled radius | FAILS / FAILS | 200.5 / 251.1 | FAILS / FAILS | 215.0 / 314.7 |
+
+  - **f = 10 and no settled radius: the same word in both builds on both footings.** FWN1's fails are confirmed by a blind
+    build, and neither build's fail is FRAGILE.
+  - **f = 5: the same size, different words.** The two D values agree to about 10 to 15 %. FWN1's frozen SE (2.41 / 2.79) leaves
+    D - 2 SE under 4; this lane's jackknife SE (0.33 / 0.56) puts it over, with the label FRAGILE, and its measured-range
+    reading changes sides. f = 5 is therefore not a confirmed fail.
+  - **Ceiling (reported in both, never a label).** FWN1: D + 2 SE reaches 4 at f 3.6 / 3.4 and D - 2 SE at 5.2 / 5.0. This lane:
+    4.24 / 4.07. Both lie between the two run points, 3 and 5; f = 4 was run in neither build.
+- No number or label of either lane changes.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
