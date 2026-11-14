@@ -73,8 +73,14 @@ numbers, not its label. The audit reads 165 of 165.
 
 Updated a fourteenth time 2026-11-14 by the session that ran the lanes, after the blind EUC20R and EUC21R landed: rows
 39, 40 and 41 (blind column, words and notes) and one line of the undecided list. Both blind builds give the first
-lanes' labels on every row and footing. No word for the completed form and no count changes. The audit reads 168
+lanes' labels on every row and footing. No word for the completed form and no count changes. The audit read 168
 of 168.
+
+Updated a fifteenth time 2026-11-14 by the lead, on the owner's decision of 2026-11-14: row 35's word changes from FAILS
+to NO POWER. That is the blind DSB1's amended word, DG1's own budget agrees with it, and RB2's fail uses measurement
+scatter only. The counts move by one (FAILS 3, NO POWER 8) and the fails list follows. Row 28 is not changed: a blind
+lane with the measured anisotropy frozen as its primary runs first. The forest line of the undecided list records GAS2,
+ABS1 and DBL1. The audit reads 172 of 172.
 
 Words for the completed form (fixed list): PASSES / FAILS / FAILS ON COVERAGE ONLY / PASSES TRIVIALLY (the form equals
 the reference there) / EQUALS THE LAW (unchanged by rule 6: the form gives the law's own layout there, so the row's
@@ -125,7 +131,7 @@ verdict on the law carries over) / NO POWER / DEPENDS ON AN UNTESTED ASSUMPTION 
 | 33 | Hot halo gas | MWG1, HG2 | "ROTATION CURVE NOT SUPPLIED" | fragile | EQUALS THE LAW | yes (RG1, MWG1) | Hot gas does not supply the curve. |
 | 34 | LMC reflex | RFX1 | "REFLEX WITHIN THE BOUND, FRAGILE" | fragile | EQUALS THE LAW | no | A one-sided bound. |
 | **Dwarfs and wide binaries** | | | | | | | |
-| 35 | MW ultra-faints, M31 bright dwarfs | RB2, DG1, DSB1, CRACK-1 | RB2 "B FAILS HIGH / B FAILS HIGH"; DG1 "DOES NOT SURVIVE" (data-side regrade); DSB1 as frozen "STOPPED AT KA-c, no label", amended "lane NO POWER"; CRACK-1 "FAILS THE PAIR" | fragile | FAILS | yes (DSB1, blind; as frozen no label; amended NO POWER) | Rule 6 does not touch them (far below v*, inside their fold): form B's fail stays. Medians stay high. The blind DSB1 does not confirm RB2's fail as a label: as frozen it stops at a known answer with no label, and under its amendment (post-freeze, one recovery check replaced, committed before any graded number) "No graded class fails on either footing": ultra-faints +0.572 [-0.043, +1.173] / +0.542 [-0.087, +1.127], bright M31 +0.171 [-0.245, +0.609] / +0.134 [-0.271, +0.547], and no class could detect a 0.30 dex offset (minimum detectable 0.59 to 1.23 dex). DG1 (not blind) reaches the same with its own budget. RB2's two FAILS HIGH use measurement scatter only; the ultra-faints read FAILS HIGH again in DSB1 if the 9 upper-limit rows are fixed at their limits or dropped. So the row's FAILS stands on RB2's statistics-only reading and is not confirmed under a systematics budget. |
+| 35 | MW ultra-faints, M31 bright dwarfs | RB2, DG1, DSB1, CRACK-1 | RB2 "B FAILS HIGH / B FAILS HIGH"; DG1 "DOES NOT SURVIVE" (data-side regrade); DSB1 as frozen "STOPPED AT KA-c, no label", amended "lane NO POWER"; CRACK-1 "FAILS THE PAIR" | no (under the blind budget) | NO POWER | yes (DSB1, blind; as frozen no label; amended NO POWER) | Word changed from FAILS to NO POWER on the owner's decision of 2026-11-14. Rule 6 does not touch them (far below v*, inside their fold). Medians stay high, so this is not a pass. The blind DSB1 does not confirm RB2's fail as a label: as frozen it stops at a known answer with no label, and under its amendment (post-freeze, one recovery check replaced, committed before any graded number) "No graded class fails on either footing": ultra-faints +0.572 [-0.043, +1.173] / +0.542 [-0.087, +1.127], bright M31 +0.171 [-0.245, +0.609] / +0.134 [-0.271, +0.547], and no class could detect a 0.30 dex offset (minimum detectable 0.59 to 1.23 dex). DG1 (not blind) reaches the same with its own budget. RB2's two FAILS HIGH use measurement scatter only; the ultra-faints read FAILS HIGH again in DSB1 if the 9 upper-limit rows are fixed at their limits or dropped. So RB2's FAILS HIGH is a statistics-only reading that no systematics budget confirms, and the row reads NO POWER. What would restore the fail: the upper-limit rows resolved, or a budget smaller than DSB1's and DG1's. |
 | 36 | DF2, DF4, NGC 147, IC 1613 | RB2, RB2R, NH2 | RB2 "B FAILS ON THE HOSTED ROWS"; the blind RB2R "LOW ROWS COUNT AGAINST B" on both footings; NH2 "Label as frozen: NO VERDICT / NO VERDICT" (post hoc DF4 "TIDES CANNOT REACH") | yes | FAILS | yes (RB2R: the same LOW rows and the same words; its brief named three of the objects, so it was not blind to which rows to expect) | Rule 6 does not touch them: form B's fail stays. The blind RB2R finds the same four rows below form B's law by more than twice their uncertainty on both footings, with tides unable to reach any of them; DF2 and DF4 agree with RB2 to three figures (0.743 / 0.781 and 0.943 / 0.981 dex below; NGC 1052 would need about 17 and about 100 times its law mass). Both builds share the estimator, a mass-to-light ratio of 2 and no gas term. |
 | 37 | Coma UDGs, MW classical dwarfs | RB2, DSB1 | "B CONSISTENT / B CONSISTENT" | no (DSB1) | PASSES | yes (DSB1: NO POWER) | Inside the interval only with the systematics budget; rule 6 does not touch them. |
 | 38 | Wide binaries (Gaia DR4, due 2026-12-02) | CW1, DR4MAP | DR4MAP "Governing for the adopted theory (wide binaries only)" | no (data not out) | EQUALS THE LAW | no | Can kill the adopted theory, cannot confirm it. |
@@ -141,9 +147,9 @@ verdict on the law carries over) / NO POWER / DEPENDS ON AN UNTESTED ASSUMPTION 
 
 ## Counts
 
-Canonical: EQUALS THE LAW 14; NOT GRADED FOR THIS FORM 6; NO POWER 7; FAILS 4; PASSES TRIVIALLY 5; DEPENDS ON AN UNTESTED ASSUMPTION 5; PASSES 3; FAILS ON COVERAGE ONLY 1. Total 45.
+Canonical: EQUALS THE LAW 14; NOT GRADED FOR THIS FORM 6; NO POWER 8; FAILS 3; PASSES TRIVIALLY 5; DEPENDS ON AN UNTESTED ASSUMPTION 5; PASSES 3; FAILS ON COVERAGE ONLY 1. Total 45.
 
-Alt: EQUALS THE LAW 14; NOT GRADED FOR THIS FORM 6; NO POWER 7; FAILS 4; PASSES TRIVIALLY 5; DEPENDS ON AN UNTESTED ASSUMPTION 5; PASSES 3; FAILS ON COVERAGE ONLY 1. Total 45.
+Alt: EQUALS THE LAW 14; NOT GRADED FOR THIS FORM 6; NO POWER 8; FAILS 3; PASSES TRIVIALLY 5; DEPENDS ON AN UNTESTED ASSUMPTION 5; PASSES 3; FAILS ON COVERAGE ONLY 1. Total 45.
 
 No row differs between the footings after the DSC1R update (row 7 read PASSES canonical / NO POWER alt before it).
 
@@ -168,9 +174,12 @@ No row differs between the footings after the DSC1R update (row 7 read PASSES ca
   the star-count slope is the measured RR Lyrae one (28; the blind RRL1R gives the same label and the same fragility).
   The hot 30 to 40 kpc bin of row 27 passes with that slope. RRL2 (not blind) disagrees on the convention: with MWT1's
   measured beta(r) the 40 to 55 kpc fail goes for every smooth model (post hoc), and its own frozen words have no power.
-- Untouched by rule 6, so form B's fails stay: the outer cluster shear (20, carried), the ultra-faints and M31's bright
-  dwarfs (35, fragile under DSB1's blind budget), DF2, DF4, NGC 147 and IC 1613 (36; the blind RB2R finds the same four
-  rows and the same words).
+- Untouched by rule 6, so form B's fails stay: the outer cluster shear (20, carried; OTA1 still fails with the share
+  counted to turnaround) and DF2, DF4, NGC 147 and IC 1613 (36; the blind RB2R finds the same four rows and the same
+  words).
+- No longer listed: the ultra-faints and M31's bright dwarfs (35). The fail was RB2's reading with measurement scatter
+  only; under the blind DSB1's systematics budget and under DG1's no class fails and none could detect 0.30 dex. The
+  medians stay high, so the row reads NO POWER, not a pass.
 - No longer listed: X-COP's two-sided amount (15). The row had quoted PD1's reading with half the share kept out of the
   core, which under-fills X-COP and is not form B. Under form B the clusters sit at the ceiling (RB1, the blind RB1R) and
   over it with masses that do not assume hydrostatic equilibrium (XCV1); see below.
@@ -192,10 +201,17 @@ No row differs between the footings after the DSC1R update (row 7 read PASSES ca
   hydrodynamic forest model that sets the smoothing scale, a box of at
   least about 50 Mpc/h, 6 to 18 seeds at z 2.2 (FRZ3R, FRZ4); and f between 2 and 3 run in both builds. FRZ5 adds: the
   gas parameters must be fitted with the layout, not held fixed; refitting them removes about 91 % of the full layout's
-  number and still leaves it about 6 times over the gate. GAS1 (a look-up; its numbers stay PROVISIONAL until the
-  papers' tables are read by eye) adds: the record's smoothing scale is defined as in the quasar-pair measurement;
+  number and still leaves it about 6 times over the gate. GAS1 (a look-up; GAS2 then read its tables from the
+  papers' pages by eye: every entry confirmed, "No placement level changes.", and one of GAS1's two readings of the
+  smoothing convention is void) adds: the record's smoothing scale is defined as in the quasar-pair measurement;
   "Attribution of 91.4 and 138.6 comoving kpc: right."; half the smoothing scale, which makes several holds FRAGILE, is
   mostly outside the measurements; gamma 1.2 and 1.6 are inside them, so the FRAGILE flags stay live through gamma.
+  ABS1 (not blind) adds a step no lane had checked: the gate multiplies the data by the model's fractional change, and
+  the reference model's own flux power "DOES NOT FIT" the DESI points in absolute terms (25 to 40 % low at z 2.2). Its
+  gate word is "GATE MOVES": with the reference's own power in place of the data every forest number falls to 0.55 to
+  0.76 of its stored value, so a label that is not a hold and sits below about 7 depends on that choice, while the
+  holds and the fails at 9 and above do not. Nothing is relabelled; the lane cannot say which scale is right. DBL1 (a
+  look-up) reads the data table's blinding flag as "UNBLINDED: ESTABLISHED" by the documented meaning of the keyword.
 - f itself (44): a lensing gate that can see the settled radius (row 11 cannot, per SRH1R) for the lower edge; for the
   upper edge, a blind re-grade of FWN2's holds at f 3.5 and 4 in FWN1R's build, f 4 in a build with a smaller error
   than FWN1's (its 12 seeds cannot tell; by hand about 40 times the seeds on canonical), and f 5, where FWN1 and the

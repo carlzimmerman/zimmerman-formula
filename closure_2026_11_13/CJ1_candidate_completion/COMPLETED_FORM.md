@@ -202,4 +202,10 @@ it is over the ceiling at R500 and with masses that do not assume hydrostatic eq
 AN UNTESTED ASSUMPTION (the hydrostatic mass to about 10 per cent). The fail on DF2, DF4, NGC 147 and IC 1613 is confirmed
 by a second build on both footings. Rule 6 touches neither row.
 
+Update 2026-11-14, later (scorecard row 35, on the owner's decision). The ultra-faints and M31's bright dwarfs now read
+NO POWER: the fail used measurement scatter only, and under the blind DSB1's systematics budget, and under DG1's, no
+class fails and none could detect 0.30 dex. The medians stay high; this is not a pass. The rows that still fail are the
+outer cluster shear (20), the halo stars with the measured slope (28, under review by a blind lane) and DF2, DF4,
+NGC 147 and IC 1613 (36).
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
