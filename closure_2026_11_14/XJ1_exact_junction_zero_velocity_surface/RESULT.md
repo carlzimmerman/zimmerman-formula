@@ -310,4 +310,20 @@ The brackets of the two caustic cases (12-bin estimates; gate 4):
   AN UNTESTED ASSUMPTION, not FAILS; form B's failing rows are the outer cluster shear, the halo-star row, the
   ultra-faints and M31's bright dwarfs, and the hosted low rows.
 
+**2026-11-14, 16:04 EST. Amendment A7 (4ac81dbc01; reported, post hoc, no label): the lens profile inside the settled
+radius, with FRZ1's leftover term.** The lens chain of section 3 used the law's capped halo alone inside R_set; the
+forest tables use FRZ1's mode "B", which adds the unused share spread in proportion to radius where the law's halo has
+not used the whole share by the turnaround radius. BJ1's builder pointed out the difference. `xj1_lens4.py` repeats G4
+for Ec2 and Ec3 with the term included.
+- The leftover term is not zero in 285 of 2,178 lens-table cells on canonical and 199 on alt (largest 0.40 / 0.34 of
+  the share; it adds up to 81 % / 61 % to the enclosed cold mass at R_set in those cells).
+- The gate does not move: PASS for both cases on both footings, with every statistic equal to the stored one to the
+  four printed decimals (early-type z: Ec2 +0.2764 / +0.8530, Ec3 +0.5674 / +1.0407). The cells with a leftover term are
+  the systems whose law halo cannot use the share, which the boundary v*(z) already hands to the reference, so the
+  term never reaches a lens that carries the exact junction.
+- Hand estimate (A7): the early-type z moves by less than 0.1 and both words stay PASS: yes. "Zero for most lenses":
+  it is zero for every lens below v*, and not zero in about a tenth of the table's cells.
+- The frozen cases (E1, E2, E3, Ezv) and A3's two radii were not re-run with the term; the same argument applies to
+  them, and it is an argument, not a computation.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
