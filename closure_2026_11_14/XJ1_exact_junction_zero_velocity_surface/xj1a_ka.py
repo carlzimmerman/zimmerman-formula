@@ -99,7 +99,7 @@ TAB = {7: 19, 8: 40, 9: 88, 9.4: 120, 10: 190, 10.45: 268, 10.7: 325, 10.9: 378,
 zz = {str(m): dict(mine=TB.rcol_kpc("canonical", 0.0, float(m), 3), printed=v) for m, v in TAB.items()}
 dz = max(abs(v["mine"] - v["printed"]) for v in zz.values())
 RES["KA_Z"] = dict(i=dict(AGGZ, pass_=bool(AGGZ["i_srh1"] <= 1e-12 and AGGZ["i_fzs1"] <= 1e-12)), ii=dict(rows=zz, max_abs_kpc=dz, pass_=bool(dz <= 0.6)))
-P(f"KA-E over 12 z bins x 2 footings x {len(L['HB'])} haloes x 2 cases: (i) {AGG['i']:.1e} (ii) {AGG['ii']:.1e} (iii) {AGG['iii']:.1e} (iv) t_min {AGG['iv_min_t']:.3e} (strict t >= 0: {KE['pass_iv_strict']}; graded with 1e-12) "
+P(f"KA-E over 12 z bins x 2 footings x {len(L['HB'])} haloes x {len(TB.EKEYS)} cases {TB.EKEYS}: (i) {AGG['i']:.1e} (ii) {AGG['ii']:.1e} (iii) {AGG['iii']:.1e} (iv) t_min {AGG['iv_min_t']:.3e} (strict t >= 0: {KE['pass_iv_strict']}; graded with 1e-12) "
   f"(v) B {AGG['v_B']:.1e}, R exact {AGG['v_R_exact']} (vi) {AGG['vi_exact']}; regime L below v* {AGG['regime_L']} -> {'PASS' if KE['pass_'] else 'FAIL'}")
 P(f"KA-Z (i) reader(R_fold_kpc) x 3 vs rset_com(fac 3) over {AGGZ['n']} haloes: SRH1's copy {AGGZ['i_srh1']:.1e}, FZS1's own {AGGZ['i_fzs1']:.1e} -> {'PASS' if RES['KA_Z']['i']['pass_'] else 'FAIL'}")
 P("KA-Z (ii) R_ta at z 0, canonical (mine / printed kpc): " + ", ".join(f"{m}: {v['mine']:.1f}/{v['printed']}" for m, v in zz.items()) + f"; max |diff| {dz:.2f} kpc -> {'PASS' if RES['KA_Z']['ii']['pass_'] else 'FAIL'}")
