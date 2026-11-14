@@ -90,4 +90,7 @@ set again, as in LGS1 and AGB1. The native H0 falls by about 1.0 at 0.23 and 1.5
 `FROZEN_CRITERIA.md`; `agb7_reread.py` (harness), `agb7_collect.py`; outputs `agb7_cfg684_<sample>_<template><100 A>.{json,out}`
 and `agb7_cfg689_<mode>_<sample>_S<100 A>.{json,out}`; `agb7_results.json`, `agb7_collect.out`.
 
+Commits (local / origin): criteria 5007b5beb8 / d65e88928d; scripts 4335bfe123 / 92e3ca7de3; result e876d9717b /
+f15a648071.
+
 kappa = 1/2 FITTED; not theory closed.
