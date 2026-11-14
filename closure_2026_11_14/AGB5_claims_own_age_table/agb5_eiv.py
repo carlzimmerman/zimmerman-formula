@@ -36,7 +36,10 @@ def fit(x, sx, y, sy, L=None, step=False, sx_scale=1.0):
         for j in range(i, n):
             ei = np.zeros(n); ej = np.zeros(n); ei[i] = h[i]; ej[j] = h[j]
             H[i, j] = H[j, i] = (f(p + ei + ej) - f(p + ei - ej) - f(p - ei + ej) + f(p - ei - ej))/(4*h[i]*h[j])
-    cov = np.linalg.inv(H)
-    out = dict(beta=float(p[1]), sd_beta=float(np.sqrt(cov[1, 1])), sint=float(np.exp(p[2])), tau=float(np.exp(p[3])), nll=float(best.fun), n=len(x))
-    if step: out.update(g=float(p[-1]), sd_g=float(np.sqrt(cov[-1, -1])))
+    try:
+        cov = np.linalg.inv(H)
+    except np.linalg.LinAlgError:          # a resample can sit on a flat direction (age spread going to zero)
+        cov = np.linalg.pinv(H)
+    out = dict(beta=float(p[1]), sd_beta=float(np.sqrt(abs(cov[1, 1]))), sint=float(np.exp(p[2])), tau=float(np.exp(p[3])), nll=float(best.fun), n=len(x))
+    if step: out.update(g=float(p[-1]), sd_g=float(np.sqrt(abs(cov[-1, -1]))))
     return out
