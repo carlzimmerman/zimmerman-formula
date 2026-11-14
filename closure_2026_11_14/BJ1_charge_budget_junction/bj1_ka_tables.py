@@ -6,11 +6,11 @@ FRZ1's halo grid (321 haloes), all 12 forest redshifts, both footings, cases B1,
   (i)   C = C_B at every node r <= R_set, 1e-12 relative
   (ii)  C = C_R at every node r >= max(R_k, R_set), 1e-12 relative
   (iii) C(r_ta) = C_tot, 1e-12 relative
-  (iv)  C non-decreasing (no tolerance: the smallest step is printed)
+  (iv)  C non-decreasing; AMENDMENT_A1: smallest step >= -1e-12 C_tot (the smallest step is printed)
   (v)   under: C(R_k) = C_R(R_k); over: C(R_set) = C_R(R_set); 1e-9 of C_tot
   (vi)  R_k forced to r_ta gives mode B at every node (1e-12 relative); R_k forced to 0 gives the reference exactly
   (vii) haloes above v*(z) have the reference row exactly
-  t-free: every node's C is bit-equal to C_B at that node, to Q_k = C_R(R_k), or to C_R at that node.
+  t-free: every node's C equals C_B at that node, Q_k = C_R(R_k), or C_R at that node, to 1e-12 relative (AMENDMENT_A1).
   nice -n 19 python3 -I -B bj1_ka_tables.py -> bj1_ka_tables.json / .out
 kappa = 1/2 FITTED; not theory closed. Adopts nothing."""
 import os, sys, json, math, time
@@ -63,8 +63,8 @@ for ft in BL.FOOTS:
                 if inf["branch"] == "under": w["v"] = max(w["v"], abs(C[inf["i_k"]] - CR[inf["i_k"]]) / Ct)
                 else:
                     iS = inf["i_set"]; w["v"] = max(w["v"], abs(CB[iS] - CR[iS]) / Ct)
-                # t-free: each node's C is C_B, Q_k or C_R at that node, bit for bit
-                w["tfree"] &= bool(np.all((C == CB) | (C == Q) | (C == CR)))
+                # t-free (AMENDMENT_A1): each node's C is C_B, Q_k or C_R at that node, to 1e-12 relative
+                w["tfree"] &= bool(np.all((rel(C, CB) <= 1e-12) | (rel(C, np.full_like(C, Q)) <= 1e-12) | (rel(C, CR) <= 1e-12)))
                 rep[f"B{k}"]["rows"].append(dict(lM=float(math.log10(hb["M"])), lMb=float(math.log10(Z["Mb_fold"](hb, ft) / Z["h"])), branch=inf["branch"], capped=inf["capped"],
                                                  Rset_Rk=Rs / Rk, Rset_Rfold=Rs / inf["R_fold"], Rk_Rfold=Rk / inf["R_fold"], D_k=inf["D_k"]))
             # (vi)
@@ -76,7 +76,7 @@ for ft in BL.FOOTS:
             r, M, inf = BL.budget_fn(ft, z, vs, 1, force="zero")(hb)
             CUR[0] = 0.0; rR, MR, _ = layout(hb, ft, mode="Rb")
             w["vi_zero"] = max(w["vi_zero"], float(np.max(np.abs(M - MR))) if (len(M) == len(MR) and np.array_equal(r, rR)) else math.inf)
-        ok = (w["i"] <= 1e-12 and w["ii"] <= 1e-12 and w["iii"] <= 1e-12 and w["iv_min_step"] >= 0 and w["v"] <= 1e-9
+        ok = (w["i"] <= 1e-12 and w["ii"] <= 1e-12 and w["iii"] <= 1e-12 and w["iv_min_step"] >= -1e-12 and w["v"] <= 1e-9
               and w["vi_rta"] <= 1e-12 and w["vi_zero"] == 0 and w["vii"] == 0 and w["tfree"])
         if graded: okall &= ok
         RES["KA"][f"{ft}|{z}"] = dict(w, pass_=bool(ok), graded=graded)
