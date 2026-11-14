@@ -1,0 +1,134 @@
+{
+  "schema_version": 2,
+  "claim_id": "MASS_SOURCE_PHYSICAL_UNIT_CHECK_20261114",
+  "repository": {
+    "commit": "d8951c0b42cebee09a5f7613ffbf6ff09b428596",
+    "dirty": true
+  },
+  "command": [
+    "/private/tmp/forj0332-fit-venv/bin/python",
+    "codex_mass_budget_2026_11_14/calculation/analyze_sources.py",
+    "--output",
+    "codex_mass_budget_2026_11_14/calculation/run_002"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "computation Python",
+        "version": "3.9.6"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Recompute all-explicit-baryon force-law residual and required cold charge at R_set independently in physical kpc/Msun; compare against comoving source-prefix run; isolate retained-core rescaling residual.",
+    "coefficient_domain": "IEEE float64",
+    "conventions": "G=4.30091e-6 kpc (km/s)^2 / Msun converted from original G; a0 footings unchanged; stored Msun/h converted to Msun; exact raw law with source Bar(R_set) tested separately from retained central Mb.",
+    "inputs": [
+      "10272 rows from run_001",
+      "All actual halo grid join radii from run_001"
+    ],
+    "bounds": {
+      "rows": 10272,
+      "tolerance": 1e-12
+    },
+    "non_claims": [
+      "Not an action solution",
+      "Point-source budget radius is not exact for a distributed cluster baryon source",
+      "No fit or external source theorem"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-14T18:50:06.356051+00:00",
+    "runtime_seconds": 0.351627,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": null
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "codex_mass_budget_2026_11_14/calculation/analyze_sources.py",
+    "codex_mass_budget_2026_11_14/calculation/run_001/results.json",
+    "codex_mass_budget_2026_11_14/calculation/run_001/halo_masses.csv"
+  ],
+  "input_artifacts": [
+    {
+      "path": "codex_mass_budget_2026_11_14/calculation/analyze_sources.py",
+      "sha256": "540dd2d35077aae0d8ca420f3549b55ac8e4b679221557de65589391dc2693a0",
+      "sha256_after": "540dd2d35077aae0d8ca420f3549b55ac8e4b679221557de65589391dc2693a0"
+    },
+    {
+      "path": "codex_mass_budget_2026_11_14/calculation/run_001/results.json",
+      "sha256": "094ad0b10a8dafee1daefe1dd50e6b4062a2aa115e278be4856faf6ff3be4aa8",
+      "sha256_after": "094ad0b10a8dafee1daefe1dd50e6b4062a2aa115e278be4856faf6ff3be4aa8"
+    },
+    {
+      "path": "codex_mass_budget_2026_11_14/calculation/run_001/halo_masses.csv",
+      "sha256": "9cde2307015919da3e31f0e4fd29c9d4c7388567c7fff333a599631b2c0d7c46",
+      "sha256_after": "9cde2307015919da3e31f0e4fd29c9d4c7388567c7fff333a599631b2c0d7c46"
+    }
+  ],
+  "output_directory": "codex_mass_budget_2026_11_14/calculation/run_002",
+  "declared_results": [
+    "codex_mass_budget_2026_11_14/calculation/run_002/results.json",
+    "codex_mass_budget_2026_11_14/calculation/run_002/source_comparisons.csv"
+  ],
+  "outputs": [
+    {
+      "path": "codex_mass_budget_2026_11_14/calculation/run_002/stdout.txt",
+      "sha256": "b71f5af46f85afdbd829424cbac1f0344d21cefd88d05504712fc120673c9b61",
+      "kind": "log"
+    },
+    {
+      "path": "codex_mass_budget_2026_11_14/calculation/run_002/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "codex_mass_budget_2026_11_14/calculation/run_002/results.json",
+      "sha256": "fcb020ac7a095d8373501ec37a6c8b46b38265e7628dd2c2d4f1b71bbeee5f4d",
+      "kind": "result"
+    },
+    {
+      "path": "codex_mass_budget_2026_11_14/calculation/run_002/source_comparisons.csv",
+      "sha256": "b48051cb18cec9ada3fd73898f5780a6c3b964c94c069290f50d6ace9bba2af1",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions."
+  ]
+}

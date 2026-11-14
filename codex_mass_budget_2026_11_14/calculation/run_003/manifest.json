@@ -1,0 +1,136 @@
+{
+  "schema_version": 2,
+  "claim_id": "CONDITIONAL_CROSSING_SOURCE_SCOPE_20261114",
+  "repository": {
+    "commit": "c3bc2d3871764b2d22860175b4f012ddfaa2ecdb",
+    "dirty": true
+  },
+  "command": [
+    "/private/tmp/forj0332-fit-venv/bin/python",
+    "codex_mass_budget_2026_11_14/calculation/check_crossing_scope.py",
+    "--output",
+    "codex_mass_budget_2026_11_14/calculation/run_003"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "computation Python",
+        "version": "3.9.6"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "Conditional identity: if Mcond=eta*Mb_patch and Mpatch=q*Mb_patch, equality of v^3=10GMpatch H and v^4=GMcond a0 gives v=eta*a0/(10qH). Report actual eta and scopes from FRZ1 rows.",
+    "coefficient_domain": "IEEE float64",
+    "conventions": "Common chosen patch/radius and cosmology in analytic benchmark; actual Mta and M200c scope ratios retained separately. This is the flat-speed/deep-law identity.",
+    "inputs": [
+      "run_001 actual mass rows",
+      "q=6.41; eta=.05,.1,.5,1; both footings; z=0,2.2,3,4.4"
+    ],
+    "bounds": {
+      "benchmark_cases": 32,
+      "actual_scope_rows": 2568,
+      "tolerance": 1e-12
+    },
+    "non_claims": [
+      "No new universal crossing speed",
+      "No replacement selection rule",
+      "Does not identify retained Mb with total patch baryons",
+      "No exact-law finite-radius equality claim"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-14T18:53:28.077672+00:00",
+    "runtime_seconds": 0.289136,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 30.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": null
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "codex_mass_budget_2026_11_14/calculation/check_crossing_scope.py",
+    "codex_mass_budget_2026_11_14/calculation/run_001/results.json",
+    "codex_mass_budget_2026_11_14/calculation/run_001/halo_masses.csv"
+  ],
+  "input_artifacts": [
+    {
+      "path": "codex_mass_budget_2026_11_14/calculation/check_crossing_scope.py",
+      "sha256": "a50bb8f4d6d8889aca2a03af5d08a8da544db29d93cb11503a2f60715c8b965c",
+      "sha256_after": "a50bb8f4d6d8889aca2a03af5d08a8da544db29d93cb11503a2f60715c8b965c"
+    },
+    {
+      "path": "codex_mass_budget_2026_11_14/calculation/run_001/results.json",
+      "sha256": "094ad0b10a8dafee1daefe1dd50e6b4062a2aa115e278be4856faf6ff3be4aa8",
+      "sha256_after": "094ad0b10a8dafee1daefe1dd50e6b4062a2aa115e278be4856faf6ff3be4aa8"
+    },
+    {
+      "path": "codex_mass_budget_2026_11_14/calculation/run_001/halo_masses.csv",
+      "sha256": "9cde2307015919da3e31f0e4fd29c9d4c7388567c7fff333a599631b2c0d7c46",
+      "sha256_after": "9cde2307015919da3e31f0e4fd29c9d4c7388567c7fff333a599631b2c0d7c46"
+    }
+  ],
+  "output_directory": "codex_mass_budget_2026_11_14/calculation/run_003",
+  "declared_results": [
+    "codex_mass_budget_2026_11_14/calculation/run_003/results.json",
+    "codex_mass_budget_2026_11_14/calculation/run_003/scope_rows.csv"
+  ],
+  "outputs": [
+    {
+      "path": "codex_mass_budget_2026_11_14/calculation/run_003/stdout.txt",
+      "sha256": "afb6c30c11b88f0721176c4faf15910f60ae8fdf77a0c07cf104963f8cfadea5",
+      "kind": "log"
+    },
+    {
+      "path": "codex_mass_budget_2026_11_14/calculation/run_003/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "codex_mass_budget_2026_11_14/calculation/run_003/results.json",
+      "sha256": "f75f2eb4a0534bd27d88c2f2374825291849c5a1ae0bf03cf70ee783688e5b01",
+      "kind": "result"
+    },
+    {
+      "path": "codex_mass_budget_2026_11_14/calculation/run_003/scope_rows.csv",
+      "sha256": "f210661556a518a95ce21343c8579c8a0b3de8bf262697e5b8dda4421457ab88",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions."
+  ]
+}

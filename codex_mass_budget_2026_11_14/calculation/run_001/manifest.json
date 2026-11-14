@@ -1,0 +1,339 @@
+{
+  "schema_version": 2,
+  "claim_id": "MASS_BUDGET_FZS1_JNT2_20261114",
+  "repository": {
+    "commit": "63aff5a4e6dff57f12f6a1a8a4f95543e330ccd3",
+    "dirty": true
+  },
+  "command": [
+    "/private/tmp/forj0332-fit-venv/bin/python",
+    "codex_mass_budget_2026_11_14/calculation/calculate.py",
+    "--output",
+    "codex_mass_budget_2026_11_14/calculation/run_001"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "computation Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "NumPy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "SciPy",
+        "version": "1.13.1"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "On the actual 321-mass FRZ1 halo grid, compare unscaled exact-law cold mass, form-B normalized/capped cold mass, reference cold mass, FZS1/JNT2 joined mass and patch charge at the prescribed settled radius. Verify separate conservation and force-law residuals and the common-r200 analytic benchmark.",
+    "coefficient_domain": "IEEE float64 numerical evaluation; analytic dimensionless benchmark independently evaluated in SI",
+    "conventions": "Halo masses Msun/h, comoving radii Mpc/h, physical R_set kpc=r_com*1000/[h(1+z)]; a0_com=a0_phys/(1+z)^2 after km/s/Mpc conversion; equation residual g^2/[gN(a0+g)]-1. FRZ1 Bar includes retained baryons only in cluster branch.",
+    "inputs": [
+      "Actual FRZ1 321 masses log10 M200m=8..16; no mass subsampling",
+      "FZS1 FLD1 interpolated radii, galaxy Mb=(1-FB)Mta/Xsh, cluster Mb_fold=FB*M200c",
+      "JNT2 main-mode speed split, no fitted boundary changes"
+    ],
+    "bounds": {
+      "redshifts": [
+        0,
+        2.2,
+        3,
+        4.4
+      ],
+      "footings": [
+        "canonical",
+        "alt"
+      ],
+      "factors": [
+        1.25,
+        2,
+        3,
+        5
+      ],
+      "expected_rows": 10272,
+      "radial_grid": "original 1600 log-radius points plus zero, junction, and layout nodes",
+      "numeric_tolerance": 1e-12,
+      "timeout_seconds": 300
+    },
+    "non_claims": [
+      "No theorem of universal coverage",
+      "No action-derived transition, stability, fit, spectra, hydrodynamics or observational pass",
+      "No identification of retained Mb with stellar mass",
+      "No claim that cluster non-Bar reservoir is pure cosmic cold charge",
+      "No claim that XJ1 exact-B junction is exact raw standing-law profile when B already includes caps, remnant or precollapsed terms",
+      "No proof that crossing speed follows from a global or truncated budget"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-14T18:47:18.616794+00:00",
+    "runtime_seconds": 10.347384,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 300.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "codex_mass_budget_2026_11_14/calculation/calculate.py",
+    "closure_2026_11_13/JNT2_crossing_speed_joint/jnt2_hm.py",
+    "closure_2026_11_13/JNT2_crossing_speed_joint/jnt2_common.py",
+    "closure_2026_11_10/FZS1_forest_settled_radius/fzs1_hm.py",
+    "closure_2026_11_10/FRZ1_forest_redistribution_at_z/frz1_hm.py",
+    "campaign_fresh_gravity/CFG556_halo_model_matter_power/cfg556_halo_model.py",
+    "closure_2026_11_09/PD1_phantom_is_dust/pd1.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M6.5_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M7_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M8_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M9_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M9.4_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M10_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M10.45_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M10.7_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M10.9_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M11.2_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M11.5_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M12_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_alt_M6.5_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_alt_M7_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_alt_M8_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_alt_M9_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_alt_M9.4_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_alt_M10_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_alt_M10.45_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_alt_M10.7_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_alt_M10.9_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_alt_M11.2_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_alt_M11.5_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_alt_M12_zi10_N2400.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "codex_mass_budget_2026_11_14/calculation/calculate.py",
+      "sha256": "012a11800cb29cf12825bdf6c5506c66428f4c3f78296a58ba7b65c9425f5852",
+      "sha256_after": "012a11800cb29cf12825bdf6c5506c66428f4c3f78296a58ba7b65c9425f5852"
+    },
+    {
+      "path": "closure_2026_11_13/JNT2_crossing_speed_joint/jnt2_hm.py",
+      "sha256": "9d6904d4589d7ed4b6e6b065c16b3606e6bd87e12afc5fb0c0cc66e607d2a03a",
+      "sha256_after": "9d6904d4589d7ed4b6e6b065c16b3606e6bd87e12afc5fb0c0cc66e607d2a03a"
+    },
+    {
+      "path": "closure_2026_11_13/JNT2_crossing_speed_joint/jnt2_common.py",
+      "sha256": "0cbd652a7ae68a34c7a772b3865ecd894cd696a3e6241e306476e44a549c8d7e",
+      "sha256_after": "0cbd652a7ae68a34c7a772b3865ecd894cd696a3e6241e306476e44a549c8d7e"
+    },
+    {
+      "path": "closure_2026_11_10/FZS1_forest_settled_radius/fzs1_hm.py",
+      "sha256": "512b7b4c021982673661b25004364336d7b59bf5cbc108aa5a3b42f4f3651bc6",
+      "sha256_after": "512b7b4c021982673661b25004364336d7b59bf5cbc108aa5a3b42f4f3651bc6"
+    },
+    {
+      "path": "closure_2026_11_10/FRZ1_forest_redistribution_at_z/frz1_hm.py",
+      "sha256": "08105335d96cc069c02b0a91fc28dd4928ecb76e6da2d26187b31af93752aaca",
+      "sha256_after": "08105335d96cc069c02b0a91fc28dd4928ecb76e6da2d26187b31af93752aaca"
+    },
+    {
+      "path": "campaign_fresh_gravity/CFG556_halo_model_matter_power/cfg556_halo_model.py",
+      "sha256": "d99bccbb1749028b1ec999254675d5b8339d804fad51467916d5760404530873",
+      "sha256_after": "d99bccbb1749028b1ec999254675d5b8339d804fad51467916d5760404530873"
+    },
+    {
+      "path": "closure_2026_11_09/PD1_phantom_is_dust/pd1.json",
+      "sha256": "2299b53680d2422cba1a806bde2d613dcee1989811fc6eb381392518ef4b98e9",
+      "sha256_after": "2299b53680d2422cba1a806bde2d613dcee1989811fc6eb381392518ef4b98e9"
+    },
+    {
+      "path": "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M6.5_zi10_N2400.json",
+      "sha256": "da7201997c7e81475a98dcf995ef4f1c63fb479f98db1e6af7891491944c6cca",
+      "sha256_after": "da7201997c7e81475a98dcf995ef4f1c63fb479f98db1e6af7891491944c6cca"
+    },
+    {
+      "path": "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M7_zi10_N2400.json",
+      "sha256": "f87a42c935c6ead943105ce73dbbca97eb1b71ac876865ebc6cc282e7b509e9b",
+      "sha256_after": "f87a42c935c6ead943105ce73dbbca97eb1b71ac876865ebc6cc282e7b509e9b"
+    },
+    {
+      "path": "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M8_zi10_N2400.json",
+      "sha256": "8c147897e5e350ee7f3d0b4b0f379e5fa8b985dab04fbd91396fafc6420c5e39",
+      "sha256_after": "8c147897e5e350ee7f3d0b4b0f379e5fa8b985dab04fbd91396fafc6420c5e39"
+    },
+    {
+      "path": "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M9_zi10_N2400.json",
+      "sha256": "a2218df70bc48d7b1fd8d6a88f711e49bbcc06c8af1dfa6595ada97fea725010",
+      "sha256_after": "a2218df70bc48d7b1fd8d6a88f711e49bbcc06c8af1dfa6595ada97fea725010"
+    },
+    {
+      "path": "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M9.4_zi10_N2400.json",
+      "sha256": "bab3bce5b868c6161d5ba01fe46df7a080afdf0967b7d60dd14dfca62c67318c",
+      "sha256_after": "bab3bce5b868c6161d5ba01fe46df7a080afdf0967b7d60dd14dfca62c67318c"
+    },
+    {
+      "path": "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M10_zi10_N2400.json",
+      "sha256": "6a08d1b3f12035762283345b3214c7599bbed74ab7691786914e1647c32931e8",
+      "sha256_after": "6a08d1b3f12035762283345b3214c7599bbed74ab7691786914e1647c32931e8"
+    },
+    {
+      "path": "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M10.45_zi10_N2400.json",
+      "sha256": "64822fad5628d556373b095b9caa8fdd12ba0c9ae70fed9ea26ef82091760ee9",
+      "sha256_after": "64822fad5628d556373b095b9caa8fdd12ba0c9ae70fed9ea26ef82091760ee9"
+    },
+    {
+      "path": "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M10.7_zi10_N2400.json",
+      "sha256": "cc6a399778503d1083ea70b77d26f99867a9966bf062106342803f62ed9cdb9b",
+      "sha256_after": "cc6a399778503d1083ea70b77d26f99867a9966bf062106342803f62ed9cdb9b"
+    },
+    {
+      "path": "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M10.9_zi10_N2400.json",
+      "sha256": "b8f9e5cb47899252892e3beabe26b7d7da8cfb435d30c42cac13178d85aad67a",
+      "sha256_after": "b8f9e5cb47899252892e3beabe26b7d7da8cfb435d30c42cac13178d85aad67a"
+    },
+    {
+      "path": "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M11.2_zi10_N2400.json",
+      "sha256": "c144b3b1b35377e822ba3b32c65b497a3c8be4c35492cce4ac28bcaa0dea1d4c",
+      "sha256_after": "c144b3b1b35377e822ba3b32c65b497a3c8be4c35492cce4ac28bcaa0dea1d4c"
+    },
+    {
+      "path": "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M11.5_zi10_N2400.json",
+      "sha256": "2b2aba054738f9074882a265c65644df41ffe0fe01125df22efc84c326aae878",
+      "sha256_after": "2b2aba054738f9074882a265c65644df41ffe0fe01125df22efc84c326aae878"
+    },
+    {
+      "path": "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M12_zi10_N2400.json",
+      "sha256": "10a184a374f20293ba2845ea8b3aa62fd4b4a8cfdd48b34173d80e8ee198518d",
+      "sha256_after": "10a184a374f20293ba2845ea8b3aa62fd4b4a8cfdd48b34173d80e8ee198518d"
+    },
+    {
+      "path": "fable52_push/FLD1_fold_reach/runs/hubble_alt_M6.5_zi10_N2400.json",
+      "sha256": "04bc9ff62e85a3079f916803081d4b122a1ee93cc757782d90d0f37ac4d6feff",
+      "sha256_after": "04bc9ff62e85a3079f916803081d4b122a1ee93cc757782d90d0f37ac4d6feff"
+    },
+    {
+      "path": "fable52_push/FLD1_fold_reach/runs/hubble_alt_M7_zi10_N2400.json",
+      "sha256": "a8e2a8c7767681dff9991687ae59b8952f3d97ee0f8caa053a4c4284429d6a5c",
+      "sha256_after": "a8e2a8c7767681dff9991687ae59b8952f3d97ee0f8caa053a4c4284429d6a5c"
+    },
+    {
+      "path": "fable52_push/FLD1_fold_reach/runs/hubble_alt_M8_zi10_N2400.json",
+      "sha256": "1a878f98429e1d607387cc9011bd5f9361dc56cd074653e39412ad53db5999b0",
+      "sha256_after": "1a878f98429e1d607387cc9011bd5f9361dc56cd074653e39412ad53db5999b0"
+    },
+    {
+      "path": "fable52_push/FLD1_fold_reach/runs/hubble_alt_M9_zi10_N2400.json",
+      "sha256": "226c2cea0515d03ed21b6d03c34191c7dd42b56e2b67a44956d46c2a26d72a09",
+      "sha256_after": "226c2cea0515d03ed21b6d03c34191c7dd42b56e2b67a44956d46c2a26d72a09"
+    },
+    {
+      "path": "fable52_push/FLD1_fold_reach/runs/hubble_alt_M9.4_zi10_N2400.json",
+      "sha256": "aca0699d5447a9c54ee7980941692960d7b49d252573e643c1f77ad186313e25",
+      "sha256_after": "aca0699d5447a9c54ee7980941692960d7b49d252573e643c1f77ad186313e25"
+    },
+    {
+      "path": "fable52_push/FLD1_fold_reach/runs/hubble_alt_M10_zi10_N2400.json",
+      "sha256": "a6a8b4614317882f3df879d2b48fe0d0d9a7cb1658c49bbd98de9ca7a34896bc",
+      "sha256_after": "a6a8b4614317882f3df879d2b48fe0d0d9a7cb1658c49bbd98de9ca7a34896bc"
+    },
+    {
+      "path": "fable52_push/FLD1_fold_reach/runs/hubble_alt_M10.45_zi10_N2400.json",
+      "sha256": "99e1cdf68ec0cdda0919718e018ce18049e8175c30bffd921b023bf7609c2384",
+      "sha256_after": "99e1cdf68ec0cdda0919718e018ce18049e8175c30bffd921b023bf7609c2384"
+    },
+    {
+      "path": "fable52_push/FLD1_fold_reach/runs/hubble_alt_M10.7_zi10_N2400.json",
+      "sha256": "4104cdffe2a260f81c122730dfa7c4293f3d23f882c05672e9166be214fdf96b",
+      "sha256_after": "4104cdffe2a260f81c122730dfa7c4293f3d23f882c05672e9166be214fdf96b"
+    },
+    {
+      "path": "fable52_push/FLD1_fold_reach/runs/hubble_alt_M10.9_zi10_N2400.json",
+      "sha256": "017ba1e0e7dcea85999cca601c1e8d4c9b0df0c1360047a73ec4363545b058ab",
+      "sha256_after": "017ba1e0e7dcea85999cca601c1e8d4c9b0df0c1360047a73ec4363545b058ab"
+    },
+    {
+      "path": "fable52_push/FLD1_fold_reach/runs/hubble_alt_M11.2_zi10_N2400.json",
+      "sha256": "2a88e7d69786131096af6ec0d1ed0e910293087e521bb8dc7e25b8afdb26ad90",
+      "sha256_after": "2a88e7d69786131096af6ec0d1ed0e910293087e521bb8dc7e25b8afdb26ad90"
+    },
+    {
+      "path": "fable52_push/FLD1_fold_reach/runs/hubble_alt_M11.5_zi10_N2400.json",
+      "sha256": "21b5786234bc35b05a8b2d86c9ad1e963085820675b8f0265408ec12eecbfd92",
+      "sha256_after": "21b5786234bc35b05a8b2d86c9ad1e963085820675b8f0265408ec12eecbfd92"
+    },
+    {
+      "path": "fable52_push/FLD1_fold_reach/runs/hubble_alt_M12_zi10_N2400.json",
+      "sha256": "03d21e9b42c1c64d9659a6a399360f510d3f9fd6c92947660fcad5f2f100fcde",
+      "sha256_after": "03d21e9b42c1c64d9659a6a399360f510d3f9fd6c92947660fcad5f2f100fcde"
+    }
+  ],
+  "output_directory": "codex_mass_budget_2026_11_14/calculation/run_001",
+  "declared_results": [
+    "codex_mass_budget_2026_11_14/calculation/run_001/results.json",
+    "codex_mass_budget_2026_11_14/calculation/run_001/halo_masses.csv",
+    "codex_mass_budget_2026_11_14/calculation/run_001/representative_profiles.npz"
+  ],
+  "outputs": [
+    {
+      "path": "codex_mass_budget_2026_11_14/calculation/run_001/stdout.txt",
+      "sha256": "d0b47d5ce668d4d6be14327ef1cdc1d00b42d2661f6b35b0785311bb06b3baae",
+      "kind": "log"
+    },
+    {
+      "path": "codex_mass_budget_2026_11_14/calculation/run_001/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "codex_mass_budget_2026_11_14/calculation/run_001/results.json",
+      "sha256": "094ad0b10a8dafee1daefe1dd50e6b4062a2aa115e278be4856faf6ff3be4aa8",
+      "kind": "result"
+    },
+    {
+      "path": "codex_mass_budget_2026_11_14/calculation/run_001/halo_masses.csv",
+      "sha256": "9cde2307015919da3e31f0e4fd29c9d4c7388567c7fff333a599631b2c0d7c46",
+      "kind": "result"
+    },
+    {
+      "path": "codex_mass_budget_2026_11_14/calculation/run_001/representative_profiles.npz",
+      "sha256": "0dbddf1f05ddecf4d8d5d9430c814ccea7f095f63e6d939f9ee6cd4612afde9c",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}
