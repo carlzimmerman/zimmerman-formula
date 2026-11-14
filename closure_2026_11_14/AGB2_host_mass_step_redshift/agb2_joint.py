@@ -9,7 +9,8 @@ unchanged from closure_2026_11_13/AGB1_progenitor_age_bias/.
   joint amplitude: f + prior;  today: min[t + prior] - min[f + prior];  ever: min[n + prior] - min[f + prior].
 
 Usage: python3 agb2_joint.py selftest [outdir]   pure arithmetic on made-up parabolas, reads no data
-       python3 agb2_joint.py J [outdir]          the real thing; writes agb2_J.json"""
+       python3 agb2_joint.py J [outdir [diag]]   the real thing; reads agb2_H.json, writes agb2_J.json
+                                                 ("diag", AMENDMENT_1.md: agb2_H_diag.json -> agb2_J_diag.json)"""
 import json, os, sys, time
 for _v in ("VECLIB_MAXIMUM_THREADS", "OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
     os.environ.setdefault(_v, "2")
@@ -20,6 +21,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 AGB1 = os.path.normpath(os.path.join(HERE, "..", "..", "closure_2026_11_13", "AGB1_progenitor_age_bias"))
 MODE = sys.argv[1] if len(sys.argv) > 1 else "J"
 OUTDIR = sys.argv[2] if len(sys.argv) > 2 else HERE
+TAG = "_diag" if len(sys.argv) > 3 and sys.argv[3] == "diag" else ""
 LO, HI = -1.0, 2.0
 GRID_F = [round(x, 2) + 0.0 for x in np.arange(LO, HI + 1e-9, 0.1)]
 GRID_N = [round(x, 2) + 0.0 for x in np.arange(LO, HI + 1e-9, 0.25)]
@@ -76,11 +78,11 @@ def main():
         sys.exit(0 if selftest(log) else 1)
     sys.argv = ["agb1_run.py", "AGB2_J"]; sys.path.insert(0, AGB1)
     import agb1_run as R1, agb1_template as TPL
-    H = json.load(open(os.path.join(HERE, "agb2_H.json")))["fits"]
+    H = json.load(open(os.path.join(OUTDIR, f"agb2_H{TAG}.json")))["fits"]
     hosts = dict(H1_R=H["primary"]["H1"], H1_P=H["fork_P"]["H1"], H2_R=H["primary"]["H2"])
     for k, v in hosts.items(): log(f"host amplitude {k}: A {v['A']:+.4f} +- {v['sd_A']:.4f}")
     A1res = json.load(open(os.path.join(AGB1, "agb1_results.json")))["A"]
-    res = dict(mode="J", grid_f=GRID_F, grid_n=GRID_N, hosts={k: [v["A"], v["sd_A"]] for k, v in hosts.items()}, samples={}); kj_ok = True
+    res = dict(mode="J", host_weights="diag" if TAG else "full", grid_f=GRID_F, grid_n=GRID_N, hosts={k: [v["A"], v["sd_A"]] for k, v in hosts.items()}, samples={}); kj_ok = True
     for sample in ("full", "des_only"):
         J1 = json.load(open(os.path.join(AGB1, f"agb1_A_{sample}.json"))); prof = J1["profile"]; key = lambda a: f"{a:+.2f}"
         sn = R1.SN(sample); bao = R1.BAO("all"); sn.add_template("age", TPL.T(sn.z, "S")); F = R1.Fitter("A", sn, bao)
@@ -125,8 +127,8 @@ def main():
         log(f"  difference host minus distances in combined errors: " + ", ".join(f"{k} {v:+.2f}" for k, v in out["tension"].items()))
         res["samples"][sample] = out
     res["KJ_passed"] = bool(kj_ok); res["seconds"] = round(time.time() - t0, 1)
-    with open(os.path.join(OUTDIR, "agb2_J.json"), "w") as fh: json.dump(res, fh, indent=1, default=float)
-    log(f"wrote agb2_J.json  ({res['seconds']} s)")
+    with open(os.path.join(OUTDIR, f"agb2_J{TAG}.json"), "w") as fh: json.dump(res, fh, indent=1, default=float)
+    log(f"wrote agb2_J{TAG}.json  ({res['seconds']} s)")
 
 
 if __name__ == "__main__":
