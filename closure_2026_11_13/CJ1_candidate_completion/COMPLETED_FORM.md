@@ -67,6 +67,9 @@ still carries both fitted constants (kappa through a0, and X).
   17.6 / 29.2 (both fail). So the upper edge is 2 in JNT2R on both footings and in JNT2 on alt; JNT2's canonical 3 is not
   agreed. The cause of the difference was not traced. f between 2 and 3 was not run.
 - Beside it, ungraded and for the unsplit settled family only: SRF1R's flux-level window [1.004, 3.16] / [1.050, 3.21].
+- Update 2026-11-13 (FRZ6, flux level, 12 seeds at z 2.2): the split holds at f = 2 and f = 3 on both footings, three of
+  the four FRAGILE to halving the gas smoothing scale, and is not resolved at f = 1.25. So at flux level the forest does
+  not cap f at 2. This is a hit awaiting an independent blind re-grade.
 
 **R_fold, and what FLD1 assumes.** FLD1 (`fable52_push/FLD1_fold_reach/RESULT.md`, label DOES NOT / DOES NOT) follows
 independent radial shells of a clock that starts as cold dust in the Hubble flow at z = 10 around a softened point mass
@@ -122,7 +125,8 @@ only.
    1e12 to 5e10 alt); haloes above are pure reference. v_stiff switches at a nearly constant 1e12; the unsplit family
    gives every halo the law (and fails at matter level, FZS1).
    *What would decide it:* the forest at flux level with this split, on a hydrodynamic model that sets the gas
-   smoothing scale, in a box of at least about 50 Mpc/h and with 6 to 18 seeds at z 2.2 (FRZ3R, FRZ4). Not run.
+   smoothing scale, in a box of at least about 50 Mpc/h and with 6 to 18 seeds at z 2.2 (FRZ3R, FRZ4). Not run on a hydrodynamic model.
+   Update 2026-11-13: FRZ6 ran the split in the record's own FGPA build with 12 seeds at z 2.2; see the f section above.
 4. **Strong lenses at intermediate redshift are almost all below the switch.** 26 / 0 of 6,173 Euclid lenses are above
    v*(z) on the model speed, all at z_l 1.09 to 1.72 (LNJ1). The candidate therefore says the wide-lens ceiling break is
    not its switch (LNJ1 confirms on its own rule) and must come from mass the lens galaxy's baryons do not carry.
@@ -139,7 +143,9 @@ non-trivial data hit, DSC1 on three resolved z about 2 discs above v*, is fragil
 same lane reads the law failing below v*. No hit has had an independent blind re-grade that confirmed it. (Update
 2026-11-13: the blind re-grade DSC1R confirms neither reading. It reads NO POWER above and LAW HOLDS BELOW, both
 FRAGILE, on both footings; above, the difference from DSC1 is how many digitised points count as independent, and
-below it is the decision line.) Doubling v*
+below it is the decision line. Later the same day FRZ6 graded the split at flux level: the forest row holds at f = 2 and
+f = 3, fragile, a hit awaiting a blind re-grade; a hold there means the layout is not excluded, not that it is
+preferred.) Doubling v*
 would restore coverage and break the forest, so rescuing the coverage line needs a fitted constant between 1 and 2 v*.
 What holds, with its scope: with no new constant it keeps every z = 0 galaxy, every KiDS lens and the groups on the law,
 every X-COP cluster on the reference, the forest at matter level trivial up to f 2, and it removes SRJ2's problem with
