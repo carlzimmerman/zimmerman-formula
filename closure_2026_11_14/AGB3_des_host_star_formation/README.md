@@ -164,6 +164,49 @@ running linearly from 6 to 10 Gyr, which is the published claim's own assumption
 (Stretch selection is not corrected; a magnitude-limited low-redshift set under-counts faint, low-stretch
 supernovae, which would raise the legacy share.)
 
+## Post hoc 2 and 3 (2026-11-14; no frozen word): does the law keep running among old stars?
+`agb3_posthoc_shape.py`, `agb3_posthoc_cap.py` and their outputs. Section D above says the whole-sample "today"
+result hangs on a linear law running up to 10 Gyr. These two ask the data.
+
+**Shape.** The age template is split at a break age; each side gets its own amplitude. A linear law gives equal
+amplitudes; a law that stops gives zero on the old side. Errors from the residuals.
+
+| sample, ages | below the break | above the break | difference |
+|---|---|---|---|
+| DES hosts, star-formation ages (reach 7 Gyr), break 4 Gyr, no step | +0.37 ± 0.13 | +0.45 ± 0.18 | −0.3σ |
+| DES hosts, break 4 Gyr, mass step free | +0.33 ± 0.17 | +0.46 ± 0.18 | −0.4σ |
+| Pantheon+ (AGB2's sample), mass-only ages, break 4 Gyr, no step | +0.68 ± 0.13 | −0.19 ± 0.19 | +3.2σ |
+| Pantheon+, break 4 Gyr, mass step free | +0.59 ± 0.23 | −0.18 ± 0.19 | +2.2σ |
+| legacy low-redshift hosts alone (197; ages reach 11 Gyr), break 6 Gyr, no step | +0.34 ± 0.20 | −0.03 ± 0.19 | +1.1σ |
+| legacy hosts, one slope over all ages | +0.15 ± 0.09 | | |
+
+- Up to about 6 Gyr the trend runs on, at about 0.4 of the published slope (DES).
+- **Where the ages reach 10 Gyr, at low redshift, there is no trend left above 4 to 6 Gyr** (Pantheon+ −0.19 ± 0.19;
+  legacy −0.03 ± 0.19). The published slope continuing there is 5σ away in each set. Both sets are small or use a
+  coarse age (mass only), and the breaks at 3 and 5 Gyr are in the output file.
+
+**A law that stops at 6 Gyr.** The sample's drift template rebuilt with each host's age capped (it then peaks at
+0.070 mag instead of 0.105), whole sample:
+
+| case | q0 | Δχ² today | reads | Δχ² never |
+|---|---|---|---|---|
+| published slope in full, cap 6 Gyr | −0.10 | 1.39 | SIGN NOT SETTLED | 113.1 |
+| slope from the hosts as frozen (0.39 ± 0.08), cap 6 Gyr | −0.27 | 9.25 | ACCELERATING TODAY | 139.5 |
+| slope at the noise-corrected upper limit (0.62 ± 0.13), cap 6 Gyr | −0.21 | 5.43 | ACCELERATING TODAY | 124.0 |
+| published slope in full, cap 4 Gyr | −0.19 | 4.85 | ACCELERATING TODAY | 138.4 |
+| noise-corrected upper limit, cap 4 Gyr | −0.26 | 8.88 | ACCELERATING TODAY | 146.5 |
+
+So the whole-sample sign stays open only if both things hold at once: the slope is at its published size, and it
+keeps running linearly to the oldest stars. The hosts speak against the first (upper limit 0.62 ± 0.13 with the
+noise allowed for) and the low-redshift hosts against the second. These are post hoc readings, made after the
+frozen numbers were seen; the cap was chosen from the shape table.
+
+**From the literature** (web reading by a research helper, PROVISIONAL): Briday et al. (arXiv:2109.02456, Table 1)
+give contamination fractions of 31 % for global host mass and 37 % for a photometric local star-formation rate
+against a spectroscopic one, which shrink a step to 0.69 and 0.63 of its size. The reliabilities found here inside
+the U fit, 0.64 to 0.82, sit in the same range. No per-host spectroscopic table is public for the DES hosts
+(Dixon et al. 2022 used stacked spectra; OzDES DR2 releases redshifts and raw spectra only).
+
 ## Known-answer checks
 | check | result | |
 |---|---|---|
@@ -208,7 +251,7 @@ K4 passes with the stated errors about 10 to 20 % small. No word above changes i
 ## Files
 `FROZEN_CRITERIA.md`; `agb3_twocomp.py` (two-component ages), `agb3_run.py` (checks and Part D), `agb3_cosmo.py`
 (Parts S, J, E), `agb3_collect.py`; outputs `agb3_{KM,K1,K2,K3,K4,D,S,E,J}.{json,out}`, `agb3_results.json`,
-`agb3_collect.out`. Post hoc: `agb3_posthoc_noise.py`, `.json`, `.out`.
+`agb3_collect.out`. Post hoc: `agb3_posthoc_{noise,shape,cap}.py`, `.json`, `.out`.
 
 Commits (local / origin): criteria 5403d1b288 / 6b0231f3a1; scripts 8e1fd5b361 / 01b873cb60; result 9c06d486f3 /
 64a7b86222.
