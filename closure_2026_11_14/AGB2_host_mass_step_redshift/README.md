@@ -143,4 +143,8 @@ The per-host amplitude is far below 1 in both.
 `agb2_joint.py` (Part J), `agb2_collect.py`. As frozen: `agb2_{KG,K1,K2,K3,K4,H,J}.{json,out}`, `agb2_results.json`,
 `agb2_collect.out`. Amended: `agb2_{K2,K3,K4,H,J}_diag.{json,out}`, `agb2_results_diag.json`, `agb2_collect_diag.out`.
 
+Commits (local / origin): criteria a622d5cb15 / cd8644a083; scripts 86df7a46bb / 62f611ffda; amendment 091f5e1196 /
+93bb27cfc3; amended scripts c08f7b1b77 / c3905d0581; joint plumbing fix 07b4151f13 / 2c41b7772e; result 46bd6cbd33 /
+82c478ffef.
+
 kappa = 1/2 FITTED; not theory closed.
