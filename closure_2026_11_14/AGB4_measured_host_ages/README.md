@@ -109,4 +109,12 @@ claim's own table (the owner downloaded it from the journal).
   supernovae (0.15 to 0.40 in Pantheon+ against 0.67 to 0.84 in the claim's residuals) and finds that the
   difference between the two sets of residuals trends with host age at 4 to 5σ.
 
+## Note added 2026-11-14 (later still): blind re-grade
+**AGB4R** (`closure_2026_11_14/AGB4R_blind_measured_host_ages/`), a second build written from `FROZEN_CRITERIA.md`
+alone, reaches the same two words, first and second, with numbers equal to the third decimal; check KR fails there
+too. It found one thing that matters: **M1's second word, ROBUST, rests on how one fork is read.** "Hosts whose
+stated age interval is wider than ± 2.5 Gyr" was read in both builds as the half-width (8 hosts removed). Read as
+"either side longer than 2.5 Gyr" (38 removed) that fork gives +0.41 ± 0.24 and reads AGE BIAS DISFAVOURED, which
+would make M1 FRAGILE. The first words do not change.
+
 kappa = 1/2 FITTED; not theory closed.
