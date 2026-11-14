@@ -178,9 +178,9 @@ class Lenses:
         self.GN1 = G * MSUN * E.M3D_frac(self.RN, REFF[:, None], n[:, None]) / self.RN ** 2
         self.F2D = E.M2D_frac(self.RE, REFF, n)
         self.EZ = np.array([J.E(z) for z in self.z])
-    def M2D_g(self, g): return self.PREF * np.sum(GLW[None, :] * g, axis=1)
+    def M2D_g(self, g): return self.PREF * np.sum(GLW[None, :] * g, axis=1) / MSUN   # Msun (run-1 fix: was kg)
     def m_law(self, Ms, a0): return self.M2D_g(E.g_law(Ms[:, None] * self.GN1, a0, "S"))
-    def m_obs(self, zs): return math.pi * self.RE ** 2 * E.EUCLID.sigcr(self.z, zs)
+    def m_obs(self, zs): return math.pi * self.RE ** 2 * E.EUCLID.sigcr(self.z, zs) / MSUN   # Msun (run-1 fix: was kg)
     def c_cyl(self, Mc_sun, rs, rta):
         r = np.minimum(self.RN, rta[:, None]); Cr = (Mc_sun * MSUN)[:, None] * m_nfw(r / rs[:, None]) / m_nfw(rta / rs)[:, None]
         return self.M2D_g(G * Cr / self.RN ** 2)
