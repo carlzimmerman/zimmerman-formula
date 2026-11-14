@@ -98,4 +98,15 @@ supernovae: 0.217 (M0) and 0.218 (M1); with them Δχ² against A = 1 is 10.5 an
 Commits (local / origin): criteria ff05ed3861 / 942154ecdd; scripts 6a01697eb9 / 78c00e31e9; result 5a9153cd84 /
 a9095fb527.
 
+## Note added 2026-11-14 (later): a correction from AGB5
+AGB5 (`closure_2026_11_14/AGB5_claims_own_age_table/`) ran the like-for-like test this README says was owed, on the
+claim's own table (the owner downloaded it from the journal).
+- **The sentence above, "The slope without a mass step is mostly the mass step", is true of the larger SDSS-II
+  sample fitted here and is not true of the claim's own residuals.** On those, the slope falls only from
+  1.04 ± 0.16 to 0.79 ± 0.19 of the published size when a mass step is allowed. The reading of Wiseman et al. is
+  therefore reproduced on this lane's sample, not on the claim's.
+- This lane's words stand as written: they are about the Pantheon+ magnitudes. AGB5 confirms that part on the same
+  supernovae (0.15 to 0.40 in Pantheon+ against 0.67 to 0.84 in the claim's residuals) and finds that the
+  difference between the two sets of residuals trends with host age at 4 to 5σ.
+
 kappa = 1/2 FITTED; not theory closed.
