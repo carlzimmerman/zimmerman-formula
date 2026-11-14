@@ -1,0 +1,41 @@
+X54_cold_de_exchange normal run; frozen 04200bb449
+kappa = 1/2 FITTED; footings never pooled; cold dark energy = gravitating field component, never a particle; not theory closed; the cosmological fit contains no a0
+binaries: vanilla 0d77bfa291546e4b, x54 bebbd9c8f6b830dd, patch d66bbc988cfac90d
+SN DES5: 1623 DES-SN5YR Dovekie (CFG684 loader)
+SN PP: 1580 Pantheon+ non-calibrators, zHD > 0.01
+SN U3: 22 Union3 nodes (CFG684 loader)
+
+== STEP 0 (stop rule)
+S0-1_C7_LCDM_chi2 PASS (required PASS) chi2 1003.475 (plik 582.40, lowTT 24.31, lowEE 396.72) vs C7 1003.475 | |diff| <= 2
+S0-2_CFG681_BAO_SN PASS (required PASS) BAO chi2 10.5515 Om 0.29703; BAO+PP chi2 1400.143 Om 0.30390 | (10.5515, 0.2970), (1400.143, 0.3039)
+S0-3_DESI_chain_w0wa PASS (required PASS) desy5 w -0.7521 wa -0.8611 | margestats -0.752, -0.86
+  DESI chains (w, wa, sd): {'desy5': (-0.7520679982018754, -0.8611043418200024, 0.057206253775028505, 0.22127931535586), 'pantheonplus': (-0.8379669735933118, -0.6165883622459394, 0.05516687715036528, 0.20755677965382843), 'union3': (-0.6668729291848666, -1.0852710298213986, 0.08848340882567489, 0.2932977885337551)}
+
+== machinery checks
+K2_xi0_equals_vanilla PASS (required PASS) max |dC/C| 0.00e+00; sigma8 0.827959 vs 0.827959 | <= 1e-4; <= 1e-5
+K1_background_identity_sign PASS (required PASS) {'C': {'xi': 0.01, 'rel_err_rate': 1.9010622052256787e-07, 'rel_err_total': 0.0012058258188921253}, 'D': {'xi': 0.3, 'rel_err_rate': 2.3180585023481744e-10, 'rel_err_total': 0.00012089853612421675}} | <= 2e-3 each
+K3_perturbation_growth PASS (required PASS) {'xi': 0.05, 'k_1_over_Mpc': 0.0338, 'class_growth': 8.542836599372784, 'ode_growth': 8.543207950189988, 'rel_err': 4.346737424265612e-05, 'class_growth_xi0': 8.582837156367326, 'ode_growth_xi0': 8.583173906586014, 'rel_err_xi0': 3.9233763914459097e-05, 'dilution_effect': 0.07360472567889431, 'total_effect_vs_xi0': 0.0046605284786123136} | rel err <= 3e-3 and effect >= 1 %
+K4_distances_vs_analytic PASS (required PASS) max rel dev D_M, H at BAO z: 2.57e-09 | <= 1e-4
+
+== profiles (graded chi2 = plik + lowTT + lowEE + Aprior + BAO + SN)
+  C DES5 xi=+0.0000: chi2 2467.461 (cmb 1004.58, bao 12.23, sn 1450.65); H0 68.48, omega_c 0.11856, Om 0.3007, S8 0.8226; conv True, runs 12
+  C DES5 xi=+0.0020: chi2 2473.807 (cmb 1009.76, bao 14.35, sn 1449.70); H0 68.04, omega_c 0.11853, Om 0.3049, S8 0.8096; conv True, runs 12
+  C DES5 xi=+0.0040: chi2 2485.615 (cmb 1019.40, bao 17.30, sn 1448.91); H0 67.61, omega_c 0.11849, Om 0.3090, S8 0.7962; conv True, runs 20
+  C DES5 xi=+0.0080: chi2 2524.946 (cmb 1052.15, bao 25.00, sn 1447.79); H0 66.79, omega_c 0.11837, Om 0.3171, S8 0.7696; conv True, runs 12
+  C DES5 xi=+0.0120: chi2 2584.425 (cmb 1102.32, bao 34.91, sn 1447.20); H0 66.02, omega_c 0.11825, Om 0.3250, S8 0.7435; conv True, runs 11
+  C DES5 xi=-0.0020: chi2 2466.715 (cmb 1003.93, bao 11.06, sn 1451.73); H0 68.93, omega_c 0.11862, Om 0.2966, S8 0.8361; conv True, runs 14
+  C DES5 xi=-0.0040: chi2 2471.954 (cmb 1008.15, bao 10.82, sn 1452.99); H0 69.39, omega_c 0.11865, Om 0.2924, S8 0.8508; conv True, runs 12
+  C DES5 xi=-0.0080: chi2 2500.161 (cmb 1030.61, bao 13.57, sn 1455.98); H0 70.35, omega_c 0.11874, Om 0.2840, S8 0.8791; conv True, runs 14
+  C DES5 xi=-0.0120: chi2 2553.578 (cmb 1072.24, bao 21.56, sn 1459.78); H0 71.38, omega_c 0.11876, Om 0.2754, S8 0.9075; conv True, runs 21
+
+  [C DES5] xi_hat -0.00126; dchi2(xi=0) 1.153; 95% [-0.00352, +0.00106] (closed True; unconverged/failed inside []) -> EXCHANGE EXCLUDED BEYOND [-0.0035, +0.0011]
+    F_made best -0.0089, ends -0.0249 / +0.0074 (CFG253 convention 0.03)
+    sqrtX(2.33) best 0.9973, 95% range [0.9926, 1.0023] vs CFG689 flat+theta* (0.68, 1.04) -> CONSISTENT; curvature-free (0.34, 1.21); reaches 0.909: False
+    a0(2.33) best: canonical 9.3349e-11, alt 1.1281e-10 m/s^2
+    S8 xi=0 0.8226, best 0.8311, ends 0.8473 / 0.8157
+    w_eff best: {'z': [0.0, 0.5, 1.0, 2.0], 'w_intrinsic': [-1.000150539430241, -1.000508512816512, -1.0012066429855495, -1.0040862208901764], 'w_apparent': [-0.9999988624675886, -0.9993819607830238, -0.9974981837459751, -0.9867204572250898], 'cpl_w0': -1.0044260463092278, 'cpl_wa': 0.018994196015794912}
+
+== VERDICT (primary M-C, DES-SN5YR): EXCHANGE EXCLUDED BEYOND [-0.0035, +0.0011]; a0 secondary: CONSISTENT
+  C_DES5: EXCHANGE EXCLUDED BEYOND [-0.0035, +0.0011]; dchi2(xi=0) 1.153; xi_hat -0.00126; 95% [-0.0035172, 0.0010619999999999987]; a0: CONSISTENT
+checks: 7/7 have their required outcome; CLASS runs 135
+done in 684 s
