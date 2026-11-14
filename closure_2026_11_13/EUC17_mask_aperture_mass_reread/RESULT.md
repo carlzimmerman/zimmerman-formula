@@ -185,3 +185,14 @@ python3 -I euc17_posthoc_T.py --data-dir <dir>                                 #
 
 Run by the session that wrote the lane; the as-frozen outputs were reproduced byte for byte after the `--A2` flag
 was added. A reproduction, not an independent re-grade.
+
+## 8. Commit ids (local / origin)
+
+| Step | Local | Origin |
+|---|---|---|
+| Frozen criteria | 8b31c449c9 | 9667471bdb |
+| Amendment A1 | e3db93ac26 | 85813a7ba2 |
+| Script, mask fetch, as-frozen run, twins | 0fc36cf7bc | d06473eb24 |
+| Amendment A2 (post hoc) | aaa56c6789 | c55c7dd7de |
+| A2 reading and reading T | 5c31c63589 | 248127c815 |
+| This result | 26601d1bf6 | e839856ff6 |
