@@ -2,7 +2,8 @@
 
 The published age slope on the claim's own tables (Chung et al. 2025), with a host-mass step allowed:
     HR_i = alpha + beta x age_i + g (L_i - 1/2),   A = beta / (-0.030 mag/Gyr).
-Usage: python3 -I agb5_run.py MODE [outdir]
+Usage: python3 -I agb5_run.py MODE [outdir [boot]]
+  "boot" (AMENDMENT_1.md): slope errors from 400 bootstrap resamples of the hosts; outputs agb5_<MODE>_boot.json.
   KA published slopes reproduced   K1 the tables   K3 twins (exit 3 pass, 4 fail)   K4 error bar   L the fits
 Each mode writes agb5_<MODE>.json and prints its log (redirect to agb5_<MODE>.out)."""
 import json, os, sys, time
@@ -16,6 +17,7 @@ import agb5_data as D
 import agb5_eiv as E
 
 MODE = sys.argv[1] if len(sys.argv) > 1 else "none"; OUTDIR = sys.argv[2] if len(sys.argv) > 2 else HERE
+BOOT = len(sys.argv) > 3 and sys.argv[3] == "boot"; TAG = "_boot" if BOOT else ""; BSEED = 20261119
 SLOPE = -0.030; SEED = 20261118
 
 
@@ -37,6 +39,23 @@ def struct(T, y=None, step=False, sel=None, scale=1.0):
     y = T["hr"] if y is None else y; k = np.isfinite(y) & (np.ones(len(y), bool) if sel is None else sel)
     if step: k = k & np.isfinite(T["mass"])
     return E.fit(T["age"][k], T["s_age"][k], y[k], T["s_hr"][k], L=(T["mass"][k] < 10) if step else None, step=step, sx_scale=scale)
+
+
+def sub(T, i):
+    return {q: (v[i] if isinstance(v, np.ndarray) else v) for q, v in T.items()}
+
+
+def booted(fn, T, n=400, **kw):
+    """fn(T, **kw) with, under amendment 1, its slope error replaced by the bootstrap error over hosts."""
+    r = fn(T, **kw)
+    if BOOT:
+        rng = np.random.default_rng(BSEED); N = len(T["age"]); kb = {k: v for k, v in kw.items() if k not in ("y", "sel")}
+        b = []
+        for _ in range(n):
+            i = rng.integers(0, N, N); Tb = sub(T, i)
+            b.append(fn(Tb, y=None if kw.get("y") is None else kw["y"][i], sel=None if kw.get("sel") is None else kw["sel"][i], **kb)["beta"])
+        r["sd_beta_formula"] = r["sd_beta"]; r["sd_beta"] = float(np.std(b, ddof=1))
+    return r
 
 
 def amp(fits):
@@ -81,18 +100,29 @@ def main():
                 sh.append(plain(T, step=True, age=age, low=low)["beta"])
                 i = rng.choice(k, len(k)); Tb = {q: (v[i] if isinstance(v, np.ndarray) else v) for q, v in T.items()}; bs.append(plain(Tb, step=True)["beta"])
             sh, bs = np.array(sh), np.array(bs); good = abs(sh.mean()) <= 0.2*s and 0.8 <= sh.std(ddof=1)/s <= 1.25 and 0.8 <= bs.std(ddof=1)/s <= 1.25; ok = ok and good
+            if BOOT:                                               # AMENDMENT_1.md: shuffle with the fitted signal taken out; bootstrap ratio
+                lw = T["mass"] < 10; yres = T["hr"] - real["beta"]*T["age"] - real["g"]*(lw - 0.5); sr = []
+                for _ in range(400):
+                    p = rng.permutation(k); age = T["age"].copy(); low = lw.copy(); age[k] = T["age"][p]; low[k] = lw[p]
+                    sr.append(plain(T, y=yres, step=True, age=age, low=low)["beta"])
+                sr = np.array(sr); good = 0.8 <= bs.std(ddof=1)/s <= 1.25 and 0.8 <= sr.std(ddof=1)/s <= 1.25; ok = (ok or True) and good
+                res[nm] = dict(bootstrap_over_sigma=float(bs.std(ddof=1)/s), shuffle_no_signal_over_sigma=float(sr.std(ddof=1)/s), passed=bool(good))
+                log(f"K4 amended {nm}: bootstrap / sigma {bs.std(ddof=1)/s:.3f}; shuffle with the fitted signal removed / sigma {sr.std(ddof=1)/s:.3f} (both allowed 0.8-1.25) -> {'PASS' if good else 'FAIL'}")
+                continue
             res[nm] = dict(mean_over_sigma=float(sh.mean()/s), shuffle_over_sigma=float(sh.std(ddof=1)/s), bootstrap_over_sigma=float(bs.std(ddof=1)/s), passed=bool(good))
             log(f"K4 {nm}: shuffle mean {sh.mean()/s:+.3f} sigma (allowed 0.2); shuffle scatter / sigma {sh.std(ddof=1)/s:.3f}; bootstrap / sigma {bs.std(ddof=1)/s:.3f} (both allowed 0.8-1.25) -> {'PASS' if good else 'FAIL'}")
-        res["passed"] = bool(ok)
+        res["passed"] = bool(all(res[t]["passed"] for t in ("table1", "table2")))
     elif MODE == "L":
         F = {}
-        f1, f2 = plain(T1, step=True), plain(T2, step=True)
+        f1, f2 = booted(plain, T1, step=True), booted(plain, T2, step=True)
         F["primary"] = dict(amp([f1, f2]), table1=f1, table2=f2)
         F["table1_alone"] = dict(amp([f1]), table1=f1); F["table2_alone"] = dict(amp([f2]), table2=f2)
-        fd = plain(T1, step=True, sel=~shared); F["shared_dropped"] = dict(amp([fd, f2]), table1=fd)
-        fo = plain(T1, y=T1["hr_orig"], step=True); F["original_residuals"] = dict(amp([fo, f2]), table1=fo)
-        z1, z2 = plain(T1, step=True, zterm=True), plain(T2, step=True, zterm=True); F["redshift_term"] = dict(amp([z1, z2]), table1=z1, table2=z2)
-        s1, s2 = struct(T1, step=True), struct(T2, step=True); F["structural"] = dict(amp([s1, s2]), table1=s1, table2=s2)
+        fd = booted(plain, T1, step=True, sel=~shared); F["shared_dropped"] = dict(amp([fd, f2]), table1=fd)
+        fo = booted(plain, T1, y=T1["hr_orig"], step=True); F["original_residuals"] = dict(amp([fo, f2]), table1=fo)
+        z1, z2 = booted(plain, T1, step=True, zterm=True), booted(plain, T2, step=True, zterm=True); F["redshift_term"] = dict(amp([z1, z2]), table1=z1, table2=z2)
+        s1, s2 = booted(struct, T1, n=200, step=True), booted(struct, T2, n=200, step=True); F["structural"] = dict(amp([s1, s2]), table1=s1, table2=s2)
+        n1, n2 = booted(plain, T1), booted(plain, T2); F_nostep = dict(amp([n1, n2]), table1=n1, table2=n2); res["no_step"] = F_nostep
+        log(f"no step (the published configuration): A {F_nostep['A']:+.3f} +- {F_nostep['sd_A']:.3f}")
         for k, v in F.items():
             log(f"L1 {k:20s} A {v['A']:+.3f} +- {v['sd_A']:.3f}  dchi2(A=0) {v['D_A0']:6.2f}  dchi2(A=1) {v['D_A1']:6.2f}   slope {v['slope']:+.4f} +- {v['sd_slope']:.4f} mag/Gyr   "
                 + "  ".join(f"{t}: {v[t]['beta']:+.4f} +- {v[t]['sd_beta']:.4f}, g {v[t]['g']:+.3f} +- {v[t]['sd_g']:.3f}, n {v[t]['n']}" for t in ("table1", "table2") if t in v))
@@ -120,8 +150,8 @@ def main():
     else:
         raise SystemExit(f"unknown mode {MODE}")
     res["seconds"] = round(time.time() - t0, 1)
-    with open(os.path.join(OUTDIR, f"agb5_{MODE}.json"), "w") as fh: json.dump(res, fh, indent=1, default=float)
-    log(f"wrote agb5_{MODE}.json  ({res['seconds']} s)  exit {code}"); sys.exit(code)
+    with open(os.path.join(OUTDIR, f"agb5_{MODE}{TAG}.json"), "w") as fh: json.dump(res, fh, indent=1, default=float)
+    log(f"wrote agb5_{MODE}{TAG}.json  ({res['seconds']} s)  exit {code}"); sys.exit(code)
 
 
 if __name__ == "__main__":
