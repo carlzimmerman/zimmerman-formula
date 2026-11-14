@@ -111,4 +111,8 @@ c98883adf60efa3ead151d297e1fb1bd2067dddf997e8cf3bc6fe98044c40f04, downloaded by 
 `agb5_{K1,KA,K3,K4,L}.{json,out}`, `agb5_results.json`, `agb5_collect.out`. Amended: `agb5_{K4,L}_boot.{json,out}`,
 `agb5_results_boot.json`, `agb5_collect_boot.out`. Post hoc: `agb5_posthoc_{same_hosts,stretch}.{py,json,out}`.
 
+Commits (local / origin): criteria 0b15d1ba6e / c18d7c8436; scripts 627f7d2ef8 / a9b9172c23; amendment 1df63b72c7 /
+8527c3d698; amended scripts 937c653a33 / 95d6f42966; plumbing fix e5fc0605ff / 621897cceb; result c3fa3f2db2 /
+7d55bb174f.
+
 kappa = 1/2 FITTED; not theory closed.
