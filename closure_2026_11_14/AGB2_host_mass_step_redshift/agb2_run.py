@@ -6,7 +6,8 @@ squares with the full STAT+SYS covariance:
 L_i = 1 for a low-mass host (log M < 10). D is the step-run template or the per-host template built from the
 galaxy model in agb2_galaxy.py. A = 0: no age dependence beyond a constant step; A = 1: the published slope.
 
-Usage: python3 agb2_run.py MODE [outdir]
+Usage: python3 agb2_run.py MODE [outdir [diag]]
+  "diag" (AMENDMENT_1.md): diagonal weights 1/C_ii for every fit except K1; outputs go to agb2_<MODE>_diag.json.
   KG  galaxy-model checks (reads no supernova file)
   K1  supernovae-only flat LCDM Omega_m from the published magnitudes
   K2  the raw constant host-mass step
@@ -30,6 +31,9 @@ REPO = os.path.normpath(os.path.join(HERE, "..", ".."))
 DATA = os.path.normpath(os.path.join(REPO, "..", "_external_data", "pantheonplus_dr"))
 MODE = sys.argv[1] if len(sys.argv) > 1 else "none"
 OUTDIR = sys.argv[2] if len(sys.argv) > 2 else HERE
+WEIGHTS = sys.argv[3] if len(sys.argv) > 3 else "full"        # "full" (as frozen) or "diag" (AMENDMENT_1.md)
+assert WEIGHTS in ("full", "diag")
+TAG = "" if WEIGHTS == "full" else "_diag"
 SEED = 20261114
 OM_FID = 0.334
 GROUPS = {"SDSS": (1,), "SNLS": (4,), "PS1": (15,), "DES": (10,), "Foundation": (150,)}
@@ -62,9 +66,11 @@ class PP:
             return base & ~(np.isin(s.ids, GROUPS[grp]) if grp in GROUPS else ~named)   # drop_other: every set not named
         raise ValueError(name)
 
-    def cinv(s, m):
-        k = m.tobytes()
-        if k not in s._ci: s._ci[k] = np.linalg.inv(s.C[np.ix_(m, m)])
+    def cinv(s, m, full=False):
+        """Weight matrix of the rows of mask m: inverse covariance (as frozen, and always for K1) or 1/C_ii (amendment 1)."""
+        k = (m.tobytes(), full or WEIGHTS == "full")
+        if k not in s._ci:
+            s._ci[k] = np.linalg.inv(s.C[np.ix_(m, m)]) if k[1] else np.diag(1.0/np.diag(s.C)[m])
         return s._ci[k]
 
 
@@ -116,12 +122,16 @@ def fit(pp, m, reading, D, low, nb=20, gfree=True, y=None, extra_cols=None):
         for nm_, v in extra_cols: cols.append(v); names.append(nm_)
     if gfree: cols.append(low - 0.5); names.append("g")
     if D is not None: cols.append(D); names.append("A")
-    X = np.column_stack(cols); beta, cov, chi2 = gls(X, yv, pp.cinv(m)); sd = np.sqrt(np.diag(cov))
+    X = np.column_stack(cols); W = pp.cinv(m); beta, cov, chi2 = gls(X, yv, W); sd = np.sqrt(np.diag(cov))
+    # sandwich error clustered by supernova (rows of one CID share their intrinsic scatter): reported beside the formula error
+    _, inv = np.unique(pp.cid[m], return_inverse=True); Mv = (X.T@W)*(yv - X@beta)[None, :]
+    Vk = np.zeros((inv.max() + 1, X.shape[1])); np.add.at(Vk, inv, Mv.T); sand = np.sqrt(np.diag(cov@(Vk.T@Vk)@cov))
     out = dict(n=n, n_low=int(low.sum()), n_high=int((~low).sum()), reading=reading, nbins=nb, n_par=X.shape[1], chi2=chi2,
                dof=n - X.shape[1], z_edges=[float(edges[0]), float(edges[-1])])
     for nm_ in ("x1", "c", "g", "A"):
         if nm_ in names:
             i = names.index(nm_); out[nm_] = float(beta[i]); out["sd_" + nm_] = float(sd[i])
+            if nm_ in ("g", "A"): out["sandwich_sd_" + nm_] = float(sand[i])
     if "A" in names:
         out["D_A0"] = (out["A"]/out["sd_A"])**2; out["D_A1"] = ((out["A"] - 1)/out["sd_A"])**2
         if "g" in names: out["corr_A_g"] = float(cov[names.index("A"), names.index("g")]/(sd[names.index("A")]*sd[names.index("g")]))
@@ -134,7 +144,7 @@ def clean(d):
 
 
 def fmt(r):
-    s = f"A {r['A']:+.3f} +- {r['sd_A']:.3f}  dchi2(A=0) {r['D_A0']:.2f}  dchi2(A=1) {r['D_A1']:.2f}"
+    s = f"A {r['A']:+.3f} +- {r['sd_A']:.3f} (sandwich {r['sandwich_sd_A']:.3f})  dchi2(A=0) {r['D_A0']:.2f}  dchi2(A=1) {r['D_A1']:.2f}"
     if "g" in r: s += f"  g {r['g']:+.4f} +- {r['sd_g']:.4f}"
     if "x1" in r: s += f"  a {r['x1']:+.3f} b {r['c']:+.3f}"
     return s + f"  chi2 {r['chi2']:.1f}/{r['dof']}  n {r['n']} ({r['n_low']} low, {r['n_high']} high)"
@@ -165,8 +175,8 @@ def band_steps(pp, m, reading, T):
 
 def main():
     t0 = time.time(); log = lambda s: print(s, flush=True)
-    res = dict(mode=MODE, numpy=np.__version__); code = 0
-    log(f"AGB2 mode {MODE}")
+    res = dict(mode=MODE, weights=WEIGHTS, numpy=np.__version__); code = 0
+    log(f"AGB2 mode {MODE}; weights: {'inverse of the full covariance (as frozen)' if WEIGHTS == 'full' else 'diagonal, 1/C_ii (amendment 1)'}")
     if MODE == "KG":
         zg, lmg, mean, med, tr = G.table()
         a = lambda lm, z, st="mean": float(G.age(lm, z, st))
@@ -202,7 +212,7 @@ def main():
             m = pp.mask(nm_); log(f"   sample {nm_}: {int(m.sum())} rows; {int((pp.lm[m] < 10).sum())} low-mass, {int((pp.lm[m] >= 10).sum())} high-mass")
         res["counts"] = {nm_: [int(pp.mask(nm_).sum()), int((pp.lm[pp.mask(nm_)] < 10).sum())] for nm_ in ("all", "measured", "k1")}
     if MODE == "K1":
-        m = pp.mask("k1"); Ci = pp.cinv(m); one = np.ones(int(m.sum()))
+        m = pp.mask("k1"); Ci = pp.cinv(m, full=True); one = np.ones(int(m.sum()))
 
         def c2(om):
             r = pp.mcorr[m] - mu_fid(pp.z[m], pp.zh[m], om); r = r - (one@Ci@r)/(one@Ci@one); return float(r@Ci@r)
@@ -250,12 +260,15 @@ def main():
         ok = True
         for tn in ("run", "host"):
             a = np.array(draws[tn]); s = real[tn]["sd_A"]; good = abs(a.mean()) <= 0.2*s and 0.8 <= a.std(ddof=1)/s <= 1.25
+            sw = real[tn]["sandwich_sd_A"]/s
+            if WEIGHTS == "diag": good = good and 0.8 <= sw <= 1.25          # AMENDMENT_1.md, item 2
             ok = ok and good
             res[tn] = dict(mean=float(a.mean()), sd=float(a.std(ddof=1)), sigma_A=s, mean_over_sigma=float(a.mean()/s),
-                           sd_over_sigma=float(a.std(ddof=1)/s), n_draws=len(a), passed=bool(good))
+                           sd_over_sigma=float(a.std(ddof=1)/s), sandwich_over_sigma=float(sw), n_draws=len(a), passed=bool(good))
             log(f"K4 {tn:4s}: 400 shuffles of host mass inside redshift bins ({len(ucid)} supernovae): mean A {a.mean():+.4f}"
                 f" ({a.mean()/s:+.3f} sigma; allowed 0.2)  scatter {a.std(ddof=1):.4f} against sigma_A {s:.4f} (ratio {a.std(ddof=1)/s:.3f};"
-                f" allowed 0.8-1.25) -> {'PASS' if good else 'FAIL'}")
+                f" allowed 0.8-1.25)  sandwich error / sigma_A {sw:.3f}" + (" (allowed 0.8-1.25)" if WEIGHTS == "diag" else " (reported)")
+                + f" -> {'PASS' if good else 'FAIL'}")
         res["passed"] = bool(ok)
     elif MODE == "H":
         P = {}
@@ -285,8 +298,8 @@ def main():
     elif MODE != "KG":
         raise SystemExit(f"unknown mode {MODE}")
     res["seconds"] = round(time.time() - t0, 1)
-    with open(os.path.join(OUTDIR, f"agb2_{MODE}.json"), "w") as fh: json.dump(res, fh, indent=1, default=float)
-    log(f"wrote agb2_{MODE}.json  ({res['seconds']} s)  exit {code}")
+    with open(os.path.join(OUTDIR, f"agb2_{MODE}{TAG}.json"), "w") as fh: json.dump(res, fh, indent=1, default=float)
+    log(f"wrote agb2_{MODE}{TAG}.json  ({res['seconds']} s)  exit {code}")
     sys.exit(code)
 
 
