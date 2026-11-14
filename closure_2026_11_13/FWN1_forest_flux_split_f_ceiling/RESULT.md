@@ -223,4 +223,15 @@ At flux level the crossing-speed split cannot do without a settled radius. With 
 
 So f stays a free constant, not fixed by theory. This lane gives it an upper edge from the forest at flux level, roughly 3 to 5. Any lower edge comes from other rows and earlier lanes, which this lane did not re-check. Rule 6 needs its settled radius for the forest, and the forest allows that radius only up to about four times the fold radius.
 
+## Commit ids and the lead's re-run (2026-11-14)
+
+- Criteria fab8a8ee0e (origin 5d67fec5b3); scripts, parts and graded outputs 78c950240a (origin ab0e84c528); result 7676843bbf
+  (origin 43ba522198).
+- The lead re-ran, from a copy of the scripts and the committed parts at the same folder depth: `fwn1_c0.py` (the
+  independent chain), `fwn1_grade.py` and `fwn1_refit.py`, on both footings. The two chain JSON files, the eight grade and
+  twin outputs and the four refit outputs equal byte for byte; the two chain logs differ only in elapsed-seconds stamps.
+  The boxes themselves were not re-run. (A first re-run that left the chain files out of the copy is discarded.)
+- A reproduction of the grading, not an independent re-grade. An independent check of the same three cases in the blind
+  build of FRZ6R was started on 2026-11-14 (lane FWN1R). No number or label changes.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
