@@ -186,6 +186,28 @@ python3 -I euc17_posthoc_T.py --data-dir <dir>                                 #
 Run by the session that wrote the lane; the as-frozen outputs were reproduced byte for byte after the `--A2` flag
 was added. A reproduction, not an independent re-grade.
 
+## 7a. Blind re-grade EUC17R (dated addition, 2026-11-14; no number or label of this file changes)
+
+`closure_2026_11_13/EUC17R_blind_mask_aperture_regrade/` (a separate session that read only the criteria and A1 and
+wrote its own code). **Its labels, as frozen, are the same in every row and footing:** R1 CEILING HOLDS / CEILING
+HOLDS, CHANGED, ROBUST; R2 WIDE LENSES BREAK THE CEILING on both, UNCHANGED, ROBUST; R3 NO VERDICT / NO VERDICT,
+UNCHANGED, ROBUST. Its numbers equal this file's (R1 f₂₅ 0.060 [0.052, 0.068] / 0.050 [0.043, 0.058], R2 0.444
+[0.355, 0.524] canonical).
+
+- Its check K0 **passes as frozen** (24 of 24 items): it kept EUC10's own lens order, so the one bootstrap bound
+  that voided this lane as frozen reproduces there. The labels therefore stand on a run that needed no post hoc
+  amendment.
+- Leaks it disclosed (its `READING.md` §0): two lines of the project's memory index, loaded into every session at
+  start, name this lane; one says the lead's as-frozen reading was voided by a harness tolerance. Neither carries a
+  row label or a corrected number. It also saw the file names in this folder. It opened none of this lane's outputs
+  before committing its result.
+- Lead's re-run of its script: main run exits 0, both twins exit 1, every output equal byte for byte except one
+  elapsed-time line. A reproduction of its arithmetic.
+- Commits (local / origin): READING 0aee9d1a75 / a1b7b77de7; result 2c8361f51b / e35417e5a7; comparison 956cefbe24 /
+  bd170244b9.
+
+The hit on R1 is now confirmed by an independent implementation. It is still not a pass (§6).
+
 ## 8. Commit ids (local / origin)
 
 | Step | Local | Origin |
