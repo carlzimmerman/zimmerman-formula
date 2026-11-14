@@ -1,0 +1,13 @@
+from pathlib import Path
+import json,csv,numpy as np
+from astropy.io import fits
+from astropy.wcs import WCS
+B=Path(__file__).resolve().parent;T=B.parent;out=B/'summary_01';out.mkdir(exist_ok=True);r=json.loads((B/'run_01/result.json').read_text());p=json.loads((B/'positive_01/result.json').read_text());pos={(x['fixture'],x['band']):x for x in p['records']};rows=[]
+for x in r['records']:
+ z=x['chosen'];v=pos[x['fixture'],x['band']];variants=x['offset_variants'];rows.append({'fixture':x['fixture'],'band':x['band'],'catalogue_foreground_microJy':x['catalogue_lens_flux_microJy'],'Gaussian_foreground_aperture_microJy':z['foreground_aperture_microJy'],'Gaussian_ratio':z['foreground_ratio_to_catalogue'],'positive_foreground_aperture_microJy':v['foreground_aperture_microJy'],'positive_ratio':v['ratio_to_catalogue'],'positive_delta_chi2':v['delta_chi2_from_Gaussian'],'all_offsets_flux_min_microJy':min(y['foreground_aperture_microJy'] for y in variants),'all_offsets_flux_max_microJy':max(y['foreground_aperture_microJy'] for y in variants),'Gaussian_negative_beyond3sigma_nodes':z['source_nodes_negative_beyond_3sigma'],'Gaussian_source_edge_abs_fraction':z['source_edge_abs_fraction'],'PSF_shape':str(r['calibration'][x['band']]['PSF_shape']),'positive_control_converged':v['success']})
+with open(out/'flux_summary.csv','w') as f:w=csv.DictWriter(f,fieldnames=list(rows[0]));w.writeheader();w.writerows(rows)
+h=fits.open(next((T/'inputs/dataset').glob('Tile*.fits')));vw=WCS(h['VIS_BGSUB'].header);xy=np.array([[54.39817449205797,48.13078417880047],[38.18086945163101,56.095751002577174]]);world=vw.all_pix2world(xy,0);audit=[]
+for d in h:
+ if not d.name.endswith('BGSUB'):continue
+ w=WCS(d.header);delta=w.all_world2pix(world,0)-xy;assert np.max(abs(delta))<1e-7;audit.append({'band':d.name,'CRPIX':w.wcs.crpix.tolist(),'CRVAL':w.wcs.crval.tolist(),'pixel_offset_relative_to_VIS':delta.tolist(),'local_array_center_world':w.all_pix2world([[49.5,49.5]],0).tolist()})
+record={'Gaussian_cases':len(rows),'positive_cases':len(p['records']),'all_foreground_positive':all(x['chosen']['positive_foreground'] for x in r['records']),'all_positive_controls_converged':all(x['success'] for x in p['records']),'source_operator_max_error':r['independent_source_operator_vs_reference_max_error'],'registration':audit,'registration_interpretation':'Nativeheadersallnominallyregistered;localcenter49.5isnotCRVAL.±catalogglobaloffsetareempiricalsensitivityfixtures,notprovedphysicalsign.','conclusion':'ReleasedSEDnotreusableaspreciseindependentconstraintafterhostrepair;newSEDfluxnotvalidatedbecausepositivehostcontrolandfixture/morphologydependence.'};(out/'result.json').write_text(json.dumps(record,indent=2))

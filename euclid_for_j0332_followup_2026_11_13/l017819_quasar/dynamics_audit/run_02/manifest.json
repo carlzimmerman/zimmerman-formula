@@ -1,0 +1,338 @@
+{
+  "schema_version": 2,
+  "claim_id": "L017819_NATIVE_DESI_WINDOW_CONTROLS_02",
+  "repository": {
+    "commit": "84c613b81a26e3a6dcebfd9baf6ef13b6c258969",
+    "dirty": true
+  },
+  "command": [
+    "/private/tmp/forj0332-fit-venv/bin/python",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/fit_dispersion_v3.py",
+    "--output",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02"
+  ],
+  "environment": {
+    "software": [
+      {
+        "name": "runner-python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "Python",
+        "version": "3.9.6"
+      },
+      {
+        "name": "numpy",
+        "version": "1.26.4"
+      },
+      {
+        "name": "scipy",
+        "version": "1.13.1"
+      },
+      {
+        "name": "matplotlib",
+        "version": "3.9.4"
+      }
+    ],
+    "hardware": "macOS-26.5.2-arm64-arm-64bit"
+  },
+  "mathematics": {
+    "assertion_tested": "With the actual DESI resolution applied to both stellar templates and smooth continuum, repeat split/blue/red fits and test whether CaHK, G band, Mg b, Fe features or rare resolution-row normalization departures drive the blue-red dispersion difference. This is targeted diagnosis, not selecting a preferred answer.",
+    "coefficient_domain": "float64; nonnegative least squares for stellar-template weights; unconstrained additive polynomial coefficients; Gaussian diagonal pipeline noise",
+    "conventions": "Vacuum Angstrom data, E-MILES air wavelengths converted by iterative refractive-index relation. DESI DIA offsets 5..-5, original negative entries retained. Intrinsic 2.51A template FWHM subtracted in variance locally before applying actual DESI matrix. Not pPXF reproduction. Unlike run01, additive continuum is also passed through the native DESI response; this is required for an incident smooth astrophysical continuum at pixels with non-unit response row sums.",
+    "inputs": [
+      "One native B/R coadd with original flux, IVAR, MASK, 11-diagonal resolution",
+      "24 E-MILES templates ages1,1.58,2.51,3.98,6.31,10 Gyr and metallicities-.71,-.4,0,.22"
+    ],
+    "bounds": {
+      "target_count": 1,
+      "sigma_kms": [
+        100,
+        450
+      ],
+      "velocity_kms": [
+        -300,
+        300
+      ],
+      "configurations": 8,
+      "numerical_sampling_controls": 0,
+      "noiseless_injections": 1,
+      "analytic_lines": 3,
+      "analytic_sigma_values": [
+        150,
+        222.26,
+        320
+      ],
+      "analytic_steps_A": [
+        0.9,
+        0.3
+      ],
+      "nonlinear_starts": [
+        220,
+        320
+      ],
+      "maxiter_per_start": 160,
+      "profile_velocity_maxiter": 40,
+      "walltime_cap_seconds": 300,
+      "BLAS_threads": 1
+    },
+    "non_claims": [
+      "No complete uncertainty, independent comparison significance or posterior",
+      "No physical quasar/FeII template, stellar mass, rotation separation, aperture correction or gravity fit",
+      "No exact LOSVD deconvolution; local Gaussian approximation tested only on finite benchmarks",
+      "No automatic adoption of Guo or FastSpec value"
+    ]
+  },
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  },
+  "run": {
+    "started_at": "2026-11-14T00:14:04.961530+00:00",
+    "runtime_seconds": 14.175261,
+    "exit_status": 0,
+    "status": "completed",
+    "timeout_seconds": 300.0,
+    "max_output_bytes": 1048576,
+    "resource_limits": {
+      "memory_bytes": null,
+      "cpu_seconds": null,
+      "max_cores": null,
+      "max_threads": 1
+    },
+    "missing_results": [],
+    "invalid_results": []
+  },
+  "execution_artifacts": [
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/fit_dispersion_v3.py",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/inputs/desispec_resolution.py",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/inputs/desispec_resolution.py.provenance.json",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/inputs/ppxf_template_readme.md",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/inputs/ppxf_template_readme.md.provenance.json",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/inputs/ppxf_population_sdss.ipynb",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/inputs/ppxf_population_sdss.ipynb.provenance.json",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/desi_spectrum/target_coadd.npz",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/desi_spectrum/validation.json",
+    "_external_data/lam2_templates_2026_11_03/spectra_emiles_9.0.npz",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_01/result.json"
+  ],
+  "input_artifacts": [
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/fit_dispersion_v3.py",
+      "sha256": "103bfc52eb03a458f8ba153a0a6b926d81b97edf6a9d0d91b1ad25e6344f0953",
+      "sha256_after": "103bfc52eb03a458f8ba153a0a6b926d81b97edf6a9d0d91b1ad25e6344f0953"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/inputs/desispec_resolution.py",
+      "sha256": "a3562748ec82253121d3e08008a99e4bac7482be5d3e9481ed050ba675152284",
+      "sha256_after": "a3562748ec82253121d3e08008a99e4bac7482be5d3e9481ed050ba675152284"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/inputs/desispec_resolution.py.provenance.json",
+      "sha256": "d67a17336a5075339dfb86fd859e5cea3a7d36ac5aac777faee9d380e596151c",
+      "sha256_after": "d67a17336a5075339dfb86fd859e5cea3a7d36ac5aac777faee9d380e596151c"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/inputs/ppxf_template_readme.md",
+      "sha256": "0ac4c991a96c4816859924f7ea8f5bc69c845275ebaba3269e4db50de367256e",
+      "sha256_after": "0ac4c991a96c4816859924f7ea8f5bc69c845275ebaba3269e4db50de367256e"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/inputs/ppxf_template_readme.md.provenance.json",
+      "sha256": "53adbc3e911b355df0539aad8f9da857b683cbc75011e0352c4c239233cfd630",
+      "sha256_after": "53adbc3e911b355df0539aad8f9da857b683cbc75011e0352c4c239233cfd630"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/inputs/ppxf_population_sdss.ipynb",
+      "sha256": "f75b199a22e7ae306d533da1ba3f997ebe418656269c93a119f66c7c4edfd630",
+      "sha256_after": "f75b199a22e7ae306d533da1ba3f997ebe418656269c93a119f66c7c4edfd630"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/inputs/ppxf_population_sdss.ipynb.provenance.json",
+      "sha256": "07ca53621dacf3a5dd5a534d463b583a672967d9358b433c650a6467f5590c6d",
+      "sha256_after": "07ca53621dacf3a5dd5a534d463b583a672967d9358b433c650a6467f5590c6d"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/desi_spectrum/target_coadd.npz",
+      "sha256": "875e5b7952f40c3d7e6770f6ab81f6212a7637a54d53b4e8f9964167f2e36367",
+      "sha256_after": "875e5b7952f40c3d7e6770f6ab81f6212a7637a54d53b4e8f9964167f2e36367"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/desi_spectrum/validation.json",
+      "sha256": "689caac18226d84aee659fb65bf5d640b0d867d78e27471c1ee4961a9a96aae7",
+      "sha256_after": "689caac18226d84aee659fb65bf5d640b0d867d78e27471c1ee4961a9a96aae7"
+    },
+    {
+      "path": "_external_data/lam2_templates_2026_11_03/spectra_emiles_9.0.npz",
+      "sha256": "6a1b1a70db4d95f67afe0adbe254f111eb2b50412b9f311714c54ffba18c6f0e",
+      "sha256_after": "6a1b1a70db4d95f67afe0adbe254f111eb2b50412b9f311714c54ffba18c6f0e"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_01/result.json",
+      "sha256": "a43455cdc0bd9e75f8998d0bd8474efae4e857bc885c1586ad128b44854d1017",
+      "sha256_after": "a43455cdc0bd9e75f8998d0bd8474efae4e857bc885c1586ad128b44854d1017"
+    }
+  ],
+  "output_directory": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02",
+  "declared_results": [
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/result.json",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/preflight_checks.json",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/dispersion_audit.png",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/primary_split.json",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/primary_split_model.npz",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/blue_only.json",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/blue_only_model.npz",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/red_only.json",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/red_only_model.npz",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/ca_hk.json",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/ca_hk_model.npz",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/g_band.json",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/g_band_model.npz",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/mg_b.json",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/mg_b_model.npz",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/fe_band.json",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/fe_band_model.npz",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/response_outliers_removed.json",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/response_outliers_removed_model.npz",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/noiseless_injection.json",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/noiseless_injection_model.npz"
+  ],
+  "outputs": [
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/stdout.txt",
+      "sha256": "f885d9fe85b694f4642b0dc335826d0dca207c054d1d78f75de315169b3c560b",
+      "kind": "log"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "log"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/result.json",
+      "sha256": "7be4f12de38b1ab7f45cde1360531d4dc40ed9bd1e4570cf64b78e0e928bf06b",
+      "kind": "result"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/preflight_checks.json",
+      "sha256": "f641e812f64d6cc8e498a326bc13e6ee90563266d858203e1f17b4527d7670e8",
+      "kind": "result"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/dispersion_audit.png",
+      "sha256": "5f5eabae29beb705e5b1bcb03772c79b5f09e30c4ef36c546862755d1ff248fc",
+      "kind": "result"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/primary_split.json",
+      "sha256": "bbe75da06c8c4511d2be93c0cacd63af5e8e03f71468a740da71ec3db176fb83",
+      "kind": "result"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/primary_split_model.npz",
+      "sha256": "d0b395c6362c9724b725305fbc9644f30ce1a30c860a661b2762f7e3d326197d",
+      "kind": "result"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/blue_only.json",
+      "sha256": "96eae249e725c9a5ede8bc2d61d8cb17ee8f414e2de9e227250f6b431cba43b0",
+      "kind": "result"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/blue_only_model.npz",
+      "sha256": "bb1f6f191e5241a9b9d5a3d9dc7eead53524602db446d68c87a9cf66ac886d86",
+      "kind": "result"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/red_only.json",
+      "sha256": "0f6a0a6c97c6aea67ef6b009dd07d558fbaf37dd7fa595a64b63093ca86508ba",
+      "kind": "result"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/red_only_model.npz",
+      "sha256": "40e4df49f1096c1872059958cc47a94621ec0df095f5cd79f52115cb798db256",
+      "kind": "result"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/ca_hk.json",
+      "sha256": "51deaa3b73f3f2c6b57687aaef3933fff8c296dd0605afe95222d7d8f07fe720",
+      "kind": "result"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/ca_hk_model.npz",
+      "sha256": "a5577ffd94aa14b1bd7d62e5fa005605f6bebca439dfd3b487eff3f9a62a7fbb",
+      "kind": "result"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/g_band.json",
+      "sha256": "fb4151caf7f1be934886fa50733c48a83a093c6837fb7b63c5e10d7a74e73d93",
+      "kind": "result"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/g_band_model.npz",
+      "sha256": "4b1a5f47b8273f51b3ad2a758d1569b97bac9fd29993e438e94585d4e055e957",
+      "kind": "result"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/mg_b.json",
+      "sha256": "6944a3aeec7fb8d7465f89006b3c2a06cb2c79fd09792a26cdf6153b951980bd",
+      "kind": "result"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/mg_b_model.npz",
+      "sha256": "7a40b9c6b2a12e84645c4365ff81fa4c03b9c22ca7083e2df88afba640db42bd",
+      "kind": "result"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/fe_band.json",
+      "sha256": "b66dc18c60654cdc07f3d6a4da0f5abc23ef8147b23d0ea873f35854066bbe77",
+      "kind": "result"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/fe_band_model.npz",
+      "sha256": "7869db245a3db6c5fd8ceb2e8e6b71e639fb74e412d2e1697484fc581f3d2bc1",
+      "kind": "result"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/response_outliers_removed.json",
+      "sha256": "287d3926b0a4a2a8d9ce7191df11793d9e90c92735804593b451a4c7528ba452",
+      "kind": "result"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/response_outliers_removed_model.npz",
+      "sha256": "1db75b7c9784e9c2085afdccdd753acdf672676aff66dccadcb80470adc40729",
+      "kind": "result"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/noiseless_injection.json",
+      "sha256": "9e8e72d42976ff7b7cd5d0ff7873bbcb37214ec124b196a3a9f710ab9512bd6e",
+      "kind": "result"
+    },
+    {
+      "path": "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/run_02/noiseless_injection_model.npz",
+      "sha256": "85b7cd11fef94c8c3cfcb5a736b566e1fba63db92e0a2fe298a71adfba49dcad",
+      "kind": "result"
+    }
+  ],
+  "checks": [
+    {
+      "check": "input hashes unchanged",
+      "passed": true
+    },
+    {
+      "check": "process exited successfully within enforced limits",
+      "passed": true
+    },
+    {
+      "check": "declared result files are present and regular",
+      "passed": true
+    }
+  ],
+  "result": "Run completed; mathematical assertion requires interpretation and review.",
+  "residual_risks": [
+    "Command success does not establish the mathematical interpretation.",
+    "Only listed input artifacts are pinned; external dependencies need recorded versions.",
+    "The thread cap uses conventional environment variables; a child program may ignore them."
+  ]
+}

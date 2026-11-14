@@ -1,0 +1,56 @@
+L017819 CYLINDRICAL JEANS ROUTE — CONDITIONAL DYNAMICS
+
+Resumed from checkpoint dc5b24fe6f46cd989c7be091c07fed8f0ad57369.
+The user requested continued research. No discovery or full-action claim.
+
+Source: Cappellari2008, arXiv0806.0042v2, equations10–11, page4.
+https://arxiv.org/pdf/0806.0042
+The exact published equations were inspected through the primary preprint.
+The b convention is sigma_R^2/sigma_z^2. The source explicitly warns that
+Jeans solutions need not admit a nonnegative phase-space distribution.
+We use the general equations, not its later MGE-specific closed form.
+
+Assumptions: steady axisymmetry, cylindrical velocity-ellipsoid alignment,
+zero meridional streaming/cross moment, constant b. Define P=nu*sigma_z^2.
+Vertical equilibrium gives P(R,z)=integral_z^infinity nu(R,u)*Phi_z(R,u)du.
+Radial equilibrium then gives nu*<v_phi^2>=b*(R*P_R+P)+R*nu*Phi_R.
+The force is the same isolated, oblate, smooth unscreened fixed-a0 AQUAL
+field used for host lensing. The tracer is its unit-normalized oblate Abel
+Sersic density, at edge-on inclination. No new spherical substitution.
+
+With sky axes(u,v) along the projected major/minor axes, intrinsic axes are
+x=u, y=los*sin(i)-v*cos(i), z=v*sin(i)+los*cos(i). The LOS velocity has
+coefficients sin(i)*y/R, sin(i)*x/R, cos(i) for(v_R,v_phi,v_z).
+Thus <v_los^2>=sin(i)^2*(sigma_R^2*y^2/R^2+<v_phi^2>*x^2/R^2)
++cos(i)^2*sigma_z^2. Integrate nu times this quantity along the LOS and
+through a circular aperture after Gaussian seeing convolution. The exact
+Gaussian-to-offset-circle throughput is a noncentral chi-square CDF with
+2degrees of freedom. Divide by the identical light-weight integral.
+
+For the Satoh k=1 sensitivity only, mean_v_phi=sqrt(<v_phi^2>-sigma_R^2).
+Report where its radicand is negative; never claim a physical k=1 case if
+material weighted support fails. The aperture central second moment is
+< v_los^2 >_ap - < v_los >_ap^2, not merely the raw RMS for an offset fiber.
+The k=0 nonrotating moment case has zero aperture mean by construction.
+
+Actual native FITS WCS maps the DESI MEAN_FIBER position into the exact image
+pixel grid. Convert with (pixel-49.5)*0.1, subtract fitted galaxy center,
+then rotate by the same light angle. Catalogue coordinate separation and
+results/wcs_vis_lp.json CRVAL must not be substituted for this local origin.
+The released arrays share nominal WCS; actual astrometric systematics remain.
+
+Numerical contract: explicitly finite R,z grid and LOS/aperture quadrature.
+Report light beyond moment grid, negative azimuthal moments and Satoh gaps.
+Benchmark spherical Plummer intrinsic and analytic projected moments at three
+inclinations. Doubling quadrature/grid and using refined physical force is
+required for any numerical interpretation. Shape/seeing/anisotropy are fixed
+scenarios, not a marginalized inference. Lack of physical DF verification,
+unknown seeing, spectral systematics and the inaccurate positive-host image
+model prevent this route alone from certifying the theory.
+
+V1 benchmark failed: intrinsic vertical error0.93%, azimuthal7.0%. A factorial
+component check identified trapezoid integration and low-order radial pressure
+derivatives, amplified by cancellation. Simpson integration alone reduced
+vertical error to0.0477% but left azimuthal6.84%; cubic derivative alone left
+~1.02% azimuthal; using both reduced both component errors to~0.0477%.
+The original failed files and run are preserved; v2 is a separate input.

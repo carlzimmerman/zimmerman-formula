@@ -1,0 +1,85 @@
+{
+  "claim_id": "L017819_NATIVE_DESI_ABSORPTION_DIAGNOSTIC_01",
+  "mathematics": {
+    "assertion_tested": "For one native DESI target, independently verify stored resolution orientation and analytic Gaussian broadening, recover one planted noiseless mixture, then profile stellar Gaussian dispersion in six explicitly limited spectral/template/continuum configurations and one numerical sampling control.",
+    "coefficient_domain": "float64; nonnegative least squares for stellar-template weights; unconstrained additive polynomial coefficients; Gaussian diagonal pipeline noise",
+    "conventions": "Vacuum Angstrom data, E-MILES air wavelengths converted by iterative refractive-index relation. DESI DIA offsets 5..-5, original negative entries retained. Intrinsic 2.51A template FWHM subtracted in variance locally before applying actual DESI matrix. Not pPXF reproduction.",
+    "inputs": [
+      "One native B/R coadd with original flux, IVAR, MASK, 11-diagonal resolution",
+      "24 E-MILES templates ages1,1.58,2.51,3.98,6.31,10 Gyr and metallicities-.71,-.4,0,.22"
+    ],
+    "bounds": {
+      "target_count": 1,
+      "sigma_kms": [
+        100,
+        450
+      ],
+      "velocity_kms": [
+        -300,
+        300
+      ],
+      "configurations": 6,
+      "numerical_sampling_controls": 1,
+      "noiseless_injections": 1,
+      "analytic_lines": 3,
+      "analytic_sigma_values": [
+        150,
+        222.26,
+        320
+      ],
+      "analytic_steps_A": [
+        0.9,
+        0.3
+      ],
+      "nonlinear_starts": [
+        220,
+        320
+      ],
+      "maxiter_per_start": 160,
+      "profile_velocity_maxiter": 40,
+      "walltime_cap_seconds": 300,
+      "BLAS_threads": 1
+    },
+    "non_claims": [
+      "No complete uncertainty, independent comparison significance or posterior",
+      "No physical quasar/FeII template, stellar mass, rotation separation, aperture correction or gravity fit",
+      "No exact LOSVD deconvolution; local Gaussian approximation tested only on finite benchmarks",
+      "No automatic adoption of Guo or FastSpec value"
+    ]
+  },
+  "execution_artifacts": [
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/fit_dispersion_v2.py",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/inputs/desispec_resolution.py",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/inputs/desispec_resolution.py.provenance.json",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/inputs/ppxf_template_readme.md",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/inputs/ppxf_template_readme.md.provenance.json",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/inputs/ppxf_population_sdss.ipynb",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/dynamics_audit/inputs/ppxf_population_sdss.ipynb.provenance.json",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/desi_spectrum/target_coadd.npz",
+    "euclid_for_j0332_followup_2026_11_13/l017819_quasar/desi_spectrum/validation.json",
+    "_external_data/lam2_templates_2026_11_03/spectra_emiles_9.0.npz"
+  ],
+  "software": [
+    {
+      "name": "Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "numpy",
+      "version": "1.26.4"
+    },
+    {
+      "name": "scipy",
+      "version": "1.13.1"
+    },
+    {
+      "name": "matplotlib",
+      "version": "3.9.4"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}

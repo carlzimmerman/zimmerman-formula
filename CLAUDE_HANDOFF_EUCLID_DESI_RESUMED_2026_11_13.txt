@@ -1,0 +1,194 @@
+EUCLID / DESI: RESUMED RESEARCH RESULT AND CLAUDE HANDOFF
+2026-11-13, America/New_York
+
+Read this first. It supersedes the paused status in the earlier handoff.
+The user authorized resumed research after commit dc5b24fe6f46cd989c7be091c07fed8f0ad57369.
+The original breakthrough and full-theory certification goal remains OPEN
+and UNACHIEVED. This checkpoint contains new finite evidence, not a discovery.
+
+MAIN RESULT
+
+For L017819 / SDSS J1524+4409, the fixed-a0 approximation is compatible with
+the conditional DESI stellar broadening estimate. It is not uniquely selected:
+a same-profile Newtonian stars-only control also fits the kinematic scale
+and has a slightly better conditional image fit. Both image models retain
+substantial structured residuals. Stellar photometry is too model-dependent
+to supply the precise independent mass prior needed for a clean test.
+The relation between a0 and dark-energy density is not confirmed or excluded.
+
+Earlier corrected FOR J0332 and L015780 results are unchanged. See the
+historical CLAUDE_HANDOFF_EUCLID_DESI_2026_11_13.txt for those details. In
+particular, the FOR aperture-mass correction superseded the old 2.4-sigma
+claim: the corrected discrepancy was about 1.31 upper-side error units.
+Do not resurrect the original mass-convention error.
+
+1. NATIVE DESI SPECTRAL FIT
+
+Target redshifts: zl=0.32022095721117494, zs=1.210.
+A native-resolution absorption fit gives sigma=221.358 km/s. Conditional
+profile crossings are 201.811–242.609 at DeltaChi2=1 and 183.747–266.341 at
+DeltaChi2=4. This is another reduction of the SAME DESI photons, not an
+independent observation. Do not multiply it with Guo/FastSpec likelihoods.
+Guo's central value 222.26 is compatible; complete ±15 precision is unverified.
+
+The model includes template air-to-vacuum conversion, intrinsic template
+FWHM, the actual 11-diagonal DESI response, absorption masks, and nonnegative
+stellar-template weights. All incident light, including the smooth continuum,
+passes through the response. The first executed 211.2 km/s result omitted
+that last step and is superseded by run_02. Original drafts and runs remain.
+
+Independent matrix indexing, analytic lines, planted recovery and sampling
+checks pass. Conservative continuum/template controls give about 220–228;
+allowing more source Mg II wings gives 244–245. Keep these as separate
+conditional likelihood fixtures. Do not manufacture a complete Gaussian
+error by combining their scatter. The blue/red split is 66.23 km/s; 4/48
+conditional noise injections produced at least this absolute difference.
+That is a finite model-check frequency, not an astrophysical p-value.
+
+Authoritative profile: dynamics_audit/run_02/primary_split.json.
+Controls, plots, exact commands and coverage: dynamics_audit/README.md.
+All three bounded runs completed with validated provenance.
+
+2. RESOLVED IMAGES WITH PHYSICAL SOURCE LIGHT
+
+The adopted galaxy branch is isolated, smooth, unscreened oblate AQUAL,
+mu(x)=x/(1+x), a0=9.3603e-11 m/s², equal weak potentials, constant stellar
+M/L, edge-on inclination. This is NOT the full screened covariant action.
+Two previously fitted light shapes remain SIE-dependent sensitivity fixtures,
+not independent photometric priors. Mass is the infinite Sérsic normalization.
+
+Two-by-two image quadrature gave unstable rankings. The mass fits were redone
+with 6x6 rays and checked at 8x8 and 12x12. Direct LOS, spherical Abel,
+interpolation and higher field-resolution checks were also run.
+
+The source was then constrained nonnegative, with separate mass profiles at
+fixed common log source precisions 0, 2 and 4. Schur elimination, NNLS and
+KKT conditions passed an independent synthetic solver check. These are
+conditional penalized-MAP fits, not truncated-source evidence or Bayes factors.
+Mass scans and local optima were interior; no global-continuum proof is claimed.
+
+At log precision 2, on 2778 pixels:
+                        Primary light       Alternative light
+AQUAL stellar mass      2.32395e11 Msun      2.14449e11 Msun
+AQUAL image chi2        6294.45              6228.70
+AQUAL shear             0.01407              0.01273
+
+Changing source positivity barely moves the masses. Source-edge flux and
+coherent residuals remain. The fixed SIE control fits better, but has a
+different radial shape and a 0.048 arcsec mass-center offset; the same run_04
+SIE field was used for both light fixtures. That comparison cannot isolate a0.
+See aqual_host/README.md, positive_01/, and independent_review/.
+
+3. FAIR NEWTONIAN CONTROL AND MATCHED DYNAMICS
+
+A final control uses exactly the SAME light-centered oblate density, geometry,
+source constraints, nuisance priors, 6x6 operator and log precision 2. Only
+the stellar force law changes to Newtonian, with mass refitted. No halo is
+added; this is not a comparison against a complete dark-matter cosmology.
+
+                        Primary light       Alternative light
+Newton stellar mass     2.97968e11 Msun      2.75352e11 Msun
+Newton image chi2       6259.995             6192.876
+Newton minus AQUAL chi2 -34.4498             -35.8251
+Delta penalized MAP     -15.0103             -16.7962
+
+The Newton control needs about 28% more stellar mass and fits these restricted
+images slightly better. Shared residuals, fixed light shapes, source-grid
+assumptions and incomplete noise/systematics prevent a calibrated theory
+rejection. A0 is not preferred by this finite image comparison.
+Numerical, direct-field and KKT checks pass; an independent code addendum
+confirms the force flag, mass scaling, matched conditions and arithmetic.
+See aqual_host/newton_control/README.md.
+
+Actual optimum force fields feed the same oblate cylindrical Jeans model:
+  AQUAL fiber RMS scenarios: 205.65–216.03 km/s.
+  Newton fiber RMS scenarios: 224.82–236.82 km/s.
+Both overlap the conditional DESI interval. Scenarios use b=sigma_R²/sigma_z²
+of 0.8, 1 and 1.2, and seeing FWHM 0.8, 1.2 and 1.6 arcsec. They are not
+measured or marginalized priors. At b=1 and seeing=1.2, AQUAL predicts about
+211.24/209.97, versus Newton 231.19/230.03 km/s for the two light fixtures.
+
+The fiber radius is 0.75 arcsec. Native FITS WCS places its center about
+0.1764 arcsec from fitted galaxy light; do not substitute the 0.298 arcsec
+separation from the catalogue coordinate. Offset rotation is separately
+checked with a Satoh split. Positive moments do not prove a positive DF.
+
+Independent Plummer and flattened-Gaussian/harmonic benchmarks pass.
+Doubling the pressure grid and outer extent and refining aperture/LOS
+quadrature changes actual high-n predictions by at most 0.00264 km/s;
+physical field refinement changes them by at most 0.016 km/s. These are
+finite convergence checks, not certified uniform numerical error bounds.
+
+A separate FIXED-MASS sensitivity at 2.32907e11 Msun gives RMS values:
+Newton 204.41, half-a0 208.23, fixed-a0 211.46, double-a0 216.98 km/s.
+The factor-four a0 interval moves RMS only 8.75 km/s. This is smaller than
+the conditional spectral width and source-window dependence. These values
+must not be confused with the mass-refitted Newton predictions above.
+
+Final dynamics: joint_dynamics/fields_04/ (AQUAL) and fields_05/ (Newton).
+Final numerical comparison and figure: joint_dynamics/summary_04/.
+Detailed assumptions and reproductions: joint_dynamics/README.txt.
+
+4. NINE-BAND PHOTOMETRY
+
+All 18 two-fixture × nine-band Gaussian fits and 18 nonnegative-host controls
+completed. Native units, PSFs, WCS and original finite apertures were checked.
+For the primary light fixture, enforcing positive host light changes g-band
+foreground flux by 35.3%, with a very large residual cost. H-band foreground /
+catalogue flux changes from 0.845 to 0.888; VIS from 0.961 to 0.957.
+The old SED mass is not a defensible precise independent prior after host
+repair, and these new fluxes are not yet a validated replacement. No new
+SED/IMF mass or uncertainty was invented. See multiband_deblend/README.md.
+
+5. LEAN: EXACT CONDITIONAL SCALING IDENTITIES
+
+identifiability_scaling/ConditionalScaling_v1.lean proves 13 identities.
+Positive joint scaling of M, a0 and g preserves the AQUAL flux argument;
+supplied linear divergence, boundary and projection maps scale accordingly.
+With allowed convergence kappa -> lambda*kappa + 1-lambda, scaled shear,
+and a rescaled continuous source, resolved brightness and a fixed image
+operator are invariant. The squared density postulate is preserved by
+rho_DE -> lambda²*rho_DE when distance geometry is held fixed.
+
+Author and independent fresh compiles pass with standard axioms only.
+Deliberately false convergence and density mutations fail at actual proof
+goals. Accepted source SHA256:
+ad4524d3f24929571f39b96971165c74695608555473fd22024c32a060bda3e6
+
+This is conditional algebra. It does not construct analytic PDE operators,
+a physical AQUAL mass sheet/external field, a consistent cosmological family,
+or invariant priors on the fixed discrete source grid. Fixed kappa=0 forces
+lambda=1; with starting kappa=0 and a nonnegative added sheet, only
+0<lambda<=1 is allowed. No novelty or full-theory certificate is claimed.
+Authoritative formal and independent runs are run_02; failed preflights are
+preserved. See identifiability_scaling/independent_review/README.md.
+
+STATE AND NEXT REAL DEPENDENCIES
+
+All reported experiments are terminal. The original goal remains open.
+The immediate bottleneck is a credible physical foreground/quasar/host model
+with propagated light-profile and stellar-population uncertainty. A second
+bottleneck is quasar/Fe II and abundance treatment in the spectrum. Arbitrary
+mask selection or repeated numerical refinement will not solve either.
+A flexible positive-source/light/population fit, external convergence/field
+constraints and the complete screened action remain OPEN/DEFERRED routes.
+They were not proved impossible or exhausted. Do not relabel the present
+conditional compatibility or the formal algebra as a breakthrough.
+
+REPRODUCTION AND PACKAGING
+
+Each manifest records exact argv, versions, bounds and input/output hashes.
+Use one BLAS thread. Scientific Python was /private/tmp/forj0332-fit-venv/bin/python
+(Python 3.9.6, NumPy 1.26.4, SciPy 1.13.1, Astropy 6.0.1).
+Lean workspace: fable_independent_2026/lean_2026, Lean 4.34.0-rc2.
+Mathlib is pinned in its recorded package revision. The differing local
+lakefile is already snapshotted in the original checkpoint package.
+
+External E-MILES templates are not in this checkpoint:
+_external_data/lam2_templates_2026_11_03/spectra_emiles_9.0.npz
+SHA256 6a1b1a70db4d95f67afe0adbe254f111eb2b50412b9f311714c54ffba18c6f0e.
+Published paper PDFs/full text are omitted; retrieval records and hashes remain.
+The original compressed ECLIPSE table package is unchanged and restorable.
+The new checkpoint uses a private Git index on the existing codex branch;
+unrelated main-worktree files and staging are not overwritten.
+No authors were contacted and no scientific discovery or paper was published.
