@@ -447,7 +447,7 @@ L = [
  ("one externally calibrated bracket in RB1 is labelled as such", RB1o, "bracket NFW Duffy (EXTERNALLY CALIBRATED)"),
  # ---------------- version 1.1 ----------------
  # header
- ("version 1.3, 2026-11-13 (v1.2: DOI 10.5281/zenodo.24182757", P + "PAPER72_law_with_cold_dark_energy_counted_once_2026.zenodo.json", "\"doi\": \"10.5281/zenodo.24182757\""),
+ ("version 1.4, 2026-11-14 (v1.3: DOI 10.5281/zenodo.24212016; v1.2: DOI 10.5281/zenodo.24182757", P + "PAPER72_law_with_cold_dark_energy_counted_once_2026.zenodo.json", "\"doi\": \"10.5281/zenodo.24182757\""),
  ("v1.1: DOI 10.5281/zenodo.24125791)", P + "PAPER72_law_with_cold_dark_energy_counted_once_2026.zenodo.json", "\"doi\": \"10.5281/zenodo.24125791\""),
  # abstract
  ("states the theory in six rules (Section~7)", THY, "6. **The joint.** How a falling clock becomes a standing one is NOT derived."),
@@ -1360,10 +1360,10 @@ L += [
  # 9.2 the scorecard
  ("EQUALS THE LAW (rule 6 gives the law's own layout there) & 14 & 14", CJS, "Canonical: EQUALS THE LAW 14;"),
  ("EQUALS THE LAW (rule 6 gives the law's own layout there) & 14 & 14", CJS, "Alt: EQUALS THE LAW 14;"),
- ("NOT GRADED FOR THIS FORM & 8 & 8", CJS, "NOT GRADED FOR THIS FORM 8;"),
- ("NO POWER & 6 & 6", CJS, "NO POWER 6;"),
+ ("NOT GRADED FOR THIS FORM & 6 & 6", CJS, "NOT GRADED FOR THIS FORM 6;"),
+ ("NO POWER & 7 & 7", CJS, "NO POWER 7;"),
  ("FAILS & 5 & 5", CJS, "FAILS 5;"),
- ("PASSES TRIVIALLY (the form equals the reference there) & 4 & 4", CJS, "PASSES TRIVIALLY 4;"),
+ ("PASSES TRIVIALLY (the form equals the reference there) & 5 & 5", CJS, "PASSES TRIVIALLY 5;"),
  ("DEPENDS ON AN UNTESTED ASSUMPTION & 4 & 4", CJS, "DEPENDS ON AN UNTESTED ASSUMPTION 4;"),
  ("PASSES & 3 & 3", CJS, "PASSES 3;"),
  ("FAILS ON COVERAGE ONLY & 1 & 1", CJS, "FAILS ON COVERAGE ONLY 1. Total 45."),
@@ -1529,8 +1529,9 @@ L += [
  ("its blind re-grade reads NO VERDICT on every split case (a twin does not bite), with every split case under the gate and its control failing", FRB, "Every known answer passes, twin TW2 bites, and D + 2 SE < 4 in every case."),
  ("the blind re-grade of FRZ6 reads NO VERDICT as frozen and so does not confirm its hold", CJS, "FRZ6R reads NO VERDICT as frozen and so does not confirm FRZ6's label; its numbers are under the gate and its control fails."),
  ("CJ1 keeps row 22's word by the rule it already used in row 11 and marks it unconfirmed", CJS, "Row 22's word is kept by the rule already used in row 11 (a blind NO VERDICT that does not contradict the first lane leaves the word and marks it unconfirmed)."),
- ("whose own audit checks every quoted word against its committed file (116 of 116)", CJS, "The audit reads 116 of 116."),
- ("an assembly; grades nothing; NOT ADOPTED & audit 116 of 116", CJS, "The audit reads 116 of 116."),
+ ("whose own audit checks every quoted word against its committed file (116 of 116 at version 1.3; 122 of 122 at version 1.4)", CJS, "The audit read 116 of 116."),
+ ("whose own audit checks every quoted word against its committed file (116 of 116 at version 1.3; 122 of 122 at version 1.4)", CJS, "The audit reads 122 of 122."),
+ ("an assembly; grades nothing; NOT ADOPTED & audit 116 of 116 at version 1.3; 122 of 122 at version 1.4", CJS, "The audit read 116 of 116."),
  ("so this is a hit that the blind build neither confirmed as a label nor contradicted", CJF, "So the hold is a hit that the blind build neither confirmed as a label nor contradicted."),
  ("its own split tables, realisation, seeds, estimator and grader, with FRZ3R's FGPA functions reused unchanged", FRB, "My own code: the split function, the tables, the realisation (0.125-dex bins, per-mass Poisson, TSC deposit, lognormal), the seeds, the estimator and the grader."),
  ("its own split tables, realisation, seeds, estimator and grader, with FRZ3R's FGPA functions reused unchanged", FRB, "FGPA step: `tau_field`, `tune_A`, `p1d` and `dv_cell` from FRZ3R's `frz3r_core.py`, unchanged"),
@@ -1558,7 +1559,7 @@ L += [
  ("a firmer word needs a twin that bites, for example more seeds for the twin or a twin defined at full 12-bin scope, frozen in advance", FRB, "A firmer word needs a twin that bites, for example more seeds for the twin or a twin defined at full 12-bin scope, frozen in advance."),
  ("and even then a HOLDS here would be a hit, not a pass of the theory", FRB, "Even then a HOLDS here would be a hit, not a pass of the theory."),
  (r"NO VERDICT for every split case (both); $f=3$ FRAGILE (lambda\_P x 0.5); control FAILS", FRB, "**As frozen: NO VERDICT for every case on both footings.**"),
- ("a blind build of the forest split whose boundary-removed twin bites (FRZ6R's did not)", CJS, "a blind build whose boundary-removed twin bites (FRZ6R's did not)"),
+ ("a blind build of the forest split whose boundary-removed twin bites (FRZ6R's did not)", CJS, "a blind build whose boundary-removed twin bites (FRZ6R's did not"),
  ("expected the split to fail the forest at $f=3$ and $f=2$; it found values 50 to 10,000 times below the estimate", FRB, "f = 3 and f = 2 FAIL."),
  ("expected the split to fail the forest at $f=3$ and $f=2$; it found values 50 to 10,000 times below the estimate", FRB, "These are 50 to 10,000 times below the estimate."),
  ("they keep a little, and that is the whole of D", FRB, "They keep a little, and that is the whole of D."),
@@ -1572,6 +1573,171 @@ L += [
  ("are version 3 of FRZ6's Zenodo record", FZ3m, "\"version\": \"3.0\""),
  ("are version 3 of FRZ6's Zenodo record", FZ3m, "\"new_version_of\": \"10.5281/zenodo.24210556 (version 2.0); version 1.0 is 10.5281/zenodo.24208901\""),
  ("version 1, DOI 10.5281/zenodo.24208901 (2026-11-13 22:41 UTC), remains the pre-registration timestamp", FZ1, "\"created\": \"2026-11-13T22:41:22"),
+]
+# ---------------- version 1.4: FWN1, its blind check FWN1R, and WLJ1 ----------------
+D14 = "closure_2026_11_14/"
+FW1 = D13 + "FWN1_forest_flux_split_f_ceiling/RESULT.md"
+FW1R = D14 + "FWN1R_blind_split_f_ceiling/RESULT_BLIND.md"; FW1Rc = D14 + "FWN1R_blind_split_f_ceiling/FROZEN_CRITERIA.md"
+WLJ = D13 + "WLJ1_power_and_lensing_amplitude_with_split/RESULT.md"; WLJc = D13 + "WLJ1_power_and_lensing_amplitude_with_split/FROZEN_CRITERIA.md"
+WLJa1 = D13 + "WLJ1_power_and_lensing_amplitude_with_split/AMENDMENT_A1.md"; WLJa2 = D13 + "WLJ1_power_and_lensing_amplitude_with_split/AMENDMENT_A2.md"
+P72z = P + "PAPER72_law_with_cold_dark_energy_counted_once_2026.zenodo.json"; P72m = P + "PAPER72_supplement_manifest.json"
+T5 = r"$f=5$ & NO VERDICT; 8.09/9.45 (SE 2.41/2.79) & FOREST ROW FAILS AT FLUX LEVEL, FRAGILE; 8.83 (0.33)/10.90 (0.56)\\"
+T10 = r"$f=10$ & FOREST ROW FAILS AT FLUX LEVEL; 184.3/233.5 & FOREST ROW FAILS AT FLUX LEVEL; 194.5 (5.2)/288.0 (6.8)\\"
+TINF = r"no settled radius & FOREST ROW FAILS AT FLUX LEVEL; 200.5/251.1 & FOREST ROW FAILS AT FLUX LEVEL; 215.0 (5.2)/314.7 (7.3)\\"
+TC = r"unsplit control & 256.1/282.3 (FRZ6's parts; fails) & 323.0 (4.5)/395.8 (8.5) (fails)\\"
+ABS1 = "the candidate's split FAILS the forest row without a settled radius and at ten times the fold radius, in two independent builds, one of them blind"
+RERUN = "The lead re-ran FWN1's independent chain, grader and refit and FWN1R's grader from copies, and every output equals the committed one byte for byte; the boxes were not re-run"
+CEIL = "the gate is reached at $f$ 3.6/3.4 in FWN1, where D $-$ 2 SE reaches it at 5.2/5.0, and at 4.24/4.07 in FWN1R (range 4.17 to 4.39 and 3.99 to 4.25)"
+W24 = "row 24 reads ROW HOLDS WITH THE SPLIT on both footings at every $f$ and row 25 stays NO VERDICT/NO VERDICT"
+WP4 = r"CO2's absolute-fit $p$ rises from 0.00258/0.00212 for the adopted form, below the 3$\sigma$ line of 0.0027, to 0.00302/0.00287 at $f=2$, beside the reference's 0.00315/0.00316"
+WKL = r"($+2.16$/$+2.11$ for the reference, $+2.18$/$+2.23$ for the adopted form, $+2.20$/$+2.23$ for the split at $f=2$)"
+WS8 = r"At $f=2$ raw KiDS still prefers $\sigma_8$ 5.46/5.52 of its widths below the pinned value, against 5.41/5.41 for the pure reference and 5.62/5.78 for the adopted form"
+WC5 = "The raw-KiDS statistic falls from $+1.148$/$+2.206$ for the adopted form to $+0.219$/$+0.517$ at $f=2$, against lines of 4 and 9"
+MCEIL = "Each of those two lanes' interpolated ceiling uses its sibling's stored rows at $f=2$ and 3, FRZ6's for FWN1 and FRZ6R's for FWN1R, in a form fixed in its criteria before any number"
+MPAUSE = "FWN1's runner was paused for 71 minutes when the lead loaded the machine with several heavy lanes at once; its file records that no criterion changed"
+L += [
+ # the version line, the abstract and the paragraph on what changed
+ ("version 1.4, 2026-11-14 (v1.3: DOI 10.5281/zenodo.24212016", P72z, "\"version\": \"1.3\", \"doi\": \"10.5281/zenodo.24212016\""),
+ ("after version 1.3 was deposited (DOI 10.5281/zenodo.24212016)", P72z, "\"deposition_id\": 24212016"),
+ ("Version 1.3 (DOI 10.5281/zenodo.24212016) is unchanged in every sentence that is still true", P72z, "\"new_version_of\": 24182757"),
+ (ABS1, FW1, "| **Sinf: split with no settled radius (f = inf)** | **FOREST ROW FAILS AT FLUX LEVEL** | **FOREST ROW FAILS AT FLUX LEVEL** |"),
+ (ABS1, FW1, "| **S10: split at f = 10** | **FOREST ROW FAILS AT FLUX LEVEL** | **FOREST ROW FAILS AT FLUX LEVEL** |"),
+ (ABS1, FW1R, "| f = 10 | FOREST ROW FAILS AT FLUX LEVEL | FOREST ROW FAILS AT FLUX LEVEL |"),
+ (ABS1, FW1R, "| f = infinity (split, no settled radius) | FOREST ROW FAILS AT FLUX LEVEL | FOREST ROW FAILS AT FLUX LEVEL |"),
+ ("at five times the fold radius the two builds agree in size and differ in word", FW1R, "**f = 5: the same size, different words.**"),
+ ("between 3 and 5 by the points that were run", FW1R, "So the ceiling lies between 3 and 5 on both footings."),
+ ("the matter-power rows hold with the adopted form's own word, equal to the reference at every gate", WLJ, "| **Row 24** | **HOLDS / HOLDS** | **HOLDS / HOLDS** | **HOLDS / HOLDS** | HOLDS / HOLDS | no |"),
+ ("the weak-lensing amplitude returns no verdict and the tension is not relieved", WLJ, "| **Row 25** | **NO VERDICT / NO VERDICT** | **NO VERDICT / NO VERDICT** | **NO VERDICT / NO VERDICT** | FAILS / FAILS | yes, not a hold |"),
+ ("No hit is added.", WLJ, "Nothing here is a hit for the split."),
+ ("No hit is added.", FW1, "No case HOLDS, so no hit is waiting on a blind re-grade here."),
+ ("FWN1R, a blind check of FWN1", FW1Rc, "FWN1R frozen criteria: blind flux-level ceiling on f for the crossing-speed split, and the split with no settled radius"),
+ # dated additions in Sections 4 to 6 and 9
+ ("version 1.4: without a settled radius and at $f=10$ the split FAILS at flux level in two builds, one blind, so the candidate needs its settled radius (Section~10.1)", CJS, "fails at f 10 and with no settled radius in two builds (FWN1: 184 / 234 and 200 / 251; blind FWN1R: 194 / 288 and 215 / 315; gate 4), neither fail FRAGILE."),
+ ("Version 1.4: the upper edge of $f$ comes from the forest at flux level and lies between 3 and 5 (Section~10.1).", CJS, "without the interpolation the upper edge lies between the run points 3 and 5, and f 4 was run in neither build."),
+ ("With the split the amplitude gates read NO VERDICT on both footings and the tension is not relieved: raw KiDS still prefers an amplitude 5.46/5.52 of its widths below the pinned value.", WLJ, "| KiDS best sigma8, pinned minus best (widths), can / alt | 5.41 / 5.41 | 5.62 / 5.78 | 5.46 / 5.52 | 5.46 / 5.52 | 5.45 / 5.51 | reported |"),
+ ("With the split the amplitude gates read NO VERDICT on both footings and the tension is not relieved: raw KiDS still prefers an amplitude 5.46/5.52 of its widths below the pinned value.", WLJ, "row 25 is **NO VERDICT** on both footings at every f."),
+ ("the forest at flux level at $f=4$, run in neither build, and at $f=5$, where the two builds agree in size and differ in word, on a grid that resolves the gas smoothing scale", CJS, "the forest at flux level at f 4 (run in neither build) and at f 5, where FWN1 and the blind FWN1R agree in size and differ in word, on a grid that resolves the gas smoothing scale"),
+ ("the shear row on reference runs without realisation noise, a refit with neutrino mass, and a gate that can see the split's layout", CJS, "the shear row on reference runs without realisation noise, a refit with neutrino mass, and a gate that can see the split's layout"),
+ ("version 1.4: at flux level the upper edge lies between 3 and 5 (Section~10.1)", CJF, "The window, ungraded, is 1.25 (from a gate that cannot see f) to between 3 and 5."),
+ ("Version 1.4: FWN1 and the blind FWN1R find that the split FAILS at flux level at $f=10$ and with no settled radius, so the forest does bound $f$ from above, between 3 and 5 (Section~10.1).", CJF, "the fails at f = 10 and with no settled radius are confirmed on both footings (194 / 288 and 215 / 315), neither FRAGILE."),
+ ("At version 1.3 rows 24 and 25 were NOT GRADED FOR THIS FORM; row 24 is now placed PASSES TRIVIALLY and row 25 NO POWER.", WLJc, "NOT GRADED FOR THIS FORM, \"Not computed with the v* split\"."),
+ ("At version 1.3 rows 24 and 25 were NOT GRADED FOR THIS FORM; row 24 is now placed PASSES TRIVIALLY and row 25 NO POWER.", CJS, "at f 1.25, 2 and 3 | no | PASSES TRIVIALLY | no |"),
+ ("At version 1.3 rows 24 and 25 were NOT GRADED FOR THIS FORM; row 24 is now placed PASSES TRIVIALLY and row 25 NO POWER.", CJS, "| no (the gates cannot see the split) | NO POWER | yes (LWB1R, for the adopted form only) |"),
+ ("Version 1.4: the matter-power redistribution rows join the trivial passes (WLJ1, Section~10.2).", CJS, "The same word as the adopted form, so not a hit: every gate WLJ1 ran reads EQUALS THE REFERENCE THERE."),
+ ("Version 1.4: both have landed, with a blind check of FWN1, and are in Section~10.", FW1R, "FWN1's fails are confirmed by a blind build, and neither build's fail is FRAGILE."),
+ # Section 10, opening
+ ("its audit reads 122 of 122", CJS, "The audit reads 122 of 122."),
+ ("CJ1's scorecard was updated for them in rows 22, 24, 25 and 44", CJS, "Updated a sixth time 2026-11-14 by the lead after FWN1 and WLJ1 landed: rows 22, 24, 25 and 44, the counts and the lists."),
+ ("CJ1's scorecard was updated for them in rows 22, 24, 25 and 44", CJS, "Updated a seventh time 2026-11-14 by the lead after the blind FWN1R landed: rows 22 and 44 and the undecided list."),
+ # 10.1 the forest's ceiling
+ ("in FRZ6's build with 12 seeds at $z=2.2$", FW1, "z 2.2 uses the mean of 12 seeds."),
+ ("in FRZ6R's independent build with 4 seeds in every bin", FW1R, "(12 bins, 4 seeds in every bin, ratio of seed sums, delete-one jackknife over the seed index)"),
+ ("Neither lane has an amendment", FW1, "There is no amendment."),
+ ("Neither lane has an amendment", FW1R, "No amendment."),
+ ("in both, every known answer passes and both twins bite", FW1, "Every known answer passes on both footings, and both twins bite in every case."),
+ ("in both, every known answer passes and both twins bite", FW1R, "Every known answer passes, both twins bite, and no case has a known-answer or twin failure."),
+ (T5, FW1, "| S5: split at f = 5 | NO VERDICT (unresolved at 12 seeds: D 8.09, SE 2.41) | NO VERDICT (unresolved at 12 seeds: D 9.45, SE 2.79) |"),
+ (T5, FW1R, "| f = 5 | FOREST ROW FAILS AT FLUX LEVEL, FRAGILE (lambda_P x 2; gamma 1.2) | FOREST ROW FAILS AT FLUX LEVEL, FRAGILE (lambda_P x 2) |"),
+ (T5, FW1R, "| f = 5 | 8.83 | 0.33 | 0.039 (0.88) PASS | 10.90 | 0.56 |"),
+ (T10, FW1, "| S10 | **184.3 / 233.5** |"),
+ (T10, FW1R, "| f = 10 | FOREST ROW FAILS AT FLUX LEVEL | FOREST ROW FAILS AT FLUX LEVEL |"),
+ (T10, FW1R, "| f = 10 | 194.5 | 5.2 | 0.37 (19.4) PASS | 288.0 | 6.8 |"),
+ (TINF, FW1, "| Sinf | **200.5 / 251.1** |"),
+ (TINF, FW1R, "| f = infinity | 215.0 | 5.2 | 0.36 (21.5) PASS | 314.7 | 7.3 |"),
+ (TC, FW1, "| control C (unsplit, f = inf; FRZ6's parts) | 256.1 / 282.3 | 46.3 / 40.5 | | 163.5 / 201.3 (still fails) |"),
+ (TC, FW1R, "| control | 323.0 | 4.5 | 0.92 (32.3) | 395.8 | 8.5 |"),
+ ("FWN1's lowest values are 10.9/28.1 at $f=10$ and 11.3/29.4 with no settled radius, both at a smoothing scale of 100 proper kpc", FW1, "The lowest values are 10.9 / 28.1 for S10 and 11.3 / 29.4 for Sinf, both at lambda_P = 100 proper kpc."),
+ ("FRZ5's template refit lowers the two cases' D to 13.1 to 13.7, still above 4", FW1, "It lowers S10 and Sinf to 13.1 to 13.7, still above 4."),
+ ("FWN1R's lowest are 30.8/58.5 and 33.2/62.6, at twice the smoothing scale", FW1R, "| lambda_P x 2 (158 ckpc) | **0.82 / 1.49** | 30.8 / 58.5 | 33.2 / 62.6 |"),
+ ("its $f=10$ runs from 129.9 to 43.7 canonical and from 205.6 to 79.6 alt, failing throughout", FW1R, "| f = 10 | 129.9 / 43.7 | FAILS / FAILS | 205.6 / 79.6 | FAILS / FAILS |"),
+ ("Neither fail is FRAGILE, and FWN1's two fails are confirmed by a blind build", FW1R, "FWN1's fails are confirmed by a blind build, and neither build's fail is FRAGILE."),
+ ("Neither fail is FRAGILE, and FWN1's two fails are confirmed by a blind build", FW1, "No frozen bracket brings S10 or Sinf under 4, so neither FAILS label is FRAGILE."),
+ (r"removes 22\,\%/11\,\% of D in FWN1", FW1, "removes only 22 % / 11 % of D."),
+ (r"sits at 67\,\%/80\,\% of the unsplit control", FW1R, "The split with no settled radius sits at 67 % (canonical) and 80 % (alt) of the unsplit control."),
+ (r"The two D values agree to about 10 to 15\,\%", FW1R, "The two D values agree to about 10 to 15 %."),
+ ("FWN1's frozen error leaves D $-$ 2 SE at 3.26/3.87, under the gate, hence NO VERDICT", FW1, "| S5 | 8.09 / 9.45 | 2.41 / 2.79 | 12.9 / 15.0 | **3.26 / 3.87** |"),
+ (r"twice the smoothing scale gives 0.82/1.49 and $\gamma=1.2$ gives 2.63 on canonical", FW1R, "| gamma 1.2 | **2.63** / 4.02 |"),
+ (r"twice the smoothing scale gives 0.82/1.49 and $\gamma=1.2$ gives 2.63 on canonical", FW1R, "| lambda_P x 2 (158 ckpc) | **0.82 / 1.49** |"),
+ ("$f=5$ runs from 6.39 to 1.42 canonical and from 7.49 to 2.08 alt, failing at one end and holding at the other", FW1R, "| f = 5 | 6.39 / 1.42 | FAILS / HOLDS | 7.49 / 2.08 | FAILS / HOLDS |"),
+ ("not a confirmed fail", FW1R, "f = 5 is therefore not a confirmed fail."),
+ (CEIL, FW1, "| canonical | 0.50 | 2.04 | 12.9 | 247 | 269 | **3.6** (between 3 and 5) | 4.2 | 5.2 |"),
+ (CEIL, FW1, "| alt | 0.65 | 2.50 | 15.0 | 302 | 325 | **3.4** (between 3 and 5) | 4.0 | 5.0 |"),
+ (CEIL, FW1R, "D + 2 SE reaches 4 at f = 4.24 (canonical) and f = 4.07 (alt)."),
+ (CEIL, FW1R, "is 4.17 to 4.39 (canonical) and 3.99 to 4.25 (alt)."),
+ ("The interpolation form is an assumption, and $f=4$ was run in neither build", FW1, "f = 4 was not computed"),
+ ("The interpolation form is an assumption, and $f=4$ was run in neither build", FW1R, "These ranges hold only if ln(D + 2 SE) is linear in ln f between f = 3 and f = 5."),
+ ("in FWN1R, D + 2 SE is 0.66/0.78 at $f=3$ and 9.5/12.0 at $f=5$", FW1R, "f = 3 is below 4 (0.66 / 0.78) and f = 5 is above 4 (9.5 / 12.0)."),
+ ("FWN1R's cell is 77 comoving kpc and the fiducial smoothing scale is 79, about one cell", FW1R, "The cell is 52.1 kpc/h = 77 comoving kpc."),
+ ("FWN1R's cell is 77 comoving kpc and the fiducial smoothing scale is 79, about one cell", FW1R, "The primary 79 ckpc is about one cell, so it is only marginally resolved."),
+ ("half of it is not resolved at all", FW1R, "lambda_P x 0.5 is below one cell and is not resolved."),
+ ("The fail at $f=10$ and above is robust to every bracket", FW1R, "the fail at f = 10 and above is robust to every bracket."),
+ ("FWN1R froze its criteria before the lead committed FWN1's words in commit subjects", FW1R, "after this lane's criteria (03:51) and before its scripts."),
+ (r"each of its \texttt{git log} calls showed only its own commit", FW1R, "each `git log -1` straight after one of its own commits, and each showed only that commit."),
+ (RERUN, FW1, "The two chain JSON files, the eight grade and twin outputs and the four refit outputs equal byte for byte"),
+ (RERUN, FW1R, "`fwn1r_grade.json`, `fwn1r_grade.out` and both twin files equal byte for byte. The boxes were not re-run."),
+ ("The candidate needs its settled radius: the crossing speed alone does not pass the forest", CJF, "So rule 6 needs its settled radius: the crossing speed alone does not pass the forest."),
+ ("The ungraded window for $f$ is now 1.25, from a lensing gate that cannot see $f$, to between 3 and 5", CJF, "The window, ungraded, is 1.25 (from a gate that cannot see f) to between 3 and 5."),
+ ("Left out, as in FRZ6 and FRZ6R: hydrodynamics, shock heating, self-shielding", FW1R, "- hydrodynamics, shock heating, self-shielding;"),
+ # 10.2 the matter-power and weak-lensing rows
+ (r"row 24 is NO VERDICT on canonical at every $f$, because a known answer asked that the reference give a ratio of exactly 1 and it gave $1+2.2\times10^{-16}$", WLJ, "row 24 is **NO VERDICT** on canonical at every f (KA-R in C4 read 1 + 2.2e-16 where"),
+ ("and ROW HOLDS WITH THE SPLIT on alt; row 25 is NO VERDICT on both footings at every $f$", WLJ, "and **ROW HOLDS WITH THE SPLIT** on alt; row 25 is **NO VERDICT** on both footings at every f."),
+ (r"A1, a rounding tolerance of $10^{-12}$ for that known answer", WLJa1, "KA-R in C4 reads |r_eff - 1| <= 1e-12"),
+ (r"A1, a rounding tolerance of $10^{-12}$ for that known answer", WLJa1, "post hoc; committed alone, before RESULT.md"),
+ ("A2, which DES rows gate a known answer, written before the alt polished DES rows and before any grading", WLJa2, "post hoc; committed alone, before the alt polished DES rows and before any grading"),
+ (W24, WLJ, "| **Row 24** | **HOLDS / HOLDS** | **HOLDS / HOLDS** | **HOLDS / HOLDS** | HOLDS / HOLDS | no |"),
+ (W24, WLJ, "| **Row 25** | **NO VERDICT / NO VERDICT** | **NO VERDICT / NO VERDICT** | **NO VERDICT / NO VERDICT** | FAILS / FAILS | yes, not a hold |"),
+ ("each of its gates reads EQUALS THE REFERENCE THERE", WLJ, "EQ. REF = EQUALS THE REFERENCE THERE"),
+ ("no HOLDS here differs from the adopted form's word", WLJ, "**No HOLDS here differs from the adopted form's word, so there is no hit needing a blind re-grade.**"),
+ ("at $z=0$, 81/71 of the 321 haloes on the grid take the reference", WLJ, "| 0 | can | 668.5 km/s, 6.9e13 | 81 |"),
+ ("at $z=0$, 81/71 of the 321 haloes on the grid take the reference", WLJ, "| 0 | alt | 807.9 km/s, 1.2e14 | 71 |"),
+ ("at $z=0$, 81/71 of the 321 haloes on the grid take the reference", WLJ, "haloes on the reference (of 321)"),
+ (r"the split keeps 15 to 27\,\% (canonical) and 22 to 33\,\% (alt) of the adopted form's excess", WLJ, "At z = 0 the split keeps 15 to 27 % (canonical) and 22 to 33 % (alt) of the adopted form's excess at k 1 to 3"),
+ (r"from $z=1.5$ up it is within 0.06\,\% of the reference at $k\le1$", WLJ, "From z 1.5 up the split is within 0.06 % of the reference at k <= 1"),
+ (WC5, WLJ, "| C5 d_cold (KiDS, 104 points), can | 0 | +1.148 | +0.234 | +0.219 | +0.184 | 4 / 9 |"),
+ (WC5, WLJ, "| C5 d_cold, alt | 0 | +2.206 | +0.542 | +0.517 | +0.457 | 4 / 9 |"),
+ ("The gates cannot tell the split from no redistribution at all", WLJ, "the gates cannot tell the split from no redistribution at all"),
+ (WS8, WLJ, "| KiDS best sigma8, pinned minus best (widths), can / alt | 5.41 / 5.41 | 5.62 / 5.78 | 5.46 / 5.52 | 5.46 / 5.52 | 5.45 / 5.51 | reported |"),
+ ("Under KL1's gate DES Y3 stays above two widths in every case, the pure reference included", WLJ, "KL1's DES reading is GAP STAYS for every case, the pure reference included (+2.16 / +2.11)"),
+ (WKL, WLJ, "| KL1 g: Legacy / DES polished, can | +1.48 / +2.16 | +1.71 / +2.18 | +1.54 / +2.19 | +1.53 / +2.20 | +1.53 / +2.21 | +-2 |"),
+ (WKL, WLJ, "| KL1 g: Legacy / DES polished, alt | +1.50 / +2.11 | +1.88 / +2.23 | +1.64 / +2.08 | +1.64 / +2.23 | +1.63 / +2.20 | +-2 |"),
+ ("the layout moves it by at most 0.04 widths", WLJ, "the layout moves it by at most 0.04 widths in either direction"),
+ (WP4, WLJ, "| P4 chi^2 (p), can | 156.18 (0.00315) | 157.89 (0.00258) | 156.55 (0.00301) | 156.53 (0.00302) | 156.47 (0.00304) | p 0.0027 / 0.05 |"),
+ (WP4, WLJ, "| P4 chi^2 (p), alt | 156.16 (0.00316) | 159.35 (0.00212) | 157.00 (0.00286) | 156.96 (0.00287) | 156.87 (0.00291) | p 0.0027 / 0.05 |"),
+ ("TENSION in place of EXCLUDED", WLJ, "| G-P4 CO2 P4 (raw KiDS at the pinned sigma8) | NO VERDICT [TENSION] / same | NO VERDICT [TENSION] / same | NO VERDICT [TENSION] / same | FAILS [EXCLUDED AT 3 SIGMA] | yes, not a hold |"),
+ ("a removal of a small layout penalty, not a relief of the amplitude tension", WLJ, "that is a removal of a small layout penalty, not a relief of the amplitude tension"),
+ ("the twin that doubles the layout change does not bite on KL1's gate", WLJ, "It **does not bite on KL1**"),
+ ("on LWB1 the split equals the reference to 0.002 widths, so that gate cannot see the layout at all", WLJ, "On LWB1 the split equals the reference to 0.002 widths, so the gate is reported as unable to see the layout at all."),
+ ("On alt, BX1's gate is NO VERDICT for every case, the adopted form included, through a known answer that misses by 0.023 against a tolerance of 0.01", WLJ, "(0.023 > 0.01: **FAIL, so G-BX1 alt is NO VERDICT for every case**, adopted form included)"),
+ ("CJ1 places row 24 as PASSES TRIVIALLY and row 25 as NO POWER; both are the lead's placements", CJS, "Row 24's and row 25's words for the completed form are the lead's placements"),
+ ("The lead re-ran the halo-model stage and the grader from a copy, and the outputs equal the committed ones byte for byte", WLJ, "all six outputs equal byte for byte."),
+ ("The lead re-ran the halo-model stage and the grader from a copy, and the outputs equal the committed ones byte for byte", WLJ, "both JSON files equal byte for byte"),
+ ("the C4, shear, KL1, BX1 and LWB stages, hours of single-thread scans, were not re-run", WLJ, "Not re-run by the lead: the C4, shear, KL1 / BX1 and LWB stages (hours of single-thread scans)."),
+ ("KL1, BX1, LWB1 and LWB1R were run with the split held in $z$ only and bracketed at $f=2$ only", WLJ, "KL1, BX1, LWB1, LWB1R were run held in z only; their brackets at f 2 only."),
+ ("the split was transferred onto KL1's and BX1's gas model as a ratio, not rebuilt", WLJ, "the split was transferred onto it as a ratio (and, as a bracket, additively), not rebuilt with RB1's gas."),
+ # 10.3 the lanes table and 10.4
+ (r"FWN1 & the split at $f=5$, 10 and with no settled radius, at flux level & $f=5$ NO VERDICT; $f=10$ and no settled radius FOREST ROW FAILS AT FLUX LEVEL (both) & no amendment; FWN1R, blind, confirms the two fails", FW1, "| **S10: split at f = 10** | **FOREST ROW FAILS AT FLUX LEVEL** | **FOREST ROW FAILS AT FLUX LEVEL** |"),
+ (r"FWN1R & FWN1, blind & $f=5$ FOREST ROW FAILS AT FLUX LEVEL, FRAGILE; $f=10$ and no settled radius FOREST ROW FAILS AT FLUX LEVEL (both) & no amendment", FW1R, "| f = 5 | FOREST ROW FAILS AT FLUX LEVEL, FRAGILE (lambda_P x 2; gamma 1.2) | FOREST ROW FAILS AT FLUX LEVEL, FRAGILE (lambda_P x 2) |"),
+ (r"WLJ1 & rows 24 and 25 with the split & row 24 NO VERDICT / ROW HOLDS WITH THE SPLIT; row 25 NO VERDICT (both)", WLJ, "row 24 is **NO VERDICT** on canonical at every f"),
+ ("A1, A2 post hoc: row 24 ROW HOLDS WITH THE SPLIT (both), equal to the reference; not a hit", WLJ, "| CO1's row rule (C1-C4 PASS, C5 CONSISTENT) | EQ. REF (HOLDS) / same | EQ. REF (HOLDS) / same | EQ. REF (HOLDS) / same | HOLDS | no |"),
+ (r"CJ1, updated & the scorecard after these lanes & an assembly; grades nothing; NOT ADOPTED & audit 122 of 122", CJS, "The audit reads 122 of 122."),
+ ("in two independent builds, and the edge lies between 3 and 5", FW1, "Read it as: the upper edge for f lies between 3 and 5, not as a measured value."),
+ ("with the split the tension is the reference's own", CJS, "the tension is the reference's own"),
+ # the estimates and the method paragraph
+ ("FWN1's hand estimate put D at about 20 to 120 with no settled radius and at 10 to 90 at $f=10$; both came out higher (184 to 251)", FW1, "I guessed D about 20 to 120 for Sinf and 10 to 90 for S10. Both came out higher (184 to 251)."),
+ ("the words matched its most likely guesses", FW1, "The FAILS words matched the most likely guesses (75 % and 65 %)."),
+ ("FWN1R's hand estimate, written blind, put D at 15 to 80 at $f=10$ and at 30 to 150 with no settled radius", FW1R, "D(5) 3 to 20, D(10) 15 to 80, D(inf) 30 to 150; ceiling about 4 (3.5 to 6); twins bite."),
+ ("they came out 2 to 3 times higher, while $f=5$ and the ceiling fell inside its ranges", FW1R, "f = 5 and the ceiling were inside the estimate. f = 10 and infinity came out 2 to 3 times higher than estimated"),
+ ("WLJ1's A1, on which row 24's word on canonical rests", WLJa1, "the row-24 word are NO VERDICT on canonical as frozen."),
+ ("its A2, on which the alt readings of KL1's and BX1's gates rest", WLJa2, "**As frozen, G-KL1 and G-BX1 are NO VERDICT on alt for every case**"),
+ (MCEIL, FW1, "Q(f) = D + 2 SE at f = 2 and 3 (FRZ6's stored S rows), 5 and 10 (this lane), and inf."),
+ (MCEIL, FW1, "The form was fixed in the criteria before any number."),
+ (MCEIL, FW1Rc, "Points: f = 2 and 3 (FRZ6R's D and SE, which KA-3 shows are the same build), 5, 10 and infinity"),
+ ("FWN1's 64 part files and FWN1R's part files are in the supplement", FW1, "Scripts, 64 part files (47 MB, each under 2 MB), graded outputs, refit and logs"),
+ ("FWN1's 64 part files and FWN1R's part files are in the supplement", P72m, "closure_2026_11_14/FWN1R_blind_split_f_ceiling/parts/prim_z2.2_s0_alt.json"),
+ ("FWN1's 64 part files and FWN1R's part files are in the supplement", P72m, "closure_2026_11_13/FWN1_forest_flux_split_f_ceiling/parts/"),
+ (MPAUSE, FW1, "including the 71-minute pause"),
+ (MPAUSE, FW1, "The lead had loaded the machine with several heavy lanes at once."),
+ (MPAUSE, FW1, "**Runner stop and pause (operational; no criterion changed)**"),
 ]
 # (fragment in the TeX, JSON file, key path, format, the number as the TeX prints it)
 J = [
@@ -1752,7 +1918,7 @@ rules = [
  ("own wrong estimates are listed", "\\section{Our own estimates}" in TEX),
  ("the failed known answer and the twin that did not bite are disclosed", "One of 13 known answers failed" in TEX and "One mutation twin did not bite" in TEX),
  ("footings never pooled", "never pooled" in TEX),
- ("version line", "Working note (PAPER72), version 1.3" in TEX),
+ ("version line", "Working note (PAPER72), version 1.4" in TEX),
 ]
 if not MUT:
     for name, good in rules:

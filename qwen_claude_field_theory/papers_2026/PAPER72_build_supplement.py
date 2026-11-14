@@ -16,6 +16,8 @@ Version 1.3 adds every lane folded into its Section 9 (closure_2026_11_12/ and c
 receipts) and route D's note, the source of CJ1's lemma. FRZ6's part files (parts/, 44 files, 49 MB) are not copied: they are in the
 Zenodo record DOI 10.5281/zenodo.24210556 (FRZ6_parts.zip); the manifest lists them under excluded_see_doi. Revision 2 adds FRZ6R, the
 blind re-grade of FRZ6, with its part files (5.8 MB).
+Version 1.4 adds the three lanes folded into its Section 10: FWN1 and WLJ1 (closure_2026_11_13/) and FWN1R (closure_2026_11_14/), each
+with its part files (FWN1's 64 files, 47 MB; FWN1R's 192 files, 5.7 MB).
 The shared checkout has diverged from origin (PD1 and PD2 are committed on origin only), so each lane path is taken from whichever
 of HEAD and origin/main last committed to it; the manifest records the ref and commit for each. Untracked files are not included
 and are listed (unless the same path is committed on the chosen ref); a tracked file modified in the working tree stops the build. Deterministic for given commits (fixed entry dates).
@@ -239,6 +241,9 @@ PATHS = [
  "closure_2026_11_13/RRL1_halo_slope_from_rr_lyrae",
  "closure_2026_11_13/NUF1_neutrino_floor_geometry",
  "closure_2026_11_13/PRJ1_candidate_predictions_sealed",
+ "closure_2026_11_13/FWN1_forest_flux_split_f_ceiling",
+ "closure_2026_11_13/WLJ1_power_and_lensing_amplitude_with_split",
+ "closure_2026_11_14/FWN1R_blind_split_f_ceiling",
  "fable52_push/SHAPE_search/route_D_dark_energy_column.md",
 ]
 # version 1.3: committed files left out of the zip, each with the public record that holds them
