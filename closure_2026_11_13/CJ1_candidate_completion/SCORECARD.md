@@ -1,5 +1,11 @@
 # CJ1 SCORECARD: every tested row against the completed form
 
+**Correction 2026-11-14:** this table preserves historical lane labels. The original FZS1 junction rescales the inner
+cold profile, so membership below the crossing speed alone does not establish the inherited "EQUALS THE LAW" entries.
+The mass-budget implication in `COMPLETED_FORM.md` has been corrected; the speed intersection does not derive the
+switch. XJ1 tests a different, unscaled inner junction. Its results cannot be substituted into this table without
+regrading the affected rows. See `codex_mass_budget_2026_11_14/` for the independent enclosed-mass and closure checks.
+
 2026-11-13. The completed form is form B (PAPER72 v1.2, rules 1 to 5) with rule 6 filled by the crossing-speed joint
 (`COMPLETED_FORM.md`). It is NOT ADOPTED, and a completed statement is not a confirmed one. This file grades nothing
 new: each row quotes its lanes' committed words, frozen word first and post hoc words marked, and then says what that
@@ -40,7 +46,13 @@ Updated an eighth time 2026-11-14 by the lead after the blind RRL1R landed: row 
 word for the completed form and no count changes. The audit read 123 of 123.
 
 Updated a ninth time 2026-11-14 by the lead after FWN2 landed (f 4 at flux level in both forest builds, not blind): rows
-22 and 44 and the undecided list. No word for the completed form and no count changes. The audit reads 128 of 128.
+22 and 44 and the undecided list. No word for the completed form and no count changes. The audit read 128 of 128.
+
+Updated a tenth time 2026-11-14 by the lead after the blind RB1R and RB2R and the look-up GAS1 landed. Row 15 is
+re-sourced to form B's own numbers (RB1, the blind RB1R, XCV1) and its word changes from FAILS to DEPENDS ON AN UNTESTED
+ASSUMPTION, on the owner's decision of 2026-11-14: the row had quoted a reading that is not form B. Row 36's blind column
+changes to yes. The counts move by one (FAILS 4, DEPENDS ON AN UNTESTED ASSUMPTION 5) and the lists follow. The audit
+reads 135 of 135.
 
 Words for the completed form (fixed list): PASSES / FAILS / FAILS ON COVERAGE ONLY / PASSES TRIVIALLY (the form equals
 the reference there) / EQUALS THE LAW (unchanged by rule 6: the form gives the law's own layout there, so the row's
@@ -67,7 +79,7 @@ verdict on the law carries over) / NO POWER / DEPENDS ON AN UNTESTED ASSUMPTION 
 | 13 | KiDS host-free lenses | ONE1 | "KiDS host-free: PASSES / PASSES" | fragile | NOT GRADED FOR THIS FORM | no | At PD1's share; does not separate form B from the law. |
 | **Clusters and groups** | | | | | | | |
 | 14 | X-COP amount, one-sided ceiling | RB1, XCV1, JNT2, JNT2R | RB1 "NOT FALSIFIED (ONE-SIDED)"; XCV1 "NO VERDICT" (post hoc AT THE CEILING); JNT2 "TRIVIAL (all 7 above)" | yes, one-sided | PASSES TRIVIALLY | yes (JNT2R, TRIVIAL) | All 7 above v*; the R500 bracket fails (1.057) for the reference and the joint alike. |
-| 15 | X-COP amount, two-sided | PD1, RB1 | PD1 "FAIL +0.16"; RB1 "the two-sided amount gate stays FAIL as PD1 graded it" | yes | FAILS | no | Rule 6 does not touch it: X-COP keeps form B's reference layout. |
+| 15 | X-COP amount, two-sided | RB1, RB1R, XCV1, PD1 | RB1, retained fraction at the last radius "1.095 [0.885, 1.259]" (its ceiling line and its floor line both hold) and at R500, reported, "above 1 beyond its errors"; the blind RB1R "AMOUNT CONSISTENT ON BOTH SIDES" on both footings; XCV1, post hoc, "AT THE CEILING"; PD1 with the full share inside "X-COP PASSES on both footings (+0.019 / +0.010"; PD1 "FAIL +0.16" is its reading with half the share kept out of the core, which is not form B, and RB1's "the two-sided amount gate stays FAIL as PD1 graded it" names the groups and the Bullet subcluster | fragile | DEPENDS ON AN UNTESTED ASSUMPTION | yes (RB1R: the same numbers to three decimals) | Re-sourced 2026-11-14 on the owner's decision. Rule 6 does not touch it: X-COP keeps form B's reference layout, with the whole share inside the cluster. A retained fraction of 1 means exactly 5.41 times the baryons in cold dark energy; above 1 means too little cold mass. The graded class reads 1.095 [0.885, 1.259] in both builds: inside RB1's two frozen lines (ceiling 1, floor 0.85) and sitting at the ceiling. It is over the ceiling at R500 (1.057 [1.046, 1.072]), with two of the four other mass fits in the files, and with XCV1's caustic masses (1.37 [0.74, 2.62] on five clusters); a hydrostatic bias of 0.1 gives 0.966. The untested assumption is the hydrostatic mass to about 10 per cent, and the aperture. The risk is on the other side from the old quote: too little cold mass, not too much. Both builds share the public profiles and the hydrostatic assumption; seven clusters. |
 | 16 | X-COP radial shape | RB1, SRJ1, JNT2, JNT2R | RB1 "NO VERDICT under the frozen KA-2" (post hoc A1: CONSISTENT); SRJ1 "JOINT FAILS ON CLUSTERS, FRAGILE (R500 aperture)" (unsplit, f 1) | yes | PASSES TRIVIALLY | yes (JNT2R, TRIVIAL) | Passes only as the reference does, under RB1's post hoc A1. With 2 v*, 6 / 7 clusters take the law and the shape fails. |
 | 17 | Groups, f_ret at R500 | RB1, JNT2, JNT2R | JNT2 "law in 19 / 20"; JNT2R "groups q at R500 (NO POWER)" | no | NO POWER | yes (JNT2R) | q 0.651 / 0.654; passes under the reference, the law and every f. |
 | 18 | Groups to turnaround | GO1, GO2 | GO2 "NOT EVALUABLE [r_ta NOT REACHED]"; GO1 NOT EVALUABLE | no | NO POWER | no | The stack does not reach turnaround. |
@@ -92,7 +104,7 @@ verdict on the law carries over) / NO POWER / DEPENDS ON AN UNTESTED ASSUMPTION 
 | 34 | LMC reflex | RFX1 | "REFLEX WITHIN THE BOUND, FRAGILE" | fragile | EQUALS THE LAW | no | A one-sided bound. |
 | **Dwarfs and wide binaries** | | | | | | | |
 | 35 | MW ultra-faints, M31 bright dwarfs | RB2, DG1, DSB1, CRACK-1 | RB2 "B FAILS HIGH / B FAILS HIGH"; DG1 "DOES NOT SURVIVE" (data-side regrade); DSB1 amended "lane NO POWER"; CRACK-1 "FAILS THE PAIR" | fragile | FAILS | yes (DSB1, blind; amended NO POWER) | Rule 6 does not touch them (far below v*, inside their fold): form B's fail stays. Medians stay high. |
-| 36 | DF2, DF4, NGC 147, IC 1613 | RB2, NH2 | RB2 "B FAILS ON THE HOSTED ROWS"; NH2 "Label as frozen: NO VERDICT / NO VERDICT" (post hoc DF4 "TIDES CANNOT REACH") | yes | FAILS | no | Rule 6 does not touch them: form B's fail stays. |
+| 36 | DF2, DF4, NGC 147, IC 1613 | RB2, RB2R, NH2 | RB2 "B FAILS ON THE HOSTED ROWS"; the blind RB2R "LOW ROWS COUNT AGAINST B" on both footings; NH2 "Label as frozen: NO VERDICT / NO VERDICT" (post hoc DF4 "TIDES CANNOT REACH") | yes | FAILS | yes (RB2R: the same LOW rows and the same words; its brief named three of the objects, so it was not blind to which rows to expect) | Rule 6 does not touch them: form B's fail stays. The blind RB2R finds the same four rows below form B's law by more than twice their uncertainty on both footings, with tides unable to reach any of them; DF2 and DF4 agree with RB2 to three figures (0.743 / 0.781 and 0.943 / 0.981 dex below; NGC 1052 would need about 17 and about 100 times its law mass). Both builds share the estimator, a mass-to-light ratio of 2 and no gas term. |
 | 37 | Coma UDGs, MW classical dwarfs | RB2, DSB1 | "B CONSISTENT / B CONSISTENT" | no (DSB1) | PASSES | yes (DSB1: NO POWER) | Inside the interval only with the systematics budget; rule 6 does not touch them. |
 | 38 | Wide binaries (Gaia DR4, due 2026-12-02) | CW1, DR4MAP | DR4MAP "Governing for the adopted theory (wide binaries only)" | no (data not out) | EQUALS THE LAW | no | Can kill the adopted theory, cannot confirm it. |
 | **Strong lenses** | | | | | | | |
@@ -107,9 +119,9 @@ verdict on the law carries over) / NO POWER / DEPENDS ON AN UNTESTED ASSUMPTION 
 
 ## Counts
 
-Canonical: EQUALS THE LAW 14; NOT GRADED FOR THIS FORM 6; NO POWER 7; FAILS 5; PASSES TRIVIALLY 5; DEPENDS ON AN UNTESTED ASSUMPTION 4; PASSES 3; FAILS ON COVERAGE ONLY 1. Total 45.
+Canonical: EQUALS THE LAW 14; NOT GRADED FOR THIS FORM 6; NO POWER 7; FAILS 4; PASSES TRIVIALLY 5; DEPENDS ON AN UNTESTED ASSUMPTION 5; PASSES 3; FAILS ON COVERAGE ONLY 1. Total 45.
 
-Alt: EQUALS THE LAW 14; NOT GRADED FOR THIS FORM 6; NO POWER 7; FAILS 5; PASSES TRIVIALLY 5; DEPENDS ON AN UNTESTED ASSUMPTION 4; PASSES 3; FAILS ON COVERAGE ONLY 1. Total 45.
+Alt: EQUALS THE LAW 14; NOT GRADED FOR THIS FORM 6; NO POWER 7; FAILS 4; PASSES TRIVIALLY 5; DEPENDS ON AN UNTESTED ASSUMPTION 5; PASSES 3; FAILS ON COVERAGE ONLY 1. Total 45.
 
 No row differs between the footings after the DSC1R update (row 7 read PASSES canonical / NO POWER alt before it).
 
@@ -133,8 +145,12 @@ No row differs between the footings after the DSC1R update (row 7 read PASSES ca
 - On data, fragile, and shared by every smooth model including DESI's NFW: Milky Way halo stars at 40 to 55 kpc once
   the star-count slope is the measured RR Lyrae one (28; the blind RRL1R gives the same label and the same fragility).
   The hot 30 to 40 kpc bin of row 27 passes with that slope.
-- Untouched by rule 6, so form B's fails stay: X-COP's two-sided amount (15), the outer cluster shear (20, carried), the
-  ultra-faints and M31's bright dwarfs (35, fragile under DSB1's blind budget), DF2, DF4, NGC 147 and IC 1613 (36).
+- Untouched by rule 6, so form B's fails stay: the outer cluster shear (20, carried), the ultra-faints and M31's bright
+  dwarfs (35, fragile under DSB1's blind budget), DF2, DF4, NGC 147 and IC 1613 (36; the blind RB2R finds the same four
+  rows and the same words).
+- No longer listed: X-COP's two-sided amount (15). The row had quoted PD1's reading with half the share kept out of the
+  core, which under-fills X-COP and is not form B. Under form B the clusters sit at the ceiling (RB1, the blind RB1R) and
+  over it with masses that do not assume hydrostatic equilibrium (XCV1); see below.
 
 ## What is undecided, and what would decide it
 
@@ -149,7 +165,10 @@ No row differs between the footings after the DSC1R update (row 7 read PASSES ca
   hydrodynamic forest model that sets the smoothing scale, a box of at
   least about 50 Mpc/h, 6 to 18 seeds at z 2.2 (FRZ3R, FRZ4); and f between 2 and 3 run in both builds. FRZ5 adds: the
   gas parameters must be fitted with the layout, not held fixed; refitting them removes about 91 % of the full layout's
-  number and still leaves it about 6 times over the gate.
+  number and still leaves it about 6 times over the gate. GAS1 (a look-up; its numbers stay PROVISIONAL until the
+  papers' tables are read by eye) adds: the record's smoothing scale is defined as in the quasar-pair measurement;
+  "Attribution of 91.4 and 138.6 comoving kpc: right."; half the smoothing scale, which makes several holds FRAGILE, is
+  mostly outside the measurements; gamma 1.2 and 1.6 are inside them, so the FRAGILE flags stay live through gamma.
 - f itself (44): a lensing gate that can see the settled radius (row 11 cannot, per SRH1R) for the lower edge; for the
   upper edge, a blind re-grade of FWN2's holds at f 3.5 and 4 in FWN1R's build, f 4 in a build with a smaller error
   than FWN1's (its 12 seeds cannot tell; by hand about 40 times the seeds on canonical), and f 5, where FWN1 and the
@@ -160,6 +179,9 @@ No row differs between the footings after the DSC1R update (row 7 read PASSES ca
   the shear row on reference runs without realisation noise, a refit with neutrino mass, and a gate that can see the
   split's layout (the doubled-layout twin did not bite on KL1).
 - Groups (17, 18): a census and lensing mass out to turnaround around groups near v*(0).
+- X-COP's amount (14, 15): a mass for the same clusters that does not assume hydrostatic equilibrium, good to better
+  than 10 per cent, at R500 and beyond (weak lensing). XCV1's caustic masses sit about 23 per cent below the hydrostatic
+  ones and put the class over form B's ceiling; a hydrostatic bias of 0.1 the other way puts it under.
 - The Bullet (19): the subcluster's gas before the merger.
 - The Milky Way halo stars (27, 28): the outer star-count slope beyond about 39 kpc with a Sagittarius stream model and
   a contamination model in place of a band mask and a score cut, and the cold groups at 30 to 55 kpc set aside by a

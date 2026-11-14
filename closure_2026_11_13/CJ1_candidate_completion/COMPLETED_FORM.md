@@ -40,12 +40,27 @@ crossing-speed joint as lanes JNT2 and JNT2R built it (`closure_2026_11_13/JNT2_
    today, 12.19 / 12.44 at z 1, 11.28 / 11.53 at z 2. H(z) is flat with Omega_Lambda 0.6847 and H0 67.4; a0 is held
    constant in z.
 
-**Where v* comes from (the lemma).** Route D check C5 (`fable52_push/SHAPE_search/route_D_dark_energy_column.md`, section
-3.3): cold clustering gives v^3 = 10 G M H (the 200c virial relation) with M = (1 + X) M_b, while the law's flat speed
-gives v^4 = G M_b a0. "With the cosmic share the two meet at one speed only, 669 / 808 km/s." Below that speed the
-share a system brings exceeds what the law's halo uses; above it the law's halo would need more than the whole share,
-which rule 5 forbids. So no new constant enters v*: it follows from rules 2, 4 and 5 and the virial definition. It
-still carries both fitted constants (kappa through a0, and X).
+**Where v* comes from (corrected 2026-11-14).** Route D check C5 (`fable52_push/SHAPE_search/route_D_dark_energy_column.md`,
+section 3.3): the 200c virial relation gives v_200^3 = 10 G q M_b H with q = 1 + X, while the law's asymptotic flat speed
+obeys v_flat^4 = G M_b a0. "With the cosmic share the two meet at one speed only, 669 / 808 km/s." This is an algebraic
+speed intersection, not a derivation of a transition or of which side can afford the law's halo. It still carries both
+fitted constants (kappa through a0, and X).
+
+The previous mass-budget explanation reversed the implication at a common radius. Assuming the same M_b is enclosed
+at r_200 = v_200 / (10 H), the deep-law effective total mass divided by the available q M_b is sqrt(v* / v_200).
+Thus it is larger, not smaller, below v*. For the exact simple law in rule 4 the ratio is
+[1 + sqrt(1 + 4 q^2 v* / v_200)] / (2 q), with equality at v_200 = q v* / (q - 1), about 1.18484 v* for X = 5.41.
+This same-radius comparison is conditional; it is not the budget of a law truncated before r_200. The latter must use
+the actual enclosed profile, the patch's conserved charge and a consistent definition of its baryons.
+
+**Implementation correction, 2026-11-14.** FZS1's original junction multiplies the inner cold profile by
+s = C_reference(R_set) / C_B(R_set). It conserves that enclosed mass but preserves the original inner force law only
+when s = 1 (or the cold contribution vanishes). Accordingly the rules above record the candidate as originally stated;
+their phrases "the law's layout" and the scorecard's inherited "EQUALS THE LAW" are not an established equivalence for
+the rescaled implementation. XJ1's later exact junction instead preserves the supplied B interior without this
+rescaling and redistributes the remaining charge outside. Whether B itself satisfies the algebraic law is a separate
+check. Its caustic choices are post hoc, and its own result does not derive a dynamical transition. The
+independent calculation and closure checks are in `codex_mass_budget_2026_11_14/`; no historical lane label is changed.
 
 ## Every number in the theory
 
@@ -53,9 +68,9 @@ still carries both fitted constants (kappa through a0, and X).
 |---|---|---|---|
 | kappa | 1/2 | FITTED | rule 4; KAP1 "KAPPA NOT DERIVED", OUT4 "KAPPA NOT DERIVED (FITTED)" |
 | X, the share | 5.41 (5.410 / 5.412 in CO1; 5.411 / 5.412 in CO2) | FITTED | rule 2; R541A to R541E: four EXCLUDED, one TRADES |
-| v*(0) | 668.5 / 807.9 km/s | FOLLOWS FROM THE RULES | the lemma above (route D, C5); recomputed in SI by JNT2 and JNT2R |
-| v*(z) scaling | 1 / E(z): 373.3 / 451.1 at z 1, 220.4 / 266.4 at z 2, 177.4 / 214.4 at z 2.5 | FOLLOWS FROM THE RULES | the lemma with H(z) in place of H0; a0 constant |
-| f | ungraded window [1.25, 2] in both builds on both footings; JNT2 alone reads [1.25, 3] canonical | BOUNDED BY DATA, NOT FIXED | see below |
+| v*(0) | 668.5 / 807.9 km/s | ALGEBRAIC SPEED INTERSECTION | the lemma above (route D, C5); recomputed in SI by JNT2 and JNT2R; not a derived switch |
+| v*(z) scaling | 1 / E(z): 373.3 / 451.1 at z 1, 220.4 / 266.4 at z 2, 177.4 / 214.4 at z 2.5 | ALGEBRAIC SCALING | the same speed intersection with H(z) in place of H0; a0 constant |
+| f | ungraded window [1.25, 2] in both builds on both footings; JNT2 alone reads [1.25, 3] canonical | EXPLORATORY, JUNCTION-DEPENDENT | historical scan of the rescaled junction; not an established interval for the exact law |
 | R_fold | e.g. 169 kpc today at log M_b 10.7 (canonical; alt within 0.5 %) | TAKEN FROM A LANE'S CONSTRUCTION | FLD1, see below |
 
 **f, edge by edge.** Both builds report the window as ungraded, with the coverage line G2 (which fails) set aside.
@@ -167,5 +182,12 @@ would restore coverage and break the forest, so rescuing the coverage line needs
 What holds, with its scope: with no new constant it keeps every z = 0 galaxy, every KiDS lens and the groups on the law,
 every X-COP cluster on the reference, the forest at matter level trivial up to f 2, and it removes SRJ2's problem with
 massive SPARC spirals (none is above v*; on them the law fits, fragile, canonical, per the blind JNT1R).
+
+Update 2026-11-14 (blind RB1R and RB2R; scorecard rows 15 and 36). X-COP's two-sided amount is re-sourced: the scorecard
+had quoted a reading with half the share kept out of the cluster core, which is not form B. Under form B the retained
+fraction at the last radius is 1.095 [0.885, 1.259] in two builds, inside both of RB1's frozen lines and at the ceiling;
+it is over the ceiling at R500 and with masses that do not assume hydrostatic equilibrium. The row now reads DEPENDS ON
+AN UNTESTED ASSUMPTION (the hydrostatic mass to about 10 per cent). The fail on DF2, DF4, NGC 147 and IC 1613 is confirmed
+by a second build on both footings. Rule 6 touches neither row.
 
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
