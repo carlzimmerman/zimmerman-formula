@@ -168,4 +168,7 @@ K4 passes with the stated errors about 10 to 20 % small. No word above changes i
 (Parts S, J, E), `agb3_collect.py`; outputs `agb3_{KM,K1,K2,K3,K4,D,S,E,J}.{json,out}`, `agb3_results.json`,
 `agb3_collect.out`.
 
+Commits (local / origin): criteria 5403d1b288 / 6b0231f3a1; scripts 8e1fd5b361 / 01b873cb60; result 9c06d486f3 /
+64a7b86222.
+
 kappa = 1/2 FITTED; not theory closed.
