@@ -72,6 +72,10 @@ still carries both fitted constants (kappa through a0, and X).
   not cap f at 2. The blind FRZ6R, later the same day, reads NO VERDICT as frozen on every split case (one of its twins
   does not bite); its numbers are under the gate and its control fails. So the hold is a hit that the blind build neither
   confirmed as a label nor contradicted.
+- Update 2026-11-14 (FWN1, flux level, 12 seeds at z 2.2, FRZ6's build): the split FAILS at f = 10 and with no settled
+  radius at all (184 / 234 and 200 / 251 against the gate of 4), and is unresolved at f = 5 (8.1 / 9.5). By interpolation
+  the forest's upper edge for f lies between about 3.4 and 5.2. So rule 6 needs its settled radius: the crossing speed
+  alone does not pass the forest. The window, ungraded, is 1.25 (from a gate that cannot see f) to between 3 and 5.
 
 **R_fold, and what FLD1 assumes.** FLD1 (`fable52_push/FLD1_fold_reach/RESULT.md`, label DOES NOT / DOES NOT) follows
 independent radial shells of a clock that starts as cold dust in the Hubble flow at z = 10 around a softened point mass
