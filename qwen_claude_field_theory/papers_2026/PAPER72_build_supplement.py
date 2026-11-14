@@ -18,6 +18,10 @@ Zenodo record DOI 10.5281/zenodo.24210556 (FRZ6_parts.zip); the manifest lists t
 blind re-grade of FRZ6, with its part files (5.8 MB).
 Version 1.4 adds the three lanes folded into its Section 10: FWN1 and WLJ1 (closure_2026_11_13/) and FWN1R (closure_2026_11_14/), each
 with its part files (FWN1's 64 files, 47 MB; FWN1R's 192 files, 5.7 MB).
+Version 1.5 adds the lanes folded into its Section 11: XJ1 (with its part files, its shell runs and the script that wrote this
+version's edits), the blind XJ1R, CSD1, BJ1, FWN2, RRL1R, RB1R, RB2R and the look-up GAS1 (closure_2026_11_14/); the Codex session's
+correction folder as committed after its audit (codex_mass_budget_2026_11_14/, home paths replaced, run logs and large regenerable files
+left out) and that audit (reviews/codex_mass_budget_audit_2026_11_14/).
 The shared checkout has diverged from origin (PD1 and PD2 are committed on origin only), so each lane path is taken from whichever
 of HEAD and origin/main last committed to it; the manifest records the ref and commit for each. Untracked files are not included
 and are listed (unless the same path is committed on the chosen ref); a tracked file modified in the working tree stops the build. Deterministic for given commits (fixed entry dates).
@@ -245,6 +249,17 @@ PATHS = [
  "closure_2026_11_13/WLJ1_power_and_lensing_amplitude_with_split",
  "closure_2026_11_14/FWN1R_blind_split_f_ceiling",
  "fable52_push/SHAPE_search/route_D_dark_energy_column.md",
+ "closure_2026_11_14/XJ1_exact_junction_zero_velocity_surface",
+ "closure_2026_11_14/XJ1R_blind_caustic_junction",
+ "closure_2026_11_14/CSD1_charge_delivery_at_the_caustic",
+ "closure_2026_11_14/BJ1_charge_budget_junction",
+ "closure_2026_11_14/FWN2_forest_flux_split_f4",
+ "closure_2026_11_14/RRL1R_blind_halo_slope_regrade",
+ "closure_2026_11_14/RB1R_blind_xcop_amount",
+ "closure_2026_11_14/RB2R_blind_low_rows",
+ "closure_2026_11_14/GAS1_forest_gas_parameters_sourced",
+ "codex_mass_budget_2026_11_14",
+ "reviews/codex_mass_budget_audit_2026_11_14",
 ]
 # version 1.3: committed files left out of the zip, each with the public record that holds them
 EXCLUDE = {"closure_2026_11_13/FRZ6_forest_flux_candidate_graded/parts/": "DOI 10.5281/zenodo.24210556 (FRZ6_parts.zip)"}
