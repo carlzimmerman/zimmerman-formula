@@ -69,7 +69,9 @@ still carries both fitted constants (kappa through a0, and X).
 - Beside it, ungraded and for the unsplit settled family only: SRF1R's flux-level window [1.004, 3.16] / [1.050, 3.21].
 - Update 2026-11-13 (FRZ6, flux level, 12 seeds at z 2.2): the split holds at f = 2 and f = 3 on both footings, three of
   the four FRAGILE to halving the gas smoothing scale, and is not resolved at f = 1.25. So at flux level the forest does
-  not cap f at 2. This is a hit awaiting an independent blind re-grade.
+  not cap f at 2. The blind FRZ6R, later the same day, reads NO VERDICT as frozen on every split case (one of its twins
+  does not bite); its numbers are under the gate and its control fails. So the hold is a hit that the blind build neither
+  confirmed as a label nor contradicted.
 
 **R_fold, and what FLD1 assumes.** FLD1 (`fable52_push/FLD1_fold_reach/RESULT.md`, label DOES NOT / DOES NOT) follows
 independent radial shells of a clock that starts as cold dust in the Hubble flow at z = 10 around a softened point mass
@@ -144,8 +146,8 @@ same lane reads the law failing below v*. No hit has had an independent blind re
 2026-11-13: the blind re-grade DSC1R confirms neither reading. It reads NO POWER above and LAW HOLDS BELOW, both
 FRAGILE, on both footings; above, the difference from DSC1 is how many digitised points count as independent, and
 below it is the decision line. Later the same day FRZ6 graded the split at flux level: the forest row holds at f = 2 and
-f = 3, fragile, a hit awaiting a blind re-grade; a hold there means the layout is not excluded, not that it is
-preferred.) Doubling v*
+f = 3, fragile; a hold there means the layout is not excluded, not that it is preferred. The blind FRZ6R then read NO VERDICT
+as frozen, with its numbers under the gate: the hold is not confirmed as a label and not contradicted.) Doubling v*
 would restore coverage and break the forest, so rescuing the coverage line needs a fitted constant between 1 and 2 v*.
 What holds, with its scope: with no new constant it keeps every z = 0 galaxy, every KiDS lens and the groups on the law,
 every X-COP cluster on the reference, the forest at matter level trivial up to f 2, and it removes SRJ2's problem with
