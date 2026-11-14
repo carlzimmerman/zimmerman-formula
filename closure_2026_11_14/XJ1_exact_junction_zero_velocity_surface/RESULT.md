@@ -333,4 +333,31 @@ inside is the law exactly when s = 1 (`rescaled_is_law_iff`, `rescale_gap`). Com
 Mathlib build: `compile.txt` ends "exit 0" with no error. The twin `XJ1_MUTATE.lean` states four false variants;
 `compile_MUTATE.txt` ends "exit 1" with one error per theorem.
 
+**2026-11-14, 16:31 EST. Build A landed (criteria section 8 as changed by A4): the read-across at 0.5 and 2 R_fold.**
+Build A is the second, independently written implementation of the exact junction, in FWN1's build (12 seeds at z 2.2,
+seed 0 at five other redshifts). It was graded by the lead with the builder's committed grader
+(`xj1a_grade.py canonical`, `alt`). Every known answer of that build passes on both footings (its control equals
+FRZ6's stored one exactly and still fails; its junction's profile checks pass) and both twins bite. It landed after
+PAPER72 v1.5 was deposited, so it is not in that version.
+
+| case | build A, canonical: D (SE); label | build A, alt | build B, canonical | build B, alt |
+|---|---|---|---|---|
+| E0.5 | 0.780 (0.409); FOREST ROW HOLDS AT FLUX LEVEL, FRAGILE (lam_x0.5) | 1.246 (0.670); FOREST ROW HOLDS AT FLUX LEVEL, FRAGILE (lam_x0.5) | 0.583 (0.050); HOLDS | 0.794 (0.059); HOLDS |
+| E2 | 16.45 (7.02); NO VERDICT (unresolved at 12 seeds: D 16.5, SE 7.02) | 22.84 (7.75); FOREST ROW FAILS AT FLUX LEVEL | 16.37 (0.79); FAILS, FRAGILE (lam_x2) | 25.73 (1.96); FAILS |
+
+Read across, per footing (reported, never a label on the theory):
+- **E0.5: HOLDS IN BOTH BUILDS / HOLDS IN BOTH BUILDS.** In build A the hold is FRAGILE to half the gas smoothing
+  scale on both footings (29.9 / 74.7 there); in build B it is not (2.04 / 2.63). Neither build's grid resolves that
+  half scale in the same way, and the look-up GAS1 puts it mostly outside the measurements.
+- **E2: NOT RESOLVED / FAILS IN BOTH BUILDS.** On canonical the two builds agree in size (16.45 and 16.37) and differ
+  in word, because build A's seed error at 12 seeds is nine times build B's; on alt both fail.
+- Against FZS1's junction in the same build (FRZ6's split at f = 2: 0.196): the exact junction is 84 times higher on
+  canonical, which bites by FWN1R's rule.
+- Matter level in build A: 3.428 / 7.649 at 0.5 R_fold and 134.81 / 326.91 at 2 R_fold, equal to build B's chain to four
+  figures.
+- So the junction finding (Q1) is reproduced by an independently written implementation on alt and in size on
+  canonical, and the hold just outside the third caustic is reproduced on both footings. The caustic cases themselves
+  (Ec2, Ec3) were not in build A; the blind lane XJ1R grades them.
+- Files: `xj1a_grade_<footing>.json/.out`, their `_MUTATE` files, `parts_a/` (40 files).
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
