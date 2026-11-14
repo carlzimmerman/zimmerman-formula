@@ -1,0 +1,21 @@
+FWN1 operational notes (for RESULT.md disclosures). No criterion change in any of these.
+- 20:53 EST runner started (3 flux threads, 16 GB peak-RSS restart rule).
+- 21:17 EST the machine went into heavy swap (about 21 GB, free disk down to about 4 GB, per the lead); this lane's part process
+  was seen near 20 GB against the 16 GB cap (the old cap was checked only at the end of each box, from peak RSS) while another
+  lane's processes were also large.
+- 21:19 EST the runner's pre-part guard stopped it (swap used 9.1 GB > 8 GB, exit 4). Five parts on disk:
+  inf z 2.2 seeds 0, 1 (both footings) and seed 2 canonical. All five checked complete: 31 of 31 forced boxes present, every
+  box with the full field list, base with primary and M1_lin specs, every spectrum finite.
+- 21:20 EST a relauncher (resume_when_swap_ok.sh) was started; it never relaunched (swap stayed above 8 GB) and was stopped at
+  about 21:21 on the lead's instruction to keep the runner stopped until told. resume_when_swap_ok.sh is obsolete (its swap
+  test cannot pass while idle apps hold about 9 GB of stale swap); not to be used.
+- About 21:21 EST, on the lead's operational instruction:
+  (1) fwn1_run.py: physical-footprint guard after EVERY flux job (proc_pid_rusage ri_phys_footprint); above 14 GB the process
+      exits 76 at once and is restarted; a box that forced two such exits runs with one flux thread. Box JSONs are written only
+      when complete, so no partial box is kept. Flux jobs are deterministic and independent of thread count, so numbers do
+      not change.
+  (2) run_all.sh pre-part check: STOP if free disk < 8 GB or swap used > 14 GB; otherwise wait until free disk >= 10 GB and
+      free + inactive memory (vm_stat) >= 24 GB. (Was: stop below 8 GB disk or above 8 GB swap.)
+  (3) parts checked complete (above).
+- 22:30 EST runner restarted on the lead's go (machine free).
+- 22:30 EST runner restarted; finished 03:35 EST (64 parts, run_all.done). Footprint guard fired 0 times after the restart; the new pre-part check never waited or stopped. Grading and refit 03:36 to about 03:50 EST. tmp/ (tables, base-box arrays) deleted after grading; fwn1_tables.py regenerates the tables.
