@@ -1,5 +1,11 @@
 # CJ1 SCORECARD: every tested row against the completed form
 
+**Correction 2026-11-14:** this table preserves historical lane labels. The original FZS1 junction rescales the inner
+cold profile, so membership below the crossing speed alone does not establish the inherited "EQUALS THE LAW" entries.
+The mass-budget implication in `COMPLETED_FORM.md` has been corrected; the speed intersection does not derive the
+switch. XJ1 tests a different, unscaled inner junction. Its results cannot be substituted into this table without
+regrading the affected rows. See `codex_mass_budget_2026_11_14/` for the independent enclosed-mass and closure checks.
+
 2026-11-13. The completed form is form B (PAPER72 v1.2, rules 1 to 5) with rule 6 filled by the crossing-speed joint
 (`COMPLETED_FORM.md`). It is NOT ADOPTED, and a completed statement is not a confirmed one. This file grades nothing
 new: each row quotes its lanes' committed words, frozen word first and post hoc words marked, and then says what that
