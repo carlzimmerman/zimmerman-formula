@@ -2,7 +2,7 @@
 
 Criteria, harness and collector: 430f903e62 (alone first, before any `des_only` number). Frozen labels: `lgs2_collect.out`,
 `lgs2_results.json`. Post-hoc readings: `lgs2_posthoc_collect.out`, `lgs2_posthoc_results.json`.
-Commit ids, local / origin: recorded after the push (see the last section).
+Commit ids, local / origin: criteria 430f903e62 / f357715dcc; result f1b265b28c / 56ce49f62c.
 A re-read of committed lanes (follow-on to LGS1). It adopts nothing and edits no ledger.
 
 ## Verdict
@@ -155,6 +155,7 @@ no gate reads it. Run on `full`, it reproduces the frozen `full` grade byte for 
 - Nothing here measures H0 or a0, and nothing here grades the framework.
 
 ## Commit ids
-Criteria 430f903e62 (local). Result and origin ids are recorded in the follow-up commit.
+Local / origin: criteria 430f903e62 / f357715dcc; result f1b265b28c / 56ce49f62c (origin ids differ because the lane
+commits were replayed onto origin/main without a checkout).
 
 kappa = 1/2 FITTED; not theory closed.
