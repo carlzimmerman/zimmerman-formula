@@ -1,0 +1,70 @@
+EUC13 (POPULATION SOURCE GATE)
+footings (m/s^2): canonical 9.3603e-11, alt 1.1320e-10
+
+[data]
+  P = 3192; with an arc VIS magnitude 3021; without 171 (neighbour arcs)
+  arc VIS magnitude on P: median 22.69, 16-84 % 21.54 - 23.55
+
+[known answers and instrument checks]
+  PASS KA1  SLACS at true z_s: +0.082 / +0.070 to 0.003 : +0.0815 / +0.0696
+  FAIL KA2  EUC1 source-free b_med on P: -0.019 / -0.044 to 0.001, N = 3192 : N = 3192, -0.1043 / -0.1298
+  PASS KA6  COSMOS2020 median lpzBEST at 23.5 < i < 24.5 in [0.6, 1.6] (N = 82402 galaxies; grid total 713374) : 0.994
+
+[b tables: catalogued values and 40 error realisations]
+  built in 788 s
+  PASS KA5  tabulated b vs direct solves, 300 random (lens, z_s) per footing: max |db| <= 0.003 : 1.3e-04 / 1.5e-04
+
+[KA3 / KA4: EUC10 Part B reproduced, direct solves (KA3) and EUC13's table path (KA4)]
+  FAIL KA3M1 EUC10 Part B M1: +0.238 / +0.220 to 0.002 : +0.1520 / +0.1341
+  PASS KA4M1 same draws through the b table: within 0.005 of KA3 : +0.1520 / +0.1341
+  FAIL KA3M2 EUC10 Part B M2: +0.298 / +0.282 to 0.002 : +0.2105 / +0.1936
+  PASS KA4M2 same draws through the b table: within 0.005 of KA3 : +0.2104 / +0.1935
+
+[M3 ingredients]
+  mu3     share of n(z) weight evaluated at the 27.5 clamp (arc lenses): 0.000
+  mu10    share of n(z) weight evaluated at the 27.5 clamp (arc lenses): 0.001
+  mumarg  share of n(z) weight evaluated at the 27.5 clamp (arc lenses): 0.000
+  magnitude windows widened for < 20 galaxies: 0
+
+[validation of M3 (sis weight), before any P number of M3]
+  V1 SLF IV systems with a source magnitude: 47 (of 49 parsed); observed median z_s 1.434
+  V2 known-source ECLIPSE lenses evaluable: 8 of 17 (L000613, L004966, L008608, L013325, L014483, L015763, L015871, L016382)
+  mu3     V1: model median 0.962 vs observed 1.434, KS p 9.3e-09 -> FAIL;  V2: PIT KS p 0.000591, extreme 1 -> FAIL;  setting DROPPED
+  mu10    V1: model median 1.266 vs observed 1.434, KS p 0.104 -> pass;  V2: PIT KS p 0.105, extreme 1 -> pass;  setting SURVIVES
+  mumarg  V1: model median 1.074 vs observed 1.434, KS p 0.000156 -> FAIL;  V2: PIT KS p 0.0155, extreme 1 -> pass;  setting DROPPED
+  M3 surviving magnification settings: ['mu10']
+
+[M3 full weight: self-consistent boost per footing (3 iterations; n(z) of setting mu10 used for the boost)]
+  canonical median self-consistent b* +0.116; largest change in the last iteration 0.0174; predictive mass at capped theta_E 0.000
+  alt       median self-consistent b* +0.098; largest change in the last iteration 0.0179; predictive mass at capped theta_E 0.000
+
+[members on P: point (catalogued values, 200 draws) and recentred 95 % interval (400 replicates)]
+  M1           canonical b_med +0.152 [+0.125, +0.179] (raw +0.135..+0.189)  f25 0.320 [0.283, 0.359]  median z_s 2.05
+  M1           alt       b_med +0.134 [+0.107, +0.162] (raw +0.117..+0.171)  f25 0.293 [0.256, 0.330]  median z_s 2.05
+  M2           canonical b_med +0.210 [+0.162, +0.261] (raw +0.179..+0.278)  f25 0.432 [0.358, 0.506]  median z_s 1.60
+  M2           alt       b_med +0.194 [+0.145, +0.244] (raw +0.162..+0.261)  f25 0.405 [0.333, 0.482]  median z_s 1.60
+  M3 mu10 full canonical b_med +0.146 [+0.132, +0.156] (raw +0.141..+0.165)  f25 0.324 [0.309, 0.343]  median z_s 2.17
+  M3 mu10 full alt       b_med +0.127 [+0.116, +0.138] (raw +0.125..+0.147)  f25 0.297 [0.280, 0.315]  median z_s 2.17
+  M3 mu10 sis  canonical b_med +0.134 [+0.123, +0.146] (raw +0.132..+0.155)  f25 0.305 [0.287, 0.323]  median z_s 2.27
+  M3 mu10 sis  alt       b_med +0.116 [+0.106, +0.127] (raw +0.114..+0.136)  f25 0.280 [0.261, 0.298]  median z_s 2.27
+
+[EUC13-P: per footing over surviving members; M3 = envelope over its surviving settings]
+  canonical M3 envelope: b_med [+0.123, +0.156], f25 [0.287, 0.343]
+  canonical gate word: NO VERDICT;  f25 statistic: CEILING BROKEN
+  alt       M3 envelope: b_med [+0.106, +0.138], f25 [0.261, 0.315]
+  alt       gate word: NO VERDICT;  f25 statistic: CEILING BROKEN
+
+[readings: theta_E classes against EUC5's sealed bands (NOT EUC5-F)]
+  theta_E < 1.0   canonical band [-0.19, +0.22]: M1 +0.098 [+0.068, +0.126] inside; M2 +0.162 [+0.108, +0.215] inside; M3 mu10F +0.084 [+0.068, +0.098] inside; M3 mu10S +0.072 [+0.058, +0.086] inside
+  theta_E < 1.0   alt       band [-0.19, +0.21]: M1 +0.080 [+0.049, +0.110] inside; M2 +0.146 [+0.090, +0.200] inside; M3 mu10F +0.065 [+0.051, +0.079] inside; M3 mu10S +0.054 [+0.041, +0.068] inside
+  1.0 - 1.3       canonical band [-0.05, +0.30]: M1 +0.183 [+0.154, +0.212] inside; M2 +0.234 [+0.189, +0.287] inside; M3 mu10F +0.178 [+0.151, +0.204] inside; M3 mu10S +0.169 [+0.144, +0.196] inside
+  1.0 - 1.3       alt       band [-0.06, +0.34]: M1 +0.164 [+0.134, +0.195] inside; M2 +0.217 [+0.170, +0.270] inside; M3 mu10F +0.161 [+0.136, +0.183] inside; M3 mu10S +0.152 [+0.128, +0.175] inside
+  theta_E >= 1.3  canonical band [+0.03, +0.32]: M1 +0.309 [+0.277, +0.342] inside; M2 +0.351 [+0.308, +0.406] inside; M3 mu10F +0.309 [+0.282, +0.334] inside; M3 mu10S +0.300 [+0.272, +0.327] inside
+  theta_E >= 1.3  alt       band [+0.03, +0.31]: M1 +0.290 [+0.259, +0.323] inside; M2 +0.334 [+0.292, +0.389] inside; M3 mu10F +0.289 [+0.266, +0.317] inside; M3 mu10S +0.282 [+0.257, +0.309] inside
+  class sizes: theta_E < 1.0 1948, 1.0 - 1.3 691, theta_E >= 1.3 553
+
+[summary]
+  checks: FAILED -> NOT EVALUABLE;  direct solves beyond the table: 0 (catalogued) / 0 (error realisations)
+  EUC13-P (canonical / alt): NOT EVALUABLE / NOT EVALUABLE
+  f25 statistic (canonical / alt): CEILING BROKEN / CEILING BROKEN
+  kappa = 1/2 FITTED. One-sided: no outcome favours the framework.  (1074 s)

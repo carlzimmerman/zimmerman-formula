@@ -1,0 +1,50 @@
+EUC18 (MASK-APERTURE STELLAR MASS, SECOND RE-READ: THE POPULATION GATE)   criteria c8908592a4
+
+[checks]
+  PASS H0  f = 1 reproduces EUC13's committed outputs: results.json identical True, per_lens.csv identical True, euc13.out 70 lines, 2 differ, all of them elapsed-time lines True
+  PASS H1  source folders of EUC13, EUC1 and EUC10 unchanged in git (bytecode caches aside): 0 changed paths
+  PASS H2  under the correction exactly KA2 and KA3 (M1, M2) fail and the surviving members are the committed ones: primary failed KA2,KA3M1,KA3M2, M3 mu10; F1a failed KA2,KA3M1,KA3M2, M3 mu10; F1b failed KA2,KA3M1,KA3M2, M3 mu10
+  PASS H3  source-free b_med on P under the correction -0.1043 / -0.1298 against EUC17's -0.1043 / -0.1298 (0.001)
+  PASS twin invert: every member's b_med rises on both footings; driver exit 1
+
+[members on P, law S: committed -> corrected (primary f); b_med and f25 with 95 % intervals]
+  M1            canonical b_med +0.238 [+0.213, +0.265]  f25 0.479 [0.443, 0.519]  ->  b_med +0.152 [+0.125, +0.179]  f25 0.320 [0.283, 0.359]
+  M1            alt       b_med +0.220 [+0.195, +0.247]  f25 0.451 [0.415, 0.491]  ->  b_med +0.134 [+0.107, +0.162]  f25 0.293 [0.256, 0.330]
+  M2            canonical b_med +0.298 [+0.253, +0.346]  f25 0.576 [0.512, 0.645]  ->  b_med +0.210 [+0.162, +0.261]  f25 0.432 [0.358, 0.506]
+  M2            alt       b_med +0.281 [+0.235, +0.330]  f25 0.549 [0.480, 0.615]  ->  b_med +0.194 [+0.145, +0.244]  f25 0.405 [0.333, 0.482]
+  M3 mu10 full  canonical b_med +0.233 [+0.219, +0.244]  f25 0.474 [0.453, 0.489]  ->  b_med +0.146 [+0.132, +0.156]  f25 0.324 [0.309, 0.343]
+  M3 mu10 full  alt       b_med +0.215 [+0.202, +0.227]  f25 0.445 [0.427, 0.462]  ->  b_med +0.127 [+0.116, +0.138]  f25 0.297 [0.280, 0.315]
+  M3 mu10 sis   canonical b_med +0.222 [+0.208, +0.233]  f25 0.456 [0.437, 0.472]  ->  b_med +0.134 [+0.123, +0.146]  f25 0.305 [0.287, 0.323]
+  M3 mu10 sis   alt       b_med +0.204 [+0.191, +0.217]  f25 0.427 [0.408, 0.443]  ->  b_med +0.116 [+0.106, +0.127]  f25 0.280 [0.261, 0.298]
+
+[gate block of EUC13's own code: intervals over surviving members (M3 = envelope)]
+  committed canonical b_med M1 [+0.213, +0.265]; M2 [+0.253, +0.346]; M3 envelope [+0.208, +0.244] | f25 [0.443, 0.519]; [0.512, 0.645]; [0.437, 0.489]  -> gate NO VERDICT; f25 statistic CEILING BROKEN
+  committed alt       b_med M1 [+0.195, +0.247]; M2 [+0.235, +0.330]; M3 envelope [+0.191, +0.227] | f25 [0.415, 0.491]; [0.480, 0.615]; [0.408, 0.462]  -> gate NO VERDICT; f25 statistic CEILING BROKEN
+  primary   canonical b_med M1 [+0.125, +0.179]; M2 [+0.162, +0.261]; M3 envelope [+0.123, +0.156] | f25 [0.283, 0.359]; [0.358, 0.506]; [0.287, 0.343]  -> gate NO VERDICT; f25 statistic CEILING BROKEN
+  primary   alt       b_med M1 [+0.107, +0.162]; M2 [+0.145, +0.244]; M3 envelope [+0.106, +0.138] | f25 [0.256, 0.330]; [0.333, 0.482]; [0.261, 0.315]  -> gate NO VERDICT; f25 statistic CEILING BROKEN
+  F1a       canonical b_med M1 [+0.140, +0.195]; M2 [+0.177, +0.276]; M3 envelope [+0.138, +0.172] | f25 [0.309, 0.385]; [0.384, 0.532]; [0.313, 0.369]  -> gate NO VERDICT; f25 statistic CEILING BROKEN
+  F1a       alt       b_med M1 [+0.122, +0.177]; M2 [+0.159, +0.259]; M3 envelope [+0.121, +0.153] | f25 [0.284, 0.359]; [0.358, 0.506]; [0.286, 0.341]  -> gate NO VERDICT; f25 statistic CEILING BROKEN
+  F1b       canonical b_med M1 [+0.107, +0.159]; M2 [+0.145, +0.242]; M3 envelope [+0.103, +0.138] | f25 [0.251, 0.328]; [0.331, 0.478]; [0.260, 0.315]  -> gate NO VERDICT; f25 statistic CEILING BROKEN
+  F1b       alt       b_med M1 [+0.089, +0.142]; M2 [+0.127, +0.225]; M3 envelope [+0.087, +0.118] | f25 [0.228, 0.301]; [0.305, 0.454]; [0.236, 0.288]  -> gate NO VERDICT; f25 statistic NO VERDICT
+
+[labels]
+  Q1 EUC13-P gate   canonical committed NO VERDICT -> corrected NO VERDICT: UNCHANGED, ROBUST
+  Q1 EUC13-P gate   alt       committed NO VERDICT -> corrected NO VERDICT: UNCHANGED, ROBUST
+  Q2 f25 statistic  canonical committed CEILING BROKEN -> corrected CEILING BROKEN: UNCHANGED, ROBUST
+  Q2 f25 statistic  alt       committed CEILING BROKEN -> corrected CEILING BROKEN: UNCHANGED, FRAGILE (F1b)
+
+[theta_E classes, b_med per member (reported): committed -> corrected]
+  theta_E < 1.0   canonical M1 +0.167 -> +0.098; M2 +0.231 -> +0.162; M3 mu10 full +0.157 -> +0.084; M3 mu10 sis +0.145 -> +0.072
+  theta_E < 1.0   alt       M1 +0.149 -> +0.080; M2 +0.215 -> +0.146; M3 mu10 full +0.139 -> +0.065; M3 mu10 sis +0.127 -> +0.054
+  1.0 - 1.3       canonical M1 +0.280 -> +0.183; M2 +0.333 -> +0.234; M3 mu10 full +0.276 -> +0.178; M3 mu10 sis +0.266 -> +0.169
+  1.0 - 1.3       alt       M1 +0.262 -> +0.164; M2 +0.316 -> +0.217; M3 mu10 full +0.257 -> +0.161; M3 mu10 sis +0.248 -> +0.152
+  theta_E >= 1.3  canonical M1 +0.449 -> +0.309; M2 +0.496 -> +0.351; M3 mu10 full +0.454 -> +0.309; M3 mu10 sis +0.445 -> +0.300
+  theta_E >= 1.3  alt       M1 +0.431 -> +0.290; M2 +0.477 -> +0.334; M3 mu10 full +0.434 -> +0.289; M3 mu10 sis +0.426 -> +0.282
+
+[reading: share of the wide lenses' lensing lower bound that law S and the stars do not supply (class W, source at infinity)]
+  PASS KW  with f = 1 the medians reproduce EUC8's committed far-case values for W (N 316, 0 without a mask): largest relative difference 0.0e+00 (1e-2)
+  canonical share 0.451 [0.279, 0.655] -> 0.294 [0.080, 0.498];  excess mass 3.17e+11 -> 1.98e+11 Msun;  lenses needing more 0.997 -> 0.915
+  alt       share 0.421 [0.245, 0.631] -> 0.258 [0.036, 0.466];  excess mass 2.91e+11 -> 1.75e+11 Msun;  lenses needing more 0.991 -> 0.880
+  median correction on W: 0.143 dex
+
+checks H0-H3 all pass: True;  twin: exits 1
