@@ -1462,7 +1462,7 @@ L += [
  ("against a hold line of 0.15 and a fail line of 0.25", CJS, "against the hold line 0.15 and the fail line 0.25"),
  ("the interval is too wide to decide", EUC16, "The point value sits above the FAILS line, but the interval is too wide to decide."),
  ("they read about 0.13 heavier than the whole sample before any source redshift", CJS, "The certified lenses read about 0.13 heavier than the whole sample before any source redshift."),
- (r"26/0 of 6,173 Euclid lenses are above $v^*(z)$ (LNJ1)", CJS, "26 / 0 of 6,173 lenses above v* (LNJ1)"),
+ (r"26/0 of 6,173 Euclid lenses are above $v^*(z)$ (LNJ1)", CJS14, "26 / 0 of 6,173 lenses above v* (LNJ1)"),
  ("(LNJ1: NO POWER, FRAGILE/NO POWER)", CJS, "LNJ1 \"NO POWER, FRAGILE / NO POWER\""),
  ("is NOT EVALUABLE as frozen, through a design error in one check", EUC17, "**As frozen: NOT EVALUABLE.**"),
  ("is NOT EVALUABLE as frozen, through a design error in one check", EUC17, "The cause is a design error in the check"),
@@ -1845,6 +1845,9 @@ L += [
  ('is mostly outside the measurements, while $\\gamma$ 1.2 and 1.6 are inside them', CJS, 'is mostly outside the measurements; gamma 1.2 and 1.6 are inside them'),
  ('no longer FAILS', CJS, 'The counts move by one (FAILS 4, DEPENDS ON AN UNTESTED ASSUMPTION 5)'),
  ('an assembly; grades nothing; NOT ADOPTED & audit 141 of 141', CJS, 'reads 141 of 141.'),
+ ("CJ1's scorecard has since been updated a twelfth and a thirteenth time", CJS, "Updated a twelfth time 2026-11-14 by the session that ran the lanes"),
+ ("CJ1's scorecard has since been updated a twelfth and a thirteenth time", CJS, "Updated a thirteenth time 2026-11-14 after OTA1, RRL2, WLG1 and the blind WLG1R landed"),
+ ("no word for the completed form and no count changed", CJS, "No word for the completed form and no count changes. On row 28"),
  ('gave the exact junction at the fold radius a 75\\,\\% chance of holding the forest', XJC, 'Labels: E1 HOLDS 75 %'),
  ("The headers of XJ1's criteria and of its first amendment carry clock times that were guesses and are wrong; the commit times are the record", XJR, 'both were guesses and are wrong.'),
  ('six of its twelve bins were read while it was stopped; its result records that no criterion, case or amendment was written after that look', XJR, 'No criterion, case, gate or amendment was written or changed after that look'),
@@ -1860,6 +1863,36 @@ L += [
  ('25.06 (1.12); FOREST ROW FAILS AT FLUX LEVEL, FRAGILE & 42.08 (2.86); FOREST ROW FAILS AT FLUX LEVEL', XJR, '| Ezv | FOREST ROW FAILS AT FLUX LEVEL, FRAGILE (lam_x2) | FOREST ROW FAILS AT FLUX LEVEL |'),
  ('twice the smoothing scale gives 2.19, and over the measured range of that scale it runs from 11.07 to 3.24', XJR, 'twice the smoothing scale gives 2.19, and over the measured range of that scale (PROVISIONAL, reported) it runs from 11.07 to 3.24'),
  ('no bracket brings it under the gate on either footing (lowest 5.08/12.88)', XJR, 'E3 fails under every bracket on both footings (lowest 5.08 / 12.88, at twice the smoothing scale)'),
+]
+# ---------------- version 1.5, additions at deposit: BJ1's light stage, XJ1's A7, the Lean certificates, the supplement ----------------
+BJR = D14 + "BJ1_charge_budget_junction/RESULT.md"
+XJL = D14 + "XJ1_exact_junction_zero_velocity_surface/"; CSL = D14 + "CSD1_charge_delivery_at_the_caustic/"; BJL = D14 + "BJ1_charge_budget_junction/"
+RVL = "reviews/codex_mass_budget_audit_2026_11_14/"
+BJM = "At matter level the forest reads 238/556 to 560 against the line of 4 for every caustic"
+LEANS = "Each compiles against the repository's Mathlib build, and each has a twin of false variants that fails to compile"
+L += [
+ ("every statistic is unchanged to four decimals", XJR, "with every statistic equal to the stored one to the four printed decimals"),
+ (BJM, BJR, "| B1 | 238.82 FAIL | 559.58 FAIL |"),
+ (BJM, BJR, "| B2 | 238.74 FAIL | 559.06 FAIL |"),
+ (BJM, BJR, "| B3 | 238.10 FAIL | 555.67 FAIL |"),
+ ("the heavier forest haloes put the law out to 1.1 to 17.5 fold radii", BJR, "over R_set / R_fold 1.1 to 17.5 (B1)"),
+ ("Rotation curves pass by containment, the numbers being the law's own, and the lensing gate passes, in all six cells", BJR, "G-RC passes and G-L passes in all six cells"),
+ ("so its three words are NOT RESOLVED on both footings", BJR, "| B3 (third caustic) | NOT RESOLVED (caustic 3): flux level not run | NOT RESOLVED (caustic 3): flux level not run |"),
+ ("so its three words are NOT RESOLVED on both footings", BJR, "| B1 (first caustic) | NOT RESOLVED (caustic 1): flux level not run | NOT RESOLVED (caustic 1): flux level not run |"),
+ ("reads 238/556 against the line of 4 on the forest at matter level", BJR, "238 / 556 to 560 against 4"),
+ ("about half of the halo grid is", BJR, "Wrong: on the halo grid about half are under"),
+ (LEANS, XJL + "compile.txt", "exit 0"), (LEANS, XJL + "compile_MUTATE.txt", "exit 1"),
+ (LEANS, CSL + "compile.txt", "exit 0"), (LEANS, CSL + "compile_MUTATE.txt", "exit 1"),
+ (LEANS, BJL + "compile.txt", "exit 0"), (LEANS, BJL + "compile_MUTATE.txt", "exit 1"),
+ (LEANS, RVL + "compile.txt", "exit 0"), (LEANS, RVL + "compile_MUTATE.txt", "exit 1"),
+ ("the shell equation's static balance and its second-order outward push", CSL + "CSD1.lean", "theorem balance_is_law"),
+ ("the shell equation's static balance and its second-order outward push", CSL + "CSD1.lean", "theorem self_push"),
+ ("the exact junction's factor and total", XJL + "XJ1.lean", "theorem junction_total"),
+ ("the charge-budget criterion, the crossing-speed intersection and the corrected direction of the same-radius comparison", RVL + "MASS_BUDGET.lean", "theorem law_exceeds_share"),
+ ("the charge-budget criterion, the crossing-speed intersection and the corrected direction of the same-radius comparison", RVL + "MASS_BUDGET.lean", "theorem budget_bound"),
+ ("one of them the reversed inequality of versions 1.3 and 1.4", RVL + "MASS_BUDGET_MUTATE.lean", "theorem law_exceeds_share_reversed"),
+ ("XJ1's build-B part files and its Lean files are in the supplement", P72m, "closure_2026_11_14/XJ1_exact_junction_zero_velocity_surface/parts_b2/prim_z2.2_s0_canonical.json"),
+ ("XJ1's build-B part files and its Lean files are in the supplement", P72m, "closure_2026_11_14/XJ1_exact_junction_zero_velocity_surface/XJ1.lean"),
 ]
 # (fragment in the TeX, JSON file, key path, format, the number as the TeX prints it)
 J = [
