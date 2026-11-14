@@ -81,6 +81,12 @@ still carries both fitted constants (kappa through a0, and X).
   agree in size (8.1 / 9.5 and 8.8 / 10.9) and differ in word: FWN1 NO VERDICT, FWN1R FAILS, FRAGILE, changing sides
   within the measured range of the gas smoothing scale. By interpolation the ceiling is 3.6 / 3.4 in FWN1 and 4.2 / 4.1
   in FWN1R; without interpolation it lies between 3 and 5. The window is unchanged.
+- Update 2026-11-14, later still (FWN2, not blind; f = 4 in both builds, f = 3.5 and 4.5 in FWN1R's build): as a read
+  across f = 4 is NOT RESOLVED on both footings. FWN1's build cannot tell (4.34 / 5.37, error 1.10 / 1.33). FWN1R's build
+  holds on canonical (3.18, FRAGILE) and reads NO VERDICT on alt (3.71; with twice its error 4.035). In FWN1R's build
+  the split holds at f = 3.5 (1.50 / 1.78) and fails at f = 4.5 (5.62 / 6.62), every label FRAGILE to the gas smoothing
+  scale and gamma. With f = 4 run, the ceiling by interpolation is 3.5 / 3.4 in FWN1's build and 4.1 / 4.0 in FWN1R's.
+  The window, ungraded, is 1.25 (from a gate that cannot see f) to about 4. The holds are hits, not passes.
 
 **R_fold, and what FLD1 assumes.** FLD1 (`fable52_push/FLD1_fold_reach/RESULT.md`, label DOES NOT / DOES NOT) follows
 independent radial shells of a clock that starts as cold dust in the Hubble flow at z = 10 around a softened point mass
