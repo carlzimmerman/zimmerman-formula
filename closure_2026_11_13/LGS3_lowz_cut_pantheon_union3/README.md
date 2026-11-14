@@ -1,7 +1,7 @@
 # LGS3 — X54's Pantheon+ and Union3 profiles with the low-redshift supernovae cut
 
 Criteria, harness and collector: a2555cf0a4 (alone first, before any cut number). Labels: `lgs3_collect.out`,
-`lgs3_results.json`. Commit ids, local / origin: recorded after the push (last section).
+`lgs3_results.json`. Commit ids, local / origin: criteria a2555cf0a4 / 1090a533ed; result 9afd5c1b7d / d46836968e.
 A re-read of committed lanes (follow-on to LGS2). It adopts nothing and edits no ledger.
 
 ## Verdict
@@ -136,6 +136,7 @@ in every run: ξ = 0.4 fails in CLASS's θ_s shooting, as committed.
 - Nothing here measures H0 or a0, and nothing here grades the framework.
 
 ## Commit ids
-Criteria a2555cf0a4 (local). Result and origin ids are recorded in the follow-up commit.
+Local / origin: criteria a2555cf0a4 / 1090a533ed; result 9afd5c1b7d / d46836968e (origin ids differ because the lane
+commits were replayed onto origin/main without a checkout).
 
 kappa = 1/2 FITTED; not theory closed.
