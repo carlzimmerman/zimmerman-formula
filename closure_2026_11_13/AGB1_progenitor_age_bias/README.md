@@ -1,6 +1,7 @@
 # AGB1 — the supernova progenitor-age bias on DESI DR2 BAO and the DES-SN5YR Dovekie supernovae
 
-Criteria 27faac7b3e (alone, before any script). Scripts bb0a1c246b (before any real-data number).
+Commit ids, local / origin: criteria 27faac7b3e / 31e18a2caa (alone, before any script); scripts bb0a1c246b /
+347646898b (before any real-data number); result 45d6341180 / d223c720b9.
 Labels: `agb1_collect.out`, `agb1_results.json`. Per-run files: `agb1_<MODE>.{json,out}`, `agb1_cfg68x_*`.
 A test of a published claim on public data. It adopts nothing and edits no ledger.
 
