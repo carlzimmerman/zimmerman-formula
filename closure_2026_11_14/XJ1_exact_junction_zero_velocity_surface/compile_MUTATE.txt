@@ -1,0 +1,38 @@
+../../closure_2026_11_14/XJ1_exact_junction_zero_velocity_surface/XJ1_MUTATE.lean:10:2: error: linarith failed to find a contradiction
+case h1
+T CB CR t : ℝ
+ht : t * (T - CR) = T - CB
+a✝ : CB + t * (T - CR) < T + CB
+⊢ False
+failed
+../../closure_2026_11_14/XJ1_exact_junction_zero_velocity_surface/XJ1_MUTATE.lean:13:2: error: Tactic `apply` failed: could not unify the conclusion of `@div_nonneg`
+  0 ≤ ?a / ?b
+with the goal
+  0 ≤ (CB - T) / (T - CR) - 1
+
+Note: The full type of `@div_nonneg` is
+  ∀ {G₀ : Type ?u.26} [inst : GroupWithZero G₀] [inst_1 : PartialOrder G₀] [PosMulReflectLT G₀] {a b : G₀},
+    0 ≤ a → 0 ≤ b → 0 ≤ a / b
+
+T CB CR : ℝ
+h1 : CB ≤ T
+h2 : CR < T
+⊢ 0 ≤ (CB - T) / (T - CR) - 1
+../../closure_2026_11_14/XJ1_exact_junction_zero_velocity_surface/XJ1_MUTATE.lean:18:2: error: linarith failed to find a contradiction
+CB CRs CR1 CR2 t : ℝ
+ht : 0 ≤ t
+h12 : CR1 ≤ CR2
+h : t * (CR1 - CRs) ≤ t * (CR2 - CRs)
+a✝ : CB + t * (CR1 - CRs) - 1 < CB + t * (CR2 - CRs)
+⊢ False
+failed
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+../../closure_2026_11_14/XJ1_exact_junction_zero_velocity_surface/XJ1_MUTATE.lean:20:68: error: unsolved goals
+CB s : ℝ
+⊢ CB - CB * s = CB + CB * s
+exit 1

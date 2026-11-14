@@ -326,4 +326,11 @@ for Ec2 and Ec3 with the term included.
 - The frozen cases (E1, E2, E3, Ezv) and A3's two radii were not re-run with the term; the same argument applies to
   them, and it is an argument, not a computation.
 
+**2026-11-14, 16:19 EST. Lean certificate (on the owner's instruction; it certifies algebra, not physics, and no number
+or label).** `XJ1.lean`: the exact junction's outside factor and total (`junction_factor`, `junction_total`), its
+sign (`junction_factor_nonneg`), monotonicity outside R_set (`junction_outside_monotone`), and that FZS1's rescaled
+inside is the law exactly when s = 1 (`rescaled_is_law_iff`, `rescale_gap`). Compiled against the repository's
+Mathlib build: `compile.txt` ends "exit 0" with no error. The twin `XJ1_MUTATE.lean` states four false variants;
+`compile_MUTATE.txt` ends "exit 1" with one error per theorem.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.

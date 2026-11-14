@@ -1,0 +1,41 @@
+../../closure_2026_11_14/CSD1_charge_delivery_at_the_caustic/CSD1_MUTATE.lean:11:2: error: linarith failed to find a contradiction
+case h1
+a0 y gN : ℝ
+hb : a0 * y = (gN + y) * (a0 - y)
+a✝ : (gN + y) ^ 2 < gN * (a0 - (gN + y))
+⊢ False
+failed
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+../../closure_2026_11_14/CSD1_charge_delivery_at_the_caustic/CSD1_MUTATE.lean:13:100: error: unsolved goals
+a0 y : ℝ
+h : a0 - y ≠ 0
+⊢ y ^ 2 = -y ^ 2
+../../closure_2026_11_14/CSD1_charge_delivery_at_the_caustic/CSD1_MUTATE.lean:19:2: error: linarith failed to find a contradiction
+case h1
+Nin Nout vout Rd : ℝ
+h : Nout * (vout - Rd) = Nin * (0 - Rd)
+a✝ : Nout * vout < Rd * (Nout + Nin)
+⊢ False
+failed
+../../closure_2026_11_14/CSD1_charge_delivery_at_the_caustic/CSD1_MUTATE.lean:24:2: warning: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+../../closure_2026_11_14/CSD1_charge_delivery_at_the_caustic/CSD1_MUTATE.lean:25:2: error: linarith failed to find a contradiction
+Nin Nout vout Rd : ℝ
+hN : 0 < Nout
+hR : 0 < Rd
+hlt : Nin < Nout
+h : Nout * vout = Rd * (Nout - Nin)
+hneg : 0 ≤ vout
+⊢ False
+failed
+exit 1

@@ -148,4 +148,13 @@ G-RC and G-L as section 3 of the criteria states; KA-R checks this lane's R agai
 - Not blind; a HOLDS would be a hit awaiting a frozen, blind re-grade, and nothing here can say the data favour the
   framework.
 
+## Dated note by the lead, 2026-11-14, 16:19 EST: Lean certificate
+
+On the owner's instruction the lead added `BJ1.lean` for the layout's algebra. It certifies algebra, not physics, and
+no number or label: the emptied shell keeps the layout non-decreasing (`under_branch_monotone`,
+`under_gap_to_reference`); at an equal-charge radius neither junction rescales anything (`equal_charge_no_rescale`);
+no charge crosses the capture surface (`no_charge_crosses`). `compile.txt` ends "exit 0" with no error. The twin
+`BJ1_MUTATE.lean` states three false variants; `compile_MUTATE.txt` ends "exit 1" with one error per theorem. Nothing
+else in this file is changed.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.

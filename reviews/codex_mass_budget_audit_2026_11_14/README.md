@@ -222,4 +222,14 @@ Many manifests and notes also name a machine-local temporary venv, `/private/tmp
 
 JSON copies were written to `scratch/` and are not committed.
 
+## Dated note by the lead, 2026-11-14, 16:19 EST: Lean certificate
+
+On the owner's instruction the lead added `MASS_BUDGET.lean` for the algebra audited here. It certifies algebra, not
+physics, and no number: the two speed relations meet only at a0 / (10 q H) (`crossing_speed`); the law's enclosed
+mass equals the share's exactly when a0 = q (q - 1) g_N, exceeds it for slow systems and falls short for fast ones
+(`equal_share_point`, `law_exceeds_share`, `law_below_share`); the charge-budget criterion (`budget_bound`); the
+kinematic interpolation's continuity identity (`transport_identity`). `compile.txt` ends "exit 0" with no error. The
+twin `MASS_BUDGET_MUTATE.lean` states four false variants, one of them the reversed inequality that versions 1.3 and
+1.4 of PAPER72 carried; `compile_MUTATE.txt` ends "exit 1", every theorem failing.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.

@@ -196,4 +196,13 @@ shell runs, single thread, nice 19, under 0.1 GB each, 10 s to 5 min each; total
 | grader KA7 fix, before re-run | af929db57f |
 | runs, outputs, RESULT.md | the commit that adds this file |
 
+## Dated note by the lead, 2026-11-14, 16:19 EST: Lean certificate
+
+On the owner's instruction the lead added `CSD1.lean` for the lane's exact items. It certifies algebra, not physics,
+and no number or label: the static balance of the shell equation is the law (`shell_push_cross`, `balance_is_law`);
+the clock's own excess pushes outward at second order (`self_push`, `self_push_pos`); the advective interface
+condition and its two signs (`advective_junction`, `outflow_needed`, `inflow_allowed`). `compile.txt` ends "exit 0"
+with no error (two deprecation warnings). The twin `CSD1_MUTATE.lean` states four false variants; `compile_MUTATE.txt`
+ends "exit 1" with one error per theorem. Nothing else in this file is changed.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.

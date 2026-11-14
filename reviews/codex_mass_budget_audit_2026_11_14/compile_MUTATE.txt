@@ -1,0 +1,71 @@
+../../reviews/codex_mass_budget_audit_2026_11_14/MASS_BUDGET_MUTATE.lean:17:63: error: linarith failed to find a contradiction
+case h1
+G q Mb H a0 v : ℝ
+hG : 0 < G
+hq : 0 < q
+hM : 0 < Mb
+hH : 0 < H
+h3 : v ^ 3 = 10 * G * q * Mb * H
+h4 : v ^ 4 = G * Mb * a0
+hden : 5 * q * H ≠ 0
+hGM : G * Mb ≠ 0
+e : G * Mb * a0 = v * (10 * G * q * Mb * H)
+a✝ : G * Mb * (v * (5 * q * H)) < G * Mb * a0
+⊢ False
+failed
+../../reviews/codex_mass_budget_audit_2026_11_14/MASS_BUDGET_MUTATE.lean:23:2: warning: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+../../reviews/codex_mass_budget_audit_2026_11_14/MASS_BUDGET_MUTATE.lean:25:2: error: linarith failed to find a contradiction
+g gN a0 q : ℝ
+hg : 0 < g
+hgN : 0 < gN
+hq : 1 ≤ q
+hlaw : g ^ 2 = gN * (a0 + g)
+ha : q * (q - 1) * gN < a0
+hle : q * gN ≤ g
+h2 : 0 ≤ (q - 1) * gN
+⊢ False
+failed
+../../reviews/codex_mass_budget_audit_2026_11_14/MASS_BUDGET_MUTATE.lean:32:4: error: linarith failed to find a contradiction
+case mp
+C Q b k r : ℝ
+hC : 0 ≤ C
+hQ : 0 ≤ Q
+hb : 0 ≤ b
+hdef : C * (C + b) = k * b * r ^ 2
+h : C ≤ Q
+a✝ : C * (C + b) < Q * (Q + b)
+⊢ False
+failed
+../../reviews/codex_mass_budget_audit_2026_11_14/MASS_BUDGET_MUTATE.lean:35:4: warning: `push_neg` has been deprecated. Prefer using `push Not` instead.
+If you'd rather continue using `push_neg` in your project, you can implement it as follows:
+```
+open Lean.Parser.Tactic in
+macro "push_neg" cfg:optConfig loc:(location)? : tactic =>
+  `(tactic| push $cfg:optConfig Not $[$loc]?)
+```
+../../reviews/codex_mass_budget_audit_2026_11_14/MASS_BUDGET_MUTATE.lean:36:4: error: linarith failed to find a contradiction
+case mpr
+C Q b k r : ℝ
+hC : 0 ≤ C
+hQ : 0 ≤ Q
+hb : 0 ≤ b
+hdef : C * (C + b) = k * b * r ^ 2
+h : Q * (Q + b) ≤ C * (C + b)
+hlt : Q < C
+⊢ False
+failed
+../../reviews/codex_mass_budget_audit_2026_11_14/MASS_BUDGET_MUTATE.lean:41:2: error: linarith failed to find a contradiction
+case h1
+adot CE CR a CRp CEp v : ℝ
+hden : (1 - a) * CRp + a * CEp ≠ 0
+hv : v * ((1 - a) * CRp + a * CEp) = -adot * (CE - CR)
+a✝ : adot * (CE - CR) - v * ((1 - a) * CRp + a * CEp) < 0
+⊢ False
+failed
+exit 1
