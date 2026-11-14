@@ -1563,6 +1563,16 @@ L += [
  ("expected the split to fail the forest at $f=3$ and $f=2$; it found values 50 to 10,000 times below the estimate", FRB, "These are 50 to 10,000 times below the estimate."),
  ("they keep a little, and that is the whole of D", FRB, "They keep a little, and that is the whole of D."),
 ]
+# version 1.3, revision 2b: version 3 of FRZ6's Zenodo record, which adds FRZ6R
+FZ3 = D13 + "FRZ6Z_zenodo_record/frz6z_v3_deposit_receipt.json"; FZ3m = D13 + "FRZ6Z_zenodo_record/frz6z_v3.zenodo.json"
+L += [
+ ("are version 3 of FRZ6's Zenodo record, DOI 10.5281/zenodo.24211910 (created 2026-11-14 03:37 UTC; concept DOI 10.5281/zenodo.24208900)", FZ3, "\"doi\": \"10.5281/zenodo.24211910\""),
+ ("are version 3 of FRZ6's Zenodo record, DOI 10.5281/zenodo.24211910 (created 2026-11-14 03:37 UTC; concept DOI 10.5281/zenodo.24208900)", FZ3, "\"created\": \"2026-11-14T03:37:57"),
+ ("are version 3 of FRZ6's Zenodo record, DOI 10.5281/zenodo.24211910 (created 2026-11-14 03:37 UTC; concept DOI 10.5281/zenodo.24208900)", FZ3, "\"conceptdoi\": \"10.5281/zenodo.24208900\""),
+ ("are version 3 of FRZ6's Zenodo record", FZ3m, "\"version\": \"3.0\""),
+ ("are version 3 of FRZ6's Zenodo record", FZ3m, "\"new_version_of\": \"10.5281/zenodo.24210556 (version 2.0); version 1.0 is 10.5281/zenodo.24208901\""),
+ ("version 1, DOI 10.5281/zenodo.24208901 (2026-11-13 22:41 UTC), remains the pre-registration timestamp", FZ1, "\"created\": \"2026-11-13T22:41:22"),
+]
 # (fragment in the TeX, JSON file, key path, format, the number as the TeX prints it)
 J = [
  ("0.597$ [0.556, 0.637]", RB1j, ["gate1", "canonical", "classes", "G-H", "median"], ".3f", "0.597"),
