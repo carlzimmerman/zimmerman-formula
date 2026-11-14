@@ -149,8 +149,10 @@ a hit for the split.
 
 ## Commit ids and the lead's re-run (2026-11-14)
 
-- Criteria 03f9823de7 (origin d223c720b9); amendment A1 49f8ed445d (origin 84cd53e583); amendment A2 1c36721822 (origin 1090a533ed);
-  scripts and outputs 6cce4d7328 (origin d46836968e); result b40ed0b7de (origin 3ceaca920d).
+- Criteria 03f9823de7 (origin 61016f6d85); amendment A1 49f8ed445d (origin c9de0dc2c2); amendment A2 1c36721822 (origin 22c8e0b97d);
+  scripts and outputs 6cce4d7328 (origin 99095e5962); result b40ed0b7de (origin c07c41ef44).
+- Correction: the first version of this note (18986299e8) gave five origin ids that belong to unrelated commits, because
+  the push it described had not happened when the note was written. The ids above are the right ones.
 - The lead re-ran, from a copy of the tracked files at the same folder depth:
   - `wlj1_hm.py` (the split's matter-power ratios and the boundary twin): both JSON files equal byte for byte; the two
     logs differ only in elapsed-seconds stamps;
