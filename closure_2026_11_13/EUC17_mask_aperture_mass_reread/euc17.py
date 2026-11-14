@@ -8,7 +8,8 @@ f = M2D_frac(mask radius, R_e, n) and b_corr = b + log10 f.  Rows R1 (EUC1), R2 
 graded it) are re-read with their own statistics, lines and words.
 
 Run:
-  python3 -I euc17.py --data-dir <dir with the two ECLIPSE csv files>
+  python3 -I euc17.py --data-dir <dir with the two ECLIPSE csv files>      (as frozen)
+  python3 -I euc17.py --data-dir <dir> --A2                     (POST HOC reading under AMENDMENT_A2.md)
   EUC17_MUTATE=nomask python3 -I euc17.py --data-dir <dir>      (must exit 1)
   EUC17_MUTATE=invert python3 -I euc17.py --data-dir <dir>      (must exit 1)
 
@@ -92,13 +93,15 @@ def logf(ids, te, n, variant, M):
     if MUT == "invert": lf = -lf
     return lf
 
-def cmp_stats(st, ref, tol_pt, tol_fr, tol_bd=0.01):
+def cmp_stats(st, ref, tol_pt, tol_fr, tol_bd=0.01, tol_bd_fr=None):
+    """tol_bd_fr: tolerance on the bootstrap bounds of a fraction (AMENDMENT A2); None = tol_bd, as frozen."""
     bad = []
+    if tol_bd_fr is None: tol_bd_fr = tol_bd
     if abs(st["b_med"] - ref["b_med"]) > tol_pt: bad.append("b_med %.3e" % abs(st["b_med"] - ref["b_med"]))
     for k in ("f25", "f0"):
         if abs(st[k] - ref[k]) > tol_fr: bad.append("%s %.3e" % (k, abs(st[k] - ref[k])))
     for k in ("f25_lo", "f25_hi", "f0_lo", "f0_hi", "b_med_lo", "b_med_hi"):
-        if abs(st[k] - ref[k]) > tol_bd: bad.append("%s %.3e" % (k, abs(st[k] - ref[k])))
+        if abs(st[k] - ref[k]) > (tol_bd if k.startswith("b_med") else tol_bd_fr): bad.append("%s %.3e" % (k, abs(st[k] - ref[k])))
     if st["N"] != ref["N"]: bad.append("N %d vs %d" % (st["N"], ref["N"]))
     if "word" in ref and "word" in st and st["word"] != ref["word"]: bad.append("word %s vs %s" % (st["word"], ref["word"]))
     return bad
@@ -152,10 +155,16 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--data-dir", required=True)
     ap.add_argument("--k4-dir", default=os.path.join(REPO, "euclid_for_j0332_fit_2026_11_13", "inputs"))
+    ap.add_argument("--A2", action="store_true", help="POST HOC reading under AMENDMENT_A2.md (commit aaa56c6789)")
     a = ap.parse_args()
     t0 = time.time()
+    tag = TAG + ("_A2" if a.A2 else "")
+    def bd_fr(N):                                        # A2 section 1: bound tolerance of a fraction on N lenses
+        return max(0.01, 1.0 / max(N, 1) + 1e-9) if a.A2 else None
     P("EUC17 (MASK-APERTURE STELLAR MASS, EUCLID LENS ROWS RE-READ)%s" % ("   *** MUTATE = %s ***" % MUT if MUT else ""))
     P("criteria 8b31c449c9, amendment A1 e3db93ac26;  footings (m/s^2): canonical %.4e, alt %.4e" % (E.FOOT["canonical"], E.FOOT["alt"]))
+    if a.A2:
+        P("*** POST HOC: read under AMENDMENT A2 (aaa56c6789). The as-frozen word of this lane is NOT EVALUABLE. ***")
     rows, _ = E.load(a.data_dir)
     for s in E.OUT: OUT.append(s)
     E.OUT.clear()
@@ -225,15 +234,15 @@ def main():
             if bad: k0bad.append("%s %s %s: %s" % (gname, law, nm, "; ".join(bad)))
     for nm in E.FOOT:
         st = E.stats(R3["b"][nm]); st["word"] = word_gate(st)
-        bad = cmp_stats(st, ref16["reading"]["P"]["S_" + nm]["true"], 1e-4, 1.0 / max(st["N"], 1) + 1e-12)
+        bad = cmp_stats(st, ref16["reading"]["P"]["S_" + nm]["true"], 1e-4, 1.0 / max(st["N"], 1) + 1e-12, tol_bd_fr=bd_fr(st["N"]))
         if bad: k0bad.append("R3 %s: %s" % (nm, "; ".join(bad)))
         st = E.stats(R10["b"][nm])
-        bad = cmp_stats(st, ref10["readings"]["all matched with valid inputs, law S"][nm], 1e-4, 1.0 / max(st["N"], 1) + 1e-12)
+        bad = cmp_stats(st, ref10["readings"]["all matched with valid inputs, law S"][nm], 1e-4, 1.0 / max(st["N"], 1) + 1e-12, tol_bd_fr=bd_fr(st["N"]))
         if bad: k0bad.append("EUC10 reading %s: %s" % (nm, "; ".join(bad)))
     for rd in ("R3", "R2"):
         bb = COND[rd][np.isfinite(COND[rd])]
         st = E.stats(bb); st["word"] = E.word(st)
-        bad = cmp_stats(st, ref1["conditional"]["%s_S_alt" % rd], 1e-4, 1.0 / max(st["N"], 1) + 1e-12)
+        bad = cmp_stats(st, ref1["conditional"]["%s_S_alt" % rd], 1e-4, 1.0 / max(st["N"], 1) + 1e-12, tol_bd_fr=bd_fr(st["N"]))
         if bad: k0bad.append("EUC1 conditional %s alt: %s" % (rd, "; ".join(bad)))
     ck("K0", "f = 1 reproduces every committed statistic and word (R1, R2, R3, EUC4 bins, EUC10 reading, EUC1 conditional)%s"
        % ("" if not k0bad else ": " + " | ".join(k0bad)), not k0bad, k0bad)
@@ -353,7 +362,12 @@ def main():
             keep = np.isfinite(lf) & np.isfinite(COND[rd])
             st = E.stats(COND[rd][keep] + lf[keep]); st["word"] = E.word(st)
             out["EUC1 conditional " + rd] = dict(stats={"S_alt": st}, N_kept=int(keep.sum()))
-        # the 5 % rule
+        # the 5 % rule.  As frozen run: applied to every dropped lens (a script error for F5).
+        # A2 section 2: counts only lenses without a mask file, as criteria section 1 says.
+        if a.A2 and MUT != "nomask":
+            for name, g in (("R1", B["R1 P"]), ("R2 W_B", B["R2 W_B"]), ("EUC4 secondary", B["EUC4 secondary"]),
+                            ("EUC4 complement", B["EUC4 complement"]), ("R3", R3)):
+                out[name]["no_mask_frac"] = float(np.mean([not (i in M and M[i]["ok"]) for i in g["ids"]])) if len(g["ids"]) else 1.0
         for name in ("R1", "R2 W_B", "EUC4 secondary", "EUC4 complement", "R3"):
             if out[name]["no_mask_frac"] > NOMASK_MAX and variant != "F4":
                 for k in out[name]["stats"]:
@@ -459,7 +473,7 @@ def main():
     else:
         if not checks_ok:
             P("\nA CHECK FAILED: the lane is NOT EVALUABLE."); code = 2
-        with open(os.path.join(HERE, "euc17_per_lens.csv"), "w", newline="") as f:
+        with open(os.path.join(HERE, "euc17_per_lens.csv") if not a.A2 else os.devnull, "w", newline="") as f:
             w = csv.writer(f)
             w.writerow(["unique_identifier", "row", "theta_E_arcsec", "theta_e_arcsec", "sersic_n", "mask_radius_arcsec", "mask_centre_offset_arcsec",
                         "f_in_mask", "log10_f", "b_S_canonical", "b_S_alt", "b_corr_S_canonical", "b_corr_S_alt"])
@@ -473,9 +487,9 @@ def main():
                                 "%.4f" % g["b"][("S", "canonical")][j], "%.4f" % g["b"][("S", "alt")][j],
                                 "%.4f" % (g["b"][("S", "canonical")][j] + lf[j]) if has else "", "%.4f" % (g["b"][("S", "alt")][j] + lf[j]) if has else ""])
     P("\nchecks all pass: %s;  elapsed %.0f s;  exit %d" % (checks_ok, time.time() - t0, code))
-    with open(os.path.join(HERE, TAG + "_results.json"), "w") as f:
+    with open(os.path.join(HERE, tag + "_results.json"), "w") as f:
         json.dump(RES, f, indent=1, default=lambda o: o.tolist() if hasattr(o, "tolist") else str(o))
-    with open(os.path.join(HERE, TAG + ".out"), "w") as f:
+    with open(os.path.join(HERE, tag + ".out"), "w") as f:
         f.write("\n".join(OUT) + "\n")
     sys.exit(code)
 
