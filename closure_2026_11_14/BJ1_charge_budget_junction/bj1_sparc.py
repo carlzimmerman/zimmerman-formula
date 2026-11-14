@@ -42,7 +42,7 @@ SRC = os.path.join(HERE, "bj1_lens.py"); code = open(SRC).read()
 S = {"__file__": SRC, "__name__": "bj1_lens_lib"}
 with contextlib.redirect_stdout(io.StringIO()):
     exec(compile(code[:code.index("# ---------------- JNT2's boundary (main mode), copied")], SRC, "exec"), S)
-profile_B, halo, JC = S["profile_B"], S["halo"], S["C"]; GS, MSUN = S["G"], S["Msun"]
+profile_B, halo, JC = S["profile_B"], S["halo"], S["C"]; GS, MSUN = S["S"]["G"], S["S"]["Msun"]       # SRH1's (ONE1's) SI constants
 KPC_S = 3.0857e19
 def Mb_of(q):
     R = q["R"]; VB2 = np.sign(q["Vgas"]) * q["Vgas"] ** 2 + 0.5 * q["Vdisk"] ** 2 + 0.7 * q["Vbul"] ** 2
