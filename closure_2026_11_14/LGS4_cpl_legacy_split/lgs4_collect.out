@@ -1,0 +1,35 @@
+G0 chains: frozen step count, max R-1 < 0.01 and a positive-definite Laplace covariance in all eight runs: FAIL   (max R-1 0.0208)
+H1 full sample, CPL, against the paper's 'DES + legacy' row (gate: every mean within 0.5 paper sd, every sd ratio in 0.75-1.33):
+   H1 om : here +0.3147 +- 0.0053   paper +0.3140 +- 0.0050   diff +0.14 paper sd, sd ratio 1.06  ok
+   H1 w0 : here -0.8034 +- 0.0534   paper -0.8020 +- 0.0560   diff -0.02 paper sd, sd ratio 0.95  ok
+   H1 wa : here -0.7529 +- 0.2029   paper -0.7700 +- 0.2200   diff +0.08 paper sd, sd ratio 0.92  ok
+   H1 H0 : here +67.3320 +- 0.5470   paper +67.3700 +- 0.5500   diff -0.07 paper sd, sd ratio 0.99  ok
+H1: PASS
+context (no gate): DES-only CPL against the paper's 'DES' row:
+   ctx om : here +0.3122 +- 0.0082   paper +0.3110 +- 0.0090   diff +0.14 paper sd, sd ratio 0.91  ok
+   ctx w0 : here -0.8298 +- 0.0866   paper -0.8450 +- 0.0980   diff +0.15 paper sd, sd ratio 0.88  ok
+   ctx wa : here -0.6813 +- 0.2767   paper -0.6390 +- 0.3150   diff -0.13 paper sd, sd ratio 0.88  ok
+   ctx H0 : here +67.5957 +- 0.8551   paper +67.7100 +- 0.9300   diff -0.12 paper sd, sd ratio 0.92  ok
+context (no gate): full sample, CPL with a free legacy offset, against the paper's row:
+   ctx om : here +0.3112 +- 0.0085   paper +0.3110 +- 0.0080   diff +0.03 paper sd, sd ratio 1.06  ok
+   ctx w0 : here -0.8365 +- 0.0955   paper -0.8450 +- 0.0910   diff +0.09 paper sd, sd ratio 1.05  ok
+   ctx wa : here -0.6729 +- 0.3147   paper -0.6530 +- 0.2950   diff -0.07 paper sd, sd ratio 1.07  ok
+   ctx H0 : here +67.7101 +- 0.8698   paper +67.7800 +- 0.8500   diff -0.08 paper sd, sd ratio 1.02  ok
+   ctx dm : here +0.0110 +- 0.0213   paper +0.0130 +- 0.0210   diff -0.10 paper sd, sd ratio 1.01  ok
+P1 (chains): shift des_only - full (w0, wa) = (-0.0265, +0.0717); nested-sample sd (0.0681, 0.1882); per axis (-0.39, +0.38) sigma; 2D T = 0.154, p = 0.926 (0.09 sigma) -> CONSISTENT
+P1 (Laplace): C_des - C_full is not positive definite -> no statistic
+P2 full     : chi2(constant dark energy) - chi2(CPL) = 14.743 -> 3.42 sigma
+P2 des_only : chi2(constant dark energy) - chi2(CPL) = 7.078 -> 2.18 sigma
+P2 rand197  : chi2(constant dark energy) - chi2(CPL) = 15.117 -> 3.47 sigma
+P2 context: along the full-sample offset from w = -1, DES-only keeps 0.56 of the information. If the full-sample signal is real, the DES-only chi2 gain should average 9.18 (2.57 sigma; sd 5.72); if the legacy set made it, 2.00 (chi2, 2 dof).
+P2 context: observed 7.08. Probability of a gain this low or lower if real: 0.416; this high or higher if legacy-made: 0.029
+P2 des_only label: 2 TO 3 SIGMA
+P3 chi2_min, full sample: constant dark energy 1666.862; + offset 1659.160; CPL 1652.119; CPL + offset 1651.697
+P3 G = chi2(constant + offset) - chi2(CPL) = +7.041; one extra parameter costs 2 (AIC) to ln N = 7.52 (BIC, N = 1852); dAIC +5.04, dBIC -0.48 (positive favours CPL) -> CANNOT TELL
+P3 context, Laplace evidence ratios with the paper's priors (ln B, positive favours the first): CPL vs constant, full +4.40 (paper +1.70); DES-only +0.56 (paper -1.79); both with the offset +0.34 (paper -1.39); CPL without offset vs constant with offset +4.73 (not in the paper)
+P4 rand197: 3.47 sigma against 3.42 for the full sample; centre moves (-0.03, -0.04) full-sample sd; sd ratio rand197 / full (0.978, 1.018) -> CONTROL QUIET
+P5 legacy offset inside constant dark energy: +0.0339 +- 0.0122 mag (best fit +0.0338); chi2 gain 7.702 -> 2.78 sigma -> OFFSET HINTED
+P5 legacy offset inside CPL: +0.0110 +- 0.0213 mag (best fit +0.0140); chi2 gain 0.422 -> 0.65 sigma -> NO OFFSET
+
+LABELS: P1 NOT EVALUABLE; P2 (des_only) 2 TO 3 SIGMA; P3 CANNOT TELL; P4 CONTROL QUIET; P5 constant OFFSET HINTED, CPL NO OFFSET
+READING: NOT EVALUABLE AS FROZEN  (a gate failed: the labels above carry no weight)
