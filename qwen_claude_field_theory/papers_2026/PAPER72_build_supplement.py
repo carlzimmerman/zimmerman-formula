@@ -12,6 +12,9 @@ Version 1.2 adds every lane folded into its Section 8 (closure_2026_11_10/ to cl
 hy4_push/, toe_2026_11_10/) the audit files A1 to A4 of reviews/hy4_codex_audit_2026_11_12/, the corrections audit
 reviews/codex_corrections_audit_2026_11_12/ and the two owner decisions of 2026-11-12 on the Milky Way (revision 2); and PIK2, EUC5R, EUC6R, EUC8 and RAW1
 (revision 3a); FRZ3, FRZ3R, EUC9, EUC10, EUC12, EUC13, EUC13R, ESZ1, EXR1, HOT1 and LMC1 (revision 3b).
+Version 1.3 adds every lane folded into its Section 9 (closure_2026_11_12/ and closure_2026_11_13/, with CJ1, PRJ1 and FRZ6's Zenodo
+receipts) and route D's note, the source of CJ1's lemma. FRZ6's part files (parts/, 44 files, 49 MB) are not copied: they are in the
+Zenodo record DOI 10.5281/zenodo.24210556 (FRZ6_parts.zip); the manifest lists them under excluded_see_doi. FRZ6R, running, is not included.
 The shared checkout has diverged from origin (PD1 and PD2 are committed on origin only), so each lane path is taken from whichever
 of HEAD and origin/main last committed to it; the manifest records the ref and commit for each. Untracked files are not included
 and are listed (unless the same path is committed on the chosen ref); a tracked file modified in the working tree stops the build. Deterministic for given commits (fixed entry dates).
@@ -197,7 +200,47 @@ PATHS = [
  "closure_2026_11_12/EXR1_wide_lens_xray_cusp",
  "closure_2026_11_12/HOT1_hot_bin_localisation",
  "closure_2026_11_12/LMC1_lmc_pull_on_halo_stars",
+ # version 1.3
+ "closure_2026_11_12/DPR1_distinctive_predictions",
+ "closure_2026_11_12/DR4MAP_gaia_dr4_registry_map",
+ "closure_2026_11_12/EUC11_deep_field_lenses",
+ "closure_2026_11_12/EUC14_predicted_split_source_redshifts",
+ "closure_2026_11_12/EUC15_image_arc_predicted_split",
+ "closure_2026_11_12/EXR1R_blind_regrade",
+ "closure_2026_11_12/EXR2_wide_lens_xray_cusp_second",
+ "closure_2026_11_12/KAP1_kappa_new_routes",
+ "closure_2026_11_12/RFX1_lmc_reflex_momentum_bound",
+ "closure_2026_11_12/SRF1_settled_radius_flux_window",
+ "closure_2026_11_12/SRF1R_blind_settled_radius_flux_window",
+ "closure_2026_11_12/SRJ1_settled_joint_clusters",
+ "closure_2026_11_12/SRJ2_regime_split_joint",
+ "closure_2026_11_12/SRJ3_reference_layout_disc_fit",
+ "closure_2026_11_12/SRJ4_reference_layout_dark_fraction",
+ "closure_2026_11_13/CJ1_candidate_completion",
+ "closure_2026_11_13/JNT1_regime_split_joint_on_data",
+ "closure_2026_11_13/JNT1R_blind_massive_spiral_regrade",
+ "closure_2026_11_13/JNT2_crossing_speed_joint",
+ "closure_2026_11_13/JNT2R_blind_crossing_speed_joint",
+ "closure_2026_11_13/FRZ4_forest_flux_graded",
+ "closure_2026_11_13/FRZ5_forest_nuisance_refit",
+ "closure_2026_11_13/FRZ6_forest_flux_candidate_graded",
+ "closure_2026_11_13/FRZ6Z_zenodo_record",
+ "closure_2026_11_13/DSC1_joint_on_resolved_discs",
+ "closure_2026_11_13/DSC1R_blind_resolved_discs_regrade",
+ "closure_2026_11_13/ALP1_alpaka_discs_joint",
+ "closure_2026_11_13/ALP1R_blind_alpaka_discs_joint",
+ "closure_2026_11_13/LNJ1_joint_switch_on_euclid_lenses",
+ "closure_2026_11_13/EUC16_better_arc_finder_source_redshifts",
+ "closure_2026_11_13/EUC17_mask_aperture_mass_reread",
+ "closure_2026_11_13/MWT1_hot_bin_assumptions",
+ "closure_2026_11_13/MWT2_hot_bin_structure",
+ "closure_2026_11_13/RRL1_halo_slope_from_rr_lyrae",
+ "closure_2026_11_13/NUF1_neutrino_floor_geometry",
+ "closure_2026_11_13/PRJ1_candidate_predictions_sealed",
+ "fable52_push/SHAPE_search/route_D_dark_energy_column.md",
 ]
+# version 1.3: committed files left out of the zip, each with the public record that holds them
+EXCLUDE = {"closure_2026_11_13/FRZ6_forest_flux_candidate_graded/parts/": "DOI 10.5281/zenodo.24210556 (FRZ6_parts.zip)"}
 REFS = ("HEAD", "origin/main")
 def git(*a, check=True):
     return subprocess.run(["git", "-C", ROOT, *a], capture_output=True, text=True, check=check).stdout.strip()
@@ -218,11 +261,13 @@ for p in PATHS:
     if best is None:
         sys.exit(f"REFUSING: {p} is committed on neither HEAD nor origin/main")
     chosen[p] = dict(ref=best[1], ref_commit=git("rev-parse", best[1]), last_commit=best[2])
-files = {}
+files = {}; excluded = []
 for p, c in chosen.items():
     tf = tarfile.open(fileobj=io.BytesIO(gitb("archive", "--format=tar", c["ref"], "--", p)))
     for m in tf.getmembers():
-        if m.isfile(): files[m.name] = tf.extractfile(m).read()
+        if m.isfile():
+            if any(m.name.startswith(x) for x in EXCLUDE): excluded.append(m.name); continue
+            files[m.name] = tf.extractfile(m).read()
 names = sorted(files)
 bad = [n for n in names if n.startswith("/") or "/Users/" in n]
 if bad: sys.exit(f"REFUSING: absolute paths in the archive: {bad[:3]}")
@@ -239,11 +284,13 @@ blob = open(ZIP, "rb").read()
 lanes = sorted({n.split("/")[1] for n in names if n.count("/") >= 2})
 man = dict(paper="PAPER72", git_head=git("rev-parse", "HEAD"), origin_main=git("rev-parse", "origin/main"), sources=chosen,
            count=len(names), zip_bytes=len(blob), sha256=hashlib.sha256(blob).hexdigest(), lanes=lanes,
-           lean=sorted(n for n in names if n.endswith(".lean")), untracked_not_included=untracked, files=names)
+           lean=sorted(n for n in names if n.endswith(".lean")), untracked_not_included=untracked,
+           excluded_see_doi=dict(rules=EXCLUDE, files=sorted(excluded)), files=names)
 json.dump(man, open(MAN, "w"), indent=1)
 print(f"supplement: {man['count']} files, {man['zip_bytes'] / 1e6:.2f} MB, sha256 {man['sha256'][:16]}, "
       f"HEAD {man['git_head'][:10]}, origin {man['origin_main'][:10]}")
 for p, c in chosen.items(): print(f"  {p}: {c['ref']} (last commit {c['last_commit'][:10]})")
 print("lanes:", ", ".join(lanes))
+if excluded: print(f"excluded, held by a public record ({len(excluded)}):", "; ".join(f'{k} -> {v}' for k, v in EXCLUDE.items()))
 if untracked: print(f"untracked, not included ({len(untracked)}):", ", ".join(untracked))
 print("kappa = 1/2 FITTED; not theory closed; nothing here says the data favour the framework.")
