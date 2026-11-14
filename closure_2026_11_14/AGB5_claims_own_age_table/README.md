@@ -115,4 +115,16 @@ Commits (local / origin): criteria 0b15d1ba6e / c18d7c8436; scripts 627f7d2ef8 /
 8527c3d698; amended scripts 937c653a33 / 95d6f42966; plumbing fix e5fc0605ff / 621897cceb; result c3fa3f2db2 /
 7d55bb174f.
 
+## Note added 2026-11-14 (later): two corrections from AGB6
+AGB6 (`closure_2026_11_14/AGB6_why_the_residuals_differ/`) followed the difference between the claim's residuals
+and the Pantheon+ ones step by step on the same supernovae.
+1. **Post hoc 1 above is wrong in its rows (b) and (c).** There the Pantheon+ stretch and colour coefficients were
+   fitted on these supernovae before the age term, which hands part of the age trend to stretch. Fitted jointly, or
+   with the release's own coefficients, the raw Pantheon+ magnitudes carry +0.64 ± 0.22 of the published slope, and
+   the difference from the claim's residuals is +0.19 ± 0.14, not a 4 to 5σ trend.
+2. **The verdict's last sentence is wrong as worded.** The slope is not "largely absent from the modern"
+   residuals; it is absent from the *published* Pantheon+ magnitudes (+0.20 ± 0.19) and present in the raw ones. The
+   step that removes it is the release's bias correction, which carries a host-mass term (+0.44 ± 0.07, 6σ).
+The frozen word L1 and its numbers are not affected: they concern the claim's own tables.
+
 kappa = 1/2 FITTED; not theory closed.
