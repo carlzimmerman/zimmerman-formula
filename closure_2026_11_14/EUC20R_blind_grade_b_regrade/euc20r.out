@@ -1,0 +1,121 @@
+EUC20R (BLIND RE-GRADE OF EUC20): mask-aperture stellar mass, the grade-B lanes. kappa = 1/2 FITTED; not theory closed.
+mask union: closure_2026_11_13/EUC17_mask_aperture_mass_reread/euc17_masks.csv rows 3366, with mask 3357, closure_2026_11_14/EUC19_grade_b_mask_table/euc19_masks.csv rows 2828, with mask 2828
+
+[H1 source folders untouched] 15 runs checked; dirty after: none -> PASS
+
+[H0 harness, f = 1]
+  euc8    euc8.out identical; euc8_per_lens.csv identical; euc8_results.json identical; euc8_wide_per_lens.csv identical  (exit 0)
+  euc5a1  euc5_a1.out identical; euc5_a1_per_lens.csv identical; euc5_a1_results.json identical  (exit 0)
+  lnj1    lnj1.json identical; lnj1.out identical; lnj1_MUTATE_TWD.json identical; lnj1_MUTATE_TWD.out identical; lnj1_MUTATE_TWH.json identical; lnj1_MUTATE_TWH.out identical; lnj1_MUTATE_TWSH.json identical; lnj1_MUTATE_TWSH.out identical; lnj1_per_lens.csv identical  (exit 0)
+  euc4    bins: 48 point statistics, max diff 0.0e+00 (<= 1e-9); bounds max diff 0.0e+00 (<= 0.01); words identical True -> PASS
+  rebuilt words at f = 1: G2 SLOPE NOT CONSTRAINED / SLOPE NOT CONSTRAINED (matches); G3 NO POWER, FRAGILE / NO POWER (matches)
+
+[H2 the right checks fail, H3 the shift arrives]
+  primary EUC8 failing ['K1', 'K5'] (as required); LNJ1 failing ['KA1', 'KA2'] (as required); EUC5 A1 states unchanged (F1 FAIL, N(P) 32, N(S) 55): yes
+  F1a     EUC8 failing ['K1', 'K5'] (as required); LNJ1 failing ['KA1', 'KA2'] (as required)
+  F1b     EUC8 failing ['K1', 'K5'] (as required); LNJ1 failing ['KA1', 'KA2'] (as required)
+  H3 EUC8 K1 under the correction: N = 124, 0.444 / 0.379 -> 0.444 / 0.379 to 0.001: PASS
+
+[H4 mask coverage]
+  G1           N   292, without a mask 0 (0.00 %) -> within 5 %
+  G2_D         N    25, without a mask 0 (0.00 %) -> within 5 %
+  G2_all55     N    55, without a mask 0
+  G3_S         N  6173, without a mask 0 (0.00 %) -> within 5 %
+  complement   N  2045, without a mask 0
+  W_B          N   124, without a mask 0
+  P            N  3192, without a mask 0
+  grade_B      N  2981, without a mask 0
+  EUC5_A1_55   N    55, without a mask 0
+
+[rows: corrected word; UNCHANGED / CHANGED; FRAGILE / ROBUST from F1a (R_e x 0.80 in f) and F1b (R_e x 1.25)]
+  G1 canonical NO VERDICT                               CHANGED   ROBUST   (committed WIDE LENSES BREAK THE CEILING; F1a NO VERDICT; F1b NO VERDICT)
+  G2 canonical SLOPE NOT CONSTRAINED                    UNCHANGED ROBUST   (committed SLOPE NOT CONSTRAINED; F1a SLOPE NOT CONSTRAINED; F1b SLOPE NOT CONSTRAINED)
+  G3 canonical NO SWITCH, FRAGILE                       CHANGED   ROBUST   (committed NO POWER, FRAGILE; F1a NO SWITCH, FRAGILE; F1b NO SWITCH, FRAGILE)
+  G1 alt       NO VERDICT                               CHANGED   ROBUST   (committed WIDE LENSES BREAK THE CEILING; F1a NO VERDICT; F1b NO VERDICT)
+  G2 alt       SLOPE NOT CONSTRAINED                    UNCHANGED ROBUST   (committed SLOPE NOT CONSTRAINED; F1a SLOPE NOT CONSTRAINED; F1b SLOPE NOT CONSTRAINED)
+  G3 alt       NO SWITCH, FRAGILE                       CHANGED   FRAGILE  (committed NO POWER; F1a NO POWER; F1b NO SWITCH, FRAGILE)
+
+[G1 EUC4 secondary bin (292 grade-B lenses, 1.3 <= theta_E < 1.7), source at infinity; f25 law S]
+  f1      canonical f25 0.425 [0.370, 0.479]  b_med +0.207 [+0.189, +0.240]  -> WIDE LENSES BREAK THE CEILING
+  f1      alt       f25 0.380 [0.329, 0.435]  b_med +0.182 [+0.164, +0.215]  -> WIDE LENSES BREAK THE CEILING
+  primary canonical f25 0.182 [0.140, 0.226]  b_med +0.071 [+0.046, +0.108]  -> NO VERDICT
+  primary alt       f25 0.154 [0.113, 0.199]  b_med +0.047 [+0.020, +0.080]  -> NO VERDICT
+  F1a     canonical f25 0.202 [0.158, 0.250]  b_med +0.090 [+0.070, +0.126]  -> NO VERDICT
+  F1a     alt       f25 0.188 [0.144, 0.236]  b_med +0.066 [+0.044, +0.099]  -> NO VERDICT
+  F1b     canonical f25 0.151 [0.113, 0.192]  b_med +0.050 [+0.022, +0.078]  -> NO VERDICT
+  F1b     alt       f25 0.123 [0.086, 0.161]  b_med +0.028 [-0.003, +0.053]  -> NO VERDICT
+  correction -log10 f on the secondary bin (primary share): median 0.108 dex, 16-84 % 0.044 to 0.230
+  law B beside: canonical f25 0.243 [0.195, 0.295] NO VERDICT; alt f25 0.223 [0.178, 0.274] NO VERDICT
+
+[reported, no word: EUC4's other bins under the correction, law S]
+  complement: theta_E < 1.0              canonical f25 0.055 [0.046, 0.065] b_med -0.163  would-be NOT CONFIRMED  (committed f25 0.092, NO VERDICT)
+  complement: theta_E < 1.0              alt       f25 0.051 [0.042, 0.060] b_med -0.188  would-be NOT CONFIRMED  (committed f25 0.082, NOT CONFIRMED)
+                                         correction -log10 f: median 0.036 dex, 16-84 % 0.002 to 0.121
+  W_B: theta_E >= 1.7 arcsec (primary)   canonical f25 0.444 [0.355, 0.524] b_med +0.221  would-be WIDE LENSES BREAK THE CEILING  (committed f25 0.758, WIDE LENSES BREAK THE CEILING)
+  W_B: theta_E >= 1.7 arcsec (primary)   alt       f25 0.379 [0.298, 0.460] b_med +0.197  would-be WIDE LENSES BREAK THE CEILING  (committed f25 0.702, WIDE LENSES BREAK THE CEILING)
+                                         correction -log10 f: median 0.132 dex, 16-84 % 0.063 to 0.257
+
+[G2 EUC8 Part B family words under the correction (sample D: N 25)]
+  canonical P TOO CONCENTRATED, T ALLOWED, 2.5 ALLOWED, 2.0 ALLOWED, 1.5 ALLOWED, 1.0 ALLOWED, 0.0 ALLOWED
+            committed: P TOO CONCENTRATED, T ALLOWED, 2.5 ALLOWED, 2.0 ALLOWED, 1.5 ALLOWED, 1.0 ALLOWED, 0.0 ALLOWED
+    family T    d at b* = 0: far -0.055 [-0.105, +0.009], near -0.185 [-0.263, -0.128]; far upper at b* -0.1/0/+0.1: +0.021 / +0.009 / -0.001; near lower: -0.263 / -0.263 / -0.263
+    family 0.0  d at b* = 0: far +0.001 [-0.060, +0.078], near -0.005 [-0.070, +0.074]; far upper at b* -0.1/0/+0.1: +0.123 / +0.078 / +0.032; near lower: -0.029 / -0.070 / -0.114
+    gamma-hat (D, b* = 0): far 0.20 [<0, 2.24], central <0 [<0, 1.81], near <0 [<0, 1.36]
+  alt       P TOO CONCENTRATED, T ALLOWED, 2.5 ALLOWED, 2.0 ALLOWED, 1.5 ALLOWED, 1.0 ALLOWED, 0.0 ALLOWED
+            committed: P TOO CONCENTRATED, T ALLOWED, 2.5 ALLOWED, 2.0 ALLOWED, 1.5 ALLOWED, 1.0 ALLOWED, 0.0 ALLOWED
+    family T    d at b* = 0: far -0.047 [-0.097, +0.019], near -0.179 [-0.258, -0.123]; far upper at b* -0.1/0/+0.1: +0.029 / +0.019 / +0.006; near lower: -0.258 / -0.258 / -0.258
+    family 0.0  d at b* = 0: far -0.002 [-0.063, +0.075], near -0.008 [-0.073, +0.071]; far upper at b* -0.1/0/+0.1: +0.119 / +0.075 / +0.030; near lower: -0.031 / -0.073 / -0.116
+    gamma-hat (D, b* = 0): far <0 [<0, 2.28], central <0 [<0, 1.86], near <0 [<0, 1.37]
+  source script's own printed lane word under the correction: NOT EVALUABLE / NOT EVALUABLE (its checks K1 / K5 fail by design; not this row's word)
+
+[reported, no word: EUC8 Part A, law S, b_star = 0: fraction needing extra mass; median excess mass [16-84 %]; median share of the lensing mass]
+  W theta_E >= 1.7  canonical far     N  316  need 0.915 (was 0.997)  excess 1.98e+11 [5.79e+10, 4.67e+11] (was 3.17e+11)  share 0.294 (was 0.451)
+  W theta_E >= 1.7  canonical central N  316  need 0.997 (was 1.000)  excess 5.13e+11 [2.22e+11, 1.16e+12] (was 6.22e+11)  share 0.502 (was 0.613)
+  W theta_E >= 1.7  alt       far     N  316  need 0.880 (was 0.991)  excess 1.75e+11 [2.99e+10, 4.38e+11] (was 2.91e+11)  share 0.258 (was 0.421)
+  W theta_E >= 1.7  alt       central N  316  need 0.997 (was 1.000)  excess 4.79e+11 [2.04e+11, 1.13e+12] (was 6.06e+11)  share 0.476 (was 0.590)
+  1.3 - 1.7         canonical far     N  653  need 0.646 (was 0.882)  excess 3.74e+10 [0.00e+00, 1.33e+11] (was 1.03e+11)  share 0.092 (was 0.290)
+  1.3 - 1.7         canonical central N  653  need 0.939 (was 0.975)  excess 1.94e+11 [6.89e+10, 4.67e+11] (was 2.71e+11)  share 0.376 (was 0.502)
+  1.3 - 1.7         alt       far     N  653  need 0.593 (was 0.830)  excess 2.00e+10 [0.00e+00, 1.18e+11] (was 8.96e+10)  share 0.046 (was 0.256)
+  1.3 - 1.7         alt       central N  653  need 0.926 (was 0.969)  excess 1.77e+11 [5.61e+10, 4.45e+11] (was 2.58e+11)  share 0.349 (was 0.475)
+  1.0 - 1.3         canonical far     N 1211  need 0.386 (was 0.624)  excess 0.00e+00 [0.00e+00, 5.17e+10] (was 2.53e+10)  share 0.000 (was 0.104)
+  1.0 - 1.3         canonical central N 1211  need 0.866 (was 0.941)  excess 1.02e+11 [8.62e+09, 2.79e+11] (was 1.47e+11)  share 0.293 (was 0.402)
+  1.0 - 1.3         alt       far     N 1211  need 0.340 (was 0.577)  excess 0.00e+00 [0.00e+00, 4.28e+10] (was 1.49e+10)  share 0.000 (was 0.063)
+  1.0 - 1.3         alt       central N 1211  need 0.836 (was 0.927)  excess 9.11e+10 [0.00e+00, 2.66e+11] (was 1.36e+11)  share 0.262 (was 0.373)
+  below 1.0         canonical far     N 3993  need 0.211 (was 0.319)  excess 0.00e+00 [0.00e+00, 8.39e+09] (was 0.00e+00)  share 0.000 (was 0.000)
+  below 1.0         canonical central N 3993  need 0.742 (was 0.822)  excess 3.52e+10 [0.00e+00, 1.31e+11] (was 5.10e+10)  share 0.203 (was 0.287)
+  below 1.0         alt       far     N 3993  need 0.178 (was 0.285)  excess 0.00e+00 [0.00e+00, 3.82e+09] (was 0.00e+00)  share 0.000 (was 0.000)
+  below 1.0         alt       central N 3993  need 0.706 (was 0.795)  excess 2.99e+10 [0.00e+00, 1.24e+11] (was 4.57e+10)  share 0.173 (was 0.258)
+
+[reported, no word: EUC5 under amendment A1, law S, raw | F1-corrected; word stays NOT EVALUABLE (F1 gate)]
+  P canonical N 32  b_dyn raw +0.054 [-0.007, +0.142] (was +0.196) | corrected +0.101 (was +0.250)
+  P alt       N 32  b_dyn raw +0.048 [-0.012, +0.136] (was +0.191) | corrected +0.096 (was +0.243)
+  S canonical N 55  b_dyn raw +0.062 [-0.006, +0.127] (was +0.193) | corrected +0.114 (was +0.239)
+  S alt       N 55  b_dyn raw +0.055 [-0.010, +0.121] (was +0.187) | corrected +0.110 (was +0.232)
+  theta_E 0.0-1.0   N 16  b_dyn raw -0.027 / corrected +0.033, b_inf -0.228 (alt)   [was +0.043 / +0.087, -0.173]
+  theta_E 1.0-1.3   N 14  b_dyn raw +0.098 / corrected +0.164, b_inf -0.163 (alt)   [was +0.169 / +0.235, -0.079]
+  theta_E 1.3-1.7   N 14  b_dyn raw +0.027 / corrected +0.084, b_inf -0.013 (alt)   [was +0.227 / +0.294, +0.158]
+  theta_E 1.7-99.0  N 11  b_dyn raw +0.084 / corrected +0.163, b_inf +0.118 (alt)   [was +0.252 / +0.315, +0.235]
+  canonical raw       median (b_dyn - b_inf) +0.103 [+0.011, +0.136], below the lensing bound 0.327   [was +0.103, 0.327]
+  canonical corrected median (b_dyn - b_inf) +0.169 [+0.073, +0.202], below the lensing bound 0.218   [was +0.169, 0.218]
+  alt       raw       median (b_dyn - b_inf) +0.119 [+0.029, +0.152], below the lensing bound 0.291   [was +0.119, 0.291]
+  alt       corrected median (b_dyn - b_inf) +0.186 [+0.091, +0.221], below the lensing bound 0.218   [was +0.186, 0.218]
+
+[reported, no word: LNJ1 under the correction]
+  canonical primary raw NO SWITCH (); after its twin gates NO SWITCH; N(s >= 1) 108; gates {'TWH_bites': True, 'TWD_bites': True, 'required': ['TWH', 'TWD'], 'TWSH_destroys': True, 'passed': True}; bracket words {'catalogue_scale': 'NO SWITCH', 'c_x0.7': 'NO SWITCH', 'c_x1.4': 'NO SWITCH', 'X_pd1_share': 'NO SWITCH', 'measured_rule': 'NO POWER', 'agel_draws_majority': 'JOINT UNDER-PREDICTS ABOVE THE BOUNDARY'}; its own printed WORD NOT EVALUABLE
+  alt       primary raw NO SWITCH (); after its twin gates NO SWITCH; N(s >= 1) 22; gates {'TWH_bites': True, 'TWD_bites': True, 'required': ['TWH', 'TWD'], 'TWSH_destroys': True, 'passed': True}; bracket words {'catalogue_scale': 'NO POWER', 'c_x0.7': 'NO SWITCH', 'c_x1.4': 'NO SWITCH', 'X_pd1_share': 'NO SWITCH', 'measured_rule': 'NO POWER', 'agel_draws_majority': 'JOINT UNDER-PREDICTS ABOVE THE BOUNDARY'}; its own printed WORD NOT EVALUABLE
+
+[reported, no word: EUC6 pairs under the correction]
+  primary pairs 243 (lenses with a mask 486 of 486); median d log M* wide - control: corrected +0.0701 [+0.0504, +0.0974], catalogued +0.0188; median -log10 f: wide 0.130, control 0.098
+          controls' richness-mass slope 4.68 [-1.29, 9.44] galaxies per dex (catalogued mass 3.04); worth +0.33 [-0.09, +0.74] galaxies = 10 % of EUC6's +3.38; one-third line 1.13 -> below the line
+  F1a     pairs 243 (lenses with a mask 486 of 486); median d log M* wide - control: corrected +0.0609 [+0.0429, +0.0931], catalogued +0.0188; median -log10 f: wide 0.106, control 0.077
+          controls' richness-mass slope 4.64 [-1.43, 9.46] galaxies per dex (catalogued mass 3.04); worth +0.28 [-0.09, +0.68] galaxies = 8 % of EUC6's +3.38; one-third line 1.13 -> below the line
+  F1b     pairs 243 (lenses with a mask 486 of 486); median d log M* wide - control: corrected +0.0801 [+0.0594, +0.1127], catalogued +0.0188; median -log10 f: wide 0.156, control 0.122
+          controls' richness-mass slope 4.70 [-1.06, 9.38] galaxies per dex (catalogued mass 3.04); worth +0.38 [-0.08, +0.81] galaxies = 11 % of EUC6's +3.38; one-third line 1.13 -> below the line
+  EUC6 pair rebuild harness: {'pairs': 243, 'median_D': 3.3785937499999985, 'max_lm_target_vs_loader': 4.99622343497208e-07, 'ok': True}
+
+[summary] (blind; labels per row and footing)
+  G1  canonical: NO VERDICT, CHANGED, ROBUST   |   alt: NO VERDICT, CHANGED, ROBUST
+  G2  canonical: SLOPE NOT CONSTRAINED, UNCHANGED, ROBUST   |   alt: SLOPE NOT CONSTRAINED, UNCHANGED, ROBUST
+  G3  canonical: NO SWITCH, FRAGILE, CHANGED, ROBUST   |   alt: NO SWITCH, FRAGILE, CHANGED, FRAGILE
+  checks: H0 pass; H1 pass; H2 pass; H3 pass; H4 pass
+  No outcome is a pass of the lensing gate. Adopts nothing. kappa = 1/2 FITTED; not theory closed.
