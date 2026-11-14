@@ -256,4 +256,13 @@ K4 passes with the stated errors about 10 to 20 % small. No word above changes i
 Commits (local / origin): criteria 5403d1b288 / 6b0231f3a1; scripts 8e1fd5b361 / 01b873cb60; result 9c06d486f3 /
 64a7b86222.
 
+## Note added 2026-11-14: blind re-grade and follow-up
+- **AGB3R** (`closure_2026_11_14/AGB3R_blind_des_host_star_formation/`), a second build written from
+  `FROZEN_CRITERIA.md` alone, reaches the same eight words, first and second, and every check passes there too; the
+  numbers agree to the second decimal (its `LEAD_CHECK.md` lists them). It did not re-grade the post hoc sections.
+- **AGB4** (`closure_2026_11_14/AGB4_measured_host_ages/`) tests the slope on published host ages of SDSS-II hosts,
+  with no age model. Its words are in its own README.
+- Commits of the post hoc sections (local / origin): noise aa029c4f62 / 3a90a0850b; shape and cap 8050d063b6 /
+  125a8f657d.
+
 kappa = 1/2 FITTED; not theory closed.
