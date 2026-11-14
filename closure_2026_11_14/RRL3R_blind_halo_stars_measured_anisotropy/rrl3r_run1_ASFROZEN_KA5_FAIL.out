@@ -1,0 +1,84 @@
+
+==============================================================================================================
+RRL3R known answers without data: KA-4 (my variable-beta Jeans vs closed form), KA-6 (SI)   [t = 0 s]
+==============================================================================================================
+  RAW1 files read-only: raw1.py sha256 60fa5c20b877ed6b..., raw1_model.py 37925777a908cffc...
+  [PASS] KA-4 constant beta, single laws, flat curve: sigma_r^2 = V^2/(a - 2 beta): max relative difference 4.05e-09
+  [PASS] KA-4 constant beta 0.6586, broken law 3/5/35, flat curve, exact: max relative difference 1.48e-09
+  [PASS] KA-4 (extra) piecewise beta (0.671, 0.685, 0.441), single 4.4, flat curve, piecewise exact: max relative difference 3.66e-09
+  [INFO] my Jeans vs RAW1's sr2_profile (trapezoid, 4,000 nodes) on the real models at constant beta: max relative difference 2.13e-05 (not gated)
+  [PASS] KA-6 SI: M = g r^2 / G at 30 kpc (FW census canonical, rounded a0): g = 3.61111e-11 m/s^2, M = 2.33114e+11 Msun, V = sqrt(g r) = 182.83 km/s
+  [INFO] with a0 = 9.3603e-11 exactly: g(30) = 3.61115e-11 m/s^2, M = 2.33118e+11 Msun
+
+==============================================================================================================
+RAW1's BHB sample (RAW1 load / build / measure, read-only) and KA-1   [t = 0 s]
+==============================================================================================================
+  [PASS] BHB file sha256: _external_data/desi_dr1_mws_bhb_v1.0/MWS_BHB.fits
+  stars 1495, per bin [865, 264, 241, 125]; RAW1 measure: alpha 5.2886 +/- 0.1691, beta 0.6586 +/- 0.0175, ranges [(0.641, 0.6761), (0.641, 0.6761), (0.641, 0.6761), (0.2, 0.8)]
+  [PASS] KA-1 counts: [865, 264, 241, 125]
+  [PASS] KA-1 RAW1 reproduced with my Jeans and estimator, FW_census/canonical: 1.0947+/-0.0350  1.2049+/-0.0585  1.0518+/-0.0534  1.0900+/-0.1064 (max diff 9.5e-06)
+  [PASS] KA-1 RAW1 reproduced with my Jeans and estimator, FW_census/alt: 1.0518+/-0.0337  1.1552+/-0.0561  1.0072+/-0.0511  1.0428+/-0.1019 (max diff 9.1e-06)
+  [PASS] KA-1 RAW1 reproduced with my Jeans and estimator, FW_rc/canonical: 1.0275+/-0.0328  1.1349+/-0.0551  0.9925+/-0.0504  1.0298+/-0.1005 (max diff 9.2e-06)
+  [PASS] KA-1 RAW1 reproduced with my Jeans and estimator, FW_rc/alt: 1.0125+/-0.0324  1.1142+/-0.0541  0.9724+/-0.0494  1.0075+/-0.0984 (max diff 8.8e-06)
+  [PASS] KA-1 RAW1 reproduced with my Jeans and estimator, H: 1.0678+/-0.0346  1.1424+/-0.0554  0.9966+/-0.0503  1.0496+/-0.0994 (max diff 8.5e-06)
+  [PASS] KA-1 RAW1 reproduced with my Jeans and estimator, N: 2.0636+/-0.0613  2.6620+/-0.1251  2.6642+/-0.1312  3.1641+/-0.2779 (max diff 3.3e-05)
+
+==============================================================================================================
+My per-bin anisotropy from the stars' own proper motions (RAW1's full per-bin sample, unscaled errors), KA-3   [t = 2 s]
+==============================================================================================================
+  20-30: PM stars 854, LOS dispersion 97.24 km/s, median tangential error 11.7 km/s; my beta 0.6713 [0.6504, 0.6911] (sigma 0.0204); usable True; cross-check RAW1 measure 0.6713 +/- 0.0204
+  30-40: PM stars 260, LOS dispersion 106.74 km/s, median tangential error 26.4 km/s; my beta 0.6854 [0.6462, 0.7207] (sigma 0.0372); usable True; cross-check RAW1 measure 0.6854 +/- 0.0372
+  40-55: PM stars 231, LOS dispersion 92.62 km/s, median tangential error 59.6 km/s; my beta 0.4412 [0.3480, 0.5222] (sigma 0.0871); usable True; cross-check RAW1 measure 0.4412 +/- 0.0871
+  55-80: PM stars 99, LOS dispersion 95.30 km/s, median tangential error 115.8 km/s; not fitted (median PM error > LOS dispersion); RAW1 measure: not fitted
+  [PASS] KA-3 beta 20-30: 0.6713 vs 0.671 (tolerance 0.02)
+  [PASS] KA-3 beta 30-40: 0.6854 vs 0.685 (tolerance 0.02)
+  [PASS] KA-3 beta 40-55: 0.4412 vs 0.441 (tolerance 0.02)
+  [PASS] KA-3 55-80 not usable: median PM error > LOS dispersion
+  measured beta profile used in C: (0.6713, 0.6854, 0.4412, 0.4412) (beyond 55 kpc: the 40-55 value); 2 beta_3 + 0.5 = 1.382 (frozen slope limit 1.382)
+
+==============================================================================================================
+Convention C (L, S2, X, B, F) and KA-2 (single slope 5.289, rounded a0, FW census canonical)   [t = 3 s]
+==============================================================================================================
+  L removes [134, 35, 34, 10]; S2 list 31 indices, in the sample 31, removed per bin [5, 2, 24, 0]
+  [PASS] KA-2 star counts: [727, 227, 186, 115]
+  [PASS] KA-2 f 20-30: 1.0902 +/- 0.0327 (stat) vs 1.0901
+  [PASS] KA-2 f 30-40: 1.2248 +/- 0.0633 (stat) vs 1.2248
+  [PASS] KA-2 f 40-55: 1.1645 +/- 0.0734 (stat) vs 1.1645
+  [PASS] KA-2 f 55-80: 1.1432 +/- 0.0855 (stat) vs 1.1432
+
+==============================================================================================================
+RR Lyrae inputs   [t = 3 s]
+==============================================================================================================
+  [PASS] PS1 sha256: _external_data/ps1_rrlyrae_sesar2017_J_AJ_153_204/table5_subset.tsv
+  [PASS] DES sha256: _external_data/des_y6_rrlyrae_stringer2021_J_ApJ_911_109/table1.tsv
+  PS1 rows 239044; DES rows 6971 (ACc 11, Sys 2402)
+  [PASS] PS1 row count 239,044: 239044
+  [PASS] DES row count 6,971: 6971
+
+==============================================================================================================
+PS1 nominal sample and density fits (RRL1 sections 1-4)   [t = 3 s]
+==============================================================================================================
+  [PS1] cfg {'score': 0.8, 'comp': 'nominal', 'bcut': 20.0, 'sgr': 15.0, 'dscale': 1.0, 'q': 1.0, 'rlo': 20.0, 'rhi': 80.0}: cells covered 12071, |b| > 20 8180, reddening 7836, Sgr band 15.0 5184, Magellanic / Fornax / Sculptor 5184, clump cells 5143; clump stars 3077, clump-masked covered cells 435; stars in kept cells (all r) 13299; in r range N = 5421
+  clump groups (RA, Dec, median DM, stars), largest first: (282.34, -27.48, 17.13, 1696); (257.55, -22.92, 14.76, 642); (260.09, 57.91, 19.36, 189); (153.28, -1.65, 19.56, 94); (205.54, 28.37, 15.10, 61); (227.19, 67.26, 19.15, 50); (221.04, -4.86, 18.63, 41); (229.66, 2.07, 14.47, 27); (315.33, 16.22, 18.02, 18); (198.50, 18.01, 16.29, 17); (313.38, -12.55, 16.22, 15); (231.52, -12.81, 18.44, 13); (114.54, 38.90, 19.52, 12); (308.55, 7.42, 16.13, 12); (211.36, 28.53, 15.99, 10); (258.07, -14.46, 14.69, 10); (322.50, 12.17, 15.23, 10); (286.82, -15.51, 14.93, 8); (265.16, -21.35, 14.61, 8); (189.87, -26.74, 15.11, 8); (251.74, 47.53, 17.38, 8); (248.13, -13.06, 13.90, 7); (232.96, -9.18, 18.56, 7); (229.20, -12.03, 18.56, 6); (241.76, -26.71, 15.59, 5); (264.44, -3.29, 14.93, 5); (291.01, -21.46, 15.07, 5); (223.80, -3.25, 18.59, 5); (259.33, 43.09, 14.58, 5); (228.62, -8.51, 18.58, 4); (237.96, -8.68, 18.48, 4); (214.87, 7.16, 18.53, 3); (209.86, 14.39, 18.98, 3); (242.03, -16.66, 18.13, 3); (245.39, -12.69, 17.94, 3); (284.34, -15.34, 14.28, 3); (213.80, -2.67, 18.43, 3); (212.35, -0.20, 18.49, 3); (218.37, -0.12, 18.52, 3); (206.30, 0.50, 18.43, 2); (266.31, 3.06, 16.45, 2); (293.22, 3.42, 15.36, 2); (283.72, -11.58, 14.75, 2); (288.27, -13.13, 15.99, 2); (289.39, -15.23, 15.35, 2); (277.43, 10.02, 16.20, 2); (299.37, -28.99, 16.98, 2); (233.95, -12.04, 18.37, 2); (325.50, -21.35, 16.74, 2); (240.78, -28.16, 14.74, 1); (245.50, -27.69, 14.80, 1); (237.04, -17.68, 18.36, 1); (248.44, -20.30, 14.33, 1); (240.42, -11.40, 18.34, 1); (253.00, -4.75, 16.13, 1); (249.74, -29.41, 14.72, 1); (291.02, -0.17, 16.09, 1); (283.52, -8.86, 15.64, 1); (285.44, -12.19, 15.18, 1); (267.28, -9.63, 14.98, 1); (269.93, 3.87, 15.25, 1); (273.65, 13.01, 14.55, 1); (302.39, 2.02, 16.56, 1); (297.69, -9.48, 16.91, 1); (301.36, -14.83, 17.12, 1); (290.86, -24.87, 16.50, 1); (301.30, -21.96, 16.42, 1); (220.27, -9.76, 18.54, 1); (223.41, -10.34, 18.54, 1); (227.17, -11.23, 18.60, 1); (225.06, -9.19, 18.45, 1); (214.59, -0.25, 18.71, 1); (217.15, 1.53, 18.57, 1); (227.41, -6.11, 18.69, 1); (230.39, -7.72, 18.61, 1); (227.25, -3.71, 18.63, 1); (232.62, -7.24, 18.40, 1); (237.66, -11.38, 18.25, 1); (235.86, -5.92, 18.40, 1); (242.03, -5.44, 18.33, 1)
+  [PASS] KA-5 (K0n) binned normalisation == full node sum: max |Delta ln Z| 1.23e-07
+  single: a = 4.7691 +/- 0.0390 (Hessian); profile interval [4.7302, 4.8082]
+  broken: a_in 5.2910 +/- 0.0764, a_out 3.9344 +/- 0.1152, rb 39.034 +/- 1.135 kpc (Hessian steps x1)
+  broken covariance: [[0.00584, -0.00262, -0.03189], [-0.00262, 0.01327, -0.06604], [-0.03189, -0.06604, 1.28892]]
+  2 Delta ln L (broken vs single) = 77.784
+  rb grid profile (rb, nll - min): 25.0:38.82, 27.5:34.64, 30.0:24.87, 32.5:15.24, 35.0:7.21, 37.5:1.41, 40.0:0.13, 42.5:2.32, 45.0:6.01, 47.5:7.79, 50.0:9.38, 52.5:11.47, 55.0:13.00, 57.5:13.66, 60.0:14.47, 62.5:15.81, 65.0:17.61, 67.5:19.22, 70.0:20.09, 72.5:21.01, 75.0:24.35
+
+==============================================================================================================
+Null mocks from the best single law (100, seed 331101) and the threshold T   [t = 3 s]
+==============================================================================================================
+  2 Delta ln L over null mocks: median 1.802, 90th 4.203, 99th 10.626, max 11.817; T = 10.626; mock single slopes mean 4.7644 sd 0.0393
+
+==============================================================================================================
+KA-5: planted single and broken profiles (nominal footprint, completeness and N)   [t = 14 s]
+==============================================================================================================
+  [PASS] KA-5 single 4.5 recovered: a = 4.5747 +/- 0.0380
+  [PASS] KA-5 no break in the single mock: 2 Delta ln L 1.090 vs T 10.626
+  [PASS] KA-5 planted break detected: 2 Delta ln L 135.258 vs T 10.626
+  [PASS] KA-5 a_in: 3.0441 +/- 0.1170 (true 3.0)
+  [FAIL] KA-5 a_out: 4.7448 +/- 0.0820 (true 5.0)
+  [PASS] KA-5 rb: 33.520 +/- 0.861 (true 35; Hessian steps x1)
+KNOWN-ANSWER CHECK FAILED: KA-5 a_out. Every case: NO VERDICT (KNOWN ANSWER). Stopping before any word.
