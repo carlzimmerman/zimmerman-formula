@@ -107,6 +107,7 @@ CHECKS = [
     (44, C14 + "FWN1R_blind_split_f_ceiling/RESULT_BLIND.md", "FOREST ROW FAILS AT FLUX LEVEL, FRAGILE (lambda_P x 2; gamma 1.2)"),
     (44, C14 + "FWN1R_blind_split_f_ceiling/RESULT_BLIND.md", "FOREST ROW FAILS AT FLUX LEVEL, FRAGILE (lambda_P x 2)"),
     (28, C13 + "RRL1_halo_slope_from_rr_lyrae/RESULT.md", "MEASURED SLOPE MAKES A PASSING BIN FAIL [40-55 COLD]"),
+    (28, C14 + "RRL1R_blind_halo_slope_regrade/RESULT_BLIND.md", "MEASURED SLOPE MAKES A PASSING BIN FAIL [40-55 COLD]"),
     (31, C11 + "DW1_desi_dr2_mw_mass/RESULT.md", "9 of 12"),
     (32, C12 + "MWI1_inner_baryons/RESULT.md", "SUPPLIED BY 1 OF 5"),
     (33, C12 + "MWG1_hot_halo_gas/RESULT.md", "ROTATION CURVE NOT SUPPLIED"),
