@@ -125,6 +125,25 @@ poorly constrained) that is worth **+0.31 galaxies [−0.12, +0.70]** against a 
 - Not graded: EUC5 / EUC5R words (instrument gate), EUC6's word, EUC4R, EUC13R, ESZ1, EXR1 / EXR2, EUC7, EUC12.
   CJ1's row 39 is not edited.
 
+## 5a. Blind re-grade EUC20R (dated addition, 2026-11-14; no number or label of this file changes)
+
+`closure_2026_11_14/EUC20R_blind_grade_b_regrade/` (a separate session that read only the criteria and wrote its own
+code). **Its labels, as frozen, are the same in all six row and footing slots**, fragility tags included: G1 NO
+VERDICT, CHANGED, ROBUST on both; G2 SLOPE NOT CONSTRAINED, UNCHANGED, ROBUST on both; G3 NO SWITCH, FRAGILE, CHANGED,
+ROBUST on canonical and FRAGILE on alt (bracket F1a reads NO POWER there in both builds). Its numbers equal this
+file's to the printed digit, and every one of its checks passes with no amendment.
+
+- Blindness: its starting context showed no EUC20 subject among the recent commits and one memory-index line that
+  named this lane without a word or number. A first attempt earlier the same day stopped itself as not blind (this
+  lane's result subject was still in its recent-commit list) and wrote nothing.
+- Lead's re-run of its code (harness, the four other modes, collector, twin collector): exits 0, 0, 0 and 1 as
+  documented; the only lines that differ from its committed outputs are elapsed times and its run log.
+- Commits (local / origin): reading 025dc97b73 / e1cbb7d045; code, runs and result c05ae562b1 / 851cd135f8;
+  comparison 7cc9287d31 / 3e2be69fd4.
+
+The limit in §5 that no blind re-grade exists is superseded by this section. G1 and G3 are now confirmed by an
+independent implementation; G1 is still not a pass.
+
 ## 6. Files and re-run
 
 - `FROZEN_CRITERIA.md`; `euc20_run.py` (driver), `euc20_bins.py`, `euc20_collect.py`.
