@@ -20,8 +20,13 @@ Updated a third time 2026-11-13 by the lead after EUC16 landed: row 39 and one l
 completed form does not change. The audit read 113 of 113.
 
 Updated a fourth time 2026-11-13 by the lead after FRZ6 landed: row 22, the counts and the lists. Row 22's word for the
-completed form is the lead's placement of FRZ6's frozen label, which is a hit awaiting a blind re-grade. The audit reads
+completed form is the lead's placement of FRZ6's frozen label, which is a hit awaiting a blind re-grade. The audit read
 115 of 115.
+
+Updated a fifth time 2026-11-13 by the lead after the blind FRZ6R landed: row 22 and the lists. FRZ6R reads NO VERDICT as
+frozen and so does not confirm FRZ6's label; its numbers are under the gate and its control fails. Row 22's word is kept
+by the rule already used in row 11 (a blind NO VERDICT that does not contradict the first lane leaves the word and marks
+it unconfirmed). The audit reads 116 of 116.
 
 Words for the completed form (fixed list): PASSES / FAILS / FAILS ON COVERAGE ONLY / PASSES TRIVIALLY (the form equals
 the reference there) / EQUALS THE LAW (unchanged by rule 6: the form gives the law's own layout there, so the row's
@@ -56,7 +61,7 @@ verdict on the law carries over) / NO POWER / DEPENDS ON AN UNTESTED ASSUMPTION 
 | 20 | Outer cluster shear | ZN4, FR1 (PAPER72 table) | PAPER72 "FAIL, about 3$\sigma$ with systematics"; ZN4 "X-COP ONLY" on measured gas; FR1 "NOT RETENTION" | yes | FAILS | no | Carried from PAPER72's table; rule 6 leaves clusters on the reference these lanes graded. On X-COP's own gas scale ZN4's class passes. |
 | **The forest** | | | | | | | |
 | 21 | Forest at matter level | FRZ1, FRZ1R, FZS1, JNT2, JNT2R | FRZ1 "FOREST ROW FAILS" (full layout); FZS1 "FOREST ROW FAILS, FRAGILE" (unsplit settled); JNT2 "TRIVIAL to f 2" | yes | PASSES TRIVIALLY | yes (JNT2R, trivial to f 2) | The split hands a third to two thirds of the haloes to the reference. At f 3: JNT2 1.99 / 6.43, JNT2R "17.6 / 29.2 FAIL". FRZ5 (post hoc A1): with the gas template refit the full layout's matter-level number falls from 9916 / 9009 to 118 / 107, and only with the smoothing at its floor. |
-| 22 | Forest at flux level | FRZ3, FRZ3R, FRZ4, FRZ5, FRZ6, SRF1, SRF1R | FRZ4 "FOREST ROW FAILS AT FLUX LEVEL" (full layout, f = inf) and "NO VERDICT (known answer e fails)" (unsplit f 1, 2, 3); SRF1 "NO VERDICT / NO VERDICT (canonical / alt)"; SRF1R "As frozen: NO VERDICT / NO VERDICT"; FRZ5 "NO VERDICT (a twin does not bite)" (post hoc A1: "FOREST ROW FAILS AFTER REFIT", full layout); FRZ6 "FOREST ROW HOLDS AT FLUX LEVEL" (split, f 2, canonical) and "FOREST ROW HOLDS AT FLUX LEVEL, FRAGILE (lambda_P x 0.5)" (split, f 2 alt and f 3 on both) | fragile | PASSES | yes for the unsplit family (SRF1R; NO VERDICT); none yet for FRZ6's hit | The full law layout is dead at flux level. FRZ6 ran the v* split at flux level with 12 seeds at z 2.2: 0.196 / 0.257 at f 2 and 1.144 / 1.434 at f 3 against the gate 4 (0.50 / 0.65 and 2.04 / 2.50 with twice the seed error added); f 1.25 is below what the build resolves (NO VERDICT); halving the gas smoothing scale crosses the gate in three of the four holds; its control fails again only under its post hoc A1. A hit awaiting a blind re-grade; a hold here means not excluded. Unsplit f 1 / 2 read 0.10 / 0.11 and 0.50 / 0.41, ungraded. FRZ5: the record's gate fits no gas parameter; with an amplitude, a tilt and a smoothing per redshift bin refit, the full layout falls from 269 / 288 to 23.0 / 23.9 (gate 4) and unsplit f 3 from 2.20 / 2.04 to 0.78 / 0.76, ungraded. |
+| 22 | Forest at flux level | FRZ3, FRZ3R, FRZ4, FRZ5, FRZ6, FRZ6R, SRF1, SRF1R | FRZ4 "FOREST ROW FAILS AT FLUX LEVEL" (full layout, f = inf) and "NO VERDICT (known answer e fails)" (unsplit f 1, 2, 3); SRF1 "NO VERDICT / NO VERDICT (canonical / alt)"; SRF1R "As frozen: NO VERDICT / NO VERDICT"; FRZ5 "NO VERDICT (a twin does not bite)" (post hoc A1: "FOREST ROW FAILS AFTER REFIT", full layout); FRZ6 "FOREST ROW HOLDS AT FLUX LEVEL" (split, f 2, canonical) and "FOREST ROW HOLDS AT FLUX LEVEL, FRAGILE (lambda_P x 0.5)" (split, f 2 alt and f 3 on both); the blind FRZ6R "As frozen: NO VERDICT for every case on both footings." | fragile | PASSES | yes for the unsplit family (SRF1R; NO VERDICT) and for the split (FRZ6R; NO VERDICT as frozen; did not confirm the label) | The full law layout is dead at flux level. FRZ6 ran the v* split at flux level with 12 seeds at z 2.2: 0.196 / 0.257 at f 2 and 1.144 / 1.434 at f 3 against the gate 4 (0.50 / 0.65 and 2.04 / 2.50 with twice the seed error added); f 1.25 is below what the build resolves (NO VERDICT); halving the gas smoothing scale crosses the gate in three of the four holds; its control fails again only under its post hoc A1. A hit; a hold here means not excluded. The blind FRZ6R (own estimator, 4 seeds per bin) reads 0.024 / 0.029 at f 2 and 0.572 / 0.691 at f 3, every split case under the gate with twice its error, and its control FAILS (323.0 / 395.8); its label is NO VERDICT because the twin that removes the boundary does not bite, so the hold is not confirmed as a label and is not contradicted. Unsplit f 1 / 2 read 0.10 / 0.11 and 0.50 / 0.41, ungraded. FRZ5: the record's gate fits no gas parameter; with an amplitude, a tilt and a smoothing per redshift bin refit, the full layout falls from 269 / 288 to 23.0 / 23.9 (gate 4) and unsplit f 3 from 2.20 / 2.04 to 0.78 / 0.76, ungraded. |
 | **Cosmology and amplitude** | | | | | | | |
 | 23 | CMB peaks, CMB lensing, growth | CO1, CO2 | CO1 "ROWS HOLD / ROWS HOLD" (amended; as frozen "NO VERDICT / NO VERDICT"); CO2 pinned CMB lensing -0.30 sigma | yes, not independent | PASSES TRIVIALLY | no | Linear content is the cold reference; the share is fitted to the CMB. |
 | 24 | Matter-power redistribution | CO1, HLF1 | HLF1 "NO VERDICT / NO VERDICT (canonical / alt)" (post hoc A1: ROWS HOLD WITH THE OWN LIST) | no | NOT GRADED FOR THIS FORM | no | Not computed with the v* split. |
@@ -104,7 +109,8 @@ No row differs between the footings after the DSC1R update (row 7 read PASSES ca
 - With fragile power only, and none confirmed by an independent blind re-grade: KiDS early-type lensing at f 1.25 and above (11, a gate SRH1R found cannot see f), the
   9 massive SPARC spirals on the law (4, canonical, JNT1R's reading), NMB1 and PLT1 (29, 30).
 - No longer listed: DSC1's hit on three resolved z about 2 discs above v* (7). The blind DSC1R reads NO POWER there.
-- New, with fragile power and not yet re-graded blind: the forest at flux level for the split at f 2 and f 3 (22, FRZ6).
+- New, with fragile power and not confirmed: the forest at flux level for the split at f 2 and f 3 (22, FRZ6). The blind
+  FRZ6R reads NO VERDICT as frozen while its numbers sit under the gate.
 
 ## What the form fails
 
@@ -121,8 +127,9 @@ No row differs between the footings after the DSC1R update (row 7 read PASSES ca
   gas profiles on both sides of log M_b 11.3 / 11.5 (DSC1). ALPAKA cannot (9): gas conversion, sizes, beam. DSC1R's
   reconciliation adds: beam-forward modelling with each disc's real point-spread function and point covariance, and a
   gas conversion fixed independently, because the answer above v* turns on how many points count as independent.
-- The forest at flux level for this split (22): an independent blind re-grade of FRZ6's hit; f 1.25, which 12 seeds do
-  not resolve; and beyond that a hydrodynamic forest model that sets the smoothing scale, a box of at
+- The forest at flux level for this split (22): a blind build whose boundary-removed twin bites (FRZ6R's did not), so
+  that the hold can be confirmed or refuted as a label; f 1.25, which 12 seeds do not resolve; and beyond that a
+  hydrodynamic forest model that sets the smoothing scale, a box of at
   least about 50 Mpc/h, 6 to 18 seeds at z 2.2 (FRZ3R, FRZ4); and f between 2 and 3 run in both builds. FRZ5 adds: the
   gas parameters must be fitted with the layout, not held fixed; refitting them removes about 91 % of the full layout's
   number and still leaves it about 6 times over the gate.

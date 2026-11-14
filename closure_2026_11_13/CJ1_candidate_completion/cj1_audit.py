@@ -98,6 +98,7 @@ CHECKS = [
     (22, C13 + "FRZ5_forest_nuisance_refit/RESULT.md", "FOREST ROW FAILS AFTER REFIT"),
     (22, C13 + "FRZ6_forest_flux_candidate_graded/RESULT.md", "FOREST ROW HOLDS AT FLUX LEVEL"),
     (22, C13 + "FRZ6_forest_flux_candidate_graded/RESULT.md", "FOREST ROW HOLDS AT FLUX LEVEL, FRAGILE (lambda_P x 0.5)"),
+    (22, C13 + "FRZ6R_blind_forest_flux_candidate/RESULT_BLIND.md", "As frozen: NO VERDICT for every case on both footings."),
     (28, C13 + "RRL1_halo_slope_from_rr_lyrae/RESULT.md", "MEASURED SLOPE MAKES A PASSING BIN FAIL [40-55 COLD]"),
     (31, C11 + "DW1_desi_dr2_mw_mass/RESULT.md", "9 of 12"),
     (32, C12 + "MWI1_inner_baryons/RESULT.md", "SUPPLIED BY 1 OF 5"),
