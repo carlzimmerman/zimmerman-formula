@@ -108,4 +108,7 @@ moves the best fit to q0 > 0, and it double counts what the surveys have already
 (the published step broken down; written after the chain, same rule); `agb6_today.py`, `.json`, `.out` (closing
 arithmetic).
 
+Commits (local / origin): plan 7e34c74eb3 / 5be3f06fb4; chain script 07e874a997 / 7f94fb058f; result abf5f977dc /
+e232dd0940. The correction note in AGB5's README: e9b1a0de9b / b744311d58.
+
 kappa = 1/2 FITTED; not theory closed.
