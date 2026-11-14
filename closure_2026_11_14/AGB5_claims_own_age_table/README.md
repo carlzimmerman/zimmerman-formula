@@ -127,4 +127,10 @@ and the Pantheon+ ones step by step on the same supernovae.
    step that removes it is the release's bias correction, which carries a host-mass term (+0.44 ± 0.07, 6σ).
 The frozen word L1 and its numbers are not affected: they concern the claim's own tables.
 
+## Note added 2026-11-14 (later still): blind re-grade
+**AGB5R** (`closure_2026_11_14/AGB5R_blind_claims_own_age_table/`), a second build, graded from `FROZEN_CRITERIA.md`
+alone and committed that before it opened the amendment. It reaches the same word at both stages: NOT EVALUABLE as
+frozen (the same check failing on table 2), and AGE BIAS REQUIRED AT 3 SIGMA / FRAGILE (table 1 alone; structural)
+under the amendment, with +0.812 ± 0.187 against +0.793 ± 0.190 here. It did not re-grade the post hoc sections.
+
 kappa = 1/2 FITTED; not theory closed.
