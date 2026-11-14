@@ -1,0 +1,95 @@
+{
+  "claim_id": "MASS_BUDGET_FZS1_JNT2_20261114",
+  "mathematics": {
+    "assertion_tested": "On the actual 321-mass FRZ1 halo grid, compare unscaled exact-law cold mass, form-B normalized/capped cold mass, reference cold mass, FZS1/JNT2 joined mass and patch charge at the prescribed settled radius. Verify separate conservation and force-law residuals and the common-r200 analytic benchmark.",
+    "coefficient_domain": "IEEE float64 numerical evaluation; analytic dimensionless benchmark independently evaluated in SI",
+    "conventions": "Halo masses Msun/h, comoving radii Mpc/h, physical R_set kpc=r_com*1000/[h(1+z)]; a0_com=a0_phys/(1+z)^2 after km/s/Mpc conversion; equation residual g^2/[gN(a0+g)]-1. FRZ1 Bar includes retained baryons only in cluster branch.",
+    "inputs": [
+      "Actual FRZ1 321 masses log10 M200m=8..16; no mass subsampling",
+      "FZS1 FLD1 interpolated radii, galaxy Mb=(1-FB)Mta/Xsh, cluster Mb_fold=FB*M200c",
+      "JNT2 main-mode speed split, no fitted boundary changes"
+    ],
+    "bounds": {
+      "redshifts": [
+        0,
+        2.2,
+        3,
+        4.4
+      ],
+      "footings": [
+        "canonical",
+        "alt"
+      ],
+      "factors": [
+        1.25,
+        2,
+        3,
+        5
+      ],
+      "expected_rows": 10272,
+      "radial_grid": "original 1600 log-radius points plus zero, junction, and layout nodes",
+      "numeric_tolerance": 1e-12,
+      "timeout_seconds": 300
+    },
+    "non_claims": [
+      "No theorem of universal coverage",
+      "No action-derived transition, stability, fit, spectra, hydrodynamics or observational pass",
+      "No identification of retained Mb with stellar mass",
+      "No claim that cluster non-Bar reservoir is pure cosmic cold charge",
+      "No claim that XJ1 exact-B junction is exact raw standing-law profile when B already includes caps, remnant or precollapsed terms",
+      "No proof that crossing speed follows from a global or truncated budget"
+    ]
+  },
+  "execution_artifacts": [
+    "codex_mass_budget_2026_11_14/calculation/calculate.py",
+    "closure_2026_11_13/JNT2_crossing_speed_joint/jnt2_hm.py",
+    "closure_2026_11_13/JNT2_crossing_speed_joint/jnt2_common.py",
+    "closure_2026_11_10/FZS1_forest_settled_radius/fzs1_hm.py",
+    "closure_2026_11_10/FRZ1_forest_redistribution_at_z/frz1_hm.py",
+    "campaign_fresh_gravity/CFG556_halo_model_matter_power/cfg556_halo_model.py",
+    "closure_2026_11_09/PD1_phantom_is_dust/pd1.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M6.5_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M7_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M8_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M9_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M9.4_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M10_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M10.45_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M10.7_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M10.9_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M11.2_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M11.5_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_canonical_M12_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_alt_M6.5_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_alt_M7_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_alt_M8_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_alt_M9_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_alt_M9.4_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_alt_M10_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_alt_M10.45_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_alt_M10.7_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_alt_M10.9_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_alt_M11.2_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_alt_M11.5_zi10_N2400.json",
+    "fable52_push/FLD1_fold_reach/runs/hubble_alt_M12_zi10_N2400.json"
+  ],
+  "software": [
+    {
+      "name": "computation Python",
+      "version": "3.9.6"
+    },
+    {
+      "name": "NumPy",
+      "version": "1.26.4"
+    },
+    {
+      "name": "SciPy",
+      "version": "1.13.1"
+    }
+  ],
+  "randomness": {
+    "used": false,
+    "generator": "",
+    "seed": null
+  }
+}
