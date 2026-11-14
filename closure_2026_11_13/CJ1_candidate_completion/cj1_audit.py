@@ -15,6 +15,7 @@ import sys
 ROOT = subprocess.run(["git", "rev-parse", "--show-toplevel"], capture_output=True, text=True,
                       check=True).stdout.strip()
 HERE = "closure_2026_11_13/CJ1_candidate_completion"
+C14 = "closure_2026_11_14/"
 C13 = "closure_2026_11_13/"
 C12 = "closure_2026_11_12/"
 C11 = "closure_2026_11_11/"
@@ -102,6 +103,9 @@ CHECKS = [
     (24, C13 + "WLJ1_power_and_lensing_amplitude_with_split/RESULT.md", "ROW HOLDS WITH THE SPLIT"),
     (25, C13 + "WLJ1_power_and_lensing_amplitude_with_split/RESULT.md", "row 25 is NO VERDICT on both footings at every f"),
     (44, C13 + "FWN1_forest_flux_split_f_ceiling/RESULT.md", "FOREST ROW FAILS AT FLUX LEVEL"),
+    (44, C14 + "FWN1R_blind_split_f_ceiling/RESULT_BLIND.md", "FOREST ROW FAILS AT FLUX LEVEL"),
+    (44, C14 + "FWN1R_blind_split_f_ceiling/RESULT_BLIND.md", "FOREST ROW FAILS AT FLUX LEVEL, FRAGILE (lambda_P x 2; gamma 1.2)"),
+    (44, C14 + "FWN1R_blind_split_f_ceiling/RESULT_BLIND.md", "FOREST ROW FAILS AT FLUX LEVEL, FRAGILE (lambda_P x 2)"),
     (28, C13 + "RRL1_halo_slope_from_rr_lyrae/RESULT.md", "MEASURED SLOPE MAKES A PASSING BIN FAIL [40-55 COLD]"),
     (31, C11 + "DW1_desi_dr2_mw_mass/RESULT.md", "9 of 12"),
     (32, C12 + "MWI1_inner_baryons/RESULT.md", "SUPPLIED BY 1 OF 5"),

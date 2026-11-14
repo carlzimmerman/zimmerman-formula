@@ -76,6 +76,11 @@ still carries both fitted constants (kappa through a0, and X).
   radius at all (184 / 234 and 200 / 251 against the gate of 4), and is unresolved at f = 5 (8.1 / 9.5). By interpolation
   the forest's upper edge for f lies between about 3.4 and 5.2. So rule 6 needs its settled radius: the crossing speed
   alone does not pass the forest. The window, ungraded, is 1.25 (from a gate that cannot see f) to between 3 and 5.
+- Update 2026-11-14, later (blind FWN1R, its own FRZ6R build, 4 seeds in all 12 bins): the fails at f = 10 and with no
+  settled radius are confirmed on both footings (194 / 288 and 215 / 315), neither FRAGILE. At f = 5 the two builds
+  agree in size (8.1 / 9.5 and 8.8 / 10.9) and differ in word: FWN1 NO VERDICT, FWN1R FAILS, FRAGILE, changing sides
+  within the measured range of the gas smoothing scale. By interpolation the ceiling is 3.6 / 3.4 in FWN1 and 4.2 / 4.1
+  in FWN1R; without interpolation it lies between 3 and 5. The window is unchanged.
 
 **R_fold, and what FLD1 assumes.** FLD1 (`fable52_push/FLD1_fold_reach/RESULT.md`, label DOES NOT / DOES NOT) follows
 independent radial shells of a clock that starts as cold dust in the Hubble flow at z = 10 around a softened point mass
