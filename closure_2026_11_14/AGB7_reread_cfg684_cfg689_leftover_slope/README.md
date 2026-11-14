@@ -93,4 +93,10 @@ and `agb7_cfg689_<mode>_<sample>_S<100 A>.{json,out}`; `agb7_results.json`, `agb
 Commits (local / origin): criteria 5007b5beb8 / d65e88928d; scripts 4335bfe123 / 92e3ca7de3; result e876d9717b /
 f15a648071.
 
+## Note added 2026-11-14: blind re-grade
+**AGB7R** (`closure_2026_11_14/AGB7R_blind_reread_leftover_slope/`), a second harness written from
+`FROZEN_CRITERIA.md` and the inputs it names, repeats the runs and reaches every label, first and second word, with
+numbers identical to the printed digit. It notes, as above, that CFG689's constant-dark-energy test on the whole
+sample is the number that moves.
+
 kappa = 1/2 FITTED; not theory closed.
