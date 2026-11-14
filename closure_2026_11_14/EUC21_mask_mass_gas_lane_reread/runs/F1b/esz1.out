@@ -1,0 +1,90 @@
+ESZ1 (WIDE-LENS GAS PRESSURE)
+
+[data]
+  sha256 eclipse_dr1_catalogue_key_v20261103.csv  65338917534c9c76  matches the frozen hash
+  sha256 ECLIPSE_object_catalogue.csv  8247a4d5f23513b8  matches the frozen hash
+  sample S (grades A and B, EUC1's select): 6173 lenses; flagged large systems L: 140
+  eRASS1 clusters with M500 >= 2e14 Msun, 0.1 <= z <= 0.6 (whole table): 3730
+  sha256 south_ComptonY.f32be  597383db6e00411f8b94d5746df1561647c2aa8114a06b34d996d8690774df93
+  sha256 south_ComptonY_deproj_cib_1.0_10.7.f32be  7ca733584622adb171f299056b53a1cb4aaf72f45c26787babcf030d6fef0445
+
+[instrument checks]
+  PASS K1  pixel map against the header's WCS at four points (< 0.01 pixel) : 2.9e-11
+  PASS K2  new files are 559,699,200 bytes; rows 3238|3239 correlate at >= 0.9 x rows 3239|3240, both maps : sizes [559699200, 559699200]; corr 0.990 vs 0.992 (1300 columns) and 0.993 vs 0.992 (700)
+  PASS K4  hydrostatic solver, Newtonian r^-2 gas alone, at the grid nodes nearest 0.01, 0.1, 0.5 r_t (1e-4) : 3.1e-05
+  PASS K5  beam: point-source fraction inside 1, 2, 3 arcmin and total Y of a B100 profile conserved (1e-3) : 4.5e-05 ; 1.3e-05
+  PASS K3  predicted CAP of the median W lens against a brute-force rendering (3 % B30, B100; 5 % G2; three apertures) : B30 0.06 %, B100 0.07 %, G2 0.76 %
+  FAIL K6  EUC4 Part B reproduced: N = 316, median log M_gas 13.44 / 13.37 (r_c 30), 13.84 / 13.77 (r_c 100), +- 0.01 : N = 316, 13.16 / 13.05, 13.54 / 13.41
+  FAIL K7  EUC8 reproduced: median r^-2 mass inside 300 kpc for W (far, b_star 0), both footings (0.1 %) : 4.1e-01 / 4.8e-01
+
+[measurement: compensated aperture photometry, value = target minus the mean of its covered offsets]
+  measured S           6173 targets x 17 positions x 2 maps
+  coverage: 4735 of 6173 S positions pass rules (i) and (ii); median pixel rms 5.775e-06; rule (iii) window 2.887e-06 to 1.155e-05
+  S: lens position covered 4482; with >= 12 covered offsets (valid) 4450
+  measured L            140 targets x 17 positions x 2 maps
+  measured clusters    3730 targets x 17 positions x 2 maps
+  W (theta_E >= 1.7 arcsec, valid): 237 of 316 on the whole sky (required >= 100)
+  controls: 237 pairs; median |dz| 0.020, median |d log M*| 0.076; W medians z 0.450, log M* 11.92, theta_E 1.96"; C medians z 0.540, log M* 11.75, theta_E 0.88"
+
+[model: gas law S needs, least hydrostatic pressure, beam, same estimator]
+  canonical footing (predicted stack in 1e-6 arcmin^2 at theta_d = 2.0 arcmin; median gas mass; median mass-weighted kT; median n_e at R_E)
+    B30  far     b* -0.10:     38.89  2.15e+13 Msun  0.93 keV  1.3e-01 cm^-3 | b* +0.00:     28.08  1.40e+13 Msun  0.81 keV  9.4e-02 cm^-3 | b* +0.10:     19.45  5.03e+12 Msun  0.74 keV  7.5e-02 cm^-3
+    B30  central b* -0.10:    100.18  5.01e+13 Msun  1.56 keV  2.9e-01 cm^-3 | b* +0.00:     79.59  4.20e+13 Msun  1.41 keV  2.4e-01 cm^-3 | b* +0.10:     60.02  3.18e+13 Msun  1.24 keV  2.0e-01 cm^-3
+    B30  near    b* -0.10:    283.39  1.01e+14 Msun  2.51 keV  5.9e-01 cm^-3 | b* +0.00:    244.88  9.22e+13 Msun  2.36 keV  5.4e-01 cm^-3 | b* +0.10:    202.85  8.24e+13 Msun  2.19 keV  4.8e-01 cm^-3
+    B100 far     b* -0.10:    179.21  5.28e+13 Msun  1.56 keV  4.1e-02 cm^-3 | b* +0.00:    128.16  3.27e+13 Msun  1.28 keV  3.0e-02 cm^-3 | b* +0.10:     88.79  1.07e+13 Msun  1.18 keV  2.6e-02 cm^-3
+    B100 central b* -0.10:    484.88  1.31e+14 Msun  2.82 keV  1.0e-01 cm^-3 | b* +0.00:    378.46  1.07e+14 Msun  2.48 keV  8.2e-02 cm^-3 | b* +0.10:    280.93  7.97e+13 Msun  2.14 keV  6.7e-02 cm^-3
+    B100 near    b* -0.10:   1477.36  2.70e+14 Msun  4.88 keV  2.1e-01 cm^-3 | b* +0.00:   1258.12  2.46e+14 Msun  4.54 keV  1.9e-01 cm^-3 | b* +0.10:   1025.05  2.19e+14 Msun  4.15 keV  1.7e-01 cm^-3
+    G2   far     b* -0.10:      2.09  3.24e+12 Msun  0.41 keV  2.0e-01 cm^-3 | b* +0.00:      1.55  2.36e+12 Msun  0.39 keV  1.6e-01 cm^-3 | b* +0.10:      1.07  9.43e+11 Msun  0.37 keV  1.3e-01 cm^-3
+    G2   central b* -0.10:      5.79  7.15e+12 Msun  0.59 keV  4.3e-01 cm^-3 | b* +0.00:      4.89  6.15e+12 Msun  0.57 keV  3.7e-01 cm^-3 | b* +0.10:      3.93  4.86e+12 Msun  0.54 keV  3.1e-01 cm^-3
+    G2   near    b* -0.10:     14.99  1.40e+13 Msun  0.89 keV  8.5e-01 cm^-3 | b* +0.00:     13.57  1.28e+13 Msun  0.85 keV  7.8e-01 cm^-3 | b* +0.10:     11.90  1.15e+13 Msun  0.82 keV  6.9e-01 cm^-3
+  alt footing (predicted stack in 1e-6 arcmin^2 at theta_d = 2.0 arcmin; median gas mass; median mass-weighted kT; median n_e at R_E)
+    B30  far     b* -0.10:     33.88  1.81e+13 Msun  0.92 keV  1.1e-01 cm^-3 | b* +0.00:     24.24  1.10e+13 Msun  0.80 keV  8.3e-02 cm^-3 | b* +0.10:     16.75  2.67e+12 Msun  0.76 keV  7.1e-02 cm^-3
+    B30  central b* -0.10:     90.85  4.51e+13 Msun  1.56 keV  2.6e-01 cm^-3 | b* +0.00:     71.51  3.71e+13 Msun  1.39 keV  2.2e-01 cm^-3 | b* +0.10:     53.50  2.73e+13 Msun  1.22 keV  1.8e-01 cm^-3
+    B30  near    b* -0.10:    266.01  9.38e+13 Msun  2.53 keV  5.5e-01 cm^-3 | b* +0.00:    228.66  8.57e+13 Msun  2.37 keV  5.0e-01 cm^-3 | b* +0.10:    188.24  7.60e+13 Msun  2.19 keV  4.4e-01 cm^-3
+    B100 far     b* -0.10:    151.19  4.31e+13 Msun  1.47 keV  3.4e-02 cm^-3 | b* +0.00:    107.38  2.49e+13 Msun  1.24 keV  2.6e-02 cm^-3 | b* +0.10:     74.47  5.28e+12 Msun  1.16 keV  2.1e-02 cm^-3
+    B100 central b* -0.10:    425.49  1.15e+14 Msun  2.75 keV  8.9e-02 cm^-3 | b* +0.00:    329.02  9.30e+13 Msun  2.39 keV  7.1e-02 cm^-3 | b* +0.10:    242.35  6.68e+13 Msun  2.04 keV  5.6e-02 cm^-3
+    B100 near    b* -0.10:   1346.72  2.50e+14 Msun  4.79 keV  1.9e-01 cm^-3 | b* +0.00:   1139.58  2.26e+14 Msun  4.46 keV  1.7e-01 cm^-3 | b* +0.10:    921.84  1.99e+14 Msun  4.06 keV  1.5e-01 cm^-3
+    G2   far     b* -0.10:      1.91  2.87e+12 Msun  0.41 keV  1.8e-01 cm^-3 | b* +0.00:      1.40  1.88e+12 Msun  0.40 keV  1.4e-01 cm^-3 | b* +0.10:      0.95  5.03e+11 Msun  0.38 keV  1.2e-01 cm^-3
+    G2   central b* -0.10:      5.52  6.60e+12 Msun  0.61 keV  4.0e-01 cm^-3 | b* +0.00:      4.62  5.59e+12 Msun  0.58 keV  3.4e-01 cm^-3 | b* +0.10:      3.67  4.27e+12 Msun  0.55 keV  2.7e-01 cm^-3
+    G2   near    b* -0.10:     14.66  1.33e+13 Msun  0.91 keV  8.1e-01 cm^-3 | b* +0.00:     13.22  1.21e+13 Msun  0.87 keV  7.3e-01 cm^-3 | b* +0.10:     11.53  1.09e+13 Msun  0.84 keV  6.5e-01 cm^-3
+
+[stacks, primary map, theta_d = 2.0 arcmin, in 1e-6 arcmin^2]
+  W: N = 237, stack +3.825, sigma 1.471 (bootstrap 1.463, null stacks 1.471)
+  PASS K8  eRASS1 clusters (M500 >= 2e14, 0.1 <= z <= 0.6, covered, N >= 20): stack positive at >= 5 sigma : N = 1643, stack +78.21 +- 1.89 (1e-6 arcmin^2), 41.3 sigma
+  PASS K9  the 16 null stacks of W: mean within 3 sigma / 4 of zero, none beyond 3.5 sigma : mean +0.000, largest 3.757, sigma 1.471 (1e-6 arcmin^2)
+
+[Part G: family words in the least demanding setting (far source, b_star = +0.10); units 1e-6 arcmin^2]
+    canonical B30  pred_min     19.45   measured   +3.83 +- 1.47   (pred - meas) / sigma =   10.6   f_T = 0.348   -> EXCLUDED
+    canonical B100 pred_min     88.79   measured   +3.83 +- 1.47   (pred - meas) / sigma =   57.8   f_T = 0.076   -> EXCLUDED
+    canonical G2   pred_min      1.07   measured   +3.83 +- 1.47   (pred - meas) / sigma =   -1.9   f_T = 6.306   -> NO POWER
+    alt       B30  pred_min     16.75   measured   +3.83 +- 1.47   (pred - meas) / sigma =    8.8   f_T = 0.404   -> EXCLUDED
+    alt       B100 pred_min     74.47   measured   +3.83 +- 1.47   (pred - meas) / sigma =   48.0   f_T = 0.091   -> EXCLUDED
+    alt       G2   pred_min      0.95   measured   +3.83 +- 1.47   (pred - meas) / sigma =   -2.0   f_T = 7.122   -> NO POWER
+  brackets (lane word per footing; measured +- sigma; pred_min B30 / B100 / G2 canonical):
+    CIB-deprojected map    N = 237    +4.36 +- 1.91      19.45 /    88.79 /     1.07   NOT EVALUABLE / NOT EVALUABLE
+    theta_d 1.5 arcmin     N = 237    +1.49 +- 1.02      12.94 /    55.36 /     0.85   NOT EVALUABLE / NOT EVALUABLE
+    theta_d 3.0 arcmin     N = 237    +7.19 +- 2.95      24.88 /   121.57 /     1.14   NOT EVALUABLE / NOT EVALUABLE
+    grade A only           N = 141    +4.52 +- 1.88      11.52 /    48.18 /     0.87   NOT EVALUABLE / NOT EVALUABLE
+    z_l <= 0.6 only        N = 154    +1.27 +- 2.02      27.57 /   127.59 /     1.37   NOT EVALUABLE / NOT EVALUABLE
+  LANE WORD (Part G): NOT EVALUABLE / NOT EVALUABLE
+
+[Part C: wide lenses against matched controls]
+  primary map: N = 237 pairs, mean difference +5.919 [+1.579, +10.279] x 1e-6 arcmin^2 -> WIDE LENSES HOLD MORE GAS PRESSURE
+  CIB-deprojected map: N = 237 pairs, mean difference +7.300 [+1.804, +12.770] x 1e-6 arcmin^2 -> WIDE LENSES HOLD MORE GAS PRESSURE
+  LANE WORD (Part C): NOT EVALUABLE
+
+[Part D: what the stack measures (no word).  Y in 1e-6 arcmin^2; Y D_A^2 in 1e-8 Mpc^2; int P_e dV = N_e kT in 1e52 J]
+  class                  N         Y (primary)     Y (CIB-deproj.)               Y D_A^2                  N_e kT   gas mass at kT = 0.5 / 1 / 2 keV [1e12 Msun] (2-sigma upper limit at 1 keV; in mean M*)
+  W theta_E >= 1.7     237    +3.825 +-  1.471    +4.364 +-  1.907    +74.139 +-  21.924     +86.875 +-   25.691   +10.40 / +5.20 / +2.60  (< 8.27; 9.3 M*)
+  C controls           237    -2.094 +-  1.663    -2.936 +-  2.078    -39.654 +-  24.748     -46.466 +-   29.000   -5.56 / -2.78 / -1.39  (< 0.69; 1.1 M*)
+  1.3 - 1.7            474    +0.422 +-  1.205    +0.804 +-  1.268    +12.735 +-  18.044     +14.922 +-   21.144   +1.79 / +0.89 / +0.45  (< 3.42; 5.5 M*)
+  1.0 - 1.3            876    +0.599 +-  0.947    +0.989 +-  1.367    +11.398 +-  16.726     +13.356 +-   19.600   +1.60 / +0.80 / +0.40  (< 3.15; 6.2 M*)
+  below 1.0           2863    +0.606 +-  0.443    +0.245 +-  0.550    +10.427 +-   8.649     +12.218 +-   10.135   +1.46 / +0.73 / +0.37  (< 1.94; 6.4 M*)
+  all valid S         4450    +0.756 +-  0.382    +0.670 +-  0.484    +14.257 +-   6.483     +16.706 +-    7.597   +2.00 / +1.00 / +0.50  (< 1.91; 4.7 M*)
+  L flagged large      100   +27.482 +-  4.035   +25.570 +-  4.003
+  W at the three apertures (primary map): 2.0 arcmin: +3.825 +- 1.471; 1.5 arcmin: +1.490 +- 1.022; 3.0 arcmin: +7.187 +- 2.952
+  cold-share reading (EUC8's r^-2 component as cold dark energy; baryons = M_X / 5.41; gas = baryons - stars, B100 shape to 300 kpc, hydrostatic, zero edge pressure):
+    canonical median M_X 2.36e+12, baryons required 4.37e+11, gas 0.00e+00 Msun (71 % of lenses need none), kT 0.51 keV; predicted stack 0.1296 against sigma 1.471 (1e-6 arcmin^2); measured minus predicted = +2.5 sigma
+    alt       median M_X 1.88e+12, baryons required 3.47e+11, gas 0.00e+00 Msun (73 % of lenses need none), kT 0.53 keV; predicted stack 0.1146 against sigma 1.471 (1e-6 arcmin^2); measured minus predicted = +2.5 sigma
+
+checks all pass: False
