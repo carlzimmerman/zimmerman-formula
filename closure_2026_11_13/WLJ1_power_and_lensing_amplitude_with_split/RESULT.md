@@ -147,4 +147,15 @@ split, sitting with the reference, clears into TENSION; that is a removal of a s
 amplitude tension, and it is the same reading CO2's own realisation-noise check already gave the adopted form. Nothing here is
 a hit for the split.
 
+## Commit ids and the lead's re-run (2026-11-14)
+
+- Criteria 03f9823de7 (origin d223c720b9); amendment A1 49f8ed445d (origin 84cd53e583); amendment A2 1c36721822 (origin 1090a533ed);
+  scripts and outputs 6cce4d7328 (origin d46836968e); result b40ed0b7de (origin 3ceaca920d).
+- The lead re-ran, from a copy of the tracked files at the same folder depth:
+  - `wlj1_hm.py` (the split's matter-power ratios and the boundary twin): both JSON files equal byte for byte; the two
+    logs differ only in elapsed-seconds stamps;
+  - `wlj1_grade.py`, with and without `--as-frozen`, on the stored stage outputs: all six outputs equal byte for byte.
+- Not re-run by the lead: the C4, shear, KL1 / BX1 and LWB stages (hours of single-thread scans).
+- A reproduction, not an independent re-grade. No number or label changes.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
