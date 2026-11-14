@@ -1,0 +1,74 @@
+CHECKS
+  KM     PASS
+  K1     PASS
+  K2     PASS
+  K3     PASS
+  K4_D1  PASS
+  K4_D2  PASS
+  K4_U   PASS
+  KS     PASS
+
+D2 (des_only, R, 20 bins, z_f 3, step free): A +0.3888 +- 0.0793; dchi2(A=0) 24.012, dchi2(A=1) 59.357
+    fork P      : A +0.3844 +- 0.0773  dchi2  24.707  63.341 -> NEITHER
+    fork full   : A +0.2565 +- 0.0547  dchi2  22.010 184.850 -> NEITHER
+    fork bins40 : A +0.3894 +- 0.0803  dchi2  23.494  57.752 -> NEITHER
+    fork pure   : A +0.3884 +- 0.0797  dchi2  23.768  58.936 -> NEITHER
+    fork zf2    : A +0.4414 +- 0.0960  dchi2  21.128  33.831 -> NEITHER
+    fork zf5    : A +0.3481 +- 0.0686  dchi2  25.724  90.226 -> NEITHER
+    fork half   : A +0.7775 +- 0.1587  dchi2  24.012   1.966 -> AGE BIAS REQUIRED AT 3 SIGMA
+  D2 = NEITHER, FRAGILE (half)
+
+U (des_only, R, g = 0): A +0.3975 +- 0.0650; dchi2(A=0) 37.435, dchi2(A=1) 86.034
+    fork B      : A +0.3691 +- 0.0604  dchi2  37.383 109.209 -> SLOPE OVERPREDICTS THE HOSTS AT 3 SIGMA
+    fork full   : A +0.2986 +- 0.0501  dchi2  35.515 196.047 -> SLOPE OVERPREDICTS THE HOSTS AT 3 SIGMA
+    fork bins40 : A +0.3955 +- 0.0657  dchi2  36.206  84.611 -> SLOPE OVERPREDICTS THE HOSTS AT 3 SIGMA
+    fork pure   : A +0.4051 +- 0.0653  dchi2  38.445  82.897 -> SLOPE OVERPREDICTS THE HOSTS AT 3 SIGMA
+    fork zf2    : A +0.4557 +- 0.0776  dchi2  34.523  49.245 -> SLOPE OVERPREDICTS THE HOSTS AT 3 SIGMA
+    fork zf5    : A +0.3561 +- 0.0569  dchi2  39.139 127.983 -> SLOPE OVERPREDICTS THE HOSTS AT 3 SIGMA
+    fork half   : A +0.7949 +- 0.1299  dchi2  37.435   2.492 -> HOSTS AS LARGE AS THE SLOPE NEEDS
+    fork mass   : A +0.7194 +- 0.1472  dchi2  23.873   3.631 -> HOSTS AS LARGE AS THE SLOPE NEEDS
+  U = SLOPE OVERPREDICTS THE HOSTS AT 3 SIGMA, FRAGILE (half, mass)
+
+Part S at A_H = 1 (q0, dchi2_today, dchi2_never):
+  full (primary)  q0 +0.0924  today   1.254  never   79.877  -> SIGN NOT SETTLED; NEVER-ACCELERATED EXCLUDED AT 3 SIGMA   | A_H free +0.141, dchi2(0) 0.155, dchi2(1) 5.761
+  des_only        q0 -0.4440  today   7.175  never   87.401  -> ACCELERATING TODAY; NEVER-ACCELERATED EXCLUDED AT 3 SIGMA   | A_H free +1.113, dchi2(0) 3.264, dchi2(1) 0.033
+  mass_only_T_H   q0 -0.1117  today   1.884  never   91.018  -> SIGN NOT SETTLED; NEVER-ACCELERATED EXCLUDED AT 3 SIGMA   | A_H free +2.200, dchi2(0) 3.713, dchi2(1) 1.102
+  zf2             q0 +0.0765  today   0.876  never   75.444  -> SIGN NOT SETTLED; NEVER-ACCELERATED EXCLUDED AT 3 SIGMA   | A_H free +0.168, dchi2(0) 0.159, dchi2(1) 4.001
+  zf5             q0 +0.1072  today   1.665  never   83.159  -> SIGN NOT SETTLED; NEVER-ACCELERATED EXCLUDED AT 3 SIGMA   | A_H free +0.123, dchi2(0) 0.151, dchi2(1) 7.646
+  host_by_host    q0 -0.0047  today   0.003  never   75.680  -> SIGN NOT SETTLED; NEVER-ACCELERATED EXCLUDED AT 3 SIGMA   | A_H free +0.161, dchi2(0) 10.089, dchi2(1) 272.457
+  S2 = SIGN NOT SETTLED, FRAGILE (des_only);  S3 = NEVER-ACCELERATED EXCLUDED AT 3 SIGMA (forks: {'des_only': 'NEVER-ACCELERATED EXCLUDED AT 3 SIGMA', 'mass_only_T_H': 'NEVER-ACCELERATED EXCLUDED AT 3 SIGMA', 'zf2': 'NEVER-ACCELERATED EXCLUDED AT 3 SIGMA', 'zf5': 'NEVER-ACCELERATED EXCLUDED AT 3 SIGMA'})
+
+Part J (joint A_H, q0 at it, dchi2_today, dchi2_never):
+  primary        A_H +0.377 [0.299, 0.455]  dchi2(0)  23.713 dchi2(1)  64.664  q0 -0.1925  today  4.463  never  113.671 -> ACCELERATING TODAY; NEVER-ACCELERATED EXCLUDED AT 3 SIGMA
+  des_only       A_H +0.401 [0.321, 0.48]  dchi2(0)  25.917 dchi2(1)  58.031  q0 -0.5191  today  9.649  never   93.879 -> ACCELERATING TODAY; NEVER-ACCELERATED EXCLUDED AT 3 SIGMA
+  D2_P           A_H +0.374 [0.298, 0.45]  dchi2(0)  24.422 dchi2(1)  68.662  q0 -0.1939  today  4.572  never  114.402 -> ACCELERATING TODAY; NEVER-ACCELERATED EXCLUDED AT 3 SIGMA
+  half           A_H +0.673 [0.527, 0.818]  dchi2(0)  21.528 dchi2(1)   5.088  q0 -0.0566  today  0.284  never   84.134 -> SIGN NOT SETTLED; NEVER-ACCELERATED EXCLUDED AT 3 SIGMA
+  mass_T_H       A_H +0.397 [0.318, 0.477]  dchi2(0)  25.223 dchi2(1)  57.957  q0 -0.2650  today  9.546  never  124.208 -> ACCELERATING TODAY; NEVER-ACCELERATED EXCLUDED AT 3 SIGMA
+  U_prior        A_H +0.389 [0.325, 0.454]  dchi2(0)  37.095 dchi2(1)  91.300  q0 -0.1870  today  4.423  never  115.829 -> ACCELERATING TODAY; NEVER-ACCELERATED EXCLUDED AT 3 SIGMA
+  no_prior_full  A_H +0.141 [-0.219, 0.5]  dchi2(0)   0.155 dchi2(1)   5.761  q0 -0.3016  today  2.663  never   79.133 -> SIGN NOT SETTLED; NEVER-ACCELERATED EXCLUDED AT 3 SIGMA
+  no_prior_des   A_H +1.113 [0.496, 1.728]  dchi2(0)   3.264 dchi2(1)   0.033  q0 -0.4300  today  5.635  never   79.391 -> ACCELERATING TODAY; NEVER-ACCELERATED EXCLUDED AT 3 SIGMA
+  no_prior_mass  A_H +2.000 [1.039, None]  dchi2(0)   3.682 dchi2(1)   1.072  q0 +0.1368  today  0.373  never   47.513 -> SIGN NOT SETTLED; NEVER-ACCELERATED EXCLUDED AT 3 SIGMA
+  J2 = ACCELERATING TODAY, FRAGILE (half);  J3 = NEVER-ACCELERATED EXCLUDED AT 3 SIGMA
+
+Part E (BAO + the supernova subsample; no age term):
+  young        n  609 (586 DES)  Om 0.3229 w0 -0.7616 wa -0.7635 q0 -0.2735 edge []  today  3.440  never   59.475 -> SIGN NOT SETTLED; NEVER-ACCELERATED EXCLUDED AT 3 SIGMA
+  young_noBAO  n  609 (586 DES)  Om 0.4138 w0 -0.7302 wa -3.0000 q0 -0.1421 edge ['wa']  today  0.661  never   27.873 -> SIGN NOT SETTLED; NEVER-ACCELERATED EXCLUDED AT 3 SIGMA
+  blue         n  733 (699 DES)  Om 0.3215 w0 -0.7719 wa -0.7232 q0 -0.2857 edge []  today  4.966  never   69.776 -> ACCELERATING TODAY; NEVER-ACCELERATED EXCLUDED AT 3 SIGMA
+  ls10         n 1145 (1063 DES)  Om 0.3185 w0 -0.8044 wa -0.7415 q0 -0.3222 edge []  today  9.760  never  118.077 -> ACCELERATING TODAY; NEVER-ACCELERATED EXCLUDED AT 3 SIGMA
+  old          n 1211 (1037 DES)  Om 0.3147 w0 -0.8384 wa -0.5748 q0 -0.3619 edge []  today 16.168  never  136.515 -> ACCELERATING TODAY; NEVER-ACCELERATED EXCLUDED AT 3 SIGMA
+  young_des    n  586 (586 DES)  Om 0.3127 w0 -0.8427 wa -0.4504 q0 -0.3688 edge []  today  2.459  never   49.893 -> SIGN NOT SETTLED; NEVER-ACCELERATED EXCLUDED AT 3 SIGMA
+  full         n 1820 (1623 DES)  Om 0.3141 w0 -0.8429 wa -0.5376 q0 -0.3672 edge []  today 18.638  never  168.141 -> ACCELERATING TODAY; NEVER-ACCELERATED EXCLUDED AT 3 SIGMA
+  full_noBAO   n 1820 (1623 DES)  Om 0.4098 w0 -0.7884 wa -3.0000 q0 -0.1979 edge ['wa']  today  6.941  never  133.543 -> ACCELERATING TODAY; NEVER-ACCELERATED EXCLUDED AT 3 SIGMA
+  E2 = SIGN NOT SETTLED, FRAGILE (blue, log_s_ge_-10);  E3 = NEVER-ACCELERATED EXCLUDED AT 3 SIGMA
+
+WORDS
+  D2: NEITHER, FRAGILE (half)
+  U: SLOPE OVERPREDICTS THE HOSTS AT 3 SIGMA, FRAGILE (half, mass)
+  S2: SIGN NOT SETTLED, FRAGILE (des_only)
+  S3: NEVER-ACCELERATED EXCLUDED AT 3 SIGMA
+  J2: ACCELERATING TODAY, FRAGILE (half)
+  J3: NEVER-ACCELERATED EXCLUDED AT 3 SIGMA
+  E2: SIGN NOT SETTLED, FRAGILE (blue, log_s_ge_-10)
+  E3: NEVER-ACCELERATED EXCLUDED AT 3 SIGMA
+
+wrote agb3r_results.json
