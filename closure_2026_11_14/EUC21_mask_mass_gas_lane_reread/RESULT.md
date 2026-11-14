@@ -92,6 +92,30 @@ counts K6 and K7). The words above are ESZ1's rules applied to what the correcte
 - No blind re-grade of this lane exists. One word changed (Y2), so one is owed. Not launched here.
 - Not graded: EXR1, EXR1R, EXR2. CJ1's row 39 is not edited.
 
+## 4a. Blind re-grade EUC21R (dated addition, 2026-11-14; no number or label of this file changes)
+
+`closure_2026_11_14/EUC21R_blind_gas_lane_regrade/` (a separate session that read only the criteria and wrote its own
+driver and collector). **Its labels, as frozen, are the same:** Y1 ONLY A CUSP IS LEFT on both footings, UNCHANGED,
+ROBUST; Y2 WIDE LENSES HOLD MORE GAS PRESSURE, CHANGED, ROBUST. Every one of its checks passes with no amendment.
+
+- All fifteen ESZ1 output files of its five runs are byte-identical to this lane's (results file, per-lens file and
+  log; harness, corrected, F1a, F1b, invert), so every number agrees exactly.
+- Blindness: its starting context showed no EUC21 subject and no memory line naming this lane.
+- Lead's re-run: its corrected mode (source exit 3, as it expects) and its collector reproduce its committed
+  outputs; only the thread count recorded in its driver file differs. The other four heavy modes were not re-run
+  (about 2.6 GB each while other sessions' runs were live); the byte comparison above stands in for them.
+- Commits (local / origin): reading 4265063117 / 70142d528b; driver, runs and result 4927494fb7 / d40fb9f4e5;
+  comparison 07eb14a7bd / cf76a03d3e.
+
+**What Y2's change is.** EUC21R points out, and this lane's own twin confirms, that Part C reads WIDE LENSES HOLD
+MORE GAS PRESSURE even when the masses are moved the wrong way (twin: +5.30 [+1.15, +9.47] on the primary map,
++5.77 [+0.47, +10.62] on the CIB-deprojected map). Any change of the masses re-draws the controls: only 15 of the
+237 wide lenses keep their committed control in the corrected run (24 in the twin, 21 and 14 in the brackets). So
+Y2's change is a property of the control draw, with the committed draw the one that sat at the line (lower bound
+−0.20). It is not evidence that the correction itself matters for Part C.
+
+The limit in §4 that no blind re-grade exists is superseded by this section.
+
 ## 5. Files and re-run
 
 - `FROZEN_CRITERIA.md`; `euc21_run.py` (driver: ESZ1's text under its own path, EUC1's loader wrapped, one
