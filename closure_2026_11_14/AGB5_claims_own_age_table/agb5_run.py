@@ -54,7 +54,7 @@ def booted(fn, T, n=400, **kw):
         for _ in range(n):
             i = rng.integers(0, N, N); Tb = sub(T, i)
             b.append(fn(Tb, y=None if kw.get("y") is None else kw["y"][i], sel=None if kw.get("sel") is None else kw["sel"][i], **kb)["beta"])
-        r["sd_beta_formula"] = r["sd_beta"]; r["sd_beta"] = float(np.std(b, ddof=1))
+        r["sd_beta_formula"] = r["sd_beta"]; r["sd_beta"] = float(np.std(b, ddof=1)); r["boot_percentiles_16_50_84"] = [float(v) for v in np.percentile(b, [16, 50, 84])]
     return r
 
 
@@ -120,7 +120,7 @@ def main():
         fd = booted(plain, T1, step=True, sel=~shared); F["shared_dropped"] = dict(amp([fd, f2]), table1=fd)
         fo = booted(plain, T1, y=T1["hr_orig"], step=True); F["original_residuals"] = dict(amp([fo, f2]), table1=fo)
         z1, z2 = booted(plain, T1, step=True, zterm=True), booted(plain, T2, step=True, zterm=True); F["redshift_term"] = dict(amp([z1, z2]), table1=z1, table2=z2)
-        s1, s2 = booted(struct, T1, n=200, step=True), booted(struct, T2, n=200, step=True); F["structural"] = dict(amp([s1, s2]), table1=s1, table2=s2)
+        s1, s2 = booted(struct, T1, step=True), booted(struct, T2, step=True); F["structural"] = dict(amp([s1, s2]), table1=s1, table2=s2)
         n1, n2 = booted(plain, T1), booted(plain, T2); F_nostep = dict(amp([n1, n2]), table1=n1, table2=n2); res["no_step"] = F_nostep
         log(f"no step (the published configuration): A {F_nostep['A']:+.3f} +- {F_nostep['sd_A']:.3f}")
         for k, v in F.items():
