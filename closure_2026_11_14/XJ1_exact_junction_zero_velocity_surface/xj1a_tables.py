@@ -2,8 +2,10 @@
 """XJ1 build A (FROZEN_CRITERIA.md ef8ccdde98, sections 1 and 8): halo-model tables. COPY of FWN2 build A's fwn2a_tables.py
 (closure_2026_11_14/FWN2_forest_flux_split_f4), itself FWN1's fwn1_tables.py (closure_2026_11_13/
 FWN1_forest_flux_split_f_ceiling), with the split keys changed to:
+  SE0.5 the crossing-speed split with the EXACT JUNCTION at R_set = 0.5 R_fold (FZS1's rset_com at fac 0.5, capped at r_ta)
+        (graded in build A since the lead's amendment A4, 2026-11-14, which replaced SEzv in build A's box run)
   SE2   the crossing-speed split with the EXACT JUNCTION at R_set = 2 R_fold (FZS1's rset_com at fac 2, capped at r_ta)
-  SEzv  the crossing-speed split with the EXACT JUNCTION at R_set = R_zv (FLD1's turnaround radius of the clock, capped)
+  SEzv  (table level only since amendment A4; not in the box run) the crossing-speed split with the EXACT JUNCTION at R_set = R_zv (FLD1's turnaround radius of the clock, capped)
   S5.00 control: FWN1's lay_split at f = 5 (FZS1's junction; SRH1's lay_S), must reproduce FWN1's parts.
 The U and C keys (f 0, 1, 2, 3, inf through SRH1's lay_S) and every other array are FWN1's code unchanged, so the forced set
 (FRZ4's rule over the U and C cases), the base box and the reference field R are FWN1's.
@@ -35,7 +37,7 @@ def fkey(f): return "finf" if math.isinf(f) else f"f{f:.2f}"
 KEYS = [fkey(f) for f in TAB_F]
 SPLIT_F = [5.00]                                                 # control S5.00 (FWN1's lay_split, FZS1's junction)
 def skey(f): return "Sinf" if math.isinf(f) else f"S{f:.2f}"
-EKEYS = ["SE2", "SEzv"]                                          # XJ1 build A graded cases (exact junction)
+EKEYS = ["SE0.5", "SE2", "SEzv"]                                 # exact-junction table keys (graded in build A: SE0.5, SE2)
 SKEYS = [skey(f) for f in SPLIT_F] + EKEYS
 sys.path.insert(1, os.path.join(REPO, "closure_2026_11_13", "JNT2_crossing_speed_joint"))
 import jnt2_common as JC                                         # read-only: constants, E(z), vstar_kms
@@ -79,7 +81,8 @@ def rcol_com(NS, hb, foot, z, col, fac=1.0, cap=True):
     R = fac * rcol_kpc(foot, z, math.log10(NS["Mb_fold"](hb, foot) / NS["h"]), col) * 1e-3 * (1 + z) * NS["h"]
     return min(R, hb["rta"]) if cap else R
 def rset_fn(NS, foot, z, which):
-    """which: 'f2' -> FZS1's rset_com at fac 2 (unchanged); 'zv' -> R_zv (column R_ta_kpc), capped at r_ta."""
+    """which: 'f0.5' / 'f2' -> FZS1's rset_com at fac 0.5 / 2 (unchanged); 'zv' -> R_zv (column R_ta_kpc), capped at r_ta."""
+    if which == "f0.5": return lambda hb: NS["rset_com"](hb, foot, z, 0.5)
     if which == "f2": return lambda hb: NS["rset_com"](hb, foot, z, 2.0)
     if which == "zv": return lambda hb: rcol_com(NS, hb, foot, z, 3)
     raise ValueError(which)
@@ -115,7 +118,7 @@ def lay_E(NS, foot, z, which, above_fn):
         R = rfun(hb); r, M, inf = exact_profile(NS, hb, foot, R)
         return r, M, dict(regime=inf["regime"], R_set=R, t=inf["t"], capped=bool(R >= hb["rta"]), split_ref=False)
     return fn
-EWHICH = {"SE2": "f2", "SEzv": "zv"}
+EWHICH = {"SE0.5": "f0.5", "SE2": "f2", "SEzv": "zv"}
 
 _SN = None
 def srh1():

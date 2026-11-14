@@ -6,11 +6,11 @@ closure_2026_11_13/FWN1_forest_flux_split_f_ceiling).
                forest k grid, fed to FRZ1's forest_eval through Rkz_z (JNT2's jnt2_forest.py route: frz1_forest.py prefix,
                executed read-only from its own path).
   chain:       JNT2's jnt2_hm.py executed read-only up to its case loop (FZS1's library, not SRH1's): S5.00 through its own
-               ratios_J(foot, z, 5); SE2 / SEzv through a direct halo-model evaluation in ratios_J's style (U_std, U_set,
+               ratios_J(foot, z, 5); SE0.5 / SE2 / SEzv through a direct halo-model evaluation in ratios_J's style (U_std, U_set,
                spectra_ta on FZS1's namespace) with this build's exact-junction layout (xj1a_tables.lay_E on FZS1's
                namespace, JNT2's above()); graded by the same forest route.
   anchor:      the chain's ratios_J at fac 3 must equal JNT2's stored G1 f3.00 (1.9898 canonical / 6.4321 alt) within 1 %.
-Pass: table route = chain within 1 % or 0.002 absolute, and the anchor passes. The matter-level D_rec of SE2 and SEzv is
+Pass: table route = chain within 1 % or 0.002 absolute, and the anchor passes. The matter-level D_rec of SE0.5, SE2 and SEzv is
 reported with PASS / FAIL against the gate 4 (reported, never a label).
 Usage: nice -n 19 python3 -I -B xj1a_c0.py <footing> -> xj1a_c0_<footing>.json / .out
 kappa = 1/2 FITTED; not theory closed. Adopts nothing."""
@@ -71,7 +71,7 @@ for z in J["ZB"]:
 anchor = float(forest_eval(FD, BGB, Rkz_z(Rz))["dchi2"]); anc_rel = anchor / JST["f3.00"]["dchi2"] - 1
 RES["anchor_J_fac3"] = dict(chain=anchor, jnt2_stored=JST["f3.00"]["dchi2"], rel=anc_rel, pass_=bool(abs(anc_rel) <= 0.01))
 P(f"[{FOOT}] anchor: chain at FZS1's junction fac 3 D_rec {anchor:.6g} vs JNT2's stored f3.00 {JST['f3.00']['dchi2']:.6g}: rel {anc_rel:.2e} -> {'PASS' if abs(anc_rel) <= 0.01 else 'FAIL'}  [{time.time() - T0:.0f} s]")
-for key in ("S5.00", "SE2", "SEzv"):
+for key in ("S5.00", "SE0.5", "SE2", "SEzv"):
     Rz = {}; tinfo = {}
     for z in J["ZB"]:
         J["setz"](z)

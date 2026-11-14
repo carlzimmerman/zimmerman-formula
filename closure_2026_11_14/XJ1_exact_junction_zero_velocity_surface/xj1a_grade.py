@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """XJ1 build A grading (FROZEN_CRITERIA.md ef8ccdde98, section 8): COPY of FWN2 build A's fwn2a_grade.py
-(closure_2026_11_14/FWN2_forest_flux_split_f4), itself FWN1's fwn1_grade.py, with the graded cases SE2 (exact junction at
-2 R_fold) and SEzv (exact junction at R_zv), both under the crossing-speed split. Changes from FWN2 build A's grader: the
+(closure_2026_11_14/FWN2_forest_flux_split_f4), itself FWN1's fwn1_grade.py, with the graded cases SE0.5 and SE2 (exact
+junction at 0.5 and 2 R_fold; the lead's amendment A4 replaced SEzv by SE0.5), both under the crossing-speed split. Changes from FWN2 build A's grader: the
 z 2.2 parts are this lane's stage e (parts_a/) merged onto FWN1's committed pass-1 parts (forced-box R is FWN1's; the
 base-box R must first be equal); (j1) is the control S5.00 against FWN1's pass-2 parts at seeds 0, 1; (c0) reads
 xj1a_c0_<footing>.json (table route = chain, chain anchored on JNT2's stored f3.00) and also compares this grader's D_rec
@@ -43,7 +43,7 @@ exec(compile(src[:cut], "frz3r_grade_setup", "exec"), g); sys.argv = _a
 FD, forest_eval, BGB, amp, dchi2_sel, ZB, ALL, bin_sel, md5ok = (g[k] for k in ("FD", "forest_eval", "BGB", "amp", "dchi2_sel", "ZB", "ALL", "bin_sel", "md5ok"))
 sys.path.insert(0, HERE); import xj1a_tables as TB
 KT = TB.KT
-SC = ["SE2", "SEzv"]                                     # this lane's build-A cases
+SC = ["SE0.5", "SE2"]                                    # this lane's build-A cases (amendment A4: SE0.5 replaced SEzv)
 UC6 = [TB.fkey(f) for f in TB.CASES]                     # f1.00 f2.00 f3.00 finf (FRZ4 / FRZ6 U and C keys)
 ZC = [2.2, 2.6, 3.0, 3.4, 3.8, 4.4]
 ANCH = (2.2, 3.0, 4.4)
@@ -502,7 +502,7 @@ RES["labels"] = LAB; RES["labels_measured_range_reading"] = LAB_MR
 # the junction's own effect at f = 2 in this build: D(SE2) against FRZ6's stored S2.00 (FZS1's junction, FRZ6's 12 seeds),
 # FWN1R's bite rule (ratio >= 1.25 or <= 0.8, and |difference| > 2 sqrt(SE^2 + SE^2)); and the matter-level D_rec
 JUNC = {}
-for key, ref in (("SE2", "S2.00"), ("SEzv", "S2.00"), ("SEzv", "S3.00")):
+for key, ref in (("SE2", "S2.00"),):
     if rows.get(key) is None: continue
     D = rows[key]["flux"]; SE = KE[key]["SE"]; Dj = G6["rows"][ref]["flux"]; SEj = G6["known_answers"]["e"][ref]["SE"]; rt = D / Dj if Dj > 0 else float("inf")
     JUNC[f"{key}_vs_FRZ6_{ref}"] = dict(D=D, SE=SE, D_J=Dj, SE_J=SEj, ratio=rt, diff=D - Dj, bites=bool((rt >= 1.25 or rt <= 0.8) and abs(D - Dj) > 2 * math.sqrt(SE ** 2 + SEj ** 2)))
