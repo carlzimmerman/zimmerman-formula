@@ -1,10 +1,12 @@
 # LGS4 — the legacy supernova split in a two-parameter (w0, wa) fit
 
-2026-11-14. Criteria: `FROZEN_CRITERIA.md` (local 7b1ba21241). A re-read of public data with a public fitting form.
+2026-11-14. Criteria: `FROZEN_CRITERIA.md`. A re-read of public data with a public fitting form.
+Commits (local / origin): criteria 7b1ba21241 / 0424efcbe7; frozen run 6d106b236c / 6280b55cff; result 488f97a32c /
+70f1a2c63e.
 It adopts nothing, edits no ledger and grades nothing in the framework.
 
 ## Result
-- **As frozen: NOT EVALUABLE AS FROZEN.** The chain gate G0 failed (local 6d106b236c). The fault was in this lane's
+- **As frozen: NOT EVALUABLE AS FROZEN.** The chain gate G0 failed. The fault was in this lane's
   sampler, not in the data: see "Two design errors" below.
 - **Post hoc, sampler repaired, every rule and threshold unchanged: THE SPLIT CANNOT TELL.** Both gates pass. Dropping
   the 197 legacy supernovae does not show whether the two-parameter preference is a signal seen with less data or a
