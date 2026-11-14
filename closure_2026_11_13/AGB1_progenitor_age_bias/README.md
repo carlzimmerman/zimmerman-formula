@@ -187,4 +187,16 @@ never accelerated.
   the age question; it does not say which amplitude is right.
 - The web readings of the four papers are PROVISIONAL (summariser). No blind re-grade has been run.
 
+## Note added 2026-11-14: the blind re-grade and the host-galaxy follow-up
+- **AGB1R** (`closure_2026_11_13/AGB1R_blind_progenitor_age_bias/`), a second build written from `FROZEN_CRITERIA.md`
+  alone, reaches the same frozen word in every case of Parts A and C, and every check passes there too. Part B was not
+  re-graded. The sentence above, "No blind re-grade has been run", is superseded by this note.
+- It found two small defects in this build; neither moves a word. (1) Part C takes supernova distances by linear
+  interpolation on a 601-point CAMB grid, which shifts χ² by up to 0.005 (Δχ²_today at A = 0 on `full` is 27.38, not
+  27.37). (2) The short-delay template T_W, reported only, is 3 to 7 × 10⁻⁵ mag high: on `full` the best A_W is 2.29 and
+  Δχ² is 1.86 at A_W = 0, 1.50 at 0.23 and 0.59 at 1, where this file prints 2.28 and 1.84 / 1.49 / 0.58.
+  The numbers above are left as first written.
+- **AGB2** (`closure_2026_11_14/AGB2_host_mass_step_redshift/`) tests the same slope on Pantheon+ host galaxies and
+  combines it with this lane's Part A profile. Its words are in its own README.
+
 kappa = 1/2 FITTED; not theory closed.
