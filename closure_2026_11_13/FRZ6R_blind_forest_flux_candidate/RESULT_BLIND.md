@@ -156,4 +156,18 @@ amount, so this build has not shown that it would catch the boundary being wrong
 needs a twin that bites, for example more seeds for the twin or a twin defined at full 12-bin scope, frozen in advance. Even
 then a HOLDS here would be a hit, not a pass of the theory.
 
+## Commit ids, the lead's re-run and the comparison with the first lane (2026-11-13)
+
+- Criteria 4314f23c90 (origin 698c54f875); amendment A1 4265c14111 (origin 72fd7d0068); scripts, parts and graded outputs
+  394f36e3c9 (origin c5963a7396); result 1aedb882d0 (origin a05d0f35e7).
+- The lead re-ran `frz6r_grade.py` from a copy of the scripts and the committed parts at the same folder depth: the four
+  outputs equal byte for byte. The boxes themselves were not re-run.
+- The first lane is FRZ6 (`closure_2026_11_13/FRZ6_forest_flux_candidate_graded/`). As frozen it reads FOREST ROW HOLDS AT
+  FLUX LEVEL at f = 2 and f = 3 (three of the four FRAGILE on the halved smoothing scale), with D 0.196 / 0.257 at f = 2
+  and 1.144 / 1.434 at f = 3 and a control of 256.1 / 282.3 that fails under its post hoc amendment. This blind build
+  reads NO VERDICT as frozen, so it does not confirm that label; its numbers are lower than FRZ6's, under the gate in
+  every split case, and its control fails. Neither build contradicts the other; the hold stays a hit, not a confirmed
+  hold.
+- No number or label changes.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
