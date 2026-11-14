@@ -1,0 +1,14 @@
+P1a sympy: roots of -g_N - y + U(y) = 0 for y: [sqrt(g_N)*sqrt(4*a0 + g_N)/2 - g_N/2]
+   root sqrt(g_N)*sqrt(4*a0 + g_N)/2 - g_N/2 -> residual of g^2/(a0+g) - g_N with g = g_N + y: 0
+P1a sympy converse: balance residual at y = g_law - g_N: 0
+P1a numeric: max |g^2/(a0+g) - g_N|/g_N over g_N/a0 in [1e-6, 1e3], both footings: 1.90e-13; max |m_balance / Mph - 1|: 2.24e-13 (line 1e-12)
+KA1 (static balance = the law): PASS
+P1b sympy: delta(F) coefficient of d_t(r^2 J^t) + d_r(r^2 J^r): r**2*(-Jr_in(t, r) + Jr_out(t, r) + Jt_in(t, r)*Derivative(R(t), t) - Jt_out(t, r)*Derivative(R(t), t))
+P1b residual against r^2([J^r] - Rdot [J^t]): 0
+P1b advective reduction residual N_out(v_out - Rdot) - N_in(v_in - Rdot): 0
+P1b standing interior (v_in = 0): v_out = [Rdot*(-N_in + N_out)/N_out]
+KA2: t = 2/3, N_in/N_out = 3/2; (Rdot, v_out) = (2, -1) -> condition residual 0; (0, -1) -> -2/3
+KA2 (interface condition and the rational example): PASS
+P1b integrated: d/dt C_in(R(t)) = Derivative(C_in(R(t)), R(t))*Derivative(R(t), t) = C_in'(R) Rdot = 4 pi R^2 N_in Rdot; with v_in = 0 the condition makes this 4 pi R^2 N_out (Rdot - v_out), the charge carried across the moving boundary per unit time
+KA6: C_law(100 kpc, log M_b 10.7, canonical) SI 5.555221e+11 M_sun, FLD1 units 5.555934e+11; rel 1.3e-04 (line 1e-3) -> PASS
+kappa = 1/2 FITTED; not theory closed. Adopts nothing.
