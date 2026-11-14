@@ -166,7 +166,8 @@ if scos_ok:
     P(f"\nS-cos tuning: A* = {Astar:g}; confirming law-off run (N 2400) turned around {conf:.2f} M_b against {tune['target']['canonical']:.2f} "
       f"({100 * rel:+.1f} %; line 10 %) -> {'ACCEPTED' if scos_ok else 'NOT ACCEPTED'}")
     k7 = load("csd1_ka7_A0_canonical_M10.45"); s0 = np.array(load(nm("canonical", 10.45))["series"], float); s7 = np.array(k7["series"], float)
-    d7 = float(np.max(np.abs(s7 - s0) / np.maximum(np.abs(s0), 1e-30)))
+    fin = np.isfinite(s0)                                                   # AMENDMENT A2: NaN positions must match
+    d7 = float(np.max(np.abs(s7[fin] - s0[fin]) / np.maximum(np.abs(s0[fin]), 1e-30))) if np.array_equal(np.isnan(s7), np.isnan(s0)) else float("inf")
     P(f"KA7 (S-cos code with A = 0 against the S-seed run, all columns; line 1e-12): {d7:.1e} -> {'PASS' if d7 <= 1e-12 else 'FAIL'}"
       " (this checks only that the inserted perturbation is inert at A = 0)")
     RES["KA7"] = dict(pass_=bool(d7 <= 1e-12), dev=d7)
