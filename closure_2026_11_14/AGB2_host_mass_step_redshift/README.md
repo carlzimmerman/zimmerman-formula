@@ -147,4 +147,10 @@ Commits (local / origin): criteria a622d5cb15 / cd8644a083; scripts 86df7a46bb /
 93bb27cfc3; amended scripts c08f7b1b77 / c3905d0581; joint plumbing fix 07b4151f13 / 2c41b7772e; result 46bd6cbd33 /
 82c478ffef.
 
+## Note added 2026-11-14: blind re-grade
+**AGB2R** (`closure_2026_11_14/AGB2R_blind_host_mass_step/`), a second build written from `FROZEN_CRITERIA.md` and
+`AMENDMENT_1.md` alone, reaches the same five amended words, first and second, and is NOT EVALUABLE as frozen on the
+same check. Numbers agree to a few hundredths of an error bar (its `LEAD_CHECK.md` lists them). The sentence "No
+blind re-grade has been run" above is superseded.
+
 kappa = 1/2 FITTED; not theory closed.
