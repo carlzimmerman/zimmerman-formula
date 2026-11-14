@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """XJ1 build A (FROZEN_CRITERIA.md ef8ccdde98, section 8): flux-level forest fields. COPY of FWN2 build A's fwn2a_run.py
 (closure_2026_11_14/FWN2_forest_flux_split_f4), itself FWN1's fwn1_run.py, with this lane's keys and field plan:
-  stage e (z 2.2, seeds 0 to 11): base box R, B|SE2, B|SEzv, D2|SE2, D2|SEzv (primary) and R, B|SE2, B|SEzv (M1_lin);
-          every forced box B|SE2, B|SEzv, D2|SE2, D2|SEzv; seeds 0 and 1 also the control B|S5.00 everywhere. The reference
+  (case list since the lead's amendment A4, 2026-11-14: SE0.5 and SE2; SEzv dropped from the box run)
+  stage e (z 2.2, seeds 0 to 11): base box R, B|SE0.5, B|SE2, D2|SE0.5, D2|SE2 (primary) and R, B|SE0.5, B|SE2 (M1_lin);
+          every forced box B|SE0.5, B|SE2, D2|SE0.5, D2|SE2; seeds 0 and 1 also the control B|S5.00 everywhere. The reference
           field R of every forced box is FWN1's committed pass-1 ("inf") part's, after the base-box R is shown equal.
-  stage oz (seed 0 at z 3.0, 4.4, 2.6, 3.4, 3.8): R, B|SE2, B|SEzv in the base box and every forced box.
-  stages bracketF (z 2.2 and 3.0) and clusteredF (z 2.2): R, B|SE2, B|SEzv on the bracket subset (FRZ4's rule with SE2
-          and SEzv as the new cases), FWN1's ten bracket specs.
+  stage oz (seed 0 at z 3.0, 4.4, 2.6, 3.4, 3.8): R, B|SE0.5, B|SE2 in the base box and every forced box.
+  stages bracketF (z 2.2 and 3.0) and clusteredF (z 2.2): R, B|SE0.5, B|SE2 on the bracket subset (FRZ4's rule with
+          SE0.5 and SE2 as the new cases), FWN1's ten bracket specs.
 Tables from xj1a_tables.py (tmp_a/); parts in parts_a/; box files in tmp_a/<part>/. Everything else is FWN1's code unchanged.
 Usage: nice -n 19 python3 -I -B xj1a_run.py <stage> <z> <seed> <footing>
 FWN2 build A's docstring follows.
@@ -67,7 +68,7 @@ def Fbar(z, s=1.0): return math.exp(-s * tau_eff(z))
 def beta_of(g): return 2.0 - 0.7 * (g - 1.0)
 fk_ = TB.fkey
 CASES = [fk_(f) for f in TB.CASES]                      # f1.00 f2.00 f3.00 finf (U and C; FRZ4's forced-set rule)
-SCASES = ["SE2", "SEzv"]                                 # XJ1 build A graded cases (criteria section 8)
+SCASES = ["SE0.5", "SE2"]                                # XJ1 build A graded cases (criteria section 8 as amended by A4)
 CTRL = "S5.00"                                            # control S5 (z 2.2 seeds 0, 1; FWN1's parts)
 def ckpc(x): return x * 1e-3 * 0.6736                     # comoving kpc -> Mpc/h, as LAM0
 MR_SPECS = {"lam_mr_lo": ckpc(91.4), "lam_mr_mid": ckpc(113.8), "lam_mr_hi": ckpc(138.6)}   # Rorai+17 Table S2, z 3 (PROVISIONAL)
