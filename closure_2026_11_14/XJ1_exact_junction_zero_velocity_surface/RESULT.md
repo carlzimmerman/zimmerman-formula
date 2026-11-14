@@ -220,4 +220,24 @@ Profile-level known answers: `xj1_ka_tables{,2,3}.*`. Reported chains: `xj1_matt
 `xj1_lens{,2,3}.*`, `xj1_sparc.*`, `xj1_shells.py` and `shells/`, `xj1_contain.*`, `xj1_mw.*`,
 `xj1b_partial_first_pass.out`. Build A: `xj1a_*`, `parts_a/`.
 
+## 9. Dated notes
+
+**2026-11-14, 14:14 EST by the clock. Amendment A6 (63aff5a4e6; reported, post hoc, no label, no forest run): how far the
+integer can go before rotation curves are cut.** Section 6 says nothing was run for k = 4 and beyond; this note
+supersedes that sentence for the rotation curves only.
+
+- `xj1_shells45.py` carries the passage count to 5. All 24 runs reproduce this lane's stored shell runs in their
+  first eight columns (largest relative deviation 0). The fourth caustic is at 0.448 R_fold today and the fifth at
+  0.389 (log M_b 9.4 to 12, both footings; 0.442 and 0.383 at log M_b 8); at z 2.2 they are at 0.405 and 0.350.
+- `xj1_contain45.py`, SPARC's 175 galaxies at z = 0, mass-to-light 0.5: no galaxy's last measured point lies beyond
+  the fourth caustic (largest ratio 0.916, UGC00128); one lies beyond the fifth (UGC00128, 1.055). At mass-to-light
+  0.3: none beyond the fourth (0.967, UGC09133), two beyond the fifth (UGC00128 1.099, UGC09133 1.112). At 0.8: none
+  beyond the fourth (0.869); UGC00128 sits at 1.000 of the fifth. The two footings agree to 0.001.
+- So today's rotation curves allow k = 2, 3 and 4 and are cut, by one galaxy and 5 %, at k = 5. The forest was run for
+  k = 1, 2 and 3 only; nothing is claimed about it at k = 4. The integer is therefore not fixed by this record: it is
+  one of 2, 3 or 4 as far as rotation curves go, and 2 or 3 as far as anything here was graded.
+- Hand estimate (A6, before any number): R_4 about 0.44 and R_5 about 0.38 of R_fold (0.448 and 0.389); no galaxy
+  beyond R_4 (60 %): none; 1 to 5 beyond R_5 (70 %): one.
+- Files: `xj1_shells45.py`, `xj1_contain45.py`, `run_shells45.sh`, `shells45/`, `xj1_contain45.json/.out`.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
