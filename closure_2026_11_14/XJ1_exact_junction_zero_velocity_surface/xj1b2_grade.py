@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""XJ1 build B, second pass grader (AMENDMENT_A3): a copy of xj1b_grade.py with the case list changed to E0.5 and E0.75, KA-5 replaced by KA-R2 (this pass's R equals the first pass's), the control J5 and its known answer read from the first pass's grade file, the twin TW-B2 at E0.75 (replaced by the first pass's TW-B when E0.75's anchor statistic is below 0.05), no junction comparison, and the lane word Q3. Reads parts_b2/*.json, parts_b/*.json (R only) and xj1b_grade.json. Writes xj1b2_grade.json / .out. The first pass's docstring follows. XJ1 build B grader (FROZEN_CRITERIA.md ef8ccdde98 sections 4 to 6, AMENDMENT_A1 38c6539631). COPY of FWN1R's fwn1r_grade.py
+"""XJ1 build B, second pass grader (AMENDMENT_A3 and AMENDMENT_A5; cases E0.5, E0.75, Ec2, Ec3; KA-K and the lane word Q4 added for the caustic cases): a copy of xj1b_grade.py with the case list changed to E0.5 and E0.75, KA-5 replaced by KA-R2 (this pass's R equals the first pass's), the control J5 and its known answer read from the first pass's grade file, the twin TW-B2 at E0.75 (replaced by the first pass's TW-B when E0.75's anchor statistic is below 0.05), no junction comparison, and the lane word Q3. Reads parts_b2/*.json, parts_b/*.json (R only) and xj1b_grade.json. Writes xj1b2_grade.json / .out. The first pass's docstring follows. XJ1 build B grader (FROZEN_CRITERIA.md ef8ccdde98 sections 4 to 6, AMENDMENT_A1 38c6539631). COPY of FWN1R's fwn1r_grade.py
 (closure_2026_11_14/FWN1R_blind_split_f_ceiling) with the case list changed to E1, E2, E3, Ezv, the control J5 compared
 with FWN1R's stored parts and grade file (KA-5), KA-C / KA-INF / TW-A read from FWN1R's committed grade file, TW-B at E3,
 KA-E / KA-Z read from xj1_ka_tables.json, and the junction comparison against FRZ6R's J2 and FWN1R's J3 (reported).
@@ -14,7 +14,7 @@ import numpy as np
 from scipy.linalg import cho_solve
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
 ODIR = os.environ.get("XJ1B_ODIR") or HERE; G1DIR = os.environ.get("XJ1B_G1DIR") or ODIR
-import xj1_lib as XL
+import xj1_lib2 as XL
 X = XL.X
 PARTS = os.environ.get("XJ1B2_PARTS") or os.path.join(HERE, "parts_b2"); PARTS1 = os.environ.get("XJ1B_PARTS") or os.path.join(HERE, "parts_b")
 OUT, OUTM = [], []
@@ -37,9 +37,9 @@ JNT2 = dict(canonical=[170, 176, 181, 187, 192, 197, 202, 206, 211, 215, 219, 22
 FWN1R_DIR = os.path.join(X.REPO, "closure_2026_11_14", "FWN1R_blind_split_f_ceiling")
 FWN1R_PARTS = os.path.join(FWN1R_DIR, "parts"); FWN1R_G = json.load(open(os.path.join(FWN1R_DIR, "fwn1r_grade.json")))["footings"]
 FRZ6R_G = json.load(open(os.path.join(X.REPO, "closure_2026_11_13", "FRZ6R_blind_forest_flux_candidate", "frz6r_grade.json")))["footings"]
-KAT = json.load(open(os.path.join(HERE, "xj1_ka_tables.json"))); KAT2 = json.load(open(os.path.join(HERE, "xj1_ka_tables2.json")))
+KAT = json.load(open(os.path.join(HERE, "xj1_ka_tables.json"))); KAT2 = json.load(open(os.path.join(HERE, "xj1_ka_tables2.json"))); KAT3 = json.load(open(os.path.join(HERE, "xj1_ka_tables3.json")))
 G1 = json.load(open(os.path.join(G1DIR, "xj1b_grade.json")))["footings"]
-GR = ["E0.5", "E0.75"]; FOF = {"E0.5": 0.5, "E0.75": 0.75}
+GR = ["E0.5", "E0.75", "Ec2", "Ec3"]; FOF = {"E0.5": 0.5, "E0.75": 0.75}
 
 def load(stage, ft):
     out = {}
@@ -123,8 +123,9 @@ for ft in X.FOOTS:
                 v = float(np.interp(math.log(x), np.log(k[g]), rr)); E = PR[z][seeds[0]]["expected"][nm][i]; tol = 0.01 + 0.3 * abs(E - 1)
                 km[f"{nm} z{z} k{x:g}"] = dict(realised=v, expected=E, tol=tol, ok=bool(abs(v - E) <= tol)); okm[nm] &= abs(v - E) <= tol
     KA["KA_M"] = dict(rows=km, pass_by_case={k: bool(v) for k, v in okm.items()})
-    KA["KA_E"] = dict(read_from="xj1_ka_tables2.json (AMENDMENT_A1 tolerance on iv)", pass_=bool(all(KAT2["KA_E"][f"{ft}|{z}"]["pass_"] for z in X.ZB)),
-                      worst_t_min=min(KAT2["KA_E"][f"{ft}|{z}"]["tmin"] for z in X.ZB))
+    KA["KA_E"] = dict(read_from="xj1_ka_tables2.json and xj1_ka_tables3.json (AMENDMENT_A1 tolerance on iv)", pass_=bool(all(K_["KA_E"][f"{ft}|{z}"]["pass_"] for K_ in (KAT2, KAT3) for z in X.ZB)),
+                      worst_t_min=min(K_["KA_E"][f"{ft}|{z}"]["tmin"] for K_ in (KAT2, KAT3) for z in X.ZB))
+    KA["KA_K"] = dict(read_from="xj1_ka_tables3.json", **{k: v for k, v in KAT3["KA_K"].items()})
     KA["KA_Z"] = dict(read_from="xj1_ka_tables.json", pass_=bool(KAT["KA_Z"]["pass_"]), i_max_rel=KAT["KA_Z"]["i_max_rel"], ii_max_abs_kpc=KAT["KA_Z"]["ii_max_abs_kpc"])
     fl = [v for z in PR for d in PR[z].values() for k, v in d["floored"].items()]
     KA["floored_max_primary"] = max(fl)
@@ -156,7 +157,7 @@ for ft in X.FOOTS:
             P(f"[{ft}] {nm:4s} brackets (12-bin est.): " + "; ".join(f"{t} {v['est_12bin']:.4g}" for t, v in BRK[nm].items()))
     R["brackets"] = dict(seeds=bs, cases=BRK)
     # labels
-    kaok = all(KA[k]["pass_"] for k in ("KA_R2", "KA_5", "KA_C", "KA_INF", "KA_N", "KA_F", "KA_E", "KA_Z"))
+    kaok = all(KA[k]["pass_"] for k in ("KA_R2", "KA_5", "KA_C", "KA_INF", "KA_N", "KA_F", "KA_E", "KA_Z", "KA_K"))
     twok = TW["TWA"]["bites"] and TW["TWB"]["bites"]
     LAB = {}; frozen_br = ("lam_x0.5", "lam_x2", "gam_1.2", "gam_1.6", "tau_x0.9", "tau_x1.1")
     for nm in GR:
@@ -165,7 +166,7 @@ for ft in X.FOOTS:
         cross = [t for t in frozen_br if t in BRK.get(nm, {}) and ((BRK[nm][t]["est_12bin"] > 4) != (D > 4))]
         if cross: lab += ", FRAGILE (" + "; ".join(cross) + ")"
         missing = [t for t in frozen_br if t not in BRK.get(nm, {})]
-        fails = [k for k in ("KA_R2", "KA_5", "KA_C", "KA_INF", "KA_N", "KA_F", "KA_E", "KA_Z") if not KA[k]["pass_"]] + ([] if c["KA_S"]["pass_"] else ["KA_S"]) + ([] if KA["KA_M"]["pass_by_case"][nm] else ["KA_M"]) \
+        fails = [k for k in ("KA_R2", "KA_5", "KA_C", "KA_INF", "KA_N", "KA_F", "KA_E", "KA_Z", "KA_K") if not KA[k]["pass_"]] + ([] if c["KA_S"]["pass_"] else ["KA_S"]) + ([] if KA["KA_M"]["pass_by_case"][nm] else ["KA_M"]) \
             + [k for k in ("TWA", "TWB") if not TW[k]["bites"]]
         cause = None
         if lab.startswith("NO VERDICT"):
@@ -188,8 +189,13 @@ for ft in X.FOOTS:
         q3 = f"A WINDOW IS LEFT: f in [0.5, {top:g}]" + (" (FRAGILE: " + "; ".join(x.split(", ", 1)[1] for x in fr if ", FRAGILE" in x) + ")" if any(", FRAGILE" in x for x in fr) else "")
     elif w("E0.5").startswith("FOREST ROW FAILS"): q3 = "NO WINDOW LEFT ABOVE THE ROTATION CURVES' REACH"
     else: q3 = "NOT RESOLVED (E0.5: " + w("E0.5") + "; E0.75: " + w("E0.75") + "; E1, first pass: " + e1 + ")"
-    R["lane_words"] = dict(Q3=q3, E1_first_pass=e1)
+    q4 = {}
+    for nm, surf in (("Ec2", "the second caustic"), ("Ec3", "the third caustic")):
+        q4[nm] = (f"HOLDS WITH NO FREE CONSTANT ({surf})" + (", " + w(nm).split(", ", 1)[1] if ", FRAGILE" in w(nm) else "")) if holds(w(nm)) else \
+                 (f"FAILS ({surf})" + (", " + w(nm).split(", ", 1)[1] if ", FRAGILE" in w(nm) else "")) if w(nm).startswith("FOREST ROW FAILS") else f"NOT RESOLVED ({surf}): " + w(nm)
+    R["lane_words"] = dict(Q3=q3, Q4=q4, E1_first_pass=e1)
     P(f"[{ft}] Q3, the window under the exact junction: {q3}")
+    for nm in q4: P(f"[{ft}] Q4, {nm}: {q4[nm]}")
     # D against f for the exact junction, both passes (reported)
     pts = [(FOF[nm], R["cases"][nm]["D"], R["cases"][nm]["SE"]) for nm in ("E0.5", "E0.75")] + [(f_, g1["cases"][nm]["D"], g1["cases"][nm]["SE"]) for f_, nm in ((1.0, "E1"), (2.0, "E2"), (3.0, "E3"))]
     def cross_at(U):
