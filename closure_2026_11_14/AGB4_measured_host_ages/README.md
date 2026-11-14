@@ -95,4 +95,7 @@ supernovae: 0.217 (M0) and 0.218 (M1); with them Δχ² against A = 1 is 10.5 an
 `FROZEN_CRITERIA.md`; `agb4_data.py`, `agb4_run.py`, `agb4_collect.py`; outputs `agb4_{K1,K2,K3,K4,KR,M}.{json,out}`,
 `agb4_results.json`, `agb4_collect.out`.
 
+Commits (local / origin): criteria ff05ed3861 / 942154ecdd; scripts 6a01697eb9 / 78c00e31e9; result 5a9153cd84 /
+a9095fb527.
+
 kappa = 1/2 FITTED; not theory closed.
