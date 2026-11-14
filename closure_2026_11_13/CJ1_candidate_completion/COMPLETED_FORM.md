@@ -102,6 +102,13 @@ independent calculation and closure checks are in `codex_mass_budget_2026_11_14/
   the split holds at f = 3.5 (1.50 / 1.78) and fails at f = 4.5 (5.62 / 6.62), every label FRAGILE to the gas smoothing
   scale and gamma. With f = 4 run, the ceiling by interpolation is 3.5 / 3.4 in FWN1's build and 4.1 / 4.0 in FWN1R's.
   The window, ungraded, is 1.25 (from a gate that cannot see f) to about 4. The holds are hits, not passes.
+- Update 2026-11-14, XJ1 and CSD1: every number above is for FZS1's junction, which multiplies the law's halo inside
+  R_set by 0.48 to 1.83. With the law unscaled inside, f = 2 and 3 fail the forest at flux level on both footings and
+  the fold itself is unresolved on canonical and fails on alt. Post hoc, the law inside the second or third caustic of
+  the clock (0.60 to 0.68 and 0.47 to 0.54 of R_fold, with no constant) holds, the third under every bracket. These are
+  hits in one build, and drawn profiles: the clock's own flow delivers 1 to 12 % of the charge the law's halo needs
+  inside the caustic. The candidate statement is
+  `closure_2026_11_14/XJ1_exact_junction_zero_velocity_surface/COMPLETED_FORM_V2_CANDIDATE.md`; NOT ADOPTED.
 
 **R_fold, and what FLD1 assumes.** FLD1 (`fable52_push/FLD1_fold_reach/RESULT.md`, label DOES NOT / DOES NOT) follows
 independent radial shells of a clock that starts as cold dust in the Hubble flow at z = 10 around a softened point mass
