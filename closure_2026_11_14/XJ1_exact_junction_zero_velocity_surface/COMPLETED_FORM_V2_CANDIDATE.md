@@ -95,4 +95,24 @@ caustics (35 to 37).
   new go.
 - Whether the scorecard's rows are relabelled for the exact junction after the blind lane lands.
 
+## Update, 2026-11-14, after the bracket stage, the audit of the Codex correction and CSD1
+
+- **Brackets.** The third caustic holds the forest row under every frozen bracket on both footings (largest 1.63 /
+  2.12, at half the gas smoothing scale). The second caustic holds on canonical and is FRAGILE to that half scale on
+  alt (4.39). So the table's forest cell for k = 3 reads HOLDS / HOLDS with no flag, and for k = 2 HOLDS / HOLDS,
+  FRAGILE.
+- **The integer.** Rotation curves allow k = 2, 3 and 4 and are cut at k = 5 by one galaxy (XJ1's amendment A6). The
+  forest was run for k = 1, 2 and 3.
+- **v\* is not derived.** The Codex correction, checked by the lead in SI and by an independent audit: the crossing
+  speed is an algebraic intersection of two speed relations; the mass-budget sentence behind "follows from the rules"
+  had its inequality reversed. Its status in the table above is ALGEBRAIC SPEED INTERSECTION, not FOLLOWS FROM THE
+  RULES.
+- **The layout is a drawn profile.** Charge conservation at the moving caustic cannot be met by the action's
+  non-advective flux (3e-7 to 5e-7 of the flow), and the clock's own shell flow delivers 1 to 12 % of the charge the
+  law's halo needs inside the caustic (CSD1). The exact junction moves charge across the caustic through its factor
+  t. Lane BJ1 grades the layout that moves none.
+- **A row moved.** X-COP's two-sided amount is no longer a fail of form B (CJ1's tenth update): it DEPENDS ON AN
+  UNTESTED ASSUMPTION. The gate table's cluster row should be read with that.
+- Still pending: XJ1's second build, the blind lane XJ1R's forest run, and BJ1.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.

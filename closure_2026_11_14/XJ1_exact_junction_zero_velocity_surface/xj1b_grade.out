@@ -22,7 +22,7 @@
 [canonical] known answer KA_C: PASS {"read_from": "fwn1r_grade.json", "D": 323.0468422238448, "SE": 4.482649858014976}
 [canonical] known answer KA_INF: PASS {"read_from": "fwn1r_grade.json"}
 [canonical] known answer KA_N: PASS {"parts": [170, 176, 181, 187, 192, 197, 202, 206, 211, 215, 219, 223], "tables": [170, 176, 181, 187, 192, 197, 202, 206, 211, 215, 219, 223], "JNT2": [170, 176, 181, 187, 192, 197, 202, 206, 211, 215, 219, 223]}
-[canonical] known answer KA_F: PASS {"max_abs": 1.887379141862766e-14}
+[canonical] known answer KA_F: PASS {"max_abs": 2.0317081350640365e-14}
 [canonical] known answer KA_M: PASS {"pass_by_case": {"E1": true, "E2": true, "E3": true, "Ezv": true}}
 [canonical] known answer KA_E: PASS {"read_from": "xj1_ka_tables.json (AMENDMENT_A1 tolerance on iv)", "worst_t_min": -1.2054660013439782e-15}
 [canonical] known answer KA_Z: PASS {"read_from": "xj1_ka_tables.json", "i_max_rel": 0.0, "ii_max_abs_kpc": 0.4628435970775513}
@@ -30,14 +30,18 @@
 [canonical] floored gas fraction, primary fields: max 9.18e-04
 [canonical] junction comparison at 2 R_fold (reported): exact 16.372 (SE 0.79) vs FZS1's 0.024389 (SE 0.00324; FRZ6R J2), ratio 671 -> differs
 [canonical] junction comparison at 3 R_fold (reported): exact 42.763 (SE 1.86) vs FZS1's 0.57211 (SE 0.0436; FWN1R J3), ratio 74.7 -> differs
-[canonical] E1: NO VERDICT [unresolved: |D - 4| <= 2 SE]  (D 3.9378, SE 0.263; failures none; missing brackets ['lam_x0.5', 'lam_x2', 'gam_1.2', 'gam_1.6', 'tau_x0.9', 'tau_x1.1']; measured range )
-[canonical] E2: FOREST ROW FAILS AT FLUX LEVEL  (D 16.372, SE 0.79; failures none; missing brackets ['lam_x0.5', 'lam_x2', 'gam_1.2', 'gam_1.6', 'tau_x0.9', 'tau_x1.1']; measured range )
-[canonical] E3: FOREST ROW FAILS AT FLUX LEVEL  (D 42.763, SE 1.86; failures none; missing brackets ['lam_x0.5', 'lam_x2', 'gam_1.2', 'gam_1.6', 'tau_x0.9', 'tau_x1.1']; measured range )
-[canonical] Ezv: FOREST ROW FAILS AT FLUX LEVEL  (D 25.057, SE 1.12; failures none; missing brackets ['lam_x0.5', 'lam_x2', 'gam_1.2', 'gam_1.6', 'tau_x0.9', 'tau_x1.1']; measured range )
+[canonical] E1   brackets (12-bin est.): lam_x0.5 14.67; lam_x2 0.4449; gam_1.2 1.426; gam_1.6 10.72; tau_x0.9 4.531; tau_x1.1 3.486; lam_91.4 2.928; lam_138.6 0.7341
+[canonical] E2   brackets (12-bin est.): lam_x0.5 91; lam_x2 2.191; gam_1.2 10.61; gam_1.6 44.17; tau_x0.9 17.72; tau_x1.1 15.33; lam_91.4 11.07; lam_138.6 3.238
+[canonical] E3   brackets (12-bin est.): lam_x0.5 303.7; lam_x2 5.077; gam_1.2 30.45; gam_1.6 82.96; tau_x0.9 42.87; tau_x1.1 42.4; lam_91.4 24.85; lam_138.6 7.093
+[canonical] Ezv  brackets (12-bin est.): lam_x0.5 176.1; lam_x2 3.213; gam_1.2 17.26; gam_1.6 60.55; tau_x0.9 26.26; tau_x1.1 24.08; lam_91.4 15.88; lam_138.6 4.618
+[canonical] E1: NO VERDICT, FRAGILE (lam_x0.5; gam_1.6; tau_x0.9) [unresolved: |D - 4| <= 2 SE]  (D 3.9378, SE 0.263; failures none; missing brackets none; measured range lam_91.4: D 2.928 -> HOLDS; lam_138.6: D 0.7341 -> HOLDS)
+[canonical] E2: FOREST ROW FAILS AT FLUX LEVEL, FRAGILE (lam_x2)  (D 16.372, SE 0.79; failures none; missing brackets none; measured range lam_91.4: D 11.07 -> FAILS; lam_138.6: D 3.238 -> HOLDS)
+[canonical] E3: FOREST ROW FAILS AT FLUX LEVEL  (D 42.763, SE 1.86; failures none; missing brackets none; measured range lam_91.4: D 24.85 -> FAILS; lam_138.6: D 7.093 -> FAILS)
+[canonical] Ezv: FOREST ROW FAILS AT FLUX LEVEL, FRAGILE (lam_x2)  (D 25.057, SE 1.12; failures none; missing brackets none; measured range lam_91.4: D 15.88 -> FAILS; lam_138.6: D 4.618 -> FAILS)
 [canonical] control J5: D 8.8339 SE 0.333 -> FAILS
 [canonical] Q1, the junction: THE HOLD DOES NOT SURVIVE THE EXACT JUNCTION
-[canonical] Q2, E1: NOT RESOLVED (the fold radius): NO VERDICT
-[canonical] Q2, Ezv: FAILS (the zero-velocity surface)
+[canonical] Q2, E1: NOT RESOLVED (the fold radius): NO VERDICT, FRAGILE (lam_x0.5; gam_1.6; tau_x0.9)
+[canonical] Q2, Ezv: FAILS (the zero-velocity surface), FRAGILE (lam_x2)
 [canonical] exact junction, f where D + 2 SE / D / D - 2 SE reaches 4 (reported): below 1 / 1.0076554952644579 / 1.0780398949283077
 [alt] seeds in all 12 bins: [0, 1, 2, 3]
 [alt] E1  : D 5.3665  SE 0.39  D + 2 SE 6.1461  D - 2 SE 4.5868  (D_jack 5.3721, 5.1707, 5.7484, 5.2283); seed test D_noise 0.0165 vs 0.537 -> PASS; anchors A 1.807
@@ -63,7 +67,7 @@
 [alt] known answer KA_C: PASS {"read_from": "fwn1r_grade.json", "D": 395.8263057752738, "SE": 8.543428159433246}
 [alt] known answer KA_INF: PASS {"read_from": "fwn1r_grade.json"}
 [alt] known answer KA_N: PASS {"parts": [160, 166, 172, 177, 182, 187, 192, 196, 201, 205, 209, 213], "tables": [160, 166, 172, 177, 182, 187, 192, 196, 201, 205, 209, 213], "JNT2": [160, 166, 172, 177, 182, 187, 192, 196, 201, 205, 209, 213]}
-[alt] known answer KA_F: PASS {"max_abs": 1.8984813721090177e-14}
+[alt] known answer KA_F: PASS {"max_abs": 2.0317081350640365e-14}
 [alt] known answer KA_M: PASS {"pass_by_case": {"E1": true, "E2": true, "E3": true, "Ezv": true}}
 [alt] known answer KA_E: PASS {"read_from": "xj1_ka_tables.json (AMENDMENT_A1 tolerance on iv)", "worst_t_min": -8.036246139415508e-16}
 [alt] known answer KA_Z: PASS {"read_from": "xj1_ka_tables.json", "i_max_rel": 0.0, "ii_max_abs_kpc": 0.4628435970775513}
@@ -71,13 +75,17 @@
 [alt] floored gas fraction, primary fields: max 2.58e-03
 [alt] junction comparison at 2 R_fold (reported): exact 25.725 (SE 1.96) vs FZS1's 0.029289 (SE 0.00346; FRZ6R J2), ratio 878 -> differs
 [alt] junction comparison at 3 R_fold (reported): exact 78.362 (SE 4.47) vs FZS1's 0.69053 (SE 0.0466; FWN1R J3), ratio 113 -> differs
-[alt] E1: FOREST ROW FAILS AT FLUX LEVEL  (D 5.3665, SE 0.39; failures none; missing brackets ['lam_x0.5', 'lam_x2', 'gam_1.2', 'gam_1.6', 'tau_x0.9', 'tau_x1.1']; measured range )
-[alt] E2: FOREST ROW FAILS AT FLUX LEVEL  (D 25.725, SE 1.96; failures none; missing brackets ['lam_x0.5', 'lam_x2', 'gam_1.2', 'gam_1.6', 'tau_x0.9', 'tau_x1.1']; measured range )
-[alt] E3: FOREST ROW FAILS AT FLUX LEVEL  (D 78.362, SE 4.47; failures none; missing brackets ['lam_x0.5', 'lam_x2', 'gam_1.2', 'gam_1.6', 'tau_x0.9', 'tau_x1.1']; measured range )
-[alt] Ezv: FOREST ROW FAILS AT FLUX LEVEL  (D 42.08, SE 2.86; failures none; missing brackets ['lam_x0.5', 'lam_x2', 'gam_1.2', 'gam_1.6', 'tau_x0.9', 'tau_x1.1']; measured range )
+[alt] E1   brackets (12-bin est.): lam_x0.5 16.08; lam_x2 0.8251; gam_1.2 2.341; gam_1.6 11.26; tau_x0.9 6.019; tau_x1.1 4.836; lam_91.4 3.686; lam_138.6 1.122
+[alt] E2   brackets (12-bin est.): lam_x0.5 121.1; lam_x2 4.969; gam_1.2 16.32; gam_1.6 49.5; tau_x0.9 27.31; tau_x1.1 24.28; lam_91.4 17.49; lam_138.6 6.394
+[alt] E3   brackets (12-bin est.): lam_x0.5 403.3; lam_x2 12.88; gam_1.2 45.62; gam_1.6 119.8; tau_x0.9 81.11; tau_x1.1 75.32; lam_91.4 49.89; lam_138.6 17.05
+[alt] Ezv  brackets (12-bin est.): lam_x0.5 239.8; lam_x2 7.581; gam_1.2 26.19; gam_1.6 73.48; tau_x0.9 43.99; tau_x1.1 40.22; lam_91.4 27.43; lam_138.6 9.753
+[alt] E1: FOREST ROW FAILS AT FLUX LEVEL, FRAGILE (lam_x2; gam_1.2)  (D 5.3665, SE 0.39; failures none; missing brackets none; measured range lam_91.4: D 3.686 -> NO VERDICT; lam_138.6: D 1.122 -> HOLDS)
+[alt] E2: FOREST ROW FAILS AT FLUX LEVEL  (D 25.725, SE 1.96; failures none; missing brackets none; measured range lam_91.4: D 17.49 -> FAILS; lam_138.6: D 6.394 -> FAILS)
+[alt] E3: FOREST ROW FAILS AT FLUX LEVEL  (D 78.362, SE 4.47; failures none; missing brackets none; measured range lam_91.4: D 49.89 -> FAILS; lam_138.6: D 17.05 -> FAILS)
+[alt] Ezv: FOREST ROW FAILS AT FLUX LEVEL  (D 42.08, SE 2.86; failures none; missing brackets none; measured range lam_91.4: D 27.43 -> FAILS; lam_138.6: D 9.753 -> FAILS)
 [alt] control J5: D 10.897 SE 0.564 -> FAILS
 [alt] Q1, the junction: THE HOLD DOES NOT SURVIVE THE EXACT JUNCTION
-[alt] Q2, E1: FAILS (the fold radius)
+[alt] Q2, E1: FAILS (the fold radius), FRAGILE (lam_x2; gam_1.2)
 [alt] Q2, Ezv: FAILS (the zero-velocity surface)
 [alt] exact junction, f where D + 2 SE / D / D - 2 SE reaches 4 (reported): below 1 / below 1 / below 1
 Adopts nothing. kappa = 1/2 FITTED; not theory closed.

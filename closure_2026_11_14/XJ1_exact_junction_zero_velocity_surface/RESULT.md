@@ -240,4 +240,74 @@ supersedes that sentence for the rotation curves only.
   beyond R_4 (60 %): none; 1 to 5 beyond R_5 (70 %): one.
 - Files: `xj1_shells45.py`, `xj1_contain45.py`, `run_shells45.sh`, `shells45/`, `xj1_contain45.json/.out`.
 
+**2026-11-14, 15:31 EST by the clock. The bracket stage landed (96 files in each pass) and both graders were re-run; these
+are the final labels of build B.** Every known answer passes, every twin bites, and both graders reproduce byte for
+byte when run again into a separate folder. No D or SE of section 2 changes; the brackets add the FRAGILE flags.
+
+| case | canonical, final label | alt, final label |
+|---|---|---|
+| E0.5 | FOREST ROW HOLDS AT FLUX LEVEL | FOREST ROW HOLDS AT FLUX LEVEL |
+| Ec3 | FOREST ROW HOLDS AT FLUX LEVEL | FOREST ROW HOLDS AT FLUX LEVEL |
+| Ec2 | FOREST ROW HOLDS AT FLUX LEVEL | FOREST ROW HOLDS AT FLUX LEVEL, FRAGILE (lam_x0.5) |
+| E0.75 | FOREST ROW HOLDS AT FLUX LEVEL, FRAGILE (lam_x0.5; gam_1.6) | FOREST ROW HOLDS AT FLUX LEVEL, FRAGILE (lam_x0.5; gam_1.6) |
+| E1 | NO VERDICT, FRAGILE (lam_x0.5; gam_1.6; tau_x0.9) | FOREST ROW FAILS AT FLUX LEVEL, FRAGILE (lam_x2; gam_1.2) |
+| E2 | FOREST ROW FAILS AT FLUX LEVEL, FRAGILE (lam_x2) | FOREST ROW FAILS AT FLUX LEVEL |
+| E3 | FOREST ROW FAILS AT FLUX LEVEL | FOREST ROW FAILS AT FLUX LEVEL |
+| Ezv | FOREST ROW FAILS AT FLUX LEVEL, FRAGILE (lam_x2) | FOREST ROW FAILS AT FLUX LEVEL |
+
+Lane words with the flags, canonical / alt:
+- Q1: THE HOLD DOES NOT SURVIVE THE EXACT JUNCTION / the same. E3 fails under every bracket on both footings (lowest
+  5.08 / 12.88, at twice the smoothing scale). E2 on canonical is FRAGILE: twice the smoothing scale gives 2.19, and
+  over the measured range of that scale (PROVISIONAL, reported) it runs from 11.07 to 3.24, failing at one end and
+  holding at the other; on alt it fails throughout (17.49 to 6.39; lowest bracket 4.97).
+- Q2, the fold: NOT RESOLVED (the fold radius): NO VERDICT, FRAGILE (lam_x0.5; gam_1.6; tau_x0.9) / FAILS (the fold
+  radius), FRAGILE (lam_x2; gam_1.2). Q2, the zero-velocity surface: FAILS (the zero-velocity surface), FRAGILE
+  (lam_x2) / FAILS (the zero-velocity surface).
+- Q3: A WINDOW IS LEFT: f in [0.5, 0.75] (FRAGILE: FRAGILE (lam_x0.5; gam_1.6)) / the same (the doubled word is the
+  grader's formatting; the flag belongs to the 0.75 end).
+- Q4, the second caustic: HOLDS WITH NO FREE CONSTANT (the second caustic) / HOLDS WITH NO FREE CONSTANT (the second
+  caustic), FRAGILE (lam_x0.5). Q4, the third caustic: HOLDS WITH NO FREE CONSTANT (the third caustic) / the same,
+  with no flag.
+
+The brackets of the two caustic cases (12-bin estimates; gate 4):
+
+| bracket | Ec3 canonical | Ec3 alt | Ec2 canonical | Ec2 alt |
+|---|---|---|---|---|
+| smoothing scale x 0.5 | 1.632 | 2.115 | 3.955 | 4.385 |
+| smoothing scale x 2 | 0.044 | 0.082 | 0.120 | 0.211 |
+| gamma 1.2 | 0.139 | 0.231 | 0.348 | 0.577 |
+| gamma 1.6 | 1.250 | 1.307 | 3.102 | 3.305 |
+| tau_eff x 0.9 | 0.584 | 0.774 | 1.396 | 1.863 |
+| tau_eff x 1.1 | 0.456 | 0.623 | 1.073 | 1.474 |
+| measured range, 91.4 to 138.6 comoving kpc (reported) | 0.406 to 0.070 | 0.443 to 0.114 | 0.912 to 0.192 | 1.107 to 0.293 |
+
+- **The third caustic holds under every frozen bracket on both footings**, the halved smoothing scale included; so
+  does 0.5 R_fold (largest bracket 2.04 / 2.63). The second caustic holds under every bracket on canonical, by a
+  margin of 0.05 at the halved smoothing scale, and crosses the gate there on alt.
+- Limits that stand: FWN1R's cell is 77 comoving kpc, so half the smoothing scale is not resolved by this build, and
+  the look-up GAS1 (PROVISIONAL) puts that half scale mostly outside the measurements. A hold that is not FRAGILE is
+  still a post hoc hit from a family of two, in one build.
+
+**2026-11-14, 15:31 EST. What landed beside this lane after the first writing, and one correction.**
+- **Charge conservation at the junction.** The Codex session's note
+  (`codex_mass_budget_2026_11_14/latest_review/JUNCTION_THEOREM.md`), its independent audit
+  (`reviews/codex_mass_budget_audit_2026_11_14/`) and lane CSD1
+  (`closure_2026_11_14/CSD1_charge_delivery_at_the_caustic/`) bear on this lane's caustic layouts as states the clock
+  could reach. With no surface reservoir a conserved current obeys [J^r] - Rdot [J^t] = 0 at the junction; the
+  action's non-advective flux is 3e-7 to 5e-7 of the advective one for a Milky-Way-mass system at 100 kpc; over 7,110
+  snapshots of Ec2 and Ec3 the law's density just inside the caustic is below the outer density in 3,706 and above it
+  in 3,373; and the clock's own shell flow delivers 0.9 to 6.8 % of the charge the law's halo needs inside the third
+  caustic (1.7 to 12 % with a cosmologically seeded patch), while the reference layout taken as the supply holds 0.49
+  to 1.67 of it. So Ec2 and Ec3 pass profile gates as drawn profiles; no flow of the action is shown to assemble them.
+  This lane's exact junction pays for the law inside R_set by rescaling the outside (t), which moves charge across the
+  junction by fiat. Lane BJ1 (`closure_2026_11_14/BJ1_charge_budget_junction/`, criteria 9e7ce0dfe6) grades the
+  layout that moves none.
+- **The blind lane XJ1R's light stage** (built without sight of this lane's numbers) gives the same caustic ratios, no
+  SPARC galaxy beyond either caustic (largest ratios 0.602 and 0.767) and the same matter-level numbers (8.146 / 19.037
+  and 2.872 / 6.368). Its forest run, the part that grades the hit, had not started when this note was written.
+- **Correction.** Section 6 and `COMPLETED_FORM_V2_CANDIDATE.md` list X-COP's two-sided amount among form B's failing
+  rows. Since CJ1's tenth scorecard update (4767bb49f2, 14:10 EST, on the owner's decision) that row reads DEPENDS ON
+  AN UNTESTED ASSUMPTION, not FAILS; form B's failing rows are the outer cluster shear, the halo-star row, the
+  ultra-faints and M31's bright dwarfs, and the hosted low rows.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
