@@ -97,10 +97,11 @@ def main():
                 f[a] = min(f[a], b["chi2"])
             t[a] = r["chi2"]
             log(f"  A {a:+.2f}  f {f[a]:10.4f}  q0 {q0[a]:+.4f} | q0 = 0: {t[a]:10.4f} (+{t[a] - f[a]:.3f})")
-        prev = None
+        prev = None; fsp = CubicSpline(GRID_F, [f[x] for x in GRID_F])
         for a in GRID_N:
-            r = F.fit({"age": a}, [], "never", extra=(tfit[a], prof[key(a)], prev)); prev = r; n[a] = r["chi2"]
-            log(f"  A {a:+.2f}  never accelerated: {n[a]:10.4f} (+{n[a] - f[a]:.3f})  Om {r['Om']:.4f} w0 {r['w0']:+.4f} wa {r['wa']:+.4f} min q {r['qmin']:+.5f} edge {r['edge']}")
+            g = min(GRID_F, key=lambda x: abs(x - a))     # start points only: the nearest point of the 0.1 grid
+            r = F.fit({"age": a}, [], "never", extra=(tfit[g], prof[key(g)], prev)); prev = r; n[a] = r["chi2"]
+            log(f"  A {a:+.2f}  never accelerated: {n[a]:10.4f} (+{n[a] - float(fsp(a)):.3f})  Om {r['Om']:.4f} w0 {r['w0']:+.4f} wa {r['wa']:+.4f} min q {r['qmin']:+.5f} edge {r['edge']}")
         Af = np.array(GRID_F); An = np.array(GRID_N)
         fa, ta, qa, na = (np.array([d[a] for a in g]) for d, g in ((f, GRID_F), (t, GRID_F), (q0, GRID_F), (n, GRID_N)))
         none = joint(Af, fa, qa, An, na, ta)
