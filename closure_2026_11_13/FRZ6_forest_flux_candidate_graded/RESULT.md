@@ -198,4 +198,14 @@ The f = 1 and f = 1.25 cases stay ungraded: even 12 seeds do not resolve a chang
 
 So the forest row is no longer the plain failure of the full layout. The settled and split layouts are graded as holding at flux level where the build can resolve them, with every frozen caveat attached. The full layout still fails.
 
+## Commit ids and the lead's re-run (2026-11-13)
+
+- Criteria 569333ff30 (origin 82fc8815d3); amendment A1 352a7fe6ae (origin b4443492a3); scripts, parts and graded outputs
+  d4e502f2d9 (origin 63bcf69630); result 00481b407b (origin 60c62f1e6f).
+- The lead re-ran `frz6_grade.py` and `frz6_refit.py` on both footings from a copy of the scripts and the committed parts
+  at the same folder depth: all twelve outputs (grade, twin and refit JSON and logs) equal byte for byte. The boxes
+  themselves were not re-run.
+- A reproduction of the grading, not an independent re-grade. An independent blind re-grade is owed before any HOLDS
+  is stated as more than a hit. No number or label changes.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
