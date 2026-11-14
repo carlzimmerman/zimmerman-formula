@@ -173,7 +173,7 @@ for t in TG:
     R = sep_rad(float(t["ra"]), float(t["dec"]), ra, de) * float(E.EUCLID.DA(z)) / KPC
     d = dict(target=t["target"], kind=t["kind"], lens_id=t["lens_id"], pair=int(t["pair"]), z=z, logm_cat=float(t["logm"]))
     d["n_in"] = int((ok & (R >= R_IN[0]) & (R < R_IN[1])).sum()); d["n_bg"] = int((ok & (R >= R_BG[0]) & (R < R_BG[1])).sum())
-    inner = ok & (R < R_BG[1]); has = np.array([int(k) in PHROW for k in oid])
+    inner = ok & (R < R_BG[1]); has = np.array([int(k) in PHROW for k in oid], dtype=bool)
     d["n_cut_1000"] = int(inner.sum()); d["cover"] = float((inner & has).sum() / max(inner.sum(), 1))
     mer = lens_mer(t["lens_id"]) if t["kind"] in ("W", "C", "L") else None
     d["mer"] = mer; d["mer_in_cone"] = bool(mer is not None and (oid == mer).any())
