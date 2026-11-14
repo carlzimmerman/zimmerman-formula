@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""XJ1 build B, second pass (AMENDMENT_A3): a copy of xj1b_run.py with the case list changed to R, E0.5, E0.75 (exact junction at 0.5 and 0.75 R_fold), the twin field TWB2 = R + 2 (E0.75 - R) at the anchors, and parts in parts_b2/. The first pass's docstring follows. XJ1 build B driver (FROZEN_CRITERIA.md ef8ccdde98, section 3): COPY of FWN1R's fwn1r_run.py (closure_2026_11_14/
+"""XJ1 build B, second pass (AMENDMENT_A3 and AMENDMENT_A5): a copy of xj1b_run.py with the case list changed to R, E0.5, E0.75 (exact junction at 0.5 and 0.75 R_fold), Ec2, Ec3 (exact junction at the second and third caustic, through xj1_lib2), the twin field TWB2 = R + 2 (E0.75 - R) at the anchors, and parts in parts_b2/. The first pass's docstring follows. XJ1 build B driver (FROZEN_CRITERIA.md ef8ccdde98, section 3): COPY of FWN1R's fwn1r_run.py (closure_2026_11_14/
 FWN1R_blind_split_f_ceiling) with the case list changed: R, J5 (control, FWN1R's own split_fn), E1, E2, E3 (exact junction
 at 1, 2, 3 R_fold), Ezv (exact junction at the zero-velocity surface) and, at the anchors, TWB = R + 2 (E3 - R). The
 tables come from this lane's xj1_lib.tables (FWN1R's tables() with the two added kinds); box, realisation, gas, flux and
@@ -16,15 +16,15 @@ for _v in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "VECLIB_MAXIMUM_THREADS", 
 sys.dont_write_bytecode = True
 import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
-import xj1_lib as XL
+import xj1_lib2 as XL
 X = XL.X                                                   # FWN1R's library, read-only
 
 STOP = {"flag": False}
 signal.signal(signal.SIGTERM, lambda s, f: STOP.update(flag=True))
 PARTS = os.environ.get("XJ1B2_PARTS") or os.path.join(HERE, "parts_b2"); os.makedirs(PARTS, exist_ok=True)
 RSS_MAX = 16 * 1024 ** 3
-CASES = {"R": ("R", 0, "main"), "E0.5": ("E", 0.5, "main"), "E0.75": ("E", 0.75, "main")}
-GRADED = ["E0.5", "E0.75"]
+CASES = {"R": ("R", 0, "main"), "E0.5": ("E", 0.5, "main"), "E0.75": ("E", 0.75, "main"), "Ec2": ("K", 2, "main"), "Ec3": ("K", 3, "main")}
+GRADED = ["E0.5", "E0.75", "Ec2", "Ec3"]
 BRK = {"lam_x0.5": dict(lam=0.5 * X.LAM0), "lam_x2": dict(lam=2.0 * X.LAM0), "gam_1.2": dict(gam=1.2), "gam_1.6": dict(gam=1.6),
        "tau_x0.9": dict(stau=0.9), "tau_x1.1": dict(stau=1.1), "lam_91.4": dict(lam=X.lam_kpc(91.4)), "lam_138.6": dict(lam=X.lam_kpc(138.6))}
 
