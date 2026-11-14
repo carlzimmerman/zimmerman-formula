@@ -171,6 +171,11 @@ only.
    not its switch (LNJ1 confirms on its own rule) and must come from mass the lens galaxy's baryons do not carry.
    *What would decide it:* the group mass along wide-lens sightlines (EUC6's richer environments; members, intragroup
    gas and light, line of sight).
+   Update 2026-11-14: WLG1 and the blind WLG1R counted the members. Lens and members alone are slow on both footings; with
+   ESZ1's one stacked gas value given to every wide lens, canonical reads fast with the halo fitting only for sources at
+   infinity (a hit in one build, FRAGILE; the blind build reads NOT EVALUABLE and confirms the numbers, not the label)
+   and alt reads too slow. What decides it now is per-lens group gas masses and certified source redshifts (scorecard
+   row 40).
 
 ## Where the candidate stands, in one paragraph
 
