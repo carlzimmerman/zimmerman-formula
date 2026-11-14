@@ -14,7 +14,8 @@ reviews/codex_corrections_audit_2026_11_12/ and the two owner decisions of 2026-
 (revision 3a); FRZ3, FRZ3R, EUC9, EUC10, EUC12, EUC13, EUC13R, ESZ1, EXR1, HOT1 and LMC1 (revision 3b).
 Version 1.3 adds every lane folded into its Section 9 (closure_2026_11_12/ and closure_2026_11_13/, with CJ1, PRJ1 and FRZ6's Zenodo
 receipts) and route D's note, the source of CJ1's lemma. FRZ6's part files (parts/, 44 files, 49 MB) are not copied: they are in the
-Zenodo record DOI 10.5281/zenodo.24210556 (FRZ6_parts.zip); the manifest lists them under excluded_see_doi. FRZ6R, running, is not included.
+Zenodo record DOI 10.5281/zenodo.24210556 (FRZ6_parts.zip); the manifest lists them under excluded_see_doi. Revision 2 adds FRZ6R, the
+blind re-grade of FRZ6, with its part files (5.8 MB).
 The shared checkout has diverged from origin (PD1 and PD2 are committed on origin only), so each lane path is taken from whichever
 of HEAD and origin/main last committed to it; the manifest records the ref and commit for each. Untracked files are not included
 and are listed (unless the same path is committed on the chosen ref); a tracked file modified in the working tree stops the build. Deterministic for given commits (fixed entry dates).
@@ -225,6 +226,7 @@ PATHS = [
  "closure_2026_11_13/FRZ5_forest_nuisance_refit",
  "closure_2026_11_13/FRZ6_forest_flux_candidate_graded",
  "closure_2026_11_13/FRZ6Z_zenodo_record",
+ "closure_2026_11_13/FRZ6R_blind_forest_flux_candidate",
  "closure_2026_11_13/DSC1_joint_on_resolved_discs",
  "closure_2026_11_13/DSC1R_blind_resolved_discs_regrade",
  "closure_2026_11_13/ALP1_alpaka_discs_joint",
