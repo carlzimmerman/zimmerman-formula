@@ -21,4 +21,11 @@ What version 1.7 folds in, all of 2026-11-15 and after version 1.6 was deposited
 
 It folds in no new graded data row and changes no lane's label, no scorecard word and no count.
 
+Added after the deposit (DOI 10.5281/zenodo.24249046, 2026-11-15): `BCS1_AUDIT_at_PAPER72_v1_7.out` is the closure
+statement's audit output as it stood when version 1.7 was deposited, the file
+`closure_2026_11_15/BCS1_bounded_closure_statement/bcs1_audit.out` at origin commit cc405c49bf, byte for byte. The
+paper says that audit reads 249 of 249. The statement gained one sentence after the deposit (the DOI of this
+version), so its live audit counts more checks; the paper's audit reads this copy so that the quotation does not
+drift. The deposited paper and its supplement are unchanged.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
