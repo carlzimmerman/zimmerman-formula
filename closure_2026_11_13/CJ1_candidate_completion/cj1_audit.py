@@ -127,6 +127,8 @@ CHECKS = [
     (22, C14 + "XJ1_exact_junction_zero_velocity_surface/RESULT.md", "HOLDS WITH NO FREE CONSTANT (the second caustic), FRAGILE (lam_x0.5)"),
     (22, C14 + "CSD1_charge_delivery_at_the_caustic/RESULT.md", "SHORT AT CAUSTIC 2 / SHORT AT CAUSTIC 3"),
     (44, C14 + "XJ1_exact_junction_zero_velocity_surface/RESULT.md", "A WINDOW IS LEFT: f in [0.5, 0.75]"),
+    (22, C14 + "XJ1R_blind_caustic_junction/RESULT_BLIND.md", "CAUSTIC 3 HOLDS, BLIND, FRAGILE (lam_x0.5)"),
+    (22, C14 + "BJ1_charge_budget_junction/RESULT.md", "FAILS THE FOREST (caustic 3)"),
     (28, C13 + "RRL1_halo_slope_from_rr_lyrae/RESULT.md", "MEASURED SLOPE MAKES A PASSING BIN FAIL [40-55 COLD]"),
     (28, C14 + "RRL1R_blind_halo_slope_regrade/RESULT_BLIND.md", "MEASURED SLOPE MAKES A PASSING BIN FAIL [40-55 COLD]"),
     (31, C11 + "DW1_desi_dr2_mw_mass/RESULT.md", "9 of 12"),
