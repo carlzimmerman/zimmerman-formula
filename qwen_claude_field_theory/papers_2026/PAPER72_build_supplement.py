@@ -26,6 +26,10 @@ Version 1.6 adds the lanes folded into its Section 12: XJ1R's forest parts and r
 (their folders were already listed), WLJ2, ABS1, GAS2, DBL1, RRL2, RRL3R, OTA1, WLG1, WLG1R, EUC18, EUC19 (the mask table EUC20 reads),
 EUC20, EUC20R, EUC21 and EUC21R (closure_2026_11_14/) and EUC17R (closure_2026_11_13/), each with the Lean certificate added for this
 version where it has one. The four lanes quoted in Section 12.7 (CLR1, SQM1, MDZ1, MWM1) are not included: they are not folded in.
+Version 1.7 adds the items of its Section 13: the closure statement BCS1 with its audit and the two owner decisions on it, CQB1 with
+its Lean certificate, the decision sheet DR4DS1, the cover note, audit, builder and manifest of the Gaia DR4 record DR4REC1 (its
+archive zip is in that record, DOI 10.5281/zenodo.24248715, and is listed under excluded_see_doi), the script that wrote this
+version's edits, DP8, the two owner decisions of 2026-11-15 on Gaia DR4, and the sealed prediction CQ2 that CQB1 checks.
 The shared checkout has diverged from origin (PD1 and PD2 are committed on origin only), so each lane path is taken from whichever
 of HEAD and origin/main last committed to it; the manifest records the ref and commit for each. Untracked files are not included
 and are listed (unless the same path is committed on the chosen ref); a tracked file modified in the working tree stops the build. Deterministic for given commits (fixed entry dates).
@@ -281,9 +285,24 @@ PATHS = [
  "closure_2026_11_14/EUC21R_blind_gas_lane_regrade",
  "codex_mass_budget_2026_11_14",
  "reviews/codex_mass_budget_audit_2026_11_14",
+ # version 1.7
+ "closure_2026_11_15/BCS1_bounded_closure_statement",
+ "closure_2026_11_15/OWNER_DECISION_2026-11-15_BOUNDED_CLOSURE_STATEMENT.md",
+ "closure_2026_11_15/OWNER_DECISION_2026-11-15b_CLOSURE_STATEMENT_DEPOSIT.md",
+ "closure_2026_11_15/CQB1_cq2_under_blend",
+ "closure_2026_11_15/DR4DS1_gaia_dr4_decision_sheet",
+ "closure_2026_11_15/DR4REC1_gaia_dr4_predata_record",
+ "closure_2026_11_15/paper72_v1_7",
+ "dr4_push_2026_11_05/DP8_release_path_wiring",
+ "prep_2026/gaia_dr4_prep/OWNER_DECISION_2026-11-15_DR4_FORM_B_READING.md",
+ "prep_2026/gaia_dr4_prep/OWNER_DECISION_2026-11-15b_DR4_OPEN_GAPS.md",
+ "cq_lanes_2026_11_04/CQ2_v3s_dr4_seal",
 ]
 # version 1.3: committed files left out of the zip, each with the public record that holds them
-EXCLUDE = {"closure_2026_11_13/FRZ6_forest_flux_candidate_graded/parts/": "DOI 10.5281/zenodo.24210556 (FRZ6_parts.zip)"}
+EXCLUDE = {"closure_2026_11_13/FRZ6_forest_flux_candidate_graded/parts/": "DOI 10.5281/zenodo.24210556 (FRZ6_parts.zip)",
+           # version 1.7: the Gaia DR4 record's own archive is in that record, not copied here
+           "closure_2026_11_15/DR4REC1_gaia_dr4_predata_record/DR4REC1_gaia_dr4_predata_archive_2026.zip":
+               "DOI 10.5281/zenodo.24248715 (DR4REC1_gaia_dr4_predata_archive_2026.zip)"}
 REFS = ("HEAD", "origin/main")
 def git(*a, check=True):
     return subprocess.run(["git", "-C", ROOT, *a], capture_output=True, text=True, check=check).stdout.strip()
