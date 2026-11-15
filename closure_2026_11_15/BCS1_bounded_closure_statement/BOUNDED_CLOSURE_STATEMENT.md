@@ -66,7 +66,8 @@ statement goes into a deposit.** Written by another lead session, the one that r
 - **This statement's deposit.** Asked "Should PAPER72 v1.7 carry the closure statement (BCS1)?", the owner answered
   "Yes, include it" (`closure_2026_11_15/OWNER_DECISION_2026-11-15b_CLOSURE_STATEMENT_DEPOSIT.md`, committed alone).
   The statement goes into PAPER72 version 1.7 as it stands, dated notes included. The sentence in the adoption note
-  that nothing is deposited describes the morning.
+  that nothing is deposited describes the morning. Added after the deposit: version 1.7 was deposited the same day
+  (DOI "10.5281/zenodo.24249046"); the copy in its supplement is this file without this last sentence.
 
 None of this changes a scorecard word, a count or a row list, and none of it is a pass.
 

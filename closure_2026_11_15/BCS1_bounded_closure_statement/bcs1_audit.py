@@ -59,6 +59,7 @@ CHECKS = [
     (DR4REC, "10.5281/zenodo.24248715"),
     (DEPDEC, "Should PAPER72 v1.7 carry the closure statement (BCS1)?"),
     (DEPDEC, "Yes, include it"),
+    (P72 + ".zenodo.json", "10.5281/zenodo.24249046"),
     (DR4DEC, "Which reading should be the headline score for form B on Gaia DR4?"),
     (DR4DEC, "The 11-05 rows"),
     (CARD, "The audit reads 189 of 189."),
