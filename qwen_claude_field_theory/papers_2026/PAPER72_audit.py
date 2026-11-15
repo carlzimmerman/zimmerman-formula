@@ -2167,7 +2167,10 @@ L += [
 ]
 # ---------------- version 1.7: the closure statement BCS1, the Gaia DR4 pre-data record DR4REC1, CQB1, DP8, the scorecard's update of 2026-11-15 ----------------
 V7D = "closure_2026_11_15/"
-V7BS = V7D + "BCS1_bounded_closure_statement/BOUNDED_CLOSURE_STATEMENT.md"; V7BO = V7D + "BCS1_bounded_closure_statement/bcs1_audit.out"
+V7BS = V7D + "BCS1_bounded_closure_statement/BOUNDED_CLOSURE_STATEMENT.md"
+# BCS1's audit output as it stood when version 1.7 was deposited (origin commit cc405c49bf), for the count the paper quotes:
+# the statement gained one sentence after the deposit and its live audit now counts more checks.
+V7BO = V7D + "paper72_v1_7/BCS1_AUDIT_at_PAPER72_v1_7.out"
 V7BD = V7D + "OWNER_DECISION_2026-11-15_BOUNDED_CLOSURE_STATEMENT.md"; V7BD2 = V7D + "OWNER_DECISION_2026-11-15b_CLOSURE_STATEMENT_DEPOSIT.md"
 V7CQ = V7D + "CQB1_cq2_under_blend/RESULT.md"; V7CQL = V7D + "CQB1_cq2_under_blend/"
 V7RZ = V7D + "DR4REC1_gaia_dr4_predata_record/DR4REC1_gaia_dr4_predata_record_2026.zenodo.json"
