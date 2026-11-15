@@ -39,6 +39,14 @@ origin b3eb4c89b5). Three of the new readings count against the form and are not
 
 MWM1 (row 31) reads no verdict.
 
+**Note 2026-11-15, the gap in line 1 of Section 5 is decided.** Asked "Which reading should be the headline score for
+form B on Gaia DR4?", the owner answered "The 11-05 rows"
+(`prep_2026/gaia_dr4_prep/OWNER_DECISION_2026-11-15_DR4_FORM_B_READING.md`, committed alone, before any DR4 data
+exist). The word that the frozen line of line 1 gives for the law's action is now also the word for form B on wide
+binaries. The settling-model rows are printed beside it with no verdict weight, and the stability requirements are
+reported beside the verdict, as the ruling of 2026-10-22 set them. A Newtonian sky is still survival, never
+confirmation. The map's other gaps that affect the headline (its C3, C4 and C5) stay open.
+
 **What "bounded" means.** The record can now say, without another lane, what the form is, which of its numbers are
 fitted, where it was tested and holds, where it fails, what it is silent on, and which frozen lines would kill it. It
 cannot say that the form is derived or that it passes. Section 6 lists what a derived closure would need; none of it
@@ -200,7 +208,9 @@ can kill it and cannot confirm it. In PAPER72's words: "The candidate is NOT ADO
 ## Still for the owner
 
 - Whether it goes into a deposit. A deposit needs a new go.
-- The open gap in line 1 of Section 5, before 2026-12-02: which registered wide-binary reading scores form B.
+- Before 2026-12-02, the wide-binary map's other gaps that affect the headline: the error term in the release-day
+  script (its C3), which R label is quoted (C4) and which footing is the headline (C5). The gap named in line 1 of
+  Section 5 was decided on 2026-11-15 (note above).
 - Row 25's word, which would read FAILS under the exact junction; the scorecard is unchanged here.
 - Row 26's word after MDZ1 (the note of 2026-11-15 above).
 

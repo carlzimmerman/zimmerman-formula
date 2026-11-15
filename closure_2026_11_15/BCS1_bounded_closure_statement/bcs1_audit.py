@@ -8,7 +8,7 @@ removing markdown bold markers, unescaping table pipes and collapsing whitespace
   2. every double-quoted passage of the statement is covered by a listed quotation (nothing is quoted unchecked);
   3. the row lists the statement gives for the scorecard's words match the scorecard's table;
   4. the statement at the commit the owner's decision of 2026-11-15 names has the sha256 that decision pins;
-  5. no home path and no banned name in this folder's files or the decision file; the statement ends with the
+  5. no home path and no banned name in this folder's files or the two decision files; the statement ends with the
      required line.
 Exit 0 only if every check passes. Run: python3 -I -B bcs1_audit.py > bcs1_audit.out
 
@@ -44,10 +44,13 @@ WLJ2 = C14 + "WLJ2_power_and_lensing_amplitude_exact_junction/RESULT.md"
 
 OWNDEC = "closure_2026_11_15/OWNER_DECISION_2026-11-15_BOUNDED_CLOSURE_STATEMENT.md"
 
+DR4DEC = "prep_2026/gaia_dr4_prep/OWNER_DECISION_2026-11-15_DR4_FORM_B_READING.md"
 CARD_AS_WRITTEN = "b3eb4c89b5"  # origin id of the scorecard commit this statement was written against
 
 # (committed path, quoted word) or (committed path, quoted word, commit to read the file at)
 CHECKS = [
+    (DR4DEC, "Which reading should be the headline score for form B on Gaia DR4?"),
+    (DR4DEC, "The 11-05 rows"),
     (CARD, "The audit reads 189 of 189."),
     (CARD, "As published, the rise excludes the law on both footings."),
     (CARD, "STILL FAILS [non-cool-core clusters, 0.1-0.5 R500: over-predicts] FRAGILE."),
@@ -246,8 +249,8 @@ def main():
         report(got == m.group(3), "the statement at %s has the sha256 the owner's decision pins" % rev)
 
     # folder hygiene
-    for name in (STATEMENT, "bcs1_audit.py", "../" + OWNDEC.split("/")[-1]):
-        with open(os.path.join(ROOT, HERE, name), encoding="utf-8") as fh:
+    for name in (HERE + "/" + STATEMENT, HERE + "/bcs1_audit.py", OWNDEC, DR4DEC):
+        with open(os.path.join(ROOT, name), encoding="utf-8") as fh:
             t = fh.read()
         low = t.lower()
         bad = [s for s in ("/" + "users/", "/" + "private/", "cold " + "dark matter", "cdm" + "-like") if s in low]
