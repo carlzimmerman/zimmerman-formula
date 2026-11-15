@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """BCS1 audit: every quoted word in BOUNDED_CLOSURE_STATEMENT.md must appear verbatim in the committed file it cites.
 
-Cited files are read with `git show HEAD:<path>` (paths relative to the repository root). Text is compared after
+Cited files are read with `git show HEAD:<path>` (paths relative to the repository root); a quotation of a file
+as it stood at an earlier commit names that commit, by its id on origin. Text is compared after
 removing markdown bold markers, unescaping table pipes and collapsing whitespace, so line wraps do not matter. Checks:
   1. each listed quotation is in its committed file and in the statement;
   2. every double-quoted passage of the statement is covered by a listed quotation (nothing is quoted unchecked);
@@ -43,12 +44,19 @@ WLJ2 = C14 + "WLJ2_power_and_lensing_amplitude_exact_junction/RESULT.md"
 
 OWNDEC = "closure_2026_11_15/OWNER_DECISION_2026-11-15_BOUNDED_CLOSURE_STATEMENT.md"
 
-# (committed path, quoted word)
+CARD_AS_WRITTEN = "b3eb4c89b5"  # origin id of the scorecard commit this statement was written against
+
+# (committed path, quoted word) or (committed path, quoted word, commit to read the file at)
 CHECKS = [
+    (CARD, "The audit reads 189 of 189."),
+    (CARD, "As published, the rise excludes the law on both footings."),
+    (CARD, "STILL FAILS [non-cool-core clusters, 0.1-0.5 R500: over-predicts] FRAGILE."),
+    (CARD, "STILL FAILS [beta_z HIGH] FRAGILE"),
+    (CARD, "182 of 182"),
     (OWNDEC, "Should this stand as the record's closure statement?"),
     (OWNDEC, "Yes, adopt it"),
     (P72 + ".zenodo.json", "10.5281/zenodo.24246863"),
-    (CJ1 + "cj1_audit.out", "182 of 182 checks pass"),
+    (CJ1 + "cj1_audit.out", "182 of 182 checks pass", CARD_AS_WRITTEN),
     (P72 + ".zenodo.json", "10.5281/zenodo.24231666"),
     (OWN, "Form B is the form the record closes on."),
     (OWN, "It is chosen as a form, not as a pass."),
@@ -130,8 +138,8 @@ def norm(text):
     return re.sub(r"\s+", " ", text).strip()
 
 
-def show(path):
-    r = subprocess.run(["git", "show", "HEAD:" + path], capture_output=True, cwd=ROOT)
+def show(path, rev="HEAD"):
+    r = subprocess.run(["git", "show", rev + ":" + path], capture_output=True, cwd=ROOT)
     if r.returncode != 0:
         return None
     return r.stdout.decode("utf-8", errors="replace")
@@ -152,10 +160,10 @@ def main_mutate():
     cache = {}
     out = []
     rejected = 0
-    for path, quote in CHECKS:
-        if path not in cache:
-            cache[path] = show(path)
-        src = cache[path]
+    for path, quote, rev in [(c + ("HEAD",))[:3] for c in CHECKS]:
+        if (path, rev) not in cache:
+            cache[(path, rev)] = show(path, rev)
+        src = cache[(path, rev)]
         q = norm(mutate(quote))
         short = q if len(q) <= 70 else q[:67] + "..."
         bites = src is not None and q not in norm(src)
@@ -182,22 +190,23 @@ def main():
     stmt = norm(raw)
 
     cache = {}
-    for path, quote in CHECKS:
-        if path not in cache:
-            cache[path] = show(path)
-        src = cache[path]
+    for path, quote, rev in [(c + ("HEAD",))[:3] for c in CHECKS]:
+        if (path, rev) not in cache:
+            cache[(path, rev)] = show(path, rev)
+        src = cache[(path, rev)]
         q = norm(quote)
         short = q if len(q) <= 70 else q[:67] + "..."
+        where = path if rev == "HEAD" else "%s at %s" % (path, rev)
         if src is None:
-            report(False, "src   %s: not committed at HEAD" % path)
+            report(False, "src   %s: not committed" % where)
             continue
-        report(q in norm(src), "src   \"%s\" in %s" % (short, path))
+        report(q in norm(src), "src   \"%s\" in %s" % (short, where))
         if quote.startswith("Alt: "):
             continue  # the statement prints the canonical line and says the alt line is the same
         report(q in stmt, "here  \"%s\" in %s" % (short, STATEMENT))
 
     # every double-quoted passage in the statement is covered by a listed quotation
-    listed = [norm(q) for _, q in CHECKS]
+    listed = [norm(c[1]) for c in CHECKS]
     for passage in re.findall(r"\"([^\"]+)\"", stmt):
         p = passage.strip()
         if p in NOT_QUOTATIONS:
@@ -207,7 +216,7 @@ def main():
         report(covered, "cover \"%s\" is a listed quotation" % short)
 
     # the scorecard's table: completed-form word per row
-    card = cache.get(CARD) or show(CARD)
+    card = cache.get((CARD, "HEAD")) or show(CARD)
     rows = {}
     for ln in (card or "").splitlines():
         m = re.match(r"^\|\s*(\d+)\s*\|", ln)
@@ -223,14 +232,18 @@ def main():
             report(re.search(r"\b%d\b" % r, stmt) is not None, "row %d is named in the statement" % r)
 
     # the adopted text is the one the owner's decision pins
-    dec = cache.get(OWNDEC) or show(OWNDEC) or ""
-    m = re.search(r"committed in ([0-9a-f]{10})\b.*?sha256 ([0-9a-f]{64})", norm(dec))
+    dec = cache.get((OWNDEC, "HEAD")) or show(OWNDEC) or ""
+    m = re.search(r"committed in ([0-9a-f]{10}) \(on origin ([0-9a-f]{10})\), sha256 ([0-9a-f]{64})", norm(dec))
     if m is None:
-        report(False, "the owner's decision names a commit and a sha256 for the adopted text")
+        report(False, "the owner's decision names a commit, its origin id and a sha256 for the adopted text")
     else:
-        r = subprocess.run(["git", "show", "%s:%s/%s" % (m.group(1), HERE, STATEMENT)], capture_output=True, cwd=ROOT)
-        got = hashlib.sha256(r.stdout).hexdigest() if r.returncode == 0 else "unreadable"
-        report(got == m.group(2), "the statement at %s has the sha256 the owner's decision pins" % m.group(1))
+        got = "unreadable"
+        for rev in (m.group(2), m.group(1)):  # the origin id first: a clone of origin has no local-only id
+            r = subprocess.run(["git", "show", "%s:%s/%s" % (rev, HERE, STATEMENT)], capture_output=True, cwd=ROOT)
+            if r.returncode == 0:
+                got = hashlib.sha256(r.stdout).hexdigest()
+                break
+        report(got == m.group(3), "the statement at %s has the sha256 the owner's decision pins" % rev)
 
     # folder hygiene
     for name in (STATEMENT, "bcs1_audit.py", "../" + OWNDEC.split("/")[-1]):

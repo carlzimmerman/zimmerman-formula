@@ -20,6 +20,25 @@ statement and no rule: rule 6 stays a candidate, no scorecard word changes, and 
 pushed. It folds in the lanes cited here that version 1.5 did not have (XJ1R, BJ1's flux-level run, WLJ2). The audit
 reads the paper's current source, so every PAPER72 quotation here is in version 1.6.
 
+**Note 2026-11-15, later the same morning.** While this statement was being adopted, another session updated the
+scorecard for four tests drawn from the week's DESI and Euclid papers, none of them blind (MWM1, SQM1, MDZ1 and CLR1;
+rows 15, 16, 26, 31 and 39). "The audit reads 189 of 189." No word for the completed form and no count changed, so the
+count and the row lists below stand, and the "182 of 182" above is the scorecard as it stood one commit earlier (on
+origin b3eb4c89b5). Three of the new readings count against the form and are not in Section 3:
+
+- **Line 5 of Section 5, a0 flat with redshift (row 26).** A published MUSE sample at redshift 0.5 to 1.3 reports a0
+  rising with redshift, 0.43 +- 0.08 per unit z, where the law predicts flat or a slight fall. MDZ1's label is no
+  verdict on both footings, and its file says: "As published, the rise excludes the law on both footings." Only a
+  combination of its frozen brackets brings the pull under 2, no single one does, and the per-galaxy data could not be
+  reached. So "Nobody, on the present record." no longer covers line 5: one published sample now bears on it,
+  undecided. Changing row 26's word is the owner's decision.
+- **Cluster radial shape on a second sample (row 16).** "STILL FAILS [non-cool-core clusters, 0.1-0.5 R500:
+  over-predicts] FRAGILE." (CLR1), in one cell, 0.009 dex past its line.
+- **Euclid lenses' total mass inside 5/h kpc (row 39).** Not evaluable as frozen; under its amendment "STILL FAILS
+  [beta_z HIGH] FRAGILE" (SQM1): the trend with redshift fails.
+
+MWM1 (row 31) reads no verdict.
+
 **What "bounded" means.** The record can now say, without another lane, what the form is, which of its numbers are
 fitted, where it was tested and holds, where it fails, what it is silent on, and which frozen lines would kill it. It
 cannot say that the form is derived or that it passes. Section 6 lists what a derived closure would need; none of it
@@ -183,5 +202,6 @@ can kill it and cannot confirm it. In PAPER72's words: "The candidate is NOT ADO
 - Whether it goes into a deposit. A deposit needs a new go.
 - The open gap in line 1 of Section 5, before 2026-12-02: which registered wide-binary reading scores form B.
 - Row 25's word, which would read FAILS under the exact junction; the scorecard is unchanged here.
+- Row 26's word after MDZ1 (the note of 2026-11-15 above).
 
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
