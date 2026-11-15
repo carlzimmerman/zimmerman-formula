@@ -22,6 +22,10 @@ Version 1.5 adds the lanes folded into its Section 11: XJ1 (with its part files,
 version's edits), the blind XJ1R, CSD1, BJ1, FWN2, RRL1R, RB1R, RB2R and the look-up GAS1 (closure_2026_11_14/); the Codex session's
 correction folder as committed after its audit (codex_mass_budget_2026_11_14/, home paths replaced, run logs and large regenerable files
 left out) and that audit (reviews/codex_mass_budget_audit_2026_11_14/).
+Version 1.6 adds the lanes folded into its Section 12: XJ1R's forest parts and result, XJ1's second build and BJ1's flux-level parts
+(their folders were already listed), WLJ2, ABS1, GAS2, DBL1, RRL2, RRL3R, OTA1, WLG1, WLG1R, EUC18, EUC19 (the mask table EUC20 reads),
+EUC20, EUC20R, EUC21 and EUC21R (closure_2026_11_14/) and EUC17R (closure_2026_11_13/), each with the Lean certificate added for this
+version where it has one. The four lanes quoted in Section 12.7 (CLR1, SQM1, MDZ1, MWM1) are not included: they are not folded in.
 The shared checkout has diverged from origin (PD1 and PD2 are committed on origin only), so each lane path is taken from whichever
 of HEAD and origin/main last committed to it; the manifest records the ref and commit for each. Untracked files are not included
 and are listed (unless the same path is committed on the chosen ref); a tracked file modified in the working tree stops the build. Deterministic for given commits (fixed entry dates).
@@ -258,6 +262,23 @@ PATHS = [
  "closure_2026_11_14/RB1R_blind_xcop_amount",
  "closure_2026_11_14/RB2R_blind_low_rows",
  "closure_2026_11_14/GAS1_forest_gas_parameters_sourced",
+ # version 1.6
+ "closure_2026_11_14/WLJ2_power_and_lensing_amplitude_exact_junction",
+ "closure_2026_11_14/ABS1_forest_reference_absolute_fit",
+ "closure_2026_11_14/GAS2_gas_tables_read_by_eye",
+ "closure_2026_11_14/DBL1_desi_p1d_blinding_flag",
+ "closure_2026_11_14/RRL2_one_convention_halo_stars",
+ "closure_2026_11_14/RRL3R_blind_halo_stars_measured_anisotropy",
+ "closure_2026_11_14/OTA1_outer_share_to_turnaround",
+ "closure_2026_11_14/WLG1_wide_lens_group_census",
+ "closure_2026_11_14/WLG1R_blind_wide_lens_group_census",
+ "closure_2026_11_13/EUC17R_blind_mask_aperture_regrade",
+ "closure_2026_11_14/EUC18_mask_mass_population_gate_reread",
+ "closure_2026_11_14/EUC19_grade_b_mask_table",
+ "closure_2026_11_14/EUC20_mask_mass_grade_b_reread",
+ "closure_2026_11_14/EUC20R_blind_grade_b_regrade",
+ "closure_2026_11_14/EUC21_mask_mass_gas_lane_reread",
+ "closure_2026_11_14/EUC21R_blind_gas_lane_regrade",
  "codex_mass_budget_2026_11_14",
  "reviews/codex_mass_budget_audit_2026_11_14",
 ]
