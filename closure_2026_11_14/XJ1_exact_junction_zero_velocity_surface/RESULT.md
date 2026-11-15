@@ -372,4 +372,12 @@ PAPER72 v1.5 was deposited and is not in that version. What counts against the h
 post hoc choice of caustic; a drawn profile that no flow of the action assembles; BJ1's charge-conserving layout fails
 the forest) is unchanged by a blind confirmation.
 
+**2026-11-15, 08:07 EST. PAPER72 v1.6 deposited (DOI 10.5281/zenodo.24246863), on the owner's go.** It folds in what the
+notes above record as landing after version 1.5: this lane's second build (the read-across at 0.5 and 2 fold radii)
+and the blind lane XJ1R (both caustic holds confirmed as labels on both footings, FRAGILE there to half the gas
+smoothing scale), beside BJ1's flux-level run (FAILS THE FOREST for every caustic on both footings) and WLJ2 (rows 24
+and 25 read with this lane's junction: the weak-lensing-amplitude row fails and the tension is slightly worse). The
+script that wrote the paper's edits and the scorecard as version 1.5 saw it are in `paper72_v1_6/`. No label of this
+lane changes. The caustic layout is still a post hoc choice and a drawn profile; rule 6 is NOT ADOPTED.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.

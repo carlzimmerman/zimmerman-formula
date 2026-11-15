@@ -76,4 +76,16 @@ radius is the law's own and PD1's numbers carry over. (`xj1r_rc.out`.)
 `xj1r_c0*`, `xj1r_grade.py`, `xj1r_grade_<footing>.json/.out` and their `_MUTATE` files, `parts/` (40 files),
 `runs/` (24 shell runs).
 
+## 7. Dated notes by the lead
+
+**2026-11-15, 08:07 EST.** (a) A Lean certificate was added after the lane was graded: `XJ1R.lean` with its twin
+`XJ1R_MUTATE.lean`, `compile.txt` (exit 0, no error) and `compile_MUTATE.txt` (exit 1, every theorem failing). It
+certifies algebra, not physics, and no number or label of this lane: the control junction against the exact one, the
+cap of a caustic at the turnaround radius, that the forest labels HOLDS and FAILS cannot both apply, how a bracket
+sets the FRAGILE flag, and that the lane words exclude one another. It was written by a separate session that had
+this file in front of it, so it is not part of the blind work. (b) Since section 4 was written the look-up GAS2 has
+read GAS1's tables from the papers' pages by eye: half the gas smoothing scale is inside twice the measurement error
+at z 2.2 only and outside the measurements at z 3.0 and 4.4, so "PROVISIONAL" in section 4 no longer applies to that
+placement. (c) This lane is folded into PAPER72 v1.6 (DOI 10.5281/zenodo.24246863, Section 12.1). No label changes.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
