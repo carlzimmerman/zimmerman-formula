@@ -1,0 +1,136 @@
+% DR4REC1 v1.0 (2026-11-15): the Gaia DR4 pre-data record. An archive note, not a result.
+\documentclass[10pt]{article}
+\usepackage[margin=0.85in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{booktabs,array,longtable}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Gaia DR4 Wide Binaries: the Pre-Data Record of a Screened, Newtonian Prediction and Its Scoring Rule}}
+\setlist{nosep,leftmargin=1.3em}
+\setlength{\parskip}{3pt}\setlength{\parindent}{0pt}
+\newcommand{\pend}[1]{\textcolor{red}{[PENDING: #1]}}
+\sloppy
+\begin{document}
+\begin{center}
+{\Large\bfseries Gaia DR4 Wide Binaries:\\ the Pre-Data Record of a Screened, Newtonian Prediction and Its Scoring Rule}\\[6pt]
+{\small Archive note (DR4REC1), version 1.0, 2026-11-15. Carl P. Zimmerman, Briar Creek Tech.\\
+Made before the Gaia DR4 release, which ESA lists, provisionally, for 2 December 2026. No DR4 byte existed when it was made.\\
+Companion: PAPER72 (version 1.6, DOI 10.5281/zenodo.24246863). The pre-registration of 2026-07-16 and its 22 amendments are inside this archive.\\
+$\kappa=\tfrac12$ is fitted. The theory is not closed. Nothing here says the data favour this framework.}
+\end{center}
+
+\begin{abstract}\noindent
+This note is a time stamp, not a result. It puts in one archive everything this research record registered for Gaia DR4 wide binaries before the data: the prediction of the theory the record currently adopts, the rule that will score it, the dated decisions that fix every choice, and the tools that will run on release day.
+The adopted theory predicts that wide binaries are screened and Newtonian. The frozen pipeline cannot tell that prediction from Newton's own.
+So DR4 can count against the theory, if the sky shows a boost, and it cannot confirm it.
+This is an AI-assisted research programme. It is not peer reviewed and no outside group has reproduced it. The record's own scorecard of 2026-11-12 reads: no registered prediction has come true.
+\end{abstract}
+
+\section{What is predicted}
+The prediction is the seal CQ2, made on 2026-11-04 for v3s, the action the record adopts for the $a_0$ law.
+In the seal's words, v3s wide binaries are screened and Newtonian.
+The radial boost $\gamma_r-1$ is at most $4.45\times10^{-5}$ on the canonical footing and $4.01\times10^{-5}$ on the alternative footing, at 30 kAU.
+Pushed through the frozen pipeline, the fitted $\gamma_\infty$ is identical to Newton's in every realisation, and the seal labels v3s against Newton NOT SEPARABLE on both footings.
+Against the bare law without its action (plain QUMOND, seal CW1, $1.149\pm0.027$ canonical and $1.208\pm0.007$ alternative) it is SEPARABLE.
+The seal says of itself that it adds no rule: the scoring is the frozen pipeline's own.
+The two footings are two values of the acceleration scale. They are scored separately and never pooled.
+
+On 2026-11-07 the record replaced v3s's stiffness with a smooth blend. A check made before the data (lane CQB1, Section~5) finds the seal unchanged under it.
+
+\section{How it is scored}
+The rule is the fork rows of the note of 2026-10-22, as fixed by the owner decision of 2026-11-05. With $\hat\gamma$ the pipeline's pooled estimate and $\sigma=\sqrt{\sigma_{\rm fit}^2+\sigma_{\rm sys}^2}$:
+\begin{itemize}
+\item \textbf{Screened reading excluded} (this is v3s): $\hat\gamma-1\ge3\sigma$, and $\hat\gamma$ not below the law-first anchor by $3\sigma$ or more.
+\item \textbf{Law-first reading excluded} (the bare law): anchor $-\,\hat\gamma\ge3\sigma$. The anchor is 1.1614 canonical and 1.1917 alternative.
+\item \textbf{Gate.} If the measured $\sigma_{\rm sys}$ is 0.048 or more (canonical), or 0.058 or more (alternative), or the three robustness definitions disagree, the footing reads UNDECIDED whatever $\hat\gamma$ is.
+\item \textbf{No verdict} for every reading if $\hat\gamma>1.23$ (the guard zone) or $\hat\gamma\le1-3\sigma$ (sub-Newtonian).
+\item Where both exclusions hold at once, the reading is BOTH EXCLUDED.
+\item Beside these rows, the $R$ statistic: KILL if and only if $R-1\ge\max(0.01,\,3\sigma_R)$. It bears on one stiffness construction only and is never merged with the rows.
+\end{itemize}
+At the registered error ($N=30{,}000$ pairs, $\sigma_{\rm sys}=0.020$, canonical footing) the decision of 2026-11-05 lays the map out as follows.
+
+\begin{center}\begin{tabular}{llll}
+\toprule
+$\hat\gamma$ lands at & v3s (adopted) & bare law & reads as\\
+\midrule
+0.917 to 1.079 & survives, not confirmed & excluded & a Newton-like sky\\
+1.079 to 1.083 & survives & survives & UNDECIDED\\
+1.083 to 1.23 & excluded & survives & a boost\\
+above 1.23, or at or below 0.917 & no verdict & no verdict & guard zone, or sub-Newtonian\\
+\bottomrule
+\end{tabular}\end{center}
+
+The edges move with the sample size and with $\sigma_{\rm sys}$. The forecast for DR4 under the frozen cuts is about 8,000 pairs (7,025 to 8,618), not 30,000.
+At that size the registry map puts the chance that a Newtonian sky reads decisive against the bare law at about 0.80 if $\sigma_{\rm sys}$ is 0.020, and at 0.12 to 0.40 if it is the 0.0375 measured on DR3.
+With a small sample or a large $\sigma_{\rm sys}$, a Newtonian sky reads UNDECIDED.
+
+\section{What the words will mean}
+A Newton-side reading is worded ``v3s survives'', never ``confirmed''.
+The form the record closes on since 2026-11-09 (form B) takes the same reading as its headline score, by the first decision of 2026-11-15; an excluded reading counts against form B in the same words.
+Each footing has its own verdict line, and a split between footings is reported as a split, with no single headline.
+The $R$ label quoted is the one the $R$ lane's own frozen criteria give.
+The stability requirements of the pre-registration are computed and reported beside the verdict with no verdict weight, by the ruling of 2026-10-22. On DR3 they failed on both footings.
+
+\section{The dated decisions}
+Each file is in the archive. The digest is the first 16 hexadecimal digits of its sha256.
+
+\begin{center}\small\begin{tabular}{lll}
+\toprule
+file & first committed & sha256\\
+\midrule
+\texttt{PREREGISTRATION\_DR4.md}, with 22 amendments & 2026-07-16 & \texttt{20677265fdace8e1}\\
+\texttt{OWNER\_DECISION\_2026-10-21\_DR4\_KILL\_LINE.md} & 2026-10-21 & \texttt{d09a920f8e03fb12}\\
+\texttt{NOTE\_2026-10-22\_FORK\_SCORING\_PRE\_DR4.md} & 2026-10-22 & \texttt{e25be2cf54bdd933}\\
+CQ2, \texttt{SEALED\_PREDICTION.md} & 2026-11-04 & \texttt{1d65509dbf277fe5}\\
+\texttt{OWNER\_DECISION\_2026-11-05\_DR4\_FORKS.md} & 2026-11-05 & \texttt{5768a66c1a0a2c2c}\\
+\texttt{OWNER\_DECISION\_2026-11-05b\_DR4\_D7\_D8.md} & 2026-11-05 & \texttt{448bf4ef63e253f8}\\
+\texttt{OWNER\_DECISION\_2026-11-05c\_DR4\_SEED\_MEAN\_NSS\_OFF.md} & 2026-11-08 & \texttt{8dfcc1d89bcfc38a}\\
+\texttt{OWNER\_DECISION\_2026-11-15\_DR4\_FORM\_B\_READING.md} & 2026-11-15 & \texttt{3641f7de41510512}\\
+\texttt{OWNER\_DECISION\_2026-11-15b\_DR4\_OPEN\_GAPS.md} & 2026-11-15 & \texttt{dad0d10040c5424b}\\
+\texttt{wide\_binary\_pipeline.py}, the frozen pipeline & 2026-07-16 & \texttt{7c884e0e0a4cb9cb}\\
+\bottomrule
+\end{tabular}\end{center}
+
+The pipeline's digest is the file as it stands, last changed on 2026-09-22; the pre-registration's own manifest lists the digest of the file as first committed. A note of 2026-11-15 in the archive records both.
+
+\section{Checks made before the data}
+Every number in these lanes comes from DR3 or from mock data. They test code paths and are never results.
+\begin{itemize}
+\item \textbf{DP1}, the rung that removes the non-single-star screen: REPRODUCED ON DR3, rung IMPLEMENTED.
+\item \textbf{DP2}, the sample-size forecast and a mock-triple injection: information only, no verdict weight.
+\item \textbf{DP3}, the release-day wrapper, runbook and the scorer of the map above, with its self-test.
+\item \textbf{DP4}, the neighbour-cone fetch split into shards: EQUIVALENT ON DR3, BYTE FOR BYTE.
+\item \textbf{DP5}, the DR4 fetchers: BUILT, 6/6 OFFLINE CHECKS PASS.
+\item \textbf{DP6}, the non-single-star cut wired into the DR4 build: BUILT, 8/8 CHECKS PASS, BOTH MUTATES BITE.
+\item \textbf{DP7}, the seed-mean entry of the systematic error: CHECK PASSED.
+\item \textbf{DP8}, the wiring of the decisions of 2026-11-15 into the release-day path: the seed-mean entry, the cone fallback, the three rungs of the systematic error and the separation-resolved statistic are each WIRED, and the wrapper pins both decisions of that day. The remaining items are text in the runbook.
+\item \textbf{CQB1}, the seal under the adopted stiffness: MARGIN HOLDS, UNCHANGED on both footings. The blend equals the raw stiffness wherever the switch variable is at least the dark-energy density. Around a wide binary the lane finds it $4.90\times10^4$ times that density or more, and $2.34\times10^4$ after the lane's allowance for its own independent estimate.
+\end{itemize}
+Three of these lanes carry a Lean certificate of the algebra they use, each with a twin of false variants in which every theorem fails to compile: the scoring rows, the map's edges and the $R$ rule (DP3, 18 theorems); the floor and the spread of the systematic error and the seed mean (DP7, 10 theorems); and the blend's equality with the raw stiffness above the dark-energy density, with the algebra of the seal it rests on (CQB1, 19 theorems). They certify algebra, not physics, and no number or label. The other lanes are code-path checks and look-ups and have no algebra to certify. Writing DP7's certificate found one wrong sentence in that lane's write-up; its numbers were right, and a dated note corrects it.
+
+\section{Other registered entries}
+The registry map of 2026-11-12 found 32 registered or sealed DR4 entries across the record's history. Most belong to earlier or retired forms.
+Arm A, the strict modified-gravity band of Amendment 10, is not the adopted theory; its floor is the law-first anchor above.
+The September ridge rows are printed as information and their own scorer is not run.
+No Milky Way row (vertical structure, local density, Oort constants) is scored for the adopted theory. Seals of earlier forms are scored as frozen, as history, when a published analysis exists.
+
+\section{Limits, said plainly}
+\begin{itemize}
+\item \textbf{What this DOI dates.} The pre-registration, its amendments and the decisions were public in the project's git repository from the dates in Section~4, with dated commits and hash stamps. As far as the record shows, this archive is their first deposit under a DOI. The date this DOI vouches for is 2026-11-15, which is before the data; it does not vouch for the earlier dates.
+\item A Newtonian sky is survival for the adopted theory, never confirmation. The prediction is not separable from Newton's.
+\item The decision of 2026-11-15 states no fallback for the systematic-error entry if the seed-mean sweep cannot run on the day. In that case the wrapper stops and asks for the owner; it never computes the error with the single-seed entry. A dated decision before the data is still owed for that case.
+\item The seed-mean sweep's network path on DR4 cannot be tested before the release. Its DR3 path reproduces the earlier lane bit for bit.
+\item The quoted $R$ label is the reading under which a kill is harder.
+\item The frozen pipeline carries one absolute path of the author's machine, a default data location. The file is pinned by its digest and is left as it is.
+\item The archive holds DR3 code-path outputs and mock runs. None of them is evidence about gravity.
+\end{itemize}
+
+\section{The archive}
+\texttt{DR4REC1\_gaia\_dr4\_predata\_archive\_2026.zip} holds the tracked files of the folders named in its manifest, byte for byte as the public repository held them when it was built. The manifest gives each file's sha256 and the repository commit. On release day the wrapper's check mode compares the pinned files with their digests before any step runs.
+
+\end{document}
