@@ -2,6 +2,57 @@
 
 **One claim: the galactic acceleration scale is set by the dark-energy density.**
 
+**Start here (15 November 2026): the record's closure statement, bounded.** The owner adopted the bounded closure statement on
+2026-11-15 as a statement of where the theory stands, "not as a pass and not as a derivation". One page:
+[`closure_2026_11_15/BCS1_bounded_closure_statement/BOUNDED_CLOSURE_STATEMENT.md`](closure_2026_11_15/BCS1_bounded_closure_statement/BOUNDED_CLOSURE_STATEMENT.md)
+(decision: [`OWNER_DECISION_2026-11-15_BOUNDED_CLOSURE_STATEMENT.md`](closure_2026_11_15/OWNER_DECISION_2026-11-15_BOUNDED_CLOSURE_STATEMENT.md)).
+Paper of record for the form: **PAPER72**, "The a₀ Law with Cold Dark Energy Counted Once: the Form the Record Closes On, Its Gates, and
+What Stays Open", concept DOI [10.5281/zenodo.24106866](https://doi.org/10.5281/zenodo.24106866) (always the latest version);
+**v1.6 DOI [10.5281/zenodo.24246863](https://doi.org/10.5281/zenodo.24246863)** (2026-11-15; [PDF](qwen_claude_field_theory/papers_2026/PAPER72_law_with_cold_dark_energy_counted_once_2026.pdf)).
+The statement itself is in no deposited paper. The law's action, its field equations and their Lean certificates are still PAPER70 (the 8 November block below).
+- **The form (form B, owner decision 2026-11-09).** The law g²/(a₀ + g) = g_Newton with a₀ = ½ c √(G ρ_DE), and cold dark energy at
+  5.41 times the baryons, counted once: it is in galaxies too, and around condensed baryons the law describes how it sits. Cold dark
+  energy is a gravitating field component with w close to 0; it is not a particle and not a second force. The form was chosen "as a
+  form, not as a pass" ([decision](closure_2026_11_09/OWNER_DECISION_2026-11-09_FINAL_FORM_B.md)), and it reopens the cold sector, retired on
+  2026-11-01, for this one reading only. Two constants are fitted (κ = ½, and the share 5.41 to the CMB). The hot branch is a rule and
+  not a solution of the action. A sixth rule, which would say where the law's layout stops, is missing.
+- **Where it holds.** Rotation curves of 175 nearby galaxies (rms 0.0563 / 0.0558 against a line of 0.0660, canonical / alt; a pass of
+  the law), the Solar System (carried, not recomputed), the Milky Way's enclosed-mass profile from DESI DR2 (9 of 12; the extrapolated
+  M200c fails) and lensing = dynamics (weak power). The CMB peaks, CMB lensing and the growth rate hold by construction, because the
+  share is fitted to the CMB. Outside galaxies most rows equal the cold reference or have no power.
+- **Where it fails, on both footings.** The Lyman-α forest, for the form as adopted with the law's layout at every radius. The outer
+  cluster shear (about 3σ with systematics). Four dwarfs that sit below the form's law: DF2, DF4, NGC 147 and IC 1613 (a second build
+  reads the same). The weak-lensing amplitude: raw KiDS excludes it at 3σ as frozen, and it reads as a tension once the reference run's
+  noise is corrected; this is the tension any cold component fitted to the CMB carries.
+- **Scorecard** ([`SCORECARD.md`](closure_2026_11_13/CJ1_candidate_completion/SCORECARD.md); every tested row against the form with the candidate
+  sixth rule; 45 rows, the same on both footings): EQUALS THE LAW 14; NO POWER 8; NOT GRADED FOR THIS FORM 6; DEPENDS ON AN UNTESTED
+  ASSUMPTION 6; PASSES TRIVIALLY 5; PASSES 3; FAILS 2; FAILS ON COVERAGE ONLY 1.
+- **The candidate sixth rule is NOT ADOPTED.** Two versions are on the record. The crossing-speed joint held the forest in one build,
+  but its junction rescales the law's halo, and the hold does not survive the exact junction (XJ1). The law placed unscaled inside the
+  second or third caustic of the clock holds the forest at flux level in a blind build (XJ1R: 1.55 / 1.66 and 0.76 / 1.14 against a
+  line of 4), fragile to the gas smoothing scale. It is a drawn profile: the clock's own flow delivers 1 to 12 per cent of the charge
+  the law's halo needs there (CSD1), and the layout that conserves charge by construction fails the forest (BJ1: 12.7 / 14.8 against 4).
+- **Predictions.** No registered prediction has come true. Of 115 entries: 41 not yet tested, 20 post-dictions, 17 undecided, 14 retired
+  or withdrawn, 12 failed, 11 consistent but not distinctive
+  ([`PREDICTIONS_SCORECARD_2026-11-12.md`](predictions_2026/PREDICTIONS_SCORECARD_2026-11-12.md)).
+- **What would kill it.** Seven frozen lines, in Section 5 of the statement. The next dated one is Gaia DR4 wide binaries on 2026-12-02,
+  which can kill the form and cannot confirm it; which registered wide-binary reading scores form B is still open (gap C2 of
+  [`DR4_MAP.md`](closure_2026_11_12/DR4MAP_gaia_dr4_registry_map/DR4_MAP.md)). Also dated: ALMA UDS16442 (2026-11-24), ALMA GS4_24110
+  (2026-11-28, sealed plan CFG809) and Euclid calibrated shear (June 2027).
+- **What a derived closure would need, none of which exists:** an equation for the clock behind a fold; a flow of the action that carries
+  the charge into the standing state; a derivation of κ and of the share.
+- **Also since 8 November.** PAPER71, "Switching the a₀ Law Off Where the Cold Component Sits" (concept DOI
+  [10.5281/zenodo.24094859](https://doi.org/10.5281/zenodo.24094859); v1.1 DOI
+  [10.5281/zenodo.24095262](https://doi.org/10.5281/zenodo.24095262), 2026-11-09; [PDF](qwen_claude_field_theory/papers_2026/PAPER71_switch_theorems_kids_outer_points_2026.pdf)),
+  closes the class of completions that switch the law off where the cold component sits: 72 Lean theorems and six graded lanes, with
+  a failing verdict on every exit. PAPER72 v1.0 to v1.6 (2026-11-10 to 2026-11-15) fold in the week's lanes: the Lyman-α forest at
+  flux level, the Euclid strong lenses, blind re-grades of the hits, and Lean files for the lanes' algebra with twins that fail to
+  compile. The forest test FRZ6 was deposited with its frozen criteria before its result (concept DOI
+  [10.5281/zenodo.24208900](https://doi.org/10.5281/zenodo.24208900)).
+- κ = ½ and the share 5.41 are FITTED; the theory is not closed; nothing here says the data favour the framework. AI-assisted research
+  programme; not peer reviewed; not reproduced by any outside group. The 8 November block below is kept as the record of that date;
+  where the two differ, this block is current.
+
 **Start here (8 November 2026): the theory as the record stands, with closure.** The relation a₀ = ½ c √(G ρ_DE) (κ = ½ FITTED),
 carried by the screened Khronon action v3s (Legendre form, Π⁶/Π² stiffness blend adopted 2026-11-07), with its field equations
 certified in Lean. One page: [`closure_2026_11_07/FINAL_THEORY_2026_11_07.md`](closure_2026_11_07/FINAL_THEORY_2026_11_07.md).
@@ -279,6 +330,9 @@ Sorted by robustness, not by ambition. Everything below is either a published th
 
 ## Where it stands (October 2026)
 
+> **Note (15 November 2026).** This section is the October record and is kept as written. The current state is the 15 November block
+> at the top of this page and the [bounded closure statement](closure_2026_11_15/BCS1_bounded_closure_statement/BOUNDED_CLOSURE_STATEMENT.md).
+
 ![Status board: every test of the theory as a coloured tile](explainers/img/status_board.png)
 
 **The Crispy Fried Chicken Status Board (21 October 2026), explained in [explainers/crispy_fried_chicken_status_board.md](explainers/crispy_fried_chicken_status_board.md):** green tiles pass, yellow are conditional, blue cannot be decided with today's data, red fail and grey are open, and every tile restates a verdict in the campaign [LEDGER](campaign_fresh_gravity/LEDGER.md) or the canonical statement, with its lane IDs. The galaxy law fits raw SPARC rotation curves at 0.101 / 0.099 dex on the two a₀ footings, which are never pooled (CFG695), with κ = ½ fitted, not derived (measured 0.417 ± 0.095, CFG493). Run from the framework's own early-universe inputs, its structure-formation engine is CONSISTENT with raw KiDS-1000 cosmic shear on both footings (CFG654-A2/A3; the class is robust but the size of the lead is amplitude-driven, CFG909), yet that engine has no known physical parent: no local theory gives the law, a¹ growth and no external-field effect together (CFG941–CFG947), the labelled-domain and source-changing theories fail clusters (CFG951, CFG954), and the relaxing-dust kinetic parent does not exist (CFG955). Pressure-supported systems carry an excess that nothing in the record explains — dwarf spheroidals, cluster cores (real mass, CFG922/CFG929), Coma's ultra-diffuse galaxies (2.4–2.6σ, CFG933) and red lenses unless their stellar IMF explains them (CFG926) — while rotators sit on the law and tidal dwarfs and NGC 1052-DF2/DF4 sit at Newton (CFG919, CFG936). a₀(z) cannot yet be told apart from the rival a₀ ∝ H(z) (CFG689); the next dated tests are ALMA U4 (6 November) and GS4 (28 November), scored by the original frozen plans with no exclusion from one disc (CFG942), then Gaia DR4 wide binaries in December, where the prediction is Newtonian and a full MOND-size boost would be caught only about half the time at the planned sample (CFG943). The theory remains incomplete.
@@ -297,6 +351,11 @@ Sorted by robustness, not by ambition. Everything below is either a published th
 
 | document | what it is |
 |---|---|
+| **[closure_2026_11_15/BCS1_bounded_closure_statement/BOUNDED_CLOSURE_STATEMENT.md](closure_2026_11_15/BCS1_bounded_closure_statement/BOUNDED_CLOSURE_STATEMENT.md)** | **The record's closure statement (adopted 2026-11-15):** the form, where it holds, where it fails, what it does not say, and what would kill it. A statement of where the theory stands, not a pass and not a derivation. |
+| **[PAPER72 (PDF)](qwen_claude_field_theory/papers_2026/PAPER72_law_with_cold_dark_energy_counted_once_2026.pdf)** | **Paper of record for the form (v1.6, 2026-11-15; [DOI 10.5281/zenodo.24246863](https://doi.org/10.5281/zenodo.24246863)):** the a₀ law with cold dark energy counted once, its gates, and what stays open. |
+| [closure_2026_11_13/CJ1_candidate_completion/SCORECARD.md](closure_2026_11_13/CJ1_candidate_completion/SCORECARD.md) | Every tested row against the form with the candidate sixth rule (45 rows; the candidate is NOT ADOPTED). |
+| [predictions_2026/PREDICTIONS_SCORECARD_2026-11-12.md](predictions_2026/PREDICTIONS_SCORECARD_2026-11-12.md) | Every registered prediction read against what happened since. None has come true. |
+| [closure_2026_11_07/FINAL_THEORY_2026_11_07.md](closure_2026_11_07/FINAL_THEORY_2026_11_07.md) | The law's action (v3s) on one page, as of 8 November. |
 | **[explainers/crispy_fried_chicken_status_board.md](explainers/crispy_fried_chicken_status_board.md)** | **The Crispy Fried Chicken Status Board (2026-10-21):** every test as a tile, in plain language, with lane IDs, the a₀(z) chart and what changed since 9 October. |
 | **[campaign_fresh_gravity/FIGURE_SUMMARY_2026-10-21/summary_figure.png](campaign_fresh_gravity/FIGURE_SUMMARY_2026-10-21/summary_figure.png)** | **Summary figure (2026-10-21, working note):** SPARC's acceleration relation, offsets from the law by class, the raw KiDS-1000 shear runs and implied a₀(z), with a [provenance table](campaign_fresh_gravity/FIGURE_SUMMARY_2026-10-21/PROVENANCE.md) for every plotted number. |
 | **[campaign_fresh_gravity/STANDING_2026-09-28.md](campaign_fresh_gravity/STANDING_2026-09-28.md)** | **The bottom line (2026-09-28):** what is established, what failed, and the two measurements that decide the rest. |
@@ -426,6 +485,9 @@ Enforced by the scripts, not by trust.
 
 ## Publication record
 
+[![The a0 Law with Cold Dark Energy Counted Once](https://img.shields.io/badge/The%20a0%20Law%20with%20Cold%20Dark%20Energy%20Counted%20Once%20(v1.6%2C%20Nov%2015%202026)-10.5281%2Fzenodo.24246863-blue)](https://doi.org/10.5281/zenodo.24246863)
+[![Switching the a0 Law Off](https://img.shields.io/badge/Switching%20the%20a0%20Law%20Off%20%E2%80%94%20a%20Closed%20Class%20(v1.1%2C%20Nov%209%202026)-10.5281%2Fzenodo.24095262-red)](https://doi.org/10.5281/zenodo.24095262)
+[![The a0 Galaxy Law and its Screened Khronon Action](https://img.shields.io/badge/The%20a0%20Galaxy%20Law%20and%20its%20Screened%20Khronon%20Action%20(v2.1%2C%20Nov%209%202026)-10.5281%2Fzenodo.24092073-blue)](https://doi.org/10.5281/zenodo.24092073)
 [![The Baryon-Calibration Wall](https://img.shields.io/badge/The%20Baryon--Calibration%20Wall%20for%20a0(z)%20(Oct%201%202026)-10.5281%2Fzenodo.23073071-blue)](https://doi.org/10.5281/zenodo.23073071)
 [![DESI DR1 Growth Check](https://img.shields.io/badge/Hubble--Kernel%20Equation%20vs%20DESI%20DR1%20(Sep%2011%202026)-10.5281%2Fzenodo.22708060-blue)](https://doi.org/10.5281/zenodo.22708060)
 [![Clock Stability Theorem](https://img.shields.io/badge/The%20Clock%20Stability%20Theorem%20(Sep%2011%202026)-10.5281%2Fzenodo.22717950-blue)](https://doi.org/10.5281/zenodo.22717950)
@@ -506,10 +568,48 @@ Enforced by the scripts, not by trust.
 
 Plain text on purpose, so that titles and DOIs are searchable. Versions of one record share a concept DOI; cite the concept DOI for "latest".
 
+*Rows dated 2026-10-27 and later were added on 2026-11-15 from the committed deposit records (the `*.zenodo.json` files beside each paper, and `closure_2026_11_13/FRZ6Z_zenodo_record/`). Each title is the record's current title. Some deposits of 21 to 26 October (for example PAPER58 and PAPER59, cited in the checkpoints near the top of this page) are not in this table yet.*
+
 *Deposits from 2026-06 to 2026-08-08 belong to the modified-inertia (MI) era, in which the framework was written in terms of the de Sitter-Unruh MI arm and the older 'Z²' constants. That arm was closed on 2026-08-08 (see `RETRACTIONS.md`). They are listed so the index is complete, not as current claims; later versions and the standing record supersede them.*
 
 | date | DOI | title | version |
 |---|---|---|---|
+| 2026-11-15 | [10.5281/zenodo.24246863](https://doi.org/10.5281/zenodo.24246863) (concept 24106866) | The a0 Law with Cold Dark Energy Counted Once: the Form the Record Closes On, Its Gates, and What Stays Open (Working Note) | v1.6 (PAPER72; a blind build confirms the caustic holds as labels, fragile; the charge-conserving layout fails the forest) |
+| 2026-11-14 | [10.5281/zenodo.24231666](https://doi.org/10.5281/zenodo.24231666) (concept 24106866) | The a0 Law with Cold Dark Energy Counted Once: the Form the Record Closes On, Its Gates, and What Stays Open (Working Note) | v1.5 (PAPER72; the exact junction; three readings of v1.3 and v1.4 corrected) |
+| 2026-11-14 | [10.5281/zenodo.24221457](https://doi.org/10.5281/zenodo.24221457) (concept 24106866) | The a0 Law with Cold Dark Energy Counted Once: the Form the Record Closes On, Its Gates, and What Stays Open (Working Note) | v1.4 (PAPER72; the candidate needs its settled radius) |
+| 2026-11-14 | [10.5281/zenodo.24212016](https://doi.org/10.5281/zenodo.24212016) (concept 24106866) | The a0 Law with Cold Dark Energy Counted Once: the Form the Record Closes On, Its Gates, and What Stays Open (Working Note) | v1.3 (PAPER72; a candidate sixth rule stated, NOT ADOPTED) |
+| 2026-11-14 | [10.5281/zenodo.24211910](https://doi.org/10.5281/zenodo.24211910) (concept 24208900) | A flux-level Lyman-alpha forest test of a crossing-speed joint between an acceleration law and cold dark energy: frozen criteria, result and blind re-grade (lanes FRZ6 and FRZ6R, 2026-11-13) | v3.0 (lane FRZ6 record) |
+| 2026-11-14 | [10.5281/zenodo.24210556](https://doi.org/10.5281/zenodo.24210556) (concept 24208900) | A flux-level Lyman-alpha forest test of a crossing-speed joint between an acceleration law and cold dark energy: frozen criteria and result (lane FRZ6, 2026-11-13) | v2.0 (lane FRZ6 record) |
+| 2026-11-13 | [10.5281/zenodo.24182757](https://doi.org/10.5281/zenodo.24182757) (concept 24106866) | The a0 Law with Cold Dark Energy Counted Once: the Form the Record Closes On, Its Gates, and What Stays Open (Working Note) | v1.2 (PAPER72; the Lyman-alpha forest row fails at its own redshifts) |
+| 2026-11-13 | [10.5281/zenodo.24208901](https://doi.org/10.5281/zenodo.24208901) (concept 24208900) | A flux-level Lyman-alpha forest test of a crossing-speed joint between an acceleration law and cold dark energy: frozen criteria (lane FRZ6, 2026-11-13) | v1.0 (lane FRZ6 record) |
+| 2026-11-11 | [10.5281/zenodo.24125791](https://doi.org/10.5281/zenodo.24125791) (concept 24106866) | The a0 Law with Cold Dark Energy Counted Once: the Form the Record Closes On, Its Gates, and What Stays Open (Working Note) | v1.1 (PAPER72; the lanes of 2026-11-10; the theory in six rules) |
+| 2026-11-10 | [10.5281/zenodo.24106867](https://doi.org/10.5281/zenodo.24106867) (concept 24106866) | The a0 Law with Cold Dark Energy Counted Once: the Form the Record Closes On, Its Gates, and What Stays Open (Working Note) | v1.0 (PAPER72; form B stated and regraded) |
+| 2026-11-09 | [10.5281/zenodo.24095262](https://doi.org/10.5281/zenodo.24095262) (concept 24094859) | Switching the a0 Law Off Where the Cold Component Sits: Theorems, a KiDS Test, and a Closed Class (Working Note) | v1.1 (PAPER71) |
+| 2026-11-09 | [10.5281/zenodo.24094860](https://doi.org/10.5281/zenodo.24094860) (concept 24094859) | Switching the a0 Law Off Where the Cold Component Sits: Theorems, a KiDS Test, and a Closed Class (Working Note) | v1.0 (PAPER71) |
+| 2026-11-09 | [10.5281/zenodo.24092073](https://doi.org/10.5281/zenodo.24092073) (concept 24040312) | The a0 Galaxy Law and its Screened Khronon Action: Field Equations, Lean Certificates, and the Closure Record (Working Note) | v2.1 (PAPER70) |
+| 2026-11-09 | [10.5281/zenodo.24086157](https://doi.org/10.5281/zenodo.24086157) (concept 24040312) | The a0 Galaxy Law and its Screened Khronon Action: Field Equations, Lean Certificates, and the Closure Record (Working Note) | v2.0 (PAPER70) |
+| 2026-11-09 | [10.5281/zenodo.24082193](https://doi.org/10.5281/zenodo.24082193) (concept 24040312) | The a0 Galaxy Law and its Screened Khronon Action: Field Equations, Lean Certificates, and the Closure Record (Working Note) | v1.9 (PAPER70) |
+| 2026-11-08 | [10.5281/zenodo.24058756](https://doi.org/10.5281/zenodo.24058756) (concept 24040312) | The a0 Galaxy Law and its Screened Khronon Action: Field Equations, Lean Certificates, and the Closure Record (Working Note) | v1.8 (PAPER70) |
+| 2026-11-08 | [10.5281/zenodo.24056963](https://doi.org/10.5281/zenodo.24056963) (concept 24040312) | The a0 Galaxy Law and its Screened Khronon Action: Field Equations, Lean Certificates, and the Closure Record (Working Note) | v1.7 (PAPER70) |
+| 2026-11-08 | [10.5281/zenodo.24053740](https://doi.org/10.5281/zenodo.24053740) (concept 24040312) | The a0 Galaxy Law and its Screened Khronon Action: Field Equations, Lean Certificates, and the Closure Record (Working Note) | v1.6 (PAPER70) |
+| 2026-11-08 | [10.5281/zenodo.24053083](https://doi.org/10.5281/zenodo.24053083) (concept 24040312) | The a0 Galaxy Law and its Screened Khronon Action: Field Equations, Lean Certificates, and the Closure Record (Working Note) | v1.5 (PAPER70) |
+| 2026-11-07 | [10.5281/zenodo.24047634](https://doi.org/10.5281/zenodo.24047634) (concept 24040312) | The a0 Galaxy Law and its Screened Khronon Action: Field Equations, Lean Certificates, and the Closure Record (Working Note) | v1.4 (PAPER70) |
+| 2026-11-07 | [10.5281/zenodo.24047508](https://doi.org/10.5281/zenodo.24047508) (concept 24040312) | The a0 Galaxy Law and its Screened Khronon Action: Field Equations, Lean Certificates, and the Closure Record (Working Note) | v1.3 (PAPER70) |
+| 2026-11-07 | [10.5281/zenodo.24047420](https://doi.org/10.5281/zenodo.24047420) (concept 24040312) | The a0 Galaxy Law and its Screened Khronon Action: Field Equations, Lean Certificates, and the Closure Record (Working Note) | v1.2 (PAPER70) |
+| 2026-11-07 | [10.5281/zenodo.24044606](https://doi.org/10.5281/zenodo.24044606) (concept 24040312) | The a0 Galaxy Law and its Screened Khronon Action: Field Equations, Lean Certificates, and the Closure Record (Working Note) | v1.1 (PAPER70) |
+| 2026-11-07 | [10.5281/zenodo.24040313](https://doi.org/10.5281/zenodo.24040313) (concept 24040312) | The a0 Galaxy Law and its Screened Khronon Action: Field Equations, Lean Certificates, and the Closure Record (Working Note) | v1.0 (PAPER70) |
+| 2026-11-06 | [10.5281/zenodo.24025170](https://doi.org/10.5281/zenodo.24025170) | Every Door a Verdict: the Closure Record of the a0 Galaxy Law and its Screened Khronon Action (Working Note) | v1.0 (PAPER69) |
+| 2026-11-05 | [10.5281/zenodo.23990944](https://doi.org/10.5281/zenodo.23990944) | A Screened, Saddle-Free Khronon Action for the a0 Galaxy Law (Working Note) | v1.0 (PAPER68) |
+| 2026-11-04 | [10.5281/zenodo.23958256](https://doi.org/10.5281/zenodo.23958256) | What the ALMA Release of 6 November 2026 Can Test: Pre-Data Predictions for U4_28473 and U4_27928 (Working Note) | v1.4 (PAPER66) |
+| 2026-11-03 | [10.5281/zenodo.23931532](https://doi.org/10.5281/zenodo.23931532) | What the ALMA Release of 6 November 2026 Can Test: Pre-Data Predictions for U4_28473 and U4_27928 (Working Note) | v1.3 (PAPER66) |
+| 2026-11-02 | [10.5281/zenodo.23883741](https://doi.org/10.5281/zenodo.23883741) | A Galaxy Law Tied to Dark Energy, and a Map of What It Leaves Unexplained (Working Note) | v1.0 (PAPER67) |
+| 2026-11-01 | [10.5281/zenodo.23868979](https://doi.org/10.5281/zenodo.23868979) | What the ALMA Release of 6 November 2026 Can Test: Pre-Data Predictions for U4_28473 and U4_27928 (Working Note) | v1.2 (PAPER66) |
+| 2026-11-01 | [10.5281/zenodo.23867238](https://doi.org/10.5281/zenodo.23867238) | What the ALMA Release of 6 November 2026 Can Test: Pre-Data Predictions for U4_28473 and U4_27928 (Working Note) | v1.1 (PAPER66) |
+| 2026-11-01 | [10.5281/zenodo.23865084](https://doi.org/10.5281/zenodo.23865084) | What the ALMA Release of 6 November 2026 Can Test: Pre-Data Predictions for U4_28473 and U4_27928 (Working Note) | v1.0 (PAPER66) |
+| 2026-10-29 | [10.5281/zenodo.23771199](https://doi.org/10.5281/zenodo.23771199) (concept 23750179) | The Basin Rule: One Surface-Density Condition for Where Cold Dark Energy Condenses, with Sealed Lensing Predictions and Audited Failures (Working Note, v1.2) | v1.2 (PAPER64) |
+| 2026-10-29 | [10.5281/zenodo.23762420](https://doi.org/10.5281/zenodo.23762420) (concept 23750179) | The Basin Rule: One Surface-Density Condition for Where Cold Dark Energy Condenses, with Sealed Lensing Predictions and Audited Failures (Working Note, v1.1 with correction) | v1.1 (PAPER64) |
+| 2026-10-28 | [10.5281/zenodo.23750180](https://doi.org/10.5281/zenodo.23750180) (concept 23750179) | The Basin Rule: One Surface-Density Condition for Where Cold Dark Energy Condenses, with Sealed Lensing Predictions and Audited Failures (Working Note) | v1.0 (PAPER64) |
+| 2026-10-27 | [10.5281/zenodo.23708507](https://doi.org/10.5281/zenodo.23708507) | Where Does Cold Dark Energy Switch On? A Precisely Posed Question at M >~ 10^12.4 Msun (Working Note) | v1.0 (PAPER63) |
 | 2026-10-23 | [10.5281/zenodo.23601528](https://doi.org/10.5281/zenodo.23601528) (concept 23601527) | The Scope of a Dark-Energy-Tied Galaxy Law: What Its Screened Khronon Theory Passes, and the Mechanisms of Its Cluster, Growth and Saddle Failures (Working Note) | v1.0 (PAPER60) |
 | 2026-10-21 | [10.5281/zenodo.23533323](https://doi.org/10.5281/zenodo.23533323) (concept 23501948) | Why Cold Energy Settles: A Tethered Medium Whose Displacement Is the Gravitational Polarization (Working Note) | v1.2 (PAPER49; new version of 23524075: the saddle prediction reworded to "no saddle dip", depth numbers unchanged; audit 69 checks) |
 | 2026-10-21 | [10.5281/zenodo.23532885](https://doi.org/10.5281/zenodo.23532885) | What a Dark-Energy-Tied Galaxy Law Demands of Its Cold Sector: No-Go Theorems, a Covariant Parent, and the Labelled-Domain Construction (Working Note) | v1.0 (PAPER57) |
