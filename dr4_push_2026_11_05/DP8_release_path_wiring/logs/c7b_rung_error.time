@@ -1,0 +1,45 @@
+Traceback (most recent call last):
+  File "dr4_push_2026_11_05/DP1_nss_off_rung/nss_off_rung.py", line 374, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "dr4_push_2026_11_05/DP1_nss_off_rung/nss_off_rung.py", line 354, in main
+    csv_bytes, rep = rung_build(not a.keep_nss, 30, a.release, a.variant, a.cut13, manifest, a.allow_network, seed_offset=a.seed_offset, stage_dir=a.stage_dir,
+                     ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                cones=cones, missing_cones=a.missing_cones, corr_transport=a.corr_transport)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "dr4_push_2026_11_05/DP1_nss_off_rung/nss_off_rung.py", line 70, in rung_build
+    csv_bytes, report = D.run(release, variant, cut13, manifest, allow_network, seed_offset=seed_offset, stage_dir=stage_dir, cones=cones,
+                        ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              missing_cones=missing_cones, corr_transport=corr_transport)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "prep_2026/gaia_dr4_prep/dr4_ready_1/dry_run_driver.py", line 346, in run
+    csv_bytes, flow = stage_g(S, F, ext, variant, release, third_fn, note, allow_network, seed_offset=seed_offset, cache_path=cache_path, candidates_out=dump_candidates, corr_transport=corr_transport)
+                      ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "prep_2026/gaia_dr4_prep/dr4_ready_1/dry_run_driver.py", line 270, in stage_g
+    extra["third"][idx] = third(S, F["a"][idx], F["b"][idx])
+                          ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "prep_2026/gaia_dr4_prep/dr4_ready_1/dry_run_driver.py", line 320, in fn
+    flags, info = cones.flags(S_, a, b, mode=mode, missing=missing, fallback=lambda S__, a_, b_: B.third_star_flags(S__, a_, b_))
+                  ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "prep_2026/gaia_dr4_prep/dr4_ready_1/cones_cut13.py", line 107, in flags
+    raise ConeCoverageError(f"{n_missing} of {len(a)} pairs that reach cut 13 have NO neighbour cone (covered {int(cov.sum())}); "
+                            f"a pair without a cone is never treated as 'no third star'; fetch cones for them (first uncovered: {first})")
+cones_cut13.ConeCoverageError: 139 of 10370 pairs that reach cut 13 have NO neighbour cone (covered 10231); a pair without a cone is never treated as 'no third star'; fetch cones for them (first uncovered: [(500972789364298112, 500972785066051072), (333518577201757824, 333518577201757696), (849418332125923968, 849465538110747648)])
+        1.24 real         1.01 user         0.23 sys
+          1323745280  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              120675  page reclaims
+                  36  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                   0  voluntary context switches
+                  80  involuntary context switches
+         14796117004  instructions retired
+          5151267134  cycles elapsed
+          1200457336  peak memory footprint

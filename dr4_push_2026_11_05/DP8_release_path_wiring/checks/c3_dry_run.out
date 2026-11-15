@@ -1,0 +1,66 @@
+2026-11-15T14:32:38Z DP3 Gaia DR4 release day, mode --dry-run-dr3. kappa = 1/2 FITTED; footings never pooled; not theory closed.
+2026-11-15T14:32:38Z DRY RUN on DR3 (offline; every number is a code-path test, NON-SCORING, Amendment 7(e))
+2026-11-15T14:32:38Z CFG825 once-only DR4 slot: absent (unused)
+2026-11-15T14:32:38Z hashes: all 30 pinned files OK; prereg = Amendment 22 'after' digest; prereg directory clean
+2026-11-15T14:32:38Z PASS D0 pinned hashes
+2026-11-15T14:32:38Z disk free: 16 GB (need >= 20)
+2026-11-15T14:32:38Z no 1024^3 run live
+2026-11-15T14:32:38Z no python job > 2 GB live
+2026-11-15T14:32:53Z PASS D1 self-test dry_run_driver
+2026-11-15T14:32:53Z PASS D1 self-test amdt14_distances
+2026-11-15T14:32:53Z PASS D1 self-test arm_c_rows
+2026-11-15T14:32:53Z PASS D1 self-test make_pair_table
+2026-11-15T14:32:53Z PASS D1 self-test dr4_outcome_map
+2026-11-15T14:32:53Z D2 builds (driver, offline)
+2026-11-15T14:32:56Z PASS D2 build extract-builder
+2026-11-15T14:32:56Z PASS D2 extract-builder = reference (6,210 pairs, sha256 6fff64d964ebaa72)
+2026-11-15T14:33:01Z PASS D2 build cones-literal (the release-day primary form, D7 N9)
+2026-11-15T14:33:01Z D2 cones-literal: 6180 pairs, sha256 c5cb89e8f95bfe3d (code-path number)
+2026-11-15T14:33:32Z PASS D3 frozen pipeline on extract_builder (peak RSS 3.93 GB)
+2026-11-15T14:33:32Z PASS D3 pipeline self-test PASS (extract_builder)
+2026-11-15T14:33:32Z PASS D3 amdt14_distances (extract_builder)
+2026-11-15T14:33:32Z PASS D3 arm_c_rows (extract_builder)
+2026-11-15T14:34:03Z PASS D3 frozen pipeline on cones_literal (peak RSS 3.92 GB)
+2026-11-15T14:34:03Z PASS D3 pipeline self-test PASS (cones_literal)
+2026-11-15T14:34:03Z PASS D3 amdt14_distances (cones_literal)
+2026-11-15T14:34:03Z PASS D3 arm_c_rows (cones_literal)
+2026-11-15T14:34:03Z PASS D3 extract-builder canonical gamma-hat 1.0750 = 1.0750 (10-09 dry run)
+2026-11-15T14:34:03Z D4 seed sweep (g-only, extract-builder, K = 2 for time; declared) and the seed label on the committed DR3 G50 manifest
+2026-11-15T14:41:27Z PASS D4 seed_sweep K 2
+2026-11-15T14:41:27Z PASS D4 seed_label --evaluate (committed DR3 G50 manifest)
+  DP1 rung CSV sha256 1dbdf21a461a2f3b manifest ['1dbdf21a461a2f3b']
+2026-11-15T14:41:27Z PASS D5 NSS-off rung: DP1 REPRODUCED; its DR3 rung catalogue matches its manifest
+2026-11-15T14:41:27Z D5b NSS-off rung in the release-day form (cones-literal, --missing-cones extract-fallback; decision 2026-11-15b Q2) and its fallback count
+2026-11-15T14:41:35Z PASS D5b rung build, cones-literal + extract-fallback (peak RSS 2.61 GB)
+2026-11-15T14:41:35Z PASS D5b fallback counts read, policy extract-fallback
+  fallback pairs: G11 form 139 (flagged 0), sweep k = 0 rung 139 (flagged 0); DP7 reference 139 (0)
+2026-11-15T14:41:35Z PASS D5b fallback count = DP7's 139 pairs, 0 flagged (G11 form and the sweep's k = 0 rung)
+2026-11-15T14:41:35Z PASS D5c G11S launcher refuses '--release dr3 --allow-network' without the owner's GO G11S (exit 2)
+2026-11-15T14:41:35Z PASS D5c G11S launcher refuses '--release dr4' without the owner's GO G11S (exit 2)
+2026-11-15T14:41:35Z PASS D5c G11S launcher refuses '--release dr4 --allow-network' without the owner's GO G11S (exit 2)
+2026-11-15T14:41:35Z D6 sigma_sys on the DR3 reference with the D2 lane's NSS-off probe (known answer)
+2026-11-15T14:41:45Z PASS D6 dp3_sigma_sys
+  canonical: shifts +0.0150 +0.0325 +0.0750 vs D2 +0.0150 +0.0325 +0.0750 ; max diff 0.0000; (b) 0.0375 vs 0.0375
+  alt: shifts -0.0125 -0.0250 +0.0575 vs D2 -0.0125 -0.0250 +0.0575 ; max diff 0.0000; (b) 0.0412 vs 0.0412
+2026-11-15T14:41:45Z PASS D6 ladder shifts and sigma_sys(b) reproduce the D2 lane (+-0.002)
+2026-11-15T14:41:56Z PASS D6b dp3_sigma_sys on the release-day path (information)
+2026-11-15T14:41:56Z D6c sigma_sys(b) with the seed-mean NSS-off entry on the release-day path (decision 11-05c; 2026-11-15b Q1), DP7's committed K = 50 DR3 sweep reused
+2026-11-15T14:42:06Z PASS D6c dp3_sigma_sys --nss-off-seed-mean
+  D6c: 77 numeric leaves, 0 differ; (b) 0.0200 / 0.0200 vs DP7 0.0200 / 0.0200; string leaves differing: ['/alt/nss_off_entry_in_b_and_e', '/canonical/nss_off_entry_in_b_and_e', '/nss_off_seed_mean/note']
+2026-11-15T14:42:06Z PASS D6c every number equals DP7's dp3_seedmean_releasepath.json (both footings)
+2026-11-15T14:42:16Z PASS D6d RUWE < 1.2 information call (separate output)
+2026-11-15T14:42:16Z PASS D6d the main sigma_sys json is byte-identical after the information call (sha256 82752ea863f30eb2)
+2026-11-15T14:42:16Z D7 R (registered catalogue, --declare-neutral non_single_star; CFG825 scored in memory, never --dr3 / --dr4)
+2026-11-15T14:42:17Z PASS D7 make_pair_table
+2026-11-15T14:42:17Z PASS D7 R in memory (DR4 slot untouched)
+  R 0.972839 (official C4 0.972839), N_R 348 (348), sigma_R 0.1775
+2026-11-15T14:42:17Z PASS D7 R reproduces the official DR3 C4 (R, N_R)
+2026-11-15T14:42:17Z D8 final scoring step on the DR3 reference chain (DRY RUN, NON-SCORING)
+2026-11-15T14:42:17Z PASS D8 dr4_outcome_map on the DR3 chain
+2026-11-15T14:42:17Z PASS D8b dr4_outcome_map, release-day path
+2026-11-15T14:42:17Z PASS D8c dr4_outcome_map, release-day path with the seed-mean entry
+2026-11-15T14:42:17Z D9 Amendment 14(c) separation-resolved statistic after the label steps, report-only (decision 2026-11-15b Q8; O16 runs it on the day only if DP8's check state is PASS, now ABSENT)
+2026-11-15T14:42:19Z PASS D9 dp8_sepbins on the registered DR3 catalogue
+2026-11-15T14:42:19Z CFG825 DR4 slot still absent
+2026-11-15T14:42:19Z DRY RUN COMPLETE: every D step PASS
+exit 0

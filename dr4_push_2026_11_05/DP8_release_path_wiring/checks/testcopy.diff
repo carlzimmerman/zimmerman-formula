@@ -1,0 +1,18 @@
+28,29c28,29
+< APPROVAL=$LANE/OWNER_APPROVAL_DR4.md
+< RELEASE_DATE=2026-12-02
+---
+> DP8T=dr4_push_2026_11_05/DP8_release_path_wiring; APPROVAL=$DP8T/work/OWNER_APPROVAL_TEST.md
+> RELEASE_DATE=${DP8_TEST_RELEASE_DATE:-2026-12-02}
+32,34c32,34
+<   --check) OUT=$LANE/check ;;
+<   --run) OUT=$LANE/release_2026_12_02 ;;
+<   --dry-run-dr3) OUT=$LANE/dry_run_dr3 ;;
+---
+>   --check) OUT=$DP8T/check_testcopy ;;
+>   --run) OUT=$DP8T/release_testcopy ;;
+>   --dry-run-dr3) OUT=$DP8T/dry_run_dr3 ;;
+106c106
+<   [ "$dg" -ge 20 ] || { log "GUARD: free disk below 20 GB"; ok=1; }
+---
+>   [ "$dg" -ge ${DP8_TEST_MIN_DISK_GB:-20} ] || { log "GUARD: free disk below 20 GB"; ok=1; }
