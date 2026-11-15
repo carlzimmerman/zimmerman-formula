@@ -41,7 +41,7 @@ def supplement_gate():
     nfiles = len([n for n in names if not n.endswith("/")])
     if hashlib.sha256(blob).hexdigest() != man["sha256"] or nfiles != man["count"] or len(blob) != man["zip_bytes"]:
         sys.exit("REFUSING TO PUBLISH: supplement zip does not match its manifest -- rebuild it")
-    if any("/Users/" in n or n.startswith("/") for n in names):
+    if any(("/" + "Users/") in n or n.startswith("/") for n in names):
         sys.exit("REFUSING TO PUBLISH: supplement holds an absolute path")
     root = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..")
     subprocess.run(["git", "-C", root, "fetch", "-q", "origin", "main"], check=True)

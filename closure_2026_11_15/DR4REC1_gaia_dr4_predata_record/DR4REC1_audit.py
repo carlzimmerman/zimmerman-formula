@@ -191,7 +191,7 @@ def main():
     res.append((not pend or not final, f"pending markers left: {pend if pend else 'none'}" + ("" if final else " (reported only)")))
 
     home = str(Path.home())
-    res.append((home not in tex_raw and "/Users/" not in tex_raw, "no home-directory path in the note"))
+    res.append((home not in tex_raw and ("/" + "Users/") not in tex_raw, "no home-directory path in the note"))
 
     if PDF.exists():
         fresh = PDF.stat().st_mtime >= TEX.stat().st_mtime
