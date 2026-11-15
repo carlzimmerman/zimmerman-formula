@@ -67,6 +67,31 @@ conflicts with this file, this file is newer unless it says otherwise.
 
 ---
 
+## ⚠ DR4 ADDENDUM — 2026-11-15 (Gaia DR4 wide binaries, due 2026-12-02). On Gaia DR4 this addendum is newer than every block below it.
+
+Written under item T2 of `prep_2026/gaia_dr4_prep/OWNER_DECISION_2026-11-15b_DR4_OPEN_GAPS.md`. The blocks below (the
+Revision 6, 8 and 9 blocks, and section 3's table of live fronts) describe the DR4 front as it stood under Amendments 1
+to 11, with Arm A as the latest target. Those lines are history and are left as written. What governs today:
+
+- **The adopted theory's prediction is CQ2** (`cq_lanes_2026_11_04/CQ2_v3s_dr4_seal/SEALED_PREDICTION.md`, sealed
+  2026-11-04): v3s wide binaries are screened and Newtonian. Through the frozen pipeline v3s and Newton are not
+  separable.
+- **How it is scored.** The D2 fork rows plus the R rule, one verdict line per footing, under the three owner
+  decisions of 2026-11-05 in `prep_2026/gaia_dr4_prep/`. Arm A is not the adopted theory; its floor (1.1614 canonical
+  / 1.1917 alt) is the law-first anchor of those rows.
+- **Form B** (the form the record closes on since 2026-11-09) takes that same reading as its headline score (owner,
+  2026-11-15, first note). The gaps the registry map left open are settled by the second note of that day.
+- **What DR4 can and cannot do.** In the registry map's words: "A Newtonian sky is survival for the adopted theory,
+  never confirmation." DR4 can exclude v3s's screening from above. It cannot confirm it.
+- **Milky Way rows** (vertical structure, local density, Oort constants, K_z): none is scored for the adopted theory.
+- **Not yet done on 2026-11-15:** the pre-data fix that wires the filed seed-mean entry into the release-day script,
+  and the pre-data check of CQ2 under the Pi^6 blend. The second note commissions both; neither has landed.
+- **Read:** the map, `closure_2026_11_12/DR4MAP_gaia_dr4_registry_map/DR4_MAP.md`; the runbook,
+  `dr4_push_2026_11_05/DP3_release_day/RELEASE_DAY_RUNBOOK_DR4.md`; and, for where the theory as a whole stands, the
+  closure statement, `closure_2026_11_15/BCS1_bounded_closure_statement/BOUNDED_CLOSURE_STATEMENT.md`.
+
+kappa = 1/2 FITTED; footings never pooled; not theory closed. Nothing here says the data favour the framework.
+
 ## ⚠ FIX-FORWARD NOTE — 2026-10-23, on Revision 12 item 1 (`reviews/codex_arrival_audit_2026_10_23/README.md`)
 
 Item 1's "26 dimensions, 8 first-class constraints, 0 second-class ⇒ 5 healthy DOF" for the DSF-21 / A33 action is
