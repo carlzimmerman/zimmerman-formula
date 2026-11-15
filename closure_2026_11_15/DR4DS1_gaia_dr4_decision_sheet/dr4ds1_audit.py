@@ -10,14 +10,23 @@ Three more checks read the release-day script and the sheet itself.
                                      check must then FAIL (so each check is shown to bite)
 
 Computes nothing, runs no scorer, fetches nothing. Paths are relative to the repository root.
+
+Note, 2026-11-15, later the same day. The sheet describes the files as they stood when it was written, and three of
+the things it points out were then fixed, on the owner's answer to it, by lane DP8: the release-day script gained the
+seed-mean step, and the help text of dp3_sigma_sys.py no longer says the decision 11-05c is not filed. So the cited
+files are now read as they stood at the sheet's own commit (PIN below, its id on origin), not from the working tree,
+which would fail those three checks for the right reason. The sheet itself is unchanged. If git cannot read that
+commit (an unpacked copy with no repository), the working tree is read and those three checks are expected to fail.
 """
 import re
+import subprocess
 import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 SHEET = HERE / "DR4_DECISION_SHEET.md"
+PIN = "ba160b28f1"  # the commit that added the sheet, by its id on origin: the cited files are read as they stood there
 
 MAP = "closure_2026_11_12/DR4MAP_gaia_dr4_registry_map/DR4_MAP.md"
 PREP = "prep_2026/gaia_dr4_prep/"
@@ -63,8 +72,16 @@ def norm(text):
     return re.sub(r"\s+", " ", text.replace("*", "")).strip()
 
 
+def raw(rel):
+    """The file as it stood at PIN; the working tree copy if git cannot read that commit."""
+    r = subprocess.run(["git", "-C", str(ROOT), "show", f"{PIN}:{rel}"], capture_output=True)
+    if r.returncode == 0:
+        return r.stdout.decode("utf-8", errors="replace")
+    return (ROOT / rel).read_text(encoding="utf-8")
+
+
 def read(rel):
-    return norm((ROOT / rel).read_text(encoding="utf-8"))
+    return norm(raw(rel))
 
 
 def mutated(quote):
@@ -87,7 +104,7 @@ def main():
         results.append((ok, f"quotation in the sheet and in {rel}: {quote[:60]}"))
 
     # The release-day script still has no seed-mean step (Q1). The twin looks for a string that is there.
-    script = (ROOT / DP3 / "dr4_release_day.sh").read_text(encoding="utf-8")
+    script = raw(DP3 + "dr4_release_day.sh")
     absent = ["dp3_sigma_sys.py"] if mutate else ["--nss-off-seed-mean", "dp7_seed_mean"]
     for needle in absent:
         results.append((needle not in script, f"dr4_release_day.sh does not contain {needle}"))
@@ -95,9 +112,10 @@ def main():
         results.append(("dp3_sigma_sys.py" in script, "dr4_release_day.sh calls dp3_sigma_sys.py"))
 
     # The sheet carries no home path. The twin looks for a string that is there.
-    banned = ["DR4DS1"] if mutate else ["/Users/", "/home/"]
-    for needle in banned:
-        results.append((needle not in SHEET.read_text(encoding="utf-8"), f"the sheet does not contain {needle}"))
+    # the two tokens are assembled here so that this file does not itself hold a home-directory path
+    banned = [("DR4DS1", "the lane id")] if mutate else [("/" + "Users/", "a macOS home path"), ("/" + "home/", "a Linux home path")]
+    for needle, name in banned:
+        results.append((needle not in SHEET.read_text(encoding="utf-8"), f"the sheet does not contain {name}"))
 
     if mutate:
         failed = sum(1 for ok, _ in results if not ok)
