@@ -1,0 +1,96 @@
+../../closure_2026_11_14/EUC21_mask_mass_gas_lane_reread/EUC21_MUTATE.lean:26:2: error: linarith failed to find a contradiction
+a0 y1 y2 : ℝ
+ha : 0 ≤ a0
+h1 : 0 ≤ y1
+h12 : y1 ≤ y2
+hs : √(y1 ^ 2 + 4 * a0 * y1) ≤ √(y2 ^ 2 + 4 * a0 * y2)
+a✝ : (y1 + √(y1 ^ 2 + 4 * a0 * y1)) / 2 < (y2 + √(y2 ^ 2 + 4 * a0 * y2)) / 2
+⊢ False
+failed
+../../closure_2026_11_14/EUC21_mask_mass_gas_lane_reread/EUC21_MUTATE.lean:41:2: error: linarith failed to find a contradiction
+a0 y1 y2 : ℝ
+ha : 0 ≤ a0
+h1 : 0 < y1
+h12 : y1 ≤ y2
+h2 : 0 < y2
+e1 : y1 * √(y2 ^ 2 + 4 * a0 * y2) = √(y1 ^ 2 * (y2 ^ 2 + 4 * a0 * y2))
+e2 : y2 * √(y1 ^ 2 + 4 * a0 * y1) = √(y2 ^ 2 * (y1 ^ 2 + 4 * a0 * y1))
+hs : √(y1 ^ 2 * (y2 ^ 2 + 4 * a0 * y2)) ≤ √(y2 ^ 2 * (y1 ^ 2 + 4 * a0 * y1))
+a✝ : y1 * ((y2 + √(y2 ^ 2 + 4 * a0 * y2)) / 2) < y2 * ((y1 + √(y1 ^ 2 + 4 * a0 * y1)) / 2)
+⊢ False
+failed
+../../closure_2026_11_14/EUC21_mask_mass_gas_lane_reread/EUC21_MUTATE.lean:91:4: error: linarith failed to find a contradiction
+case left
+a0 gs gh rho A : ℝ
+ha : 0 ≤ a0
+hs : 0 ≤ gs
+hh : 0 ≤ gh
+hrho : 0 ≤ rho
+hA0 : 0 ≤ A
+hA1 : A ≤ 1
+y1 : ℝ := gs + A * gh
+hpos : 0 < y1
+hy1 : y1 = gs + A * gh
+y2 : ℝ := gs + gh
+hy2 : y2 = gs + gh
+h12 : y1 ≤ y2
+hy1pos : 0 < y1
+hy2pos : 0 < y2
+g1 : ℝ := (y1 + √(y1 ^ 2 + 4 * a0 * y1)) / 2
+hg1 : g1 = (y1 + √(y1 ^ 2 + 4 * a0 * y1)) / 2
+g2 : ℝ := (y2 + √(y2 ^ 2 + 4 * a0 * y2)) / 2
+hg2 : g2 = (y2 + √(y2 ^ 2 + 4 * a0 * y2)) / 2
+hmono : g1 ≤ g2
+hratio : y1 * g2 ≤ y2 * g1
+hg2nn : 0 ≤ g2
+hAy : A * y2 ≤ y1
+hAg : A * g2 ≤ g1
+h6 : A * (A * g2) ≤ A * g1
+h7 : rho * (A * (A * g2)) ≤ rho * (A * g1)
+a✝ : A * (rho * g1) < A * (rho * g2)
+⊢ False
+failed
+Try this:
+  [apply] ring_nf
+  
+  The `ring` tactic failed to close the goal. Use `ring_nf` to obtain a normal form.
+    
+  Note that `ring` works primarily in *commutative* rings. If you have a noncommutative ring, abelian group or module, consider using `noncomm_ring`, `abel` or `module` instead.
+../../closure_2026_11_14/EUC21_mask_mass_gas_lane_reread/EUC21_MUTATE.lean:97:75: error: unsolved goals
+G M rt r : ℝ
+hr : r ≠ 0
+hrt : rt ≠ 0
+hpi : Real.pi ≠ 0
+h1 : HasDerivAt (fun x => (x ^ 2)⁻¹) (-(↑2 * r ^ (2 - 1)) / (r ^ 2) ^ 2) r
+h2 :
+  HasDerivAt (fun y => G * M ^ 2 / (8 * Real.pi * rt ^ 2) * ((y ^ 2)⁻¹ - (rt ^ 2)⁻¹))
+    (G * M ^ 2 / (8 * Real.pi * rt ^ 2) * (-(↑2 * r ^ (2 - 1)) / (r ^ 2) ^ 2)) r
+⊢ -(G * M ^ 2 * 8) = G * M ^ 2 * 8
+../../closure_2026_11_14/EUC21_mask_mass_gas_lane_reread/EUC21_MUTATE.lean:108:6: error: Tactic `rewrite` failed: Did not find an occurrence of the pattern
+  ?m.40 / p < 1
+in the target expression
+  m + 2 * s < p ↔ (m + 2 * s) / p < 2
+
+m s p : ℝ
+hp : 0 < p
+⊢ m + 2 * s < p ↔ (m + 2 * s) / p < 2
+../../closure_2026_11_14/EUC21_mask_mass_gas_lane_reread/EUC21_MUTATE.lean:112:39: error: Application type mismatch: The argument
+  hp1
+has type
+  0 < p1
+but is expected to have type
+  0 < p2
+in the application
+  div_le_div_of_nonneg_left hnum hp1
+../../closure_2026_11_14/EUC21_mask_mass_gas_lane_reread/EUC21_MUTATE.lean:115:2: error: linarith failed to find a contradiction
+m s p : ℝ
+hnp : p < 3 * s
+hex : m + 2 * s < p
+a✝ : 0 ≤ m
+⊢ False
+failed
+../../closure_2026_11_14/EUC21_mask_mass_gas_lane_reread/EUC21_MUTATE.lean:118:64: error: unsolved goals
+n : ℕ
+w c : Fin n → ℝ
+⊢ (∑ x, w x) / ↑n - (∑ x, c x) / ↑n = (∑ i, w i) / ↑n + (∑ i, c i) / ↑n
+exit 1
