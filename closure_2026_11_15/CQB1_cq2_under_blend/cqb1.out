@@ -1,0 +1,110 @@
+CQB1 (criteria 37f878538f)
+kappa = 1/2 FITTED; footings never pooled; not theory closed. Nothing here says the data favour the framework.
+
+== K0: inputs pinned (sha256)
+  cq_lanes_2026_11_04/CQ2_v3s_dr4_seal/cq2.py: matches
+  cq_lanes_2026_11_04/CQ2_v3s_dr4_seal/cq2.json: matches
+  action_search_2026_11_05/AC21_smooth_3d/iter_6_fast_decay/form.json: matches
+  rebuild_2026_10_22/X3_switched_stiffness/x3_switched_stiffness_results.json: matches
+K0 PASS: CQ2's cq2.py / cq2.json, AC21 form.json and X3's json match their pinned sha256
+
+== KA1: CQ2's cq2.py, byte-identical copy run from this folder (outputs here, never in CQ2's folder)
+  switch.min_binary_margin: max rel 0.0e+00
+  switch.near_zone_min: max rel 0.0e+00
+  gamma_r grid canonical: max rel 0.0e+00
+  DR3 canonical: max rel 0.0e+00
+  gamma_r grid alt: max rel 0.0e+00
+  DR3 alt: max rel 0.0e+00
+  pipeline gamma_inf (all): max rel 0.0e+00
+  every numeric leaf of cq2.json (980 leaves, wall time and RSS excluded): max rel 0.0e+00; missing 0; non-numeric differences 0
+  reproduction's own checks: {'K1': True, 'K4': True, 'K5': True, 'K6': True, 'K7': True, 'K2': True, 'K3': True}; its verdict {'canonical': {'screened_K4_K5': True, 'max_gamma_minus_1': 4.451504542055835e-05, 'dQ': 2.4595993897147395e-07, 'dgamma_paired_max': 0.0, 'requirements': {'max_gamma_minus_1': True, 'dQ': True, 'dgamma_paired': True}, 'label': 'NEWTONIAN', 'vs_newton': 'NOT SEPARABLE', 'vs_plain': 'SEPARABLE'}, 'alt': {'screened_K4_K5': True, 'max_gamma_minus_1': 4.014629318568148e-05, 'dQ': 4.815565057825211e-09, 'dgamma_paired_max': 0.0, 'requirements': {'max_gamma_minus_1': True, 'dQ': True, 'dgamma_paired': True}, 'label': 'NEWTONIAN', 'vs_newton': 'NOT SEPARABLE', 'vs_plain': 'SEPARABLE'}}
+  sealed values reproduced: switch margin 7064, near zone +0.0449 Msun/pc^3, gamma_r - 1 at 30 kAU canonical 4.4497e-05, alt 4.0133e-05
+KA1 PASS: byte-identical copy; named numbers max rel 0.0e+00 (line 1e-9); all leaves 0.0e+00; reproduction's K1-K7 all PASS: True
+
+== KA2: this lane's Route F copy vs CQ2's json (1 Msun, primary field, L* floor; s = 1, 10, 30 kAU)
+  [canonical] s 1 kAU: 4.997845e-08 (CQ2 4.997845e-08, rel 0.0e+00); s 10 kAU: 4.981107e-06 (CQ2 4.981107e-06, rel 0.0e+00); s 30 kAU: 4.449732e-05 (CQ2 4.449732e-05, rel 0.0e+00)
+  [alt] s 1 kAU: 4.500601e-08 (CQ2 4.500601e-08, rel 0.0e+00); s 10 kAU: 4.487700e-06 (CQ2 4.487700e-06, rel 0.0e+00); s 30 kAU: 4.013268e-05 (CQ2 4.013268e-05, rel 0.0e+00)
+KA2 PASS: max rel 0.0e+00 (line 1e-9)
+
+== U1: rho_DE from the a0 law, SI, this lane's constants (a0 = kappa c sqrt(G rho_DE), kappa = 1/2)
+  [canonical] a0 9.3603e-11 m/s^2 -> rho_DE 5.84241e-27 kg/m^3 = 8.63253e-08 Msun/pc^3 (1 Msun/pc^3 = 6.767905e-20 kg/m^3); a0 back from rho_DE 9.3603e-11
+  [alt] a0 1.1312e-10 m/s^2 -> rho_DE 8.53280e-27 kg/m^3 = 1.26077e-07 Msun/pc^3 (1 Msun/pc^3 = 6.767905e-20 kg/m^3); a0 back from rho_DE 1.1312e-10
+U1 PASS: rho_DE computed in SI on both footings
+
+== U2: the b the blend's own lanes use (QX19: G = c = 1, K = 4 pi, s2v = 8 ag^2, b = s2v/2) vs G rho_DE / c^2
+  [canonical] QX19 b = 4.338671e-54 m^-2; G rho_DE / c^2 = 4.338671e-54 m^-2; rel 0.0e+00
+  [alt] QX19 b = 6.336595e-54 m^-2; G rho_DE / c^2 = 6.336595e-54 m^-2; rel 1.8e-16
+  QX19's line for b found verbatim in qx19.py: True
+U2 PASS: b (QX19, geometric) = G rho_DE / c^2: max rel 1.8e-16 (line 1e-12)
+
+== U3: Sigma's normalisation (D.P in the action vs the D.P X3 and CQ2 report in Msun/pc^3)
+  text pin, CQ2 criteria: (L) lap Phi = K rho + div p, p = K P: found
+  text pin, QX19: P = p / K, K = 4 pi (G = c = 1): found
+  text pin, X3 lobes: D.P = div p_SI / (4 pi G) / (Msun/pc^3): found
+  text pin, X3 Galactic phantom: mass density / (Msun/pc^3): found
+  text pin, X3: MSUN_PC3 = MSUN / PC ** 3: found
+  X3's Msun/pc^3 = 6.768110e-20 kg/m^3 (MSUN 1.98847e+30, PC 3.085677581e+16); this lane's 6.767905e-20; rel 3.0e-05
+  Derivation (static weak field, G = c = 1): (L) lap Phi = 4 pi rho + div p with p = K P, K = 4 pi, so div p = 4 pi rho_ph(geom)
+  and Sigma = D.P = div P = div p / K = rho_ph(geom) = G rho_ph / c^2, rho_ph = div p_SI / (4 pi G).
+  b = rho_DE(geom) = G rho_DE / c^2 (U2). Hence Sigma / b = rho_ph / rho_DE, both in Msun/pc^3: the same quantity, same units.
+  Cross-reference (not a gate): TC1 N2 reads 'Sigma/X = 2 + rho_ph/rho_DE' for AC2q (Sigma = D.P + 2X, X = rho_DE scale).
+U3 PASS: unit chain pinned in the record's text; X3's Msun/pc^3 vs this lane's rel 3.0e-05 (line 1e-3)
+
+== S1: the blend f from AC21 iter_6 form.json, exact (sympy)
+  f(1) = 1/2, f'(1) = 1, f''(1-) = 1, f'''(1-) = 0, f''''(1-) = 0; f = 122363904/44610575 q^6 on (0, 1/2] (QX19 C6 states 122363904/44610575: True); interior knots C4: [True, True, True]
+  q >= 1: f = q^2/2 exactly: True; Sigma >= b: F = Sigma^2/2, F' = Sigma, F'' = 1, dF/db = 0, Sigma F' = 2F: True
+  q <= 0: f = 0 by the form's definition (f(0) = f'(0) = 0 and f = A q^6 near 0, so the join at 0 is C5)
+  f'' on [0, 1]: max 6.2385 at q 0.5328; min on [1/2, 1] 0.0057; f'' = 1 below 1/2 at q = A^(-1/4) = 0.3320; f' strictly increasing on (0, 1]: True; float evaluator at q = 1-: |f - 1/2| 1.0e-12, |f' - 1| 1.0e-12
+S1 PASS: f = q^2/2 (with f', f'' and the stress term) exactly for q >= 1; C4 joins; f' monotone
+
+== U4: independent SI estimate of the Galactic phantom (spherical Hernquist + simple-nu QUMOND; this lane's code)
+  [canonical] central (Mb 6e10, aH 3 kpc): box min 0.0046 (X3 0.0055), at Sun 0.0664 (X3 0.0447) Msun/pc^3; over Mb 4-8e10, aH 2-4 kpc: box min 0.0038-0.0054, at Sun 0.0496-0.0951; worst disagreement factor with X3 2.12
+  [alt] central (Mb 6e10, aH 3 kpc): box min 0.0052 (X3 0.0062), at Sun 0.0756 (X3 0.0514) Msun/pc^3; over Mb 4-8e10, aH 2-4 kpc: box min 0.0042-0.0061, at Sun 0.0568-0.1074; worst disagreement factor with X3 2.09
+U4 PASS: independent estimate within a factor 10 of X3 on both footings (worst 2.12); the margin below is divided by this factor
+
+== S2: Sigma/b over the frozen region (R1: X3 D2 rows minus 2.5 x the 1 Msun lobe; R2: near zone)
+  [canonical] R1 x_e 1.15, L* 21.7 pc: Sigma 0.005505 Msun/pc^3 -> Sigma/b 6.3772e+04
+  [canonical] R1 x_e 1.15, L* 24.0 pc: Sigma 0.005505 Msun/pc^3 -> Sigma/b 6.3773e+04
+  [canonical] R1 x_e 1.15, L* 90.0 pc: Sigma 0.005506 Msun/pc^3 -> Sigma/b 6.3776e+04
+  [canonical] R1 x_e 2.6, L* 21.7 pc: Sigma 0.005505 Msun/pc^3 -> Sigma/b 6.3767e+04
+  [canonical] R1 x_e 2.6, L* 24.0 pc: Sigma 0.005505 Msun/pc^3 -> Sigma/b 6.3770e+04
+  [canonical] R1 x_e 2.6, L* 90.0 pc: Sigma 0.005506 Msun/pc^3 -> Sigma/b 6.3776e+04
+  [canonical] R2 near zone: Sigma 0.0447 Msun/pc^3 -> Sigma/b 5.1833e+05
+  [canonical] MIN Sigma/b over R1, R2 = 6.3767e+04; after U4's factor 2.12: 3.0012e+04
+  [alt] R1 x_e 1.15, L* 22.9 pc: Sigma 0.006178 Msun/pc^3 -> Sigma/b 4.9000e+04
+  [alt] R1 x_e 1.15, L* 24.0 pc: Sigma 0.006178 Msun/pc^3 -> Sigma/b 4.9000e+04
+  [alt] R1 x_e 1.15, L* 90.0 pc: Sigma 0.006178 Msun/pc^3 -> Sigma/b 4.9002e+04
+  [alt] R1 x_e 2.6, L* 22.9 pc: Sigma 0.006177 Msun/pc^3 -> Sigma/b 4.8997e+04
+  [alt] R1 x_e 2.6, L* 24.0 pc: Sigma 0.006177 Msun/pc^3 -> Sigma/b 4.8997e+04
+  [alt] R1 x_e 2.6, L* 90.0 pc: Sigma 0.006178 Msun/pc^3 -> Sigma/b 4.9002e+04
+  [alt] R2 near zone: Sigma 0.0449 Msun/pc^3 -> Sigma/b 3.5645e+05
+  [alt] MIN Sigma/b over R1, R2 = 4.8997e+04; after U4's factor 2.09: 2.3441e+04
+
+== S3: near-zone sign (the binary's own response only raises Sigma where the binary lives)
+  [canonical] negative D.P of a point mass starts at 24.88 pc = 171 x 30 kAU (0.1454 pc); hedgehog divergence M/(2 pi L*^2 r) at 30 kAU for 0.1 Msun = +2.328e-04 Msun/pc^3 (> 0)
+  [alt] negative D.P of a point mass starts at 24.88 pc = 171 x 30 kAU (0.1454 pc); hedgehog divergence M/(2 pi L*^2 r) at 30 kAU for 0.1 Msun = +2.096e-04 Msun/pc^3 (> 0)
+S3 PASS: negative lobes start >= 100 x the widest DR4 separation; the hedgehog divergence is positive
+
+== S4: Galactic inputs
+  x_e = g_obs / a0 is observed (1.778, 1.9, 2.32 e-10 m/s^2): independent of the action.
+  rho_gal's stiffness dependence (X3 far-region estimate) 2.84e-07 x max(1, max f'' = 6.239) = 1.77e-06
+S4 PASS: blend's effect on rho_gal <= 1.8e-06 relative (line 1e-3)
+
+== KC: control of the CHANGED-branch method (not a label gate unless the branch is used)
+  q_bg >= 1 (raw everywhere): |factor - 1| max 1.8e-15; (f')^-1 vs analytic (5y/A)^(1/5) on the pure-power piece: max rel 4.4e-16
+KC PASS: the local inversion returns the raw answer when Sigma >= b, and inverts f' exactly
+
+== Labels
+  [canonical] MARGIN HOLDS, UNCHANGED: min Sigma/b 6.3767e+04 (after U4 3.0012e+04) >= 1; the blend equals the raw form with F', F'' and the stress term on the whole region; sealed gamma_r - 1 at 30 kAU 4.4497e-05 stands
+  [alt] MARGIN HOLDS, UNCHANGED: min Sigma/b 4.8997e+04 (after U4 2.3441e+04) >= 1; the blend equals the raw form with F', F'' and the stress term on the whole region; sealed gamma_r - 1 at 30 kAU 4.0133e-05 stands
+
+== The lead's hand estimate (D.P 0.0055-0.045 Msun/pc^3, rho_DE ~ 1e-7 Msun/pc^3, Sigma/b ~ 1e4-1e5, blend = raw)
+  rho_DE 8.633e-08 / 1.261e-07 Msun/pc^3 (order 1e-7: True); min Sigma/b 6.377e+04 / 4.900e+04 (order 1e4-1e5: True); at the Sun 5.183e+05 / 3.565e+05; same quantity and units (U2, U3): True; blend = raw on the region: True
+  GRADE: RIGHT
+
+LABEL [canonical]: MARGIN HOLDS, UNCHANGED
+
+LABEL [alt]: MARGIN HOLDS, UNCHANGED
+
+wall 1.0 s; exit 0
+kappa = 1/2 FITTED; footings never pooled; not theory closed. Nothing here says the data favour the framework.
