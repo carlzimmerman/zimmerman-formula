@@ -46,9 +46,19 @@ OWNDEC = "closure_2026_11_15/OWNER_DECISION_2026-11-15_BOUNDED_CLOSURE_STATEMENT
 
 DR4DEC = "prep_2026/gaia_dr4_prep/OWNER_DECISION_2026-11-15_DR4_FORM_B_READING.md"
 CARD_AS_WRITTEN = "b3eb4c89b5"  # origin id of the scorecard commit this statement was written against
+# the later note of 2026-11-15: the Gaia DR4 gaps, the check under the blend, the DR4 record and the deposit decision
+DR4DEC2 = "prep_2026/gaia_dr4_prep/OWNER_DECISION_2026-11-15b_DR4_OPEN_GAPS.md"
+CQB1R = "closure_2026_11_15/CQB1_cq2_under_blend/RESULT.md"
+DR4REC = "closure_2026_11_15/DR4REC1_gaia_dr4_predata_record/DR4REC1_gaia_dr4_predata_record_2026.zenodo.json"
+DEPDEC = "closure_2026_11_15/OWNER_DECISION_2026-11-15b_CLOSURE_STATEMENT_DEPOSIT.md"
 
 # (committed path, quoted word) or (committed path, quoted word, commit to read the file at)
 CHECKS = [
+    (DR4DEC2, "Accept all recommended"),
+    (CQB1R, "MARGIN HOLDS, UNCHANGED"),
+    (DR4REC, "10.5281/zenodo.24248715"),
+    (DEPDEC, "Should PAPER72 v1.7 carry the closure statement (BCS1)?"),
+    (DEPDEC, "Yes, include it"),
     (DR4DEC, "Which reading should be the headline score for form B on Gaia DR4?"),
     (DR4DEC, "The 11-05 rows"),
     (CARD, "The audit reads 189 of 189."),

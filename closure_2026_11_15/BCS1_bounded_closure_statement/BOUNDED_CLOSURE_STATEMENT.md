@@ -47,6 +47,29 @@ binaries. The settling-model rows are printed beside it with no verdict weight, 
 reported beside the verdict, as the ruling of 2026-10-22 set them. A Newtonian sky is still survival, never
 confirmation. The map's other gaps that affect the headline (its C3, C4 and C5) stay open.
 
+**Note 2026-11-15, later: the map's other gaps are decided, the sealed prediction is checked under the blend, and this
+statement goes into a deposit.** Written by another lead session, the one that ran these lanes.
+
+- **The gaps.** To a sheet of the gaps the map had left open, the owner answered "Accept all recommended"
+  (`prep_2026/gaia_dr4_prep/OWNER_DECISION_2026-11-15b_DR4_OPEN_GAPS.md`, committed alone, before any DR4 data exist).
+  The release-day script now uses the seed-mean error term the owner filed on 2026-11-08, the R label quoted is the R
+  lane's own, and each footing has its own verdict line (lane DP8, checked on DR3 only). So the last sentence of the
+  note above describes the morning. One case has no rule yet: what the error term is if the seed-mean sweep cannot run
+  on release day.
+- **The sealed prediction under the blend.** The sealed wide-binary prediction was computed with the raw stiffness.
+  Checked before the data with the adopted blend, it reads "MARGIN HOLDS, UNCHANGED" on both footings (CQB1): around a
+  wide binary the switch variable is tens of thousands of times the dark-energy density, where the blend equals the
+  raw form.
+- **A record of its own for Gaia DR4.** The pre-registration, its amendments, the owner decisions and the release-day
+  tools are deposited as one record, made before the data (DOI "10.5281/zenodo.24248715"). It is a time stamp, not a
+  result.
+- **This statement's deposit.** Asked "Should PAPER72 v1.7 carry the closure statement (BCS1)?", the owner answered
+  "Yes, include it" (`closure_2026_11_15/OWNER_DECISION_2026-11-15b_CLOSURE_STATEMENT_DEPOSIT.md`, committed alone).
+  The statement goes into PAPER72 version 1.7 as it stands, dated notes included. The sentence in the adoption note
+  that nothing is deposited describes the morning.
+
+None of this changes a scorecard word, a count or a row list, and none of it is a pass.
+
 **What "bounded" means.** The record can now say, without another lane, what the form is, which of its numbers are
 fitted, where it was tested and holds, where it fails, what it is silent on, and which frozen lines would kill it. It
 cannot say that the form is derived or that it passes. Section 6 lists what a derived closure would need; none of it
@@ -207,10 +230,9 @@ can kill it and cannot confirm it. In PAPER72's words: "The candidate is NOT ADO
 
 ## Still for the owner
 
-- Whether it goes into a deposit. A deposit needs a new go.
-- Before 2026-12-02, the wide-binary map's other gaps that affect the headline: the error term in the release-day
-  script (its C3), which R label is quoted (C4) and which footing is the headline (C5). The gap named in line 1 of
-  Section 5 was decided on 2026-11-15 (note above).
+- The deposit is decided: PAPER72 version 1.7 (the later note of 2026-11-15 above). Nothing more is owed on it.
+- Before 2026-12-02, one rule for Gaia DR4: what the error term is if the seed-mean sweep cannot run on release day.
+  The map's gaps C3, C4 and C5 and the gap named in line 1 of Section 5 were decided on 2026-11-15 (notes above).
 - Row 25's word, which would read FAILS under the exact junction; the scorecard is unchanged here.
 - Row 26's word after MDZ1 (the note of 2026-11-15 above).
 
