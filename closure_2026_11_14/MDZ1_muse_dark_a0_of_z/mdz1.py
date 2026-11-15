@@ -6,6 +6,10 @@ usage: python3 -I -B mdz1.py <lane_dir> <inputs_csv> <mode>     mode in {canonic
 import csv, hashlib, itertools, json, math, os, sys
 
 import numpy as np
+
+
+def _js(o):
+    return o.item() if hasattr(o, "item") else str(o)
 from scipy import optimize, stats
 from scipy.special import ndtri_exp
 
@@ -103,6 +107,8 @@ def sig_from_chi2(chi2, dof):
     if chi2 <= 0:
         return 0.0
     logp = stats.chi2.logsf(chi2, dof)
+    if not math.isfinite(logp):          # underflow past chi2 ~ 1500: leading asymptotic term of the upper tail
+        logp = -chi2 / 2 + (dof / 2 - 1) * math.log(chi2 / 2) - math.lgamma(dof / 2)
     return float(-ndtri_exp(logp - math.log(2.0)))
 
 
@@ -205,7 +211,8 @@ def required_ramp(case, a0, target):
     base = rows_for(case, a0, ASPUB)
     def g(delta):
         Ab = A * 10 ** (-delta * RAMP)
-        return rows_for(case, a0, ASPUB, Ab)["P_S"] - target if target > 0 else rows_for(case, a0, ASPUB, Ab)["slope"]
+        r = rows_for(case, a0, ASPUB, Ab)
+        return r["slope"] / r["sigma_slope"] - target      # signed: P_S = target on the rising side
     try:
         return float(optimize.brentq(g, 0.0, 1.0))
     except ValueError:
@@ -250,7 +257,7 @@ if not all(KA.values()):
     say("A KNOWN ANSWER FAILED: no word.")
     J["word"] = None
     open(os.path.join(lane, f"mdz1_{MODE}.out"), "w").write("\n".join(lines) + "\n")
-    json.dump(J, open(os.path.join(lane, f"mdz1_{MODE}.json"), "w"), indent=1)
+    json.dump(J, open(os.path.join(lane, f"mdz1_{MODE}.json"), "w"), indent=1, default=_js)
     sys.exit(1)
 say("ALL KNOWN ANSWERS PASS")
 say()
@@ -276,7 +283,7 @@ if MODE in ("MUT", "NULL"):
     say(f"{MODE} {'PASS' if ok else 'FAIL'} (MUT must bite, NULL must not)")
     J["pass"] = bool(ok)
     open(os.path.join(lane, f"mdz1_{MODE}.out"), "w").write("\n".join(lines) + "\n")
-    json.dump(J, open(os.path.join(lane, f"mdz1_{MODE}.json"), "w"), indent=1)
+    json.dump(J, open(os.path.join(lane, f"mdz1_{MODE}.json"), "w"), indent=1, default=_js)
     sys.exit(0 if ok else 1)
 
 # ------------------------------------------------------------------ grading, one footing
@@ -353,4 +360,4 @@ J["separation"] = {"max_abs_f_minus_1": sep, "min_sigma_ln": sep_sig, "separates
 J["headline"] = headline
 say("HEADLINE " + MODE + ": " + "; ".join(f"{c}: {w}" for c, w in headline.items()))
 open(os.path.join(lane, f"mdz1_{MODE}.out"), "w").write("\n".join(lines) + "\n")
-json.dump(J, open(os.path.join(lane, f"mdz1_{MODE}.json"), "w"), indent=1, default=str)
+json.dump(J, open(os.path.join(lane, f"mdz1_{MODE}.json"), "w"), indent=1, default=_js)
