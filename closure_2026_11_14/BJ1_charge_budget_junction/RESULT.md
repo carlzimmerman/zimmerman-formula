@@ -157,4 +157,44 @@ no charge crosses the capture surface (`no_charge_crosses`). `compile.txt` ends 
 `BJ1_MUTATE.lean` states three false variants; `compile_MUTATE.txt` ends "exit 1" with one error per theorem. Nothing
 else in this file is changed.
 
+## Dated note by the lead, 2026-11-14, 20:44 EST: the flux-level forest run, and the lane words
+
+The flux-level stage (build B: FWN1R's library, 4 seeds in all 12 bins, then the bracket stage; `run_b.sh a`, started
+16:29, finished 18:53 EST; 96 primary and 96 bracket files) was graded by the lead with the committed grader
+(`bj1b_grade.py`, never run before; it ran without change). Every known answer passes on both footings, both twins
+bite (TW-A read from FWN1R; TW-B at B1 x 3.08 / 3.15), and the grader reproduces byte for byte into a separate folder.
+The run finished after PAPER72 v1.5 was deposited, so that version says the flux level had not been run.
+
+**Lane words (criteria section 3), canonical / alt:**
+
+| case | canonical | alt |
+|---|---|---|
+| B1 (first caustic) | FAILS THE FOREST (caustic 1) | FAILS THE FOREST (caustic 1) |
+| B2 (second caustic) | FAILS THE FOREST (caustic 2) | FAILS THE FOREST (caustic 2) |
+| B3 (third caustic) | FAILS THE FOREST (caustic 3) | FAILS THE FOREST (caustic 3) |
+
+| case | canonical: D (SE); label | alt: D (SE); label |
+|---|---|---|
+| B1 | 12.763 (0.881); FOREST ROW FAILS AT FLUX LEVEL | 14.893 (2.26); FOREST ROW FAILS AT FLUX LEVEL |
+| B2 | 12.725 (0.884); FOREST ROW FAILS AT FLUX LEVEL | 14.829 (2.25); FOREST ROW FAILS AT FLUX LEVEL |
+| B3 | 12.718 (0.886); FOREST ROW FAILS AT FLUX LEVEL | 14.802 (2.25); FOREST ROW FAILS AT FLUX LEVEL |
+
+- No label is FRAGILE: no frozen bracket brings any case under the gate of 4. The lowest is twice the gas smoothing
+  scale, 4.28 to 4.29 on canonical (0.3 above the gate) and 7.76 to 7.77 on alt; over the measured range of that scale
+  (PROVISIONAL, reported) the cases run from 9.5 to 5.0 on canonical and from 12.4 to 8.6 on alt, failing throughout.
+- The number does not depend on the caustic (12.72 to 12.76; 14.80 to 14.89), as at matter level: it comes from the
+  "over" branch, whose settled radius is the equal-charge radius beyond every caustic.
+- G-RC and G-L pass in all six cells (section 2 above), so the only failing word is the forest's.
+- **Hand estimate against the result.** Criteria section 5 guessed the flux level FAILS (55 %) and the most likely
+  lane word FAILS THE FOREST for every k on both footings (50 %): that is what came out. The lead also told the owner,
+  from the matter-level size, to expect a flux number near a fifth of the matter-level one (about 45 / 85 by the
+  exact junction's ratio at 3 fold radii); it came out 12.7 / 14.9, a twentieth of it. A layout that moves no charge
+  across the settled radius costs the forest less than one that does at the same matter-level number, and it is still
+  three times over the gate.
+- **What it means, as far as this lane can say.** The one layout graded in this record that keeps the law unscaled
+  out to every rotation curve's last point and conserves charge at the capture surface, with the reference as the
+  supply, fails the forest at flux level in this build on both footings. This is one build and not blind; the gas
+  inputs are provisional; the reference is the halo model's and not a flow of the action.
+- Files: `parts_b/` (192 files), `bj1b_grade.json/.out`, `bj1b_grade_MUTATE.json/.out`.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
