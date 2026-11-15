@@ -161,4 +161,16 @@ Reproduce from this folder:
 - `OMP_NUM_THREADS=1 nice -n 10 python3 -I -B cqb1.py` (exit 0)
 - `... cqb1.py --mutate M1`, `M1b`, `M2`, `M3` (each exits 1 when it bites)
 
+## Lead's note, 2026-11-15 (added after the lane closed; no label or number changed)
+
+- **Commit ids on origin.** The ids quoted above are the local checkout's. On origin the criteria commit is
+  073446818a and the result commit is 2d7081afbc.
+- **Re-run by the lead.** `cqb1.py` exits 0 and prints the same two labels; the only difference from the committed
+  outputs is the `wall_s` line of `cqb1.json`. The four mutations each exit 1.
+- **Hand check, separate from the lane's code.** rho_DE = a0^2 / (kappa^2 c^2 G) gives 5.842e-27 kg/m^3 (canonical)
+  and 8.533e-27 kg/m^3 (alt), that is 8.63e-08 and 1.261e-07 Msun/pc^3. Against the box minima 0.005505 and 0.006177
+  Msun/pc^3 the ratios are 6.38e4 and 4.90e4, as the table has them.
+- **What this does not add.** The hand check covers the unit conversion and the two ratios only. It does not
+  re-derive that Sigma and b are the same quantity (the lane's U2 and U3), and it does not re-test CQ2's own model.
+
 kappa = 1/2 FITTED; footings never pooled; not theory closed. Nothing here says the data favour the framework.
