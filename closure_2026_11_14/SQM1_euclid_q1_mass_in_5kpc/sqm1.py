@@ -14,7 +14,7 @@ known answer K2 (slacs_ratio).  Constants as EUC1.
 
 Run (paths as arguments):
   python3 -I -B sqm1.py --csv sqm1_paper_numbers.csv --slacs <repo>/real_research/data/slacs_auger2009_lenses.tsv \
-      --outdir <dir> [--html <dir>/2611.00224v1.html]
+      --outdir <dir> [--html <dir>/2611.00224v1.html] [--amend A1]
   SQM1_MUTATE=newton python3 -I -B sqm1.py ...    (must exit 1)
   SQM1_MUTATE=null   python3 -I -B sqm1.py ...    (astronomical units, 800 nodes; must exit 0)
 
@@ -275,12 +275,16 @@ def main():
     ap.add_argument("--slacs", required=True)
     ap.add_argument("--outdir", required=True)
     ap.add_argument("--html", default=None)
+    ap.add_argument("--amend", default="", choices=["", "A1"])
     args = ap.parse_args()
-    tag = "sqm1" + ("_MUTATE_" + MUT if MUT else "")
+    A1 = args.amend == "A1"          # AMENDMENT_A1.md: K3 tolerance 1e-5 -> 2e-3 (Prugniel-Simien accuracy)
+    REF = "sqm1_A1_results.json" if A1 else "sqm1_results.json"
+    tag = "sqm1" + ("_A1" if A1 else "") + ("_MUTATE_" + MUT if MUT else "")
+    K3TOL = 2e-3 if A1 else 1e-5
     astro = MUT == "null"
     U_ = Units(astro=astro, nodes=800 if astro else 400)
     Usi = Units(astro=False, nodes=400)
-    RES = dict(lane="SQM1", criteria_commit="d91049bd52", mutate=MUT, footings=FOOT,
+    RES = dict(lane="SQM1", criteria_commit="d91049bd52", amendment=args.amend, mutate=MUT, footings=FOOT,
                units="astro (kpc, Msun, km/s), 800 nodes" if astro else "SI, 400 nodes")
     P("SQM1 (Euclid Q1 M5 inside 5/h kpc from stars under the law)%s" % ("   *** MUTATE = %s ***" % MUT if MUT else ""))
     P("footings (m/s^2): canonical %.4e, alt %.4e; units: %s" % (FOOT["canonical"], FOOT["alt"], RES["units"]))
@@ -333,7 +337,7 @@ def main():
     MN = Model(D, U_)
     a = MN.logM5h(10.7, 0.5, 0.5, h0, 1.0e-30, lY0)
     b = math.log10(10 ** lY0 * 10 ** 10.7 / h0 ** 2 * float(M2D_frac(5.0, 10 ** 0.5, 4.0)) * h0)
-    ck("K3", "Newton limit: projected M5 = Y L M2D_frac(R5) to 1e-5", "%.2e" % abs(10 ** (a - b) - 1), abs(10 ** (a - b) - 1) < 1e-5)
+    ck("K3", "Newton limit: projected M5 = Y L M2D_frac(R5) to %.0e" % K3TOL, "%.2e" % abs(10 ** (a - b) - 1), abs(10 ** (a - b) - 1) < K3TOL)
     muR_piv = Mo.muR(10.7, 0.5)
     ML5 = 10 ** (v("mu_M0") + v("beta_R") * (muR_piv - 0.5)) / (10 ** 10.7 * float(M2D_frac(5.0, 10 ** muR_piv, 4.0)))
     ck("K4", "paper: M5/L5 at the pivot with average size (log R_e h %.3f) = 6.7 +- 0.35 Msun h/Lsun" % muR_piv,
@@ -398,7 +402,7 @@ def main():
     RES["beta_R_reading"] = BR
 
     if MUT == "newton":
-        ref = json.load(open(os.path.join(args.outdir, "sqm1_results.json")))
+        ref = json.load(open(os.path.join(args.outdir, REF)))
         okL = all(abs(PRI[k]["chabrier"]["bL"] - 1.0) <= 0.005 for k in FOOT)
         drop = {k: ref["primary"][k]["chabrier"]["A"] - PRI[k]["chabrier"]["A"] for k in FOOT}
         okA = all(d >= 0.03 for d in drop.values())
@@ -453,7 +457,7 @@ def main():
     RES["verdict"] = V
 
     if MUT == "null":
-        ref = json.load(open(os.path.join(args.outdir, "sqm1_results.json")))
+        ref = json.load(open(os.path.join(args.outdir, REF)))
         dmax = 0.0; same = True
         for nm in FOOT:
             for e in ("chabrier", "salpeter"):
