@@ -208,4 +208,10 @@ class fails and none could detect 0.30 dex. The medians stay high; this is not a
 outer cluster shear (20), the halo stars with the measured slope (28, under review by a blind lane) and DF2, DF4,
 NGC 147 and IC 1613 (36).
 
+Update 2026-11-14, later still (scorecard row 28, on the owner's decision, after the blind RRL3R). The halo-star row now
+reads DEPENDS ON AN UNTESTED ASSUMPTION: the 40 to 55 kpc fail holds with one constant anisotropy and goes with the
+anisotropy measured per bin, each in two builds, one of them blind; the gate has power under the measured convention;
+every reading is FRAGILE, and DESI's NFW moves with the framework. It is not a pass. The rows that still fail are the
+outer cluster shear (20) and DF2, DF4, NGC 147 and IC 1613 (36).
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
