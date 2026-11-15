@@ -11,6 +11,10 @@ IMPORTED READ-ONLY (functions only; nothing written into prep_2026); a socket gu
        Amendment 18 seed-sweep manifest (seed_sweep_manifest*.json 'sigma_build'), or the DR3 bound 0.44 x 0.019 if none is given (flagged)
 If --nss-off is not given the NSS-off rung is NOT IMPLEMENTED (D7 N4.1): (b) and (e) are computed without it and the output says so.
 Extra builds (--extra NAME=CSV) are fitted and reported only (the D2 lane's V4/V5); they are not ladder rungs.
+--nss-off-seed-mean DP7.json: the NSS-off entry of (b) and (e) is gamma_hat(V0 base) + Delta_bar (OWNER_DECISION_2026-11-05c, filed
+  2026-11-08; wired at release-day step O12 by lane DP8 under OWNER_DECISION_2026-11-15b Q1); the single-seed values are printed beside it.
+--stage-a: adds the RUWE < 1.2 rung; OWNER_DECISION_2026-11-15b Q5 makes it information only, so it is run as a separate call whose
+  (b) is never used (release-day step O12r); the call whose (b) is used carries only the D2 recipe's three entries.
 Run: OMP_NUM_THREADS=1 nice -n 10 python3 -B dp3_sigma_sys.py --base CAT.csv [--nss-off NSSOFF.csv] [--extra V4=..] [--seed-manifest M.json] --out-json S.json
 kappa = 1/2 FITTED; footings never pooled; not theory closed. DR3 numbers are code-path tests, never results (Amendment 7(e)).
 """
@@ -56,11 +60,13 @@ def main(argv=None):
     ap.add_argument("--base", required=True); ap.add_argument("--nss-off", default=None)
     ap.add_argument("--extra", action="append", default=[]); ap.add_argument("--seed-manifest", default=None)
     ap.add_argument("--out-json", required=True); ap.add_argument("--tag", default="")
-    ap.add_argument("--stage-a", default=None, help="OPTIONAL (open issue O6, owner decision needed): add the ladder rung RUWE < 1.2 on both components, "
-                    "ruwe looked up by source_id in this stage_A.npz (as seed_sweep.py --ladder does); off = the D2 recipe")
-    ap.add_argument("--nss-off-seed-mean", default=None, help="OPTIONAL, default off (DP7, draft OWNER_DECISION_2026-11-05c, NOT FILED): a DP7 dp7.json; with it the "
+    ap.add_argument("--stage-a", default=None, help="OPTIONAL: add the ladder rung RUWE < 1.2 on both components, "
+                    "ruwe looked up by source_id in this stage_A.npz (as seed_sweep.py --ladder does); off = the D2 recipe. OWNER_DECISION_2026-11-15b Q5 "
+                    "(open issue O6 decided): information only on DR4, run as a separate call (step O12r) whose (b) is never used")
+    ap.add_argument("--nss-off-seed-mean", default=None, help="default off (DP7; OWNER_DECISION_2026-11-05c, FILED 2026-11-08; passed at release-day step O12 under OWNER_DECISION_2026-11-15b Q1): "
+                    "a dp7_seed_mean.py output json; with it the "
                     "NSS-off entry in (b) and (e) is gamma_hat(V0 base) + Delta_bar[footing] (the K-seed paired mean of rung_k - base_k from the DP7 sweep), and (b), (e) "
-                    "under the single-seed entry are printed beside it, information only, DR3; off = D8 (a) as filed, this file's behaviour unchanged")
+                    "under the single-seed entry are printed beside it as information; off = the single-seed entry of D8 (a), which 11-05c supersedes for the NSS-off entry")
     a = ap.parse_args(argv)
     rng = np.random.default_rng(SEED)
     pop = wbp.make_population(NM, rng, dr4=True)
@@ -102,7 +108,7 @@ def main(argv=None):
     sm = json.load(open(a.nss_off_seed_mean)) if a.nss_off_seed_mean else None
     if sm:
         out["nss_off_seed_mean"] = dict(file=os.path.basename(a.nss_off_seed_mean), K=sm.get("K"), cut13=sm.get("cut13"), fit_path=sm.get("fit_path"), complete=sm.get("complete"),
-                                        note="information only, DR3: the NSS-off entry of (b) and (e) is gamma_hat(V0 base) + Delta_bar (DP7 seed mean); draft 2026-11-05c NOT FILED")
+                                        note="the NSS-off entry of (b) and (e) is gamma_hat(V0 base) + Delta_bar (DP7 seed mean), OWNER_DECISION_2026-11-05c filed 2026-11-08; the single-seed values beside it are information")
 
     def spread_jk(gl):
         spread = max(gl) - min(gl)
@@ -131,10 +137,10 @@ def main(argv=None):
             spread_sm, jk_sm = spread_jk(gl_sm)
             out[f].update(b_single_seed=out[f]["b"], e_single_seed=out[f]["e"], spread_single_seed=spread, b=max(0.020, 0.5 * spread_sm), e=jk_sm, spread=spread_sm,
                           b_seed_mean=max(0.020, 0.5 * spread_sm), e_seed_mean=jk_sm, seed_mean_entry=g0 + dbar, delta_bar=dbar, delta_bar_se=sm[f].get("se"),
-                          single_seed_nss_off_shift=shifts.get("V3 NSS-off probe (s < 30 kAU)"), nss_off_entry_in_b_and_e="seed-mean (gamma_hat(V0 base) + Delta_bar); information only, DR3")
+                          single_seed_nss_off_shift=shifts.get("V3 NSS-off probe (s < 30 kAU)"), nss_off_entry_in_b_and_e="seed-mean (gamma_hat(V0 base) + Delta_bar), OWNER_DECISION_2026-11-05c filed 2026-11-08; single-seed values beside it are information")
             P(f"[{f}] seed-mean NSS-off entry {g0 + dbar:.4f} = base {g0:.4f} + Delta_bar {dbar:+.4f} (DP7 K {sm.get('K')}, SE {sm[f].get('se') or float('nan'):.4f}); "
               f"(b) single-seed {out[f]['b_single_seed']:.4f} vs seed-mean {out[f]['b_seed_mean']:.4f}; (e) single-seed {out[f]['e_single_seed']:.4f} vs seed-mean {out[f]['e_seed_mean']:.4f}; "
-              f"spread {spread:.4f} -> {spread_sm:.4f}; information only, DR3")
+              f"spread {spread:.4f} -> {spread_sm:.4f}; the seed-mean entry is the one in (b) and (e) (11-05c, filed 2026-11-08); single-seed values are information")
     json.dump(out, open(a.out_json, "w"), indent=1, default=float)
     open(os.path.splitext(a.out_json)[0] + ".out", "w").write("\n".join(lines) + "\n")
     return 0

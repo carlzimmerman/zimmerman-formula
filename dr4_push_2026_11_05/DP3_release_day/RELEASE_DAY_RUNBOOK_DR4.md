@@ -4,6 +4,10 @@ Lane DP3 (criteria `FROZEN_CRITERIA.md`, d66d012f57). Modelled on `finish_2026_1
 κ = ½ FITTED. Footings never pooled. Not theory closed. Nothing here says the data favour the framework. It edits no frozen file
 and implements the record as filed: `PREREGISTRATION_DR4.md` + 22 amendments, `RELEASE_DAY_CHECKLIST.md` (§1-7), CFG943 README §5/§7,
 the D2 note and A1-A3, the 10-21 kill-line note, and the two owner decisions of 2026-11-05 (413c1c8e24 D1-D6; d71a111d1d D7-D8).
+**Updated 2026-11-15 by lane DP8** (`dr4_push_2026_11_05/DP8_release_path_wiring/`, criteria 4caa8bc91f) to do what the owner decision
+`prep_2026/gaia_dr4_prep/OWNER_DECISION_2026-11-15b_DR4_OPEN_GAPS.md` ("Accept all recommended") says, with 11-05c (filed 2026-11-08)
+and `OWNER_DECISION_2026-11-15_DR4_FORM_B_READING.md`: new steps G11S, O12r and O16, the cone fallback at G11, the seed-mean entry at
+O12, the result template in section 3, and the open items of section 5 marked decided. Q numbers below are that decision's.
 
 **Nothing below queries the archive, logs in, or runs CFG825's once-only `--dr4` until the owner says yes in chat, naming the
 step, the table, the size and the time.** The session then writes `GO <step>` into `OWNER_APPROVAL_DR4.md` in this folder; the
@@ -16,17 +20,23 @@ Every command runs from the repo root. Wrapper modes: `--check` (no data), `--ru
 ```
 bash dr4_push_2026_11_05/DP3_release_day/dr4_release_day.sh --check
 ```
-- 27 pinned sha256 (the four checklist §3 files incl. `wide_binary_pipeline.py` 7c884e0e..., the prereg = Amendment 22's "after"
-  digest 20677265..., both 11-05 owner decisions, the D2 note, the kill-line note, CFG825's four files, the dr4_ready_1 tools and
-  the manifest template, the D2 σ_sys recipe). Any mismatch: stop and find out why (exit 6 in `--run`).
+- 30 pinned sha256 (the four checklist §3 files incl. `wide_binary_pipeline.py` 7c884e0e..., the prereg = Amendment 22's "after"
+  digest 20677265..., the 11-05, 11-05b and 11-05c owner decisions, the two owner decisions of 2026-11-15 (form B reading 3641f7de...,
+  open gaps dad0d100...), the D2 note, the kill-line note, CFG825's four files, the dr4_ready_1 tools and the manifest template,
+  the D2 σ_sys recipe); the prereg directory (prereg, amendment hashes, the 11-05 and 11-15 decisions) must be git-clean. Any
+  mismatch: stop and find out why (exit 6 in `--run`).
 - CFG825's once-only slot `campaign_fresh_gravity/CFG816_dr4_r_statistic_scoring/cfg816_r_dr4_results.json` must be absent.
 - Guard: free disk ≥ 20 GB; no 1024³ run; **no python job > 2 GB live** (the frozen pipeline peaked 3.95 GB on DR3 in this lane's dry run, CFG943 N11 said ~3 GB; DP1's rung
   build peaked 4.25 GB on DR3). `--run` refuses otherwise (exit 5).
 - Availability: by date (before 2026-12-02 it prints "DR4 not yet available"). `DP3_PROBE=1` adds one HTTP HEAD to the public ESA
   archive GDR4 documentation page (information only). The real availability test is the schema probe of step G7.
 - DP1 state (NSS-off rung): read from `dr4_push_2026_11_05/DP1_nss_off_rung/dr3_check.json` (REPRODUCED on 2026-11-05, f732b84221).
+- DP8 states, read from `dr4_push_2026_11_05/DP8_release_path_wiring/dp8_checks.json`: `q1_launcher_check` (G11S refuses unless
+  PASS) and `q8_code_path_check` (O16 prints NOT RUN unless PASS).
 - Owner items that must exist before the data are opened (none may be decided after): the approval file; the decisions already
-  filed (D1-D8); the open issues O1-O3 below.
+  filed (D1-D8, 11-05c, the two of 2026-11-15); the open issues of section 5. One item is NOT decided (11-15b section 4): what
+  happens if G11S cannot run while G11 built the rung; the wrapper then stops with "NEEDS OWNER" and never falls back to the
+  single-seed entry.
 
 Rehearsal: `DP3_ALLOW_LIVE_JOBS=1 bash dr4_push_2026_11_05/DP3_release_day/dr4_release_day.sh --dry-run-dr3` (results in §4).
 
@@ -36,19 +46,25 @@ Rehearsal: `DP3_ALLOW_LIVE_JOBS=1 bash dr4_push_2026_11_05/DP3_release_day/dr4_r
 |---|---|---|---|
 | R0 | self-tests: `dry_run_driver.py --self-test`, `amdt14_distances.py --self-test`, `arm_c_rows.py --self-test`, `make_pair_table.py --self-test`, `dr4_outcome_map.py --self-test` | ~1 min | no |
 | G1 | save the published DR4 data model (URL, UTC, sha256) in `release_2026_12_02/datamodel/`; write `spec_dr4.json` (renames only; `--spec-json`, never a code edit) and `manifest_dr4.json` from `prep_2026/gaia_dr4_prep/dr4_ready_1/manifest_template_dr4.json` (every null filled; cut 12 counted tables per Amendment 17; cut 9 = SFD98 per Amendment 16(a)) | one page / PDF, a few MB; ~1 h of reading | **yes (download)** |
-| G2 | registered Gaia archive account: the owner logs in himself; this lane never handles a password. `SKIP G2` = anonymous | — | **yes (account)** |
+| G2 | registered Gaia archive account: **decided 2026-11-15b T3: access stays anonymous, as rehearsed; no login hook.** Write `SKIP G2` | — | `SKIP G2` |
 | G3 | `caffeinate -i python3 -B dr4_push_2026_11_05/DP5_dr4_fetchers/fetch_extract_dr4.py --release dr4 --manifest prep_2026/gaia_dr4_prep/catalog_builder/manifest_dr4.json --owner-go-recorded "<go>" [--spec-json S] [--sync-ranges]` (12 chunks + Σ₁₈ map; the frozen WHERE and layout, `non_single_star` dropped from the SELECT: DP5, fixes O1; `--print-queries` first) | DR3: 4,582,547 rows, ~400 MB, 6,461 s. DR4 central ×1.54: ~7 M rows, ~620 MB, ~2.8 h | **yes (archive)** |
 | G4 | `python3 -B prep_2026/gaia_dr4_prep/catalog_builder/build_catalog.py --release dr4` (stages A-F cached; its own stage G is information only and fetches correlations) | DR3: 16 min on 16 cores; stage A ~0.5 GB | **yes (archive, stage G)** |
 | G5 | cut 12 + joins: `python3 -B dr4_push_2026_11_05/DP5_dr4_fetchers/fetch_nss_dr4.py --manifest M --ids <component ids> --out-dir <data_dir> --transport inlist --owner-go-recorded "<go>"` (DP5, fixes O2; same rows as the frozen `cut12_nss_union.adql_nss` text, which `--transport upload` sends unchanged) for the 6 Amendment 17 counted tables (`nss_acceleration_astro`, `nss_multiple_orbits`, `nss_non_linear_spectro`, `nss_resolved_pair` (both id columns), `nss_two_body_orbit`, `nss_vim_fl`) and the `all_source_flags.non_single_star` join file; record table, solution types, row counts in the manifest | uploads of the sample ids, < 10 MB | **yes (archive, each table)** |
 | G6 | `python3 -B prep_2026/gaia_dr4_prep/dr4_ready_1/dry_run_driver.py --release dr4 --manifest M --allow-network --cut13 extract-builder --dump-candidates C.csv`; then `dr4_q1_estimate.py --pairs-csv C.csv` (the pre-brief, read to the owner), `q1_cones_dr4.py --print-count-queries`, `q1_cones_dr4.py --spec dr4_all_source --spec-json S --stage-a <dr4_extract>/stage_A.npz --pairs-csv C.csv ... --plan-only` | ~49,000 candidates at N 30,000 (DR3 ratio 1.65) | **yes (correlations)** |
-| G7 | the Q1 neighbour-cone fetch (cut 13 primary, Amendment 16(b)): `caffeinate -i python3 -B .../q1_cones_dr4.py --spec dr4_all_source ... --cap-accepted-mb A --cap-received-mb R --max-queries Q --owner-go-recorded "<text>"` (resumable). The GO line carries the caps. Optional tables (`gaia_source_environment`, `crowded_field_source`) only if the owner decides, recorded in the neighbours manifest. A sharded parallel fetch (lane DP4) is an alternative only if its README says it passed and the owner says yes | central ~39,000 queries, ~1.7 GB accepted (2.1 GB received), **~47 h serial** at the DR3 pace (low/high 25k/64k queries, 31/77 h; a 2× slower archive doubles it). Suggested caps (1.5× central): 2,540 MB / 3,100 MB / 58,900 | **yes (archive, caps)** |
+| G7 | the Q1 neighbour-cone fetch (cut 13 primary, Amendment 16(b)): `caffeinate -i python3 -B .../q1_cones_dr4.py --spec dr4_all_source ... --cap-accepted-mb A --cap-received-mb R --max-queries Q --owner-go-recorded "<text>"` (resumable). The GO line carries the caps. The cones cover the post-NSS candidate set (the NSS-off rung's uncovered pairs take the extract fallback at G11 / G11S, Q2). Optional tables (`gaia_source_environment`, `crowded_field_source`): **not searched (Q10)**; their row counts and this choice are recorded in the manifest at G1, before the data are opened, and in the neighbours manifest here (Amendment 16(b)). A sharded parallel fetch (lane DP4) is an alternative only if its README says it passed and the owner says yes | central ~39,000 queries, ~1.7 GB accepted (2.1 GB received), **~47 h serial** at the DR3 pace (low/high 25k/64k queries, 31/77 h; a 2× slower archive doubles it). Suggested caps (1.5× central): 2,540 MB / 3,100 MB / 58,900 | **yes (archive, caps)** |
 | G8 | **primary build:** `dry_run_driver.py --release dr4 --manifest M --allow-network --cut13 cones-literal --neighbours-manifest NM --out-csv wide_binaries_dr4.csv` (`--cut13 cones-literal` passed explicitly, D7 N9; never the default `extract-literal`); `--corr-transport sync` only if async fails, recorded (Amendment 19) | stage-G correlations; minutes | **yes (archive)** |
 | O9 | `python3 -B prep_2026/gaia_dr4_prep/wide_binary_pipeline.py --catalog wide_binaries_dr4.csv > pipeline_dr4.log`, then `amdt14_distances.py --log` and `arm_c_rows.py --log` | 3.95 GB peak on DR3 (measured 2026-11-05), ~35 s on DR3; more on DR4 | no |
 | G10 | Amendment 18: `seed_sweep.py --release dr4 --mode g-only --K 50 --cut13 extract-builder --fit --ladder --allow-network --tag dr4_g50` (extract-builder mode, recorded, D7 N9), then `seed_label.py --evaluate <manifest>` | ~100 pipeline fits, ~1-2 h, one job; delta correlation fetches | **yes (archive)** |
-| G11 | NSS-off rung (D7 N4): only if DP1 reads REPRODUCED: `python3 -B dr4_push_2026_11_05/DP1_nss_off_rung/nss_off_rung.py --release dr4 --manifest M --cut13 cones-literal --neighbours-manifest NM --allow-network --out-csv nss_off_rung_dr4.csv`; otherwise the wrapper prints NOT IMPLEMENTED and σ_sys(b) is computed without it, stated | DR3 peak 4.25 GB | **yes (archive)** |
-| O12 | `dp3_sigma_sys.py --base wide_binaries_dr4.csv --nss-off nss_off_rung_dr4.csv --seed-manifest <G10 manifest> --out-json sigma_sys_dr4.json` (σ_sys (a), (b), (e), (g2) by the D2 lane's recipe); `make_pair_table.py --catalogue wide_binaries_dr4.csv --per-star <dr4_extract>/stage_A.npz --out pairs_dr4.csv --declare-neutral non_single_star` (R input = the registered catalogue, D7 N5) | ~1 GB, minutes | no |
+| G11 | NSS-off rung (D7 N4): only if DP1 reads REPRODUCED: `python3 -B dr4_push_2026_11_05/DP1_nss_off_rung/nss_off_rung.py --release dr4 --manifest M --cut13 cones-literal --neighbours-manifest NM --missing-cones extract-fallback --allow-network --out-csv nss_off_rung_dr4.csv` (through `dp6_with_a17.py`); **the rung's pairs with no cone take the extract fallback (Q2)**, and `DP8/dp8_fallback_count.py --rung-manifest nss_off_rung_dr4.csv.manifest.json` writes their number (`G11_fallback_count.out`); otherwise the wrapper prints NOT IMPLEMENTED and σ_sys(b) is computed without it, stated | DR3 peak 4.25 GB; DR3: 139 fallback pairs, 0 flagged | **yes (archive)** |
+| G11S | **seed-mean NSS-off sweep (11-05c, filed 2026-11-08; Q1):** only if G11 built the rung and DP8's `q1_launcher_check` is PASS: `python3 -B dr4_push_2026_11_05/DP6_cut12_wiring/dp6_with_a17.py --a17-manifest M -- dr4_push_2026_11_05/DP8_release_path_wiring/dp8_seed_mean_release.py --release dr4 --manifest M --neighbours-manifest NM --cut13 cones-literal --fit-path pipeline --K 50 --rung-missing-cones extract-fallback --allow-network --out dp7_dr4 --out-dir G11S_seed_mean --owner-go-recorded "<GO G11S line>"` (DP7's `dp7_seed_mean.py`, imported read-only by DP8's launcher, which lifts DP7's DR3-only refusal on DR4 with the GO line); then `dp8_fallback_count.py --rung-manifest ... --sweep-json G11S_seed_mean/dp7_dr4.json` → `nss_off_fallback_counts.out` (Q2). Resumable per k | DP7's projection: ~70-80 min offline (102 pipeline fits), fit RSS ~4.0-4.3 GB, wrapper RSS 4-5 GB; delta correlation fetches into the per-seed caches (none if G10 / G11 caches cover them) | **yes (archive)** |
+| O12 | `dp3_sigma_sys.py --base wide_binaries_dr4.csv --nss-off nss_off_rung_dr4.csv --nss-off-seed-mean G11S_seed_mean/dp7_dr4.json --seed-manifest <G10 manifest> --out-json sigma_sys_dr4.json` (σ_sys (a), (b), (e), (g2) by the D2 lane's recipe; **(b) = the D2 recipe's three entries: R_chance < 0.001, 3-20 kAU and the NSS-off entry as the seed mean, Q1 / Q5**; the single-seed values printed beside it as information). If the rung exists but the G11S output is missing or not (dr4, K 50, cones-literal, pipeline fit, extract-fallback, complete), O12 stops: **NEEDS OWNER (11-15b section 4)**, never the single-seed entry. `make_pair_table.py --catalogue wide_binaries_dr4.csv --per-star <dr4_extract>/stage_A.npz --out pairs_dr4.csv --declare-neutral non_single_star` (R input = the registered catalogue, D7 N5) | ~1 GB, minutes | no |
+| O12r | the RUWE < 1.2 rung, **information only (Q5)**: the O12 call plus `--stage-a <dr4_extract>/stage_A.npz`, written to `sigma_sys_dr4_ruwe_info.json`; never read for (b) or by O15; a failure is logged and the chain continues | ~1 GB, minutes | no |
 | G14 | **ONCE ONLY:** `python3 -B campaign_fresh_gravity/CFG816_dr4_r_statistic_scoring/cfg816_r.py --dr4 pairs_dr4.csv`. It writes `cfg816_r_dr4_results.json` and refuses a second run; any later change is a Departure. The CFG825 variant catalogue (`build_variant_catalogue.py --release dr4 ...`) is information only, no verdict weight | seconds (B = 2,000) | **yes (once)** |
 | O15 | **final scoring:** `python3 -B dr4_push_2026_11_05/DP3_release_day/dr4_outcome_map.py --pipeline-log pipeline_dr4.log --sigma-json sigma_sys_dr4.json --r-json campaign_fresh_gravity/CFG816_dr4_r_statistic_scoring/cfg816_r_dr4_results.json --tag "DR4 <date>" --out outcome_map_dr4.out --json-out outcome_map_dr4.json` | seconds | no |
+| O16 | **after the label steps, report-only (Q8):** Amendment 14(c)'s separation-resolved statistic, `python3 -B dr4_push_2026_11_05/DP8_release_path_wiring/dp8_sepbins.py --catalog wide_binaries_dr4.csv --out-json sepbins_dr4.json` (XR22's `sepbins` recipe on the data side: r_b per s_proj bin [2, 3, 5, 7, 10, 15, 20, 30] kAU against the frozen Newtonian model population, bootstrap errors; footing-free). Runs only if DP8's `q8_code_path_check` is PASS; otherwise, or on a failure, `sepbins_status.txt` reads **NOT RUN**. It reads no label output and cannot change a label | a minute, ~1 GB | no |
+
+Not run on the day (decided 2026-11-15b): `dr4_scorer.py` (Q7); any Milky Way row for the adopted theory (Q9); a search of the optional
+neighbour tables (Q10); a login (T3).
 
 Paths in the table are relative to `release_2026_12_02/` of this lane for M, S, NM, C.csv and the outputs; the DR4 extract is
 `real_research/data/widebinaries/dr4_extract/` (git-ignored). Variants run beside the primary and are never substituted:
@@ -75,6 +91,23 @@ splits, never merged: canonical vs alt, γ̂ rows vs R (N6). Fixed lines: the NS
 false-failure rate of the 3-20 kAU rung beside any systematic-limited reading), N7 (CFG740 falsifier 1 beyond ~37 kAU and falsifier
 2 not scored), D8 (mock-triple injection information only).
 
+How the words are reported (decided 2026-11-15b and 2026-11-15, text only; no scorer changed):
+- **Q4.** Each footing has its own verdict line. A canonical / alt split is reported as a split, with no single headline; the
+  prereg's "(canonical footing decides; alt footing reported)" is read as superseded for the D2 rows (D2 A3; the note of 11-05).
+- **Q3.** The R label quoted is CFG816's own, from the once-only run of `cfg816_r.py` (G14) under its frozen criteria. Where the
+  word `dr4_outcome_map.py` recomputes differs (it prints KILLED where CFG816 prints CONTAMINATION-LIMITED), both are stated in the
+  same sentence. R bears on CFG740's stiffness construction only and is never merged with the γ̂ rows.
+- **Form B (11-15).** The word the D2 rows and the R rule give for v3s, on each footing, is the word for form B on wide binaries;
+  a Newton-side reading is survival, never confirmation. The settling-model rows (Arm C, A21) are printed beside it as information;
+  where they disagree with the headline both are stated in the same sentence. The §1.5 stability requirements are reported beside
+  the verdict with no verdict weight; if they fail, that is said in the same sentence as the verdict.
+- **Q7.** The September ridge rows (matrix row 1 / G088 / G165 / Z03, G018, E6 / E7) are information rows, not scored for the
+  adopted theory; `dr4_scorer.py` is not run. One sentence each: what the pooled γ̂ shows against the row's own level band, as far as
+  a pooled number can; which identification the row belongs to; that the period-separation part was not evaluated. A fail of an
+  earlier identification is recorded as a fail.
+- **Q9.** No Milky Way row is scored for form B or v3s. When a published Jeans, Oort or K_z analysis exists, each seal (CFG553, S3,
+  GD1, matrix rows 2, 3, 26, 29, 31) is scored as frozen for the form that sealed it, as history.
+
 Map at the registered error (N 30,000, σ_sys 0.020; 413c1c8e24 §2a-c), reproduced by the scorer's self-test (20/20):
 canonical ≤ 0.917 sub-Newton, 0.917-1.079 law-first excluded (v3s survives), 1.079-1.083 UNDECIDED, 1.083-1.23 screened
 excluded, > 1.23 guard. Alt: 1.083-1.109 BOTH EXCLUDED. With N 6,210 and σ_sys 0.0375 a Newtonian sky (1.00) reads UNDECIDED.
@@ -82,15 +115,34 @@ excluded, > 1.23 guard. Alt: 1.083-1.109 BOTH EXCLUDED. With N 6,210 and σ_sys 
 ## 3. Recording the result (never editing a frozen file)
 1. `release_2026_12_02/` keeps every `.out`, manifest and JSON (`*.log` is git-ignored; the fit lines are copied to
    `pipeline_dr4_fitlines.out`). The DR4 extract and cone FITS stay in the git-ignored data folder.
-2. Write `RESULT_2026-12-02.md`: per footing the label line verbatim, raw γ̂, σ_fit, every σ_sys, both distances, R block, splits,
-   the NSS-off status, the A14/A20/Arm C lines, σ_build and the seed label. No verdict word beyond the filed labels; "v3s survives",
-   never "confirmed". The `[aniso]` split is quoted only where Amendment 20 calls it measurable.
+2. Write `RESULT_2026-12-02.md` from this template (decided 2026-11-15b; every line filled or marked "not available, because ..."):
+   - **Headline, per footing (Q4):** "canonical: <label line verbatim>" and "alt: <label line verbatim>" on separate lines; if they
+     differ, "canonical / alt split; no headline" and nothing pooled. Form B wording as section 2 (11-15).
+   - Raw γ̂ ± σ_fit, κ, both distances, the A14 / A20 / Arm C lines (Arm C beside the headline, information, 11-15).
+   - **σ_sys:** (a), (b), (e), (g2); (b)'s three entries (R_chance < 0.001, 3-20 kAU, the NSS-off seed-mean entry γ̂_0 + Δ̄ with
+     Δ̄, its SE and K) (Q1 / Q5); beside it, information: the single-seed NSS-off shift and the (b) it would give (11-05c), and
+     the RUWE < 1.2 call's (b) from `sigma_sys_dr4_ruwe_info.json` (O12r, no weight). The stability requirements beside the
+     verdict, no weight, in the same sentence if they fail.
+   - **NSS-off status and fallback counts (Q2):** "<n> rung pairs reached cut 13 with no cone and took the extract fallback; it
+     flagged <f>" for G11 and for the sweep's k = 0 rung (`nss_off_fallback_counts.out`).
+   - σ_build and the seed label (G10).
+   - **R (Q3):** "R = <R> ± <σ_R>, N_R <N>: CFG816's own label <label>" and, where different, "; the scorer's word is <word>" in
+     the same sentence. Never merged with the γ̂ rows.
+   - **Information rows:** the September ridge rows, one sentence each (Q7); "No Milky Way row is scored for the adopted theory
+     (Q9)"; "Amendment 14(c) separation-resolved statistic: <RUN, report-only, r_b table> or <NOT RUN, reason>" (Q8,
+     `sepbins_status.txt`).
+   - **Choices recorded before the data:** optional neighbour tables not searched, with their counts (Q10); access anonymous,
+     `SKIP G2` (T3); cut 13 = cones-literal (D7 N9).
+   No verdict word beyond the filed labels; "v3s survives", never "confirmed". The `[aniso]` split is quoted only where Amendment
+   20 calls it measurable.
 3. `grep -rl "$HOME" dr4_push_2026_11_05/DP3_release_day` must print nothing. Commit with explicit paths only
    (`git commit -m "..." -- <paths>`); never `git add -A`. A PAPER67 addendum and any deposit are the owner's act.
 
 ## 4. Rehearsals on record (2026-11-05)
 
 See `DRY_RUN_2026-11-05.md` in this folder for the `--check`, `--run` (refused) and `--dry-run-dr3` outcomes.
+2026-11-15: lane DP8 reran them on the updated wrapper (its `--dry-run-dr3` through a test copy whose diff, committed there, only
+moves the output folder, the approval file, the date and the disk threshold); see `dr4_push_2026_11_05/DP8_release_path_wiring/RESULT.md`.
 
 ## 5. Open issues (need the owner before 2026-12-02; none can be decided after the data)
 
@@ -100,18 +152,27 @@ See `DRY_RUN_2026-11-05.md` in this folder for the `--check`, `--run` (refused) 
   wrapper that imports it read-only and takes the column list from the spec JSON, with a DR3 equivalence test, filed pre-data.
 - **O2: FIXED by DP5 (80a930c593) for the nss_* id files (`fetch_nss_dr4.py`); `all_source_flags` and `all_source_rvs` joins still by hand.** Original text: No DR4 fetch tool exists for the cut-12 NSS id files or the `all_source_flags` join file; G5 is the ADQL text of
   `cut12_nss_union.adql_nss()` run by hand after the yes. `all_source_rvs` likewise, if RVs are not in `gaia_source`.
-- **O3.** None of the tools logs in: `fetch_extract.py` / `build_catalog.py` use anonymous `astroquery.gaia`, the cone fetch its
+- **O3: DECIDED 2026-11-15b T3: access stays anonymous, as rehearsed; no login hook is added (`SKIP G2`).** Original text: None of the tools logs in: `fetch_extract.py` / `build_catalog.py` use anonymous `astroquery.gaia`, the cone fetch its
   own TAP client. A registered account's quota helps only if a login hook is added (new code, tested, before release).
 - **O4.** σ_sys(g2) needs σ_build from the DR4 K 50 sweep; without a manifest `dp3_sigma_sys.py` uses the DR3 bound 0.44 × 0.019
   and says PLACEHOLDER. `dp3_sigma_sys.py` follows the D2 lane's recipe (1,000,000-pair master, boot 200), as A3 requires; the
   γ̂ and σ_fit in the rows come from the frozen pipeline's own `--catalog` log.
 - **O5.** DP1's rung peaked 4.25 GB on DR3 and the frozen pipeline 3.95 GB; on DR4 both grow. Run each alone (the guard refuses
   `--run` while any other python job > 2 GB is live).
-- **O6 (owner decision, pre-data).** Which rungs enter σ_sys(b)'s "frozen robustness ladder" on DR4. The D2 recipe (A2) used
+- **O6: DECIDED 2026-11-15b Q5: (b) takes the D2 recipe's three entries (R_chance < 0.001, 3-20 kAU, the NSS-off entry as the
+  seed mean of 11-05c); the RUWE < 1.2 rung is run and reported as information (step O12r), with no weight in (b).** Original text
+  (owner decision, pre-data): Which rungs enter σ_sys(b)'s "frozen robustness ladder" on DR4. The D2 recipe (A2) used
   R_chance < 0.001, 3-20 kAU and the NSS-off probe, declaring RUWE 1.4 → 1.2 and RV-screened unimplementable on DR3; yet
   `seed_sweep.py --ladder` does implement RUWE < 1.2 by a stage-A lookup. `dp3_sigma_sys.py --stage-a <stage_A.npz>` adds that
   rung (off by default = the D2 recipe). On DR3 (information) it leaves canonical (b) at 0.0375 and moves alt from 0.0412 to 0.0350.
   The RV-screened rung has no implementation anywhere.
+- **Cone coverage for the NSS-off rung (11-05c's "owner's call on release day"; map C3): DECIDED 2026-11-15b Q2: the fallback.**
+  The rung's pairs that reach cut 13 with no cone are handled with `--missing-cones extract-fallback` (G11) /
+  `--rung-missing-cones extract-fallback` (G11S), and their number is stated in the result. G7's cones query stays on the
+  post-NSS set. The seed-mean entry itself is wired (G11S, O12; Q1), by lane DP8.
+- **Not decided (11-15b section 4), NEEDS OWNER if it arises:** what happens if G11S cannot be run on the day (no GO, a failure)
+  while G11 built the rung, or if DP8's DR3 check of the launcher is not PASS. The wrapper stops there (exit 7, "NEEDS OWNER") and
+  never computes (b) with the single-seed entry; a dated owner decision is needed before the data.
 - **O7 (finding).** σ_sys(b) in the D2 recipe is sensitive to the bootstrap RNG stream: adding one fit before the alt footing
   moved the DR3 alt NSS-off shift from +0.0575 to +0.0375 (same data). DP1 found the same in builds (8-reseed mean +0.010 / +0.006).
   As frozen (D8 (a)) the single-stream value is binding; this is reported, not repaired.
