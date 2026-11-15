@@ -178,3 +178,14 @@ above.
 `dp7_grade.json/.out`, `parts/` (k1 9, k2 1, dp7 51, dp7_MUTATE1 51, dp7_MUTATE2 51 per-k json), `FROZEN_CRITERIA.md` (+ AMENDMENT_A1),
 `BRIEF_2026_11_08.md`, `OWNER_DECISION_2026-11-08_DP7_CHECK_AND_FILE.md`, and the one-option diff of
 `../DP3_release_day/dp3_sigma_sys.py`.
+
+## Lead's note, 2026-11-15 (a wrong sentence in section 1; no number or label changed)
+
+Section 1's line under the table reads "k = 0..50 (K = 50 offsets plus k = 0)" and "SE = SD / sqrt(51)". Both are wrong
+as descriptions. The code (`dp7_seed_mean.py`, the line `sweep = [p for p in parts if p["k"] >= 1]`), the frozen
+criteria and the decision 11-05c all take the mean over k = 1..50 and SE = SD / sqrt(50), and the stored numbers
+follow the code: `dp7.json` has canonical sd 0.024114 and se 0.003410, which is 0.024114 / sqrt(50) (dividing by
+sqrt(51) would give 0.003377), and alt sd 0.023534 and se 0.003328. The table's four-decimal values are unchanged.
+Found by the Lean certificate of this lane (`DP7.lean`, added the same day), which proves the mean over k = 1..K.
+
+kappa = 1/2 FITTED; footings never pooled; not theory closed.
