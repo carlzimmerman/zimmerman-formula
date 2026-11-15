@@ -1,7 +1,7 @@
 # BCS1: the bounded closure statement
 
-**What holds, where it fails, what it does not say, and what would kill it. NOT ADOPTED as the record's closure:
-that is the owner's decision. Not a pass, and not a derived theory.**
+**What holds, where it fails, what it does not say, and what would kill it. ADOPTED by the owner on 2026-11-15 as the
+record's closure statement (dated note below). Not a pass, and not a derived theory.**
 
 2026-11-15. An assembly written by the lead session at the owner's request. It computes nothing, freezes nothing,
 relabels nothing and adopts nothing. Every word in double quotes is copied from the committed file named beside it and
@@ -10,6 +10,15 @@ checked verbatim by `bcs1_audit.py` (output `bcs1_audit.out`). Row numbers are r
 written. Footings are canonical (a0 = 9.3603e-11 m/s^2) / alt (1.1312e-10 m/s^2), side by side, never pooled. Cold dark
 energy is this record's name for a gravitating field component with w close to 0 at the cosmic amount; it is not a
 particle and not matter. Nothing here says the data favour the framework.
+
+**Adopted 2026-11-15.** Asked "Should this stand as the record's closure statement?", the owner answered "Yes, adopt
+it" (`closure_2026_11_15/OWNER_DECISION_2026-11-15_BOUNDED_CLOSURE_STATEMENT.md`, committed alone). The text adopted is
+this file as first committed (1d9b1adac8, on origin aafc2d0a29), which read NOT ADOPTED in its heading and in the first
+item of its last list. Since then only the heading, this note and that last list have changed. The decision adopts the
+statement and no rule: rule 6 stays a candidate, no scorecard word changes, and nothing is deposited. PAPER72 version
+1.6 (DOI "10.5281/zenodo.24246863") was deposited by another session the same morning, after this statement was
+pushed. It folds in the lanes cited here that version 1.5 did not have (XJ1R, BJ1's flux-level run, WLJ2). The audit
+reads the paper's current source, so every PAPER72 quotation here is in version 1.6.
 
 **What "bounded" means.** The record can now say, without another lane, what the form is, which of its numbers are
 fitted, where it was tested and holds, where it fails, what it is silent on, and which frozen lines would kill it. It
@@ -169,9 +178,9 @@ forest fail only as a drawn profile that the clock's own flow does not supply. B
 branch and the joint are rules and not solutions, and no registered prediction has come true. Gaia DR4 on 2026-12-02
 can kill it and cannot confirm it. In PAPER72's words: "The candidate is NOT ADOPTED. The theory is not closed."
 
-## For the owner
+## Still for the owner
 
-- Whether this stands as the record's closure statement, and whether it goes into a deposit. A deposit needs a new go.
+- Whether it goes into a deposit. A deposit needs a new go.
 - The open gap in line 1 of Section 5, before 2026-12-02: which registered wide-binary reading scores form B.
 - Row 25's word, which would read FAILS under the exact junction; the scorecard is unchanged here.
 

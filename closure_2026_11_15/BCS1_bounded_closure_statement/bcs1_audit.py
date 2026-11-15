@@ -6,12 +6,15 @@ removing markdown bold markers, unescaping table pipes and collapsing whitespace
   1. each listed quotation is in its committed file and in the statement;
   2. every double-quoted passage of the statement is covered by a listed quotation (nothing is quoted unchecked);
   3. the row lists the statement gives for the scorecard's words match the scorecard's table;
-  4. no home path and no banned name in this folder's files; the statement ends with the required line.
+  4. the statement at the commit the owner's decision of 2026-11-15 names has the sha256 that decision pins;
+  5. no home path and no banned name in this folder's files or the decision file; the statement ends with the
+     required line.
 Exit 0 only if every check passes. Run: python3 -I -B bcs1_audit.py > bcs1_audit.out
 
 Mutation twin: python3 -I -B bcs1_audit.py --mutate > bcs1_audit_MUTATE.out changes one character of every listed
 quotation and must find none of them in its committed file (exit 0 when every mutated quotation is rejected).
 """
+import hashlib
 import os
 import re
 import subprocess
@@ -38,8 +41,13 @@ PRED = "predictions_2026/PREDICTIONS_SCORECARD_2026-11-12.md"
 OWN = C09 + "OWNER_DECISION_2026-11-09_FINAL_FORM_B.md"
 WLJ2 = C14 + "WLJ2_power_and_lensing_amplitude_exact_junction/RESULT.md"
 
+OWNDEC = "closure_2026_11_15/OWNER_DECISION_2026-11-15_BOUNDED_CLOSURE_STATEMENT.md"
+
 # (committed path, quoted word)
 CHECKS = [
+    (OWNDEC, "Should this stand as the record's closure statement?"),
+    (OWNDEC, "Yes, adopt it"),
+    (P72 + ".zenodo.json", "10.5281/zenodo.24246863"),
     (CJ1 + "cj1_audit.out", "182 of 182 checks pass"),
     (P72 + ".zenodo.json", "10.5281/zenodo.24231666"),
     (OWN, "Form B is the form the record closes on."),
@@ -214,8 +222,18 @@ def main():
         for r in want:
             report(re.search(r"\b%d\b" % r, stmt) is not None, "row %d is named in the statement" % r)
 
+    # the adopted text is the one the owner's decision pins
+    dec = cache.get(OWNDEC) or show(OWNDEC) or ""
+    m = re.search(r"committed in ([0-9a-f]{10})\b.*?sha256 ([0-9a-f]{64})", norm(dec))
+    if m is None:
+        report(False, "the owner's decision names a commit and a sha256 for the adopted text")
+    else:
+        r = subprocess.run(["git", "show", "%s:%s/%s" % (m.group(1), HERE, STATEMENT)], capture_output=True, cwd=ROOT)
+        got = hashlib.sha256(r.stdout).hexdigest() if r.returncode == 0 else "unreadable"
+        report(got == m.group(2), "the statement at %s has the sha256 the owner's decision pins" % m.group(1))
+
     # folder hygiene
-    for name in (STATEMENT, "bcs1_audit.py"):
+    for name in (STATEMENT, "bcs1_audit.py", "../" + OWNDEC.split("/")[-1]):
         with open(os.path.join(ROOT, HERE, name), encoding="utf-8") as fh:
             t = fh.read()
         low = t.lower()
