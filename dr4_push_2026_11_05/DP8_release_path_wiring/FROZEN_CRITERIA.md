@@ -146,3 +146,13 @@ each heavy stage under `/usr/bin/time -l`; compute is quoted only from a tally o
 archive query, no DR4 byte. Commit with explicit paths only; nothing pushed. No home-directory path or personal detail
 in any committed file. A fail is reported as a fail; nothing above is changed after a number of this lane exists
 (a change goes in a dated AMENDMENT section committed before the affected run, and is disclosed).
+
+## AMENDMENT A1 (2026-11-15, committed alone before the run it adds; no earlier check or number changed)
+
+Reason: after C1-C7 had run, the review of the wrapper diff found that no check exercised O12's stop (section 1, Q1: the rung
+exists but the G11S output is missing or not of the decided form -> exit 7, "NEEDS OWNER", never the single-seed entry).
+Added check **C6(f)**, test copy as in C6, markers R0..G11S, the placeholder rung file present: (f1) no G11S output -> the log
+reads "O12: NEEDS OWNER" and the exit is 7; (f2) a copy of DP7's `dp7.json` whose `release` is set to "dr4" placed as the G11S
+output -> the form check passes and O12 goes on to `dp3_sigma_sys.py`, which then fails offline on the missing DR4 catalogue
+("STEP FAILED: O12 sigma_sys", exit 7); MUTATE C6(f): the same copy with `K` set to 8 -> "O12: NEEDS OWNER" again. C6 passes
+only if (f) passes as well. Outputs `out/c6f_*.out`.
