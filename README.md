@@ -521,6 +521,7 @@ Enforced by the scripts, not by trust.
 [![Q0 Pin v4](https://img.shields.io/badge/Pinning%20AeST's%20Q0%20(v4%2C%20Aug%2014%202026)-10.5281%2Fzenodo.21937958-red)](https://doi.org/10.5281/zenodo.21937958)
 [![DR4 under local a0](https://img.shields.io/badge/DR4%20Target%20under%20Local%20a0%20(Aug%2014%202026)-10.5281%2Fzenodo.21937976-red)](https://doi.org/10.5281/zenodo.21937976)
 [![DR4 Pre-registration](https://img.shields.io/badge/Gaia%20DR4%20Pre--registration-10.5281%2Fzenodo.21702746-black)](https://doi.org/10.5281/zenodo.21702746)
+[![DR4 Pre-Data Record](https://img.shields.io/badge/Gaia%20DR4%20Pre--Data%20Record%20(Nov%2015%202026)-10.5281%2Fzenodo.24248715-black)](https://doi.org/10.5281/zenodo.24248715)
 [![MI Structural Theorems](https://img.shields.io/badge/MI%20Structural%20Theorems%20(v2)-10.5281%2Fzenodo.21708842-blueviolet)](https://doi.org/10.5281/zenodo.21708842)
 [![Atomos Null](https://img.shields.io/badge/Atomos%20SM%20Search%20%E2%80%94%20NULL%20(v2)-10.5281%2Fzenodo.21654272-lightgrey)](https://doi.org/10.5281/zenodo.21654272)
 [![License](https://img.shields.io/badge/code-AGPL--3.0-lightgrey)](LICENSE)
@@ -576,6 +577,7 @@ Plain text on purpose, so that titles and DOIs are searchable. Versions of one r
 
 | date | DOI | title | version |
 |---|---|---|---|
+| 2026-11-15 | [10.5281/zenodo.24248715](https://doi.org/10.5281/zenodo.24248715) (concept 24248714) | Gaia DR4 Wide Binaries: the Pre-Data Record of a Screened, Newtonian Prediction and Its Scoring Rule (Archive Note) | v1.0 (DR4REC1; the pre-registration with its 22 amendments, the owner decisions, the sealed prediction and the release-day tools, deposited before the data; a time stamp, not a result) |
 | 2026-11-15 | [10.5281/zenodo.24246863](https://doi.org/10.5281/zenodo.24246863) (concept 24106866) | The a0 Law with Cold Dark Energy Counted Once: the Form the Record Closes On, Its Gates, and What Stays Open (Working Note) | v1.6 (PAPER72; a blind build confirms the caustic holds as labels, fragile; the charge-conserving layout fails the forest) |
 | 2026-11-14 | [10.5281/zenodo.24231666](https://doi.org/10.5281/zenodo.24231666) (concept 24106866) | The a0 Law with Cold Dark Energy Counted Once: the Form the Record Closes On, Its Gates, and What Stays Open (Working Note) | v1.5 (PAPER72; the exact junction; three readings of v1.3 and v1.4 corrected) |
 | 2026-11-14 | [10.5281/zenodo.24221457](https://doi.org/10.5281/zenodo.24221457) (concept 24106866) | The a0 Law with Cold Dark Energy Counted Once: the Form the Record Closes On, Its Gates, and What Stays Open (Working Note) | v1.4 (PAPER72; the candidate needs its settled radius) |
