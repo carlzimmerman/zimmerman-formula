@@ -203,6 +203,15 @@ CHECKS = [
     (40, C14 + "WLG1R_blind_wide_lens_group_census/RESULT_BLIND.md", "NOT EVALUABLE, BLIND"),
     (40, C14 + "WLG1R_blind_wide_lens_group_census/LEAD_CHECK.md",
      "So the blind build confirms WLG1's arithmetic and its fragility, not its label."),
+    (15, C14 + "CLR1_combes_cluster_residual/RESULT.md", "At R500, form B closes the residual in all three classes."),
+    (16, C14 + "CLR1_combes_cluster_residual/RESULT.md",
+     "STILL FAILS [non-cool-core clusters, 0.1-0.5 R500: over-predicts] FRAGILE."),
+    (26, C14 + "MDZ1_muse_dark_a0_of_z/RESULT.md", "As published, the rise excludes the law on both footings."),
+    (31, C14 + "MWM1_desi_dr2_mw_mass/RESULT.md", "NO VERDICT, FRAGILE"),
+    (31, C14 + "MWM1_desi_dr2_mw_mass/RESULT.md",
+     "Against DESI's halo-free curves alone, the census line passes every radius on both footings."),
+    (39, C14 + "SQM1_euclid_q1_mass_in_5kpc/RESULT.md", "As frozen: NOT EVALUABLE."),
+    (39, C14 + "SQM1_euclid_q1_mass_in_5kpc/RESULT.md", "STILL FAILS [beta_z HIGH] FRAGILE"),
 ]
 WORDS = ["PASSES TRIVIALLY", "FAILS ON COVERAGE ONLY", "EQUALS THE LAW", "NO POWER",
          "DEPENDS ON AN UNTESTED ASSUMPTION", "NOT GRADED FOR THIS FORM", "PASSES", "FAILS"]
