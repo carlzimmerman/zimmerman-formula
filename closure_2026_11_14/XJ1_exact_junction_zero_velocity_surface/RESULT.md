@@ -360,4 +360,16 @@ Read across, per footing (reported, never a label on the theory):
   (Ec2, Ec3) were not in build A; the blind lane XJ1R grades them.
 - Files: `xj1a_grade_<footing>.json/.out`, their `_MUTATE` files, `parts_a/` (40 files).
 
+**2026-11-14, 21:20 EST. The blind lane XJ1R landed** (`closure_2026_11_14/XJ1R_blind_caustic_junction/RESULT_BLIND.md`;
+its own caustic computation and junction in FWN1's build, grader committed before any heavy part; graded by the lead
+with that grader unchanged). Its lane words on both footings: CAUSTIC 2 HOLDS, BLIND, FRAGILE (lam_x0.5) and CAUSTIC 3
+HOLDS, BLIND, FRAGILE (lam_x0.5). Numbers: third caustic 0.760 (0.389) / 1.141 (0.595), second 1.553 (0.708) / 1.660
+(0.852), against this lane's 0.512 / 0.691 and 1.213 / 1.648; its control equals FWN1's stored one; every known answer
+passes and both twins bite. So Q4's two holds are confirmed as labels by a blind build on both footings. The builds
+differ on half the gas smoothing scale: there the blind build reads 33.9 / 47.5 for the third caustic and this
+lane's build 1.63 / 2.12, so the hold is FRAGILE to that bracket in one build and not in the other. It landed after
+PAPER72 v1.5 was deposited and is not in that version. What counts against the holds (section 6 and the notes above:
+post hoc choice of caustic; a drawn profile that no flow of the action assembles; BJ1's charge-conserving layout fails
+the forest) is unchanged by a blind confirmation.
+
 kappa = 1/2 FITTED; not theory closed. Adopts nothing.
