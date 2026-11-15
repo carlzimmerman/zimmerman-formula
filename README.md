@@ -8,8 +8,8 @@
 (decision: [`OWNER_DECISION_2026-11-15_BOUNDED_CLOSURE_STATEMENT.md`](closure_2026_11_15/OWNER_DECISION_2026-11-15_BOUNDED_CLOSURE_STATEMENT.md)).
 Paper of record for the form: **PAPER72**, "The a₀ Law with Cold Dark Energy Counted Once: the Form the Record Closes On, Its Gates, and
 What Stays Open", concept DOI [10.5281/zenodo.24106866](https://doi.org/10.5281/zenodo.24106866) (always the latest version);
-**v1.6 DOI [10.5281/zenodo.24246863](https://doi.org/10.5281/zenodo.24246863)** (2026-11-15; [PDF](qwen_claude_field_theory/papers_2026/PAPER72_law_with_cold_dark_energy_counted_once_2026.pdf)).
-The statement itself is in no deposited paper. The law's action, its field equations and their Lean certificates are still PAPER70 (the 8 November block below).
+**v1.7 DOI [10.5281/zenodo.24249046](https://doi.org/10.5281/zenodo.24249046)** (2026-11-15; [PDF](qwen_claude_field_theory/papers_2026/PAPER72_law_with_cold_dark_energy_counted_once_2026.pdf)).
+The statement itself is deposited in version 1.7 (Section 13.1 and the supplement), on the owner's go of 2026-11-15. The law's action, its field equations and their Lean certificates are still PAPER70 (the 8 November block below).
 - **The form (form B, owner decision 2026-11-09).** The law g²/(a₀ + g) = g_Newton with a₀ = ½ c √(G ρ_DE), and cold dark energy at
   5.41 times the baryons, counted once: it is in galaxies too, and around condensed baryons the law describes how it sits. Cold dark
   energy is a gravitating field component with w close to 0; it is not a particle and not a second force. The form was chosen "as a
@@ -36,8 +36,10 @@ The statement itself is in no deposited paper. The law's action, its field equat
   or withdrawn, 12 failed, 11 consistent but not distinctive
   ([`PREDICTIONS_SCORECARD_2026-11-12.md`](predictions_2026/PREDICTIONS_SCORECARD_2026-11-12.md)).
 - **What would kill it.** Seven frozen lines, in Section 5 of the statement. The next dated one is Gaia DR4 wide binaries on 2026-12-02,
-  which can kill the form and cannot confirm it; which registered wide-binary reading scores form B is still open (gap C2 of
-  [`DR4_MAP.md`](closure_2026_11_12/DR4MAP_gaia_dr4_registry_map/DR4_MAP.md)). Also dated: ALMA UDS16442 (2026-11-24), ALMA GS4_24110
+  which can kill the form and cannot confirm it. What is registered for it, the rule that scores it and the release-day tools are
+  deposited as a record made before the data (DOI [10.5281/zenodo.24248715](https://doi.org/10.5281/zenodo.24248715)); the gaps of
+  [`DR4_MAP.md`](closure_2026_11_12/DR4MAP_gaia_dr4_registry_map/DR4_MAP.md) were decided by the owner on 2026-11-15, and one rule is
+  still owed (the error term if the seed-mean sweep cannot run on release day). Also dated: ALMA UDS16442 (2026-11-24), ALMA GS4_24110
   (2026-11-28, sealed plan CFG809) and Euclid calibrated shear (June 2027).
 - **What a derived closure would need, none of which exists:** an equation for the clock behind a fold; a flow of the action that carries
   the charge into the standing state; a derivation of κ and of the share.
@@ -352,7 +354,7 @@ Sorted by robustness, not by ambition. Everything below is either a published th
 | document | what it is |
 |---|---|
 | **[closure_2026_11_15/BCS1_bounded_closure_statement/BOUNDED_CLOSURE_STATEMENT.md](closure_2026_11_15/BCS1_bounded_closure_statement/BOUNDED_CLOSURE_STATEMENT.md)** | **The record's closure statement (adopted 2026-11-15):** the form, where it holds, where it fails, what it does not say, and what would kill it. A statement of where the theory stands, not a pass and not a derivation. |
-| **[PAPER72 (PDF)](qwen_claude_field_theory/papers_2026/PAPER72_law_with_cold_dark_energy_counted_once_2026.pdf)** | **Paper of record for the form (v1.6, 2026-11-15; [DOI 10.5281/zenodo.24246863](https://doi.org/10.5281/zenodo.24246863)):** the a₀ law with cold dark energy counted once, its gates, and what stays open. |
+| **[PAPER72 (PDF)](qwen_claude_field_theory/papers_2026/PAPER72_law_with_cold_dark_energy_counted_once_2026.pdf)** | **Paper of record for the form (v1.7, 2026-11-15; [DOI 10.5281/zenodo.24249046](https://doi.org/10.5281/zenodo.24249046)):** the a₀ law with cold dark energy counted once, its gates, and what stays open. |
 | [closure_2026_11_13/CJ1_candidate_completion/SCORECARD.md](closure_2026_11_13/CJ1_candidate_completion/SCORECARD.md) | Every tested row against the form with the candidate sixth rule (45 rows; the candidate is NOT ADOPTED). |
 | [predictions_2026/PREDICTIONS_SCORECARD_2026-11-12.md](predictions_2026/PREDICTIONS_SCORECARD_2026-11-12.md) | Every registered prediction read against what happened since. None has come true. |
 | [closure_2026_11_07/FINAL_THEORY_2026_11_07.md](closure_2026_11_07/FINAL_THEORY_2026_11_07.md) | The law's action (v3s) on one page, as of 8 November. |
@@ -485,7 +487,7 @@ Enforced by the scripts, not by trust.
 
 ## Publication record
 
-[![The a0 Law with Cold Dark Energy Counted Once](https://img.shields.io/badge/The%20a0%20Law%20with%20Cold%20Dark%20Energy%20Counted%20Once%20(v1.6%2C%20Nov%2015%202026)-10.5281%2Fzenodo.24246863-blue)](https://doi.org/10.5281/zenodo.24246863)
+[![The a0 Law with Cold Dark Energy Counted Once](https://img.shields.io/badge/The%20a0%20Law%20with%20Cold%20Dark%20Energy%20Counted%20Once%20(v1.7%2C%20Nov%2015%202026)-10.5281%2Fzenodo.24249046-blue)](https://doi.org/10.5281/zenodo.24249046)
 [![Switching the a0 Law Off](https://img.shields.io/badge/Switching%20the%20a0%20Law%20Off%20%E2%80%94%20a%20Closed%20Class%20(v1.1%2C%20Nov%209%202026)-10.5281%2Fzenodo.24095262-red)](https://doi.org/10.5281/zenodo.24095262)
 [![The a0 Galaxy Law and its Screened Khronon Action](https://img.shields.io/badge/The%20a0%20Galaxy%20Law%20and%20its%20Screened%20Khronon%20Action%20(v2.1%2C%20Nov%209%202026)-10.5281%2Fzenodo.24092073-blue)](https://doi.org/10.5281/zenodo.24092073)
 [![The Baryon-Calibration Wall](https://img.shields.io/badge/The%20Baryon--Calibration%20Wall%20for%20a0(z)%20(Oct%201%202026)-10.5281%2Fzenodo.23073071-blue)](https://doi.org/10.5281/zenodo.23073071)
@@ -577,6 +579,7 @@ Plain text on purpose, so that titles and DOIs are searchable. Versions of one r
 
 | date | DOI | title | version |
 |---|---|---|---|
+| 2026-11-15 | [10.5281/zenodo.24249046](https://doi.org/10.5281/zenodo.24249046) (concept 24106866) | The a0 Law with Cold Dark Energy Counted Once: the Form the Record Closes On, Its Gates, and What Stays Open (Working Note) | v1.7 (PAPER72; the closure statement deposited; the Gaia DR4 record made before the data; the sealed wide-binary prediction unchanged under the adopted stiffness; no new graded row) |
 | 2026-11-15 | [10.5281/zenodo.24248715](https://doi.org/10.5281/zenodo.24248715) (concept 24248714) | Gaia DR4 Wide Binaries: the Pre-Data Record of a Screened, Newtonian Prediction and Its Scoring Rule (Archive Note) | v1.0 (DR4REC1; the pre-registration with its 22 amendments, the owner decisions, the sealed prediction and the release-day tools, deposited before the data; a time stamp, not a result) |
 | 2026-11-15 | [10.5281/zenodo.24246863](https://doi.org/10.5281/zenodo.24246863) (concept 24106866) | The a0 Law with Cold Dark Energy Counted Once: the Form the Record Closes On, Its Gates, and What Stays Open (Working Note) | v1.6 (PAPER72; a blind build confirms the caustic holds as labels, fragile; the charge-conserving layout fails the forest) |
 | 2026-11-14 | [10.5281/zenodo.24231666](https://doi.org/10.5281/zenodo.24231666) (concept 24106866) | The a0 Law with Cold Dark Energy Counted Once: the Form the Record Closes On, Its Gates, and What Stays Open (Working Note) | v1.5 (PAPER72; the exact junction; three readings of v1.3 and v1.4 corrected) |
