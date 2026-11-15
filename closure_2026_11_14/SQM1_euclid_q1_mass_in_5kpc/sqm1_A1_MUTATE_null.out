@@ -1,0 +1,77 @@
+SQM1 (Euclid Q1 M5 inside 5/h kpc from stars under the law)   *** MUTATE = null ***
+footings (m/s^2): canonical 9.3603e-11, alt 1.1312e-10; units: astro (kpc, Msun, km/s), 800 nodes
+
+[inputs]
+  transcription CSV: 39 numbers, sha256 a2faf82bf457e5df
+  SLACS file sha256 d78d7627d6bbcc07  matches
+  paper HTML sha256 f0e6f872a44345b3  matches the frozen hash
+  transcription check: every paper value string found in the HTML: MISSING ['Lsun_r_W_per_Hz', 'h_age_conversion']
+  observed: mu_M0 = 11.300 +- 0.021, beta_L = 0.71 +- 0.07, beta_z = -0.33 +- 0.05, beta_R = -0.15 +- 0.07
+  rest-frame (g - r)_AB at z 0.5 = 0.7900;  d(g-r)/dz = -0.1950
+  Chabrier log Y_r(z 0.5): Bell 0.4676 (Y 2.935), Zibetti 0.4667 (Y 2.929); Salpeter offset 0.2479 dex
+  d log Y/dz at fixed L: Bell colour -0.2139, Zibetti colour -0.3225, passive -0.3600
+
+[known answers]
+  PASS K1  point mass to 1e-6; SIS deflection constant to 1e-4 : 1.3e-11 ; 7.6e-06
+  PASS K2  EUC1 K2 with copied code: SLACS median R_E,pred/R_E,obs = 0.885 +- 0.005 (N 70) : 0.8852
+  PASS K3  Newton limit: projected M5 = Y L M2D_frac(R5) to 2e-03 : 9.87e-04
+  PASS K4  paper: M5/L5 at the pivot with average size (log R_e h 0.541) = 6.7 +- 0.35 Msun h/Lsun : 6.529
+  PASS K5  paper: model at log L 10.67, z 0.2, average size = 11.38 +- 0.03 : 11.358
+  PASS K6  SI: Lsun,r 6.00e11 W/Hz -> M_sun,r(AB) = 4.65 +- 0.02 : 4.649
+
+[primary: law S, Bell M/L (Chabrier + delta), a0(z) flat, h = 0.70, de Vaucouleurs, pivot log R_e h = 0.5]
+  canonical Chabrier: A = 11.2612  beta_L = 0.7945  beta_z = -0.1700   words ['PASS', 'PASS', 'HIGH']
+  canonical Salpeter: A = 11.4647  beta_L = 0.8444  beta_z = -0.1809   words ['HIGH', 'PASS', 'HIGH']
+  canonical sigma A 0.0211 (pred 0.0023), beta_L 0.070, beta_z 0.0505 (pred 0.0068)
+  canonical per-quantity words over delta [0, 0.248]: A IMF-DEPENDENT(HIGH/PASS), beta_L PASS, beta_z HIGH
+  canonical delta intervals that pass: A [0.0, 0.1, True], beta_L [0.0, 0.248, True], beta_z None; all three None
+  canonical ROW: STILL FAILS [beta_z HIGH]
+  alt       Chabrier: A = 11.2788  beta_L = 0.7773  beta_z = -0.1663   words ['PASS', 'PASS', 'HIGH']
+  alt       Salpeter: A = 11.4780  beta_L = 0.8284  beta_z = -0.1774   words ['HIGH', 'PASS', 'HIGH']
+  alt       sigma A 0.0211 (pred 0.0022), beta_L 0.070, beta_z 0.0504 (pred 0.0066)
+  alt       per-quantity words over delta [0, 0.248]: A IMF-DEPENDENT(HIGH/PASS), beta_L PASS, beta_z HIGH
+  alt       delta intervals that pass: A [0.0, 0.08, True], beta_L [0.0, 0.248, True], beta_z None; all three None
+  alt       ROW: STILL FAILS [beta_z HIGH]
+
+[Newton beside it (stars only), and law B (reported, never the word)]
+  canonical Newton Chab A 11.1195 bL 1.0000 bz -0.2139 | Salp A 11.3675 bL 1.0000 bz -0.2139 | pass delta A [0.14, 0.22, True] | ROW STILL FAILS [beta_L HIGH, beta_z HIGH]
+  canonical law B  Chab A 11.2209 bL 0.8296 bz -0.1778 | Salp A 11.4337 bL 0.8804 bz -0.1887 | pass delta A [0.044, 0.14, True] | ROW STILL FAILS [beta_z HIGH]
+  alt       Newton Chab A 11.1195 bL 1.0000 bz -0.2139 | Salp A 11.3675 bL 1.0000 bz -0.2139 | pass delta A [0.14, 0.22, True] | ROW STILL FAILS [beta_L HIGH, beta_z HIGH]
+  alt       law B  Chab A 11.2356 bL 0.8105 bz -0.1737 | Salp A 11.4440 bL 0.8648 bz -0.1854 | pass delta A [0.028, 0.128, True] | ROW STILL FAILS [beta_z HIGH]
+
+[reading, not graded: beta_R = d log M5 / d log R_e at fixed L, observed -0.15 +- 0.07]
+  canonical law S  Chabrier: beta_R,pred = -0.330
+  canonical Newton Chabrier: beta_R,pred = -0.435
+  alt       law S  Chabrier: beta_R,pred = -0.321
+  alt       Newton Chabrier: beta_R,pred = -0.435
+
+[brackets, law S; ROW per footing; FRAGILE if any changes the primary row]
+  B-Zib                        canonical Chab A 11.260 bL 0.794 bz -0.256 | Salp A 11.464 bL 0.844 bz -0.273 | A IMF-DEPENDENT(HIGH/PASS) L PASS z PASS | ROW NO VERDICT
+  B-Zib                        alt       Chab A 11.278 bL 0.777 bz -0.251 | Salp A 11.477 bL 0.828 bz -0.267 | A IMF-DEPENDENT(HIGH/PASS) L PASS z PASS | ROW NO VERDICT
+  B-pass                       canonical Chab A 11.261 bL 0.795 bz -0.286 | Salp A 11.465 bL 0.844 bz -0.304 | A IMF-DEPENDENT(HIGH/PASS) L PASS z PASS | ROW NO VERDICT
+  B-pass                       alt       Chab A 11.279 bL 0.777 bz -0.280 | Salp A 11.478 bL 0.828 bz -0.298 | A IMF-DEPENDENT(HIGH/PASS) L PASS z PASS | ROW NO VERDICT
+  B-h 0.6774                   canonical Chab A 11.275 bL 0.795 bz -0.170 | Salp A 11.479 bL 0.844 bz -0.181 | A IMF-DEPENDENT(HIGH/PASS) L PASS z HIGH | ROW STILL FAILS [beta_z HIGH]
+  B-h 0.6774                   alt       Chab A 11.293 bL 0.777 bz -0.166 | Salp A 11.492 bL 0.828 bz -0.177 | A IMF-DEPENDENT(HIGH/PASS) L PASS z HIGH | ROW STILL FAILS [beta_z HIGH]
+  B-h 0.73                     canonical Chab A 11.243 bL 0.795 bz -0.170 | Salp A 11.446 bL 0.844 bz -0.181 | A IMF-DEPENDENT(HIGH/LOW/PASS) L PASS z HIGH | ROW STILL FAILS [beta_z HIGH]
+  B-h 0.73                     alt       Chab A 11.261 bL 0.777 bz -0.166 | Salp A 11.460 bL 0.828 bz -0.177 | A IMF-DEPENDENT(HIGH/PASS) L PASS z HIGH | ROW STILL FAILS [beta_z HIGH]
+  B-h footing-native           canonical Chab A 11.282 bL 0.795 bz -0.170 | Salp A 11.486 bL 0.844 bz -0.181 | A IMF-DEPENDENT(HIGH/PASS) L PASS z HIGH | ROW STILL FAILS [beta_z HIGH]
+  B-h footing-native           alt       Chab A 11.218 bL 0.777 bz -0.166 | Salp A 11.417 bL 0.828 bz -0.177 | A IMF-DEPENDENT(HIGH/LOW/PASS) L PASS z HIGH | ROW STILL FAILS [beta_z HIGH]
+  B-cpl                        canonical Chab A 11.266 bL 0.789 bz -0.172 | Salp A 11.469 bL 0.840 bz -0.182 | A IMF-DEPENDENT(HIGH/PASS) L PASS z HIGH | ROW STILL FAILS [beta_z HIGH]
+  B-cpl                        alt       Chab A 11.284 bL 0.772 bz -0.168 | Salp A 11.482 bL 0.823 bz -0.179 | A IMF-DEPENDENT(HIGH/PASS) L PASS z HIGH | ROW STILL FAILS [beta_z HIGH]
+  B-size (log R_e h 0.541)     canonical Chab A 11.247 bL 0.790 bz -0.169 | Salp A 11.450 bL 0.840 bz -0.180 | A IMF-DEPENDENT(HIGH/LOW/PASS) L PASS z HIGH | ROW STILL FAILS [beta_z HIGH]
+  B-size (log R_e h 0.541)     alt       Chab A 11.265 bL 0.773 bz -0.165 | Salp A 11.463 bL 0.824 bz -0.176 | A IMF-DEPENDENT(HIGH/PASS) L PASS z HIGH | ROW STILL FAILS [beta_z HIGH]
+  (B-along: d mu_R/d log L at the pivot = 0.6480; observed slope along the relation 0.613 +- 0.083)
+  B-along                      canonical Chab A 11.261 bL 0.564 bz -0.170 | Salp A 11.465 bL 0.597 bz -0.181 | A IMF-DEPENDENT(HIGH/PASS) L PASS z HIGH | ROW STILL FAILS [beta_z HIGH]
+  B-along                      alt       Chab A 11.279 bL 0.552 bz -0.166 | Salp A 11.478 bL 0.586 bz -0.177 | A IMF-DEPENDENT(HIGH/PASS) L PASS z HIGH | ROW STILL FAILS [beta_z HIGH]
+  B-sel (+0.065)               canonical Chab A 11.261 bL 0.795 bz -0.170 | Salp A 11.465 bL 0.844 bz -0.181 | A IMF-DEPENDENT(HIGH/LOW/PASS) L PASS z HIGH | ROW STILL FAILS [beta_z HIGH]
+  B-sel (+0.065)               alt       Chab A 11.279 bL 0.777 bz -0.166 | Salp A 11.478 bL 0.828 bz -0.177 | A IMF-DEPENDENT(HIGH/LOW/PASS) L PASS z HIGH | ROW STILL FAILS [beta_z HIGH]
+  B-n6                         canonical Chab A 11.248 bL 0.792 bz -0.169 | Salp A 11.451 bL 0.842 bz -0.180 | A IMF-DEPENDENT(HIGH/LOW/PASS) L PASS z HIGH | ROW STILL FAILS [beta_z HIGH]
+  B-n6                         alt       Chab A 11.266 bL 0.774 bz -0.166 | Salp A 11.465 bL 0.826 bz -0.177 | A IMF-DEPENDENT(HIGH/PASS) L PASS z HIGH | ROW STILL FAILS [beta_z HIGH]
+  B-rmax 300 kpc               canonical Chab A 11.257 bL 0.797 bz -0.171 | Salp A 11.461 bL 0.847 bz -0.181 | A IMF-DEPENDENT(HIGH/LOW/PASS) L PASS z HIGH | ROW STILL FAILS [beta_z HIGH]
+  B-rmax 300 kpc               alt       Chab A 11.274 bL 0.780 bz -0.167 | Salp A 11.474 bL 0.831 bz -0.178 | A IMF-DEPENDENT(HIGH/PASS) L PASS z HIGH | ROW STILL FAILS [beta_z HIGH]
+
+[verdict per footing, law S]
+  canonical STILL FAILS [beta_z HIGH] FRAGILE   (changed by: ['B-Zib', 'B-pass'])
+  alt       STILL FAILS [beta_z HIGH] FRAGILE   (changed by: ['B-Zib', 'B-pass'])
+
+[NULL twin] max |difference| vs the SI run over primary and brackets = 3.00e-06 (must be < 1e-4); words identical: True -> AGREES, exit 0
